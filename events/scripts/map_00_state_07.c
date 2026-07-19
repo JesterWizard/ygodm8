@@ -12,7 +12,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BBC, map_00_state_07_08E34BBC, 0x08E34BD4, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34BD4, map_00_state_07_08E34BD4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34BD4, map_00_state_07_08E34BD4, EVENT_NOP, EVENT_NOP)
   WALK_OBJECT_Y(0, 32)
   WALK_OBJECT_X(0, 48)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
@@ -28,35 +28,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BD4, map_00_state_07_08E34BD4, 0x08F04040, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "It is always important to\n"
-    "relax and take a step away\n\n"
-    "from your main mission.\n\n"
-    "For the road of destiny is\n"
-    "not a straight path.\n\n"
-    "There are many side roads\n"
-    "and streets that you can\n\n"
-    "wander along.\n\n"
-    "The more roads you take, the\n"
-    "more you will see of the\n\n"
-    "world, and the more you will\n"
-    "learn.\n\n"
-    "However, Reshef is gaining\n"
-    "power far faster than\n\n"
-    "expected.\n\n"
-    "We must return to the main\n"
-    "path. Hurry and resurrect\n\n"
-    "the Egyptian God Cards.\n\n"
-    "The last Egyptian God Card\n"
-    "remaining is The Winged\n\n"
-    "Dragon of Ra.\n\n"
-    "In order to restore the\n"
-    "final Egyptian God Card\n\n"
-    "from stone...\n\n"
-    "Please hurry and obtain the\n"
-    "next Millennium Item.\n\n"
-    "The next Millennium Item\n"
-    "is."
-)
+      "It is always important to relax and take a step away",
+      "from your main mission.",
+      "For the road of destiny is not a straight path.",
+      "There are many side roads and streets that you can",
+      "wander along.",
+      "The more roads you take, the more you will see of the",
+      "world, and the more you will learn.",
+      "However, Reshef is gaining power far faster than",
+      "expected.",
+      "We must return to the main path. Hurry and resurrect",
+      "the Egyptian God Cards.",
+      "The last Egyptian God Card remaining is The Winged",
+      "Dragon of Ra.",
+      "In order to restore the final Egyptian God Card",
+      "from stone...",
+      "Please hurry and obtain the next Millennium Item.",
+      "The next Millennium Item is."
+  )
   DELAY(43)
   TEXT
   (
@@ -68,14 +57,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BD4, map_00_state_07_08E34BD4, 0x08F04040, 0x08F
       "."
   )
   DELAY(43)
-  TEXT
-  (
-      "\n\n"
-      "In a place where prehistoric\n"
-      "life forms are preserved in\n\n"
-      "rock...\n\n"
-      "A fossil excavation site in\n"
-      "Canada.\n\n"
+  TEXT(
+      "In a place where prehistoric life forms are preserved in",
+      "rock...",
+      "A fossil excavation site in Canada."
   )
   HIDE_PORTRAIT()
   FADE_MUSIC(2)
@@ -85,26 +70,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BD4, map_00_state_07_08E34BD4, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34BE0, map_00_state_07_08E34BE0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34BE0, map_00_state_07_08E34BE0, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "The Dark Being was\n"
-    "resurrected by Sol\n\n"
-    "Chevalsky...\n\n"
-    "No, not Sol Chevalsky, but\n"
-    "Pegasus.\n\n"
-    "To imprison Reshef, we need\n"
-    "one more Egyptian God Card.\n\n"
-    "We need the power of The\n"
-    "Winged Dragon of Ra.\n\n"
-    "We must resurrect the card\n"
-    "from stone.\n\n"
-    "Please find the Millennium\n"
-    "Items to restore it.\n\n"
-    "The fifth Millennium Item is\n"
-    "in Canada among fossils.\n\n"
-    "You will find it at a fossil\n"
-    "excavation site.\n\n"
-)
+      "The Dark Being was resurrected by Sol",
+      "Chevalsky...",
+      "No, not Sol Chevalsky, but Pegasus.",
+      "To imprison Reshef, we need one more Egyptian God Card.",
+      "We need the power of The Winged Dragon of Ra.",
+      "We must resurrect the card from stone.",
+      "Please find the Millennium Items to restore it.",
+      "The fifth Millennium Item is in Canada among fossils.",
+      "You will find it at a fossil excavation site."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -113,12 +90,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BC8, map_00_state_07_08E34BC8, 0x08E34BD4, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34BEC, map_00_state_07_08E34BEC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34BEC, map_00_state_07_08E34BEC, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Please. Hurry to the fossil\n"
-    "excavation site.\n\n"
-    "Reshef the Dark Being will\n"
-    "soon engulf the world.\n\n"
-)
+      "Please. Hurry to the fossil excavation site.",
+      "Reshef the Dark Being will soon engulf the world."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

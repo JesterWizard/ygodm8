@@ -4,7 +4,7 @@
 
 /* map_06_state_09: map 6 state 9 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CD74, map_06_state_09_08E5CD74, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E5CD74, map_06_state_09_08E5CD74, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_LUCKY)
   LOAD_SPRITE(2, SPRITE_DUKE)
   LOAD_SPRITE(3, SPRITE_SERENITY)
@@ -16,26 +16,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD74, map_06_state_09_08E5CD74, 0x08F04040, 0x08F
   WALK_OBJECT_Y(4, 48)
   DELAY(16)
   PLAY_MUSIC(MUSIC_324)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Ukkiii!\n\n"
-  )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Oh! This monkey...\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 2, PORTRAIT_POSITION_AUTO, "Ukkiii!")
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO, "Oh! This monkey...")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(4, 52)
   DELAY(16)
   PLAY_MUSIC(MUSIC_327)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Uki, uki. uki.\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_POSITION_AUTO, "Uki, uki. uki.")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_273)
@@ -43,10 +31,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD74, map_06_state_09_08E5CD74, 0x08F04040, 0x08F
   WALK_OBJECT_X(1, 96)
   DELAY(16)
   PLAY_MUSIC(MUSIC_203)
-  TEXT
-  (
-      "Arf arf arf!\n\n"
-  )
+  TEXT("Arf arf arf!")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(4, DIRECTION_RIGHT, 0, 0)
@@ -55,42 +40,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD74, map_06_state_09_08E5CD74, 0x08F04040, 0x08F
   WALK_OBJECT_X(4, 68)
   DELAY(16)
   PLAY_MUSIC(MUSIC_203)
-  TEXT
-  (
-      "Arf.\n\n"
-  )
+  TEXT("Arf.")
   PLAY_MUSIC(MUSIC_323)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Uki!\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_POSITION_AUTO, "Uki!")
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   PLAY_MUSIC(MUSIC_203)
-  TEXT
-  (
-      "Arf arf!\n\n"
-  )
+  TEXT("Arf arf!")
   PLAY_MUSIC(MUSIC_326)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Uki uki.\n\n"
+  TALK(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_POSITION_AUTO, "Uki uki.")
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I read that monkeys and dogs don't get along...",
+      "But this monkey and Lucky seem like best friends."
   )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I read that monkeys and dogs\n"
-      "don't get along...\n\n"
-      "But this monkey and Lucky\n"
-      "seem like best friends.\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "It can't be... This monkey\n"
-      "robot...\n\n"
-      "Could it be Tristan?\n\n"
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "It can't be... This monkey robot...",
+      "Could it be Tristan?"
   )
   HIDE_PORTRAIT()
   DELAY(8)
@@ -99,70 +63,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD74, map_06_state_09_08E5CD74, 0x08F04040, 0x08F
   DELAY(8)
   MOVE_OBJECT(3, DIRECTION_UP, 0, 0)
   DELAY(8)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Really?!\n\n"
-      "Tristan turned into a robot?\n\n"
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO,
+      "Really?!",
+      "Tristan turned into a robot?"
   )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Lucky is Tristan's dog, and\n"
-      "it's getting along great\n\n"
-      "with this robot.\n\n"
-      "That's all the proof I need.\n\n"
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Lucky is Tristan's dog, and it's getting along great",
+      "with this robot.",
+      "That's all the proof I need."
   )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I... I guess so.\n\n"
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I... I guess so.")
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "And...")
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "And?")
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "This may be another repercussion due to",
+      "Reshef's resurrection."
   )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "And...\n\n"
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO, "H-how...")
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Who other reason can you think of?",
+      "I mean, if this was the virtual world, I wouldn't",
+      "be surprised if Tristan turned into a monkey.",
+      "But a guy can't turn into a robot in real life."
   )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "And?\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "This may be another\n"
-      "repercussion due to\n\n"
-      "Reshef's resurrection.\n\n"
-  )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "H-how...\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Who other reason can you\n"
-      "think of?\n\n"
-      "I mean, if this was the\n"
-      "virtual world, I wouldn't\n\n"
-      "be surprised if Tristan\n"
-      "turned into a monkey.\n\n"
-      "But a guy can't turn into a\n"
-      "robot in real life.\n\n"
-  )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I... I guess so.\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "But if this is true...\n"
-      "Tristan might never regain\n\n"
-      "his human form...\n\n"
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I... I guess so.")
+  TALK(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, PORTRAIT_POSITION_AUTO,
+      "But if this is true... Tristan might never regain",
+      "his human form..."
   )
   HIDE_PORTRAIT()
   DELAY(8)
@@ -172,26 +99,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD74, map_06_state_09_08E5CD74, 0x08F04040, 0x08F
   MOVE_OBJECT(4, DIRECTION_LEFT, 0, 0)
   DELAY(8)
   PLAY_MUSIC(MUSIC_325)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Ukiiiiiiii!\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_POSITION_AUTO, "Ukiiiiiiii!")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
   DELAY(8)
   WALK_OBJECT_X(4, 144)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Tristan!\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Tristan!\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO, "Tristan!")
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Tristan!")
   HIDE_PORTRAIT()
   DELAY(64)
   FADE_SCREEN(4)

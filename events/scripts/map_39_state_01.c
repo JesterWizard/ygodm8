@@ -13,11 +13,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4A80, map_39_state_01_08ED4A80, 0x08ED4A8C, 0x08E
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "L-look!\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO, "L-look!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_UP, 4, 0)
@@ -28,12 +24,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4A80, map_39_state_01_08ED4A80, 0x08ED4A8C, 0x08E
   WALK_OBJECT_Y(1, 69)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "It's been a long time,\n"
-      "partner.\n\n"
-  )
+  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "It's been a long time, partner.")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(0, 68)
@@ -42,36 +33,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4A80, map_39_state_01_08ED4A80, 0x08ED4A8C, 0x08E
   MOVE_OBJECT(13, DIRECTION_LEFT, 0, 0)
   WALK_OBJECT_X(14, 76)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I've already snatched the\n"
-      "Millennium Item here.\n\n"
-      "Including the ones you have,\n"
-      "that makes six.\n\n"
-      "Ishizu told me to bring back\n"
-      "all the Millennium Items.\n\n"
-      "Fork over the Millennium\n"
-      "Items you have.\n\n"
-      "What are you waiting for?\n"
-      "Give it!\n\n"
+  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I've already snatched the Millennium Item here.",
+      "Including the ones you have, that makes six.",
+      "Ishizu told me to bring back all the Millennium Items.",
+      "Fork over the Millennium Items you have.",
+      "What are you waiting for? Give it!"
   )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08ED4A8C, map_39_state_01_08ED4A8C, 0x08ED4AA4, 0x08F04040)
-  PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "That's right. You did the\n"
-      "right thing.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08ED4A8C, map_39_state_01_08ED4A8C, 0x08ED4AA4, EVENT_NOP)
+  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "That's right. You did the right thing.")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
@@ -81,34 +55,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4A8C, map_39_state_01_08ED4A8C, 0x08ED4AA4, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED4AA4, map_39_state_01_08ED4AA4, 0x08ED4AB0, 0x08F0404C)
-  PORTRAIT(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Come on, what are you\n"
-      "waiting for, you idiot!\n\n"
-      "Hand over the Millennium\n"
-      "Items!\n\n"
+  TALK(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_ANGRY, PORTRAIT_POSITION_AUTO,
+      "Come on, what are you waiting for, you idiot!",
+      "Hand over the Millennium Items!"
   )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wait a second! There's\n"
-      "something wrong about him,\n\n"
-      "{PLAYER}!\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Wait a second! There's something wrong about him,",
+      "{PLAYER}!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what do you mean?\n\n"
-      "I'm the same ol' dude you\n"
-      "all know and love!\n\n"
-      "How could things go wrong? I\n"
-      "look exactly like him!\n\n"
+  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Wh-what do you mean?",
+      "I'm the same ol' dude you all know and love!",
+      "How could things go wrong? I look exactly like him!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -120,27 +83,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4AA4, map_39_state_01_08ED4AA4, 0x08ED4AB0, 0x08F
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "My disguise is perfect.\n\n"
-  )
+  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "My disguise is perfect.")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Disguise?\n\n"
-  )
-  PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Uh... No, not a disguise! I\n"
-      "meant... Um, I...\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO, "Disguise?")
+  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Uh... No, not a disguise! I meant... Um, I...")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_LEFT, 4, 0)
@@ -155,36 +105,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4AA4, map_39_state_01_08ED4AA4, 0x08ED4AB0, 0x08F
   MOVE_OBJECT(13, DIRECTION_LEFT, 4, 0)
   MOVE_OBJECT(14, DIRECTION_LEFT, 4, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Argh! My cover is blown! But\n"
-      "it doesn't matter!\n\n"
-  )
+  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Argh! My cover is blown! But it doesn't matter!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_330)
   LOAD_SPRITE(1, SPRITE_MIMIC_OF_DOOM)
   DELAY(32)
   PLAY_MUSIC(MUSIC_403)
-  PORTRAIT(PORTRAIT_MIMIC_OF_DOOM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Gehehehehe!\n\n"
-      "I am the Mimic of Doom!\n\n"
-      "We'll duel for the\n"
-      "Millennium Items!\n\n"
+  TALK(PORTRAIT_MIMIC_OF_DOOM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Gehehehehe!",
+      "I am the Mimic of Doom!",
+      "We'll duel for the Millennium Items!"
   )
   DUEL(DUELIST_MIMIC_OF_DOOM_050)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08ED4AB0, map_39_state_01_08ED4AB0, 0x08F04250, 0x08F04040)
-  PORTRAIT(PORTRAIT_MIMIC_OF_DOOM, EXPRESSION_MIMIC_OF_DOOM_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Nooooooo! I can't lose!\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08ED4AB0, map_39_state_01_08ED4AB0, 0x08F04250, EVENT_NOP)
+  TALK(PORTRAIT_MIMIC_OF_DOOM, EXPRESSION_MIMIC_OF_DOOM_DEFEATED, PORTRAIT_POSITION_AUTO, "Nooooooo! I can't lose!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_316)
@@ -204,31 +142,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4AB0, map_39_state_01_08ED4AB0, 0x08F04250, 0x08F
   PLAY_MUSIC(MUSIC_280)
   SHOW_OBJECT(2, 36, 69, 0, 1, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Six Millennium Items... You\n"
-      "are to be praised.\n\n"
-      "I hope you will not give up\n"
-      "until you defeat Reshef...\n\n"
-      "And save Pegasus from the\n"
-      "darkness...\n\n"
+  TALK(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Six Millennium Items... You are to be praised.",
+      "I hope you will not give up until you defeat Reshef...",
+      "And save Pegasus from the darkness..."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
   REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "For Pegasus is also a\n"
-      "victim.\n\n"
-      "He has been swallowed by\n"
-      "Reshef's powers of\n\n"
-      "darkness.\n\n"
-      "You must save the world and\n"
-      "Pegasus from the shadows...\n\n"
+  TALK(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "For Pegasus is also a victim.",
+      "He has been swallowed by Reshef's powers of",
+      "darkness.",
+      "You must save the world and Pegasus from the shadows..."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -236,26 +164,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4AB0, map_39_state_01_08ED4AB0, 0x08F04250, 0x08F
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_TELEPORT)
   SHOW_OBJECT(2, 144, 112, 0, 0, 0)
   DELAY(64)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "The Millennium Scale...\n\n"
-      "We now have six Millennium\n"
-      "Items.\n\n"
-      "Quick, let's get back to\n"
-      "Ishizu!\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "The Millennium Scale...",
+      "We now have six Millennium Items.",
+      "Quick, let's get back to Ishizu!"
   )
   SET_FLAG(EVENT_FLAG_DEFEATED_MIMIC_OF_DOOM)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08ED4A98, map_39_state_01_08ED4A98, 0x08ED4AA4, 0x08F04040)
-  PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "What? I said hand it over!\n"
-      "Now do it!\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08ED4A98, map_39_state_01_08ED4A98, 0x08ED4AA4, EVENT_NOP)
+  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "What? I said hand it over! Now do it!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)

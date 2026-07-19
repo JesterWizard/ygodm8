@@ -4,7 +4,7 @@
 
 /* map_31_state_08: map 31 state 8 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08EB43CC, map_31_state_08_08EB43CC, 0x08EB43D8, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EB43CC, map_31_state_08_08EB43CC, 0x08EB43D8, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_WEEVIL)
   LOAD_SPRITE(2, SPRITE_BUTTERFLY)
   PLAY_MUSIC(MUSIC_706)
@@ -32,7 +32,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB43CC, map_31_state_08_08EB43CC, 0x08EB43D8, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EB43D8, map_31_state_08_08EB43D8, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EB43D8, map_31_state_08_08EB43D8, EVENT_NOP, EVENT_NOP)
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
@@ -57,23 +57,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB43D8, map_31_state_08_08EB43D8, 0x08F04040, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Arrrgh! That bug got away!\n\n"
-  )
+  TALK(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Arrrgh! That bug got away!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "But... The insects have come\n"
-      "back...\n\n"
-      "...Does that mean he's back\n"
-      "too?\n\n"
+  TALK(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "But... The insects have come back...",
+      "...Does that mean he's back too?"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -87,19 +79,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB43D8, map_31_state_08_08EB43D8, 0x08F04040, 0x08F
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_LEFT, 4, 0)
   DELAY(32)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "He probably doesn't think of\n"
-      "me as a friend, so I\n\n"
-      "shouldn't go visit him....\n\n"
-      "But I did give him my\n"
-      "card...\n\n"
-      "So maybe it wouldn't be\n"
-      "weird for me to visit him.\n\n"
-      "Yup, that's what I'll do.\n\n"
-      "I'll just say I want to see\n"
-      "how my card is doing!\n\n"
+  TALK(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "He probably doesn't think of me as a friend, so I",
+      "shouldn't go visit him....",
+      "But I did give him my card...",
+      "So maybe it wouldn't be weird for me to visit him.",
+      "Yup, that's what I'll do.",
+      "I'll just say I want to see how my card is doing!"
   )
   HIDE_PORTRAIT()
   DELAY(16)

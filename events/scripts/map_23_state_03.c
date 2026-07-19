@@ -4,7 +4,7 @@
 
 /* map_23_state_03: map 23 state 3 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E95318, map_23_state_03_08E95318, 0x08E95324, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E95318, map_23_state_03_08E95318, 0x08E95324, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_BANDIT_KEITH)
   LOAD_SPRITE(2, SPRITE_ISHIZU)
   LOAD_SPRITE(3, SPRITE_ATEM)
@@ -30,70 +30,46 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95318, map_23_state_03_08E95318, 0x08E95324, 0x08F
   DELAY(16)
   WALK_OBJECT_Y(1, 26)
   DELAY(16)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Kukuku... What took you so\n"
-      "long? You've kept us\n\n"
-      "waiting.\n\n"
-      "But that gave me time to\n"
-      "talk to this woman.\n\n"
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Kukuku... What took you so long? You've kept us",
+      "waiting.",
+      "But that gave me time to talk to this woman."
   )
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Then you should understand\n"
-      "what I'm asking.\n\n"
-      "We need your help to defeat\n"
-      "the Dark Being...\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Then you should understand what I'm asking.",
+      "We need your help to defeat the Dark Being..."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Idiot! All I care about is\n"
-      "defeating Pegasus!\n\n"
-  )
-  TEXT
-  (
-      "I don't give half a brain\n"
-      "about the Dark Being or\n\n"
-      "anyone else!\n\n"
-      "Saving the world is not my\n"
-      "problem!\n\n"
-      "Hurry up and resurrect my\n"
-      "Winged Dragon of Ra.\n\n"
-      "Kukukukukuku!\n\n"
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Idiot! All I care about is defeating Pegasus!")
+  TEXT(
+      "I don't give half a brain about the Dark Being or",
+      "anyone else!",
+      "Saving the world is not my problem!",
+      "Hurry up and resurrect my Winged Dragon of Ra.",
+      "Kukukukukuku!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(1, 40)
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
   DELAY(32)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "C'mon, I'm done talking!\n\n"
-      "Hand over the Millennium\n"
-      "Items.\n\n"
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "C'mon, I'm done talking!",
+      "Hand over the Millennium Items."
   )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E95324, map_23_state_03_08E95324, 0x08E9533C, 0x08E95330)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
+  TEXT("{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E9533C, map_23_state_03_08E9533C, 0x08E95348, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E9533C, map_23_state_03_08E9533C, 0x08E95348, EVENT_NOP)
   WALK_OBJECT_Y(0, 58)
   WALK_OBJECT_X(0, 62)
   WALK_OBJECT_Y(0, 48)
@@ -105,13 +81,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08E9533C, map_23_state_03_08E9533C, 0x08E95348, 0x08F
   WALK_OBJECT_Y(0, 64)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "All the Millennium Items are\n"
-      "gathered here.\n\n"
-      "You found six Millennium\n"
-      "Items.\n\n"
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "All the Millennium Items are gathered here.",
+      "You found six Millennium Items.",
       "The Millennium Necklace..."
   )
   PLAY_MUSIC(MUSIC_316)
@@ -152,52 +124,38 @@ EVENT_SCRIPT_REPLACEMENT(0x08E9533C, map_23_state_03_08E9533C, 0x08E95348, 0x08F
   PLAY_MUSIC(MUSIC_316)
   SHOW_OBJECT(10, 62, 52, 0, 0, 0)
   PAGE_BREAK()
-  TEXT
-  (
-      "Kukuku...\n\n"
-      "I can't thank you enough.\n\n"
-      "You've collected the\n"
-      "Millennium Items, just for\n\n"
-      "me!\n\n"
+  TEXT(
+      "Kukuku...",
+      "I can't thank you enough.",
+      "You've collected the Millennium Items, just for",
+      "me!"
   )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E95348, map_23_state_03_08E95348, 0x08E95354, 0x08E95360)
-  TEXT
-  (
-      "{CARD_1}What do you mean?\n"
-      "No way!{CARD_2}\n\n"
+  TEXT("{CARD_1}What do you mean?\nNo way!{CARD_2}")
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E95354, map_23_state_03_08E95354, 0x08E9536C, EVENT_NOP)
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Heh, don't underestimate the Neo Ghouls' spies.",
+      "I knew you were gathering the Millennium Items from",
+      "the very start.",
+      "I let you find them.",
+      "So that you would resurrect the Egyptian God Cards for",
+      "me."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E95354, map_23_state_03_08E95354, 0x08E9536C, 0x08F04040)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Heh, don't underestimate the\n"
-      "Neo Ghouls' spies.\n\n"
-      "I knew you were gathering\n"
-      "the Millennium Items from\n\n"
-      "the very start.\n\n"
-      "I let you find them.\n\n"
-      "So that you would resurrect\n"
-      "the Egyptian God Cards for\n\n"
-      "me.\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E9536C, map_23_state_03_08E9536C, 0x08E95384, 0x08F04040)
-  TEXT
-  (
-      "While you were looking for\n"
-      "them, I found the last\n\n"
-      "Millennium Item.\n\n"
-      "Yup, the Millennium Puzzle\n"
-      "belongs to me.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E9536C, map_23_state_03_08E9536C, 0x08E95384, EVENT_NOP)
+  TEXT(
+      "While you were looking for them, I found the last",
+      "Millennium Item.",
+      "Yup, the Millennium Puzzle belongs to me."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -235,43 +193,28 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E95384, map_23_state_03_08E95384, 0x08E95390, 0x08F0404C)
   PLAY_MUSIC(MUSIC_407)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Kukukuku...\n"
-      "I finally have it.\n\n"
-      "The Egyptian God Card... The\n"
-      "Winged Dragon of Ra is\n\n"
-      "mine!\n\n"
-      "And my first victim...will\n"
-      "be you!\n\n"
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Kukukuku... I finally have it.",
+      "The Egyptian God Card... The Winged Dragon of Ra is",
+      "mine!",
+      "And my first victim...will be you!"
   )
   DUEL(DUELIST_BANDIT_KEITH_077)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E95390, map_23_state_03_08E95390, 0x08E9539C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E95390, map_23_state_03_08E95390, 0x08E9539C, EVENT_NOP)
   PLAY_MUSIC(MUSIC_299)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SLIFER_ATTACKS_SPHERE_RA)
   ADD_CARD(238)
-  TEXT
-  (
-      "You can use Slifer the Sky\n"
-      "Dragon again!\n\n"
-  )
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what? How could this\n"
-      "happen!\n\n"
-      "The Egyptian God Card\n"
-      "refused to let me use its\n\n"
-      "power?!\n\n"
-      "That's it! I'm done playing\n"
-      "fair!\n\n"
-      "I'm the one with the\n"
-      "hostage! Hand over your\n\n"
-      "Egyptian God Card!\n\n"
+  TEXT("You can use Slifer the Sky Dragon again!")
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_DEFEATED, PORTRAIT_POSITION_AUTO,
+      "Wh-what? How could this happen!",
+      "The Egyptian God Card refused to let me use its",
+      "power?!",
+      "That's it! I'm done playing fair!",
+      "I'm the one with the hostage! Hand over your",
+      "Egyptian God Card!"
   )
   HIDE_PORTRAIT()
   DELAY(8)
@@ -293,11 +236,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95390, map_23_state_03_08E95390, 0x08E9539C, 0x08F
   DELAY(10)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what? What's happening?\n\n"
-  )
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_SURPRISED, PORTRAIT_POSITION_AUTO, "Wh-what? What's happening?")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_300)
@@ -310,42 +249,27 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95390, map_23_state_03_08E95390, 0x08E9539C, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E9539C, map_23_state_03_08E9539C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E9539C, map_23_state_03_08E9539C, EVENT_NOP, EVENT_NOP)
   SET_FLAG(EVENT_FLAG_MAKE_BACKGROUND_BLACK)
   WARP(LOCATION_EGYPT_EXHIBITION_MILLENNIUM_GUARDIAN, 7, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E95360, map_23_state_03_08E95360, 0x08E9536C, 0x08F04040)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You're so clueless.\n\n"
-      "Go ahead and deny it. You\n"
-      "can't change the facts!\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E95360, map_23_state_03_08E95360, 0x08E9536C, EVENT_NOP)
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "You're so clueless.",
+      "Go ahead and deny it. You can't change the facts!"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E95330, map_23_state_03_08E95330, 0x08E95324, 0x08F04040)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "If you don't... Well, you\n"
-      "don't want to know what\n\n"
-      "I'll do to this woman.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E95330, map_23_state_03_08E95330, 0x08E95324, EVENT_NOP)
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "If you don't... Well, you don't want to know what",
+      "I'll do to this woman."
   )
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "...\n\n"
-  )
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hurry up. Hand over the\n"
-      "Millennium Items.\n\n"
-  )
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "...")
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Hurry up. Hand over the Millennium Items.")
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

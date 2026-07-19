@@ -880,6 +880,138 @@ def encode_text(text: str) -> list[int]:
     return out
 
 
+# Overworld textbox: cursor positions 0..0x1B → 28 glyph columns; 2 rows per page.
+DIALOGUE_LINE_LIMIT = 28
+DIALOGUE_LINES_PER_PAGE = 2
+# gPlayerName is longer, but status/OW UI treats ~8 glyphs as the practical name width.
+PLAYER_NAME_DISPLAY_WIDTH = 8
+
+
+def dialogue_display_width(text: str) -> int:
+    """Visible glyph columns for wrap math (controls like {CARD_*} are width 0)."""
+    width = 0
+    index = 0
+    while index < len(text):
+        if text.startswith("{PLAYER}", index):
+            width += PLAYER_NAME_DISPLAY_WIDTH
+            index += len("{PLAYER}")
+            continue
+        if text.startswith("{CARD_1}", index) or text.startswith("{CARD_2}", index):
+            index += len("{CARD_1}")
+            continue
+        byte_token = re.match(r"\{BYTE_([0-9A-Fa-f]+)\}", text[index:])
+        if byte_token:
+            width += max(1, len(byte_token.group(1)) // 2)
+            index += byte_token.end()
+            continue
+        control = re.match(r"\{[^}]+\}", text[index:])
+        if control:
+            index += control.end()
+            continue
+        if text[index] == "\n":
+            index += 1
+            continue
+        width += 1
+        index += 1
+    return width
+
+
+def has_card_choice(text: str) -> bool:
+    return "{CARD_1}" in text and "{CARD_2}" in text
+
+
+def wrap_dialogue_line(line: str, *, where: str = "") -> list[str]:
+    """Word-wrap one authored line to DIALOGUE_LINE_LIMIT columns."""
+    if dialogue_display_width(line) <= DIALOGUE_LINE_LIMIT:
+        return [line]
+
+    words = line.split()
+    if not words:
+        return [line]
+
+    lines: list[str] = []
+    current = ""
+    for word in words:
+        word_width = dialogue_display_width(word)
+        if word_width > DIALOGUE_LINE_LIMIT:
+            loc = f"{where}: " if where else ""
+            print(
+                f"error: {loc}dialogue word exceeds {DIALOGUE_LINE_LIMIT}-character line limit "
+                f"and cannot be wrapped:\n  {word!r}\n  (in line: {line!r})",
+                file=sys.stderr,
+            )
+            raise ValueError(
+                f"dialogue word exceeds {DIALOGUE_LINE_LIMIT} characters: {word!r}"
+            )
+        candidate = word if not current else f"{current} {word}"
+        if dialogue_display_width(candidate) <= DIALOGUE_LINE_LIMIT:
+            current = candidate
+            continue
+        lines.append(current)
+        current = word
+    if current:
+        lines.append(current)
+
+    for wrapped in lines:
+        if dialogue_display_width(wrapped) > DIALOGUE_LINE_LIMIT:
+            loc = f"{where}: " if where else ""
+            print(
+                f"error: {loc}dialogue line exceeds {DIALOGUE_LINE_LIMIT}-character limit "
+                f"after wrap:\n  {wrapped!r}",
+                file=sys.stderr,
+            )
+            raise ValueError(
+                f"dialogue line exceeds {DIALOGUE_LINE_LIMIT} characters: {wrapped!r}"
+            )
+    return lines
+
+
+def wrap_dialogue_text(text: str, *, where: str = "") -> str:
+    """Word-wrap dialogue; blank-line-separated chunks are textbox pages.
+
+    Soft line breaks inside a normal page are unwrapped to spaces, then the page
+    is reflowed to DIALOGUE_LINE_LIMIT cols / DIALOGUE_LINES_PER_PAGE rows.
+    Pages that contain {CARD_1}/{CARD_2} keep internal newlines as forced rows
+    (choice Yes/No layout). Always ends with a page-break so the last box waits
+    for A.
+    """
+    if not text:
+        return text
+
+    raw_pages = re.split(r"\n\s*\n", text.strip("\n"))
+    authored_pages: list[str] = []
+    for page in raw_pages:
+        if not page.strip():
+            continue
+        if has_card_choice(page):
+            authored_pages.append(page.strip("\n").strip())
+            continue
+        joined = " ".join(part.strip() for part in page.split("\n") if part.strip())
+        if joined:
+            authored_pages.append(joined)
+    if not authored_pages:
+        return "\n\n"
+
+    out_pages: list[str] = []
+    for page_text in authored_pages:
+        if has_card_choice(page_text) and "\n" in page_text:
+            rows: list[str] = []
+            for line in page_text.split("\n"):
+                line = line.strip()
+                if line:
+                    rows.extend(wrap_dialogue_line(line, where=where))
+        else:
+            rows = wrap_dialogue_line(page_text, where=where)
+        for index in range(0, len(rows), DIALOGUE_LINES_PER_PAGE):
+            out_pages.append("\n".join(rows[index : index + DIALOGUE_LINES_PER_PAGE]))
+
+    return "\n\n".join(out_pages) + "\n\n"
+
+
+def encode_dialogue_text(text: str, *, where: str = "") -> list[int]:
+    return encode_text(wrap_dialogue_text(text, where=where))
+
+
 def scan_quoted_literal(text: str, start: int) -> int:
     quote = text[start]
     triple = text.startswith(quote * 3, start)
@@ -931,6 +1063,7 @@ C_CONSTANTS = load_c_constants([
     ROOT / "include/constants/music_ids.h",
     ROOT / "include/constants/event_cg_generated.h",
     ROOT / "events/scripts/event_object_slots.h",
+    ROOT / "events/scripts/event_macros.h",
 ])
 
 
@@ -1196,8 +1329,8 @@ def migrate_portrait_text_to_talk(text: str) -> tuple[str, int]:
             continue
         if text[end1:start2].strip():
             continue
-        indent_match = re.match(r"(\s*)", text[start1:])
-        indent = indent_match.group(1) if indent_match else ""
+        line_start = text.rfind("\n", 0, start1) + 1
+        indent = text[line_start:start1]
         portrait_part = f"{args1[0]}, {args1[1]}, {args1[2]}"
         text_args = spans[i + 1][1]
         if len(text_args) != 1:
@@ -1206,9 +1339,9 @@ def migrate_portrait_text_to_talk(text: str) -> tuple[str, int]:
         if "\n" in text[start2:end2]:
             text_indent = talk_text_indent(indent)
             aligned_text = align_talk_text_arg(text_arg, text_indent)
-            replacement = f"{indent}TALK({portrait_part},\n{aligned_text}\n{indent})"
+            replacement = f"TALK({portrait_part},\n{aligned_text}\n{indent})"
         else:
-            replacement = f"{indent}TALK({portrait_part}, {text_arg})"
+            replacement = f"TALK({portrait_part}, {text_arg})"
         replacements.append((start1, end2, replacement))
         count += 1
 
@@ -1223,6 +1356,202 @@ def migrate_portrait_text_to_talk(text: str) -> tuple[str, int]:
         pos = end
     out.append(text[pos:])
     return "".join(out), count
+
+
+def old_dialogue_to_pages(text: str) -> list[str]:
+    """Split legacy \\n / \\n\\n dialogue into one natural-language page each."""
+    raw_pages = re.split(r"\n\s*\n", text.strip("\n"))
+    pages: list[str] = []
+    for page in raw_pages:
+        if not page.strip():
+            continue
+        if has_card_choice(page):
+            # Keep Yes/No line break; unwrap any other soft wraps inside the block.
+            lines = [ln.strip() for ln in page.strip("\n").split("\n")]
+            lines = [ln for ln in lines if ln]
+            pages.append("\n".join(lines))
+            continue
+        joined = " ".join(part.strip() for part in page.split("\n") if part.strip())
+        joined = re.sub(r" +", " ", joined).strip()
+        if joined:
+            pages.append(joined)
+    return pages
+
+
+def escape_c_string(value: str) -> str:
+    return '"' + (
+        value.replace("\\", "\\\\")
+        .replace('"', '\\"')
+        .replace("\n", "\\n")
+        .replace("\t", "\\t")
+    ) + '"'
+
+
+def format_page_args(pages: list[str], indent: str) -> str:
+    if len(pages) == 1:
+        return escape_c_string(pages[0])
+    text_indent = talk_text_indent(indent)
+    lines = [text_indent + escape_c_string(page) + "," for page in pages[:-1]]
+    lines.append(text_indent + escape_c_string(pages[-1]))
+    return "\n" + "\n".join(lines) + "\n" + indent
+
+
+def strip_talk_defaults(meta_args: list[str]) -> list[str]:
+    """Drop trailing EXPRESSION_NEUTRAL / PORTRAIT_LEFT when they match TALK defaults.
+
+    Keep EXPRESSION_NEUTRAL when a non-default position is present — otherwise
+    parse_talk_args would treat the position as the expression.
+    """
+    out = list(meta_args)
+    if len(out) >= 3 and out[2] in {"PORTRAIT_LEFT", "0"}:
+        out.pop(2)
+    if len(out) == 2 and out[1] in {"EXPRESSION_NEUTRAL", "0"}:
+        out.pop(1)
+    return out
+
+
+def migrate_macro_dialogue_pages(text: str) -> tuple[str, int]:
+    """Rewrite TEXT/TALK/DIALOGUE string blobs into one-string-per-page args."""
+    spans = find_macro_spans(text)
+    replacements: list[tuple[int, int, str]] = []
+    count = 0
+    for name, args, start, end in spans:
+        if name not in {"TEXT", "TALK", "DIALOGUE"}:
+            continue
+        if name == "TALK":
+            split = 0
+            while split < len(args) and not is_text_literal_arg(args[split]):
+                split += 1
+            if split == 0 or split == len(args):
+                continue
+            meta = args[:split]
+            text_args = args[split:]
+        else:
+            meta = []
+            text_args = args
+        if not text_args or not all(is_text_literal_arg(arg) for arg in text_args):
+            continue
+
+        parsed_args = [parse_text_literal(arg) for arg in text_args]
+        already_pages = len(text_args) > 1 and not any("\n" in page for page in parsed_args)
+        if already_pages:
+            pages = [page.strip() for page in parsed_args if page.strip()]
+            new_meta = strip_talk_defaults(meta) if name == "TALK" else meta
+            if new_meta == meta:
+                continue
+            meta = new_meta
+        else:
+            combined = "".join(parsed_args)
+            pages = old_dialogue_to_pages(combined)
+            if not pages:
+                continue
+            original_meta = meta
+            if name == "TALK":
+                meta = strip_talk_defaults(meta)
+            if (
+                len(text_args) == 1
+                and len(pages) == 1
+                and "\n" not in parsed_args[0]
+                and pages[0] == parsed_args[0].strip()
+                and meta == original_meta
+            ):
+                continue
+
+        line_start = text.rfind("\n", 0, start) + 1
+        indent = text[line_start:start]
+        page_args = format_page_args(pages, indent)
+        if name == "TALK":
+            meta_part = ", ".join(meta)
+            if page_args.startswith("\n"):
+                replacement = f"TALK({meta_part},{page_args})"
+            else:
+                replacement = f"TALK({meta_part}, {page_args})"
+        elif page_args.startswith("\n"):
+            replacement = f"{name}({page_args})"
+        else:
+            replacement = f"{name}({page_args})"
+        if replacement == text[start:end]:
+            continue
+        replacements.append((start, end, replacement))
+        count += 1
+
+    if not replacements:
+        return text, 0
+
+    out: list[str] = []
+    pos = 0
+    for start, end, repl in replacements:
+        out.append(text[pos:start])
+        out.append(repl)
+        pos = end
+    out.append(text[pos:])
+    return "".join(out), count
+
+
+def migrate_event_nop_aliases(text: str) -> tuple[str, int]:
+    """Rewrite branch-target 0x08F04040 to EVENT_NOP (not script addresses)."""
+    spans = find_macro_spans(text)
+    replacements: list[tuple[int, int, str]] = []
+    count = 0
+    for name, args, start, end in spans:
+        if name not in {"EVENT_SCRIPT_REPLACEMENT", "REPLACE_EVENT_SCRIPT", "EVENT_SCRIPT"}:
+            continue
+        if len(args) < 3:
+            continue
+        # args: address, name, on_false[, on_true]
+        new_args = list(args)
+        changed = False
+        for index in range(2, len(new_args)):
+            if re.fullmatch(r"0x08[Ff]04040", new_args[index].strip()):
+                new_args[index] = "EVENT_NOP"
+                changed = True
+                count += 1
+        if not changed:
+            continue
+        indent = text[text.rfind("\n", 0, start) + 1 : start]
+        replacement = f"{name}({', '.join(new_args)})"
+        # Prefer keeping original multiline header shape for long lines — single line is fine.
+        replacements.append((start, end, replacement))
+
+    if not replacements:
+        return text, 0
+
+    out: list[str] = []
+    pos = 0
+    for start, end, repl in replacements:
+        out.append(text[pos:start])
+        out.append(repl)
+        pos = end
+    out.append(text[pos:])
+    return "".join(out), count
+
+
+def migrate_event_dialogue_style_in_text(text: str) -> tuple[str, int]:
+    total = 0
+    text, n = migrate_portrait_text_to_talk(text)
+    total += n
+    text, n = migrate_macro_dialogue_pages(text)
+    total += n
+    text, n = migrate_event_nop_aliases(text)
+    total += n
+    return text, total
+
+
+def migrate_event_dialogue_style_in_file(path: Path) -> int:
+    original = path.read_text()
+    updated, count = migrate_event_dialogue_style_in_text(original)
+    if updated != original:
+        path.write_text(updated)
+    return count
+
+
+def migrate_event_dialogue_style_in_dir(scripts_dir: Path) -> list[tuple[str, int]]:
+    results: list[tuple[str, int]] = []
+    for path in sorted(scripts_dir.glob("map_*.c")):
+        count = migrate_event_dialogue_style_in_file(path)
+        if count:
+            results.append((path.name, count))
+    return results
 
 
 def parse_c_value(value: str, names: dict[str, int] | None = None) -> int:
@@ -1281,7 +1610,60 @@ def parse_c_value(value: str, names: dict[str, int] | None = None) -> int:
 
 
 def parse_text_literal(value: str) -> str:
-    return ast.literal_eval("(" + textwrap.dedent(value) + ")")
+    # Eval first, then dedent, so indented """...""" blocks strip author indent
+    # without leaving spaces in the encoded dialogue.
+    text = ast.literal_eval("(" + value.strip() + ")")
+    text = textwrap.dedent(text)
+    if text.startswith("\n"):
+        text = text[1:]
+    return text
+
+
+def is_text_literal_arg(arg: str) -> bool:
+    return arg.strip().startswith(('"', "'"))
+
+
+def join_dialogue_page_args(args: list[str], *, where: str = "") -> str:
+    """Each string arg is one textbox page; join with blank lines for wrap_dialogue_text."""
+    if not args:
+        raise ValueError(f"{where}: expected at least one dialogue string")
+    pages: list[str] = []
+    for arg in args:
+        if not is_text_literal_arg(arg):
+            raise ValueError(f"{where}: expected string literal, got {arg!r}")
+        page = parse_text_literal(arg).strip()
+        if page:
+            pages.append(page)
+    if not pages:
+        raise ValueError(f"{where}: dialogue strings were empty")
+    return "\n\n".join(pages)
+
+
+def parse_talk_args(args: list[str], *, where: str = "") -> tuple[str, str, str, str]:
+    """TALK(portrait[, expression[, position]], page, ...).
+
+    Defaults: EXPRESSION_NEUTRAL, PORTRAIT_LEFT.
+    """
+    if len(args) < 2:
+        raise ValueError(f"{where}: TALK expected portrait + at least one string")
+
+    split = 0
+    while split < len(args) and not is_text_literal_arg(args[split]):
+        split += 1
+    if split == 0:
+        raise ValueError(f"{where}: TALK missing portrait id before dialogue strings")
+    if split == len(args):
+        raise ValueError(f"{where}: TALK missing dialogue string(s)")
+    if split > 3:
+        raise ValueError(
+            f"{where}: TALK expected at most 3 portrait args before strings, got {split}"
+        )
+
+    portrait = args[0]
+    expression = args[1] if split >= 2 else "EXPRESSION_NEUTRAL"
+    position = args[2] if split >= 3 else "PORTRAIT_LEFT"
+    text = join_dialogue_page_args(args[split:], where=where)
+    return portrait, expression, position, text
 
 
 def object_mask_expr(mask: int) -> str:
@@ -1309,19 +1691,15 @@ class CScriptEntry:
 VANILLA_NOP_BRANCH = "0x08F04040"
 
 
-def has_card_choice(text: str) -> bool:
-    return "{CARD_1}" in text and "{CARD_2}" in text
-
-
 def macro_has_card_choice(name: str, args: list[str]) -> bool:
     if name == "TEXT":
-        return has_card_choice(parse_text_literal(args[0]))
+        return any(has_card_choice(parse_text_literal(arg)) for arg in args if is_text_literal_arg(arg))
     if name == "LANGUAGE_TEXT":
         return has_card_choice(parse_text_literal(args[1]))
     if name == "DIALOGUE":
-        return has_card_choice(parse_text_literal(args[0]))
+        return any(has_card_choice(parse_text_literal(arg)) for arg in args if is_text_literal_arg(arg))
     if name == "TALK":
-        return has_card_choice(parse_text_literal(args[3]))
+        return any(has_card_choice(parse_text_literal(arg)) for arg in args if is_text_literal_arg(arg))
     return False
 
 
@@ -1359,26 +1737,29 @@ def append_event_macro(
     if name == "RAW":
         raw_bytes.extend(c_value(arg) & 0xFF for arg in args)
     elif name == "DIALOGUE":
-        need_args(1)
-        text = parse_text_literal(args[0])
+        text = join_dialogue_page_args(args, where=f"{path}:{name}")
         raw_bytes.extend([0x24, ord("0")])
-        raw_bytes.extend(encode_text(text))
+        raw_bytes.extend(encode_dialogue_text(text, where=f"{path}:{name}"))
         raw_bytes.extend([0x24, ord("6")])
     elif name == "LANGUAGE_TEXT":
         need_args(2)
         raw_bytes.extend([0x24, ord("0") + c_value(args[0])])
-        raw_bytes.extend(encode_text(parse_text_literal(args[1])))
+        raw_bytes.extend(
+            encode_dialogue_text(parse_text_literal(args[1]), where=f"{path}:{name}")
+        )
     elif name == "END_LANGUAGE_TEXT":
         need_args(0)
         raw_bytes.extend([0x24, ord("6")])
     elif name == "TEXT":
-        need_args(1)
+        text = join_dialogue_page_args(args, where=f"{path}:{name}")
         raw_bytes.extend([0x24, ord("0")])
-        raw_bytes.extend(encode_text(parse_text_literal(args[0])))
+        raw_bytes.extend(encode_dialogue_text(text, where=f"{path}:{name}"))
         raw_bytes.extend([0x24, ord("6")])
     elif name == "TEXT_FRAGMENT":
         need_args(1)
-        raw_bytes.extend(encode_text(parse_text_literal(args[0])))
+        raw_bytes.extend(
+            encode_dialogue_text(parse_text_literal(args[0]), where=f"{path}:{name}")
+        )
     elif name == "PLAYER_NAME":
         need_args(0)
         raw_bytes.extend([0x23, ord("5")])
@@ -1395,10 +1776,18 @@ def append_event_macro(
         need_args(3)
         raw_bytes.extend([0x23, ord("4"), *(c_value(arg) & 0xFF for arg in args)])
     elif name == "TALK":
-        need_args(4)
-        raw_bytes.extend([0x23, ord("4"), *(c_value(arg) & 0xFF for arg in args[:3])])
+        portrait, expression, position, text = parse_talk_args(args, where=f"{path}:{name}")
+        raw_bytes.extend(
+            [
+                0x23,
+                ord("4"),
+                c_value(portrait) & 0xFF,
+                c_value(expression) & 0xFF,
+                c_value(position) & 0xFF,
+            ]
+        )
         raw_bytes.extend([0x24, ord("0")])
-        raw_bytes.extend(encode_text(parse_text_literal(args[3])))
+        raw_bytes.extend(encode_dialogue_text(text, where=f"{path}:{name}"))
         raw_bytes.extend([0x24, ord("6")])
     elif name in {"SET_FLAG", "CHECK_FLAG", "CLEAR_FLAG"}:
         need_args(1)
@@ -1519,9 +1908,14 @@ def append_event_macro(
 
 
 def finalize_segment_bytes(raw_bytes: list[int]) -> list[int]:
-    if not raw_bytes or raw_bytes[-1] != 0:
-        return raw_bytes + [0]
-    return raw_bytes
+    if not raw_bytes:
+        return [0]
+    # END (0x5D) is a real terminator. A trailing 0 is often a command arg
+    # (WARP unused, music hi-byte, etc.), not FALLTHROUGH — treating it as one
+    # lets the VM run off into the next script's bytes (map_09 looped the intro).
+    if raw_bytes[-1] == 0x5D:
+        return raw_bytes
+    return raw_bytes + [0]
 
 
 MAP_SCENE_FILE_PATTERN = re.compile(r"map_(\d+)_state_(\d+)")
@@ -1530,6 +1924,8 @@ SCRIPT_BLOCK_MACROS = frozenset({
     "REPLACE_EVENT_SCRIPT",
     "EVENT_SCRIPT",
 })
+CHOICE_CONTROL_MACROS = frozenset({"CHOICE", "ELSE", "END_CHOICE"})
+EVENT_NOP_BRANCH = "EVENT_NOP"
 
 
 def parse_map_scene_id(map_name: str) -> tuple[int, int]:
@@ -1543,6 +1939,181 @@ def is_map_scene_file(path: Path) -> bool:
     return MAP_SCENE_FILE_PATTERN.fullmatch(path.stem) is not None
 
 
+def choice_is_structural(body: list[tuple[str, list[str]]], choice_index: int) -> bool:
+    """True when CHOICE() is followed by ELSE() at the same nesting depth."""
+    depth = 0
+    for name, _args in body[choice_index + 1 :]:
+        if name == "CHOICE":
+            depth += 1
+        elif name == "ELSE" and depth == 0:
+            return True
+        elif name == "END_CHOICE":
+            if depth == 0:
+                return False
+            depth -= 1
+    return False
+
+
+def split_choice_arms(
+    body: list[tuple[str, list[str]]],
+    choice_index: int,
+    path: Path,
+) -> tuple[list[tuple[str, list[str]]], list[tuple[str, list[str]]], list[tuple[str, list[str]]]]:
+    """Split body at CHOICE into (arm_a, arm_b, after_end_choice)."""
+    if body[choice_index][0] != "CHOICE":
+        raise ValueError(f"{path}: split_choice_arms expected CHOICE")
+    if body[choice_index][1]:
+        raise ValueError(f"{path}: CHOICE takes no arguments")
+
+    i = choice_index + 1
+    arm_a: list[tuple[str, list[str]]] = []
+    depth = 0
+    while i < len(body):
+        name, args = body[i]
+        if name == "CHOICE":
+            depth += 1
+            arm_a.append((name, args))
+            i += 1
+            continue
+        if name == "ELSE" and depth == 0:
+            if args:
+                raise ValueError(f"{path}: ELSE takes no arguments")
+            i += 1
+            break
+        if name == "END_CHOICE":
+            if depth == 0:
+                raise ValueError(f"{path}: CHOICE missing ELSE before END_CHOICE")
+            depth -= 1
+            arm_a.append((name, args))
+            i += 1
+            continue
+        arm_a.append((name, args))
+        i += 1
+    else:
+        raise ValueError(f"{path}: unclosed CHOICE (missing ELSE)")
+
+    arm_b: list[tuple[str, list[str]]] = []
+    depth = 0
+    while i < len(body):
+        name, args = body[i]
+        if name == "CHOICE":
+            depth += 1
+            arm_b.append((name, args))
+            i += 1
+            continue
+        if name == "ELSE" and depth == 0:
+            raise ValueError(f"{path}: ELSE without matching CHOICE")
+        if name == "END_CHOICE":
+            if args:
+                raise ValueError(f"{path}: END_CHOICE takes no arguments")
+            if depth == 0:
+                return arm_a, arm_b, body[i + 1 :]
+            depth -= 1
+            arm_b.append((name, args))
+            i += 1
+            continue
+        arm_b.append((name, args))
+        i += 1
+    raise ValueError(f"{path}: unclosed CHOICE (missing END_CHOICE)")
+
+
+def compile_choice_body(
+    segment_name: str,
+    root_name: str,
+    script_address: int | None,
+    body: list[tuple[str, list[str]]],
+    path: Path,
+    constants: dict[str, int] | None,
+    slot_state: ObjectSlotState,
+    choice_counter: list[int],
+    fallback_on_false: str,
+    fallback_on_true: str,
+) -> list[CScriptEntry]:
+    """Compile a macro body, expanding structural CHOICE/ELSE/END_CHOICE into Script nodes."""
+    raw_bytes: list[int] = []
+    entries: list[CScriptEntry] = []
+    i = 0
+    while i < len(body):
+        name, args = body[i]
+        if name == "CHOICE" and choice_is_structural(body, i):
+            arm_a, arm_b, rest = split_choice_arms(body, i, path)
+            cid = choice_counter[0]
+            choice_counter[0] += 1
+            arm_a_name = f"{root_name}__c{cid}_a"
+            arm_b_name = f"{root_name}__c{cid}_b"
+            join_name = f"{root_name}__c{cid}_join"
+
+            entries.append(
+                CScriptEntry(
+                    segment_name,
+                    script_address,
+                    arm_a_name,
+                    arm_b_name,
+                    finalize_segment_bytes(raw_bytes),
+                )
+            )
+            entries.extend(
+                compile_choice_body(
+                    arm_a_name,
+                    root_name,
+                    None,
+                    arm_a,
+                    path,
+                    constants,
+                    slot_state,
+                    choice_counter,
+                    join_name,
+                    EVENT_NOP_BRANCH,
+                )
+            )
+            entries.extend(
+                compile_choice_body(
+                    arm_b_name,
+                    root_name,
+                    None,
+                    arm_b,
+                    path,
+                    constants,
+                    slot_state,
+                    choice_counter,
+                    join_name,
+                    EVENT_NOP_BRANCH,
+                )
+            )
+            entries.extend(
+                compile_choice_body(
+                    join_name,
+                    root_name,
+                    None,
+                    rest,
+                    path,
+                    constants,
+                    slot_state,
+                    choice_counter,
+                    fallback_on_false,
+                    fallback_on_true,
+                )
+            )
+            return entries
+
+        if name in {"ELSE", "END_CHOICE"}:
+            raise ValueError(f"{path}: stray {name} outside CHOICE")
+
+        append_event_macro(name, args, raw_bytes, path, constants, slot_state)
+        i += 1
+
+    entries.append(
+        CScriptEntry(
+            segment_name,
+            script_address,
+            fallback_on_false,
+            fallback_on_true,
+            finalize_segment_bytes(raw_bytes),
+        )
+    )
+    return entries
+
+
 def compile_linear_map_event(
     map_name: str,
     calls: list[tuple[str, list[str]]],
@@ -1551,7 +2122,7 @@ def compile_linear_map_event(
 ) -> CScriptEntry:
     raw_bytes: list[int] = []
     slot_state = ObjectSlotState()
-    for name, args in calls:
+    for index, (name, args) in enumerate(calls):
         if name in {
             "MAP_EVENT",
             "END_MAP_EVENT",
@@ -1562,8 +2133,13 @@ def compile_linear_map_event(
             "JOIN",
             "MERGE",
             "END_MERGE",
-        }:
-            raise ValueError(f"{path}: map enter script {map_name} uses legacy wrapper/branch macros")
+            "ELSE",
+            "END_CHOICE",
+        } or (name == "CHOICE" and choice_is_structural(calls, index)):
+            raise ValueError(
+                f"{path}: map enter script {map_name} uses legacy/structural branch macros; "
+                "use EVENT_SCRIPT_REPLACEMENT with CHOICE/ELSE/END_CHOICE instead"
+            )
         append_event_macro(name, args, raw_bytes, path, constants, slot_state)
     map_id, map_state = parse_map_scene_id(map_name)
     return CScriptEntry(
@@ -1616,17 +2192,46 @@ def parse_map_scene_enter_calls(
 
 def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
     entries: list[CScriptEntry] = []
-    current: CScriptEntry | None = None
+    current_name: str | None = None
+    current_address: int | None = None
+    current_on_false: str = EVENT_NOP_BRANCH
+    current_on_true: str = EVENT_NOP_BRANCH
+    current_body: list[tuple[str, list[str]]] | None = None
+    slot_state: ObjectSlotState | None = None
 
     def need_args(name: str, args: list[str], count: int, path: Path) -> None:
         if len(args) != count:
             raise ValueError(f"{path}: {name} expected {count} args, got {len(args)}")
 
+    def flush_script(path: Path, constants: dict[str, int]) -> None:
+        nonlocal current_name, current_address, current_on_false, current_on_true, current_body, slot_state
+        if current_name is None or current_body is None or slot_state is None:
+            raise ValueError(f"{path}: END_EVENT_SCRIPT without script")
+        entries.extend(
+            compile_choice_body(
+                current_name,
+                current_name,
+                current_address,
+                current_body,
+                path,
+                constants,
+                slot_state,
+                [0],
+                current_on_false,
+                current_on_true,
+            )
+        )
+        current_name = None
+        current_address = None
+        current_on_false = EVENT_NOP_BRANCH
+        current_on_true = EVENT_NOP_BRANCH
+        current_body = None
+        slot_state = None
+
     for path in paths:
         script_constants = load_script_constants(path)
         calls = parse_macro_calls(path.read_text())
         call_index = 0
-        slot_state: ObjectSlotState | None = None
 
         if is_map_scene_file(path):
             enter_calls, call_index = parse_map_scene_enter_calls(calls, path)
@@ -1639,38 +2244,56 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
                 raise ValueError(f"{path}: stray {name} after map enter script")
 
             if name in {"EVENT_SCRIPT_REPLACEMENT", "REPLACE_EVENT_SCRIPT"}:
-                need_args(name, args, 4, path)
-                if current is not None:
+                if current_body is not None:
                     raise ValueError(f"{path}: nested {name}")
-                current = CScriptEntry(args[1], parse_hex(args[0]), args[2], args[3], [])
+                if len(args) == 2:
+                    current_address = parse_hex(args[0])
+                    current_name = args[1]
+                    current_on_false = EVENT_NOP_BRANCH
+                    current_on_true = EVENT_NOP_BRANCH
+                elif len(args) == 4:
+                    current_address = parse_hex(args[0])
+                    current_name = args[1]
+                    current_on_false = args[2]
+                    current_on_true = args[3]
+                else:
+                    raise ValueError(f"{path}: {name} expected 2 or 4 args, got {len(args)}")
+                current_body = []
                 slot_state = ObjectSlotState()
                 call_index += 1
                 continue
             if name == "EVENT_SCRIPT":
-                need_args(name, args, 3, path)
-                if current is not None:
+                if current_body is not None:
                     raise ValueError(f"{path}: nested {name}")
-                current = CScriptEntry(args[0], None, args[1], args[2], [])
+                if len(args) == 1:
+                    current_name = args[0]
+                    current_address = None
+                    current_on_false = EVENT_NOP_BRANCH
+                    current_on_true = EVENT_NOP_BRANCH
+                elif len(args) == 3:
+                    current_name = args[0]
+                    current_address = None
+                    current_on_false = args[1]
+                    current_on_true = args[2]
+                else:
+                    raise ValueError(f"{path}: {name} expected 1 or 3 args, got {len(args)}")
+                current_body = []
                 slot_state = ObjectSlotState()
                 call_index += 1
                 continue
             if name == "END_EVENT_SCRIPT":
                 need_args(name, args, 0, path)
-                if current is None:
-                    raise ValueError(f"{path}: END_EVENT_SCRIPT without script")
-                entries.append(current)
-                current = None
-                slot_state = None
+                flush_script(path, script_constants)
                 call_index += 1
                 continue
-            if current is None:
+            if current_body is None:
                 call_index += 1
                 continue
 
-            append_event_macro(name, args, current.raw_bytes, path, script_constants, slot_state)
+            current_body.append((name, args))
             call_index += 1
-        if current is not None:
-            raise ValueError(f"{path}: unclosed event script {current.name}")
+        if current_body is not None:
+            raise ValueError(f"{path}: unclosed event script {current_name}")
     return entries
 
 
@@ -1853,7 +2476,7 @@ def compile_c_replacements(paths: list[Path]) -> str:
             return "(struct Script *)0"
         if value in name_to_entry:
             return f"&sEventScript_{script_ident(name_to_entry[value])}Node"
-        addr = parse_hex(value)
+        addr = C_CONSTANTS[value] if value in C_CONSTANTS else parse_hex(value)
         if addr in vanilla_to_entry:
             return f"&sEventScript_{script_ident(vanilla_to_entry[addr])}Node"
         return f"(struct Script *)0x{addr:08X}"
@@ -2593,6 +3216,15 @@ def cmd_migrate_sprite_refs(args: argparse.Namespace) -> None:
     print(f"migrated {total} macro(s) across {len(results)} file(s)")
 
 
+def cmd_migrate_dialogue_style(args: argparse.Namespace) -> None:
+    scripts_dir = Path(args.scripts_dir)
+    results = migrate_event_dialogue_style_in_dir(scripts_dir)
+    total = sum(changes for _, changes in results)
+    for path, changes in results:
+        print(f"migrated {changes} site(s) in {path}")
+    print(f"migrated {total} site(s) across {len(results)} file(s)")
+
+
 def migrate_map_event_files(scripts_dir: Path, catalog_path: Path) -> list[str]:
     enter_scripts = parse_catalog_enter_scripts(catalog_path)
     changed: list[str] = []
@@ -3073,18 +3705,22 @@ EVENT_MACROS_HEADER = """#ifndef EVENT_MACROS_H
 #define EVENT_SCRIPT(name, on_false, on_true)
 #define END_EVENT_SCRIPT()
 
+#define EVENT_NOP 0x08F04040
+
 #define RAW(...)
 #define DIALOGUE(text)
 #define LANGUAGE_TEXT(language, text)
 #define END_LANGUAGE_TEXT()
-#define TEXT(text) LANGUAGE_TEXT(LANGUAGE_ENGLISH, text) END_LANGUAGE_TEXT()
+#define TEXT(...) LANGUAGE_TEXT(LANGUAGE_ENGLISH, __VA_ARGS__) END_LANGUAGE_TEXT()
 #define TEXT_FRAGMENT(text)
 #define PLAYER_NAME()
 #define NEWLINE()
 #define PAGE_BREAK()
 #define CHOICE()
+#define ELSE()
+#define END_CHOICE()
 #define PORTRAIT(portrait_id, expression, position)
-#define TALK(portrait_id, expression, position, text)
+#define TALK(...)
 #define HIDE_PORTRAIT()
 #define SET_FLAG(flag)
 #define CHECK_FLAG(flag)
@@ -3229,6 +3865,13 @@ def build_arg_parser() -> argparse.ArgumentParser:
     )
     migrate_sprite_refs.add_argument("--scripts-dir", default="events/scripts")
     migrate_sprite_refs.set_defaults(func=cmd_migrate_sprite_refs)
+
+    migrate_dialogue = subparsers.add_parser(
+        "migrate-dialogue-style",
+        help="rewrite TEXT/TALK to one-string-per-page style (map_09 authoring)",
+    )
+    migrate_dialogue.add_argument("--scripts-dir", default="events/scripts")
+    migrate_dialogue.set_defaults(func=cmd_migrate_dialogue_style)
 
     migrate_map_events = subparsers.add_parser(
         "migrate-map-events",

@@ -5,71 +5,43 @@
 
 /* map_57_state_03: map 57 state 3 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08EFB444, map_57_state_03_08EFB444, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EFB444, map_57_state_03_08EFB444, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_ROLAND)
   LOAD_SPRITE(2, SPRITE_BIG_FIVE)
   LOAD_SPRITE(3, SPRITE_BIG_FIVE)
   LOAD_SPRITE(4, SPRITE_BIG_FIVE)
   LOAD_SPRITE(5, SPRITE_BIG_FIVE)
   LOAD_SPRITE(6, SPRITE_BIG_FIVE)
-  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "All right, crew! Everyone\n"
-      "ready?\n\n"
-  )
+  TALK(PORTRAIT_ROLAND, "All right, crew! Everyone ready?")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Yes, I understand. But...\n\n"
-  )
+  TEXT("Yes, I understand. But...")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "We're missing two of our\n"
-      "members...\n\n"
-  )
+  TEXT("We're missing two of our members...")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "What's the point of doing a\n"
-      "children's show?\n\n"
-  )
-  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "You fools!\n\n"
-  )
+  TEXT("What's the point of doing a children's show?")
+  TALK(PORTRAIT_ROLAND, "You fools!")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_2 | OBJECT_3 | OBJECT_4 | OBJECT_5 | OBJECT_6)
   DELAY(8)
-  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "The children are afraid!\n\n"
-      "The Neo Ghouls stole their\n"
-      "rare cards.\n\n"
-      "Kaibaman represents hope to\n"
-      "the kids.\n\n"
-      "When Masters Mokuba and Seto\n"
-      "return, how would they feel\n\n"
-      "if children aren't enjoying\n"
-      "dueling?\n\n"
-      "We can't let Masters Mokuba\n"
-      "and Seto see that.\n\n"
-      "That's why we have to give\n"
-      "hope to the kids.\n\n"
+  TALK(PORTRAIT_ROLAND,
+      "The children are afraid!",
+      "The Neo Ghouls stole their rare cards.",
+      "Kaibaman represents hope to the kids.",
+      "When Masters Mokuba and Seto return, how would they feel",
+      "if children aren't enjoying dueling?",
+      "We can't let Masters Mokuba and Seto see that.",
+      "That's why we have to give hope to the kids."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -79,12 +51,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB444, map_57_state_03_08EFB444, 0x08F04040, 0x08F
   MOVE_OBJECT(5, DIRECTION_LEFT, 0, 0)
   MOVE_OBJECT(6, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "As a bonus, I'll speak to\n"
-      "Master Kaiba about giving\n\n"
-      "you better jobs.\n\n"
+  TALK(PORTRAIT_ROLAND,
+      "As a bonus, I'll speak to Master Kaiba about giving",
+      "you better jobs."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -99,11 +68,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB444, map_57_state_03_08EFB444, 0x08F04040, 0x08F
   OBJECT_EFFECT(OBJECT_5, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_361)
   LOAD_SPRITE(5, SPRITE_ROBOTIC_KNIGHT)
-  PORTRAIT(PORTRAIT_ROBOTIC_KNIGHT, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I... I'll do it!\n\n"
-  )
+  TALK(PORTRAIT_ROBOTIC_KNIGHT, "I... I'll do it!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(6, DIRECTION_DOWN, 0, 0)
@@ -111,11 +76,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB444, map_57_state_03_08EFB444, 0x08F04040, 0x08F
   OBJECT_EFFECT(OBJECT_6, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_361)
   LOAD_SPRITE(6, SPRITE_JINZO)
-  PORTRAIT(PORTRAIT_JINZO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Yes!\n\n"
-  )
+  TALK(PORTRAIT_JINZO, "Yes!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)

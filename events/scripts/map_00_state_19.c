@@ -4,85 +4,59 @@
 
 /* map_00_state_19: map 0 state 19 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34EBC, map_00_state_19_08E34EBC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34EBC, map_00_state_19_08E34EBC, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_ESPA)
   LOAD_SPRITE(2, SPRITE_ROBA_BROTHER_1)
   LOAD_SPRITE(3, SPRITE_ROBA_BROTHER_2)
   LOAD_SPRITE(4, SPRITE_ROBA_BROTHER_3)
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Pipipi...\n\n"
-  )
+  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_RIGHT, "Pipipi...")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Big brother...\n\n"
-  )
+  TEXT("Big brother...")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Are you worried?\n\n"
-  )
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "No... I'm not worried.\n\n"
-      "I'm sure they'll get the job\n"
-      "done.\n\n"
+  TEXT("Are you worried?")
+  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "No... I'm not worried.",
+      "I'm sure they'll get the job done."
   )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Yeah!\n\n"
-      "They're stronger than the\n"
-      "Big Bad Five!\n\n"
-      "They won't lose to anyone!\n\n"
+  TEXT(
+      "Yeah!",
+      "They're stronger than the Big Bad Five!",
+      "They won't lose to anyone!"
   )
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Hahahahaha!\n\n"
-      "That's right! There's no way\n"
-      "they'll lose!\n\n"
+  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Hahahahaha!",
+      "That's right! There's no way they'll lose!"
   )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "But they can't beat\n"
-      "Kaibaman!\n\n"
-  )
+  TEXT("But they can't beat Kaibaman!")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Well, duh. Kaibaman's\n"
-      "invincible!\n\n"
-      "But {PLAYER}'s number one!\n\n"
+  TEXT(
+      "Well, duh. Kaibaman's invincible!",
+      "But {PLAYER}'s number one!"
   )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "So which one's stronger? A\n"
-      "duelist who's invincible or\n\n"
-      "a duelist who's number one?\n\n"
+  TEXT(
+      "So which one's stronger? A duelist who's invincible or",
+      "a duelist who's number one?"
   )
   HIDE_PORTRAIT()
   DELAY(8)
@@ -90,11 +64,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34EBC, map_00_state_19_08E34EBC, 0x08F04040, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(8)
   PLAY_MUSIC(MUSIC_390)
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Wh-what's that sound?\n\n"
-  )
+  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Wh-what's that sound?")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
@@ -102,35 +72,20 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34EBC, map_00_state_19_08E34EBC, 0x08F04040, 0x08F
   DELAY(8)
   MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  TEXT
-  (
-      "Big brother! Over there!\n\n"
-  )
+  TEXT("Big brother! Over there!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(4, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "That's KaibaCorp's\n"
-      "helicopter...\n\n"
-  )
+  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "That's KaibaCorp's helicopter...")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Let's go, big brother!\n\n"
-  )
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Sure! Let's go!\n\n"
-  )
+  TEXT("Let's go, big brother!")
+  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Sure! Let's go!")
   FADE_SCREEN(8)
   WARP(LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST, 7, 0, 0)
   FALLTHROUGH()

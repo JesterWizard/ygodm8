@@ -15,62 +15,47 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DDF8, map_16_state_01_08E7DDF8, 0x08E7DE10, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DE10, map_16_state_01_08E7DE10, 0x08E7DE88, 0x08F04040)
-  TEXT
-  (
-      "Welcome aboard the Duel\n"
-      "Express!\n\n"
-      "We will be leaving very\n"
-      "shortly.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E7DE10, map_16_state_01_08E7DE10, 0x08E7DE88, EVENT_NOP)
+  TEXT(
+      "Welcome aboard the Duel Express!",
+      "We will be leaving very shortly."
   )
   SET_FLAG(EVENT_FLAG_INTERACTED_WITH_CONDUCTOR)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DE88, map_16_state_01_08E7DE88, 0x08F04040, 0x08E7DE94)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DE88, map_16_state_01_08E7DE88, EVENT_NOP, 0x08E7DE94)
   CHECK_FLAG(EVENT_FLAG_INTERACTED_WITH_YELLOW_SCARF)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DE94, map_16_state_01_08E7DE94, 0x08F04040, 0x08E7DEA0)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DE94, map_16_state_01_08E7DE94, EVENT_NOP, 0x08E7DEA0)
   CHECK_FLAG(EVENT_FLAG_INTERACTED_WITH_DAMIEN_DRACO)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DEA0, map_16_state_01_08E7DEA0, 0x08F04040, 0x08E7DEAC)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DEA0, map_16_state_01_08E7DEA0, EVENT_NOP, 0x08E7DEAC)
   CHECK_FLAG(EVENT_FLAG_INTERACTED_WITH_CONDUCTOR)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DEAC, map_16_state_01_08E7DEAC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DEAC, map_16_state_01_08E7DEAC, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_238)
   WALK_OBJECT_X(4, 108)
   DELAY(8)
   MOVE_OBJECT(4, DIRECTION_LEFT, 0, 0)
-  TEXT
-  (
-      "Forward all clear!\n\n"
-  )
+  TEXT("Forward all clear!")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(4, DIRECTION_RIGHT, 0, 0)
-  TEXT
-  (
-      "Rear all clear!\n\n"
-  )
+  TEXT("Rear all clear!")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(4, DIRECTION_DOWN, 0, 0)
-  TEXT
-  (
-      "All clear for dueling!\n\n"
-  )
+  TEXT("All clear for dueling!")
   STOP_MUSIC(238)
   PLAY_MUSIC(MUSIC_370)
-  TEXT
-  (
-      "Duel Express is good to go!\n\n"
-  )
+  TEXT("Duel Express is good to go!")
   PLAY_MUSIC(MUSIC_234)
   SET_FLAG(EVENT_FLAG_SHAKE_SCREEN)
   HIDE_PORTRAIT()
@@ -85,11 +70,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DEAC, map_16_state_01_08E7DEAC, 0x08F04040, 0x08F
   DELAY(4)
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 1)
   DELAY(4)
-  TEXT
-  (
-      "I'm going to give it my best\n"
-      "shot!\n\n"
-  )
+  TEXT("I'm going to give it my best shot!")
   HIDE_PORTRAIT()
   DELAY(4)
   MOVE_OBJECT(3, DIRECTION_DOWN, 0, 0)
@@ -102,11 +83,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DEAC, map_16_state_01_08E7DEAC, 0x08F04040, 0x08F
   DELAY(4)
   MOVE_OBJECT(3, DIRECTION_DOWN, 0, 1)
   DELAY(4)
-  TEXT
-  (
-      "Our Duel Express is on the\n"
-      "go!\n\n"
-  )
+  TEXT("Our Duel Express is on the go!")
   SET_MAP_MUSIC(234)
   SET_FLAG(EVENT_FLAG_DUEL_EXPRESS_TOURNAMENT_STARTED)
   CLEAR_FLAG(245)
@@ -118,20 +95,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DE04, map_16_state_01_08E7DE04, 0x08E7DE28, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DE28, map_16_state_01_08E7DE28, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "The level of competition is\n"
-      "higher in the next car.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DE28, map_16_state_01_08E7DE28, EVENT_NOP, EVENT_NOP)
+  TEXT("The level of competition is higher in the next car.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DE1C, map_16_state_01_08E7DE1C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Best of luck.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DE1C, map_16_state_01_08E7DE1C, EVENT_NOP, EVENT_NOP)
+  TEXT("Best of luck.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -146,25 +116,20 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DE40, map_16_state_01_08E7DE40, 0x08E7DE58, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DE58, map_16_state_01_08E7DE58, 0x08E7DE64, 0x08E7DE70)
-  TEXT
-  (
-      "You wish to duel against me?\n"
-      "Very well.\n\n"
-      "Can you beat me at your\n"
-      "duelist level?\n\n"
+  TEXT(
+      "You wish to duel against me? Very well.",
+      "Can you beat me at your duelist level?"
   )
   DUEL(DUELIST_ID_025)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DE64, map_16_state_01_08E7DE64, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DE64, map_16_state_01_08E7DE64, EVENT_NOP, EVENT_NOP)
   SET_FLAG(EVENT_FLAG_DEFEATED_TRAIN_GUARD)
   PLAY_MUSIC(MUSIC_236)
-  TEXT
-  (
-      "I've been defeated.\n\n"
-      "But the next car won't be so\n"
-      "easy.\n\n"
+  TEXT(
+      "I've been defeated.",
+      "But the next car won't be so easy."
   )
   SET_MAP_MUSIC(236)
   MOVE_OBJECT(1, DIRECTION_UP, 8, 0)
@@ -173,7 +138,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DE64, map_16_state_01_08E7DE64, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DE70, map_16_state_01_08E7DE70, 0x08F0404C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DE70, map_16_state_01_08E7DE70, 0x08F0404C, EVENT_NOP)
   CLEAR_FLAG(0)
   CLEAR_FLAG(247)
   CLEAR_FLAG(245)
@@ -183,12 +148,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DE70, map_16_state_01_08E7DE70, 0x08F0404C, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DE4C, map_16_state_01_08E7DE4C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'm not a worthwhile\n"
-      "opponent for you.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DE4C, map_16_state_01_08E7DE4C, EVENT_NOP, EVENT_NOP)
+  TEXT("I'm not a worthwhile opponent for you.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -197,13 +158,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DCD8, map_16_state_01_08E7DCD8, 0x08E7DCF0, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DCF0, map_16_state_01_08E7DCF0, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'm going to raise my\n"
-      "duelist level here.\n\n"
-      "Then, I'm going to the next\n"
-      "car.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E7DCF0, map_16_state_01_08E7DCF0, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "I'm going to raise my duelist level here.",
+      "Then, I'm going to the next car."
   )
   SET_FLAG(EVENT_FLAG_INTERACTED_WITH_YELLOW_SCARF)
   FALLTHROUGH()
@@ -214,24 +172,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DCE4, map_16_state_01_08E7DCE4, 0x08E7DCFC, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DCFC, map_16_state_01_08E7DCFC, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'm going to raise my\n"
-      "duelist level here.\n\n"
-      "Then, I'm going to the next\n"
-      "car.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E7DCFC, map_16_state_01_08E7DCFC, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "I'm going to raise my duelist level here.",
+      "Then, I'm going to the next car."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DD08, map_16_state_01_08E7DD08, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DD08, map_16_state_01_08E7DD08, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_236)
-  TEXT
-  (
-      "A loss right off the bat...\n"
-      "This is hard to take.\n\n"
-  )
+  TEXT("A loss right off the bat... This is hard to take.")
   SET_MAP_MUSIC(236)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -241,12 +192,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DD14, map_16_state_01_08E7DD14, 0x08E7DD2C, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DD2C, map_16_state_01_08E7DD2C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "We haven't even moved yet.\n"
-      "Hold your horses.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DD2C, map_16_state_01_08E7DD2C, EVENT_NOP, EVENT_NOP)
+  TEXT("We haven't even moved yet. Hold your horses.")
   SET_FLAG(EVENT_FLAG_INTERACTED_WITH_YELLOW_SCARF)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -257,21 +204,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DD20, map_16_state_01_08E7DD20, 0x08E7DD44, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DD44, map_16_state_01_08E7DD44, 0x08E7DD5C, 0x08E7DD50)
-  TEXT
-  (
-      "I'll get my first win off\n"
-      "you.\n\n"
-  )
+  TEXT("I'll get my first win off you.")
   DUEL(DUELIST_ID_023)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DD5C, map_16_state_01_08E7DD5C, 0x08E7DD08, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DD5C, map_16_state_01_08E7DD5C, 0x08E7DD08, EVENT_NOP)
   SET_FLAG(EVENT_FLAG_DEFEATED_YELLOW_SCARF)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DD50, map_16_state_01_08E7DD50, 0x08F0404C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DD50, map_16_state_01_08E7DD50, 0x08F0404C, EVENT_NOP)
   CLEAR_FLAG(0)
   CLEAR_FLAG(247)
   CLEAR_FLAG(245)
@@ -281,12 +224,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DD50, map_16_state_01_08E7DD50, 0x08F0404C, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DD38, map_16_state_01_08E7DD38, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Go look for someone else to\n"
-      "duel.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DD38, map_16_state_01_08E7DD38, EVENT_NOP, EVENT_NOP)
+  TEXT("Go look for someone else to duel.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -295,12 +234,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DD68, map_16_state_01_08E7DD68, 0x08E7DD80, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DD80, map_16_state_01_08E7DD80, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "This train's stopping at the\n"
-      "Egypt Exhibition, right?\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DD80, map_16_state_01_08E7DD80, EVENT_NOP, EVENT_NOP)
+  TEXT("This train's stopping at the Egypt Exhibition, right?")
   SET_FLAG(EVENT_FLAG_INTERACTED_WITH_DAMIEN_DRACO)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -310,21 +245,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DD74, map_16_state_01_08E7DD74, 0x08E7DD8C, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DD8C, map_16_state_01_08E7DD8C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "The Duel Express tourney is\n"
-      "finally on!\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DD8C, map_16_state_01_08E7DD8C, EVENT_NOP, EVENT_NOP)
+  TEXT("The Duel Express tourney is finally on!")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DD98, map_16_state_01_08E7DD98, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "You're not as weak as you\n"
-      "look.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DD98, map_16_state_01_08E7DD98, EVENT_NOP, EVENT_NOP)
+  TEXT("You're not as weak as you look.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -333,13 +260,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DDA4, map_16_state_01_08E7DDA4, 0x08E7DDBC, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DDBC, map_16_state_01_08E7DDBC, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Take me lightly and suffer\n"
-      "the consequences.\n\n"
-      "We'll duel once the train\n"
-      "pulls out.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E7DDBC, map_16_state_01_08E7DDBC, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "Take me lightly and suffer the consequences.",
+      "We'll duel once the train pulls out."
   )
   SET_FLAG(EVENT_FLAG_INTERACTED_WITH_DAMIEN_DRACO)
   FALLTHROUGH()
@@ -351,27 +275,20 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DDB0, map_16_state_01_08E7DDB0, 0x08E7DDD4, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DDD4, map_16_state_01_08E7DDD4, 0x08E7DDEC, 0x08E7DDE0)
-  TEXT
-  (
-      "Think you can beat me?\n\n"
-  )
+  TEXT("Think you can beat me?")
   DUEL(DUELIST_ID_024)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DDEC, map_16_state_01_08E7DDEC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DDEC, map_16_state_01_08E7DDEC, EVENT_NOP, EVENT_NOP)
   SET_FLAG(EVENT_FLAG_DEFEATED_DAMIEN_DRACO)
   PLAY_MUSIC(MUSIC_236)
-  TEXT
-  (
-      "Y-you're a lot tougher than\n"
-      "you look.\n\n"
-  )
+  TEXT("Y-you're a lot tougher than you look.")
   SET_MAP_MUSIC(236)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DDE0, map_16_state_01_08E7DDE0, 0x08F0404C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E7DDE0, map_16_state_01_08E7DDE0, 0x08F0404C, EVENT_NOP)
   CLEAR_FLAG(0)
   CLEAR_FLAG(247)
   CLEAR_FLAG(245)
@@ -381,12 +298,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DDE0, map_16_state_01_08E7DDE0, 0x08F0404C, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DDC8, map_16_state_01_08E7DDC8, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "You'll find your opponent in\n"
-      "the next car.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DDC8, map_16_state_01_08E7DDC8, EVENT_NOP, EVENT_NOP)
+  TEXT("You'll find your opponent in the next car.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -395,24 +308,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DEB8, map_16_state_01_08E7DEB8, 0x08E7DEC4, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DEC4, map_16_state_01_08E7DEC4, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "This train is bound for the\n"
-      "Egypt Exhibition.\n\n"
-      "We will be departing\n"
-      "shortly.\n\n"
-      "Why not board now and spend\n"
-      "some time dueling?\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E7DEC4, map_16_state_01_08E7DEC4, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "This train is bound for the Egypt Exhibition.",
+      "We will be departing shortly.",
+      "Why not board now and spend some time dueling?"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E7DED0, map_16_state_01_08E7DED0, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Our next and only stop is\n"
-      "the Egypt Exhibition.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E7DED0, map_16_state_01_08E7DED0, EVENT_NOP, EVENT_NOP)
+  TEXT("Our next and only stop is the Egypt Exhibition.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -17,14 +17,8 @@ LOAD_SPRITE(LOCALID_NEO_GHOUL_RIGHT, SPRITE_NEO_GHOUL)
 LOAD_SPRITE(LOCALID_GIRL_ARCH, SPRITE_GIRL_ARCHEOLOGIST)
 LOAD_SPRITE(LOCALID_THOUGHTFUL_ARCH, SPRITE_THOUGHTFUL_ARCHEOLOGIST)
 PLAY_MUSIC(MUSIC_NEO_GHOULS)
-TALK(PORTRAIT_REX, EXPRESSION_REX_ANGRY, PORTRAIT_LEFT,
-    "Two on one's not fair, you\n"
-    "dorkasaurus!\n\n"
-)
-TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Fair? We don't know the\n"
-    "meaning of the word fair!\n\n"
-)
+TALK(PORTRAIT_REX, EXPRESSION_REX_ANGRY, "Two on one's not fair, you dorkasaurus!")
+TALK(PORTRAIT_NEO_GHOUL, "Fair? We don't know the meaning of the word fair!")
 HIDE_PORTRAIT()
 DELAY(16)
 PLAY_MUSIC(MUSIC_274)
@@ -36,22 +30,16 @@ WALK_OBJECT_X(14, 64)
 DELAY(16)
 MOVE_OBJECT(SPRITE_REX, DIRECTION_LEFT, 0, 0)
 DELAY(16)
-TALK(PORTRAIT_REX, EXPRESSION_REX_SURPRISED, PORTRAIT_POSITION_AUTO,
-    "You scavengers...\n\n"
-)
-TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Tsk! Our boy has friends!\n\n"
-    "We'll wipe the floor with\n"
-    "all of you!\n\n"
+TALK(PORTRAIT_REX, EXPRESSION_REX_SURPRISED, PORTRAIT_POSITION_AUTO, "You scavengers...")
+TALK(PORTRAIT_NEO_GHOUL,
+    "Tsk! Our boy has friends!",
+    "We'll wipe the floor with all of you!"
 )
 TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "With {PLAYER} at my side,\n"
-    "you guys are as scary as\n\n"
-    "baby birds!\n\n"
-    "I won't lose to any Neo\n"
-    "Ghouls!\n\n"
-    "{PLAYER}, which one do you\n"
-    "want to take?\n\n"
+    "With {PLAYER} at my side, you guys are as scary as",
+    "baby birds!",
+    "I won't lose to any Neo Ghouls!",
+    "{PLAYER}, which one do you want to take?"
 )
 PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
 WALK_OBJECT_X(0, 96)
@@ -61,9 +49,7 @@ WALK_OBJECT_X(SPRITE_REX, 84)
 WALK_OBJECT_Y(SPRITE_REX, 52)
 DUEL(DUELIST_REX_066)
 PLAY_MUSIC(MUSIC_245)
-TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "You'll pay for this!\n\n"
-)
+TALK(PORTRAIT_NEO_GHOUL, "You'll pay for this!")
 WALK_OBJECT_X(LOCALID_NEO_GHOUL_RIGHT, 32)
 MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
 MOVE_OBJECT(SPRITE_REX, DIRECTION_LEFT, 0, 0)
@@ -79,22 +65,17 @@ MOVE_OBJECT(SPRITE_REX, DIRECTION_RIGHT, 0, 0)
 MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
 MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
 TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Thanks, I owe you one.\n\n"
-    "If you need any help, don't\n"
-    "hesitate to ask.\n\n"
+    "Thanks, I owe you one.",
+    "If you need any help, don't hesitate to ask."
 )
 PLAY_MUSIC(MUSIC_332)
 FADE_SCREEN(4)
 PLAY_MUSIC(MUSIC_702)
-TALK(PORTRAIT_REX, EXPRESSION_REX_SURPRISED, PORTRAIT_POSITION_AUTO,
-    "What? They're all over the\n"
-    "Town of Domino?\n\n"
-)
+TALK(PORTRAIT_REX, EXPRESSION_REX_SURPRISED, PORTRAIT_POSITION_AUTO, "What? They're all over the Town of Domino?")
 TALK(PORTRAIT_REX, EXPRESSION_REX_ANGRY, PORTRAIT_POSITION_AUTO,
-    "Those Neo Ghouls won't get\n"
-    "away with this!\n\n"
-    "All right! Leave it to me!\n\n"
-    "I'll trample those clowns!\n\n"
+    "Those Neo Ghouls won't get away with this!",
+    "All right! Leave it to me!",
+    "I'll trample those clowns!"
 )
 HIDE_PORTRAIT()
 DELAY(8)
@@ -107,20 +88,15 @@ SET_FLAG(EVENT_FLAG_DEFEATED_REX_GHOULS)
 CONDITION_CHECK(0)
 MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
 MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
-TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Let's go find another ally!\n\n"
-)
+TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Let's go find another ally!")
 HIDE_PORTRAIT()
 FADE_MUSIC(2)
 DELAY(32)
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC63B0, map_35_state_04_08EC63B0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EC63B0, map_35_state_04_08EC63B0, EVENT_NOP, EVENT_NOP)
 MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
-  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Okay! Let's also get back to\n"
-    "the Town of Domino!\n\n"
-)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Okay! Let's also get back to the Town of Domino!")
   HIDE_PORTRAIT()
   FADE_MUSIC(2)
   DELAY(32)
@@ -138,11 +114,9 @@ WALK_OBJECT_X(0, 84)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC6380, map_35_state_04_08EC6380, 0x08EC638C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EC6380, map_35_state_04_08EC6380, 0x08EC638C, EVENT_NOP)
 PLAY_MUSIC(MUSIC_245)
-  TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "You'll pay for this!\n\n"
-)
+  TALK(PORTRAIT_NEO_GHOUL, "You'll pay for this!")
   WALK_OBJECT_X(LOCALID_NEO_GHOUL_RIGHT, 32)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -160,43 +134,29 @@ PLAY_MUSIC(MUSIC_245)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC63BC, map_35_state_04_08EC63BC, 0x08F04040, 0x08F04040)
-TEXT
-  (
-      "Good to see you safe and\n"
-      "sound, eh?\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EC63BC, map_35_state_04_08EC63BC, EVENT_NOP, EVENT_NOP)
+TEXT("Good to see you safe and sound, eh?")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC63C8, map_35_state_04_08EC63C8, 0x08F04040, 0x08F04040)
-TEXT
-  (
-      "I believe you have more\n"
-      "important things to do..\n\n"
-      "I think you should get\n"
-      "moving, eh?\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EC63C8, map_35_state_04_08EC63C8, EVENT_NOP, EVENT_NOP)
+TEXT(
+    "I believe you have more important things to do..",
+    "I think you should get moving, eh?"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC63D4, map_35_state_04_08EC63D4, 0x08F04040, 0x08F04040)
-TEXT
-  (
-      "I tell you, excavating\n"
-      "fossils is slow and\n\n"
-      "laborious.\n\n"
-      "Even though it's hard work,\n"
-      "I never take shortcuts.\n\n"
-      "I never take fossils that\n"
-      "someone else found.\n\n"
-      "I bet that's the same with\n"
-      "dueling. You don't steal\n\n"
-      "someone else's cards.\n\n"
-      "I'm no duelist, and I never\n"
-      "said I was one.\n\n"
-      "But I know what the Neo\n"
-      "Ghouls are doing is wrong.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EC63D4, map_35_state_04_08EC63D4, EVENT_NOP, EVENT_NOP)
+TEXT(
+    "I tell you, excavating fossils is slow and",
+    "laborious.",
+    "Even though it's hard work, I never take shortcuts.",
+    "I never take fossils that someone else found.",
+    "I bet that's the same with dueling. You don't steal",
+    "someone else's cards.",
+    "I'm no duelist, and I never said I was one.",
+    "But I know what the Neo Ghouls are doing is wrong."
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

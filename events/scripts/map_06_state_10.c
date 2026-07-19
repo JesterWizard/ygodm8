@@ -4,7 +4,7 @@
 
 /* map_06_state_10: map 6 state 10 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CD80, map_06_state_10_08E5CD80, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E5CD80, map_06_state_10_08E5CD80, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_LUCKY)
   LOAD_SPRITE(2, SPRITE_DUKE)
   LOAD_SPRITE(3, SPRITE_SERENITY)
@@ -19,63 +19,38 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD80, map_06_state_10_08E5CD80, 0x08F04040, 0x08F
   LOAD_SPRITE(12, SPRITE_YUGI_UNUSED)
   LOAD_SPRITE(13, SPRITE_YUGI)
   LOAD_SPRITE(14, SPRITE_JOEY)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "...And that's what happened.\n\n"
-  )
+  TALK(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, PORTRAIT_POSITION_AUTO, "...And that's what happened.")
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Big brother... I saw this\n"
-      "look on Tristan's face...\n\n"
-      "It was as if he was saying\n"
-      "that he didn't want anyone\n\n"
-      "to follow him.\n\n"
-      "I wonder if he's going to be\n"
-      "okay...\n\n"
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO,
+      "Big brother... I saw this look on Tristan's face...",
+      "It was as if he was saying that he didn't want anyone",
+      "to follow him.",
+      "I wonder if he's going to be okay..."
   )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Don't worry about a thing,\n"
-      "Serenity.\n\n"
-      "Tristan's our friend.\n"
-      "There's no way we'll\n\n"
-      "abandon him!\n\n"
-      "We'll look for him, but I\n"
-      "want you to stay here,\n\n"
-      "Serenity. Just in case he\n"
-      "comes back.\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO,
+      "Don't worry about a thing, Serenity.",
+      "Tristan's our friend. There's no way we'll",
+      "abandon him!",
+      "We'll look for him, but I want you to stay here,",
+      "Serenity. Just in case he comes back."
   )
   SET_FLAG(EVENT_FLAG_SEARCHING_FOR_ROBOT_TRISTAN)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CD98, map_06_state_10_08E5CD98, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I bet Tristan ran off on\n"
-      "purpose!\n\n"
-      "That's the only way Serenity\n"
-      "would pay attention to him\n\n"
-      "instead of me!\n\n"
-      "...N-no, he wouldn't do\n"
-      "that. He's not that type of\n\n"
-      "guy.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E5CD98, map_06_state_10_08E5CD98, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I bet Tristan ran off on purpose!",
+      "That's the only way Serenity would pay attention to him",
+      "instead of me!",
+      "...N-no, he wouldn't do that. He's not that type of",
+      "guy."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CD8C, map_06_state_10_08E5CD8C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Where could Tristan have\n"
-      "gone?\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E5CD8C, map_06_state_10_08E5CD8C, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO, "Where could Tristan have gone?")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

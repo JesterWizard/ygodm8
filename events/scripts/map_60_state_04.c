@@ -8,35 +8,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08F039D8, map_60_state_04_08F039D8, 0x08F039E4, 0x08F
   LOAD_SPRITE(1, SPRITE_MARIK)
   LOAD_SPRITE(2, SPRITE_ODION)
   PLAY_MUSIC(MUSIC_MARIK_ISHTAR)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Urk... Yeah, you're right.\n"
-      "Ra is seriously scary.\n\n"
-  )
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "So, I have a proposal,\n"
-      "{PLAYER}.\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO, "Urk... Yeah, you're right. Ra is seriously scary.")
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "So, I have a proposal, {PLAYER}.")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I will test you.\n\n"
-      "I will determine if you are\n"
-      "worthy of using Ra.\n\n"
-      "If you fail to defeat me in\n"
-      "a duel...\n\n"
-      "Then you are unfit to bear\n"
-      "The Winged Dragon of Ra!\n\n"
-      "All right! It's time to\n"
-      "duel!\n\n"
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I will test you.",
+      "I will determine if you are worthy of using Ra.",
+      "If you fail to defeat me in a duel...",
+      "Then you are unfit to bear The Winged Dragon of Ra!",
+      "All right! It's time to duel!"
   )
   DUEL(DUELIST_MARIK_158)
   FALLTHROUGH()
@@ -44,25 +28,16 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08F039E4, map_60_state_04_08F039E4, 0x08F039FC, 0x08F039F0)
   PLAY_MUSIC(MUSIC_MARIK_ISHTAR)
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I see... You have learned\n"
-      "much from your previous\n\n"
-      "duels..\n\n"
-      "{PLAYER}, I believe that you\n"
-      "can control Ra.\n\n"
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I see... You have learned much from your previous",
+      "duels..",
+      "{PLAYER}, I believe that you can control Ra."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(1, 64)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I need The Winged Dragon of\n"
-      "Ra.\n\n"
-  )
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I need The Winged Dragon of Ra.")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_285)
@@ -74,12 +49,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F039E4, map_60_state_04_08F039E4, 0x08F039FC, 0x08F
   PLAY_MUSIC(MUSIC_360)
   REACTION(REACTION_CHANT, OBJECT_1)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Awaken! The Winged Dragon of\n"
-      "Ra!\n\n"
-  )
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Awaken! The Winged Dragon of Ra!")
   PLAY_MUSIC(MUSIC_377)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SPARKLE_RETURNS)
   PLAY_MUSIC(MUSIC_359)
@@ -98,144 +68,76 @@ EVENT_SCRIPT_REPLACEMENT(0x08F039E4, map_60_state_04_08F039E4, 0x08F039FC, 0x08F
   WALK_OBJECT_Y(1, 44)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Received The Winged Dragon\n"
-      "of Ra {BYTE_8169}Battle Mode{BYTE_816A}.\n\n"
-  )
-  TEXT
-  (
-      "The deck adjustment menu\n"
-      "will be opened."
-  )
+  TALK(PORTRAIT_NONE, "Received The Winged Dragon of Ra {BYTE_8169}Battle Mode{BYTE_816A}.")
+  TEXT("The deck adjustment menu will be opened.")
   PAGE_BREAK()
   START_MENU()
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08F039FC, map_60_state_04_08F039FC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Ra has awakened...\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08F039FC, map_60_state_04_08F039FC, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Ra has awakened...")
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Yeah! That's it!",
+      "The Winged Dragon of Ra is back in all its glory!"
   )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yeah! That's it!\n\n"
-      "The Winged Dragon of Ra is\n"
-      "back in all its glory!\n\n"
-  )
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "...Unfortunately, no.\n\n"
-  )
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "...Unfortunately, no.")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what are you saying,\n"
-      "Marik?\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Wh-what are you saying, Marik?")
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Have you forgotten?",
+      "The Winged Dragon of Ra has one other form.",
+      "Its immortal form... The Phoenix Mode."
   )
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Have you forgotten?\n\n"
-      "The Winged Dragon of Ra has\n"
-      "one other form.\n\n"
-      "Its immortal form... The\n"
-      "Phoenix Mode.\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO,
+      "I remember that... That's the scariest mode of them",
+      "all."
   )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I remember that... That's\n"
-      "the scariest mode of them\n\n"
-      "all.\n\n"
-  )
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yes. Exactly.\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Then wake that form up!\n\n"
-  )
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "That... I cannot do now.\n\n"
-  )
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Yes. Exactly.")
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Then wake that form up!")
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "That... I cannot do now.")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "It's true that I woke up the\n"
-      "third form in the past.\n\n"
-      "However, that was when\n"
-      "darkness ruled my heart.\n\n"
-      "I have no idea how to awaken\n"
-      "it now.\n\n"
-      "There must be a secret...\n\n"
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "It's true that I woke up the third form in the past.",
+      "However, that was when darkness ruled my heart.",
+      "I have no idea how to awaken it now.",
+      "There must be a secret..."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "But there is nothing to\n"
-      "fear.\n\n"
-      "Ra is immensely powerful\n"
-      "even in its present form.\n\n"
-      "It should be sufficient to\n"
-      "help seal the Dark Being.\n\n"
-      "However, there must be a\n"
-      "secret behind the Phoenix\n\n"
-      "Mode.\n\n"
-      "You should return if you\n"
-      "discover what it is.\n\n"
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "But there is nothing to fear.",
+      "Ra is immensely powerful even in its present form.",
+      "It should be sufficient to help seal the Dark Being.",
+      "However, there must be a secret behind the Phoenix",
+      "Mode.",
+      "You should return if you discover what it is."
   )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "We'll do that, Marik.\n\n"
-      "I'm sure Paradox will help\n"
-      "us.\n\n"
-      "He'll tell us where\n"
-      "Pegasus's castle is.\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_POSITION_AUTO,
+      "We'll do that, Marik.",
+      "I'm sure Paradox will help us.",
+      "He'll tell us where Pegasus's castle is."
   )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yeah!\n\n"
-      "Phoenix Mode or not, we can\n"
-      "get the job done!\n\n"
-      "We'll put Reshef down for\n"
-      "good!\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Yeah!",
+      "Phoenix Mode or not, we can get the job done!",
+      "We'll put Reshef down for good!"
   )
   SET_FLAG(EVENT_FLAG_DEFEATED_MARIK)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08F039F0, map_60_state_04_08F039F0, 0x08F039FC, 0x08F039F0)
-  TEXT
-  (
-      "The deck adjustment menu\n"
-      "will be opened."
-  )
+  TEXT("The deck adjustment menu will be opened.")
   PAGE_BREAK()
   START_MENU()
   FALLTHROUGH()

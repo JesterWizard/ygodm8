@@ -4,25 +4,19 @@
 
 /* map_04_state_03: map 4 state 3 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4D114, map_04_state_03_08E4D114, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E4D114, map_04_state_03_08E4D114, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_DUELIST_HATER)
   LOAD_SPRITE(2, SPRITE_TOURIST)
   LOAD_SPRITE(3, SPRITE_BONZ)
-  TEXT
-  (
-      "A few duelists are nice.\n\n"
-      "He looks pretty scary, but\n"
-      "he's actually a good guy.\n\n"
+  TEXT(
+      "A few duelists are nice.",
+      "He looks pretty scary, but he's actually a good guy."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4D120, map_04_state_03_08E4D120, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "The Neo Ghouls took one look\n"
-      "at his face and ran.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E4D120, map_04_state_03_08E4D120, EVENT_NOP, EVENT_NOP)
+  TEXT("The Neo Ghouls took one look at his face and ran.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -31,13 +25,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D12C, map_04_state_03_08E4D12C, 0x08E4D150, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4D150, map_04_state_03_08E4D150, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E4D150, map_04_state_03_08E4D150, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Hihihi, I unleashed my Neo\n"
-    "Ghost deck...\n\n"
-    "And the Neo Ghouls fled in\n"
-    "terror.\n\n"
-)
+      "Hihihi, I unleashed my Neo Ghost deck...",
+      "And the Neo Ghouls fled in terror."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -46,30 +38,25 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D138, map_04_state_03_08E4D138, 0x08E4D144, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4D144, map_04_state_03_08E4D144, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E4D144, map_04_state_03_08E4D144, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "There are Neo Ghouls hiding\n"
-    "in the Town of Domino?\n\n"
-    "I didn't know that.\n\n"
-)
+      "There are Neo Ghouls hiding in the Town of Domino?",
+      "I didn't know that."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D15C, map_04_state_03_08E4D15C, 0x08E4D168, 0x08F0404C)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "My Neo Ghost deck will haunt\n"
-    "you...\n\n"
-)
+  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "My Neo Ghost deck will haunt you...")
   DUEL(DUELIST_BONZ_060)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4D168, map_04_state_03_08E4D168, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E4D168, map_04_state_03_08E4D168, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_DOMINO_CITY_LIBERATED)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER} is ghoulishly more\n"
-    "clever than the Neo\n\n"
-    "Ghouls...\n\n"
-)
+      "{PLAYER} is ghoulishly more clever than the Neo",
+      "Ghouls..."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

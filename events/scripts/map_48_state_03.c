@@ -4,23 +4,19 @@
 
 /* map_48_state_03: map 48 state 3 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE8CC, map_48_state_03_08EDE8CC, 0x08EDE8F0, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE8CC, map_48_state_03_08EDE8CC, 0x08EDE8F0, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_YUGI)
   LOAD_SPRITE(2, SPRITE_PARA_FLIPPING)
   LOAD_SPRITE(3, SPRITE_DOX_FLIPPING)
   PLAY_MUSIC(MUSIC_DUNGEON)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I'm also going to give\n"
-      "everything I've got.\n\n"
-      "I have to get the spirit of\n"
-      "the Puzzle back...\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I'm also going to give everything I've got.",
+      "I have to get the spirit of the Puzzle back..."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE8F0, map_48_state_03_08EDE8F0, 0x08EDE8FC, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE8F0, map_48_state_03_08EDE8F0, 0x08EDE8FC, EVENT_NOP)
   WALK_OBJECT_X(2, 48)
   LOAD_SPRITE(2, SPRITE_PARA)
   WALK_OBJECT_Y(2, 42)
@@ -36,84 +32,44 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE8F0, map_48_state_03_08EDE8F0, 0x08EDE8FC, 0x08F
   MOVE_OBJECT(3, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_404)
-  PORTRAIT(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Fufufu... Excellent, well\n"
-      "done! You didn't turn tail\n\n"
-      "and run.\n\n"
+  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Fufufu... Excellent, well done! You didn't turn tail",
+      "and run."
   )
-  PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Hooray! We wouldn't have it\n"
-      "any other way.\n\n"
-      "The pieces of the Millennium\n"
-      "Puzzle are on the top floor\n\n"
-      "of the castle.\n\n"
+  TALK(PORTRAIT_PARA,
+      "Hooray! We wouldn't have it any other way.",
+      "The pieces of the Millennium Puzzle are on the top floor",
+      "of the castle."
   )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(8)
-  PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Of course, we don't\n"
-      "intend...\n\n"
-  )
-  PORTRAIT(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "...To let you go there\n"
-      "because this is your end!\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER}, which one will you\n"
-      "duel?\n\n"
-  )
+  TALK(PORTRAIT_DOX, EXPRESSION_DOX_HAPPY, PORTRAIT_RIGHT, "Of course, we don't intend...")
+  TALK(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, "...To let you go there because this is your end!")
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "{PLAYER}, which one will you duel?")
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE8FC, map_48_state_03_08EDE8FC, 0x08EDE908, 0x08EDE914)
-  TEXT
-  (
-      "{CARD_1}Para\n"
-      "Dox{CARD_2}\n\n"
-  )
+  TEXT("{CARD_1}Para\nDox{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE908, map_48_state_03_08EDE908, 0x08EDE920, 0x08F0404C)
-  PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "So, {PLAYER} shall be mine?\n\n"
-  )
+  TALK(PORTRAIT_PARA, "So, {PLAYER} shall be mine?")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Younger brother, I entrust\n"
-      "you with Yugi.\n\n"
-  )
+  TALK(PORTRAIT_PARA, "Younger brother, I entrust you with Yugi.")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Elder brother, leave him to\n"
-      "me.\n\n"
-  )
+  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Elder brother, leave him to me.")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 66)
@@ -121,11 +77,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE908, map_48_state_03_08EDE908, 0x08EDE920, 0x08F
   WALK_OBJECT_X(2, 54)
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Let's do it, {PLAYER}!\n\n"
-      "It's time to duel!\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Let's do it, {PLAYER}!",
+      "It's time to duel!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -138,7 +92,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE908, map_48_state_03_08EDE908, 0x08EDE920, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE920, map_48_state_03_08EDE920, 0x08EDE938, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE920, map_48_state_03_08EDE920, 0x08EDE938, EVENT_NOP)
   PLAY_MUSIC(MUSIC_404)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -148,17 +102,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE920, map_48_state_03_08EDE920, 0x08EDE938, 0x08F
   DELAY(16)
   SLIDE_OBJECT(3, 0, 2)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "He's a lot stronger... Much\n"
-      "more powerful than\n\n"
-      "before...\n\n"
-      "But I can't lose!\n\n"
-      "I've got to save my other\n"
-      "self!\n\n"
-      "Spirit of the Puzzle! Lend\n"
-      "me your strength!\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "He's a lot stronger... Much more powerful than",
+      "before...",
+      "But I can't lose!",
+      "I've got to save my other self!",
+      "Spirit of the Puzzle! Lend me your strength!"
   )
   HIDE_PORTRAIT()
   DELAY(8)
@@ -167,69 +116,36 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE920, map_48_state_03_08EDE920, 0x08EDE938, 0x08F
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(8)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Let's go, Dark Magician!\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Let's go, Dark Magician!")
   PLAY_MUSIC(MUSIC_333)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_DARK_MAGICIAN_FULL_ART)
   DELAY(16)
   SLIDE_OBJECT(3, 2, 2)
   DELAY(8)
-  PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_DEFEATED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Wh-what?! No! Not now!\n\n"
-      "How could he draw the Dark\n"
-      "Magician now?\n\n"
+  TALK(PORTRAIT_DOX, EXPRESSION_DOX_DEFEATED, PORTRAIT_RIGHT,
+      "Wh-what?! No! Not now!",
+      "How could he draw the Dark Magician now?"
   )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Dark Magic Attack!\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Dark Magic Attack!")
   PLAY_MUSIC(MUSIC_376)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_DARK_MAGICIAN_ATTACK)
   DELAY(16)
-  PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_DEFEATED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Gwaaaaaaah!\n\n"
-  )
+  TALK(PORTRAIT_DOX, EXPRESSION_DOX_DEFEATED, PORTRAIT_RIGHT, "Gwaaaaaaah!")
   PLAY_MUSIC(MUSIC_284)
   SLIDE_OBJECT(3, 2, 4)
   DELAY(16)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE938, map_48_state_03_08EDE938, 0x08EDE944, 0x08F04040)
-  PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "You... You're not getting\n"
-      "away with this!\n\n"
-  )
-  PORTRAIT(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "We must stop them, no matter\n"
-      "what it takes!\n\n"
-  )
-  PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Our reputation is at stake!\n\n"
-  )
-  PORTRAIT(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Come on! We duel again!\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EDE938, map_48_state_03_08EDE938, 0x08EDE944, EVENT_NOP)
+  TALK(PORTRAIT_PARA, "You... You're not getting away with this!")
+  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "We must stop them, no matter what it takes!")
+  TALK(PORTRAIT_PARA, "Our reputation is at stake!")
+  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Come on! We duel again!")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE944, map_48_state_03_08EDE944, 0x08EDE950, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE944, map_48_state_03_08EDE944, 0x08EDE950, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(32)
   MOVE_OBJECT(1, DIRECTION_UP, 4, 0)
@@ -246,13 +162,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE950, map_48_state_03_08EDE950, 0x08EDE95C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE95C, map_48_state_03_08EDE95C, 0x08EDE968, 0x08EDE974)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I... I just want to save\n"
-      "him...\n\n"
-      "I want to save my other\n"
-      "self...\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I... I just want to save him...",
+      "I want to save my other self..."
   )
   HIDE_PORTRAIT()
   DELAY(32)
@@ -264,34 +176,32 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE95C, map_48_state_03_08EDE95C, 0x08EDE968, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE968, map_48_state_03_08EDE968, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE968, map_48_state_03_08EDE968, EVENT_NOP, EVENT_NOP)
   WARP(LOCATION_DOMINO_STATION_TURNSTILES, 9, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE974, map_48_state_03_08EDE974, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE974, map_48_state_03_08EDE974, EVENT_NOP, EVENT_NOP)
   WARP(LOCATION_DOMINO_STATION_TURNSTILES, 10, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE98C, map_48_state_03_08EDE98C, 0x08EDE998, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE98C, map_48_state_03_08EDE98C, 0x08EDE998, EVENT_NOP)
   PLAY_MUSIC(MUSIC_400)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE998, map_48_state_03_08EDE998, 0x08EDE9A4, 0x08EDE9B0)
-  TEXT
-  (
-      "I can't be defeated here...\n\n"
-      "I have to keep going or I'll\n"
-      "never rescue him!\n\n"
+  TEXT(
+      "I can't be defeated here...",
+      "I have to keep going or I'll never rescue him!"
   )
   CHECK_FLAG(EVENT_FLAG_CHOSE_TO_FIGHT_DOX2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE9A4, map_48_state_03_08EDE9A4, 0x08EDE9BC, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE9A4, map_48_state_03_08EDE9A4, 0x08EDE9BC, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -299,54 +209,37 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE9A4, map_48_state_03_08EDE9A4, 0x08EDE9BC, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE9BC, map_48_state_03_08EDE9BC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER}! Let me handle\n"
-      "them!\n\n"
-      "You keep going!\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EDE9BC, map_48_state_03_08EDE9BC, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "{PLAYER}! Let me handle them!",
+      "You keep going!"
   )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
   DELAY(8)
-  TALK(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, PORTRAIT_LEFT,
-    "Wahahahahaha!\n\n"
-)
-  TALK(PORTRAIT_DOX, EXPRESSION_DOX_HAPPY, PORTRAIT_RIGHT,
-    "You mean to take on...\n\n"
-)
-  TALK(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, PORTRAIT_LEFT,
-    "...The both of us? All\n"
-    "alone?\n\n"
-)
+  TALK(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, "Wahahahahaha!")
+  TALK(PORTRAIT_DOX, EXPRESSION_DOX_HAPPY, PORTRAIT_RIGHT, "You mean to take on...")
+  TALK(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, "...The both of us? All alone?")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   DELAY(8)
   TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I'm not alone!\n\n"
-    "The spirit of the Puzzle is\n"
-    "always with me!\n\n"
-    "You stole the pieces of the\n"
-    "Millennium Puzzle...\n\n"
-    "And the spirit!\n\n"
-    "I'm never going to forgive\n"
-    "you!\n\n"
-)
+      "I'm not alone!",
+      "The spirit of the Puzzle is always with me!",
+      "You stole the pieces of the Millennium Puzzle...",
+      "And the spirit!",
+      "I'm never going to forgive you!"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_2 | OBJECT_3)
   DELAY(16)
-  TALK(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Th-then we shall duel!\n\n"
-)
-  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
-    "And settle matters for sure!\n\n"
-)
+  TALK(PORTRAIT_PARA, "Th-then we shall duel!")
+  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "And settle matters for sure!")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 56)
@@ -356,10 +249,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE9BC, map_48_state_03_08EDE9BC, 0x08F04040, 0x08F
   WALK_OBJECT_X(1, 60)
   WALK_OBJECT_Y(1, 42)
   DELAY(16)
-  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}! I'm counting on\n"
-    "you!\n\n"
-)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "{PLAYER}! I'm counting on you!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
@@ -370,23 +260,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE9BC, map_48_state_03_08EDE9BC, 0x08F04040, 0x08F
   DELAY(32)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Grrr... This kid... He's\n"
-    "good...\n\n"
-)
-  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
-    "Is he really dueling by\n"
-    "himself?\n\n"
-)
+  TALK(PORTRAIT_PARA, "Grrr... This kid... He's good...")
+  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Is he really dueling by himself?")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(8)
-  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Leave them to me! Keep\n"
-    "going!\n\n"
-)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Leave them to me! Keep going!")
   HIDE_PORTRAIT()
   DELAY(48)
   WALK_OBJECT_Y(0, 0)
@@ -397,7 +278,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE9BC, map_48_state_03_08EDE9BC, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE9B0, map_48_state_03_08EDE9B0, 0x08EDE9BC, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE9B0, map_48_state_03_08EDE9B0, 0x08EDE9BC, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
@@ -406,27 +287,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE9B0, map_48_state_03_08EDE9B0, 0x08EDE9BC, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE914, map_48_state_03_08EDE914, 0x08EDE92C, 0x08F0404C)
-  PORTRAIT(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "{PLAYER}... An opponent most\n"
-      "worthy.\n\n"
-  )
+  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "{PLAYER}... An opponent most worthy.")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
-    "Elder brother, I leave you\n"
-    "to take down Yugi.\n\n"
-)
+  TALK(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Elder brother, I leave you to take down Yugi.")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "It shall be done!\n\n"
-)
+  TALK(PORTRAIT_PARA, "It shall be done!")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 54)
@@ -435,9 +306,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE914, map_48_state_03_08EDE914, 0x08EDE92C, 0x08F
   MOVE_OBJECT(3, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Let's do it, {PLAYER}!\n\n"
-    "It's time to duel!\n\n"
-)
+      "Let's do it, {PLAYER}!",
+      "It's time to duel!"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 54)
@@ -449,7 +320,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE914, map_48_state_03_08EDE914, 0x08EDE92C, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE92C, map_48_state_03_08EDE92C, 0x08EDE938, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE92C, map_48_state_03_08EDE92C, 0x08EDE938, EVENT_NOP)
   PLAY_MUSIC(MUSIC_404)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -460,15 +331,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE92C, map_48_state_03_08EDE92C, 0x08EDE938, 0x08F
   SLIDE_OBJECT(2, 0, 2)
   DELAY(16)
   TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "He's a lot stronger... Much\n"
-    "more powerful than\n\n"
-    "before...\n\n"
-    "But I can't lose!\n\n"
-    "I've got to save my other\n"
-    "self!\n\n"
-    "Spirit of the Puzzle! Lend\n"
-    "me your strength!\n\n"
-)
+      "He's a lot stronger... Much more powerful than",
+      "before...",
+      "But I can't lose!",
+      "I've got to save my other self!",
+      "Spirit of the Puzzle! Lend me your strength!"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_272)
@@ -476,28 +344,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE92C, map_48_state_03_08EDE92C, 0x08EDE938, 0x08F
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(8)
-  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Let's go, Dark Magician!\n\n"
-)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Let's go, Dark Magician!")
   PLAY_MUSIC(MUSIC_333)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_DARK_MAGICIAN_FULL_ART)
   DELAY(16)
   SLIDE_OBJECT(2, 2, 2)
   DELAY(8)
-  TALK(PORTRAIT_PARA, EXPRESSION_PARA_DEFEATED, PORTRAIT_LEFT,
-    "Wh-what?! No! Not now!\n\n"
-    "How could he draw the Dark\n"
-    "Magician now?\n\n"
-)
-  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Dark Magic Attack!\n\n"
-)
+  TALK(PORTRAIT_PARA, EXPRESSION_PARA_DEFEATED,
+      "Wh-what?! No! Not now!",
+      "How could he draw the Dark Magician now?"
+  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Dark Magic Attack!")
   PLAY_MUSIC(MUSIC_376)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_DARK_MAGICIAN_ATTACK)
   DELAY(16)
-  TALK(PORTRAIT_PARA, EXPRESSION_PARA_DEFEATED, PORTRAIT_LEFT,
-    "Gwaaaaaaah!\n\n"
-)
+  TALK(PORTRAIT_PARA, EXPRESSION_PARA_DEFEATED, "Gwaaaaaaah!")
   PLAY_MUSIC(MUSIC_284)
   SLIDE_OBJECT(2, 2, 4)
   DELAY(16)

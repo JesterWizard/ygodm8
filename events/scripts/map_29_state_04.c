@@ -7,14 +7,8 @@
 EVENT_SCRIPT_REPLACEMENT(0x08EAC984, map_29_state_04_08EAC984, 0x08EAC9A8, 0x08EAC990)
   LOAD_SPRITE(1, SPRITE_BONZ)
   LOAD_SPRITE(2, SPRITE_FORTUNE_TABLE)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Do you want your fortune\n"
-    "told?\n\n"
-)
-  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{CARD_1}Yes\n"
-    "No{CARD_2}\n\n"
-)
+  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Do you want your fortune told?")
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -23,19 +17,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC9A8, map_29_state_04_08EAC9A8, 0x08EAC9C0, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EAC9C0, map_29_state_04_08EAC9C0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EAC9C0, map_29_state_04_08EAC9C0, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I may not look it, but I'm\n"
-    "an expert fortuneteller.\n\n"
-    "I'll peer into your previous\n"
-    "life, {PLAYER}.\n\n"
-)
-  PLAY_MUSIC(MUSIC_368)
-  TEXT
-  (
-      "Hmm... Yes, I can see it!\n"
-      "I can feeeeeeeeeeeel it!\n\n"
+      "I may not look it, but I'm an expert fortuneteller.",
+      "I'll peer into your previous life, {PLAYER}."
   )
+  PLAY_MUSIC(MUSIC_368)
+  TEXT("Hmm... Yes, I can see it! I can feeeeeeeeeeeel it!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
@@ -44,12 +32,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC9C0, map_29_state_04_08EAC9C0, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I can see your past very\n"
-    "clearly!\n\n"
-    "^5{BYTE_02}!\n\n"
-    "That's what you were in your\n"
-    "previous life.\n\n"
-)
+      "I can see your past very clearly!",
+      "^5{BYTE_02}!",
+      "That's what you were in your previous life."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
@@ -60,22 +46,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC9C0, map_29_state_04_08EAC9C0, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_14, OBJECT_EFFECT_JUMPING)
   TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Hahahaha!\n\n"
-    "^5{BYTE_02}?\n\n"
-    "That's what {PLAYER} was\n"
-    "in a past life?\n\n"
-    "Hahahaha, I can see the\n"
-    "similarities!\n\n"
-)
+      "Hahahaha!",
+      "^5{BYTE_02}?",
+      "That's what {PLAYER} was in a past life?",
+      "Hahahaha, I can see the similarities!"
+  )
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "In the past, you played\n"
-    "^5{BYTE_05}...\n\n"
-    "With the past incarnation of\n"
-    "^5{BYTE_04}.\n\n"
-    "This was\n"
-    "^5{BYTE_03}.\n\n"
-    "My fortunes are never wrong.\n\n"
-)
+      "In the past, you played ^5{BYTE_05}...",
+      "With the past incarnation of ^5{BYTE_04}.",
+      "This was ^5{BYTE_03}.",
+      "My fortunes are never wrong."
+  )
   SET_FLAG(EVENT_FLAG_BONZ_PREDICTED_PLAYER_PAST_LIFE)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -85,19 +66,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC9B4, map_29_state_04_08EAC9B4, 0x08EAC9CC, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EAC9CC, map_29_state_04_08EAC9CC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EAC9CC, map_29_state_04_08EAC9CC, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Fortunetelling is my\n"
-    "specialty.\n\n"
-    "I'll predict your perfect\n"
-    "romantic match, {PLAYER}.\n\n"
-)
-  PLAY_MUSIC(MUSIC_368)
-  TEXT
-  (
-      "Hmm... I can see it!\n"
-      "I can feeeeeeeeeeeel it!\n\n"
+      "Fortunetelling is my specialty.",
+      "I'll predict your perfect romantic match, {PLAYER}."
   )
+  PLAY_MUSIC(MUSIC_368)
+  TEXT("Hmm... I can see it! I can feeeeeeeeeeeel it!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
@@ -106,14 +81,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC9CC, map_29_state_04_08EAC9CC, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Ah, I can see this person!\n\n"
-    "Your partner's initials are\n"
-    "{BYTE_8168}^5{BYTE_06} ^5{BYTE_07}{BYTE_8168}.\n\n"
-    "If you want to get closer to\n"
-    "that person...\n\n"
-    "Play ^5{BYTE_0B}\n"
-    "^5{BYTE_0A}.\n\n"
-)
+      "Ah, I can see this person!",
+      "Your partner's initials are {BYTE_8168}^5{BYTE_06} ^5{BYTE_07}{BYTE_8168}.",
+      "If you want to get closer to that person...",
+      "Play ^5{BYTE_0B} ^5{BYTE_0A}."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
@@ -124,12 +96,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC9CC, map_29_state_04_08EAC9CC, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_14, OBJECT_EFFECT_JUMPING)
   TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Whoa, whoa, whoa!\n"
-    "Who's {BYTE_8168}^5{BYTE_06} ^5{BYTE_07}{BYTE_8168}?\n\n"
-    "Wait a sec,\n\n"
-    "you can't be talking about\n"
-    "THAT person?!?\n\n"
-)
+      "Whoa, whoa, whoa! Who's {BYTE_8168}^5{BYTE_06} ^5{BYTE_07}{BYTE_8168}?",
+      "Wait a sec,",
+      "you can't be talking about THAT person?!?"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
@@ -138,21 +108,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC9CC, map_29_state_04_08EAC9CC, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EAC9D8, map_29_state_04_08EAC9D8, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EAC9D8, map_29_state_04_08EAC9D8, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I've been fortunetelling all\n"
-    "my life.\n\n"
-    "I even perfected my spooky\n"
-    "voice!\n\n"
-    "I'll look into your future,\n"
-    "{PLAYER}.\n\n"
-)
-  PLAY_MUSIC(MUSIC_368)
-  TEXT
-  (
-      "Hmm... I can see it!\n"
-      "I can feeeeeeeeeeeel it!\n\n"
+      "I've been fortunetelling all my life.",
+      "I even perfected my spooky voice!",
+      "I'll look into your future, {PLAYER}."
   )
+  PLAY_MUSIC(MUSIC_368)
+  TEXT("Hmm... I can see it! I can feeeeeeeeeeeel it!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
@@ -161,35 +124,28 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC9D8, map_29_state_04_08EAC9D8, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Your future is clear!\n\n"
-    "^5{BYTE_08},\n\n"
-    "{PLAYER} will duel\n"
-    "against...\n\n"
-    "^5{BYTE_09}\n"
-    "for\n\n"
-    "^5{BYTE_0C}.\n\n"
-    "To win, {PLAYER} must train\n"
-    "with ^5{BYTE_0E}...\n\n"
-    "The training will take place\n"
-    "^5{BYTE_0D}.\n\n"
-)
+      "Your future is clear!",
+      "^5{BYTE_08},",
+      "{PLAYER} will duel against...",
+      "^5{BYTE_09} for",
+      "^5{BYTE_0C}.",
+      "To win, {PLAYER} must train with ^5{BYTE_0E}...",
+      "The training will take place ^5{BYTE_0D}."
+  )
   CLEAR_FLAG(235)
   CLEAR_FLAG(236)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EAC990, map_29_state_04_08EAC990, 0x08F04040, 0x08F04040)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Oh... That's disappointing.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08EAC990, map_29_state_04_08EAC990, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Oh... That's disappointing.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EAC99C, map_29_state_04_08EAC99C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EAC99C, map_29_state_04_08EAC99C, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "My fortunetelling tells me\n"
-    "that I can't win.\n\n"
-    "So I won't duel right now..\n\n"
-)
+      "My fortunetelling tells me that I can't win.",
+      "So I won't duel right now.."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

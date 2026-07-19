@@ -2,25 +2,33 @@
 #define EVENT_MACROS_H
 
 /* These files are parsed by tools/vanilla_events.py, not compiled directly.
- * TEXT/DIALOGUE/LANGUAGE_TEXT accept normal Python string literals, including
- * triple-quoted multiline strings for easier authoring.
+ * TEXT("page", "page", ...) — each string is one textbox page (auto-wrapped).
+ * TALK(portrait[, expression[, position]], "page", ...) — defaults NEUTRAL + LEFT.
  */
 
 #define EVENT_SCRIPT_REPLACEMENT(vanilla_addr, name, on_false, on_true)
 #define EVENT_SCRIPT(name, on_false, on_true)
 #define END_EVENT_SCRIPT()
 
+/* Dead branch target (vanilla nop script). Prefer this over raw 0x08F04040. */
+#define EVENT_NOP 0x08F04040
+
 #define RAW(...)
-#define DIALOGUE(text)
+#define DIALOGUE(...)
 #define LANGUAGE_TEXT(language, text)
 #define END_LANGUAGE_TEXT()
-#define TEXT(text) LANGUAGE_TEXT(LANGUAGE_ENGLISH, text) END_LANGUAGE_TEXT()
+#define TEXT(...)
 #define TEXT_FRAGMENT(text)
 #define PLAYER_NAME()
 #define NEWLINE()
 #define PAGE_BREAK()
+/* CHOICE/ELSE/END_CHOICE: sequential scene sugar (compiler expands to Script nodes).
+ * Bare CHOICE() with no ELSE remains the legacy {CARD_2} control opcode. */
 #define CHOICE()
+#define ELSE()
+#define END_CHOICE()
 #define PORTRAIT(portrait_id, expression, position)
+#define TALK(...)
 #define HIDE_PORTRAIT()
 #define SET_FLAG(flag)
 #define CHECK_FLAG(flag)

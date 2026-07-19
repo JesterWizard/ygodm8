@@ -10,7 +10,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B14, map_00_state_05_08E34B14, 0x08E34B2C, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34B2C, map_00_state_05_08E34B2C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34B2C, map_00_state_05_08E34B2C, EVENT_NOP, EVENT_NOP)
   WALK_OBJECT_Y(0, 32)
   WALK_OBJECT_X(0, 48)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
@@ -26,30 +26,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B2C, map_00_state_05_08E34B2C, 0x08F04040, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Bandit Keith is also\n"
-    "searching for the\n\n"
-    "Millennium Items...\n\n"
-    "I am afraid that he\n"
-    "complicates matters\n\n"
-    "greatly.\n\n"
-    "Our need for urgency has\n"
-    "increased.\n\n"
-    "Reshef the Dark Being is\n"
-    "insidious.\n\n"
-    "He exploits the weaknesses\n"
-    "in the souls of duelists.\n\n"
-    "I hope that Bandit Keith\n"
-    "does not succumb to his\n\n"
-    "power...\n\n"
-    "Fortunately, Bandit Keith\n"
-    "did not find the Millennium\n\n"
-    "Ring.\n\n"
-    "That is a ray of hope among\n"
-    "all this darkness.\n\n"
-    "Four Millennium Items\n"
-    "remain...\n\n"
-    "And the next one is in."
-)
+      "Bandit Keith is also searching for the",
+      "Millennium Items...",
+      "I am afraid that he complicates matters",
+      "greatly.",
+      "Our need for urgency has increased.",
+      "Reshef the Dark Being is insidious.",
+      "He exploits the weaknesses in the souls of duelists.",
+      "I hope that Bandit Keith does not succumb to his",
+      "power...",
+      "Fortunately, Bandit Keith did not find the Millennium",
+      "Ring.",
+      "That is a ray of hope among all this darkness.",
+      "Four Millennium Items remain...",
+      "And the next one is in."
+  )
   DELAY(43)
   TEXT
   (
@@ -61,15 +52,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B2C, map_00_state_05_08E34B2C, 0x08F04040, 0x08F
       "."
   )
   DELAY(43)
-  TEXT
-  (
-      "\n"
-      "China. At the Great Wall.\n\n"
-      "The Dark Being's power is\n"
-      "intensifying with every\n\n"
-      "passing moment.\n\n"
-      "Please find the next\n"
-      "Millennium Item quickly.\n\n"
+  TEXT(
+      "China. At the Great Wall.",
+      "The Dark Being's power is intensifying with every",
+      "passing moment.",
+      "Please find the next Millennium Item quickly."
   )
   HIDE_PORTRAIT()
   FADE_MUSIC(2)
@@ -79,22 +66,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B2C, map_00_state_05_08E34B2C, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34B38, map_00_state_05_08E34B38, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34B38, map_00_state_05_08E34B38, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Sol Chevalsky resurrected\n"
-    "the Dark Being...\n\n"
-    "We need the Egyptian God\n"
-    "Cards to stop it.\n\n"
-    "We must restore the Egyptian\n"
-    "God Cards from stone.\n\n"
-    "But in order to do so, we\n"
-    "require the Millennium\n\n"
-    "Items.\n\n"
-    "The fourth item is at the\n"
-    "Great Wall of China.\n\n"
-    "Please recover it as soon as\n"
-    "you can.\n\n"
-)
+      "Sol Chevalsky resurrected the Dark Being...",
+      "We need the Egyptian God Cards to stop it.",
+      "We must restore the Egyptian God Cards from stone.",
+      "But in order to do so, we require the Millennium",
+      "Items.",
+      "The fourth item is at the Great Wall of China.",
+      "Please recover it as soon as you can."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -103,12 +84,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B20, map_00_state_05_08E34B20, 0x08E34B2C, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34B44, map_00_state_05_08E34B44, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34B44, map_00_state_05_08E34B44, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Please. Hurry to the Great\n"
-    "Wall of China.\n\n"
-    "Reshef the Dark Being will\n"
-    "soon engulf the world.\n\n"
-)
+      "Please. Hurry to the Great Wall of China.",
+      "Reshef the Dark Being will soon engulf the world."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -4,7 +4,7 @@
 
 /* map_48_state_01: map 48 state 1 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE89C, map_48_state_01_08EDE89C, 0x08EDE8B4, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE89C, map_48_state_01_08EDE89C, 0x08EDE8B4, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_YUGI)
   LOAD_SPRITE(2, SPRITE_PARA_FLIPPING)
   LOAD_SPRITE(3, SPRITE_DOX_FLIPPING)
@@ -22,33 +22,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE89C, map_48_state_01_08EDE89C, 0x08EDE8B4, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE8B4, map_48_state_01_08EDE8B4, 0x08EDE8C0, 0x08EDE8D8)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "We should reach Pegasus's\n"
-      "castle soon.\n\n"
-      "{PLAYER}, do you think you\n"
-      "can beat Pegasus?\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "We should reach Pegasus's castle soon.",
+      "{PLAYER}, do you think you can beat Pegasus?"
   )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}I don't know.\n"
-      "Of course!{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_NONE, "{CARD_1}I don't know.\nOf course!{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE8C0, map_48_state_01_08EDE8C0, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER}, you're really\n"
-      "honest.\n\n"
-      "But you'll be fine,\n"
-      "{PLAYER}. You can win.\n\n"
-      "Even the spirit of the\n"
-      "Puzzle vouched for you.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EDE8C0, map_48_state_01_08EDE8C0, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "{PLAYER}, you're really honest.",
+      "But you'll be fine, {PLAYER}. You can win.",
+      "Even the spirit of the Puzzle vouched for you."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -61,14 +47,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE8C0, map_48_state_01_08EDE8C0, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE8D8, map_48_state_01_08EDE8D8, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yeah, that's the way to\n"
-      "think, {PLAYER}!\n\n"
-      "I made a promise with the\n"
-      "spirit of the Puzzle.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EDE8D8, map_48_state_01_08EDE8D8, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Yeah, that's the way to think, {PLAYER}!",
+      "I made a promise with the spirit of the Puzzle."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -82,7 +64,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE8D8, map_48_state_01_08EDE8D8, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EDE8A8, map_48_state_01_08EDE8A8, 0x08EDE8B4, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EDE8A8, map_48_state_01_08EDE8A8, 0x08EDE8B4, EVENT_NOP)
   SET_OBJECT_POSITION(0, 120, 68, 0)
   WALK_OBJECT_X(0, 60)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)

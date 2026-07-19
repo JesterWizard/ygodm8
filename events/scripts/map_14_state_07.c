@@ -18,18 +18,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77588, map_14_state_07_08E77588, 0x08E775A0, 0x08E
   DELAY(64)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "What took ya so long,\n"
-      "{PLAYER}!\n\n"
-      "If you're having trouble\n"
-      "against these guys...\n\n"
-      "Well, I'd hate to think\n"
-      "what'd happen against some\n\n"
-      "real competition.\n\n"
-      "Hurry and catch up to my\n"
-      "level!\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "What took ya so long, {PLAYER}!",
+      "If you're having trouble against these guys...",
+      "Well, I'd hate to think what'd happen against some",
+      "real competition.",
+      "Hurry and catch up to my level!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -45,12 +39,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77588, map_14_state_07_08E77588, 0x08E775A0, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E775A0, map_14_state_07_08E775A0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E775A0, map_14_state_07_08E775A0, EVENT_NOP, EVENT_NOP)
   WARP(LOCATION_PEGASUS_ISLAND_CABLE_CAR_TOP_OUTSIDE, 3, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E775AC, map_14_state_07_08E775AC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E775AC, map_14_state_07_08E775AC, EVENT_NOP, EVENT_NOP)
   WARP(LOCATION_PEGASUS_ISLAND_CABLE_CAR_TOP_OUTSIDE, 4, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

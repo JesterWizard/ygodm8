@@ -8,11 +8,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E952C4, map_23_state_08_08E952C4, 0x08E952D0, 0x08E
   LOAD_SPRITE(1, SPRITE_MILLENNIUM_GUARDIAN)
   LOAD_SPRITE(2, SPRITE_PANIK)
   PLAY_MUSIC(SOUND_NONE)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "That image I just saw...\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO, "That image I just saw...")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -23,52 +19,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E952C4, map_23_state_08_08E952C4, 0x08E952D0, 0x08E
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_13)
   DELAY(8)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER}, you saw it too,\n"
-      "didn't you?\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO, "{PLAYER}, you saw it too, didn't you?")
+  TALK(PORTRAIT_NONE, "{CARD_1}Yes\nNo{CARD_2}")
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E952D0, map_23_state_08_08E952D0, 0x08E952E8, EVENT_NOP)
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_POSITION_AUTO,
+      "Reshef the Dark Being will destroy the world...",
+      "What Ishizu said really was true..."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E952D0, map_23_state_08_08E952D0, 0x08E952E8, 0x08F04040)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Reshef the Dark Being will\n"
-      "destroy the world...\n\n"
-      "What Ishizu said really was\n"
-      "true...\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E952E8, map_23_state_08_08E952E8, 0x08F04250, 0x08F04040)
-  TEXT
-  (
-      "And... My other self...\n\n"
-      "But... Why...\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E952E8, map_23_state_08_08E952E8, 0x08F04250, EVENT_NOP)
+  TEXT(
+      "And... My other self...",
+      "But... Why..."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "We have to hurry!\n\n"
-      "If we don't, there's going\n"
-      "to be a world of trouble!\n\n"
-      "Let's go back and see Ishizu\n"
-      "right away!\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "We have to hurry!",
+      "If we don't, there's going to be a world of trouble!",
+      "Let's go back and see Ishizu right away!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -76,7 +53,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E952E8, map_23_state_08_08E952E8, 0x08F04250, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08F04250, map_23_state_08_08F04250, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08F04250, map_23_state_08_08F04250, EVENT_NOP, EVENT_NOP)
   HIDE_PORTRAIT()
   HIDE_PORTRAIT()
   FADE_MUSIC(2)
@@ -84,57 +61,37 @@ EVENT_SCRIPT_REPLACEMENT(0x08F04250, map_23_state_08_08F04250, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E952DC, map_23_state_08_08E952DC, 0x08E952E8, 0x08F04040)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I know that it's hard to\n"
-      "believe.\n\n"
-      "Reshef the Dark Being\n"
-      "destroying the world...\n\n"
-      "I don't want to believe it\n"
-      "either.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E952DC, map_23_state_08_08E952DC, 0x08E952E8, EVENT_NOP)
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_POSITION_AUTO,
+      "I know that it's hard to believe.",
+      "Reshef the Dark Being destroying the world...",
+      "I don't want to believe it either."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E952F4, map_23_state_08_08E952F4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "We have secretly guarded\n"
-      "over the Millennium Items.\n\n"
-      "Millennium Items are\n"
-      "believed to attract each\n\n"
-      "other.\n\n"
-      "The Millennium Necklace will\n"
-      "lead you to the next one.\n\n"
-      "Along with the Millennium\n"
-      "Items...\n\n"
-      "You will face the Millennium\n"
-      "Guardians.\n\n"
-      "You must overcome the\n"
-      "challenges we present.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E952F4, map_23_state_08_08E952F4, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "We have secretly guarded over the Millennium Items.",
+      "Millennium Items are believed to attract each",
+      "other.",
+      "The Millennium Necklace will lead you to the next one.",
+      "Along with the Millennium Items...",
+      "You will face the Millennium Guardians.",
+      "You must overcome the challenges we present."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E95300, map_23_state_08_08E95300, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You are only allowed to duel\n"
-      "me once.\n\n"
-      "Did you not have to leave\n"
-      "immediately?\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E95300, map_23_state_08_08E95300, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "You are only allowed to duel me once.",
+      "Did you not have to leave immediately?"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E9530C, map_23_state_08_08E9530C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "...\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E9530C, map_23_state_08_08E9530C, EVENT_NOP, EVENT_NOP)
+  TEXT("...")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

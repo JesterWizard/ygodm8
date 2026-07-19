@@ -15,11 +15,9 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EADA04, map_30_state_01_08EADA04, 0x08EADA10, 0x08F0404C)
   PLAY_MUSIC(MUSIC_402)
   TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Those drawn by the\n"
-    "Millennium Item...\n\n"
-    "Prove your worth here among\n"
-    "the eternal slumber.\n\n"
-)
+      "Those drawn by the Millennium Item...",
+      "Prove your worth here among the eternal slumber."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(0, 58)
@@ -37,15 +35,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08EADA04, map_30_state_01_08EADA04, 0x08EADA10, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EADA10, map_30_state_01_08EADA10, 0x08EADA1C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EADA10, map_30_state_01_08EADA10, 0x08EADA1C, EVENT_NOP)
   PLAY_MUSIC(MUSIC_402)
-  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Impressive. Take this item.\n\n"
-)
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Impressive. Take this item.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EADA1C, map_30_state_01_08EADA1C, 0x08EADA28, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EADA1C, map_30_state_01_08EADA1C, 0x08EADA28, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_316)
@@ -64,21 +60,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08EADA1C, map_30_state_01_08EADA1C, 0x08EADA28, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
   TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO,
-    "W-what? It's happening\n"
-    "again! This time, it's\n\n"
-    "Bakura!\n\n"
-)
+      "W-what? It's happening again! This time, it's",
+      "Bakura!"
+  )
   TALK(PORTRAIT_DARK_BAKURA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Which fool woke me up?\n\n"
-    "Hmm? Kukuku... I can feel\n"
-    "it...\n\n"
-    "I feel a storm brewing over\n"
-    "the Egyptian God Cards!\n\n"
-    "I see a world where darkness\n"
-    "rules...\n\n"
-    "A world perfect for me!\n\n"
-    "Kukuku...\n\n"
-)
+      "Which fool woke me up?",
+      "Hmm? Kukuku... I can feel it...",
+      "I feel a storm brewing over the Egyptian God Cards!",
+      "I see a world where darkness rules...",
+      "A world perfect for me!",
+      "Kukuku..."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_281)
@@ -87,29 +79,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08EADA1C, map_30_state_01_08EADA1C, 0x08EADA28, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EADA28, map_30_state_01_08EADA28, 0x08F04250, 0x08F04040)
-  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO,
-    "Yikes! Millennium Items give\n"
-    "me the willies.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08EADA28, map_30_state_01_08EADA28, 0x08F04250, EVENT_NOP)
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO, "Yikes! Millennium Items give me the willies.")
   TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "With the Millennium Ring, we\n"
-    "now have three items.\n\n"
-    "{PLAYER}, let's get back to\n"
-    "Ishizu.\n\n"
-)
+      "With the Millennium Ring, we now have three items.",
+      "{PLAYER}, let's get back to Ishizu."
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EADA34, map_30_state_01_08EADA34, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EADA34, map_30_state_01_08EADA34, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Millennium Items are\n"
-    "believed to attract each\n\n"
-    "other.\n\n"
-    "The Millennium Ring will\n"
-    "lead you to the next one.\n\n"
-)
+      "Millennium Items are believed to attract each",
+      "other.",
+      "The Millennium Ring will lead you to the next one."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -118,12 +103,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAD9F8, map_30_state_01_08EAD9F8, 0x08EADA04, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EADA40, map_30_state_01_08EADA40, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EADA40, map_30_state_01_08EADA40, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You are only allowed to duel\n"
-    "me once.\n\n"
-    "Did you not have to leave\n"
-    "immediately?\n\n"
-)
+      "You are only allowed to duel me once.",
+      "Did you not have to leave immediately?"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

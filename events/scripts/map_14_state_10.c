@@ -16,20 +16,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E775C4, map_14_state_10_08E775C4, 0x08E775D0, 0x08E
   PLAY_MUSIC(MUSIC_230)
   HIDE_PORTRAIT()
   DELAY(64)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Gotta hand it to you, Yugi.\n"
-      "That duel lasted barely a\n\n"
-      "second!\n\n"
-      "On the other hand...\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Gotta hand it to you, Yugi. That duel lasted barely a",
+      "second!",
+      "On the other hand..."
   )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "{PLAYER}, you had me\n"
-      "worried!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT, "{PLAYER}, you had me worried!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -39,16 +31,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E775C4, map_14_state_10_08E775C4, 0x08E775D0, 0x08E
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I... I couldn't afford to\n"
-      "waste any time.\n\n"
-      "I have to find the spirit\n"
-      "right away!\n\n"
-      "But {PLAYER}'s duel was\n"
-      "pretty impressive.\n\n"
-      "Let's keep this up, guys!\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I... I couldn't afford to waste any time.",
+      "I have to find the spirit right away!",
+      "But {PLAYER}'s duel was pretty impressive.",
+      "Let's keep this up, guys!"
   )
   HIDE_PORTRAIT()
   DELAY(64)

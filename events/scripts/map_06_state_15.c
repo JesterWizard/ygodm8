@@ -4,7 +4,7 @@
 
 /* map_06_state_15: map 6 state 15 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CDEC, map_06_state_15_08E5CDEC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E5CDEC, map_06_state_15_08E5CDEC, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_TRISTAN)
   LOAD_SPRITE(2, SPRITE_DUKE)
   LOAD_SPRITE(3, SPRITE_SERENITY)
@@ -13,13 +13,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDEC, map_06_state_15_08E5CDEC, 0x08F04040, 0x08F
   LOAD_SPRITE(6, SPRITE_GRANDPA_MUTO)
   LOAD_SPRITE(7, SPRITE_KID_1)
   LOAD_SPRITE(8, SPRITE_KID_2)
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "The happy expressions on the\n"
-      "children's faces...\n\n"
-      "Those are the faces of the\n"
-      "Town of Domino at peace.\n\n"
+  TALK(PORTRAIT_SOLOMON,
+      "The happy expressions on the children's faces...",
+      "Those are the faces of the Town of Domino at peace."
   )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   WALK_OBJECT_X(7, 96)
@@ -27,63 +23,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDEC, map_06_state_15_08E5CDEC, 0x08F04040, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_7, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Hi! Can I see your cards?\n\n"
-  )
+  TEXT("Hi! Can I see your cards?")
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_8, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Do you have any new cards?\n\n"
-  )
+  TEXT("Do you have any new cards?")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(6, DIRECTION_RIGHT, 0, 0)
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "As a matter of fact, some\n"
-      "rare cards have come in.\n\n"
+  TALK(PORTRAIT_SOLOMON, "As a matter of fact, some rare cards have come in.")
+  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
+  PLAY_MUSIC(MUSIC_293)
+  OBJECT_EFFECT(OBJECT_7, OBJECT_EFFECT_JUMPING)
+  TEXT("Yeah! I'll buy some!")
+  PLAY_MUSIC(MUSIC_293)
+  OBJECT_EFFECT(OBJECT_8, OBJECT_EFFECT_JUMPING)
+  TEXT("Hey, no fair! They're mine!")
+  TALK(PORTRAIT_SOLOMON,
+      "There's no need to fight. I have two of each, so you",
+      "both can get one."
   )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_7, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Yeah! I'll buy some!\n\n"
-  )
+  TEXT("Okay!")
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_8, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Hey, no fair! They're mine!\n\n"
-  )
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "There's no need to fight.\n"
-      "I have two of each, so you\n\n"
-      "both can get one.\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_7, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Okay!\n\n"
-  )
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_8, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Sure!\n\n"
-  )
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Fine, let's head inside.\n\n"
-  )
+  TEXT("Sure!")
+  TALK(PORTRAIT_SOLOMON, "Fine, let's head inside.")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(7, 75)
@@ -97,49 +63,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDEC, map_06_state_15_08E5CDEC, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(6, DIRECTION_LEFT, 0, 0)
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "The boys will be back soon.\n"
-      "There's no doubt.\n\n"
-      "Isn't that right, Tea?\n\n"
+  TALK(PORTRAIT_SOLOMON,
+      "The boys will be back soon. There's no doubt.",
+      "Isn't that right, Tea?"
   )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_LEFT)
-  TEXT
-  (
-      "...Yes. You're right.\n\n"
-  )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I'll wait a little while\n"
-      "longer...\n\n"
-  )
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Yes, yes. That would be\n"
-      "best.\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SAD, "...Yes. You're right.")
+  TALK(PORTRAIT_TEA, "I'll wait a little while longer...")
+  TALK(PORTRAIT_SOLOMON, "Yes, yes. That would be best.")
   WALK_OBJECT_Y(6, 39)
   SHOW_OBJECT(6, 128, 96, 0, 0, 0)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Though in all honesty, I'm\n"
-      "getting kinda worried.\n\n"
-  )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_LEFT)
-  TEXT
-  (
-      "L-look at that...\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "That's KaibaCorp's\n"
-      "helicopter.\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, "Though in all honesty, I'm getting kinda worried.")
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, "L-look at that...")
+  TALK(PORTRAIT_DUKE, "That's KaibaCorp's helicopter.")
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1 | OBJECT_2 | OBJECT_3 | OBJECT_4 | OBJECT_5)
   FADE_SCREEN(8)

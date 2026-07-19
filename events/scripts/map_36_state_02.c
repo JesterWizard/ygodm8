@@ -12,29 +12,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9C54, map_36_state_02_08EC9C54, 0x08EC9C60, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC9C60, map_36_state_02_08EC9C60, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EC9C60, map_36_state_02_08EC9C60, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Looks like we can't get rid\n"
-    "of each other.\n\n"
-    "You're not here to watch\n"
-    "them dig up fossils, am I\n\n"
-    "right?\n\n"
-    "I can tell from the looks on\n"
-    "your faces.\n\n"
-)
+      "Looks like we can't get rid of each other.",
+      "You're not here to watch them dig up fossils, am I",
+      "right?",
+      "I can tell from the looks on your faces."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC9C6C, map_36_state_02_08EC9C6C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EC9C6C, map_36_state_02_08EC9C6C, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You're planning to fight\n"
-    "someone as powerful as a\n\n"
-    "T-Rex.\n\n"
-    "It was obvious from the way\n"
-    "you dueled.\n\n"
-    "It must be tough to keep\n"
-    "your skills sharp.\n\n"
-)
+      "You're planning to fight someone as powerful as a",
+      "T-Rex.",
+      "It was obvious from the way you dueled.",
+      "It must be tough to keep your skills sharp."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -51,66 +45,49 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9C84, map_36_state_02_08EC9C84, 0x08EC9C90, 0x08F
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "It sounds crazy, but I guess\n"
-    "we're connected to each\n\n"
-    "other.\n\n"
-    "I wonder why...\n\n"
-)
+      "It sounds crazy, but I guess we're connected to each",
+      "other.",
+      "I wonder why..."
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(8)
-  TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "There must be a bond between\n"
-    "duelists.\n\n"
-)
+  TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "There must be a bond between duelists.")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(8)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Alright, enough talk.\n\n"
-    "Because action speaks louder\n"
-    "than words.\n\n"
-    "Let's duel!\n\n"
-)
+      "Alright, enough talk.",
+      "Because action speaks louder than words.",
+      "Let's duel!"
+  )
   DUEL(DUELIST_REX_102)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC9C90, map_36_state_02_08EC9C90, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EC9C90, map_36_state_02_08EC9C90, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_245)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "That's it! You win!\n\n"
-    "{PLAYER}, you've grown\n"
-    "pretty strong.\n\n"
-    "Don't you dare lose to\n"
-    "anyone!\n\n"
-    "I don't want anyone to think\n"
-    "that you're weak.\n\n"
-    "Not after you've beaten me!\n\n"
-    "All right, take this card.\n\n"
-    "It's Two-Headed King Rex.\n\n"
-    "The card that best\n"
-    "represents me is Red-Eyes\n\n"
-    "B. Dragon...\n\n"
-    "...Is what I'd like to say,\n"
-    "but it's now Wheeler's\n\n"
-    "card.\n\n"
-    "Since the day he won it from\n"
-    "me, I realized something.\n\n"
-    "Are expensive rare cards\n"
-    "really good for me?\n\n"
-    "The more I thought about it,\n"
-    "this card I have right now\n\n"
-    "is perfect for me.\n\n"
-    "It's a common card, but it\n"
-    "embodies my spirit!\n\n"
-)
-  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Received Two-Headed King\n"
-    "Rex."
-)
+      "That's it! You win!",
+      "{PLAYER}, you've grown pretty strong.",
+      "Don't you dare lose to anyone!",
+      "I don't want anyone to think that you're weak.",
+      "Not after you've beaten me!",
+      "All right, take this card.",
+      "It's Two-Headed King Rex.",
+      "The card that best represents me is Red-Eyes",
+      "B. Dragon...",
+      "...Is what I'd like to say, but it's now Wheeler's",
+      "card.",
+      "Since the day he won it from me, I realized something.",
+      "Are expensive rare cards really good for me?",
+      "The more I thought about it, this card I have right now",
+      "is perfect for me.",
+      "It's a common card, but it embodies my spirit!"
+  )
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Received Two-Headed King Rex.")
   PLAY_MUSIC(MUSIC_701)
   DELAY(240)
   DELAY(80)
@@ -123,26 +100,21 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC9C9C, map_36_state_02_08EC9C9C, 0x08EC9CA8, 0x08F0404C)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I don't know if it's worth\n"
-    "dueling me.\n\n"
-    "Especially considering what\n"
-    "you're facing.\n\n"
-    "But maybe I'll teach you\n"
-    "something!\n\n"
-    "I'll duel using all my\n"
-    "techniques.\n\n"
-    "If it means helping you,\n"
-    "{PLAYER}, I'll do it!\n\n"
-)
+      "I don't know if it's worth dueling me.",
+      "Especially considering what you're facing.",
+      "But maybe I'll teach you something!",
+      "I'll duel using all my techniques.",
+      "If it means helping you, {PLAYER}, I'll do it!"
+  )
   DUEL(DUELIST_REX_149)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC9CA8, map_36_state_02_08EC9CA8, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EC9CA8, map_36_state_02_08EC9CA8, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_245)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Well, how was I?\n\n"
-    "Did dueling me help you?\n\n"
-)
+      "Well, how was I?",
+      "Did dueling me help you?"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

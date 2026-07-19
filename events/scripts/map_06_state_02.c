@@ -4,7 +4,7 @@
 
 /* map_06_state_02: map 6 state 2 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CC00, map_06_state_02_08E5CC00, 0x08E5CC0C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E5CC00, map_06_state_02_08E5CC00, 0x08E5CC0C, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_TRISTAN)
   LOAD_SPRITE(2, SPRITE_DUKE)
   LOAD_SPRITE(3, SPRITE_LUCKY)
@@ -20,29 +20,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CC00, map_06_state_02_08E5CC00, 0x08E5CC0C, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CC0C, map_06_state_02_08E5CC0C, 0x08E5CC18, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E5CC0C, map_06_state_02_08E5CC0C, 0x08E5CC18, EVENT_NOP)
   PLAY_MUSIC(MUSIC_371)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Go, Gradius!\n\n"
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Go, Gradius!")
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_DEFEATED, PORTRAIT_POSITION_AUTO,
+      "Gwaaah!",
+      "I lost again!"
   )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Gwaaah!\n\n"
-      "I lost again!\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hahaha, you can duel me a\n"
-      "thousand times and I'll\n\n"
-      "still win them all.\n\n"
-      "Since it's clear that I'm\n"
-      "the better duelist, I get\n\n"
-      "to go out with Serenity,\n"
-      "like we agreed.\n\n"
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Hahaha, you can duel me a thousand times and I'll",
+      "still win them all.",
+      "Since it's clear that I'm the better duelist, I get",
+      "to go out with Serenity, like we agreed."
   )
   HIDE_PORTRAIT()
   DELAY(4)
@@ -51,13 +40,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CC0C, map_06_state_02_08E5CC0C, 0x08E5CC18, 0x08F
   PLAY_MUSIC(MUSIC_275)
   REACTION(REACTION_ANGRY, OBJECT_14)
   DELAY(8)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hey hey! What's the big\n"
-      "idea!\n\n"
-      "What's this so-called\n"
-      "agreement? No one told me!\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO,
+      "Hey hey! What's the big idea!",
+      "What's this so-called agreement? No one told me!"
   )
   HIDE_PORTRAIT()
   DELAY(4)
@@ -69,50 +54,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CC0C, map_06_state_02_08E5CC0C, 0x08E5CC18, 0x08F
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yeah, Duke! For once, Joey's\n"
-      "right. I'm canceling our\n\n"
-      "deal!\n\n"
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Yeah, Duke! For once, Joey's right. I'm canceling our",
+      "deal!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "That's not fair! You're the\n"
-      "one who thought it up!\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Tristaaaaaaaaaaan!\n\n"
-  )
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "That's not fair! You're the one who thought it up!")
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "Tristaaaaaaaaaaan!")
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CC18, map_06_state_02_08E5CC18, 0x08E5CC24, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E5CC18, map_06_state_02_08E5CC18, 0x08E5CC24, EVENT_NOP)
   WALK_OBJECT_X(5, 76)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Joey! You promised you\n"
-      "wouldn't fight, especially\n\n"
-      "with your friends.\n\n"
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_ANGRY, PORTRAIT_POSITION_AUTO,
+      "Joey! You promised you wouldn't fight, especially",
+      "with your friends."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "B-but Serenity...\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO, "B-but Serenity...")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
@@ -120,65 +86,42 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CC18, map_06_state_02_08E5CC18, 0x08E5CC24, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_273)
   REACTION(REACTION_LOVE_HEART, OBJECT_1 | OBJECT_2)
-  TEXT
-  (
-      "You're so sweet, Serenity!\n\n"
-  )
+  TEXT("You're so sweet, Serenity!")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CC24, map_06_state_02_08E5CC24, 0x08E5CC30, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E5CC24, map_06_state_02_08E5CC24, 0x08E5CC30, EVENT_NOP)
   MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_14)
   DELAY(32)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Serenity, I wasn't fighting.\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Serenity, I wasn't fighting.")
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO,
+      "You weren't? It looked like you were... I guess I was",
+      "wrong.",
+      "I'm sorry, Joey."
   )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You weren't? It looked like\n"
-      "you were... I guess I was\n\n"
-      "wrong.\n\n"
-      "I'm sorry, Joey.\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Nah, you don't need to\n"
-      "apologize...\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yeah! Serenity, you didn't\n"
-      "do anything wrong! You\n\n"
-      "never do anything wrong.\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO, "Nah, you don't need to apologize...")
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_ANGRY, PORTRAIT_POSITION_AUTO,
+      "Yeah! Serenity, you didn't do anything wrong! You",
+      "never do anything wrong."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CC30, map_06_state_02_08E5CC30, 0x08E5CC3C, 0x08F04040)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Serenity, which duelist do\n"
-      "you like? Strong and tough,\n\n"
-      "like me?\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E5CC30, map_06_state_02_08E5CC30, 0x08E5CC3C, EVENT_NOP)
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Serenity, which duelist do you like? Strong and tough,",
+      "like me?"
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
       "Hmm."
   )
   DELAY(43)
@@ -192,67 +135,38 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CC30, map_06_state_02_08E5CC30, 0x08E5CC3C, 0x08F
       ". "
   )
   DELAY(43)
-  TEXT
-  (
-      "Maybe...\n\n"
-  )
+  TEXT("Maybe...")
   HIDE_PORTRAIT()
   DELAY(43)
   WALK_OBJECT_X(1, 48)
   WALK_OBJECT_X(14, 68)
   DELAY(32)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "But I think a duelist like\n"
-      "Mai is the best!\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "But I think a duelist like Mai is the best!")
   PLAY_MUSIC(MUSIC_273)
   REACTION(REACTION_LOVE_HEART, OBJECT_5)
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
   REACTION(REACTION_SWEATDROP, OBJECT_1 | OBJECT_2 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{BYTE_8169}...That's not the answer\n"
-      "we're looking for...{BYTE_816A}\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO, "{BYTE_8169}...That's not the answer we're looking for...{BYTE_816A}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CC3C, map_06_state_02_08E5CC3C, 0x08E5CC48, 0x08F04040)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "If that's the case, I'll\n"
-      "duel Mai Valentine!\n\n"
-      "I'll beat her and prove that\n"
-      "I'm a powerful duelist,\n\n"
-      "especially stronger than\n"
-      "Duke!\n\n"
-      "And then she'll fall madly\n"
-      "in love with me!\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E5CC3C, map_06_state_02_08E5CC3C, 0x08E5CC48, EVENT_NOP)
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_POSITION_AUTO,
+      "If that's the case, I'll duel Mai Valentine!",
+      "I'll beat her and prove that I'm a powerful duelist,",
+      "especially stronger than Duke!",
+      "And then she'll fall madly in love with me!"
   )
   WALK_OBJECT_X(1, 144)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hey, wait! You can't ditch\n"
-      "me!\n\n"
-  )
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Hey, wait! You can't ditch me!")
   WALK_OBJECT_X(2, 144)
   MOVE_OBJECT(5, DIRECTION_RIGHT, 4, 1)
   PLAY_MUSIC(MUSIC_270)
   REACTION(REACTION_QUESTION_MARK, OBJECT_5)
   DELAY(32)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Tristan and Duke... What's\n"
-      "gotten into them?\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO, "Tristan and Duke... What's gotten into them?")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
@@ -261,39 +175,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CC3C, map_06_state_02_08E5CC3C, 0x08E5CC48, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CC48, map_06_state_02_08E5CC48, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I'm never gonna leave them\n"
-      "alone with you, Serenity...\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E5CC48, map_06_state_02_08E5CC48, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO, "I'm never gonna leave them alone with you, Serenity...")
   SET_FLAG(EVENT_FLAG_TRISTAN_AND_DUKE_WENT_TO_SEE_MAI)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CC54, map_06_state_02_08E5CC54, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER}, please keep an eye\n"
-      "on Joey.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E5CC54, map_06_state_02_08E5CC54, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "{PLAYER}, please keep an eye on Joey.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CC60, map_06_state_02_08E5CC60, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I'm no match for you,\n"
-      "{PLAYER}.\n\n"
-      "If you want to duel, I think\n"
-      "my big brother would be a\n\n"
-      "finer opponent.\n\n"
-      "He's always practicing to\n"
-      "become the best duelist in\n\n"
-      "the world.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E5CC60, map_06_state_02_08E5CC60, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I'm no match for you, {PLAYER}.",
+      "If you want to duel, I think my big brother would be a",
+      "finer opponent.",
+      "He's always practicing to become the best duelist in",
+      "the world."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

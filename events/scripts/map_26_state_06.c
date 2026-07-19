@@ -14,19 +14,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3CEC, map_26_state_06_08EA3CEC, 0x08EA3CF8, 0x08E
   LOAD_SPRITE(6, SPRITE_RICHE_WIFE)
   PLAY_MUSIC(MUSIC_407)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Harpie Lady!\n\n"
-  )
+  TALK(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, "Harpie Lady!")
   PLAY_MUSIC(MUSIC_333)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_HARPIE_LADY_SISTERS_FULL_ART)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Harpies' Triangle Ecstasy!\n\n"
-  )
+  TALK(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, "Harpies' Triangle Ecstasy!")
   PLAY_MUSIC(MUSIC_341)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_HARPIE_LADY_SISTERS_ATTACK)
   DELAY(16)
@@ -36,13 +28,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3CEC, map_26_state_06_08EA3CEC, 0x08EA3CF8, 0x08E
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_TELEPORT)
   SHOW_OBJECT(3, 128, 96, 0, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ARCANA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Hyahahahaha! Nice attack...\n\n"
-      "But how much longer can you\n"
-      "keep this up?\n\n"
-      "Go!\n\n"
+  TALK(PORTRAIT_ARCANA,
+      "Hyahahahaha! Nice attack...",
+      "But how much longer can you keep this up?",
+      "Go!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -53,12 +42,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3CEC, map_26_state_06_08EA3CEC, 0x08EA3CF8, 0x08E
   WALK_OBJECT_Y(3, 32)
   WALK_OBJECT_X(3, 84)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Grr... There's too many of\n"
-      "them...\n\n"
-  )
+  TALK(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, "Grr... There's too many of them...")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(0, 70)
@@ -84,44 +68,27 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3CEC, map_26_state_06_08EA3CEC, 0x08EA3CF8, 0x08E
   MOVE_OBJECT(3, DIRECTION_LEFT, 0, 0)
   MOVE_OBJECT(4, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ARCANA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Hyahahahaha! How good of you\n"
-      "to visit!\n\n"
-      "What's the fun without a\n"
-      "captive audience!\n\n"
-      "I'll give you two choices.\n\n"
-      "Do nothing but watch this\n"
-      "stunning show as I defeat\n\n"
-      "this woman...\n\n"
-      "Or step in and be magically\n"
-      "defeated by me!\n\n"
-      "Hyahahahahaha!\n\n"
-      "Whichever choice you make,\n"
-      "I win!\n\n"
-      "Hyahahahaha!\n\n"
+  TALK(PORTRAIT_ARCANA,
+      "Hyahahahaha! How good of you to visit!",
+      "What's the fun without a captive audience!",
+      "I'll give you two choices.",
+      "Do nothing but watch this stunning show as I defeat",
+      "this woman...",
+      "Or step in and be magically defeated by me!",
+      "Hyahahahahaha!",
+      "Whichever choice you make, I win!",
+      "Hyahahahaha!"
   )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}I'm going to win!\n"
-      "I'll let you surrender.{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_NONE, "{CARD_1}I'm going to win!\nI'll let you surrender.{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CF8, map_26_state_06_08EA3CF8, 0x08EA3D10, 0x08F0404C)
-  PORTRAIT(PORTRAIT_ARCANA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Are you that anxious to be\n"
-      "humiliated?!\n\n"
-      "I will have you begging on\n"
-      "your knees before it's\n\n"
-      "over!\n\n"
-      "I, Arkana, accept your\n"
-      "challenge!\n\n"
+  TALK(PORTRAIT_ARCANA,
+      "Are you that anxious to be humiliated?!",
+      "I will have you begging on your knees before it's",
+      "over!",
+      "I, Arkana, accept your challenge!"
   )
   DUEL(DUELIST_ARCANA_156)
   FALLTHROUGH()
@@ -129,15 +96,10 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3D10, map_26_state_06_08EA3D10, 0x08EA3D1C, 0x08EA3D28)
   PLAY_MUSIC(MUSIC_407)
-  PORTRAIT(PORTRAIT_ARCANA, EXPRESSION_ARKANA_DEFEATED, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Wh-what? I lost? The great\n"
-      "Arkana lost?\n\n"
-      "Hyahahahaha! This simply\n"
-      "cannot be!\n\n"
-      "This must be a mistake!\n"
-      "Hyahahahaha!\n\n"
+  TALK(PORTRAIT_ARCANA, EXPRESSION_ARKANA_DEFEATED,
+      "Wh-what? I lost? The great Arkana lost?",
+      "Hyahahahaha! This simply cannot be!",
+      "This must be a mistake! Hyahahahaha!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -160,52 +122,30 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3D10, map_26_state_06_08EA3D10, 0x08EA3D1C, 0x08E
   WALK_OBJECT_Y(1, 32)
   WALK_OBJECT_X(1, 72)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "You came here to save me?\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_MAI, "You came here to save me?")
+  TALK(PORTRAIT_NONE, "{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3D1C, map_26_state_06_08EA3D1C, 0x08EA3D34, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Thanks. I couldn't have done\n"
-      "it without you.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EA3D1C, map_26_state_06_08EA3D1C, 0x08EA3D34, EVENT_NOP)
+  TALK(PORTRAIT_MAI, "Thanks. I couldn't have done it without you.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3D34, map_26_state_06_08EA3D34, 0x08EA3D4C, 0x08EA3D40)
-  TEXT
-  (
-      "So what exactly brings you\n"
-      "out here?\n\n"
-      "Did you want to see me about\n"
-      "something?\n\n"
+  TEXT(
+      "So what exactly brings you out here?",
+      "Did you want to see me about something?"
   )
   PLAY_MUSIC(MUSIC_332)
   FADE_SCREEN(4)
   PLAY_MUSIC(MUSIC_702)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "What! Those creeps...\n\n"
-      "The Neo Ghouls are\n"
-      "destroying the city?\n\n"
-      "I won't let those cheaters\n"
-      "get away with it!\n\n"
-      "All right, I'll help.\n\n"
-      "We'll show them what a\n"
-      "real duelist is all about!\n\n"
+  TALK(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY,
+      "What! Those creeps...",
+      "The Neo Ghouls are destroying the city?",
+      "I won't let those cheaters get away with it!",
+      "All right, I'll help.",
+      "We'll show them what a real duelist is all about!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -218,26 +158,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3D34, map_26_state_06_08EA3D34, 0x08EA3D4C, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3D4C, map_26_state_06_08EA3D4C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Okay! Let's go find another\n"
-      "ally!\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EA3D4C, map_26_state_06_08EA3D4C, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Okay! Let's go find another ally!")
   HIDE_PORTRAIT()
   FADE_MUSIC(2)
   DELAY(32)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3D40, map_26_state_06_08EA3D40, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Okay! We should also get\n"
-      "back to the Town of Domino!\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EA3D40, map_26_state_06_08EA3D40, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Okay! We should also get back to the Town of Domino!")
   HIDE_PORTRAIT()
   FADE_MUSIC(2)
   DELAY(32)
@@ -245,74 +175,51 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3D40, map_26_state_06_08EA3D40, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3D28, map_26_state_06_08EA3D28, 0x08EA3D34, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Well, I didn't really need\n"
-      "your help, anyway.\n\n"
-      "I could've beaten the Neo\n"
-      "Ghouls by myself!\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EA3D28, map_26_state_06_08EA3D28, 0x08EA3D34, EVENT_NOP)
+  TALK(PORTRAIT_MAI,
+      "Well, I didn't really need your help, anyway.",
+      "I could've beaten the Neo Ghouls by myself!"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3D04, map_26_state_06_08EA3D04, 0x08EA3D10, 0x08F0404C)
-  PORTRAIT(PORTRAIT_ARCANA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "You must be joking.\n\n"
-      "You're demanding that I beg\n"
-      "you for forgiveness?\n\n"
-      "Hyahahahaha! Whatever!\n\n"
-      "You're about to witness my\n"
-      "dazzling duel skills!\n\n"
-      "Prepare for Arkana's most\n"
-      "exhilarating performance\n\n"
-      "yet!\n\n"
+  TALK(PORTRAIT_ARCANA,
+      "You must be joking.",
+      "You're demanding that I beg you for forgiveness?",
+      "Hyahahahaha! Whatever!",
+      "You're about to witness my dazzling duel skills!",
+      "Prepare for Arkana's most exhilarating performance",
+      "yet!"
   )
   DUEL(DUELIST_ARCANA_156)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3D58, map_26_state_06_08EA3D58, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "The Neo Ghouls are\n"
-      "frightening individuals\n\n"
-      "indeed.\n\n"
-      "If it weren't for Mai, my\n"
-      "rare cards would be gone.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EA3D58, map_26_state_06_08EA3D58, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "The Neo Ghouls are frightening individuals",
+      "indeed.",
+      "If it weren't for Mai, my rare cards would be gone."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3D64, map_26_state_06_08EA3D64, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Oh, no. No more duels for\n"
-      "me, thank you kindly.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EA3D64, map_26_state_06_08EA3D64, EVENT_NOP, EVENT_NOP)
+  TEXT("Oh, no. No more duels for me, thank you kindly.")
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08EA3D70, map_26_state_06_08EA3D70, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "How could we be attacked by the Neo Ghouls?",
+      "Dear me, this ship's security is not up to",
+      "snuff."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3D70, map_26_state_06_08EA3D70, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "How could we be attacked by\n"
-      "the Neo Ghouls?\n\n"
-      "Dear me, this ship's\n"
-      "security is not up to\n\n"
-      "snuff.\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08EA3D7C, map_26_state_06_08EA3D7C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'm sorry, the idea doesn't\n"
-      "enthuse me.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EA3D7C, map_26_state_06_08EA3D7C, EVENT_NOP, EVENT_NOP)
+  TEXT("I'm sorry, the idea doesn't enthuse me.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -10,6 +10,50 @@ Edit small C macro files under `events/scripts/`.
 
 Do not edit `events/vanilla/vanilla_event_catalog.md` for ROM changes. The catalog is generated from the YAML and exists only as a readable reference while you search for scenes, object ids, script addresses, dialogue, and visible actions.
 
+## Preferred authoring style
+
+Reference scene: [`events/scripts/map_09_state_01.c`](scripts/map_09_state_01.c).
+
+For multi-beat cutscenes, write **one sequential** `EVENT_SCRIPT_REPLACEMENT` and use `CHOICE` / `ELSE` / `END_CHOICE` for player options. The compiler expands that into the Script-node graph the VM needs.
+
+| Prefer | Over |
+|--------|------|
+| One scene body + `CHOICE`/`ELSE`/`END_CHOICE` | Many hooked mid-address replacements |
+| `TALK(portrait, "page", "page")` | `PORTRAIT` + `TEXT`, or triple-quoted blobs |
+| `TEXT("page", "page")` | Manual `\n` / blank-line page markup |
+| `EVENT_NOP` (or omit branches on 2-arg replacement) | Raw `0x08F04040` |
+
+Notes:
+
+- **Each string arg = one textbox page.** Soft wraps inside a page are unnecessary — the compiler word-wraps to 28 chars / 2 rows (overflow spills to the next page).
+- Legacy `\n` soft-wraps still compile (unwrapped automatically); prefer one string per page when editing.
+- Choice prompts keep an internal newline: `"{CARD_1}Yes\nNo{CARD_2}"`.
+- `TALK(portrait, ...)` defaults to `EXPRESSION_NEUTRAL` + `PORTRAIT_LEFT`. Pass expression and/or position when needed: `TALK(p, expr, pos, "...")`.
+- A single word longer than 28 characters fails the build with a console error naming the offending line.
+- `{CARD_1}` / `{CARD_2}` in the text before `CHOICE()`; first arm = option 1, `ELSE` arm = option 2; both merge after `END_CHOICE()`.
+- Nested `CHOICE` is allowed.
+- Keep `HIDE_PORTRAIT()` before movement / reactions / stage business.
+- Keep `PORTRAIT` + `TEXT` only when something (e.g. `PLAY_MUSIC`) must sit between them.
+- Only the enter vanilla address needs a replacement; mid-scene vanilla hooks are unnecessary once enter is fully custom.
+- Small NPCs can still use multiple named `EVENT_SCRIPT_REPLACEMENT` / `EVENT_SCRIPT` nodes (casino pattern).
+- Bulk rewrite helper: `python3 tools/vanilla_events.py migrate-dialogue-style`.
+
+```c
+#include "event_macros.h"
+#include "overworld.h"
+
+EVENT_SCRIPT_REPLACEMENT(0x08E12345, scene_duel_offer)
+  TALK(PORTRAIT_YUGI,
+      "It's time to duel!",
+      "{CARD_1}Yes\nNo{CARD_2}")
+  CHOICE()
+    TALK(PORTRAIT_YUGI, "Let's go!")
+  ELSE()
+    TALK(PORTRAIT_YUGI, "Maybe later.")
+  END_CHOICE()
+END_EVENT_SCRIPT()
+```
+
 ## Edit Order
 
 STORY (the map order may not match the story order)
@@ -33,24 +77,6 @@ map_23_state_01.c - Millenium Guardian 1
 map_22_state_03.c - Egypt Exhibit main hall 1 (Seto arrives with Mokuba)
 ```
 
-## C Macro Workflow
-
-Create one file per event or scene in `events/scripts/`, for example:
-
-```c
-#include "event_macros.h"
-#include "overworld.h"
-
-EVENT_SCRIPT_REPLACEMENT(0x08E12345, SCENE_01_YUGI_01, 0, 0)
-  PORTRAIT(1, 0, PORTRAIT_LEFT)
-  TEXT("It's time to duel!")
-  MOVE_OBJECT(2, 1, 4, 0)
-  END()
-END_EVENT_SCRIPT()
-```
-
-For long dialogue, `TEXT("""...""")` is accepted and usually easier to read than escaping every line break.
-
 ## Extraction Workflow
 
 1. Use `vanilla_event_catalog.md` to find the map/state/object/script you want.
@@ -58,8 +84,6 @@ For long dialogue, `TEXT("""...""")` is accepted and usually easier to read than
 3. Run `make`.
 
 The compiler writes `src_custom/generated/event_script_replacements.inc` from the C macro files.
-
-After editing C macro files, rebuild the event replacements and ROM:
 
 If you only want vanilla overworld behavior at runtime, set
 `enable_custom_events = FALSE` in `configs/runtime.c`. That bypasses the

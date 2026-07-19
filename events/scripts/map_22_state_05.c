@@ -4,7 +4,7 @@
 
 /* map_22_state_05: map 22 state 5 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8CB40, map_22_state_05_08E8CB40, 0x08E8CB4C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E8CB40, map_22_state_05_08E8CB40, 0x08E8CB4C, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_SETO)
   LOAD_SPRITE(2, SPRITE_NEO_GHOUL)
   LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
@@ -20,22 +20,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB40, map_22_state_05_08E8CB40, 0x08E8CB4C, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8CB4C, map_22_state_05_08E8CB4C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E8CB4C, map_22_state_05_08E8CB4C, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_NEO_GHOULS)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I summon Blue-Eyes White\n"
-      "Dragon!\n\n"
-  )
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO, "I summon Blue-Eyes White Dragon!")
   PLAY_MUSIC(MUSIC_333)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_BLUE_EYES_WHITE_DRAGON_FULL_ART)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "White Lightning!\n\n"
-  )
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO, "White Lightning!")
   PLAY_MUSIC(MUSIC_338)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_BLUE_EYES_ATTACK_DOWN)
   DELAY(16)
@@ -46,12 +37,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB4C, map_22_state_05_08E8CB4C, 0x08F04040, 0x08F
   DELAY(16)
   WALK_OBJECT_X(3, 64)
   MOVE_OBJECT(3, DIRECTION_UP, 0, 0)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "What's with these Neo Ghoul\n"
-      "scrubs!\n\n"
-      "There's no end to them!\n\n"
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
+      "What's with these Neo Ghoul scrubs!",
+      "There's no end to them!"
   )
   SET_FLAG(EVENT_FLAG_SAW_KAIBA_DEFEAT_A_GHOUL)
   FALLTHROUGH()
@@ -62,7 +50,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB58, map_22_state_05_08E8CB58, 0x08E8CB70, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8CB70, map_22_state_05_08E8CB70, 0x08E8CB7C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E8CB70, map_22_state_05_08E8CB70, 0x08E8CB7C, EVENT_NOP)
   WALK_OBJECT_X(0, 56)
   WALK_OBJECT_Y(0, 20)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
@@ -76,24 +64,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB70, map_22_state_05_08E8CB70, 0x08E8CB7C, 0x08F
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Am I here to rescue Ishizu?\n\n"
-    "Heh, that's your business,\n"
-    "not mine.\n\n"
-    "I'm only here because I need\n"
-    "to resurrect Obelisk the\n\n"
-    "Tormentor.\n\n"
-    "I don't know what kind of\n"
-    "trick you pulled...\n\n"
-    "But no one had no right to\n"
-    "turn my card into stone!\n\n"
-    "It's clear Ishizu's somehow\n"
-    "involved...\n\n"
-    "And I want to find out how!\n\n"
-)
+      "Am I here to rescue Ishizu?",
+      "Heh, that's your business, not mine.",
+      "I'm only here because I need to resurrect Obelisk the",
+      "Tormentor.",
+      "I don't know what kind of trick you pulled...",
+      "But no one had no right to turn my card into stone!",
+      "It's clear Ishizu's somehow involved...",
+      "And I want to find out how!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8CB7C, map_22_state_05_08E8CB7C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E8CB7C, map_22_state_05_08E8CB7C, EVENT_NOP, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_UP, 4, 0)
@@ -104,22 +87,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB7C, map_22_state_05_08E8CB7C, 0x08F04040, 0x08F
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(8)
   TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
-    "You Neo Ghouls haven't had\n"
-    "enough yet?\n\n"
-    "Fine! I'll crush you until\n"
-    "you beg me for mercy!\n\n"
-)
+      "You Neo Ghouls haven't had enough yet?",
+      "Fine! I'll crush you until you beg me for mercy!"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
-    "What are you losers still\n"
-    "doing here?\n\n"
-    "Go and find your precious\n"
-    "Ishizu!\n\n"
-)
+      "What are you losers still doing here?",
+      "Go and find your precious Ishizu!"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_DOWN, 4, 0)
@@ -127,14 +106,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB7C, map_22_state_05_08E8CB7C, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8CB88, map_22_state_05_08E8CB88, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "What are you losers still\n"
-      "doing here?\n\n"
-      "Go and find your precious\n"
-      "Ishizu!\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E8CB88, map_22_state_05_08E8CB88, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
+      "What are you losers still doing here?",
+      "Go and find your precious Ishizu!"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -144,32 +119,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB64, map_22_state_05_08E8CB64, 0x08E8CB70, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8CB94, map_22_state_05_08E8CB94, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "If I take down Kaiba, I'll\n"
-      "be promoted! Hihihi...\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E8CB94, map_22_state_05_08E8CB94, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "If I take down Kaiba, I'll be promoted! Hihihi...")
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E8CBA0, map_22_state_05_08E8CBA0, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "I was enjoying the Egypt Exhibition...",
+      "Until all chaos broke out."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8CBA0, map_22_state_05_08E8CBA0, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I was enjoying the Egypt\n"
-      "Exhibition...\n\n"
-      "Until all chaos broke out.\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E8CBAC, map_22_state_05_08E8CBAC, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'm not a duelist.\n\n"
-      "That's why they left me\n"
-      "alone.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E8CBAC, map_22_state_05_08E8CBAC, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "I'm not a duelist.",
+      "That's why they left me alone."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

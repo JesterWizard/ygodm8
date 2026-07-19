@@ -4,7 +4,7 @@
 
 /* map_06_state_12: map 6 state 12 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_MONKEY_ROBOT)
   LOAD_SPRITE(2, SPRITE_DUKE)
   LOAD_SPRITE(3, SPRITE_SERENITY)
@@ -19,26 +19,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, 0x08F04040, 0x08F
   MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   WALK_OBJECT_X(3, 44)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Tristan!\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_RIGHT, "Tristan!")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 52)
   DELAY(16)
   PLAY_MUSIC(MUSIC_323)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Ukiiii!\n\n"
-  )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I'm so glad you found him!\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_RIGHT, "Ukiiii!")
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "I'm so glad you found him!")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(14, 40)
@@ -47,22 +35,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_275)
   REACTION(REACTION_ANGRY, OBJECT_14)
   DELAY(8)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hey, Tristan! That's enough!\n"
-      "Get away from Serenity.\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "Hey, Tristan! That's enough! Get away from Serenity.")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Why, you...\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "Why, you...")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 36)
@@ -70,18 +49,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, 0x08F04040, 0x08F
   DELAY(8)
   WALK_OBJECT_X(14, 52)
   DELAY(8)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_ANGRY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Stop Joey!\n\n"
-      "Hasn't Tristan suffer enough\n"
-      "already?\n\n"
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_ANGRY, PORTRAIT_RIGHT,
+      "Stop Joey!",
+      "Hasn't Tristan suffer enough already?"
   )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yeah, but...\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO, "Yeah, but...")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
@@ -89,22 +61,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_326)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 2, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Ukiii ukiii!\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 2, PORTRAIT_RIGHT, "Ukiii ukiii!")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_275)
   REACTION(REACTION_ANGRY, OBJECT_14)
   DELAY(8)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You're starting to tick me\n"
-      "off, Tristan...\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "You're starting to tick me off, Tristan...")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(0, 48)
@@ -116,55 +79,30 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, 0x08F04040, 0x08F
   WALK_OBJECT_Y(5, 44)
   MOVE_OBJECT(5, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Oh? That monkey robot...\n\n"
-  )
+  TALK(PORTRAIT_SOLOMON, "Oh? That monkey robot...")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Grandpa, this monkey robot\n"
-      "is actually Tristan.\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_RIGHT, "Grandpa, this monkey robot is actually Tristan.")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
   REACTION(REACTION_SWEATDROP, OBJECT_5)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Yugi, what on earth are you\n"
-      "saying?\n\n"
+  TALK(PORTRAIT_SOLOMON, "Yugi, what on earth are you saying?")
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_RIGHT,
+      "I know it's hard to believe.",
+      "But it's true."
   )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I know it's hard to believe.\n\n"
-      "But it's true.\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I'll prove it to ya.\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "I'll prove it to ya.")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Tristan, if you can under-\n"
-      "stand me, howl three times.\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Tristan, if you can under- stand me, howl three times.")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
@@ -172,63 +110,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_327)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Uki! Uki!\n"
-      "Ukiki!\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_RIGHT, "Uki! Uki! Ukiki!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "And that's all she wrote.\n\n"
-  )
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Hohohohoho!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "And that's all she wrote.")
+  TALK(PORTRAIT_SOLOMON, "Hohohohoho!")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_2 | OBJECT_3 | OBJECT_13 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Wh-what's the matter,\n"
-      "Grandpa?\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_RIGHT, "Wh-what's the matter, Grandpa?")
+  TALK(PORTRAIT_SOLOMON,
+      "You kids are too much.",
+      "That monkey robot was one of the products I was selling",
+      "in my store.",
+      "But since no one bought it, I was playing with it."
   )
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "You kids are too much.\n\n"
-      "That monkey robot was one of\n"
-      "the products I was selling\n\n"
-      "in my store.\n\n"
-      "But since no one bought it,\n"
-      "I was playing with it.\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "B-but... It understood\n"
-      "everything I said.\n\n"
-  )
-  PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "That's because I programmed\n"
-      "it so it would.\n\n"
-      "I was wondering where it\n"
-      "went, but I'm glad to have\n\n"
-      "it back.\n\n"
-      "Come on, monkey robot. Let's\n"
-      "go back to the shop!\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "B-but... It understood everything I said.")
+  TALK(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "That's because I programmed it so it would.",
+      "I was wondering where it went, but I'm glad to have",
+      "it back.",
+      "Come on, monkey robot. Let's go back to the shop!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -249,12 +155,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, 0x08F04040, 0x08F
   WALK_OBJECT_X(4, 80)
   DELAY(16)
   PLAY_MUSIC(MUSIC_HAPPY_CUTSCENE)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Hi, guys! What are you all\n"
-      "doing here?\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, "Hi, guys! What are you all doing here?")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -264,119 +165,57 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDA4, map_06_state_12_08E5CDA4, 0x08F04040, 0x08F
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_SURPRISED, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Huh, what? Why are you all\n"
-      "looking at me weird?\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_SURPRISED, "Huh, what? Why are you all looking at me weird?")
   WALK_OBJECT_X(14, 72)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You... Where in the world\n"
-      "were you?\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I... I had the munchies, so\n"
-      "I went out for some food.\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You idiot! After we went ape\n"
-      "over you!\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what are you talking\n"
-      "about?\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Then this monkey robot is\n"
-      "really just a robot?\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "You... Where in the world were you?")
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_SURPRISED, PORTRAIT_POSITION_AUTO, "I... I had the munchies, so I went out for some food.")
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "You idiot! After we went ape over you!")
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_ANGRY, PORTRAIT_POSITION_AUTO, "Wh-what are you talking about?")
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Then this monkey robot is really just a robot?")
   HIDE_PORTRAIT()
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_323)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Ukikikikikiii!\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_RIGHT, "Ukikikikikiii!")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 74)
   WALK_OBJECT_Y(1, 40)
   SET_OBJECT_POSITION(1, 128, 128, 0)
   DELAY(64)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "That's what you get for\n"
-      "monkeying around.\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "That's what you get for monkeying around.")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
   REACTION(REACTION_SWEATDROP, OBJECT_0 | OBJECT_2 | OBJECT_4 | OBJECT_13 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Uh... Yeah... Nice one,\n"
-      "Serenity...\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO, "Uh... Yeah... Nice one, Serenity...")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CE10, map_06_state_12_08E5CE10, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E5CE10, map_06_state_12_08E5CE10, EVENT_NOP, EVENT_NOP)
   SET_FLAG(EVENT_FLAG_JOEY_COMPLAINED_ABOUT_TRISTAN)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CDC8, map_06_state_12_08E5CDC8, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I'm glad you guys care so\n"
-      "much...\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "But come on! You've got to\n"
-      "be kidding!\n\n"
-      "I don't look anything like\n"
-      "that monkey robot!\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E5CDC8, map_06_state_12_08E5CDC8, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I'm glad you guys care so much...")
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_ANGRY, PORTRAIT_POSITION_AUTO,
+      "But come on! You've got to be kidding!",
+      "I don't look anything like that monkey robot!"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CDBC, map_06_state_12_08E5CDBC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I totally thought that the\n"
-      "monkey robot was Tristan.\n\n"
-      "You have to admit, there is\n"
-      "a strong resemblance.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E5CDBC, map_06_state_12_08E5CDBC, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I totally thought that the monkey robot was Tristan.",
+      "You have to admit, there is a strong resemblance."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E5CDB0, map_06_state_12_08E5CDB0, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I wasn't trying to be\n"
-      "funny...\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E5CDB0, map_06_state_12_08E5CDB0, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I wasn't trying to be funny...")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

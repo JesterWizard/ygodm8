@@ -4,26 +4,21 @@
 
 /* map_03_state_04: map 3 state 4 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4AA30, map_03_state_04_08E4AA30, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E4AA30, map_03_state_04_08E4AA30, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_KAIBA_FAN)
   LOAD_SPRITE(2, SPRITE_RED_HAIR)
   LOAD_SPRITE(3, SPRITE_REX)
-  TEXT
-  (
-      "I was hoping that Kaiba\n"
-      "would save us...\n\n"
-      "But surprisingly, Rex Raptor\n"
-      "came to our rescue.\n\n"
+  TEXT(
+      "I was hoping that Kaiba would save us...",
+      "But surprisingly, Rex Raptor came to our rescue."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4AA3C, map_03_state_04_08E4AA3C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "The Neo Ghouls are robbing\n"
-      "everyone's rare cards.\n\n"
-      "Somebody has to stop them!\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E4AA3C, map_03_state_04_08E4AA3C, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "The Neo Ghouls are robbing everyone's rare cards.",
+      "Somebody has to stop them!"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -33,10 +28,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AA48, map_03_state_04_08E4AA48, 0x08E4AA6C, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4AA6C, map_03_state_04_08E4AA6C, 0x08F04040, 0x08F04040)
-  TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Leave it to me!\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E4AA6C, map_03_state_04_08E4AA6C, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Leave it to me!")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -45,34 +38,29 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AA54, map_03_state_04_08E4AA54, 0x08E4AA60, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4AA60, map_03_state_04_08E4AA60, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E4AA60, map_03_state_04_08E4AA60, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "The Neo Ghouls are hiding\n"
-    "out in the Town of Domino?\n\n"
-    "I thought they were heading\n"
-    "towards KaibaCorp.\n\n"
-)
+      "The Neo Ghouls are hiding out in the Town of Domino?",
+      "I thought they were heading towards KaibaCorp."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA78, map_03_state_04_08E4AA78, 0x08E4AA84, 0x08F0404C)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You wanna duel me? You\n"
-    "really want to become\n\n"
-    "extinct?\n\n"
-    "All right! Let's duel!\n\n"
-)
+      "You wanna duel me? You really want to become",
+      "extinct?",
+      "All right! Let's duel!"
+  )
   DUEL(DUELIST_REX_054)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4AA84, map_03_state_04_08E4AA84, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E4AA84, map_03_state_04_08E4AA84, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_DOMINO_CITY_LIBERATED)
   TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Looks like your deck's\n"
-    "coming together well.\n\n"
-    "Keep it up and let's kick\n"
-    "the Neo Ghouls outta town!\n\n"
-)
+      "Looks like your deck's coming together well.",
+      "Keep it up and let's kick the Neo Ghouls outta town!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

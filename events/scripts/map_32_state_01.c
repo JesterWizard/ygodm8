@@ -12,14 +12,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB8FC4, map_32_state_01_08EB8FC4, 0x08EB8FDC, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EB8FDC, map_32_state_01_08EB8FDC, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Aiyah! This is the Great\n"
-      "Wall of China.\n\n"
-      "It is one of China's\n"
-      "treasures. There's nothing\n\n"
-      "finer.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EB8FDC, map_32_state_01_08EB8FDC, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "Aiyah! This is the Great Wall of China.",
+      "It is one of China's treasures. There's nothing",
+      "finer."
   )
   SET_FLAG(EVENT_FLAG_TALKED_TO_DOX)
   FALLTHROUGH()
@@ -35,11 +32,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB8FE8, map_32_state_01_08EB8FE8, 0x08EB8FF4, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EB8FF4, map_32_state_01_08EB8FF4, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Aiyah! I do not know how to\n"
-      "duel.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EB8FF4, map_32_state_01_08EB8FF4, EVENT_NOP, EVENT_NOP)
+  TEXT("Aiyah! I do not know how to duel.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

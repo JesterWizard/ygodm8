@@ -3,10 +3,20 @@
 #include "overworld.h"
 #include "constants/music_ids.h"
 
-/* map_09_state_01: map 9 state 1 */
+/* map_09_state_01 — Joey's house, morning of the Duel Express.
+ *
+ * Linear cutscene. Each string arg = one textbox page (auto word-wrap).
+ * TALK(portrait[, expr[, pos]], "page", ...) — defaults NEUTRAL + LEFT.
+ */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E62160, map_09_state_01_08E62160, 0x08E6216C, 0x08E62178)
+#define LOCALID_YUGI 13
+#define LOCALID_JOEY 14
+
+EVENT_SCRIPT_REPLACEMENT(0x08E62160, map_09_state_01)
+
+  /* --- Setup ----------------------------------------------------------- */
   LOAD_SPRITE(1, SPRITE_INVISIBLE)
+  /* Slots 2–12: unused placeholders (vanilla object table). */
   LOAD_SPRITE(2, SPRITE_YUGI_UNUSED)
   LOAD_SPRITE(3, SPRITE_YUGI_UNUSED)
   LOAD_SPRITE(4, SPRITE_YUGI_UNUSED)
@@ -21,307 +31,152 @@ EVENT_SCRIPT_REPLACEMENT(0x08E62160, map_09_state_01_08E62160, 0x08E6216C, 0x08E
   PLAY_MUSIC(MUSIC_KAIBACORP)
   SET_FLAG(EVENT_FLAG_SAW_INTRO_CUTSCENE)
   DELAY(32)
-  LOAD_SPRITE(13, SPRITE_YUGI)
-  LOAD_SPRITE(14, SPRITE_JOEY)
+  LOAD_SPRITE(LOCALID_YUGI, SPRITE_YUGI)
+  LOAD_SPRITE(LOCALID_JOEY, SPRITE_JOEY)
 
-  DISPLAY_CG(CG_TEST_1, 2)
-  TEXT("Now I play Monster Reborn!\n\n")
-  HIDE_CG(2)
-
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I put dis Monsta Card in\n"
-      "here, like so...\n\n"
-      "And voila!\n"
-      "I'm good to go!\n\n"
-  )
+  /* --- Joey shows off his deck ----------------------------------------- */
+  TALK(PORTRAIT_JOEY,
+      "I put dis Monsta Card in here, like so...",
+      "And voila! I'm good to go!")
   HIDE_PORTRAIT()
-  MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(SPRITE_JOEY, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{PLAYER}, how's adjustin'\n"
-      "your deck comin' along?\n\n"
-  )
-  PORTRAIT(PORTRAIT_PLAYER, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}Perfect\n"
-      "Lousy{CARD_2}\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6216C, map_09_state_01_08E6216C, 0x08E62184, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "You sure about dat?\n"
-      "Let the expert, the\n\n"
-      "one-and-only Joey Wheeler,\n"
-      "check it out!\n\n"
-  )
+  /* --- Joey inspects the player's deck --------------------------------- */
+  TALK(PORTRAIT_JOEY,
+      "{PLAYER}, how's adjustin' your deck comin' along?")
+  HIDE_PORTRAIT()
+  TALK(PORTRAIT_PLAYER,
+      "I think I'm doing alright.")
+  HIDE_PORTRAIT()
+  TALK(PORTRAIT_JOEY,
+      "You sure about dat? Let the expert, the one-and-only Joey Wheeler, check it out!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, OBJECT_14)
+  REACTION(REACTION_ELLIPSIS, SPRITE_JOEY)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Uh... It's cool to be\n"
-      "confident about your\n\n"
-      "skills.\n\n"
-      "But you still have lots of\n"
-      "work to do on this Deck\n\n"
-      "before it's any good.\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP,
+      "Uh... It's cool to be confident about your skills.",
+      "But you still have lots of work to do on this Deck before it's any good.")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
-  REACTION(REACTION_SWEATDROP, OBJECT_0)
+  REACTION(REACTION_SWEATDROP, OBJECT_LOCALID(SLOT_PLAYER))
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Hey,\n"
-      "don't feel bad. I know you\n\n"
-      "can construct an awesome\n"
-      "deck, {PLAYER}.\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
+  TALK(PORTRAIT_PLAYER,
+      "Thanks for the vote of confidence man...")
+  HIDE_PORTRAIT()
+  TALK(PORTRAIT_JOEY,
+      "Hey, don't feel bad. I know you can construct an awesome deck, {PLAYER}.")
 
-EVENT_SCRIPT_REPLACEMENT(0x08E62184, map_09_state_01_08E62184, 0x08E62190, 0x08E6219C)
-  TEXT
-  (
-      "Alright guys, I'm gonna\n"
-      "totally rock with this\n\n"
-      "deck today!\n\n"
-      "Man, I can't wait for the\n"
-      "Duel Express train to come!\n\n"
-      "It's been too long since\n"
-      "I've dueled in a\n\n"
-      "tournament!\n\n"
-      "{PLAYER} and Yugi and I are\n"
-      "gonna own this tourney!\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}By the way...\n"
-      "Let's go for it!{CARD_2}\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
+  /* --- Hype for the tournament ----------------------------------------- */
+  TEXT(
+      "Alright guys, I'm gonna totally rock with this deck today!",
+      "Man, I can't wait for the Duel Express train to come!",
+      "It's been too long since I've dueled in a tournament!",
+      "{PLAYER} and Yugi and I are gonna own this tourney!")
+  TALK(PORTRAIT_JOEY,
+      "Huh, what's wrong? Oh yeah! Where the heck's Yugi?")
 
-EVENT_SCRIPT_REPLACEMENT(0x08E62190, map_09_state_01_08E62190, 0x08E621A8, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Huh, what's wrong? Oh yeah!\n"
-      "Where the heck's Yugi?\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E621A8, map_09_state_01_08E621A8, 0x08E621B4, 0x08E621C0)
+  /* --- Joey panics: Yugi is late --------------------------------------- */
   HIDE_PORTRAIT()
   DELAY(16)
-  MOVE_OBJECT(14, DIRECTION_LEFT, 32, 0)
-  MOVE_OBJECT(14, DIRECTION_RIGHT, 32, 0)
-  MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(SPRITE_JOEY, DIRECTION_LEFT, 32, 0)
+  MOVE_OBJECT(SPRITE_JOEY, DIRECTION_RIGHT, 32, 0)
+  MOVE_OBJECT(SPRITE_JOEY, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_14, OBJECT_EFFECT_JUMPING)
+  OBJECT_EFFECT(SPRITE_JOEY, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Oh man, this stinks!\n"
-      "Look at the time already!\n\n"
-  )
+  TALK(PORTRAIT_JOEY,
+      "Oh man, this stinks! Look at the time already!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_275)
-  REACTION(REACTION_ANGRY, OBJECT_14)
+  REACTION(REACTION_ANGRY, SPRITE_JOEY)
   DELAY(8)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_LEFT)
-  TEXT
-  (
-      "He's late!\n\n"
-      "C'mon Yugi...\n"
-      "How can ya even think\n\n"
-      "about being late on a day\n"
-      "like this!\n\n"
-      "If he doesn't get here\n"
-      "soon, we'll miss the Duel\n\n"
-      "Express!\n\n"
-      "And he was the one who\n"
-      "promised dat the three of\n\n"
-      "us were gonna take the\n"
-      "train together!\n\n"
-      "Man, dat Yugi!\n"
-      "Arrrrgh!\n\n"
-      "If he doesn't get here, he\n"
-      "can give me all his rare\n\n"
-      "cards and I still won't\n"
-      "forgive him!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP,
+      "He's late!",
+      "C'mon Yugi... How can ya even think about being late on a day like this!",
+      "If he doesn't get here soon, we'll miss the Duel Express!",
+      "And he was the one who promised dat the three of us were gonna take the train together!",
+      "Man, dat Yugi! Arrrrgh!",
+      "If he doesn't get here, he can give me all his rare cards and I still won't forgive him!")
+
+  /* --- Yugi arrives: Puzzle is gone ------------------------------------ */
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_212)
-  SHOW_OBJECT(13, 50, 74, 0, 0, 0)
-  MOVE_OBJECT(13, DIRECTION_UP, 2, 0)
+  SHOW_OBJECT(SPRITE_YUGI, 50, 74, 0, 0, 0)
+  MOVE_OBJECT(SPRITE_YUGI, DIRECTION_UP, 2, 0)
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_LOCALID(SLOT_PLAYER))
   DELAY(8)
-  MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(SLOT_PLAYER, DIRECTION_LEFT, 0, 0)
   DELAY(16)
+  /* Sting between portrait and line — cannot fold into TALK. */
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_RIGHT)
   PLAY_MUSIC(MUSIC_400)
-  TEXT
-  (
-      "{PLAYER}, everything's\n"
-      "horrible!\n\n"
-  )
+  TEXT("{PLAYER}, everything's horrible!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
-  REACTION(REACTION_QUESTION_MARK, OBJECT_0)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_LOCALID(SLOT_PLAYER))
   DELAY(16)
-  WALK_OBJECT_Y(13, 62)
-  MOVE_OBJECT(13, DIRECTION_RIGHT, 8, 0)
+  WALK_OBJECT_Y(SPRITE_YUGI, 62)
+  MOVE_OBJECT(SPRITE_YUGI, DIRECTION_RIGHT, 8, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "My other self...\n"
-      "The Millennium Puzzle...\n\n"
-      "My Puzzle is gone, along\n"
-      "with the spirit inside!\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_RIGHT,
+      "My other self... The Millennium Puzzle...",
+      "My Puzzle is gone, along with the spirit inside!")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_14)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_LOCALID(SLOT_PLAYER) | SPRITE_JOEY)
   DELAY(8)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "When I woke up this morning,\n"
-      "it was gone...\n\n"
-      "I... I... What am I\n"
-      "supposed to do?\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_RIGHT,
+      "When I woke up this morning, it was gone...",
+      "I... I... What am I supposed to do?")
+
+  /* --- Decide to look for the Puzzle ----------------------------------- */
   HIDE_PORTRAIT()
   DELAY(64)
-  WALK_OBJECT_Y(14, 56)
-  WALK_OBJECT_X(14, 58)
-  MOVE_OBJECT(14, DIRECTION_DOWN, 0, 0)
+  WALK_OBJECT_Y(SPRITE_JOEY, 56)
+  WALK_OBJECT_X(SPRITE_JOEY, 58)
+  MOVE_OBJECT(SPRITE_JOEY, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Hey, we can't waste time\n"
-      "standin' here and talkin'!\n\n"
-  )
+  TALK(PORTRAIT_JOEY,
+      "Hey, we can't waste time standin' here and talkin'!",
+      "What should we do, {PLAYER}?")
   HIDE_PORTRAIT()
   DELAY(16)
-  MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
+  TALK(PORTRAIT_PLAYER,
+      "First order of business is to retrace your steps.",
+      "Let's meet up with the gang at the clock tower.",
+      "The more hand we have on this, the better.")
+  HIDE_PORTRAIT()
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{PLAYER}, whattaya think\n"
-      "we should do?\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}Let's go look for it!\n"
-      "Leave it to me!{CARD_2}\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
+  MOVE_OBJECT(SPRITE_JOEY, DIRECTION_RIGHT, 0, 0)
+  DELAY(16)
+  TALK(PORTRAIT_JOEY,
+      "Okay! Then that's what we're gonna do! You got it, Yugi?")
 
-EVENT_SCRIPT_REPLACEMENT(0x08E621B4, map_09_state_01_08E621B4, 0x08E621CC, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Okay! Then that's what\n"
-      "we're gonna do! You got\n\n"
-      "it, Yugi?\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E621CC, map_09_state_01_08E621CC, 0x08E621D8, 0x08F04040)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I won't stop until I find my\n"
-      "dearest friend...\n\n"
-      "I promise!\n\n"
-      "I'm counting on you,\n"
-      "{PLAYER}.\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E621D8, map_09_state_01_08E621D8, 0x08F04040, 0x08F04040)
+  /* --- Yugi's promise → clock tower ------------------------------------ */
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "I won't stop until I find my dearest friend...",
+      "I promise!",
+      "I'm counting on you, {PLAYER}.")
+  HIDE_PORTRAIT()
   FADE_MUSIC(4)
   FADE_SCREEN(4)
   WARP(LOCATION_CLOCK_TOWER_SQUARE_NORTH, 1, 4, 0)
-  FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E621C0, map_09_state_01_08E621C0, 0x08E621CC, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Yeah! That's the spirit,\n"
-      "{PLAYER}!\n\n"
-      "Yugi, let's go with\n"
-      "{PLAYER}!\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E6219C, map_09_state_01_08E6219C, 0x08E621A8, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Yeah! But don't think I'm\n"
-      "gonna let you win\n\n"
-      "{PLAYER}. And that goes\n"
-      "double for Yugi.\n\n"
-      "Speaking of who...\n"
-      "Why isn't Yugi here yet?\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E62178, map_09_state_01_08E62178, 0x08E62184, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{PLAYER}, I guess ya still\n"
-      "have lots of work to do.\n\n"
-      "But you can learn from the\n"
-      "expert, the one-and-only\n\n"
-      "Joey Wheeler, on making\n"
-      "great decks.\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E62154, map_09_state_01_08E62154, 0x08F04040, 0x08F04040)
+/* Separate entry: intro cutscene → player house (not part of the scene above). */
+EVENT_SCRIPT_REPLACEMENT(0x08E62154, map_09_state_01_intro_cutscene)
   PLAY_MUSIC(SOUND_NONE)
   CUTSCENE(8)
   WARP(LOCATION_PLAYER_HOUSE_INSIDE, 2, 0, 0)
-  FALLTHROUGH()
 END_EVENT_SCRIPT()

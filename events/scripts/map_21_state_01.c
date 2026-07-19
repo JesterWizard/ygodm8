@@ -5,7 +5,7 @@
 
 /* map_21_state_01: map 21 state 1 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E86324, map_21_state_01_08E86324, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E86324, map_21_state_01_08E86324, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_EGYPT_EXHIBITION_GUARD)
   LOAD_SPRITE(2, SPRITE_EGYPT_EXHIBITION_GUARD)
   LOAD_SPRITE(3, SPRITE_PANIK)
@@ -14,12 +14,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E86324, map_21_state_01_08E86324, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Tsk! The runt chased after\n"
-      "me!\n\n"
-  )
+  TALK(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Tsk! The runt chased after me!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_UP, 0, 0)
@@ -39,27 +34,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08E86330, map_21_state_01_08E86330, 0x08E8633C, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8633C, map_21_state_01_08E8633C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "A dark giant man bumped into\n"
-      "me and sent me flying.\n\n"
-      "Ow, oww, owwwww...\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E8633C, map_21_state_01_08E8633C, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "A dark giant man bumped into me and sent me flying.",
+      "Ow, oww, owwwww..."
   )
-  TEXT
-  (
-      "He barged into the Egypt\n"
-      "Exhibition.\n\n"
-  )
+  TEXT("He barged into the Egypt Exhibition.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E86348, map_21_state_01_08E86348, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "This station is connected to\n"
-      "the Egypt Exhibition.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E86348, map_21_state_01_08E86348, EVENT_NOP, EVENT_NOP)
+  TEXT("This station is connected to the Egypt Exhibition.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -68,21 +53,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E86354, map_21_state_01_08E86354, 0x08E86360, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E86360, map_21_state_01_08E86360, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "How can you ask me to duel\n"
-      "at a time like this!\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E86360, map_21_state_01_08E86360, EVENT_NOP, EVENT_NOP)
+  TEXT("How can you ask me to duel at a time like this!")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8636C, map_21_state_01_08E8636C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "No, I don't duel. You should\n"
-      "find someone else.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E8636C, map_21_state_01_08E8636C, EVENT_NOP, EVENT_NOP)
+  TEXT("No, I don't duel. You should find someone else.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -91,32 +68,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E86378, map_21_state_01_08E86378, 0x08E86384, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E86384, map_21_state_01_08E86384, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "A dark giant man sent me\n"
-      "flying, and he didn't even\n\n"
-      "say sorry!\n\n"
-      "Can you imagine that? What a\n"
-      "jerk!\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E86384, map_21_state_01_08E86384, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "A dark giant man sent me flying, and he didn't even",
+      "say sorry!",
+      "Can you imagine that? What a jerk!"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E86390, map_21_state_01_08E86390, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "This station is connected to\n"
-      "the Egypt Exhibition.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E86390, map_21_state_01_08E86390, EVENT_NOP, EVENT_NOP)
+  TEXT("This station is connected to the Egypt Exhibition.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E8639C, map_21_state_01_08E8639C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "No, I don't duel. You should\n"
-      "find someone else.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E8639C, map_21_state_01_08E8639C, EVENT_NOP, EVENT_NOP)
+  TEXT("No, I don't duel. You should find someone else.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

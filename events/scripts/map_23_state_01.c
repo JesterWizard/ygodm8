@@ -10,11 +10,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95294, map_23_state_01_08E95294, 0x08E952A0, 0x08E
   LOAD_SPRITE(3, SPRITE_MILLENNIUM_NECKLACE)
   PLAY_MUSIC(MUSIC_402)
   DELAY(8)
-  PORTRAIT(PORTRAIT_PANICK, EXPRESSION_PANIK_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Giyaaaaah!\n\n"
-  )
+  TALK(PORTRAIT_PANICK, EXPRESSION_PANIK_DEFEATED, PORTRAIT_POSITION_AUTO, "Giyaaaaah!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_205)
@@ -41,54 +37,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95294, map_23_state_01_08E95294, 0x08E952A0, 0x08E
   DELAY(16)
   WALK_OBJECT_Y(1, 28)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You've come for the\n"
-      "Millennium Necklace?\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "You've come for the Millennium Necklace?")
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E952A0, map_23_state_01_08E952A0, 0x08E952B8, 0x08F0404C)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Fine... The Millennium\n"
-      "Necklace is yours.\n\n"
-      "It is my duty to protect a\n"
-      "Millennium Item...\n\n"
-      "For I am a Millennium\n"
-      "Guardian!\n\n"
-      "You must prove yourself to\n"
-      "me in a duel.\n\n"
-      "To see if you are worthy of\n"
-      "a Millennium Item!\n\n"
-      "You will only get the\n"
-      "Millennium Necklace if you\n\n"
-      "can pass my challenge!\n\n"
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Fine... The Millennium Necklace is yours.",
+      "It is my duty to protect a Millennium Item...",
+      "For I am a Millennium Guardian!",
+      "You must prove yourself to me in a duel.",
+      "To see if you are worthy of a Millennium Item!",
+      "You will only get the Millennium Necklace if you",
+      "can pass my challenge!"
   )
   DUEL(DUELIST_MILLENNIUM_GUARDIAN_154)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E952B8, map_23_state_01_08E952B8, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E952B8, map_23_state_01_08E952B8, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(SOUND_NONE)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You are still clumsy and\n"
-      "unrefined...\n\n"
-      "But deep within you, I since\n"
-      "a faint glimmer of hope.\n\n"
-      "You have proven yourself.\n"
-      "Take this. It is yours.\n\n"
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "You are still clumsy and unrefined...",
+      "But deep within you, I since a faint glimmer of hope.",
+      "You have proven yourself. Take this. It is yours."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -103,11 +76,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E952B8, map_23_state_01_08E952B8, 0x08F04040, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_373)
   SPECIAL(0)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what is this?\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO, "Wh-what is this?")
   SET_FLAG(EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN1)
   FADE_SCREEN(4)
   CUTSCENE(0)
@@ -116,22 +85,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08E952B8, map_23_state_01_08E952B8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E952AC, map_23_state_01_08E952AC, 0x08E952B8, 0x08F0404C)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Spare me your lies.\n\n"
-      "A liar isn't worthy of the\n"
-      "Millennium Necklace.\n\n"
-      "It is my duty to protect a\n"
-      "Millennium Item...\n\n"
-      "For I am a Millennium\n"
-      "Guardian!\n\n"
-      "You must prove yourself to\n"
-      "me in a duel.\n\n"
-      "To see if you are worthy of\n"
-      "a Millennium Item!\n\n"
-      "Pass my challenge to obtain\n"
-      "its mystical revelations!\n\n"
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Spare me your lies.",
+      "A liar isn't worthy of the Millennium Necklace.",
+      "It is my duty to protect a Millennium Item...",
+      "For I am a Millennium Guardian!",
+      "You must prove yourself to me in a duel.",
+      "To see if you are worthy of a Millennium Item!",
+      "Pass my challenge to obtain its mystical revelations!"
   )
   DUEL(DUELIST_MILLENNIUM_GUARDIAN_154)
   FALLTHROUGH()

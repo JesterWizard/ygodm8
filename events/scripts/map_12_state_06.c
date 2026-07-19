@@ -19,29 +19,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F018, map_12_state_06_08E6F018, 0x08E6F03C, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F03C, map_12_state_06_08E6F03C, 0x08F04040, 0x08F04040)
-  TALK(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "This is Kaiba Corporation.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F03C, map_12_state_06_08E6F03C, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "This is Kaiba Corporation.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F054, map_12_state_06_08E6F054, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F054, map_12_state_06_08E6F054, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Master Mokuba protects\n"
-    "KaibaCorp, and I protect\n\n"
-    "him!\n\n"
-)
+      "Master Mokuba protects KaibaCorp, and I protect",
+      "him!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F06C, map_12_state_06_08E6F06C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F06C, map_12_state_06_08E6F06C, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I guess things have calmed\n"
-    "down for now.\n\n"
-    "But, please stay safe and\n"
-    "keep your guard up.\n\n"
-)
+      "I guess things have calmed down for now.",
+      "But, please stay safe and keep your guard up."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -50,20 +45,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F030, map_12_state_06_08E6F030, 0x08E6F048, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F048, map_12_state_06_08E6F048, 0x08F04040, 0x08F04040)
-  TALK(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I don't have time to waste\n"
-    "on you kids.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F048, map_12_state_06_08E6F048, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I don't have time to waste on you kids.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F060, map_12_state_06_08E6F060, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F060, map_12_state_06_08E6F060, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "If you have time to duel\n"
-    "against me, then duel the\n\n"
-    "Neo Ghouls.\n\n"
-)
+      "If you have time to duel against me, then duel the",
+      "Neo Ghouls."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -77,98 +68,72 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F078, map_12_state_06_08E6F078, 0x08E6F090, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F090, map_12_state_06_08E6F090, 0x08F04040, 0x08F04040)
-  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Seto's Obelisk card turned\n"
-    "into stone.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F090, map_12_state_06_08E6F090, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Seto's Obelisk card turned into stone.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F0A8, map_12_state_06_08E6F0A8, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F0A8, map_12_state_06_08E6F0A8, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "My duty is to protect\n"
-    "KaibaCorp.\n\n"
-    "My big brother left me in\n"
-    "charge, and I won't fail\n\n"
-    "him!\n\n"
-)
+      "My duty is to protect KaibaCorp.",
+      "My big brother left me in charge, and I won't fail",
+      "him!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F0B4, map_12_state_06_08E6F0B4, 0x08F04040, 0x08F04040)
-  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Seto left to meet the leader\n"
-    "of the Neo Ghouls.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F0B4, map_12_state_06_08E6F0B4, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Seto left to meet the leader of the Neo Ghouls.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F09C, map_12_state_06_08E6F09C, 0x08F04040, 0x08F04040)
-  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I'm too busy to play with\n"
-    "you.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F09C, map_12_state_06_08E6F09C, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I'm too busy to play with you.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F0C0, map_12_state_06_08E6F0C0, 0x08E6F0CC, 0x08E6F0D8)
   PLAY_MUSIC(MUSIC_405)
   TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I figured you'd come.\n\n"
-    "You're here to see about\n"
-    "Obelisk the Tormentor.\n\n"
-    "You want to know if it's\n"
-    "turned into stone, right?\n\n"
-)
-  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{CARD_1}Yes\n"
-    "No{CARD_2}\n\n"
-)
+      "I figured you'd come.",
+      "You're here to see about Obelisk the Tormentor.",
+      "You want to know if it's turned into stone, right?"
+  )
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F0CC, map_12_state_06_08E6F0CC, 0x08E6F0E4, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F0CC, map_12_state_06_08E6F0CC, 0x08E6F0E4, EVENT_NOP)
   TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
-    "You think some stone magic\n"
-    "trick is going to make me\n\n"
-    "believe in your crazy mumbo\n"
-    "jumbo?\n\n"
-    "What do you take me for!\n"
-    "I don't get fooled that\n\n"
-    "easily!\n\n"
-    "And now you want me to see\n"
-    "Ishizu?\n\n"
-)
+      "You think some stone magic trick is going to make me",
+      "believe in your crazy mumbo jumbo?",
+      "What do you take me for! I don't get fooled that",
+      "easily!",
+      "And now you want me to see Ishizu?"
+  )
   TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Humph. I don't think so.\n\n"
-    "I want nothing to do with\n"
-    "you losers.\n\n"
-    "I'll find out who did this\n"
-    "to Obelisk the Tormentor on\n\n"
-    "my own!\n\n"
-)
+      "Humph. I don't think so.",
+      "I want nothing to do with you losers.",
+      "I'll find out who did this to Obelisk the Tormentor on",
+      "my own!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F0E4, map_12_state_06_08E6F0E4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F0E4, map_12_state_06_08E6F0E4, EVENT_NOP, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Mokuba, I have some errands\n"
-    "to run.\n\n"
-    "You're in charge of\n"
-    "KaibaCorp while I'm gone.\n\n"
-)
+      "Mokuba, I have some errands to run.",
+      "You're in charge of KaibaCorp while I'm gone."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You can count on me, bro!\n\n"
-)
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "You can count on me, bro!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_LEFT, 40, 0)
@@ -176,16 +141,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F0E4, map_12_state_06_08E6F0E4, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F0D8, map_12_state_06_08E6F0D8, 0x08E6F0E4, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F0D8, map_12_state_06_08E6F0D8, 0x08E6F0E4, EVENT_NOP)
   TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "No?\n\n"
-    "Then there's nothing to talk\n"
-    "about.\n\n"
-    "Ishizu's probably behind\n"
-    "this stupid magic trick\n\n"
-    "anyway.\n\n"
-    "I'll meet her in person and\n"
-    "make her pay!\n\n"
-)
+      "No?",
+      "Then there's nothing to talk about.",
+      "Ishizu's probably behind this stupid magic trick",
+      "anyway.",
+      "I'll meet her in person and make her pay!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

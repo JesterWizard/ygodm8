@@ -4,7 +4,7 @@
 
 /* map_12_state_03: map 12 state 3 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6EFF4, map_12_state_03_08E6EFF4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6EFF4, map_12_state_03_08E6EFF4, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_ROLAND)
   LOAD_SPRITE(2, SPRITE_MOKUBA)
   LOAD_SPRITE(3, SPRITE_TRISTAN)
@@ -16,166 +16,75 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EFF4, map_12_state_03_08E6EFF4, 0x08F04040, 0x08F
   WALK_OBJECT_Y(14, 42)
   WALK_OBJECT_X(14, 6)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I told you! No!\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_TEETH_GRITTED, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Oh, come on, please?\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Yeah, we're Kaiba's best\n"
-      "friends.\n\n"
-  )
-  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I've never heard of you two\n"
-      "before.\n\n"
-  )
+  TALK(PORTRAIT_ROLAND, "I told you! No!")
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_TEETH_GRITTED, "Oh, come on, please?")
+  TALK(PORTRAIT_DUKE, "Yeah, we're Kaiba's best friends.")
+  TALK(PORTRAIT_ROLAND, "I've never heard of you two before.")
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_3 | OBJECT_4)
   WALK_OBJECT_X(2, 102)
   WALK_OBJECT_Y(2, 56)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "What's going on?\n\n"
-  )
+  TALK(PORTRAIT_MOKUBA, "What's going on?")
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
-  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Master Mokuba...\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_SURPRISED, PORTRAIT_LEFT)
-  TEXT
-  (
-      "M-Mokuba! We're friends,\n"
-      "right?\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Tristan, that's not what\n"
-      "we're here for.\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Whoops, that's right.\n\n"
-  )
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "...Will somebody tell me\n"
-      "what's going on?\n\n"
-  )
-  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "These two are demanding\n"
-      "that...\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Let us use your Duel\n"
-      "Machine!\n\n"
-  )
+  TALK(PORTRAIT_ROLAND, "Master Mokuba...")
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_SURPRISED, "M-Mokuba! We're friends, right?")
+  TALK(PORTRAIT_DUKE, "Tristan, that's not what we're here for.")
+  TALK(PORTRAIT_TRISTAN, "Whoops, that's right.")
+  TALK(PORTRAIT_MOKUBA, "...Will somebody tell me what's going on?")
+  TALK(PORTRAIT_ROLAND, "These two are demanding that...")
+  TALK(PORTRAIT_TRISTAN, "Let us use your Duel Machine!")
   WALK_OBJECT_X(3, 94)
   WALK_OBJECT_X(4, 94)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "The Duel Machine?\n\n"
-      "Why do you want it?\n\n"
+  TALK(PORTRAIT_MOKUBA,
+      "The Duel Machine?",
+      "Why do you want it?"
   )
   SLIDE_OBJECT(3, 0, 4)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "So Serenity will go out with\n"
-      "me...\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, "So Serenity will go out with me...")
   PLAY_MUSIC(MUSIC_395)
   SLIDE_OBJECT(4, 2, 4)
   SLIDE_OBJECT(3, 2, 4)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "N-no! That's not it!\n\n"
-      "We want to improve our duel\n"
-      "levels.\n\n"
+  TALK(PORTRAIT_DUKE,
+      "N-no! That's not it!",
+      "We want to improve our duel levels."
   )
   SLIDE_OBJECT(3, 0, 4)
   SLIDE_OBJECT(4, 0, 4)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Yeah! And THEN get a date\n"
-      "with Serenity...\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, "Yeah! And THEN get a date with Serenity...")
   PLAY_MUSIC(MUSIC_395)
   SLIDE_OBJECT(4, 2, 4)
   SLIDE_OBJECT(3, 2, 4)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_2)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Uh... Well, Seto's not here\n"
-      "right now, so I guess it's\n\n"
-      "okay...\n\n"
+  TALK(PORTRAIT_MOKUBA,
+      "Uh... Well, Seto's not here right now, so I guess it's",
+      "okay..."
   )
   PLAY_MUSIC(MUSIC_273)
   REACTION(REACTION_LOVE_HEART, OBJECT_3 | OBJECT_4)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Thanks Mokuba!\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, "Thanks Mokuba!")
   WALK_OBJECT_X(3, 102)
   WALK_OBJECT_Y(3, 44)
   WALK_OBJECT_X(3, 128)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Yeah, thank you Mokuba.\n\n"
-  )
+  TALK(PORTRAIT_DUKE, "Yeah, thank you Mokuba.")
   WALK_OBJECT_X(4, 102)
   WALK_OBJECT_Y(4, 44)
   WALK_OBJECT_X(4, 128)
   WALK_OBJECT_Y(2, 44)
   WALK_OBJECT_X(2, 128)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "What the heck are those two\n"
-      "up to?\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO, "What the heck are those two up to?")
   PLAY_MUSIC(MUSIC_270)
   REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   SET_FLAG(EVENT_FLAG_SAW_TRISTAN_AND_DUKE_ENTER_THE_DUEL_MACHINE_ROOM)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F000, map_12_state_03_08E6F000, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "This is the first time\n"
-      "Master Mokuba invited his\n\n"
-      "friends to visit him at\n"
-      "work...\n\n"
-      "But are those two really his\n"
-      "friends?\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E6F000, map_12_state_03_08E6F000, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "This is the first time Master Mokuba invited his",
+      "friends to visit him at work...",
+      "But are those two really his friends?"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

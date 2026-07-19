@@ -8,35 +8,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50F8C, map_05_state_03_08E50F8C, 0x08E50F98, 0x08E
   LOAD_SPRITE(1, SPRITE_STRINGER)
   LOAD_SPRITE(2, SPRITE_RED_MOHAWK)
   LOAD_SPRITE(3, SPRITE_MAKO)
-  TEXT
-  (
-      "I'm the greatest! I sent the\n"
-      "Neo Ghouls running!\n\n"
-      "Witnesses may say that the\n"
-      "funky fisherman guy scared\n\n"
-      "them off, but that's not\n"
-      "true! He came later.\n\n"
-      "All he did was watch, that's\n"
-      "all. I'm not lying!\n\n"
-      "I'll show you the secret\n"
-      "techniques I used to beat\n\n"
-      "the Neo Ghouls.\n\n"
-      "It'll cost you a rare card,\n"
-      "though.\n\n"
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
+  TEXT(
+      "I'm the greatest! I sent the Neo Ghouls running!",
+      "Witnesses may say that the funky fisherman guy scared",
+      "them off, but that's not true! He came later.",
+      "All he did was watch, that's all. I'm not lying!",
+      "I'll show you the secret techniques I used to beat",
+      "the Neo Ghouls.",
+      "It'll cost you a rare card, though.",
+      "{CARD_1}Yes\nNo{CARD_2}"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E50F98, map_05_state_03_08E50F98, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Thank you kindly!\n\n"
-      "Go and duel other duelists\n"
-      "as much as possible.\n\n"
-      "That will make you better,\n"
-      "guaranteed.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E50F98, map_05_state_03_08E50F98, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "Thank you kindly!",
+      "Go and duel other duelists as much as possible.",
+      "That will make you better, guaranteed."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -45,31 +34,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50F98, map_05_state_03_08E50F98, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TEXT
-  (
-      "Heheh! I scored a rare card!\n\n"
-      "I have a knack for business!\n\n"
+  TEXT(
+      "Heheh! I scored a rare card!",
+      "I have a knack for business!"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E50FA4, map_05_state_03_08E50FA4, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Tightwad...\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E50FA4, map_05_state_03_08E50FA4, EVENT_NOP, EVENT_NOP)
+  TEXT("Tightwad...")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E50FB0, map_05_state_03_08E50FB0, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "There sure are some really\n"
-      "good duelists out there.\n\n"
-      "One duelist crushed the Neo\n"
-      "Ghouls in a sec.\n\n"
-      "He knows what he's doing\n"
-      "with his Sea Deck.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E50FB0, map_05_state_03_08E50FB0, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "There sure are some really good duelists out there.",
+      "One duelist crushed the Neo Ghouls in a sec.",
+      "He knows what he's doing with his Sea Deck."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -79,12 +60,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50FBC, map_05_state_03_08E50FBC, 0x08E50FE0, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E50FE0, map_05_state_03_08E50FE0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E50FE0, map_05_state_03_08E50FE0, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Gahaha! I've hauled in a\n"
-    "school of Neo Ghouls!\n\n"
-    "Leave the dueling to me!\n\n"
-)
+      "Gahaha! I've hauled in a school of Neo Ghouls!",
+      "Leave the dueling to me!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -93,31 +73,27 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50FC8, map_05_state_03_08E50FC8, 0x08E50FD4, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E50FD4, map_05_state_03_08E50FD4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E50FD4, map_05_state_03_08E50FD4, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You want to know about the\n"
-    "Neo Ghouls hiding out in\n\n"
-    "the Town of Domino?\n\n"
-    "Look, I'm a fisherman.\n\n"
-    "I'm not a detective.\n\n"
-)
+      "You want to know about the Neo Ghouls hiding out in",
+      "the Town of Domino?",
+      "Look, I'm a fisherman.",
+      "I'm not a detective."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50FEC, map_05_state_03_08E50FEC, 0x08E50FF8, 0x08F0404C)
   TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Excellent! I was getting\n"
-    "bored of the Neo Ghouls!\n\n"
-    "Prepare to be swamped!\n\n"
-)
+      "Excellent! I was getting bored of the Neo Ghouls!",
+      "Prepare to be swamped!"
+  )
   DUEL(DUELIST_MAKO_062)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E50FF8, map_05_state_03_08E50FF8, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E50FF8, map_05_state_03_08E50FF8, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_DOMINO_CITY_LIBERATED)
-  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You are a worthy adversary!\n\n"
-)
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "You are a worthy adversary!")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B50, map_00_state_06_08E34B50, 0x08E34B5C, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34B5C, map_00_state_06_08E34B5C, 0x08E34B68, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34B5C, map_00_state_06_08E34B5C, 0x08E34B68, EVENT_NOP)
   WALK_OBJECT_Y(0, 32)
   WALK_OBJECT_X(0, 48)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
@@ -32,26 +32,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B5C, map_00_state_06_08E34B5C, 0x08E34B68, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_POSITION_AUTO,
-    "I could not foretell that\n"
-    "Sol Chevalsky was actually\n\n"
-    "Maximillion Pegasus...\n\n"
-    "He has been missing since\n"
-    "Duelist Kingdom...\n\n"
-)
+      "I could not foretell that Sol Chevalsky was actually",
+      "Maximillion Pegasus...",
+      "He has been missing since Duelist Kingdom..."
+  )
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "What could have happened to\n"
-    "him during all this time?\n\n"
-    "We cannot worry about this\n"
-    "now. Let's resurrect an\n\n"
-    "Egyptian God Card.\n\n"
-    "With the powers of the\n"
-    "Millennium Ring and\n\n"
-    "Millennium Eye...\n\n"
-)
+      "What could have happened to him during all this time?",
+      "We cannot worry about this now. Let's resurrect an",
+      "Egyptian God Card.",
+      "With the powers of the Millennium Ring and",
+      "Millennium Eye..."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34B68, map_00_state_06_08E34B68, 0x08E34B74, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34B68, map_00_state_06_08E34B68, 0x08E34B74, EVENT_NOP)
   PLAY_MUSIC(MUSIC_290)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_OBELISK_REVIVAL)
   FALLTHROUGH()
@@ -59,14 +54,8 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34B74, map_00_state_06_08E34B74, 0x08E34B80, 0x08E34B8C)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Obelisk the Tormentor\n"
-    "has regained its power.\n\n"
-    "However."
-)
-  DELAY(43)
-  TEXT
-  (
-      "."
+      "Obelisk the Tormentor has regained its power.",
+      "However."
   )
   DELAY(43)
   TEXT
@@ -76,15 +65,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B74, map_00_state_06_08E34B74, 0x08E34B80, 0x08E
   DELAY(43)
   TEXT
   (
-      "Egyptian God\n"
-      "Cards choose their bearers.\n\n"
-      "It appears that Obelisk will\n"
-      "not accept you.\n\n"
-      "It seems you are not yet\n"
-      "ready to control its\n\n"
-      "immense powers.\n\n"
-      "The card has chosen as its\n"
-      "bearer...\n\n"
+      "."
+  )
+  DELAY(43)
+  TEXT(
+      "Egyptian God Cards choose their bearers.",
+      "It appears that Obelisk will not accept you.",
+      "It seems you are not yet ready to control its",
+      "immense powers.",
+      "The card has chosen as its bearer..."
   )
   HIDE_PORTRAIT()
   DELAY(8)
@@ -104,38 +93,30 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B74, map_00_state_06_08E34B74, 0x08E34B80, 0x08E
   WALK_OBJECT_X(3, 40)
   MOVE_OBJECT(3, DIRECTION_UP, 0, 0)
   TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
-    "Enough of this bogus mystic\n"
-    "talk!\n\n"
-    "It's obvious who deserves to\n"
-    "control Obelisk!\n\n"
-    "Who else but me!\n\n"
-)
-  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "{CARD_1}Don't bet on it!\n"
-    "I guess so...{CARD_2}\n\n"
-)
+      "Enough of this bogus mystic talk!",
+      "It's obvious who deserves to control Obelisk!",
+      "Who else but me!"
+  )
+  TALK(PORTRAIT_NONE, "{CARD_1}Don't bet on it!\nI guess so...{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34B80, map_00_state_06_08E34B80, 0x08E34B98, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34B80, map_00_state_06_08E34B80, 0x08E34B98, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_275)
   REACTION(REACTION_ANGRY, OBJECT_3)
   DELAY(8)
   TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_ANGRY, PORTRAIT_POSITION_AUTO,
-    "Don't bet on it? Don't talk\n"
-    "to my brother that way!\n\n"
-    "If it wasn't for my\n"
-    "brother...\n\n"
-    "You wouldn't have won the\n"
-    "tag duel!\n\n"
-)
+      "Don't bet on it? Don't talk to my brother that way!",
+      "If it wasn't for my brother...",
+      "You wouldn't have won the tag duel!"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34B98, map_00_state_06_08E34B98, 0x08E34BA4, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34B98, map_00_state_06_08E34B98, 0x08E34BA4, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(2, 40)
@@ -150,19 +131,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B98, map_00_state_06_08E34B98, 0x08E34BA4, 0x08F
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
   DELAY(8)
   TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I don't care what you\n"
-    "amateurs think...\n\n"
-    "If you have a problem, come\n"
-    "out and say it!\n\n"
-    "Try to defeat me and take\n"
-    "Obelisk!\n\n"
-)
+      "I don't care what you amateurs think...",
+      "If you have a problem, come out and say it!",
+      "Try to defeat me and take Obelisk!"
+  )
   TALK(PORTRAIT_SETO, 1, PORTRAIT_POSITION_AUTO,
-    "Though I don't know how a\n"
-    "bunch of incompetent fools\n\n"
-    "are ever going to beat me!\n\n"
-    "Wahahahahahaha!\n\n"
-)
+      "Though I don't know how a bunch of incompetent fools",
+      "are ever going to beat me!",
+      "Wahahahahahaha!"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(2, 64)
@@ -172,31 +149,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B98, map_00_state_06_08E34B98, 0x08E34BA4, 0x08F
   WALK_OBJECT_X(2, 128)
   WALK_OBJECT_Y(3, 64)
   WALK_OBJECT_X(3, 128)
-  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You cannot deny destiny...\n\n"
-)
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "You cannot deny destiny...")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You must wait until it is\n"
-    "your time.\n\n"
-)
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "You must wait until it is your time.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34BA4, map_00_state_06_08E34BA4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34BA4, map_00_state_06_08E34BA4, EVENT_NOP, EVENT_NOP)
   WALK_OBJECT_Y(4, 64)
   WALK_OBJECT_X(4, 48)
   WALK_OBJECT_Y(4, 52)
   DELAY(16)
   PLAY_MUSIC(MUSIC_HAPPY_CUTSCENE)
-  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Hey, {PLAYER}!\n\n"
-)
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Hey, {PLAYER}!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -204,65 +174,46 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BA4, map_00_state_06_08E34BA4, 0x08F04040, 0x08F
   MOVE_OBJECT(14, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Hey, what's up, Tristan?\n"
-    "What are you doing here?\n\n"
-    "Nothin' betta have happened\n"
-    "to Serenity!\n\n"
-)
+      "Hey, what's up, Tristan? What are you doing here?",
+      "Nothin' betta have happened to Serenity!"
+  )
   TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Uh... Well, actually,\n"
-    "yeah... That's...what I'm\n\n"
-    "here about.\n\n"
-)
-  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO,
-    "Say what?! What happened to\n"
-    "my sister!\n\n"
-)
+      "Uh... Well, actually, yeah... That's...what I'm",
+      "here about."
+  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "Say what?! What happened to my sister!")
   TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Well...\n\n"
-    "She really wants to see the\n"
-    "Kaibaman show.\n\n"
-)
+      "Well...",
+      "She really wants to see the Kaibaman show."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
   REACTION(REACTION_QUESTION_MARK, OBJECT_14)
   DELAY(16)
-  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO,
-    "The Kaibaman show? What the\n"
-    "heck is that?\n\n"
-)
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO, "The Kaibaman show? What the heck is that?")
   TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You haven't heard of it?\n\n"
-    "It's the biggest thing right\n"
-    "now! Kids love it! Get with\n\n"
-    "the times, man!\n\n"
-)
+      "You haven't heard of it?",
+      "It's the biggest thing right now! Kids love it! Get with",
+      "the times, man!"
+  )
   TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Well, I don't like anything\n"
-    "with the name Kaiba in\n\n"
-    "it...\n\n"
-    "But if Serenity wants to go,\n"
-    "I guess I'll take her.\n\n"
-)
+      "Well, I don't like anything with the name Kaiba in",
+      "it...",
+      "But if Serenity wants to go, I guess I'll take her."
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO,
-    "Oh, but I can't just abandon\n"
-    "my duties without\n\n"
-    "permission.\n\n"
-)
+      "Oh, but I can't just abandon my duties without",
+      "permission."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}, can I take some\n"
-    "time off?\n\n"
-)
-  TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_HAPPY, PORTRAIT_POSITION_AUTO,
-    "Hahaha...\n\n"
-)
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "{PLAYER}, can I take some time off?")
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_HAPPY, PORTRAIT_POSITION_AUTO, "Hahaha...")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_271)
@@ -272,30 +223,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BA4, map_00_state_06_08E34BA4, 0x08F04040, 0x08F
   MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_HAPPY, PORTRAIT_POSITION_AUTO,
-    "I'm sorry for laughing.\n\n"
-    "A little time off will help\n"
-    "you relax and rekindle your\n\n"
-    "spirits.\n\n"
-    "Perhaps you can all go see\n"
-    "the show.\n\n"
-)
+      "I'm sorry for laughing.",
+      "A little time off will help you relax and rekindle your",
+      "spirits.",
+      "Perhaps you can all go see the show."
+  )
   TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Yeah! You know what's up,\n"
-    "Ishizu!\n\n"
-    "All right. I'd better find\n"
-    "Serenity and...\n\n"
-)
-  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_POSITION_AUTO,
-    "I thought you'd say that, so\n"
-    "I already brought her.\n\n"
-)
+      "Yeah! You know what's up, Ishizu!",
+      "All right. I'd better find Serenity and..."
+  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_POSITION_AUTO, "I thought you'd say that, so I already brought her.")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_POSITION_AUTO,
-    "Serenity, come on in.\n\n"
-)
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_POSITION_AUTO, "Serenity, come on in.")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -306,17 +248,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BA4, map_00_state_06_08E34BA4, 0x08F04040, 0x08F
   WALK_OBJECT_Y(5, 52)
   MOVE_OBJECT(4, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO,
-    "Joey, can I really go?\n\n"
-)
-  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "No doubt!\n\n"
-)
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_POSITION_AUTO, "Joey, can I really go?")
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "No doubt!")
   TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Thank you, Joey!\n\n"
-    "I'll go ahead and save us a\n"
-    "spot.\n\n"
-)
+      "Thank you, Joey!",
+      "I'll go ahead and save us a spot."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(5, 64)
@@ -324,14 +261,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BA4, map_00_state_06_08E34BA4, 0x08F04040, 0x08F
   MOVE_OBJECT(4, DIRECTION_UP, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "The Kaibaman show is being\n"
-    "shown in front of\n\n"
-    "KaibaCorp.\n\n"
-    "Now you shouldn't keep a\n"
-    "lady waiting, especially\n\n"
-    "Serenity.\n\n"
-    "I'm outta here.\n\n"
-)
+      "The Kaibaman show is being shown in front of",
+      "KaibaCorp.",
+      "Now you shouldn't keep a lady waiting, especially",
+      "Serenity.",
+      "I'm outta here."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(4, 64)
@@ -339,9 +274,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BA4, map_00_state_06_08E34BA4, 0x08F04040, 0x08F
   WALK_OBJECT_Y(4, 96)
   MOVE_OBJECT(13, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "We should go too.\n\n"
-)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "We should go too.")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(0, 48)
@@ -350,22 +283,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BA4, map_00_state_06_08E34BA4, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34B8C, map_00_state_06_08E34B8C, 0x08E34B98, 0x08F04040)
-  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Heh. You finally realize\n"
-    "you're not in my league.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E34B8C, map_00_state_06_08E34B8C, 0x08E34B98, EVENT_NOP)
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Heh. You finally realize you're not in my league.")
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34BB0, map_00_state_06_08E34BB0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34BB0, map_00_state_06_08E34BB0, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_HAPPY, PORTRAIT_POSITION_AUTO,
-    "Serenity is waiting for you.\n\n"
-    "She should be at Kaiba\n"
-    "Corporation.\n\n"
-    "Weren't you going to see the\n"
-    "Kaibaman show?\n\n"
-)
+      "Serenity is waiting for you.",
+      "She should be at Kaiba Corporation.",
+      "Weren't you going to see the Kaibaman show?"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

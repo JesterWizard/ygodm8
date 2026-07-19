@@ -17,11 +17,9 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EC9C24, map_36_state_01_08EC9C24, 0x08EC9C30, 0x08F0404C)
   PLAY_MUSIC(MUSIC_402)
   TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Those drawn by the\n"
-    "Millennium Item...\n\n"
-    "Prove your worth among the\n"
-    "sleeping ancient dragons..\n\n"
-)
+      "Those drawn by the Millennium Item...",
+      "Prove your worth among the sleeping ancient dragons.."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(0, 62)
@@ -39,11 +37,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9C24, map_36_state_01_08EC9C24, 0x08EC9C30, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC9C30, map_36_state_01_08EC9C30, 0x08F04250, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EC9C30, map_36_state_01_08EC9C30, 0x08F04250, EVENT_NOP)
   PLAY_MUSIC(MUSIC_402)
-  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Impressive. Take this item.\n\n"
-)
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Impressive. Take this item.")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_316)
@@ -59,22 +55,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9C30, map_36_state_01_08EC9C30, 0x08F04250, 0x08F
   SHOW_OBJECT(2, 72, 56, 0, 1, 0)
   DELAY(16)
   TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Who's calling me?\n\n"
-    "I'm living a new life in\n"
-    "Egypt.\n\n"
-    "My job as a tombkeeper is\n"
-    "over...\n\n"
-    "We will meet again somewhere\n"
-    "sometime...\n\n"
-)
+      "Who's calling me?",
+      "I'm living a new life in Egypt.",
+      "My job as a tombkeeper is over...",
+      "We will meet again somewhere sometime..."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_281)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_TELEPORT)
   DELAY(64)
-  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Marik...\n\n"
-)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Marik...")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_266)
@@ -83,26 +74,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9C30, map_36_state_01_08EC9C30, 0x08F04250, 0x08F
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
-  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "We have the Millennium\n"
-    "Rod...\n\n"
-)
-  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Let's get outta here and\n"
-    "back to Ishizu!\n\n"
-)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "We have the Millennium Rod...")
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Let's get outta here and back to Ishizu!")
   SET_FLAG(EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN5)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC9C3C, map_36_state_01_08EC9C3C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EC9C3C, map_36_state_01_08EC9C3C, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Millennium Items are\n"
-    "believed to attract each\n\n"
-    "other.\n\n"
-    "The Millennium Rod will lead\n"
-    "you to the next one.\n\n"
-)
+      "Millennium Items are believed to attract each",
+      "other.",
+      "The Millennium Rod will lead you to the next one."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -111,12 +94,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9C18, map_36_state_01_08EC9C18, 0x08EC9C24, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EC9C48, map_36_state_01_08EC9C48, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EC9C48, map_36_state_01_08EC9C48, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You are only allowed to duel\n"
-    "me once.\n\n"
-    "Did you not have to leave\n"
-    "immediately?\n\n"
-)
+      "You are only allowed to duel me once.",
+      "Did you not have to leave immediately?"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -11,30 +11,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F114, map_12_state_09_08E6F114, 0x08E6F120, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F120, map_12_state_09_08E6F120, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F120, map_12_state_09_08E6F120, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "My big brother turned\n"
-    "Tristan into a monkey?\n\n"
-    "That is the nuttiest thing I\n"
-    "ever heard!\n\n"
-    "Why would Seto do that!\n\n"
-    "...But that reminds me...\n\n"
-    "We made monkey robots, but\n"
-    "they never sold well.\n\n"
-    "I think we donated them to\n"
-    "some island.\n\n"
-)
+      "My big brother turned Tristan into a monkey?",
+      "That is the nuttiest thing I ever heard!",
+      "Why would Seto do that!",
+      "...But that reminds me...",
+      "We made monkey robots, but they never sold well.",
+      "I think we donated them to some island."
+  )
   SET_FLAG(EVENT_FLAG_ASKED_MOKUBA_ABOUT_THE_MONKEY_ROBOTS)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6F12C, map_12_state_09_08E6F12C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6F12C, map_12_state_09_08E6F12C, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "We programmed the monkey\n"
-    "robots to behave like real\n\n"
-    "monkeys.\n\n"
-    "So if you show one a banana,\n"
-    "it becomes excited.\n\n"
-)
+      "We programmed the monkey robots to behave like real",
+      "monkeys.",
+      "So if you show one a banana, it becomes excited."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

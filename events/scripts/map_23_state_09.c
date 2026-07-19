@@ -29,40 +29,27 @@ DELAY(64)
 WALK_OBJECT_Y(LOCALID_ATEM_WALKIN, 50)
 DELAY(16)
 TALK(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_ANGRY, PORTRAIT_POSITION_AUTO,
-    "You'll pay for how you\n"
-    "treated my partner, Bandit\n\n"
-    "Keith!\n\n"
+    "You'll pay for how you treated my partner, Bandit",
+    "Keith!"
 )
 TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Huh? What are you talking\n"
-    "about?\n\n"
-    "Just fork over your Egyptian\n"
-    "God Card!\n\n"
+    "Huh? What are you talking about?",
+    "Just fork over your Egyptian God Card!"
 )
 PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "So you don't care what\n"
-    "happens to this woman?\n\n"
-)
+TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "So you don't care what happens to this woman?")
 TALK(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_ANGRY, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}, it's clear you are\n"
-    "a true duelist.\n\n"
-    "The Egyptian God Cards\n"
-    "choose who controls them...\n\n"
-    "And you haven't earned the\n"
-    "privilege!\n\n"
+    "{PLAYER}, it's clear you are a true duelist.",
+    "The Egyptian God Cards choose who controls them...",
+    "And you haven't earned the privilege!"
 )
 PLAY_MUSIC(MUSIC_347)
 SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SPHERE_RA_BLINK_IN)
-TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_SURPRISED, PORTRAIT_POSITION_AUTO,
-    "Wh-what's this?!\n\n"
-)
+TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_SURPRISED, PORTRAIT_POSITION_AUTO, "Wh-what's this?!")
 TALK(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_ANGRY, PORTRAIT_POSITION_AUTO,
-    "It's Ra's judgment...\n"
-    "Actually, it's more than\n\n"
-    "that.\n\n"
-    "Feel the wrath for angering\n"
-    "the Egyptian Gods!\n\n"
+    "It's Ra's judgment... Actually, it's more than",
+    "that.",
+    "Feel the wrath for angering the Egyptian Gods!"
 )
 PLAY_MUSIC(MUSIC_359)
 SHOW_OVERWORLD_GRAPHIC(GRAPHIC_RA_ENTERS_BATTLE_MODE)
@@ -70,9 +57,7 @@ SHOW_OVERWORLD_GRAPHIC(GRAPHIC_RA_TRANSFORMS_TO_PHOENIX_MODE)
 PLAY_MUSIC(MUSIC_348)
 SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SPARKLE_FLOATS_UP)
 PLAY_MUSIC(MUSIC_302)
-TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_DEFEATED, PORTRAIT_POSITION_AUTO,
-    "Gwaaah!\n\n"
-)
+TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_DEFEATED, PORTRAIT_POSITION_AUTO, "Gwaaah!")
 HIDE_PORTRAIT()
 DELAY(8)
 PLAY_MUSIC(MUSIC_303)
@@ -82,12 +67,10 @@ PLAY_MUSIC(MUSIC_205)
 OBJECT_EFFECT(SPRITE_BANDIT_KEITH, OBJECT_EFFECT_DISAPPEAR)
 DELAY(32)
 TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Ra's judgment...\n\n"
-    "Even though he brought it\n"
-    "upon himself...\n\n"
-    "I cannot help to feel sad\n"
-    "for the horrible punishment\n\n"
-    "he received...\n\n"
+    "Ra's judgment...",
+    "Even though he brought it upon himself...",
+    "I cannot help to feel sad for the horrible punishment",
+    "he received..."
 )
 HIDE_PORTRAIT()
 DELAY(32)
@@ -113,9 +96,8 @@ PLAY_MUSIC(MUSIC_285)
 SHOW_OBJECT(SPRITE_VIDEO_CARD, 54, 32, 0, 0, 0)
 DELAY(16)
 TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}, take control of\n"
-    "the Egyptian God Cards.\n\n"
-    "You have earned the right.\n\n"
+    "{PLAYER}, take control of the Egyptian God Cards.",
+    "You have earned the right."
 )
 HIDE_PORTRAIT()
 DELAY(8)
@@ -123,23 +105,17 @@ PLAY_MUSIC(MUSIC_271)
 REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
 DELAY(8)
 TALK(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_HAPPY, PORTRAIT_POSITION_AUTO,
-    "I know exactly how hard\n"
-    "{PLAYER} has worked to get\n\n"
-    "this far.\n\n"
+    "I know exactly how hard {PLAYER} has worked to get",
+    "this far."
 )
 HIDE_PORTRAIT()
 DELAY(16)
 MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
 DELAY(16)
-TALK(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_HAPPY, PORTRAIT_POSITION_AUTO,
-    "{PLAYER} is worthy of having\n"
-    "the Egyptian God Cards.\n\n"
-)
+TALK(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_HAPPY, PORTRAIT_POSITION_AUTO, "{PLAYER} is worthy of having the Egyptian God Cards.")
 TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Heheh, I hate to admit it,\n"
-    "but I gotta agree.\n\n"
-    "{PLAYER}, you're an awesome\n"
-    "duelist.\n\n"
+    "Heheh, I hate to admit it, but I gotta agree.",
+    "{PLAYER}, you're an awesome duelist."
 )
 HIDE_PORTRAIT()
 DELAY(64)
@@ -151,34 +127,23 @@ SHOW_OBJECT(SPRITE_VIDEO_CARD, 128, 96, 0, 0, 0)
 DELAY(32)
 PLAY_MUSIC(MUSIC_290)
 SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SPHERE_RA_REVIVED)
-TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Way to go, {PLAYER}.\n\n"
-)
-TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Received The Winged Dragon\n"
-    "of Ra {BYTE_8169}Sphere Mode{BYTE_816A}.\n\n"
-)
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Way to go, {PLAYER}.")
+TALK(PORTRAIT_NONE, "Received The Winged Dragon of Ra {BYTE_8169}Sphere Mode{BYTE_816A}.")
 PLAY_MUSIC(MUSIC_267)
 SCREEN_SHAKE(16)
 PLAY_MUSIC(MUSIC_408)
-TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_POSITION_AUTO,
-    "Please wait... I sense\n"
-    "something...\n\n"
-)
+TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_POSITION_AUTO, "Please wait... I sense something...")
 HIDE_PORTRAIT()
 DELAY(16)
 PLAY_MUSIC(MUSIC_306)
 SHOW_OVERWORLD_GRAPHIC(GRAPHIC_RESHEF_TAKES_CONTROL_OF_KEITH)
 DELAY(16)
 TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_POSITION_AUTO,
-    "I feel the Dark Being\n"
-    "summoning a vile spirit...\n\n"
-    "No!\n\n"
-    "The spirit is flooding into\n"
-    "the hearts of defeated\n\n"
-    "duelists!\n\n"
-    "Reshef's will is taking\n"
-    "control of their souls!\n\n"
+    "I feel the Dark Being summoning a vile spirit...",
+    "No!",
+    "The spirit is flooding into the hearts of defeated",
+    "duelists!",
+    "Reshef's will is taking control of their souls!"
 )
 HIDE_PORTRAIT()
 DELAY(16)
@@ -192,19 +157,15 @@ SLIDE_OBJECT(0, 1, 6)
 SLIDE_OBJECT(LOCALID_ATEM_WALKIN, 0, 6)
 MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
 DELAY(16)
-TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_POSSESSED, PORTRAIT_POSITION_AUTO,
-    "Gwehehehe!\n\n"
-)
+TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_POSSESSED, PORTRAIT_POSITION_AUTO, "Gwehehehe!")
 PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
 TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Reshef the Dark Being has\n"
-    "him under control.\n\n"
-    "Dueling Bandit Keith now is\n"
-    "too dangerous!\n\n"
+    "Reshef the Dark Being has him under control.",
+    "Dueling Bandit Keith now is too dangerous!"
 )
 TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_POSSESSED, PORTRAIT_POSITION_AUTO,
-    "You...\n\n"
-    "Give it to me!\n\n"
+    "You...",
+    "Give it to me!"
 )
 PLAY_MUSIC(MUSIC_271)
 REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | SPRITE_ISHIZU | OBJECT_13 | OBJECT_14)
@@ -235,13 +196,8 @@ SLIDE_OBJECT(SPRITE_BANDIT_KEITH, 0, 2)
 SLIDE_OBJECT(SPRITE_MILLENNIUM_PUZZLE, 0, 2)
 SLIDE_OBJECT(LOCALID_ATEM_WALKIN, 0, 2)
 DELAY(16)
-TALK(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_ANGRY, PORTRAIT_POSITION_AUTO,
-    "Wh-what are you doing,\n"
-    "Bandit Keith?\n\n"
-)
-TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_POSSESSED, PORTRAIT_POSITION_AUTO,
-    "Gwehehehehehe!\n\n"
-)
+TALK(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_ANGRY, PORTRAIT_POSITION_AUTO, "Wh-what are you doing, Bandit Keith?")
+TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_POSSESSED, PORTRAIT_POSITION_AUTO, "Gwehehehehehe!")
 PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
 HIDE_PORTRAIT()
 DELAY(16)
@@ -269,9 +225,8 @@ DELAY(8)
 LOAD_SPRITE(LOCALID_ATEM_WALKIN, SPRITE_YUGI)
 DELAY(8)
 TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO,
-    "Waaaaaaah!\n\n"
-    "M-my other self! The\n"
-    "Millennium Puzzle!\n\n"
+    "Waaaaaaah!",
+    "M-my other self! The Millennium Puzzle!"
 )
 HIDE_PORTRAIT()
 DELAY(8)
@@ -293,10 +248,7 @@ WALK_OBJECT_X(SPRITE_YUGI, 68)
 PLAY_MUSIC(MUSIC_310)
 SHOW_OBJECT(LOCALID_PUZZLE_PART_2_LEFT, 128, 96, 0, 0, 0)
 DELAY(8)
-TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_POSITION_AUTO,
-    "My friend... I'll save\n"
-    "you...\n\n"
-)
+TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_POSITION_AUTO, "My friend... I'll save you...")
 HIDE_PORTRAIT()
 DELAY(16)
 PLAY_MUSIC(MUSIC_311)
@@ -304,9 +256,7 @@ PLAY_MUSIC(MUSIC_404)
 SHOW_OBJECT(SPRITE_PARA, 20, 74, 0, 2, 0)
 PLAY_MUSIC(MUSIC_312)
 DELAY(16)
-TALK(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
-    "Fufufu... This is amusing.\n\n"
-)
+TALK(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Fufufu... This is amusing.")
 HIDE_PORTRAIT()
 DELAY(16)
 LOAD_SPRITE(4, SPRITE_PARA_FLIPPING)
@@ -328,11 +278,9 @@ WALK_OBJECT_Y(SPRITE_PARA, 74)
 MOVE_OBJECT(SPRITE_PARA, DIRECTION_UP, 0, 0)
 DELAY(16)
 TALK(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, PORTRAIT_RIGHT,
-    "These puzzle pieces make a\n"
-    "fine souvenir!\n\n"
-    "If you want them, come to\n"
-    "Master Chevalsky's castle.\n\n"
-    "Fwahahahaha!\n\n"
+    "These puzzle pieces make a fine souvenir!",
+    "If you want them, come to Master Chevalsky's castle.",
+    "Fwahahahaha!"
 )
 HIDE_PORTRAIT()
 DELAY(16)
@@ -346,10 +294,8 @@ DELAY(32)
 DELAY(16)
 WALK_OBJECT_Y(SPRITE_YUGI, 50)
 TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_POSITION_AUTO,
-    "This can't be happening...\n"
-    "The puzzle pieces...\n\n"
-    "What's going to happen to\n"
-    "him...\n\n"
+    "This can't be happening... The puzzle pieces...",
+    "What's going to happen to him..."
 )
 HIDE_PORTRAIT()
 DELAY(16)
@@ -362,44 +308,35 @@ REACTION(REACTION_ELLIPSIS, SPRITE_YUGI)
 MOVE_OBJECT(SPRITE_YUGI, DIRECTION_UP, 0, 0)
 DELAY(16)
 TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You're right! Let's go to\n"
-    "Pegasus's castle.\n\n"
-    "Wait for me, my friend...\n\n"
+    "You're right! Let's go to Pegasus's castle.",
+    "Wait for me, my friend..."
 )
 SET_FLAG(EVENT_FLAG_DEFEATED_BANDIT_KEITH)
 
-EVENT_SCRIPT_REPLACEMENT(0x08E95450, map_23_state_09_08E95450, 0x08E9545C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E95450, map_23_state_09_08E95450, 0x08E9545C, EVENT_NOP)
 PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_13)
   MOVE_OBJECT(LOCALID_ATEM_WALKIN, DIRECTION_UP, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Y-you're right...\n\n"
-    "I don't have the time to\n"
-    "feel sorry for myself.\n\n"
-    "Wait for me, my friend...\n\n"
-)
+      "Y-you're right...",
+      "I don't have the time to feel sorry for myself.",
+      "Wait for me, my friend..."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E95414, map_23_state_09_08E95414, 0x08E95420, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E95414, map_23_state_09_08E95414, 0x08E95420, EVENT_NOP)
 TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You mustn't!\n\n"
-    "Reshef the Dark Being has\n"
-    "him under control.\n\n"
-    "Dueling Bandit Keith now is\n"
-    "too dangerous!\n\n"
+    "You mustn't!",
+    "Reshef the Dark Being has him under control.",
+    "Dueling Bandit Keith now is too dangerous!"
 )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E953CC, map_23_state_09_08E953CC, 0x08E953D8, 0x08F04040)
-TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}, it's tough, but\n"
-    "that's the right decision.\n\n"
-)
-  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Hurry up! Hand it over!\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E953CC, map_23_state_09_08E953CC, 0x08E953D8, EVENT_NOP)
+TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "{PLAYER}, it's tough, but that's the right decision.")
+  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Hurry up! Hand it over!")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

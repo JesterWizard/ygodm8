@@ -30,36 +30,27 @@ EVENT_SCRIPT_REPLACEMENT(0x08E83A9C, map_19_state_01_08E83A9C, 0x08E83AA8, 0x08E
   WALK_OBJECT_X(14, 90)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Welcome to the Catacombs.\n\n"
-    "This is a communal\n"
-    "graveyard from long,\n\n"
-    "long ago.\n\n"
-    "I'm Bonz, your tour guide.\n\n"
-    "If you'd like, I'll show you\n"
-    "sights you've never seen\n\n"
-    "before.\n\n"
-)
-  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "{CARD_1}Yes\n"
-    "No{CARD_2}\n\n"
-)
+  TALK(PORTRAIT_BONZ,
+      "Welcome to the Catacombs.",
+      "This is a communal graveyard from long,",
+      "long ago.",
+      "I'm Bonz, your tour guide.",
+      "If you'd like, I'll show you sights you've never seen",
+      "before."
+  )
+  TALK(PORTRAIT_NONE, "{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83AA8, map_19_state_01_08E83AA8, 0x08E83AC0, 0x08F04040)
-  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_LEFT,
-    "Man, why do we hafta\n"
-    "sightsee in this spooky\n\n"
-    "place... Not that I'm\n"
-    "scared!\n\n"
-)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "What are you talking about?\n"
-    "This place is the best!\n\n"
-    "If you're not tourists, what\n"
-    "brings you here?\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E83AA8, map_19_state_01_08E83AA8, 0x08E83AC0, EVENT_NOP)
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED,
+      "Man, why do we hafta sightsee in this spooky",
+      "place... Not that I'm scared!"
+  )
+  TALK(PORTRAIT_BONZ,
+      "What are you talking about? This place is the best!",
+      "If you're not tourists, what brings you here?"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -67,70 +58,49 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E83AC0, map_19_state_01_08E83AC0, 0x08E83ACC, 0x08E83AD8)
   PLAY_MUSIC(MUSIC_332)
   FADE_SCREEN(4)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "You're searching for a\n"
-    "Millennium Item?\n\n"
-)
+  TALK(PORTRAIT_BONZ, "You're searching for a Millennium Item?")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
   REACTION(REACTION_QUESTION_MARK, OBJECT_1)
   DELAY(16)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I'm not sure if that thing\n"
-    "is a Millennium Item...\n\n"
-)
+  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I'm not sure if that thing is a Millennium Item...")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
   DELAY(8)
-  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_LEFT,
-    "{PLAYER}, Bonz seems to know\n"
-    "something!\n\n"
-)
-  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "{CARD_1}Where is it?\n"
-    "Let's duel!{CARD_2}\n\n"
-)
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, "{PLAYER}, Bonz seems to know something!")
+  TALK(PORTRAIT_NONE, "{CARD_1}Where is it?\nLet's duel!{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83ACC, map_19_state_01_08E83ACC, 0x08E83AE4, 0x08F04040)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "...I may not look like one,\n"
-    "but I'm a duelist, too.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E83ACC, map_19_state_01_08E83ACC, 0x08E83AE4, EVENT_NOP)
+  TALK(PORTRAIT_BONZ, "...I may not look like one, but I'm a duelist, too.")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
   REACTION(REACTION_QUESTION_MARK, OBJECT_0)
   DELAY(16)
   TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "If you want to get my\n"
-    "info...\n\n"
-    "Duel against my ghouls!\n\n"
-)
+      "If you want to get my info...",
+      "Duel against my ghouls!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E83AE4, map_19_state_01_08E83AE4, 0x08E83AF0, 0x08F0404C)
-  TEXT
-  (
-      "I'll tell you what I know if\n"
-      "you can beat me.\n\n"
-      "But what are your chances\n"
-      "against my powerful Neo\n\n"
-      "Ghost Deck!\n\n"
+  TEXT(
+      "I'll tell you what I know if you can beat me.",
+      "But what are your chances against my powerful Neo",
+      "Ghost Deck!"
   )
   DUEL(DUELIST_BONZ_036)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E83AF0, map_19_state_01_08E83AF0, 0x08E83AFC, 0x08E83B08)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "No! I lost!\n\n"
-)
+  TALK(PORTRAIT_BONZ, "No! I lost!")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
@@ -145,46 +115,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E83AF0, map_19_state_01_08E83AF0, 0x08E83AFC, 0x08E
   WALK_OBJECT_X(7, 40)
   DELAY(8)
   PLAY_MUSIC(MUSIC_407)
-  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Kukuku...\n\n"
-    "You said your deck's\n"
-    "improved, but it's the same\n\n"
-    "lame deck as always, Bonz.\n\n"
-)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "B-Bandit Keith!\n\n"
-)
-  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "I've never seen so many\n"
-    "losers in one place!\n\n"
-    "I've watched tougher duels\n"
-    "in kindergarten!\n\n"
-)
-  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "{CARD_1}I'll take you on!\n"
-    "Who's behind you?{CARD_2}\n\n"
-)
+  TALK(PORTRAIT_BANDIT_KEITH,
+      "Kukuku...",
+      "You said your deck's improved, but it's the same",
+      "lame deck as always, Bonz."
+  )
+  TALK(PORTRAIT_BONZ, "B-Bandit Keith!")
+  TALK(PORTRAIT_BANDIT_KEITH,
+      "I've never seen so many losers in one place!",
+      "I've watched tougher duels in kindergarten!"
+  )
+  TALK(PORTRAIT_NONE, "{CARD_1}I'll take you on!\nWho's behind you?{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83AFC, map_19_state_01_08E83AFC, 0x08E83B14, 0x08F04040)
-  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Kukuku... We could duel,\n"
-    "but...\n\n"
-    "I'm not in the mood. I'm\n"
-    "just here to show you that\n\n"
-    "I'm alive and kickin'!\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E83AFC, map_19_state_01_08E83AFC, 0x08E83B14, EVENT_NOP)
+  TALK(PORTRAIT_BANDIT_KEITH,
+      "Kukuku... We could duel, but...",
+      "I'm not in the mood. I'm just here to show you that",
+      "I'm alive and kickin'!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E83B14, map_19_state_01_08E83B14, 0x08E83B20, 0x08E83B2C)
-  TEXT
-  (
-      "After Marik's pathetic\n"
-      "defeat, I took control of\n\n"
-      "the Ghouls and their Rare\n"
-      "Hunters.\n\n"
+  TEXT(
+      "After Marik's pathetic defeat, I took control of",
+      "the Ghouls and their Rare Hunters."
   )
   HIDE_PORTRAIT()
   DELAY(32)
@@ -192,61 +149,48 @@ EVENT_SCRIPT_REPLACEMENT(0x08E83B14, map_19_state_01_08E83B14, 0x08E83B20, 0x08E
   DELAY(64)
   PORTRAIT(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   DELAY(64)
-  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "The Ghouls are now reborn as\n"
-    "the Neo Ghouls!\n\n"
-    "And I, Bandit Keith, am the\n"
-    "leader of the Neo Ghouls!\n\n"
-)
+  TALK(PORTRAIT_BANDIT_KEITH,
+      "The Ghouls are now reborn as the Neo Ghouls!",
+      "And I, Bandit Keith, am the leader of the Neo Ghouls!"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(5, 48)
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_LEFT, 0, 0)
   TALK(PORTRAIT_ARCANA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
-    "Master Keith...\n\n"
-    "We have obtained the\n"
-    "information you seek...\n\n"
-)
+      "Master Keith...",
+      "We have obtained the information you seek..."
+  )
   TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
-    "So that's the key item for\n"
-    "getting the Egyptian God\n\n"
-    "Cards...\n\n"
-    "Kukuku... With this info,\n"
-    "I've earned the right to\n\n"
-    "join the game...\n\n"
-)
-  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "{CARD_1}You want the God Cards?\n"
-    "Join the game?{CARD_2}\n\n"
-)
+      "So that's the key item for getting the Egyptian God",
+      "Cards...",
+      "Kukuku... With this info, I've earned the right to",
+      "join the game..."
+  )
+  TALK(PORTRAIT_NONE, "{CARD_1}You want the God Cards?\nJoin the game?{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83B20, map_19_state_01_08E83B20, 0x08E83B38, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E83B20, map_19_state_01_08E83B20, 0x08E83B38, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "You know why!\n\n"
-    "I need 'em to thrash that\n"
-    "arrogant punk!\n\n"
-    "I'll do anything, and I mean\n"
-    "anything, to beat him!\n\n"
-)
+  TALK(PORTRAIT_BANDIT_KEITH,
+      "You know why!",
+      "I need 'em to thrash that arrogant punk!",
+      "I'll do anything, and I mean anything, to beat him!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83B38, map_19_state_01_08E83B38, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'll let you in on a little\n"
-      "secret.\n\n"
-      "You won't find what you're\n"
-      "looking for here.\n\n"
-      "See you losers around.\n\n"
-      "Kukuku...\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E83B38, map_19_state_01_08E83B38, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "I'll let you in on a little secret.",
+      "You won't find what you're looking for here.",
+      "See you losers around.",
+      "Kukuku..."
   )
   WALK_OBJECT_X(4, 248)
   WALK_OBJECT_X(6, 248)
@@ -261,67 +205,50 @@ EVENT_SCRIPT_REPLACEMENT(0x08E83B38, map_19_state_01_08E83B38, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83B2C, map_19_state_01_08E83B2C, 0x08E83B38, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E83B2C, map_19_state_01_08E83B2C, 0x08E83B38, EVENT_NOP)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Heh, it's not fair that you\n"
-    "runts get all the fun.\n\n"
-    "We want to take part, too.\n"
-    "Oh, and another thing...\n\n"
-    "I'll do anything to thrash\n"
-    "that arrogant punk!\n\n"
-)
+  TALK(PORTRAIT_BANDIT_KEITH,
+      "Heh, it's not fair that you runts get all the fun.",
+      "We want to take part, too. Oh, and another thing...",
+      "I'll do anything to thrash that arrogant punk!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83B08, map_19_state_01_08E83B08, 0x08E83B14, 0x08F04040)
-  TALK(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Oops, I forgot to introduce\n"
-    "you to my crew.\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E83B08, map_19_state_01_08E83B08, 0x08E83B14, EVENT_NOP)
+  TALK(PORTRAIT_BANDIT_KEITH, "Oops, I forgot to introduce you to my crew.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83AD8, map_19_state_01_08E83AD8, 0x08E83AE4, 0x08F04040)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "I see you have the heart of\n"
-    "a duelist.\n\n"
-    "I accept your duel!\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E83AD8, map_19_state_01_08E83AD8, 0x08E83AE4, EVENT_NOP)
+  TALK(PORTRAIT_BONZ,
+      "I see you have the heart of a duelist.",
+      "I accept your duel!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83AB4, map_19_state_01_08E83AB4, 0x08E83AC0, 0x08F04040)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Then what brings you here?\n\n"
-)
+EVENT_SCRIPT_REPLACEMENT(0x08E83AB4, map_19_state_01_08E83AB4, 0x08E83AC0, EVENT_NOP)
+  TALK(PORTRAIT_BONZ, "Then what brings you here?")
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E83B44, map_19_state_01_08E83B44, 0x08F04040, 0x08F04040)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Bandit Keith said you won't\n"
-    "find anything here...\n\n"
-)
-  TEXT
-  (
-      "But there's a hidden chamber\n"
-      "in the back.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E83B44, map_19_state_01_08E83B44, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_BONZ, "Bandit Keith said you won't find anything here...")
+  TEXT("But there's a hidden chamber in the back.")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
   DELAY(8)
-  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "I bet Bandit Keith's gang\n"
-    "couldn't get in.\n\n"
-    "It's over here.\n\n"
-)
+  TALK(PORTRAIT_BONZ,
+      "I bet Bandit Keith's gang couldn't get in.",
+      "It's over here."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 108)

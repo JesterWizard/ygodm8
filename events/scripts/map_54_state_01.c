@@ -12,19 +12,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C24, map_54_state_01_08EE9C24, 0x08EE9C30, 0x08E
   LOAD_SPRITE(5, SPRITE_VIDEO_CARD)
   PLAY_MUSIC(MUSIC_INSIDE_PEGASUS_CASTLE)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Go, Blue-Eyes White Dragon!\n\n"
-  )
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO, "Go, Blue-Eyes White Dragon!")
   PLAY_MUSIC(MUSIC_333)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_BLUE_EYES_WHITE_DRAGON_FULL_ART)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "White Lightning Attack!\n\n"
-  )
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO, "White Lightning Attack!")
   PLAY_MUSIC(MUSIC_338)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_BLUE_EYES_ATTACK_BOTTOM_MIDDLE)
   DELAY(16)
@@ -35,34 +27,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C24, map_54_state_01_08EE9C24, 0x08EE9C30, 0x08E
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(32)
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Humph. So you finally showed\n"
-      "up. But you're too late.\n\n"
-      "That Pegasus... I will crush\n"
-      "him myself!\n\n"
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Humph. So you finally showed up. But you're too late.",
+      "That Pegasus... I will crush him myself!"
   )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(2, 72)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Kaiba... You cannot win\n"
-      "alone... One Egyptian God\n\n"
-      "Card isn't enough.\n\n"
-      "You have no chance.\n\n"
-      "Not against Pegasus and\n"
-      "Reshef the Dark Being.\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Kaiba... You cannot win alone... One Egyptian God",
+      "Card isn't enough.",
+      "You have no chance.",
+      "Not against Pegasus and Reshef the Dark Being."
   )
-  PORTRAIT(PORTRAIT_SETO, 1, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "My deck is perfect!\n\n"
-      "Whoever the opponent may be,\n"
-      "defeat isn't in the cards!\n\n"
+  TALK(PORTRAIT_SETO, 1, PORTRAIT_POSITION_AUTO,
+      "My deck is perfect!",
+      "Whoever the opponent may be, defeat isn't in the cards!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -75,50 +56,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C24, map_54_state_01_08EE9C24, 0x08EE9C30, 0x08E
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_1 | OBJECT_2)
   DELAY(8)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Then duel me, big brother,\n"
-      "with your perfect deck.\n\n"
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO, "Then duel me, big brother, with your perfect deck.")
+  TALK(PORTRAIT_SETO, 6, PORTRAIT_POSITION_AUTO, "Wh-what? Mokuba? Wh-what are you saying?")
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO,
+      "Reshef is going to rule this world anyway.",
+      "It's better to quit fighting and accept fate."
   )
-  PORTRAIT(PORTRAIT_SETO, 6, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what? Mokuba? Wh-what are\n"
-      "you saying?\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Mokuba's spirit is under control...")
+  TALK(PORTRAIT_SETO, 5, PORTRAIT_POSITION_AUTO, "Pegasus! How dare you!")
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO,
+      "Big brother, will you join me?",
+      "Or would you like to duel?"
   )
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Reshef is going to rule this\n"
-      "world anyway.\n\n"
-      "It's better to quit fighting\n"
-      "and accept fate.\n\n"
-  )
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Mokuba's spirit is under\n"
-      "control...\n\n"
-  )
-  PORTRAIT(PORTRAIT_SETO, 5, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Pegasus! How dare you!\n\n"
-  )
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Big brother, will you join\n"
-      "me?\n\n"
-      "Or would you like to duel?\n\n"
-  )
-  PORTRAIT(PORTRAIT_SETO, 3, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Mokuba...\n\n"
-      "I... I can't duel against\n"
-      "Mokuba...\n\n"
+  TALK(PORTRAIT_SETO, 3, PORTRAIT_POSITION_AUTO,
+      "Mokuba...",
+      "I... I can't duel against Mokuba..."
   )
   HIDE_PORTRAIT()
   DELAY(32)
@@ -129,25 +81,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C24, map_54_state_01_08EE9C24, 0x08EE9C30, 0x08E
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER}, you must duel in\n"
-      "Kaiba's place.\n\n"
-      "That is the only way to\n"
-      "break the mind control over\n\n"
-      "Mokuba.\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "{PLAYER}, you must duel in Kaiba's place.",
+      "That is the only way to break the mind control over",
+      "Mokuba."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_NONE, "{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -159,33 +102,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C30, map_54_state_01_08EE9C30, 0x08EE9C48, 0x08F
   PLAY_MUSIC(MUSIC_270)
   REACTION(REACTION_QUESTION_MARK, OBJECT_3)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Huh? {PLAYER} wants to duel\n"
-      "me?\n\n"
-      "Sure. You have to ante your\n"
-      "Egyptian God Card.\n\n"
-      "I don't care who I have to\n"
-      "duel as long as I can get\n\n"
-      "an Egyptian God Card.\n\n"
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO,
+      "Huh? {PLAYER} wants to duel me?",
+      "Sure. You have to ante your Egyptian God Card.",
+      "I don't care who I have to duel as long as I can get",
+      "an Egyptian God Card."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Grr... Mokuba...\n\n"
-  )
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Big brother, there's no need\n"
-      "to be sad.\n\n"
-      "After {PLAYER}, you're next!\n\n"
-      "Ahahahahahaha!\n\n"
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Grr... Mokuba...")
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO,
+      "Big brother, there's no need to be sad.",
+      "After {PLAYER}, you're next!",
+      "Ahahahahahaha!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -197,12 +128,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C30, map_54_state_01_08EE9C30, 0x08EE9C48, 0x08F
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_3)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Don't give me that look!\n\n"
-      "I'll show you how it feels\n"
-      "to lose!\n\n"
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_POSSESSED, PORTRAIT_POSITION_AUTO,
+      "Don't give me that look!",
+      "I'll show you how it feels to lose!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -221,51 +149,26 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE9C48, map_54_state_01_08EE9C48, 0x08EE9C54, 0x08F0404C)
   PLAY_MUSIC(MUSIC_369)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Arrggh! M-my head! Seto, it\n"
-      "hurts!\n\n"
-      "Help me, Seto!\n\n"
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED, PORTRAIT_POSITION_AUTO,
+      "Arrggh! M-my head! Seto, it hurts!",
+      "Help me, Seto!"
   )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(8)
-  PORTRAIT(PORTRAIT_SETO, 6, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Mokuba!\n\n"
-  )
+  TALK(PORTRAIT_SETO, 6, PORTRAIT_POSITION_AUTO, "Mokuba!")
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(1, 54)
   WALK_OBJECT_X(1, 60)
   WALK_OBJECT_Y(1, 50)
   DELAY(8)
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Mokuba, have you regained\n"
-      "your senses?\n\n"
-  )
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Seto... I... I...\n\n"
-  )
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Don't say another word. It's\n"
-      "over, Mokuba.\n\n"
-  )
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Big brother...\n\n"
-  )
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Mokuba, have you regained your senses?")
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SAD, PORTRAIT_POSITION_AUTO, "Seto... I... I...")
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Don't say another word. It's over, Mokuba.")
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SAD, PORTRAIT_POSITION_AUTO, "Big brother...")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(1, 34)
@@ -279,42 +182,26 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C48, map_54_state_01_08EE9C48, 0x08EE9C54, 0x08F
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_405)
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I hate to say this, but I\n"
-      "owe you one.\n\n"
-      "You have to duel Pegasus\n"
-      "next...\n\n"
-      "You need my Egyptian God\n"
-      "Card, don't you?\n\n"
-      "Fine... I could just hand it\n"
-      "to you....\n\n"
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I hate to say this, but I owe you one.",
+      "You have to duel Pegasus next...",
+      "You need my Egyptian God Card, don't you?",
+      "Fine... I could just hand it to you...."
   )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_2)
   DELAY(8)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Kaiba...\n\n"
-  )
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "But you and I are duelists.\n\n"
-      "Therefore, the only way you\n"
-      "can get my card is in a\n\n"
-      "duel!\n\n"
-      "That's all that needs to be\n"
-      "said.\n\n"
-      "Now, come on, {PLAYER}.\n\n"
-      "My strongest monster will\n"
-      "annhilate you!\n\n"
-      "Obelisk the Tormentor will\n"
-      "decide the outcome!\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Kaiba...")
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
+      "But you and I are duelists.",
+      "Therefore, the only way you can get my card is in a",
+      "duel!",
+      "That's all that needs to be said.",
+      "Now, come on, {PLAYER}.",
+      "My strongest monster will annhilate you!",
+      "Obelisk the Tormentor will decide the outcome!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -324,34 +211,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C48, map_54_state_01_08EE9C48, 0x08EE9C54, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EE9C54, map_54_state_01_08EE9C54, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Urrrgh...\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EE9C54, map_54_state_01_08EE9C54, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Urrrgh...")
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Your powers were evenly matched...",
+      "But {PLAYER}'s pure spirit won the duel.",
+      "He also received the help of his fellow duelists...",
+      "Perhaps his pure spirit can counter the Dark Being."
   )
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Your powers were evenly\n"
-      "matched...\n\n"
-      "But {PLAYER}'s pure spirit\n"
-      "won the duel.\n\n"
-      "He also received the help of\n"
-      "his fellow duelists...\n\n"
-      "Perhaps his pure spirit can\n"
-      "counter the Dark Being.\n\n"
-  )
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "There's nothing for me to\n"
-      "say.\n\n"
-      "You earned this card.\n\n"
-      "I don't care if you duel\n"
-      "Pegasus or Reshef...\n\n"
-      "Just don't lose using my\n"
-      "best card!\n\n"
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "There's nothing for me to say.",
+      "You earned this card.",
+      "I don't care if you duel Pegasus or Reshef...",
+      "Just don't lose using my best card!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -363,22 +235,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C54, map_54_state_01_08EE9C54, 0x08F04040, 0x08F
   DELAY(32)
   SHOW_OBJECT(5, 128, 96, 0, 0, 0)
   DELAY(32)
-  TEXT
-  (
-      "Received Obelisk the\n"
-      "Tormentor!"
-  )
+  TEXT("Received Obelisk the Tormentor!")
   PLAY_MUSIC(MUSIC_701)
   DELAY(240)
   DELAY(80)
   PAGE_BREAK()
   ADD_CARD(234)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Come, {PLAYER}, we must go.\n\n"
-      "The time has come to seal\n"
-      "Reshef the Dark Being.\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Come, {PLAYER}, we must go.",
+      "The time has come to seal Reshef the Dark Being."
   )
   HIDE_PORTRAIT()
   FADE_MUSIC(2)
@@ -388,50 +253,30 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE9C54, map_54_state_01_08EE9C54, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE9C3C, map_54_state_01_08EE9C3C, 0x08EE9C30, 0x08EE9C3C)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "But... If you refuse...\n\n"
-      "Reshef the Dark Being will\n"
-      "rule the world.\n\n"
-      "Please, {PLAYER}!\n\n"
-      "You must duel in Kaiba's\n"
-      "place!\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "But... If you refuse...",
+      "Reshef the Dark Being will rule the world.",
+      "Please, {PLAYER}!",
+      "You must duel in Kaiba's place!"
   )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
+  TALK(PORTRAIT_NONE, "{CARD_1}Yes\nNo{CARD_2}")
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08EE9C60, map_54_state_01_08EE9C60, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Hurry up and beat Pegasus.")
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08EE9C78, map_54_state_01_08EE9C78, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Come, {PLAYER}, we must go.",
+      "The time has come to seal Reshef the Dark Being."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EE9C60, map_54_state_01_08EE9C60, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hurry up and beat Pegasus.\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08EE9C78, map_54_state_01_08EE9C78, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Come, {PLAYER}, we must go.\n\n"
-      "The time has come to seal\n"
-      "Reshef the Dark Being.\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08EE9C6C, map_54_state_01_08EE9C6C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "...\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08EE9C6C, map_54_state_01_08EE9C6C, EVENT_NOP, EVENT_NOP)
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SAD, PORTRAIT_POSITION_AUTO, "...")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

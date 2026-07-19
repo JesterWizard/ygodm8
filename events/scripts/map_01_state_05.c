@@ -4,15 +4,13 @@
 
 /* map_01_state_05: map 1 state 5 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4282C, map_01_state_05_08E4282C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E4282C, map_01_state_05_08E4282C, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_RED_HAT)
   LOAD_SPRITE(2, SPRITE_STYLISH_HAIR)
   LOAD_SPRITE(3, SPRITE_WEEVIL)
-  TEXT
-  (
-      "The Neo Ghouls have left,\n"
-      "but...\n\n"
-      "Why do I still feel uneasy?\n\n"
+  TEXT(
+      "The Neo Ghouls have left, but...",
+      "Why do I still feel uneasy?"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -23,40 +21,30 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42838, map_01_state_05_08E42838, 0x08E42844, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42844, map_01_state_05_08E42844, 0x08E42850, 0x08F0404C)
-  TEXT
-  (
-      "Sure thing!\n\n"
-  )
+  TEXT("Sure thing!")
   DUEL(DUELIST_ID_085)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E42850, map_01_state_05_08E42850, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E42850, map_01_state_05_08E42850, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-  TEXT
-  (
-      "Yeah, dueling sure is fun.\n\n"
-  )
+  TEXT("Yeah, dueling sure is fun.")
   SET_FLAG(EVENT_FLAG_DEFEATED_RED_HAT2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4285C, map_01_state_05_08E4285C, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'm tinkering with my deck\n"
-      "so I can win next time.\n\n"
-      "Let's duel some other time.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E4285C, map_01_state_05_08E4285C, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "I'm tinkering with my deck so I can win next time.",
+      "Let's duel some other time."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E42868, map_01_state_05_08E42868, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "There are evil duelists,\n"
-      "like the Neo Ghouls...\n\n"
-      "But it's still fun to duel.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E42868, map_01_state_05_08E42868, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "There are evil duelists, like the Neo Ghouls...",
+      "But it's still fun to duel."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -67,44 +55,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42874, map_01_state_05_08E42874, 0x08E42880, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42880, map_01_state_05_08E42880, 0x08E4288C, 0x08F0404C)
-  TEXT
-  (
-      "Okay! I'm not going to lose!\n\n"
-  )
+  TEXT("Okay! I'm not going to lose!")
   DUEL(DUELIST_ID_086)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E4288C, map_01_state_05_08E4288C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E4288C, map_01_state_05_08E4288C, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-  TEXT
-  (
-      "Sigh... I lost after all.\n\n"
-  )
+  TEXT("Sigh... I lost after all.")
   SET_FLAG(EVENT_FLAG_DEFEATED_STYLISH_HAIR2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E42898, map_01_state_05_08E42898, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'm not good enough to\n"
-      "compete against you.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E42898, map_01_state_05_08E42898, EVENT_NOP, EVENT_NOP)
+  TEXT("I'm not good enough to compete against you.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E428A4, map_01_state_05_08E428A4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E428A4, map_01_state_05_08E428A4, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO,
-    "Hyohyohyohyo!\n\n"
-    "The Neo Ghouls are gone, all\n"
-    "thanks to me!\n\n"
-    "You maggots better be\n"
-    "grateful.\n\n"
-    "Just to let you know, my\n"
-    "swarm of bugs are more\n\n"
-    "rugged than ever!\n\n"
-)
+      "Hyohyohyohyo!",
+      "The Neo Ghouls are gone, all thanks to me!",
+      "You maggots better be grateful.",
+      "Just to let you know, my swarm of bugs are more",
+      "rugged than ever!"
+  )
   WALK_OBJECT_X(3, 0)
   SET_OBJECT_POSITION(3, 128, 96, 0)
   SET_FLAG(EVENT_FLAG_WEEVIL_LEFT_CLOCK_TOWER_SQUARE)

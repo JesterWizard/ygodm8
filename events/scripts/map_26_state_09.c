@@ -14,42 +14,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3D88, map_26_state_09_08EA3D88, 0x08EA3D94, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3D94, map_26_state_09_08EA3D94, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EA3D94, map_26_state_09_08EA3D94, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}... You came here\n"
-    "for a reason, didn't you?\n\n"
-    "Whatever it is, I'm here to\n"
-    "help.\n\n"
-    "Challenge me whenever you\n"
-    "feel ready.\n\n"
-    "As duelists, we understand\n"
-    "each other the best when we\n\n"
-    "duel.\n\n"
-    "It sounds weird, but it's\n"
-    "true.\n\n"
-)
+      "{PLAYER}... You came here for a reason, didn't you?",
+      "Whatever it is, I'm here to help.",
+      "Challenge me whenever you feel ready.",
+      "As duelists, we understand each other the best when we",
+      "duel.",
+      "It sounds weird, but it's true."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3DA0, map_26_state_09_08EA3DA0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EA3DA0, map_26_state_09_08EA3DA0, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "The people in the Town of\n"
-    "Domino are happy now that\n\n"
-    "the Neo Ghouls are gone.\n\n"
-    "But don't you sense\n"
-    "something strange?\n\n"
-    "I don't know what it is, but\n"
-    "it doesn't feel good.\n\n"
-    "It feels like the last turn\n"
-    "of a duel that I'm about to\n\n"
-    "lose.\n\n"
-    "It's just awful!\n\n"
-    "{PLAYER}, this enemy that\n"
-    "you're facing...\n\n"
-    "Who is it?\n\n"
-    "Who can create so much\n"
-    "tension in the air?\n\n"
-)
+      "The people in the Town of Domino are happy now that",
+      "the Neo Ghouls are gone.",
+      "But don't you sense something strange?",
+      "I don't know what it is, but it doesn't feel good.",
+      "It feels like the last turn of a duel that I'm about to",
+      "lose.",
+      "It's just awful!",
+      "{PLAYER}, this enemy that you're facing...",
+      "Who is it?",
+      "Who can create so much tension in the air?"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -60,35 +49,28 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3DB8, map_26_state_09_08EA3DB8, 0x08EA3DC4, 0x08F0404C)
   TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Duelists get to know each\n"
-    "other through dueling.\n\n"
-    "Once duelists battle, a bond\n"
-    "develops that didn't exist\n\n"
-    "before.\n\n"
-    "{PLAYER}, I accept your\n"
-    "duel!\n\n"
-)
+      "Duelists get to know each other through dueling.",
+      "Once duelists battle, a bond develops that didn't exist",
+      "before.",
+      "{PLAYER}, I accept your duel!"
+  )
   DUEL(DUELIST_MAI_097)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3DC4, map_26_state_09_08EA3DC4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EA3DC4, map_26_state_09_08EA3DC4, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}...\n\n"
-    "I can tell you're planning\n"
-    "to face something huge and\n\n"
-    "terrible...\n\n"
-    "But you'll be fine.\n\n"
-    "There's a bond between us!\n\n"
-    "Even when we're far apart,\n"
-    "our hearts beat as one.\n\n"
-    "This is Harpie Lady. It\n"
-    "represents my spirit as a\n\n"
-    "duelist.\n\n"
-    "I'm not required to give it\n"
-    "to you, but I want you to\n\n"
-    "have it.\n\n"
-)
+      "{PLAYER}...",
+      "I can tell you're planning to face something huge and",
+      "terrible...",
+      "But you'll be fine.",
+      "There's a bond between us!",
+      "Even when we're far apart, our hearts beat as one.",
+      "This is Harpie Lady. It represents my spirit as a",
+      "duelist.",
+      "I'm not required to give it to you, but I want you to",
+      "have it."
+  )
   TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "Received Harpie Lady."
 )
@@ -104,23 +86,20 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3DD0, map_26_state_09_08EA3DD0, 0x08EA3DDC, 0x08F0404C)
   TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}, I don't know what\n"
-    "you're facing.\n\n"
-    "But I know it won't be easy.\n\n"
-    "Remember that every duelist\n"
-    "has unlimited potential.\n\n"
-    "If you think it'll help,\n"
-    "I'll duel you anytime!\n\n"
-)
+      "{PLAYER}, I don't know what you're facing.",
+      "But I know it won't be easy.",
+      "Remember that every duelist has unlimited potential.",
+      "If you think it'll help, I'll duel you anytime!"
+  )
   DUEL(DUELIST_MAI_147)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EA3DDC, map_26_state_09_08EA3DDC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EA3DDC, map_26_state_09_08EA3DDC, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_DOMINO_PIER)
   TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Did this duel help you?\n\n"
-    "Don't lose, {PLAYER}!\n\n"
-)
+      "Did this duel help you?",
+      "Don't lose, {PLAYER}!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

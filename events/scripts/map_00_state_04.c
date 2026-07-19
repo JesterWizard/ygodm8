@@ -12,7 +12,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A9C, map_00_state_04_08E34A9C, 0x08E34AB4, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34AB4, map_00_state_04_08E34AB4, 0x08E34AC0, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34AB4, map_00_state_04_08E34AB4, 0x08E34AC0, EVENT_NOP)
   WALK_OBJECT_Y(0, 32)
   WALK_OBJECT_X(0, 48)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
@@ -28,39 +28,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34AB4, map_00_state_04_08E34AB4, 0x08E34AC0, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You have obtained the\n"
-    "Millennium Key.\n\n"
-    "With the power of two\n"
-    "Millennium Items...\n\n"
-)
+      "You have obtained the Millennium Key.",
+      "With the power of two Millennium Items..."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34AC0, map_00_state_04_08E34AC0, 0x08E34ACC, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34AC0, map_00_state_04_08E34AC0, 0x08E34ACC, EVENT_NOP)
   PLAY_MUSIC(MUSIC_290)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SLIFER_REVIVAL)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34ACC, map_00_state_04_08E34ACC, 0x08E34AD8, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34ACC, map_00_state_04_08E34ACC, 0x08E34AD8, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Slifer the Sky Dragon has\n"
-    "regained its power!\n\n"
-    "Egyptian God Cards choose\n"
-    "their bearers.\n\n"
-    "This card... chooses you,\n"
-    "Yugi.\n\n"
-)
+      "Slifer the Sky Dragon has regained its power!",
+      "Egyptian God Cards choose their bearers.",
+      "This card... chooses you, Yugi."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_13)
   DELAY(16)
   TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Ishizu... Slifer the Sky\n"
-    "Dragon...\n\n"
-    "I can't use it.\n\n"
-)
+      "Ishizu... Slifer the Sky Dragon...",
+      "I can't use it."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -70,103 +64,77 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34ACC, map_00_state_04_08E34ACC, 0x08E34AD8, 0x08F
   REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_14)
   DELAY(16)
   TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "That card belongs to my\n"
-    "other self.\n\n"
-    "It doesn't belong to me.\n\n"
-)
+      "That card belongs to my other self.",
+      "It doesn't belong to me."
+  )
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "But... After all the trouble\n"
-    "you undergone to attain it,\n\n"
-    "you will forfeit the\n"
-    "resurrected Egyptian God\n\n"
-    "Card?\n\n"
-)
-  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I think {PLAYER} should\n"
-    "hold on to that card.\n\n"
-)
+      "But... After all the trouble you undergone to attain it,",
+      "you will forfeit the resurrected Egyptian God",
+      "Card?"
+  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I think {PLAYER} should hold on to that card.")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
   DELAY(16)
   TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER} also saw the\n"
-    "Millennium Necklace's\n\n"
-    "vision.\n\n"
-    "I know he can control the\n"
-    "power of the Egyptian God\n\n"
-    "Cards. I'm absolutely sure\n"
-    "of it!\n\n"
-)
+      "{PLAYER} also saw the Millennium Necklace's",
+      "vision.",
+      "I know he can control the power of the Egyptian God",
+      "Cards. I'm absolutely sure of it!"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}, don't be shy! Take\n"
-    "it! I'd be leapin' outta my\n\n"
-    "skin to get a card like dat!\n\n"
-    "Besides, Slifer the Sky\n"
-    "Dragon proves that the\n\n"
-    "power of our friendship can\n"
-    "defeat anybody!\n\n"
-)
+      "{PLAYER}, don't be shy! Take it! I'd be leapin' outta my",
+      "skin to get a card like dat!",
+      "Besides, Slifer the Sky Dragon proves that the",
+      "power of our friendship can defeat anybody!"
+  )
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I understand... Since you\n"
-    "all agree...\n\n"
-    "{PLAYER}, I will entrust you\n"
-    "with this card.\n\n"
-)
+      "I understand... Since you all agree...",
+      "{PLAYER}, I will entrust you with this card."
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_285)
   DELAY(16)
-  TEXT
-  (
-      "Received Slifer the Sky\n"
-      "Dragon!\n\n"
-  )
+  TEXT("Received Slifer the Sky Dragon!")
   TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Yeah! Awesome!\n\n"
-    "We have the first Egyptian\n"
-    "God Card!\n\n"
-)
+      "Yeah! Awesome!",
+      "We have the first Egyptian God Card!"
+  )
   TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Still... It seems that in\n"
-    "order to restore a single\n\n"
-    "Egyptian God Card...\n\n"
-    "We need the magical powers\n"
-    "of two Millennium Items,\n\n"
-    "{PLAYER}.\n\n"
-)
+      "Still... It seems that in order to restore a single",
+      "Egyptian God Card...",
+      "We need the magical powers of two Millennium Items,",
+      "{PLAYER}."
+  )
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You are correct.\n\n"
-    "In order to resurrect all\n"
-    "three Egyptian God Cards...\n\n"
-    "You must gather the other\n"
-    "Millennium Items. And\n\n"
-    "quickly!\n\n"
-)
+      "You are correct.",
+      "In order to resurrect all three Egyptian God Cards...",
+      "You must gather the other Millennium Items. And",
+      "quickly!"
+  )
   ADD_CARD(238)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34AD8, map_00_state_04_08E34AD8, 0x08E34AF0, 0x08E34AE4)
-  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "{CARD_1}Okay\n"
-    "I don't get it{CARD_2}\n\n"
-)
+  TALK(PORTRAIT_NONE, "{CARD_1}Okay\nI don't get it{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34AF0, map_00_state_04_08E34AF0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34AF0, map_00_state_04_08E34AF0, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "The next Millennium Item...\n\n"
-    "Is in Italy."
-)
+      "The next Millennium Item...",
+      "Is in Italy."
+  )
   DELAY(43)
   TEXT
   (
@@ -178,14 +146,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34AF0, map_00_state_04_08E34AF0, 0x08F04040, 0x08F
       ". "
   )
   DELAY(43)
-  TEXT
-  (
-      "Among the\n"
-      "Catacombs...\n\n"
-      "Catacombs are underground\n"
-      "cemeteries.\n\n"
-      "A Millennium Item is certain\n"
-      "to be hidden there.\n\n"
+  TEXT(
+      "Among the Catacombs...",
+      "Catacombs are underground cemeteries.",
+      "A Millennium Item is certain to be hidden there."
   )
   HIDE_PORTRAIT()
   FADE_MUSIC(2)
@@ -195,38 +159,28 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34AF0, map_00_state_04_08E34AF0, 0x08F04040, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34AE4, map_00_state_04_08E34AE4, 0x08E34AD8, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34AE4, map_00_state_04_08E34AE4, 0x08E34AD8, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "To resurrect a single\n"
-    "Egyptian God Card...\n\n"
-    "We need the power from two\n"
-    "Millennium Items.\n\n"
-    "In order to resurrect all\n"
-    "three Egyptian God Cards...\n\n"
-    "You must gather the other\n"
-    "Millennium Items, and we do\n\n"
-    "not have much time!\n\n"
-)
+      "To resurrect a single Egyptian God Card...",
+      "We need the power from two Millennium Items.",
+      "In order to resurrect all three Egyptian God Cards...",
+      "You must gather the other Millennium Items, and we do",
+      "not have much time!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34AFC, map_00_state_04_08E34AFC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34AFC, map_00_state_04_08E34AFC, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Sol Chevalsky resurrected\n"
-    "the Dark Being...\n\n"
-    "We must have the Egyptian\n"
-    "God Cards in order to stop\n\n"
-    "the terror.\n\n"
-    "Therefore, we must restore\n"
-    "the Egyptian God Cards from\n\n"
-    "stone.\n\n"
-    "But in order to do so, we\n"
-    "need the Millennium Items.\n\n"
-    "The third Millennium Item is\n"
-    "in the Catacombs of Italy.\n\n"
-    "Please find it in the\n"
-    "communal cemetery.\n\n"
-)
+      "Sol Chevalsky resurrected the Dark Being...",
+      "We must have the Egyptian God Cards in order to stop",
+      "the terror.",
+      "Therefore, we must restore the Egyptian God Cards from",
+      "stone.",
+      "But in order to do so, we need the Millennium Items.",
+      "The third Millennium Item is in the Catacombs of Italy.",
+      "Please find it in the communal cemetery."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -235,13 +189,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34AA8, map_00_state_04_08E34AA8, 0x08E34AB4, 0x08E
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34B08, map_00_state_04_08E34B08, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E34B08, map_00_state_04_08E34B08, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Please hurry to the\n"
-    "Catacombs of Italy.\n\n"
-    "Reshef the Dark Being will\n"
-    "soon engulf the world in\n\n"
-    "darkness.\n\n"
-)
+      "Please hurry to the Catacombs of Italy.",
+      "Reshef the Dark Being will soon engulf the world in",
+      "darkness."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

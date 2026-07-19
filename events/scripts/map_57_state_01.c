@@ -4,7 +4,7 @@
 
 /* map_57_state_01: map 57 state 1 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08EFB3F0, map_57_state_01_08EFB3F0, 0x08EFB3FC, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EFB3F0, map_57_state_01_08EFB3F0, 0x08EFB3FC, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_KAIBAMAN)
   LOAD_SPRITE(2, SPRITE_MOKUBA)
   LOAD_SPRITE(3, SPRITE_SERENITY)
@@ -56,13 +56,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB3FC, map_57_state_01_08EFB3FC, 0x08EFB408, 0x08E
   WALK_OBJECT_Y(2, 42)
   WALK_OBJECT_X(2, 68)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Hey! Good to see such a\n"
-      "great crowd!\n\n"
-      "Now on with the show here at\n"
-      "Kaiba Land!\n\n"
+  TALK(PORTRAIT_MOKUBA,
+      "Hey! Good to see such a great crowd!",
+      "Now on with the show here at Kaiba Land!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -70,10 +66,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB3FC, map_57_state_01_08EFB3FC, 0x08EFB408, 0x08E
   WALK_OBJECT_Y(2, 68)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(32)
-  TEXT
-  (
-      "Kiyaaaaah! Help!\n\n"
-  )
+  TEXT("Kiyaaaaah! Help!")
   HIDE_PORTRAIT()
   DELAY(16)
   SHOW_OBJECT(3, 109, 64, 0, 0, 0)
@@ -86,12 +79,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB3FC, map_57_state_01_08EFB3FC, 0x08EFB408, 0x08E
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Help me! Please, someone\n"
-      "help!\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, "Help me! Please, someone help!")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -103,11 +91,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB3FC, map_57_state_01_08EFB3FC, 0x08EFB408, 0x08E
   MOVE_OBJECT(4, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_292)
-  PORTRAIT(PORTRAIT_DEEPSEA_WARRIOR, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Behold Deepsea Warrior!\n\n"
-  )
+  TALK(PORTRAIT_DEEPSEA_WARRIOR, "Behold Deepsea Warrior!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_DOWN, 0, 0)
@@ -117,11 +101,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB3FC, map_57_state_01_08EFB3FC, 0x08EFB408, 0x08E
   MOVE_OBJECT(5, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_292)
-  PORTRAIT(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I'm Nightmare Penguin!\n\n"
-  )
+  TALK(PORTRAIT_NIGHTMARE_PENGUIN, "I'm Nightmare Penguin!")
   HIDE_PORTRAIT()
   DELAY(16)
   SHOW_OBJECT(6, 109, 64, 0, 0, 0)
@@ -130,11 +110,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB3FC, map_57_state_01_08EFB3FC, 0x08EFB408, 0x08E
   MOVE_OBJECT(6, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_292)
-  PORTRAIT(PORTRAIT_JUDGE_MAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I am Judge Man!\n\n"
-  )
+  TALK(PORTRAIT_JUDGE_MAN, "I am Judge Man!")
   HIDE_PORTRAIT()
   DELAY(16)
   SHOW_OBJECT(7, 109, 64, 0, 0, 0)
@@ -143,12 +119,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB3FC, map_57_state_01_08EFB3FC, 0x08EFB408, 0x08E
   MOVE_OBJECT(7, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_292)
-  PORTRAIT(PORTRAIT_ROBOTIC_KNIGHT, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Robotic Knight, at your\n"
-      "service!\n\n"
-  )
+  TALK(PORTRAIT_ROBOTIC_KNIGHT, "Robotic Knight, at your service!")
   HIDE_PORTRAIT()
   DELAY(16)
   SHOW_OBJECT(8, 109, 64, 0, 0, 0)
@@ -157,11 +128,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB3FC, map_57_state_01_08EFB3FC, 0x08EFB408, 0x08E
   MOVE_OBJECT(8, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_292)
-  PORTRAIT(PORTRAIT_JINZO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "And I am Jinzo!\n\n"
-  )
+  TALK(PORTRAIT_JINZO, "And I am Jinzo!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_UP, 0, 0)
@@ -170,144 +137,76 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB3FC, map_57_state_01_08EFB3FC, 0x08EFB408, 0x08E
   MOVE_OBJECT(7, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(8, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JINZO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "You will not elude us again,\n"
-      "you brat!\n\n"
-  )
+  TALK(PORTRAIT_JINZO, "You will not elude us again, you brat!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_UP, 2, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Y-you're the evil criminal\n"
-      "syndicate...\n\n"
-      "The Big Bad Five!\n\n"
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED,
+      "Y-you're the evil criminal syndicate...",
+      "The Big Bad Five!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Oh my gosh, everyone!\n"
-      "They've captured the girl!\n\n"
-  )
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED, "Oh my gosh, everyone! They've captured the girl!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_DEEPSEA_WARRIOR, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "We are the strongest evil\n"
-      "duelists in the world!\n\n"
-  )
+  TALK(PORTRAIT_DEEPSEA_WARRIOR, "We are the strongest evil duelists in the world!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(5, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "My calculations state that\n"
-      "no duelist has the power...\n\n"
-  )
+  TALK(PORTRAIT_NIGHTMARE_PENGUIN, "My calculations state that no duelist has the power...")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(6, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JUDGE_MAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "...To make us cower!\n\n"
-  )
+  TALK(PORTRAIT_JUDGE_MAN, "...To make us cower!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(7, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ROBOTIC_KNIGHT, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "If anyone dares challenge\n"
-      "our might...\n\n"
-  )
+  TALK(PORTRAIT_ROBOTIC_KNIGHT, "If anyone dares challenge our might...")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(8, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JINZO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "...We'll crush them without\n"
-      "a fight!\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "WAHAHAHAHAHA!\n\n"
-  )
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "The Big Bad Five have issued\n"
-      "a challenge!\n\n"
-      "Is there a duelist brave\n"
-      "enough to face them?\n\n"
+  TALK(PORTRAIT_JINZO, "...We'll crush them without a fight!")
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "WAHAHAHAHAHA!")
+  TALK(PORTRAIT_MOKUBA,
+      "The Big Bad Five have issued a challenge!",
+      "Is there a duelist brave enough to face them?"
   )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_9, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "I'm scared!\n\n"
-  )
+  TEXT("I'm scared!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_10, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "I can't beat the Big Bad\n"
-      "Five!\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Serenity's in trouble!\n\n"
-  )
+  TEXT("I can't beat the Big Bad Five!")
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "Serenity's in trouble!")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(8)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER}, let's get 'em!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "{PLAYER}, let's get 'em!")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   DELAY(8)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
+  TEXT("{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EFB408, map_57_state_01_08EFB408, 0x08EFB420, 0x08F0404C)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yeah! You da man!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Yeah! You da man!")
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_X(14, 14)
@@ -317,29 +216,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB408, map_57_state_01_08EFB408, 0x08EFB420, 0x08F
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 2, 0)
   DELAY(8)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Big Bad Five! You're in\n"
-      "trouble now!\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Joey... He's really into\n"
-      "this show, isn't he?\n\n"
-  )
-  PORTRAIT(PORTRAIT_JINZO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "You want to duel, kid?\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER} will crush you ta\n"
-      "pieces!\n\n"
-      "Serenity, come over here!\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "Big Bad Five! You're in trouble now!")
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_POSITION_AUTO, "Joey... He's really into this show, isn't he?")
+  TALK(PORTRAIT_JINZO, "You want to duel, kid?")
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO,
+      "{PLAYER} will crush you ta pieces!",
+      "Serenity, come over here!"
   )
   HIDE_PORTRAIT()
   DELAY(8)
@@ -351,16 +233,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB408, map_57_state_01_08EFB408, 0x08EFB420, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Joey, you came to rescue me?\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Huh? Uh, yeah... Of course!\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Joey, you came to rescue me?")
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO, "Huh? Uh, yeah... Of course!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_273)
@@ -381,47 +255,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB408, map_57_state_01_08EFB408, 0x08EFB420, 0x08F
   WALK_OBJECT_Y(0, 56)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JINZO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Fine! Let's duel!\n\n"
-  )
+  TALK(PORTRAIT_JINZO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Fine! Let's duel!")
   DUEL(DUELIST_JINZO_043)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_BIG_FIVE)
-  PORTRAIT(PORTRAIT_DEEPSEA_WARRIOR, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Losing to kids is not good\n"
-      "corporate strategy!\n\n"
+  TALK(PORTRAIT_DEEPSEA_WARRIOR, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Losing to kids is not good corporate strategy!")
+  TALK(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "According to my figures, this never would have",
+      "happened it we fought with our special strategy."
   )
-  PORTRAIT(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "According to my figures,\n"
-      "this never would have\n\n"
-      "happened it we fought with\n"
-      "our special strategy.\n\n"
-  )
-  PORTRAIT(PORTRAIT_JUDGE_MAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Indubitably so!\n\n"
-  )
-  PORTRAIT(PORTRAIT_ROBOTIC_KNIGHT, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Observe the true extent of\n"
-      "our arsenal!\n\n"
-  )
-  PORTRAIT(PORTRAIT_JINZO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You left us with no choice!\n\n"
-      "Integral fusion!\n\n"
+  TALK(PORTRAIT_JUDGE_MAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Indubitably so!")
+  TALK(PORTRAIT_ROBOTIC_KNIGHT, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Observe the true extent of our arsenal!")
+  TALK(PORTRAIT_JINZO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "You left us with no choice!",
+      "Integral fusion!"
   )
   PLAY_MUSIC(MUSIC_294)
   LOAD_SPRITE(4, SPRITE_FGD_BODY)
@@ -439,19 +289,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, 0x08F04040, 0x08F
   MOVE_OBJECT(11, DIRECTION_LEFT, 0, 0)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(8)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Oh my double gosh, everyone!\n\n"
-      "The Big Bad Five have\n"
-      "summoned a monster!\n\n"
-      "It's F.G.D., the strongest\n"
-      "monster in history!\n\n"
-      "They can't win on their own!\n"
-      "We need Kaibaman's help!\n\n"
-      "Everyone, we have to call\n"
-      "him!\n\n"
-      "Kaibaman!\n\n"
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED, PORTRAIT_POSITION_AUTO,
+      "Oh my double gosh, everyone!",
+      "The Big Bad Five have summoned a monster!",
+      "It's F.G.D., the strongest monster in history!",
+      "They can't win on their own! We need Kaibaman's help!",
+      "Everyone, we have to call him!",
+      "Kaibaman!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -461,46 +305,28 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, 0x08F04040, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_9, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Help, Kaibaman!\n\n"
-  )
+  TEXT("Help, Kaibaman!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_10, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Kaibaman!\n\n"
-  )
+  TEXT("Kaibaman!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_ANGRY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Kaibaman, help!\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_ANGRY, PORTRAIT_RIGHT, "Kaibaman, help!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_14, OBJECT_EFFECT_JUMPING)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Hurry, Kaibaman!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_RIGHT, "Hurry, Kaibaman!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "It looks like he heard you!\n\n"
-  )
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "It looks like he heard you!")
   HIDE_PORTRAIT()
   DELAY(16)
   SHOW_OBJECT(1, 109, 64, 0, 0, 0)
@@ -513,63 +339,40 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Throughout history, when\n"
-      "evil duelists rear their\n\n"
-      "ugly heads, I awaken from\n"
-      "my chaotic slumber!\n\n"
+  TALK(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Throughout history, when evil duelists rear their",
+      "ugly heads, I awaken from my chaotic slumber!"
   )
   PLAY_MUSIC(MUSIC_295)
-  TEXT
-  (
-      "From the deck of my golden\n"
-      "soul, I draw thunderous\n\n"
-      "power!\n\n"
+  TEXT(
+      "From the deck of my golden soul, I draw thunderous",
+      "power!"
   )
   PLAY_MUSIC(MUSIC_344)
-  TEXT
-  (
-      "I am the emperor of\n"
-      "duelists! Kaibaman is here!\n\n"
-  )
+  TEXT("I am the emperor of duelists! Kaibaman is here!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_9, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Yeeeeeah! Kaibaman!\n\n"
-  )
+  TEXT("Yeeeeeah! Kaibaman!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_10, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Kaibaman, take them out!\n\n"
-  )
+  TEXT("Kaibaman, take them out!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Kaibaman, I love you!\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Kaibaman, I love you!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
   REACTION(REACTION_SWEATDROP, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Everyone, thank you!\n\n"
-      "Your positive energy\n"
-      "strengthens my spirit!\n\n"
+  TALK(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Everyone, thank you!",
+      "Your positive energy strengthens my spirit!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -579,18 +382,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, 0x08F04040, 0x08F
   DELAY(16)
   PORTRAIT(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   PLAY_MUSIC(MUSIC_295)
-  TEXT
-  (
-      "Come hither, Black Luster\n"
-      "Soldier!\n\n"
-  )
+  TEXT("Come hither, Black Luster Soldier!")
   PLAY_MUSIC(MUSIC_295)
-  TEXT
-  (
-      "Also, Blue-Eyes Ultimate\n"
-      "Dragon!\n\n"
-      "Finally, I fuse the two\n"
-      "monsters!\n\n"
+  TEXT(
+      "Also, Blue-Eyes Ultimate Dragon!",
+      "Finally, I fuse the two monsters!"
   )
   PLAY_MUSIC(MUSIC_345)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_BLUE_EYES_ULTIMATE_AND_BLS_FUSION)
@@ -600,36 +396,20 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, 0x08F04040, 0x08F
   DELAY(8)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Oh my triple gosh! Can it\n"
-      "be?! Can it actually be?!\n\n"
-      "Yes it is! It's Master of\n"
-      "Dragon Soldier!\n\n"
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Oh my triple gosh! Can it be?! Can it actually be?!",
+      "Yes it is! It's Master of Dragon Soldier!"
   )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_374)
   OBJECT_EFFECT(OBJECT_4 | OBJECT_5 | OBJECT_6 | OBJECT_7 | OBJECT_8, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Wh-what?!\n\n"
-  )
-  PORTRAIT(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Master of Dragon Soldier,\n"
-      "attack!\n\n"
-  )
+  TEXT("Wh-what?!")
+  TALK(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Master of Dragon Soldier, attack!")
   PLAY_MUSIC(MUSIC_333)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_DRAGON_MASTER_KNIGHT_FULL_ART)
   DELAY(16)
-  PORTRAIT(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Dragon Sabre Blast!\n\n"
-  )
+  TALK(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Dragon Sabre Blast!")
   PLAY_MUSIC(MUSIC_342)
   SHOW_OVERWORLD_GRAPHIC(GRAPHIC_DRAGON_MASTER_KNIGHT_ATTACK)
   DELAY(16)
@@ -638,21 +418,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, 0x08F04040, 0x08F
   DELAY(8)
   PLAY_MUSIC(MUSIC_374)
   OBJECT_EFFECT(OBJECT_4 | OBJECT_5 | OBJECT_6 | OBJECT_7 | OBJECT_8, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "How dare you, Kaibaman!\n\n"
-      "We'll defeat you next time!\n\n"
+  TEXT(
+      "How dare you, Kaibaman!",
+      "We'll defeat you next time!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Justice always prevails over\n"
-      "darkness! Farewell,\n\n"
-      "everyone!\n\n"
+  TALK(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "Justice always prevails over darkness! Farewell,",
+      "everyone!"
   )
   HIDE_PORTRAIT()
   DELAY(32)
@@ -663,38 +439,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, 0x08F04040, 0x08F
   DELAY(8)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Thank you, Kaibaman!\n\n"
-  )
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Thank you, Kaibaman!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Okay, everyone! Join us\n"
-      "again for the next show!\n\n"
-  )
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Okay, everyone! Join us again for the next show!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_9, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Kaibaman's so cool!\n\n"
-  )
+  TEXT("Kaibaman's so cool!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_10, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Dragon Sabre Blast!\n\n"
-      "I'm going to summon that\n"
-      "monster, too!\n\n"
+  TEXT(
+      "Dragon Sabre Blast!",
+      "I'm going to summon that monster, too!"
   )
   FADE_MUSIC(8)
   FADE_SCREEN(8)
@@ -703,36 +465,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB420, map_57_state_01_08EFB420, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EFB414, map_57_state_01_08EFB414, 0x08EFB408, 0x08EFB414)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "We can't let those thugs get\n"
-      "away with this!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "We can't let those thugs get away with this!")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(14, DIRECTION_DOWN, 0, 0)
   DELAY(8)
-  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO,
-    "Yugi, tell him!\n\n"
-)
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO, "Yugi, tell him!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
   DELAY(16)
   TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_POSITION_AUTO,
-    "It'll get the crowd excited,\n"
-    "so I think you should play\n\n"
-    "along.\n\n"
-)
+      "It'll get the crowd excited, so I think you should play",
+      "along."
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(8)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
+  TEXT("{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

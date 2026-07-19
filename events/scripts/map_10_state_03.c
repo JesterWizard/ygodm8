@@ -4,16 +4,12 @@
 
 /* map_10_state_03: map 10 state 3 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E63278, map_10_state_03_08E63278, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E63278, map_10_state_03_08E63278, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_LOST_DUELIST)
-  TEXT
-  (
-      "The Neo Ghouls are gone,\n"
-      "but...\n\n"
-      "Something doesn't feel\n"
-      "right.\n\n"
-      "I hope nothing terrible\n"
-      "happens.\n\n"
+  TEXT(
+      "The Neo Ghouls are gone, but...",
+      "Something doesn't feel right.",
+      "I hope nothing terrible happens."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -24,31 +20,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E63284, map_10_state_03_08E63284, 0x08E63290, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E63290, map_10_state_03_08E63290, 0x08E6329C, 0x08F0404C)
-  TEXT
-  (
-      "I'll show you that I've\n"
-      "improved.\n\n"
-  )
+  TEXT("I'll show you that I've improved.")
   DUEL(DUELIST_ID_094)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E6329C, map_10_state_03_08E6329C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E6329C, map_10_state_03_08E6329C, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_BACK_ALLEY)
-  TEXT
-  (
-      "Shucks. I guess I'm not good\n"
-      "enough yet.\n\n"
-  )
+  TEXT("Shucks. I guess I'm not good enough yet.")
   SET_FLAG(EVENT_FLAG_DEFEATED_LOST_DUELIST2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E632A8, map_10_state_03_08E632A8, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "After I make my deck\n"
-      "stronger, okay?\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E632A8, map_10_state_03_08E632A8, EVENT_NOP, EVENT_NOP)
+  TEXT("After I make my deck stronger, okay?")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

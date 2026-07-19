@@ -6,7 +6,7 @@
 
 
 END()
-EVENT_SCRIPT_REPLACEMENT(0x08EF2F84, map_56_state_01_08EF2F84, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF2F84, map_56_state_01_08EF2F84, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_NOAH)
   LOAD_SPRITE(2, SPRITE_MARIK)
   LOAD_SPRITE(3, SPRITE_BAKURA)
@@ -17,275 +17,235 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF2F84, map_56_state_01_08EF2F84, 0x08F04040, 0x08F
   LOAD_SPRITE(8, SPRITE_PARADOX)
   LOAD_SPRITE(9, SPRITE_SHADI)
   TALK(PORTRAIT_NOAH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "My name is Noah.\n\n"
-    "Shall I make you a\n"
-    "permanent citizen of my\n\n"
-    "virtual world?\n\n"
-)
+      "My name is Noah.",
+      "Shall I make you a permanent citizen of my",
+      "virtual world?"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF2F90, map_56_state_01_08EF2F90, 0x08EF2F9C, 0x08F0404C)
   TALK(PORTRAIT_NOAH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Heh. You want me to duel\n"
-    "you?\n\n"
-    "I admire your courage, but\n"
-    "your stupidity will be\n\n"
-    "your downfall!\n\n"
-    "Savor the bitter taste of\n"
-    "defeat!\n\n"
-)
+      "Heh. You want me to duel you?",
+      "I admire your courage, but your stupidity will be",
+      "your downfall!",
+      "Savor the bitter taste of defeat!"
+  )
   DUEL(DUELIST_NOAH_134)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF2F9C, map_56_state_01_08EF2F9C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF2F9C, map_56_state_01_08EF2F9C, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_HALL_OF_ETERNITY)
   TALK(PORTRAIT_NOAH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "This can't be!\n\n"
-    "My skills are superior to\n"
-    "yours in every way!\n\n"
-)
+      "This can't be!",
+      "My skills are superior to yours in every way!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF2FA8, map_56_state_01_08EF2FA8, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF2FA8, map_56_state_01_08EF2FA8, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_DARK_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Hahahahahahaha!\n\n"
-    "I'll destroy you and plunge\n"
-    "the world into darkness!\n\n"
-)
+      "Hahahahahahaha!",
+      "I'll destroy you and plunge the world into darkness!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF2FB4, map_56_state_01_08EF2FB4, 0x08EF2FC0, 0x08F0404C)
   TALK(PORTRAIT_DARK_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I'll annihilate you quick.\n\n"
-    "In fact, I'll beat you in\n"
-    "one turn!\n\n"
-    "Fuhahahahaha!\n\n"
-)
+      "I'll annihilate you quick.",
+      "In fact, I'll beat you in one turn!",
+      "Fuhahahahaha!"
+  )
   DUEL(DUELIST_DARK_MARIK_135)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF2FC0, map_56_state_01_08EF2FC0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF2FC0, map_56_state_01_08EF2FC0, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_HALL_OF_ETERNITY)
   TALK(PORTRAIT_DARK_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Wh-what? How could I lose...\n\n"
-    "Just wait. I will send you\n"
-    "to the Shadow Realm in\n\n"
-    "time! Ha ha ha...\n\n"
-)
+      "Wh-what? How could I lose...",
+      "Just wait. I will send you to the Shadow Realm in",
+      "time! Ha ha ha..."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF2FCC, map_56_state_01_08EF2FCC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF2FCC, map_56_state_01_08EF2FCC, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_DARK_BAKURA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Hahahahaha!\n\n"
-    "I don't think it's wise for\n"
-    "you to get to know me!\n\n"
-)
+      "Hahahahaha!",
+      "I don't think it's wise for you to get to know me!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF2FD8, map_56_state_01_08EF2FD8, 0x08EF2FE4, 0x08F0404C)
-  TALK(PORTRAIT_DARK_BAKURA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "My occult deck will banish\n"
-    "you into the shadows!\n\n"
-)
+  TALK(PORTRAIT_DARK_BAKURA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "My occult deck will banish you into the shadows!")
   DUEL(DUELIST_DARK_BAKURA_136)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF2FE4, map_56_state_01_08EF2FE4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF2FE4, map_56_state_01_08EF2FE4, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_HALL_OF_ETERNITY)
   TALK(PORTRAIT_DARK_BAKURA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Grr... I won't forget\n"
-    "this... I will get my\n\n"
-    "revenge!\n\n"
-)
+      "Grr... I won't forget this... I will get my",
+      "revenge!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF2FF0, map_56_state_01_08EF2FF0, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF2FF0, map_56_state_01_08EF2FF0, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}, what can be seen\n"
-    "and not seen at the same\n\n"
-    "time?\n\n"
-)
+      "{PLAYER}, what can be seen and not seen at the same",
+      "time?"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF2FFC, map_56_state_01_08EF2FFC, 0x08EF3008, 0x08F0404C)
-  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I accept your challenge!\n\n"
-)
+  TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "I accept your challenge!")
   DUEL(DUELIST_ATEM_137)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF3008, map_56_state_01_08EF3008, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF3008, map_56_state_01_08EF3008, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_HALL_OF_ETERNITY)
   TALK(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You've become much stronger,\n"
-    "{PLAYER}.\n\n"
-    "But you won't win so easily\n"
-    "next time.\n\n"
-)
+      "You've become much stronger, {PLAYER}.",
+      "But you won't win so easily next time."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF3014, map_56_state_01_08EF3014, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF3014, map_56_state_01_08EF3014, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_DARK_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}...\n\n"
-    "You're goin' down...\n\n"
-)
+      "{PLAYER}...",
+      "You're goin' down..."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF3020, map_56_state_01_08EF3020, 0x08EF302C, 0x08F0404C)
   TALK(PORTRAIT_DARK_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Even your family won't\n"
-    "recognize you after I\n\n"
-    "finish pummeling ya!\n\n"
-)
+      "Even your family won't recognize you after I",
+      "finish pummeling ya!"
+  )
   DUEL(DUELIST_DARK_JOEY_138)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF302C, map_56_state_01_08EF302C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF302C, map_56_state_01_08EF302C, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_HALL_OF_ETERNITY)
   TALK(PORTRAIT_DARK_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "My... Memories...\n\n"
-    "I remember I'm a...\n"
-    "True duelist...\n\n"
-    "Gwaaaaaaaaaaah!\n\n"
-)
+      "My... Memories...",
+      "I remember I'm a... True duelist...",
+      "Gwaaaaaaaaaaah!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF3038, map_56_state_01_08EF3038, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF3038, map_56_state_01_08EF3038, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You want to know who my\n"
-    "strongest rival is?\n\n"
-    "Heh. One thing's for\n"
-    "certain. It's not you.\n\n"
-)
+      "You want to know who my strongest rival is?",
+      "Heh. One thing's for certain. It's not you."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF3044, map_56_state_01_08EF3044, 0x08EF3050, 0x08F0404C)
   TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "A duel can start anyplace\n"
-    "and anytime two duelists\n\n"
-    "meet.\n\n"
-    "I accept your duel!\n\n"
-)
+      "A duel can start anyplace and anytime two duelists",
+      "meet.",
+      "I accept your duel!"
+  )
   DUEL(DUELIST_SETO_139)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF3050, map_56_state_01_08EF3050, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF3050, map_56_state_01_08EF3050, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_HALL_OF_ETERNITY)
   TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I... Lost?\n\n"
-    "Grr... You better not lose\n"
-    "to anyone else!\n\n"
-    "Not after you'd beaten me!\n\n"
-)
+      "I... Lost?",
+      "Grr... You better not lose to anyone else!",
+      "Not after you'd beaten me!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF305C, map_56_state_01_08EF305C, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF305C, map_56_state_01_08EF305C, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "The finest drink,\n"
-    "The tastiest Gorgonzola\n\n"
-    "cheese...\n\n"
-    "The funniest comic book in\n"
-    "the world...\n\n"
-    "What more can any man want?\n\n"
-)
+      "The finest drink, The tastiest Gorgonzola",
+      "cheese...",
+      "The funniest comic book in the world...",
+      "What more can any man want?"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF3068, map_56_state_01_08EF3068, 0x08EF3074, 0x08F0404C)
   TALK(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I've scanned your mind.\n\n"
-    "I can read your strategies\n"
-    "as if it were an open book!\n\n"
-    "I hate to say this, but you\n"
-    "have no chance to win!\n\n"
-)
+      "I've scanned your mind.",
+      "I can read your strategies as if it were an open book!",
+      "I hate to say this, but you have no chance to win!"
+  )
   DUEL(DUELIST_SOL_CHEVALSKY_140)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF3074, map_56_state_01_08EF3074, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF3074, map_56_state_01_08EF3074, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_HALL_OF_ETERNITY)
   TALK(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Noooooo!\n\n"
-    "I'm the creator of Duel\n"
-    "Monsters!\n\n"
-    "Losing is not in the cards!\n"
-    "Unbelievable!\n\n"
-)
+      "Noooooo!",
+      "I'm the creator of Duel Monsters!",
+      "Losing is not in the cards! Unbelievable!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF3080, map_56_state_01_08EF3080, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF3080, map_56_state_01_08EF3080, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I am Paradox.\n\n"
-    "I am the sage for all\n"
-    "duelists.\n\n"
-)
+      "I am Paradox.",
+      "I am the sage for all duelists."
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF308C, map_56_state_01_08EF308C, 0x08EF3098, 0x08F0404C)
   TALK(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You're challenging me?\n"
-    "Either you're brave...\n\n"
-    "Or you underestimate me...\n\n"
-)
+      "You're challenging me? Either you're brave...",
+      "Or you underestimate me..."
+  )
   DUEL(DUELIST_PARADOX_141)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF3098, map_56_state_01_08EF3098, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF3098, map_56_state_01_08EF3098, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_HALL_OF_ETERNITY)
-  TALK(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Perhaps my time has\n"
-    "passed...\n\n"
-)
+  TALK(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Perhaps my time has passed...")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF30A4, map_56_state_01_08EF30A4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF30A4, map_56_state_01_08EF30A4, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "My name is Shadi...\n\n"
-    "You have a room in your\n"
-    "soul...\n\n"
-    "Which I will disassemble!\n\n"
-)
+      "My name is Shadi...",
+      "You have a room in your soul...",
+      "Which I will disassemble!"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF30B0, map_56_state_01_08EF30B0, 0x08EF30BC, 0x08F0404C)
   TALK(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "This duel has been foretold\n"
-    "millenniums ago...\n\n"
-    "Can you overcome my test?\n\n"
-)
+      "This duel has been foretold millenniums ago...",
+      "Can you overcome my test?"
+  )
   DUEL(DUELIST_SHADI_142)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EF30BC, map_56_state_01_08EF30BC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EF30BC, map_56_state_01_08EF30BC, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_HALL_OF_ETERNITY)
-  TALK(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You have prevailed...\n"
-    "I am thoroughly defeated.\n\n"
-)
+  TALK(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "You have prevailed... I am thoroughly defeated.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

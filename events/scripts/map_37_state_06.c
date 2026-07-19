@@ -5,7 +5,7 @@
 
 /* map_37_state_06: map 37 state 6 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08ECD8BC, map_37_state_06_08ECD8BC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08ECD8BC, map_37_state_06_08ECD8BC, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_MAKO)
   LOAD_SPRITE(2, SPRITE_MONKEY_ROBOT)
   LOAD_SPRITE(3, SPRITE_MONKEY_ROBOT)
@@ -23,17 +23,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08ECD8BC, map_37_state_06_08ECD8BC, 0x08F04040, 0x08F
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   DELAY(8)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Hey! Wait! Wait up!\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, PORTRAIT_RIGHT, "Hey! Wait! Wait up!")
   PLAY_MUSIC(MUSIC_326)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Ukki! Ukikki!\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_RIGHT, "Ukki! Ukikki!")
   HIDE_PORTRAIT()
   DELAY(8)
   SHOW_OBJECT(6, 128, 96, 0, 0, 0)
@@ -60,46 +52,29 @@ EVENT_SCRIPT_REPLACEMENT(0x08ECD8BC, map_37_state_06_08ECD8BC, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_UP, 8, 0)
   DELAY(32)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Tsk, these annoying little\n"
-      "monkeys...\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, PORTRAIT_RIGHT, "Tsk, these annoying little monkeys...")
   HIDE_PORTRAIT()
   DELAY(32)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(32)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Oh well. I'll just catch\n"
-      "more fish.\n\n"
-      "The sea is plentiful with\n"
-      "her bounty.\n\n"
+  TALK(PORTRAIT_MAKO, EXPRESSION_MAKO_HAPPY, PORTRAIT_RIGHT,
+      "Oh well. I'll just catch more fish.",
+      "The sea is plentiful with her bounty."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "...The sea isn't screaming\n"
-      "anymore...\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "...The sea isn't screaming anymore...")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_273)
   REACTION(REACTION_LOVE_HEART, OBJECT_1)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Those guys... They did it.\n\n"
-      "But I can't let them become\n"
-      "better duelists than me!\n\n"
+  TALK(PORTRAIT_MAKO, EXPRESSION_MAKO_HAPPY, PORTRAIT_RIGHT,
+      "Those guys... They did it.",
+      "But I can't let them become better duelists than me!"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -109,11 +84,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08ECD8BC, map_37_state_06_08ECD8BC, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_94)
   WALK_OBJECT_Y(1, 64)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Gahahahaha!\n\n"
-      "What a haul! What a catch!\n\n"
+  TALK(PORTRAIT_MAKO, EXPRESSION_MAKO_HAPPY, PORTRAIT_RIGHT,
+      "Gahahahaha!",
+      "What a haul! What a catch!"
   )
   HIDE_PORTRAIT()
   DELAY(32)
@@ -166,18 +139,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08ECD8BC, map_37_state_06_08ECD8BC, 0x08F04040, 0x08F
   DELAY(8)
   SLIDE_OBJECT(1, 2, 8)
   DELAY(8)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You guys! You're asking for\n"
-      "it now!\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, PORTRAIT_RIGHT, "You guys! You're asking for it now!")
   PLAY_MUSIC(MUSIC_324)
-  PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 6, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Ukiiiii!\n\n"
-  )
+  TALK(PORTRAIT_ROBOT_MOkNEY, 6, PORTRAIT_RIGHT, "Ukiiiii!")
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)

@@ -4,25 +4,19 @@
 
 /* map_21_state_06: map 21 state 6 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E863E4, map_21_state_06_08E863E4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E863E4, map_21_state_06_08E863E4, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_EGYPT_EXHIBITION_GUARD)
-  TEXT
-  (
-      "It was chaotic before, but\n"
-      "things have quieted down.\n\n"
-      "The Egypt Exhibition is open\n"
-      "for admission.\n\n"
+  TEXT(
+      "It was chaotic before, but things have quieted down.",
+      "The Egypt Exhibition is open for admission."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E863F0, map_21_state_06_08E863F0, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'm sorry, but I'm not a\n"
-      "duelist.\n\n"
-      "May I suggest you find\n"
-      "someone else to duel?\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E863F0, map_21_state_06_08E863F0, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "I'm sorry, but I'm not a duelist.",
+      "May I suggest you find someone else to duel?"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

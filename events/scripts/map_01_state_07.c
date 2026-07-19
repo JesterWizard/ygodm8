@@ -4,7 +4,7 @@
 
 /* map_01_state_07: map 1 state 7 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E42910, map_01_state_07_08E42910, 0x08E4291C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E42910, map_01_state_07_08E42910, 0x08E4291C, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_MAI)
   LOAD_SPRITE(2, SPRITE_ESPA)
   LOAD_SPRITE(3, SPRITE_ROBA_BROTHER_1)
@@ -39,54 +39,32 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42910, map_01_state_07_08E42910, 0x08E4291C, 0x08F
   WALK_OBJECT_Y(7, 64)
   WALK_OBJECT_Y(8, 64)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "What's taking them so long?\n\n"
-  )
+  TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "What's taking them so long?")
   HIDE_PORTRAIT()
   DELAY(16)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Mai! Everybody!\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Mai! Everybody!")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 16)
   WALK_OBJECT_Y(1, 48)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Huh?\n\n"
-      "What are you doing here? Are\n"
-      "you better duelists now?\n\n"
+  TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Huh?",
+      "What are you doing here? Are you better duelists now?"
   )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You bet, Mai!\n"
-      "Like ultra-strong!\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "You bet, Mai! Like ultra-strong!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(8, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Ultra? Tristan...\n\n"
-  )
+  TALK(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, PORTRAIT_RIGHT, "Ultra? Tristan...")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(8, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Pipipi...\n\n"
-      "And who might you be?\n\n"
+  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Pipipi...",
+      "And who might you be?"
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -94,14 +72,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42910, map_01_state_07_08E42910, 0x08E4291C, 0x08F
   WALK_OBJECT_X(1, 28)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I saw the others over there.\n\n"
-      "We've all known each other\n"
-      "for a long time... which\n\n"
-      "has both its good and bad\n"
-      "points.\n\n"
+  TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "I saw the others over there.",
+      "We've all known each other for a long time... which",
+      "has both its good and bad points."
   )
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1 | OBJECT_2 | OBJECT_3 | OBJECT_4 | OBJECT_5 | OBJECT_6 | OBJECT_7 | OBJECT_8 | OBJECT_9)
@@ -111,61 +85,30 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42910, map_01_state_07_08E42910, 0x08E4291C, 0x08F
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   MOVE_OBJECT(6, DIRECTION_LEFT, 0, 0)
   MOVE_OBJECT(9, DIRECTION_LEFT, 0, 0)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "J-Joey...\n\n"
-  )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "J-Joey!\n\n"
-  )
+  TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "J-Joey...")
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_RIGHT, "J-Joey!")
   HIDE_PORTRAIT()
   PLAY_MUSIC(MUSIC_394)
   SLIDE_OBJECT(9, 1, 24)
   SLIDE_OBJECT(14, 1, 8)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Hey, hold on... Everyone's\n"
-      "watching us.\n\n"
-  )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I'm so glad you're safe, big\n"
-      "brother.\n\n"
-  )
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "{BYTE_8169}There's nothing I can do\n"
-      "about this.{BYTE_816A}\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Everyone... You waited for\n"
-      "us?\n\n"
-      "Thank you.\n\n"
-      "We were able to defeat\n"
-      "Reshef because we had your\n\n"
-      "help.\n\n"
-      "But the biggest credit has\n"
-      "to be given to...\n\n"
-      "You, {PLAYER}!\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT, "Hey, hold on... Everyone's watching us.")
+  TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_RIGHT, "I'm so glad you're safe, big brother.")
+  TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "{BYTE_8169}There's nothing I can do about this.{BYTE_816A}")
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_RIGHT,
+      "Everyone... You waited for us?",
+      "Thank you.",
+      "We were able to defeat Reshef because we had your",
+      "help.",
+      "But the biggest credit has to be given to...",
+      "You, {PLAYER}!"
   )
   MOVE_OBJECT(13, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Yugi's right!\n\n"
-      "{PLAYER} has gotten much\n"
-      "stronger.\n\n"
-      "Almost as strong as me!\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Yugi's right!",
+      "{PLAYER} has gotten much stronger.",
+      "Almost as strong as me!"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -174,11 +117,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4291C, map_01_state_07_08E4291C, 0x08E42928, 0x08E
   WALK_OBJECT_X(10, 84)
   WALK_OBJECT_X(11, 84)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Hah! Big talk from a dog!\n\n"
-  )
+  TALK(PORTRAIT_SETO, "Hah! Big talk from a dog!")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
@@ -192,12 +131,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4291C, map_01_state_07_08E4291C, 0x08E42928, 0x08E
   DELAY(16)
   WALK_OBJECT_X(9, 36)
   WALK_OBJECT_X(14, 12)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Why, you... Kaiba, what's\n"
-      "your problem?!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT, "Why, you... Kaiba, what's your problem?!")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(10, 28)
@@ -215,70 +149,36 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4291C, map_01_state_07_08E4291C, 0x08E42928, 0x08E
   MOVE_OBJECT(9, DIRECTION_LEFT, 0, 0)
   MOVE_OBJECT(13, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "{PLAYER}...\n\n"
-      "Thank you for saving Mokuba.\n\n"
-      "But you all only survived\n"
-      "because of me.\n\n"
-      "I'm the one with the\n"
-      "KaibaCorp helicopter.\n\n"
-      "That makes us even.\n\n"
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_RIGHT,
+      "{PLAYER}...",
+      "Thank you for saving Mokuba.",
+      "But you all only survived because of me.",
+      "I'm the one with the KaibaCorp helicopter.",
+      "That makes us even."
   )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Kaiba...\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Kaiba...")
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Yugi, I'm done talking.")
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "What?")
+  TALK(PORTRAIT_SETO, 1, PORTRAIT_RIGHT,
+      "These lame duelists...",
+      "I don't want to be associated with them."
   )
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Yugi, I'm done talking.\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "What?\n\n"
-  )
-  PORTRAIT(PORTRAIT_SETO, 1, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "These lame duelists...\n\n"
-      "I don't want to be\n"
-      "associated with them.\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You arrogant...\n\n"
-  )
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Real duelists don't need to\n"
-      "speak.\n\n"
-      "They let their cards do the\n"
-      "talking.\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT, "You arrogant...")
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Real duelists don't need to speak.",
+      "They let their cards do the talking."
   )
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "{PLAYER}! The next time we\n"
-      "meet, things will be\n\n"
-      "different!\n\n"
-      "You're a speedbump on my\n"
-      "road to victory, and I will\n\n"
-      "defeat you!\n\n"
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_RIGHT,
+      "{PLAYER}! The next time we meet, things will be",
+      "different!",
+      "You're a speedbump on my road to victory, and I will",
+      "defeat you!"
   )
-  PORTRAIT(PORTRAIT_SETO, 1, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Until then, savor the taste\n"
-      "of victory!\n\n"
-      "Come on, Mokuba.\n\n"
+  TALK(PORTRAIT_SETO, 1, PORTRAIT_RIGHT,
+      "Until then, savor the taste of victory!",
+      "Come on, Mokuba."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -291,38 +191,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4291C, map_01_state_07_08E4291C, 0x08E42928, 0x08E
   WALK_OBJECT_X(11, 20)
   WALK_OBJECT_Y(11, 48)
   MOVE_OBJECT(11, DIRECTION_LEFT, 0, 0)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Heheh, saved!\n\n"
-  )
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Heheh, saved!")
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(11, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Wait for me, big brother!\n\n"
-  )
+  TALK(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Wait for me, big brother!")
   HIDE_PORTRAIT()
   DELAY(32)
   WALK_OBJECT_Y(11, 96)
   MOVE_OBJECT(14, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "That guy... He invented the\n"
-      "word {BYTE_8168}annoying.{BYTE_8168}\n\n"
-  )
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Kaiba has a point, you know.\n\n"
-      "We all helped create a new\n"
-      "rival.\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "That guy... He invented the word {BYTE_8168}annoying.{BYTE_8168}")
+  TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Kaiba has a point, you know.",
+      "We all helped create a new rival."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -333,22 +217,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4291C, map_01_state_07_08E4291C, 0x08E42928, 0x08E
   MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Mai... That's not very\n"
-      "nice...\n\n"
-  )
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I'm joking.\n\n"
-      "We're friends, but we're\n"
-      "also duelists. All of us.\n\n"
-      "After I leave, I'll work on\n"
-      "my deck.\n\n"
-      "All right, Yugi, Joey,\n"
-      "{PLAYER}. See you.\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Mai... That's not very nice...")
+  TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "I'm joking.",
+      "We're friends, but we're also duelists. All of us.",
+      "After I leave, I'll work on my deck.",
+      "All right, Yugi, Joey, {PLAYER}. See you."
   )
   WALK_OBJECT_Y(1, 32)
   WALK_OBJECT_X(1, 0)
@@ -363,39 +237,26 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4291C, map_01_state_07_08E4291C, 0x08E42928, 0x08E
   MOVE_OBJECT(7, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(8, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(9, DIRECTION_UP, 0, 0)
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You sure went through a lot.\n\n"
-      "I think it's time we left\n"
-      "too.\n\n"
+  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "You sure went through a lot.",
+      "I think it's time we left too."
   )
   WALK_OBJECT_X(2, 0)
   MOVE_OBJECT(2, DIRECTION_LEFT, 8, 0)
   WALK_OBJECT_Y(3, 32)
   WALK_OBJECT_X(3, 20)
   MOVE_OBJECT(3, DIRECTION_DOWN, 0, 0)
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Good bye!\n\n"
-  )
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Good bye!")
   WALK_OBJECT_X(3, 0)
   MOVE_OBJECT(3, DIRECTION_LEFT, 8, 0)
   WALK_OBJECT_X(4, 20)
   MOVE_OBJECT(4, DIRECTION_DOWN, 0, 0)
-  TEXT
-  (
-      "See you!\n\n"
-  )
+  TEXT("See you!")
   WALK_OBJECT_X(4, 0)
   MOVE_OBJECT(4, DIRECTION_LEFT, 8, 0)
   WALK_OBJECT_X(5, 20)
   MOVE_OBJECT(5, DIRECTION_DOWN, 0, 0)
-  TEXT
-  (
-      "Bye-bye!\n\n"
-  )
+  TEXT("Bye-bye!")
   WALK_OBJECT_X(5, 0)
   MOVE_OBJECT(5, DIRECTION_LEFT, 8, 0)
   DELAY(16)
@@ -412,56 +273,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4291C, map_01_state_07_08E4291C, 0x08E42928, 0x08E
   MOVE_OBJECT(13, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "It's over, {PLAYER}.\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "It's over, {PLAYER}.")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You were awesome, {PLAYER}!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "You were awesome, {PLAYER}!")
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Totally, {PLAYER}!\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Yeah, you really did great.\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Totally, {PLAYER}!")
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Yeah, you really did great.")
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I'm impressed, {PLAYER}.\n\n"
-  )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You had us all worried...\n\n"
-  )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I'm so glad you're safe.\n\n"
-  )
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "I'm impressed, {PLAYER}.")
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_RIGHT, "You had us all worried...")
+  TALK(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "I'm so glad you're safe.")
   WALK_OBJECT_X(12, 37)
   WALK_OBJECT_Y(12, 32)
   WALK_OBJECT_X(12, 20)
   MOVE_OBJECT(12, DIRECTION_DOWN, 0, 0)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Thank you for everything.\n\n"
-  )
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_HAPPY, PORTRAIT_RIGHT, "Thank you for everything.")
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(6, DIRECTION_UP, 0, 0)
@@ -470,45 +299,30 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4291C, map_01_state_07_08E4291C, 0x08E42928, 0x08E
   MOVE_OBJECT(9, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Reshef the Dark Being will\n"
-      "most likely never rise\n\n"
-      "again.\n\n"
-      "We owe it all to you,\n"
-      "{PLAYER}.\n\n"
-      "To prevent this tragedy from\n"
-      "reoccurring...\n\n"
-      "I would like to seal the\n"
-      "Egyptian God Cards away.\n\n"
-      "May I have your Egyptian God\n"
-      "Cards?\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Reshef the Dark Being will most likely never rise",
+      "again.",
+      "We owe it all to you, {PLAYER}.",
+      "To prevent this tragedy from reoccurring...",
+      "I would like to seal the Egyptian God Cards away.",
+      "May I have your Egyptian God Cards?"
   )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E42928, map_01_state_07_08E42928, 0x08E42940, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E42928, map_01_state_07_08E42928, 0x08E42940, EVENT_NOP)
   WALK_OBJECT_X(0, 20)
   WALK_OBJECT_Y(0, 40)
   DELAY(16)
   PLAY_MUSIC(MUSIC_285)
   WALK_OBJECT_Y(0, 48)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Thank you...\n\n"
-      "Reshef was vanquished before\n"
-      "it could engulf the world.\n\n"
-      "{PLAYER}, you stopped it.\n\n"
-      "Thank you, and farewell.\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_HAPPY, PORTRAIT_RIGHT,
+      "Thank you...",
+      "Reshef was vanquished before it could engulf the world.",
+      "{PLAYER}, you stopped it.",
+      "Thank you, and farewell."
   )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
@@ -518,16 +332,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42928, map_01_state_07_08E42928, 0x08E42940, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E42940, map_01_state_07_08E42940, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E42940, map_01_state_07_08E42940, EVENT_NOP, EVENT_NOP)
   DELAY(64)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Whew... That really was\n"
-      "something, wasn't it?\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT, "Whew... That really was something, wasn't it?")
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -537,53 +346,29 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42940, map_01_state_07_08E42940, 0x08F04040, 0x08F
   MOVE_OBJECT(9, DIRECTION_LEFT, 0, 0)
   MOVE_OBJECT(13, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You're right.\n\n"
-      "Even the spirit was nervous.\n\n"
-      "{PLAYER}, you were great.\n\n"
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_RIGHT,
+      "You're right.",
+      "Even the spirit was nervous.",
+      "{PLAYER}, you were great."
   )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "What about me? I wasn't too\n"
-      "shabby myself!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "What about me? I wasn't too shabby myself!")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
   REACTION(REACTION_SWEATDROP, OBJECT_0 | OBJECT_6 | OBJECT_7 | OBJECT_8 | OBJECT_9 | OBJECT_13)
   DELAY(16)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Yeah, I'm sure you did\n"
-      "alright.\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Yeah, I'm sure you did alright.")
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Tristan! Yeah, you got that\n"
-      "right!\n\n"
-      "I knew you'd understand,\n"
-      "partna!\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Tristan! Yeah, you got that right!",
+      "I knew you'd understand, partna!"
   )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You bet I do!\n\n"
-      "You did your best to help\n"
-      "Yugi and {PLAYER}...\n\n"
-      "By staying out of their way!\n\n"
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "You bet I do!",
+      "You did your best to help Yugi and {PLAYER}...",
+      "By staying out of their way!"
   )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Right, I tried not to cause\n"
-      "any trouble and...\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Right, I tried not to cause any trouble and...")
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -591,54 +376,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42940, map_01_state_07_08E42940, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_275)
   REACTION(REACTION_ANGRY, OBJECT_14)
   DELAY(8)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Wait! Why would I have to\n"
-      "stay out of their way?!\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Hahaha, sorry, sorry.\n\n"
-      "Chill out, dude.\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT, "Wait! Why would I have to stay out of their way?!")
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_RIGHT,
+      "Hahaha, sorry, sorry.",
+      "Chill out, dude."
   )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Looks like everything's back\n"
-      "to normal. Back to the\n\n"
-      "usual Town of Domino.\n\n"
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+      "Looks like everything's back to normal. Back to the",
+      "usual Town of Domino."
   )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Yeah...\n\n"
-  )
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Welcome back.\n\n"
-  )
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I'm amazed you came back.\n\n"
-  )
-  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Welcome home.\n\n"
-  )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Welcome home, everyone!\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_RIGHT, "Yeah...")
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Welcome back.")
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "I'm amazed you came back.")
+  TALK(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Welcome home.")
+  TALK(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT, "Welcome home, everyone!")
   HIDE_PORTRAIT()
   DELAY(16)
   FADE_MUSIC(8)
@@ -648,21 +403,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42940, map_01_state_07_08E42940, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42934, map_01_state_07_08E42934, 0x08E42928, 0x08E42934)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Do you want to become just\n"
-      "like Pegasus?\n\n"
-      "The Egyptian God Cards must\n"
-      "be hidden from the world.\n\n"
-      "Please, may I have the\n"
-      "Egyptian God Cards?\n\n"
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_RIGHT,
+      "Do you want to become just like Pegasus?",
+      "The Egyptian God Cards must be hidden from the world.",
+      "Please, may I have the Egyptian God Cards?"
   )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_NONE, "{CARD_1}Yes\nNo{CARD_2}")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -23,29 +23,20 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E6C, map_51_state_05_08EE3E6C, 0x08EE3E78, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E78, map_51_state_05_08EE3E78, 0x08EE3E90, 0x08EE401C)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You should learn about the\n"
-      "depths of a duelist's soul.\n\n"
-      "I'll show you the dark\n"
-      "depths of my spirit...\n\n"
-      "Darker than the deepest\n"
-      "trenches of the sea!\n\n"
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "You should learn about the depths of a duelist's soul.",
+      "I'll show you the dark depths of my spirit...",
+      "Darker than the deepest trenches of the sea!"
   )
   DUEL(DUELIST_MAKO_116)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EE3E90, map_51_state_05_08EE3E90, 0x08EE3FEC, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "So you think you've won?\n\n"
-      "If you think that's enough\n"
-      "to beat me...\n\n"
-      "Then, you'll be stuck here\n"
-      "forever!\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EE3E90, map_51_state_05_08EE3E90, 0x08EE3FEC, EVENT_NOP)
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "So you think you've won?",
+      "If you think that's enough to beat me...",
+      "Then, you'll be stuck here forever!"
   )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
@@ -54,37 +45,25 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E90, map_51_state_05_08EE3E90, 0x08EE3FEC, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E84, map_51_state_05_08EE3E84, 0x08EE3E90, 0x08EE401C)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You can come back as often\n"
-      "as you like.\n\n"
-      "It won't make a difference.\n\n"
-      "You can never light the\n"
-      "darkness in my heart!\n\n"
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "You can come back as often as you like.",
+      "It won't make a difference.",
+      "You can never light the darkness in my heart!"
   )
   DUEL(DUELIST_MAKO_116)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E9C, map_51_state_05_08EE3E9C, 0x08EE3EA8, 0x08EE401C)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Witness the darkest depths\n"
-      "of my dueling spirit!\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO, "Witness the darkest depths of my dueling spirit!")
   DUEL(DUELIST_MAKO_116)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EE3EA8, map_51_state_05_08EE3EA8, 0x08EE3EB4, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I... I lost...\n\n"
-      "A light pierced the dark\n"
-      "depths of the sea...\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08EE3EA8, map_51_state_05_08EE3EA8, 0x08EE3EB4, EVENT_NOP)
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+      "I... I lost...",
+      "A light pierced the dark depths of the sea..."
   )
   HIDE_PORTRAIT()
   DELAY(16)
@@ -97,22 +76,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3EA8, map_51_state_05_08EE3EA8, 0x08EE3EB4, 0x08F
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EE3EB4, map_51_state_05_08EE3EB4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EE3EB4, map_51_state_05_08EE3EB4, EVENT_NOP, EVENT_NOP)
   SET_FLAG(EVENT_FLAG_GOT_PAST_DARK_MAKO_ROOM)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EE3E48, map_51_state_05_08EE3E48, 0x08EE3E3C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EE3E48, map_51_state_05_08EE3E48, 0x08EE3E3C, EVENT_NOP)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EE3E54, map_51_state_05_08EE3E54, 0x08EE3E3C, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EE3E54, map_51_state_05_08EE3E54, 0x08EE3E3C, EVENT_NOP)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08EE3FF8, map_51_state_05_08EE3FF8, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08EE3FF8, map_51_state_05_08EE3FF8, EVENT_NOP, EVENT_NOP)
   CLEAR_FLAG(232)
   WARP(LOCATION_PEGASUS_CASTLE_HALLWAY, 4, 0, 0)
   FALLTHROUGH()

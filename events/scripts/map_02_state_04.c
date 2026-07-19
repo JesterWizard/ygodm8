@@ -4,15 +4,11 @@
 
 /* map_02_state_04: map 2 state 4 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E47944, map_02_state_04_08E47944, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E47944, map_02_state_04_08E47944, EVENT_NOP, EVENT_NOP)
   LOAD_SPRITE(1, SPRITE_BLUE_JACKET)
   LOAD_SPRITE(2, SPRITE_LINT)
   LOAD_SPRITE(3, SPRITE_MAI)
-  TEXT
-  (
-      "The Neo Ghouls weren't that\n"
-      "scary, were they?\n\n"
-  )
+  TEXT("The Neo Ghouls weren't that scary, were they?")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -22,42 +18,28 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47950, map_02_state_04_08E47950, 0x08E4795C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4795C, map_02_state_04_08E4795C, 0x08E47968, 0x08F0404C)
-  TEXT
-  (
-      "You're challenging me to a\n"
-      "duel?\n\n"
-      "Okay, sure.\n"
-      "I'll take you on.\n\n"
+  TEXT(
+      "You're challenging me to a duel?",
+      "Okay, sure. I'll take you on."
   )
   DUEL(DUELIST_ID_087)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E47968, map_02_state_04_08E47968, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E47968, map_02_state_04_08E47968, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-  TEXT
-  (
-      "Uh... I guess I'm just not\n"
-      "concentrating today.\n\n"
-  )
+  TEXT("Uh... I guess I'm just not concentrating today.")
   SET_FLAG(EVENT_FLAG_DEFEATED_BLUE_JACKET2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E47974, map_02_state_04_08E47974, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "I'm not feeling good today.\n"
-      "No thanks.\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E47974, map_02_state_04_08E47974, EVENT_NOP, EVENT_NOP)
+  TEXT("I'm not feeling good today. No thanks.")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E47980, map_02_state_04_08E47980, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Zompire is the awesomest!\n\n"
-  )
+EVENT_SCRIPT_REPLACEMENT(0x08E47980, map_02_state_04_08E47980, EVENT_NOP, EVENT_NOP)
+  TEXT("Zompire is the awesomest!")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -67,55 +49,42 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4798C, map_02_state_04_08E4798C, 0x08E47998, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47998, map_02_state_04_08E47998, 0x08E479A4, 0x08F0404C)
-  TEXT
-  (
-      "A real hero doesn't run from\n"
-      "a fight.\n\n"
-      "That's why I'm going to stay\n"
-      "and duel because that's\n\n"
-      "what Zompire would do!\n\n"
+  TEXT(
+      "A real hero doesn't run from a fight.",
+      "That's why I'm going to stay and duel because that's",
+      "what Zompire would do!"
   )
   DUEL(DUELIST_ID_088)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E479A4, map_02_state_04_08E479A4, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E479A4, map_02_state_04_08E479A4, EVENT_NOP, EVENT_NOP)
   PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-  TEXT
-  (
-      "I guess I'll never be a true\n"
-      "hero...\n\n"
-      "No! I have to push those\n"
-      "negative thoughts out of my\n\n"
-      "head!\n\n"
+  TEXT(
+      "I guess I'll never be a true hero...",
+      "No! I have to push those negative thoughts out of my",
+      "head!"
   )
   SET_FLAG(EVENT_FLAG_DEFEATED_LINT2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E479B0, map_02_state_04_08E479B0, 0x08F04040, 0x08F04040)
-  TEXT
-  (
-      "Only hard work will turn me\n"
-      "from a zero into a hero.\n\n"
-      "That's why I have to keep\n"
-      "trying.\n\n"
-      "Please duel with me again in\n"
-      "the future.\n\n"
+EVENT_SCRIPT_REPLACEMENT(0x08E479B0, map_02_state_04_08E479B0, EVENT_NOP, EVENT_NOP)
+  TEXT(
+      "Only hard work will turn me from a zero into a hero.",
+      "That's why I have to keep trying.",
+      "Please duel with me again in the future."
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E479BC, map_02_state_04_08E479BC, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E479BC, map_02_state_04_08E479BC, EVENT_NOP, EVENT_NOP)
   TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "The Town of Domino is now\n"
-    "safe.\n\n"
-    "But you still have something\n"
-    "to do, don't you?\n\n"
-    "I'm going back to the cruise\n"
-    "ship.\n\n"
-    "Don't give up, {PLAYER}!\n\n"
-)
+      "The Town of Domino is now safe.",
+      "But you still have something to do, don't you?",
+      "I'm going back to the cruise ship.",
+      "Don't give up, {PLAYER}!"
+  )
   WALK_OBJECT_Y(3, 39)
   WALK_OBJECT_X(3, 0)
   SET_OBJECT_POSITION(3, 128, 96, 0)
