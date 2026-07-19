@@ -5,16 +5,16 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-18).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-19).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 973 |
-| Art ready, needs manifest | 0 |
+| Art ready, needs manifest | 160 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **975** |
+| **Total PNGs in `80x80/`** | **1135** |
 
 ## In game
 
@@ -1000,6 +1000,166 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
+- [ ] `ALL_OUT_ATTACKS` — `all_out_attacks.png`
+- [ ] `ANCIENT_FAIRY_DRAGON` — `ancient_fairy_dragon.png`
+- [ ] `ANCIENT_GEAR` — `ancient_gear.png`
+- [ ] `ANCIENT_GEAR_ADVANCE` — `ancient_gear_advance.png`
+- [ ] `ANCIENT_GEAR_BEAST` — `ancient_gear_beast.png`
+- [ ] `ANCIENT_GEAR_CANNON` — `ancient_gear_cannon.png`
+- [ ] `ANCIENT_GEAR_CASTLE` — `ancient_gear_castle.png`
+- [ ] `ANCIENT_GEAR_COMMANDER` — `ancient_gear_commander.png`
+- [ ] `ANCIENT_GEAR_DARK_GOLEM` — `ancient_gear_dark_golem.png`
+- [ ] `ANCIENT_GEAR_DRAGON` — `ancient_gear_dragon.png`
+- [ ] `ANCIENT_GEAR_DRILL` — `ancient_gear_drill.png`
+- [ ] `ANCIENT_GEAR_DUEL` — `ancient_gear_duel.png`
+- [ ] `ANCIENT_GEAR_ENGINEER` — `ancient_gear_engineer.png`
+- [ ] `ANCIENT_GEAR_EXPLOSIVE` — `ancient_gear_explosive.png`
+- [ ] `ANCIENT_GEAR_FACTORY` — `ancient_gear_factory.png`
+- [ ] `ANCIENT_GEAR_FIST` — `ancient_gear_fist.png`
+- [ ] `ANCIENT_GEAR_FRAME` — `ancient_gear_frame.png`
+- [ ] `ANCIENT_GEAR_FUSION` — `ancient_gear_fusion.png`
+- [ ] `ANCIENT_GEAR_GADJILTRON_CHIMERA` — `ancient_gear_gadjiltron_chimera.png`
+- [ ] `ANCIENT_GEAR_GADJILTRON_DRAGON` — `ancient_gear_gadjiltron_dragon.png`
+- [ ] `ANCIENT_GEAR_GOLEM` — `ancient_gear_golem.png`
+- [ ] `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` — `ancient_gear_golem_ultimate_pound.png`
+- [ ] `ANCIENT_GEAR_KNIGHT` — `ancient_gear_knight.png`
+- [ ] `ANCIENT_GEAR_MEGATON_GOLEM` — `ancient_gear_megaton_golem.png`
+- [ ] `ANCIENT_GEAR_SOLDIER` — `ancient_gear_soldier.png`
+- [ ] `ANCIENT_GEAR_STATUE` — `ancient_gear_statue.png`
+- [ ] `ANCIENT_GEAR_TANK` — `ancient_gear_tank.png`
+- [ ] `ANCIENT_GEAR_TANKER` — `ancient_gear_tanker.png`
+- [ ] `ANCIENT_GEAR_WORKSHOP` — `ancient_gear_workshop.png`
+- [ ] `ANCIENT_LEAF` — `ancient_leaf.png`
+- [ ] `ANCIENT_SACRED_WYVERN` — `ancient_sacred_wyvern.png`
+- [ ] `ARCANA_KNIGHT_JOKER` — `arcana_knight_joker.png`
+- [ ] `ARCANE_BARRIER` — `arcane_barrier.png`
+- [ ] `ARMITYLE_THE_CHAOS_PHANTASM` — `armityle_the_chaos_phantasm.png`
+- [ ] `BABYCERASAURUS` — `babycerasaurus.png`
+- [ ] `BARRIER_STATUE_OF_THE_STORMWINDS` — `barrier_statue_of_the_stormwinds.png`
+- [ ] `BATTLE_MANIA` — `battle_mania.png`
+- [ ] `BEAST_MACHINE_KING_BARBAROS_UR` — `beast_machine_king_barbaros_ur.png`
+- [ ] `BIG_EVOLUTION_PILL` — `big_evolution_pill.png`
+- [ ] `BLACK_WINGED_DRAGON` — `black_winged_dragon.png`
+- [ ] `BOOT_UP_SOLDIER_DREAD_DYNAMO` — `boot_up_soldier_dread_dynamo.png`
+- [ ] `CASTEL_THE_SKY_BLASTER_MUSKETEER` — `castel_the_sky_blaster_musketeer.png`
+- [ ] `CHAIN_STRIKE` — `chain_strike.png`
+- [ ] `CHAIN_SUMMONING` — `chain_summoning.png`
+- [ ] `CHAOS_ANCIENT_GEAR_GIANT` — `chaos_ancient_gear_giant.png`
+- [ ] `CORAL_DRAGON` — `coral_dragon.png`
+- [ ] `CRIMSON_BLADER` — `crimson_blader.png`
+- [ ] `CRIMSON_DRAGON` — `crimson_dragon.png`
+- [ ] `CROSS_DIMENSONAL_DUEL` — `cross_dimensonal_duel.png`
+- [ ] `CYBER_DRAGON_INFINITY` — `cyber_dragon_infinity.png`
+- [ ] `CYBER_SLASH_HARPY_LADY` — `cyber_slash_harpy_lady.png`
+- [ ] `DAMAGE_EQUALS_REPTILE` — `damage_equals_reptile.png`
+- [ ] `DARK_HORUS` — `dark_horus.png`
+- [ ] `DARK_MAGICIAN_CIRCLE` — `dark_magician_circle.png`
+- [ ] `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` — `dark_magician_girl_the_magicians_apprentice.png`
+- [ ] `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` — `dark_magician_the_magician_of_black_chaos.png`
+- [ ] `DARKBLAZE_DRAGON` — `darkblaze_dragon.png`
+- [ ] `DE_SYNCHRO` — `de_synchro.png`
+- [ ] `DEMISE_KING_OF_ARMAGEDDON` — `demise_king_of_armageddon.png`
+- [ ] `DOUBLE_TOOL_C_AND_D` — `double_tool_c_and_d.png`
+- [ ] `DRAGONS_MIRROR` — `dragons_mirror.png`
+- [ ] `END_OF_THE_WORLD` — `end_of_the_world.png`
+- [ ] `EVOLZAR_DOLKKA` — `evolzar_dolkka.png`
+- [ ] `EXCHANGE_OF_THE_SPIRIT` — `exchange_of_the_spirit.png`
+- [ ] `FACTORY_OF_ONE_HUNDRED_MACHINES` — `factory_of_one_hundred_machines.png`
+- [ ] `FIELD_BARRIER` — `field_barrier.png`
+- [ ] `FLAME_RULER` — `flame_ruler.png`
+- [ ] `FORMULA_SYNCHRON` — `formula_synchron.png`
+- [ ] `FOSSIL_EXCAVATION` — `fossil_excavation.png`
+- [ ] `GADGET_BOX` — `gadget_box.png`
+- [ ] `GANDORA_X_THE_DRAGON_OF_DESTRUCTION` — `gandora_x_the_dragon_of_destruction.png`
+- [ ] `GEARTOWN` — `geartown.png`
+- [ ] `GLADIATOR_PROVING_GROUND` — `gladiator_proving_ground.png`
+- [ ] `GRAND_CONVERGENCE` — `grand_convergence.png`
+- [ ] `GREAT_POSEIDON_BEETLE` — `great_poseidon_beetle.png`
+- [ ] `GREEN_BABOON_DEFENDER_OF_THE_FOREST` — `green_baboon_defender_of_the_forest.png`
+- [ ] `GUNGNIR_DRAGON_OF_THE_ICE_BARRIER` — `gungnir_dragon_of_the_ice_barrier.png`
+- [ ] `HERALD_OF_THE_ARC_LIGHT` — `herald_of_the_arc_light.png`
+- [ ] `HERALD_OF_ULIMATENESS` — `herald_of_ulimateness.png`
+- [ ] `HONEST` — `honest.png`
+- [ ] `HUNTING_INSTINCT` — `hunting_instinct.png`
+- [ ] `ICARUS_ATTACK` — `icarus_attack.png`
+- [ ] `JUNK_SYNCHRON` — `junk_synchron.png`
+- [ ] `LEVEL_TUNING` — `level_tuning.png`
+- [ ] `LEVIAIR_THE_SEA_DRAGON` — `leviair_the_sea_dragon.png`
+- [ ] `LIFE_STREAM_DRAGON` — `life_stream_dragon.png`
+- [ ] `MACRO_COSMOS` — `macro_cosmos.png`
+- [ ] `MAGICAL_ARM_SHIELD` — `magical_arm_shield.png`
+- [ ] `MAGICAL_MARIONETTE` — `magical_marionette.png`
+- [ ] `MAGICIANS_CIRCLE` — `magicians_circle.png`
+- [ ] `MAGNA_DRAGO` — `magna_drago.png`
+- [ ] `MIRAGE_DRAGON` — `mirage_dragon.png`
+- [ ] `MONTAGE_DRAGON` — `montage_dragon.png`
+- [ ] `MORPHTRONIC_ACCELERATOR` — `morphtronic_accelerator.png`
+- [ ] `MORPHTRONIC_BIND` — `morphtronic_bind.png`
+- [ ] `MORPHTRONIC_BOARDEN` — `morphtronic_boarden.png`
+- [ ] `MORPHTRONIC_BOOMBOXEN` — `morphtronic_boomboxen.png`
+- [ ] `MORPHTRONIC_CAMERAN` — `morphtronic_cameran.png`
+- [ ] `MORPHTRONIC_CELFON` — `morphtronic_celfon.png`
+- [ ] `MORPHTRONIC_CLOCKEN` — `morphtronic_clocken.png`
+- [ ] `MORPHTRONIC_CONVERTER` — `morphtronic_converter.png`
+- [ ] `MORPHTRONIC_CORD` — `morphtronic_cord.png`
+- [ ] `MORPHTRONIC_DATATRON` — `morphtronic_datatron.png`
+- [ ] `MORPHTRONIC_EARFON` — `morphtronic_earfon.png`
+- [ ] `MORPHTRONIC_ENGINE` — `morphtronic_engine.png`
+- [ ] `MORPHTRONIC_FORCEFIELD` — `morphtronic_forcefield.png`
+- [ ] `MORPHTRONIC_IMPACT_RETURN` — `morphtronic_impact_return.png`
+- [ ] `MORPHTRONIC_LANTRON` — `morphtronic_lantron.png`
+- [ ] `MORPHTRONIC_MAGNEN` — `morphtronic_magnen.png`
+- [ ] `MORPHTRONIC_MAGNEN_BAR` — `morphtronic_magnen_bar.png`
+- [ ] `MORPHTRONIC_MAP` — `morphtronic_map.png`
+- [ ] `MORPHTRONIC_MIXUP` — `morphtronic_mixup.png`
+- [ ] `MORPHTRONIC_MONITRON` — `morphtronic_monitron.png`
+- [ ] `MORPHTRONIC_RADION` — `morphtronic_radion.png`
+- [ ] `MORPHTRONIC_REMOTEN` — `morphtronic_remoten.png`
+- [ ] `MORPHTRONIC_REPAIR_UNIT` — `morphtronic_repair_unit.png`
+- [ ] `MORPHTRONIC_RUSTY_ENGINE` — `morphtronic_rusty_engine.png`
+- [ ] `MORPHTRONIC_SCANNEN` — `morphtronic_scannen.png`
+- [ ] `MORPHTRONIC_SCOPEN` — `morphtronic_scopen.png`
+- [ ] `MORPHTRONIC_SLINGEN` — `morphtronic_slingen.png`
+- [ ] `MORPHTRONIC_SMARTFON` — `morphtronic_smartfon.png`
+- [ ] `MORPHTRONIC_STAPLEN` — `morphtronic_staplen.png`
+- [ ] `MORPHTRONIC_TELEFON` — `morphtronic_telefon.png`
+- [ ] `MORPHTRONIC_VACUUMEN` — `morphtronic_vacuumen.png`
+- [ ] `MORPHTRONIC_VIDEON` — `morphtronic_videon.png`
+- [ ] `NATURIA_BEAST` — `naturia_beast.png`
+- [ ] `NITRO_WARRIOR` — `nitro_warrior.png`
+- [ ] `OVERFLOWING_TREASURE` — `overflowing_treasure.png`
+- [ ] `POWER_FILTER` — `power_filter.png`
+- [ ] `POWER_TOOL_BRAVER_DRAGON` — `power_tool_braver_dragon.png`
+- [ ] `PSEUDO_SPACE` — `pseudo_space.png`
+- [ ] `RAINBOW_DARK_DRAGON` — `rainbow_dark_dragon.png`
+- [ ] `ROAD_SYNCHRON` — `road_synchron.png`
+- [ ] `ROAD_WARRIOR` — `road_warrior.png`
+- [ ] `SCRAP_IRON_SCARECROW` — `scrap_iron_scarecrow.png`
+- [ ] `SILENT_MAGICIAN_LV4` — `silent_magician_lv4.png`
+- [ ] `SILENT_MAGICIAN_LV8` — `silent_magician_lv8.png`
+- [ ] `SIMORGH_BIRD_OF_ANCESTRY` — `simorgh_bird_of_ancestry.png`
+- [ ] `SPELL_CHRONICLE` — `spell_chronicle.png`
+- [ ] `SPELL_GEAR` — `spell_gear.png`
+- [ ] `SPELL_STRIKER` — `spell_striker.png`
+- [ ] `T_G_HYPER_LIBRARIAN` — `t_g_hyper_librarian.png`
+- [ ] `TATSUNOKO` — `tatsunoko.png`
+- [ ] `TIME_THIEF_REDOER` — `time_thief_redoer.png`
+- [ ] `TRISHULA_DRAGON_OF_THE_ICE_BARRIER` — `trishula_dragon_of_the_ice_barrier.png`
+- [ ] `TUNINGWARE` — `tuningware.png`
+- [ ] `TURBO_BOOSTER` — `turbo_booster.png`
+- [ ] `TURBO_CANNON` — `turbo_cannon.png`
+- [ ] `TURBO_ROCKET` — `turbo_rocket.png`
+- [ ] `TURBO_SYNCHRON` — `turbo_synchron.png`
+- [ ] `TYRANNO_INFINITY` — `tyranno_infinity.png`
+- [ ] `ULTIMATE_ANCIENT_GEAR_GOLEM` — `ultimate_ancient_gear_golem.png`
+- [ ] `ULTIMATE_TYRANNO` — `ultimate_tyranno.png`
+- [ ] `UNSTABLE_EVOLUTION` — `unstable_evolution.png`
+- [ ] `URGENT_TUNING` — `urgent_tuning.png`
+- [ ] `WARRIOR_OF_ATLANTIS` — `warrior_of_atlantis.png`
+- [ ] `WATERHAZARD` — `WaterHazard.png`
+- [ ] `WEAPON_CHANGE` — `weapon_change.png`
+- [ ] `WETLANDS` — `wetlands.png`
+- [ ] `X_SABER_AIRBELLUM` — `x_saber_airbellum.png`
 
 ## Todo — in manifest, missing art
 
