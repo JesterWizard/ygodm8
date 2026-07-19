@@ -1,13 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-19 — Fast AI: light attacks + full-sim budget
+**Last worked on:** 2026-07-19 — Spellbinding gate + always light-score attacks
 
 **Files touched:**
-- `src_custom/ai_sim_fast.c` — light-score face-up/direct/FD attacks (vanilla formulas); preferred-zone prune
-- `src_custom/ai_hooks.c` — ≤16 full save/exec sims (high-impact first); skip batch GFX
-- `src_custom/ai_simulation_hooks.c` — skip GY RefreshDisplay under fast_ai
-- tests, `configs/runtime.h`
+- `src_custom/ai_spell_targets.c` — Spellbinding Circle / Shadow Spell / Dark-Piercing Light need real targets
+- `src_custom/ai_sim_fast.c` — light-score attacks even with set backrow; `AiSimFoundLethal`
+- `src_custom/ai_hooks.c` — skip full-sim budget once lethal already scored
+- `include/ai_sim.h`, tests, `documentation/fast-ai-architecture.md`
 
-**Outcome:** `make` OK; host AI tests pass.
+**Outcome:** `make` OK; host AI spell-target tests pass.
 
-**Open / next:** Playtest — decisions should be much snappier; winning attacks still via light score.
+**Open / next:** Playtest empty-field Circle no longer forced; turns with set backrow should feel faster.

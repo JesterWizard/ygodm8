@@ -19,6 +19,7 @@ void AiSimScanBoard(void);
 u8 AiSimHandHasPermanentCard(void);
 u8 AiSimQuickReject(u16 actionIndex);
 void AiSimMarkLethalFound(void);
+u8 AiSimFoundLethal(void);
 u8 AiSimRejectAfterLethal(u16 action);
 u8 AiSimTryRecordLightAttack(u16 actionIndex);
 u8 AiSimFullSimBudget(void);

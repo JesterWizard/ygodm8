@@ -56,6 +56,22 @@ u8 AiNormalSpellHasActivationTargets(u16 cardId)
             != MAX_ZONES_IN_ROW;
   case SPELL_EFFECT_MONSTER_REBORN:
     return CanActivateMonsterReborn();
+  case SPELL_EFFECT_SPELLBINDING_CIRCLE:
+  case SPELL_EFFECT_SHADOW_SPELL:
+    /* Vanilla before: disable when inactive monster row empty. */
+    return NumEmptyZonesInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW])
+        != MAX_ZONES_IN_ROW;
+  case SPELL_EFFECT_DARK_PIERCING_LIGHT: {
+    u8 col;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][col];
+
+      if (zone->id != CARD_NONE && !zone->isFaceUp)
+        return TRUE;
+    }
+    return FALSE;
+  }
   default:
     return TRUE;
   }

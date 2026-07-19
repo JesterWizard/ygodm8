@@ -17,8 +17,8 @@
 `fast_ai` does **not** invent free-form heuristic priorities. When enabled it:
 
 1. **Scans the board** and prunes impossible / redundant `gAED58` slabs.
-2. **Light-scores attacks** (vanilla face-up after-formula / direct lethal band) without save/execute when the opponent has no set backrow.
-3. **Full-sims at most `AI_FAST_FULL_SIM_BUDGET` (16)** non-attack legal lines (high-impact / activates first).
+2. **Light-scores attacks** (vanilla face-up after-formula / direct lethal band) without save/execute — including when the opponent has set backrow (trap nuance traded for speed).
+3. **Full-sims at most `AI_FAST_FULL_SIM_BUDGET` (16)** non-attack legal lines (high-impact / activates first); skips the budget entirely once a lethal line is already scored.
 4. **Preferred empty zone only** for 0-tribute summons and sets (cuts 5× destination templates).
 5. **Skips post-batch GFX** and GY tile rebuild after the think.
 
@@ -91,6 +91,8 @@ When `fast_ai` is FALSE: full table sim with no quick-reject; full GY refresh af
 
 ## Limitations & Bugs
 
+- Light-scoring attacks with set backrow skips WITH_TRAP execute nuance; rare trap-on-attack priority differences may differ from full vanilla sim.
+- Force-activate of set normals uses `AiNormalSpellHasActivationTargets` (Spellbinding Circle / Shadow Spell need opponent monsters).
 - Quick-reject must treat summon/set **destination** zones (often `zone2`) as allowed-empty; rejecting them caused pass-turn idles (see session logs 2026-06-28).
 - Post-lethal filtering keeps attacks and high-impact activates; rare non-attack lethals must already have been scored.
 - Skipping permanents when `!AiSimFieldNeedsPermanentRescan()` assumes after-priority does not need continuous ATK recalculation on an empty continuous board.

@@ -267,7 +267,8 @@ void AiSimulateAllCandidateActions(void)
     }
   }
 
-  if (prune) {
+  /* Skip non-attack sims when a light-scored attack already hit lethal. */
+  if (prune && !AiSimFoundLethal()) {
     u8 p;
 
     /* High-impact first, then the rest, until budget. */
@@ -280,13 +281,17 @@ void AiSimulateAllCandidateActions(void)
       if (AiSimFieldNeedsPermanentRescan())
         TryActivatingPermanentEffects();
       CallThumbVoid(0x0800F248);
-      if (*(u32 *)((u8 *)gUnk_8DFF6A4 + 0x2298) >= AI_PRIORITY_LETHAL_MIN)
+      if (*(u32 *)((u8 *)gUnk_8DFF6A4 + 0x2298) >= AI_PRIORITY_LETHAL_MIN) {
         AiSimMarkLethalFound();
+        sub_800EE94__Replacement();
+        fullSims++;
+        break;
+      }
       sub_800EE94__Replacement();
       fullSims++;
       pending[pendingHigh[p]] = 0xFFFF;
     }
-    for (p = 0; p < pendingCount && fullSims < budget; p++) {
+    for (p = 0; p < pendingCount && fullSims < budget && !AiSimFoundLethal(); p++) {
       if (pending[p] == 0xFFFF)
         continue;
       i = pending[p];

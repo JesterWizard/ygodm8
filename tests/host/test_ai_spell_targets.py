@@ -11,10 +11,19 @@ def read(path: str) -> str:
 
 
 class TestAiSpellTargets(unittest.TestCase):
-    def test_feather_duster_requires_opponent_backrow(self):
+    def test_spellbinding_circle_requires_opponent_monsters(self):
         source = read("src_custom/ai_spell_targets.c")
-        self.assertIn("SPELL_EFFECT_HARPIES_FEATHER_DUSTER", source)
-        self.assertIn("INACTIVE_DUELIST_BACKROW", source)
+        self.assertIn("SPELL_EFFECT_SPELLBINDING_CIRCLE", source)
+        self.assertIn("SPELL_EFFECT_SHADOW_SPELL", source)
+        self.assertIn("INACTIVE_DUELIST_MONSTER_ROW", source)
+
+    def test_fast_ai_light_scores_attacks_with_set_backrow(self):
+        source = read("src_custom/ai_sim_fast.c")
+        hooks = read("src_custom/ai_hooks.c")
+        self.assertIn("AiSimTryRecordLightAttack", source)
+        self.assertNotIn("if (gAiSimBoard.playerHasSetBackrow)", source)
+        self.assertIn("AiSimFoundLethal", hooks)
+        self.assertIn("!AiSimFoundLethal()", hooks)
 
     def test_force_activation_uses_shared_helper(self):
         hooks = read("src_custom/ai_hooks.c")

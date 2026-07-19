@@ -149,10 +149,8 @@ u8 AiSimTryRecordLightAttack(u16 actionIndex)
   if (!IsAiAttackAction(cmd->action))
     return FALSE;
 
-  /* With set backrow, trap checks need real execute — leave to full sim. */
-  if (gAiSimBoard.playerHasSetBackrow)
-    return FALSE;
-
+  /* ponytail: always light-score; set-backrow full-sim burned the non-attack budget.
+   * Ceiling: miss trap-on-attack priority nuance; upgrade = light NO_TRAP + one WITH_TRAP probe. */
   if (IsAiDirectAttackAction(cmd->action))
     prio = AiSimLightDirectAttackPriority(cmd);
   else if (IsAiFaceUpAttackAction(cmd->action))
@@ -166,6 +164,11 @@ u8 AiSimTryRecordLightAttack(u16 actionIndex)
   if (prio >= AI_PRIORITY_LETHAL_MIN)
     AiSimMarkLethalFound();
   return TRUE;
+}
+
+u8 AiSimFoundLethal(void)
+{
+  return gAiSimBoard.foundLethal;
 }
 
 u8 AiSimFullSimBudget(void)
