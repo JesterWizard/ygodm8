@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1044` effects
+- `1064` effects
 
 ## Tally
 
@@ -1025,6 +1025,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Spell Chronicle` | `src_custom/spell_effects/spell_chronicle.c` |
 | `spell_effects` | `Spell Gear` | `src_custom/spell_effects/spell_gear.c` |
 | `spell_effects` | `Overflowing Treasure` | `src_custom/spell_effects/overflowing_treasure.c` |
+| `activated_effects` | `Spell Striker` | `src_custom/activated_effects/spell_striker.c` |
+| `activated_effects` | `T G Hyper Librarian` | `src_custom/activated_effects/t_g_hyper_librarian.c` |
+| `activated_effects` | `Tatsunoko` | `src_custom/activated_effects/tatsunoko.c` |
+| `activated_effects` | `Time Thief Redoer` | `src_custom/activated_effects/time_thief_redoer.c` |
+| `activated_effects` | `Trishula Dragon Of The Ice Barrier` | `src_custom/activated_effects/trishula_dragon_of_the_ice_barrier.c` |
+| `activated_effects` | `Tuningware` | `src_custom/activated_effects/tuningware.c` |
+| `activated_effects` | `Turbo Booster` | `src_custom/activated_effects/turbo_booster.c` |
+| `activated_effects` | `Turbo Cannon` | `src_custom/activated_effects/turbo_cannon.c` |
+| `activated_effects` | `Turbo Rocket` | `src_custom/activated_effects/turbo_rocket.c` |
+| `activated_effects` | `Turbo Synchron` | `src_custom/activated_effects/turbo_synchron.c` |
+| `activated_effects` | `Tyranno Infinity` | `src_custom/activated_effects/tyranno_infinity.c` |
+| `activated_effects` | `Ultimate Ancient Gear Golem` | `src_custom/activated_effects/ultimate_ancient_gear_golem.c` |
+| `activated_effects` | `Ultimate Tyranno` | `src_custom/activated_effects/ultimate_tyranno.c` |
+| `spell_effects` | `Unstable Evolution` | `src_custom/spell_effects/unstable_evolution.c` |
+| `trap_effects` | `Urgent Tuning` | `src_custom/trap_effects/urgent_tuning.c` |
+| `activated_effects` | `Warrior Of Atlantis` | `src_custom/activated_effects/warrior_of_atlantis.c` |
+| `spell_effects` | `Waterhazard` | `src_custom/spell_effects/waterhazard.c` |
+| `spell_effects` | `Weapon Change` | `src_custom/spell_effects/weapon_change.c` |
+| `spell_effects` | `Wetlands` | `src_custom/spell_effects/wetlands.c` |
+| `activated_effects` | `X Saber Airbellum` | `src_custom/activated_effects/x_saber_airbellum.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

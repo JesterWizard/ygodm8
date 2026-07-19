@@ -36922,6 +36922,446 @@
       "effect_texts": {
         "popup_1": "ATK +500 per card in both hands."
       }
+    },
+    {
+      "card_const": "SPELL_STRIKER",
+      "card_name": "Spell Striker",
+      "atk": 600,
+      "def": 200,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 19,
+      "password": [9, 3, 1, 8, 7, 5, 6, 8],
+      "description": {
+        "symbol": "gDescription_SpellStriker",
+        "pages": "You can Special Summon this card (from your hand) by banishing 1 Spell Card from your Graveyard. This card can attack directly. You take no battle damage from attacks involving this card."
+      },
+      "effect_texts": {
+        "popup_1": "You can Special Summon this card (from your hand) by banishing 1 Spell Card from your Graveyard. This card can attack di"
+      }
+    },
+    {
+      "card_const": "T_G_HYPER_LIBRARIAN",
+      "card_name": "T.G. Hyper Librarian",
+      "atk": 2400,
+      "def": 1800,
+      "level": 5,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [9, 0, 9, 5, 3, 3, 2, 0],
+      "description": {
+        "symbol": "gDescription_TGHyperLibrarian",
+        "pages": "1 Tuner + 1+ non-Tuner monsters If a monster is Synchro Summoned: Draw 1 card. This card must be face-up on the field to activate and to resolve this effect."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters\r\nIf a monster is Synchro Summoned: Draw 1 card. This card must be face-up on the field t"
+      }
+    },
+    {
+      "card_const": "TATSUNOKO",
+      "card_name": "Tatsunoko",
+      "atk": 1700,
+      "def": 500,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [5, 5, 8, 6, 3, 2, 4, 5],
+      "description": {
+        "symbol": "gDescription_Tatsunoko",
+        "pages": "1 Tuner + 1+ non-Tuner monsters If this Synchro Summoned monster would be used as a Synchro Material, 1 monster in your hand can be used as 1 of the other materials. Unaffected by other monsters' effects."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters\r\nIf this Synchro Summoned monster would be used as a Synchro Material, 1 monster in your"
+      }
+    },
+    {
+      "card_const": "TIME_THIEF_REDOER",
+      "card_name": "Time Thief Redoer",
+      "atk": 2400,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "XYZ_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 20,
+      "password": [5, 5, 2, 8, 5, 8, 4, 0],
+      "description": {
+        "symbol": "gDescription_TimeThiefRedoer",
+        "pages": "2 Level 4 monsters Once per turn, during the Standby Phase: You can attach the top card of your opponent's Deck to this card as material. (Quick Effect): You can detach up to 3 different types of materials from this card, then apply the following effect(s) depending on what was detached. - Monster: Banish this card until the End Phase. - Spell: Draw 1 card. - Trap: Place 1 face-up card your opponent controls on the top of the Deck. You can only use this effect of Time Thief Redoer once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "2 Level 4 monsters\r\nOnce per turn, during the Standby Phase: You can attach the top card of your opponent's Deck to this"
+      }
+    },
+    {
+      "card_const": "TRISHULA_DRAGON_OF_THE_ICE_BARRIER",
+      "card_name": "Trishula, Dragon of the Ice Barrier",
+      "atk": 2700,
+      "def": 2000,
+      "level": 9,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [5, 2, 6, 8, 7, 9, 1, 6],
+      "description": {
+        "symbol": "gDescription_TrishulaDragonOfTheIceBarrier",
+        "pages": "1 Tuner + 2+ non-Tuner monsters When this card is Synchro Summoned: You can banish up to 1 card each from your opponent's hand, field, and GY. (The card in the hand is chosen at random.)"
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 2+ non-Tuner monsters\nWhen this card is Synchro Summoned: You can banish up to 1 card each from your opponent'"
+      }
+    },
+    {
+      "card_const": "TUNINGWARE",
+      "card_name": "Tuningware",
+      "atk": 100,
+      "def": 300,
+      "level": 1,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 19,
+      "password": [9, 2, 6, 7, 6, 6, 3, 7],
+      "description": {
+        "symbol": "gDescription_Tuningware",
+        "pages": "This card can be treated as a Level 2 monster when used for a Synchro Summon. If this card is sent to the Graveyard for a Synchro Summon: Draw 1 card."
+      },
+      "effect_texts": {
+        "popup_1": "This card can be treated as a Level 2 monster when used for a Synchro Summon. If this card is sent to the Graveyard for "
+      }
+    },
+    {
+      "card_const": "TURBO_BOOSTER",
+      "card_name": "Turbo Booster",
+      "atk": 0,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 0, 1, 8, 7, 7, 3, 9],
+      "description": {
+        "symbol": "gDescription_TurboBooster",
+        "pages": "If you have Normal Summoned a monster this turn, you can Special Summon this card from your hand. You can Tribute this card to destroy 1 monster your opponent controls that battled one of your monsters this turn."
+      },
+      "effect_texts": {
+        "popup_1": "If you have Normal Summoned a monster this turn, you can Special Summon this card from your hand. You can Tribute this c"
+      }
+    },
+    {
+      "card_const": "TURBO_CANNON",
+      "card_name": "Turbo Cannon",
+      "atk": 0,
+      "def": 0,
+      "level": 3,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_MACHINE",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [1, 3, 5, 7, 4, 6, 8, 7],
+      "description": {
+        "symbol": "gDescription_TurboCannon",
+        "pages": "Turbo Rocket + 1 or more non-Tuner monsters Once per turn, you can destroy 1 face-up monster on the field and inflict damage to its controller equal to half of its ATK."
+      },
+      "effect_texts": {
+        "popup_1": "Turbo Rocket + 1 or more non-Tuner monsters\nOnce per turn, you can destroy 1 face-up monster on the field and inflict "
+      }
+    },
+    {
+      "card_const": "TURBO_ROCKET",
+      "card_name": "Turbo Rocket",
+      "atk": 0,
+      "def": 0,
+      "level": 2,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [0, 6, 1, 4, 2, 2, 1, 3],
+      "description": {
+        "symbol": "gDescription_TurboRocket",
+        "pages": "While attacking, this card cannot be destroyed by battle. If this card attacks, after damage calculation, inflict damage equal to half the ATK of the attack target to your opponent."
+      },
+      "effect_texts": {
+        "popup_1": "While attacking, this card cannot be destroyed by battle. If this card attacks, after damage calculation, inflict damage"
+      }
+    },
+    {
+      "card_const": "TURBO_SYNCHRON",
+      "card_name": "Turbo Synchron",
+      "atk": 100,
+      "def": 500,
+      "level": 1,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 19,
+      "password": [6, 7, 2, 7, 0, 0, 9, 5],
+      "description": {
+        "symbol": "gDescription_TurboSynchron",
+        "pages": "When this card declares an attack: You can change the attack target to Defense Position. When you take battle damage while this card is attacking: You can Special Summon 1 monster from your hand with ATK less than or equal to the battle damage you took."
+      },
+      "effect_texts": {
+        "popup_1": "When this card declares an attack: You can change the attack target to Defense Position. When you take battle damage whi"
+      }
+    },
+    {
+      "card_const": "TYRANNO_INFINITY",
+      "card_name": "Tyranno Infinity",
+      "atk": -1,
+      "def": 0,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_DINOSAUR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [8, 3, 2, 3, 5, 2, 6, 3],
+      "description": {
+        "symbol": "gDescription_TyrannoInfinity",
+        "pages": "The original ATK of this card is the number of your banished Dinosaur-Type monsters x 1000."
+      },
+      "effect_texts": {
+        "popup_1": "The original ATK of this card is the number of your banished Dinosaur-Type monsters x 1000."
+      }
+    },
+    {
+      "card_const": "ULTIMATE_ANCIENT_GEAR_GOLEM",
+      "card_name": "Ultimate Ancient Gear Golem",
+      "atk": 4400,
+      "def": 3400,
+      "level": 10,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [1, 2, 6, 5, 2, 6, 4, 3],
+      "description": {
+        "symbol": "gDescription_UltimateAncientGearGolem",
+        "pages": "Ancient Gear Golem + 2 Ancient Gear monsters Must be Fusion Summoned. If this card attacks a Defense Position monster, inflict piercing battle damage. If this card attacks, your opponent cannot activate Spell/Trap Cards until the end of the Damage Step. If this card is destroyed: You can target 1 Ancient Gear Golem in your GY; Special Summon it, ignoring its Summoning conditions."
+      },
+      "effect_texts": {
+        "popup_1": "Ancient Gear Golem + 2 Ancient Gear monsters\r\nMust be Fusion Summoned. If this card attacks a Defense Position monst"
+      }
+    },
+    {
+      "card_const": "ULTIMATE_TYRANNO",
+      "card_name": "Ultimate Tyranno",
+      "atk": 3000,
+      "def": 2200,
+      "level": 8,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_DINOSAUR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 76,
+      "password": [1, 5, 8, 9, 4, 0, 4, 8],
+      "description": {
+        "symbol": "gDescription_UltimateTyranno",
+        "pages": "This card can attack all monsters your opponent controls, once each. During your Battle Phase, if you control an Ultimate Tyranno that can attack, monsters other than Ultimate Tyranno cannot attack."
+      },
+      "effect_texts": {
+        "popup_1": "This card can attack all monsters your opponent controls, once each. During your Battle Phase, if you control an Ultima"
+      }
+    },
+    {
+      "card_const": "UNSTABLE_EVOLUTION",
+      "card_name": "Unstable Evolution",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 2, 9, 9, 1, 8, 8, 6],
+      "description": {
+        "symbol": "gDescription_UnstableEvolution",
+        "pages": "While your LP is lower than your opponent's, the equipped monster's original ATK becomes 2400. While your LP is higher, the equipped monster's original ATK becomes 1000."
+      },
+      "effect_texts": {
+        "popup_1": "While your LP is lower than your opponent's, the equipped monster's original ATK becomes 2400. While your LP is higher, "
+      }
+    },
+    {
+      "card_const": "URGENT_TUNING",
+      "card_name": "Urgent Tuning",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 4, 6, 3, 4, 4, 3, 3],
+      "description": {
+        "symbol": "gDescription_UrgentTuning",
+        "pages": "During the Battle Phase: Immediately after this effect resolves, Synchro Summon 1 Synchro Monster using monsters you control."
+      },
+      "effect_texts": {
+        "popup_1": "During the Battle Phase: Immediately after this effect resolves, Synchro Summon 1 Synchro Monster using monsters you con"
+      }
+    },
+    {
+      "card_const": "WARRIOR_OF_ATLANTIS",
+      "card_name": "Warrior of Atlantis",
+      "atk": 1900,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_AQUA",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [4, 3, 7, 9, 7, 9, 0, 6],
+      "description": {
+        "symbol": "gDescription_WarriorOfAtlantis",
+        "pages": "You can discard this card to the Graveyard; add 1 A Legendary Ocean from your Deck to your hand."
+      },
+      "effect_texts": {
+        "popup_1": "You can discard this card to the Graveyard; add 1 A Legendary Ocean from your Deck to your hand."
+      }
+    },
+    {
+      "card_const": "WATERHAZARD",
+      "card_name": "Water Hazard",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 9, 6, 6, 9, 7, 3, 0],
+      "description": {
+        "symbol": "gDescription_Waterhazard",
+        "pages": "Once per turn: You can Special Summon 1 Level 4 or lower WATER monster from your hand. You must control no monsters to activate and to resolve this effect."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn: You can Special Summon 1 Level 4 or lower WATER monster from your hand. You must control no monsters to a"
+      }
+    },
+    {
+      "card_const": "WEAPON_CHANGE",
+      "card_name": "Weapon Change",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 0, 0, 3, 5, 7, 1, 7],
+      "description": {
+        "symbol": "gDescription_WeaponChange",
+        "pages": "Once during each of your Standby Phases: You can pay 700 Life Points, then target 1 Warrior or Machine-Type monster you control; switch the current ATK and DEF of that target until the end of your opponent's next turn."
+      },
+      "effect_texts": {
+        "popup_1": "Once during each of your Standby Phases: You can pay 700 Life Points, then target 1 Warrior or Machine-Type monster you "
+      }
+    },
+    {
+      "card_const": "WETLANDS",
+      "card_name": "Wetlands",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 2, 0, 8, 4, 2, 3, 9],
+      "description": {
+        "symbol": "gDescription_Wetlands",
+        "pages": "All Aqua-Type/WATER/Level 2 or lower monsters gain 1200 ATK."
+      },
+      "effect_texts": {
+        "popup_1": "All Aqua-Type/WATER/Level 2 or lower monsters gain 1200 ATK."
+      }
+    },
+    {
+      "card_const": "X_SABER_AIRBELLUM",
+      "card_name": "X-Saber Airbellum",
+      "atk": 1600,
+      "def": 200,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 0, 5, 0, 8, 7, 6, 0],
+      "description": {
+        "symbol": "gDescription_XSaberAirbellum",
+        "pages": "If this card inflicts battle damage to your opponent by a direct attack: Discard 1 random card from your opponent's hand."
+      },
+      "effect_texts": {
+        "popup_1": "If this card inflicts battle damage to your opponent by a direct attack: Discard 1 random card from your opponent's hand"
+      }
     }
   ]
 }

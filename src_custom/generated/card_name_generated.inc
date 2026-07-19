@@ -1114,6 +1114,26 @@ static const u8 sSimorghBirdOfAncestryName[] __attribute__((section(".append_ass
 static const u8 sSpellChronicleName[] __attribute__((section(".append_assets"))) = "Spell Chronicle";
 static const u8 sSpellGearName[] __attribute__((section(".append_assets"))) = "Spell Gear";
 static const u8 sOverflowingTreasureName[] __attribute__((section(".append_assets"))) = "Overflowing Treasure";
+static const u8 sSpellStrikerName[] __attribute__((section(".append_assets"))) = "Spell Striker";
+static const u8 sTGHyperLibrarianName[] __attribute__((section(".append_assets"))) = "T.G. Hyper Librarian";
+static const u8 sTatsunokoName[] __attribute__((section(".append_assets"))) = "Tatsunoko";
+static const u8 sTimeThiefRedoerName[] __attribute__((section(".append_assets"))) = "Time Thief Redoer";
+static const u8 sTrishulaDragonOfTheIceBarrierName[] __attribute__((section(".append_assets"))) = "Trishula, Dragon of the Ice Barrier";
+static const u8 sTuningwareName[] __attribute__((section(".append_assets"))) = "Tuningware";
+static const u8 sTurboBoosterName[] __attribute__((section(".append_assets"))) = "Turbo Booster";
+static const u8 sTurboCannonName[] __attribute__((section(".append_assets"))) = "Turbo Cannon";
+static const u8 sTurboRocketName[] __attribute__((section(".append_assets"))) = "Turbo Rocket";
+static const u8 sTurboSynchronName[] __attribute__((section(".append_assets"))) = "Turbo Synchron";
+static const u8 sTyrannoInfinityName[] __attribute__((section(".append_assets"))) = "Tyranno Infinity";
+static const u8 sUltimateAncientGearGolemName[] __attribute__((section(".append_assets"))) = "Ultimate Ancient Gear Golem";
+static const u8 sUltimateTyrannoName[] __attribute__((section(".append_assets"))) = "Ultimate Tyranno";
+static const u8 sUnstableEvolutionName[] __attribute__((section(".append_assets"))) = "Unstable Evolution";
+static const u8 sUrgentTuningName[] __attribute__((section(".append_assets"))) = "Urgent Tuning";
+static const u8 sWarriorOfAtlantisName[] __attribute__((section(".append_assets"))) = "Warrior of Atlantis";
+static const u8 sWaterhazardName[] __attribute__((section(".append_assets"))) = "Water Hazard";
+static const u8 sWeaponChangeName[] __attribute__((section(".append_assets"))) = "Weapon Change";
+static const u8 sWetlandsName[] __attribute__((section(".append_assets"))) = "Wetlands";
+static const u8 sXSaberAirbellumName[] __attribute__((section(".append_assets"))) = "X-Saber Airbellum";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3348,6 +3368,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sSpellGearName;
   if (cardId == 0x0779)
     return (u8 *)sOverflowingTreasureName;
+  if (cardId == 0x077A)
+    return (u8 *)sSpellStrikerName;
+  if (cardId == 0x077B)
+    return (u8 *)sTGHyperLibrarianName;
+  if (cardId == 0x077C)
+    return (u8 *)sTatsunokoName;
+  if (cardId == 0x077D)
+    return (u8 *)sTimeThiefRedoerName;
+  if (cardId == 0x077E)
+    return (u8 *)sTrishulaDragonOfTheIceBarrierName;
+  if (cardId == 0x077F)
+    return (u8 *)sTuningwareName;
+  if (cardId == 0x0780)
+    return (u8 *)sTurboBoosterName;
+  if (cardId == 0x0781)
+    return (u8 *)sTurboCannonName;
+  if (cardId == 0x0782)
+    return (u8 *)sTurboRocketName;
+  if (cardId == 0x0783)
+    return (u8 *)sTurboSynchronName;
+  if (cardId == 0x0784)
+    return (u8 *)sTyrannoInfinityName;
+  if (cardId == 0x0785)
+    return (u8 *)sUltimateAncientGearGolemName;
+  if (cardId == 0x0786)
+    return (u8 *)sUltimateTyrannoName;
+  if (cardId == 0x0787)
+    return (u8 *)sUnstableEvolutionName;
+  if (cardId == 0x0788)
+    return (u8 *)sUrgentTuningName;
+  if (cardId == 0x0789)
+    return (u8 *)sWarriorOfAtlantisName;
+  if (cardId == 0x078A)
+    return (u8 *)sWaterhazardName;
+  if (cardId == 0x078B)
+    return (u8 *)sWeaponChangeName;
+  if (cardId == 0x078C)
+    return (u8 *)sWetlandsName;
+  if (cardId == 0x078D)
+    return (u8 *)sXSaberAirbellumName;
 
   return gCardNames[cardId];
 }

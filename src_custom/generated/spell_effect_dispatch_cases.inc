@@ -797,6 +797,9 @@
     case UNITED_WE_STAND:
       EffectUnitedWeStand();
       return;
+    case UNSTABLE_EVOLUTION:
+      EffectUNSTABLE_EVOLUTION();
+      return;
     case UPSTART_GOBLIN:
       EffectUpstartGoblin();
       return;
@@ -818,6 +821,15 @@
     case VISION_FUSION:
       EffectVISION_FUSION();
       return;
+    case WATERHAZARD:
+      EffectWATERHAZARD();
+      return;
     case WAVE_MOTION_CANNON:
       EffectWaveMotionCannon();
+      return;
+    case WEAPON_CHANGE:
+      EffectWEAPON_CHANGE();
+      return;
+    case WETLANDS:
+      EffectWETLANDS();
       return;

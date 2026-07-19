@@ -4460,6 +4460,86 @@ static const unsigned char sOverflowingTreasureBigArt[] __attribute__((section("
 static const unsigned short sOverflowingTreasureBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/overflowing_treasure.gbapal");
 static const unsigned char sOverflowingTreasureMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/overflowing_treasure.lz");
 
+static const unsigned char sSpellStrikerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/spell_striker.huff");
+static const unsigned short sSpellStrikerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spell_striker.gbapal");
+static const unsigned char sSpellStrikerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spell_striker.lz");
+
+static const unsigned char sTGHyperLibrarianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/t_g_hyper_librarian.huff");
+static const unsigned short sTGHyperLibrarianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/t_g_hyper_librarian.gbapal");
+static const unsigned char sTGHyperLibrarianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/t_g_hyper_librarian.lz");
+
+static const unsigned char sTatsunokoBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tatsunoko.huff");
+static const unsigned short sTatsunokoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tatsunoko.gbapal");
+static const unsigned char sTatsunokoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tatsunoko.lz");
+
+static const unsigned char sTimeThiefRedoerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/time_thief_redoer.huff");
+static const unsigned short sTimeThiefRedoerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/time_thief_redoer.gbapal");
+static const unsigned char sTimeThiefRedoerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/time_thief_redoer.lz");
+
+static const unsigned char sTrishulaDragonOfTheIceBarrierBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/trishula_dragon_of_the_ice_barrier.huff");
+static const unsigned short sTrishulaDragonOfTheIceBarrierBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/trishula_dragon_of_the_ice_barrier.gbapal");
+static const unsigned char sTrishulaDragonOfTheIceBarrierMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/trishula_dragon_of_the_ice_barrier.lz");
+
+static const unsigned char sTuningwareBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tuningware.huff");
+static const unsigned short sTuningwareBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tuningware.gbapal");
+static const unsigned char sTuningwareMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tuningware.lz");
+
+static const unsigned char sTurboBoosterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/turbo_booster.huff");
+static const unsigned short sTurboBoosterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/turbo_booster.gbapal");
+static const unsigned char sTurboBoosterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/turbo_booster.lz");
+
+static const unsigned char sTurboCannonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/turbo_cannon.huff");
+static const unsigned short sTurboCannonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/turbo_cannon.gbapal");
+static const unsigned char sTurboCannonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/turbo_cannon.lz");
+
+static const unsigned char sTurboRocketBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/turbo_rocket.huff");
+static const unsigned short sTurboRocketBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/turbo_rocket.gbapal");
+static const unsigned char sTurboRocketMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/turbo_rocket.lz");
+
+static const unsigned char sTurboSynchronBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/turbo_synchron.huff");
+static const unsigned short sTurboSynchronBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/turbo_synchron.gbapal");
+static const unsigned char sTurboSynchronMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/turbo_synchron.lz");
+
+static const unsigned char sTyrannoInfinityBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tyranno_infinity.huff");
+static const unsigned short sTyrannoInfinityBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tyranno_infinity.gbapal");
+static const unsigned char sTyrannoInfinityMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tyranno_infinity.lz");
+
+static const unsigned char sUltimateAncientGearGolemBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ultimate_ancient_gear_golem.huff");
+static const unsigned short sUltimateAncientGearGolemBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ultimate_ancient_gear_golem.gbapal");
+static const unsigned char sUltimateAncientGearGolemMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ultimate_ancient_gear_golem.lz");
+
+static const unsigned char sUltimateTyrannoBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ultimate_tyranno.huff");
+static const unsigned short sUltimateTyrannoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ultimate_tyranno.gbapal");
+static const unsigned char sUltimateTyrannoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ultimate_tyranno.lz");
+
+static const unsigned char sUnstableEvolutionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/unstable_evolution.huff");
+static const unsigned short sUnstableEvolutionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/unstable_evolution.gbapal");
+static const unsigned char sUnstableEvolutionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/unstable_evolution.lz");
+
+static const unsigned char sUrgentTuningBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/urgent_tuning.huff");
+static const unsigned short sUrgentTuningBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/urgent_tuning.gbapal");
+static const unsigned char sUrgentTuningMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/urgent_tuning.lz");
+
+static const unsigned char sWarriorOfAtlantisBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/warrior_of_atlantis.huff");
+static const unsigned short sWarriorOfAtlantisBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/warrior_of_atlantis.gbapal");
+static const unsigned char sWarriorOfAtlantisMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/warrior_of_atlantis.lz");
+
+static const unsigned char sWaterhazardBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/waterhazard.huff");
+static const unsigned short sWaterhazardBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/waterhazard.gbapal");
+static const unsigned char sWaterhazardMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/waterhazard.lz");
+
+static const unsigned char sWeaponChangeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/weapon_change.huff");
+static const unsigned short sWeaponChangeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/weapon_change.gbapal");
+static const unsigned char sWeaponChangeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/weapon_change.lz");
+
+static const unsigned char sWetlandsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/wetlands.huff");
+static const unsigned short sWetlandsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/wetlands.gbapal");
+static const unsigned char sWetlandsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/wetlands.lz");
+
+static const unsigned char sXSaberAirbellumBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/x_saber_airbellum.huff");
+static const unsigned short sXSaberAirbellumBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/x_saber_airbellum.gbapal");
+static const unsigned char sXSaberAirbellumMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/x_saber_airbellum.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -5576,6 +5656,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0777] = sSpellChronicleBigArt,
   [0x0778] = sSpellGearBigArt,
   [0x0779] = sOverflowingTreasureBigArt,
+  [0x077A] = sSpellStrikerBigArt,
+  [0x077B] = sTGHyperLibrarianBigArt,
+  [0x077C] = sTatsunokoBigArt,
+  [0x077D] = sTimeThiefRedoerBigArt,
+  [0x077E] = sTrishulaDragonOfTheIceBarrierBigArt,
+  [0x077F] = sTuningwareBigArt,
+  [0x0780] = sTurboBoosterBigArt,
+  [0x0781] = sTurboCannonBigArt,
+  [0x0782] = sTurboRocketBigArt,
+  [0x0783] = sTurboSynchronBigArt,
+  [0x0784] = sTyrannoInfinityBigArt,
+  [0x0785] = sUltimateAncientGearGolemBigArt,
+  [0x0786] = sUltimateTyrannoBigArt,
+  [0x0787] = sUnstableEvolutionBigArt,
+  [0x0788] = sUrgentTuningBigArt,
+  [0x0789] = sWarriorOfAtlantisBigArt,
+  [0x078A] = sWaterhazardBigArt,
+  [0x078B] = sWeaponChangeBigArt,
+  [0x078C] = sWetlandsBigArt,
+  [0x078D] = sXSaberAirbellumBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -6694,6 +6794,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0777] = sSpellChronicleBigPalette,
   [0x0778] = sSpellGearBigPalette,
   [0x0779] = sOverflowingTreasureBigPalette,
+  [0x077A] = sSpellStrikerBigPalette,
+  [0x077B] = sTGHyperLibrarianBigPalette,
+  [0x077C] = sTatsunokoBigPalette,
+  [0x077D] = sTimeThiefRedoerBigPalette,
+  [0x077E] = sTrishulaDragonOfTheIceBarrierBigPalette,
+  [0x077F] = sTuningwareBigPalette,
+  [0x0780] = sTurboBoosterBigPalette,
+  [0x0781] = sTurboCannonBigPalette,
+  [0x0782] = sTurboRocketBigPalette,
+  [0x0783] = sTurboSynchronBigPalette,
+  [0x0784] = sTyrannoInfinityBigPalette,
+  [0x0785] = sUltimateAncientGearGolemBigPalette,
+  [0x0786] = sUltimateTyrannoBigPalette,
+  [0x0787] = sUnstableEvolutionBigPalette,
+  [0x0788] = sUrgentTuningBigPalette,
+  [0x0789] = sWarriorOfAtlantisBigPalette,
+  [0x078A] = sWaterhazardBigPalette,
+  [0x078B] = sWeaponChangeBigPalette,
+  [0x078C] = sWetlandsBigPalette,
+  [0x078D] = sXSaberAirbellumBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -7812,6 +7932,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0777] = 0,
   [0x0778] = 0,
   [0x0779] = 0,
+  [0x077A] = 0,
+  [0x077B] = 0,
+  [0x077C] = 0,
+  [0x077D] = 0,
+  [0x077E] = 0,
+  [0x077F] = 0,
+  [0x0780] = 0,
+  [0x0781] = 0,
+  [0x0782] = 0,
+  [0x0783] = 0,
+  [0x0784] = 0,
+  [0x0785] = 0,
+  [0x0786] = 0,
+  [0x0787] = 0,
+  [0x0788] = 0,
+  [0x0789] = 0,
+  [0x078A] = 0,
+  [0x078B] = 0,
+  [0x078C] = 0,
+  [0x078D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -8930,4 +9070,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0777] = sSpellChronicleMiniArt,
   [0x0778] = sSpellGearMiniArt,
   [0x0779] = sOverflowingTreasureMiniArt,
+  [0x077A] = sSpellStrikerMiniArt,
+  [0x077B] = sTGHyperLibrarianMiniArt,
+  [0x077C] = sTatsunokoMiniArt,
+  [0x077D] = sTimeThiefRedoerMiniArt,
+  [0x077E] = sTrishulaDragonOfTheIceBarrierMiniArt,
+  [0x077F] = sTuningwareMiniArt,
+  [0x0780] = sTurboBoosterMiniArt,
+  [0x0781] = sTurboCannonMiniArt,
+  [0x0782] = sTurboRocketMiniArt,
+  [0x0783] = sTurboSynchronMiniArt,
+  [0x0784] = sTyrannoInfinityMiniArt,
+  [0x0785] = sUltimateAncientGearGolemMiniArt,
+  [0x0786] = sUltimateTyrannoMiniArt,
+  [0x0787] = sUnstableEvolutionMiniArt,
+  [0x0788] = sUrgentTuningMiniArt,
+  [0x0789] = sWarriorOfAtlantisMiniArt,
+  [0x078A] = sWaterhazardMiniArt,
+  [0x078B] = sWeaponChangeMiniArt,
+  [0x078C] = sWetlandsMiniArt,
+  [0x078D] = sXSaberAirbellumMiniArt,
 };

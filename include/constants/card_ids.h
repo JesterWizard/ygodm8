@@ -1915,11 +1915,31 @@
 #define SPELL_CHRONICLE                          0x0777
 #define SPELL_GEAR                               0x0778
 #define OVERFLOWING_TREASURE                     0x0779
+#define SPELL_STRIKER                            0x077A
+#define T_G_HYPER_LIBRARIAN                      0x077B
+#define TATSUNOKO                                0x077C
+#define TIME_THIEF_REDOER                        0x077D
+#define TRISHULA_DRAGON_OF_THE_ICE_BARRIER       0x077E
+#define TUNINGWARE                               0x077F
+#define TURBO_BOOSTER                            0x0780
+#define TURBO_CANNON                             0x0781
+#define TURBO_ROCKET                             0x0782
+#define TURBO_SYNCHRON                           0x0783
+#define TYRANNO_INFINITY                         0x0784
+#define ULTIMATE_ANCIENT_GEAR_GOLEM              0x0785
+#define ULTIMATE_TYRANNO                         0x0786
+#define UNSTABLE_EVOLUTION                       0x0787
+#define URGENT_TUNING                            0x0788
+#define WARRIOR_OF_ATLANTIS                      0x0789
+#define WATERHAZARD                              0x078A
+#define WEAPON_CHANGE                            0x078B
+#define WETLANDS                                 0x078C
+#define X_SABER_AIRBELLUM                        0x078D
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x077A
-#define NUM_CUSTOM_CARDS                        0x0459
+#define NUM_TOTAL_CARDS                         0x078E
+#define NUM_CUSTOM_CARDS                        0x046D
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

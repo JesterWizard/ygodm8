@@ -754,6 +754,36 @@ unsigned char CanActivateSILENT_MAGICIAN_LV8(void);
 void ActivateSILENT_MAGICIAN_LV8Effect(void);
 unsigned char CanActivateSIMORGH_BIRD_OF_ANCESTRY(void);
 void ActivateSIMORGH_BIRD_OF_ANCESTRYEffect(void);
+unsigned char CanActivateSPELL_STRIKER(void);
+void ActivateSPELL_STRIKEREffect(void);
+unsigned char CanActivateT_G_HYPER_LIBRARIAN(void);
+void ActivateT_G_HYPER_LIBRARIANEffect(void);
+unsigned char CanActivateTATSUNOKO(void);
+void ActivateTATSUNOKOEffect(void);
+unsigned char CanActivateTIME_THIEF_REDOER(void);
+void ActivateTIME_THIEF_REDOEREffect(void);
+unsigned char CanActivateTRISHULA_DRAGON_OF_THE_ICE_BARRIER(void);
+void ActivateTRISHULA_DRAGON_OF_THE_ICE_BARRIEREffect(void);
+unsigned char CanActivateTUNINGWARE(void);
+void ActivateTUNINGWAREEffect(void);
+unsigned char CanActivateTURBO_BOOSTER(void);
+void ActivateTURBO_BOOSTEREffect(void);
+unsigned char CanActivateTURBO_CANNON(void);
+void ActivateTURBO_CANNONEffect(void);
+unsigned char CanActivateTURBO_ROCKET(void);
+void ActivateTURBO_ROCKETEffect(void);
+unsigned char CanActivateTURBO_SYNCHRON(void);
+void ActivateTURBO_SYNCHRONEffect(void);
+unsigned char CanActivateTYRANNO_INFINITY(void);
+void ActivateTYRANNO_INFINITYEffect(void);
+unsigned char CanActivateULTIMATE_ANCIENT_GEAR_GOLEM(void);
+void ActivateULTIMATE_ANCIENT_GEAR_GOLEMEffect(void);
+unsigned char CanActivateULTIMATE_TYRANNO(void);
+void ActivateULTIMATE_TYRANNOEffect(void);
+unsigned char CanActivateWARRIOR_OF_ATLANTIS(void);
+void ActivateWARRIOR_OF_ATLANTISEffect(void);
+unsigned char CanActivateX_SABER_AIRBELLUM(void);
+void ActivateX_SABER_AIRBELLUMEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2877,6 +2907,66 @@ FAILED:
   }
   if (gMonEffect.id == SIMORGH_BIRD_OF_ANCESTRY) {
     ActivateSIMORGH_BIRD_OF_ANCESTRYEffect();
+    return;
+  }
+  if (gMonEffect.id == SPELL_STRIKER) {
+    ActivateSPELL_STRIKEREffect();
+    return;
+  }
+  if (gMonEffect.id == T_G_HYPER_LIBRARIAN) {
+    ActivateT_G_HYPER_LIBRARIANEffect();
+    return;
+  }
+  if (gMonEffect.id == TATSUNOKO) {
+    ActivateTATSUNOKOEffect();
+    return;
+  }
+  if (gMonEffect.id == TIME_THIEF_REDOER) {
+    ActivateTIME_THIEF_REDOEREffect();
+    return;
+  }
+  if (gMonEffect.id == TRISHULA_DRAGON_OF_THE_ICE_BARRIER) {
+    ActivateTRISHULA_DRAGON_OF_THE_ICE_BARRIEREffect();
+    return;
+  }
+  if (gMonEffect.id == TUNINGWARE) {
+    ActivateTUNINGWAREEffect();
+    return;
+  }
+  if (gMonEffect.id == TURBO_BOOSTER) {
+    ActivateTURBO_BOOSTEREffect();
+    return;
+  }
+  if (gMonEffect.id == TURBO_CANNON) {
+    ActivateTURBO_CANNONEffect();
+    return;
+  }
+  if (gMonEffect.id == TURBO_ROCKET) {
+    ActivateTURBO_ROCKETEffect();
+    return;
+  }
+  if (gMonEffect.id == TURBO_SYNCHRON) {
+    ActivateTURBO_SYNCHRONEffect();
+    return;
+  }
+  if (gMonEffect.id == TYRANNO_INFINITY) {
+    ActivateTYRANNO_INFINITYEffect();
+    return;
+  }
+  if (gMonEffect.id == ULTIMATE_ANCIENT_GEAR_GOLEM) {
+    ActivateULTIMATE_ANCIENT_GEAR_GOLEMEffect();
+    return;
+  }
+  if (gMonEffect.id == ULTIMATE_TYRANNO) {
+    ActivateULTIMATE_TYRANNOEffect();
+    return;
+  }
+  if (gMonEffect.id == WARRIOR_OF_ATLANTIS) {
+    ActivateWARRIOR_OF_ATLANTISEffect();
+    return;
+  }
+  if (gMonEffect.id == X_SABER_AIRBELLUM) {
+    ActivateX_SABER_AIRBELLUMEffect();
     return;
   }
 }

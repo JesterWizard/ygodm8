@@ -562,3 +562,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire MORPHTRONIC_MIXUP in trap dispatcher */
 /* SCRAP_IRON_SCARECROW trap effect */
   /* TODO: wire SCRAP_IRON_SCARECROW in trap dispatcher */
+/* URGENT_TUNING trap effect */
+  /* TODO: wire URGENT_TUNING in trap dispatcher */

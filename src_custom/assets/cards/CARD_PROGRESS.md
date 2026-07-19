@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1113 |
-| Art ready, needs manifest | 20 |
+| In game (manifest + art) | 1133 |
+| Art ready, needs manifest | 0 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1135** |
 
@@ -1135,31 +1135,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SPELL_CHRONICLE` | Spell Chronicle | `spell_chronicle.png` |
 | `SPELL_GEAR` | Spell Gear | `spell_gear.png` |
 | `OVERFLOWING_TREASURE` | Overflowing Treasure | `overflowing_treasure.png` |
+| `SPELL_STRIKER` | Spell Striker | `spell_striker.png` |
+| `T_G_HYPER_LIBRARIAN` | T.G. Hyper Librarian | `t_g_hyper_librarian.png` |
+| `TATSUNOKO` | Tatsunoko | `tatsunoko.png` |
+| `TIME_THIEF_REDOER` | Time Thief Redoer | `time_thief_redoer.png` |
+| `TRISHULA_DRAGON_OF_THE_ICE_BARRIER` | Trishula, Dragon of the Ice Barrier | `trishula_dragon_of_the_ice_barrier.png` |
+| `TUNINGWARE` | Tuningware | `tuningware.png` |
+| `TURBO_BOOSTER` | Turbo Booster | `turbo_booster.png` |
+| `TURBO_CANNON` | Turbo Cannon | `turbo_cannon.png` |
+| `TURBO_ROCKET` | Turbo Rocket | `turbo_rocket.png` |
+| `TURBO_SYNCHRON` | Turbo Synchron | `turbo_synchron.png` |
+| `TYRANNO_INFINITY` | Tyranno Infinity | `tyranno_infinity.png` |
+| `ULTIMATE_ANCIENT_GEAR_GOLEM` | Ultimate Ancient Gear Golem | `ultimate_ancient_gear_golem.png` |
+| `ULTIMATE_TYRANNO` | Ultimate Tyranno | `ultimate_tyranno.png` |
+| `UNSTABLE_EVOLUTION` | Unstable Evolution | `unstable_evolution.png` |
+| `URGENT_TUNING` | Urgent Tuning | `urgent_tuning.png` |
+| `WARRIOR_OF_ATLANTIS` | Warrior of Atlantis | `warrior_of_atlantis.png` |
+| `WATERHAZARD` | Water Hazard | `waterhazard.png` |
+| `WEAPON_CHANGE` | Weapon Change | `weapon_change.png` |
+| `WETLANDS` | Wetlands | `wetlands.png` |
+| `X_SABER_AIRBELLUM` | X-Saber Airbellum | `x_saber_airbellum.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `SPELL_STRIKER` — `spell_striker.png`
-- [ ] `T_G_HYPER_LIBRARIAN` — `t_g_hyper_librarian.png`
-- [ ] `TATSUNOKO` — `tatsunoko.png`
-- [ ] `TIME_THIEF_REDOER` — `time_thief_redoer.png`
-- [ ] `TRISHULA_DRAGON_OF_THE_ICE_BARRIER` — `trishula_dragon_of_the_ice_barrier.png`
-- [ ] `TUNINGWARE` — `tuningware.png`
-- [ ] `TURBO_BOOSTER` — `turbo_booster.png`
-- [ ] `TURBO_CANNON` — `turbo_cannon.png`
-- [ ] `TURBO_ROCKET` — `turbo_rocket.png`
-- [ ] `TURBO_SYNCHRON` — `turbo_synchron.png`
-- [ ] `TYRANNO_INFINITY` — `tyranno_infinity.png`
-- [ ] `ULTIMATE_ANCIENT_GEAR_GOLEM` — `ultimate_ancient_gear_golem.png`
-- [ ] `ULTIMATE_TYRANNO` — `ultimate_tyranno.png`
-- [ ] `UNSTABLE_EVOLUTION` — `unstable_evolution.png`
-- [ ] `URGENT_TUNING` — `urgent_tuning.png`
-- [ ] `WARRIOR_OF_ATLANTIS` — `warrior_of_atlantis.png`
-- [ ] `WATERHAZARD` — `WaterHazard.png`
-- [ ] `WEAPON_CHANGE` — `weapon_change.png`
-- [ ] `WETLANDS` — `wetlands.png`
-- [ ] `X_SABER_AIRBELLUM` — `x_saber_airbellum.png`
 
 ## Todo — in manifest, missing art
 
