@@ -39562,6 +39562,446 @@
       "effect_texts": {
         "popup_1": "Negate the effect of your opponent's first Spell Card or effect that resolves each turn while you control a Spellcaster"
       }
+    },
+    {
+      "card_const": "MAJESTY_HYPERION",
+      "card_name": "Majesty Hyperion",
+      "atk": 2100,
+      "def": 2700,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [9, 1, 4, 3, 4, 6, 0, 2],
+      "description": {
+        "symbol": "gDescription_MajestyHyperion",
+        "pages": "You can Special Summon this card (from your hand or GY) by banishing 1 The Agent monster from your hand, field, or GY. You can only Special Summon Majesty Hyperion once per turn this way. Any battle damage you take from battles involving your Fairy monsters is also inflicted to your opponent. Once per turn: You can banish 1 Fairy monster from your hand or GY, then target 1 card in either GY; banish it. If The Sanctuary in the Sky is on the field or in either GY, you can use this effect up to twice per turn."
+      },
+      "effect_texts": {
+        "popup_1": "You can Special Summon this card (from your hand or GY) by banishing 1 \"The Agent\" monster from your hand, field, or GY."
+      }
+    },
+    {
+      "card_const": "MASTER_HYPERION",
+      "card_name": "Master Hyperion",
+      "atk": 2700,
+      "def": 2100,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [5, 5, 7, 9, 4, 6, 4, 4],
+      "description": {
+        "symbol": "gDescription_MasterHyperion",
+        "pages": "You can Special Summon this card (from your hand) by banishing 1 The Agent monster from your hand, field, or Graveyard. Once per turn: You can banish 1 LIGHT Fairy-Type monster from your Graveyard, then target 1 card on the field; destroy that target. While The Sanctuary in the Sky is on the field, you can activate this effect up to twice per turn."
+      },
+      "effect_texts": {
+        "popup_1": "You can Special Summon this card (from your hand) by banishing 1 \"The Agent\" monster from your hand, field, or Graveyard"
+      }
+    },
+    {
+      "card_const": "MASTERFLARE_HYPERION",
+      "card_name": "Masterflare Hyperion",
+      "atk": 3200,
+      "def": 2600,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 3, 1, 0, 1, 4, 6, 8],
+      "description": {
+        "symbol": "gDescription_MasterflareHyperion",
+        "pages": "1 Tuner + 1+ non-Tuner Fairy monsters You can send 1 The Agent monster, or 1 monster that mentions The Sanctuary in the Sky, from your hand, Deck, or Extra Deck to the GY; until the End Phase, this card's name becomes that monster's original name, and replace this effect with that monster's original effects. When your opponent activates a card or effect (Quick Effect): You can banish 1 Fairy monster from your hand or GY, then target 1 card on the field; banish it. You can only use each effect of Masterflare Hyperion once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner Fairy monsters\r\nYou can send 1 \"The Agent\" monster, or 1 monster that mentions \"The Sanctuary in "
+      }
+    },
+    {
+      "card_const": "MEZUKI",
+      "card_name": "Mezuki",
+      "atk": 1700,
+      "def": 800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_ZOMBIE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 2, 8, 2, 6, 9, 4, 4],
+      "description": {
+        "symbol": "gDescription_Mezuki",
+        "pages": "You can banish this card from your GY, then target 1 Zombie monster in your GY; Special Summon that target."
+      },
+      "effect_texts": {
+        "popup_1": "You can banish this card from your GY, then target 1 Zombie monster in your GY; Special Summon that target."
+      }
+    },
+    {
+      "card_const": "NECROFACE",
+      "card_name": "Necroface",
+      "atk": 1200,
+      "def": 1800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_ZOMBIE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 289,
+      "password": [2, 8, 2, 9, 7, 8, 3, 3],
+      "description": {
+        "symbol": "gDescription_Necroface",
+        "pages": "If this card is Normal Summoned: Shuffle all banished cards into the Deck. This card gains 100 ATK for each card shuffled into the Main Deck by this effect. If this card is banished: Each player banishes 5 cards from the top of their Deck (or their entire Deck, if less than 5)."
+      },
+      "effect_texts": {
+        "popup_1": "If this card is Normal Summoned: Shuffle all banished cards into the Deck. This card gains 100 ATK for each card shuffle"
+      }
+    },
+    {
+      "card_const": "MORAY_OF_GREED",
+      "card_name": "Moray of Greed",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 2, 1, 2, 3, 6, 2, 7],
+      "description": {
+        "symbol": "gDescription_MorayOfGreed",
+        "pages": "Shuffle 2 WATER monsters from your hand into the Deck, then draw 3 cards."
+      },
+      "effect_texts": {
+        "popup_1": "Shuffle 2 WATER monsters from your hand into the Deck, then draw 3 cards."
+      }
+    },
+    {
+      "card_const": "NECROVALLEY_THRONE",
+      "card_name": "Necrovalley Throne",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 7, 5, 6, 1, 1, 3, 8],
+      "description": {
+        "symbol": "gDescription_NecrovalleyThrone",
+        "pages": "Activate 1 of these effects. - Add 1 Gravekeeper's monster from your Deck to your hand. - Immediately after this effect resolves, Normal Summon 1 Gravekeeper's monster. You can only activate 1 Necrovalley Throne per turn."
+      },
+      "effect_texts": {
+        "popup_1": "Activate 1 of these effects. - Add 1 Gravekeeper's monster from your Deck to your hand. - Immediately after this eff"
+      }
+    },
+    {
+      "card_const": "OIL",
+      "card_name": "Oil",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 4, 0, 5, 5, 0, 5, 5],
+      "description": {
+        "symbol": "gDescription_Oil",
+        "pages": "Target up to 2 Level 4 or lower FIRE monsters with different names in your GY; add them to your hand. You can only activate 1 Oil per turn."
+      },
+      "effect_texts": {
+        "popup_1": "Target up to 2 Level 4 or lower FIRE monsters with different names in your GY; add them to your hand. You can only activ"
+      }
+    },
+    {
+      "card_const": "ONE_DAY_OF_PEACE",
+      "card_name": "One Day of Peace",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 3, 7, 8, 2, 4, 3, 7],
+      "description": {
+        "symbol": "gDescription_OneDayOfPeace",
+        "pages": "Each player draws 1 card, and neither player takes damage until the end of the opponent's next turn."
+      },
+      "effect_texts": {
+        "popup_1": "Each player draws 1 card, and neither player takes damage until the end of the opponent's next turn."
+      }
+    },
+    {
+      "card_const": "POT_OF_AVARICE",
+      "card_name": "Pot of Avarice",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 7, 1, 6, 9, 0, 6, 2],
+      "description": {
+        "symbol": "gDescription_PotOfAvarice",
+        "pages": "Target 5 monsters in your GY; shuffle all 5 into the Deck, then draw 2 cards."
+      },
+      "effect_texts": {
+        "popup_1": "Target 5 monsters in your GY; shuffle all 5 into the Deck, then draw 2 cards."
+      }
+    },
+    {
+      "card_const": "POT_OF_EXTRAVAGANCE",
+      "card_name": "Pot of Extravagance",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 9, 2, 3, 8, 3, 2, 8],
+      "description": {
+        "symbol": "gDescription_PotOfExtravagance",
+        "pages": "At the start of your Main Phase 1: Banish 3 or 6 random face-down cards from your Extra Deck, face-down; draw 1 card for every 3 cards banished. For the rest of this turn after this card resolves, you cannot draw any cards by card effects."
+      },
+      "effect_texts": {
+        "popup_1": "At the start of your Main Phase 1: Banish 3 or 6 random face-down cards from your Extra Deck, face-down; draw 1 card for"
+      }
+    },
+    {
+      "card_const": "REASONING",
+      "card_name": "Reasoning",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 8, 5, 7, 7, 0, 3, 6],
+      "description": {
+        "symbol": "gDescription_Reasoning",
+        "pages": "Your opponent declares a monster Level from 1 to 12. Excavate cards from the top of your Deck until you excavate a monster that can be Normal Summoned/Set, then, if that monster is the same Level as the one declared by your opponent, send all excavated cards to the GY. If not, Special Summon the excavated monster, also send the remaining cards to the GY."
+      },
+      "effect_texts": {
+        "popup_1": "Your opponent declares a monster Level from 1 to 12. Excavate cards from the top of your Deck until you excavate a monst"
+      }
+    },
+    {
+      "card_const": "NECROVALLEY_TEMPLE",
+      "card_name": "Necrovalley Temple",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 6, 7, 7, 3, 5, 7, 7],
+      "description": {
+        "symbol": "gDescription_NecrovalleyTemple",
+        "pages": "While a Gravekeeper's monster(s) and Necrovalley are both on the field, monsters your opponent controls lose 500 ATK/DEF. Once per turn, during the Main Phase, if you control no card in your Field Zone: You can activate 1 Necrovalley directly from your hand or GY. If this card in your possession is destroyed by an opponent's effect and sent to your GY: You can Set 1 Necrovalley Spell/Trap directly from your Deck, except Necrovalley Temple."
+      },
+      "effect_texts": {
+        "popup_1": "While a \"Gravekeeper's\" monster(s) and \"Necrovalley\" are both on the field, monsters your opponent controls lose 500 ATK"
+      }
+    },
+    {
+      "card_const": "NUMBER_39_UTOPIA",
+      "card_name": "Number 39: Utopia",
+      "atk": 2500,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "XYZ_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 20,
+      "password": [8, 4, 0, 1, 3, 2, 3, 7],
+      "description": {
+        "symbol": "gDescription_Number39Utopia",
+        "pages": "2 Level 4 monsters When a monster declares an attack: You can detach 1 material from this card; negate the attack. If this card is targeted for an attack, while it has no material: Destroy this card."
+      },
+      "effect_texts": {
+        "popup_1": "2 Level 4 monsters When a monster declares an attack: You can detach 1 material from this card; negate the attack. If t"
+      }
+    },
+    {
+      "card_const": "OCEAN_DRAGON_LORD_NEO_DAEDALUS",
+      "card_name": "Ocean Dragon Lord - Neo-Daedalus",
+      "atk": 2900,
+      "def": 1600,
+      "level": 8,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [1, 0, 4, 8, 5, 1, 1, 0],
+      "description": {
+        "symbol": "gDescription_OceanDragonLordNeoDaedalus",
+        "pages": "This card cannot be Normal Summoned or Set. This card cannot be Special Summoned except by Tributing 1 Levia-Dragon - Daedalus. You can send Umi you control to the Graveyard to send all cards in both players' hands and on the field to the Graveyard, except this card."
+      },
+      "effect_texts": {
+        "popup_1": "This card cannot be Normal Summoned or Set. This card cannot be Special Summoned except by Tributing 1 Levia-Dragon - D"
+      }
+    },
+    {
+      "card_const": "POSEIDRA_THE_ATLANTEAN_DRAGON",
+      "card_name": "Poseidra, the Atlantean Dragon",
+      "atk": 2800,
+      "def": 1600,
+      "level": 7,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 7, 8, 2, 6, 1, 1, 2],
+      "description": {
+        "symbol": "gDescription_PoseidraTheAtlanteanDragon",
+        "pages": "You can Tribute 3 Level 3 or lower WATER monsters; Special Summon this card from your hand or Graveyard. When you do: Return all Spell and Trap Cards on the field to the hand, and if you do, if 3 or more cards are returned to the hand by this effect, all monsters your opponent currently controls lose 300 ATK for each."
+      },
+      "effect_texts": {
+        "popup_1": "You can Tribute 3 Level 3 or lower WATER monsters; Special Summon this card from your hand or Graveyard. When you do: Re"
+      }
+    },
+    {
+      "card_const": "PROTECTOR_OF_THE_AGENTS_MOON",
+      "card_name": "Protector of The Agents - Moon",
+      "atk": 1800,
+      "def": 0,
+      "level": 0,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "LINK_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 16,
+      "password": [9, 0, 2, 9, 0, 5, 7, 2],
+      "description": {
+        "symbol": "gDescription_ProtectorOfTheAgentsMoon",
+        "pages": "2 Fairy monsters If this card is Link Summoned: You can send 1 The Sanctuary in the Sky or 1 card that mentions it from your Deck to the GY, or if The Sanctuary in the Sky is on the field or in either GY, you can add 1 The Agent of Mystery - Earth from your Deck or GY to your hand instead. You can Tribute 1 Fairy monster, then target 1 card your opponent controls; destroy it. You can only use each effect of Protector of The Agents - Moon once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "2 Fairy monsters\r\nIf this card is Link Summoned: You can send 1 \"The Sanctuary in the Sky\" or 1 card that mentions it fr"
+      }
+    },
+    {
+      "card_const": "MAXX_C",
+      "card_name": "Maxx C",
+      "atk": 500,
+      "def": 200,
+      "level": 2,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_INSECT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [2, 3, 4, 3, 4, 5, 3, 8],
+      "description": {
+        "symbol": "gDescription_MaxxC",
+        "pages": "During either player's turn: You can send this card from your hand to the Graveyard; this turn, each time your opponent Special Summons a monster(s), immediately draw 1 card. You can only use 1 Maxx C per turn."
+      },
+      "effect_texts": {
+        "popup_1": "During either player's turn: You can send this card from your hand to the Graveyard; this turn, each time your opponent"
+      }
+    },
+    {
+      "card_const": "OBLITERATE_BLAZE",
+      "card_name": "Obliterate!!! Blaze",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 0, 4, 0, 2, 4, 1, 6],
+      "description": {
+        "symbol": "gDescription_ObliterateBlaze",
+        "pages": "One Level 10 or higher monster on the field with Exodia in its original name gains these effects. - You can pay half your LP; destroy as many cards in the Spell & Trap Zones as possible, then equip 5 Forbidden One monsters from your hand and/or Deck to this card as Equip Spells that each give it 2000 ATK, also you cannot activate other cards' effects for the rest of this turn. - If this card attacks a Defense Position monster, inflict piercing battle damage to your opponent."
+      },
+      "effect_texts": {
+        "popup_1": "One Level 10 or higher monster on the field with Exodia in its original name gains these effects. - You can pay half"
+      }
+    },
+    {
+      "card_const": "QUEENS_PAWN",
+      "card_name": "Queen's Pawn",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 8, 4, 7, 7, 7, 6, 7],
+      "description": {
+        "symbol": "gDescription_QueensPawn",
+        "pages": "Activate only when an Amazoness monster you control destroys an opponent's monster by battle and sends it to the Graveyard. Special Summon 1 Level 4 or lower Amazoness monster from your Deck."
+      },
+      "effect_texts": {
+        "popup_1": "Activate only when an Amazoness monster you control destroys an opponent's monster by battle and sends it to the Grave"
+      }
     }
   ]
 }

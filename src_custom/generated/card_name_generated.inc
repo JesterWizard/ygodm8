@@ -1234,6 +1234,26 @@ static const u8 sGravekeepersVisionaryName[] __attribute__((section(".append_ass
 static const u8 sGravekeepersWatcherName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Watcher";
 static const u8 sMagiciansLeftHandName[] __attribute__((section(".append_assets"))) = "Magician's Left Hand";
 static const u8 sMagiciansRightHandName[] __attribute__((section(".append_assets"))) = "Magician's Right Hand";
+static const u8 sMajestyHyperionName[] __attribute__((section(".append_assets"))) = "Majesty Hyperion";
+static const u8 sMasterHyperionName[] __attribute__((section(".append_assets"))) = "Master Hyperion";
+static const u8 sMasterflareHyperionName[] __attribute__((section(".append_assets"))) = "Masterflare Hyperion";
+static const u8 sMezukiName[] __attribute__((section(".append_assets"))) = "Mezuki";
+static const u8 sNecrofaceName[] __attribute__((section(".append_assets"))) = "Necroface";
+static const u8 sMorayOfGreedName[] __attribute__((section(".append_assets"))) = "Moray of Greed";
+static const u8 sNecrovalleyThroneName[] __attribute__((section(".append_assets"))) = "Necrovalley Throne";
+static const u8 sOilName[] __attribute__((section(".append_assets"))) = "Oil";
+static const u8 sOneDayOfPeaceName[] __attribute__((section(".append_assets"))) = "One Day of Peace";
+static const u8 sPotOfAvariceName[] __attribute__((section(".append_assets"))) = "Pot of Avarice";
+static const u8 sPotOfExtravaganceName[] __attribute__((section(".append_assets"))) = "Pot of Extravagance";
+static const u8 sReasoningName[] __attribute__((section(".append_assets"))) = "Reasoning";
+static const u8 sNecrovalleyTempleName[] __attribute__((section(".append_assets"))) = "Necrovalley Temple";
+static const u8 sNumber39UtopiaName[] __attribute__((section(".append_assets"))) = "Number 39: Utopia";
+static const u8 sOceanDragonLordNeoDaedalusName[] __attribute__((section(".append_assets"))) = "Ocean Dragon Lord - Neo-Daedalus";
+static const u8 sPoseidraTheAtlanteanDragonName[] __attribute__((section(".append_assets"))) = "Poseidra, the Atlantean Dragon";
+static const u8 sProtectorOfTheAgentsMoonName[] __attribute__((section(".append_assets"))) = "Protector of The Agents - Moon";
+static const u8 sMaxxCName[] __attribute__((section(".append_assets"))) = "Maxx C";
+static const u8 sObliterateBlazeName[] __attribute__((section(".append_assets"))) = "Obliterate!!! Blaze";
+static const u8 sQueensPawnName[] __attribute__((section(".append_assets"))) = "Queen's Pawn";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3708,6 +3728,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMagiciansLeftHandName;
   if (cardId == 0x07F1)
     return (u8 *)sMagiciansRightHandName;
+  if (cardId == 0x07F2)
+    return (u8 *)sMajestyHyperionName;
+  if (cardId == 0x07F3)
+    return (u8 *)sMasterHyperionName;
+  if (cardId == 0x07F4)
+    return (u8 *)sMasterflareHyperionName;
+  if (cardId == 0x07F5)
+    return (u8 *)sMezukiName;
+  if (cardId == 0x07F6)
+    return (u8 *)sNecrofaceName;
+  if (cardId == 0x07F7)
+    return (u8 *)sMorayOfGreedName;
+  if (cardId == 0x07F8)
+    return (u8 *)sNecrovalleyThroneName;
+  if (cardId == 0x07F9)
+    return (u8 *)sOilName;
+  if (cardId == 0x07FA)
+    return (u8 *)sOneDayOfPeaceName;
+  if (cardId == 0x07FB)
+    return (u8 *)sPotOfAvariceName;
+  if (cardId == 0x07FC)
+    return (u8 *)sPotOfExtravaganceName;
+  if (cardId == 0x07FD)
+    return (u8 *)sReasoningName;
+  if (cardId == 0x07FE)
+    return (u8 *)sNecrovalleyTempleName;
+  if (cardId == 0x07FF)
+    return (u8 *)sNumber39UtopiaName;
+  if (cardId == 0x0800)
+    return (u8 *)sOceanDragonLordNeoDaedalusName;
+  if (cardId == 0x0801)
+    return (u8 *)sPoseidraTheAtlanteanDragonName;
+  if (cardId == 0x0802)
+    return (u8 *)sProtectorOfTheAgentsMoonName;
+  if (cardId == 0x0803)
+    return (u8 *)sMaxxCName;
+  if (cardId == 0x0804)
+    return (u8 *)sObliterateBlazeName;
+  if (cardId == 0x0805)
+    return (u8 *)sQueensPawnName;
 
   return gCardNames[cardId];
 }

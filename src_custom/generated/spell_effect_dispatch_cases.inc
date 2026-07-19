@@ -587,6 +587,9 @@
     case MORALE_BOOST:
       EffectMORALE_BOOST();
       return;
+    case MORAY_OF_GREED:
+      EffectMORAY_OF_GREED();
+      return;
     case MORPHTRONIC_ACCELERATOR:
       EffectMORPHTRONIC_ACCELERATOR();
       return;
@@ -620,6 +623,9 @@
     case NECROVALLEY:
       EffectNECROVALLEY();
       return;
+    case NECROVALLEY_THRONE:
+      EffectNECROVALLEY_THRONE();
+      return;
     case NEGATIVE_ENERGY:
       EffectNegativeEnergy();
       return;
@@ -637,6 +643,15 @@
       return;
     case NIGHTMARE_WHEEL:
       EffectNightmareWheel();
+      return;
+    case OBLITERATE_BLAZE:
+      EffectOBLITERATE_BLAZE();
+      return;
+    case OIL:
+      EffectOIL();
+      return;
+    case ONE_DAY_OF_PEACE:
+      EffectONE_DAY_OF_PEACE();
       return;
     case OVERFLOWING_TREASURE:
       EffectOVERFLOWING_TREASURE();
@@ -671,6 +686,12 @@
     case POLYMERIZATION:
       EffectPolymerization();
       return;
+    case POT_OF_AVARICE:
+      EffectPOT_OF_AVARICE();
+      return;
+    case POT_OF_EXTRAVAGANCE:
+      EffectPOT_OF_EXTRAVAGANCE();
+      return;
     case POWER_BOND:
       EffectPowerBond();
       return;
@@ -697,6 +718,9 @@
       return;
     case REALM_OF_LIGHT:
       EffectREALM_OF_LIGHT();
+      return;
+    case REASONING:
+      EffectREASONING();
       return;
     case RELOAD:
       EffectReload();

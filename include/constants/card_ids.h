@@ -2035,11 +2035,31 @@
 #define GRAVEKEEPERS_WATCHER                     0x07EF
 #define MAGICIANS_LEFT_HAND                      0x07F0
 #define MAGICIANS_RIGHT_HAND                     0x07F1
+#define MAJESTY_HYPERION                         0x07F2
+#define MASTER_HYPERION                          0x07F3
+#define MASTERFLARE_HYPERION                     0x07F4
+#define MEZUKI                                   0x07F5
+#define NECROFACE                                0x07F6
+#define MORAY_OF_GREED                           0x07F7
+#define NECROVALLEY_THRONE                       0x07F8
+#define OIL                                      0x07F9
+#define ONE_DAY_OF_PEACE                         0x07FA
+#define POT_OF_AVARICE                           0x07FB
+#define POT_OF_EXTRAVAGANCE                      0x07FC
+#define REASONING                                0x07FD
+#define NECROVALLEY_TEMPLE                       0x07FE
+#define NUMBER_39_UTOPIA                         0x07FF
+#define OCEAN_DRAGON_LORD_NEO_DAEDALUS           0x0800
+#define POSEIDRA_THE_ATLANTEAN_DRAGON            0x0801
+#define PROTECTOR_OF_THE_AGENTS_MOON             0x0802
+#define MAXX_C                                   0x0803
+#define OBLITERATE_BLAZE                         0x0804
+#define QUEENS_PAWN                              0x0805
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x07F2
-#define NUM_CUSTOM_CARDS                        0x04D1
+#define NUM_TOTAL_CARDS                         0x0806
+#define NUM_CUSTOM_CARDS                        0x04E5
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

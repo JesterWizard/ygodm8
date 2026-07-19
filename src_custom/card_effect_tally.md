@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1164` effects
+- `1184` effects
 
 ## Tally
 
@@ -1145,6 +1145,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Gravekeepers Watcher` | `src_custom/activated_effects/gravekeepers_watcher.c` |
 | `spell_effects` | `Magicians Left Hand` | `src_custom/spell_effects/magicians_left_hand.c` |
 | `spell_effects` | `Magicians Right Hand` | `src_custom/spell_effects/magicians_right_hand.c` |
+| `activated_effects` | `Majesty Hyperion` | `src_custom/activated_effects/majesty_hyperion.c` |
+| `activated_effects` | `Master Hyperion` | `src_custom/activated_effects/master_hyperion.c` |
+| `activated_effects` | `Masterflare Hyperion` | `src_custom/activated_effects/masterflare_hyperion.c` |
+| `activated_effects` | `Mezuki` | `src_custom/activated_effects/mezuki.c` |
+| `activated_effects` | `Necroface` | `src_custom/activated_effects/necroface.c` |
+| `spell_effects` | `Moray Of Greed` | `src_custom/spell_effects/moray_of_greed.c` |
+| `spell_effects` | `Necrovalley Throne` | `src_custom/spell_effects/necrovalley_throne.c` |
+| `spell_effects` | `Oil` | `src_custom/spell_effects/oil.c` |
+| `spell_effects` | `One Day Of Peace` | `src_custom/spell_effects/one_day_of_peace.c` |
+| `spell_effects` | `Pot Of Avarice` | `src_custom/spell_effects/pot_of_avarice.c` |
+| `spell_effects` | `Pot Of Extravagance` | `src_custom/spell_effects/pot_of_extravagance.c` |
+| `spell_effects` | `Reasoning` | `src_custom/spell_effects/reasoning.c` |
+| `trap_effects` | `Necrovalley Temple` | `src_custom/trap_effects/necrovalley_temple.c` |
+| `activated_effects` | `Number 39 Utopia` | `src_custom/activated_effects/number_39_utopia.c` |
+| `activated_effects` | `Ocean Dragon Lord Neo Daedalus` | `src_custom/activated_effects/ocean_dragon_lord_neo_daedalus.c` |
+| `activated_effects` | `Poseidra The Atlantean Dragon` | `src_custom/activated_effects/poseidra_the_atlantean_dragon.c` |
+| `activated_effects` | `Protector Of The Agents Moon` | `src_custom/activated_effects/protector_of_the_agents_moon.c` |
+| `activated_effects` | `Maxx C` | `src_custom/activated_effects/maxx_c.c` |
+| `spell_effects` | `Obliterate Blaze` | `src_custom/spell_effects/obliterate_blaze.c` |
+| `trap_effects` | `Queens Pawn` | `src_custom/trap_effects/queens_pawn.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

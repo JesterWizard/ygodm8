@@ -4944,6 +4944,86 @@ static const unsigned char sMagiciansRightHandBigArt[] __attribute__((section(".
 static const unsigned short sMagiciansRightHandBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/magicians_right_hand.gbapal");
 static const unsigned char sMagiciansRightHandMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/magicians_right_hand.lz");
 
+static const unsigned char sMajestyHyperionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/majesty_hyperion.huff");
+static const unsigned short sMajestyHyperionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/majesty_hyperion.gbapal");
+static const unsigned char sMajestyHyperionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/majesty_hyperion.lz");
+
+static const unsigned char sMasterHyperionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/master_hyperion.huff");
+static const unsigned short sMasterHyperionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/master_hyperion.gbapal");
+static const unsigned char sMasterHyperionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/master_hyperion.lz");
+
+static const unsigned char sMasterflareHyperionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/masterflare_hyperion.huff");
+static const unsigned short sMasterflareHyperionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/masterflare_hyperion.gbapal");
+static const unsigned char sMasterflareHyperionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/masterflare_hyperion.lz");
+
+static const unsigned char sMezukiBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mezuki.huff");
+static const unsigned short sMezukiBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mezuki.gbapal");
+static const unsigned char sMezukiMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mezuki.lz");
+
+static const unsigned char sNecrofaceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/necroface.huff");
+static const unsigned short sNecrofaceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/necroface.gbapal");
+static const unsigned char sNecrofaceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/necroface.lz");
+
+static const unsigned char sMorayOfGreedBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/moray_of_greed.huff");
+static const unsigned short sMorayOfGreedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/moray_of_greed.gbapal");
+static const unsigned char sMorayOfGreedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/moray_of_greed.lz");
+
+static const unsigned char sNecrovalleyThroneBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/necrovalley_throne.huff");
+static const unsigned short sNecrovalleyThroneBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/necrovalley_throne.gbapal");
+static const unsigned char sNecrovalleyThroneMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/necrovalley_throne.lz");
+
+static const unsigned char sOilBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/oil.huff");
+static const unsigned short sOilBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/oil.gbapal");
+static const unsigned char sOilMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/oil.lz");
+
+static const unsigned char sOneDayOfPeaceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/one_day_of_peace.huff");
+static const unsigned short sOneDayOfPeaceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/one_day_of_peace.gbapal");
+static const unsigned char sOneDayOfPeaceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/one_day_of_peace.lz");
+
+static const unsigned char sPotOfAvariceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/pot_of_avarice.huff");
+static const unsigned short sPotOfAvariceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/pot_of_avarice.gbapal");
+static const unsigned char sPotOfAvariceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/pot_of_avarice.lz");
+
+static const unsigned char sPotOfExtravaganceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/pot_of_extravagance.huff");
+static const unsigned short sPotOfExtravaganceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/pot_of_extravagance.gbapal");
+static const unsigned char sPotOfExtravaganceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/pot_of_extravagance.lz");
+
+static const unsigned char sReasoningBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reasoning.huff");
+static const unsigned short sReasoningBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reasoning.gbapal");
+static const unsigned char sReasoningMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reasoning.lz");
+
+static const unsigned char sNecrovalleyTempleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/necrovalley_temple.huff");
+static const unsigned short sNecrovalleyTempleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/necrovalley_temple.gbapal");
+static const unsigned char sNecrovalleyTempleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/necrovalley_temple.lz");
+
+static const unsigned char sNumber39UtopiaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/number_39_utopia.huff");
+static const unsigned short sNumber39UtopiaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/number_39_utopia.gbapal");
+static const unsigned char sNumber39UtopiaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/number_39_utopia.lz");
+
+static const unsigned char sOceanDragonLordNeoDaedalusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ocean_dragon_lord_neo_daedalus.huff");
+static const unsigned short sOceanDragonLordNeoDaedalusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ocean_dragon_lord_neo_daedalus.gbapal");
+static const unsigned char sOceanDragonLordNeoDaedalusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ocean_dragon_lord_neo_daedalus.lz");
+
+static const unsigned char sPoseidraTheAtlanteanDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/poseidra_the_atlantean_dragon.huff");
+static const unsigned short sPoseidraTheAtlanteanDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/poseidra_the_atlantean_dragon.gbapal");
+static const unsigned char sPoseidraTheAtlanteanDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/poseidra_the_atlantean_dragon.lz");
+
+static const unsigned char sProtectorOfTheAgentsMoonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/protector_of_the_agents_moon.huff");
+static const unsigned short sProtectorOfTheAgentsMoonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/protector_of_the_agents_moon.gbapal");
+static const unsigned char sProtectorOfTheAgentsMoonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/protector_of_the_agents_moon.lz");
+
+static const unsigned char sMaxxCBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/maxx_c.huff");
+static const unsigned short sMaxxCBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/maxx_c.gbapal");
+static const unsigned char sMaxxCMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/maxx_c.lz");
+
+static const unsigned char sObliterateBlazeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/obliterate_blaze.huff");
+static const unsigned short sObliterateBlazeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/obliterate_blaze.gbapal");
+static const unsigned char sObliterateBlazeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/obliterate_blaze.lz");
+
+static const unsigned char sQueensPawnBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/queens_pawn.huff");
+static const unsigned short sQueensPawnBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/queens_pawn.gbapal");
+static const unsigned char sQueensPawnMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/queens_pawn.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -6181,6 +6261,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x07EF] = sGravekeepersWatcherBigArt,
   [0x07F0] = sMagiciansLeftHandBigArt,
   [0x07F1] = sMagiciansRightHandBigArt,
+  [0x07F2] = sMajestyHyperionBigArt,
+  [0x07F3] = sMasterHyperionBigArt,
+  [0x07F4] = sMasterflareHyperionBigArt,
+  [0x07F5] = sMezukiBigArt,
+  [0x07F6] = sNecrofaceBigArt,
+  [0x07F7] = sMorayOfGreedBigArt,
+  [0x07F8] = sNecrovalleyThroneBigArt,
+  [0x07F9] = sOilBigArt,
+  [0x07FA] = sOneDayOfPeaceBigArt,
+  [0x07FB] = sPotOfAvariceBigArt,
+  [0x07FC] = sPotOfExtravaganceBigArt,
+  [0x07FD] = sReasoningBigArt,
+  [0x07FE] = sNecrovalleyTempleBigArt,
+  [0x07FF] = sNumber39UtopiaBigArt,
+  [0x0800] = sOceanDragonLordNeoDaedalusBigArt,
+  [0x0801] = sPoseidraTheAtlanteanDragonBigArt,
+  [0x0802] = sProtectorOfTheAgentsMoonBigArt,
+  [0x0803] = sMaxxCBigArt,
+  [0x0804] = sObliterateBlazeBigArt,
+  [0x0805] = sQueensPawnBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -7420,6 +7520,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x07EF] = sGravekeepersWatcherBigPalette,
   [0x07F0] = sMagiciansLeftHandBigPalette,
   [0x07F1] = sMagiciansRightHandBigPalette,
+  [0x07F2] = sMajestyHyperionBigPalette,
+  [0x07F3] = sMasterHyperionBigPalette,
+  [0x07F4] = sMasterflareHyperionBigPalette,
+  [0x07F5] = sMezukiBigPalette,
+  [0x07F6] = sNecrofaceBigPalette,
+  [0x07F7] = sMorayOfGreedBigPalette,
+  [0x07F8] = sNecrovalleyThroneBigPalette,
+  [0x07F9] = sOilBigPalette,
+  [0x07FA] = sOneDayOfPeaceBigPalette,
+  [0x07FB] = sPotOfAvariceBigPalette,
+  [0x07FC] = sPotOfExtravaganceBigPalette,
+  [0x07FD] = sReasoningBigPalette,
+  [0x07FE] = sNecrovalleyTempleBigPalette,
+  [0x07FF] = sNumber39UtopiaBigPalette,
+  [0x0800] = sOceanDragonLordNeoDaedalusBigPalette,
+  [0x0801] = sPoseidraTheAtlanteanDragonBigPalette,
+  [0x0802] = sProtectorOfTheAgentsMoonBigPalette,
+  [0x0803] = sMaxxCBigPalette,
+  [0x0804] = sObliterateBlazeBigPalette,
+  [0x0805] = sQueensPawnBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -8659,6 +8779,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x07EF] = 0,
   [0x07F0] = 0,
   [0x07F1] = 0,
+  [0x07F2] = 0,
+  [0x07F3] = 0,
+  [0x07F4] = 0,
+  [0x07F5] = 0,
+  [0x07F6] = 0,
+  [0x07F7] = 0,
+  [0x07F8] = 0,
+  [0x07F9] = 0,
+  [0x07FA] = 0,
+  [0x07FB] = 0,
+  [0x07FC] = 0,
+  [0x07FD] = 0,
+  [0x07FE] = 0,
+  [0x07FF] = 0,
+  [0x0800] = 0,
+  [0x0801] = 0,
+  [0x0802] = 0,
+  [0x0803] = 0,
+  [0x0804] = 0,
+  [0x0805] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -9898,4 +10038,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x07EF] = sGravekeepersWatcherMiniArt,
   [0x07F0] = sMagiciansLeftHandMiniArt,
   [0x07F1] = sMagiciansRightHandMiniArt,
+  [0x07F2] = sMajestyHyperionMiniArt,
+  [0x07F3] = sMasterHyperionMiniArt,
+  [0x07F4] = sMasterflareHyperionMiniArt,
+  [0x07F5] = sMezukiMiniArt,
+  [0x07F6] = sNecrofaceMiniArt,
+  [0x07F7] = sMorayOfGreedMiniArt,
+  [0x07F8] = sNecrovalleyThroneMiniArt,
+  [0x07F9] = sOilMiniArt,
+  [0x07FA] = sOneDayOfPeaceMiniArt,
+  [0x07FB] = sPotOfAvariceMiniArt,
+  [0x07FC] = sPotOfExtravaganceMiniArt,
+  [0x07FD] = sReasoningMiniArt,
+  [0x07FE] = sNecrovalleyTempleMiniArt,
+  [0x07FF] = sNumber39UtopiaMiniArt,
+  [0x0800] = sOceanDragonLordNeoDaedalusMiniArt,
+  [0x0801] = sPoseidraTheAtlanteanDragonMiniArt,
+  [0x0802] = sProtectorOfTheAgentsMoonMiniArt,
+  [0x0803] = sMaxxCMiniArt,
+  [0x0804] = sObliterateBlazeMiniArt,
+  [0x0805] = sQueensPawnMiniArt,
 };

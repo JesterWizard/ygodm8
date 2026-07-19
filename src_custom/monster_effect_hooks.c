@@ -916,6 +916,26 @@ unsigned char CanActivateGRAVEKEEPERS_VISIONARY(void);
 void ActivateGRAVEKEEPERS_VISIONARYEffect(void);
 unsigned char CanActivateGRAVEKEEPERS_WATCHER(void);
 void ActivateGRAVEKEEPERS_WATCHEREffect(void);
+unsigned char CanActivateMAJESTY_HYPERION(void);
+void ActivateMAJESTY_HYPERIONEffect(void);
+unsigned char CanActivateMASTER_HYPERION(void);
+void ActivateMASTER_HYPERIONEffect(void);
+unsigned char CanActivateMASTERFLARE_HYPERION(void);
+void ActivateMASTERFLARE_HYPERIONEffect(void);
+unsigned char CanActivateMEZUKI(void);
+void ActivateMEZUKIEffect(void);
+unsigned char CanActivateNECROFACE(void);
+void ActivateNECROFACEEffect(void);
+unsigned char CanActivateNUMBER_39_UTOPIA(void);
+void ActivateNUMBER_39_UTOPIAEffect(void);
+unsigned char CanActivateOCEAN_DRAGON_LORD_NEO_DAEDALUS(void);
+void ActivateOCEAN_DRAGON_LORD_NEO_DAEDALUSEffect(void);
+unsigned char CanActivatePOSEIDRA_THE_ATLANTEAN_DRAGON(void);
+void ActivatePOSEIDRA_THE_ATLANTEAN_DRAGONEffect(void);
+unsigned char CanActivatePROTECTOR_OF_THE_AGENTS_MOON(void);
+void ActivatePROTECTOR_OF_THE_AGENTS_MOONEffect(void);
+unsigned char CanActivateMAXX_C(void);
+void ActivateMAXX_CEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -3363,6 +3383,46 @@ FAILED:
   }
   if (gMonEffect.id == GRAVEKEEPERS_WATCHER) {
     ActivateGRAVEKEEPERS_WATCHEREffect();
+    return;
+  }
+  if (gMonEffect.id == MAJESTY_HYPERION) {
+    ActivateMAJESTY_HYPERIONEffect();
+    return;
+  }
+  if (gMonEffect.id == MASTER_HYPERION) {
+    ActivateMASTER_HYPERIONEffect();
+    return;
+  }
+  if (gMonEffect.id == MASTERFLARE_HYPERION) {
+    ActivateMASTERFLARE_HYPERIONEffect();
+    return;
+  }
+  if (gMonEffect.id == MEZUKI) {
+    ActivateMEZUKIEffect();
+    return;
+  }
+  if (gMonEffect.id == NECROFACE) {
+    ActivateNECROFACEEffect();
+    return;
+  }
+  if (gMonEffect.id == NUMBER_39_UTOPIA) {
+    ActivateNUMBER_39_UTOPIAEffect();
+    return;
+  }
+  if (gMonEffect.id == OCEAN_DRAGON_LORD_NEO_DAEDALUS) {
+    ActivateOCEAN_DRAGON_LORD_NEO_DAEDALUSEffect();
+    return;
+  }
+  if (gMonEffect.id == POSEIDRA_THE_ATLANTEAN_DRAGON) {
+    ActivatePOSEIDRA_THE_ATLANTEAN_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == PROTECTOR_OF_THE_AGENTS_MOON) {
+    ActivatePROTECTOR_OF_THE_AGENTS_MOONEffect();
+    return;
+  }
+  if (gMonEffect.id == MAXX_C) {
+    ActivateMAXX_CEffect();
     return;
   }
 }

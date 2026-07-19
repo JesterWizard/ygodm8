@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1233 |
-| Art ready, needs manifest | 54 |
+| In game (manifest + art) | 1253 |
+| Art ready, needs manifest | 34 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1290** |
 
@@ -1255,31 +1255,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GRAVEKEEPERS_WATCHER` | Gravekeeper's Watcher | `gravekeepers_watcher.png` |
 | `MAGICIANS_LEFT_HAND` | Magician's Left Hand | `magicians_left_hand.png` |
 | `MAGICIANS_RIGHT_HAND` | Magician's Right Hand | `magicians_right_hand.png` |
+| `MAJESTY_HYPERION` | Majesty Hyperion | `majesty_hyperion.png` |
+| `MASTER_HYPERION` | Master Hyperion | `master_hyperion.png` |
+| `MASTERFLARE_HYPERION` | Masterflare Hyperion | `masterflare_hyperion.png` |
+| `MEZUKI` | Mezuki | `mezuki.png` |
+| `NECROFACE` | Necroface | `necroface.png` |
+| `MORAY_OF_GREED` | Moray of Greed | `moray_of_greed.png` |
+| `NECROVALLEY_THRONE` | Necrovalley Throne | `necrovalley_throne.png` |
+| `OIL` | Oil | `oil.png` |
+| `ONE_DAY_OF_PEACE` | One Day of Peace | `one_day_of_peace.png` |
+| `POT_OF_AVARICE` | Pot of Avarice | `pot_of_avarice.png` |
+| `POT_OF_EXTRAVAGANCE` | Pot of Extravagance | `pot_of_extravagance.png` |
+| `REASONING` | Reasoning | `reasoning.png` |
+| `NECROVALLEY_TEMPLE` | Necrovalley Temple | `necrovalley_temple.png` |
+| `NUMBER_39_UTOPIA` | Number 39: Utopia | `number_39_utopia.png` |
+| `OCEAN_DRAGON_LORD_NEO_DAEDALUS` | Ocean Dragon Lord - Neo-Daedalus | `ocean_dragon_lord_neo_daedalus.png` |
+| `POSEIDRA_THE_ATLANTEAN_DRAGON` | Poseidra, the Atlantean Dragon | `poseidra_the_atlantean_dragon.png` |
+| `PROTECTOR_OF_THE_AGENTS_MOON` | Protector of The Agents - Moon | `protector_of_the_agents_moon.png` |
+| `MAXX_C` | Maxx C | `maxx_c.png` |
+| `OBLITERATE_BLAZE` | Obliterate!!! Blaze | `obliterate_blaze.png` |
+| `QUEENS_PAWN` | Queen's Pawn | `queens_pawn.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `MAJESTY_HYPERION` — `majesty_hyperion.png`
-- [ ] `MASTER_HYPERION` — `master_hyperion.png`
-- [ ] `MASTERFLARE_HYPERION` — `masterflare_hyperion.png`
-- [ ] `MAXX_C` — `maxx_c.png`
-- [ ] `MEZUKI` — `mezuki.png`
-- [ ] `MORAY_OF_GREED` — `moray_of_greed.png`
-- [ ] `NECROFACE` — `necroface.png`
-- [ ] `NECROVALLEY_TEMPLE` — `necrovalley_temple.png`
-- [ ] `NECROVALLEY_THRONE` — `necrovalley_throne.png`
-- [ ] `NUMBER_39_UTOPIA` — `number_39_utopia.png`
-- [ ] `OBLITERATE_BLAZE` — `obliterate_blaze.png`
-- [ ] `OCEAN_DRAGON_LORD_NEO_DAEDALUS` — `ocean_dragon_lord_neo_daedalus.png`
-- [ ] `OIL` — `oil.png`
-- [ ] `ONE_DAY_OF_PEACE` — `one_day_of_peace.png`
-- [ ] `POSEIDRA_THE_ATLANTEAN_DRAGON` — `poseidra_the_atlantean_dragon.png`
-- [ ] `POT_OF_AVARICE` — `pot_of_avarice.png`
-- [ ] `POT_OF_EXTRAVAGANCE` — `pot_of_extravagance.png`
-- [ ] `PROTECTOR_OF_THE_AGENTS_MOON` — `protector_of_the_agents_moon.png`
-- [ ] `QUEENS_PAWN` — `queens_pawn.png`
-- [ ] `REASONING` — `reasoning.png`
 - [ ] `RITE_OF_SPIRIT` — `rite_of_spirit.png`
 - [ ] `ROYAL_TRIBUTE` — `royal_tribute.png`
 - [ ] `SALVAGE` — `salvage.png`

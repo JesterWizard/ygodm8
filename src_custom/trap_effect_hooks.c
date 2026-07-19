@@ -588,3 +588,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire IMPERIAL_TOMBS_OF_NECROVALLEY in trap dispatcher */
 /* INFINITE_IMPERMANENCE trap effect */
   /* TODO: wire INFINITE_IMPERMANENCE in trap dispatcher */
+/* NECROVALLEY_TEMPLE trap effect */
+  /* TODO: wire NECROVALLEY_TEMPLE in trap dispatcher */
+/* QUEENS_PAWN trap effect */
+  /* TODO: wire QUEENS_PAWN in trap dispatcher */
