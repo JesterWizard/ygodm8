@@ -524,6 +524,24 @@
     case MORPHTRONIC_ACCELERATOR:
       EffectMORPHTRONIC_ACCELERATOR();
       return;
+    case MORPHTRONIC_CONVERTER:
+      EffectMORPHTRONIC_CONVERTER();
+      return;
+    case MORPHTRONIC_CORD:
+      EffectMORPHTRONIC_CORD();
+      return;
+    case MORPHTRONIC_ENGINE:
+      EffectMORPHTRONIC_ENGINE();
+      return;
+    case MORPHTRONIC_MAP:
+      EffectMORPHTRONIC_MAP();
+      return;
+    case MORPHTRONIC_REPAIR_UNIT:
+      EffectMORPHTRONIC_REPAIR_UNIT();
+      return;
+    case MORPHTRONIC_RUSTY_ENGINE:
+      EffectMORPHTRONIC_RUSTY_ENGINE();
+      return;
     case MYSTICAL_SPACE_TYPHOON:
       EffectMysticalSpaceTyphoon();
       return;

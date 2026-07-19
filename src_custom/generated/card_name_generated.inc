@@ -1074,6 +1074,26 @@ static const u8 sMorphtronicBoomboxenName[] __attribute__((section(".append_asse
 static const u8 sMorphtronicCameranName[] __attribute__((section(".append_assets"))) = "Morphtronic Cameran";
 static const u8 sMorphtronicCelfonName[] __attribute__((section(".append_assets"))) = "Morphtronic Celfon";
 static const u8 sMorphtronicClockenName[] __attribute__((section(".append_assets"))) = "Morphtronic Clocken";
+static const u8 sMorphtronicConverterName[] __attribute__((section(".append_assets"))) = "Morphtronic Converter";
+static const u8 sMorphtronicCordName[] __attribute__((section(".append_assets"))) = "Morphtronic Cord";
+static const u8 sMorphtronicDatatronName[] __attribute__((section(".append_assets"))) = "Morphtronic Datatron";
+static const u8 sMorphtronicEarfonName[] __attribute__((section(".append_assets"))) = "Morphtronic Earfon";
+static const u8 sMorphtronicEngineName[] __attribute__((section(".append_assets"))) = "Morphtronic Engine";
+static const u8 sMorphtronicForcefieldName[] __attribute__((section(".append_assets"))) = "Morphtronic Forcefield";
+static const u8 sMorphtronicImpactReturnName[] __attribute__((section(".append_assets"))) = "Morphtronic Impact Return";
+static const u8 sMorphtronicLantronName[] __attribute__((section(".append_assets"))) = "Morphtronic Lantron";
+static const u8 sMorphtronicMagnenName[] __attribute__((section(".append_assets"))) = "Morphtronic Magnen";
+static const u8 sMorphtronicMagnenBarName[] __attribute__((section(".append_assets"))) = "Morphtronic Magnen Bar";
+static const u8 sMorphtronicMapName[] __attribute__((section(".append_assets"))) = "Morphtronic Map";
+static const u8 sMorphtronicMonitronName[] __attribute__((section(".append_assets"))) = "Morphtronic Monitron";
+static const u8 sMorphtronicRadionName[] __attribute__((section(".append_assets"))) = "Morphtronic Radion";
+static const u8 sMorphtronicRemotenName[] __attribute__((section(".append_assets"))) = "Morphtronic Remoten";
+static const u8 sMorphtronicRepairUnitName[] __attribute__((section(".append_assets"))) = "Morphtronic Repair Unit";
+static const u8 sMorphtronicRustyEngineName[] __attribute__((section(".append_assets"))) = "Morphtronic Rusty Engine";
+static const u8 sMorphtronicScannenName[] __attribute__((section(".append_assets"))) = "Morphtronic Scannen";
+static const u8 sMorphtronicScopenName[] __attribute__((section(".append_assets"))) = "Morphtronic Scopen";
+static const u8 sMorphtronicSlingenName[] __attribute__((section(".append_assets"))) = "Morphtronic Slingen";
+static const u8 sMorphtronicMixupName[] __attribute__((section(".append_assets"))) = "Morphtronic Mix-up";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3228,6 +3248,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMorphtronicCelfonName;
   if (cardId == 0x0751)
     return (u8 *)sMorphtronicClockenName;
+  if (cardId == 0x0752)
+    return (u8 *)sMorphtronicConverterName;
+  if (cardId == 0x0753)
+    return (u8 *)sMorphtronicCordName;
+  if (cardId == 0x0754)
+    return (u8 *)sMorphtronicDatatronName;
+  if (cardId == 0x0755)
+    return (u8 *)sMorphtronicEarfonName;
+  if (cardId == 0x0756)
+    return (u8 *)sMorphtronicEngineName;
+  if (cardId == 0x0757)
+    return (u8 *)sMorphtronicForcefieldName;
+  if (cardId == 0x0758)
+    return (u8 *)sMorphtronicImpactReturnName;
+  if (cardId == 0x0759)
+    return (u8 *)sMorphtronicLantronName;
+  if (cardId == 0x075A)
+    return (u8 *)sMorphtronicMagnenName;
+  if (cardId == 0x075B)
+    return (u8 *)sMorphtronicMagnenBarName;
+  if (cardId == 0x075C)
+    return (u8 *)sMorphtronicMapName;
+  if (cardId == 0x075D)
+    return (u8 *)sMorphtronicMonitronName;
+  if (cardId == 0x075E)
+    return (u8 *)sMorphtronicRadionName;
+  if (cardId == 0x075F)
+    return (u8 *)sMorphtronicRemotenName;
+  if (cardId == 0x0760)
+    return (u8 *)sMorphtronicRepairUnitName;
+  if (cardId == 0x0761)
+    return (u8 *)sMorphtronicRustyEngineName;
+  if (cardId == 0x0762)
+    return (u8 *)sMorphtronicScannenName;
+  if (cardId == 0x0763)
+    return (u8 *)sMorphtronicScopenName;
+  if (cardId == 0x0764)
+    return (u8 *)sMorphtronicSlingenName;
+  if (cardId == 0x0765)
+    return (u8 *)sMorphtronicMixupName;
 
   return gCardNames[cardId];
 }

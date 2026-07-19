@@ -4300,6 +4300,86 @@ static const unsigned char sMorphtronicClockenBigArt[] __attribute__((section(".
 static const unsigned short sMorphtronicClockenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_clocken.gbapal");
 static const unsigned char sMorphtronicClockenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_clocken.lz");
 
+static const unsigned char sMorphtronicConverterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_converter.huff");
+static const unsigned short sMorphtronicConverterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_converter.gbapal");
+static const unsigned char sMorphtronicConverterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_converter.lz");
+
+static const unsigned char sMorphtronicCordBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_cord.huff");
+static const unsigned short sMorphtronicCordBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_cord.gbapal");
+static const unsigned char sMorphtronicCordMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_cord.lz");
+
+static const unsigned char sMorphtronicDatatronBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_datatron.huff");
+static const unsigned short sMorphtronicDatatronBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_datatron.gbapal");
+static const unsigned char sMorphtronicDatatronMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_datatron.lz");
+
+static const unsigned char sMorphtronicEarfonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_earfon.huff");
+static const unsigned short sMorphtronicEarfonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_earfon.gbapal");
+static const unsigned char sMorphtronicEarfonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_earfon.lz");
+
+static const unsigned char sMorphtronicEngineBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_engine.huff");
+static const unsigned short sMorphtronicEngineBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_engine.gbapal");
+static const unsigned char sMorphtronicEngineMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_engine.lz");
+
+static const unsigned char sMorphtronicForcefieldBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_forcefield.huff");
+static const unsigned short sMorphtronicForcefieldBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_forcefield.gbapal");
+static const unsigned char sMorphtronicForcefieldMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_forcefield.lz");
+
+static const unsigned char sMorphtronicImpactReturnBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_impact_return.huff");
+static const unsigned short sMorphtronicImpactReturnBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_impact_return.gbapal");
+static const unsigned char sMorphtronicImpactReturnMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_impact_return.lz");
+
+static const unsigned char sMorphtronicLantronBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_lantron.huff");
+static const unsigned short sMorphtronicLantronBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_lantron.gbapal");
+static const unsigned char sMorphtronicLantronMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_lantron.lz");
+
+static const unsigned char sMorphtronicMagnenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_magnen.huff");
+static const unsigned short sMorphtronicMagnenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_magnen.gbapal");
+static const unsigned char sMorphtronicMagnenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_magnen.lz");
+
+static const unsigned char sMorphtronicMagnenBarBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_magnen_bar.huff");
+static const unsigned short sMorphtronicMagnenBarBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_magnen_bar.gbapal");
+static const unsigned char sMorphtronicMagnenBarMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_magnen_bar.lz");
+
+static const unsigned char sMorphtronicMapBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_map.huff");
+static const unsigned short sMorphtronicMapBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_map.gbapal");
+static const unsigned char sMorphtronicMapMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_map.lz");
+
+static const unsigned char sMorphtronicMonitronBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_monitron.huff");
+static const unsigned short sMorphtronicMonitronBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_monitron.gbapal");
+static const unsigned char sMorphtronicMonitronMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_monitron.lz");
+
+static const unsigned char sMorphtronicRadionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_radion.huff");
+static const unsigned short sMorphtronicRadionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_radion.gbapal");
+static const unsigned char sMorphtronicRadionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_radion.lz");
+
+static const unsigned char sMorphtronicRemotenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_remoten.huff");
+static const unsigned short sMorphtronicRemotenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_remoten.gbapal");
+static const unsigned char sMorphtronicRemotenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_remoten.lz");
+
+static const unsigned char sMorphtronicRepairUnitBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_repair_unit.huff");
+static const unsigned short sMorphtronicRepairUnitBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_repair_unit.gbapal");
+static const unsigned char sMorphtronicRepairUnitMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_repair_unit.lz");
+
+static const unsigned char sMorphtronicRustyEngineBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_rusty_engine.huff");
+static const unsigned short sMorphtronicRustyEngineBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_rusty_engine.gbapal");
+static const unsigned char sMorphtronicRustyEngineMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_rusty_engine.lz");
+
+static const unsigned char sMorphtronicScannenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_scannen.huff");
+static const unsigned short sMorphtronicScannenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_scannen.gbapal");
+static const unsigned char sMorphtronicScannenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_scannen.lz");
+
+static const unsigned char sMorphtronicScopenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_scopen.huff");
+static const unsigned short sMorphtronicScopenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_scopen.gbapal");
+static const unsigned char sMorphtronicScopenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_scopen.lz");
+
+static const unsigned char sMorphtronicSlingenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_slingen.huff");
+static const unsigned short sMorphtronicSlingenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_slingen.gbapal");
+static const unsigned char sMorphtronicSlingenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_slingen.lz");
+
+static const unsigned char sMorphtronicMixupBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_mixup.huff");
+static const unsigned short sMorphtronicMixupBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_mixup.gbapal");
+static const unsigned char sMorphtronicMixupMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_mixup.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -5376,6 +5456,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x074F] = sMorphtronicCameranBigArt,
   [0x0750] = sMorphtronicCelfonBigArt,
   [0x0751] = sMorphtronicClockenBigArt,
+  [0x0752] = sMorphtronicConverterBigArt,
+  [0x0753] = sMorphtronicCordBigArt,
+  [0x0754] = sMorphtronicDatatronBigArt,
+  [0x0755] = sMorphtronicEarfonBigArt,
+  [0x0756] = sMorphtronicEngineBigArt,
+  [0x0757] = sMorphtronicForcefieldBigArt,
+  [0x0758] = sMorphtronicImpactReturnBigArt,
+  [0x0759] = sMorphtronicLantronBigArt,
+  [0x075A] = sMorphtronicMagnenBigArt,
+  [0x075B] = sMorphtronicMagnenBarBigArt,
+  [0x075C] = sMorphtronicMapBigArt,
+  [0x075D] = sMorphtronicMonitronBigArt,
+  [0x075E] = sMorphtronicRadionBigArt,
+  [0x075F] = sMorphtronicRemotenBigArt,
+  [0x0760] = sMorphtronicRepairUnitBigArt,
+  [0x0761] = sMorphtronicRustyEngineBigArt,
+  [0x0762] = sMorphtronicScannenBigArt,
+  [0x0763] = sMorphtronicScopenBigArt,
+  [0x0764] = sMorphtronicSlingenBigArt,
+  [0x0765] = sMorphtronicMixupBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -6454,6 +6554,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x074F] = sMorphtronicCameranBigPalette,
   [0x0750] = sMorphtronicCelfonBigPalette,
   [0x0751] = sMorphtronicClockenBigPalette,
+  [0x0752] = sMorphtronicConverterBigPalette,
+  [0x0753] = sMorphtronicCordBigPalette,
+  [0x0754] = sMorphtronicDatatronBigPalette,
+  [0x0755] = sMorphtronicEarfonBigPalette,
+  [0x0756] = sMorphtronicEngineBigPalette,
+  [0x0757] = sMorphtronicForcefieldBigPalette,
+  [0x0758] = sMorphtronicImpactReturnBigPalette,
+  [0x0759] = sMorphtronicLantronBigPalette,
+  [0x075A] = sMorphtronicMagnenBigPalette,
+  [0x075B] = sMorphtronicMagnenBarBigPalette,
+  [0x075C] = sMorphtronicMapBigPalette,
+  [0x075D] = sMorphtronicMonitronBigPalette,
+  [0x075E] = sMorphtronicRadionBigPalette,
+  [0x075F] = sMorphtronicRemotenBigPalette,
+  [0x0760] = sMorphtronicRepairUnitBigPalette,
+  [0x0761] = sMorphtronicRustyEngineBigPalette,
+  [0x0762] = sMorphtronicScannenBigPalette,
+  [0x0763] = sMorphtronicScopenBigPalette,
+  [0x0764] = sMorphtronicSlingenBigPalette,
+  [0x0765] = sMorphtronicMixupBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -7532,6 +7652,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x074F] = 0,
   [0x0750] = 0,
   [0x0751] = 0,
+  [0x0752] = 0,
+  [0x0753] = 0,
+  [0x0754] = 0,
+  [0x0755] = 0,
+  [0x0756] = 0,
+  [0x0757] = 0,
+  [0x0758] = 0,
+  [0x0759] = 0,
+  [0x075A] = 0,
+  [0x075B] = 0,
+  [0x075C] = 0,
+  [0x075D] = 0,
+  [0x075E] = 0,
+  [0x075F] = 0,
+  [0x0760] = 0,
+  [0x0761] = 0,
+  [0x0762] = 0,
+  [0x0763] = 0,
+  [0x0764] = 0,
+  [0x0765] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -8610,4 +8750,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x074F] = sMorphtronicCameranMiniArt,
   [0x0750] = sMorphtronicCelfonMiniArt,
   [0x0751] = sMorphtronicClockenMiniArt,
+  [0x0752] = sMorphtronicConverterMiniArt,
+  [0x0753] = sMorphtronicCordMiniArt,
+  [0x0754] = sMorphtronicDatatronMiniArt,
+  [0x0755] = sMorphtronicEarfonMiniArt,
+  [0x0756] = sMorphtronicEngineMiniArt,
+  [0x0757] = sMorphtronicForcefieldMiniArt,
+  [0x0758] = sMorphtronicImpactReturnMiniArt,
+  [0x0759] = sMorphtronicLantronMiniArt,
+  [0x075A] = sMorphtronicMagnenMiniArt,
+  [0x075B] = sMorphtronicMagnenBarMiniArt,
+  [0x075C] = sMorphtronicMapMiniArt,
+  [0x075D] = sMorphtronicMonitronMiniArt,
+  [0x075E] = sMorphtronicRadionMiniArt,
+  [0x075F] = sMorphtronicRemotenMiniArt,
+  [0x0760] = sMorphtronicRepairUnitMiniArt,
+  [0x0761] = sMorphtronicRustyEngineMiniArt,
+  [0x0762] = sMorphtronicScannenMiniArt,
+  [0x0763] = sMorphtronicScopenMiniArt,
+  [0x0764] = sMorphtronicSlingenMiniArt,
+  [0x0765] = sMorphtronicMixupMiniArt,
 };

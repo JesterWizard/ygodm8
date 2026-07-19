@@ -706,6 +706,26 @@ unsigned char CanActivateMORPHTRONIC_CELFON(void);
 void ActivateMORPHTRONIC_CELFONEffect(void);
 unsigned char CanActivateMORPHTRONIC_CLOCKEN(void);
 void ActivateMORPHTRONIC_CLOCKENEffect(void);
+unsigned char CanActivateMORPHTRONIC_DATATRON(void);
+void ActivateMORPHTRONIC_DATATRONEffect(void);
+unsigned char CanActivateMORPHTRONIC_EARFON(void);
+void ActivateMORPHTRONIC_EARFONEffect(void);
+unsigned char CanActivateMORPHTRONIC_LANTRON(void);
+void ActivateMORPHTRONIC_LANTRONEffect(void);
+unsigned char CanActivateMORPHTRONIC_MAGNEN(void);
+void ActivateMORPHTRONIC_MAGNENEffect(void);
+unsigned char CanActivateMORPHTRONIC_MAGNEN_BAR(void);
+void ActivateMORPHTRONIC_MAGNEN_BAREffect(void);
+unsigned char CanActivateMORPHTRONIC_RADION(void);
+void ActivateMORPHTRONIC_RADIONEffect(void);
+unsigned char CanActivateMORPHTRONIC_REMOTEN(void);
+void ActivateMORPHTRONIC_REMOTENEffect(void);
+unsigned char CanActivateMORPHTRONIC_SCANNEN(void);
+void ActivateMORPHTRONIC_SCANNENEffect(void);
+unsigned char CanActivateMORPHTRONIC_SCOPEN(void);
+void ActivateMORPHTRONIC_SCOPENEffect(void);
+unsigned char CanActivateMORPHTRONIC_SLINGEN(void);
+void ActivateMORPHTRONIC_SLINGENEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2733,6 +2753,46 @@ FAILED:
   }
   if (gMonEffect.id == MORPHTRONIC_CLOCKEN) {
     ActivateMORPHTRONIC_CLOCKENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_DATATRON) {
+    ActivateMORPHTRONIC_DATATRONEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_EARFON) {
+    ActivateMORPHTRONIC_EARFONEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_LANTRON) {
+    ActivateMORPHTRONIC_LANTRONEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_MAGNEN) {
+    ActivateMORPHTRONIC_MAGNENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_MAGNEN_BAR) {
+    ActivateMORPHTRONIC_MAGNEN_BAREffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_RADION) {
+    ActivateMORPHTRONIC_RADIONEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_REMOTEN) {
+    ActivateMORPHTRONIC_REMOTENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_SCANNEN) {
+    ActivateMORPHTRONIC_SCANNENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_SCOPEN) {
+    ActivateMORPHTRONIC_SCOPENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_SLINGEN) {
+    ActivateMORPHTRONIC_SLINGENEffect();
     return;
   }
 }

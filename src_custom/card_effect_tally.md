@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1004` effects
+- `1024` effects
 
 ## Tally
 
@@ -985,6 +985,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Morphtronic Cameran` | `src_custom/activated_effects/morphtronic_cameran.c` |
 | `activated_effects` | `Morphtronic Celfon` | `src_custom/activated_effects/morphtronic_celfon.c` |
 | `activated_effects` | `Morphtronic Clocken` | `src_custom/activated_effects/morphtronic_clocken.c` |
+| `spell_effects` | `Morphtronic Converter` | `src_custom/spell_effects/morphtronic_converter.c` |
+| `spell_effects` | `Morphtronic Cord` | `src_custom/spell_effects/morphtronic_cord.c` |
+| `activated_effects` | `Morphtronic Datatron` | `src_custom/activated_effects/morphtronic_datatron.c` |
+| `activated_effects` | `Morphtronic Earfon` | `src_custom/activated_effects/morphtronic_earfon.c` |
+| `spell_effects` | `Morphtronic Engine` | `src_custom/spell_effects/morphtronic_engine.c` |
+| `trap_effects` | `Morphtronic Forcefield` | `src_custom/trap_effects/morphtronic_forcefield.c` |
+| `trap_effects` | `Morphtronic Impact Return` | `src_custom/trap_effects/morphtronic_impact_return.c` |
+| `activated_effects` | `Morphtronic Lantron` | `src_custom/activated_effects/morphtronic_lantron.c` |
+| `activated_effects` | `Morphtronic Magnen` | `src_custom/activated_effects/morphtronic_magnen.c` |
+| `activated_effects` | `Morphtronic Magnen Bar` | `src_custom/activated_effects/morphtronic_magnen_bar.c` |
+| `spell_effects` | `Morphtronic Map` | `src_custom/spell_effects/morphtronic_map.c` |
+| `trap_effects` | `Morphtronic Monitron` | `src_custom/trap_effects/morphtronic_monitron.c` |
+| `activated_effects` | `Morphtronic Radion` | `src_custom/activated_effects/morphtronic_radion.c` |
+| `activated_effects` | `Morphtronic Remoten` | `src_custom/activated_effects/morphtronic_remoten.c` |
+| `spell_effects` | `Morphtronic Repair Unit` | `src_custom/spell_effects/morphtronic_repair_unit.c` |
+| `spell_effects` | `Morphtronic Rusty Engine` | `src_custom/spell_effects/morphtronic_rusty_engine.c` |
+| `activated_effects` | `Morphtronic Scannen` | `src_custom/activated_effects/morphtronic_scannen.c` |
+| `activated_effects` | `Morphtronic Scopen` | `src_custom/activated_effects/morphtronic_scopen.c` |
+| `activated_effects` | `Morphtronic Slingen` | `src_custom/activated_effects/morphtronic_slingen.c` |
+| `trap_effects` | `Morphtronic Mixup` | `src_custom/trap_effects/morphtronic_mixup.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

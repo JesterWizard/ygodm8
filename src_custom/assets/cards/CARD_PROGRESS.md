@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1073 |
-| Art ready, needs manifest | 60 |
+| In game (manifest + art) | 1093 |
+| Art ready, needs manifest | 40 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1135** |
 
@@ -1095,31 +1095,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MORPHTRONIC_CAMERAN` | Morphtronic Cameran | `morphtronic_cameran.png` |
 | `MORPHTRONIC_CELFON` | Morphtronic Celfon | `morphtronic_celfon.png` |
 | `MORPHTRONIC_CLOCKEN` | Morphtronic Clocken | `morphtronic_clocken.png` |
+| `MORPHTRONIC_CONVERTER` | Morphtronic Converter | `morphtronic_converter.png` |
+| `MORPHTRONIC_CORD` | Morphtronic Cord | `morphtronic_cord.png` |
+| `MORPHTRONIC_DATATRON` | Morphtronic Datatron | `morphtronic_datatron.png` |
+| `MORPHTRONIC_EARFON` | Morphtronic Earfon | `morphtronic_earfon.png` |
+| `MORPHTRONIC_ENGINE` | Morphtronic Engine | `morphtronic_engine.png` |
+| `MORPHTRONIC_FORCEFIELD` | Morphtronic Forcefield | `morphtronic_forcefield.png` |
+| `MORPHTRONIC_IMPACT_RETURN` | Morphtronic Impact Return | `morphtronic_impact_return.png` |
+| `MORPHTRONIC_LANTRON` | Morphtronic Lantron | `morphtronic_lantron.png` |
+| `MORPHTRONIC_MAGNEN` | Morphtronic Magnen | `morphtronic_magnen.png` |
+| `MORPHTRONIC_MAGNEN_BAR` | Morphtronic Magnen Bar | `morphtronic_magnen_bar.png` |
+| `MORPHTRONIC_MAP` | Morphtronic Map | `morphtronic_map.png` |
+| `MORPHTRONIC_MONITRON` | Morphtronic Monitron | `morphtronic_monitron.png` |
+| `MORPHTRONIC_RADION` | Morphtronic Radion | `morphtronic_radion.png` |
+| `MORPHTRONIC_REMOTEN` | Morphtronic Remoten | `morphtronic_remoten.png` |
+| `MORPHTRONIC_REPAIR_UNIT` | Morphtronic Repair Unit | `morphtronic_repair_unit.png` |
+| `MORPHTRONIC_RUSTY_ENGINE` | Morphtronic Rusty Engine | `morphtronic_rusty_engine.png` |
+| `MORPHTRONIC_SCANNEN` | Morphtronic Scannen | `morphtronic_scannen.png` |
+| `MORPHTRONIC_SCOPEN` | Morphtronic Scopen | `morphtronic_scopen.png` |
+| `MORPHTRONIC_SLINGEN` | Morphtronic Slingen | `morphtronic_slingen.png` |
+| `MORPHTRONIC_MIXUP` | Morphtronic Mix-up | `morphtronic_mixup.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `MORPHTRONIC_CONVERTER` — `morphtronic_converter.png`
-- [ ] `MORPHTRONIC_CORD` — `morphtronic_cord.png`
-- [ ] `MORPHTRONIC_DATATRON` — `morphtronic_datatron.png`
-- [ ] `MORPHTRONIC_EARFON` — `morphtronic_earfon.png`
-- [ ] `MORPHTRONIC_ENGINE` — `morphtronic_engine.png`
-- [ ] `MORPHTRONIC_FORCEFIELD` — `morphtronic_forcefield.png`
-- [ ] `MORPHTRONIC_IMPACT_RETURN` — `morphtronic_impact_return.png`
-- [ ] `MORPHTRONIC_LANTRON` — `morphtronic_lantron.png`
-- [ ] `MORPHTRONIC_MAGNEN` — `morphtronic_magnen.png`
-- [ ] `MORPHTRONIC_MAGNEN_BAR` — `morphtronic_magnen_bar.png`
-- [ ] `MORPHTRONIC_MAP` — `morphtronic_map.png`
-- [ ] `MORPHTRONIC_MIXUP` — `morphtronic_mixup.png`
-- [ ] `MORPHTRONIC_MONITRON` — `morphtronic_monitron.png`
-- [ ] `MORPHTRONIC_RADION` — `morphtronic_radion.png`
-- [ ] `MORPHTRONIC_REMOTEN` — `morphtronic_remoten.png`
-- [ ] `MORPHTRONIC_REPAIR_UNIT` — `morphtronic_repair_unit.png`
-- [ ] `MORPHTRONIC_RUSTY_ENGINE` — `morphtronic_rusty_engine.png`
-- [ ] `MORPHTRONIC_SCANNEN` — `morphtronic_scannen.png`
-- [ ] `MORPHTRONIC_SCOPEN` — `morphtronic_scopen.png`
-- [ ] `MORPHTRONIC_SLINGEN` — `morphtronic_slingen.png`
 - [ ] `MORPHTRONIC_SMARTFON` — `morphtronic_smartfon.png`
 - [ ] `MORPHTRONIC_STAPLEN` — `morphtronic_staplen.png`
 - [ ] `MORPHTRONIC_TELEFON` — `morphtronic_telefon.png`

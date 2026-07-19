@@ -1875,11 +1875,31 @@
 #define MORPHTRONIC_CAMERAN                      0x074F
 #define MORPHTRONIC_CELFON                       0x0750
 #define MORPHTRONIC_CLOCKEN                      0x0751
+#define MORPHTRONIC_CONVERTER                    0x0752
+#define MORPHTRONIC_CORD                         0x0753
+#define MORPHTRONIC_DATATRON                     0x0754
+#define MORPHTRONIC_EARFON                       0x0755
+#define MORPHTRONIC_ENGINE                       0x0756
+#define MORPHTRONIC_FORCEFIELD                   0x0757
+#define MORPHTRONIC_IMPACT_RETURN                0x0758
+#define MORPHTRONIC_LANTRON                      0x0759
+#define MORPHTRONIC_MAGNEN                       0x075A
+#define MORPHTRONIC_MAGNEN_BAR                   0x075B
+#define MORPHTRONIC_MAP                          0x075C
+#define MORPHTRONIC_MONITRON                     0x075D
+#define MORPHTRONIC_RADION                       0x075E
+#define MORPHTRONIC_REMOTEN                      0x075F
+#define MORPHTRONIC_REPAIR_UNIT                  0x0760
+#define MORPHTRONIC_RUSTY_ENGINE                 0x0761
+#define MORPHTRONIC_SCANNEN                      0x0762
+#define MORPHTRONIC_SCOPEN                       0x0763
+#define MORPHTRONIC_SLINGEN                      0x0764
+#define MORPHTRONIC_MIXUP                        0x0765
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0752
-#define NUM_CUSTOM_CARDS                        0x0431
+#define NUM_TOTAL_CARDS                         0x0766
+#define NUM_CUSTOM_CARDS                        0x0445
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

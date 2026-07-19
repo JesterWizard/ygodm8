@@ -552,3 +552,11 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire MAGICIANS_CIRCLE in trap dispatcher */
 /* MORPHTRONIC_BIND trap effect */
   /* TODO: wire MORPHTRONIC_BIND in trap dispatcher */
+/* MORPHTRONIC_FORCEFIELD trap effect */
+  /* TODO: wire MORPHTRONIC_FORCEFIELD in trap dispatcher */
+/* MORPHTRONIC_IMPACT_RETURN trap effect */
+  /* TODO: wire MORPHTRONIC_IMPACT_RETURN in trap dispatcher */
+/* MORPHTRONIC_MONITRON trap effect */
+  /* TODO: wire MORPHTRONIC_MONITRON in trap dispatcher */
+/* MORPHTRONIC_MIXUP trap effect */
+  /* TODO: wire MORPHTRONIC_MIXUP in trap dispatcher */
