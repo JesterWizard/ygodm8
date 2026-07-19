@@ -526,3 +526,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire TWILIGHT_ERASER in trap dispatcher */
 /* VANQUISHING_LIGHT trap effect */
   /* TODO: wire VANQUISHING_LIGHT in trap dispatcher */
+/* ALL_OUT_ATTACKS trap effect */
+  /* TODO: wire ALL_OUT_ATTACKS in trap dispatcher */
+/* ANCIENT_GEAR_DUEL trap effect */
+  /* TODO: wire ANCIENT_GEAR_DUEL in trap dispatcher */

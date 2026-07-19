@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 973 |
-| Art ready, needs manifest | 160 |
+| In game (manifest + art) | 993 |
+| Art ready, needs manifest | 140 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1135** |
 
@@ -995,31 +995,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `VANQUISHING_LIGHT` | Vanquishing Light | `vanquishing_light.png` |
 | `WEISS_LIGHTSWORN_ARCHFIEND` | Weiss, Lightsworn Archfiend | `weiss_lightsworn_archfiend.png` |
 | `WULF_LIGHTSWORN_BEAST` | Wulf, Lightsworn Beast | `wulf_lightsworn_beast.png` |
+| `ALL_OUT_ATTACKS` | All-Out Attacks | `all_out_attacks.png` |
+| `ANCIENT_FAIRY_DRAGON` | Ancient Fairy Dragon | `ancient_fairy_dragon.png` |
+| `ANCIENT_GEAR` | Ancient Gear | `ancient_gear.png` |
+| `ANCIENT_GEAR_ADVANCE` | Ancient Gear Advance | `ancient_gear_advance.png` |
+| `ANCIENT_GEAR_BEAST` | Ancient Gear Beast | `ancient_gear_beast.png` |
+| `ANCIENT_GEAR_CANNON` | Ancient Gear Cannon | `ancient_gear_cannon.png` |
+| `ANCIENT_GEAR_CASTLE` | Ancient Gear Castle | `ancient_gear_castle.png` |
+| `ANCIENT_GEAR_COMMANDER` | Ancient Gear Commander | `ancient_gear_commander.png` |
+| `ANCIENT_GEAR_DARK_GOLEM` | Ancient Gear Dark Golem | `ancient_gear_dark_golem.png` |
+| `ANCIENT_GEAR_DRAGON` | Ancient Gear Dragon | `ancient_gear_dragon.png` |
+| `ANCIENT_GEAR_DRILL` | Ancient Gear Drill | `ancient_gear_drill.png` |
+| `ANCIENT_GEAR_DUEL` | Ancient Gear Duel | `ancient_gear_duel.png` |
+| `ANCIENT_GEAR_ENGINEER` | Ancient Gear Engineer | `ancient_gear_engineer.png` |
+| `ANCIENT_GEAR_EXPLOSIVE` | Ancient Gear Explosive | `ancient_gear_explosive.png` |
+| `ANCIENT_GEAR_FACTORY` | Ancient Gear Factory | `ancient_gear_factory.png` |
+| `ANCIENT_GEAR_FIST` | Ancient Gear Fist | `ancient_gear_fist.png` |
+| `ANCIENT_GEAR_FRAME` | Ancient Gear Frame | `ancient_gear_frame.png` |
+| `ANCIENT_GEAR_FUSION` | Ancient Gear Fusion | `ancient_gear_fusion.png` |
+| `ANCIENT_GEAR_GADJILTRON_CHIMERA` | Ancient Gear Gadjiltron Chimera | `ancient_gear_gadjiltron_chimera.png` |
+| `ANCIENT_GEAR_GADJILTRON_DRAGON` | Ancient Gear Gadjiltron Dragon | `ancient_gear_gadjiltron_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `ALL_OUT_ATTACKS` — `all_out_attacks.png`
-- [ ] `ANCIENT_FAIRY_DRAGON` — `ancient_fairy_dragon.png`
-- [ ] `ANCIENT_GEAR` — `ancient_gear.png`
-- [ ] `ANCIENT_GEAR_ADVANCE` — `ancient_gear_advance.png`
-- [ ] `ANCIENT_GEAR_BEAST` — `ancient_gear_beast.png`
-- [ ] `ANCIENT_GEAR_CANNON` — `ancient_gear_cannon.png`
-- [ ] `ANCIENT_GEAR_CASTLE` — `ancient_gear_castle.png`
-- [ ] `ANCIENT_GEAR_COMMANDER` — `ancient_gear_commander.png`
-- [ ] `ANCIENT_GEAR_DARK_GOLEM` — `ancient_gear_dark_golem.png`
-- [ ] `ANCIENT_GEAR_DRAGON` — `ancient_gear_dragon.png`
-- [ ] `ANCIENT_GEAR_DRILL` — `ancient_gear_drill.png`
-- [ ] `ANCIENT_GEAR_DUEL` — `ancient_gear_duel.png`
-- [ ] `ANCIENT_GEAR_ENGINEER` — `ancient_gear_engineer.png`
-- [ ] `ANCIENT_GEAR_EXPLOSIVE` — `ancient_gear_explosive.png`
-- [ ] `ANCIENT_GEAR_FACTORY` — `ancient_gear_factory.png`
-- [ ] `ANCIENT_GEAR_FIST` — `ancient_gear_fist.png`
-- [ ] `ANCIENT_GEAR_FRAME` — `ancient_gear_frame.png`
-- [ ] `ANCIENT_GEAR_FUSION` — `ancient_gear_fusion.png`
-- [ ] `ANCIENT_GEAR_GADJILTRON_CHIMERA` — `ancient_gear_gadjiltron_chimera.png`
-- [ ] `ANCIENT_GEAR_GADJILTRON_DRAGON` — `ancient_gear_gadjiltron_dragon.png`
 - [ ] `ANCIENT_GEAR_GOLEM` — `ancient_gear_golem.png`
 - [ ] `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` — `ancient_gear_golem_ultimate_pound.png`
 - [ ] `ANCIENT_GEAR_KNIGHT` — `ancient_gear_knight.png`

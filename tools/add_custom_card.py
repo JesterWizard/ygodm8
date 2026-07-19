@@ -112,13 +112,40 @@ def _fetch_cards(**params: str) -> list[dict]:
     return cards
 
 
+def _fname_candidates_for_const(card_const: str) -> list[str]:
+    """Build fname queries; includes hyphen variants (e.g. ALL_OUT_ATTACKS → All-Out Attacks)."""
+    parts = card_const.split("_")
+    candidates = [card_const.replace("_", " ")]
+    for i in range(1, len(parts)):
+        left = "-".join(parts[:i])
+        right = " ".join(parts[i:])
+        candidates.append(f"{left} {right}".strip())
+    # Dedupe while preserving order
+    seen: set[str] = set()
+    out: list[str] = []
+    for c in candidates:
+        key = c.casefold()
+        if key not in seen:
+            seen.add(key)
+            out.append(c)
+    return out
+
+
 def fetch_card_by_const(card_const: str) -> dict:
-    cards = _fetch_cards(fname=card_const.replace("_", " "))
-    for card in cards:
-        if card_name_to_const(card["name"]) == card_const:
-            return card
-    if len(cards) == 1:
-        return cards[0]
+    last_err: Exception | None = None
+    for fname in _fname_candidates_for_const(card_const):
+        try:
+            cards = _fetch_cards(fname=fname)
+        except SystemExit as exc:
+            last_err = exc
+            continue
+        for card in cards:
+            if card_name_to_const(card["name"]) == card_const:
+                return card
+        if len(cards) == 1 and card_name_to_const(cards[0]["name"]) == card_const:
+            return cards[0]
+    if last_err is not None:
+        raise last_err
     raise SystemExit(f"Could not uniquely match CARD_CONST {card_const} from YGOProDeck")
 
 
@@ -153,6 +180,12 @@ def frame_kind(card_type: str) -> str:
 
 def wrap_effect_text(text: str) -> str:
     """Return cleaned prose; generator auto-paginates for the detail screen."""
+    # In-game font is ASCII-only; TCG text often has ● and "name" quotes.
+    text = (
+        text.replace("\u25cf", "-")
+        .replace("\u2022", "-")
+        .replace('"', "")
+    )
     return " ".join(text.split()) or "TODO"
 
 

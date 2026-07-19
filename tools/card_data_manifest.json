@@ -33848,6 +33848,446 @@
       "effect_texts": {
         "popup_1": "If milled from Deck: SS this."
       }
+    },
+    {
+      "card_const": "ALL_OUT_ATTACKS",
+      "card_name": "All-Out Attacks",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 0, 8, 3, 4, 9, 8, 8],
+      "description": {
+        "symbol": "gDescription_AllOutAttacks",
+        "pages": "If a monster(s) is Special Summoned while this card is face-up on the field: Change that monster to face-up Attack Position, and must attack, if able, during the turn they are Special Summoned."
+      },
+      "effect_texts": {
+        "popup_1": "If a monster(s) is Special Summoned while this card is face-up on the field: Change that monster to face-up Attack Posit"
+      }
+    },
+    {
+      "card_const": "ANCIENT_FAIRY_DRAGON",
+      "card_name": "Ancient Fairy Dragon",
+      "atk": 2100,
+      "def": 3000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 5, 8, 6, 2, 6, 8, 1],
+      "description": {
+        "symbol": "gDescription_AncientFairyDragon",
+        "pages": "1 Tuner + 1+ non-Tuner monsters During your Main Phase: You can Special Summon 1 Level 4 or lower monster from your hand. You cannot conduct your Battle Phase the turn you activate this effect. During your Main Phase: You can destroy as many cards in the Field Zones as possible (min. 1), and if you do, gain 1000 LP, then you can add 1 Field Spell with a different name than the destroyed card(s), from your Deck to your hand. You can only use each effect of Ancient Fairy Dragon once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters\r\nDuring your Main Phase: You can Special Summon 1 Level 4 or lower monster from your han"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR",
+      "card_name": "Ancient Gear",
+      "atk": 100,
+      "def": 800,
+      "level": 2,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [3, 1, 5, 5, 7, 7, 8, 2],
+      "description": {
+        "symbol": "gDescription_AncientGear",
+        "pages": "If you control an Ancient Gear, you can Special Summon this card (from your hand) in face-up Attack Position."
+      },
+      "effect_texts": {
+        "popup_1": "If you control an Ancient Gear, you can Special Summon this card (from your hand) in face-up Attack Position."
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_ADVANCE",
+      "card_name": "Ancient Gear Advance",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 4, 0, 6, 4, 9, 2, 5],
+      "description": {
+        "symbol": "gDescription_AncientGearAdvance",
+        "pages": "When this card is activated: Add 1 Ancient Gear Spell/Trap from your Deck to your hand, except Ancient Gear Advance. Once per turn: You can Tribute 1 monster; draw 1 card and apply this effect for the rest of this turn (even if this card leaves the field). - You can Normal Summon Ancient Gear Golem, or Level 5 or higher monsters that mention it, without Tributing. You cannot Set cards the turn you activate this card. You can only activate 1 Ancient Gear Advance per turn."
+      },
+      "effect_texts": {
+        "popup_1": "When this card is activated: Add 1 Ancient Gear Spell/Trap from your Deck to your hand, except Ancient Gear Advance."
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_BEAST",
+      "card_name": "Ancient Gear Beast",
+      "atk": 2000,
+      "def": 2000,
+      "level": 6,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 116,
+      "password": [1, 0, 5, 0, 9, 3, 4, 0],
+      "description": {
+        "symbol": "gDescription_AncientGearBeast",
+        "pages": "Cannot be Special Summoned. If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step. Negate the effects of an opponent's monster destroyed by battle with this card (including in the Graveyard)."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Special Summoned. If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of th"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_CANNON",
+      "card_name": "Ancient Gear Cannon",
+      "atk": 500,
+      "def": 500,
+      "level": 2,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 33,
+      "password": [8, 0, 0, 4, 5, 5, 8, 3],
+      "description": {
+        "symbol": "gDescription_AncientGearCannon",
+        "pages": "You can Tribute this card; inflict 500 damage to your opponent, and if you do, neither player can activate Trap Cards during the Battle Phase of this turn."
+      },
+      "effect_texts": {
+        "popup_1": "You can Tribute this card; inflict 500 damage to your opponent, and if you do, neither player can activate Trap Cards du"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_CASTLE",
+      "card_name": "Ancient Gear Castle",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 2, 0, 0, 1, 3, 0, 0],
+      "description": {
+        "symbol": "gDescription_AncientGearCastle",
+        "pages": "All Ancient Gear monsters gain 300 ATK. Each time a monster is Normal Summoned/Set, place 1 counter on this card. If you Tribute Summon an Ancient Gear monster face-up, you can Tribute this card instead, if the number of its counters is equal to or greater than the number of required Tribute(s)."
+      },
+      "effect_texts": {
+        "popup_1": "All Ancient Gear monsters gain 300 ATK. Each time a monster is Normal Summoned/Set, place 1 counter on this card. If y"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_COMMANDER",
+      "card_name": "Ancient Gear Commander",
+      "atk": 500,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [2, 7, 4, 8, 3, 9, 3, 5],
+      "description": {
+        "symbol": "gDescription_AncientGearCommander",
+        "pages": "You can send 1 Ancient Gear Golem from your hand, Deck, or face-up Monster Zone to the GY; immediately after this effect resolves, Normal Summon 1 Ancient Gear monster. If you Normal or Special Summon Ancient Gear Golem (except during the Damage Step): You can Special Summon 1 Ancient Gear Golem from your hand or GY, ignoring its Summoning conditions. You can banish this card from your GY; place 1 Ancient Gear Continuous Trap from your hand face-up on your field. You can only use each effect of Ancient Gear Commander once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "You can send 1 Ancient Gear Golem from your hand, Deck, or face-up Monster Zone to the GY; immediately after this effe"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_DARK_GOLEM",
+      "card_name": "Ancient Gear Dark Golem",
+      "atk": 3000,
+      "def": 3000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 4, 6, 0, 3, 1, 8, 2],
+      "description": {
+        "symbol": "gDescription_AncientGearDarkGolem",
+        "pages": "This card's name becomes Ancient Gear Golem while on the field or in the GY. If this card is Normal or Special Summoned: You can add up to 2 cards (Ancient Gear cards and/or Geartown) from your Deck to your hand, except Ancient Gear Dark Golem, then discard 1 card, also you cannot Set cards for the rest of this turn. You can only use this effect of Ancient Gear Dark Golem once per turn. If this card attacks, your opponent cannot activate Spell/Trap Cards until the end of the Damage Step."
+      },
+      "effect_texts": {
+        "popup_1": "This card's name becomes Ancient Gear Golem while on the field or in the GY. If this card is Normal or Special Summone"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_DRAGON",
+      "card_name": "Ancient Gear Dragon",
+      "atk": 500,
+      "def": 2500,
+      "level": 5,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 589,
+      "password": [7, 5, 8, 9, 2, 1, 9, 4],
+      "description": {
+        "symbol": "gDescription_AncientGearDragon",
+        "pages": "Cannot be Special Summoned. If you control no monsters, or all monsters you control are EARTH Machine monsters, you can Normal Summon this card without Tributing. When your opponent activates a Spell/Trap Card or effect (Quick Effect): You can send to the GY, 1 Machine monster from your hand or face-up field, or 1 Ancient Gear Golem from your Deck; negate that effect. You can only use this effect of Ancient Gear Dragon once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Special Summoned. If you control no monsters, or all monsters you control are EARTH Machine monsters, you can "
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_DRILL",
+      "card_name": "Ancient Gear Drill",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 7, 8, 2, 9, 2, 4, 9],
+      "description": {
+        "symbol": "gDescription_AncientGearDrill",
+        "pages": "If you control an Ancient Gear monster: Discard 1 card; Set 1 Spell Card directly from your Deck. This turn, that Spell Card cannot be activated."
+      },
+      "effect_texts": {
+        "popup_1": "If you control an Ancient Gear monster: Discard 1 card; Set 1 Spell Card directly from your Deck. This turn, that Spel"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_DUEL",
+      "card_name": "Ancient Gear Duel",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 3, 5, 4, 1, 8, 2, 2],
+      "description": {
+        "symbol": "gDescription_AncientGearDuel",
+        "pages": "Ancient Gear Golem, and monsters that mention it, in your Monster Zone are unaffected by your opponent's activated monster effects. If your opponent controls a monster: You can Fusion Summon 1 Fusion Monster that mentions Ancient Gear Golem from your Extra Deck, by banishing monsters from your field or GY as material, including Ancient Gear Golem you control, and if you do, it can make up to 3 attacks during each Battle Phase. You can only use this effect of Ancient Gear Duel once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "Ancient Gear Golem, and monsters that mention it, in your Monster Zone are unaffected by your opponent's activated mon"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_ENGINEER",
+      "card_name": "Ancient Gear Engineer",
+      "atk": 1500,
+      "def": 1500,
+      "level": 5,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 41,
+      "password": [0, 1, 9, 5, 3, 9, 2, 5],
+      "description": {
+        "symbol": "gDescription_AncientGearEngineer",
+        "pages": "Negate any Trap effects that target this card, and if you do, destroy that Trap Card. If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step. At the end of the Damage Step, if this card attacked: Target 1 Spell/Trap Card your opponent controls; destroy that target."
+      },
+      "effect_texts": {
+        "popup_1": "Negate any Trap effects that target this card, and if you do, destroy that Trap Card. If this card attacks, your opponen"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_EXPLOSIVE",
+      "card_name": "Ancient Gear Explosive",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 4, 4, 4, 6, 6, 7, 2],
+      "description": {
+        "symbol": "gDescription_AncientGearExplosive",
+        "pages": "Target 1 Ancient Gear monster you control; destroy it, and if you do, inflict damage to your opponent equal to half its original ATK."
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Ancient Gear monster you control; destroy it, and if you do, inflict damage to your opponent equal to half it"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_FACTORY",
+      "card_name": "Ancient Gear Factory",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 0, 4, 3, 5, 1, 4, 5],
+      "description": {
+        "symbol": "gDescription_AncientGearFactory",
+        "pages": "Reveal 1 Level 5 or higher Ancient Gear monster from your hand, then banish a number of Ancient Gear monsters from your Graveyard, whose combined Levels are double the revealed monster's, and if you do, if you Normal Summon the revealed monster this turn, you must Normal Smmon it without Tributing."
+      },
+      "effect_texts": {
+        "popup_1": "Reveal 1 Level 5 or higher Ancient Gear monster from your hand, then banish a number of Ancient Gear monsters from y"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_FIST",
+      "card_name": "Ancient Gear Fist",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 0, 8, 3, 0, 3, 8, 7],
+      "description": {
+        "symbol": "gDescription_AncientGearFist",
+        "pages": "Equip only to an Ancient Gear monster. At the end of the Damage Step, if the equipped monster battled a monster and is still on the field: Destroy the monster it battled."
+      },
+      "effect_texts": {
+        "popup_1": "Equip only to an Ancient Gear monster. At the end of the Damage Step, if the equipped monster battled a monster and is"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_FRAME",
+      "card_name": "Ancient Gear Frame",
+      "atk": 1600,
+      "def": 500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [0, 1, 2, 7, 8, 4, 3, 1],
+      "description": {
+        "symbol": "gDescription_AncientGearFrame",
+        "pages": "You can discard 1 card; add 1 Ancient Gear Golem, or 1 Spell/Trap that specifically lists the card Ancient Gear Golem in its text, from your Deck to your hand. You can only use this effect of Ancient Gear Frame once per turn. If this card attacks, your opponent cannot activate Spell/Trap Cards until the end of the Damage Step. If this face-up card in its owner's control leaves the field because of an opponent's card effect: You can Special Summon up to 3 Ancient Gear Golem and/or Ancient Gear Golem - Ultimate Pound from your hand, ignoring their Summoning conditions."
+      },
+      "effect_texts": {
+        "popup_1": "You can discard 1 card; add 1 Ancient Gear Golem, or 1 Spell/Trap that specifically lists the card Ancient Gear Golem"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_FUSION",
+      "card_name": "Ancient Gear Fusion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 4, 0, 6, 1, 2, 8, 4],
+      "description": {
+        "symbol": "gDescription_AncientGearFusion",
+        "pages": "Fusion Summon 1 Ancient Gear Fusion Monster from your Extra Deck, using monsters from your hand or field as Fusion Material. If you use Ancient Gear Golem or Ancient Gear Golem - Ultimate Pound you control as Fusion Material, you can also use monsters from your Deck as material."
+      },
+      "effect_texts": {
+        "popup_1": "Fusion Summon 1 Ancient Gear Fusion Monster from your Extra Deck, using monsters from your hand or field as Fusion Mat"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_GADJILTRON_CHIMERA",
+      "card_name": "Ancient Gear Gadjiltron Chimera",
+      "atk": 2300,
+      "def": 1300,
+      "level": 6,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [8, 6, 3, 2, 1, 2, 4, 8],
+      "description": {
+        "symbol": "gDescription_AncientGearGadjiltronChimera",
+        "pages": "This card gains the appropriate effects if you Normal Summon it by Tributing these monsters. - Green Gadget: This card gains 300 ATK. - Red Gadget: If this card inflicts battle damage to your opponent by a direct attack: Inflict 500 damage to your opponent. - Yellow Gadget: If this card destroys an opponent's monster by battle: Inflict 700 damage to your opponent."
+      },
+      "effect_texts": {
+        "popup_1": "This card gains the appropriate effects if you Normal Summon it by Tributing these monsters.\n- Green Gadget: This card g"
+      }
+    },
+    {
+      "card_const": "ANCIENT_GEAR_GADJILTRON_DRAGON",
+      "card_name": "Ancient Gear Gadjiltron Dragon",
+      "atk": 3000,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [5, 0, 9, 3, 3, 5, 3, 3],
+      "description": {
+        "symbol": "gDescription_AncientGearGadjiltronDragon",
+        "pages": "If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step. This card gains the appropriate effects if you Normal Summon it by Tributing these monsters. - Green Gadget: If this card attacks a Defense Position monster, inflict piercing battle damage to your opponent. - Red Gadget: If this card inflicts battle damage to your opponent: Inflict 400 damage to your opponent. - Yellow Gadget: If this card destroys an opponent's monster by battle: Inflict 600 damage to your opponent."
+      },
+      "effect_texts": {
+        "popup_1": "If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step. This card gai"
+      }
     }
   ]
 }

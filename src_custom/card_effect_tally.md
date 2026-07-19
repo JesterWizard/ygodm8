@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `904` effects
+- `924` effects
 
 ## Tally
 
@@ -885,6 +885,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Vanquishing Light` | `src_custom/trap_effects/vanquishing_light.c` |
 | `activated_effects` | `Weiss Lightsworn Archfiend` | `src_custom/activated_effects/weiss_lightsworn_archfiend.c` |
 | `permanent_effects` | `Wulf Lightsworn Beast` | `src_custom/permanent_effects/wulf_lightsworn_beast.c` |
+| `trap_effects` | `All Out Attacks` | `src_custom/trap_effects/all_out_attacks.c` |
+| `activated_effects` | `Ancient Fairy Dragon` | `src_custom/activated_effects/ancient_fairy_dragon.c` |
+| `activated_effects` | `Ancient Gear` | `src_custom/activated_effects/ancient_gear.c` |
+| `spell_effects` | `Ancient Gear Advance` | `src_custom/spell_effects/ancient_gear_advance.c` |
+| `activated_effects` | `Ancient Gear Beast` | `src_custom/activated_effects/ancient_gear_beast.c` |
+| `activated_effects` | `Ancient Gear Cannon` | `src_custom/activated_effects/ancient_gear_cannon.c` |
+| `spell_effects` | `Ancient Gear Castle` | `src_custom/spell_effects/ancient_gear_castle.c` |
+| `activated_effects` | `Ancient Gear Commander` | `src_custom/activated_effects/ancient_gear_commander.c` |
+| `activated_effects` | `Ancient Gear Dark Golem` | `src_custom/activated_effects/ancient_gear_dark_golem.c` |
+| `activated_effects` | `Ancient Gear Dragon` | `src_custom/activated_effects/ancient_gear_dragon.c` |
+| `spell_effects` | `Ancient Gear Drill` | `src_custom/spell_effects/ancient_gear_drill.c` |
+| `trap_effects` | `Ancient Gear Duel` | `src_custom/trap_effects/ancient_gear_duel.c` |
+| `activated_effects` | `Ancient Gear Engineer` | `src_custom/activated_effects/ancient_gear_engineer.c` |
+| `spell_effects` | `Ancient Gear Explosive` | `src_custom/spell_effects/ancient_gear_explosive.c` |
+| `spell_effects` | `Ancient Gear Factory` | `src_custom/spell_effects/ancient_gear_factory.c` |
+| `spell_effects` | `Ancient Gear Fist` | `src_custom/spell_effects/ancient_gear_fist.c` |
+| `activated_effects` | `Ancient Gear Frame` | `src_custom/activated_effects/ancient_gear_frame.c` |
+| `spell_effects` | `Ancient Gear Fusion` | `src_custom/spell_effects/ancient_gear_fusion.c` |
+| `activated_effects` | `Ancient Gear Gadjiltron Chimera` | `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c` |
+| `activated_effects` | `Ancient Gear Gadjiltron Dragon` | `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

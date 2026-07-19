@@ -2,6 +2,13 @@
 extern void EffectACE_OF_SWORD(void);
 extern void EffectALLURE_OF_DARKNESS(void);
 extern void EffectALLURING_MIRROR_SPLIT(void);
+extern void EffectANCIENT_GEAR_ADVANCE(void);
+extern void EffectANCIENT_GEAR_CASTLE(void);
+extern void EffectANCIENT_GEAR_DRILL(void);
+extern void EffectANCIENT_GEAR_EXPLOSIVE(void);
+extern void EffectANCIENT_GEAR_FACTORY(void);
+extern void EffectANCIENT_GEAR_FIST(void);
+extern void EffectANCIENT_GEAR_FUSION(void);
 extern void EffectAncientRules(void);
 extern void EffectARCANA_READING(void);
 extern void EffectARCANA_SPREAD(void);

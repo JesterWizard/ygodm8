@@ -974,6 +974,26 @@ static const u8 sTwlightTwinDragonsName[] __attribute__((section(".append_assets
 static const u8 sVanquishingLightName[] __attribute__((section(".append_assets"))) = "Vanquishing Light";
 static const u8 sWeissLightswornArchfiendName[] __attribute__((section(".append_assets"))) = "Weiss, Lightsworn Archfiend";
 static const u8 sWulfLightswornBeastName[] __attribute__((section(".append_assets"))) = "Wulf, Lightsworn Beast";
+static const u8 sAllOutAttacksName[] __attribute__((section(".append_assets"))) = "All-Out Attacks";
+static const u8 sAncientFairyDragonName[] __attribute__((section(".append_assets"))) = "Ancient Fairy Dragon";
+static const u8 sAncientGearName[] __attribute__((section(".append_assets"))) = "Ancient Gear";
+static const u8 sAncientGearAdvanceName[] __attribute__((section(".append_assets"))) = "Ancient Gear Advance";
+static const u8 sAncientGearBeastName[] __attribute__((section(".append_assets"))) = "Ancient Gear Beast";
+static const u8 sAncientGearCannonName[] __attribute__((section(".append_assets"))) = "Ancient Gear Cannon";
+static const u8 sAncientGearCastleName[] __attribute__((section(".append_assets"))) = "Ancient Gear Castle";
+static const u8 sAncientGearCommanderName[] __attribute__((section(".append_assets"))) = "Ancient Gear Commander";
+static const u8 sAncientGearDarkGolemName[] __attribute__((section(".append_assets"))) = "Ancient Gear Dark Golem";
+static const u8 sAncientGearDragonName[] __attribute__((section(".append_assets"))) = "Ancient Gear Dragon";
+static const u8 sAncientGearDrillName[] __attribute__((section(".append_assets"))) = "Ancient Gear Drill";
+static const u8 sAncientGearDuelName[] __attribute__((section(".append_assets"))) = "Ancient Gear Duel";
+static const u8 sAncientGearEngineerName[] __attribute__((section(".append_assets"))) = "Ancient Gear Engineer";
+static const u8 sAncientGearExplosiveName[] __attribute__((section(".append_assets"))) = "Ancient Gear Explosive";
+static const u8 sAncientGearFactoryName[] __attribute__((section(".append_assets"))) = "Ancient Gear Factory";
+static const u8 sAncientGearFistName[] __attribute__((section(".append_assets"))) = "Ancient Gear Fist";
+static const u8 sAncientGearFrameName[] __attribute__((section(".append_assets"))) = "Ancient Gear Frame";
+static const u8 sAncientGearFusionName[] __attribute__((section(".append_assets"))) = "Ancient Gear Fusion";
+static const u8 sAncientGearGadjiltronChimeraName[] __attribute__((section(".append_assets"))) = "Ancient Gear Gadjiltron Chimera";
+static const u8 sAncientGearGadjiltronDragonName[] __attribute__((section(".append_assets"))) = "Ancient Gear Gadjiltron Dragon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2928,6 +2948,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sWeissLightswornArchfiendName;
   if (cardId == 0x06ED)
     return (u8 *)sWulfLightswornBeastName;
+  if (cardId == 0x06EE)
+    return (u8 *)sAllOutAttacksName;
+  if (cardId == 0x06EF)
+    return (u8 *)sAncientFairyDragonName;
+  if (cardId == 0x06F0)
+    return (u8 *)sAncientGearName;
+  if (cardId == 0x06F1)
+    return (u8 *)sAncientGearAdvanceName;
+  if (cardId == 0x06F2)
+    return (u8 *)sAncientGearBeastName;
+  if (cardId == 0x06F3)
+    return (u8 *)sAncientGearCannonName;
+  if (cardId == 0x06F4)
+    return (u8 *)sAncientGearCastleName;
+  if (cardId == 0x06F5)
+    return (u8 *)sAncientGearCommanderName;
+  if (cardId == 0x06F6)
+    return (u8 *)sAncientGearDarkGolemName;
+  if (cardId == 0x06F7)
+    return (u8 *)sAncientGearDragonName;
+  if (cardId == 0x06F8)
+    return (u8 *)sAncientGearDrillName;
+  if (cardId == 0x06F9)
+    return (u8 *)sAncientGearDuelName;
+  if (cardId == 0x06FA)
+    return (u8 *)sAncientGearEngineerName;
+  if (cardId == 0x06FB)
+    return (u8 *)sAncientGearExplosiveName;
+  if (cardId == 0x06FC)
+    return (u8 *)sAncientGearFactoryName;
+  if (cardId == 0x06FD)
+    return (u8 *)sAncientGearFistName;
+  if (cardId == 0x06FE)
+    return (u8 *)sAncientGearFrameName;
+  if (cardId == 0x06FF)
+    return (u8 *)sAncientGearFusionName;
+  if (cardId == 0x0700)
+    return (u8 *)sAncientGearGadjiltronChimeraName;
+  if (cardId == 0x0701)
+    return (u8 *)sAncientGearGadjiltronDragonName;
 
   return gCardNames[cardId];
 }

@@ -1775,11 +1775,31 @@
 #define VANQUISHING_LIGHT                        0x06EB
 #define WEISS_LIGHTSWORN_ARCHFIEND               0x06EC
 #define WULF_LIGHTSWORN_BEAST                    0x06ED
+#define ALL_OUT_ATTACKS                          0x06EE
+#define ANCIENT_FAIRY_DRAGON                     0x06EF
+#define ANCIENT_GEAR                             0x06F0
+#define ANCIENT_GEAR_ADVANCE                     0x06F1
+#define ANCIENT_GEAR_BEAST                       0x06F2
+#define ANCIENT_GEAR_CANNON                      0x06F3
+#define ANCIENT_GEAR_CASTLE                      0x06F4
+#define ANCIENT_GEAR_COMMANDER                   0x06F5
+#define ANCIENT_GEAR_DARK_GOLEM                  0x06F6
+#define ANCIENT_GEAR_DRAGON                      0x06F7
+#define ANCIENT_GEAR_DRILL                       0x06F8
+#define ANCIENT_GEAR_DUEL                        0x06F9
+#define ANCIENT_GEAR_ENGINEER                    0x06FA
+#define ANCIENT_GEAR_EXPLOSIVE                   0x06FB
+#define ANCIENT_GEAR_FACTORY                     0x06FC
+#define ANCIENT_GEAR_FIST                        0x06FD
+#define ANCIENT_GEAR_FRAME                       0x06FE
+#define ANCIENT_GEAR_FUSION                      0x06FF
+#define ANCIENT_GEAR_GADJILTRON_CHIMERA          0x0700
+#define ANCIENT_GEAR_GADJILTRON_DRAGON           0x0701
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x06EE
-#define NUM_CUSTOM_CARDS                        0x03CD
+#define NUM_TOTAL_CARDS                         0x0702
+#define NUM_CUSTOM_CARDS                        0x03E1
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

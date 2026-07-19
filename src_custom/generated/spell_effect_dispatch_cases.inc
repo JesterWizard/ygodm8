@@ -8,6 +8,27 @@
     case ALLURING_MIRROR_SPLIT:
       EffectALLURING_MIRROR_SPLIT();
       return;
+    case ANCIENT_GEAR_ADVANCE:
+      EffectANCIENT_GEAR_ADVANCE();
+      return;
+    case ANCIENT_GEAR_CASTLE:
+      EffectANCIENT_GEAR_CASTLE();
+      return;
+    case ANCIENT_GEAR_DRILL:
+      EffectANCIENT_GEAR_DRILL();
+      return;
+    case ANCIENT_GEAR_EXPLOSIVE:
+      EffectANCIENT_GEAR_EXPLOSIVE();
+      return;
+    case ANCIENT_GEAR_FACTORY:
+      EffectANCIENT_GEAR_FACTORY();
+      return;
+    case ANCIENT_GEAR_FIST:
+      EffectANCIENT_GEAR_FIST();
+      return;
+    case ANCIENT_GEAR_FUSION:
+      EffectANCIENT_GEAR_FUSION();
+      return;
     case ANCIENT_RULES:
       EffectAncientRules();
       return;

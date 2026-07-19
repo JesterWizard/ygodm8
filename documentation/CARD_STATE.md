@@ -1,10 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-19 — Pack shop name over highlight (WINOUT BG1)
+**Last worked on:** 2026-07-19 — Added 20 Ancient Gear / All-Out Attacks cards (stubbed)
 
 **Files touched:**
-- `src_custom/card_shop_hooks.c` — pack view WINOUT includes BG1 so names draw over highlight
+- `tools/card_data_manifest.json` — 20 new cards
+- `tools/add_custom_card.py` — hyphen fname fetch + ASCII scrub
+- `src_custom/{spell,trap,activated}_effects/` — stub effect files
+- `src_custom/assets/cards/CARD_PROGRESS.md` — 993 in-game
 
-**Outcome:** `make` OK. Bottom pack names should sit above the cursor/highlight.
+**Outcome:** `make` OK. Effects stubbed (TODO bodies).
 
-**Open / next:** Playtest bottom-row pack name layering.
+**Open / next:** Implement effect bodies for these cards.

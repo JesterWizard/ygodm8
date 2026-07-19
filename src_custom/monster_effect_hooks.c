@@ -586,6 +586,28 @@ unsigned char CanActivateTEST_TIGER(void);
 void ActivateTEST_TIGEREffect(void);
 unsigned char CanActivateWEISS_LIGHTSWORN_ARCHFIEND(void);
 void ActivateWEISS_LIGHTSWORN_ARCHFIENDEffect(void);
+unsigned char CanActivateANCIENT_FAIRY_DRAGON(void);
+void ActivateANCIENT_FAIRY_DRAGONEffect(void);
+unsigned char CanActivateANCIENT_GEAR(void);
+void ActivateANCIENT_GEAREffect(void);
+unsigned char CanActivateANCIENT_GEAR_BEAST(void);
+void ActivateANCIENT_GEAR_BEASTEffect(void);
+unsigned char CanActivateANCIENT_GEAR_CANNON(void);
+void ActivateANCIENT_GEAR_CANNONEffect(void);
+unsigned char CanActivateANCIENT_GEAR_COMMANDER(void);
+void ActivateANCIENT_GEAR_COMMANDEREffect(void);
+unsigned char CanActivateANCIENT_GEAR_DARK_GOLEM(void);
+void ActivateANCIENT_GEAR_DARK_GOLEMEffect(void);
+unsigned char CanActivateANCIENT_GEAR_DRAGON(void);
+void ActivateANCIENT_GEAR_DRAGONEffect(void);
+unsigned char CanActivateANCIENT_GEAR_ENGINEER(void);
+void ActivateANCIENT_GEAR_ENGINEEREffect(void);
+unsigned char CanActivateANCIENT_GEAR_FRAME(void);
+void ActivateANCIENT_GEAR_FRAMEEffect(void);
+unsigned char CanActivateANCIENT_GEAR_GADJILTRON_CHIMERA(void);
+void ActivateANCIENT_GEAR_GADJILTRON_CHIMERAEffect(void);
+unsigned char CanActivateANCIENT_GEAR_GADJILTRON_DRAGON(void);
+void ActivateANCIENT_GEAR_GADJILTRON_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2373,6 +2395,50 @@ FAILED:
   }
   if (gMonEffect.id == WEISS_LIGHTSWORN_ARCHFIEND) {
     ActivateWEISS_LIGHTSWORN_ARCHFIENDEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_FAIRY_DRAGON) {
+    ActivateANCIENT_FAIRY_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR) {
+    ActivateANCIENT_GEAREffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_BEAST) {
+    ActivateANCIENT_GEAR_BEASTEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_CANNON) {
+    ActivateANCIENT_GEAR_CANNONEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_COMMANDER) {
+    ActivateANCIENT_GEAR_COMMANDEREffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_DARK_GOLEM) {
+    ActivateANCIENT_GEAR_DARK_GOLEMEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_DRAGON) {
+    ActivateANCIENT_GEAR_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_ENGINEER) {
+    ActivateANCIENT_GEAR_ENGINEEREffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_FRAME) {
+    ActivateANCIENT_GEAR_FRAMEEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_GADJILTRON_CHIMERA) {
+    ActivateANCIENT_GEAR_GADJILTRON_CHIMERAEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_GADJILTRON_DRAGON) {
+    ActivateANCIENT_GEAR_GADJILTRON_DRAGONEffect();
     return;
   }
 }
