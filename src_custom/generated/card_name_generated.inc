@@ -1214,6 +1214,26 @@ static const u8 sGravekeepersSteleName[] __attribute__((section(".append_assets"
 static const u8 sGravekeepersSupernaturalistName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Supernaturalist";
 static const u8 sGravekeepersTrapName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Trap";
 static const u8 sGravekeepersVassalName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Vassal";
+static const u8 sHalfCounterName[] __attribute__((section(".append_assets"))) = "Half Counter";
+static const u8 sImperialTombsOfNecrovalleyName[] __attribute__((section(".append_assets"))) = "Imperial Tombs of Necrovalley";
+static const u8 sInfiniteImpermanenceName[] __attribute__((section(".append_assets"))) = "Infinite Impermanence";
+static const u8 sHiddenTemplesOfNecrovalleyName[] __attribute__((section(".append_assets"))) = "Hidden Temples of Necrovalley";
+static const u8 sInfectedMailName[] __attribute__((section(".append_assets"))) = "Infected Mail";
+static const u8 sInfernoFireBlastName[] __attribute__((section(".append_assets"))) = "Inferno Fire Blast";
+static const u8 sInfernoTempestName[] __attribute__((section(".append_assets"))) = "Inferno Tempest";
+static const u8 sLemuriaTheForgottenCityName[] __attribute__((section(".append_assets"))) = "Lemuria, the Forgotten City";
+static const u8 sLightningStormName[] __attribute__((section(".append_assets"))) = "Lightning Storm";
+static const u8 sHeliosDuoMegistusName[] __attribute__((section(".append_assets"))) = "Helios Duo Megistus";
+static const u8 sHeliosThePrimordialSunName[] __attribute__((section(".append_assets"))) = "Helios - The Primordial Sun";
+static const u8 sHeliosTriceMegistusName[] __attribute__((section(".append_assets"))) = "Helios Trice Megistus";
+static const u8 sLadyOfDName[] __attribute__((section(".append_assets"))) = "Lady of D.";
+static const u8 sLevelEaterName[] __attribute__((section(".append_assets"))) = "Level Eater";
+static const u8 sLightrayDaedalusName[] __attribute__((section(".append_assets"))) = "Lightray Daedalus";
+static const u8 sLightrayGearfriedName[] __attribute__((section(".append_assets"))) = "Lightray Gearfried";
+static const u8 sGravekeepersVisionaryName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Visionary";
+static const u8 sGravekeepersWatcherName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Watcher";
+static const u8 sMagiciansLeftHandName[] __attribute__((section(".append_assets"))) = "Magician's Left Hand";
+static const u8 sMagiciansRightHandName[] __attribute__((section(".append_assets"))) = "Magician's Right Hand";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3648,6 +3668,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sGravekeepersTrapName;
   if (cardId == 0x07DD)
     return (u8 *)sGravekeepersVassalName;
+  if (cardId == 0x07DE)
+    return (u8 *)sHalfCounterName;
+  if (cardId == 0x07DF)
+    return (u8 *)sImperialTombsOfNecrovalleyName;
+  if (cardId == 0x07E0)
+    return (u8 *)sInfiniteImpermanenceName;
+  if (cardId == 0x07E1)
+    return (u8 *)sHiddenTemplesOfNecrovalleyName;
+  if (cardId == 0x07E2)
+    return (u8 *)sInfectedMailName;
+  if (cardId == 0x07E3)
+    return (u8 *)sInfernoFireBlastName;
+  if (cardId == 0x07E4)
+    return (u8 *)sInfernoTempestName;
+  if (cardId == 0x07E5)
+    return (u8 *)sLemuriaTheForgottenCityName;
+  if (cardId == 0x07E6)
+    return (u8 *)sLightningStormName;
+  if (cardId == 0x07E7)
+    return (u8 *)sHeliosDuoMegistusName;
+  if (cardId == 0x07E8)
+    return (u8 *)sHeliosThePrimordialSunName;
+  if (cardId == 0x07E9)
+    return (u8 *)sHeliosTriceMegistusName;
+  if (cardId == 0x07EA)
+    return (u8 *)sLadyOfDName;
+  if (cardId == 0x07EB)
+    return (u8 *)sLevelEaterName;
+  if (cardId == 0x07EC)
+    return (u8 *)sLightrayDaedalusName;
+  if (cardId == 0x07ED)
+    return (u8 *)sLightrayGearfriedName;
+  if (cardId == 0x07EE)
+    return (u8 *)sGravekeepersVisionaryName;
+  if (cardId == 0x07EF)
+    return (u8 *)sGravekeepersWatcherName;
+  if (cardId == 0x07F0)
+    return (u8 *)sMagiciansLeftHandName;
+  if (cardId == 0x07F1)
+    return (u8 *)sMagiciansRightHandName;
 
   return gCardNames[cardId];
 }

@@ -898,6 +898,24 @@ unsigned char CanActivateGRAVEKEEPERS_SUPERNATURALIST(void);
 void ActivateGRAVEKEEPERS_SUPERNATURALISTEffect(void);
 unsigned char CanActivateGRAVEKEEPERS_VASSAL(void);
 void ActivateGRAVEKEEPERS_VASSALEffect(void);
+unsigned char CanActivateHELIOS_DUO_MEGISTUS(void);
+void ActivateHELIOS_DUO_MEGISTUSEffect(void);
+unsigned char CanActivateHELIOS_THE_PRIMORDIAL_SUN(void);
+void ActivateHELIOS_THE_PRIMORDIAL_SUNEffect(void);
+unsigned char CanActivateHELIOS_TRICE_MEGISTUS(void);
+void ActivateHELIOS_TRICE_MEGISTUSEffect(void);
+unsigned char CanActivateLADY_OF_D(void);
+void ActivateLADY_OF_DEffect(void);
+unsigned char CanActivateLEVEL_EATER(void);
+void ActivateLEVEL_EATEREffect(void);
+unsigned char CanActivateLIGHTRAY_DAEDALUS(void);
+void ActivateLIGHTRAY_DAEDALUSEffect(void);
+unsigned char CanActivateLIGHTRAY_GEARFRIED(void);
+void ActivateLIGHTRAY_GEARFRIEDEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_VISIONARY(void);
+void ActivateGRAVEKEEPERS_VISIONARYEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_WATCHER(void);
+void ActivateGRAVEKEEPERS_WATCHEREffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -3309,6 +3327,42 @@ FAILED:
   }
   if (gMonEffect.id == GRAVEKEEPERS_VASSAL) {
     ActivateGRAVEKEEPERS_VASSALEffect();
+    return;
+  }
+  if (gMonEffect.id == HELIOS_DUO_MEGISTUS) {
+    ActivateHELIOS_DUO_MEGISTUSEffect();
+    return;
+  }
+  if (gMonEffect.id == HELIOS_THE_PRIMORDIAL_SUN) {
+    ActivateHELIOS_THE_PRIMORDIAL_SUNEffect();
+    return;
+  }
+  if (gMonEffect.id == HELIOS_TRICE_MEGISTUS) {
+    ActivateHELIOS_TRICE_MEGISTUSEffect();
+    return;
+  }
+  if (gMonEffect.id == LADY_OF_D) {
+    ActivateLADY_OF_DEffect();
+    return;
+  }
+  if (gMonEffect.id == LEVEL_EATER) {
+    ActivateLEVEL_EATEREffect();
+    return;
+  }
+  if (gMonEffect.id == LIGHTRAY_DAEDALUS) {
+    ActivateLIGHTRAY_DAEDALUSEffect();
+    return;
+  }
+  if (gMonEffect.id == LIGHTRAY_GEARFRIED) {
+    ActivateLIGHTRAY_GEARFRIEDEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_VISIONARY) {
+    ActivateGRAVEKEEPERS_VISIONARYEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_WATCHER) {
+    ActivateGRAVEKEEPERS_WATCHEREffect();
     return;
   }
 }

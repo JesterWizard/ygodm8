@@ -39122,6 +39122,446 @@
       "effect_texts": {
         "popup_1": "Any battle damage this card inflicts to your opponent is treated as effect damage instead."
       }
+    },
+    {
+      "card_const": "HALF_COUNTER",
+      "card_name": "Half Counter",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 6, 7, 9, 9, 2, 2, 7],
+      "description": {
+        "symbol": "gDescription_HalfCounter",
+        "pages": "During damage calculation, if a monster you control is being attacked: Target that monster you control; that target gains ATK equal to half the original ATK of the attacking monster, until the End Phase."
+      },
+      "effect_texts": {
+        "popup_1": "During damage calculation, if a monster you control is being attacked: Target that monster you control; that target gain"
+      }
+    },
+    {
+      "card_const": "IMPERIAL_TOMBS_OF_NECROVALLEY",
+      "card_name": "Imperial Tombs of Necrovalley",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 0, 4, 3, 4, 6, 5, 7],
+      "description": {
+        "symbol": "gDescription_ImperialTombsOfNecrovalley",
+        "pages": "When a Spell Card, Trap Card, or monster effect is activated, while both a Gravekeeper's monster and Necrovalley are on the field: Negate the activation, and if you do, destroy it. You can only activate 1 Imperial Tombs of Necrovalley per turn."
+      },
+      "effect_texts": {
+        "popup_1": "When a Spell Card, Trap Card, or monster effect is activated, while both a \"Gravekeeper's\" monster and \"Necrovalley\" are"
+      }
+    },
+    {
+      "card_const": "INFINITE_IMPERMANENCE",
+      "card_name": "Infinite Impermanence",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 0, 0, 4, 5, 4, 7, 4],
+      "description": {
+        "symbol": "gDescription_InfiniteImpermanence",
+        "pages": "Target 1 face-up monster your opponent controls; negate its effects (until the end of this turn), then, if this card was Set before activation and is on the field at resolution, for the rest of this turn all other Spell/Trap effects in this column are negated. If you control no cards, you can activate this card from your hand."
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 face-up monster your opponent controls; negate its effects (until the end of this turn), then, if this card was"
+      }
+    },
+    {
+      "card_const": "HIDDEN_TEMPLES_OF_NECROVALLEY",
+      "card_name": "Hidden Temples of Necrovalley",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 0, 0, 0, 0, 7, 7, 6],
+      "description": {
+        "symbol": "gDescription_HiddenTemplesOfNecrovalley",
+        "pages": "Activate only if both a Gravekeeper's monster and Necrovalley are on the field. Neither player can Special Summon monsters, except Gravekeeper's monsters. If either a Gravekeeper's monster or Necrovalley is not on the field, destroy this card."
+      },
+      "effect_texts": {
+        "popup_1": "Activate only if both a \"Gravekeeper's\" monster and \"Necrovalley\" are on the field. Neither player can Special Summon mo"
+      }
+    },
+    {
+      "card_const": "INFECTED_MAIL",
+      "card_name": "Infected Mail",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 6, 4, 3, 0, 6, 5, 9],
+      "description": {
+        "symbol": "gDescription_InfectedMail",
+        "pages": "Once per turn: You can target 1 Level 4 or lower monster you control; it can attack your opponent directly this turn. Send it to the Graveyard at the end of the Battle Phase."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn: You can target 1 Level 4 or lower monster you control; it can attack your opponent directly this turn. Se"
+      }
+    },
+    {
+      "card_const": "INFERNO_FIRE_BLAST",
+      "card_name": "Inferno Fire Blast",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 2, 6, 8, 4, 5, 0, 8],
+      "description": {
+        "symbol": "gDescription_InfernoFireBlast",
+        "pages": "Target 1 Red-Eyes B. Dragon in your Monster Zone; inflict damage to your opponent equal to its original ATK. Red-Eyes B. Dragon cannot attack the turn you activate this card."
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 \"Red-Eyes B. Dragon\" in your Monster Zone; inflict damage to your opponent equal to its original ATK. \"Red-Eyes"
+      }
+    },
+    {
+      "card_const": "INFERNO_TEMPEST",
+      "card_name": "Inferno Tempest",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 4, 3, 9, 1, 9, 2, 0],
+      "description": {
+        "symbol": "gDescription_InfernoTempest",
+        "pages": "When you take 3000 or more Battle Damage from 1 attack, you can activate this card. Remove all monsters in each player's Deck and Graveyard from play."
+      },
+      "effect_texts": {
+        "popup_1": "When you take 3000 or more Battle Damage from 1 attack, you can activate this card. Remove all monsters in each player's"
+      }
+    },
+    {
+      "card_const": "LEMURIA_THE_FORGOTTEN_CITY",
+      "card_name": "Lemuria, the Forgotten City",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 4, 1, 0, 3, 6, 5, 6],
+      "description": {
+        "symbol": "gDescription_LemuriaTheForgottenCity",
+        "pages": "This card's name is treated as Umi. All WATER monsters gain 200 ATK and DEF. Once per turn, during your Main Phase: You can have all WATER monsters you currently control gain Levels equal to the number of WATER monsters you currently control, until the End Phase."
+      },
+      "effect_texts": {
+        "popup_1": "This card's name is treated as Umi. All WATER monsters gain 200 ATK and DEF. Once per turn, during your Main Phase: Yo"
+      }
+    },
+    {
+      "card_const": "LIGHTNING_STORM",
+      "card_name": "Lightning Storm",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 4, 5, 3, 2, 1, 6, 3],
+      "description": {
+        "symbol": "gDescription_LightningStorm",
+        "pages": "If you control no face-up cards: Activate 1 of these effects; - Destroy all Attack Position monsters your opponent controls. - Destroy all Spells and Traps your opponent controls. You can only activate 1 Lightning Storm per turn."
+      },
+      "effect_texts": {
+        "popup_1": "If you control no face-up cards: Activate 1 of these effects; - Destroy all Attack Position monsters your opponent cont"
+      }
+    },
+    {
+      "card_const": "HELIOS_DUO_MEGISTUS",
+      "card_name": "Helios Duo Megistus",
+      "atk": -1,
+      "def": -1,
+      "level": 6,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 0,
+      "password": [8, 0, 8, 8, 7, 9, 5, 2],
+      "description": {
+        "symbol": "gDescription_HeliosDuoMegistus",
+        "pages": "You can Special Summon this card by Tributing 1 Helios - The Primordial Sun. This card's ATK and DEF are equal to the number of removed from play monsters x 200. If this card is destroyed by battle and sent to the Graveyard, Special Summon it during the End Phase, and it gains 300 ATK and DEF."
+      },
+      "effect_texts": {
+        "popup_1": "You can Special Summon this card by Tributing 1 Helios - The Primordial Sun. This card's ATK and DEF are equal to the"
+      }
+    },
+    {
+      "card_const": "HELIOS_THE_PRIMORDIAL_SUN",
+      "card_name": "Helios - The Primordial Sun",
+      "atk": -1,
+      "def": -1,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [5, 4, 4, 9, 3, 2, 1, 3],
+      "description": {
+        "symbol": "gDescription_HeliosThePrimordialSun",
+        "pages": "This card's ATK and DEF are each equal to the number of removed from play monsters x 100."
+      },
+      "effect_texts": {
+        "popup_1": "This card's ATK and DEF are each equal to the number of removed from play monsters x 100."
+      }
+    },
+    {
+      "card_const": "HELIOS_TRICE_MEGISTUS",
+      "card_name": "Helios Trice Megistus",
+      "atk": -1,
+      "def": -1,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 7, 2, 8, 6, 0, 5, 7],
+      "description": {
+        "symbol": "gDescription_HeliosTriceMegistus",
+        "pages": "You can Special Summon this card by Tributing 1 Helios Duo Megistus. This card's ATK and DEF are each equal to the number of removed from play monsters x 300. After this card attacks, it can attack once more if your opponent controls a monster. If this card is destroyed by battle and sent to the Graveyard, Special Summon it during the End Phase and it gains 500 ATK and DEF."
+      },
+      "effect_texts": {
+        "popup_1": "You can Special Summon this card by Tributing 1 Helios Duo Megistus. This card's ATK and DEF are each equal to the num"
+      }
+    },
+    {
+      "card_const": "LADY_OF_D",
+      "card_name": "Lady of D.",
+      "atk": 1500,
+      "def": 1100,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 7, 5, 1, 1, 5, 0, 0],
+      "description": {
+        "symbol": "gDescription_LadyOfD",
+        "pages": "Your opponent cannot target face-up Dragon-Type monsters you control for attacks. If this card on the field would be destroyed by battle or by a card effect, you can send 1 Dragon-Type monster from your hand to the Graveyard instead."
+      },
+      "effect_texts": {
+        "popup_1": "Your opponent cannot target face-up Dragon-Type monsters you control for attacks. If this card on the field would be des"
+      }
+    },
+    {
+      "card_const": "LEVEL_EATER",
+      "card_name": "Level Eater",
+      "atk": 600,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_INSECT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 16,
+      "password": [5, 7, 4, 2, 1, 8, 6, 6],
+      "description": {
+        "symbol": "gDescription_LevelEater",
+        "pages": "If this card is in your Graveyard: You can target 1 Level 5 or higher monster you control; reduce its Level by 1, and if you do, Special Summon this card. This face-up card on the field cannot be Tributed, except for a Tribute Summon."
+      },
+      "effect_texts": {
+        "popup_1": "If this card is in your Graveyard: You can target 1 Level 5 or higher monster you control; reduce its Level by 1, and if"
+      }
+    },
+    {
+      "card_const": "LIGHTRAY_DAEDALUS",
+      "card_name": "Lightray Daedalus",
+      "atk": 2600,
+      "def": 1500,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [3, 8, 7, 3, 7, 1, 4, 8],
+      "description": {
+        "symbol": "gDescription_LightrayDaedalus",
+        "pages": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by having 4 or more LIGHT monsters in your Graveyard, and cannot be Special Summoned by other ways. Once per turn: You can target 1 Field Spell Card and 2 other cards on the field; destroy them."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by having 4 or more LIGHT monsters in your Grav"
+      }
+    },
+    {
+      "card_const": "LIGHTRAY_GEARFRIED",
+      "card_name": "Lightray Gearfried",
+      "atk": 2800,
+      "def": 2200,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 592,
+      "password": [0, 4, 7, 2, 2, 2, 5, 3],
+      "description": {
+        "symbol": "gDescription_LightrayGearfried",
+        "pages": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by having 5 or more LIGHT monsters with different names in your Graveyard, and cannot be Special Summoned by other ways. Once per turn, during either player's turn, when a Spell/Trap Card is activated: You can banish 1 Warrior-Type monster from your Graveyard; negate the activation, and if you do, destroy it. All face-up monsters you control must be Warrior-Type to activate and to resolve this effect."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by having 5 or more LIGHT monsters with differe"
+      }
+    },
+    {
+      "card_const": "GRAVEKEEPERS_VISIONARY",
+      "card_name": "Gravekeeper's Visionary",
+      "atk": 2000,
+      "def": 1800,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [0, 3, 8, 2, 5, 8, 9, 0],
+      "description": {
+        "symbol": "gDescription_GravekeepersVisionary",
+        "pages": "You can Tribute Summon this card by Tributing 1 Gravekeeper's monster. This card gains 200 ATK for each Gravekeeper's monster in your Graveyard. If this face-up card would be destroyed, you can discard 1 Gravekeeper's monster instead."
+      },
+      "effect_texts": {
+        "popup_1": "You can Tribute Summon this card by Tributing 1 Gravekeeper's monster. This card gains 200 ATK for each Gravekeeper's"
+      }
+    },
+    {
+      "card_const": "GRAVEKEEPERS_WATCHER",
+      "card_name": "Gravekeeper's Watcher",
+      "atk": 1000,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 6, 0, 8, 4, 2, 8, 5],
+      "description": {
+        "symbol": "gDescription_GravekeepersWatcher",
+        "pages": "During either player's turn, when your opponent activates a Spell/Trap Card or monster effect that could make them discard when it resolves: You can send this card from your hand to the Graveyard; negate the activation, and if you do, destroy it."
+      },
+      "effect_texts": {
+        "popup_1": "During either player's turn, when your opponent activates a Spell/Trap Card or monster effect that could make them disca"
+      }
+    },
+    {
+      "card_const": "MAGICIANS_LEFT_HAND",
+      "card_name": "Magician's Left Hand",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 3, 7, 5, 8, 6, 6, 5],
+      "description": {
+        "symbol": "gDescription_MagiciansLeftHand",
+        "pages": "Negate the effect of your opponent's first Trap Card or effect that resolves each turn while you control a Spellcaster monster, and if you do, destroy that card."
+      },
+      "effect_texts": {
+        "popup_1": "Negate the effect of your opponent's first Trap Card or effect that resolves each turn while you control a Spellcaster m"
+      }
+    },
+    {
+      "card_const": "MAGICIANS_RIGHT_HAND",
+      "card_name": "Magician's Right Hand",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 7, 7, 6, 9, 5, 5, 6],
+      "description": {
+        "symbol": "gDescription_MagiciansRightHand",
+        "pages": "Negate the effect of your opponent's first Spell Card or effect that resolves each turn while you control a Spellcaster monster, and if you do, or if it did not have an effect, destroy that card."
+      },
+      "effect_texts": {
+        "popup_1": "Negate the effect of your opponent's first Spell Card or effect that resolves each turn while you control a Spellcaster"
+      }
     }
   ]
 }

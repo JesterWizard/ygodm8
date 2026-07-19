@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1144` effects
+- `1164` effects
 
 ## Tally
 
@@ -1125,6 +1125,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Gravekeepers Supernaturalist` | `src_custom/activated_effects/gravekeepers_supernaturalist.c` |
 | `trap_effects` | `Gravekeepers Trap` | `src_custom/trap_effects/gravekeepers_trap.c` |
 | `activated_effects` | `Gravekeepers Vassal` | `src_custom/activated_effects/gravekeepers_vassal.c` |
+| `trap_effects` | `Half Counter` | `src_custom/trap_effects/half_counter.c` |
+| `trap_effects` | `Imperial Tombs Of Necrovalley` | `src_custom/trap_effects/imperial_tombs_of_necrovalley.c` |
+| `trap_effects` | `Infinite Impermanence` | `src_custom/trap_effects/infinite_impermanence.c` |
+| `spell_effects` | `Hidden Temples Of Necrovalley` | `src_custom/spell_effects/hidden_temples_of_necrovalley.c` |
+| `spell_effects` | `Infected Mail` | `src_custom/spell_effects/infected_mail.c` |
+| `spell_effects` | `Inferno Fire Blast` | `src_custom/spell_effects/inferno_fire_blast.c` |
+| `spell_effects` | `Inferno Tempest` | `src_custom/spell_effects/inferno_tempest.c` |
+| `spell_effects` | `Lemuria The Forgotten City` | `src_custom/spell_effects/lemuria_the_forgotten_city.c` |
+| `spell_effects` | `Lightning Storm` | `src_custom/spell_effects/lightning_storm.c` |
+| `activated_effects` | `Helios Duo Megistus` | `src_custom/activated_effects/helios_duo_megistus.c` |
+| `activated_effects` | `Helios The Primordial Sun` | `src_custom/activated_effects/helios_the_primordial_sun.c` |
+| `activated_effects` | `Helios Trice Megistus` | `src_custom/activated_effects/helios_trice_megistus.c` |
+| `activated_effects` | `Lady Of D` | `src_custom/activated_effects/lady_of_d.c` |
+| `activated_effects` | `Level Eater` | `src_custom/activated_effects/level_eater.c` |
+| `activated_effects` | `Lightray Daedalus` | `src_custom/activated_effects/lightray_daedalus.c` |
+| `activated_effects` | `Lightray Gearfried` | `src_custom/activated_effects/lightray_gearfried.c` |
+| `activated_effects` | `Gravekeepers Visionary` | `src_custom/activated_effects/gravekeepers_visionary.c` |
+| `activated_effects` | `Gravekeepers Watcher` | `src_custom/activated_effects/gravekeepers_watcher.c` |
+| `spell_effects` | `Magicians Left Hand` | `src_custom/spell_effects/magicians_left_hand.c` |
+| `spell_effects` | `Magicians Right Hand` | `src_custom/spell_effects/magicians_right_hand.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

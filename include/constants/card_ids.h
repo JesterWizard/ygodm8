@@ -2015,11 +2015,31 @@
 #define GRAVEKEEPERS_SUPERNATURALIST             0x07DB
 #define GRAVEKEEPERS_TRAP                        0x07DC
 #define GRAVEKEEPERS_VASSAL                      0x07DD
+#define HALF_COUNTER                             0x07DE
+#define IMPERIAL_TOMBS_OF_NECROVALLEY            0x07DF
+#define INFINITE_IMPERMANENCE                    0x07E0
+#define HIDDEN_TEMPLES_OF_NECROVALLEY            0x07E1
+#define INFECTED_MAIL                            0x07E2
+#define INFERNO_FIRE_BLAST                       0x07E3
+#define INFERNO_TEMPEST                          0x07E4
+#define LEMURIA_THE_FORGOTTEN_CITY               0x07E5
+#define LIGHTNING_STORM                          0x07E6
+#define HELIOS_DUO_MEGISTUS                      0x07E7
+#define HELIOS_THE_PRIMORDIAL_SUN                0x07E8
+#define HELIOS_TRICE_MEGISTUS                    0x07E9
+#define LADY_OF_D                                0x07EA
+#define LEVEL_EATER                              0x07EB
+#define LIGHTRAY_DAEDALUS                        0x07EC
+#define LIGHTRAY_GEARFRIED                       0x07ED
+#define GRAVEKEEPERS_VISIONARY                   0x07EE
+#define GRAVEKEEPERS_WATCHER                     0x07EF
+#define MAGICIANS_LEFT_HAND                      0x07F0
+#define MAGICIANS_RIGHT_HAND                     0x07F1
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x07DE
-#define NUM_CUSTOM_CARDS                        0x04BD
+#define NUM_TOTAL_CARDS                         0x07F2
+#define NUM_CUSTOM_CARDS                        0x04D1
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

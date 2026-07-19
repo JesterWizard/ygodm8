@@ -452,6 +452,9 @@
     case HERO_FLASH:
       EffectHERO_FLASH();
       return;
+    case HIDDEN_TEMPLES_OF_NECROVALLEY:
+      EffectHIDDEN_TEMPLES_OF_NECROVALLEY();
+      return;
     case HYSTERIC_SIGN:
       EffectHYSTERIC_SIGN();
       return;
@@ -460,6 +463,15 @@
       return;
     case ILLUSION_MAGIC:
       EffectILLUSION_MAGIC();
+      return;
+    case INFECTED_MAIL:
+      EffectINFECTED_MAIL();
+      return;
+    case INFERNO_FIRE_BLAST:
+      EffectINFERNO_FIRE_BLAST();
+      return;
+    case INFERNO_TEMPEST:
+      EffectINFERNO_TEMPEST();
       return;
     case INSECT_IMITATION:
       EffectINSECT_IMITATION();
@@ -485,6 +497,9 @@
     case KNIGHTS_TITLE:
       EffectKnightsTitle();
       return;
+    case LEMURIA_THE_FORGOTTEN_CITY:
+      EffectLEMURIA_THE_FORGOTTEN_CITY();
+      return;
     case LEVEL_LIMIT_AREA_A:
       EffectLevelLimitAreaA();
       return;
@@ -496,6 +511,9 @@
       return;
     case LEV_SHADDOLL_FUSION:
       EffectLEV_SHADDOLL_FUSION();
+      return;
+    case LIGHTNING_STORM:
+      EffectLIGHTNING_STORM();
       return;
     case LIGHTSWORN_SABRE:
       EffectLIGHTSWORN_SABRE();
@@ -520,6 +538,12 @@
       return;
     case MAGICAL_STONE_EXCAVATION:
       EffectMAGICAL_STONE_EXCAVATION();
+      return;
+    case MAGICIANS_LEFT_HAND:
+      EffectMAGICIANS_LEFT_HAND();
+      return;
+    case MAGICIANS_RIGHT_HAND:
+      EffectMAGICIANS_RIGHT_HAND();
       return;
     case MARCH_OF_THE_DARK_BRIGADE:
       EffectMARCH_OF_THE_DARK_BRIGADE();

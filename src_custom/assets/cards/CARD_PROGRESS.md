@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1213 |
-| Art ready, needs manifest | 74 |
+| In game (manifest + art) | 1233 |
+| Art ready, needs manifest | 54 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1290** |
 
@@ -1235,31 +1235,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GRAVEKEEPERS_SUPERNATURALIST` | Gravekeeper's Supernaturalist | `gravekeepers_supernaturalist.png` |
 | `GRAVEKEEPERS_TRAP` | Gravekeeper's Trap | `gravekeepers_trap.png` |
 | `GRAVEKEEPERS_VASSAL` | Gravekeeper's Vassal | `gravekeepers_vassal.png` |
+| `HALF_COUNTER` | Half Counter | `half_counter.png` |
+| `IMPERIAL_TOMBS_OF_NECROVALLEY` | Imperial Tombs of Necrovalley | `imperial_tombs_of_necrovalley.png` |
+| `INFINITE_IMPERMANENCE` | Infinite Impermanence | `infinite_impermanence.png` |
+| `HIDDEN_TEMPLES_OF_NECROVALLEY` | Hidden Temples of Necrovalley | `hidden_temples_of_necrovalley.png` |
+| `INFECTED_MAIL` | Infected Mail | `infected_mail.png` |
+| `INFERNO_FIRE_BLAST` | Inferno Fire Blast | `inferno_fire_blast.png` |
+| `INFERNO_TEMPEST` | Inferno Tempest | `inferno_tempest.png` |
+| `LEMURIA_THE_FORGOTTEN_CITY` | Lemuria, the Forgotten City | `lemuria_the_forgotten_city.png` |
+| `LIGHTNING_STORM` | Lightning Storm | `lightning_storm.png` |
+| `HELIOS_DUO_MEGISTUS` | Helios Duo Megistus | `helios_duo_megistus.png` |
+| `HELIOS_THE_PRIMORDIAL_SUN` | Helios - The Primordial Sun | `helios_the_primordial_sun.png` |
+| `HELIOS_TRICE_MEGISTUS` | Helios Trice Megistus | `helios_trice_megistus.png` |
+| `LADY_OF_D` | Lady of D. | `lady_of_d.png` |
+| `LEVEL_EATER` | Level Eater | `level_eater.png` |
+| `LIGHTRAY_DAEDALUS` | Lightray Daedalus | `lightray_daedalus.png` |
+| `LIGHTRAY_GEARFRIED` | Lightray Gearfried | `lightray_gearfried.png` |
+| `GRAVEKEEPERS_VISIONARY` | Gravekeeper's Visionary | `gravekeepers_visionary.png` |
+| `GRAVEKEEPERS_WATCHER` | Gravekeeper's Watcher | `gravekeepers_watcher.png` |
+| `MAGICIANS_LEFT_HAND` | Magician's Left Hand | `magicians_left_hand.png` |
+| `MAGICIANS_RIGHT_HAND` | Magician's Right Hand | `magicians_right_hand.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `GRAVEKEEPERS_VISIONARY` — `gravekeepers_visionary.png`
-- [ ] `GRAVEKEEPERS_WATCHER` — `gravekeepers_watcher.png`
-- [ ] `HALF_COUNTER` — `half_counter.png`
-- [ ] `HELIOS_DUO_MEGISTUS` — `helios_duo_megistus.png`
-- [ ] `HELIOS_THE_PRIMORDIAL_SUN` — `helios_the_primordial_sun.png`
-- [ ] `HELIOS_TRICE_MEGISTUS` — `helios_trice_megistus.png`
-- [ ] `HIDDEN_TEMPLES_OF_NECROVALLEY` — `hidden_temples_of_necrovalley.png`
-- [ ] `IMPERIAL_TOMBS_OF_NECROVALLEY` — `imperial_tombs_of_necrovalley.png`
-- [ ] `INFECTED_MAIL` — `infected_mail.png`
-- [ ] `INFERNO_FIRE_BLAST` — `inferno_fire_blast.png`
-- [ ] `INFERNO_TEMPEST` — `inferno_tempest.png`
-- [ ] `INFINITE_IMPERMANENCE` — `infinite_impermanence.png`
-- [ ] `LADY_OF_D` — `lady_of_d.png`
-- [ ] `LEMURIA_THE_FORGOTTEN_CITY` — `lemuria_the_forgotten_city.png`
-- [ ] `LEVEL_EATER` — `level_eater.png`
-- [ ] `LIGHTNING_STORM` — `lightning_storm.png`
-- [ ] `LIGHTRAY_DAEDALUS` — `lightray_daedalus.png`
-- [ ] `LIGHTRAY_GEARFRIED` — `lightray_gearfried.png`
-- [ ] `MAGICIANS_LEFT_HAND` — `magicians_left_hand.png`
-- [ ] `MAGICIANS_RIGHT_HAND` — `magicians_right_hand.png`
 - [ ] `MAJESTY_HYPERION` — `majesty_hyperion.png`
 - [ ] `MASTER_HYPERION` — `master_hyperion.png`
 - [ ] `MASTERFLARE_HYPERION` — `masterflare_hyperion.png`

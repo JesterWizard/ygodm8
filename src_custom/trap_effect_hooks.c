@@ -582,3 +582,9 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire FORGOTTEN_TEMPLE_OF_THE_DEEP in trap dispatcher */
 /* GRAVEKEEPERS_TRAP trap effect */
   /* TODO: wire GRAVEKEEPERS_TRAP in trap dispatcher */
+/* HALF_COUNTER trap effect */
+  /* TODO: wire HALF_COUNTER in trap dispatcher */
+/* IMPERIAL_TOMBS_OF_NECROVALLEY trap effect */
+  /* TODO: wire IMPERIAL_TOMBS_OF_NECROVALLEY in trap dispatcher */
+/* INFINITE_IMPERMANENCE trap effect */
+  /* TODO: wire INFINITE_IMPERMANENCE in trap dispatcher */
