@@ -1975,11 +1975,31 @@
 #define CHARM_OF_SHABTI                          0x07B3
 #define BAZOO_THE_SOUL_EATER                     0x07B4
 #define ASH_BLOSSOM_AND_JOYOUS_SPRING            0x07B5
+#define DOUBLE_CYCLONE                           0x07B6
+#define FORBIDDEN_CHALICE                        0x07B7
+#define FORBIDDEN_DRESS                          0x07B8
+#define FORBIDDEN_LANCE                          0x07B9
+#define DRAMATIC_RESCUE                          0x07BA
+#define FORGOTTEN_TEMPLE_OF_THE_DEEP             0x07BB
+#define CLEAR_VICE_DRAGON                        0x07BC
+#define CYBERNETIC_MAGICIAN                      0x07BD
+#define DARKLORD_DESIRE                          0x07BE
+#define DEEP_SEA_DIVA                            0x07BF
+#define DIVINER_OF_THE_HERALD                    0x07C0
+#define ELDER_ENTITY_NORDEN                      0x07C1
+#define ENRAGED_BATTLE_OX                        0x07C2
+#define FOG_KING                                 0x07C3
+#define GAGAGIGO_THE_RISEN                       0x07C4
+#define GOLDEN_HOMUNCULUS                        0x07C5
+#define FUSILIER_DRAGON_THE_DUAL_MODE_BEAST      0x07C6
+#define GAMECIAL_THE_SEA_TURTLE_KAIJU            0x07C7
+#define GRAVEKEEPERS_AMBUSHER                    0x07C8
+#define GRAVEKEEPERS_CANNONHOLDER                0x07C9
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x07B6
-#define NUM_CUSTOM_CARDS                        0x0495
+#define NUM_TOTAL_CARDS                         0x07CA
+#define NUM_CUSTOM_CARDS                        0x04A9
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -836,6 +836,34 @@ unsigned char CanActivateBAZOO_THE_SOUL_EATER(void);
 void ActivateBAZOO_THE_SOUL_EATEREffect(void);
 unsigned char CanActivateASH_BLOSSOM_AND_JOYOUS_SPRING(void);
 void ActivateASH_BLOSSOM_AND_JOYOUS_SPRINGEffect(void);
+unsigned char CanActivateCLEAR_VICE_DRAGON(void);
+void ActivateCLEAR_VICE_DRAGONEffect(void);
+unsigned char CanActivateCYBERNETIC_MAGICIAN(void);
+void ActivateCYBERNETIC_MAGICIANEffect(void);
+unsigned char CanActivateDARKLORD_DESIRE(void);
+void ActivateDARKLORD_DESIREEffect(void);
+unsigned char CanActivateDEEP_SEA_DIVA(void);
+void ActivateDEEP_SEA_DIVAEffect(void);
+unsigned char CanActivateDIVINER_OF_THE_HERALD(void);
+void ActivateDIVINER_OF_THE_HERALDEffect(void);
+unsigned char CanActivateELDER_ENTITY_NORDEN(void);
+void ActivateELDER_ENTITY_NORDENEffect(void);
+unsigned char CanActivateENRAGED_BATTLE_OX(void);
+void ActivateENRAGED_BATTLE_OXEffect(void);
+unsigned char CanActivateFOG_KING(void);
+void ActivateFOG_KINGEffect(void);
+unsigned char CanActivateGAGAGIGO_THE_RISEN(void);
+void ActivateGAGAGIGO_THE_RISENEffect(void);
+unsigned char CanActivateGOLDEN_HOMUNCULUS(void);
+void ActivateGOLDEN_HOMUNCULUSEffect(void);
+unsigned char CanActivateFUSILIER_DRAGON_THE_DUAL_MODE_BEAST(void);
+void ActivateFUSILIER_DRAGON_THE_DUAL_MODE_BEASTEffect(void);
+unsigned char CanActivateGAMECIAL_THE_SEA_TURTLE_KAIJU(void);
+void ActivateGAMECIAL_THE_SEA_TURTLE_KAIJUEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_AMBUSHER(void);
+void ActivateGRAVEKEEPERS_AMBUSHEREffect(void);
+unsigned char CanActivateGRAVEKEEPERS_CANNONHOLDER(void);
+void ActivateGRAVEKEEPERS_CANNONHOLDEREffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -3123,6 +3151,62 @@ FAILED:
   }
   if (gMonEffect.id == ASH_BLOSSOM_AND_JOYOUS_SPRING) {
     ActivateASH_BLOSSOM_AND_JOYOUS_SPRINGEffect();
+    return;
+  }
+  if (gMonEffect.id == CLEAR_VICE_DRAGON) {
+    ActivateCLEAR_VICE_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == CYBERNETIC_MAGICIAN) {
+    ActivateCYBERNETIC_MAGICIANEffect();
+    return;
+  }
+  if (gMonEffect.id == DARKLORD_DESIRE) {
+    ActivateDARKLORD_DESIREEffect();
+    return;
+  }
+  if (gMonEffect.id == DEEP_SEA_DIVA) {
+    ActivateDEEP_SEA_DIVAEffect();
+    return;
+  }
+  if (gMonEffect.id == DIVINER_OF_THE_HERALD) {
+    ActivateDIVINER_OF_THE_HERALDEffect();
+    return;
+  }
+  if (gMonEffect.id == ELDER_ENTITY_NORDEN) {
+    ActivateELDER_ENTITY_NORDENEffect();
+    return;
+  }
+  if (gMonEffect.id == ENRAGED_BATTLE_OX) {
+    ActivateENRAGED_BATTLE_OXEffect();
+    return;
+  }
+  if (gMonEffect.id == FOG_KING) {
+    ActivateFOG_KINGEffect();
+    return;
+  }
+  if (gMonEffect.id == GAGAGIGO_THE_RISEN) {
+    ActivateGAGAGIGO_THE_RISENEffect();
+    return;
+  }
+  if (gMonEffect.id == GOLDEN_HOMUNCULUS) {
+    ActivateGOLDEN_HOMUNCULUSEffect();
+    return;
+  }
+  if (gMonEffect.id == FUSILIER_DRAGON_THE_DUAL_MODE_BEAST) {
+    ActivateFUSILIER_DRAGON_THE_DUAL_MODE_BEASTEffect();
+    return;
+  }
+  if (gMonEffect.id == GAMECIAL_THE_SEA_TURTLE_KAIJU) {
+    ActivateGAMECIAL_THE_SEA_TURTLE_KAIJUEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_AMBUSHER) {
+    ActivateGRAVEKEEPERS_AMBUSHEREffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_CANNONHOLDER) {
+    ActivateGRAVEKEEPERS_CANNONHOLDEREffect();
     return;
   }
 }

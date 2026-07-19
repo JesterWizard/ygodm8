@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1104` effects
+- `1124` effects
 
 ## Tally
 
@@ -1085,6 +1085,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Charm Of Shabti` | `src_custom/activated_effects/charm_of_shabti.c` |
 | `activated_effects` | `Bazoo The Soul Eater` | `src_custom/activated_effects/bazoo_the_soul_eater.c` |
 | `activated_effects` | `Ash Blossom And Joyous Spring` | `src_custom/activated_effects/ash_blossom_and_joyous_spring.c` |
+| `spell_effects` | `Double Cyclone` | `src_custom/spell_effects/double_cyclone.c` |
+| `spell_effects` | `Forbidden Chalice` | `src_custom/spell_effects/forbidden_chalice.c` |
+| `spell_effects` | `Forbidden Dress` | `src_custom/spell_effects/forbidden_dress.c` |
+| `spell_effects` | `Forbidden Lance` | `src_custom/spell_effects/forbidden_lance.c` |
+| `trap_effects` | `Dramatic Rescue` | `src_custom/trap_effects/dramatic_rescue.c` |
+| `trap_effects` | `Forgotten Temple Of The Deep` | `src_custom/trap_effects/forgotten_temple_of_the_deep.c` |
+| `activated_effects` | `Clear Vice Dragon` | `src_custom/activated_effects/clear_vice_dragon.c` |
+| `activated_effects` | `Cybernetic Magician` | `src_custom/activated_effects/cybernetic_magician.c` |
+| `activated_effects` | `Darklord Desire` | `src_custom/activated_effects/darklord_desire.c` |
+| `activated_effects` | `Deep Sea Diva` | `src_custom/activated_effects/deep_sea_diva.c` |
+| `activated_effects` | `Diviner Of The Herald` | `src_custom/activated_effects/diviner_of_the_herald.c` |
+| `activated_effects` | `Elder Entity Norden` | `src_custom/activated_effects/elder_entity_norden.c` |
+| `activated_effects` | `Enraged Battle Ox` | `src_custom/activated_effects/enraged_battle_ox.c` |
+| `activated_effects` | `Fog King` | `src_custom/activated_effects/fog_king.c` |
+| `activated_effects` | `Gagagigo The Risen` | `src_custom/activated_effects/gagagigo_the_risen.c` |
+| `activated_effects` | `Golden Homunculus` | `src_custom/activated_effects/golden_homunculus.c` |
+| `activated_effects` | `Fusilier Dragon The Dual Mode Beast` | `src_custom/activated_effects/fusilier_dragon_the_dual_mode_beast.c` |
+| `activated_effects` | `Gamecial The Sea Turtle Kaiju` | `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c` |
+| `activated_effects` | `Gravekeepers Ambusher` | `src_custom/activated_effects/gravekeepers_ambusher.c` |
+| `activated_effects` | `Gravekeepers Cannonholder` | `src_custom/activated_effects/gravekeepers_cannonholder.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

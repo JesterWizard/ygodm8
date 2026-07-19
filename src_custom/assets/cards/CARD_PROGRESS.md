@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1173 |
-| Art ready, needs manifest | 114 |
+| In game (manifest + art) | 1193 |
+| Art ready, needs manifest | 94 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1290** |
 
@@ -1195,31 +1195,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CHARM_OF_SHABTI` | Charm of Shabti | `charm_of_shabti.png` |
 | `BAZOO_THE_SOUL_EATER` | Bazoo the Soul-Eater | `bazoo_the_soul_eater.png` |
 | `ASH_BLOSSOM_AND_JOYOUS_SPRING` | Ash Blossom & Joyous Spring | `ash_blossom_and_joyous_spring.png` |
+| `DOUBLE_CYCLONE` | Double Cyclone | `double_cyclone.png` |
+| `FORBIDDEN_CHALICE` | Forbidden Chalice | `forbidden_chalice.png` |
+| `FORBIDDEN_DRESS` | Forbidden Dress | `forbidden_dress.png` |
+| `FORBIDDEN_LANCE` | Forbidden Lance | `forbidden_lance.png` |
+| `DRAMATIC_RESCUE` | Dramatic Rescue | `dramatic_rescue.png` |
+| `FORGOTTEN_TEMPLE_OF_THE_DEEP` | Forgotten Temple of the Deep | `forgotten_temple_of_the_deep.png` |
+| `CLEAR_VICE_DRAGON` | Clear Vice Dragon | `clear_vice_dragon.png` |
+| `CYBERNETIC_MAGICIAN` | Cybernetic Magician | `cybernetic_magician.png` |
+| `DARKLORD_DESIRE` | Darklord Desire | `darklord_desire.png` |
+| `DEEP_SEA_DIVA` | Deep Sea Diva | `deep_sea_diva.png` |
+| `DIVINER_OF_THE_HERALD` | Diviner of the Herald | `diviner_of_the_herald.png` |
+| `ELDER_ENTITY_NORDEN` | Elder Entity Norden | `elder_entity_norden.png` |
+| `ENRAGED_BATTLE_OX` | Enraged Battle Ox | `enraged_battle_ox.png` |
+| `FOG_KING` | Fog King | `fog_king.png` |
+| `GAGAGIGO_THE_RISEN` | Gagagigo the Risen | `gagagigo_the_risen.png` |
+| `GOLDEN_HOMUNCULUS` | Golden Homunculus | `golden_homunculus.png` |
+| `FUSILIER_DRAGON_THE_DUAL_MODE_BEAST` | Fusilier Dragon, the Dual-Mode Beast | `fusilier_dragon_the_dual_mode_beast.png` |
+| `GAMECIAL_THE_SEA_TURTLE_KAIJU` | Gameciel, the Sea Turtle Kaiju | `gamecial_the_sea_turtle_kaiju.png` |
+| `GRAVEKEEPERS_AMBUSHER` | Gravekeeper's Ambusher | `gravekeepers_ambusher.png` |
+| `GRAVEKEEPERS_CANNONHOLDER` | Gravekeeper's Cannonholder | `gravekeepers_cannonholder.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `CLEAR_VICE_DRAGON` — `clear_vice_dragon.png`
-- [ ] `CYBERNETIC_MAGICIAN` — `cybernetic_magician.png`
-- [ ] `DARKLORD_DESIRE` — `darklord_desire.png`
-- [ ] `DEEP_SEA_DIVA` — `deep_sea_diva.png`
-- [ ] `DIVINER_OF_THE_HERALD` — `diviner_of_the_herald.png`
-- [ ] `DOUBLE_CYCLONE` — `double_cyclone.png`
-- [ ] `DRAMATIC_RESCUE` — `dramatic_rescue.png`
-- [ ] `ELDER_ENTITY_NORDEN` — `elder_entity_norden.png`
-- [ ] `ENRAGED_BATTLE_OX` — `enraged_battle_ox.png`
-- [ ] `FOG_KING` — `fog_king.png`
-- [ ] `FORBIDDEN_CHALICE` — `forbidden_chalice.png`
-- [ ] `FORBIDDEN_DRESS` — `forbidden_dress.png`
-- [ ] `FORBIDDEN_LANCE` — `forbidden_lance.png`
-- [ ] `FORGOTTEN_TEMPLE_OF_THE_DEEP` — `forgotten_temple_of_the_deep.png`
-- [ ] `FUSILIER_DRAGON_THE_DUAL_MODE_BEAST` — `fusilier_dragon_the_dual_mode_beast.png`
-- [ ] `GAGAGIGO_THE_RISEN` — `gagagigo_the_risen.png`
-- [ ] `GAMECIAL_THE_SEA_TURTLE_KAIJU` — `gamecial_the_sea_turtle_kaiju.png`
-- [ ] `GOLDEN_HOMUNCULUS` — `golden_homunculus.png`
-- [ ] `GRAVEKEEPERS_AMBUSHER` — `gravekeepers_ambusher.png`
-- [ ] `GRAVEKEEPERS_CANNONHOLDER` — `gravekeepers_cannonholder.png`
 - [ ] `GRAVEKEEPERS_CHIEF` — `gravekeepers_chief.png`
 - [ ] `GRAVEKEEPERS_COMMANDANT` — `gravekeepers_commandant.png`
 - [ ] `GRAVEKEEPERS_CURSE` — `gravekeepers_curse.png`

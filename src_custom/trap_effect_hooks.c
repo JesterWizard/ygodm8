@@ -576,3 +576,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire AMAZONESS_SHAMANISM in trap dispatcher */
 /* AMAZONESS_WILLPOWER trap effect */
   /* TODO: wire AMAZONESS_WILLPOWER in trap dispatcher */
+/* DRAMATIC_RESCUE trap effect */
+  /* TODO: wire DRAMATIC_RESCUE in trap dispatcher */
+/* FORGOTTEN_TEMPLE_OF_THE_DEEP trap effect */
+  /* TODO: wire FORGOTTEN_TEMPLE_OF_THE_DEEP in trap dispatcher */

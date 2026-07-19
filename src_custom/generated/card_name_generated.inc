@@ -1174,6 +1174,26 @@ static const u8 sChainsawInsectName[] __attribute__((section(".append_assets")))
 static const u8 sCharmOfShabtiName[] __attribute__((section(".append_assets"))) = "Charm of Shabti";
 static const u8 sBazooTheSoulEaterName[] __attribute__((section(".append_assets"))) = "Bazoo the Soul-Eater";
 static const u8 sAshBlossomAndJoyousSpringName[] __attribute__((section(".append_assets"))) = "Ash Blossom & Joyous Spring";
+static const u8 sDoubleCycloneName[] __attribute__((section(".append_assets"))) = "Double Cyclone";
+static const u8 sForbiddenChaliceName[] __attribute__((section(".append_assets"))) = "Forbidden Chalice";
+static const u8 sForbiddenDressName[] __attribute__((section(".append_assets"))) = "Forbidden Dress";
+static const u8 sForbiddenLanceName[] __attribute__((section(".append_assets"))) = "Forbidden Lance";
+static const u8 sDramaticRescueName[] __attribute__((section(".append_assets"))) = "Dramatic Rescue";
+static const u8 sForgottenTempleOfTheDeepName[] __attribute__((section(".append_assets"))) = "Forgotten Temple of the Deep";
+static const u8 sClearViceDragonName[] __attribute__((section(".append_assets"))) = "Clear Vice Dragon";
+static const u8 sCyberneticMagicianName[] __attribute__((section(".append_assets"))) = "Cybernetic Magician";
+static const u8 sDarklordDesireName[] __attribute__((section(".append_assets"))) = "Darklord Desire";
+static const u8 sDeepSeaDivaName[] __attribute__((section(".append_assets"))) = "Deep Sea Diva";
+static const u8 sDivinerOfTheHeraldName[] __attribute__((section(".append_assets"))) = "Diviner of the Herald";
+static const u8 sElderEntityNordenName[] __attribute__((section(".append_assets"))) = "Elder Entity Norden";
+static const u8 sEnragedBattleOxName[] __attribute__((section(".append_assets"))) = "Enraged Battle Ox";
+static const u8 sFogKingName[] __attribute__((section(".append_assets"))) = "Fog King";
+static const u8 sGagagigoTheRisenName[] __attribute__((section(".append_assets"))) = "Gagagigo the Risen";
+static const u8 sGoldenHomunculusName[] __attribute__((section(".append_assets"))) = "Golden Homunculus";
+static const u8 sFusilierDragonTheDualModeBeastName[] __attribute__((section(".append_assets"))) = "Fusilier Dragon, the Dual-Mode Beast";
+static const u8 sGamecialTheSeaTurtleKaijuName[] __attribute__((section(".append_assets"))) = "Gameciel, the Sea Turtle Kaiju";
+static const u8 sGravekeepersAmbusherName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Ambusher";
+static const u8 sGravekeepersCannonholderName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Cannonholder";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3528,6 +3548,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sBazooTheSoulEaterName;
   if (cardId == 0x07B5)
     return (u8 *)sAshBlossomAndJoyousSpringName;
+  if (cardId == 0x07B6)
+    return (u8 *)sDoubleCycloneName;
+  if (cardId == 0x07B7)
+    return (u8 *)sForbiddenChaliceName;
+  if (cardId == 0x07B8)
+    return (u8 *)sForbiddenDressName;
+  if (cardId == 0x07B9)
+    return (u8 *)sForbiddenLanceName;
+  if (cardId == 0x07BA)
+    return (u8 *)sDramaticRescueName;
+  if (cardId == 0x07BB)
+    return (u8 *)sForgottenTempleOfTheDeepName;
+  if (cardId == 0x07BC)
+    return (u8 *)sClearViceDragonName;
+  if (cardId == 0x07BD)
+    return (u8 *)sCyberneticMagicianName;
+  if (cardId == 0x07BE)
+    return (u8 *)sDarklordDesireName;
+  if (cardId == 0x07BF)
+    return (u8 *)sDeepSeaDivaName;
+  if (cardId == 0x07C0)
+    return (u8 *)sDivinerOfTheHeraldName;
+  if (cardId == 0x07C1)
+    return (u8 *)sElderEntityNordenName;
+  if (cardId == 0x07C2)
+    return (u8 *)sEnragedBattleOxName;
+  if (cardId == 0x07C3)
+    return (u8 *)sFogKingName;
+  if (cardId == 0x07C4)
+    return (u8 *)sGagagigoTheRisenName;
+  if (cardId == 0x07C5)
+    return (u8 *)sGoldenHomunculusName;
+  if (cardId == 0x07C6)
+    return (u8 *)sFusilierDragonTheDualModeBeastName;
+  if (cardId == 0x07C7)
+    return (u8 *)sGamecialTheSeaTurtleKaijuName;
+  if (cardId == 0x07C8)
+    return (u8 *)sGravekeepersAmbusherName;
+  if (cardId == 0x07C9)
+    return (u8 *)sGravekeepersCannonholderName;
 
   return gCardNames[cardId];
 }

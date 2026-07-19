@@ -290,6 +290,9 @@
     case DOCTOR_D:
       EffectDOCTOR_D();
       return;
+    case DOUBLE_CYCLONE:
+      EffectDOUBLE_CYCLONE();
+      return;
     case DOUBLE_SPELL:
       EffectDOUBLE_SPELL();
       return;
@@ -358,6 +361,15 @@
       return;
     case FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS:
       EffectFLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS();
+      return;
+    case FORBIDDEN_CHALICE:
+      EffectFORBIDDEN_CHALICE();
+      return;
+    case FORBIDDEN_DRESS:
+      EffectFORBIDDEN_DRESS();
+      return;
+    case FORBIDDEN_LANCE:
+      EffectFORBIDDEN_LANCE();
       return;
     case FUSION_DEPLOYMENT:
       EffectFUSION_DEPLOYMENT();

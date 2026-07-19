@@ -4704,6 +4704,86 @@ static const unsigned char sAshBlossomAndJoyousSpringBigArt[] __attribute__((sec
 static const unsigned short sAshBlossomAndJoyousSpringBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ash_blossom_and_joyous_spring.gbapal");
 static const unsigned char sAshBlossomAndJoyousSpringMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ash_blossom_and_joyous_spring.lz");
 
+static const unsigned char sDoubleCycloneBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/double_cyclone.huff");
+static const unsigned short sDoubleCycloneBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/double_cyclone.gbapal");
+static const unsigned char sDoubleCycloneMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/double_cyclone.lz");
+
+static const unsigned char sForbiddenChaliceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/forbidden_chalice.huff");
+static const unsigned short sForbiddenChaliceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/forbidden_chalice.gbapal");
+static const unsigned char sForbiddenChaliceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/forbidden_chalice.lz");
+
+static const unsigned char sForbiddenDressBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/forbidden_dress.huff");
+static const unsigned short sForbiddenDressBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/forbidden_dress.gbapal");
+static const unsigned char sForbiddenDressMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/forbidden_dress.lz");
+
+static const unsigned char sForbiddenLanceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/forbidden_lance.huff");
+static const unsigned short sForbiddenLanceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/forbidden_lance.gbapal");
+static const unsigned char sForbiddenLanceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/forbidden_lance.lz");
+
+static const unsigned char sDramaticRescueBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dramatic_rescue.huff");
+static const unsigned short sDramaticRescueBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dramatic_rescue.gbapal");
+static const unsigned char sDramaticRescueMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dramatic_rescue.lz");
+
+static const unsigned char sForgottenTempleOfTheDeepBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/forgotten_temple_of_the_deep.huff");
+static const unsigned short sForgottenTempleOfTheDeepBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/forgotten_temple_of_the_deep.gbapal");
+static const unsigned char sForgottenTempleOfTheDeepMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/forgotten_temple_of_the_deep.lz");
+
+static const unsigned char sClearViceDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/clear_vice_dragon.huff");
+static const unsigned short sClearViceDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/clear_vice_dragon.gbapal");
+static const unsigned char sClearViceDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/clear_vice_dragon.lz");
+
+static const unsigned char sCyberneticMagicianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cybernetic_magician.huff");
+static const unsigned short sCyberneticMagicianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cybernetic_magician.gbapal");
+static const unsigned char sCyberneticMagicianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cybernetic_magician.lz");
+
+static const unsigned char sDarklordDesireBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/darklord_desire.huff");
+static const unsigned short sDarklordDesireBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/darklord_desire.gbapal");
+static const unsigned char sDarklordDesireMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/darklord_desire.lz");
+
+static const unsigned char sDeepSeaDivaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/deep_sea_diva.huff");
+static const unsigned short sDeepSeaDivaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/deep_sea_diva.gbapal");
+static const unsigned char sDeepSeaDivaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/deep_sea_diva.lz");
+
+static const unsigned char sDivinerOfTheHeraldBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/diviner_of_the_herald.huff");
+static const unsigned short sDivinerOfTheHeraldBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/diviner_of_the_herald.gbapal");
+static const unsigned char sDivinerOfTheHeraldMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/diviner_of_the_herald.lz");
+
+static const unsigned char sElderEntityNordenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elder_entity_norden.huff");
+static const unsigned short sElderEntityNordenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elder_entity_norden.gbapal");
+static const unsigned char sElderEntityNordenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elder_entity_norden.lz");
+
+static const unsigned char sEnragedBattleOxBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/enraged_battle_ox.huff");
+static const unsigned short sEnragedBattleOxBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/enraged_battle_ox.gbapal");
+static const unsigned char sEnragedBattleOxMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/enraged_battle_ox.lz");
+
+static const unsigned char sFogKingBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/fog_king.huff");
+static const unsigned short sFogKingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/fog_king.gbapal");
+static const unsigned char sFogKingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/fog_king.lz");
+
+static const unsigned char sGagagigoTheRisenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gagagigo_the_risen.huff");
+static const unsigned short sGagagigoTheRisenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gagagigo_the_risen.gbapal");
+static const unsigned char sGagagigoTheRisenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gagagigo_the_risen.lz");
+
+static const unsigned char sGoldenHomunculusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/golden_homunculus.huff");
+static const unsigned short sGoldenHomunculusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/golden_homunculus.gbapal");
+static const unsigned char sGoldenHomunculusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/golden_homunculus.lz");
+
+static const unsigned char sFusilierDragonTheDualModeBeastBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/fusilier_dragon_the_dual_mode_beast.huff");
+static const unsigned short sFusilierDragonTheDualModeBeastBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/fusilier_dragon_the_dual_mode_beast.gbapal");
+static const unsigned char sFusilierDragonTheDualModeBeastMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/fusilier_dragon_the_dual_mode_beast.lz");
+
+static const unsigned char sGamecialTheSeaTurtleKaijuBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gamecial_the_sea_turtle_kaiju.huff");
+static const unsigned short sGamecialTheSeaTurtleKaijuBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gamecial_the_sea_turtle_kaiju.gbapal");
+static const unsigned char sGamecialTheSeaTurtleKaijuMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gamecial_the_sea_turtle_kaiju.lz");
+
+static const unsigned char sGravekeepersAmbusherBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_ambusher.huff");
+static const unsigned short sGravekeepersAmbusherBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_ambusher.gbapal");
+static const unsigned char sGravekeepersAmbusherMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_ambusher.lz");
+
+static const unsigned char sGravekeepersCannonholderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_cannonholder.huff");
+static const unsigned short sGravekeepersCannonholderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_cannonholder.gbapal");
+static const unsigned char sGravekeepersCannonholderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_cannonholder.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -5881,6 +5961,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x07B3] = sCharmOfShabtiBigArt,
   [0x07B4] = sBazooTheSoulEaterBigArt,
   [0x07B5] = sAshBlossomAndJoyousSpringBigArt,
+  [0x07B6] = sDoubleCycloneBigArt,
+  [0x07B7] = sForbiddenChaliceBigArt,
+  [0x07B8] = sForbiddenDressBigArt,
+  [0x07B9] = sForbiddenLanceBigArt,
+  [0x07BA] = sDramaticRescueBigArt,
+  [0x07BB] = sForgottenTempleOfTheDeepBigArt,
+  [0x07BC] = sClearViceDragonBigArt,
+  [0x07BD] = sCyberneticMagicianBigArt,
+  [0x07BE] = sDarklordDesireBigArt,
+  [0x07BF] = sDeepSeaDivaBigArt,
+  [0x07C0] = sDivinerOfTheHeraldBigArt,
+  [0x07C1] = sElderEntityNordenBigArt,
+  [0x07C2] = sEnragedBattleOxBigArt,
+  [0x07C3] = sFogKingBigArt,
+  [0x07C4] = sGagagigoTheRisenBigArt,
+  [0x07C5] = sGoldenHomunculusBigArt,
+  [0x07C6] = sFusilierDragonTheDualModeBeastBigArt,
+  [0x07C7] = sGamecialTheSeaTurtleKaijuBigArt,
+  [0x07C8] = sGravekeepersAmbusherBigArt,
+  [0x07C9] = sGravekeepersCannonholderBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -7060,6 +7160,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x07B3] = sCharmOfShabtiBigPalette,
   [0x07B4] = sBazooTheSoulEaterBigPalette,
   [0x07B5] = sAshBlossomAndJoyousSpringBigPalette,
+  [0x07B6] = sDoubleCycloneBigPalette,
+  [0x07B7] = sForbiddenChaliceBigPalette,
+  [0x07B8] = sForbiddenDressBigPalette,
+  [0x07B9] = sForbiddenLanceBigPalette,
+  [0x07BA] = sDramaticRescueBigPalette,
+  [0x07BB] = sForgottenTempleOfTheDeepBigPalette,
+  [0x07BC] = sClearViceDragonBigPalette,
+  [0x07BD] = sCyberneticMagicianBigPalette,
+  [0x07BE] = sDarklordDesireBigPalette,
+  [0x07BF] = sDeepSeaDivaBigPalette,
+  [0x07C0] = sDivinerOfTheHeraldBigPalette,
+  [0x07C1] = sElderEntityNordenBigPalette,
+  [0x07C2] = sEnragedBattleOxBigPalette,
+  [0x07C3] = sFogKingBigPalette,
+  [0x07C4] = sGagagigoTheRisenBigPalette,
+  [0x07C5] = sGoldenHomunculusBigPalette,
+  [0x07C6] = sFusilierDragonTheDualModeBeastBigPalette,
+  [0x07C7] = sGamecialTheSeaTurtleKaijuBigPalette,
+  [0x07C8] = sGravekeepersAmbusherBigPalette,
+  [0x07C9] = sGravekeepersCannonholderBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -8239,6 +8359,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x07B3] = 0,
   [0x07B4] = 0,
   [0x07B5] = 0,
+  [0x07B6] = 0,
+  [0x07B7] = 0,
+  [0x07B8] = 0,
+  [0x07B9] = 0,
+  [0x07BA] = 0,
+  [0x07BB] = 0,
+  [0x07BC] = 0,
+  [0x07BD] = 0,
+  [0x07BE] = 0,
+  [0x07BF] = 0,
+  [0x07C0] = 0,
+  [0x07C1] = 0,
+  [0x07C2] = 0,
+  [0x07C3] = 0,
+  [0x07C4] = 0,
+  [0x07C5] = 0,
+  [0x07C6] = 0,
+  [0x07C7] = 0,
+  [0x07C8] = 0,
+  [0x07C9] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -9418,4 +9558,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x07B3] = sCharmOfShabtiMiniArt,
   [0x07B4] = sBazooTheSoulEaterMiniArt,
   [0x07B5] = sAshBlossomAndJoyousSpringMiniArt,
+  [0x07B6] = sDoubleCycloneMiniArt,
+  [0x07B7] = sForbiddenChaliceMiniArt,
+  [0x07B8] = sForbiddenDressMiniArt,
+  [0x07B9] = sForbiddenLanceMiniArt,
+  [0x07BA] = sDramaticRescueMiniArt,
+  [0x07BB] = sForgottenTempleOfTheDeepMiniArt,
+  [0x07BC] = sClearViceDragonMiniArt,
+  [0x07BD] = sCyberneticMagicianMiniArt,
+  [0x07BE] = sDarklordDesireMiniArt,
+  [0x07BF] = sDeepSeaDivaMiniArt,
+  [0x07C0] = sDivinerOfTheHeraldMiniArt,
+  [0x07C1] = sElderEntityNordenMiniArt,
+  [0x07C2] = sEnragedBattleOxMiniArt,
+  [0x07C3] = sFogKingMiniArt,
+  [0x07C4] = sGagagigoTheRisenMiniArt,
+  [0x07C5] = sGoldenHomunculusMiniArt,
+  [0x07C6] = sFusilierDragonTheDualModeBeastMiniArt,
+  [0x07C7] = sGamecialTheSeaTurtleKaijuMiniArt,
+  [0x07C8] = sGravekeepersAmbusherMiniArt,
+  [0x07C9] = sGravekeepersCannonholderMiniArt,
 };
