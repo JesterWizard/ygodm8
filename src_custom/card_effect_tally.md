@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1124` effects
+- `1144` effects
 
 ## Tally
 
@@ -1105,6 +1105,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Gamecial The Sea Turtle Kaiju` | `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c` |
 | `activated_effects` | `Gravekeepers Ambusher` | `src_custom/activated_effects/gravekeepers_ambusher.c` |
 | `activated_effects` | `Gravekeepers Cannonholder` | `src_custom/activated_effects/gravekeepers_cannonholder.c` |
+| `activated_effects` | `Gravekeepers Chief` | `src_custom/activated_effects/gravekeepers_chief.c` |
+| `activated_effects` | `Gravekeepers Commandant` | `src_custom/activated_effects/gravekeepers_commandant.c` |
+| `activated_effects` | `Gravekeepers Curse` | `src_custom/activated_effects/gravekeepers_curse.c` |
+| `activated_effects` | `Gravekeepers Descendant` | `src_custom/activated_effects/gravekeepers_descendant.c` |
+| `activated_effects` | `Gravekeepers Guard` | `src_custom/activated_effects/gravekeepers_guard.c` |
+| `activated_effects` | `Gravekeepers Headman` | `src_custom/activated_effects/gravekeepers_headman.c` |
+| `activated_effects` | `Gravekeepers Heratic` | `src_custom/activated_effects/gravekeepers_heratic.c` |
+| `spell_effects` | `Gravekeepers Inscription` | `src_custom/spell_effects/gravekeepers_inscription.c` |
+| `activated_effects` | `Gravekeepers Nobleman` | `src_custom/activated_effects/gravekeepers_nobleman.c` |
+| `activated_effects` | `Gravekeepers Oracle` | `src_custom/activated_effects/gravekeepers_oracle.c` |
+| `activated_effects` | `Gravekeepers Priestess` | `src_custom/activated_effects/gravekeepers_priestess.c` |
+| `activated_effects` | `Gravekeepers Recruiter` | `src_custom/activated_effects/gravekeepers_recruiter.c` |
+| `activated_effects` | `Gravekeepers Shaman` | `src_custom/activated_effects/gravekeepers_shaman.c` |
+| `activated_effects` | `Gravekeepers Spear Soldier` | `src_custom/activated_effects/gravekeepers_spear_soldier.c` |
+| `activated_effects` | `Gravekeepers Spiritualist` | `src_custom/activated_effects/gravekeepers_spiritualist.c` |
+| `activated_effects` | `Gravekeepers Spy` | `src_custom/activated_effects/gravekeepers_spy.c` |
+| `spell_effects` | `Gravekeepers Stele` | `src_custom/spell_effects/gravekeepers_stele.c` |
+| `activated_effects` | `Gravekeepers Supernaturalist` | `src_custom/activated_effects/gravekeepers_supernaturalist.c` |
+| `trap_effects` | `Gravekeepers Trap` | `src_custom/trap_effects/gravekeepers_trap.c` |
+| `activated_effects` | `Gravekeepers Vassal` | `src_custom/activated_effects/gravekeepers_vassal.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

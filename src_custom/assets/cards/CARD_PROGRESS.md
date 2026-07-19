@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1193 |
-| Art ready, needs manifest | 94 |
+| In game (manifest + art) | 1213 |
+| Art ready, needs manifest | 74 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1290** |
 
@@ -1215,31 +1215,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GAMECIAL_THE_SEA_TURTLE_KAIJU` | Gameciel, the Sea Turtle Kaiju | `gamecial_the_sea_turtle_kaiju.png` |
 | `GRAVEKEEPERS_AMBUSHER` | Gravekeeper's Ambusher | `gravekeepers_ambusher.png` |
 | `GRAVEKEEPERS_CANNONHOLDER` | Gravekeeper's Cannonholder | `gravekeepers_cannonholder.png` |
+| `GRAVEKEEPERS_CHIEF` | Gravekeeper's Chief | `gravekeepers_chief.png` |
+| `GRAVEKEEPERS_COMMANDANT` | Gravekeeper's Commandant | `gravekeepers_commandant.png` |
+| `GRAVEKEEPERS_CURSE` | Gravekeeper's Curse | `gravekeepers_curse.png` |
+| `GRAVEKEEPERS_DESCENDANT` | Gravekeeper's Descendant | `gravekeepers_descendant.png` |
+| `GRAVEKEEPERS_GUARD` | Gravekeeper's Guard | `gravekeepers_guard.png` |
+| `GRAVEKEEPERS_HEADMAN` | Gravekeeper's Headman | `gravekeepers_headman.png` |
+| `GRAVEKEEPERS_HERATIC` | Gravekeeper's Heretic | `gravekeepers_heratic.png` |
+| `GRAVEKEEPERS_INSCRIPTION` | Gravekeeper's Inscription | `gravekeepers_inscription.png` |
+| `GRAVEKEEPERS_NOBLEMAN` | Gravekeeper's Nobleman | `gravekeepers_nobleman.png` |
+| `GRAVEKEEPERS_ORACLE` | Gravekeeper's Oracle | `gravekeepers_oracle.png` |
+| `GRAVEKEEPERS_PRIESTESS` | Gravekeeper's Priestess | `gravekeepers_priestess.png` |
+| `GRAVEKEEPERS_RECRUITER` | Gravekeeper's Recruiter | `gravekeepers_recruiter.png` |
+| `GRAVEKEEPERS_SHAMAN` | Gravekeeper's Shaman | `gravekeepers_shaman.png` |
+| `GRAVEKEEPERS_SPEAR_SOLDIER` | Gravekeeper's Spear Soldier | `gravekeepers_spear_soldier.png` |
+| `GRAVEKEEPERS_SPIRITUALIST` | Gravekeeper's Spiritualist | `gravekeepers_spiritualist.png` |
+| `GRAVEKEEPERS_SPY` | Gravekeeper's Spy | `gravekeepers_spy.png` |
+| `GRAVEKEEPERS_STELE` | Gravekeeper's Stele | `gravekeepers_stele.png` |
+| `GRAVEKEEPERS_SUPERNATURALIST` | Gravekeeper's Supernaturalist | `gravekeepers_supernaturalist.png` |
+| `GRAVEKEEPERS_TRAP` | Gravekeeper's Trap | `gravekeepers_trap.png` |
+| `GRAVEKEEPERS_VASSAL` | Gravekeeper's Vassal | `gravekeepers_vassal.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `GRAVEKEEPERS_CHIEF` — `gravekeepers_chief.png`
-- [ ] `GRAVEKEEPERS_COMMANDANT` — `gravekeepers_commandant.png`
-- [ ] `GRAVEKEEPERS_CURSE` — `gravekeepers_curse.png`
-- [ ] `GRAVEKEEPERS_DESCENDANT` — `gravekeepers_descendant.png`
-- [ ] `GRAVEKEEPERS_GUARD` — `gravekeepers_guard.png`
-- [ ] `GRAVEKEEPERS_HEADMAN` — `gravekeepers_headman.png`
-- [ ] `GRAVEKEEPERS_HERATIC` — `gravekeepers_heratic.png`
-- [ ] `GRAVEKEEPERS_INSCRIPTION` — `gravekeepers_inscription.png`
-- [ ] `GRAVEKEEPERS_NOBLEMAN` — `gravekeepers_nobleman.png`
-- [ ] `GRAVEKEEPERS_ORACLE` — `gravekeepers_oracle.png`
-- [ ] `GRAVEKEEPERS_PRIESTESS` — `gravekeepers_priestess.png`
-- [ ] `GRAVEKEEPERS_RECRUITER` — `gravekeepers_recruiter.png`
-- [ ] `GRAVEKEEPERS_SHAMAN` — `gravekeepers_shaman.png`
-- [ ] `GRAVEKEEPERS_SPEAR_SOLDIER` — `gravekeepers_spear_soldier.png`
-- [ ] `GRAVEKEEPERS_SPIRITUALIST` — `gravekeepers_spiritualist.png`
-- [ ] `GRAVEKEEPERS_SPY` — `gravekeepers_spy.png`
-- [ ] `GRAVEKEEPERS_STELE` — `gravekeepers_stele.png`
-- [ ] `GRAVEKEEPERS_SUPERNATURALIST` — `gravekeepers_supernaturalist.png`
-- [ ] `GRAVEKEEPERS_TRAP` — `gravekeepers_trap.png`
-- [ ] `GRAVEKEEPERS_VASSAL` — `gravekeepers_vassal.png`
 - [ ] `GRAVEKEEPERS_VISIONARY` — `gravekeepers_visionary.png`
 - [ ] `GRAVEKEEPERS_WATCHER` — `gravekeepers_watcher.png`
 - [ ] `HALF_COUNTER` — `half_counter.png`

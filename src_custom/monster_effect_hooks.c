@@ -864,6 +864,40 @@ unsigned char CanActivateGRAVEKEEPERS_AMBUSHER(void);
 void ActivateGRAVEKEEPERS_AMBUSHEREffect(void);
 unsigned char CanActivateGRAVEKEEPERS_CANNONHOLDER(void);
 void ActivateGRAVEKEEPERS_CANNONHOLDEREffect(void);
+unsigned char CanActivateGRAVEKEEPERS_CHIEF(void);
+void ActivateGRAVEKEEPERS_CHIEFEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_COMMANDANT(void);
+void ActivateGRAVEKEEPERS_COMMANDANTEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_CURSE(void);
+void ActivateGRAVEKEEPERS_CURSEEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_DESCENDANT(void);
+void ActivateGRAVEKEEPERS_DESCENDANTEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_GUARD(void);
+void ActivateGRAVEKEEPERS_GUARDEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_HEADMAN(void);
+void ActivateGRAVEKEEPERS_HEADMANEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_HERATIC(void);
+void ActivateGRAVEKEEPERS_HERATICEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_NOBLEMAN(void);
+void ActivateGRAVEKEEPERS_NOBLEMANEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_ORACLE(void);
+void ActivateGRAVEKEEPERS_ORACLEEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_PRIESTESS(void);
+void ActivateGRAVEKEEPERS_PRIESTESSEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_RECRUITER(void);
+void ActivateGRAVEKEEPERS_RECRUITEREffect(void);
+unsigned char CanActivateGRAVEKEEPERS_SHAMAN(void);
+void ActivateGRAVEKEEPERS_SHAMANEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_SPEAR_SOLDIER(void);
+void ActivateGRAVEKEEPERS_SPEAR_SOLDIEREffect(void);
+unsigned char CanActivateGRAVEKEEPERS_SPIRITUALIST(void);
+void ActivateGRAVEKEEPERS_SPIRITUALISTEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_SPY(void);
+void ActivateGRAVEKEEPERS_SPYEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_SUPERNATURALIST(void);
+void ActivateGRAVEKEEPERS_SUPERNATURALISTEffect(void);
+unsigned char CanActivateGRAVEKEEPERS_VASSAL(void);
+void ActivateGRAVEKEEPERS_VASSALEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -3207,6 +3241,74 @@ FAILED:
   }
   if (gMonEffect.id == GRAVEKEEPERS_CANNONHOLDER) {
     ActivateGRAVEKEEPERS_CANNONHOLDEREffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_CHIEF) {
+    ActivateGRAVEKEEPERS_CHIEFEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_COMMANDANT) {
+    ActivateGRAVEKEEPERS_COMMANDANTEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_CURSE) {
+    ActivateGRAVEKEEPERS_CURSEEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_DESCENDANT) {
+    ActivateGRAVEKEEPERS_DESCENDANTEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_GUARD) {
+    ActivateGRAVEKEEPERS_GUARDEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_HEADMAN) {
+    ActivateGRAVEKEEPERS_HEADMANEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_HERATIC) {
+    ActivateGRAVEKEEPERS_HERATICEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_NOBLEMAN) {
+    ActivateGRAVEKEEPERS_NOBLEMANEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_ORACLE) {
+    ActivateGRAVEKEEPERS_ORACLEEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_PRIESTESS) {
+    ActivateGRAVEKEEPERS_PRIESTESSEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_RECRUITER) {
+    ActivateGRAVEKEEPERS_RECRUITEREffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_SHAMAN) {
+    ActivateGRAVEKEEPERS_SHAMANEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_SPEAR_SOLDIER) {
+    ActivateGRAVEKEEPERS_SPEAR_SOLDIEREffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_SPIRITUALIST) {
+    ActivateGRAVEKEEPERS_SPIRITUALISTEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_SPY) {
+    ActivateGRAVEKEEPERS_SPYEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_SUPERNATURALIST) {
+    ActivateGRAVEKEEPERS_SUPERNATURALISTEffect();
+    return;
+  }
+  if (gMonEffect.id == GRAVEKEEPERS_VASSAL) {
+    ActivateGRAVEKEEPERS_VASSALEffect();
     return;
   }
 }

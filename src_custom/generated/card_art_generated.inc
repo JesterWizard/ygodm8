@@ -4784,6 +4784,86 @@ static const unsigned char sGravekeepersCannonholderBigArt[] __attribute__((sect
 static const unsigned short sGravekeepersCannonholderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_cannonholder.gbapal");
 static const unsigned char sGravekeepersCannonholderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_cannonholder.lz");
 
+static const unsigned char sGravekeepersChiefBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_chief.huff");
+static const unsigned short sGravekeepersChiefBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_chief.gbapal");
+static const unsigned char sGravekeepersChiefMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_chief.lz");
+
+static const unsigned char sGravekeepersCommandantBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_commandant.huff");
+static const unsigned short sGravekeepersCommandantBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_commandant.gbapal");
+static const unsigned char sGravekeepersCommandantMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_commandant.lz");
+
+static const unsigned char sGravekeepersCurseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_curse.huff");
+static const unsigned short sGravekeepersCurseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_curse.gbapal");
+static const unsigned char sGravekeepersCurseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_curse.lz");
+
+static const unsigned char sGravekeepersDescendantBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_descendant.huff");
+static const unsigned short sGravekeepersDescendantBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_descendant.gbapal");
+static const unsigned char sGravekeepersDescendantMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_descendant.lz");
+
+static const unsigned char sGravekeepersGuardBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_guard.huff");
+static const unsigned short sGravekeepersGuardBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_guard.gbapal");
+static const unsigned char sGravekeepersGuardMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_guard.lz");
+
+static const unsigned char sGravekeepersHeadmanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_headman.huff");
+static const unsigned short sGravekeepersHeadmanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_headman.gbapal");
+static const unsigned char sGravekeepersHeadmanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_headman.lz");
+
+static const unsigned char sGravekeepersHeraticBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_heratic.huff");
+static const unsigned short sGravekeepersHeraticBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_heratic.gbapal");
+static const unsigned char sGravekeepersHeraticMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_heratic.lz");
+
+static const unsigned char sGravekeepersInscriptionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_inscription.huff");
+static const unsigned short sGravekeepersInscriptionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_inscription.gbapal");
+static const unsigned char sGravekeepersInscriptionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_inscription.lz");
+
+static const unsigned char sGravekeepersNoblemanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_nobleman.huff");
+static const unsigned short sGravekeepersNoblemanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_nobleman.gbapal");
+static const unsigned char sGravekeepersNoblemanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_nobleman.lz");
+
+static const unsigned char sGravekeepersOracleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_oracle.huff");
+static const unsigned short sGravekeepersOracleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_oracle.gbapal");
+static const unsigned char sGravekeepersOracleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_oracle.lz");
+
+static const unsigned char sGravekeepersPriestessBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_priestess.huff");
+static const unsigned short sGravekeepersPriestessBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_priestess.gbapal");
+static const unsigned char sGravekeepersPriestessMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_priestess.lz");
+
+static const unsigned char sGravekeepersRecruiterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_recruiter.huff");
+static const unsigned short sGravekeepersRecruiterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_recruiter.gbapal");
+static const unsigned char sGravekeepersRecruiterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_recruiter.lz");
+
+static const unsigned char sGravekeepersShamanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_shaman.huff");
+static const unsigned short sGravekeepersShamanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_shaman.gbapal");
+static const unsigned char sGravekeepersShamanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_shaman.lz");
+
+static const unsigned char sGravekeepersSpearSoldierBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_spear_soldier.huff");
+static const unsigned short sGravekeepersSpearSoldierBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_spear_soldier.gbapal");
+static const unsigned char sGravekeepersSpearSoldierMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_spear_soldier.lz");
+
+static const unsigned char sGravekeepersSpiritualistBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_spiritualist.huff");
+static const unsigned short sGravekeepersSpiritualistBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_spiritualist.gbapal");
+static const unsigned char sGravekeepersSpiritualistMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_spiritualist.lz");
+
+static const unsigned char sGravekeepersSpyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_spy.huff");
+static const unsigned short sGravekeepersSpyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_spy.gbapal");
+static const unsigned char sGravekeepersSpyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_spy.lz");
+
+static const unsigned char sGravekeepersSteleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_stele.huff");
+static const unsigned short sGravekeepersSteleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_stele.gbapal");
+static const unsigned char sGravekeepersSteleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_stele.lz");
+
+static const unsigned char sGravekeepersSupernaturalistBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_supernaturalist.huff");
+static const unsigned short sGravekeepersSupernaturalistBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_supernaturalist.gbapal");
+static const unsigned char sGravekeepersSupernaturalistMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_supernaturalist.lz");
+
+static const unsigned char sGravekeepersTrapBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_trap.huff");
+static const unsigned short sGravekeepersTrapBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_trap.gbapal");
+static const unsigned char sGravekeepersTrapMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_trap.lz");
+
+static const unsigned char sGravekeepersVassalBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_vassal.huff");
+static const unsigned short sGravekeepersVassalBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_vassal.gbapal");
+static const unsigned char sGravekeepersVassalMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_vassal.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -5981,6 +6061,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x07C7] = sGamecialTheSeaTurtleKaijuBigArt,
   [0x07C8] = sGravekeepersAmbusherBigArt,
   [0x07C9] = sGravekeepersCannonholderBigArt,
+  [0x07CA] = sGravekeepersChiefBigArt,
+  [0x07CB] = sGravekeepersCommandantBigArt,
+  [0x07CC] = sGravekeepersCurseBigArt,
+  [0x07CD] = sGravekeepersDescendantBigArt,
+  [0x07CE] = sGravekeepersGuardBigArt,
+  [0x07CF] = sGravekeepersHeadmanBigArt,
+  [0x07D0] = sGravekeepersHeraticBigArt,
+  [0x07D1] = sGravekeepersInscriptionBigArt,
+  [0x07D2] = sGravekeepersNoblemanBigArt,
+  [0x07D3] = sGravekeepersOracleBigArt,
+  [0x07D4] = sGravekeepersPriestessBigArt,
+  [0x07D5] = sGravekeepersRecruiterBigArt,
+  [0x07D6] = sGravekeepersShamanBigArt,
+  [0x07D7] = sGravekeepersSpearSoldierBigArt,
+  [0x07D8] = sGravekeepersSpiritualistBigArt,
+  [0x07D9] = sGravekeepersSpyBigArt,
+  [0x07DA] = sGravekeepersSteleBigArt,
+  [0x07DB] = sGravekeepersSupernaturalistBigArt,
+  [0x07DC] = sGravekeepersTrapBigArt,
+  [0x07DD] = sGravekeepersVassalBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -7180,6 +7280,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x07C7] = sGamecialTheSeaTurtleKaijuBigPalette,
   [0x07C8] = sGravekeepersAmbusherBigPalette,
   [0x07C9] = sGravekeepersCannonholderBigPalette,
+  [0x07CA] = sGravekeepersChiefBigPalette,
+  [0x07CB] = sGravekeepersCommandantBigPalette,
+  [0x07CC] = sGravekeepersCurseBigPalette,
+  [0x07CD] = sGravekeepersDescendantBigPalette,
+  [0x07CE] = sGravekeepersGuardBigPalette,
+  [0x07CF] = sGravekeepersHeadmanBigPalette,
+  [0x07D0] = sGravekeepersHeraticBigPalette,
+  [0x07D1] = sGravekeepersInscriptionBigPalette,
+  [0x07D2] = sGravekeepersNoblemanBigPalette,
+  [0x07D3] = sGravekeepersOracleBigPalette,
+  [0x07D4] = sGravekeepersPriestessBigPalette,
+  [0x07D5] = sGravekeepersRecruiterBigPalette,
+  [0x07D6] = sGravekeepersShamanBigPalette,
+  [0x07D7] = sGravekeepersSpearSoldierBigPalette,
+  [0x07D8] = sGravekeepersSpiritualistBigPalette,
+  [0x07D9] = sGravekeepersSpyBigPalette,
+  [0x07DA] = sGravekeepersSteleBigPalette,
+  [0x07DB] = sGravekeepersSupernaturalistBigPalette,
+  [0x07DC] = sGravekeepersTrapBigPalette,
+  [0x07DD] = sGravekeepersVassalBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -8379,6 +8499,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x07C7] = 0,
   [0x07C8] = 0,
   [0x07C9] = 0,
+  [0x07CA] = 0,
+  [0x07CB] = 0,
+  [0x07CC] = 0,
+  [0x07CD] = 0,
+  [0x07CE] = 0,
+  [0x07CF] = 0,
+  [0x07D0] = 0,
+  [0x07D1] = 0,
+  [0x07D2] = 0,
+  [0x07D3] = 0,
+  [0x07D4] = 0,
+  [0x07D5] = 0,
+  [0x07D6] = 0,
+  [0x07D7] = 0,
+  [0x07D8] = 0,
+  [0x07D9] = 0,
+  [0x07DA] = 0,
+  [0x07DB] = 0,
+  [0x07DC] = 0,
+  [0x07DD] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -9578,4 +9718,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x07C7] = sGamecialTheSeaTurtleKaijuMiniArt,
   [0x07C8] = sGravekeepersAmbusherMiniArt,
   [0x07C9] = sGravekeepersCannonholderMiniArt,
+  [0x07CA] = sGravekeepersChiefMiniArt,
+  [0x07CB] = sGravekeepersCommandantMiniArt,
+  [0x07CC] = sGravekeepersCurseMiniArt,
+  [0x07CD] = sGravekeepersDescendantMiniArt,
+  [0x07CE] = sGravekeepersGuardMiniArt,
+  [0x07CF] = sGravekeepersHeadmanMiniArt,
+  [0x07D0] = sGravekeepersHeraticMiniArt,
+  [0x07D1] = sGravekeepersInscriptionMiniArt,
+  [0x07D2] = sGravekeepersNoblemanMiniArt,
+  [0x07D3] = sGravekeepersOracleMiniArt,
+  [0x07D4] = sGravekeepersPriestessMiniArt,
+  [0x07D5] = sGravekeepersRecruiterMiniArt,
+  [0x07D6] = sGravekeepersShamanMiniArt,
+  [0x07D7] = sGravekeepersSpearSoldierMiniArt,
+  [0x07D8] = sGravekeepersSpiritualistMiniArt,
+  [0x07D9] = sGravekeepersSpyMiniArt,
+  [0x07DA] = sGravekeepersSteleMiniArt,
+  [0x07DB] = sGravekeepersSupernaturalistMiniArt,
+  [0x07DC] = sGravekeepersTrapMiniArt,
+  [0x07DD] = sGravekeepersVassalMiniArt,
 };

@@ -1194,6 +1194,26 @@ static const u8 sFusilierDragonTheDualModeBeastName[] __attribute__((section(".a
 static const u8 sGamecialTheSeaTurtleKaijuName[] __attribute__((section(".append_assets"))) = "Gameciel, the Sea Turtle Kaiju";
 static const u8 sGravekeepersAmbusherName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Ambusher";
 static const u8 sGravekeepersCannonholderName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Cannonholder";
+static const u8 sGravekeepersChiefName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Chief";
+static const u8 sGravekeepersCommandantName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Commandant";
+static const u8 sGravekeepersCurseName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Curse";
+static const u8 sGravekeepersDescendantName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Descendant";
+static const u8 sGravekeepersGuardName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Guard";
+static const u8 sGravekeepersHeadmanName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Headman";
+static const u8 sGravekeepersHeraticName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Heretic";
+static const u8 sGravekeepersInscriptionName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Inscription";
+static const u8 sGravekeepersNoblemanName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Nobleman";
+static const u8 sGravekeepersOracleName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Oracle";
+static const u8 sGravekeepersPriestessName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Priestess";
+static const u8 sGravekeepersRecruiterName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Recruiter";
+static const u8 sGravekeepersShamanName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Shaman";
+static const u8 sGravekeepersSpearSoldierName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Spear Soldier";
+static const u8 sGravekeepersSpiritualistName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Spiritualist";
+static const u8 sGravekeepersSpyName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Spy";
+static const u8 sGravekeepersSteleName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Stele";
+static const u8 sGravekeepersSupernaturalistName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Supernaturalist";
+static const u8 sGravekeepersTrapName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Trap";
+static const u8 sGravekeepersVassalName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Vassal";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3588,6 +3608,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sGravekeepersAmbusherName;
   if (cardId == 0x07C9)
     return (u8 *)sGravekeepersCannonholderName;
+  if (cardId == 0x07CA)
+    return (u8 *)sGravekeepersChiefName;
+  if (cardId == 0x07CB)
+    return (u8 *)sGravekeepersCommandantName;
+  if (cardId == 0x07CC)
+    return (u8 *)sGravekeepersCurseName;
+  if (cardId == 0x07CD)
+    return (u8 *)sGravekeepersDescendantName;
+  if (cardId == 0x07CE)
+    return (u8 *)sGravekeepersGuardName;
+  if (cardId == 0x07CF)
+    return (u8 *)sGravekeepersHeadmanName;
+  if (cardId == 0x07D0)
+    return (u8 *)sGravekeepersHeraticName;
+  if (cardId == 0x07D1)
+    return (u8 *)sGravekeepersInscriptionName;
+  if (cardId == 0x07D2)
+    return (u8 *)sGravekeepersNoblemanName;
+  if (cardId == 0x07D3)
+    return (u8 *)sGravekeepersOracleName;
+  if (cardId == 0x07D4)
+    return (u8 *)sGravekeepersPriestessName;
+  if (cardId == 0x07D5)
+    return (u8 *)sGravekeepersRecruiterName;
+  if (cardId == 0x07D6)
+    return (u8 *)sGravekeepersShamanName;
+  if (cardId == 0x07D7)
+    return (u8 *)sGravekeepersSpearSoldierName;
+  if (cardId == 0x07D8)
+    return (u8 *)sGravekeepersSpiritualistName;
+  if (cardId == 0x07D9)
+    return (u8 *)sGravekeepersSpyName;
+  if (cardId == 0x07DA)
+    return (u8 *)sGravekeepersSteleName;
+  if (cardId == 0x07DB)
+    return (u8 *)sGravekeepersSupernaturalistName;
+  if (cardId == 0x07DC)
+    return (u8 *)sGravekeepersTrapName;
+  if (cardId == 0x07DD)
+    return (u8 *)sGravekeepersVassalName;
 
   return gCardNames[cardId];
 }

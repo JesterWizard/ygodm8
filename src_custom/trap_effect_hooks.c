@@ -580,3 +580,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire DRAMATIC_RESCUE in trap dispatcher */
 /* FORGOTTEN_TEMPLE_OF_THE_DEEP trap effect */
   /* TODO: wire FORGOTTEN_TEMPLE_OF_THE_DEEP in trap dispatcher */
+/* GRAVEKEEPERS_TRAP trap effect */
+  /* TODO: wire GRAVEKEEPERS_TRAP in trap dispatcher */

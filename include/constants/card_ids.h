@@ -1995,11 +1995,31 @@
 #define GAMECIAL_THE_SEA_TURTLE_KAIJU            0x07C7
 #define GRAVEKEEPERS_AMBUSHER                    0x07C8
 #define GRAVEKEEPERS_CANNONHOLDER                0x07C9
+#define GRAVEKEEPERS_CHIEF                       0x07CA
+#define GRAVEKEEPERS_COMMANDANT                  0x07CB
+#define GRAVEKEEPERS_CURSE                       0x07CC
+#define GRAVEKEEPERS_DESCENDANT                  0x07CD
+#define GRAVEKEEPERS_GUARD                       0x07CE
+#define GRAVEKEEPERS_HEADMAN                     0x07CF
+#define GRAVEKEEPERS_HERATIC                     0x07D0
+#define GRAVEKEEPERS_INSCRIPTION                 0x07D1
+#define GRAVEKEEPERS_NOBLEMAN                    0x07D2
+#define GRAVEKEEPERS_ORACLE                      0x07D3
+#define GRAVEKEEPERS_PRIESTESS                   0x07D4
+#define GRAVEKEEPERS_RECRUITER                   0x07D5
+#define GRAVEKEEPERS_SHAMAN                      0x07D6
+#define GRAVEKEEPERS_SPEAR_SOLDIER               0x07D7
+#define GRAVEKEEPERS_SPIRITUALIST                0x07D8
+#define GRAVEKEEPERS_SPY                         0x07D9
+#define GRAVEKEEPERS_STELE                       0x07DA
+#define GRAVEKEEPERS_SUPERNATURALIST             0x07DB
+#define GRAVEKEEPERS_TRAP                        0x07DC
+#define GRAVEKEEPERS_VASSAL                      0x07DD
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x07CA
-#define NUM_CUSTOM_CARDS                        0x04A9
+#define NUM_TOTAL_CARDS                         0x07DE
+#define NUM_CUSTOM_CARDS                        0x04BD
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

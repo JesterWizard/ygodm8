@@ -425,8 +425,14 @@
     case GRAND_CONVERGENCE:
       EffectGRAND_CONVERGENCE();
       return;
+    case GRAVEKEEPERS_INSCRIPTION:
+      EffectGRAVEKEEPERS_INSCRIPTION();
+      return;
     case GRAVEKEEPERS_SERVANT:
       EffectGravekeepersServant();
+      return;
+    case GRAVEKEEPERS_STELE:
+      EffectGRAVEKEEPERS_STELE();
       return;
     case GROUND_COLLAPSE:
       EffectGROUND_COLLAPSE();

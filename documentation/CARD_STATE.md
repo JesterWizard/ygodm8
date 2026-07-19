@@ -1,6 +1,6 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-19 — Added Clear Vice Dragon through Gravekeeper's Cannonholder (20 cards) stubbed
+**Last worked on:** 2026-07-19 — Added Gravekeeper's Chief through Gravekeeper's Vassal (20 cards) stubbed
 
 **Files touched:**
 - `tools/card_data_manifest.json`
@@ -11,7 +11,7 @@
 - `src_custom/trap_effect_hooks.c`
 - `src_custom/assets/cards/CARD_PROGRESS.md`
 
-**Outcome:** make OK. Forced GAMECIAL (art typo) and GRAVEKEEPERS_* consts to match art stems. In game 1193; art-ready todo 94.
+**Outcome:** make OK. Forced GRAVEKEEPERS_* (incl. HERATIC). Scrubbed Inscription popup bullet. In game 1213; todo 74.
 
 **Open / next:**
-- Implement stub bodies; next batch from GRAVEKEEPERS_CHIEF
+- Implement stub bodies; next batch from GRAVEKEEPERS_VISIONARY
