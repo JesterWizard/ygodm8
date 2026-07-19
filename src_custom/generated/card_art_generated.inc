@@ -8,6 +8,10 @@ static const unsigned char sBlackPendantBigArt[] __attribute__((section(".append
 static const unsigned short sBlackPendantBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/black_pendant.gbapal");
 static const unsigned char sBlackPendantMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/black_pendant.lz");
 
+static const unsigned char sTheBistroButcherBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_bistro_butcher.huff");
+static const unsigned short sTheBistroButcherBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_bistro_butcher.gbapal");
+static const unsigned char sTheBistroButcherMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_bistro_butcher.lz");
+
 static const unsigned char sSorcererOfDarkMagicBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/sorcerer_of_dark_magic.huff");
 static const unsigned short sSorcererOfDarkMagicBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sorcerer_of_dark_magic.gbapal");
 static const unsigned char sSorcererOfDarkMagicMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sorcerer_of_dark_magic.lz");
@@ -4543,6 +4547,7 @@ static const unsigned char sXSaberAirbellumMiniArt[] __attribute__((section(".ap
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
+  [0x020B] = sTheBistroButcherBigArt,
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
   [0x0323] = sMagiciansValkyriaBigArt,
@@ -5681,6 +5686,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigPalette,
   [0x0137] = sBlackPendantBigPalette,
+  [0x020B] = sTheBistroButcherBigPalette,
   [0x0321] = sSorcererOfDarkMagicBigPalette,
   [0x0322] = sDeckDestructionVirusBigPalette,
   [0x0323] = sMagiciansValkyriaBigPalette,
@@ -6819,6 +6825,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x00AE] = 0,
   [0x0137] = 0,
+  [0x020B] = 0,
   [0x0321] = 0,
   [0x0322] = 0,
   [0x0323] = 0,
@@ -7957,6 +7964,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsMiniArt,
   [0x0137] = sBlackPendantMiniArt,
+  [0x020B] = sTheBistroButcherMiniArt,
   [0x0321] = sSorcererOfDarkMagicMiniArt,
   [0x0322] = sDeckDestructionVirusMiniArt,
   [0x0323] = sMagiciansValkyriaMiniArt,

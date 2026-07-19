@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 1133 |
-| Art ready, needs manifest | 0 |
+| Art ready, needs manifest | 154 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **1135** |
+| **Total PNGs in `80x80/`** | **1290** |
 
 ## In game
 
@@ -1151,7 +1151,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `UNSTABLE_EVOLUTION` | Unstable Evolution | `unstable_evolution.png` |
 | `URGENT_TUNING` | Urgent Tuning | `urgent_tuning.png` |
 | `WARRIOR_OF_ATLANTIS` | Warrior of Atlantis | `warrior_of_atlantis.png` |
-| `WATERHAZARD` | Water Hazard | `waterhazard.png` |
+| `WATERHAZARD` | Water Hazard | `WaterHazard.png` |
 | `WEAPON_CHANGE` | Weapon Change | `weapon_change.png` |
 | `WETLANDS` | Wetlands | `wetlands.png` |
 | `X_SABER_AIRBELLUM` | X-Saber Airbellum | `x_saber_airbellum.png` |
@@ -1160,6 +1160,160 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
+- [ ] `A_CAT_OF_ILL_OMEN` — `a_cat_of_ill_omen.png`
+- [ ] `AEGIS_OF_THE_OCEAN_DRAGON_LORD` — `aegis_of_the_ocean_dragon_lord.png`
+- [ ] `ALECTOR_SOVEREIGN_OF_BIRDS` — `alector_sovereign_of_birds.png`
+- [ ] `AMAZONESS_AUGUSTA` — `amazoness_augusta.png`
+- [ ] `AMAZONESS_BABY_TIGER` — `amazoness_baby_tiger.png`
+- [ ] `AMAZONESS_CALL` — `amazoness_call.png`
+- [ ] `AMAZONESS_EMPRESS` — `amazoness_empress.png`
+- [ ] `AMAZONESS_FIGHTING_SPIRIT` — `amazoness_fighting_spirit.png`
+- [ ] `AMAZONESS_HALL` — `amazoness_hall.png`
+- [ ] `AMAZONESS_HEIRLOOM` — `amazoness_heirloom.png`
+- [ ] `AMAZONESS_HOT_SPRING` — `amazoness_hot_spring.png`
+- [ ] `AMAZONESS_ONSLAUGHT` — `amazoness_onslaught.png`
+- [ ] `AMAZONESS_PET_LIGER` — `amazoness_pet_liger.png`
+- [ ] `AMAZONESS_PET_LIGER_KING` — `amazoness_pet_liger_king.png`
+- [ ] `AMAZONESS_PRINCESS` — `amazoness_princess.png`
+- [ ] `AMAZONESS_QUEEN` — `amazoness_queen.png`
+- [ ] `AMAZONESS_SAGE` — `amazoness_sage.png`
+- [ ] `AMAZONESS_SCOUTS` — `amazoness_scouts.png`
+- [ ] `AMAZONESS_SECRET_ARTS` — `amazoness_secret_arts.png`
+- [ ] `AMAZONESS_SHAMANISM` — `amazoness_shamanism.png`
+- [ ] `AMAZONESS_SPELLCASTER` — `amazoness_spellcaster.png`
+- [ ] `AMAZONESS_SPIRITUALIST` — `amazoness_spiritualist.png`
+- [ ] `AMAZONESS_SPY` — `amazoness_spy.png`
+- [ ] `AMAZONESS_TRAINEE` — `amazoness_trainee.png`
+- [ ] `AMAZONESS_VILLAGE` — `amazoness_village.png`
+- [ ] `AMAZONESS_WAR_CHIEF` — `amazoness_war_chief.png`
+- [ ] `AMAZONESS_WILLPOWER` — `amazoness_willpower.png`
+- [ ] `AN_OWL_OF_LUCK` — `an_owl_of_luck.png`
+- [ ] `ANTE` — `ante.png`
+- [ ] `AQUA_JET` — `aqua_jet.png`
+- [ ] `ASH_BLOSSOM_AND_JOYOUS_SPRING` — `ash_blossom_and_joyous_spring.png`
+- [ ] `ATLANTEAN_ATTACK_SQUAD` — `atlantean_attack_squad.png`
+- [ ] `ATLANTEAN_DRAGOONS` — `atlantean_dragoons.png`
+- [ ] `ATLANTEAN_HEAVY_INFANTRY` — `atlantean_heavy_infantry.png`
+- [ ] `ATLANTEAN_MARKSMAN` — `atlantean_marksman.png`
+- [ ] `BAZOO_THE_SOUL_EATER` — `bazoo_the_soul_eater.png`
+- [ ] `BEAST_KING_BARBAROS` — `beast_king_barbaros.png`
+- [ ] `CELESTIAL_KNIGHTLORD_PARSHATH` — `celestial_knightlord_parshath.png`
+- [ ] `CHAINSAW_INSECT` — `chainsaw_insect.png`
+- [ ] `CHARM_OF_SHABTI` — `charm_of_shabti.png`
+- [ ] `CLEAR_VICE_DRAGON` — `clear_vice_dragon.png`
+- [ ] `CYBERNETIC_MAGICIAN` — `cybernetic_magician.png`
+- [ ] `DARKLORD_DESIRE` — `darklord_desire.png`
+- [ ] `DEEP_SEA_DIVA` — `deep_sea_diva.png`
+- [ ] `DIVINER_OF_THE_HERALD` — `diviner_of_the_herald.png`
+- [ ] `DOUBLE_CYCLONE` — `double_cyclone.png`
+- [ ] `DRAMATIC_RESCUE` — `dramatic_rescue.png`
+- [ ] `ELDER_ENTITY_NORDEN` — `elder_entity_norden.png`
+- [ ] `ENRAGED_BATTLE_OX` — `enraged_battle_ox.png`
+- [ ] `FOG_KING` — `fog_king.png`
+- [ ] `FORBIDDEN_CHALICE` — `forbidden_chalice.png`
+- [ ] `FORBIDDEN_DRESS` — `forbidden_dress.png`
+- [ ] `FORBIDDEN_LANCE` — `forbidden_lance.png`
+- [ ] `FORGOTTEN_TEMPLE_OF_THE_DEEP` — `forgotten_temple_of_the_deep.png`
+- [ ] `FUSILIER_DRAGON_THE_DUAL_MODE_BEAST` — `fusilier_dragon_the_dual_mode_beast.png`
+- [ ] `GAGAGIGO_THE_RISEN` — `gagagigo_the_risen.png`
+- [ ] `GAMECIAL_THE_SEA_TURTLE_KAIJU` — `gamecial_the_sea_turtle_kaiju.png`
+- [ ] `GOLDEN_HOMUNCULUS` — `golden_homunculus.png`
+- [ ] `GRAVEKEEPERS_AMBUSHER` — `gravekeepers_ambusher.png`
+- [ ] `GRAVEKEEPERS_CANNONHOLDER` — `gravekeepers_cannonholder.png`
+- [ ] `GRAVEKEEPERS_CHIEF` — `gravekeepers_chief.png`
+- [ ] `GRAVEKEEPERS_COMMANDANT` — `gravekeepers_commandant.png`
+- [ ] `GRAVEKEEPERS_CURSE` — `gravekeepers_curse.png`
+- [ ] `GRAVEKEEPERS_DESCENDANT` — `gravekeepers_descendant.png`
+- [ ] `GRAVEKEEPERS_GUARD` — `gravekeepers_guard.png`
+- [ ] `GRAVEKEEPERS_HEADMAN` — `gravekeepers_headman.png`
+- [ ] `GRAVEKEEPERS_HERATIC` — `gravekeepers_heratic.png`
+- [ ] `GRAVEKEEPERS_INSCRIPTION` — `gravekeepers_inscription.png`
+- [ ] `GRAVEKEEPERS_NOBLEMAN` — `gravekeepers_nobleman.png`
+- [ ] `GRAVEKEEPERS_ORACLE` — `gravekeepers_oracle.png`
+- [ ] `GRAVEKEEPERS_PRIESTESS` — `gravekeepers_priestess.png`
+- [ ] `GRAVEKEEPERS_RECRUITER` — `gravekeepers_recruiter.png`
+- [ ] `GRAVEKEEPERS_SHAMAN` — `gravekeepers_shaman.png`
+- [ ] `GRAVEKEEPERS_SPEAR_SOLDIER` — `gravekeepers_spear_soldier.png`
+- [ ] `GRAVEKEEPERS_SPIRITUALIST` — `gravekeepers_spiritualist.png`
+- [ ] `GRAVEKEEPERS_SPY` — `gravekeepers_spy.png`
+- [ ] `GRAVEKEEPERS_STELE` — `gravekeepers_stele.png`
+- [ ] `GRAVEKEEPERS_SUPERNATURALIST` — `gravekeepers_supernaturalist.png`
+- [ ] `GRAVEKEEPERS_TRAP` — `gravekeepers_trap.png`
+- [ ] `GRAVEKEEPERS_VASSAL` — `gravekeepers_vassal.png`
+- [ ] `GRAVEKEEPERS_VISIONARY` — `gravekeepers_visionary.png`
+- [ ] `GRAVEKEEPERS_WATCHER` — `gravekeepers_watcher.png`
+- [ ] `HALF_COUNTER` — `half_counter.png`
+- [ ] `HELIOS_DUO_MEGISTUS` — `helios_duo_megistus.png`
+- [ ] `HELIOS_THE_PRIMORDIAL_SUN` — `helios_the_primordial_sun.png`
+- [ ] `HELIOS_TRICE_MEGISTUS` — `helios_trice_megistus.png`
+- [ ] `HIDDEN_TEMPLES_OF_NECROVALLEY` — `hidden_temples_of_necrovalley.png`
+- [ ] `IMPERIAL_TOMBS_OF_NECROVALLEY` — `imperial_tombs_of_necrovalley.png`
+- [ ] `INFECTED_MAIL` — `infected_mail.png`
+- [ ] `INFERNO_FIRE_BLAST` — `inferno_fire_blast.png`
+- [ ] `INFERNO_TEMPEST` — `inferno_tempest.png`
+- [ ] `INFINITE_IMPERMANENCE` — `infinite_impermanence.png`
+- [ ] `LADY_OF_D` — `lady_of_d.png`
+- [ ] `LEMURIA_THE_FORGOTTEN_CITY` — `lemuria_the_forgotten_city.png`
+- [ ] `LEVEL_EATER` — `level_eater.png`
+- [ ] `LIGHTNING_STORM` — `lightning_storm.png`
+- [ ] `LIGHTRAY_DAEDALUS` — `lightray_daedalus.png`
+- [ ] `LIGHTRAY_GEARFRIED` — `lightray_gearfried.png`
+- [ ] `MAGICIANS_LEFT_HAND` — `magicians_left_hand.png`
+- [ ] `MAGICIANS_RIGHT_HAND` — `magicians_right_hand.png`
+- [ ] `MAJESTY_HYPERION` — `majesty_hyperion.png`
+- [ ] `MASTER_HYPERION` — `master_hyperion.png`
+- [ ] `MASTERFLARE_HYPERION` — `masterflare_hyperion.png`
+- [ ] `MAXX_C` — `maxx_c.png`
+- [ ] `MEZUKI` — `mezuki.png`
+- [ ] `MORAY_OF_GREED` — `moray_of_greed.png`
+- [ ] `NECROFACE` — `necroface.png`
+- [ ] `NECROVALLEY_TEMPLE` — `necrovalley_temple.png`
+- [ ] `NECROVALLEY_THRONE` — `necrovalley_throne.png`
+- [ ] `NUMBER_39_UTOPIA` — `number_39_utopia.png`
+- [ ] `OBLITERATE_BLAZE` — `obliterate_blaze.png`
+- [ ] `OCEAN_DRAGON_LORD_NEO_DAEDALUS` — `ocean_dragon_lord_neo_daedalus.png`
+- [ ] `OIL` — `oil.png`
+- [ ] `ONE_DAY_OF_PEACE` — `one_day_of_peace.png`
+- [ ] `POSEIDRA_THE_ATLANTEAN_DRAGON` — `poseidra_the_atlantean_dragon.png`
+- [ ] `POT_OF_AVARICE` — `pot_of_avarice.png`
+- [ ] `POT_OF_EXTRAVAGANCE` — `pot_of_extravagance.png`
+- [ ] `PROTECTOR_OF_THE_AGENTS_MOON` — `protector_of_the_agents_moon.png`
+- [ ] `QUEENS_PAWN` — `queens_pawn.png`
+- [ ] `REASONING` — `reasoning.png`
+- [ ] `RITE_OF_SPIRIT` — `rite_of_spirit.png`
+- [ ] `ROYAL_TRIBUTE` — `royal_tribute.png`
+- [ ] `SALVAGE` — `salvage.png`
+- [ ] `SHARD_OF_GREED` — `shard_of_greed.png`
+- [ ] `SHINING_SARCOPHAGUS` — `shining_sarcophagus.png`
+- [ ] `SILENT_SWORDSMAN` — `silent_swordsman.png`
+- [ ] `SILENT_SWORDSMAN_LV3` — `silent_swordsman_lv3.png`
+- [ ] `SILENT_SWORDSMAN_LV5` — `silent_swordsman_lv5.png`
+- [ ] `SILENT_SWORDSMAN_LV7` — `silent_swordsman_lv7.png`
+- [ ] `SILENT_SWORDSMAN_ZERO` — `silent_swordsman_zero.png`
+- [ ] `SOUL_ABSORBING_BONE_TOWER` — `soul_absorbing_bone_tower.png`
+- [ ] `SOUL_LEVY` — `soul_levy.png`
+- [ ] `SPINED_GILLMAN` — `spined_gillman.png`
+- [ ] `SUBSTITOAD` — `substitoad.png`
+- [ ] `SUMMONERS_ART` — `summoners_art.png`
+- [ ] `SURFACE` — `surface.png`
+- [ ] `THE_AGENT_OF_DESTRUCTION_VENUS` — `the_agent_of_destruction_venus.png`
+- [ ] `THE_AGENT_OF_ENTROPY_URANUS` — `the_agent_of_entropy_uranus.png`
+- [ ] `THE_AGENT_OF_LIFE_NEPTUNE` — `the_agent_of_life_neptune.png`
+- [ ] `THE_AGENT_OF_MIRACLES_JUPITER` — `the_agent_of_miracles_jupiter.png`
+- [ ] `THE_AGENT_OF_MYSTERU_EARTH` — `the_agent_of_mysteru_earth.png`
+- [ ] `THE_CALCULATOR` — `the_calculator.png`
+- [ ] `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO` — `the_executor_of_the_underworld_pluto.png`
+- [ ] `THE_SACRED_WATERS_IN_THE_SKY` — `the_sacred_waters_in_the_sky.png`
+- [ ] `THUNDER_END_DRAGON` — `thunder_end_dragon.png`
+- [ ] `TOADALLY_AWESOME` — `toadally_awesome.png`
+- [ ] `TREEBORN_FROG` — `treeborn_frog.png`
+- [ ] `TROOP_DRAGON` — `troop_dragon.png`
+- [ ] `TUALATIN` — `tualatin.png`
+- [ ] `TWISTER` — `twister.png`
+- [ ] `VICTORIA` — `victoria.png`
+- [ ] `WARM_WORM` — `warm_worm.png`
+- [ ] `WHITE_HORNED_DRAGON` — `white_horned_dragon.png`
+- [ ] `ZERADIAS_HERALD_OF_HEAVEN` — `zeradias_herald_of_heaven.png`
 
 ## Todo — in manifest, missing art
 
