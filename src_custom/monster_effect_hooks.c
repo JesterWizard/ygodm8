@@ -662,6 +662,26 @@ unsigned char CanActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS(void);
 void ActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOSEffect(void);
 unsigned char CanActivateDEMISE_KING_OF_ARMAGEDDON(void);
 void ActivateDEMISE_KING_OF_ARMAGEDDONEffect(void);
+unsigned char CanActivateEVOLZAR_DOLKKA(void);
+void ActivateEVOLZAR_DOLKKAEffect(void);
+unsigned char CanActivateFLAME_RULER(void);
+void ActivateFLAME_RULEREffect(void);
+unsigned char CanActivateFORMULA_SYNCHRON(void);
+void ActivateFORMULA_SYNCHRONEffect(void);
+unsigned char CanActivateGANDORA_X_THE_DRAGON_OF_DESTRUCTION(void);
+void ActivateGANDORA_X_THE_DRAGON_OF_DESTRUCTIONEffect(void);
+unsigned char CanActivateGREAT_POSEIDON_BEETLE(void);
+void ActivateGREAT_POSEIDON_BEETLEEffect(void);
+unsigned char CanActivateGREEN_BABOON_DEFENDER_OF_THE_FOREST(void);
+void ActivateGREEN_BABOON_DEFENDER_OF_THE_FORESTEffect(void);
+unsigned char CanActivateGUNGNIR_DRAGON_OF_THE_ICE_BARRIER(void);
+void ActivateGUNGNIR_DRAGON_OF_THE_ICE_BARRIEREffect(void);
+unsigned char CanActivateHERALD_OF_THE_ARC_LIGHT(void);
+void ActivateHERALD_OF_THE_ARC_LIGHTEffect(void);
+unsigned char CanActivateHERALD_OF_ULIMATENESS(void);
+void ActivateHERALD_OF_ULIMATENESSEffect(void);
+unsigned char CanActivateHONEST(void);
+void ActivateHONESTEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2601,6 +2621,46 @@ FAILED:
   }
   if (gMonEffect.id == DEMISE_KING_OF_ARMAGEDDON) {
     ActivateDEMISE_KING_OF_ARMAGEDDONEffect();
+    return;
+  }
+  if (gMonEffect.id == EVOLZAR_DOLKKA) {
+    ActivateEVOLZAR_DOLKKAEffect();
+    return;
+  }
+  if (gMonEffect.id == FLAME_RULER) {
+    ActivateFLAME_RULEREffect();
+    return;
+  }
+  if (gMonEffect.id == FORMULA_SYNCHRON) {
+    ActivateFORMULA_SYNCHRONEffect();
+    return;
+  }
+  if (gMonEffect.id == GANDORA_X_THE_DRAGON_OF_DESTRUCTION) {
+    ActivateGANDORA_X_THE_DRAGON_OF_DESTRUCTIONEffect();
+    return;
+  }
+  if (gMonEffect.id == GREAT_POSEIDON_BEETLE) {
+    ActivateGREAT_POSEIDON_BEETLEEffect();
+    return;
+  }
+  if (gMonEffect.id == GREEN_BABOON_DEFENDER_OF_THE_FOREST) {
+    ActivateGREEN_BABOON_DEFENDER_OF_THE_FORESTEffect();
+    return;
+  }
+  if (gMonEffect.id == GUNGNIR_DRAGON_OF_THE_ICE_BARRIER) {
+    ActivateGUNGNIR_DRAGON_OF_THE_ICE_BARRIEREffect();
+    return;
+  }
+  if (gMonEffect.id == HERALD_OF_THE_ARC_LIGHT) {
+    ActivateHERALD_OF_THE_ARC_LIGHTEffect();
+    return;
+  }
+  if (gMonEffect.id == HERALD_OF_ULIMATENESS) {
+    ActivateHERALD_OF_ULIMATENESSEffect();
+    return;
+  }
+  if (gMonEffect.id == HONEST) {
+    ActivateHONESTEffect();
     return;
   }
 }

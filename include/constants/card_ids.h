@@ -1835,11 +1835,31 @@
 #define DE_SYNCHRO                               0x0727
 #define DEMISE_KING_OF_ARMAGEDDON                0x0728
 #define DOUBLE_TOOL_C_AND_D                      0x0729
+#define END_OF_THE_WORLD                         0x072A
+#define EVOLZAR_DOLKKA                           0x072B
+#define EXCHANGE_OF_THE_SPIRIT                   0x072C
+#define FACTORY_OF_ONE_HUNDRED_MACHINES          0x072D
+#define FIELD_BARRIER                            0x072E
+#define FLAME_RULER                              0x072F
+#define FORMULA_SYNCHRON                         0x0730
+#define FOSSIL_EXCAVATION                        0x0731
+#define GADGET_BOX                               0x0732
+#define GANDORA_X_THE_DRAGON_OF_DESTRUCTION      0x0733
+#define GEARTOWN                                 0x0734
+#define GLADIATOR_PROVING_GROUND                 0x0735
+#define GRAND_CONVERGENCE                        0x0736
+#define GREAT_POSEIDON_BEETLE                    0x0737
+#define GREEN_BABOON_DEFENDER_OF_THE_FOREST      0x0738
+#define GUNGNIR_DRAGON_OF_THE_ICE_BARRIER        0x0739
+#define HERALD_OF_THE_ARC_LIGHT                  0x073A
+#define HERALD_OF_ULIMATENESS                    0x073B
+#define HONEST                                   0x073C
+#define DRAGONS_MIRROR                           0x073D
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x072A
-#define NUM_CUSTOM_CARDS                        0x0409
+#define NUM_TOTAL_CARDS                         0x073E
+#define NUM_CUSTOM_CARDS                        0x041D
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

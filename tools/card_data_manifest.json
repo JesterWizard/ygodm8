@@ -35165,6 +35165,443 @@
       "effect_texts": {
         "popup_1": "Equip only to a Power Tool Dragon or Level 4 or higher Machine-Type Morphtronic monster you control. While equipped:"
       }
+    },
+    {
+      "card_const": "END_OF_THE_WORLD",
+      "card_name": "End of the World",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 8, 1, 9, 8, 7, 1, 2],
+      "description": {
+        "symbol": "gDescription_EndOfTheWorld",
+        "pages": "This card is used to Ritual Summon Ruin, Queen of Oblivion or Demise, King of Armageddon. You must also Tribute monsters from your hand or field whose total Levels exactly equal the Level of the Ritual Monster you Ritual Summon."
+      },
+      "effect_texts": {
+        "popup_1": "This card is used to Ritual Summon Ruin, Queen of Oblivion or Demise, King of Armageddon. You must also Tribute mons"
+      }
+    },
+    {
+      "card_const": "EVOLZAR_DOLKKA",
+      "card_name": "Evolzar Dolkka",
+      "atk": 2300,
+      "def": 1700,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_DRAGON",
+      "color": "XYZ_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 20,
+      "password": [4, 2, 7, 5, 2, 1, 4, 1],
+      "description": {
+        "symbol": "gDescription_EvolzarDolkka",
+        "pages": "2 Level 4 Dinosaur-Type monsters During either player's turn, when a monster effect activates: You can detach 1 Xyz Material from this card; negate the activation, and if you do, destroy that monster."
+      },
+      "effect_texts": {
+        "popup_1": "2 Level 4 Dinosaur-Type monsters\nDuring either player's turn, when a monster effect activates: You can detach 1 Xyz Mate"
+      }
+    },
+    {
+      "card_const": "EXCHANGE_OF_THE_SPIRIT",
+      "card_name": "Exchange of the Spirit",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 7, 4, 8, 4, 4, 9, 9],
+      "description": {
+        "symbol": "gDescription_ExchangeOfTheSpirit",
+        "pages": "If both players have 15 or more cards in their Graveyards: Pay 1000 LP; each player swaps the cards in their Graveyard with the cards in their Deck, then shuffles their Deck. You can only activate 1 Exchange of the Spirit per Duel."
+      },
+      "effect_texts": {
+        "popup_1": "If both players have 15 or more cards in their Graveyards: Pay 1000 LP; each player swaps the cards in their Graveyard w"
+      }
+    },
+    {
+      "card_const": "FACTORY_OF_ONE_HUNDRED_MACHINES",
+      "card_name": "Factory of 100 Machines",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 7, 0, 3, 0, 3, 4, 0],
+      "description": {
+        "symbol": "gDescription_FactoryOfOneHundredMachines",
+        "pages": "Remove from play all Morphtronic monsters from your Graveyard. Target face-up Machine-Type monster you control gains 200 ATK for each card removed, until the End Phase."
+      },
+      "effect_texts": {
+        "popup_1": "Remove from play all Morphtronic monsters from your Graveyard. Target face-up Machine-Type monster you control gains 2"
+      }
+    },
+    {
+      "card_const": "FIELD_BARRIER",
+      "card_name": "Field Barrier",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 7, 1, 5, 3, 1, 1, 4],
+      "description": {
+        "symbol": "gDescription_FieldBarrier",
+        "pages": "Field Spell Cards on the field cannot be destroyed. Neither player can activate a new Field Spell Card. You can only control 1 Field Barrier."
+      },
+      "effect_texts": {
+        "popup_1": "Field Spell Cards on the field cannot be destroyed. Neither player can activate a new Field Spell Card. You can only con"
+      }
+    },
+    {
+      "card_const": "FLAME_RULER",
+      "card_name": "Flame Ruler",
+      "atk": 1500,
+      "def": 1600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 207,
+      "password": [4, 1, 0, 8, 9, 1, 2, 8],
+      "description": {
+        "symbol": "gDescription_FlameRuler",
+        "pages": "This card can be treated as 2 Tributes for the Tribute Summon of a FIRE monster."
+      },
+      "effect_texts": {
+        "popup_1": "This card can be treated as 2 Tributes for the Tribute Summon of a FIRE monster."
+      }
+    },
+    {
+      "card_const": "FORMULA_SYNCHRON",
+      "card_name": "Formula Synchron",
+      "atk": 200,
+      "def": 1500,
+      "level": 2,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [5, 0, 0, 9, 1, 1, 9, 6],
+      "description": {
+        "symbol": "gDescription_FormulaSynchron",
+        "pages": "1 Tuner + 1 non-Tuner monster When this card is Synchro Summoned: You can draw 1 card. Once per Chain, during your opponent's Main Phase, you can (Quick Effect): Immediately after this effect resolves, Synchro Summon using this card you control."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1 non-Tuner monster\nWhen this card is Synchro Summoned: You can draw 1 card. Once per Chain, during your oppon"
+      }
+    },
+    {
+      "card_const": "FOSSIL_EXCAVATION",
+      "card_name": "Fossil Excavation",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 3, 8, 6, 9, 7, 3, 5],
+      "description": {
+        "symbol": "gDescription_FossilExcavation",
+        "pages": "Activate this card by discarding 1 card, then target 1 Dinosaur-Type monster in your Graveyard; Special Summon that target. Negate the effects of that monster on the field. When this card leaves the field, destroy that monster. When that monster is destroyed, destroy this card."
+      },
+      "effect_texts": {
+        "popup_1": "Activate this card by discarding 1 card, then target 1 Dinosaur-Type monster in your Graveyard; Special Summon that targ"
+      }
+    },
+    {
+      "card_const": "GADGET_BOX",
+      "card_name": "Gadget Box",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 8, 0, 2, 5, 9, 5, 0],
+      "description": {
+        "symbol": "gDescription_GadgetBox",
+        "pages": "(This card is always treated as a Morphtronic card.) When this card is activated: Place 3 Morph Counters on it. Once per turn, during your Main Phase: You can remove 1 Morph Counter from your field, and if you do, Special Summon 1 Gadget Box Token (Machine/EARTH/Level 1/ATK 0/DEF 0). While that Token is in the Monster Zone, the player who Summoned it cannot Special Summon monsters from the Extra Deck, except Synchro Monsters. You can only activate 1 Gadget Box per turn."
+      },
+      "effect_texts": {
+        "popup_1": "(This card is always treated as a Morphtronic card.)\r\nWhen this card is activated: Place 3 Morph Counters on it. Once "
+      }
+    },
+    {
+      "card_const": "GANDORA_X_THE_DRAGON_OF_DESTRUCTION",
+      "card_name": "Gandora-X the Dragon of Demolition",
+      "atk": 0,
+      "def": 0,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 1, 5, 2, 5, 2, 3, 2],
+      "description": {
+        "symbol": "gDescription_GandoraXTheDragonOfDestruction",
+        "pages": "When this card is Normal or Special Summoned from the hand: You can destroy as many other monsters on the field as possible, and if you do, inflict damage to your opponent equal to the highest original ATK on the field among those destroyed monsters (your choice, if tied). This card's ATK becomes equal to the damage inflicted to your opponent by this effect. Once per turn, during your End Phase: Halve your LP."
+      },
+      "effect_texts": {
+        "popup_1": "When this card is Normal or Special Summoned from the hand: You can destroy as many other monsters on the field as possi"
+      }
+    },
+    {
+      "card_const": "GEARTOWN",
+      "card_name": "Geartown",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 7, 6, 9, 4, 5, 4, 7],
+      "description": {
+        "symbol": "gDescription_Geartown",
+        "pages": "Both players can Normal Summon Ancient Gear monsters for 1 less Tribute. When this card is destroyed and sent to the Graveyard: You can Special Summon 1 Ancient Gear monster from your hand, Deck, or Graveyard."
+      },
+      "effect_texts": {
+        "popup_1": "Both players can Normal Summon Ancient Gear monsters for 1 less Tribute. When this card is destroyed and sent to the G"
+      }
+    },
+    {
+      "card_const": "GLADIATOR_PROVING_GROUND",
+      "card_name": "Gladiator Proving Ground",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 5, 2, 2, 4, 4, 4, 0],
+      "description": {
+        "symbol": "gDescription_GladiatorProvingGround",
+        "pages": "Add 1 Level 4 or lower Gladiator Beast monster from your Deck to your hand."
+      },
+      "effect_texts": {
+        "popup_1": "Add 1 Level 4 or lower Gladiator Beast monster from your Deck to your hand."
+      }
+    },
+    {
+      "card_const": "GRAND_CONVERGENCE",
+      "card_name": "Grand Convergence",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 8, 4, 3, 0, 6, 7, 3],
+      "description": {
+        "symbol": "gDescription_GrandConvergence",
+        "pages": "If you control Macro Cosmos: Inflict 300 damage to your opponent and destroy all monsters on the field."
+      },
+      "effect_texts": {
+        "popup_1": "If you control Macro Cosmos: Inflict 300 damage to your opponent and destroy all monsters on the field."
+      }
+    },
+    {
+      "card_const": "GREAT_POSEIDON_BEETLE",
+      "card_name": "Great Poseidon Beetle",
+      "atk": 2500,
+      "def": 2300,
+      "level": 7,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_INSECT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 30,
+      "password": [7, 5, 2, 9, 2, 2, 5, 9],
+      "description": {
+        "symbol": "gDescription_GreatPoseidonBeetle",
+        "pages": "If this card targets an opponent's face-up Attack Position monster for an attack, and that monster is not destroyed by the battle, this card can attack the same monster again in a row. This effect can only be used twice per turn."
+      },
+      "effect_texts": {
+        "popup_1": "If this card targets an opponent's face-up Attack Position monster for an attack, and that monster is not destroyed by t"
+      }
+    },
+    {
+      "card_const": "GREEN_BABOON_DEFENDER_OF_THE_FOREST",
+      "card_name": "Green Baboon, Defender of the Forest",
+      "atk": 2600,
+      "def": 1800,
+      "level": 7,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 6, 6, 6, 8, 2, 3, 7],
+      "description": {
+        "symbol": "gDescription_GreenBaboonDefenderOfTheForest",
+        "pages": "If this card is in your hand or Graveyard when a face-up Beast-Type monster you control is destroyed and sent to the Graveyard (except during the Damage Step): You can pay 1000 Life Points; Special Summon this card."
+      },
+      "effect_texts": {
+        "popup_1": "If this card is in your hand or Graveyard when a face-up Beast-Type monster you control is destroyed and sent to the Gra"
+      }
+    },
+    {
+      "card_const": "GUNGNIR_DRAGON_OF_THE_ICE_BARRIER",
+      "card_name": "Gungnir, Dragon of the Ice Barrier",
+      "atk": 2500,
+      "def": 1700,
+      "level": 7,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 5, 7, 4, 9, 0, 3, 5],
+      "description": {
+        "symbol": "gDescription_GungnirDragonOfTheIceBarrier",
+        "pages": "1 Tuner + 1 or more non-Tuner WATER monsters Once per turn: You can discard up to 2 cards to the Graveyard to target the same number of cards your opponent controls; destroy them."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1 or more non-Tuner WATER monsters\nOnce per turn: You can discard up to 2 cards to the Graveyard to target the"
+      }
+    },
+    {
+      "card_const": "HERALD_OF_THE_ARC_LIGHT",
+      "card_name": "Herald of the Arc Light",
+      "atk": 600,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [7, 9, 6, 0, 6, 8, 3, 7],
+      "description": {
+        "symbol": "gDescription_HeraldOfTheArcLight",
+        "pages": "1 Tuner + 1+ non-Tuner monsters Any monster sent from the hand or Main Deck to the GY is banished instead. When a Spell/Trap Card, or monster effect, is activated (Quick Effect): You can Tribute this card; negate the activation, and if you do, destroy that card. If this card is sent to the GY: You can add 1 Ritual Monster or 1 Ritual Spell from your Deck to your hand."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters\r\nAny monster sent from the hand or Main Deck to the GY is banished instead. When a Spell"
+      }
+    },
+    {
+      "card_const": "HERALD_OF_ULIMATENESS",
+      "card_name": "Herald of Ultimateness",
+      "atk": 2000,
+      "def": 3000,
+      "level": 12,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "RITUAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [4, 8, 5, 4, 6, 3, 6, 8],
+      "description": {
+        "symbol": "gDescription_HeraldOfUlimateness",
+        "pages": "You can Ritual Summon this card with Oracle of the Herald. Must be Ritual Summoned, and cannot be Special Summoned by other ways. During either player's turn, when your opponent would Special Summon a monster(s), OR activates a Spell Card, Trap Card, or monster effect: You can send 1 Fairy-Type monster from your hand to the Graveyard; negate the Special Summon or activation, and if you do, destroy that card."
+      }
+    },
+    {
+      "card_const": "HONEST",
+      "card_name": "Honest",
+      "atk": 1100,
+      "def": 1900,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 289,
+      "password": [3, 7, 7, 4, 2, 4, 7, 8],
+      "description": {
+        "symbol": "gDescription_Honest",
+        "pages": "During your Main Phase: You can return this face-up card from the field to the hand. During the Damage Step, when a LIGHT monster you control battles (Quick Effect): You can send this card from your hand to the GY; that monster gains ATK equal to the ATK of the opponent's monster it is battling, until the end of this turn."
+      },
+      "effect_texts": {
+        "popup_1": "During your Main Phase: You can return this face-up card from the field to the hand. During the Damage Step, when a LIGH"
+      }
+    },
+    {
+      "card_const": "DRAGONS_MIRROR",
+      "card_name": "Dragon's Mirror",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 1, 4, 9, 0, 1, 2, 7],
+      "description": {
+        "symbol": "gDescription_DragonsMirror",
+        "pages": "Fusion Summon 1 Dragon Fusion Monster from your Extra Deck, by banishing Fusion Materials listed on it from your field or GY."
+      },
+      "effect_texts": {
+        "popup_1": "Fusion Summon 1 Dragon Fusion Monster from your Extra Deck, by banishing Fusion Materials listed on it from your field o"
+      }
     }
   ]
 }

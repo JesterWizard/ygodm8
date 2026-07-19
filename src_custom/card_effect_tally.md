@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `964` effects
+- `984` effects
 
 ## Tally
 
@@ -945,6 +945,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `De Synchro` | `src_custom/spell_effects/de_synchro.c` |
 | `activated_effects` | `Demise King Of Armageddon` | `src_custom/activated_effects/demise_king_of_armageddon.c` |
 | `spell_effects` | `Double Tool C And D` | `src_custom/spell_effects/double_tool_c_and_d.c` |
+| `spell_effects` | `End Of The World` | `src_custom/spell_effects/end_of_the_world.c` |
+| `activated_effects` | `Evolzar Dolkka` | `src_custom/activated_effects/evolzar_dolkka.c` |
+| `trap_effects` | `Exchange Of The Spirit` | `src_custom/trap_effects/exchange_of_the_spirit.c` |
+| `spell_effects` | `Factory Of One Hundred Machines` | `src_custom/spell_effects/factory_of_one_hundred_machines.c` |
+| `spell_effects` | `Field Barrier` | `src_custom/spell_effects/field_barrier.c` |
+| `activated_effects` | `Flame Ruler` | `src_custom/activated_effects/flame_ruler.c` |
+| `activated_effects` | `Formula Synchron` | `src_custom/activated_effects/formula_synchron.c` |
+| `trap_effects` | `Fossil Excavation` | `src_custom/trap_effects/fossil_excavation.c` |
+| `spell_effects` | `Gadget Box` | `src_custom/spell_effects/gadget_box.c` |
+| `activated_effects` | `Gandora X The Dragon Of Destruction` | `src_custom/activated_effects/gandora_x_the_dragon_of_destruction.c` |
+| `spell_effects` | `Geartown` | `src_custom/spell_effects/geartown.c` |
+| `spell_effects` | `Gladiator Proving Ground` | `src_custom/spell_effects/gladiator_proving_ground.c` |
+| `spell_effects` | `Grand Convergence` | `src_custom/spell_effects/grand_convergence.c` |
+| `activated_effects` | `Great Poseidon Beetle` | `src_custom/activated_effects/great_poseidon_beetle.c` |
+| `activated_effects` | `Green Baboon Defender Of The Forest` | `src_custom/activated_effects/green_baboon_defender_of_the_forest.c` |
+| `activated_effects` | `Gungnir Dragon Of The Ice Barrier` | `src_custom/activated_effects/gungnir_dragon_of_the_ice_barrier.c` |
+| `activated_effects` | `Herald Of The Arc Light` | `src_custom/activated_effects/herald_of_the_arc_light.c` |
+| `activated_effects` | `Herald Of Ulimateness` | `src_custom/activated_effects/herald_of_ulimateness.c` |
+| `activated_effects` | `Honest` | `src_custom/activated_effects/honest.c` |
+| `spell_effects` | `Dragons Mirror` | `src_custom/spell_effects/dragons_mirror.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

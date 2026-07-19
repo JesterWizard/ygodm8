@@ -1034,6 +1034,26 @@ static const u8 sDarkMagicianTheMagicianOfBlackChaosName[] __attribute__((sectio
 static const u8 sDeSynchroName[] __attribute__((section(".append_assets"))) = "De-Synchro";
 static const u8 sDemiseKingOfArmageddonName[] __attribute__((section(".append_assets"))) = "Demise, King of Armageddon";
 static const u8 sDoubleToolCAndDName[] __attribute__((section(".append_assets"))) = "Double Tool C&D";
+static const u8 sEndOfTheWorldName[] __attribute__((section(".append_assets"))) = "End of the World";
+static const u8 sEvolzarDolkkaName[] __attribute__((section(".append_assets"))) = "Evolzar Dolkka";
+static const u8 sExchangeOfTheSpiritName[] __attribute__((section(".append_assets"))) = "Exchange of the Spirit";
+static const u8 sFactoryOfOneHundredMachinesName[] __attribute__((section(".append_assets"))) = "Factory of 100 Machines";
+static const u8 sFieldBarrierName[] __attribute__((section(".append_assets"))) = "Field Barrier";
+static const u8 sFlameRulerName[] __attribute__((section(".append_assets"))) = "Flame Ruler";
+static const u8 sFormulaSynchronName[] __attribute__((section(".append_assets"))) = "Formula Synchron";
+static const u8 sFossilExcavationName[] __attribute__((section(".append_assets"))) = "Fossil Excavation";
+static const u8 sGadgetBoxName[] __attribute__((section(".append_assets"))) = "Gadget Box";
+static const u8 sGandoraXTheDragonOfDestructionName[] __attribute__((section(".append_assets"))) = "Gandora-X the Dragon of Demolition";
+static const u8 sGeartownName[] __attribute__((section(".append_assets"))) = "Geartown";
+static const u8 sGladiatorProvingGroundName[] __attribute__((section(".append_assets"))) = "Gladiator Proving Ground";
+static const u8 sGrandConvergenceName[] __attribute__((section(".append_assets"))) = "Grand Convergence";
+static const u8 sGreatPoseidonBeetleName[] __attribute__((section(".append_assets"))) = "Great Poseidon Beetle";
+static const u8 sGreenBaboonDefenderOfTheForestName[] __attribute__((section(".append_assets"))) = "Green Baboon, Defender of the Forest";
+static const u8 sGungnirDragonOfTheIceBarrierName[] __attribute__((section(".append_assets"))) = "Gungnir, Dragon of the Ice Barrier";
+static const u8 sHeraldOfTheArcLightName[] __attribute__((section(".append_assets"))) = "Herald of the Arc Light";
+static const u8 sHeraldOfUlimatenessName[] __attribute__((section(".append_assets"))) = "Herald of Ultimateness";
+static const u8 sHonestName[] __attribute__((section(".append_assets"))) = "Honest";
+static const u8 sDragonsMirrorName[] __attribute__((section(".append_assets"))) = "Dragon's Mirror";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3108,6 +3128,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDemiseKingOfArmageddonName;
   if (cardId == 0x0729)
     return (u8 *)sDoubleToolCAndDName;
+  if (cardId == 0x072A)
+    return (u8 *)sEndOfTheWorldName;
+  if (cardId == 0x072B)
+    return (u8 *)sEvolzarDolkkaName;
+  if (cardId == 0x072C)
+    return (u8 *)sExchangeOfTheSpiritName;
+  if (cardId == 0x072D)
+    return (u8 *)sFactoryOfOneHundredMachinesName;
+  if (cardId == 0x072E)
+    return (u8 *)sFieldBarrierName;
+  if (cardId == 0x072F)
+    return (u8 *)sFlameRulerName;
+  if (cardId == 0x0730)
+    return (u8 *)sFormulaSynchronName;
+  if (cardId == 0x0731)
+    return (u8 *)sFossilExcavationName;
+  if (cardId == 0x0732)
+    return (u8 *)sGadgetBoxName;
+  if (cardId == 0x0733)
+    return (u8 *)sGandoraXTheDragonOfDestructionName;
+  if (cardId == 0x0734)
+    return (u8 *)sGeartownName;
+  if (cardId == 0x0735)
+    return (u8 *)sGladiatorProvingGroundName;
+  if (cardId == 0x0736)
+    return (u8 *)sGrandConvergenceName;
+  if (cardId == 0x0737)
+    return (u8 *)sGreatPoseidonBeetleName;
+  if (cardId == 0x0738)
+    return (u8 *)sGreenBaboonDefenderOfTheForestName;
+  if (cardId == 0x0739)
+    return (u8 *)sGungnirDragonOfTheIceBarrierName;
+  if (cardId == 0x073A)
+    return (u8 *)sHeraldOfTheArcLightName;
+  if (cardId == 0x073B)
+    return (u8 *)sHeraldOfUlimatenessName;
+  if (cardId == 0x073C)
+    return (u8 *)sHonestName;
+  if (cardId == 0x073D)
+    return (u8 *)sDragonsMirrorName;
 
   return gCardNames[cardId];
 }

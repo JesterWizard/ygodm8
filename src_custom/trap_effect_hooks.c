@@ -536,3 +536,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire CROSS_DIMENSONAL_DUEL in trap dispatcher */
 /* DAMAGE_EQUALS_REPTILE trap effect */
   /* TODO: wire DAMAGE_EQUALS_REPTILE in trap dispatcher */
+/* EXCHANGE_OF_THE_SPIRIT trap effect */
+  /* TODO: wire EXCHANGE_OF_THE_SPIRIT in trap dispatcher */
+/* FOSSIL_EXCAVATION trap effect */
+  /* TODO: wire FOSSIL_EXCAVATION in trap dispatcher */

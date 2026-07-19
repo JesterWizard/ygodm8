@@ -275,6 +275,9 @@
     case DOUBLE_TOOL_C_AND_D:
       EffectDOUBLE_TOOL_C_AND_D();
       return;
+    case DRAGONS_MIRROR:
+      EffectDRAGONS_MIRROR();
+      return;
     case DRAGON_RAVINE:
       EffectDRAGON_RAVINE();
       return;
@@ -296,6 +299,9 @@
     case EL_SHADDOLL_FUSION:
       EffectEL_SHADDOLL_FUSION();
       return;
+    case END_OF_THE_WORLD:
+      EffectEND_OF_THE_WORLD();
+      return;
     case EN_ENGAGE_NEO_SPACE:
       EffectEN_ENGAGE_NEO_SPACE();
       return;
@@ -316,6 +322,12 @@
       return;
     case E_EMERGENCY_CALL:
       EffectEEmergencyCall();
+      return;
+    case FACTORY_OF_ONE_HUNDRED_MACHINES:
+      EffectFACTORY_OF_ONE_HUNDRED_MACHINES();
+      return;
+    case FIELD_BARRIER:
+      EffectFIELD_BARRIER();
       return;
     case FINAL_COUNTDOWN:
       EffectFinalCountdown();
@@ -341,6 +353,12 @@
     case FUTURE_FUSION:
       EffectFutureFusion();
       return;
+    case GADGET_BOX:
+      EffectGADGET_BOX();
+      return;
+    case GEARTOWN:
+      EffectGEARTOWN();
+      return;
     case GENERATION_NEXT:
       EffectGENERATION_NEXT();
       return;
@@ -356,6 +374,9 @@
     case GLADIATOR_BEAST_BATTLE_HALBERD:
       EffectGLADIATOR_BEAST_BATTLE_HALBERD();
       return;
+    case GLADIATOR_PROVING_GROUND:
+      EffectGLADIATOR_PROVING_GROUND();
+      return;
     case GOBLIN_THIEF:
       EffectGoblinThief();
       return;
@@ -364,6 +385,9 @@
       return;
     case GRACEFUL_DICE:
       EffectGracefulDice();
+      return;
+    case GRAND_CONVERGENCE:
+      EffectGRAND_CONVERGENCE();
       return;
     case GRAVEKEEPERS_SERVANT:
       EffectGravekeepersServant();

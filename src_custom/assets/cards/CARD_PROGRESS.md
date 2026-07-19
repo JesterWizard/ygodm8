@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1033 |
-| Art ready, needs manifest | 100 |
+| In game (manifest + art) | 1053 |
+| Art ready, needs manifest | 80 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1135** |
 
@@ -1055,31 +1055,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DE_SYNCHRO` | De-Synchro | `de_synchro.png` |
 | `DEMISE_KING_OF_ARMAGEDDON` | Demise, King of Armageddon | `demise_king_of_armageddon.png` |
 | `DOUBLE_TOOL_C_AND_D` | Double Tool C&D | `double_tool_c_and_d.png` |
+| `END_OF_THE_WORLD` | End of the World | `end_of_the_world.png` |
+| `EVOLZAR_DOLKKA` | Evolzar Dolkka | `evolzar_dolkka.png` |
+| `EXCHANGE_OF_THE_SPIRIT` | Exchange of the Spirit | `exchange_of_the_spirit.png` |
+| `FACTORY_OF_ONE_HUNDRED_MACHINES` | Factory of 100 Machines | `factory_of_one_hundred_machines.png` |
+| `FIELD_BARRIER` | Field Barrier | `field_barrier.png` |
+| `FLAME_RULER` | Flame Ruler | `flame_ruler.png` |
+| `FORMULA_SYNCHRON` | Formula Synchron | `formula_synchron.png` |
+| `FOSSIL_EXCAVATION` | Fossil Excavation | `fossil_excavation.png` |
+| `GADGET_BOX` | Gadget Box | `gadget_box.png` |
+| `GANDORA_X_THE_DRAGON_OF_DESTRUCTION` | Gandora-X the Dragon of Demolition | `gandora_x_the_dragon_of_destruction.png` |
+| `GEARTOWN` | Geartown | `geartown.png` |
+| `GLADIATOR_PROVING_GROUND` | Gladiator Proving Ground | `gladiator_proving_ground.png` |
+| `GRAND_CONVERGENCE` | Grand Convergence | `grand_convergence.png` |
+| `GREAT_POSEIDON_BEETLE` | Great Poseidon Beetle | `great_poseidon_beetle.png` |
+| `GREEN_BABOON_DEFENDER_OF_THE_FOREST` | Green Baboon, Defender of the Forest | `green_baboon_defender_of_the_forest.png` |
+| `GUNGNIR_DRAGON_OF_THE_ICE_BARRIER` | Gungnir, Dragon of the Ice Barrier | `gungnir_dragon_of_the_ice_barrier.png` |
+| `HERALD_OF_THE_ARC_LIGHT` | Herald of the Arc Light | `herald_of_the_arc_light.png` |
+| `HERALD_OF_ULIMATENESS` | Herald of Ultimateness | `herald_of_ulimateness.png` |
+| `HONEST` | Honest | `honest.png` |
+| `DRAGONS_MIRROR` | Dragon's Mirror | `dragons_mirror.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `DRAGONS_MIRROR` — `dragons_mirror.png`
-- [ ] `END_OF_THE_WORLD` — `end_of_the_world.png`
-- [ ] `EVOLZAR_DOLKKA` — `evolzar_dolkka.png`
-- [ ] `EXCHANGE_OF_THE_SPIRIT` — `exchange_of_the_spirit.png`
-- [ ] `FACTORY_OF_ONE_HUNDRED_MACHINES` — `factory_of_one_hundred_machines.png`
-- [ ] `FIELD_BARRIER` — `field_barrier.png`
-- [ ] `FLAME_RULER` — `flame_ruler.png`
-- [ ] `FORMULA_SYNCHRON` — `formula_synchron.png`
-- [ ] `FOSSIL_EXCAVATION` — `fossil_excavation.png`
-- [ ] `GADGET_BOX` — `gadget_box.png`
-- [ ] `GANDORA_X_THE_DRAGON_OF_DESTRUCTION` — `gandora_x_the_dragon_of_destruction.png`
-- [ ] `GEARTOWN` — `geartown.png`
-- [ ] `GLADIATOR_PROVING_GROUND` — `gladiator_proving_ground.png`
-- [ ] `GRAND_CONVERGENCE` — `grand_convergence.png`
-- [ ] `GREAT_POSEIDON_BEETLE` — `great_poseidon_beetle.png`
-- [ ] `GREEN_BABOON_DEFENDER_OF_THE_FOREST` — `green_baboon_defender_of_the_forest.png`
-- [ ] `GUNGNIR_DRAGON_OF_THE_ICE_BARRIER` — `gungnir_dragon_of_the_ice_barrier.png`
-- [ ] `HERALD_OF_THE_ARC_LIGHT` — `herald_of_the_arc_light.png`
-- [ ] `HERALD_OF_ULIMATENESS` — `herald_of_ulimateness.png`
-- [ ] `HONEST` — `honest.png`
 - [ ] `HUNTING_INSTINCT` — `hunting_instinct.png`
 - [ ] `ICARUS_ATTACK` — `icarus_attack.png`
 - [ ] `JUNK_SYNCHRON` — `junk_synchron.png`
