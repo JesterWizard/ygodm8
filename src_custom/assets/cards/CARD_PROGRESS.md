@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1133 |
-| Art ready, needs manifest | 154 |
+| In game (manifest + art) | 1153 |
+| Art ready, needs manifest | 134 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1290** |
 
@@ -1155,31 +1155,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `WEAPON_CHANGE` | Weapon Change | `weapon_change.png` |
 | `WETLANDS` | Wetlands | `wetlands.png` |
 | `X_SABER_AIRBELLUM` | X-Saber Airbellum | `x_saber_airbellum.png` |
+| `A_CAT_OF_ILL_OMEN` | A Cat of Ill Omen | `a_cat_of_ill_omen.png` |
+| `AMAZONESS_AUGUSTA` | Amazoness Augusta | `amazoness_augusta.png` |
+| `AMAZONESS_BABY_TIGER` | Amazoness Baby Tiger | `amazoness_baby_tiger.png` |
+| `AMAZONESS_EMPRESS` | Amazoness Empress | `amazoness_empress.png` |
+| `AMAZONESS_PET_LIGER` | Amazoness Pet Liger | `amazoness_pet_liger.png` |
+| `AMAZONESS_PET_LIGER_KING` | Amazoness Pet Liger King | `amazoness_pet_liger_king.png` |
+| `AMAZONESS_PRINCESS` | Amazoness Princess | `amazoness_princess.png` |
+| `AMAZONESS_QUEEN` | Amazoness Queen | `amazoness_queen.png` |
+| `AMAZONESS_SAGE` | Amazoness Sage | `amazoness_sage.png` |
+| `AMAZONESS_SCOUTS` | Amazoness Scouts | `amazoness_scouts.png` |
+| `ALECTOR_SOVEREIGN_OF_BIRDS` | Alector, Sovereign of Birds | `alector_sovereign_of_birds.png` |
+| `AMAZONESS_CALL` | Amazoness Call | `amazoness_call.png` |
+| `AMAZONESS_FIGHTING_SPIRIT` | Amazoness Fighting Spirit | `amazoness_fighting_spirit.png` |
+| `AMAZONESS_HEIRLOOM` | Amazoness Heirloom | `amazoness_heirloom.png` |
+| `AMAZONESS_SECRET_ARTS` | Amazoness Secret Arts | `amazoness_secret_arts.png` |
+| `AEGIS_OF_THE_OCEAN_DRAGON_LORD` | Aegis of the Ocean Dragon Lord | `aegis_of_the_ocean_dragon_lord.png` |
+| `AMAZONESS_HALL` | Amazoness Hall | `amazoness_hall.png` |
+| `AMAZONESS_HOT_SPRING` | Amazoness Hot Spring | `amazoness_hot_spring.png` |
+| `AMAZONESS_ONSLAUGHT` | Amazoness Onslaught | `amazoness_onslaught.png` |
+| `AMAZONESS_SHAMANISM` | Amazoness Shamanism | `amazoness_shamanism.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `A_CAT_OF_ILL_OMEN` — `a_cat_of_ill_omen.png`
-- [ ] `AEGIS_OF_THE_OCEAN_DRAGON_LORD` — `aegis_of_the_ocean_dragon_lord.png`
-- [ ] `ALECTOR_SOVEREIGN_OF_BIRDS` — `alector_sovereign_of_birds.png`
-- [ ] `AMAZONESS_AUGUSTA` — `amazoness_augusta.png`
-- [ ] `AMAZONESS_BABY_TIGER` — `amazoness_baby_tiger.png`
-- [ ] `AMAZONESS_CALL` — `amazoness_call.png`
-- [ ] `AMAZONESS_EMPRESS` — `amazoness_empress.png`
-- [ ] `AMAZONESS_FIGHTING_SPIRIT` — `amazoness_fighting_spirit.png`
-- [ ] `AMAZONESS_HALL` — `amazoness_hall.png`
-- [ ] `AMAZONESS_HEIRLOOM` — `amazoness_heirloom.png`
-- [ ] `AMAZONESS_HOT_SPRING` — `amazoness_hot_spring.png`
-- [ ] `AMAZONESS_ONSLAUGHT` — `amazoness_onslaught.png`
-- [ ] `AMAZONESS_PET_LIGER` — `amazoness_pet_liger.png`
-- [ ] `AMAZONESS_PET_LIGER_KING` — `amazoness_pet_liger_king.png`
-- [ ] `AMAZONESS_PRINCESS` — `amazoness_princess.png`
-- [ ] `AMAZONESS_QUEEN` — `amazoness_queen.png`
-- [ ] `AMAZONESS_SAGE` — `amazoness_sage.png`
-- [ ] `AMAZONESS_SCOUTS` — `amazoness_scouts.png`
-- [ ] `AMAZONESS_SECRET_ARTS` — `amazoness_secret_arts.png`
-- [ ] `AMAZONESS_SHAMANISM` — `amazoness_shamanism.png`
 - [ ] `AMAZONESS_SPELLCASTER` — `amazoness_spellcaster.png`
 - [ ] `AMAZONESS_SPIRITUALIST` — `amazoness_spiritualist.png`
 - [ ] `AMAZONESS_SPY` — `amazoness_spy.png`

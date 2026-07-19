@@ -2,6 +2,10 @@
 extern void EffectACE_OF_SWORD(void);
 extern void EffectALLURE_OF_DARKNESS(void);
 extern void EffectALLURING_MIRROR_SPLIT(void);
+extern void EffectAMAZONESS_CALL(void);
+extern void EffectAMAZONESS_FIGHTING_SPIRIT(void);
+extern void EffectAMAZONESS_HEIRLOOM(void);
+extern void EffectAMAZONESS_SECRET_ARTS(void);
 extern void EffectANCIENT_GEAR_ADVANCE(void);
 extern void EffectANCIENT_GEAR_CASTLE(void);
 extern void EffectANCIENT_GEAR_DRILL(void);

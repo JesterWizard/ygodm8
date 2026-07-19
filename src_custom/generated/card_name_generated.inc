@@ -1134,6 +1134,26 @@ static const u8 sWaterhazardName[] __attribute__((section(".append_assets"))) = 
 static const u8 sWeaponChangeName[] __attribute__((section(".append_assets"))) = "Weapon Change";
 static const u8 sWetlandsName[] __attribute__((section(".append_assets"))) = "Wetlands";
 static const u8 sXSaberAirbellumName[] __attribute__((section(".append_assets"))) = "X-Saber Airbellum";
+static const u8 sACatOfIllOmenName[] __attribute__((section(".append_assets"))) = "A Cat of Ill Omen";
+static const u8 sAmazonessAugustaName[] __attribute__((section(".append_assets"))) = "Amazoness Augusta";
+static const u8 sAmazonessBabyTigerName[] __attribute__((section(".append_assets"))) = "Amazoness Baby Tiger";
+static const u8 sAmazonessEmpressName[] __attribute__((section(".append_assets"))) = "Amazoness Empress";
+static const u8 sAmazonessPetLigerName[] __attribute__((section(".append_assets"))) = "Amazoness Pet Liger";
+static const u8 sAmazonessPetLigerKingName[] __attribute__((section(".append_assets"))) = "Amazoness Pet Liger King";
+static const u8 sAmazonessPrincessName[] __attribute__((section(".append_assets"))) = "Amazoness Princess";
+static const u8 sAmazonessQueenName[] __attribute__((section(".append_assets"))) = "Amazoness Queen";
+static const u8 sAmazonessSageName[] __attribute__((section(".append_assets"))) = "Amazoness Sage";
+static const u8 sAmazonessScoutsName[] __attribute__((section(".append_assets"))) = "Amazoness Scouts";
+static const u8 sAlectorSovereignOfBirdsName[] __attribute__((section(".append_assets"))) = "Alector, Sovereign of Birds";
+static const u8 sAmazonessCallName[] __attribute__((section(".append_assets"))) = "Amazoness Call";
+static const u8 sAmazonessFightingSpiritName[] __attribute__((section(".append_assets"))) = "Amazoness Fighting Spirit";
+static const u8 sAmazonessHeirloomName[] __attribute__((section(".append_assets"))) = "Amazoness Heirloom";
+static const u8 sAmazonessSecretArtsName[] __attribute__((section(".append_assets"))) = "Amazoness Secret Arts";
+static const u8 sAegisOfTheOceanDragonLordName[] __attribute__((section(".append_assets"))) = "Aegis of the Ocean Dragon Lord";
+static const u8 sAmazonessHallName[] __attribute__((section(".append_assets"))) = "Amazoness Hall";
+static const u8 sAmazonessHotSpringName[] __attribute__((section(".append_assets"))) = "Amazoness Hot Spring";
+static const u8 sAmazonessOnslaughtName[] __attribute__((section(".append_assets"))) = "Amazoness Onslaught";
+static const u8 sAmazonessShamanismName[] __attribute__((section(".append_assets"))) = "Amazoness Shamanism";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3408,6 +3428,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sWetlandsName;
   if (cardId == 0x078D)
     return (u8 *)sXSaberAirbellumName;
+  if (cardId == 0x078E)
+    return (u8 *)sACatOfIllOmenName;
+  if (cardId == 0x078F)
+    return (u8 *)sAmazonessAugustaName;
+  if (cardId == 0x0790)
+    return (u8 *)sAmazonessBabyTigerName;
+  if (cardId == 0x0791)
+    return (u8 *)sAmazonessEmpressName;
+  if (cardId == 0x0792)
+    return (u8 *)sAmazonessPetLigerName;
+  if (cardId == 0x0793)
+    return (u8 *)sAmazonessPetLigerKingName;
+  if (cardId == 0x0794)
+    return (u8 *)sAmazonessPrincessName;
+  if (cardId == 0x0795)
+    return (u8 *)sAmazonessQueenName;
+  if (cardId == 0x0796)
+    return (u8 *)sAmazonessSageName;
+  if (cardId == 0x0797)
+    return (u8 *)sAmazonessScoutsName;
+  if (cardId == 0x0798)
+    return (u8 *)sAlectorSovereignOfBirdsName;
+  if (cardId == 0x0799)
+    return (u8 *)sAmazonessCallName;
+  if (cardId == 0x079A)
+    return (u8 *)sAmazonessFightingSpiritName;
+  if (cardId == 0x079B)
+    return (u8 *)sAmazonessHeirloomName;
+  if (cardId == 0x079C)
+    return (u8 *)sAmazonessSecretArtsName;
+  if (cardId == 0x079D)
+    return (u8 *)sAegisOfTheOceanDragonLordName;
+  if (cardId == 0x079E)
+    return (u8 *)sAmazonessHallName;
+  if (cardId == 0x079F)
+    return (u8 *)sAmazonessHotSpringName;
+  if (cardId == 0x07A0)
+    return (u8 *)sAmazonessOnslaughtName;
+  if (cardId == 0x07A1)
+    return (u8 *)sAmazonessShamanismName;
 
   return gCardNames[cardId];
 }

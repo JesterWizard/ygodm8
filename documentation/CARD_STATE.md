@@ -1,13 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-19 — Spellbinding gate + always light-score attacks
+**Last worked on:** 2026-07-19 — A Cat of Ill Omen…Amazoness Shamanism (stubbed)
 
 **Files touched:**
-- `src_custom/ai_spell_targets.c` — Spellbinding Circle / Shadow Spell / Dark-Piercing Light need real targets
-- `src_custom/ai_sim_fast.c` — light-score attacks even with set backrow; `AiSimFoundLethal`
-- `src_custom/ai_hooks.c` — skip full-sim budget once lethal already scored
-- `include/ai_sim.h`, tests, `documentation/fast-ai-architecture.md`
+- `tools/card_data_manifest.json` — 20 new cards
+- `src_custom/{spell,trap,activated}_effects/` — stub effect files
+- `src_custom/monster_effect_hooks.c`, `trap_effect_hooks.c` — dispatch wiring
+- `asm/ram_map_ewram.s` — align `gMechanicsTutorialPendingCardId`
+- `src_custom/assets/cards/CARD_PROGRESS.md` — regenerated
 
-**Outcome:** `make` OK; host AI spell-target tests pass.
+**Outcome:** `make` OK. 1153 in-game; 134 art-ready todo.
 
-**Open / next:** Playtest empty-field Circle no longer forced; turns with set backrow should feel faster.
+**Open / next:** Implement stub bodies; next batch from `AMAZONESS_SPELLCASTER`.

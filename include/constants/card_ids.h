@@ -1935,11 +1935,31 @@
 #define WEAPON_CHANGE                            0x078B
 #define WETLANDS                                 0x078C
 #define X_SABER_AIRBELLUM                        0x078D
+#define A_CAT_OF_ILL_OMEN                        0x078E
+#define AMAZONESS_AUGUSTA                        0x078F
+#define AMAZONESS_BABY_TIGER                     0x0790
+#define AMAZONESS_EMPRESS                        0x0791
+#define AMAZONESS_PET_LIGER                      0x0792
+#define AMAZONESS_PET_LIGER_KING                 0x0793
+#define AMAZONESS_PRINCESS                       0x0794
+#define AMAZONESS_QUEEN                          0x0795
+#define AMAZONESS_SAGE                           0x0796
+#define AMAZONESS_SCOUTS                         0x0797
+#define ALECTOR_SOVEREIGN_OF_BIRDS               0x0798
+#define AMAZONESS_CALL                           0x0799
+#define AMAZONESS_FIGHTING_SPIRIT                0x079A
+#define AMAZONESS_HEIRLOOM                       0x079B
+#define AMAZONESS_SECRET_ARTS                    0x079C
+#define AEGIS_OF_THE_OCEAN_DRAGON_LORD           0x079D
+#define AMAZONESS_HALL                           0x079E
+#define AMAZONESS_HOT_SPRING                     0x079F
+#define AMAZONESS_ONSLAUGHT                      0x07A0
+#define AMAZONESS_SHAMANISM                      0x07A1
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x078E
-#define NUM_CUSTOM_CARDS                        0x046D
+#define NUM_TOTAL_CARDS                         0x07A2
+#define NUM_CUSTOM_CARDS                        0x0481
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

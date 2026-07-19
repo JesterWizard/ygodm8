@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1064` effects
+- `1084` effects
 
 ## Tally
 
@@ -1045,6 +1045,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Weapon Change` | `src_custom/spell_effects/weapon_change.c` |
 | `spell_effects` | `Wetlands` | `src_custom/spell_effects/wetlands.c` |
 | `activated_effects` | `X Saber Airbellum` | `src_custom/activated_effects/x_saber_airbellum.c` |
+| `activated_effects` | `A Cat Of Ill Omen` | `src_custom/activated_effects/a_cat_of_ill_omen.c` |
+| `activated_effects` | `Amazoness Augusta` | `src_custom/activated_effects/amazoness_augusta.c` |
+| `activated_effects` | `Amazoness Baby Tiger` | `src_custom/activated_effects/amazoness_baby_tiger.c` |
+| `activated_effects` | `Amazoness Empress` | `src_custom/activated_effects/amazoness_empress.c` |
+| `activated_effects` | `Amazoness Pet Liger` | `src_custom/activated_effects/amazoness_pet_liger.c` |
+| `activated_effects` | `Amazoness Pet Liger King` | `src_custom/activated_effects/amazoness_pet_liger_king.c` |
+| `activated_effects` | `Amazoness Princess` | `src_custom/activated_effects/amazoness_princess.c` |
+| `activated_effects` | `Amazoness Queen` | `src_custom/activated_effects/amazoness_queen.c` |
+| `activated_effects` | `Amazoness Sage` | `src_custom/activated_effects/amazoness_sage.c` |
+| `activated_effects` | `Amazoness Scouts` | `src_custom/activated_effects/amazoness_scouts.c` |
+| `activated_effects` | `Alector Sovereign Of Birds` | `src_custom/activated_effects/alector_sovereign_of_birds.c` |
+| `spell_effects` | `Amazoness Call` | `src_custom/spell_effects/amazoness_call.c` |
+| `spell_effects` | `Amazoness Fighting Spirit` | `src_custom/spell_effects/amazoness_fighting_spirit.c` |
+| `spell_effects` | `Amazoness Heirloom` | `src_custom/spell_effects/amazoness_heirloom.c` |
+| `spell_effects` | `Amazoness Secret Arts` | `src_custom/spell_effects/amazoness_secret_arts.c` |
+| `trap_effects` | `Aegis Of The Ocean Dragon Lord` | `src_custom/trap_effects/aegis_of_the_ocean_dragon_lord.c` |
+| `trap_effects` | `Amazoness Hall` | `src_custom/trap_effects/amazoness_hall.c` |
+| `trap_effects` | `Amazoness Hot Spring` | `src_custom/trap_effects/amazoness_hot_spring.c` |
+| `trap_effects` | `Amazoness Onslaught` | `src_custom/trap_effects/amazoness_onslaught.c` |
+| `trap_effects` | `Amazoness Shamanism` | `src_custom/trap_effects/amazoness_shamanism.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

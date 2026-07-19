@@ -564,3 +564,13 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire SCRAP_IRON_SCARECROW in trap dispatcher */
 /* URGENT_TUNING trap effect */
   /* TODO: wire URGENT_TUNING in trap dispatcher */
+/* AEGIS_OF_THE_OCEAN_DRAGON_LORD trap effect */
+  /* TODO: wire AEGIS_OF_THE_OCEAN_DRAGON_LORD in trap dispatcher */
+/* AMAZONESS_HALL trap effect */
+  /* TODO: wire AMAZONESS_HALL in trap dispatcher */
+/* AMAZONESS_HOT_SPRING trap effect */
+  /* TODO: wire AMAZONESS_HOT_SPRING in trap dispatcher */
+/* AMAZONESS_ONSLAUGHT trap effect */
+  /* TODO: wire AMAZONESS_ONSLAUGHT in trap dispatcher */
+/* AMAZONESS_SHAMANISM trap effect */
+  /* TODO: wire AMAZONESS_SHAMANISM in trap dispatcher */

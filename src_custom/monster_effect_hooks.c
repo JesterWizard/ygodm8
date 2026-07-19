@@ -784,6 +784,28 @@ unsigned char CanActivateWARRIOR_OF_ATLANTIS(void);
 void ActivateWARRIOR_OF_ATLANTISEffect(void);
 unsigned char CanActivateX_SABER_AIRBELLUM(void);
 void ActivateX_SABER_AIRBELLUMEffect(void);
+unsigned char CanActivateA_CAT_OF_ILL_OMEN(void);
+void ActivateA_CAT_OF_ILL_OMENEffect(void);
+unsigned char CanActivateAMAZONESS_AUGUSTA(void);
+void ActivateAMAZONESS_AUGUSTAEffect(void);
+unsigned char CanActivateAMAZONESS_BABY_TIGER(void);
+void ActivateAMAZONESS_BABY_TIGEREffect(void);
+unsigned char CanActivateAMAZONESS_EMPRESS(void);
+void ActivateAMAZONESS_EMPRESSEffect(void);
+unsigned char CanActivateAMAZONESS_PET_LIGER(void);
+void ActivateAMAZONESS_PET_LIGEREffect(void);
+unsigned char CanActivateAMAZONESS_PET_LIGER_KING(void);
+void ActivateAMAZONESS_PET_LIGER_KINGEffect(void);
+unsigned char CanActivateAMAZONESS_PRINCESS(void);
+void ActivateAMAZONESS_PRINCESSEffect(void);
+unsigned char CanActivateAMAZONESS_QUEEN(void);
+void ActivateAMAZONESS_QUEENEffect(void);
+unsigned char CanActivateAMAZONESS_SAGE(void);
+void ActivateAMAZONESS_SAGEEffect(void);
+unsigned char CanActivateAMAZONESS_SCOUTS(void);
+void ActivateAMAZONESS_SCOUTSEffect(void);
+unsigned char CanActivateALECTOR_SOVEREIGN_OF_BIRDS(void);
+void ActivateALECTOR_SOVEREIGN_OF_BIRDSEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2967,6 +2989,50 @@ FAILED:
   }
   if (gMonEffect.id == X_SABER_AIRBELLUM) {
     ActivateX_SABER_AIRBELLUMEffect();
+    return;
+  }
+  if (gMonEffect.id == A_CAT_OF_ILL_OMEN) {
+    ActivateA_CAT_OF_ILL_OMENEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_AUGUSTA) {
+    ActivateAMAZONESS_AUGUSTAEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_BABY_TIGER) {
+    ActivateAMAZONESS_BABY_TIGEREffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_EMPRESS) {
+    ActivateAMAZONESS_EMPRESSEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_PET_LIGER) {
+    ActivateAMAZONESS_PET_LIGEREffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_PET_LIGER_KING) {
+    ActivateAMAZONESS_PET_LIGER_KINGEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_PRINCESS) {
+    ActivateAMAZONESS_PRINCESSEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_QUEEN) {
+    ActivateAMAZONESS_QUEENEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_SAGE) {
+    ActivateAMAZONESS_SAGEEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_SCOUTS) {
+    ActivateAMAZONESS_SCOUTSEffect();
+    return;
+  }
+  if (gMonEffect.id == ALECTOR_SOVEREIGN_OF_BIRDS) {
+    ActivateALECTOR_SOVEREIGN_OF_BIRDSEffect();
     return;
   }
 }

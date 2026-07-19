@@ -215,6 +215,8 @@ _kernel_malloc_ewram_array gTimedDuelCompletionFlags, 0x10
 @ Mechanics tutorials: active id (index + 1), intro-shown flag, pending summon card.
 _kernel_malloc_ewram gMechanicsTutorialActiveId, 1
 _kernel_malloc_ewram gMechanicsTutorialIntroDone, 1
+@ ponytail: pad keeps gMechanicsTutorialPendingCardId on an even EWRAM address.
+_kernel_malloc_ewram gMechanicsTutorialPendingCardId_Align, 1
 _kernel_malloc_ewram gMechanicsTutorialPendingCardId, 2
 
 @ Status menu: one byte per Millennium Item (nonzero = owned).

@@ -8,6 +8,18 @@
     case ALLURING_MIRROR_SPLIT:
       EffectALLURING_MIRROR_SPLIT();
       return;
+    case AMAZONESS_CALL:
+      EffectAMAZONESS_CALL();
+      return;
+    case AMAZONESS_FIGHTING_SPIRIT:
+      EffectAMAZONESS_FIGHTING_SPIRIT();
+      return;
+    case AMAZONESS_HEIRLOOM:
+      EffectAMAZONESS_HEIRLOOM();
+      return;
+    case AMAZONESS_SECRET_ARTS:
+      EffectAMAZONESS_SECRET_ARTS();
+      return;
     case ANCIENT_GEAR_ADVANCE:
       EffectANCIENT_GEAR_ADVANCE();
       return;
