@@ -336,6 +336,36 @@ static void RestoreBuyShopChromeTilemap(void) {
     CpuCopy16(g80CB3D4[i], gBgVram.sbb1F[i], 60);
 }
 
+/* ROM tables — not linker symbols (only referenced from naked asm). */
+static u16 const *const sShopCursorY = (u16 const *)0x080CDE5A;
+static u16 const *const sShopCursorX = (u16 const *)0x080CDE64;
+static u8 const (*const sShopWinY)[2] = (u8 const (*)[2])0x080CDE72;
+static u16 const *const sShopWinX = (u16 const *)0x080CDE7C;
+
+/*
+ * Obj-window sprite undims the selected slot (BG2 is darkened via BLDCNT).
+ * Cards: one 32x32 window. Packs: two stacked 32x32 windows (full 32x64).
+ */
+static void UpdateShopHighlightWindow(void) {
+  u32 *oam = (u32 *)gOamBuffer + 8;
+  u8 col = (u8)sCardShop.cursorColumn;
+  u8 row = (u8)sCardShop.cursorRow;
+  u32 x = sShopWinX[col];
+  u32 y = sShopWinY[row][0];
+
+  oam[0] = ((x << 16) & 0x01FF0000) | (y & 0xFF) | 0x80000800;
+  oam[1] = 0x804;
+
+  if (gBuyShopPackView) {
+    y = (y + 32) & 0xFF;
+    oam[2] = ((x << 16) & 0x01FF0000) | y | 0x80000800;
+    oam[3] = 0x804;
+  } else {
+    oam[2] = 0x00A0;
+    oam[3] = 0x804;
+  }
+}
+
 /* Buffer-only UI update. Caller must CommitBuyShopPackFrame (or equiv) after. */
 static void RefreshBuyShopSelectionUi(void) {
   u16 cardId = *sCardShop.unk0[sCardShop.cursorRow][sCardShop.cursorColumn];
@@ -350,11 +380,8 @@ static void RefreshBuyShopSelectionUi(void) {
     sub_802FD48(cardId);
   }
   sub_802FB08__Replacement();
+  UpdateShopHighlightWindow();
 }
-
-/* ROM tables — not linker symbols (only referenced from naked asm). */
-static u16 const *const sShopCursorY = (u16 const *)0x080CDE5A;
-static u16 const *const sShopCursorX = (u16 const *)0x080CDE64;
 
 /*
  * LYN_REPLACEMENT(sub_802FB08)
@@ -427,6 +454,8 @@ static void RestoreBuyShopGraphicsAfterReveal(void) {
   SetVBlankCallback(sub_8030654);
   WaitForVBlank();
   sub_8030760(); /* LoadVRAM — packs + HUD buffers */
+  if (gBuyShopPackView)
+    REG_WINOUT = 0x1E3F; /* sub_803060C resets to 0x1C3F (no BG1 in objwin) */
 }
 
 /* Fade to a trunk/deck-style list of the 5 pulled cards. */
@@ -533,10 +562,13 @@ static void ToggleBuyShopPackView(void) {
   gBuyShopPackView ^= 1;
   if (gBuyShopPackView) {
     SnapCursorToPackTop();
+    /* Obj-window normally hides BG1; include it so pack names draw over the highlight. */
+    REG_WINOUT = 0x1E3F;
   } else {
     RestoreBuyShopChromeTilemap();
     sub_802EA74();
     sub_802FCF0(sCardShop.currentSortMode);
+    REG_WINOUT = 0x1C3F;
   }
   sub_802FE68();
   RefreshBuyShopSelectionUi();
