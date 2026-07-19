@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1184` effects
+- `1204` effects
 
 ## Tally
 
@@ -1165,6 +1165,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Maxx C` | `src_custom/activated_effects/maxx_c.c` |
 | `spell_effects` | `Obliterate Blaze` | `src_custom/spell_effects/obliterate_blaze.c` |
 | `trap_effects` | `Queens Pawn` | `src_custom/trap_effects/queens_pawn.c` |
+| `trap_effects` | `Rite Of Spirit` | `src_custom/trap_effects/rite_of_spirit.c` |
+| `trap_effects` | `Soul Levy` | `src_custom/trap_effects/soul_levy.c` |
+| `spell_effects` | `Royal Tribute` | `src_custom/spell_effects/royal_tribute.c` |
+| `spell_effects` | `Salvage` | `src_custom/spell_effects/salvage.c` |
+| `spell_effects` | `Shard Of Greed` | `src_custom/spell_effects/shard_of_greed.c` |
+| `spell_effects` | `Shining Sarcophagus` | `src_custom/spell_effects/shining_sarcophagus.c` |
+| `spell_effects` | `Surface` | `src_custom/spell_effects/surface.c` |
+| `activated_effects` | `Silent Swordsman` | `src_custom/activated_effects/silent_swordsman.c` |
+| `activated_effects` | `Silent Swordsman Lv3` | `src_custom/activated_effects/silent_swordsman_lv3.c` |
+| `activated_effects` | `Silent Swordsman Lv5` | `src_custom/activated_effects/silent_swordsman_lv5.c` |
+| `activated_effects` | `Silent Swordsman Lv7` | `src_custom/activated_effects/silent_swordsman_lv7.c` |
+| `activated_effects` | `Silent Swordsman Zero` | `src_custom/activated_effects/silent_swordsman_zero.c` |
+| `activated_effects` | `Soul Absorbing Bone Tower` | `src_custom/activated_effects/soul_absorbing_bone_tower.c` |
+| `activated_effects` | `Spined Gillman` | `src_custom/activated_effects/spined_gillman.c` |
+| `activated_effects` | `Substitoad` | `src_custom/activated_effects/substitoad.c` |
+| `activated_effects` | `The Agent Of Destruction Venus` | `src_custom/activated_effects/the_agent_of_destruction_venus.c` |
+| `activated_effects` | `The Agent Of Entropy Uranus` | `src_custom/activated_effects/the_agent_of_entropy_uranus.c` |
+| `activated_effects` | `The Agent Of Life Neptune` | `src_custom/activated_effects/the_agent_of_life_neptune.c` |
+| `activated_effects` | `The Agent Of Miracles Jupiter` | `src_custom/activated_effects/the_agent_of_miracles_jupiter.c` |
+| `spell_effects` | `Summoners Art` | `src_custom/spell_effects/summoners_art.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

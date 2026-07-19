@@ -936,6 +936,30 @@ unsigned char CanActivatePROTECTOR_OF_THE_AGENTS_MOON(void);
 void ActivatePROTECTOR_OF_THE_AGENTS_MOONEffect(void);
 unsigned char CanActivateMAXX_C(void);
 void ActivateMAXX_CEffect(void);
+unsigned char CanActivateSILENT_SWORDSMAN(void);
+void ActivateSILENT_SWORDSMANEffect(void);
+unsigned char CanActivateSILENT_SWORDSMAN_LV3(void);
+void ActivateSILENT_SWORDSMAN_LV3Effect(void);
+unsigned char CanActivateSILENT_SWORDSMAN_LV5(void);
+void ActivateSILENT_SWORDSMAN_LV5Effect(void);
+unsigned char CanActivateSILENT_SWORDSMAN_LV7(void);
+void ActivateSILENT_SWORDSMAN_LV7Effect(void);
+unsigned char CanActivateSILENT_SWORDSMAN_ZERO(void);
+void ActivateSILENT_SWORDSMAN_ZEROEffect(void);
+unsigned char CanActivateSOUL_ABSORBING_BONE_TOWER(void);
+void ActivateSOUL_ABSORBING_BONE_TOWEREffect(void);
+unsigned char CanActivateSPINED_GILLMAN(void);
+void ActivateSPINED_GILLMANEffect(void);
+unsigned char CanActivateSUBSTITOAD(void);
+void ActivateSUBSTITOADEffect(void);
+unsigned char CanActivateTHE_AGENT_OF_DESTRUCTION_VENUS(void);
+void ActivateTHE_AGENT_OF_DESTRUCTION_VENUSEffect(void);
+unsigned char CanActivateTHE_AGENT_OF_ENTROPY_URANUS(void);
+void ActivateTHE_AGENT_OF_ENTROPY_URANUSEffect(void);
+unsigned char CanActivateTHE_AGENT_OF_LIFE_NEPTUNE(void);
+void ActivateTHE_AGENT_OF_LIFE_NEPTUNEEffect(void);
+unsigned char CanActivateTHE_AGENT_OF_MIRACLES_JUPITER(void);
+void ActivateTHE_AGENT_OF_MIRACLES_JUPITEREffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -3423,6 +3447,54 @@ FAILED:
   }
   if (gMonEffect.id == MAXX_C) {
     ActivateMAXX_CEffect();
+    return;
+  }
+  if (gMonEffect.id == SILENT_SWORDSMAN) {
+    ActivateSILENT_SWORDSMANEffect();
+    return;
+  }
+  if (gMonEffect.id == SILENT_SWORDSMAN_LV3) {
+    ActivateSILENT_SWORDSMAN_LV3Effect();
+    return;
+  }
+  if (gMonEffect.id == SILENT_SWORDSMAN_LV5) {
+    ActivateSILENT_SWORDSMAN_LV5Effect();
+    return;
+  }
+  if (gMonEffect.id == SILENT_SWORDSMAN_LV7) {
+    ActivateSILENT_SWORDSMAN_LV7Effect();
+    return;
+  }
+  if (gMonEffect.id == SILENT_SWORDSMAN_ZERO) {
+    ActivateSILENT_SWORDSMAN_ZEROEffect();
+    return;
+  }
+  if (gMonEffect.id == SOUL_ABSORBING_BONE_TOWER) {
+    ActivateSOUL_ABSORBING_BONE_TOWEREffect();
+    return;
+  }
+  if (gMonEffect.id == SPINED_GILLMAN) {
+    ActivateSPINED_GILLMANEffect();
+    return;
+  }
+  if (gMonEffect.id == SUBSTITOAD) {
+    ActivateSUBSTITOADEffect();
+    return;
+  }
+  if (gMonEffect.id == THE_AGENT_OF_DESTRUCTION_VENUS) {
+    ActivateTHE_AGENT_OF_DESTRUCTION_VENUSEffect();
+    return;
+  }
+  if (gMonEffect.id == THE_AGENT_OF_ENTROPY_URANUS) {
+    ActivateTHE_AGENT_OF_ENTROPY_URANUSEffect();
+    return;
+  }
+  if (gMonEffect.id == THE_AGENT_OF_LIFE_NEPTUNE) {
+    ActivateTHE_AGENT_OF_LIFE_NEPTUNEEffect();
+    return;
+  }
+  if (gMonEffect.id == THE_AGENT_OF_MIRACLES_JUPITER) {
+    ActivateTHE_AGENT_OF_MIRACLES_JUPITEREffect();
     return;
   }
 }

@@ -2055,11 +2055,31 @@
 #define MAXX_C                                   0x0803
 #define OBLITERATE_BLAZE                         0x0804
 #define QUEENS_PAWN                              0x0805
+#define RITE_OF_SPIRIT                           0x0806
+#define SOUL_LEVY                                0x0807
+#define ROYAL_TRIBUTE                            0x0808
+#define SALVAGE                                  0x0809
+#define SHARD_OF_GREED                           0x080A
+#define SHINING_SARCOPHAGUS                      0x080B
+#define SURFACE                                  0x080C
+#define SILENT_SWORDSMAN                         0x080D
+#define SILENT_SWORDSMAN_LV3                     0x080E
+#define SILENT_SWORDSMAN_LV5                     0x080F
+#define SILENT_SWORDSMAN_LV7                     0x0810
+#define SILENT_SWORDSMAN_ZERO                    0x0811
+#define SOUL_ABSORBING_BONE_TOWER                0x0812
+#define SPINED_GILLMAN                           0x0813
+#define SUBSTITOAD                               0x0814
+#define THE_AGENT_OF_DESTRUCTION_VENUS           0x0815
+#define THE_AGENT_OF_ENTROPY_URANUS              0x0816
+#define THE_AGENT_OF_LIFE_NEPTUNE                0x0817
+#define THE_AGENT_OF_MIRACLES_JUPITER            0x0818
+#define SUMMONERS_ART                            0x0819
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0806
-#define NUM_CUSTOM_CARDS                        0x04E5
+#define NUM_TOTAL_CARDS                         0x081A
+#define NUM_CUSTOM_CARDS                        0x04F9
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

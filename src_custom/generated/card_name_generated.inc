@@ -1254,6 +1254,26 @@ static const u8 sProtectorOfTheAgentsMoonName[] __attribute__((section(".append_
 static const u8 sMaxxCName[] __attribute__((section(".append_assets"))) = "Maxx C";
 static const u8 sObliterateBlazeName[] __attribute__((section(".append_assets"))) = "Obliterate!!! Blaze";
 static const u8 sQueensPawnName[] __attribute__((section(".append_assets"))) = "Queen's Pawn";
+static const u8 sRiteOfSpiritName[] __attribute__((section(".append_assets"))) = "Rite of Spirit";
+static const u8 sSoulLevyName[] __attribute__((section(".append_assets"))) = "Soul Levy";
+static const u8 sRoyalTributeName[] __attribute__((section(".append_assets"))) = "Royal Tribute";
+static const u8 sSalvageName[] __attribute__((section(".append_assets"))) = "Salvage";
+static const u8 sShardOfGreedName[] __attribute__((section(".append_assets"))) = "Shard of Greed";
+static const u8 sShiningSarcophagusName[] __attribute__((section(".append_assets"))) = "Shining Sarcophagus";
+static const u8 sSurfaceName[] __attribute__((section(".append_assets"))) = "Surface";
+static const u8 sSilentSwordsmanName[] __attribute__((section(".append_assets"))) = "Silent Swordsman";
+static const u8 sSilentSwordsmanLv3Name[] __attribute__((section(".append_assets"))) = "Silent Swordsman LV3";
+static const u8 sSilentSwordsmanLv5Name[] __attribute__((section(".append_assets"))) = "Silent Swordsman LV5";
+static const u8 sSilentSwordsmanLv7Name[] __attribute__((section(".append_assets"))) = "Silent Swordsman LV7";
+static const u8 sSilentSwordsmanZeroName[] __attribute__((section(".append_assets"))) = "Silent Swordsman Zero";
+static const u8 sSoulAbsorbingBoneTowerName[] __attribute__((section(".append_assets"))) = "Soul-Absorbing Bone Tower";
+static const u8 sSpinedGillmanName[] __attribute__((section(".append_assets"))) = "Spined Gillman";
+static const u8 sSubstitoadName[] __attribute__((section(".append_assets"))) = "Substitoad";
+static const u8 sTheAgentOfDestructionVenusName[] __attribute__((section(".append_assets"))) = "The Agent of Destruction - Venus";
+static const u8 sTheAgentOfEntropyUranusName[] __attribute__((section(".append_assets"))) = "The Agent of Entropy - Uranus";
+static const u8 sTheAgentOfLifeNeptuneName[] __attribute__((section(".append_assets"))) = "The Agent of Life - Neptune";
+static const u8 sTheAgentOfMiraclesJupiterName[] __attribute__((section(".append_assets"))) = "The Agent of Miracles - Jupiter";
+static const u8 sSummonersArtName[] __attribute__((section(".append_assets"))) = "Summoner's Art";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3768,6 +3788,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sObliterateBlazeName;
   if (cardId == 0x0805)
     return (u8 *)sQueensPawnName;
+  if (cardId == 0x0806)
+    return (u8 *)sRiteOfSpiritName;
+  if (cardId == 0x0807)
+    return (u8 *)sSoulLevyName;
+  if (cardId == 0x0808)
+    return (u8 *)sRoyalTributeName;
+  if (cardId == 0x0809)
+    return (u8 *)sSalvageName;
+  if (cardId == 0x080A)
+    return (u8 *)sShardOfGreedName;
+  if (cardId == 0x080B)
+    return (u8 *)sShiningSarcophagusName;
+  if (cardId == 0x080C)
+    return (u8 *)sSurfaceName;
+  if (cardId == 0x080D)
+    return (u8 *)sSilentSwordsmanName;
+  if (cardId == 0x080E)
+    return (u8 *)sSilentSwordsmanLv3Name;
+  if (cardId == 0x080F)
+    return (u8 *)sSilentSwordsmanLv5Name;
+  if (cardId == 0x0810)
+    return (u8 *)sSilentSwordsmanLv7Name;
+  if (cardId == 0x0811)
+    return (u8 *)sSilentSwordsmanZeroName;
+  if (cardId == 0x0812)
+    return (u8 *)sSoulAbsorbingBoneTowerName;
+  if (cardId == 0x0813)
+    return (u8 *)sSpinedGillmanName;
+  if (cardId == 0x0814)
+    return (u8 *)sSubstitoadName;
+  if (cardId == 0x0815)
+    return (u8 *)sTheAgentOfDestructionVenusName;
+  if (cardId == 0x0816)
+    return (u8 *)sTheAgentOfEntropyUranusName;
+  if (cardId == 0x0817)
+    return (u8 *)sTheAgentOfLifeNeptuneName;
+  if (cardId == 0x0818)
+    return (u8 *)sTheAgentOfMiraclesJupiterName;
+  if (cardId == 0x0819)
+    return (u8 *)sSummonersArtName;
 
   return gCardNames[cardId];
 }

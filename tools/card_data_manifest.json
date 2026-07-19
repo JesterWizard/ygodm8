@@ -39846,7 +39846,7 @@
         "pages": "While a Gravekeeper's monster(s) and Necrovalley are both on the field, monsters your opponent controls lose 500 ATK/DEF. Once per turn, during the Main Phase, if you control no card in your Field Zone: You can activate 1 Necrovalley directly from your hand or GY. If this card in your possession is destroyed by an opponent's effect and sent to your GY: You can Set 1 Necrovalley Spell/Trap directly from your Deck, except Necrovalley Temple."
       },
       "effect_texts": {
-        "popup_1": "While a \"Gravekeeper's\" monster(s) and \"Necrovalley\" are both on the field, monsters your opponent controls lose 500 ATK"
+        "popup_1": "While a Gravekeeper's monster(s) and Necrovalley are both on the field, monsters your opponent controls lose 500 ATK"
       }
     },
     {
@@ -39934,7 +39934,7 @@
         "pages": "2 Fairy monsters If this card is Link Summoned: You can send 1 The Sanctuary in the Sky or 1 card that mentions it from your Deck to the GY, or if The Sanctuary in the Sky is on the field or in either GY, you can add 1 The Agent of Mystery - Earth from your Deck or GY to your hand instead. You can Tribute 1 Fairy monster, then target 1 card your opponent controls; destroy it. You can only use each effect of Protector of The Agents - Moon once per turn."
       },
       "effect_texts": {
-        "popup_1": "2 Fairy monsters\r\nIf this card is Link Summoned: You can send 1 \"The Sanctuary in the Sky\" or 1 card that mentions it fr"
+        "popup_1": "2 Fairy monsters If this card is Link Summoned: You can send 1 The Sanctuary in the Sky or 1 card that mentions it fr"
       }
     },
     {
@@ -40001,6 +40001,446 @@
       },
       "effect_texts": {
         "popup_1": "Activate only when an Amazoness monster you control destroys an opponent's monster by battle and sends it to the Grave"
+      }
+    },
+    {
+      "card_const": "RITE_OF_SPIRIT",
+      "card_name": "Rite of Spirit",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 0, 4, 5, 0, 5, 3, 1],
+      "description": {
+        "symbol": "gDescription_RiteOfSpirit",
+        "pages": "Target 1 Gravekeeper's monster in your GY; Special Summon that target. This card's activation and effect are unaffected by Necrovalley."
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Gravekeeper's monster in your GY; Special Summon that target. This card's activation and effect are unaffecte"
+      }
+    },
+    {
+      "card_const": "SOUL_LEVY",
+      "card_name": "Soul Levy",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 7, 8, 4, 4, 9, 2, 6],
+      "description": {
+        "symbol": "gDescription_SoulLevy",
+        "pages": "You can only control 1 Soul Levy. Each time your opponent Special Summons a monster(s), send the top 3 cards of your opponent's Deck to the GY."
+      },
+      "effect_texts": {
+        "popup_1": "You can only control 1 Soul Levy. Each time your opponent Special Summons a monster(s), send the top 3 cards of your o"
+      }
+    },
+    {
+      "card_const": "ROYAL_TRIBUTE",
+      "card_name": "Royal Tribute",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 2, 4, 0, 5, 9, 6, 7],
+      "description": {
+        "symbol": "gDescription_RoyalTribute",
+        "pages": "If you control Necrovalley: Both players discard any monsters in their hands."
+      },
+      "effect_texts": {
+        "popup_1": "If you control Necrovalley: Both players discard any monsters in their hands."
+      }
+    },
+    {
+      "card_const": "SALVAGE",
+      "card_name": "Salvage",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 6, 9, 4, 7, 6, 4, 8],
+      "description": {
+        "symbol": "gDescription_Salvage",
+        "pages": "Target 2 WATER monsters with 1500 or less ATK in your Graveyard; add those targets to your hand."
+      },
+      "effect_texts": {
+        "popup_1": "Target 2 WATER monsters with 1500 or less ATK in your Graveyard; add those targets to your hand."
+      }
+    },
+    {
+      "card_const": "SHARD_OF_GREED",
+      "card_name": "Shard of Greed",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 3, 9, 0, 4, 0, 2, 4],
+      "description": {
+        "symbol": "gDescription_ShardOfGreed",
+        "pages": "Each time you draw a card(s) for your normal draw in your Draw Phase, place 1 Greed Counter on this card. You can send this card with 2 or more Greed Counters to the GY; draw 2 cards."
+      },
+      "effect_texts": {
+        "popup_1": "Each time you draw a card(s) for your normal draw in your Draw Phase, place 1 Greed Counter on this card. You can send t"
+      }
+    },
+    {
+      "card_const": "SHINING_SARCOPHAGUS",
+      "card_name": "Shining Sarcophagus",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 9, 7, 9, 1, 8, 7, 8],
+      "description": {
+        "symbol": "gDescription_ShiningSarcophagus",
+        "pages": "Cannot be destroyed by monster effects. You can only use each of the following effects of Shining Sarcophagus once per turn. During your Main Phase: You can add 1 card that mentions Shining Sarcophagus from your Deck to your hand, except Shining Sarcophagus. If your opponent Special Summons a monster(s) from the GY (except during the Damage Step): You can discard 1 Spell, then target 1 of those monsters; send it to the GY."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be destroyed by monster effects. You can only use each of the following effects of Shining Sarcophagus once per"
+      }
+    },
+    {
+      "card_const": "SURFACE",
+      "card_name": "Surface",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 3, 0, 5, 7, 9, 5, 1],
+      "description": {
+        "symbol": "gDescription_Surface",
+        "pages": "Target 1 Level 3 or lower Fish, Sea Serpent, or Aqua monster in your GY; Special Summon it in face-up Defense Position."
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Level 3 or lower Fish, Sea Serpent, or Aqua monster in your GY; Special Summon it in face-up Defense Position."
+      }
+    },
+    {
+      "card_const": "SILENT_SWORDSMAN",
+      "card_name": "Silent Swordsman",
+      "atk": 1000,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 5, 1, 8, 0, 0, 4, 1],
+      "description": {
+        "symbol": "gDescription_SilentSwordsman",
+        "pages": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 Warrior-Type monster, and cannot be Special Summoned by other ways. Once per turn, during the Standby Phase: This card gains 500 ATK. Once per turn, during either player's turn, when a Spell Card is activated: You can negate the activation. If this card is destroyed by battle, or if this card in its owner's control is destroyed by an opponent's card effect: You can Special Summon 1 Silent Swordsman monster from your hand or Deck, except Silent Swordsman, ignoring its Summoning conditions."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 Warrior-Type monster, and cannot"
+      }
+    },
+    {
+      "card_const": "SILENT_SWORDSMAN_LV3",
+      "card_name": "Silent Swordsman LV3",
+      "atk": 1000,
+      "def": 1000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [0, 1, 9, 9, 5, 9, 8, 5],
+      "description": {
+        "symbol": "gDescription_SilentSwordsmanLv3",
+        "pages": "Negate your opponent's Spell effects that target this card. During your Standby Phase: You can send this face-up card to the Graveyard; Special Summon 1 Silent Swordsman LV5 from your hand or Deck. You cannot activate this effect the turn this card is Summoned or flipped face-up."
+      },
+      "effect_texts": {
+        "popup_1": "Negate your opponent's Spell effects that target this card. During your Standby Phase: You can send this face-up card to"
+      }
+    },
+    {
+      "card_const": "SILENT_SWORDSMAN_LV5",
+      "card_name": "Silent Swordsman LV5",
+      "atk": 2300,
+      "def": 1000,
+      "level": 5,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [7, 4, 3, 8, 8, 7, 9, 8],
+      "description": {
+        "symbol": "gDescription_SilentSwordsmanLv5",
+        "pages": "Unaffected by your opponent's Spell effects. During your next Standby Phase after this card inflicts battle damage to your opponent by a direct attack: You can send this face-up card to the Graveyard; Special Summon 1 Silent Swordsman LV7 from your hand or Deck."
+      },
+      "effect_texts": {
+        "popup_1": "Unaffected by your opponent's Spell effects. During your next Standby Phase after this card inflicts battle damage to yo"
+      }
+    },
+    {
+      "card_const": "SILENT_SWORDSMAN_LV7",
+      "card_name": "Silent Swordsman LV7",
+      "atk": 2800,
+      "def": 1000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [3, 7, 2, 6, 7, 0, 4, 1],
+      "description": {
+        "symbol": "gDescription_SilentSwordsmanLv7",
+        "pages": "Cannot be Normal Summoned/Set. Must be Special Summoned by Silent Swordsman LV5, and cannot be Special Summoned by other ways. Negate all Spell effects on the field."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned by Silent Swordsman LV5, and cannot be Special Summoned by oth"
+      }
+    },
+    {
+      "card_const": "SILENT_SWORDSMAN_ZERO",
+      "card_name": "Silent Swordsman Zero",
+      "atk": 1000,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [3, 9, 3, 2, 1, 0, 6, 5],
+      "description": {
+        "symbol": "gDescription_SilentSwordsmanZero",
+        "pages": "Once per turn, during the Standby Phase: Increase this card's Level by 1. While this card's Level is higher than its original Level, it gains ATK equal to the difference x 500. When your opponent activates a card or effect that targets Shining Sarcophagus, or a monster(s) that mentions it, that you control (Quick Effect): You can negate the activation, and if you do, increase this card's Level by 1. You can only use this effect of Silent Swordsman Zero once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn, during the Standby Phase: Increase this card's Level by 1. While this card's Level is higher than its ori"
+      }
+    },
+    {
+      "card_const": "SOUL_ABSORBING_BONE_TOWER",
+      "card_name": "Soul-Absorbing Bone Tower",
+      "atk": 400,
+      "def": 1500,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_ZOMBIE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 3, 0, 1, 2, 3, 3, 3],
+      "description": {
+        "symbol": "gDescription_SoulAbsorbingBoneTower",
+        "pages": "If you control another Zombie-Type monster, your opponent cannot target this card for attacks. Each time a Zombie-Type monster(s) is Special Summoned: Send the top 2 cards of your opponent's Deck to the Graveyard."
+      },
+      "effect_texts": {
+        "popup_1": "If you control another Zombie-Type monster, your opponent cannot target this card for attacks. Each time a Zombie-Type m"
+      }
+    },
+    {
+      "card_const": "SPINED_GILLMAN",
+      "card_name": "Spined Gillman",
+      "atk": 1300,
+      "def": 0,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 2, 4, 6, 3, 4, 1, 4],
+      "description": {
+        "symbol": "gDescription_SpinedGillman",
+        "pages": "All Fish, Sea Serpent, and Aqua-Type monsters you control gain 400 ATK."
+      },
+      "effect_texts": {
+        "popup_1": "All Fish, Sea Serpent, and Aqua-Type monsters you control gain 400 ATK."
+      }
+    },
+    {
+      "card_const": "SUBSTITOAD",
+      "card_name": "Substitoad",
+      "atk": 100,
+      "def": 2000,
+      "level": 1,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_AQUA",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 274,
+      "password": [2, 0, 6, 6, 3, 5, 5, 6],
+      "description": {
+        "symbol": "gDescription_Substitoad",
+        "pages": "You can Tribute 1 monster to Special Summon 1 Frog monster from your Deck, except Frog the Jam. Frog monsters, except Frog the Jam, cannot be destroyed by battle."
+      },
+      "effect_texts": {
+        "popup_1": "You can Tribute 1 monster to Special Summon 1 Frog monster from your Deck, except Frog the Jam. Frog monsters, exc"
+      }
+    },
+    {
+      "card_const": "THE_AGENT_OF_DESTRUCTION_VENUS",
+      "card_name": "The Agent of Destruction - Venus",
+      "atk": 0,
+      "def": 1600,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 274,
+      "password": [9, 9, 0, 5, 4, 8, 8, 5],
+      "description": {
+        "symbol": "gDescription_TheAgentOfDestructionVenus",
+        "pages": "You can banish 1 The Agent of Creation - Venus from your GY; Special Summon this card from your hand. You can pay LP in multiples of 500, then for every 500 LP paid, target 1 of your Mystical Shine Ball that is banished or in your GY; Special Summon them, but place them on the bottom of the Deck when they leave the field. You can only use 1 The Agent of Destruction - Venus effect per turn, and only once that turn."
+      },
+      "effect_texts": {
+        "popup_1": "You can banish 1 The Agent of Creation - Venus from your GY; Special Summon this card from your hand. You can pay LP i"
+      }
+    },
+    {
+      "card_const": "THE_AGENT_OF_ENTROPY_URANUS",
+      "card_name": "The Agent of Entropy - Uranus",
+      "atk": 2200,
+      "def": 1200,
+      "level": 5,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 500,
+      "password": [9, 7, 7, 5, 0, 5, 3, 4],
+      "description": {
+        "symbol": "gDescription_TheAgentOfEntropyUranus",
+        "pages": "If The Sanctuary in the Sky is on the field, you can Special Summon this card (from your hand). Once per turn: You can send 1 The Agent monster from your Deck to the Graveyard, and if you do, this card's Level becomes the Level of the monster sent to the Graveyard by this effect."
+      },
+      "effect_texts": {
+        "popup_1": "If The Sanctuary in the Sky is on the field, you can Special Summon this card (from your hand). Once per turn: You can"
+      }
+    },
+    {
+      "card_const": "THE_AGENT_OF_LIFE_NEPTUNE",
+      "card_name": "The Agent of Life - Neptune",
+      "atk": 0,
+      "def": 600,
+      "level": 1,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 19,
+      "password": [3, 8, 5, 2, 9, 3, 5, 7],
+      "description": {
+        "symbol": "gDescription_TheAgentOfLifeNeptune",
+        "pages": "You can discard this card; Special Summon 1 The Agent monster from your hand or GY, except The Agent of Life - Neptune, or, if The Sanctuary in the Sky is on the field or in either GY, you can Special Summon 1 Hyperion monster instead. Neither player can Tribute a monster Summoned with this effect, until the end of your opponent's turn. If this card is banished: You can add 1 The Sanctuary in the Sky from your Deck to your hand. You can only use each effect of The Agent of Life - Neptune once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "You can discard this card; Special Summon 1 The Agent monster from your hand or GY, except The Agent of Life - Neptun"
+      }
+    },
+    {
+      "card_const": "THE_AGENT_OF_MIRACLES_JUPITER",
+      "card_name": "The Agent of Miracles - Jupiter",
+      "atk": 1800,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [2, 8, 5, 7, 3, 9, 5, 8],
+      "description": {
+        "symbol": "gDescription_TheAgentOfMiraclesJupiter",
+        "pages": "Once per turn, you can remove from play 1 The Agent monster in your Graveyard to select 1 face-up LIGHT Fairy-Type monster you control. The selected monster gains 800 ATK until the End Phase. While The Sanctuary in the Sky is face-up on the field, once per turn, you can discard 1 Fairy-Type monster to select 1 of your removed from play LIGHT Fairy-Type monster, and Special Summon it."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn, you can remove from play 1 The Agent monster in your Graveyard to select 1 face-up LIGHT Fairy-Type mon"
+      }
+    },
+    {
+      "card_const": "SUMMONERS_ART",
+      "card_name": "Summoner's Art",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 9, 8, 1, 6, 5, 3, 6],
+      "description": {
+        "symbol": "gDescription_SummonersArt",
+        "pages": "Add 1 Level 5 or higher Normal Monster from your Deck to your hand."
+      },
+      "effect_texts": {
+        "popup_1": "Add 1 Level 5 or higher Normal Monster from your Deck to your hand."
       }
     }
   ]

@@ -743,11 +743,17 @@
     case RIRYOKU:
       EffectRiryoku();
       return;
+    case ROYAL_TRIBUTE:
+      EffectROYAL_TRIBUTE();
+      return;
     case R_RIGHTEOUS_JUSTICE:
       EffectRRighteousJustice();
       return;
     case SAGES_STONE:
       EffectSagesStone();
+      return;
+    case SALVAGE:
+      EffectSALVAGE();
       return;
     case SCAPEGOAT:
       EffectSCAPEGOAT();
@@ -764,11 +770,17 @@
     case SHADDOLL_FUSION:
       EffectSHADDOLL_FUSION();
       return;
+    case SHARD_OF_GREED:
+      EffectSHARD_OF_GREED();
+      return;
     case SHARE_THE_PAIN:
       EffectSHARE_THE_PAIN();
       return;
     case SHIELD_AND_SWORD:
       EffectShieldAndSword();
+      return;
+    case SHINING_SARCOPHAGUS:
+      EffectSHINING_SARCOPHAGUS();
       return;
     case SILVERS_CRY:
       EffectSILVERS_CRY();
@@ -806,8 +818,14 @@
     case SUIT_OF_SWORD_X:
       EffectSUIT_OF_SWORD_X();
       return;
+    case SUMMONERS_ART:
+      EffectSUMMONERS_ART();
+      return;
     case SUPREME_KINGS_CASTLE:
       EffectSUPREME_KINGS_CASTLE();
+      return;
+    case SURFACE:
+      EffectSURFACE();
       return;
     case SWORDS_OF_REVEALING_LIGHT:
       EffectSwordsOfRevealingLight();

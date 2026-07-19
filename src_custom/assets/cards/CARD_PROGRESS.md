@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1253 |
-| Art ready, needs manifest | 34 |
+| In game (manifest + art) | 1273 |
+| Art ready, needs manifest | 14 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1290** |
 
@@ -1275,31 +1275,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MAXX_C` | Maxx C | `maxx_c.png` |
 | `OBLITERATE_BLAZE` | Obliterate!!! Blaze | `obliterate_blaze.png` |
 | `QUEENS_PAWN` | Queen's Pawn | `queens_pawn.png` |
+| `RITE_OF_SPIRIT` | Rite of Spirit | `rite_of_spirit.png` |
+| `SOUL_LEVY` | Soul Levy | `soul_levy.png` |
+| `ROYAL_TRIBUTE` | Royal Tribute | `royal_tribute.png` |
+| `SALVAGE` | Salvage | `salvage.png` |
+| `SHARD_OF_GREED` | Shard of Greed | `shard_of_greed.png` |
+| `SHINING_SARCOPHAGUS` | Shining Sarcophagus | `shining_sarcophagus.png` |
+| `SURFACE` | Surface | `surface.png` |
+| `SILENT_SWORDSMAN` | Silent Swordsman | `silent_swordsman.png` |
+| `SILENT_SWORDSMAN_LV3` | Silent Swordsman LV3 | `silent_swordsman_lv3.png` |
+| `SILENT_SWORDSMAN_LV5` | Silent Swordsman LV5 | `silent_swordsman_lv5.png` |
+| `SILENT_SWORDSMAN_LV7` | Silent Swordsman LV7 | `silent_swordsman_lv7.png` |
+| `SILENT_SWORDSMAN_ZERO` | Silent Swordsman Zero | `silent_swordsman_zero.png` |
+| `SOUL_ABSORBING_BONE_TOWER` | Soul-Absorbing Bone Tower | `soul_absorbing_bone_tower.png` |
+| `SPINED_GILLMAN` | Spined Gillman | `spined_gillman.png` |
+| `SUBSTITOAD` | Substitoad | `substitoad.png` |
+| `THE_AGENT_OF_DESTRUCTION_VENUS` | The Agent of Destruction - Venus | `the_agent_of_destruction_venus.png` |
+| `THE_AGENT_OF_ENTROPY_URANUS` | The Agent of Entropy - Uranus | `the_agent_of_entropy_uranus.png` |
+| `THE_AGENT_OF_LIFE_NEPTUNE` | The Agent of Life - Neptune | `the_agent_of_life_neptune.png` |
+| `THE_AGENT_OF_MIRACLES_JUPITER` | The Agent of Miracles - Jupiter | `the_agent_of_miracles_jupiter.png` |
+| `SUMMONERS_ART` | Summoner's Art | `summoners_art.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `RITE_OF_SPIRIT` — `rite_of_spirit.png`
-- [ ] `ROYAL_TRIBUTE` — `royal_tribute.png`
-- [ ] `SALVAGE` — `salvage.png`
-- [ ] `SHARD_OF_GREED` — `shard_of_greed.png`
-- [ ] `SHINING_SARCOPHAGUS` — `shining_sarcophagus.png`
-- [ ] `SILENT_SWORDSMAN` — `silent_swordsman.png`
-- [ ] `SILENT_SWORDSMAN_LV3` — `silent_swordsman_lv3.png`
-- [ ] `SILENT_SWORDSMAN_LV5` — `silent_swordsman_lv5.png`
-- [ ] `SILENT_SWORDSMAN_LV7` — `silent_swordsman_lv7.png`
-- [ ] `SILENT_SWORDSMAN_ZERO` — `silent_swordsman_zero.png`
-- [ ] `SOUL_ABSORBING_BONE_TOWER` — `soul_absorbing_bone_tower.png`
-- [ ] `SOUL_LEVY` — `soul_levy.png`
-- [ ] `SPINED_GILLMAN` — `spined_gillman.png`
-- [ ] `SUBSTITOAD` — `substitoad.png`
-- [ ] `SUMMONERS_ART` — `summoners_art.png`
-- [ ] `SURFACE` — `surface.png`
-- [ ] `THE_AGENT_OF_DESTRUCTION_VENUS` — `the_agent_of_destruction_venus.png`
-- [ ] `THE_AGENT_OF_ENTROPY_URANUS` — `the_agent_of_entropy_uranus.png`
-- [ ] `THE_AGENT_OF_LIFE_NEPTUNE` — `the_agent_of_life_neptune.png`
-- [ ] `THE_AGENT_OF_MIRACLES_JUPITER` — `the_agent_of_miracles_jupiter.png`
 - [ ] `THE_AGENT_OF_MYSTERU_EARTH` — `the_agent_of_mysteru_earth.png`
 - [ ] `THE_CALCULATOR` — `the_calculator.png`
 - [ ] `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO` — `the_executor_of_the_underworld_pluto.png`

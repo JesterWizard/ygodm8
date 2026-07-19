@@ -592,3 +592,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire NECROVALLEY_TEMPLE in trap dispatcher */
 /* QUEENS_PAWN trap effect */
   /* TODO: wire QUEENS_PAWN in trap dispatcher */
+/* RITE_OF_SPIRIT trap effect */
+  /* TODO: wire RITE_OF_SPIRIT in trap dispatcher */
+/* SOUL_LEVY trap effect */
+  /* TODO: wire SOUL_LEVY in trap dispatcher */
