@@ -3,6 +3,7 @@
 #include "card_passives.h"
 #include "configs/runtime.h"
 #include "duel_helpers.h"
+#include "synchro_duel.h"
 #include "constants/monster_effects.h"
 #include "constants/card_ids.h"
 #include "cannon_soldier.h"
@@ -996,6 +997,8 @@ unsigned char CanActivateMonsterEffect(void) {
 
   if (gMonEffect.id == ELEMENTAL_HERO_NEOS_ALIUS)
     canActivate = CanActivateElementalHeroNeosAlius();
+  else if (gMonEffect.id == JUNK_SYNCHRON)
+    canActivate = CanActivateJUNK_SYNCHRON();
   else if (zone->id == THE_GRAND_JUPITER)
     canActivate = CanActivateTheGrandJupiter();
   else {
@@ -1933,6 +1936,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_WILD_WINGMAN
           || zone->id == ELEMENTAL_HERO_PLASMA_VICE
           || zone->id == ELEMENTAL_HERO_NEOS_ALIUS
+          || zone->id == JUNK_SYNCHRON
           || zone->id == ELEMENTAL_HERO_ICE_EDGE
           || zone->id == ELEMENTAL_HERO_BLAZEMAN
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
@@ -1962,10 +1966,11 @@ void MonsterActionMenu__Replacement(void) {
         }
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
-        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != AMAZONESS_ARCHER && gMonEffect.id != ELEMENTAL_HERO_NEOS_ALIUS) || !CanActivateMonsterEffect()) {
+        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != AMAZONESS_ARCHER && gMonEffect.id != ELEMENTAL_HERO_NEOS_ALIUS && gMonEffect.id != JUNK_SYNCHRON) || !CanActivateMonsterEffect()) {
 FAILED:
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();
+          gMonEffect.id = CARD_NONE;
         }
         else {
           if (!isFaceUp) {
@@ -2039,6 +2044,12 @@ FAILED:
       }
       UpdateDuelGfxExceptField();
       TryActivatingPermanentEffects();
+      break;
+    case 6:
+      SynchroDuel_RunPlayerFlow();
+      UpdateDuelGfxExceptField();
+      TryActivatingPermanentEffects();
+      CheckWinConditionExodia();
       break;
   }
   if (gMonEffect.id == ROYAL_MAGICAL_LIBRARY) {
@@ -2966,7 +2977,9 @@ FAILED:
     return;
   }
   if (gMonEffect.id == JUNK_SYNCHRON) {
-    ActivateJUNK_SYNCHRONEffect();
+    if (CanActivateJUNK_SYNCHRON())
+      ActivateJUNK_SYNCHRONEffect();
+    gMonEffect.id = CARD_NONE;
     return;
   }
   if (gMonEffect.id == LEVIAIR_THE_SEA_DRAGON) {

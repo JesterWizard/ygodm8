@@ -30,6 +30,7 @@ OPTIONAL_STATS_KEYS = {
     "customFieldSpell",
     "effect_usage",
     "selectableOnce",
+    "is_tuner",
 }
 ALLOWED_EFFECT_USAGE = {
     "once",
@@ -50,6 +51,7 @@ MANIFEST_CARD_KEY_ORDER = (
     "attribute",
     "type",
     "color",
+    "is_tuner",
     "monsterEffect",
     "spellEffect",
     "trapEffect",

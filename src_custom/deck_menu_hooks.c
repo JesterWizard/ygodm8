@@ -134,6 +134,21 @@ static const unsigned char sDeckMenuPickLabelFusionSummon[] APPEND_TEXT = _(
     "フュージョン召喚         "
 );
 
+static const unsigned char sDeckMenuPickLabelSynchroSummon[] APPEND_TEXT = _(
+  "{ENG}"
+    "Synchro Summon      "
+  "{FRE}"
+    "Invocation Synchro  "
+  "{GER}"
+    "Synchro beschwören  "
+  "{ITA}"
+    "Evoca Synchro       "
+  "{SPA}"
+    "Invocar Synchro     "
+  "{JAP}"
+    "シンクロ召喚           "
+);
+
 static const unsigned char sDeckMenuPickLabelSelectCard[] APPEND_TEXT = _(
   "{ENG}"
     "Select This Card    "
@@ -182,6 +197,8 @@ static const u8 *DeckMenu_GetPickLabelText(u8 label)
   switch (label) {
   case DECK_MENU_PICK_LABEL_FUSION_SUMMON:
     return sDeckMenuPickLabelFusionSummon;
+  case DECK_MENU_PICK_LABEL_SYNCHRO_SUMMON:
+    return sDeckMenuPickLabelSynchroSummon;
   case DECK_MENU_PICK_LABEL_SELECT_CARD:
     return sDeckMenuPickLabelSelectCard;
   case DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK:
@@ -666,6 +683,11 @@ static u8 DeckMenuPickSubmenu_Main(const u8 *labels, u8 labelCount) {
             keepProcessing = 0;
             PlayMusic(SFX_SELECT);
             break;
+          case DECK_MENU_PICK_LABEL_SYNCHRO_SUMMON:
+            result = FUSION_PICK_SUBMENU_SUMMON;
+            keepProcessing = 0;
+            PlayMusic(SFX_SELECT);
+            break;
           case DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK:
             result = FUSION_PICK_SUBMENU_RETURN;
             keepProcessing = 0;
@@ -832,10 +854,19 @@ u8 DeckMenuMainPickChosenLabel(const u8 *labels, u8 labelCount)
             chosen = DECK_MENU_PICK_LABEL_SELECT_CARD;
             keepProcessing = 0;
             break;
-          case FUSION_PICK_SUBMENU_SUMMON:
+          case FUSION_PICK_SUBMENU_SUMMON: {
+            u8 li;
+
             chosen = DECK_MENU_PICK_LABEL_FUSION_SUMMON;
+            for (li = 0; li < activeLabelCount; li++) {
+              if (activeLabels[li] == DECK_MENU_PICK_LABEL_SYNCHRO_SUMMON) {
+                chosen = DECK_MENU_PICK_LABEL_SYNCHRO_SUMMON;
+                break;
+              }
+            }
             keepProcessing = 0;
             break;
+          }
           case FUSION_PICK_SUBMENU_BACK:
             /* ponytail: submenu B cancels the whole pick (not just the submenu). */
             chosen = DECK_MENU_PICK_RESULT_CANCEL;
@@ -888,7 +919,8 @@ bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount)
   u8 chosen = DeckMenuMainPickChosenLabel(labels, labelCount);
 
   return chosen == DECK_MENU_PICK_LABEL_SELECT_CARD
-      || chosen == DECK_MENU_PICK_LABEL_FUSION_SUMMON;
+      || chosen == DECK_MENU_PICK_LABEL_FUSION_SUMMON
+      || chosen == DECK_MENU_PICK_LABEL_SYNCHRO_SUMMON;
 }
 
 bool8 DeckMenuMainPickConfirm(void)

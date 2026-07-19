@@ -2,6 +2,8 @@
 #include "common-chax.h"
 #include "ai_decision.h"
 #include "card_passives.h"
+#include "constants/card_ids.h"
+#include "configs/runtime.h"
 #include "custom_decks/custom_decks.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
@@ -17,6 +19,8 @@ extern struct DuelDeck gDuelDecks[2];
 extern void DeclareLoser(unsigned char);
 void InitCardsForDuelDeck(unsigned char, unsigned short *);
 void InitDuelDeck(unsigned char, unsigned char);
+void ExtraDeck_AddCard(u16 cardId);
+u8 ExtraDeck_GetCardQty(u16 cardId);
 
 static void CopyDuelDeckCards(unsigned char duelist, const unsigned short *deck) {
   unsigned i;
@@ -312,6 +316,15 @@ void TryDrawingCard__Replacement(unsigned turn) {
         appliedSlots[slot] = TRUE;
         break;
       }
+    }
+
+    /* Synchro playtest: Junk Synchron + Cyber Dragon opening hand → seed Stardust ED. */
+    if (gRuntimeConfig.enable_extra_deck
+        && (gRuntimeConfig.card_in_hand_1 == JUNK_SYNCHRON
+            || gRuntimeConfig.card_in_hand_2 == JUNK_SYNCHRON
+            || gRuntimeConfig.card_in_hand_3 == JUNK_SYNCHRON)
+        && ExtraDeck_GetCardQty(STARDUST_DRAGON) == 0) {
+      ExtraDeck_AddCard(STARDUST_DRAGON);
     }
   }
 

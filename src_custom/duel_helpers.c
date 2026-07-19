@@ -45,6 +45,7 @@
 #include "yubel.h"
 #include "chimeratech_overdragon.h"
 #include "fusion_duel.h"
+#include "synchro_duel.h"
 #include "the_tyrant_neptune.h"
 #include "the_grand_jupiter.h"
 #include "lyrilusc_independent_nightingale.h"
@@ -2626,5 +2627,6 @@ void DuelHelpers_SelfCheck(void)
     __builtin_trap();
 
   FusionDuel_SelfCheck();
+  SynchroDuel_SelfCheck();
 }
 #endif

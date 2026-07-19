@@ -291,6 +291,9 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
             "pages": wrap_effect_text(api_card.get("desc", card_name)),
         },
     })
+    if "tuner" in api_card.get("type", "").lower():
+        entry["is_tuner"] = True
+        entry = order_card_entry(entry)
     if color in ("EFFECT_CARD", "FUSION_CARD", "SYNCHRO_CARD", "XYZ_CARD", "PENDULUM_CARD", "LINK_CARD") and api_card.get("desc"):
         entry["effect_texts"] = {
             "popup_1": api_card.get("desc", card_name)[:120],

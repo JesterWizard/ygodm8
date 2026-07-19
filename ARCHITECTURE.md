@@ -92,6 +92,7 @@ ygodm8.gba  ← LynJump patches applied post-link
 | Runtime test setup (cards in hand) | `configs/runtime.c` |
 | Fast AI (sim budget / target architecture) | `documentation/fast-ai-architecture.md` → `src_custom/ai_sim_fast.c` |
 | Smarter AI (post-sim tactics picker) | `documentation/smarter-ai.md` → `src_custom/ai_decision/` |
+| Synchro Summon | `documentation/synchro-summoning.md` → `src_custom/synchro_duel.c` |
 | Card IDs and constants | `include/constants/card_ids.h` (generated from manifest) |
 | Custom portraits / thought bubbles | `documentation/custom-portraits.md`, `documentation/thought-bubbles.md` |
 | Status menu label/value layout | `documentation/status-menu-layout.md` → `src_custom/status_menu_hooks.c` |

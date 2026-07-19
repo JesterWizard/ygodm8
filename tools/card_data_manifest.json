@@ -35307,6 +35307,7 @@
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_MACHINE",
       "color": "SYNCHRO_CARD",
+      "is_tuner": true,
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
@@ -35656,6 +35657,7 @@
       "attribute": "ATTRIBUTE_SHADOW",
       "type": "TYPE_WARRIOR",
       "color": "EFFECT_CARD",
+      "is_tuner": true,
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
@@ -35666,7 +35668,10 @@
         "pages": "When this card is Normal Summoned: You can target 1 Level 2 or lower monster in your Graveyard; Special Summon that target in Defense Position, but it has its effects negated."
       },
       "effect_texts": {
-        "popup_1": "When this card is Normal Summoned: You can target 1 Level 2 or lower monster in your Graveyard; Special Summon that targ"
+        "popup_1": [
+          "When Normal Summoned: Target 1 Level 2 or lower monster in your GY;",
+          "Special Summon it in Defense Position with effects negated."
+        ]
       }
     },
     {
@@ -36734,6 +36739,7 @@
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_MACHINE",
       "color": "EFFECT_CARD",
+      "is_tuner": true,
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
@@ -37130,6 +37136,7 @@
       "attribute": "ATTRIBUTE_WIND",
       "type": "TYPE_MACHINE",
       "color": "EFFECT_CARD",
+      "is_tuner": true,
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,

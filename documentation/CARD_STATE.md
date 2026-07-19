@@ -1,15 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-19 — Added final 14 art-ready cards (Mystery Earth through Zeradias) stubbed
+**Last worked on:** 2026-07-19 — Synchro confirm vs Defend preview
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `src_custom/spell_effects/`
-- `src_custom/activated_effects/`
-- `src_custom/monster_effect_hooks.c`
-- `src_custom/assets/cards/CARD_PROGRESS.md`
+- `src_custom/monster_action_menu_hooks.c`
 
-**Outcome:** make OK. Forced THE_AGENT_OF_MYSTERU_EARTH art typo. In game 1287; art-ready todo 0.
+**Outcome:** make OK. Synchro highlight/confirm clears Defend preview so materials still count.
 
 **Open / next:**
-- Implement stub effect bodies for recent batches
+- Playtest Synchro pick from Junk via Defend→Synchro
+- Implement Junk Synchron GY revive; Stardust negate

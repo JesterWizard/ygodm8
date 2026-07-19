@@ -5974,7 +5974,7 @@
     .description = gDescription_DimensionFusion,
   },
   [0x04C9] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
@@ -6128,7 +6128,7 @@
     .description = gDescription_EmergencyProvisions,
   },
   [0x04D4] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
@@ -6450,8 +6450,8 @@
     .description = gDescription_HeraldOfCreation,
   },
   [0x04EB] = {
-    .atk = -1,
-    .def = -1,
+    .atk = 0,
+    .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_DIVINE,
     .level = 12,
@@ -6730,8 +6730,8 @@
     .description = gDescription_LordOfTheRed,
   },
   [0x04FF] = {
-    .atk = -1,
-    .def = -1,
+    .atk = 0,
+    .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
     .level = 10,
@@ -7164,7 +7164,7 @@
     .description = gDescription_OjamaKing,
   },
   [0x051E] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
@@ -9348,7 +9348,7 @@
     .description = gDescription_EvilHeroAdustedGold,
   },
   [0x05BA] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 60,
     .attribute = ATTRIBUTE_EARTH,
@@ -14948,7 +14948,7 @@
     .description = gDescription_MirageDragon,
   },
   [0x074A] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_EARTH,
@@ -15760,7 +15760,7 @@
     .description = gDescription_TurboSynchron,
   },
   [0x0784] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_EARTH,
@@ -16544,7 +16544,7 @@
     .description = gDescription_ForgottenTempleOfTheDeep,
   },
   [0x07BC] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
@@ -17146,8 +17146,8 @@
     .description = gDescription_LightningStorm,
   },
   [0x07E7] = {
-    .atk = -1,
-    .def = -1,
+    .atk = 0,
+    .def = 0,
     .cost = 0,
     .attribute = ATTRIBUTE_LIGHT,
     .level = 6,
@@ -17160,8 +17160,8 @@
     .description = gDescription_HeliosDuoMegistus,
   },
   [0x07E8] = {
-    .atk = -1,
-    .def = -1,
+    .atk = 0,
+    .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
     .level = 4,
@@ -17174,8 +17174,8 @@
     .description = gDescription_HeliosThePrimordialSun,
   },
   [0x07E9] = {
-    .atk = -1,
-    .def = -1,
+    .atk = 0,
+    .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
     .level = 8,
@@ -17888,7 +17888,7 @@
     .description = gDescription_Twister,
   },
   [0x081C] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 29,
     .attribute = ATTRIBUTE_LIGHT,

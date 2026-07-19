@@ -1384,6 +1384,13 @@ def render_data_src(manifest: dict) -> str:
     lines.append("};")
     lines.append("")
 
+    lines.append(f"const u8 gCardIsTuner_Hook[{len(manifest['cards'])}] APPEND_RODATA = {{")
+    for index, item in enumerate(manifest["cards"]):
+        is_tuner = item.get("is_tuner", False)
+        lines.append(f"  [0x{index:04X}] = {1 if is_tuner else 0},")
+    lines.append("};")
+    lines.append("")
+
     lines.append(f"const CardData gCardData_NEW[{len(manifest['cards'])}] APPEND_RODATA = {{")
     lines.append("  [CARD_NONE] = {")
     lines.append("    .atk = 0xFFFF,")
