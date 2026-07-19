@@ -1243,6 +1243,20 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [THE_AGENT_OF_LIFE_NEPTUNE] = gActivationDescription_TheAgentOfLifeNeptune_Popup1,
   [THE_AGENT_OF_MIRACLES_JUPITER] = gActivationDescription_TheAgentOfMiraclesJupiter_Popup1,
   [SUMMONERS_ART] = gActivationDescription_SummonersArt_Popup1,
+  [THE_SACRED_WATERS_IN_THE_SKY] = gActivationDescription_TheSacredWatersInTheSky_Popup1,
+  [TWISTER] = gActivationDescription_Twister_Popup1,
+  [THE_CALCULATOR] = gActivationDescription_TheCalculator_Popup1,
+  [THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO] = gActivationDescription_TheExecutorOfTheUnderworldPluto_Popup1,
+  [THUNDER_END_DRAGON] = gActivationDescription_ThunderEndDragon_Popup1,
+  [TOADALLY_AWESOME] = gActivationDescription_ToadallyAwesome_Popup1,
+  [TREEBORN_FROG] = gActivationDescription_TreebornFrog_Popup1,
+  [TROOP_DRAGON] = gActivationDescription_TroopDragon_Popup1,
+  [TUALATIN] = gActivationDescription_Tualatin_Popup1,
+  [VICTORIA] = gActivationDescription_Victoria_Popup1,
+  [WARM_WORM] = gActivationDescription_WarmWorm_Popup1,
+  [WHITE_HORNED_DRAGON] = gActivationDescription_WhiteHornedDragon_Popup1,
+  [ZERADIAS_HERALD_OF_HEAVEN] = gActivationDescription_ZeradiasHeraldOfHeaven_Popup1,
+  [THE_AGENT_OF_MYSTERU_EARTH] = gActivationDescription_TheAgentOfMysteruEarth_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -2517,6 +2531,20 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_THE_AGENT_OF_LIFE_NEPTUNE_POPUP_1] = gActivationDescription_TheAgentOfLifeNeptune_Popup1,
   [CARD_EFFECT_TEXT_THE_AGENT_OF_MIRACLES_JUPITER_POPUP_1] = gActivationDescription_TheAgentOfMiraclesJupiter_Popup1,
   [CARD_EFFECT_TEXT_SUMMONERS_ART_POPUP_1] = gActivationDescription_SummonersArt_Popup1,
+  [CARD_EFFECT_TEXT_THE_SACRED_WATERS_IN_THE_SKY_POPUP_1] = gActivationDescription_TheSacredWatersInTheSky_Popup1,
+  [CARD_EFFECT_TEXT_TWISTER_POPUP_1] = gActivationDescription_Twister_Popup1,
+  [CARD_EFFECT_TEXT_THE_CALCULATOR_POPUP_1] = gActivationDescription_TheCalculator_Popup1,
+  [CARD_EFFECT_TEXT_THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO_POPUP_1] = gActivationDescription_TheExecutorOfTheUnderworldPluto_Popup1,
+  [CARD_EFFECT_TEXT_THUNDER_END_DRAGON_POPUP_1] = gActivationDescription_ThunderEndDragon_Popup1,
+  [CARD_EFFECT_TEXT_TOADALLY_AWESOME_POPUP_1] = gActivationDescription_ToadallyAwesome_Popup1,
+  [CARD_EFFECT_TEXT_TREEBORN_FROG_POPUP_1] = gActivationDescription_TreebornFrog_Popup1,
+  [CARD_EFFECT_TEXT_TROOP_DRAGON_POPUP_1] = gActivationDescription_TroopDragon_Popup1,
+  [CARD_EFFECT_TEXT_TUALATIN_POPUP_1] = gActivationDescription_Tualatin_Popup1,
+  [CARD_EFFECT_TEXT_VICTORIA_POPUP_1] = gActivationDescription_Victoria_Popup1,
+  [CARD_EFFECT_TEXT_WARM_WORM_POPUP_1] = gActivationDescription_WarmWorm_Popup1,
+  [CARD_EFFECT_TEXT_WHITE_HORNED_DRAGON_POPUP_1] = gActivationDescription_WhiteHornedDragon_Popup1,
+  [CARD_EFFECT_TEXT_ZERADIAS_HERALD_OF_HEAVEN_POPUP_1] = gActivationDescription_ZeradiasHeraldOfHeaven_Popup1,
+  [CARD_EFFECT_TEXT_THE_AGENT_OF_MYSTERU_EARTH_POPUP_1] = gActivationDescription_TheAgentOfMysteruEarth_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

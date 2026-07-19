@@ -960,6 +960,30 @@ unsigned char CanActivateTHE_AGENT_OF_LIFE_NEPTUNE(void);
 void ActivateTHE_AGENT_OF_LIFE_NEPTUNEEffect(void);
 unsigned char CanActivateTHE_AGENT_OF_MIRACLES_JUPITER(void);
 void ActivateTHE_AGENT_OF_MIRACLES_JUPITEREffect(void);
+unsigned char CanActivateTHE_CALCULATOR(void);
+void ActivateTHE_CALCULATOREffect(void);
+unsigned char CanActivateTHE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO(void);
+void ActivateTHE_EXECUTOR_OF_THE_UNDERWORLD_PLUTOEffect(void);
+unsigned char CanActivateTHUNDER_END_DRAGON(void);
+void ActivateTHUNDER_END_DRAGONEffect(void);
+unsigned char CanActivateTOADALLY_AWESOME(void);
+void ActivateTOADALLY_AWESOMEEffect(void);
+unsigned char CanActivateTREEBORN_FROG(void);
+void ActivateTREEBORN_FROGEffect(void);
+unsigned char CanActivateTROOP_DRAGON(void);
+void ActivateTROOP_DRAGONEffect(void);
+unsigned char CanActivateTUALATIN(void);
+void ActivateTUALATINEffect(void);
+unsigned char CanActivateVICTORIA(void);
+void ActivateVICTORIAEffect(void);
+unsigned char CanActivateWARM_WORM(void);
+void ActivateWARM_WORMEffect(void);
+unsigned char CanActivateWHITE_HORNED_DRAGON(void);
+void ActivateWHITE_HORNED_DRAGONEffect(void);
+unsigned char CanActivateZERADIAS_HERALD_OF_HEAVEN(void);
+void ActivateZERADIAS_HERALD_OF_HEAVENEffect(void);
+unsigned char CanActivateTHE_AGENT_OF_MYSTERU_EARTH(void);
+void ActivateTHE_AGENT_OF_MYSTERU_EARTHEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -3495,6 +3519,54 @@ FAILED:
   }
   if (gMonEffect.id == THE_AGENT_OF_MIRACLES_JUPITER) {
     ActivateTHE_AGENT_OF_MIRACLES_JUPITEREffect();
+    return;
+  }
+  if (gMonEffect.id == THE_CALCULATOR) {
+    ActivateTHE_CALCULATOREffect();
+    return;
+  }
+  if (gMonEffect.id == THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO) {
+    ActivateTHE_EXECUTOR_OF_THE_UNDERWORLD_PLUTOEffect();
+    return;
+  }
+  if (gMonEffect.id == THUNDER_END_DRAGON) {
+    ActivateTHUNDER_END_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == TOADALLY_AWESOME) {
+    ActivateTOADALLY_AWESOMEEffect();
+    return;
+  }
+  if (gMonEffect.id == TREEBORN_FROG) {
+    ActivateTREEBORN_FROGEffect();
+    return;
+  }
+  if (gMonEffect.id == TROOP_DRAGON) {
+    ActivateTROOP_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == TUALATIN) {
+    ActivateTUALATINEffect();
+    return;
+  }
+  if (gMonEffect.id == VICTORIA) {
+    ActivateVICTORIAEffect();
+    return;
+  }
+  if (gMonEffect.id == WARM_WORM) {
+    ActivateWARM_WORMEffect();
+    return;
+  }
+  if (gMonEffect.id == WHITE_HORNED_DRAGON) {
+    ActivateWHITE_HORNED_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == ZERADIAS_HERALD_OF_HEAVEN) {
+    ActivateZERADIAS_HERALD_OF_HEAVENEffect();
+    return;
+  }
+  if (gMonEffect.id == THE_AGENT_OF_MYSTERU_EARTH) {
+    ActivateTHE_AGENT_OF_MYSTERU_EARTHEffect();
     return;
   }
 }

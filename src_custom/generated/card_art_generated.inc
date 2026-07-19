@@ -5104,6 +5104,62 @@ static const unsigned char sSummonersArtBigArt[] __attribute__((section(".append
 static const unsigned short sSummonersArtBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/summoners_art.gbapal");
 static const unsigned char sSummonersArtMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/summoners_art.lz");
 
+static const unsigned char sTheSacredWatersInTheSkyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_sacred_waters_in_the_sky.huff");
+static const unsigned short sTheSacredWatersInTheSkyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_sacred_waters_in_the_sky.gbapal");
+static const unsigned char sTheSacredWatersInTheSkyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_sacred_waters_in_the_sky.lz");
+
+static const unsigned char sTwisterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/twister.huff");
+static const unsigned short sTwisterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/twister.gbapal");
+static const unsigned char sTwisterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/twister.lz");
+
+static const unsigned char sTheCalculatorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_calculator.huff");
+static const unsigned short sTheCalculatorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_calculator.gbapal");
+static const unsigned char sTheCalculatorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_calculator.lz");
+
+static const unsigned char sTheExecutorOfTheUnderworldPlutoBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_executor_of_the_underworld_pluto.huff");
+static const unsigned short sTheExecutorOfTheUnderworldPlutoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_executor_of_the_underworld_pluto.gbapal");
+static const unsigned char sTheExecutorOfTheUnderworldPlutoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_executor_of_the_underworld_pluto.lz");
+
+static const unsigned char sThunderEndDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/thunder_end_dragon.huff");
+static const unsigned short sThunderEndDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/thunder_end_dragon.gbapal");
+static const unsigned char sThunderEndDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/thunder_end_dragon.lz");
+
+static const unsigned char sToadallyAwesomeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/toadally_awesome.huff");
+static const unsigned short sToadallyAwesomeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/toadally_awesome.gbapal");
+static const unsigned char sToadallyAwesomeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/toadally_awesome.lz");
+
+static const unsigned char sTreebornFrogBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/treeborn_frog.huff");
+static const unsigned short sTreebornFrogBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/treeborn_frog.gbapal");
+static const unsigned char sTreebornFrogMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/treeborn_frog.lz");
+
+static const unsigned char sTroopDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/troop_dragon.huff");
+static const unsigned short sTroopDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/troop_dragon.gbapal");
+static const unsigned char sTroopDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/troop_dragon.lz");
+
+static const unsigned char sTualatinBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tualatin.huff");
+static const unsigned short sTualatinBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tualatin.gbapal");
+static const unsigned char sTualatinMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tualatin.lz");
+
+static const unsigned char sVictoriaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/victoria.huff");
+static const unsigned short sVictoriaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/victoria.gbapal");
+static const unsigned char sVictoriaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/victoria.lz");
+
+static const unsigned char sWarmWormBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/warm_worm.huff");
+static const unsigned short sWarmWormBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/warm_worm.gbapal");
+static const unsigned char sWarmWormMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/warm_worm.lz");
+
+static const unsigned char sWhiteHornedDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/white_horned_dragon.huff");
+static const unsigned short sWhiteHornedDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/white_horned_dragon.gbapal");
+static const unsigned char sWhiteHornedDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/white_horned_dragon.lz");
+
+static const unsigned char sZeradiasHeraldOfHeavenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/zeradias_herald_of_heaven.huff");
+static const unsigned short sZeradiasHeraldOfHeavenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/zeradias_herald_of_heaven.gbapal");
+static const unsigned char sZeradiasHeraldOfHeavenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/zeradias_herald_of_heaven.lz");
+
+static const unsigned char sTheAgentOfMysteruEarthBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_agent_of_mysteru_earth.huff");
+static const unsigned short sTheAgentOfMysteruEarthBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_agent_of_mysteru_earth.gbapal");
+static const unsigned char sTheAgentOfMysteruEarthMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_agent_of_mysteru_earth.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -6381,6 +6437,20 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0817] = sTheAgentOfLifeNeptuneBigArt,
   [0x0818] = sTheAgentOfMiraclesJupiterBigArt,
   [0x0819] = sSummonersArtBigArt,
+  [0x081A] = sTheSacredWatersInTheSkyBigArt,
+  [0x081B] = sTwisterBigArt,
+  [0x081C] = sTheCalculatorBigArt,
+  [0x081D] = sTheExecutorOfTheUnderworldPlutoBigArt,
+  [0x081E] = sThunderEndDragonBigArt,
+  [0x081F] = sToadallyAwesomeBigArt,
+  [0x0820] = sTreebornFrogBigArt,
+  [0x0821] = sTroopDragonBigArt,
+  [0x0822] = sTualatinBigArt,
+  [0x0823] = sVictoriaBigArt,
+  [0x0824] = sWarmWormBigArt,
+  [0x0825] = sWhiteHornedDragonBigArt,
+  [0x0826] = sZeradiasHeraldOfHeavenBigArt,
+  [0x0827] = sTheAgentOfMysteruEarthBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -7660,6 +7730,20 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0817] = sTheAgentOfLifeNeptuneBigPalette,
   [0x0818] = sTheAgentOfMiraclesJupiterBigPalette,
   [0x0819] = sSummonersArtBigPalette,
+  [0x081A] = sTheSacredWatersInTheSkyBigPalette,
+  [0x081B] = sTwisterBigPalette,
+  [0x081C] = sTheCalculatorBigPalette,
+  [0x081D] = sTheExecutorOfTheUnderworldPlutoBigPalette,
+  [0x081E] = sThunderEndDragonBigPalette,
+  [0x081F] = sToadallyAwesomeBigPalette,
+  [0x0820] = sTreebornFrogBigPalette,
+  [0x0821] = sTroopDragonBigPalette,
+  [0x0822] = sTualatinBigPalette,
+  [0x0823] = sVictoriaBigPalette,
+  [0x0824] = sWarmWormBigPalette,
+  [0x0825] = sWhiteHornedDragonBigPalette,
+  [0x0826] = sZeradiasHeraldOfHeavenBigPalette,
+  [0x0827] = sTheAgentOfMysteruEarthBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -8939,6 +9023,20 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0817] = 0,
   [0x0818] = 0,
   [0x0819] = 0,
+  [0x081A] = 0,
+  [0x081B] = 0,
+  [0x081C] = 0,
+  [0x081D] = 0,
+  [0x081E] = 0,
+  [0x081F] = 0,
+  [0x0820] = 0,
+  [0x0821] = 0,
+  [0x0822] = 0,
+  [0x0823] = 0,
+  [0x0824] = 0,
+  [0x0825] = 0,
+  [0x0826] = 0,
+  [0x0827] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -10218,4 +10316,18 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0817] = sTheAgentOfLifeNeptuneMiniArt,
   [0x0818] = sTheAgentOfMiraclesJupiterMiniArt,
   [0x0819] = sSummonersArtMiniArt,
+  [0x081A] = sTheSacredWatersInTheSkyMiniArt,
+  [0x081B] = sTwisterMiniArt,
+  [0x081C] = sTheCalculatorMiniArt,
+  [0x081D] = sTheExecutorOfTheUnderworldPlutoMiniArt,
+  [0x081E] = sThunderEndDragonMiniArt,
+  [0x081F] = sToadallyAwesomeMiniArt,
+  [0x0820] = sTreebornFrogMiniArt,
+  [0x0821] = sTroopDragonMiniArt,
+  [0x0822] = sTualatinMiniArt,
+  [0x0823] = sVictoriaMiniArt,
+  [0x0824] = sWarmWormMiniArt,
+  [0x0825] = sWhiteHornedDragonMiniArt,
+  [0x0826] = sZeradiasHeraldOfHeavenMiniArt,
+  [0x0827] = sTheAgentOfMysteruEarthMiniArt,
 };

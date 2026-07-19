@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1273 |
-| Art ready, needs manifest | 14 |
+| In game (manifest + art) | 1287 |
+| Art ready, needs manifest | 0 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1290** |
 
@@ -1295,25 +1295,25 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_AGENT_OF_LIFE_NEPTUNE` | The Agent of Life - Neptune | `the_agent_of_life_neptune.png` |
 | `THE_AGENT_OF_MIRACLES_JUPITER` | The Agent of Miracles - Jupiter | `the_agent_of_miracles_jupiter.png` |
 | `SUMMONERS_ART` | Summoner's Art | `summoners_art.png` |
+| `THE_SACRED_WATERS_IN_THE_SKY` | The Sacred Waters in the Sky | `the_sacred_waters_in_the_sky.png` |
+| `TWISTER` | Twister | `twister.png` |
+| `THE_CALCULATOR` | The Calculator | `the_calculator.png` |
+| `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO` | The Executor of the Underworld - Pluto | `the_executor_of_the_underworld_pluto.png` |
+| `THUNDER_END_DRAGON` | Thunder End Dragon | `thunder_end_dragon.png` |
+| `TOADALLY_AWESOME` | Toadally Awesome | `toadally_awesome.png` |
+| `TREEBORN_FROG` | Treeborn Frog | `treeborn_frog.png` |
+| `TROOP_DRAGON` | Troop Dragon | `troop_dragon.png` |
+| `TUALATIN` | Tualatin | `tualatin.png` |
+| `VICTORIA` | Victoria | `victoria.png` |
+| `WARM_WORM` | Warm Worm | `warm_worm.png` |
+| `WHITE_HORNED_DRAGON` | White-Horned Dragon | `white_horned_dragon.png` |
+| `ZERADIAS_HERALD_OF_HEAVEN` | Zeradias, Herald of Heaven | `zeradias_herald_of_heaven.png` |
+| `THE_AGENT_OF_MYSTERU_EARTH` | The Agent of Mystery - Earth | `the_agent_of_mysteru_earth.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `THE_AGENT_OF_MYSTERU_EARTH` — `the_agent_of_mysteru_earth.png`
-- [ ] `THE_CALCULATOR` — `the_calculator.png`
-- [ ] `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO` — `the_executor_of_the_underworld_pluto.png`
-- [ ] `THE_SACRED_WATERS_IN_THE_SKY` — `the_sacred_waters_in_the_sky.png`
-- [ ] `THUNDER_END_DRAGON` — `thunder_end_dragon.png`
-- [ ] `TOADALLY_AWESOME` — `toadally_awesome.png`
-- [ ] `TREEBORN_FROG` — `treeborn_frog.png`
-- [ ] `TROOP_DRAGON` — `troop_dragon.png`
-- [ ] `TUALATIN` — `tualatin.png`
-- [ ] `TWISTER` — `twister.png`
-- [ ] `VICTORIA` — `victoria.png`
-- [ ] `WARM_WORM` — `warm_worm.png`
-- [ ] `WHITE_HORNED_DRAGON` — `white_horned_dragon.png`
-- [ ] `ZERADIAS_HERALD_OF_HEAVEN` — `zeradias_herald_of_heaven.png`
 
 ## Todo — in manifest, missing art
 

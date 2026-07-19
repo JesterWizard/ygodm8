@@ -1274,6 +1274,20 @@ static const u8 sTheAgentOfEntropyUranusName[] __attribute__((section(".append_a
 static const u8 sTheAgentOfLifeNeptuneName[] __attribute__((section(".append_assets"))) = "The Agent of Life - Neptune";
 static const u8 sTheAgentOfMiraclesJupiterName[] __attribute__((section(".append_assets"))) = "The Agent of Miracles - Jupiter";
 static const u8 sSummonersArtName[] __attribute__((section(".append_assets"))) = "Summoner's Art";
+static const u8 sTheSacredWatersInTheSkyName[] __attribute__((section(".append_assets"))) = "The Sacred Waters in the Sky";
+static const u8 sTwisterName[] __attribute__((section(".append_assets"))) = "Twister";
+static const u8 sTheCalculatorName[] __attribute__((section(".append_assets"))) = "The Calculator";
+static const u8 sTheExecutorOfTheUnderworldPlutoName[] __attribute__((section(".append_assets"))) = "The Executor of the Underworld - Pluto";
+static const u8 sThunderEndDragonName[] __attribute__((section(".append_assets"))) = "Thunder End Dragon";
+static const u8 sToadallyAwesomeName[] __attribute__((section(".append_assets"))) = "Toadally Awesome";
+static const u8 sTreebornFrogName[] __attribute__((section(".append_assets"))) = "Treeborn Frog";
+static const u8 sTroopDragonName[] __attribute__((section(".append_assets"))) = "Troop Dragon";
+static const u8 sTualatinName[] __attribute__((section(".append_assets"))) = "Tualatin";
+static const u8 sVictoriaName[] __attribute__((section(".append_assets"))) = "Victoria";
+static const u8 sWarmWormName[] __attribute__((section(".append_assets"))) = "Warm Worm";
+static const u8 sWhiteHornedDragonName[] __attribute__((section(".append_assets"))) = "White-Horned Dragon";
+static const u8 sZeradiasHeraldOfHeavenName[] __attribute__((section(".append_assets"))) = "Zeradias, Herald of Heaven";
+static const u8 sTheAgentOfMysteruEarthName[] __attribute__((section(".append_assets"))) = "The Agent of Mystery - Earth";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3828,6 +3842,34 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTheAgentOfMiraclesJupiterName;
   if (cardId == 0x0819)
     return (u8 *)sSummonersArtName;
+  if (cardId == 0x081A)
+    return (u8 *)sTheSacredWatersInTheSkyName;
+  if (cardId == 0x081B)
+    return (u8 *)sTwisterName;
+  if (cardId == 0x081C)
+    return (u8 *)sTheCalculatorName;
+  if (cardId == 0x081D)
+    return (u8 *)sTheExecutorOfTheUnderworldPlutoName;
+  if (cardId == 0x081E)
+    return (u8 *)sThunderEndDragonName;
+  if (cardId == 0x081F)
+    return (u8 *)sToadallyAwesomeName;
+  if (cardId == 0x0820)
+    return (u8 *)sTreebornFrogName;
+  if (cardId == 0x0821)
+    return (u8 *)sTroopDragonName;
+  if (cardId == 0x0822)
+    return (u8 *)sTualatinName;
+  if (cardId == 0x0823)
+    return (u8 *)sVictoriaName;
+  if (cardId == 0x0824)
+    return (u8 *)sWarmWormName;
+  if (cardId == 0x0825)
+    return (u8 *)sWhiteHornedDragonName;
+  if (cardId == 0x0826)
+    return (u8 *)sZeradiasHeraldOfHeavenName;
+  if (cardId == 0x0827)
+    return (u8 *)sTheAgentOfMysteruEarthName;
 
   return gCardNames[cardId];
 }

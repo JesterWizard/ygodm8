@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1204` effects
+- `1218` effects
 
 ## Tally
 
@@ -1185,6 +1185,20 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `The Agent Of Life Neptune` | `src_custom/activated_effects/the_agent_of_life_neptune.c` |
 | `activated_effects` | `The Agent Of Miracles Jupiter` | `src_custom/activated_effects/the_agent_of_miracles_jupiter.c` |
 | `spell_effects` | `Summoners Art` | `src_custom/spell_effects/summoners_art.c` |
+| `spell_effects` | `The Sacred Waters In The Sky` | `src_custom/spell_effects/the_sacred_waters_in_the_sky.c` |
+| `spell_effects` | `Twister` | `src_custom/spell_effects/twister.c` |
+| `activated_effects` | `The Calculator` | `src_custom/activated_effects/the_calculator.c` |
+| `activated_effects` | `The Executor Of The Underworld Pluto` | `src_custom/activated_effects/the_executor_of_the_underworld_pluto.c` |
+| `activated_effects` | `Thunder End Dragon` | `src_custom/activated_effects/thunder_end_dragon.c` |
+| `activated_effects` | `Toadally Awesome` | `src_custom/activated_effects/toadally_awesome.c` |
+| `activated_effects` | `Treeborn Frog` | `src_custom/activated_effects/treeborn_frog.c` |
+| `activated_effects` | `Troop Dragon` | `src_custom/activated_effects/troop_dragon.c` |
+| `activated_effects` | `Tualatin` | `src_custom/activated_effects/tualatin.c` |
+| `activated_effects` | `Victoria` | `src_custom/activated_effects/victoria.c` |
+| `activated_effects` | `Warm Worm` | `src_custom/activated_effects/warm_worm.c` |
+| `activated_effects` | `White Horned Dragon` | `src_custom/activated_effects/white_horned_dragon.c` |
+| `activated_effects` | `Zeradias Herald Of Heaven` | `src_custom/activated_effects/zeradias_herald_of_heaven.c` |
+| `activated_effects` | `The Agent Of Mysteru Earth` | `src_custom/activated_effects/the_agent_of_mysteru_earth.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

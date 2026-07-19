@@ -2075,11 +2075,25 @@
 #define THE_AGENT_OF_LIFE_NEPTUNE                0x0817
 #define THE_AGENT_OF_MIRACLES_JUPITER            0x0818
 #define SUMMONERS_ART                            0x0819
+#define THE_SACRED_WATERS_IN_THE_SKY             0x081A
+#define TWISTER                                  0x081B
+#define THE_CALCULATOR                           0x081C
+#define THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO     0x081D
+#define THUNDER_END_DRAGON                       0x081E
+#define TOADALLY_AWESOME                         0x081F
+#define TREEBORN_FROG                            0x0820
+#define TROOP_DRAGON                             0x0821
+#define TUALATIN                                 0x0822
+#define VICTORIA                                 0x0823
+#define WARM_WORM                                0x0824
+#define WHITE_HORNED_DRAGON                      0x0825
+#define ZERADIAS_HERALD_OF_HEAVEN                0x0826
+#define THE_AGENT_OF_MYSTERU_EARTH               0x0827
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x081A
-#define NUM_CUSTOM_CARDS                        0x04F9
+#define NUM_TOTAL_CARDS                         0x0828
+#define NUM_CUSTOM_CARDS                        0x0507
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

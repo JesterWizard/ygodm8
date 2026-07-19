@@ -21834,7 +21834,7 @@
     {
       "card_const": "DIVINE_SERPENT_GEH",
       "card_name": "Divine Serpent Geh",
-      "atk": -1,
+      "atk": 0,
       "def": 0,
       "level": 12,
       "attribute": "ATTRIBUTE_SHADOW",
@@ -22067,7 +22067,7 @@
     {
       "card_const": "EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD",
       "card_name": "Exodius the Ultimate Forbidden Lord",
-      "atk": -1,
+      "atk": 0,
       "def": 0,
       "level": 10,
       "attribute": "ATTRIBUTE_SHADOW",
@@ -22567,8 +22567,8 @@
     {
       "card_const": "HOLACTIE_THE_CREATOR_OF_LIGHT",
       "card_name": "Holactie the Creator of Light",
-      "atk": -1,
-      "def": -1,
+      "atk": 0,
+      "def": 0,
       "level": 12,
       "attribute": "ATTRIBUTE_DIVINE",
       "type": "TYPE_FAIRY",
@@ -23004,8 +23004,8 @@
     {
       "card_const": "MA_AT",
       "card_name": "Ma'at",
-      "atk": -1,
-      "def": -1,
+      "atk": 0,
+      "def": 0,
       "level": 10,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_FAIRY",
@@ -23677,7 +23677,7 @@
     {
       "card_const": "ORICHALCOS_SHUNOROS",
       "card_name": "Orichalcos Shunoros",
-      "atk": -1,
+      "atk": 0,
       "def": 0,
       "level": 10,
       "attribute": "ATTRIBUTE_SHADOW",
@@ -27085,7 +27085,7 @@
     {
       "card_const": "EVIL_HERO_DARK_GAIA",
       "card_name": "Evil HERO Dark Gaia",
-      "atk": -1,
+      "atk": 0,
       "def": 0,
       "level": 8,
       "attribute": "ATTRIBUTE_EARTH",
@@ -35870,7 +35870,7 @@
     {
       "card_const": "MONTAGE_DRAGON",
       "card_name": "Montage Dragon",
-      "atk": -1,
+      "atk": 0,
       "def": 0,
       "level": 8,
       "attribute": "ATTRIBUTE_EARTH",
@@ -37146,7 +37146,7 @@
     {
       "card_const": "TYRANNO_INFINITY",
       "card_name": "Tyranno Infinity",
-      "atk": -1,
+      "atk": 0,
       "def": 0,
       "level": 4,
       "attribute": "ATTRIBUTE_EARTH",
@@ -38378,7 +38378,7 @@
     {
       "card_const": "CLEAR_VICE_DRAGON",
       "card_name": "Clear Vice Dragon",
-      "atk": -1,
+      "atk": 0,
       "def": 0,
       "level": 8,
       "attribute": "ATTRIBUTE_SHADOW",
@@ -39324,8 +39324,8 @@
     {
       "card_const": "HELIOS_DUO_MEGISTUS",
       "card_name": "Helios Duo Megistus",
-      "atk": -1,
-      "def": -1,
+      "atk": 0,
+      "def": 0,
       "level": 6,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_PYRO",
@@ -39346,8 +39346,8 @@
     {
       "card_const": "HELIOS_THE_PRIMORDIAL_SUN",
       "card_name": "Helios - The Primordial Sun",
-      "atk": -1,
-      "def": -1,
+      "atk": 0,
+      "def": 0,
       "level": 4,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_PYRO",
@@ -39368,8 +39368,8 @@
     {
       "card_const": "HELIOS_TRICE_MEGISTUS",
       "card_name": "Helios Trice Megistus",
-      "atk": -1,
-      "def": -1,
+      "atk": 0,
+      "def": 0,
       "level": 8,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_PYRO",
@@ -40441,6 +40441,314 @@
       },
       "effect_texts": {
         "popup_1": "Add 1 Level 5 or higher Normal Monster from your Deck to your hand."
+      }
+    },
+    {
+      "card_const": "THE_SACRED_WATERS_IN_THE_SKY",
+      "card_name": "The Sacred Waters in the Sky",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 6, 6, 8, 4, 1, 1, 1],
+      "description": {
+        "symbol": "gDescription_TheSacredWatersInTheSky",
+        "pages": "Activate 1 The Sanctuary in the Sky directly from your Deck, or add 1 monster that mentions The Sanctuary in the Sky from your Deck to your hand, then, if The Sanctuary in the Sky is on the field or in either GY, you can gain 500 LP for each Hyperion and The Agent monster you control. If your monster that mentions The Sanctuary in the Sky would be destroyed by battle, you can banish this card from your GY instead. You can only use each effect of The Sacred Waters in the Sky once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "Activate 1 \"The Sanctuary in the Sky\" directly from your Deck, or add 1 monster that mentions \"The Sanctuary in the Sky\""
+      }
+    },
+    {
+      "card_const": "TWISTER",
+      "card_name": "Twister",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 5, 9, 3, 9, 8, 4, 1],
+      "description": {
+        "symbol": "gDescription_Twister",
+        "pages": "Pay 500 LP, then target 1 face-up Spell/Trap on the field; destroy that target."
+      },
+      "effect_texts": {
+        "popup_1": "Pay 500 LP, then target 1 face-up Spell/Trap on the field; destroy that target."
+      }
+    },
+    {
+      "card_const": "THE_CALCULATOR",
+      "card_name": "The Calculator",
+      "atk": 0,
+      "def": 0,
+      "level": 2,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_THUNDER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [5, 1, 1, 9, 6, 1, 7, 4],
+      "description": {
+        "symbol": "gDescription_TheCalculator",
+        "pages": "The ATK of this card is the combined Levels of all face-up monsters you control x 300."
+      },
+      "effect_texts": {
+        "popup_1": "The ATK of this card is the combined Levels of all face-up monsters you control x 300."
+      }
+    },
+    {
+      "card_const": "THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO",
+      "card_name": "The Executor of the Underworld - Pluto",
+      "atk": 2300,
+      "def": 0,
+      "level": 5,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FAIRY",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [3, 7, 7, 0, 6, 7, 6, 9],
+      "description": {
+        "symbol": "gDescription_TheExecutorOfTheUnderworldPluto",
+        "pages": "1 Tuner + 1+ non-Tuner monsters (This card is always treated as a The Agent card.) Once per turn: You can banish 1 monster from your GY, then target 1 Effect Monster on the field; change it to face-down Defense Position. This is a Quick Effect if The Sanctuary in the Sky is on the field or in either GY. You can banish this card from your GY; add 1 The Sanctuary in the Sky from your Deck or GY to your hand. You can only use this effect of The Executor of the Underworld - Pluto once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters\r\n(This card is always treated as a \"The Agent\" card.)\r\nOnce per turn: You can banish 1 m"
+      }
+    },
+    {
+      "card_const": "THUNDER_END_DRAGON",
+      "card_name": "Thunder End Dragon",
+      "atk": 3000,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "XYZ_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 20,
+      "password": [0, 0, 6, 9, 8, 7, 8, 5],
+      "description": {
+        "symbol": "gDescription_ThunderEndDragon",
+        "pages": "2 Level 8 Normal Monsters Once per turn: You can detach 1 Xyz Material from this card; destroy all other monsters on the field."
+      },
+      "effect_texts": {
+        "popup_1": "2 Level 8 Normal Monsters\nOnce per turn: You can detach 1 Xyz Material from this card; destroy all other monsters on the"
+      }
+    },
+    {
+      "card_const": "TOADALLY_AWESOME",
+      "card_name": "Toadally Awesome",
+      "atk": 2200,
+      "def": 0,
+      "level": 2,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_AQUA",
+      "color": "XYZ_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 20,
+      "password": [9, 0, 8, 0, 9, 9, 7, 5],
+      "description": {
+        "symbol": "gDescription_ToadallyAwesome",
+        "pages": "2 Level 2 Aqua-Type monsters Once per turn, during the Standby Phase: You can detach 1 Xyz Material from this card; Special Summon 1 Frog monster from your Deck. Once per turn, during either player's turn, when your opponent activates a Spell/Trap Card, or monster effect: You can send 1 Aqua-Type monster from your hand or face-up from your field to the Graveyard; negate the activation, and if you do, destroy that card, then you can Set it to your field. If this card is sent to the Graveyard: You can target 1 WATER monster in your Graveyard; add it to your hand."
+      },
+      "effect_texts": {
+        "popup_1": "2 Level 2 Aqua-Type monsters\nOnce per turn, during the Standby Phase: You can detach 1 Xyz Material from this card; Spec"
+      }
+    },
+    {
+      "card_const": "TREEBORN_FROG",
+      "card_name": "Treeborn Frog",
+      "atk": 100,
+      "def": 100,
+      "level": 1,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_AQUA",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 75,
+      "password": [1, 2, 5, 3, 8, 3, 7, 4],
+      "description": {
+        "symbol": "gDescription_TreebornFrog",
+        "pages": "Once per turn, during your Standby Phase, if this card is in your Graveyard and you do not control Treeborn Frog: You can Special Summon this card. You must control no Spell/Trap Cards to activate and to resolve this effect."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn, during your Standby Phase, if this card is in your Graveyard and you do not control \"Treeborn Frog\": You "
+      }
+    },
+    {
+      "card_const": "TROOP_DRAGON",
+      "card_name": "Troop Dragon",
+      "atk": 700,
+      "def": 800,
+      "level": 2,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 53,
+      "password": [5, 5, 0, 1, 3, 2, 8, 5],
+      "description": {
+        "symbol": "gDescription_TroopDragon",
+        "pages": "If this card is destroyed by battle and sent to the GY: Special Summon 1 Troop Dragon from your Deck."
+      },
+      "effect_texts": {
+        "popup_1": "If this card is destroyed by battle and sent to the GY: Special Summon 1 \"Troop Dragon\" from your Deck."
+      }
+    },
+    {
+      "card_const": "TUALATIN",
+      "card_name": "Tualatin",
+      "atk": 2800,
+      "def": 2500,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 7, 7, 6, 9, 4, 0, 0],
+      "description": {
+        "symbol": "gDescription_Tualatin",
+        "pages": "If it is your opponent's Battle Phase, a monster you controlled at the start of this Battle Phase was just destroyed, and all monsters you controlled at the start of this Battle Phase (min. 2) have now been destroyed by battle and sent to the GY: You can Special Summon this card from your hand. If Summoned this way: Choose an Attribute, and if you do, destroy all face-up monsters with that Attribute. Your opponent cannot Normal or Special Summon monsters with that Attribute."
+      },
+      "effect_texts": {
+        "popup_1": "If it is your opponent's Battle Phase, a monster you controlled at the start of this Battle Phase was just destroyed, an"
+      }
+    },
+    {
+      "card_const": "VICTORIA",
+      "card_name": "Victoria",
+      "atk": 1800,
+      "def": 1500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 219,
+      "password": [7, 5, 1, 6, 2, 6, 9, 6],
+      "description": {
+        "symbol": "gDescription_Victoria",
+        "pages": "Once per turn: You can target 1 Dragon-Type monster in your opponent's Graveyard; Special Summon that target to your side of the field. Your opponent cannot target face-up Fairy-Type monsters for attacks, except this one."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn: You can target 1 Dragon-Type monster in your opponent's Graveyard; Special Summon that target to your sid"
+      }
+    },
+    {
+      "card_const": "WARM_WORM",
+      "card_name": "Warm Worm",
+      "atk": 600,
+      "def": 1400,
+      "level": 3,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_INSECT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [1, 6, 7, 5, 1, 0, 8, 6],
+      "description": {
+        "symbol": "gDescription_WarmWorm",
+        "pages": "If this card is destroyed, send the top 3 cards of your opponent's Deck to the Graveyard."
+      },
+      "effect_texts": {
+        "popup_1": "If this card is destroyed, send the top 3 cards of your opponent's Deck to the Graveyard."
+      }
+    },
+    {
+      "card_const": "WHITE_HORNED_DRAGON",
+      "card_name": "White-Horned Dragon",
+      "atk": 2200,
+      "def": 1400,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [7, 3, 8, 9, 1, 8, 7, 4],
+      "description": {
+        "symbol": "gDescription_WhiteHornedDragon",
+        "pages": "When this card is Normal or Special Summoned: Target up to 5 Spell Cards in your opponent's Graveyard; banish those target(s), and if you do, this card gains 300 ATK for each card banished by this effect."
+      },
+      "effect_texts": {
+        "popup_1": "When this card is Normal or Special Summoned: Target up to 5 Spell Cards in your opponent's Graveyard; banish those targ"
+      }
+    },
+    {
+      "card_const": "ZERADIAS_HERALD_OF_HEAVEN",
+      "card_name": "Zeradias, Herald of Heaven",
+      "atk": 2100,
+      "def": 800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 289,
+      "password": [1, 2, 1, 7, 1, 6, 5, 9],
+      "description": {
+        "symbol": "gDescription_ZeradiasHeraldOfHeaven",
+        "pages": "You can discard this card to the GY; add 1 The Sanctuary in the Sky from your Deck to your hand. If The Sanctuary in the Sky is not on the field, destroy this card."
+      },
+      "effect_texts": {
+        "popup_1": "You can discard this card to the GY; add 1 \"The Sanctuary in the Sky\" from your Deck to your hand. If \"The Sanctuary in "
+      }
+    },
+    {
+      "card_const": "THE_AGENT_OF_MYSTERU_EARTH",
+      "card_name": "The Agent of Mystery - Earth",
+      "atk": 1000,
+      "def": 800,
+      "level": 2,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 53,
+      "password": [9, 1, 1, 8, 8, 3, 4, 3],
+      "description": {
+        "symbol": "gDescription_TheAgentOfMysteruEarth",
+        "pages": "When this card is Normal Summoned, you can add 1 The Agent monster from your Deck to your hand, except The Agent of Mystery - Earth. While The Sanctuary in the Sky is face-up on the field, you can add 1 Master Hyperion from your Deck to your hand instead."
+      },
+      "effect_texts": {
+        "popup_1": "When this card is Normal Summoned, you can add 1 \"The Agent\" monster from your Deck to your hand, except \"The Agent of M"
       }
     }
   ]

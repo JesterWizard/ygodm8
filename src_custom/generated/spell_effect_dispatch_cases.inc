@@ -863,6 +863,9 @@
     case THE_MELODY_OF_AWAKENING_DRAGON:
       EffectTHE_MELODY_OF_AWAKENING_DRAGON();
       return;
+    case THE_SACRED_WATERS_IN_THE_SKY:
+      EffectTHE_SACRED_WATERS_IN_THE_SKY();
+      return;
     case THE_SHALLOW_GRAVE:
       EffectTHE_SHALLOW_GRAVE();
       return;
@@ -895,6 +898,9 @@
       return;
     case TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE:
       EffectTwinSwordsOfFlashingLightTryce();
+      return;
+    case TWISTER:
+      EffectTWISTER();
       return;
     case TWLIGHT_TWIN_DRAGONS:
       EffectTWLIGHT_TWIN_DRAGONS();
