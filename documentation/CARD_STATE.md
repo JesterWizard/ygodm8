@@ -1,11 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-19 — Pack container bars + tall cursor
+**Last worked on:** 2026-07-19 — Pack cursor LynJump (full 60px)
 
 **Files touched:**
-- `tools/build_card_packs.py` — top-align 30×60 art in 32×64 (bars at edges)
-- `src_custom/card_shop_hooks.c` — pack-mode cursor bottom corners at +58px
+- `src_custom/card_shop_hooks.c` — `sub_802FB08__Replacement` (Y+58 in pack view)
+- `src_custom/LynJump.event` — hook at `$2FB08`
 
-**Outcome:** `make` OK. Pack view cursor spans full pack height; top/bottom 2px bars sit at pack edges.
+**Outcome:** `make` OK. Every buy-shop cursor update stretches to 30×60 when pack view is on.
 
-**Open / next:** Playtest R toggle (cursor height + container bars)
+**Open / next:** Playtest R toggle — cursor should frame full pack

@@ -73,7 +73,6 @@ void sub_802FFF0(u8 *, u16);
 void SyncCustomTrunkCardQtyMirror(u16 cardId);
 void SanitizeCustomCardQtyBuffers(void);
 void PlayMusic(int);
-void LoadOam(void);
 
 typedef void (*ShopVoidFn)(void);
 typedef int (*ShopProcessInputFn)(void);
@@ -92,7 +91,6 @@ static ShopVoidFn const ToggleSortModeInBuyShop = (ShopVoidFn)0x0802C14D;
 static ShopVoidFn const sub_802E1D8 = (ShopVoidFn)0x0802E1D9;
 static ShopVoidFn const sub_802E868 = (ShopVoidFn)0x0802E869;
 static ShopVoidFn const sub_802F9E8 = (ShopVoidFn)0x0802F9E9;
-static ShopVoidFn const sub_802FB08 = (ShopVoidFn)0x0802FB09;
 static ShopVoidFn const sub_802FE00 = (ShopVoidFn)0x0802FE01;
 static ShopVoidFn const sub_802FE68 = (ShopVoidFn)0x0802FE69;
 static ShopVoidFn const sub_8030068 = (ShopVoidFn)0x08030069;
@@ -120,7 +118,7 @@ void sub_802FF78__Replacement(u8 *dest, u16 cardId);
 void sub_802FFF0__Replacement(u8 *dest, u16 cardId);
 void InitBuyShop__Replacement(void);
 void UpdatePlayerShopBuyResults__Replacement(void);
-static void UpdateBuyShopCursor(void);
+void sub_802FB08__Replacement(void);
 
 static u8 IsCustomShopCardId(u16 cardId) {
   return cardId >= CUSTOM_CARD_START && cardId - CUSTOM_CARD_START < NUM_CUSTOM_CARDS;
@@ -212,28 +210,35 @@ static void RefreshBuyShopSelectionUi(void) {
   gShopSelectedCard.shopQty = GetShopTempCardQty(cardId);
   ScalePriceToQty();
   sub_802FD48(cardId);
-  UpdateBuyShopCursor();
+  sub_802FB08__Replacement();
 }
 
-/* Vanilla cursor is ~32px tall (+30 on bottom corners). Packs are 60px. */
-#define PACK_CURSOR_BOTTOM_OFF 58
+/* Vanilla cursor height uses +0x1E (~32px). Packs are 60px tall. */
+#define PACK_CURSOR_BOTTOM_OFF 0x3A
 
-static void UpdateBuyShopCursor(void) {
-  u32 *oam;
-  u8 topY;
-  u8 botY;
+/* ROM tables — not linker symbols (only referenced from naked asm). */
+static u16 const *const sShopCursorY = (u16 const *)0x080CDE5A;
+static u16 const *const sShopCursorX = (u16 const *)0x080CDE64;
 
-  sub_802FB08();
-  if (!gBuyShopPackView)
-    return;
+/* LYN_REPLACEMENT(sub_802FB08) — static in vanilla; every cursor update honors pack height. */
+void sub_802FB08__Replacement(void) {
+  u32 *oam = (u32 *)gOamBuffer;
+  u32 x = sShopCursorX[sCardShop.cursorColumn];
+  u32 y = sShopCursorY[sCardShop.cursorRow];
+  u32 yBotOff = gBuyShopPackView ? PACK_CURSOR_BOTTOM_OFF : 0x1E;
+  u32 yLo = y & 0xFF;
+  u32 yHi = (y + yBotOff) & 0xFF;
+  u32 xHi = (x + 0x1E) & 0x1FF;
 
-  oam = (u32 *)gOamBuffer;
-  topY = (u8)(oam[0] & 0xFF);
-  botY = (u8)(topY + PACK_CURSOR_BOTTOM_OFF);
-  /* OAM slots 2–3 = bottom-left / bottom-right corners. */
-  oam[4] = (oam[4] & ~0xFFu) | botY;
-  oam[6] = (oam[6] & ~0xFFu) | botY;
-  LoadOam();
+  /* Four corner sprites: TL, TR, BL, BR (same layout as vanilla asm). */
+  oam[0] = ((x << 16) & 0x01FF0000) | yLo | 0x80000000;
+  oam[1] = 0x8800;
+  oam[2] = (xHi << 16) | yLo | 0x90000000;
+  oam[3] = 0x8800;
+  oam[4] = ((x << 16) & 0x01FF0000) | yHi | 0xA0000000;
+  oam[5] = 0x8800;
+  oam[6] = (xHi << 16) | yHi | 0xB0000000;
+  oam[7] = 0x8800;
 }
 
 /* Pack spans 2 list rows; cursor must sit on the even (top) half. */
