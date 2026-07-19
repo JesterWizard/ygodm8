@@ -84,7 +84,12 @@ COLOR_BY_FRAME = {
 
 
 def card_name_to_const(name: str) -> str:
-    slug = re.sub(r"[^A-Za-z0-9]+", "_", name.strip()).strip("_").upper()
+    # Fold diacritics (Ür → Ur) so consts match ASCII art stems / CARD_PROGRESS.
+    import unicodedata
+
+    name = unicodedata.normalize("NFKD", name.strip())
+    name = "".join(ch for ch in name if not unicodedata.combining(ch))
+    slug = re.sub(r"[^A-Za-z0-9]+", "_", name).strip("_").upper()
     if not slug:
         raise SystemExit(f"Could not derive card_const from name: {name!r}")
     return slug
@@ -113,13 +118,17 @@ def _fetch_cards(**params: str) -> list[dict]:
 
 
 def _fname_candidates_for_const(card_const: str) -> list[str]:
-    """Build fname queries; includes hyphen variants (e.g. ALL_OUT_ATTACKS → All-Out Attacks)."""
+    """Build fname queries; includes hyphen variants (All-Out Attacks, Golem - Ultimate Pound)."""
     parts = card_const.split("_")
     candidates = [card_const.replace("_", " ")]
     for i in range(1, len(parts)):
+        # ALL_OUT_ATTACKS → ALL-OUT ATTACKS
         left = "-".join(parts[:i])
         right = " ".join(parts[i:])
         candidates.append(f"{left} {right}".strip())
+        # ANCIENT_GEAR_GOLEM_ULTIMATE_POUND → ANCIENT GEAR GOLEM - ULTIMATE POUND
+        left_sp = " ".join(parts[:i])
+        candidates.append(f"{left_sp} - {right}".strip())
     # Dedupe while preserving order
     seen: set[str] = set()
     out: list[str] = []
@@ -169,8 +178,8 @@ def frame_kind(card_type: str) -> str:
     for key in ("synchro", "xyz", "link", "pendulum"):
         if key in lowered:
             return key
-    # Non-Synchro Tuners keep the orange effect frame.
-    if "tuner" in lowered:
+    # Non-Synchro Tuners / Gemini keep the orange effect frame.
+    if "tuner" in lowered or "gemini" in lowered:
         return "effect"
     for key in ("normal", "effect", "fusion", "ritual", "spell", "trap"):
         if key in lowered:

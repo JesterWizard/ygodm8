@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 993 |
-| Art ready, needs manifest | 140 |
+| In game (manifest + art) | 1013 |
+| Art ready, needs manifest | 120 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1135** |
 
@@ -1015,31 +1015,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ANCIENT_GEAR_FUSION` | Ancient Gear Fusion | `ancient_gear_fusion.png` |
 | `ANCIENT_GEAR_GADJILTRON_CHIMERA` | Ancient Gear Gadjiltron Chimera | `ancient_gear_gadjiltron_chimera.png` |
 | `ANCIENT_GEAR_GADJILTRON_DRAGON` | Ancient Gear Gadjiltron Dragon | `ancient_gear_gadjiltron_dragon.png` |
+| `ANCIENT_GEAR_GOLEM` | Ancient Gear Golem | `ancient_gear_golem.png` |
+| `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` | Ancient Gear Golem - Ultimate Pound | `ancient_gear_golem_ultimate_pound.png` |
+| `ANCIENT_GEAR_KNIGHT` | Ancient Gear Knight | `ancient_gear_knight.png` |
+| `ANCIENT_GEAR_MEGATON_GOLEM` | Ancient Gear Megaton Golem | `ancient_gear_megaton_golem.png` |
+| `ANCIENT_GEAR_SOLDIER` | Ancient Gear Soldier | `ancient_gear_soldier.png` |
+| `ANCIENT_GEAR_STATUE` | Ancient Gear Statue | `ancient_gear_statue.png` |
+| `ANCIENT_GEAR_TANK` | Ancient Gear Tank | `ancient_gear_tank.png` |
+| `ANCIENT_GEAR_TANKER` | Ancient Gear Tanker | `ancient_gear_tanker.png` |
+| `ANCIENT_GEAR_WORKSHOP` | Ancient Gear Workshop | `ancient_gear_workshop.png` |
+| `ANCIENT_LEAF` | Ancient Leaf | `ancient_leaf.png` |
+| `ANCIENT_SACRED_WYVERN` | Ancient Sacred Wyvern | `ancient_sacred_wyvern.png` |
+| `ARCANA_KNIGHT_JOKER` | Arcana Knight Joker | `arcana_knight_joker.png` |
+| `ARCANE_BARRIER` | Arcane Barrier | `arcane_barrier.png` |
+| `ARMITYLE_THE_CHAOS_PHANTASM` | Armityle the Chaos Phantasm | `armityle_the_chaos_phantasm.png` |
+| `BABYCERASAURUS` | Babycerasaurus | `babycerasaurus.png` |
+| `BARRIER_STATUE_OF_THE_STORMWINDS` | Barrier Statue of the Stormwinds | `barrier_statue_of_the_stormwinds.png` |
+| `BATTLE_MANIA` | Battle Mania | `battle_mania.png` |
+| `BIG_EVOLUTION_PILL` | Big Evolution Pill | `big_evolution_pill.png` |
+| `BLACK_WINGED_DRAGON` | Black-Winged Dragon | `black_winged_dragon.png` |
+| `BEAST_MACHINE_KING_BARBAROS_UR` | Beast Machine King Barbaros Ür | `beast_machine_king_barbaros_ur.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `ANCIENT_GEAR_GOLEM` — `ancient_gear_golem.png`
-- [ ] `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` — `ancient_gear_golem_ultimate_pound.png`
-- [ ] `ANCIENT_GEAR_KNIGHT` — `ancient_gear_knight.png`
-- [ ] `ANCIENT_GEAR_MEGATON_GOLEM` — `ancient_gear_megaton_golem.png`
-- [ ] `ANCIENT_GEAR_SOLDIER` — `ancient_gear_soldier.png`
-- [ ] `ANCIENT_GEAR_STATUE` — `ancient_gear_statue.png`
-- [ ] `ANCIENT_GEAR_TANK` — `ancient_gear_tank.png`
-- [ ] `ANCIENT_GEAR_TANKER` — `ancient_gear_tanker.png`
-- [ ] `ANCIENT_GEAR_WORKSHOP` — `ancient_gear_workshop.png`
-- [ ] `ANCIENT_LEAF` — `ancient_leaf.png`
-- [ ] `ANCIENT_SACRED_WYVERN` — `ancient_sacred_wyvern.png`
-- [ ] `ARCANA_KNIGHT_JOKER` — `arcana_knight_joker.png`
-- [ ] `ARCANE_BARRIER` — `arcane_barrier.png`
-- [ ] `ARMITYLE_THE_CHAOS_PHANTASM` — `armityle_the_chaos_phantasm.png`
-- [ ] `BABYCERASAURUS` — `babycerasaurus.png`
-- [ ] `BARRIER_STATUE_OF_THE_STORMWINDS` — `barrier_statue_of_the_stormwinds.png`
-- [ ] `BATTLE_MANIA` — `battle_mania.png`
-- [ ] `BEAST_MACHINE_KING_BARBAROS_UR` — `beast_machine_king_barbaros_ur.png`
-- [ ] `BIG_EVOLUTION_PILL` — `big_evolution_pill.png`
-- [ ] `BLACK_WINGED_DRAGON` — `black_winged_dragon.png`
 - [ ] `BOOT_UP_SOLDIER_DREAD_DYNAMO` — `boot_up_soldier_dread_dynamo.png`
 - [ ] `CASTEL_THE_SKY_BLASTER_MUSKETEER` — `castel_the_sky_blaster_musketeer.png`
 - [ ] `CHAIN_STRIKE` — `chain_strike.png`

@@ -1795,11 +1795,31 @@
 #define ANCIENT_GEAR_FUSION                      0x06FF
 #define ANCIENT_GEAR_GADJILTRON_CHIMERA          0x0700
 #define ANCIENT_GEAR_GADJILTRON_DRAGON           0x0701
+#define ANCIENT_GEAR_GOLEM                       0x0702
+#define ANCIENT_GEAR_GOLEM_ULTIMATE_POUND        0x0703
+#define ANCIENT_GEAR_KNIGHT                      0x0704
+#define ANCIENT_GEAR_MEGATON_GOLEM               0x0705
+#define ANCIENT_GEAR_SOLDIER                     0x0706
+#define ANCIENT_GEAR_STATUE                      0x0707
+#define ANCIENT_GEAR_TANK                        0x0708
+#define ANCIENT_GEAR_TANKER                      0x0709
+#define ANCIENT_GEAR_WORKSHOP                    0x070A
+#define ANCIENT_LEAF                             0x070B
+#define ANCIENT_SACRED_WYVERN                    0x070C
+#define ARCANA_KNIGHT_JOKER                      0x070D
+#define ARCANE_BARRIER                           0x070E
+#define ARMITYLE_THE_CHAOS_PHANTASM              0x070F
+#define BABYCERASAURUS                           0x0710
+#define BARRIER_STATUE_OF_THE_STORMWINDS         0x0711
+#define BATTLE_MANIA                             0x0712
+#define BIG_EVOLUTION_PILL                       0x0713
+#define BLACK_WINGED_DRAGON                      0x0714
+#define BEAST_MACHINE_KING_BARBAROS_UR           0x0715
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0702
-#define NUM_CUSTOM_CARDS                        0x03E1
+#define NUM_TOTAL_CARDS                         0x0716
+#define NUM_CUSTOM_CARDS                        0x03F5
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

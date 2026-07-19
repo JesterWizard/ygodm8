@@ -29,6 +29,15 @@
     case ANCIENT_GEAR_FUSION:
       EffectANCIENT_GEAR_FUSION();
       return;
+    case ANCIENT_GEAR_TANK:
+      EffectANCIENT_GEAR_TANK();
+      return;
+    case ANCIENT_GEAR_WORKSHOP:
+      EffectANCIENT_GEAR_WORKSHOP();
+      return;
+    case ANCIENT_LEAF:
+      EffectANCIENT_LEAF();
+      return;
     case ANCIENT_RULES:
       EffectAncientRules();
       return;
@@ -37,6 +46,9 @@
       return;
     case ARCANA_SPREAD:
       EffectARCANA_SPREAD();
+      return;
+    case ARCANE_BARRIER:
+      EffectARCANE_BARRIER();
       return;
     case AROMA_BLEND:
       EffectAROMA_BLEND();
@@ -67,6 +79,9 @@
       return;
     case BIG_BANG_SHOT:
       EffectBigBangShot();
+      return;
+    case BIG_EVOLUTION_PILL:
+      EffectBIG_EVOLUTION_PILL();
       return;
     case BLOCK_ATTACK:
       EffectBlockAttack();

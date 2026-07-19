@@ -608,6 +608,34 @@ unsigned char CanActivateANCIENT_GEAR_GADJILTRON_CHIMERA(void);
 void ActivateANCIENT_GEAR_GADJILTRON_CHIMERAEffect(void);
 unsigned char CanActivateANCIENT_GEAR_GADJILTRON_DRAGON(void);
 void ActivateANCIENT_GEAR_GADJILTRON_DRAGONEffect(void);
+unsigned char CanActivateANCIENT_GEAR_GOLEM(void);
+void ActivateANCIENT_GEAR_GOLEMEffect(void);
+unsigned char CanActivateANCIENT_GEAR_GOLEM_ULTIMATE_POUND(void);
+void ActivateANCIENT_GEAR_GOLEM_ULTIMATE_POUNDEffect(void);
+unsigned char CanActivateANCIENT_GEAR_KNIGHT(void);
+void ActivateANCIENT_GEAR_KNIGHTEffect(void);
+unsigned char CanActivateANCIENT_GEAR_MEGATON_GOLEM(void);
+void ActivateANCIENT_GEAR_MEGATON_GOLEMEffect(void);
+unsigned char CanActivateANCIENT_GEAR_SOLDIER(void);
+void ActivateANCIENT_GEAR_SOLDIEREffect(void);
+unsigned char CanActivateANCIENT_GEAR_STATUE(void);
+void ActivateANCIENT_GEAR_STATUEEffect(void);
+unsigned char CanActivateANCIENT_GEAR_TANKER(void);
+void ActivateANCIENT_GEAR_TANKEREffect(void);
+unsigned char CanActivateANCIENT_SACRED_WYVERN(void);
+void ActivateANCIENT_SACRED_WYVERNEffect(void);
+unsigned char CanActivateARCANA_KNIGHT_JOKER(void);
+void ActivateARCANA_KNIGHT_JOKEREffect(void);
+unsigned char CanActivateARMITYLE_THE_CHAOS_PHANTASM(void);
+void ActivateARMITYLE_THE_CHAOS_PHANTASMEffect(void);
+unsigned char CanActivateBABYCERASAURUS(void);
+void ActivateBABYCERASAURUSEffect(void);
+unsigned char CanActivateBARRIER_STATUE_OF_THE_STORMWINDS(void);
+void ActivateBARRIER_STATUE_OF_THE_STORMWINDSEffect(void);
+unsigned char CanActivateBLACK_WINGED_DRAGON(void);
+void ActivateBLACK_WINGED_DRAGONEffect(void);
+unsigned char CanActivateBEAST_MACHINE_KING_BARBAROS_UR(void);
+void ActivateBEAST_MACHINE_KING_BARBAROS_UREffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2439,6 +2467,62 @@ FAILED:
   }
   if (gMonEffect.id == ANCIENT_GEAR_GADJILTRON_DRAGON) {
     ActivateANCIENT_GEAR_GADJILTRON_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_GOLEM) {
+    ActivateANCIENT_GEAR_GOLEMEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_GOLEM_ULTIMATE_POUND) {
+    ActivateANCIENT_GEAR_GOLEM_ULTIMATE_POUNDEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_KNIGHT) {
+    ActivateANCIENT_GEAR_KNIGHTEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_MEGATON_GOLEM) {
+    ActivateANCIENT_GEAR_MEGATON_GOLEMEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_SOLDIER) {
+    ActivateANCIENT_GEAR_SOLDIEREffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_STATUE) {
+    ActivateANCIENT_GEAR_STATUEEffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_GEAR_TANKER) {
+    ActivateANCIENT_GEAR_TANKEREffect();
+    return;
+  }
+  if (gMonEffect.id == ANCIENT_SACRED_WYVERN) {
+    ActivateANCIENT_SACRED_WYVERNEffect();
+    return;
+  }
+  if (gMonEffect.id == ARCANA_KNIGHT_JOKER) {
+    ActivateARCANA_KNIGHT_JOKEREffect();
+    return;
+  }
+  if (gMonEffect.id == ARMITYLE_THE_CHAOS_PHANTASM) {
+    ActivateARMITYLE_THE_CHAOS_PHANTASMEffect();
+    return;
+  }
+  if (gMonEffect.id == BABYCERASAURUS) {
+    ActivateBABYCERASAURUSEffect();
+    return;
+  }
+  if (gMonEffect.id == BARRIER_STATUE_OF_THE_STORMWINDS) {
+    ActivateBARRIER_STATUE_OF_THE_STORMWINDSEffect();
+    return;
+  }
+  if (gMonEffect.id == BLACK_WINGED_DRAGON) {
+    ActivateBLACK_WINGED_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == BEAST_MACHINE_KING_BARBAROS_UR) {
+    ActivateBEAST_MACHINE_KING_BARBAROS_UREffect();
     return;
   }
 }

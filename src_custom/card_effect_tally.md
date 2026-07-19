@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `924` effects
+- `944` effects
 
 ## Tally
 
@@ -905,6 +905,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Ancient Gear Fusion` | `src_custom/spell_effects/ancient_gear_fusion.c` |
 | `activated_effects` | `Ancient Gear Gadjiltron Chimera` | `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c` |
 | `activated_effects` | `Ancient Gear Gadjiltron Dragon` | `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c` |
+| `activated_effects` | `Ancient Gear Golem` | `src_custom/activated_effects/ancient_gear_golem.c` |
+| `activated_effects` | `Ancient Gear Golem Ultimate Pound` | `src_custom/activated_effects/ancient_gear_golem_ultimate_pound.c` |
+| `activated_effects` | `Ancient Gear Knight` | `src_custom/activated_effects/ancient_gear_knight.c` |
+| `activated_effects` | `Ancient Gear Megaton Golem` | `src_custom/activated_effects/ancient_gear_megaton_golem.c` |
+| `activated_effects` | `Ancient Gear Soldier` | `src_custom/activated_effects/ancient_gear_soldier.c` |
+| `activated_effects` | `Ancient Gear Statue` | `src_custom/activated_effects/ancient_gear_statue.c` |
+| `spell_effects` | `Ancient Gear Tank` | `src_custom/spell_effects/ancient_gear_tank.c` |
+| `activated_effects` | `Ancient Gear Tanker` | `src_custom/activated_effects/ancient_gear_tanker.c` |
+| `spell_effects` | `Ancient Gear Workshop` | `src_custom/spell_effects/ancient_gear_workshop.c` |
+| `spell_effects` | `Ancient Leaf` | `src_custom/spell_effects/ancient_leaf.c` |
+| `activated_effects` | `Ancient Sacred Wyvern` | `src_custom/activated_effects/ancient_sacred_wyvern.c` |
+| `activated_effects` | `Arcana Knight Joker` | `src_custom/activated_effects/arcana_knight_joker.c` |
+| `spell_effects` | `Arcane Barrier` | `src_custom/spell_effects/arcane_barrier.c` |
+| `activated_effects` | `Armityle The Chaos Phantasm` | `src_custom/activated_effects/armityle_the_chaos_phantasm.c` |
+| `activated_effects` | `Babycerasaurus` | `src_custom/activated_effects/babycerasaurus.c` |
+| `activated_effects` | `Barrier Statue Of The Stormwinds` | `src_custom/activated_effects/barrier_statue_of_the_stormwinds.c` |
+| `trap_effects` | `Battle Mania` | `src_custom/trap_effects/battle_mania.c` |
+| `spell_effects` | `Big Evolution Pill` | `src_custom/spell_effects/big_evolution_pill.c` |
+| `activated_effects` | `Black Winged Dragon` | `src_custom/activated_effects/black_winged_dragon.c` |
+| `activated_effects` | `Beast Machine King Barbaros Ur` | `src_custom/activated_effects/beast_machine_king_barbaros_ur.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

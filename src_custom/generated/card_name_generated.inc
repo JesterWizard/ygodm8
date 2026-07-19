@@ -994,6 +994,26 @@ static const u8 sAncientGearFrameName[] __attribute__((section(".append_assets")
 static const u8 sAncientGearFusionName[] __attribute__((section(".append_assets"))) = "Ancient Gear Fusion";
 static const u8 sAncientGearGadjiltronChimeraName[] __attribute__((section(".append_assets"))) = "Ancient Gear Gadjiltron Chimera";
 static const u8 sAncientGearGadjiltronDragonName[] __attribute__((section(".append_assets"))) = "Ancient Gear Gadjiltron Dragon";
+static const u8 sAncientGearGolemName[] __attribute__((section(".append_assets"))) = "Ancient Gear Golem";
+static const u8 sAncientGearGolemUltimatePoundName[] __attribute__((section(".append_assets"))) = "Ancient Gear Golem - Ultimate Pound";
+static const u8 sAncientGearKnightName[] __attribute__((section(".append_assets"))) = "Ancient Gear Knight";
+static const u8 sAncientGearMegatonGolemName[] __attribute__((section(".append_assets"))) = "Ancient Gear Megaton Golem";
+static const u8 sAncientGearSoldierName[] __attribute__((section(".append_assets"))) = "Ancient Gear Soldier";
+static const u8 sAncientGearStatueName[] __attribute__((section(".append_assets"))) = "Ancient Gear Statue";
+static const u8 sAncientGearTankName[] __attribute__((section(".append_assets"))) = "Ancient Gear Tank";
+static const u8 sAncientGearTankerName[] __attribute__((section(".append_assets"))) = "Ancient Gear Tanker";
+static const u8 sAncientGearWorkshopName[] __attribute__((section(".append_assets"))) = "Ancient Gear Workshop";
+static const u8 sAncientLeafName[] __attribute__((section(".append_assets"))) = "Ancient Leaf";
+static const u8 sAncientSacredWyvernName[] __attribute__((section(".append_assets"))) = "Ancient Sacred Wyvern";
+static const u8 sArcanaKnightJokerName[] __attribute__((section(".append_assets"))) = "Arcana Knight Joker";
+static const u8 sArcaneBarrierName[] __attribute__((section(".append_assets"))) = "Arcane Barrier";
+static const u8 sArmityleTheChaosPhantasmName[] __attribute__((section(".append_assets"))) = "Armityle the Chaos Phantasm";
+static const u8 sBabycerasaurusName[] __attribute__((section(".append_assets"))) = "Babycerasaurus";
+static const u8 sBarrierStatueOfTheStormwindsName[] __attribute__((section(".append_assets"))) = "Barrier Statue of the Stormwinds";
+static const u8 sBattleManiaName[] __attribute__((section(".append_assets"))) = "Battle Mania";
+static const u8 sBigEvolutionPillName[] __attribute__((section(".append_assets"))) = "Big Evolution Pill";
+static const u8 sBlackWingedDragonName[] __attribute__((section(".append_assets"))) = "Black-Winged Dragon";
+static const u8 sBeastMachineKingBarbarosUrName[] __attribute__((section(".append_assets"))) = "Beast Machine King Barbaros Ür";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2988,6 +3008,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sAncientGearGadjiltronChimeraName;
   if (cardId == 0x0701)
     return (u8 *)sAncientGearGadjiltronDragonName;
+  if (cardId == 0x0702)
+    return (u8 *)sAncientGearGolemName;
+  if (cardId == 0x0703)
+    return (u8 *)sAncientGearGolemUltimatePoundName;
+  if (cardId == 0x0704)
+    return (u8 *)sAncientGearKnightName;
+  if (cardId == 0x0705)
+    return (u8 *)sAncientGearMegatonGolemName;
+  if (cardId == 0x0706)
+    return (u8 *)sAncientGearSoldierName;
+  if (cardId == 0x0707)
+    return (u8 *)sAncientGearStatueName;
+  if (cardId == 0x0708)
+    return (u8 *)sAncientGearTankName;
+  if (cardId == 0x0709)
+    return (u8 *)sAncientGearTankerName;
+  if (cardId == 0x070A)
+    return (u8 *)sAncientGearWorkshopName;
+  if (cardId == 0x070B)
+    return (u8 *)sAncientLeafName;
+  if (cardId == 0x070C)
+    return (u8 *)sAncientSacredWyvernName;
+  if (cardId == 0x070D)
+    return (u8 *)sArcanaKnightJokerName;
+  if (cardId == 0x070E)
+    return (u8 *)sArcaneBarrierName;
+  if (cardId == 0x070F)
+    return (u8 *)sArmityleTheChaosPhantasmName;
+  if (cardId == 0x0710)
+    return (u8 *)sBabycerasaurusName;
+  if (cardId == 0x0711)
+    return (u8 *)sBarrierStatueOfTheStormwindsName;
+  if (cardId == 0x0712)
+    return (u8 *)sBattleManiaName;
+  if (cardId == 0x0713)
+    return (u8 *)sBigEvolutionPillName;
+  if (cardId == 0x0714)
+    return (u8 *)sBlackWingedDragonName;
+  if (cardId == 0x0715)
+    return (u8 *)sBeastMachineKingBarbarosUrName;
 
   return gCardNames[cardId];
 }

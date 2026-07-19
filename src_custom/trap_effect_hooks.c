@@ -530,3 +530,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire ALL_OUT_ATTACKS in trap dispatcher */
 /* ANCIENT_GEAR_DUEL trap effect */
   /* TODO: wire ANCIENT_GEAR_DUEL in trap dispatcher */
+/* BATTLE_MANIA trap effect */
+  /* TODO: wire BATTLE_MANIA in trap dispatcher */
