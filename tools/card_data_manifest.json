@@ -37802,6 +37802,446 @@
       "effect_texts": {
         "popup_1": "Destroy all face-up \"Amazoness\" monsters you control. Then, you can Special Summon any number of Level 4 or lower \"Amazo"
       }
+    },
+    {
+      "card_const": "AMAZONESS_SPELLCASTER",
+      "card_name": "Amazoness Spellcaster",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 1, 3, 2, 5, 9, 0, 3],
+      "description": {
+        "symbol": "gDescription_AmazonessSpellcaster",
+        "pages": "Target 1 Amazoness monster you control and 1 face-up monster your opponent controls; switch the original ATK of those targets until the end of this turn."
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 \"Amazoness\" monster you control and 1 face-up monster your opponent controls; switch the original ATK of those "
+      }
+    },
+    {
+      "card_const": "AMAZONESS_VILLAGE",
+      "card_name": "Amazoness Village",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 0, 7, 1, 2, 5, 5, 9],
+      "description": {
+        "symbol": "gDescription_AmazonessVillage",
+        "pages": "All Amazoness monsters gain 200 ATK. Once per turn, when an Amazoness monster is destroyed by battle or card effect and sent to the GY: You can Special Summon 1 Amazoness monster from your Deck with a Level less than or equal to that Amazoness monster in the GY."
+      },
+      "effect_texts": {
+        "popup_1": "All \"Amazoness\" monsters gain 200 ATK. Once per turn, when an \"Amazoness\" monster is destroyed by battle or card effect "
+      }
+    },
+    {
+      "card_const": "ANTE",
+      "card_name": "Ante",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 4, 2, 3, 6, 9, 6, 1],
+      "description": {
+        "symbol": "gDescription_Ante",
+        "pages": "Each Player reveals 1 card from their hand. If one card is higher Level than the other, the card with the lower Level is sent to the Graveyard, and the player who revealed it takes 1000 damage. (Non-Monster Cards are treated as Level 0.)"
+      },
+      "effect_texts": {
+        "popup_1": "Each Player reveals 1 card from their hand. If one card is higher Level than the other, the card with the lower Level is"
+      }
+    },
+    {
+      "card_const": "AQUA_JET",
+      "card_name": "Aqua Jet",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 7, 6, 5, 3, 2, 0, 7],
+      "description": {
+        "symbol": "gDescription_AquaJet",
+        "pages": "Target 1 face-up Fish, Sea Serpent, or Aqua-Type monster you control; it gains 1000 ATK."
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 face-up Fish, Sea Serpent, or Aqua-Type monster you control; it gains 1000 ATK."
+      }
+    },
+    {
+      "card_const": "AMAZONESS_WILLPOWER",
+      "card_name": "Amazoness Willpower",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 2, 0, 8, 2, 1, 6, 3],
+      "description": {
+        "symbol": "gDescription_AmazonessWillpower",
+        "pages": "Select 1 Amazoness monster in your Graveyard and Special Summon it in Attack Position. It cannot change its battle position and must attack if able. When this card is removed from the field, destroy that monster. When that monster is destroyed, destroy this card."
+      },
+      "effect_texts": {
+        "popup_1": "Select 1 \"Amazoness\" monster in your Graveyard and Special Summon it in Attack Position. It cannot change its battle pos"
+      }
+    },
+    {
+      "card_const": "AMAZONESS_SPIRITUALIST",
+      "card_name": "Amazoness Spiritualist",
+      "atk": 800,
+      "def": 1800,
+      "level": 2,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 274,
+      "password": [9, 7, 8, 7, 0, 3, 9, 4],
+      "description": {
+        "symbol": "gDescription_AmazonessSpiritualist",
+        "pages": "If this card is in your hand or GY: You can target 1 Amazoness card you control, except Amazoness Spiritualist; return it to the hand, and if you do, Special Summon this card, also you cannot Special Summon monsters from the Extra Deck for the rest of this turn, except Amazoness monsters. If this card is Special Summoned: You can add 1 Polymerization from your Deck to your hand. You can only use each effect of Amazoness Spiritualist once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "If this card is in your hand or GY: You can target 1 \"Amazoness\" card you control, except \"Amazoness Spiritualist\"; retu"
+      }
+    },
+    {
+      "card_const": "AMAZONESS_SPY",
+      "card_name": "Amazoness Spy",
+      "atk": 800,
+      "def": 1200,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [3, 1, 1, 0, 2, 4, 4, 7],
+      "description": {
+        "symbol": "gDescription_AmazonessSpy",
+        "pages": "You can reveal 1 other Amazoness monster in your hand; Special Summon this card from your hand. You can only use this effect of Amazoness Spy once per turn. When this card is destroyed by battle and sent to the GY: You can target 1 Amazoness monster in your GY, except Amazoness Spy; return it to the hand, or shuffle it into the Deck."
+      },
+      "effect_texts": {
+        "popup_1": "You can reveal 1 other \"Amazoness\" monster in your hand; Special Summon this card from your hand. You can only use this "
+      }
+    },
+    {
+      "card_const": "AMAZONESS_TRAINEE",
+      "card_name": "Amazoness Trainee",
+      "atk": 1500,
+      "def": 1300,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [8, 9, 5, 6, 7, 9, 9, 3],
+      "description": {
+        "symbol": "gDescription_AmazonessTrainee",
+        "pages": "Monsters destroyed by battle with this card are returned to the bottom of the Deck instead of going to the GY. If this card destroys an opponent's monster by battle: It gains 200 ATK."
+      },
+      "effect_texts": {
+        "popup_1": "Monsters destroyed by battle with this card are returned to the bottom of the Deck instead of going to the GY. If this c"
+      }
+    },
+    {
+      "card_const": "AMAZONESS_WAR_CHIEF",
+      "card_name": "Amazoness War Chief",
+      "atk": 1900,
+      "def": 0,
+      "level": 5,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [5, 0, 4, 8, 6, 2, 8, 9],
+      "description": {
+        "symbol": "gDescription_AmazonessWarChief",
+        "pages": "If you control no monsters, or only Amazoness monsters: You can Special Summon this card from your hand. If this card is Normal or Special Summoned: You can Set 1 Amazoness Spell/Trap or 1 Polymerization directly from your Deck, also you can only attack with Amazoness monsters for the rest of this turn. You can only use each effect of Amazoness War Chief once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "If you control no monsters, or only \"Amazoness\" monsters: You can Special Summon this card from your hand. If this card "
+      }
+    },
+    {
+      "card_const": "AN_OWL_OF_LUCK",
+      "card_name": "An Owl of Luck",
+      "atk": 300,
+      "def": 500,
+      "level": 2,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [2, 3, 9, 2, 7, 5, 6, 7],
+      "description": {
+        "symbol": "gDescription_AnOwlOfLuck",
+        "pages": "FLIP: Select 1 Field Spell Card from your Deck and place it on top of your Deck. If Necrovalley is on the field, you can add the selected Field Spell Card to your hand instead."
+      },
+      "effect_texts": {
+        "popup_1": "FLIP: Select 1 Field Spell Card from your Deck and place it on top of your Deck. If \"Necrovalley\" is on the field, you c"
+      }
+    },
+    {
+      "card_const": "ATLANTEAN_ATTACK_SQUAD",
+      "card_name": "Atlantean Attack Squad",
+      "atk": 1400,
+      "def": 0,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 8, 0, 7, 8, 3, 6, 6],
+      "description": {
+        "symbol": "gDescription_AtlanteanAttackSquad",
+        "pages": "This card gains 800 ATK while you control a face-up Fish, Sea Serpent, or Aqua-Type monster other than this card."
+      },
+      "effect_texts": {
+        "popup_1": "This card gains 800 ATK while you control a face-up Fish, Sea Serpent, or Aqua-Type monster other than this card."
+      }
+    },
+    {
+      "card_const": "ATLANTEAN_DRAGOONS",
+      "card_name": "Atlantean Dragoons",
+      "atk": 1800,
+      "def": 0,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [7, 4, 3, 1, 1, 2, 2, 6],
+      "description": {
+        "symbol": "gDescription_AtlanteanDragoons",
+        "pages": "All Level 3 or lower Sea Serpent-Type monsters you control can attack your opponent directly. When this card is sent to the Graveyard to activate a WATER monster's effect: Add 1 Sea Serpent-Type monster from your Deck to your hand, except Atlantean Dragoons."
+      },
+      "effect_texts": {
+        "popup_1": "All Level 3 or lower Sea Serpent-Type monsters you control can attack your opponent directly. When this card is sent to "
+      }
+    },
+    {
+      "card_const": "ATLANTEAN_HEAVY_INFANTRY",
+      "card_name": "Atlantean Heavy Infantry",
+      "atk": 0,
+      "def": 1600,
+      "level": 2,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 274,
+      "password": [3, 7, 1, 0, 4, 6, 3, 0],
+      "description": {
+        "symbol": "gDescription_AtlanteanHeavyInfantry",
+        "pages": "During your Main Phase, you can Normal Summon 1 Level 4 or lower Sea Serpent-Type monster in addition to your Normal Summon/Set. (You can only gain this effect once per turn.) When this card is sent to the Graveyard to activate a WATER monster's effect: Target 1 face-up card your opponent controls; destroy that target."
+      },
+      "effect_texts": {
+        "popup_1": "During your Main Phase, you can Normal Summon 1 Level 4 or lower Sea Serpent-Type monster in addition to your Normal Sum"
+      }
+    },
+    {
+      "card_const": "ATLANTEAN_MARKSMAN",
+      "card_name": "Atlantean Marksman",
+      "atk": 1400,
+      "def": 0,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 0, 7, 0, 6, 9, 2, 5],
+      "description": {
+        "symbol": "gDescription_AtlanteanMarksman",
+        "pages": "When this card inflicts battle damage to your opponent: You can Special Summon 1 Level 4 or lower Atlantean Sea Serpent-Type monster from your Deck, except Atlantean Marksman. When this card is sent to the Graveyard to activate a WATER monster's effect: Target 1 Set card your opponent controls; destroy that target."
+      },
+      "effect_texts": {
+        "popup_1": "When this card inflicts battle damage to your opponent: You can Special Summon 1 Level 4 or lower \"Atlantean\" Sea Serpen"
+      }
+    },
+    {
+      "card_const": "BEAST_KING_BARBAROS",
+      "card_name": "Beast King Barbaros",
+      "atk": 3000,
+      "def": 1200,
+      "level": 8,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [7, 8, 6, 5, 1, 1, 0, 5],
+      "description": {
+        "symbol": "gDescription_BeastKingBarbaros",
+        "pages": "You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls."
+      },
+      "effect_texts": {
+        "popup_1": "You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to "
+      }
+    },
+    {
+      "card_const": "CELESTIAL_KNIGHTLORD_PARSHATH",
+      "card_name": "Celestial Knightlord Parshath",
+      "atk": 2400,
+      "def": 0,
+      "level": 0,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "LINK_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 8, 5, 8, 9, 5, 8, 0],
+      "description": {
+        "symbol": "gDescription_CelestialKnightlordParshath",
+        "pages": "2+ Fairy monsters You can discard 1 card; add 1 The Sanctuary in the Sky, or 1 card that specifically lists The Sanctuary in the Sky in its text, from your Deck to your hand, or, if The Sanctuary in the Sky is on the field, you can add 1 Fairy monster instead. If another face-up Fairy monster you control is sent to the GY (except during the Damage Step): You can banish 1 Fairy monster from your GY; Special Summon 1 Fairy monster from your hand whose Level is higher than that banished monster's. You can only use each effect of Celestial Knightlord Parshath once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "2+ Fairy monsters\r\nYou can discard 1 card; add 1 \"The Sanctuary in the Sky\", or 1 card that specifically lists \"The Sanc"
+      }
+    },
+    {
+      "card_const": "CHAINSAW_INSECT",
+      "card_name": "Chainsaw Insect",
+      "atk": 2400,
+      "def": 0,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_INSECT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 195,
+      "password": [7, 7, 2, 5, 2, 2, 1, 7],
+      "description": {
+        "symbol": "gDescription_ChainsawInsect",
+        "pages": "At the end of the Damage Step, if this card attacked or was attacked: Your opponent draws 1 card."
+      },
+      "effect_texts": {
+        "popup_1": "At the end of the Damage Step, if this card attacked or was attacked: Your opponent draws 1 card."
+      }
+    },
+    {
+      "card_const": "CHARM_OF_SHABTI",
+      "card_name": "Charm of Shabti",
+      "atk": 100,
+      "def": 100,
+      "level": 1,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_ROCK",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 75,
+      "password": [5, 0, 4, 1, 2, 1, 6, 6],
+      "description": {
+        "symbol": "gDescription_CharmOfShabti",
+        "pages": "During either player's turn: You can discard this card; until the End Phase, Gravekeeper's monsters you control cannot be destroyed by battle."
+      },
+      "effect_texts": {
+        "popup_1": "During either player's turn: You can discard this card; until the End Phase, \"Gravekeeper's\" monsters you control cannot"
+      }
+    },
+    {
+      "card_const": "BAZOO_THE_SOUL_EATER",
+      "card_name": "Bazoo the Soul-Eater",
+      "atk": 1600,
+      "def": 900,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 207,
+      "password": [4, 0, 1, 3, 3, 5, 1, 1],
+      "description": {
+        "symbol": "gDescription_BazooTheSoulEater",
+        "pages": "Once per turn: You can banish up to 3 monsters from your Graveyard; this card gains 300 ATK for each, until the end of your opponent's turn."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn: You can banish up to 3 monsters from your Graveyard; this card gains 300 ATK for each, until the end of y"
+      }
+    },
+    {
+      "card_const": "ASH_BLOSSOM_AND_JOYOUS_SPRING",
+      "card_name": "Ash Blossom & Joyous Spring",
+      "atk": 0,
+      "def": 1800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_ZOMBIE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 274,
+      "password": [1, 4, 5, 5, 8, 1, 2, 7],
+      "description": {
+        "symbol": "gDescription_AshBlossomAndJoyousSpring",
+        "pages": "When a card or effect is activated that includes any of these effects (Quick Effect): You can discard this card; negate that effect. - Add a card from the Deck to the hand. - Special Summon from the Deck. - Send a card from the Deck to the GY. You can only use this effect of Ash Blossom & Joyous Spring once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "When a card or effect is activated that includes any of these effects (Quick Effect): You can discard this card; negate "
+      }
     }
   ]
 }

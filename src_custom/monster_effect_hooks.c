@@ -806,6 +806,36 @@ unsigned char CanActivateAMAZONESS_SCOUTS(void);
 void ActivateAMAZONESS_SCOUTSEffect(void);
 unsigned char CanActivateALECTOR_SOVEREIGN_OF_BIRDS(void);
 void ActivateALECTOR_SOVEREIGN_OF_BIRDSEffect(void);
+unsigned char CanActivateAMAZONESS_SPIRITUALIST(void);
+void ActivateAMAZONESS_SPIRITUALISTEffect(void);
+unsigned char CanActivateAMAZONESS_SPY(void);
+void ActivateAMAZONESS_SPYEffect(void);
+unsigned char CanActivateAMAZONESS_TRAINEE(void);
+void ActivateAMAZONESS_TRAINEEEffect(void);
+unsigned char CanActivateAMAZONESS_WAR_CHIEF(void);
+void ActivateAMAZONESS_WAR_CHIEFEffect(void);
+unsigned char CanActivateAN_OWL_OF_LUCK(void);
+void ActivateAN_OWL_OF_LUCKEffect(void);
+unsigned char CanActivateATLANTEAN_ATTACK_SQUAD(void);
+void ActivateATLANTEAN_ATTACK_SQUADEffect(void);
+unsigned char CanActivateATLANTEAN_DRAGOONS(void);
+void ActivateATLANTEAN_DRAGOONSEffect(void);
+unsigned char CanActivateATLANTEAN_HEAVY_INFANTRY(void);
+void ActivateATLANTEAN_HEAVY_INFANTRYEffect(void);
+unsigned char CanActivateATLANTEAN_MARKSMAN(void);
+void ActivateATLANTEAN_MARKSMANEffect(void);
+unsigned char CanActivateBEAST_KING_BARBAROS(void);
+void ActivateBEAST_KING_BARBAROSEffect(void);
+unsigned char CanActivateCELESTIAL_KNIGHTLORD_PARSHATH(void);
+void ActivateCELESTIAL_KNIGHTLORD_PARSHATHEffect(void);
+unsigned char CanActivateCHAINSAW_INSECT(void);
+void ActivateCHAINSAW_INSECTEffect(void);
+unsigned char CanActivateCHARM_OF_SHABTI(void);
+void ActivateCHARM_OF_SHABTIEffect(void);
+unsigned char CanActivateBAZOO_THE_SOUL_EATER(void);
+void ActivateBAZOO_THE_SOUL_EATEREffect(void);
+unsigned char CanActivateASH_BLOSSOM_AND_JOYOUS_SPRING(void);
+void ActivateASH_BLOSSOM_AND_JOYOUS_SPRINGEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -3033,6 +3063,66 @@ FAILED:
   }
   if (gMonEffect.id == ALECTOR_SOVEREIGN_OF_BIRDS) {
     ActivateALECTOR_SOVEREIGN_OF_BIRDSEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_SPIRITUALIST) {
+    ActivateAMAZONESS_SPIRITUALISTEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_SPY) {
+    ActivateAMAZONESS_SPYEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_TRAINEE) {
+    ActivateAMAZONESS_TRAINEEEffect();
+    return;
+  }
+  if (gMonEffect.id == AMAZONESS_WAR_CHIEF) {
+    ActivateAMAZONESS_WAR_CHIEFEffect();
+    return;
+  }
+  if (gMonEffect.id == AN_OWL_OF_LUCK) {
+    ActivateAN_OWL_OF_LUCKEffect();
+    return;
+  }
+  if (gMonEffect.id == ATLANTEAN_ATTACK_SQUAD) {
+    ActivateATLANTEAN_ATTACK_SQUADEffect();
+    return;
+  }
+  if (gMonEffect.id == ATLANTEAN_DRAGOONS) {
+    ActivateATLANTEAN_DRAGOONSEffect();
+    return;
+  }
+  if (gMonEffect.id == ATLANTEAN_HEAVY_INFANTRY) {
+    ActivateATLANTEAN_HEAVY_INFANTRYEffect();
+    return;
+  }
+  if (gMonEffect.id == ATLANTEAN_MARKSMAN) {
+    ActivateATLANTEAN_MARKSMANEffect();
+    return;
+  }
+  if (gMonEffect.id == BEAST_KING_BARBAROS) {
+    ActivateBEAST_KING_BARBAROSEffect();
+    return;
+  }
+  if (gMonEffect.id == CELESTIAL_KNIGHTLORD_PARSHATH) {
+    ActivateCELESTIAL_KNIGHTLORD_PARSHATHEffect();
+    return;
+  }
+  if (gMonEffect.id == CHAINSAW_INSECT) {
+    ActivateCHAINSAW_INSECTEffect();
+    return;
+  }
+  if (gMonEffect.id == CHARM_OF_SHABTI) {
+    ActivateCHARM_OF_SHABTIEffect();
+    return;
+  }
+  if (gMonEffect.id == BAZOO_THE_SOUL_EATER) {
+    ActivateBAZOO_THE_SOUL_EATEREffect();
+    return;
+  }
+  if (gMonEffect.id == ASH_BLOSSOM_AND_JOYOUS_SPRING) {
+    ActivateASH_BLOSSOM_AND_JOYOUS_SPRINGEffect();
     return;
   }
 }

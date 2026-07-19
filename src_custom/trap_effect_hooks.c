@@ -574,3 +574,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire AMAZONESS_ONSLAUGHT in trap dispatcher */
 /* AMAZONESS_SHAMANISM trap effect */
   /* TODO: wire AMAZONESS_SHAMANISM in trap dispatcher */
+/* AMAZONESS_WILLPOWER trap effect */
+  /* TODO: wire AMAZONESS_WILLPOWER in trap dispatcher */

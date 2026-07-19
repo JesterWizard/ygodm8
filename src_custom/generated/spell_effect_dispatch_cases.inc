@@ -20,6 +20,12 @@
     case AMAZONESS_SECRET_ARTS:
       EffectAMAZONESS_SECRET_ARTS();
       return;
+    case AMAZONESS_SPELLCASTER:
+      EffectAMAZONESS_SPELLCASTER();
+      return;
+    case AMAZONESS_VILLAGE:
+      EffectAMAZONESS_VILLAGE();
+      return;
     case ANCIENT_GEAR_ADVANCE:
       EffectANCIENT_GEAR_ADVANCE();
       return;
@@ -52,6 +58,12 @@
       return;
     case ANCIENT_RULES:
       EffectAncientRules();
+      return;
+    case ANTE:
+      EffectANTE();
+      return;
+    case AQUA_JET:
+      EffectAQUA_JET();
       return;
     case ARCANA_READING:
       EffectARCANA_READING();

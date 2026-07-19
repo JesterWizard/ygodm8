@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1084` effects
+- `1104` effects
 
 ## Tally
 
@@ -1065,6 +1065,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Amazoness Hot Spring` | `src_custom/trap_effects/amazoness_hot_spring.c` |
 | `trap_effects` | `Amazoness Onslaught` | `src_custom/trap_effects/amazoness_onslaught.c` |
 | `trap_effects` | `Amazoness Shamanism` | `src_custom/trap_effects/amazoness_shamanism.c` |
+| `spell_effects` | `Amazoness Spellcaster` | `src_custom/spell_effects/amazoness_spellcaster.c` |
+| `spell_effects` | `Amazoness Village` | `src_custom/spell_effects/amazoness_village.c` |
+| `spell_effects` | `Ante` | `src_custom/spell_effects/ante.c` |
+| `spell_effects` | `Aqua Jet` | `src_custom/spell_effects/aqua_jet.c` |
+| `trap_effects` | `Amazoness Willpower` | `src_custom/trap_effects/amazoness_willpower.c` |
+| `activated_effects` | `Amazoness Spiritualist` | `src_custom/activated_effects/amazoness_spiritualist.c` |
+| `activated_effects` | `Amazoness Spy` | `src_custom/activated_effects/amazoness_spy.c` |
+| `activated_effects` | `Amazoness Trainee` | `src_custom/activated_effects/amazoness_trainee.c` |
+| `activated_effects` | `Amazoness War Chief` | `src_custom/activated_effects/amazoness_war_chief.c` |
+| `activated_effects` | `An Owl Of Luck` | `src_custom/activated_effects/an_owl_of_luck.c` |
+| `activated_effects` | `Atlantean Attack Squad` | `src_custom/activated_effects/atlantean_attack_squad.c` |
+| `activated_effects` | `Atlantean Dragoons` | `src_custom/activated_effects/atlantean_dragoons.c` |
+| `activated_effects` | `Atlantean Heavy Infantry` | `src_custom/activated_effects/atlantean_heavy_infantry.c` |
+| `activated_effects` | `Atlantean Marksman` | `src_custom/activated_effects/atlantean_marksman.c` |
+| `activated_effects` | `Beast King Barbaros` | `src_custom/activated_effects/beast_king_barbaros.c` |
+| `activated_effects` | `Celestial Knightlord Parshath` | `src_custom/activated_effects/celestial_knightlord_parshath.c` |
+| `activated_effects` | `Chainsaw Insect` | `src_custom/activated_effects/chainsaw_insect.c` |
+| `activated_effects` | `Charm Of Shabti` | `src_custom/activated_effects/charm_of_shabti.c` |
+| `activated_effects` | `Bazoo The Soul Eater` | `src_custom/activated_effects/bazoo_the_soul_eater.c` |
+| `activated_effects` | `Ash Blossom And Joyous Spring` | `src_custom/activated_effects/ash_blossom_and_joyous_spring.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

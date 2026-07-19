@@ -1,14 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-19 — A Cat of Ill Omen…Amazoness Shamanism (stubbed)
+**Last worked on:** 2026-07-19 — Added Amazoness Spellcaster through Charm of Shabti (20 cards) stubbed
 
 **Files touched:**
-- `tools/card_data_manifest.json` — 20 new cards
-- `src_custom/{spell,trap,activated}_effects/` — stub effect files
-- `src_custom/monster_effect_hooks.c`, `trap_effect_hooks.c` — dispatch wiring
-- `asm/ram_map_ewram.s` — align `gMechanicsTutorialPendingCardId`
-- `src_custom/assets/cards/CARD_PROGRESS.md` — regenerated
+- `tools/card_data_manifest.json`
+- `src_custom/{spell`
+- `trap`
+- `activated}_effects/`
+- `hooks`
+- `CARD_PROGRESS.md`
 
-**Outcome:** `make` OK. 1153 in-game; 134 art-ready todo.
+**Outcome:** make OK. Forced Ash Blossom const to ASH_BLOSSOM_AND_JOYOUS_SPRING for art stem. In game 1173; art-ready todo 114.
 
-**Open / next:** Implement stub bodies; next batch from `AMAZONESS_SPELLCASTER`.
+**Open / next:**
+- Implement stub bodies; next batch from CLEAR_VICE_DRAGON

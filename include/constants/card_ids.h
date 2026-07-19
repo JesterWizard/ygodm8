@@ -1955,11 +1955,31 @@
 #define AMAZONESS_HOT_SPRING                     0x079F
 #define AMAZONESS_ONSLAUGHT                      0x07A0
 #define AMAZONESS_SHAMANISM                      0x07A1
+#define AMAZONESS_SPELLCASTER                    0x07A2
+#define AMAZONESS_VILLAGE                        0x07A3
+#define ANTE                                     0x07A4
+#define AQUA_JET                                 0x07A5
+#define AMAZONESS_WILLPOWER                      0x07A6
+#define AMAZONESS_SPIRITUALIST                   0x07A7
+#define AMAZONESS_SPY                            0x07A8
+#define AMAZONESS_TRAINEE                        0x07A9
+#define AMAZONESS_WAR_CHIEF                      0x07AA
+#define AN_OWL_OF_LUCK                           0x07AB
+#define ATLANTEAN_ATTACK_SQUAD                   0x07AC
+#define ATLANTEAN_DRAGOONS                       0x07AD
+#define ATLANTEAN_HEAVY_INFANTRY                 0x07AE
+#define ATLANTEAN_MARKSMAN                       0x07AF
+#define BEAST_KING_BARBAROS                      0x07B0
+#define CELESTIAL_KNIGHTLORD_PARSHATH            0x07B1
+#define CHAINSAW_INSECT                          0x07B2
+#define CHARM_OF_SHABTI                          0x07B3
+#define BAZOO_THE_SOUL_EATER                     0x07B4
+#define ASH_BLOSSOM_AND_JOYOUS_SPRING            0x07B5
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x07A2
-#define NUM_CUSTOM_CARDS                        0x0481
+#define NUM_TOTAL_CARDS                         0x07B6
+#define NUM_CUSTOM_CARDS                        0x0495
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

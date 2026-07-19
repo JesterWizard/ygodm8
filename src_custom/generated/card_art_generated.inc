@@ -4624,6 +4624,86 @@ static const unsigned char sAmazonessShamanismBigArt[] __attribute__((section(".
 static const unsigned short sAmazonessShamanismBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_shamanism.gbapal");
 static const unsigned char sAmazonessShamanismMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_shamanism.lz");
 
+static const unsigned char sAmazonessSpellcasterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amazoness_spellcaster.huff");
+static const unsigned short sAmazonessSpellcasterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_spellcaster.gbapal");
+static const unsigned char sAmazonessSpellcasterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_spellcaster.lz");
+
+static const unsigned char sAmazonessVillageBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amazoness_village.huff");
+static const unsigned short sAmazonessVillageBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_village.gbapal");
+static const unsigned char sAmazonessVillageMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_village.lz");
+
+static const unsigned char sAnteBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ante.huff");
+static const unsigned short sAnteBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ante.gbapal");
+static const unsigned char sAnteMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ante.lz");
+
+static const unsigned char sAquaJetBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aqua_jet.huff");
+static const unsigned short sAquaJetBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aqua_jet.gbapal");
+static const unsigned char sAquaJetMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aqua_jet.lz");
+
+static const unsigned char sAmazonessWillpowerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amazoness_willpower.huff");
+static const unsigned short sAmazonessWillpowerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_willpower.gbapal");
+static const unsigned char sAmazonessWillpowerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_willpower.lz");
+
+static const unsigned char sAmazonessSpiritualistBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amazoness_spiritualist.huff");
+static const unsigned short sAmazonessSpiritualistBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_spiritualist.gbapal");
+static const unsigned char sAmazonessSpiritualistMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_spiritualist.lz");
+
+static const unsigned char sAmazonessSpyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amazoness_spy.huff");
+static const unsigned short sAmazonessSpyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_spy.gbapal");
+static const unsigned char sAmazonessSpyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_spy.lz");
+
+static const unsigned char sAmazonessTraineeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amazoness_trainee.huff");
+static const unsigned short sAmazonessTraineeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_trainee.gbapal");
+static const unsigned char sAmazonessTraineeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_trainee.lz");
+
+static const unsigned char sAmazonessWarChiefBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amazoness_war_chief.huff");
+static const unsigned short sAmazonessWarChiefBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_war_chief.gbapal");
+static const unsigned char sAmazonessWarChiefMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_war_chief.lz");
+
+static const unsigned char sAnOwlOfLuckBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/an_owl_of_luck.huff");
+static const unsigned short sAnOwlOfLuckBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/an_owl_of_luck.gbapal");
+static const unsigned char sAnOwlOfLuckMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/an_owl_of_luck.lz");
+
+static const unsigned char sAtlanteanAttackSquadBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/atlantean_attack_squad.huff");
+static const unsigned short sAtlanteanAttackSquadBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/atlantean_attack_squad.gbapal");
+static const unsigned char sAtlanteanAttackSquadMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/atlantean_attack_squad.lz");
+
+static const unsigned char sAtlanteanDragoonsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/atlantean_dragoons.huff");
+static const unsigned short sAtlanteanDragoonsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/atlantean_dragoons.gbapal");
+static const unsigned char sAtlanteanDragoonsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/atlantean_dragoons.lz");
+
+static const unsigned char sAtlanteanHeavyInfantryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/atlantean_heavy_infantry.huff");
+static const unsigned short sAtlanteanHeavyInfantryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/atlantean_heavy_infantry.gbapal");
+static const unsigned char sAtlanteanHeavyInfantryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/atlantean_heavy_infantry.lz");
+
+static const unsigned char sAtlanteanMarksmanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/atlantean_marksman.huff");
+static const unsigned short sAtlanteanMarksmanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/atlantean_marksman.gbapal");
+static const unsigned char sAtlanteanMarksmanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/atlantean_marksman.lz");
+
+static const unsigned char sBeastKingBarbarosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/beast_king_barbaros.huff");
+static const unsigned short sBeastKingBarbarosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/beast_king_barbaros.gbapal");
+static const unsigned char sBeastKingBarbarosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/beast_king_barbaros.lz");
+
+static const unsigned char sCelestialKnightlordParshathBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/celestial_knightlord_parshath.huff");
+static const unsigned short sCelestialKnightlordParshathBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/celestial_knightlord_parshath.gbapal");
+static const unsigned char sCelestialKnightlordParshathMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/celestial_knightlord_parshath.lz");
+
+static const unsigned char sChainsawInsectBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chainsaw_insect.huff");
+static const unsigned short sChainsawInsectBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chainsaw_insect.gbapal");
+static const unsigned char sChainsawInsectMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chainsaw_insect.lz");
+
+static const unsigned char sCharmOfShabtiBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/charm_of_shabti.huff");
+static const unsigned short sCharmOfShabtiBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/charm_of_shabti.gbapal");
+static const unsigned char sCharmOfShabtiMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/charm_of_shabti.lz");
+
+static const unsigned char sBazooTheSoulEaterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/bazoo_the_soul_eater.huff");
+static const unsigned short sBazooTheSoulEaterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/bazoo_the_soul_eater.gbapal");
+static const unsigned char sBazooTheSoulEaterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/bazoo_the_soul_eater.lz");
+
+static const unsigned char sAshBlossomAndJoyousSpringBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ash_blossom_and_joyous_spring.huff");
+static const unsigned short sAshBlossomAndJoyousSpringBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ash_blossom_and_joyous_spring.gbapal");
+static const unsigned char sAshBlossomAndJoyousSpringMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ash_blossom_and_joyous_spring.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -5781,6 +5861,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x079F] = sAmazonessHotSpringBigArt,
   [0x07A0] = sAmazonessOnslaughtBigArt,
   [0x07A1] = sAmazonessShamanismBigArt,
+  [0x07A2] = sAmazonessSpellcasterBigArt,
+  [0x07A3] = sAmazonessVillageBigArt,
+  [0x07A4] = sAnteBigArt,
+  [0x07A5] = sAquaJetBigArt,
+  [0x07A6] = sAmazonessWillpowerBigArt,
+  [0x07A7] = sAmazonessSpiritualistBigArt,
+  [0x07A8] = sAmazonessSpyBigArt,
+  [0x07A9] = sAmazonessTraineeBigArt,
+  [0x07AA] = sAmazonessWarChiefBigArt,
+  [0x07AB] = sAnOwlOfLuckBigArt,
+  [0x07AC] = sAtlanteanAttackSquadBigArt,
+  [0x07AD] = sAtlanteanDragoonsBigArt,
+  [0x07AE] = sAtlanteanHeavyInfantryBigArt,
+  [0x07AF] = sAtlanteanMarksmanBigArt,
+  [0x07B0] = sBeastKingBarbarosBigArt,
+  [0x07B1] = sCelestialKnightlordParshathBigArt,
+  [0x07B2] = sChainsawInsectBigArt,
+  [0x07B3] = sCharmOfShabtiBigArt,
+  [0x07B4] = sBazooTheSoulEaterBigArt,
+  [0x07B5] = sAshBlossomAndJoyousSpringBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -6940,6 +7040,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x079F] = sAmazonessHotSpringBigPalette,
   [0x07A0] = sAmazonessOnslaughtBigPalette,
   [0x07A1] = sAmazonessShamanismBigPalette,
+  [0x07A2] = sAmazonessSpellcasterBigPalette,
+  [0x07A3] = sAmazonessVillageBigPalette,
+  [0x07A4] = sAnteBigPalette,
+  [0x07A5] = sAquaJetBigPalette,
+  [0x07A6] = sAmazonessWillpowerBigPalette,
+  [0x07A7] = sAmazonessSpiritualistBigPalette,
+  [0x07A8] = sAmazonessSpyBigPalette,
+  [0x07A9] = sAmazonessTraineeBigPalette,
+  [0x07AA] = sAmazonessWarChiefBigPalette,
+  [0x07AB] = sAnOwlOfLuckBigPalette,
+  [0x07AC] = sAtlanteanAttackSquadBigPalette,
+  [0x07AD] = sAtlanteanDragoonsBigPalette,
+  [0x07AE] = sAtlanteanHeavyInfantryBigPalette,
+  [0x07AF] = sAtlanteanMarksmanBigPalette,
+  [0x07B0] = sBeastKingBarbarosBigPalette,
+  [0x07B1] = sCelestialKnightlordParshathBigPalette,
+  [0x07B2] = sChainsawInsectBigPalette,
+  [0x07B3] = sCharmOfShabtiBigPalette,
+  [0x07B4] = sBazooTheSoulEaterBigPalette,
+  [0x07B5] = sAshBlossomAndJoyousSpringBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -8099,6 +8219,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x079F] = 0,
   [0x07A0] = 0,
   [0x07A1] = 0,
+  [0x07A2] = 0,
+  [0x07A3] = 0,
+  [0x07A4] = 0,
+  [0x07A5] = 0,
+  [0x07A6] = 0,
+  [0x07A7] = 0,
+  [0x07A8] = 0,
+  [0x07A9] = 0,
+  [0x07AA] = 0,
+  [0x07AB] = 0,
+  [0x07AC] = 0,
+  [0x07AD] = 0,
+  [0x07AE] = 0,
+  [0x07AF] = 0,
+  [0x07B0] = 0,
+  [0x07B1] = 0,
+  [0x07B2] = 0,
+  [0x07B3] = 0,
+  [0x07B4] = 0,
+  [0x07B5] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -9258,4 +9398,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x079F] = sAmazonessHotSpringMiniArt,
   [0x07A0] = sAmazonessOnslaughtMiniArt,
   [0x07A1] = sAmazonessShamanismMiniArt,
+  [0x07A2] = sAmazonessSpellcasterMiniArt,
+  [0x07A3] = sAmazonessVillageMiniArt,
+  [0x07A4] = sAnteMiniArt,
+  [0x07A5] = sAquaJetMiniArt,
+  [0x07A6] = sAmazonessWillpowerMiniArt,
+  [0x07A7] = sAmazonessSpiritualistMiniArt,
+  [0x07A8] = sAmazonessSpyMiniArt,
+  [0x07A9] = sAmazonessTraineeMiniArt,
+  [0x07AA] = sAmazonessWarChiefMiniArt,
+  [0x07AB] = sAnOwlOfLuckMiniArt,
+  [0x07AC] = sAtlanteanAttackSquadMiniArt,
+  [0x07AD] = sAtlanteanDragoonsMiniArt,
+  [0x07AE] = sAtlanteanHeavyInfantryMiniArt,
+  [0x07AF] = sAtlanteanMarksmanMiniArt,
+  [0x07B0] = sBeastKingBarbarosMiniArt,
+  [0x07B1] = sCelestialKnightlordParshathMiniArt,
+  [0x07B2] = sChainsawInsectMiniArt,
+  [0x07B3] = sCharmOfShabtiMiniArt,
+  [0x07B4] = sBazooTheSoulEaterMiniArt,
+  [0x07B5] = sAshBlossomAndJoyousSpringMiniArt,
 };

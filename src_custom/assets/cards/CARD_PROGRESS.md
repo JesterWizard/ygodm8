@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1153 |
-| Art ready, needs manifest | 134 |
+| In game (manifest + art) | 1173 |
+| Art ready, needs manifest | 114 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1290** |
 
@@ -1175,31 +1175,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `AMAZONESS_HOT_SPRING` | Amazoness Hot Spring | `amazoness_hot_spring.png` |
 | `AMAZONESS_ONSLAUGHT` | Amazoness Onslaught | `amazoness_onslaught.png` |
 | `AMAZONESS_SHAMANISM` | Amazoness Shamanism | `amazoness_shamanism.png` |
+| `AMAZONESS_SPELLCASTER` | Amazoness Spellcaster | `amazoness_spellcaster.png` |
+| `AMAZONESS_VILLAGE` | Amazoness Village | `amazoness_village.png` |
+| `ANTE` | Ante | `ante.png` |
+| `AQUA_JET` | Aqua Jet | `aqua_jet.png` |
+| `AMAZONESS_WILLPOWER` | Amazoness Willpower | `amazoness_willpower.png` |
+| `AMAZONESS_SPIRITUALIST` | Amazoness Spiritualist | `amazoness_spiritualist.png` |
+| `AMAZONESS_SPY` | Amazoness Spy | `amazoness_spy.png` |
+| `AMAZONESS_TRAINEE` | Amazoness Trainee | `amazoness_trainee.png` |
+| `AMAZONESS_WAR_CHIEF` | Amazoness War Chief | `amazoness_war_chief.png` |
+| `AN_OWL_OF_LUCK` | An Owl of Luck | `an_owl_of_luck.png` |
+| `ATLANTEAN_ATTACK_SQUAD` | Atlantean Attack Squad | `atlantean_attack_squad.png` |
+| `ATLANTEAN_DRAGOONS` | Atlantean Dragoons | `atlantean_dragoons.png` |
+| `ATLANTEAN_HEAVY_INFANTRY` | Atlantean Heavy Infantry | `atlantean_heavy_infantry.png` |
+| `ATLANTEAN_MARKSMAN` | Atlantean Marksman | `atlantean_marksman.png` |
+| `BEAST_KING_BARBAROS` | Beast King Barbaros | `beast_king_barbaros.png` |
+| `CELESTIAL_KNIGHTLORD_PARSHATH` | Celestial Knightlord Parshath | `celestial_knightlord_parshath.png` |
+| `CHAINSAW_INSECT` | Chainsaw Insect | `chainsaw_insect.png` |
+| `CHARM_OF_SHABTI` | Charm of Shabti | `charm_of_shabti.png` |
+| `BAZOO_THE_SOUL_EATER` | Bazoo the Soul-Eater | `bazoo_the_soul_eater.png` |
+| `ASH_BLOSSOM_AND_JOYOUS_SPRING` | Ash Blossom & Joyous Spring | `ash_blossom_and_joyous_spring.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `AMAZONESS_SPELLCASTER` — `amazoness_spellcaster.png`
-- [ ] `AMAZONESS_SPIRITUALIST` — `amazoness_spiritualist.png`
-- [ ] `AMAZONESS_SPY` — `amazoness_spy.png`
-- [ ] `AMAZONESS_TRAINEE` — `amazoness_trainee.png`
-- [ ] `AMAZONESS_VILLAGE` — `amazoness_village.png`
-- [ ] `AMAZONESS_WAR_CHIEF` — `amazoness_war_chief.png`
-- [ ] `AMAZONESS_WILLPOWER` — `amazoness_willpower.png`
-- [ ] `AN_OWL_OF_LUCK` — `an_owl_of_luck.png`
-- [ ] `ANTE` — `ante.png`
-- [ ] `AQUA_JET` — `aqua_jet.png`
-- [ ] `ASH_BLOSSOM_AND_JOYOUS_SPRING` — `ash_blossom_and_joyous_spring.png`
-- [ ] `ATLANTEAN_ATTACK_SQUAD` — `atlantean_attack_squad.png`
-- [ ] `ATLANTEAN_DRAGOONS` — `atlantean_dragoons.png`
-- [ ] `ATLANTEAN_HEAVY_INFANTRY` — `atlantean_heavy_infantry.png`
-- [ ] `ATLANTEAN_MARKSMAN` — `atlantean_marksman.png`
-- [ ] `BAZOO_THE_SOUL_EATER` — `bazoo_the_soul_eater.png`
-- [ ] `BEAST_KING_BARBAROS` — `beast_king_barbaros.png`
-- [ ] `CELESTIAL_KNIGHTLORD_PARSHATH` — `celestial_knightlord_parshath.png`
-- [ ] `CHAINSAW_INSECT` — `chainsaw_insect.png`
-- [ ] `CHARM_OF_SHABTI` — `charm_of_shabti.png`
 - [ ] `CLEAR_VICE_DRAGON` — `clear_vice_dragon.png`
 - [ ] `CYBERNETIC_MAGICIAN` — `cybernetic_magician.png`
 - [ ] `DARKLORD_DESIRE` — `darklord_desire.png`
