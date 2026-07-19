@@ -302,10 +302,14 @@ void OverworldLoadGraphics__Replacement(void) {
     }
   }
 
-  /* Spawn override: InitOverworld used map 0's spawns when unk8 was the
-   * custom-map dummy, so look up by gCustomMapOverrideId in that case. */
-  if (gRuntimeConfig.enable_manifest_map_overrides
-      || gCustomMapOverrideId >= CUSTOM_MAP_BASE) {
+  /* Spawn override only after InitOverworld (map / world-map transition).
+   * Mid-script OverworldLoadGraphics (shop buy/sell, password, casino) must
+   * keep the player's current tile — otherwise door slot unkC snaps you back
+   * to the entrance (e.g. Card Shop after leaving Grandpa's buy menu). */
+  if (((gOverworld.flags & OVERWORLD_FLAG_MAP_TRANSITION) != 0
+       || gCustomMapOverridePending)
+      && (gRuntimeConfig.enable_manifest_map_overrides
+          || gCustomMapOverrideId >= CUSTOM_MAP_BASE)) {
     u16 overrideMapId = gOverworld.map.id;
     u8 slot = gOverworld.map.unk4;
     u8 sx, sy, sd;

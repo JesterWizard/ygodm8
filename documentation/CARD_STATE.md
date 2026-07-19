@@ -1,13 +1,10 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-19 — Added 20 cards (Spell Striker through X-Saber Airbellum) stubbed
+**Last worked on:** 2026-07-19 — Fix shop exit snapping to Card Shop entrance
 
 **Files touched:**
-- `tools/card_data_manifest.json` — 20 new cards
-- `src_custom/{spell,trap,activated}_effects/` — stub effect files
-- `src_custom/assets/cards/80x80/waterhazard.png` — renamed from WaterHazard.png
-- `src_custom/assets/cards/CARD_PROGRESS.md` — 1133 in-game; 0 art-ready todo
+- `src_custom/debug/overworld_debug_overlay_hooks.c` — gate manifest spawn overrides to map transitions only
 
-**Outcome:** `make` OK. Effects stubbed (TODO bodies). Art-ready todo cleared.
+**Outcome:** `make` OK. Buy/sell UI exit should keep position in front of Grandpa (vanilla behavior).
 
-**Open / next:** Implement effect bodies for stubbed cards.
+**Open / next:** Playtest shop exit; implement stubbed card effect bodies.
