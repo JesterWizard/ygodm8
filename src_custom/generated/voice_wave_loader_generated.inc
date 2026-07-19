@@ -100,6 +100,60 @@ extern u8 CustomVoice_arkana_2_Wave[];
 extern u8 CustomVoice_arkana_2_Part[];
 extern u8 CustomVoice_arkana_3_Wave[];
 extern u8 CustomVoice_arkana_3_Part[];
+extern u8 CustomVoice_bonz_1_Wave[];
+extern u8 CustomVoice_bonz_1_Part[];
+extern u8 CustomVoice_bonz_2_Wave[];
+extern u8 CustomVoice_bonz_2_Part[];
+extern u8 CustomVoice_bonz_3_Wave[];
+extern u8 CustomVoice_bonz_3_Part[];
+extern u8 CustomVoice_espa_roba_1_Wave[];
+extern u8 CustomVoice_espa_roba_1_Part[];
+extern u8 CustomVoice_espa_roba_2_Wave[];
+extern u8 CustomVoice_espa_roba_2_Part[];
+extern u8 CustomVoice_espa_roba_3_Wave[];
+extern u8 CustomVoice_espa_roba_3_Part[];
+extern u8 CustomVoice_lumis_1_Wave[];
+extern u8 CustomVoice_lumis_1_Part[];
+extern u8 CustomVoice_lumis_2_Wave[];
+extern u8 CustomVoice_lumis_2_Part[];
+extern u8 CustomVoice_lumis_3_Wave[];
+extern u8 CustomVoice_lumis_3_Part[];
+extern u8 CustomVoice_umbra_1_Wave[];
+extern u8 CustomVoice_umbra_1_Part[];
+extern u8 CustomVoice_umbra_2_Wave[];
+extern u8 CustomVoice_umbra_2_Part[];
+extern u8 CustomVoice_umbra_3_Wave[];
+extern u8 CustomVoice_umbra_3_Part[];
+extern u8 CustomVoice_marik_1_Wave[];
+extern u8 CustomVoice_marik_1_Part[];
+extern u8 CustomVoice_marik_2_Wave[];
+extern u8 CustomVoice_marik_2_Part[];
+extern u8 CustomVoice_marik_3_Wave[];
+extern u8 CustomVoice_marik_3_Part[];
+extern u8 CustomVoice_noah_1_Wave[];
+extern u8 CustomVoice_noah_1_Part[];
+extern u8 CustomVoice_noah_2_Wave[];
+extern u8 CustomVoice_noah_2_Part[];
+extern u8 CustomVoice_noah_3_Wave[];
+extern u8 CustomVoice_noah_3_Part[];
+extern u8 CustomVoice_rebecca_1_Wave[];
+extern u8 CustomVoice_rebecca_1_Part[];
+extern u8 CustomVoice_rebecca_2_Wave[];
+extern u8 CustomVoice_rebecca_2_Part[];
+extern u8 CustomVoice_rebecca_3_Wave[];
+extern u8 CustomVoice_rebecca_3_Part[];
+extern u8 CustomVoice_strings_1_Wave[];
+extern u8 CustomVoice_strings_1_Part[];
+extern u8 CustomVoice_strings_2_Wave[];
+extern u8 CustomVoice_strings_2_Part[];
+extern u8 CustomVoice_strings_3_Wave[];
+extern u8 CustomVoice_strings_3_Part[];
+extern u8 CustomVoice_serenity_1_Wave[];
+extern u8 CustomVoice_serenity_1_Part[];
+extern u8 CustomVoice_serenity_2_Wave[];
+extern u8 CustomVoice_serenity_2_Part[];
+extern u8 CustomVoice_serenity_3_Wave[];
+extern u8 CustomVoice_serenity_3_Part[];
 
 struct CustomVoiceRomClip {
   const struct WaveData *dpcmWave;
@@ -158,4 +212,31 @@ static const struct CustomVoiceRomClip sCustomVoiceRomClips[] APPEND_RODATA = {
   { (const struct WaveData *)&CustomVoice_arkana_1_Wave, CustomVoice_arkana_1_Part },
   { (const struct WaveData *)&CustomVoice_arkana_2_Wave, CustomVoice_arkana_2_Part },
   { (const struct WaveData *)&CustomVoice_arkana_3_Wave, CustomVoice_arkana_3_Part },
+  { (const struct WaveData *)&CustomVoice_bonz_1_Wave, CustomVoice_bonz_1_Part },
+  { (const struct WaveData *)&CustomVoice_bonz_2_Wave, CustomVoice_bonz_2_Part },
+  { (const struct WaveData *)&CustomVoice_bonz_3_Wave, CustomVoice_bonz_3_Part },
+  { (const struct WaveData *)&CustomVoice_espa_roba_1_Wave, CustomVoice_espa_roba_1_Part },
+  { (const struct WaveData *)&CustomVoice_espa_roba_2_Wave, CustomVoice_espa_roba_2_Part },
+  { (const struct WaveData *)&CustomVoice_espa_roba_3_Wave, CustomVoice_espa_roba_3_Part },
+  { (const struct WaveData *)&CustomVoice_lumis_1_Wave, CustomVoice_lumis_1_Part },
+  { (const struct WaveData *)&CustomVoice_lumis_2_Wave, CustomVoice_lumis_2_Part },
+  { (const struct WaveData *)&CustomVoice_lumis_3_Wave, CustomVoice_lumis_3_Part },
+  { (const struct WaveData *)&CustomVoice_umbra_1_Wave, CustomVoice_umbra_1_Part },
+  { (const struct WaveData *)&CustomVoice_umbra_2_Wave, CustomVoice_umbra_2_Part },
+  { (const struct WaveData *)&CustomVoice_umbra_3_Wave, CustomVoice_umbra_3_Part },
+  { (const struct WaveData *)&CustomVoice_marik_1_Wave, CustomVoice_marik_1_Part },
+  { (const struct WaveData *)&CustomVoice_marik_2_Wave, CustomVoice_marik_2_Part },
+  { (const struct WaveData *)&CustomVoice_marik_3_Wave, CustomVoice_marik_3_Part },
+  { (const struct WaveData *)&CustomVoice_noah_1_Wave, CustomVoice_noah_1_Part },
+  { (const struct WaveData *)&CustomVoice_noah_2_Wave, CustomVoice_noah_2_Part },
+  { (const struct WaveData *)&CustomVoice_noah_3_Wave, CustomVoice_noah_3_Part },
+  { (const struct WaveData *)&CustomVoice_rebecca_1_Wave, CustomVoice_rebecca_1_Part },
+  { (const struct WaveData *)&CustomVoice_rebecca_2_Wave, CustomVoice_rebecca_2_Part },
+  { (const struct WaveData *)&CustomVoice_rebecca_3_Wave, CustomVoice_rebecca_3_Part },
+  { (const struct WaveData *)&CustomVoice_strings_1_Wave, CustomVoice_strings_1_Part },
+  { (const struct WaveData *)&CustomVoice_strings_2_Wave, CustomVoice_strings_2_Part },
+  { (const struct WaveData *)&CustomVoice_strings_3_Wave, CustomVoice_strings_3_Part },
+  { (const struct WaveData *)&CustomVoice_serenity_1_Wave, CustomVoice_serenity_1_Part },
+  { (const struct WaveData *)&CustomVoice_serenity_2_Wave, CustomVoice_serenity_2_Part },
+  { (const struct WaveData *)&CustomVoice_serenity_3_Wave, CustomVoice_serenity_3_Part },
 };

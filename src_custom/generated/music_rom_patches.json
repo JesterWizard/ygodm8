@@ -2,14 +2,14 @@
   "tone_patches": [],
   "song_patches": [
     {
-      "org": 11522628,
+      "org": 11522844,
       "header_symbol": "CustomMusic_hyperdrive_SongHeader",
       "player": 0
     }
   ],
   "mode_patches": [
     {
-      "org": 863324,
+      "org": 863351,
       "mode": 1
     }
   ]

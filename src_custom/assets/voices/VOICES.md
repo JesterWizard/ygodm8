@@ -76,11 +76,38 @@ Sizes:
     <tr><td>Arkana: Time to Spice U</td><td><code>arkana/time_to_spice_up_this_show.wav</code></td><td><code>turn_start</code></td><td>192,716 B (188.2 KB)</td><td>23,248 B (22.7 KB)</td><td><span style="color: #3fb950">-87.9%</span></td></tr>
     <tr><td>Arkana: I Will Make You</td><td><code>arkana/i_will_make_you_suffer_twice_as_hard.wav</code></td><td><code>opponent_lp_below</code></td><td>202,604 B (197.9 KB)</td><td>24,536 B (24.0 KB)</td><td><span style="color: #3fb950">-87.9%</span></td></tr>
     <tr><td>Arkana: Dark Magic Atta</td><td><code>arkana/dark_magic_attack.wav</code></td><td><code>attack_card</code></td><td>130,844 B (127.8 KB)</td><td>15,592 B (15.2 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
-    <tr><td colspan="3"><strong>Total</strong></td><td><strong>7,237,554 B (7067.9 KB)</strong></td><td><strong>833,830 B (814.3 KB)</strong></td><td><strong><span style="color: #3fb950">-88.5%</span></strong></td></tr>
+    <tr><td>Bonz: Its My Turn</td><td><code>bonz/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>105,988 B (103.5 KB)</td><td>12,622 B (12.3 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td>Bonz: Oh No</td><td><code>bonz/oh_no.wav</code></td><td><code>opponent_lp_below</code></td><td>75,616 B (73.8 KB)</td><td>8,926 B (8.7 KB)</td><td><span style="color: #3fb950">-88.2%</span></td></tr>
+    <tr><td>Bonz: Dragon Zombie Att</td><td><code>bonz/dragon_zombie_attacks.wav</code></td><td><code>attack_card</code></td><td>188,274 B (183.9 KB)</td><td>22,820 B (22.3 KB)</td><td><span style="color: #3fb950">-87.9%</span></td></tr>
+    <tr><td>Espa Roba: Its My Turn</td><td><code>espa_roba/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>89,600 B (87.5 KB)</td><td>10,478 B (10.2 KB)</td><td><span style="color: #3fb950">-88.3%</span></td></tr>
+    <tr><td>Espa Roba: This Isnt Go</td><td><code>espa_roba/this_isnt_going_to_plan.wav</code></td><td><code>opponent_lp_below</code></td><td>107,956 B (105.4 KB)</td><td>12,920 B (12.6 KB)</td><td><span style="color: #3fb950">-88.0%</span></td></tr>
+    <tr><td>Espa Roba: Go Jinzo!</td><td><code>espa_roba/go_jinzo.wav</code></td><td><code>attack_card</code></td><td>130,918 B (127.8 KB)</td><td>15,560 B (15.2 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td>Lumis: Its My Turn</td><td><code>lumis/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>117,188 B (114.4 KB)</td><td>13,942 B (13.6 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td>Lumis: Youll Pay For Th</td><td><code>lumis/you&#x27;ll_pay_for_that.wav</code></td><td><code>opponent_lp_below</code></td><td>137,804 B (134.6 KB)</td><td>16,022 B (15.6 KB)</td><td><span style="color: #3fb950">-88.4%</span></td></tr>
+    <tr><td>Lumis: Go Nuvia Attack!</td><td><code>lumis/go_nuvia_attack.wav</code></td><td><code>attack_card</code></td><td>182,020 B (177.8 KB)</td><td>20,972 B (20.5 KB)</td><td><span style="color: #3fb950">-88.5%</span></td></tr>
+    <tr><td>Umbra: Its My Turn</td><td><code>umbra/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>113,964 B (111.3 KB)</td><td>12,986 B (12.7 KB)</td><td><span style="color: #3fb950">-88.6%</span></td></tr>
+    <tr><td>Umbra: You Will Pay</td><td><code>umbra/you_will_pay.wav</code></td><td><code>opponent_lp_below</code></td><td>148,076 B (144.6 KB)</td><td>16,978 B (16.6 KB)</td><td><span style="color: #3fb950">-88.5%</span></td></tr>
+    <tr><td>Umbra: Attack Nuvia!</td><td><code>umbra/attack_nuvia.wav</code></td><td><code>attack_card</code></td><td>113,622 B (111.0 KB)</td><td>13,480 B (13.2 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td>Marik: Get Ready</td><td><code>marik/get_ready.wav</code></td><td><code>turn_start</code></td><td>73,244 B (71.5 KB)</td><td>7,738 B (7.6 KB)</td><td><span style="color: #3fb950">-89.4%</span></td></tr>
+    <tr><td>Marik: My Game Is Only </td><td><code>marik/my_game_is_only_getting_started.wav</code></td><td><code>opponent_lp_below</code></td><td>215,340 B (210.3 KB)</td><td>24,074 B (23.5 KB)</td><td><span style="color: #3fb950">-88.8%</span></td></tr>
+    <tr><td>Marik: Granadora Attack</td><td><code>marik/granadora_attack.wav</code></td><td><code>attack_card</code></td><td>191,324 B (186.8 KB)</td><td>21,070 B (20.6 KB)</td><td><span style="color: #3fb950">-89.0%</span></td></tr>
+    <tr><td>Noah: Its My Turn</td><td><code>noah/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>119,804 B (117.0 KB)</td><td>13,018 B (12.7 KB)</td><td><span style="color: #3fb950">-89.1%</span></td></tr>
+    <tr><td>Noah: Was That Supposed</td><td><code>noah/was_that_supposed_to_hurt.wav</code></td><td><code>opponent_lp_below</code></td><td>169,724 B (165.7 KB)</td><td>18,464 B (18.0 KB)</td><td><span style="color: #3fb950">-89.1%</span></td></tr>
+    <tr><td>Noah: Yamata Dragon Att</td><td><code>noah/yamata_dragon_attacks.wav</code></td><td><code>attack_card</code></td><td>195,884 B (191.3 KB)</td><td>21,466 B (21.0 KB)</td><td><span style="color: #3fb950">-89.0%</span></td></tr>
+    <tr><td>Rebecca: Its My Turn</td><td><code>rebecca/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>143,804 B (140.4 KB)</td><td>15,262 B (14.9 KB)</td><td><span style="color: #3fb950">-89.4%</span></td></tr>
+    <tr><td>Rebecca: Whatever</td><td><code>rebecca/whatever.wav</code></td><td><code>opponent_lp_below</code></td><td>94,604 B (92.4 KB)</td><td>9,422 B (9.2 KB)</td><td><span style="color: #3fb950">-90.0%</span></td></tr>
+    <tr><td>Rebecca: Attack Injecti</td><td><code>rebecca/attack_injection_fairy_lily.wav</code></td><td><code>attack_card</code></td><td>309,884 B (302.6 KB)</td><td>33,314 B (32.5 KB)</td><td><span style="color: #3fb950">-89.2%</span></td></tr>
+    <tr><td>Strings: Its My Turn</td><td><code>strings/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>155,436 B (151.8 KB)</td><td>16,748 B (16.4 KB)</td><td><span style="color: #3fb950">-89.2%</span></td></tr>
+    <tr><td>Strings: Impossible</td><td><code>strings/impossible.wav</code></td><td><code>opponent_lp_below</code></td><td>116,684 B (113.9 KB)</td><td>11,830 B (11.6 KB)</td><td><span style="color: #3fb950">-89.9%</span></td></tr>
+    <tr><td>Strings: Attack Drillag</td><td><code>strings/attack_drillago.wav</code></td><td><code>attack_card</code></td><td>173,138 B (169.1 KB)</td><td>18,200 B (17.8 KB)</td><td><span style="color: #3fb950">-89.5%</span></td></tr>
+    <tr><td>Serenity: Its My Turn</td><td><code>serenity/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>97,244 B (95.0 KB)</td><td>9,982 B (9.7 KB)</td><td><span style="color: #3fb950">-89.7%</span></td></tr>
+    <tr><td>Serenity: Just Dont Mak</td><td><code>serenity/just_dont_make_any_mistakes.wav</code></td><td><code>opponent_lp_below</code></td><td>146,204 B (142.8 KB)</td><td>16,054 B (15.7 KB)</td><td><span style="color: #3fb950">-89.0%</span></td></tr>
+    <tr><td>Serenity: Saint Joan Is</td><td><code>serenity/saint_joan_is_going_to_attack.wav</code></td><td><code>attack_card</code></td><td>190,124 B (185.7 KB)</td><td>20,774 B (20.3 KB)</td><td><span style="color: #3fb950">-89.1%</span></td></tr>
+    <tr><td colspan="3"><strong>Total</strong></td><td><strong>11,141,022 B (10879.9 KB)</strong></td><td><strong>1,268,952 B (1239.2 KB)</strong></td><td><strong><span style="color: #3fb950">-88.6%</span></strong></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 51 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 78 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
 
 ## Unregistered WAVs
 

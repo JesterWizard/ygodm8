@@ -255,6 +255,141 @@
       "org": 11522620,
       "header_symbol": "CustomVoice_arkana_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522628,
+      "header_symbol": "CustomVoice_bonz_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522636,
+      "header_symbol": "CustomVoice_bonz_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522644,
+      "header_symbol": "CustomVoice_bonz_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522652,
+      "header_symbol": "CustomVoice_espa_roba_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522660,
+      "header_symbol": "CustomVoice_espa_roba_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522668,
+      "header_symbol": "CustomVoice_espa_roba_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522676,
+      "header_symbol": "CustomVoice_lumis_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522684,
+      "header_symbol": "CustomVoice_lumis_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522692,
+      "header_symbol": "CustomVoice_lumis_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522700,
+      "header_symbol": "CustomVoice_umbra_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522708,
+      "header_symbol": "CustomVoice_umbra_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522716,
+      "header_symbol": "CustomVoice_umbra_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522724,
+      "header_symbol": "CustomVoice_marik_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522732,
+      "header_symbol": "CustomVoice_marik_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522740,
+      "header_symbol": "CustomVoice_marik_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522748,
+      "header_symbol": "CustomVoice_noah_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522756,
+      "header_symbol": "CustomVoice_noah_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522764,
+      "header_symbol": "CustomVoice_noah_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522772,
+      "header_symbol": "CustomVoice_rebecca_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522780,
+      "header_symbol": "CustomVoice_rebecca_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522788,
+      "header_symbol": "CustomVoice_rebecca_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522796,
+      "header_symbol": "CustomVoice_strings_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522804,
+      "header_symbol": "CustomVoice_strings_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522812,
+      "header_symbol": "CustomVoice_strings_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522820,
+      "header_symbol": "CustomVoice_serenity_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522828,
+      "header_symbol": "CustomVoice_serenity_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522836,
+      "header_symbol": "CustomVoice_serenity_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -460,6 +595,114 @@
     },
     {
       "org": 863323,
+      "mode": 3
+    },
+    {
+      "org": 863324,
+      "mode": 3
+    },
+    {
+      "org": 863325,
+      "mode": 3
+    },
+    {
+      "org": 863326,
+      "mode": 3
+    },
+    {
+      "org": 863327,
+      "mode": 3
+    },
+    {
+      "org": 863328,
+      "mode": 3
+    },
+    {
+      "org": 863329,
+      "mode": 3
+    },
+    {
+      "org": 863330,
+      "mode": 3
+    },
+    {
+      "org": 863331,
+      "mode": 3
+    },
+    {
+      "org": 863332,
+      "mode": 3
+    },
+    {
+      "org": 863333,
+      "mode": 3
+    },
+    {
+      "org": 863334,
+      "mode": 3
+    },
+    {
+      "org": 863335,
+      "mode": 3
+    },
+    {
+      "org": 863336,
+      "mode": 3
+    },
+    {
+      "org": 863337,
+      "mode": 3
+    },
+    {
+      "org": 863338,
+      "mode": 3
+    },
+    {
+      "org": 863339,
+      "mode": 3
+    },
+    {
+      "org": 863340,
+      "mode": 3
+    },
+    {
+      "org": 863341,
+      "mode": 3
+    },
+    {
+      "org": 863342,
+      "mode": 3
+    },
+    {
+      "org": 863343,
+      "mode": 3
+    },
+    {
+      "org": 863344,
+      "mode": 3
+    },
+    {
+      "org": 863345,
+      "mode": 3
+    },
+    {
+      "org": 863346,
+      "mode": 3
+    },
+    {
+      "org": 863347,
+      "mode": 3
+    },
+    {
+      "org": 863348,
+      "mode": 3
+    },
+    {
+      "org": 863349,
+      "mode": 3
+    },
+    {
+      "org": 863350,
       "mode": 3
     }
   ]

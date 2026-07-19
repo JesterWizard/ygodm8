@@ -2,7 +2,8 @@
   "sample_rate": 21024,
   "song_id_base": 601,
   "notes": [
-    "duelist: AI_DUELIST_* (include/ai.h) or DUELIST_* (include/overworld.h); use a JSON array for multiple story duelist IDs that share one clip.",
+    "duelist: AI_DUELIST_* (include/ai.h) or DUELIST_* (include/overworld.h); use a JSON array for multiple story duelist IDs that share one clip. Raw int = vanilla voice id (opponent ANY); used for Serenity who has no story duel ID.",
+    "DUELIST_STRINGS_070 is Galapagos Strings (alias of mislabeled DUELIST_MAKO_070).",
     "card_id uses CARD_* defines from include/constants/card_ids.h.",
     "trigger: turn_start | attack_card | opponent_lp_below (alternate turn_start when opponent LP < lp_threshold).",
     "replace_vanilla: when true, skip the vanilla clip for the same trigger type.",
@@ -490,6 +491,267 @@
       "trigger": "attack_card",
       "card_id": "DARK_MAGICIAN",
       "title": "Arkana: Dark Magic Attack!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "bonz_1",
+      "duelist": ["DUELIST_BONZ_036", "DUELIST_BONZ_060", "DUELIST_BONZ_100", "DUELIST_BONZ_113", "DUELIST_BONZ_148"],
+      "wav": "bonz/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Bonz: Its My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "bonz_2",
+      "duelist": ["DUELIST_BONZ_036", "DUELIST_BONZ_060", "DUELIST_BONZ_100", "DUELIST_BONZ_113", "DUELIST_BONZ_148"],
+      "wav": "bonz/oh_no.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Bonz: Oh No",
+      "turn_text": "Oh no!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "bonz_3",
+      "duelist": ["DUELIST_BONZ_036", "DUELIST_BONZ_060", "DUELIST_BONZ_100", "DUELIST_BONZ_113", "DUELIST_BONZ_148"],
+      "wav": "bonz/dragon_zombie_attacks.wav",
+      "trigger": "attack_card",
+      "card_id": "DRAGON_ZOMBIE",
+      "title": "Bonz: Dragon Zombie Attacks!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "espa_roba_1",
+      "duelist": ["DUELIST_ESPA_ROBA_064", "DUELIST_ESPA_ROBA_084", "DUELIST_ESPA_ROBA_117", "DUELIST_ESPA_ROBA_146"],
+      "wav": "espa_roba/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Espa Roba: Its My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "espa_roba_2",
+      "duelist": ["DUELIST_ESPA_ROBA_064", "DUELIST_ESPA_ROBA_084", "DUELIST_ESPA_ROBA_117", "DUELIST_ESPA_ROBA_146"],
+      "wav": "espa_roba/this_isnt_going_to_plan.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Espa Roba: This Isnt Going To Plan",
+      "turn_text": "This isn't going to plan!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "espa_roba_3",
+      "duelist": ["DUELIST_ESPA_ROBA_064", "DUELIST_ESPA_ROBA_084", "DUELIST_ESPA_ROBA_117", "DUELIST_ESPA_ROBA_146"],
+      "wav": "espa_roba/go_jinzo.wav",
+      "trigger": "attack_card",
+      "card_id": "JINZO",
+      "title": "Espa Roba: Go Jinzo!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "lumis_1",
+      "duelist": ["DUELIST_LUMIS_068"],
+      "wav": "lumis/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Lumis: Its My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "lumis_2",
+      "duelist": ["DUELIST_LUMIS_068"],
+      "wav": "lumis/you'll_pay_for_that.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Lumis: Youll Pay For That",
+      "turn_text": "You'll pay for that!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "lumis_3",
+      "duelist": ["DUELIST_LUMIS_068"],
+      "wav": "lumis/go_nuvia_attack.wav",
+      "trigger": "attack_card",
+      "card_id": "NUVIA_THE_WICKED",
+      "title": "Lumis: Go Nuvia Attack!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "umbra_1",
+      "duelist": ["DUELIST_UMBRA_069"],
+      "wav": "umbra/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Umbra: Its My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "umbra_2",
+      "duelist": ["DUELIST_UMBRA_069"],
+      "wav": "umbra/you_will_pay.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Umbra: You Will Pay",
+      "turn_text": "You will pay!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "umbra_3",
+      "duelist": ["DUELIST_UMBRA_069"],
+      "wav": "umbra/attack_nuvia.wav",
+      "trigger": "attack_card",
+      "card_id": "NUVIA_THE_WICKED",
+      "title": "Umbra: Attack Nuvia!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "marik_1",
+      "duelist": ["DUELIST_MARIK_158"],
+      "wav": "marik/get_ready.wav",
+      "trigger": "turn_start",
+      "title": "Marik: Get Ready",
+      "turn_text": "Get ready.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "marik_2",
+      "duelist": ["DUELIST_MARIK_158"],
+      "wav": "marik/my_game_is_only_getting_started.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Marik: My Game Is Only Getting Started",
+      "turn_text": "My game is only getting started!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "marik_3",
+      "duelist": ["DUELIST_MARIK_158"],
+      "wav": "marik/granadora_attack.wav",
+      "trigger": "attack_card",
+      "card_id": "GRANADORA",
+      "title": "Marik: Granadora Attack!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "noah_1",
+      "duelist": ["DUELIST_NOAH_134"],
+      "wav": "noah/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Noah: Its My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "noah_2",
+      "duelist": ["DUELIST_NOAH_134"],
+      "wav": "noah/was_that_supposed_to_hurt.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Noah: Was That Supposed To Hurt",
+      "turn_text": "Was that supposed to hurt?",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "noah_3",
+      "duelist": ["DUELIST_NOAH_134"],
+      "wav": "noah/yamata_dragon_attacks.wav",
+      "trigger": "attack_card",
+      "card_id": "YAMATA_DRAGON",
+      "title": "Noah: Yamata Dragon Attacks!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "rebecca_1",
+      "duelist": ["DUELIST_REBECCA_130"],
+      "wav": "rebecca/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Rebecca: Its My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "rebecca_2",
+      "duelist": ["DUELIST_REBECCA_130"],
+      "wav": "rebecca/whatever.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Rebecca: Whatever",
+      "turn_text": "Whatever.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "rebecca_3",
+      "duelist": ["DUELIST_REBECCA_130"],
+      "wav": "rebecca/attack_injection_fairy_lily.wav",
+      "trigger": "attack_card",
+      "card_id": "INJECTION_FAIRY_LILY",
+      "title": "Rebecca: Attack Injection Fairy Lily!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "strings_1",
+      "duelist": ["DUELIST_STRINGS_070"],
+      "wav": "strings/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Strings: Its My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "strings_2",
+      "duelist": ["DUELIST_STRINGS_070"],
+      "wav": "strings/impossible.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Strings: Impossible",
+      "turn_text": "Impossible!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "strings_3",
+      "duelist": ["DUELIST_STRINGS_070"],
+      "wav": "strings/attack_drillago.wav",
+      "trigger": "attack_card",
+      "card_id": "DRILLAGO",
+      "title": "Strings: Attack Drillago!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "serenity_1",
+      "duelist": 200,
+      "wav": "serenity/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Serenity: Its My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "serenity_2",
+      "duelist": 200,
+      "wav": "serenity/just_dont_make_any_mistakes.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Serenity: Just Dont Make Any Mistakes",
+      "turn_text": "Just don't make any mistakes!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "serenity_3",
+      "duelist": 200,
+      "wav": "serenity/saint_joan_is_going_to_attack.wav",
+      "trigger": "attack_card",
+      "card_id": "ST_JOAN",
+      "title": "Serenity: Saint Joan Is Going To Attack!",
       "gain_db": 10.0
     }
   ]

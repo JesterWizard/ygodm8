@@ -49,6 +49,33 @@ extern struct SongHeader CustomVoice_dox_3_SongHeader;
 extern struct SongHeader CustomVoice_arkana_1_SongHeader;
 extern struct SongHeader CustomVoice_arkana_2_SongHeader;
 extern struct SongHeader CustomVoice_arkana_3_SongHeader;
+extern struct SongHeader CustomVoice_bonz_1_SongHeader;
+extern struct SongHeader CustomVoice_bonz_2_SongHeader;
+extern struct SongHeader CustomVoice_bonz_3_SongHeader;
+extern struct SongHeader CustomVoice_espa_roba_1_SongHeader;
+extern struct SongHeader CustomVoice_espa_roba_2_SongHeader;
+extern struct SongHeader CustomVoice_espa_roba_3_SongHeader;
+extern struct SongHeader CustomVoice_lumis_1_SongHeader;
+extern struct SongHeader CustomVoice_lumis_2_SongHeader;
+extern struct SongHeader CustomVoice_lumis_3_SongHeader;
+extern struct SongHeader CustomVoice_umbra_1_SongHeader;
+extern struct SongHeader CustomVoice_umbra_2_SongHeader;
+extern struct SongHeader CustomVoice_umbra_3_SongHeader;
+extern struct SongHeader CustomVoice_marik_1_SongHeader;
+extern struct SongHeader CustomVoice_marik_2_SongHeader;
+extern struct SongHeader CustomVoice_marik_3_SongHeader;
+extern struct SongHeader CustomVoice_noah_1_SongHeader;
+extern struct SongHeader CustomVoice_noah_2_SongHeader;
+extern struct SongHeader CustomVoice_noah_3_SongHeader;
+extern struct SongHeader CustomVoice_rebecca_1_SongHeader;
+extern struct SongHeader CustomVoice_rebecca_2_SongHeader;
+extern struct SongHeader CustomVoice_rebecca_3_SongHeader;
+extern struct SongHeader CustomVoice_strings_1_SongHeader;
+extern struct SongHeader CustomVoice_strings_2_SongHeader;
+extern struct SongHeader CustomVoice_strings_3_SongHeader;
+extern struct SongHeader CustomVoice_serenity_1_SongHeader;
+extern struct SongHeader CustomVoice_serenity_2_SongHeader;
+extern struct SongHeader CustomVoice_serenity_3_SongHeader;
 
 static const struct SongHeader * const sCustomVoiceSongHeaders[] APPEND_RODATA = {
     &CustomVoice_duke_1_SongHeader,
@@ -102,4 +129,31 @@ static const struct SongHeader * const sCustomVoiceSongHeaders[] APPEND_RODATA =
     &CustomVoice_arkana_1_SongHeader,
     &CustomVoice_arkana_2_SongHeader,
     &CustomVoice_arkana_3_SongHeader,
+    &CustomVoice_bonz_1_SongHeader,
+    &CustomVoice_bonz_2_SongHeader,
+    &CustomVoice_bonz_3_SongHeader,
+    &CustomVoice_espa_roba_1_SongHeader,
+    &CustomVoice_espa_roba_2_SongHeader,
+    &CustomVoice_espa_roba_3_SongHeader,
+    &CustomVoice_lumis_1_SongHeader,
+    &CustomVoice_lumis_2_SongHeader,
+    &CustomVoice_lumis_3_SongHeader,
+    &CustomVoice_umbra_1_SongHeader,
+    &CustomVoice_umbra_2_SongHeader,
+    &CustomVoice_umbra_3_SongHeader,
+    &CustomVoice_marik_1_SongHeader,
+    &CustomVoice_marik_2_SongHeader,
+    &CustomVoice_marik_3_SongHeader,
+    &CustomVoice_noah_1_SongHeader,
+    &CustomVoice_noah_2_SongHeader,
+    &CustomVoice_noah_3_SongHeader,
+    &CustomVoice_rebecca_1_SongHeader,
+    &CustomVoice_rebecca_2_SongHeader,
+    &CustomVoice_rebecca_3_SongHeader,
+    &CustomVoice_strings_1_SongHeader,
+    &CustomVoice_strings_2_SongHeader,
+    &CustomVoice_strings_3_SongHeader,
+    &CustomVoice_serenity_1_SongHeader,
+    &CustomVoice_serenity_2_SongHeader,
+    &CustomVoice_serenity_3_SongHeader,
 };
