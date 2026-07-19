@@ -4380,6 +4380,86 @@ static const unsigned char sMorphtronicMixupBigArt[] __attribute__((section(".ap
 static const unsigned short sMorphtronicMixupBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_mixup.gbapal");
 static const unsigned char sMorphtronicMixupMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_mixup.lz");
 
+static const unsigned char sMorphtronicSmartfonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_smartfon.huff");
+static const unsigned short sMorphtronicSmartfonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_smartfon.gbapal");
+static const unsigned char sMorphtronicSmartfonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_smartfon.lz");
+
+static const unsigned char sMorphtronicStaplenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_staplen.huff");
+static const unsigned short sMorphtronicStaplenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_staplen.gbapal");
+static const unsigned char sMorphtronicStaplenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_staplen.lz");
+
+static const unsigned char sMorphtronicTelefonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_telefon.huff");
+static const unsigned short sMorphtronicTelefonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_telefon.gbapal");
+static const unsigned char sMorphtronicTelefonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_telefon.lz");
+
+static const unsigned char sMorphtronicVacuumenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_vacuumen.huff");
+static const unsigned short sMorphtronicVacuumenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_vacuumen.gbapal");
+static const unsigned char sMorphtronicVacuumenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_vacuumen.lz");
+
+static const unsigned char sMorphtronicVideonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morphtronic_videon.huff");
+static const unsigned short sMorphtronicVideonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morphtronic_videon.gbapal");
+static const unsigned char sMorphtronicVideonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morphtronic_videon.lz");
+
+static const unsigned char sNaturiaBeastBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/naturia_beast.huff");
+static const unsigned short sNaturiaBeastBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/naturia_beast.gbapal");
+static const unsigned char sNaturiaBeastMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/naturia_beast.lz");
+
+static const unsigned char sNitroWarriorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/nitro_warrior.huff");
+static const unsigned short sNitroWarriorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/nitro_warrior.gbapal");
+static const unsigned char sNitroWarriorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/nitro_warrior.lz");
+
+static const unsigned char sPowerFilterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/power_filter.huff");
+static const unsigned short sPowerFilterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/power_filter.gbapal");
+static const unsigned char sPowerFilterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/power_filter.lz");
+
+static const unsigned char sPowerToolBraverDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/power_tool_braver_dragon.huff");
+static const unsigned short sPowerToolBraverDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/power_tool_braver_dragon.gbapal");
+static const unsigned char sPowerToolBraverDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/power_tool_braver_dragon.lz");
+
+static const unsigned char sPseudoSpaceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/pseudo_space.huff");
+static const unsigned short sPseudoSpaceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/pseudo_space.gbapal");
+static const unsigned char sPseudoSpaceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/pseudo_space.lz");
+
+static const unsigned char sRainbowDarkDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/rainbow_dark_dragon.huff");
+static const unsigned short sRainbowDarkDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rainbow_dark_dragon.gbapal");
+static const unsigned char sRainbowDarkDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rainbow_dark_dragon.lz");
+
+static const unsigned char sRoadSynchronBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/road_synchron.huff");
+static const unsigned short sRoadSynchronBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/road_synchron.gbapal");
+static const unsigned char sRoadSynchronMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/road_synchron.lz");
+
+static const unsigned char sRoadWarriorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/road_warrior.huff");
+static const unsigned short sRoadWarriorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/road_warrior.gbapal");
+static const unsigned char sRoadWarriorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/road_warrior.lz");
+
+static const unsigned char sScrapIronScarecrowBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/scrap_iron_scarecrow.huff");
+static const unsigned short sScrapIronScarecrowBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/scrap_iron_scarecrow.gbapal");
+static const unsigned char sScrapIronScarecrowMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/scrap_iron_scarecrow.lz");
+
+static const unsigned char sSilentMagicianLv4BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/silent_magician_lv4.huff");
+static const unsigned short sSilentMagicianLv4BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/silent_magician_lv4.gbapal");
+static const unsigned char sSilentMagicianLv4MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/silent_magician_lv4.lz");
+
+static const unsigned char sSilentMagicianLv8BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/silent_magician_lv8.huff");
+static const unsigned short sSilentMagicianLv8BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/silent_magician_lv8.gbapal");
+static const unsigned char sSilentMagicianLv8MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/silent_magician_lv8.lz");
+
+static const unsigned char sSimorghBirdOfAncestryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/simorgh_bird_of_ancestry.huff");
+static const unsigned short sSimorghBirdOfAncestryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/simorgh_bird_of_ancestry.gbapal");
+static const unsigned char sSimorghBirdOfAncestryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/simorgh_bird_of_ancestry.lz");
+
+static const unsigned char sSpellChronicleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/spell_chronicle.huff");
+static const unsigned short sSpellChronicleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spell_chronicle.gbapal");
+static const unsigned char sSpellChronicleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spell_chronicle.lz");
+
+static const unsigned char sSpellGearBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/spell_gear.huff");
+static const unsigned short sSpellGearBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spell_gear.gbapal");
+static const unsigned char sSpellGearMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spell_gear.lz");
+
+static const unsigned char sOverflowingTreasureBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/overflowing_treasure.huff");
+static const unsigned short sOverflowingTreasureBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/overflowing_treasure.gbapal");
+static const unsigned char sOverflowingTreasureMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/overflowing_treasure.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -5476,6 +5556,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0763] = sMorphtronicScopenBigArt,
   [0x0764] = sMorphtronicSlingenBigArt,
   [0x0765] = sMorphtronicMixupBigArt,
+  [0x0766] = sMorphtronicSmartfonBigArt,
+  [0x0767] = sMorphtronicStaplenBigArt,
+  [0x0768] = sMorphtronicTelefonBigArt,
+  [0x0769] = sMorphtronicVacuumenBigArt,
+  [0x076A] = sMorphtronicVideonBigArt,
+  [0x076B] = sNaturiaBeastBigArt,
+  [0x076C] = sNitroWarriorBigArt,
+  [0x076D] = sPowerFilterBigArt,
+  [0x076E] = sPowerToolBraverDragonBigArt,
+  [0x076F] = sPseudoSpaceBigArt,
+  [0x0770] = sRainbowDarkDragonBigArt,
+  [0x0771] = sRoadSynchronBigArt,
+  [0x0772] = sRoadWarriorBigArt,
+  [0x0773] = sScrapIronScarecrowBigArt,
+  [0x0774] = sSilentMagicianLv4BigArt,
+  [0x0775] = sSilentMagicianLv8BigArt,
+  [0x0776] = sSimorghBirdOfAncestryBigArt,
+  [0x0777] = sSpellChronicleBigArt,
+  [0x0778] = sSpellGearBigArt,
+  [0x0779] = sOverflowingTreasureBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -6574,6 +6674,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0763] = sMorphtronicScopenBigPalette,
   [0x0764] = sMorphtronicSlingenBigPalette,
   [0x0765] = sMorphtronicMixupBigPalette,
+  [0x0766] = sMorphtronicSmartfonBigPalette,
+  [0x0767] = sMorphtronicStaplenBigPalette,
+  [0x0768] = sMorphtronicTelefonBigPalette,
+  [0x0769] = sMorphtronicVacuumenBigPalette,
+  [0x076A] = sMorphtronicVideonBigPalette,
+  [0x076B] = sNaturiaBeastBigPalette,
+  [0x076C] = sNitroWarriorBigPalette,
+  [0x076D] = sPowerFilterBigPalette,
+  [0x076E] = sPowerToolBraverDragonBigPalette,
+  [0x076F] = sPseudoSpaceBigPalette,
+  [0x0770] = sRainbowDarkDragonBigPalette,
+  [0x0771] = sRoadSynchronBigPalette,
+  [0x0772] = sRoadWarriorBigPalette,
+  [0x0773] = sScrapIronScarecrowBigPalette,
+  [0x0774] = sSilentMagicianLv4BigPalette,
+  [0x0775] = sSilentMagicianLv8BigPalette,
+  [0x0776] = sSimorghBirdOfAncestryBigPalette,
+  [0x0777] = sSpellChronicleBigPalette,
+  [0x0778] = sSpellGearBigPalette,
+  [0x0779] = sOverflowingTreasureBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -7672,6 +7792,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0763] = 0,
   [0x0764] = 0,
   [0x0765] = 0,
+  [0x0766] = 0,
+  [0x0767] = 0,
+  [0x0768] = 0,
+  [0x0769] = 0,
+  [0x076A] = 0,
+  [0x076B] = 0,
+  [0x076C] = 0,
+  [0x076D] = 0,
+  [0x076E] = 0,
+  [0x076F] = 0,
+  [0x0770] = 0,
+  [0x0771] = 0,
+  [0x0772] = 0,
+  [0x0773] = 0,
+  [0x0774] = 0,
+  [0x0775] = 0,
+  [0x0776] = 0,
+  [0x0777] = 0,
+  [0x0778] = 0,
+  [0x0779] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -8770,4 +8910,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0763] = sMorphtronicScopenMiniArt,
   [0x0764] = sMorphtronicSlingenMiniArt,
   [0x0765] = sMorphtronicMixupMiniArt,
+  [0x0766] = sMorphtronicSmartfonMiniArt,
+  [0x0767] = sMorphtronicStaplenMiniArt,
+  [0x0768] = sMorphtronicTelefonMiniArt,
+  [0x0769] = sMorphtronicVacuumenMiniArt,
+  [0x076A] = sMorphtronicVideonMiniArt,
+  [0x076B] = sNaturiaBeastMiniArt,
+  [0x076C] = sNitroWarriorMiniArt,
+  [0x076D] = sPowerFilterMiniArt,
+  [0x076E] = sPowerToolBraverDragonMiniArt,
+  [0x076F] = sPseudoSpaceMiniArt,
+  [0x0770] = sRainbowDarkDragonMiniArt,
+  [0x0771] = sRoadSynchronMiniArt,
+  [0x0772] = sRoadWarriorMiniArt,
+  [0x0773] = sScrapIronScarecrowMiniArt,
+  [0x0774] = sSilentMagicianLv4MiniArt,
+  [0x0775] = sSilentMagicianLv8MiniArt,
+  [0x0776] = sSimorghBirdOfAncestryMiniArt,
+  [0x0777] = sSpellChronicleMiniArt,
+  [0x0778] = sSpellGearMiniArt,
+  [0x0779] = sOverflowingTreasureMiniArt,
 };

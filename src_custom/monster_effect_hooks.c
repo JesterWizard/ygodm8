@@ -726,6 +726,34 @@ unsigned char CanActivateMORPHTRONIC_SCOPEN(void);
 void ActivateMORPHTRONIC_SCOPENEffect(void);
 unsigned char CanActivateMORPHTRONIC_SLINGEN(void);
 void ActivateMORPHTRONIC_SLINGENEffect(void);
+unsigned char CanActivateMORPHTRONIC_SMARTFON(void);
+void ActivateMORPHTRONIC_SMARTFONEffect(void);
+unsigned char CanActivateMORPHTRONIC_STAPLEN(void);
+void ActivateMORPHTRONIC_STAPLENEffect(void);
+unsigned char CanActivateMORPHTRONIC_TELEFON(void);
+void ActivateMORPHTRONIC_TELEFONEffect(void);
+unsigned char CanActivateMORPHTRONIC_VACUUMEN(void);
+void ActivateMORPHTRONIC_VACUUMENEffect(void);
+unsigned char CanActivateMORPHTRONIC_VIDEON(void);
+void ActivateMORPHTRONIC_VIDEONEffect(void);
+unsigned char CanActivateNATURIA_BEAST(void);
+void ActivateNATURIA_BEASTEffect(void);
+unsigned char CanActivateNITRO_WARRIOR(void);
+void ActivateNITRO_WARRIOREffect(void);
+unsigned char CanActivatePOWER_TOOL_BRAVER_DRAGON(void);
+void ActivatePOWER_TOOL_BRAVER_DRAGONEffect(void);
+unsigned char CanActivateRAINBOW_DARK_DRAGON(void);
+void ActivateRAINBOW_DARK_DRAGONEffect(void);
+unsigned char CanActivateROAD_SYNCHRON(void);
+void ActivateROAD_SYNCHRONEffect(void);
+unsigned char CanActivateROAD_WARRIOR(void);
+void ActivateROAD_WARRIOREffect(void);
+unsigned char CanActivateSILENT_MAGICIAN_LV4(void);
+void ActivateSILENT_MAGICIAN_LV4Effect(void);
+unsigned char CanActivateSILENT_MAGICIAN_LV8(void);
+void ActivateSILENT_MAGICIAN_LV8Effect(void);
+unsigned char CanActivateSIMORGH_BIRD_OF_ANCESTRY(void);
+void ActivateSIMORGH_BIRD_OF_ANCESTRYEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2793,6 +2821,62 @@ FAILED:
   }
   if (gMonEffect.id == MORPHTRONIC_SLINGEN) {
     ActivateMORPHTRONIC_SLINGENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_SMARTFON) {
+    ActivateMORPHTRONIC_SMARTFONEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_STAPLEN) {
+    ActivateMORPHTRONIC_STAPLENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_TELEFON) {
+    ActivateMORPHTRONIC_TELEFONEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_VACUUMEN) {
+    ActivateMORPHTRONIC_VACUUMENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_VIDEON) {
+    ActivateMORPHTRONIC_VIDEONEffect();
+    return;
+  }
+  if (gMonEffect.id == NATURIA_BEAST) {
+    ActivateNATURIA_BEASTEffect();
+    return;
+  }
+  if (gMonEffect.id == NITRO_WARRIOR) {
+    ActivateNITRO_WARRIOREffect();
+    return;
+  }
+  if (gMonEffect.id == POWER_TOOL_BRAVER_DRAGON) {
+    ActivatePOWER_TOOL_BRAVER_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == RAINBOW_DARK_DRAGON) {
+    ActivateRAINBOW_DARK_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == ROAD_SYNCHRON) {
+    ActivateROAD_SYNCHRONEffect();
+    return;
+  }
+  if (gMonEffect.id == ROAD_WARRIOR) {
+    ActivateROAD_WARRIOREffect();
+    return;
+  }
+  if (gMonEffect.id == SILENT_MAGICIAN_LV4) {
+    ActivateSILENT_MAGICIAN_LV4Effect();
+    return;
+  }
+  if (gMonEffect.id == SILENT_MAGICIAN_LV8) {
+    ActivateSILENT_MAGICIAN_LV8Effect();
+    return;
+  }
+  if (gMonEffect.id == SIMORGH_BIRD_OF_ANCESTRY) {
+    ActivateSIMORGH_BIRD_OF_ANCESTRYEffect();
     return;
   }
 }

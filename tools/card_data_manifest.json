@@ -36482,6 +36482,446 @@
       "effect_texts": {
         "popup_1": "If you control 2 or more face-up Morphtronic monsters, select 2 cards your opponent controls. Destroy 1 card of your o"
       }
+    },
+    {
+      "card_const": "MORPHTRONIC_SMARTFON",
+      "card_name": "Morphtronic Smartfon",
+      "atk": 100,
+      "def": 100,
+      "level": 1,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 75,
+      "password": [1, 5, 5, 2, 1, 0, 2, 7],
+      "description": {
+        "symbol": "gDescription_MorphtronicSmartfon",
+        "pages": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 1 Morphtronic monster from your Graveyard. - While in Attack Position: Once per turn: You can roll a six-sided die, excavate that many cards from the top of your Deck, add 1 excavated Morphtronic card to your hand, also shuffle the rest back into the Deck. - While in Defense Position: Once per turn: You can roll a six-sided die, look at that many cards from the top of your Deck, then place all of them on either the top or the bottom of the Deck, but in any order."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 1 Morphtronic monster from"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_STAPLEN",
+      "card_name": "Morphtronic Staplen",
+      "atk": 1400,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 161,
+      "password": [0, 2, 2, 5, 0, 2, 6, 6],
+      "description": {
+        "symbol": "gDescription_MorphtronicStaplen",
+        "pages": "- While in Attack Position: Your opponent cannot select another monster as an attack target. If this card is destroyed by battle, the monster that destroyed this card loses 300 ATK. - While in Defense Position: This card cannot be destroyed by battle. If this card is attacked, after damage calculation, select 1 face-up Attack Position monster your opponent controls. Change it to Defense Position and this card to Attack Position."
+      },
+      "effect_texts": {
+        "popup_1": "- While in Attack Position: Your opponent cannot select another monster as an attack target. If this card is destroyed b"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_TELEFON",
+      "card_name": "Morphtronic Telefon",
+      "atk": 100,
+      "def": 100,
+      "level": 1,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 75,
+      "password": [3, 8, 0, 8, 2, 4, 3, 7],
+      "description": {
+        "symbol": "gDescription_MorphtronicTelefon",
+        "pages": "- Attack Position: Once per turn, during your Main Phase: You can roll a six-sided die and gain LP equal to the result x 100, then you can Special Summon 1 Morphtronic monster from your GY with a Level equal to or lower than the result. - Defense Position: Once per turn, during your Main Phase: You can roll a six-sided die, excavate that many cards from the top of your Deck (or as many as you can), and if you do, you can send 1 excavated Morphtronic card to the GY, also place the rest on either the top or bottom of the Deck in any order."
+      },
+      "effect_texts": {
+        "popup_1": "- Attack Position: Once per turn, during your Main Phase: You can roll a six-sided die and gain LP equal to the result x"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_VACUUMEN",
+      "card_name": "Morphtronic Vacuumen",
+      "atk": 0,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [4, 8, 8, 6, 8, 9, 9, 4],
+      "description": {
+        "symbol": "gDescription_MorphtronicVacuumen",
+        "pages": "- While in Attack Position: Once per turn, you can send 1 Equip Card equipped to this card to the Graveyard to inflict 500 damage to your opponent. - While in Defense Position: Once per turn, you can equip 1 face-up Attack Position monster your opponent controls to this card as an Equip Card. (You can only equip 1 monster at a time to this card by this effect.)"
+      },
+      "effect_texts": {
+        "popup_1": "- While in Attack Position: Once per turn, you can send 1 Equip Card equipped to this card to the Graveyard to inflict 5"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_VIDEON",
+      "card_name": "Morphtronic Videon",
+      "atk": 1000,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [8, 4, 5, 9, 2, 8, 0, 0],
+      "description": {
+        "symbol": "gDescription_MorphtronicVideon",
+        "pages": "- While in Attack Position: This card gains 800 ATK for each Equip Card equipped to it. - While in Defense Position: This card gains 800 DEF for each Equip Card equipped to it."
+      },
+      "effect_texts": {
+        "popup_1": "- While in Attack Position: This card gains 800 ATK for each Equip Card equipped to it. \n- While in Defense Position: Th"
+      }
+    },
+    {
+      "card_const": "NATURIA_BEAST",
+      "card_name": "Naturia Beast",
+      "atk": 2200,
+      "def": 1700,
+      "level": 5,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [3, 3, 1, 9, 8, 8, 3, 7],
+      "description": {
+        "symbol": "gDescription_NaturiaBeast",
+        "pages": "1 EARTH Tuner + 1+ non-Tuner EARTH monsters When a Spell Card is activated (Quick Effect): You can send the top 2 cards of your Deck to the GY; negate the activation, and if you do, destroy it. This card must be face-up on the field to activate and to resolve this effect."
+      },
+      "effect_texts": {
+        "popup_1": "1 EARTH Tuner + 1+ non-Tuner EARTH monsters \r\nWhen a Spell Card is activated (Quick Effect): You can send the top 2 card"
+      }
+    },
+    {
+      "card_const": "NITRO_WARRIOR",
+      "card_name": "Nitro Warrior",
+      "atk": 2800,
+      "def": 1800,
+      "level": 7,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_WARRIOR",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 8, 0, 1, 3, 0, 9, 0],
+      "description": {
+        "symbol": "gDescription_NitroWarrior",
+        "pages": "Nitro Synchron + 1 or more non-Tuner monsters Once during each of your turns, if you activate a Spell Card, this card gains 1000 ATK during the next attack this turn involving this card, during damage calculation only. If this attacking card destroys an opponent's monster by battle, after damage calculation: You can target 1 face-up Defense Position monster your opponent controls; change that target to Attack Position, then this card can make a second attack in a row, on that monster."
+      },
+      "effect_texts": {
+        "popup_1": "Nitro Synchron + 1 or more non-Tuner monsters\nOnce during each of your turns, if you activate a Spell Card, this card "
+      }
+    },
+    {
+      "card_const": "POWER_FILTER",
+      "card_name": "Power Filter",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 9, 8, 4, 4, 9, 9, 5],
+      "description": {
+        "symbol": "gDescription_PowerFilter",
+        "pages": "Neither player can Special Summon monsters with 1000 or less ATK."
+      },
+      "effect_texts": {
+        "popup_1": "Neither player can Special Summon monsters with 1000 or less ATK."
+      }
+    },
+    {
+      "card_const": "POWER_TOOL_BRAVER_DRAGON",
+      "card_name": "Power Tool Braver Dragon",
+      "atk": 2500,
+      "def": 2300,
+      "level": 9,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 3, 2, 6, 5, 5, 5, 4],
+      "description": {
+        "symbol": "gDescription_PowerToolBraverDragon",
+        "pages": "1 Tuner + 1+ non-Tuner monsters If this card is Special Summoned: You can equip up to 3 Equip Spells with different names from your Deck and/or GY to this card. During the Main Phase (Quick Effect): You can send 1 of your Equip Spells equipped to this card to the GY, then target 1 Effect Monster on the field; either change its battle position, or until the end of this turn, negate its effects. You can only use each effect of Power Tool Braver Dragon once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters\r\nIf this card is Special Summoned: You can equip up to 3 Equip Spells with different nam"
+      }
+    },
+    {
+      "card_const": "PSEUDO_SPACE",
+      "card_name": "Pseudo Space",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 7, 5, 8, 4, 0, 1, 2],
+      "description": {
+        "symbol": "gDescription_PseudoSpace",
+        "pages": "Once per turn: You can banish 1 Field Spell Card from your Graveyard; until the End Phase, this card's name becomes that card's original name, and replace this effect with that card's original effects."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn: You can banish 1 Field Spell Card from your Graveyard; until the End Phase, this card's name becomes that"
+      }
+    },
+    {
+      "card_const": "RAINBOW_DARK_DRAGON",
+      "card_name": "Rainbow Dark Dragon",
+      "atk": 4000,
+      "def": 0,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 229,
+      "password": [7, 9, 4, 0, 7, 9, 7, 5],
+      "description": {
+        "symbol": "gDescription_RainbowDarkDragon",
+        "pages": "(This card is always treated as an Ultimate Crystal card.) Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by banishing 7 DARK monsters with different names from your GY. You can banish all other DARK monsters from your field and GY; this card gains 500 ATK for each card banished this way."
+      },
+      "effect_texts": {
+        "popup_1": "(This card is always treated as an Ultimate Crystal card.)\r\nCannot be Normal Summoned/Set. Must be Special Summoned (f"
+      }
+    },
+    {
+      "card_const": "ROAD_SYNCHRON",
+      "card_name": "Road Synchron",
+      "atk": 1600,
+      "def": 800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 1, 9, 7, 1, 5, 5, 4],
+      "description": {
+        "symbol": "gDescription_RoadSynchron",
+        "pages": "When using this card as Synchro Material for the Synchro Summon of a monster other than Road Warrior, reduce this card's Level by 2. If this card attacks, at the end of the Damage Step: Increase its Level by 1 until the end of this turn."
+      },
+      "effect_texts": {
+        "popup_1": "When using this card as Synchro Material for the Synchro Summon of a monster other than Road Warrior, reduce this card"
+      }
+    },
+    {
+      "card_const": "ROAD_WARRIOR",
+      "card_name": "Road Warrior",
+      "atk": 3000,
+      "def": 1500,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 2, 3, 2, 2, 4, 2, 1],
+      "description": {
+        "symbol": "gDescription_RoadWarrior",
+        "pages": "Road Synchron + 2 or more non-Tuner monsters Once per turn: You can Special Summon 1 Level 2 or lower Warrior or Machine-Type monster from your Deck."
+      },
+      "effect_texts": {
+        "popup_1": "Road Synchron + 2 or more non-Tuner monsters\nOnce per turn: You can Special Summon 1 Level 2 or lower Warrior or Machi"
+      }
+    },
+    {
+      "card_const": "SCRAP_IRON_SCARECROW",
+      "card_name": "Scrap-Iron Scarecrow",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 8, 4, 2, 7, 5, 7, 7],
+      "description": {
+        "symbol": "gDescription_ScrapIronScarecrow",
+        "pages": "When an opponent's monster declares an attack: Target the attacking monster; negate the attack, also, after that, Set this card face-down instead of sending it to the GY."
+      },
+      "effect_texts": {
+        "popup_1": "When an opponent's monster declares an attack: Target the attacking monster; negate the attack, also, after that, Set th"
+      }
+    },
+    {
+      "card_const": "SILENT_MAGICIAN_LV4",
+      "card_name": "Silent Magician LV4",
+      "atk": 1000,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 3, 6, 6, 5, 1, 4, 6],
+      "description": {
+        "symbol": "gDescription_SilentMagicianLv4",
+        "pages": "Each time your opponent draws a card(s), place 1 Spell Counter on this card (max. 5). This card gains 500 ATK for each Spell Counter on it. During the Standby Phase of your next turn after the 5th Spell Counter is placed on this card: You can send this face-up card with 5 Spell Counters on it to the Graveyard; Special Summon 1 Silent Magician LV8 from your hand or Deck."
+      },
+      "effect_texts": {
+        "popup_1": "Each time your opponent draws a card(s), place 1 Spell Counter on this card (max. 5). This card gains 500 ATK for each S"
+      }
+    },
+    {
+      "card_const": "SILENT_MAGICIAN_LV8",
+      "card_name": "Silent Magician LV8",
+      "atk": 3500,
+      "def": 1000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [7, 2, 4, 4, 3, 5, 6, 8],
+      "description": {
+        "symbol": "gDescription_SilentMagicianLv8",
+        "pages": "Cannot be Normal Summoned/Set. Must be Special Summoned by Silent Magician LV4 and cannot be Special Summoned by other ways. Unaffected by your opponent's Spell effects."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned by Silent Magician LV4 and cannot be Special Summoned by other"
+      }
+    },
+    {
+      "card_const": "SIMORGH_BIRD_OF_ANCESTRY",
+      "card_name": "Simorgh, Bird of Ancestry",
+      "atk": 2900,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [8, 6, 4, 8, 9, 1, 8, 2],
+      "description": {
+        "symbol": "gDescription_SimorghBirdOfAncestry",
+        "pages": "Both players Tribute Summon WIND monsters with 1 less Tribute than required. If you Tribute Summon this card by Tributing only WIND monsters, return up to 2 cards your opponent controls to their owner's hand. This card is treated as a Normal Monster while in your hand."
+      },
+      "effect_texts": {
+        "popup_1": "Both players Tribute Summon WIND monsters with 1 less Tribute than required. If you Tribute Summon this card by Tributin"
+      }
+    },
+    {
+      "card_const": "SPELL_CHRONICLE",
+      "card_name": "Spell Chronicle",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 4, 4, 0, 2, 4, 1, 4],
+      "description": {
+        "symbol": "gDescription_SpellChronicle",
+        "pages": "Activate this card by sending your entire hand to the GY; banish 5 Spells/Traps from your Deck. Each time your opponent activates a Spell Card, place 1 Chronicle Counter on this card when that Spell Card resolves. You can remove 2 Chronicle Counters from this card; your opponent chooses 1 card banished by this card's effect for you to add to your hand. If this face-up card in the Spell & Trap Zone leaves the field: You take 500 damage for each card currently banished by this card's effect."
+      },
+      "effect_texts": {
+        "popup_1": "Activate this card by sending your entire hand to the GY; banish 5 Spells/Traps from your Deck. Each time your opponent "
+      }
+    },
+    {
+      "card_const": "SPELL_GEAR",
+      "card_name": "Spell Gear",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 0, 3, 1, 3, 5, 1, 3],
+      "description": {
+        "symbol": "gDescription_SpellGear",
+        "pages": "Send 3 Ancient Gear cards you control to the Graveyard. You can Special Summon up to 1 Ancient Gear Golem from your hand and 1 from your Deck, ignoring the Summoning conditions. Then, destroy all monsters you control except Ancient Gear Golems. You cannot Normal Summon or Set until the end of your next turn."
+      },
+      "effect_texts": {
+        "popup_1": "Send 3 Ancient Gear cards you control to the Graveyard. You can Special Summon up to 1 Ancient Gear Golem from your "
+      }
+    },
+    {
+      "card_const": "OVERFLOWING_TREASURE",
+      "card_name": "Overflowing Treasure",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 0, 0, 0, 0, 0, 0, 0],
+      "description": {
+        "symbol": "gDescription_OverflowingTreasure",
+        "pages": "For one turn, boost the ATK of one monster on your field by 500 points for every card in each player's hand."
+      },
+      "effect_texts": {
+        "popup_1": "ATK +500 per card in both hands."
+      }
     }
   ]
 }

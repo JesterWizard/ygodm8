@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `1024` effects
+- `1044` effects
 
 ## Tally
 
@@ -1005,6 +1005,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Morphtronic Scopen` | `src_custom/activated_effects/morphtronic_scopen.c` |
 | `activated_effects` | `Morphtronic Slingen` | `src_custom/activated_effects/morphtronic_slingen.c` |
 | `trap_effects` | `Morphtronic Mixup` | `src_custom/trap_effects/morphtronic_mixup.c` |
+| `activated_effects` | `Morphtronic Smartfon` | `src_custom/activated_effects/morphtronic_smartfon.c` |
+| `activated_effects` | `Morphtronic Staplen` | `src_custom/activated_effects/morphtronic_staplen.c` |
+| `activated_effects` | `Morphtronic Telefon` | `src_custom/activated_effects/morphtronic_telefon.c` |
+| `activated_effects` | `Morphtronic Vacuumen` | `src_custom/activated_effects/morphtronic_vacuumen.c` |
+| `activated_effects` | `Morphtronic Videon` | `src_custom/activated_effects/morphtronic_videon.c` |
+| `activated_effects` | `Naturia Beast` | `src_custom/activated_effects/naturia_beast.c` |
+| `activated_effects` | `Nitro Warrior` | `src_custom/activated_effects/nitro_warrior.c` |
+| `spell_effects` | `Power Filter` | `src_custom/spell_effects/power_filter.c` |
+| `activated_effects` | `Power Tool Braver Dragon` | `src_custom/activated_effects/power_tool_braver_dragon.c` |
+| `spell_effects` | `Pseudo Space` | `src_custom/spell_effects/pseudo_space.c` |
+| `activated_effects` | `Rainbow Dark Dragon` | `src_custom/activated_effects/rainbow_dark_dragon.c` |
+| `activated_effects` | `Road Synchron` | `src_custom/activated_effects/road_synchron.c` |
+| `activated_effects` | `Road Warrior` | `src_custom/activated_effects/road_warrior.c` |
+| `trap_effects` | `Scrap Iron Scarecrow` | `src_custom/trap_effects/scrap_iron_scarecrow.c` |
+| `activated_effects` | `Silent Magician Lv4` | `src_custom/activated_effects/silent_magician_lv4.c` |
+| `activated_effects` | `Silent Magician Lv8` | `src_custom/activated_effects/silent_magician_lv8.c` |
+| `activated_effects` | `Simorgh Bird Of Ancestry` | `src_custom/activated_effects/simorgh_bird_of_ancestry.c` |
+| `spell_effects` | `Spell Chronicle` | `src_custom/spell_effects/spell_chronicle.c` |
+| `spell_effects` | `Spell Gear` | `src_custom/spell_effects/spell_gear.c` |
+| `spell_effects` | `Overflowing Treasure` | `src_custom/spell_effects/overflowing_treasure.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

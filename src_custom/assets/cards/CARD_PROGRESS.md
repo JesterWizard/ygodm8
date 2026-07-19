@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1093 |
-| Art ready, needs manifest | 40 |
+| In game (manifest + art) | 1113 |
+| Art ready, needs manifest | 20 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1135** |
 
@@ -1115,31 +1115,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MORPHTRONIC_SCOPEN` | Morphtronic Scopen | `morphtronic_scopen.png` |
 | `MORPHTRONIC_SLINGEN` | Morphtronic Slingen | `morphtronic_slingen.png` |
 | `MORPHTRONIC_MIXUP` | Morphtronic Mix-up | `morphtronic_mixup.png` |
+| `MORPHTRONIC_SMARTFON` | Morphtronic Smartfon | `morphtronic_smartfon.png` |
+| `MORPHTRONIC_STAPLEN` | Morphtronic Staplen | `morphtronic_staplen.png` |
+| `MORPHTRONIC_TELEFON` | Morphtronic Telefon | `morphtronic_telefon.png` |
+| `MORPHTRONIC_VACUUMEN` | Morphtronic Vacuumen | `morphtronic_vacuumen.png` |
+| `MORPHTRONIC_VIDEON` | Morphtronic Videon | `morphtronic_videon.png` |
+| `NATURIA_BEAST` | Naturia Beast | `naturia_beast.png` |
+| `NITRO_WARRIOR` | Nitro Warrior | `nitro_warrior.png` |
+| `POWER_FILTER` | Power Filter | `power_filter.png` |
+| `POWER_TOOL_BRAVER_DRAGON` | Power Tool Braver Dragon | `power_tool_braver_dragon.png` |
+| `PSEUDO_SPACE` | Pseudo Space | `pseudo_space.png` |
+| `RAINBOW_DARK_DRAGON` | Rainbow Dark Dragon | `rainbow_dark_dragon.png` |
+| `ROAD_SYNCHRON` | Road Synchron | `road_synchron.png` |
+| `ROAD_WARRIOR` | Road Warrior | `road_warrior.png` |
+| `SCRAP_IRON_SCARECROW` | Scrap-Iron Scarecrow | `scrap_iron_scarecrow.png` |
+| `SILENT_MAGICIAN_LV4` | Silent Magician LV4 | `silent_magician_lv4.png` |
+| `SILENT_MAGICIAN_LV8` | Silent Magician LV8 | `silent_magician_lv8.png` |
+| `SIMORGH_BIRD_OF_ANCESTRY` | Simorgh, Bird of Ancestry | `simorgh_bird_of_ancestry.png` |
+| `SPELL_CHRONICLE` | Spell Chronicle | `spell_chronicle.png` |
+| `SPELL_GEAR` | Spell Gear | `spell_gear.png` |
+| `OVERFLOWING_TREASURE` | Overflowing Treasure | `overflowing_treasure.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `MORPHTRONIC_SMARTFON` — `morphtronic_smartfon.png`
-- [ ] `MORPHTRONIC_STAPLEN` — `morphtronic_staplen.png`
-- [ ] `MORPHTRONIC_TELEFON` — `morphtronic_telefon.png`
-- [ ] `MORPHTRONIC_VACUUMEN` — `morphtronic_vacuumen.png`
-- [ ] `MORPHTRONIC_VIDEON` — `morphtronic_videon.png`
-- [ ] `NATURIA_BEAST` — `naturia_beast.png`
-- [ ] `NITRO_WARRIOR` — `nitro_warrior.png`
-- [ ] `OVERFLOWING_TREASURE` — `overflowing_treasure.png`
-- [ ] `POWER_FILTER` — `power_filter.png`
-- [ ] `POWER_TOOL_BRAVER_DRAGON` — `power_tool_braver_dragon.png`
-- [ ] `PSEUDO_SPACE` — `pseudo_space.png`
-- [ ] `RAINBOW_DARK_DRAGON` — `rainbow_dark_dragon.png`
-- [ ] `ROAD_SYNCHRON` — `road_synchron.png`
-- [ ] `ROAD_WARRIOR` — `road_warrior.png`
-- [ ] `SCRAP_IRON_SCARECROW` — `scrap_iron_scarecrow.png`
-- [ ] `SILENT_MAGICIAN_LV4` — `silent_magician_lv4.png`
-- [ ] `SILENT_MAGICIAN_LV8` — `silent_magician_lv8.png`
-- [ ] `SIMORGH_BIRD_OF_ANCESTRY` — `simorgh_bird_of_ancestry.png`
-- [ ] `SPELL_CHRONICLE` — `spell_chronicle.png`
-- [ ] `SPELL_GEAR` — `spell_gear.png`
 - [ ] `SPELL_STRIKER` — `spell_striker.png`
 - [ ] `T_G_HYPER_LIBRARIAN` — `t_g_hyper_librarian.png`
 - [ ] `TATSUNOKO` — `tatsunoko.png`

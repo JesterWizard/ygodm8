@@ -1895,11 +1895,31 @@
 #define MORPHTRONIC_SCOPEN                       0x0763
 #define MORPHTRONIC_SLINGEN                      0x0764
 #define MORPHTRONIC_MIXUP                        0x0765
+#define MORPHTRONIC_SMARTFON                     0x0766
+#define MORPHTRONIC_STAPLEN                      0x0767
+#define MORPHTRONIC_TELEFON                      0x0768
+#define MORPHTRONIC_VACUUMEN                     0x0769
+#define MORPHTRONIC_VIDEON                       0x076A
+#define NATURIA_BEAST                            0x076B
+#define NITRO_WARRIOR                            0x076C
+#define POWER_FILTER                             0x076D
+#define POWER_TOOL_BRAVER_DRAGON                 0x076E
+#define PSEUDO_SPACE                             0x076F
+#define RAINBOW_DARK_DRAGON                      0x0770
+#define ROAD_SYNCHRON                            0x0771
+#define ROAD_WARRIOR                             0x0772
+#define SCRAP_IRON_SCARECROW                     0x0773
+#define SILENT_MAGICIAN_LV4                      0x0774
+#define SILENT_MAGICIAN_LV8                      0x0775
+#define SIMORGH_BIRD_OF_ANCESTRY                 0x0776
+#define SPELL_CHRONICLE                          0x0777
+#define SPELL_GEAR                               0x0778
+#define OVERFLOWING_TREASURE                     0x0779
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0766
-#define NUM_CUSTOM_CARDS                        0x0445
+#define NUM_TOTAL_CARDS                         0x077A
+#define NUM_CUSTOM_CARDS                        0x0459
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

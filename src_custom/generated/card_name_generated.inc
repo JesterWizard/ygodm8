@@ -1094,6 +1094,26 @@ static const u8 sMorphtronicScannenName[] __attribute__((section(".append_assets
 static const u8 sMorphtronicScopenName[] __attribute__((section(".append_assets"))) = "Morphtronic Scopen";
 static const u8 sMorphtronicSlingenName[] __attribute__((section(".append_assets"))) = "Morphtronic Slingen";
 static const u8 sMorphtronicMixupName[] __attribute__((section(".append_assets"))) = "Morphtronic Mix-up";
+static const u8 sMorphtronicSmartfonName[] __attribute__((section(".append_assets"))) = "Morphtronic Smartfon";
+static const u8 sMorphtronicStaplenName[] __attribute__((section(".append_assets"))) = "Morphtronic Staplen";
+static const u8 sMorphtronicTelefonName[] __attribute__((section(".append_assets"))) = "Morphtronic Telefon";
+static const u8 sMorphtronicVacuumenName[] __attribute__((section(".append_assets"))) = "Morphtronic Vacuumen";
+static const u8 sMorphtronicVideonName[] __attribute__((section(".append_assets"))) = "Morphtronic Videon";
+static const u8 sNaturiaBeastName[] __attribute__((section(".append_assets"))) = "Naturia Beast";
+static const u8 sNitroWarriorName[] __attribute__((section(".append_assets"))) = "Nitro Warrior";
+static const u8 sPowerFilterName[] __attribute__((section(".append_assets"))) = "Power Filter";
+static const u8 sPowerToolBraverDragonName[] __attribute__((section(".append_assets"))) = "Power Tool Braver Dragon";
+static const u8 sPseudoSpaceName[] __attribute__((section(".append_assets"))) = "Pseudo Space";
+static const u8 sRainbowDarkDragonName[] __attribute__((section(".append_assets"))) = "Rainbow Dark Dragon";
+static const u8 sRoadSynchronName[] __attribute__((section(".append_assets"))) = "Road Synchron";
+static const u8 sRoadWarriorName[] __attribute__((section(".append_assets"))) = "Road Warrior";
+static const u8 sScrapIronScarecrowName[] __attribute__((section(".append_assets"))) = "Scrap-Iron Scarecrow";
+static const u8 sSilentMagicianLv4Name[] __attribute__((section(".append_assets"))) = "Silent Magician LV4";
+static const u8 sSilentMagicianLv8Name[] __attribute__((section(".append_assets"))) = "Silent Magician LV8";
+static const u8 sSimorghBirdOfAncestryName[] __attribute__((section(".append_assets"))) = "Simorgh, Bird of Ancestry";
+static const u8 sSpellChronicleName[] __attribute__((section(".append_assets"))) = "Spell Chronicle";
+static const u8 sSpellGearName[] __attribute__((section(".append_assets"))) = "Spell Gear";
+static const u8 sOverflowingTreasureName[] __attribute__((section(".append_assets"))) = "Overflowing Treasure";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3288,6 +3308,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMorphtronicSlingenName;
   if (cardId == 0x0765)
     return (u8 *)sMorphtronicMixupName;
+  if (cardId == 0x0766)
+    return (u8 *)sMorphtronicSmartfonName;
+  if (cardId == 0x0767)
+    return (u8 *)sMorphtronicStaplenName;
+  if (cardId == 0x0768)
+    return (u8 *)sMorphtronicTelefonName;
+  if (cardId == 0x0769)
+    return (u8 *)sMorphtronicVacuumenName;
+  if (cardId == 0x076A)
+    return (u8 *)sMorphtronicVideonName;
+  if (cardId == 0x076B)
+    return (u8 *)sNaturiaBeastName;
+  if (cardId == 0x076C)
+    return (u8 *)sNitroWarriorName;
+  if (cardId == 0x076D)
+    return (u8 *)sPowerFilterName;
+  if (cardId == 0x076E)
+    return (u8 *)sPowerToolBraverDragonName;
+  if (cardId == 0x076F)
+    return (u8 *)sPseudoSpaceName;
+  if (cardId == 0x0770)
+    return (u8 *)sRainbowDarkDragonName;
+  if (cardId == 0x0771)
+    return (u8 *)sRoadSynchronName;
+  if (cardId == 0x0772)
+    return (u8 *)sRoadWarriorName;
+  if (cardId == 0x0773)
+    return (u8 *)sScrapIronScarecrowName;
+  if (cardId == 0x0774)
+    return (u8 *)sSilentMagicianLv4Name;
+  if (cardId == 0x0775)
+    return (u8 *)sSilentMagicianLv8Name;
+  if (cardId == 0x0776)
+    return (u8 *)sSimorghBirdOfAncestryName;
+  if (cardId == 0x0777)
+    return (u8 *)sSpellChronicleName;
+  if (cardId == 0x0778)
+    return (u8 *)sSpellGearName;
+  if (cardId == 0x0779)
+    return (u8 *)sOverflowingTreasureName;
 
   return gCardNames[cardId];
 }

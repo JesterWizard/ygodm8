@@ -572,6 +572,9 @@
     case NIGHTMARE_WHEEL:
       EffectNightmareWheel();
       return;
+    case OVERFLOWING_TREASURE:
+      EffectOVERFLOWING_TREASURE();
+      return;
     case OVERLOAD_FUSION:
       EffectOverloadFusion();
       return;
@@ -605,11 +608,17 @@
     case POWER_BOND:
       EffectPowerBond();
       return;
+    case POWER_FILTER:
+      EffectPOWER_FILTER();
+      return;
     case PRECIOUS_CARDS_FROM_BEYOND:
       EffectPreciousCardsFromBeyond();
       return;
     case PREMATURE_BURIAL:
       EffectPrematureBurial();
+      return;
+    case PSEUDO_SPACE:
+      EffectPSEUDO_SPACE();
       return;
     case PYRAMID_OF_LIGHT:
       EffectPyramidOfLight();
@@ -695,8 +704,14 @@
     case SOUL_TAKER:
       EffectSoulTaker();
       return;
+    case SPELL_CHRONICLE:
+      EffectSPELL_CHRONICLE();
+      return;
     case SPELL_ECONOMICS:
       EffectSpellEconomics();
+      return;
+    case SPELL_GEAR:
+      EffectSPELL_GEAR();
       return;
     case SUIT_OF_SWORD_X:
       EffectSUIT_OF_SWORD_X();
