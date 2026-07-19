@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "duel_helpers.h"
 #include "synchro_duel.h"
+#include "xyz_duel.h"
 #include "constants/monster_effects.h"
 #include "constants/card_ids.h"
 #include "cannon_soldier.h"
@@ -2047,6 +2048,12 @@ FAILED:
       break;
     case 6:
       SynchroDuel_RunPlayerFlow();
+      UpdateDuelGfxExceptField();
+      TryActivatingPermanentEffects();
+      CheckWinConditionExodia();
+      break;
+    case 7:
+      XyzDuel_RunPlayerFlow();
       UpdateDuelGfxExceptField();
       TryActivatingPermanentEffects();
       CheckWinConditionExodia();

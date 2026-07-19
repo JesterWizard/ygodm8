@@ -52,6 +52,7 @@
 #include "embodiment_of_apophis.h"
 #include "ai_sim.h"
 #include "expanded_graveyard.h"
+#include "xyz_duel.h"
 #include "removed_from_play.h"
 #include "ojama_trio.h"
 #include "cost_down.h"
@@ -445,6 +446,7 @@ void InitBoard__Replacement(void) {
   ClearPendingSliferSummonPenalty();
   InitDuelZonePtrs(2);
   GraveyardExpand_Init();
+  XyzOverlays_InitBoard();
   RemovedFromPlay_Init();
   SixCardHand_Init();
   ElementalHeroNecroshade_Reset();

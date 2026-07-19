@@ -38567,6 +38567,7 @@
       "attribute": "ATTRIBUTE_WATER",
       "type": "TYPE_REPTILE",
       "color": "XYZ_CARD",
+      "xyz_materials": 3,
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,

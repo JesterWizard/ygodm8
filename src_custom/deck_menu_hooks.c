@@ -149,6 +149,21 @@ static const unsigned char sDeckMenuPickLabelSynchroSummon[] APPEND_TEXT = _(
     "シンクロ召喚           "
 );
 
+static const unsigned char sDeckMenuPickLabelXyzSummon[] APPEND_TEXT = _(
+  "{ENG}"
+    "XYZ Summon         "
+  "{FRE}"
+    "Invocation XYZ     "
+  "{GER}"
+    "XYZ beschwören     "
+  "{ITA}"
+    "Evoca XYZ          "
+  "{SPA}"
+    "Invocar XYZ        "
+  "{JAP}"
+    "エクシーズ召喚          "
+);
+
 static const unsigned char sDeckMenuPickLabelSelectCard[] APPEND_TEXT = _(
   "{ENG}"
     "Select This Card    "
@@ -199,6 +214,8 @@ static const u8 *DeckMenu_GetPickLabelText(u8 label)
     return sDeckMenuPickLabelFusionSummon;
   case DECK_MENU_PICK_LABEL_SYNCHRO_SUMMON:
     return sDeckMenuPickLabelSynchroSummon;
+  case DECK_MENU_PICK_LABEL_XYZ_SUMMON:
+    return sDeckMenuPickLabelXyzSummon;
   case DECK_MENU_PICK_LABEL_SELECT_CARD:
     return sDeckMenuPickLabelSelectCard;
   case DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK:
@@ -688,6 +705,11 @@ static u8 DeckMenuPickSubmenu_Main(const u8 *labels, u8 labelCount) {
             keepProcessing = 0;
             PlayMusic(SFX_SELECT);
             break;
+          case DECK_MENU_PICK_LABEL_XYZ_SUMMON:
+            result = FUSION_PICK_SUBMENU_SUMMON;
+            keepProcessing = 0;
+            PlayMusic(SFX_SELECT);
+            break;
           case DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK:
             result = FUSION_PICK_SUBMENU_RETURN;
             keepProcessing = 0;
@@ -863,6 +885,10 @@ u8 DeckMenuMainPickChosenLabel(const u8 *labels, u8 labelCount)
                 chosen = DECK_MENU_PICK_LABEL_SYNCHRO_SUMMON;
                 break;
               }
+              if (activeLabels[li] == DECK_MENU_PICK_LABEL_XYZ_SUMMON) {
+                chosen = DECK_MENU_PICK_LABEL_XYZ_SUMMON;
+                break;
+              }
             }
             keepProcessing = 0;
             break;
@@ -920,7 +946,8 @@ bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount)
 
   return chosen == DECK_MENU_PICK_LABEL_SELECT_CARD
       || chosen == DECK_MENU_PICK_LABEL_FUSION_SUMMON
-      || chosen == DECK_MENU_PICK_LABEL_SYNCHRO_SUMMON;
+      || chosen == DECK_MENU_PICK_LABEL_SYNCHRO_SUMMON
+      || chosen == DECK_MENU_PICK_LABEL_XYZ_SUMMON;
 }
 
 bool8 DeckMenuMainPickConfirm(void)

@@ -173,6 +173,12 @@ _kernel_malloc_ewram_array gPlayerDeck1ExtraDeck, EXTRA_DECK_CARD_BYTES
 _kernel_malloc_ewram_array gPlayerDeck2ExtraDeck, EXTRA_DECK_CARD_BYTES
 _kernel_malloc_ewram_array gPlayerDeck3ExtraDeck, EXTRA_DECK_CARD_BYTES
 
+@ XYZ overlay units: count[2][5] + ids[2][5][5] u16 (max 5 mats/zone).
+.set XYZ_OVERLAY_COUNT_BYTES, 0x0A
+.set XYZ_OVERLAY_IDS_BYTES, 0x64
+_kernel_malloc_ewram_array gXyzOverlayCount, XYZ_OVERLAY_COUNT_BYTES
+_kernel_malloc_ewram_array gXyzOverlayIds, XYZ_OVERLAY_IDS_BYTES
+
 @ Legacy-reserved capacity slots. Runtime deck capacity is the single vanilla gDeckCapacity.
 _kernel_malloc_ewram gPlayerDeck2Capacity, 0x4
 _kernel_malloc_ewram gPlayerDeck3Capacity, 0x4

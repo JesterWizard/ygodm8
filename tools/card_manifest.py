@@ -31,6 +31,7 @@ OPTIONAL_STATS_KEYS = {
     "effect_usage",
     "selectableOnce",
     "is_tuner",
+    "xyz_materials",
 }
 ALLOWED_EFFECT_USAGE = {
     "once",
@@ -52,6 +53,7 @@ MANIFEST_CARD_KEY_ORDER = (
     "type",
     "color",
     "is_tuner",
+    "xyz_materials",
     "monsterEffect",
     "spellEffect",
     "trapEffect",

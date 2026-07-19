@@ -12,6 +12,7 @@
 #include "the_supremacy_sun.h"
 #include "the_wicked_eraser.h"
 #include "duel.h"
+#include "xyz_duel.h"
 
 extern struct ApophisLink gApophisLinks[MAX_APOPHIS_LINKS];
 extern u8 gApophisClearingPartner;
@@ -505,6 +506,7 @@ void ClearZoneAndSendMonToGraveyard2__Replacement(struct DuelCard *zone, u8 turn
           || OjamaTrioZoneIsMonsterForm(zone)))
     NoteGraveyardMonsterSend(zone);
   TryArmExecutorMakyuraOnGraveyardSendFixed(turn, cardId);
+  XyzOverlays_OnMonsterZoneCleared(zone, turn);
   ClearZone(zone);
   TryShowPendingExecutorMakyuraPopup();
   TheWickedEraser_TryResolveFieldWipe();

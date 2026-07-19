@@ -318,13 +318,22 @@ void TryDrawingCard__Replacement(unsigned turn) {
       }
     }
 
-    /* Synchro playtest: Junk Synchron + Cyber Dragon opening hand → seed Stardust ED. */
+    /* Synchro playtest: Junk Synchron in opening hand → seed Stardust ED. */
     if (gRuntimeConfig.enable_extra_deck
         && (gRuntimeConfig.card_in_hand_1 == JUNK_SYNCHRON
             || gRuntimeConfig.card_in_hand_2 == JUNK_SYNCHRON
             || gRuntimeConfig.card_in_hand_3 == JUNK_SYNCHRON)
         && ExtraDeck_GetCardQty(STARDUST_DRAGON) == 0) {
       ExtraDeck_AddCard(STARDUST_DRAGON);
+    }
+
+    /* XYZ playtest: three Level 4s → seed Gagagigo the Risen ED. */
+    if (gRuntimeConfig.enable_extra_deck
+        && gRuntimeConfig.card_in_hand_1 == MYSTICAL_ELF
+        && gRuntimeConfig.card_in_hand_2 == BATTLE_OX
+        && gRuntimeConfig.card_in_hand_3 == CELTIC_GUARDIAN
+        && ExtraDeck_GetCardQty(GAGAGIGO_THE_RISEN) == 0) {
+      ExtraDeck_AddCard(GAGAGIGO_THE_RISEN);
     }
   }
 

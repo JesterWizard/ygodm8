@@ -13,6 +13,7 @@
 #include "the_despair_uranus.h"
 #include "archlord_kristya.h"
 #include "the_wicked_eraser.h"
+#include "xyz_duel.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
   u8 i;
@@ -65,6 +66,7 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
   ApplyOjamaTrioDestructionDamage(zone);
 
   if (ArchlordKristya_TrySendFaceUpFieldToDeckTop(zone, turn)) {
+    XyzOverlays_OnMonsterZoneCleared(zone, turn);
     ClearZone(zone);
     return;
   }
@@ -82,6 +84,7 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
     /* Hand sends skip NoteGraveyardMonsterSend for non-monsters; always clear Core arm. */
     ClearElementalHeroCoreReviveIfHandSend(zone);
   }
+  XyzOverlays_OnMonsterZoneCleared(zone, turn);
   ClearZone(zone);
   TryShowPendingExecutorMakyuraPopup();
   TheWickedEraser_TryResolveFieldWipe();

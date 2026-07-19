@@ -68,9 +68,9 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
     .ignore_tribute_requirements = FALSE,
-    .card_in_hand_1 = JUNK_SYNCHRON,
-    .card_in_hand_2 = CYBER_DRAGON,
-    .card_in_hand_3 = CARD_NONE,
+    .card_in_hand_1 = MYSTICAL_ELF,
+    .card_in_hand_2 = BATTLE_OX,
+    .card_in_hand_3 = CELTIC_GUARDIAN,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
     .opponent_deck_card_id = CARD_NONE,

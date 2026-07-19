@@ -1391,6 +1391,17 @@ def render_data_src(manifest: dict) -> str:
     lines.append("};")
     lines.append("")
 
+    lines.append(f"const u8 gCardXyzMaterialCount_Hook[{len(manifest['cards'])}] APPEND_RODATA = {{")
+    for index, item in enumerate(manifest["cards"]):
+        xyz_materials = item.get("xyz_materials", 0) or 0
+        if not isinstance(xyz_materials, int) or xyz_materials < 0:
+            xyz_materials = 0
+        if xyz_materials > 5:
+            xyz_materials = 5
+        lines.append(f"  [0x{index:04X}] = {xyz_materials},")
+    lines.append("};")
+    lines.append("")
+
     lines.append(f"const CardData gCardData_NEW[{len(manifest['cards'])}] APPEND_RODATA = {{")
     lines.append("  [CARD_NONE] = {")
     lines.append("    .atk = 0xFFFF,")
