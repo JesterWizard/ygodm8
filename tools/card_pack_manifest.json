@@ -1,0 +1,116 @@
+{
+  "packs": [
+    {
+      "file": "card_pack_01.png",
+      "name": "Starter Pack",
+      "price": 100,
+      "stock": 99,
+      "cards": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    },
+    {
+      "file": "card_pack_02.png",
+      "name": "Skull Servant",
+      "price": 120,
+      "stock": 99,
+      "cards": [3, 3, 3, 48, 49, 50, 51, 52]
+    },
+    {
+      "file": "card_pack_03.png",
+      "name": "Dragon Pack",
+      "price": 200,
+      "stock": 99,
+      "cards": [11, 12, 13, 14, 15, 16, 17, 18]
+    },
+    {
+      "file": "card_pack_04.png",
+      "name": "Spellcaster",
+      "price": 180,
+      "stock": 99,
+      "cards": [20, 21, 22, 23, 24, 25, 26, 27]
+    },
+    {
+      "file": "card_pack_05.png",
+      "name": "Warrior Pack",
+      "price": 150,
+      "stock": 99,
+      "cards": [30, 31, 32, 33, 34, 35, 36, 37]
+    },
+    {
+      "file": "card_pack_06.png",
+      "name": "Fiend Pack",
+      "price": 160,
+      "stock": 99,
+      "cards": [40, 41, 42, 43, 44, 45, 46, 47]
+    },
+    {
+      "file": "card_pack_07.png",
+      "name": "Aqua Pack",
+      "price": 140,
+      "stock": 99,
+      "cards": [55, 56, 57, 58, 59, 60, 61, 62]
+    },
+    {
+      "file": "card_pack_08.png",
+      "name": "Pyro Pack",
+      "price": 140,
+      "stock": 99,
+      "cards": [65, 66, 67, 68, 69, 70, 71, 72]
+    },
+    {
+      "file": "card_pack_09.png",
+      "name": "Thunder Pack",
+      "price": 140,
+      "stock": 99,
+      "cards": [75, 76, 77, 78, 79, 80, 81, 82]
+    },
+    {
+      "file": "card_pack_10.png",
+      "name": "Zombie Pack",
+      "price": 150,
+      "stock": 99,
+      "cards": [85, 86, 87, 88, 89, 90, 91, 92]
+    },
+    {
+      "file": "card_pack_11.png",
+      "name": "Machine Pack",
+      "price": 170,
+      "stock": 99,
+      "cards": [95, 96, 97, 98, 99, 100, 101, 102]
+    },
+    {
+      "file": "card_pack_12.png",
+      "name": "Dinosaur Pack",
+      "price": 160,
+      "stock": 99,
+      "cards": [105, 106, 107, 108, 109, 110, 111, 112]
+    },
+    {
+      "file": "card_pack_13.png",
+      "name": "Beast Pack",
+      "price": 130,
+      "stock": 99,
+      "cards": [115, 116, 117, 118, 119, 120, 121, 122]
+    },
+    {
+      "file": "card_pack_14.png",
+      "name": "Winged Beast",
+      "price": 150,
+      "stock": 99,
+      "cards": [125, 126, 127, 128, 129, 130, 131, 132]
+    },
+    {
+      "file": "card_pack_15.png",
+      "name": "Insect Pack",
+      "price": 120,
+      "stock": 99,
+      "cards": [135, 136, 137, 138, 139, 140, 141, 142]
+    },
+    {
+      "file": "card_pack_16.png",
+      "name": "Rare Pack",
+      "price": 300,
+      "stock": 99,
+      "cards": [150, 160, 170, 180, 190, 200, 210, 220]
+    }
+  ]
+}

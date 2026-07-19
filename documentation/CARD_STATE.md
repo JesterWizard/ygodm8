@@ -1,11 +1,10 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-19 — Pack cursor LynJump (full 60px)
+**Last worked on:** 2026-07-19 — Pack shop Shop/qty + Domino on money row
 
 **Files touched:**
-- `src_custom/card_shop_hooks.c` — `sub_802FB08__Replacement` (Y+58 in pack view)
-- `src_custom/LynJump.event` — hook at `$2FB08`
+- `src_custom/card_shop_hooks.c` — draw Shop/<stock> after EA74; Domino suffix on money row
 
-**Outcome:** `make` OK. Every buy-shop cursor update stretches to 30×60 when pack view is on.
+**Outcome:** `make` OK. Pack HUD should show Shop/qty top-left and Money … Domino top-right.
 
-**Open / next:** Playtest R toggle — cursor should frame full pack
+**Open / next:** Playtest Shop/99 and full Domino on the money line.

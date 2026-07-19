@@ -185,6 +185,7 @@ MILLENNIUM_ITEM_PNGS := $(wildcard src_custom/assets/millenium_items/*.png)
 MILLENNIUM_ITEM_GENERATED := src_custom/generated/millennium_item_assets_generated.inc
 MILLENNIUM_ITEM_STAMP := $(BUILD_DIR)/.millennium_items.stamp
 CARD_PACK_GENERATOR := tools/build_card_packs.py
+CARD_PACK_MANIFEST := tools/card_pack_manifest.json
 CARD_PACK_PNGS := $(wildcard src_custom/assets/card_packs/*.png)
 CARD_PACK_GENERATED := src_custom/generated/card_pack_assets_generated.inc
 CARD_PACK_STAMP := $(BUILD_DIR)/.card_packs.stamp
@@ -598,7 +599,7 @@ $(MILLENNIUM_ITEM_GENERATED): $(MILLENNIUM_ITEM_STAMP)
 
 $(eval $(call custom_object_dep,status_menu_hooks,$(MILLENNIUM_ITEM_GENERATED)))
 
-$(CARD_PACK_STAMP): $(CARD_PACK_PNGS) $(CARD_PACK_GENERATOR)
+$(CARD_PACK_STAMP): $(CARD_PACK_PNGS) $(CARD_PACK_GENERATOR) $(CARD_PACK_MANIFEST)
 	@echo "PACKGEN card pack shop art"
 	@mkdir -p $(dir $@) $(BUILD_DIR)/card_packs
 	python3 $(CARD_PACK_GENERATOR)

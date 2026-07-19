@@ -624,3 +624,5 @@ _kernel_malloc_ewram_array gCasinoOwResultText, 96
 
 @ Buy shop: R toggles pack art vs mini cards (APPEND_DATA is ROM).
 _kernel_malloc_ewram gBuyShopPackView, 1
+@ Per-pack remaining stock (max 16 packs; see NUM_CARD_PACKS).
+_kernel_malloc_ewram_array gBuyShopPackStock, 16
