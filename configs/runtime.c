@@ -64,7 +64,7 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_opponent_hand_field_scroll = TRUE,
     .enable_summon_animations = TRUE,
     .move_cursor_to_hand_on_draw = FALSE,
-    .enable_six_card_hand = TRUE,
+    .enable_six_card_hand = FALSE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
     .ignore_tribute_requirements = FALSE,

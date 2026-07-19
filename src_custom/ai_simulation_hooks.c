@@ -3,6 +3,7 @@
 #include "ai_sim.h"
 #include "coffin_seller.h"
 #include "call_of_the_haunted.h"
+#include "configs/runtime.h"
 #include "dark_magician_of_chaos.h"
 #include "debug_ruleset.h"
 #include "duel.h"
@@ -66,7 +67,9 @@ void AiSimBatchGraveyardRestore(void)
 
   GraveyardExpand_LoadStacks(AiSimBatchGraveyardSnapshot());
   GraveyardExpand_SyncAllLegacyTops();
-  GraveyardExpand_RefreshDisplay();
+  /* ponytail: tile rebuild each think is expensive; duel restore is enough under fast_ai. */
+  if (!gRuntimeConfig.fast_ai)
+    GraveyardExpand_RefreshDisplay();
 }
 
 void sub_800EE24(void);

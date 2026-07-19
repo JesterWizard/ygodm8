@@ -229,6 +229,8 @@ _kernel_malloc_ewram gTheDarkDoorTurnAttackUsed, 1
 @ TRUE while AiSimulateAllCandidateActions runs; must be EWRAM (not APPEND_DATA/ROM).
 _kernel_malloc_ewram gAiSimInBatch, 1
 _kernel_malloc_ewram gAiSimInBatchPad, 1
+@ Fast-AI board scan flags for one think (see AiSimBoardCtx in ai_sim_fast.c).
+_kernel_malloc_ewram gAiSimBoard, 8
 
 @ AI simulation: saved per-turn attack flags while vanilla AI save/restore runs.
 _kernel_malloc_ewram gAiSimSavedDebugRulesetTurnAttackUsed, 1

@@ -210,21 +210,24 @@ static u16 AiForceSetNormalSpellActivation(void)
 
 extern u8 gAiSimInBatch;
 
+extern struct AiActionPriorityTable *gUnk_8DFF6A4;
+
 void UpdateDuelGfxExceptField(void);
+void TryActivatingPermanentEffects(void);
 
 void AiSimulateAllCandidateActions(void)
 {
   u16 i;
+  u8 prune = gRuntimeConfig.fast_ai;
+  u8 fullSims = 0;
+  u8 budget = prune ? AiSimFullSimBudget() : 0xFF;
+  u16 pending[48];
+  u8 pendingCount = 0;
+  u8 pendingHigh[48];
+  u8 highCount = 0;
 
-  /* ponytail: heuristic-only fast path never mutates duel/VRAM — skip GY batch + GFX. */
-  if (gRuntimeConfig.fast_ai) {
-    gAiSimInBatch = TRUE;
-    gHideEffectText = 1;
-    AiSimulateAllCandidateActionsFast();
-    gAiSimInBatch = FALSE;
-    gHideEffectText = 0;
-    return;
-  }
+  if (prune)
+    AiSimScanBoard();
 
   AiSimBatchGraveyardSave();
   gAiSimInBatch = TRUE;
@@ -232,20 +235,79 @@ void AiSimulateAllCandidateActions(void)
 
   AiClearCommandData();
   CallThumbVoid(0x0800F108);
+
   for (i = 0; i < AI_ACTION_TABLE_COUNT; i++) {
+    u16 action;
+
+    if (prune && AiSimQuickReject(i))
+      continue;
     AiInitCommandData(i);
-    if (CallThumbU8(0x0801A08C) == 1) {
+    if (CallThumbU8(0x0801A08C) != 1)
+      continue;
+
+    if (prune && AiSimTryRecordLightAttack(i))
+      continue;
+
+    if (!prune) {
       sub_800EE24__Replacement();
       CallThumbVoid(0x0800F1EC);
       CallThumbVoid(0x0800E0F8);
       TryActivatingPermanentEffects();
       CallThumbVoid(0x0800F248);
       sub_800EE94__Replacement();
+      continue;
+    }
+
+    /* Queue non-attack full sims; high-impact first later. */
+    action = gAED58[i].action;
+    if (pendingCount < 48) {
+      if (IsAiHighImpactAction(action) || IsAiActivateSpellAction(action))
+        pendingHigh[highCount++] = (u8)pendingCount;
+      pending[pendingCount++] = i;
     }
   }
+
+  if (prune) {
+    u8 p;
+
+    /* High-impact first, then the rest, until budget. */
+    for (p = 0; p < highCount && fullSims < budget; p++) {
+      i = pending[pendingHigh[p]];
+      AiInitCommandData(i);
+      sub_800EE24__Replacement();
+      CallThumbVoid(0x0800F1EC);
+      CallThumbVoid(0x0800E0F8);
+      if (AiSimFieldNeedsPermanentRescan())
+        TryActivatingPermanentEffects();
+      CallThumbVoid(0x0800F248);
+      if (*(u32 *)((u8 *)gUnk_8DFF6A4 + 0x2298) >= AI_PRIORITY_LETHAL_MIN)
+        AiSimMarkLethalFound();
+      sub_800EE94__Replacement();
+      fullSims++;
+      pending[pendingHigh[p]] = 0xFFFF;
+    }
+    for (p = 0; p < pendingCount && fullSims < budget; p++) {
+      if (pending[p] == 0xFFFF)
+        continue;
+      i = pending[p];
+      AiInitCommandData(i);
+      sub_800EE24__Replacement();
+      CallThumbVoid(0x0800F1EC);
+      CallThumbVoid(0x0800E0F8);
+      if (AiSimFieldNeedsPermanentRescan())
+        TryActivatingPermanentEffects();
+      CallThumbVoid(0x0800F248);
+      if (*(u32 *)((u8 *)gUnk_8DFF6A4 + 0x2298) >= AI_PRIORITY_LETHAL_MIN)
+        AiSimMarkLethalFound();
+      sub_800EE94__Replacement();
+      fullSims++;
+    }
+  }
+
   gAiSimInBatch = FALSE;
   gHideEffectText = 0;
-  UpdateDuelGfxExceptField();
+  if (!prune)
+    UpdateDuelGfxExceptField();
   AiSimBatchGraveyardRestore();
 }
 
