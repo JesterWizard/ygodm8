@@ -45,11 +45,18 @@ def load_mini_palette() -> list[tuple[int, int, int]]:
     ]
 
 
-def nearest_index(rgb: tuple[int, int, int], pal: list[tuple[int, int, int]]) -> int:
+def nearest_index(
+    rgb: tuple[int, int, int],
+    pal: list[tuple[int, int, int]],
+    *,
+    min_i: int = 0,
+) -> int:
+    """Nearest palette entry. min_i=1 skips index 0 (transparent on shop BG2)."""
     r, g, b = rgb
-    best_i = 0
+    best_i = min_i
     best_d = 1 << 30
-    for i, (pr, pg, pb) in enumerate(pal):
+    for i in range(min_i, len(pal)):
+        pr, pg, pb = pal[i]
         d = (r - pr) * (r - pr) + (g - pg) * (g - pg) + (b - pb) * (b - pb)
         if d < best_d:
             best_d = d
@@ -85,7 +92,12 @@ def build_pack(png: Path, pal: list[tuple[int, int, int]]) -> Path:
     for y in range(PACK_H):
         for x in range(PACK_W):
             r, g, b, a = px[x, y]
-            indices.append(0 if a < 16 else nearest_index((r, g, b), pal))
+            if a < 16:
+                # Padding only — index 0 is transparent on BG2.
+                indices.append(0)
+            else:
+                # Never map art to index 0 (mini pal[0] is white → holes).
+                indices.append(nearest_index((r, g, b), pal, min_i=1))
     tiled = to_tiled_8bpp(indices, PACK_W, PACK_H)
     out_path = OUT_DIR / f"{png.stem}.8bpp"
     out_path.write_bytes(tiled)
