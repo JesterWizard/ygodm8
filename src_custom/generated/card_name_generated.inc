@@ -1014,6 +1014,26 @@ static const u8 sBattleManiaName[] __attribute__((section(".append_assets"))) = 
 static const u8 sBigEvolutionPillName[] __attribute__((section(".append_assets"))) = "Big Evolution Pill";
 static const u8 sBlackWingedDragonName[] __attribute__((section(".append_assets"))) = "Black-Winged Dragon";
 static const u8 sBeastMachineKingBarbarosUrName[] __attribute__((section(".append_assets"))) = "Beast Machine King Barbaros Ür";
+static const u8 sChainStrikeName[] __attribute__((section(".append_assets"))) = "Chain Strike";
+static const u8 sChainSummoningName[] __attribute__((section(".append_assets"))) = "Chain Summoning";
+static const u8 sChaosAncientGearGiantName[] __attribute__((section(".append_assets"))) = "Chaos Ancient Gear Giant";
+static const u8 sCoralDragonName[] __attribute__((section(".append_assets"))) = "Coral Dragon";
+static const u8 sCrimsonBladerName[] __attribute__((section(".append_assets"))) = "Crimson Blader";
+static const u8 sCrimsonDragonName[] __attribute__((section(".append_assets"))) = "Crimson Dragon";
+static const u8 sCrossDimensonalDuelName[] __attribute__((section(".append_assets"))) = "Cross-Dimensional Duel";
+static const u8 sCyberDragonInfinityName[] __attribute__((section(".append_assets"))) = "Cyber Dragon Infinity";
+static const u8 sCyberSlashHarpyLadyName[] __attribute__((section(".append_assets"))) = "Cyber Slash Harpie Lady";
+static const u8 sDarkHorusName[] __attribute__((section(".append_assets"))) = "Dark Horus";
+static const u8 sDarkMagicianGirlTheMagiciansApprenticeName[] __attribute__((section(".append_assets"))) = "Dark Magician Girl the Magician's Apprentice";
+static const u8 sDarkblazeDragonName[] __attribute__((section(".append_assets"))) = "Darkblaze Dragon";
+static const u8 sBootUpSoldierDreadDynamoName[] __attribute__((section(".append_assets"))) = "Boot-Up Soldier - Dread Dynamo";
+static const u8 sCastelTheSkyBlasterMusketeerName[] __attribute__((section(".append_assets"))) = "Castel, the Skyblaster Musketeer";
+static const u8 sDamageEqualsReptileName[] __attribute__((section(".append_assets"))) = "Damage = Reptile";
+static const u8 sDarkMagicianCircleName[] __attribute__((section(".append_assets"))) = "Dark Magical Circle";
+static const u8 sDarkMagicianTheMagicianOfBlackChaosName[] __attribute__((section(".append_assets"))) = "Dark Magician the Magician of Black Magic";
+static const u8 sDeSynchroName[] __attribute__((section(".append_assets"))) = "De-Synchro";
+static const u8 sDemiseKingOfArmageddonName[] __attribute__((section(".append_assets"))) = "Demise, King of Armageddon";
+static const u8 sDoubleToolCAndDName[] __attribute__((section(".append_assets"))) = "Double Tool C&D";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3048,6 +3068,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sBlackWingedDragonName;
   if (cardId == 0x0715)
     return (u8 *)sBeastMachineKingBarbarosUrName;
+  if (cardId == 0x0716)
+    return (u8 *)sChainStrikeName;
+  if (cardId == 0x0717)
+    return (u8 *)sChainSummoningName;
+  if (cardId == 0x0718)
+    return (u8 *)sChaosAncientGearGiantName;
+  if (cardId == 0x0719)
+    return (u8 *)sCoralDragonName;
+  if (cardId == 0x071A)
+    return (u8 *)sCrimsonBladerName;
+  if (cardId == 0x071B)
+    return (u8 *)sCrimsonDragonName;
+  if (cardId == 0x071C)
+    return (u8 *)sCrossDimensonalDuelName;
+  if (cardId == 0x071D)
+    return (u8 *)sCyberDragonInfinityName;
+  if (cardId == 0x071E)
+    return (u8 *)sCyberSlashHarpyLadyName;
+  if (cardId == 0x071F)
+    return (u8 *)sDarkHorusName;
+  if (cardId == 0x0720)
+    return (u8 *)sDarkMagicianGirlTheMagiciansApprenticeName;
+  if (cardId == 0x0721)
+    return (u8 *)sDarkblazeDragonName;
+  if (cardId == 0x0722)
+    return (u8 *)sBootUpSoldierDreadDynamoName;
+  if (cardId == 0x0723)
+    return (u8 *)sCastelTheSkyBlasterMusketeerName;
+  if (cardId == 0x0724)
+    return (u8 *)sDamageEqualsReptileName;
+  if (cardId == 0x0725)
+    return (u8 *)sDarkMagicianCircleName;
+  if (cardId == 0x0726)
+    return (u8 *)sDarkMagicianTheMagicianOfBlackChaosName;
+  if (cardId == 0x0727)
+    return (u8 *)sDeSynchroName;
+  if (cardId == 0x0728)
+    return (u8 *)sDemiseKingOfArmageddonName;
+  if (cardId == 0x0729)
+    return (u8 *)sDoubleToolCAndDName;
 
   return gCardNames[cardId];
 }

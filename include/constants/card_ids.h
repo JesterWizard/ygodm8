@@ -1815,11 +1815,31 @@
 #define BIG_EVOLUTION_PILL                       0x0713
 #define BLACK_WINGED_DRAGON                      0x0714
 #define BEAST_MACHINE_KING_BARBAROS_UR           0x0715
+#define CHAIN_STRIKE                             0x0716
+#define CHAIN_SUMMONING                          0x0717
+#define CHAOS_ANCIENT_GEAR_GIANT                 0x0718
+#define CORAL_DRAGON                             0x0719
+#define CRIMSON_BLADER                           0x071A
+#define CRIMSON_DRAGON                           0x071B
+#define CROSS_DIMENSONAL_DUEL                    0x071C
+#define CYBER_DRAGON_INFINITY                    0x071D
+#define CYBER_SLASH_HARPY_LADY                   0x071E
+#define DARK_HORUS                               0x071F
+#define DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE 0x0720
+#define DARKBLAZE_DRAGON                         0x0721
+#define BOOT_UP_SOLDIER_DREAD_DYNAMO             0x0722
+#define CASTEL_THE_SKY_BLASTER_MUSKETEER         0x0723
+#define DAMAGE_EQUALS_REPTILE                    0x0724
+#define DARK_MAGICIAN_CIRCLE                     0x0725
+#define DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS 0x0726
+#define DE_SYNCHRO                               0x0727
+#define DEMISE_KING_OF_ARMAGEDDON                0x0728
+#define DOUBLE_TOOL_C_AND_D                      0x0729
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0716
-#define NUM_CUSTOM_CARDS                        0x03F5
+#define NUM_TOTAL_CARDS                         0x072A
+#define NUM_CUSTOM_CARDS                        0x0409
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

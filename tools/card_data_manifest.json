@@ -34728,6 +34728,443 @@
       "effect_texts": {
         "popup_1": "You can Special Summon this card (from your hand) by banishing 1 Machine-Type monster and 1 Beast-Warrior-Type monster f"
       }
+    },
+    {
+      "card_const": "CHAIN_STRIKE",
+      "card_name": "Chain Strike",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 1, 6, 2, 3, 7, 1, 7],
+      "description": {
+        "symbol": "gDescription_ChainStrike",
+        "pages": "Activate only as Chain Link 2 or higher; inflict 400 damage to your opponent times the Chain Link number of this card. You cannot activate this card if multiple cards/effects with the same name are in that Chain."
+      },
+      "effect_texts": {
+        "popup_1": "Activate only as Chain Link 2 or higher; inflict 400 damage to your opponent times the Chain Link number of this card. Y"
+      }
+    },
+    {
+      "card_const": "CHAIN_SUMMONING",
+      "card_name": "Chain Summoning",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 9, 9, 5, 2, 0, 8, 3],
+      "description": {
+        "symbol": "gDescription_ChainSummoning",
+        "pages": "Activate as Chain Link 3 or higher: You can conduct up to 3 Normal Summons/Sets this turn, not just 1. You cannot activate this card if multiple cards with the same name, or the effects of such cards, are already activated in that Chain."
+      },
+      "effect_texts": {
+        "popup_1": "Activate as Chain Link 3 or higher: You can conduct up to 3 Normal Summons/Sets this turn, not just 1. You cannot activa"
+      }
+    },
+    {
+      "card_const": "CHAOS_ANCIENT_GEAR_GIANT",
+      "card_name": "Chaos Ancient Gear Giant",
+      "atk": 4500,
+      "def": 3000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_MACHINE",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [5, 1, 7, 8, 8, 4, 1, 2],
+      "description": {
+        "symbol": "gDescription_ChaosAncientGearGiant",
+        "pages": "4 Ancient Gear monsters Must be Fusion Summoned and cannot be Special Summoned by other ways. Unaffected by Spell/Trap effects. Your opponent's monsters cannot activate their effects during the Battle Phase. This card can attack all monsters your opponent controls, once each. If this card attacks a Defense Position monster, inflict piercing battle damage to your opponent."
+      },
+      "effect_texts": {
+        "popup_1": "4 Ancient Gear monsters\r\nMust be Fusion Summoned and cannot be Special Summoned by other ways. Unaffected by Spell/Tra"
+      }
+    },
+    {
+      "card_const": "CORAL_DRAGON",
+      "card_name": "Coral Dragon",
+      "atk": 2400,
+      "def": 500,
+      "level": 6,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 2, 5, 6, 6, 6, 0, 2],
+      "description": {
+        "symbol": "gDescription_CoralDragon",
+        "pages": "1 Tuner + 1+ non-Tuner monsters Once per turn: You can discard 1 card, then target 1 card your opponent controls; destroy it. If this Synchro Summoned card is sent from the field to the GY: You can draw 1 card. You can only use this effect of Coral Dragon once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters\r\nOnce per turn: You can discard 1 card, then target 1 card your opponent controls; destr"
+      }
+    },
+    {
+      "card_const": "CRIMSON_BLADER",
+      "card_name": "Crimson Blader",
+      "atk": 2800,
+      "def": 2600,
+      "level": 8,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_WARRIOR",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [8, 0, 3, 2, 1, 1, 9, 7],
+      "description": {
+        "symbol": "gDescription_CrimsonBlader",
+        "pages": "1 Tuner + 1 or more non-Tuner monsters If this card destroys an opponent's monster by battle and sends it to the Graveyard: Your opponent cannot Normal or Special Summon Level 5 or higher monsters during their next turn."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1 or more non-Tuner monsters\nIf this card destroys an opponent's monster by battle and sends it to the Graveya"
+      }
+    },
+    {
+      "card_const": "CRIMSON_DRAGON",
+      "card_name": "Crimson Dragon",
+      "atk": 0,
+      "def": 0,
+      "level": 12,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 3, 4, 3, 6, 9, 3, 1],
+      "description": {
+        "symbol": "gDescription_CrimsonDragon",
+        "pages": "1 Tuner + 1+ non-Tuner monsters If this card is Special Summoned: You can add 1 Spell/Trap that mentions Crimson Dragon from your Deck to your hand. (Quick Effect): You can target 1 Level 7 or higher Synchro Monster on the field, except Crimson Dragon; return this card to the Extra Deck, and if you do, Special Summon 1 Dragon Synchro Monster from your Extra Deck with the same Level as the targeted monster. (This is treated as a Synchro Summon.) You can only use each effect of Crimson Dragon once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters\r\nIf this card is Special Summoned: You can add 1 Spell/Trap that mentions Crimson Drago"
+      }
+    },
+    {
+      "card_const": "CROSS_DIMENSONAL_DUEL",
+      "card_name": "Cross-Dimensional Duel",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 0, 0, 5, 6, 8, 8, 9],
+      "description": {
+        "symbol": "gDescription_CrossDimensonalDuel",
+        "pages": "Target 1 Ancient Gear monster you control; banish it. During the next Standby Phase, return that banished monster to the field, and if you do, its ATK becomes double its original ATK until the end of that turn. If 1 or more Ancient Gear Golem or Ancient Gear Golem - Ultimate Pound you control would be destroyed by battle or card effect, you can banish this card from your GY instead."
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Ancient Gear monster you control; banish it. During the next Standby Phase, return that banished monster to t"
+      }
+    },
+    {
+      "card_const": "CYBER_DRAGON_INFINITY",
+      "card_name": "Cyber Dragon Infinity",
+      "atk": 2100,
+      "def": 1600,
+      "level": 6,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "XYZ_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 20,
+      "password": [1, 0, 4, 4, 3, 9, 5, 7],
+      "description": {
+        "symbol": "gDescription_CyberDragonInfinity",
+        "pages": "3 Level 6 LIGHT Machine monsters Once per turn, you can also Xyz Summon Cyber Dragon Infinity by using Cyber Dragon Nova you control as material. (Transfer its materials to this card.) Gains 200 ATK for each material attached to it. Once per turn: You can target 1 face-up Attack Position monster on the field; attach it to this card as material. Once per turn, when a card or effect is activated (Quick Effect): You can detach 1 material from this card; negate the activation, and if you do, destroy it."
+      },
+      "effect_texts": {
+        "popup_1": "3 Level 6 LIGHT Machine monsters\r\nOnce per turn, you can also Xyz Summon Cyber Dragon Infinity by using Cyber Dragon "
+      }
+    },
+    {
+      "card_const": "CYBER_SLASH_HARPY_LADY",
+      "card_name": "Cyber Slash Harpie Lady",
+      "atk": 2600,
+      "def": 1400,
+      "level": 8,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 3, 2, 6, 1, 8, 3, 5],
+      "description": {
+        "symbol": "gDescription_CyberSlashHarpyLady",
+        "pages": "1 Tuner + 1+ non-Tuner monsters For this card's Synchro Summon, you can treat 1 Harpie monster you control as a Tuner. This card's name becomes Harpie Lady while on the field or in the GY. When a Spell/Trap Card or effect is activated (except during the Damage Step) (Quick Effect): You can target 1 monster your opponent controls or 1 Harpie monster you control; return it to the hand. You can only use this effect of Cyber Slash Harpie Lady once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters\r\nFor this card's Synchro Summon, you can treat 1 Harpie monster you control as a Tuner"
+      }
+    },
+    {
+      "card_const": "DARK_HORUS",
+      "card_name": "Dark Horus",
+      "atk": 3000,
+      "def": 1800,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [6, 6, 2, 1, 4, 6, 7, 9],
+      "description": {
+        "symbol": "gDescription_DarkHorus",
+        "pages": "Once per turn, after resolving a Spell Card that was activated during your opponent's Main Phase: You can target 1 Level 4 DARK monster in your Graveyard; Special Summon that target. This card must be face-up on the field to activate and to resolve this effect."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn, after resolving a Spell Card that was activated during your opponent's Main Phase: You can target 1 Level"
+      }
+    },
+    {
+      "card_const": "DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE",
+      "card_name": "Dark Magician Girl the Magician's Apprentice",
+      "atk": 2000,
+      "def": 1700,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 86,
+      "password": [0, 2, 5, 0, 1, 6, 2, 4],
+      "description": {
+        "symbol": "gDescription_DarkMagicianGirlTheMagiciansApprentice",
+        "pages": "You can Special Summon this card (from your hand) by discarding 1 card, and if you do, this card's name becomes Dark Magician Girl. You can only Special Summon Dark Magician Girl the Magician's Apprentice once per turn this way. If this card is Normal or Special Summoned: You can add 1 Shining Sarcophagus from your Deck to your hand. You can only use this effect of Dark Magician Girl the Magician's Apprentice once per turn. Gains 300 ATK for each monster that mentions Shining Sarcophagus in the GYs."
+      },
+      "effect_texts": {
+        "popup_1": "You can Special Summon this card (from your hand) by discarding 1 card, and if you do, this card's name becomes Dark Ma"
+      }
+    },
+    {
+      "card_const": "DARKBLAZE_DRAGON",
+      "card_name": "Darkblaze Dragon",
+      "atk": 1200,
+      "def": 1000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [3, 9, 3, 4, 3, 6, 1, 0],
+      "description": {
+        "symbol": "gDescription_DarkblazeDragon",
+        "pages": "If this card is Special Summoned from the Graveyard: Its ATK and DEF become double its original ATK and DEF. If this card destroys a monster by battle and sends it to the Graveyard: Inflict damage to your opponent equal to that monster's original ATK."
+      },
+      "effect_texts": {
+        "popup_1": "If this card is Special Summoned from the Graveyard: Its ATK and DEF become double its original ATK and DEF. If this car"
+      }
+    },
+    {
+      "card_const": "BOOT_UP_SOLDIER_DREAD_DYNAMO",
+      "card_name": "Boot-Up Soldier - Dread Dynamo",
+      "atk": 0,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [1, 3, 3, 1, 6, 3, 4, 6],
+      "description": {
+        "symbol": "gDescription_BootUpSoldierDreadDynamo",
+        "pages": "While you control a Gadget monster, this card gains 2000 ATK."
+      },
+      "effect_texts": {
+        "popup_1": "While you control a Gadget monster, this card gains 2000 ATK."
+      }
+    },
+    {
+      "card_const": "CASTEL_THE_SKY_BLASTER_MUSKETEER",
+      "card_name": "Castel, the Skyblaster Musketeer",
+      "atk": 2000,
+      "def": 1500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "XYZ_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 20,
+      "password": [8, 2, 6, 3, 3, 0, 3, 9],
+      "description": {
+        "symbol": "gDescription_CastelTheSkyblasterMusketeer",
+        "pages": "2 Level 4 monsters You can detach 1 material from this card, then target 1 face-up monster on the field; change it to face-down Defense Position. You can detach 2 materials from this card, then target 1 other face-up card on the field; shuffle it into the Deck. You can only use 1 Castel, the Skyblaster Musketeer effect per turn, and only once that turn."
+      },
+      "effect_texts": {
+        "popup_1": "2 Level 4 monsters\nYou can detach 1 material from this card, then target 1 face-up monster on the field; change it to fa"
+      }
+    },
+    {
+      "card_const": "DAMAGE_EQUALS_REPTILE",
+      "card_name": "Damage = Reptile",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 4, 5, 8, 4, 7, 7, 5],
+      "description": {
+        "symbol": "gDescription_DamageEqualsReptile",
+        "pages": "Once per turn, when you take Battle Damage from a battle involving a Reptile-Type monster, you can Special Summon 1 Reptile-Type monster from your Deck with ATK less than or equal to the Battle Damage you took."
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn, when you take Battle Damage from a battle involving a Reptile-Type monster, you can Special Summon 1 Rept"
+      }
+    },
+    {
+      "card_const": "DARK_MAGICIAN_CIRCLE",
+      "card_name": "Dark Magical Circle",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 7, 2, 2, 2, 5, 3, 6],
+      "description": {
+        "symbol": "gDescription_DarkMagicianCircle",
+        "pages": "When this card is activated: Look at the top 3 cards of your Deck, then you can reveal 1 of them that is Dark Magician or a Spell/Trap that mentions Dark Magician, and add it to your hand, also place the remaining cards on top of your Deck in any order. If Dark Magician is Normal or Special Summoned to your field (except during the Damage Step): You can target 1 card your opponent controls; banish it. You can only use each effect of Dark Magical Circle once per turn."
+      },
+      "effect_texts": {
+        "popup_1": "When this card is activated: Look at the top 3 cards of your Deck, then you can reveal 1 of them that is Dark Magician"
+      }
+    },
+    {
+      "card_const": "DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS",
+      "card_name": "Dark Magician the Magician of Black Magic",
+      "atk": 2500,
+      "def": 2100,
+      "level": 7,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 30,
+      "password": [0, 0, 3, 4, 2, 6, 7, 3],
+      "description": {
+        "symbol": "gDescription_DarkMagicianTheMagicianOfBlackChaos",
+        "pages": "This card's name becomes Dark Magician while on the field. You can only use each of the following effects of Dark Magician the Magician of Black Magic once per turn. If Shining Sarcophagus is on the field: You can Special Summon this card from your hand. If this card is destroyed by card effect and a Level 5 or higher monster is on the field: You can Special Summon this card, then you can Set 1 Spell/Trap from your Deck that mentions Dark Magician."
+      },
+      "effect_texts": {
+        "popup_1": "This card's name becomes Dark Magician while on the field. You can only use each of the following effects of Dark Mag"
+      }
+    },
+    {
+      "card_const": "DE_SYNCHRO",
+      "card_name": "De-Synchro",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 2, 4, 4, 1, 3, 1, 7],
+      "description": {
+        "symbol": "gDescription_DeSynchro",
+        "pages": "Target 1 Synchro Monster on the field; return that target to the Extra Deck, then, if all of the monsters that were used for the Synchro Summon of that monster are in your GY, you can Special Summon all of them."
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Synchro Monster on the field; return that target to the Extra Deck, then, if all of the monsters that were used"
+      }
+    },
+    {
+      "card_const": "DEMISE_KING_OF_ARMAGEDDON",
+      "card_name": "Demise, King of Armageddon",
+      "atk": 2400,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "RITUAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 255,
+      "password": [7, 2, 4, 2, 6, 6, 6, 2],
+      "description": {
+        "symbol": "gDescription_DemiseKingOfArmageddon",
+        "pages": "You can Ritual Summon this card with End of the World. You can pay 2000 LP; destroy all other cards on the field."
+      }
+    },
+    {
+      "card_const": "DOUBLE_TOOL_C_AND_D",
+      "card_name": "Double Tool C&D",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 3, 7, 3, 0, 6, 2, 4],
+      "description": {
+        "symbol": "gDescription_DoubleToolCD",
+        "pages": "Equip only to a Power Tool Dragon or Level 4 or higher Machine-Type Morphtronic monster you control. While equipped: - During your turn: It gains 1000 ATK. If it attacks, any effects of the attack target that activate or apply on the field are negated during that Battle Phase. - During your opponent's turn: Your opponent cannot select a monster other than the equipped monster as an attack target. An opponent's monster that battles the equipped monster is destroyed at the end of the Damage Step."
+      },
+      "effect_texts": {
+        "popup_1": "Equip only to a Power Tool Dragon or Level 4 or higher Machine-Type Morphtronic monster you control. While equipped:"
+      }
     }
   ]
 }

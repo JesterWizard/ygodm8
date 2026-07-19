@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1013 |
-| Art ready, needs manifest | 120 |
+| In game (manifest + art) | 1033 |
+| Art ready, needs manifest | 100 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1135** |
 
@@ -1035,31 +1035,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BIG_EVOLUTION_PILL` | Big Evolution Pill | `big_evolution_pill.png` |
 | `BLACK_WINGED_DRAGON` | Black-Winged Dragon | `black_winged_dragon.png` |
 | `BEAST_MACHINE_KING_BARBAROS_UR` | Beast Machine King Barbaros Ür | `beast_machine_king_barbaros_ur.png` |
+| `CHAIN_STRIKE` | Chain Strike | `chain_strike.png` |
+| `CHAIN_SUMMONING` | Chain Summoning | `chain_summoning.png` |
+| `CHAOS_ANCIENT_GEAR_GIANT` | Chaos Ancient Gear Giant | `chaos_ancient_gear_giant.png` |
+| `CORAL_DRAGON` | Coral Dragon | `coral_dragon.png` |
+| `CRIMSON_BLADER` | Crimson Blader | `crimson_blader.png` |
+| `CRIMSON_DRAGON` | Crimson Dragon | `crimson_dragon.png` |
+| `CROSS_DIMENSONAL_DUEL` | Cross-Dimensional Duel | `cross_dimensonal_duel.png` |
+| `CYBER_DRAGON_INFINITY` | Cyber Dragon Infinity | `cyber_dragon_infinity.png` |
+| `CYBER_SLASH_HARPY_LADY` | Cyber Slash Harpie Lady | `cyber_slash_harpy_lady.png` |
+| `DARK_HORUS` | Dark Horus | `dark_horus.png` |
+| `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` | Dark Magician Girl the Magician's Apprentice | `dark_magician_girl_the_magicians_apprentice.png` |
+| `DARKBLAZE_DRAGON` | Darkblaze Dragon | `darkblaze_dragon.png` |
+| `BOOT_UP_SOLDIER_DREAD_DYNAMO` | Boot-Up Soldier - Dread Dynamo | `boot_up_soldier_dread_dynamo.png` |
+| `CASTEL_THE_SKY_BLASTER_MUSKETEER` | Castel, the Skyblaster Musketeer | `castel_the_sky_blaster_musketeer.png` |
+| `DAMAGE_EQUALS_REPTILE` | Damage = Reptile | `damage_equals_reptile.png` |
+| `DARK_MAGICIAN_CIRCLE` | Dark Magical Circle | `dark_magician_circle.png` |
+| `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` | Dark Magician the Magician of Black Magic | `dark_magician_the_magician_of_black_chaos.png` |
+| `DE_SYNCHRO` | De-Synchro | `de_synchro.png` |
+| `DEMISE_KING_OF_ARMAGEDDON` | Demise, King of Armageddon | `demise_king_of_armageddon.png` |
+| `DOUBLE_TOOL_C_AND_D` | Double Tool C&D | `double_tool_c_and_d.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `BOOT_UP_SOLDIER_DREAD_DYNAMO` — `boot_up_soldier_dread_dynamo.png`
-- [ ] `CASTEL_THE_SKY_BLASTER_MUSKETEER` — `castel_the_sky_blaster_musketeer.png`
-- [ ] `CHAIN_STRIKE` — `chain_strike.png`
-- [ ] `CHAIN_SUMMONING` — `chain_summoning.png`
-- [ ] `CHAOS_ANCIENT_GEAR_GIANT` — `chaos_ancient_gear_giant.png`
-- [ ] `CORAL_DRAGON` — `coral_dragon.png`
-- [ ] `CRIMSON_BLADER` — `crimson_blader.png`
-- [ ] `CRIMSON_DRAGON` — `crimson_dragon.png`
-- [ ] `CROSS_DIMENSONAL_DUEL` — `cross_dimensonal_duel.png`
-- [ ] `CYBER_DRAGON_INFINITY` — `cyber_dragon_infinity.png`
-- [ ] `CYBER_SLASH_HARPY_LADY` — `cyber_slash_harpy_lady.png`
-- [ ] `DAMAGE_EQUALS_REPTILE` — `damage_equals_reptile.png`
-- [ ] `DARK_HORUS` — `dark_horus.png`
-- [ ] `DARK_MAGICIAN_CIRCLE` — `dark_magician_circle.png`
-- [ ] `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` — `dark_magician_girl_the_magicians_apprentice.png`
-- [ ] `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` — `dark_magician_the_magician_of_black_chaos.png`
-- [ ] `DARKBLAZE_DRAGON` — `darkblaze_dragon.png`
-- [ ] `DE_SYNCHRO` — `de_synchro.png`
-- [ ] `DEMISE_KING_OF_ARMAGEDDON` — `demise_king_of_armageddon.png`
-- [ ] `DOUBLE_TOOL_C_AND_D` — `double_tool_c_and_d.png`
 - [ ] `DRAGONS_MIRROR` — `dragons_mirror.png`
 - [ ] `END_OF_THE_WORLD` — `end_of_the_world.png`
 - [ ] `EVOLZAR_DOLKKA` — `evolzar_dolkka.png`

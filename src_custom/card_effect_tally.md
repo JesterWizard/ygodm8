@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `944` effects
+- `964` effects
 
 ## Tally
 
@@ -925,6 +925,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Big Evolution Pill` | `src_custom/spell_effects/big_evolution_pill.c` |
 | `activated_effects` | `Black Winged Dragon` | `src_custom/activated_effects/black_winged_dragon.c` |
 | `activated_effects` | `Beast Machine King Barbaros Ur` | `src_custom/activated_effects/beast_machine_king_barbaros_ur.c` |
+| `spell_effects` | `Chain Strike` | `src_custom/spell_effects/chain_strike.c` |
+| `spell_effects` | `Chain Summoning` | `src_custom/spell_effects/chain_summoning.c` |
+| `activated_effects` | `Chaos Ancient Gear Giant` | `src_custom/activated_effects/chaos_ancient_gear_giant.c` |
+| `activated_effects` | `Coral Dragon` | `src_custom/activated_effects/coral_dragon.c` |
+| `activated_effects` | `Crimson Blader` | `src_custom/activated_effects/crimson_blader.c` |
+| `activated_effects` | `Crimson Dragon` | `src_custom/activated_effects/crimson_dragon.c` |
+| `trap_effects` | `Cross Dimensonal Duel` | `src_custom/trap_effects/cross_dimensonal_duel.c` |
+| `activated_effects` | `Cyber Dragon Infinity` | `src_custom/activated_effects/cyber_dragon_infinity.c` |
+| `activated_effects` | `Cyber Slash Harpy Lady` | `src_custom/activated_effects/cyber_slash_harpy_lady.c` |
+| `activated_effects` | `Dark Horus` | `src_custom/activated_effects/dark_horus.c` |
+| `activated_effects` | `Dark Magician Girl The Magicians Apprentice` | `src_custom/activated_effects/dark_magician_girl_the_magicians_apprentice.c` |
+| `activated_effects` | `Darkblaze Dragon` | `src_custom/activated_effects/darkblaze_dragon.c` |
+| `activated_effects` | `Boot Up Soldier Dread Dynamo` | `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c` |
+| `activated_effects` | `Castel The Sky Blaster Musketeer` | `src_custom/activated_effects/castel_the_sky_blaster_musketeer.c` |
+| `trap_effects` | `Damage Equals Reptile` | `src_custom/trap_effects/damage_equals_reptile.c` |
+| `spell_effects` | `Dark Magician Circle` | `src_custom/spell_effects/dark_magician_circle.c` |
+| `activated_effects` | `Dark Magician The Magician Of Black Chaos` | `src_custom/activated_effects/dark_magician_the_magician_of_black_chaos.c` |
+| `spell_effects` | `De Synchro` | `src_custom/spell_effects/de_synchro.c` |
+| `activated_effects` | `Demise King Of Armageddon` | `src_custom/activated_effects/demise_king_of_armageddon.c` |
+| `spell_effects` | `Double Tool C And D` | `src_custom/spell_effects/double_tool_c_and_d.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

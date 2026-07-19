@@ -128,6 +128,12 @@
     case CHAIN_ENERGY:
       EffectChainEnergy();
       return;
+    case CHAIN_STRIKE:
+      EffectCHAIN_STRIKE();
+      return;
+    case CHAIN_SUMMONING:
+      EffectCHAIN_SUMMONING();
+      return;
     case CHAOS_FORM:
       EffectCHAOS_FORM();
       return;
@@ -212,6 +218,9 @@
     case DARK_MAGICAL_CIRCLE:
       EffectDARK_MAGICAL_CIRCLE();
       return;
+    case DARK_MAGICIAN_CIRCLE:
+      EffectDARK_MAGICIAN_CIRCLE();
+      return;
     case DARK_MAGIC_ATTACK:
       EffectDARK_MAGIC_ATTACK();
       return;
@@ -242,6 +251,9 @@
     case DE_FUSION:
       EffectDeFusion();
       return;
+    case DE_SYNCHRO:
+      EffectDE_SYNCHRO();
+      return;
     case DIFFERENT_DIMENSION_CAPSULE:
       EffectDIFFERENT_DIMENSION_CAPSULE();
       return;
@@ -259,6 +271,9 @@
       return;
     case DOUBLE_SUMMON:
       EffectDoubleSummon();
+      return;
+    case DOUBLE_TOOL_C_AND_D:
+      EffectDOUBLE_TOOL_C_AND_D();
       return;
     case DRAGON_RAVINE:
       EffectDRAGON_RAVINE();

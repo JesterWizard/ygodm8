@@ -636,6 +636,32 @@ unsigned char CanActivateBLACK_WINGED_DRAGON(void);
 void ActivateBLACK_WINGED_DRAGONEffect(void);
 unsigned char CanActivateBEAST_MACHINE_KING_BARBAROS_UR(void);
 void ActivateBEAST_MACHINE_KING_BARBAROS_UREffect(void);
+unsigned char CanActivateCHAOS_ANCIENT_GEAR_GIANT(void);
+void ActivateCHAOS_ANCIENT_GEAR_GIANTEffect(void);
+unsigned char CanActivateCORAL_DRAGON(void);
+void ActivateCORAL_DRAGONEffect(void);
+unsigned char CanActivateCRIMSON_BLADER(void);
+void ActivateCRIMSON_BLADEREffect(void);
+unsigned char CanActivateCRIMSON_DRAGON(void);
+void ActivateCRIMSON_DRAGONEffect(void);
+unsigned char CanActivateCYBER_DRAGON_INFINITY(void);
+void ActivateCYBER_DRAGON_INFINITYEffect(void);
+unsigned char CanActivateCYBER_SLASH_HARPY_LADY(void);
+void ActivateCYBER_SLASH_HARPY_LADYEffect(void);
+unsigned char CanActivateDARK_HORUS(void);
+void ActivateDARK_HORUSEffect(void);
+unsigned char CanActivateDARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE(void);
+void ActivateDARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICEEffect(void);
+unsigned char CanActivateDARKBLAZE_DRAGON(void);
+void ActivateDARKBLAZE_DRAGONEffect(void);
+unsigned char CanActivateBOOT_UP_SOLDIER_DREAD_DYNAMO(void);
+void ActivateBOOT_UP_SOLDIER_DREAD_DYNAMOEffect(void);
+unsigned char CanActivateCASTEL_THE_SKY_BLASTER_MUSKETEER(void);
+void ActivateCASTEL_THE_SKY_BLASTER_MUSKETEEREffect(void);
+unsigned char CanActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS(void);
+void ActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOSEffect(void);
+unsigned char CanActivateDEMISE_KING_OF_ARMAGEDDON(void);
+void ActivateDEMISE_KING_OF_ARMAGEDDONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2523,6 +2549,58 @@ FAILED:
   }
   if (gMonEffect.id == BEAST_MACHINE_KING_BARBAROS_UR) {
     ActivateBEAST_MACHINE_KING_BARBAROS_UREffect();
+    return;
+  }
+  if (gMonEffect.id == CHAOS_ANCIENT_GEAR_GIANT) {
+    ActivateCHAOS_ANCIENT_GEAR_GIANTEffect();
+    return;
+  }
+  if (gMonEffect.id == CORAL_DRAGON) {
+    ActivateCORAL_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == CRIMSON_BLADER) {
+    ActivateCRIMSON_BLADEREffect();
+    return;
+  }
+  if (gMonEffect.id == CRIMSON_DRAGON) {
+    ActivateCRIMSON_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == CYBER_DRAGON_INFINITY) {
+    ActivateCYBER_DRAGON_INFINITYEffect();
+    return;
+  }
+  if (gMonEffect.id == CYBER_SLASH_HARPY_LADY) {
+    ActivateCYBER_SLASH_HARPY_LADYEffect();
+    return;
+  }
+  if (gMonEffect.id == DARK_HORUS) {
+    ActivateDARK_HORUSEffect();
+    return;
+  }
+  if (gMonEffect.id == DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE) {
+    ActivateDARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICEEffect();
+    return;
+  }
+  if (gMonEffect.id == DARKBLAZE_DRAGON) {
+    ActivateDARKBLAZE_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == BOOT_UP_SOLDIER_DREAD_DYNAMO) {
+    ActivateBOOT_UP_SOLDIER_DREAD_DYNAMOEffect();
+    return;
+  }
+  if (gMonEffect.id == CASTEL_THE_SKY_BLASTER_MUSKETEER) {
+    ActivateCASTEL_THE_SKY_BLASTER_MUSKETEEREffect();
+    return;
+  }
+  if (gMonEffect.id == DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS) {
+    ActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOSEffect();
+    return;
+  }
+  if (gMonEffect.id == DEMISE_KING_OF_ARMAGEDDON) {
+    ActivateDEMISE_KING_OF_ARMAGEDDONEffect();
     return;
   }
 }

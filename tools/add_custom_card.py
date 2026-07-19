@@ -120,7 +120,7 @@ def _fetch_cards(**params: str) -> list[dict]:
 def _fname_candidates_for_const(card_const: str) -> list[str]:
     """Build fname queries; includes hyphen variants (All-Out Attacks, Golem - Ultimate Pound)."""
     parts = card_const.split("_")
-    candidates = [card_const.replace("_", " ")]
+    candidates = [card_const.replace("_", " "), "-".join(parts)]
     for i in range(1, len(parts)):
         # ALL_OUT_ATTACKS → ALL-OUT ATTACKS
         left = "-".join(parts[:i])
@@ -129,6 +129,13 @@ def _fname_candidates_for_const(card_const: str) -> list[str]:
         # ANCIENT_GEAR_GOLEM_ULTIMATE_POUND → ANCIENT GEAR GOLEM - ULTIMATE POUND
         left_sp = " ".join(parts[:i])
         candidates.append(f"{left_sp} - {right}".strip())
+    # Short title-cased prefixes (API 400s on some long ALL-CAPS queries).
+    if len(parts) >= 2:
+        boot = "-".join(p.title() for p in parts[:2])
+        candidates.append(boot)
+        if len(parts) > 2:
+            candidates.append(boot + " " + " ".join(p.title() for p in parts[2:]))
+            candidates.append(boot + " - " + " ".join(p.title() for p in parts[2:]))
     # Dedupe while preserving order
     seen: set[str] = set()
     out: list[str] = []
@@ -181,7 +188,8 @@ def frame_kind(card_type: str) -> str:
     # Non-Synchro Tuners / Gemini keep the orange effect frame.
     if "tuner" in lowered or "gemini" in lowered:
         return "effect"
-    for key in ("normal", "effect", "fusion", "ritual", "spell", "trap"):
+    # Ritual before effect ("Ritual Effect Monster").
+    for key in ("normal", "fusion", "ritual", "effect", "spell", "trap"):
         if key in lowered:
             return key
     raise SystemExit(f"Unsupported card type from API: {card_type!r}")
