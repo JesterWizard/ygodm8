@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:32 UTC  
-**Remaining partials:** `646`
+**Last updated:** 2026-07-20 19:36 UTC  
+**Remaining partials:** `658`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 315 |
+| `activated` | 327 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **646** |
+| **total** | **658** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (315)
+## activated (327)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1531,6 +1531,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/armityle_the_chaos_phantasm.c`
 - L12: Extra Deck banish-fusion SS + battle indestructible + turn-only +10000 ATK need summon/permanent/battle hooks. Ceiling: not ignition here.
 
+### `ARMORY_ARM`
+- path: `src_custom/activated_effects/armory_arm.c`
+- L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
+
 ### `AROMA_JAR`
 - path: `src_custom/activated_effects/aroma_jar.c`
 - L12: FLIP battle protection + End Phase LP gain need FLIP/continuous hooks. Ceiling: not ignition-activatable here; upgrade: flip + turn-end overlay.
@@ -1559,6 +1563,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/aromalilith_rosalina.c`
 - L106: discard quick LP + Plant-only SS lock need chain/SS hooks. Ceiling: OPT SS 1 non-Tuner Aroma from Deck in DEF.
 
+### `AROMALILITH_ROSEMARY`
+- path: `src_custom/activated_effects/aromalilith_rosemary.c`
+- L57: SS-trigger search + LP-gain Link-point SS + pointed tribute banish need summon/LP/Link hooks. Ceiling: OPT search Aroma from Deck.
+
 ### `AROMASERAPHY_JASMINE`
 - path: `src_custom/activated_effects/aromaseraphy_jasmine.c`
 - L179: LP-higher battle protect + Link-point tribute + LP-gain search need Link/LP hooks. Ceiling: tribute 1 you control → SS Plant from Deck.
@@ -1566,6 +1574,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AROMASERAPHY_ROSEMARY`
 - path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
 - L148: LP-higher Plant +500 ATK/DEF + LP-gain negate need permanent/LP hooks. Ceiling: OPT destroy 1 face-up opp card.
+
+### `AROMASERAPHY_SWEET_MARJORAM`
+- path: `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c`
+- L61: LP-higher Plant untargetable + Synchro Winds search + LP-gain destroy need continuous/summon/LP hooks. Ceiling: OPT search Aroma Plant.
 
 ### `ASH_BLOSSOM_AND_JOYOUS_SPRING`
 - path: `src_custom/activated_effects/ash_blossom_and_joyous_spring.c`
@@ -1686,6 +1698,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/crimson_blader.c`
 - L12: battle destroy → opp cannot NS/SS Lv5+ next turn needs battle destroy + summon-lock hooks. Ceiling: not ignition-activatable here.
 
+### `CROSS_KEEPER`
+- path: `src_custom/activated_effects/cross_keeper.c`
+- L145: GY draw-on-E-HERO-Fusion need Fusion/GY hooks. Ceiling: send self → SS Elemental HERO or Neo-Spacian from hand/GY.
+
 ### `CYBER_ELTANIN`
 - path: `src_custom/activated_effects/cyber_eltanin.c`
 - L122: continuous ATK/DEF = banished×500 needs permanent overlay hook. Ceiling: not field-ignition activatable; use FromHand banish path.
@@ -1764,6 +1780,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/destiny_hero_captain_tenacious.c`
 - L92: Standby Phase + battle-destroyed-since-last-Standby filter need phase/destroy hooks. Ceiling: OPT SS 1 D-HERO from your GY.
 
+### `DESTINY_HERO_CELESTIAL`
+- path: `src_custom/activated_effects/destiny_hero_celestial.c`
+- L101: attack-declare destroy + GY draw-if-no-hand need battle/GY hooks. Ceiling: OPT destroy 1 face-up opp Spell + burn 500.
+
 ### `DESTINY_HERO_DASHER`
 - path: `src_custom/activated_effects/destiny_hero_dasher.c`
 - L49: battle DEF change + draw-phase GY SS need battle/draw hooks. Ceiling: OPT tribute 1 other → +2 tempStage (~1000 ATK until End Phase).
@@ -1779,6 +1799,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DESTINY_HERO_DISK_COMMANDER`
 - path: `src_custom/activated_effects/destiny_hero_disk_commander.c`
 - L20: SS-from-GY trigger + once per duel. Ceiling: OPT draw 2 stand-in when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE.
+
+### `DESTINY_HERO_DOOM_LORD`
+- path: `src_custom/activated_effects/destiny_hero_doom_lord.c`
+- L66: cannot-attack-this-turn needs attack-gate on unk4; return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster; mark self unk4.
 
 ### `DESTINY_HERO_DREAMER`
 - path: `src_custom/activated_effects/destiny_hero_dreamer.c`
@@ -1949,6 +1973,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gladiator_beast_bestiari.c`
 - L192: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy 1 opp S/T, else tag-out shuffle→SS.
 
+### `GLADIATOR_BEAST_DARIUS`
+- path: `src_custom/activated_effects/gladiator_beast_darius.c`
+- L175: GB-tag SS revive trigger + leave-field shuffle + end-BP tag need summon/leave/battle hooks. Ceiling: OPT SS GB from GY negated, else tag-out.
+
 ### `GLADIATOR_BEAST_DRAGASES`
 - path: `src_custom/activated_effects/gladiator_beast_dragases.c`
 - L157: battle indestruct + opp chain block + end-of-BP battled gate need battle hooks. Ceiling: OPT GB tag-out → SS 2 different from Deck.
@@ -1956,6 +1984,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEAST_EQUESTE`
 - path: `src_custom/activated_effects/gladiator_beast_equeste.c`
 - L158: on-GB-tag SS add trigger + end-of-BP battled gate need summon/battle hooks. Ceiling: OPT add 1 GB from GY to hand, else tag-out shuffle→SS.
+
+### `GLADIATOR_BEAST_GYZARUS`
+- path: `src_custom/activated_effects/gladiator_beast_gyzarus.c`
+- L183: Extra Deck return needs ED API; deck-top stand-in like other GB tags.
+- L308: Contact SS destroy trigger + end-BP Extra tag need summon/battle/ Extra hooks. Ceiling: OPT destroy up to 2 monsters, else tag-out → SS 2.
 
 ### `GLADIATOR_BEAST_HERAKLINOS`
 - path: `src_custom/activated_effects/gladiator_beast_heraklinos.c`
@@ -2110,6 +2143,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/helios_trice_megistus.c`
 - L58: extra battle + battle-destroy End Phase SS +500 need battle/EP hooks. Ceiling: OPT refresh permStage from banished-monster count.
 - L146: permStage unit is ~500 ATK/DEF each, not exact banished×300 overlay.
+
+### `HELSHADDOLL_HOLLOW`
+- path: `src_custom/activated_effects/helshaddoll_hollow.c`
+- L109: FLIP Extra mill + GY attribute mill need flip/send hooks. Ceiling: OPT banish 1 face-up opp monster.
 
 ### `HERALD_OF_PERFECTION`
 - path: `src_custom/activated_effects/herald_of_perfection.c`
@@ -2268,9 +2305,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/marshmallon.c`
 - L12: battle destruction immunity + flip-attack burn need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle damage / destroy gate.
 
+### `MASTER_OF_CHAOS`
+- path: `src_custom/activated_effects/master_of_chaos.c`
+- L204: Fusion SS trigger + destroyed GY Spell add need summon/destroy hooks. Ceiling: OPT SS LIGHT/DARK from GY, else tribute LIGHT+DARK → banish.
+
 ### `MAXX_C`
 - path: `src_custom/activated_effects/maxx_c.c`
 - L55: draw-on-opponent-Special-Summon this turn not wired; upgrade: SS hook + simple turn flag when one exists.
+
+### `MAZERA_DEVILLE`
+- path: `src_custom/activated_effects/mazera_deville.c`
+- L53: on-SS-with-Pandemonium discard-3 needs summon hook. Ceiling: OPT discard 1 random opp + mill 3.
 
 ### `MEZUKI`
 - path: `src_custom/activated_effects/mezuki.c`
@@ -2573,6 +2618,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `THE_AGENT_OF_JUDGMENT_SATURN`
 - path: `src_custom/activated_effects/the_agent_of_judgment_saturn.c`
 - L39: skip Battle Phase this turn needs phase-lock hook. Ceiling: tribute self → burn LP difference when Sanctuary face-up and LP higher.
+
+### `THE_AGENT_OF_MIRACLES_JUPITER`
+- path: `src_custom/activated_effects/the_agent_of_miracles_jupiter.c`
+- L132: +800 ATK until EP needs exact stage/EP clear; Sanctuary RFG revive FALSE. Ceiling: banish Agent from GY → +2 tempStage on LIGHT Fairy.
 
 ### `THE_AGENT_OF_MYSTERU_EARTH`
 - path: `src_custom/activated_effects/the_agent_of_mysteru_earth.c`

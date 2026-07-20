@@ -1,65 +1,145 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void ClearZoneAndSendMonToGraveyard2(struct DuelCard *zone, u8 player);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 PandemoniumOnField(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  return Duel_IsBackrowCardOnField(PANDEMONIUM, FALSE);
 }
 
-static void CancelTargeting(void)
+static struct DuelCard *FindFaceUpWarriorOfZera(void)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u8 col;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+    if (zone != NULL && zone->id == WARRIOR_OF_ZERA && zone->isFaceUp)
+      return zone;
+  }
+
+  return NULL;
 }
 
 unsigned char CanActivateMAZERA_DEVILLE(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != MAZERA_DEVILLE)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != MAZERA_DEVILLE)
+    return FALSE;
+
+  /* ponytail: on-SS-with-Pandemonium discard-3 needs summon hook. Ceiling: OPT
+   * discard 1 random opp + mill 3. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) == 0)
+    return FALSE;
+
+  return TRUE;
 }
 
 void ActivateMAZERA_DEVILLEEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
   Duel_ShowEffectTextTyped(MAZERA_DEVILLE, 2);
+
+  if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  if (Duel_DiscardRandomFromHand(INACTIVE_DUELIST, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (Duel_MillTopDeckCards(ACTIVE_DUELIST, 3, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
+
+u8 CanSpecialSummonMazeraDevilleFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
+    return FALSE;
+
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != MAZERA_DEVILLE)
+    return FALSE;
+
+  if (!PandemoniumOnField())
+    return FALSE;
+
+  if (FindFaceUpWarriorOfZera() == NULL)
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  return FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) >= 0;
+}
+
+u8 TrySpecialSummonMazeraDevilleFromHand(u8 handZone)
+{
+  struct DuelCard *zera;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  u8 fixedDuelist = FixedDuelistForActive();
+
+  if (!CanSpecialSummonMazeraDevilleFromHand(handZone))
+    return FALSE;
+
+  Duel_ShowEffectTextTyped(MAZERA_DEVILLE, 2);
+
+  if (IsDuelOver() == TRUE)
+    return TRUE;
+
+  zera = FindFaceUpWarriorOfZera();
+  if (zera == NULL)
+    return FALSE;
+
+  ClearZoneAndSendMonToGraveyard2(zera, fixedDuelist);
+  NotifyDynamicEquipFieldChanged();
+
+  if (IsDuelOver() == TRUE)
+    return TRUE;
+
+  if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
+    return FALSE;
+
+  UpdateDuelGfxExceptField();
+  return TRUE;
+}
+
+#if !defined(__GNUC__)
+u8 CanSpecialSummonMazeraDevilleFromHand(u8 handZone);
+u8 TrySpecialSummonMazeraDevilleFromHand(u8 handZone);
+#endif

@@ -4,62 +4,87 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static const char sAromaName[] APPEND_RODATA = "Aroma";
+
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsAromaCard(u16 cardId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (cardId == CARD_NONE || cardId == AROMALILITH_ROSEMARY)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sAromaName);
 }
 
-static void CancelTargeting(void)
+static u16 FindDeckAroma(void)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsAromaCard(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
 }
 
 unsigned char CanActivateAROMALILITH_ROSEMARY(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != AROMALILITH_ROSEMARY)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != AROMALILITH_ROSEMARY)
+    return FALSE;
+
+  /* ponytail: SS-trigger search + LP-gain Link-point SS + pointed tribute banish
+   * need summon/LP/Link hooks. Ceiling: OPT search Aroma from Deck. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
+    return FALSE;
+
+  return FindDeckAroma() != CARD_NONE;
 }
 
 void ActivateAROMALILITH_ROSEMARYEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u16 cardId;
+
   Duel_ShowEffectTextTyped(AROMALILITH_ROSEMARY, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  cardId = FindDeckAroma();
+  if (cardId == CARD_NONE)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, cardId, TRUE) != DUEL_ACTION_OK)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
