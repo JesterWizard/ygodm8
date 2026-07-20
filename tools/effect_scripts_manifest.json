@@ -313,6 +313,134 @@
         { "op": "BOTH_PLAYERS_HEAL_THROUGH_TRAPS", "s0": 1000 },
         { "op": "END" }
       ]
+    },
+    {
+      "cardId": "HEAVY_STORM",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "comment": "Vanilla wipes all 4 field rows; activating spell dies in active backrow wipe",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "INACTIVE_DUELIST_BACKROW", "a1": "INACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "INACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "ACTIVE_DUELIST_MONSTER_ROW", "a1": "ACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "ACTIVE_DUELIST_BACKROW", "a1": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "FINAL_DESTINY",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "INACTIVE_DUELIST_BACKROW", "a1": "INACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "INACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "ACTIVE_DUELIST_MONSTER_ROW", "a1": "ACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "ACTIVE_DUELIST_BACKROW", "a1": "ACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ALL_HAND_EXCEPT_GODS", "a0": "ACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ALL_HAND_EXCEPT_GODS", "a0": "INACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "CRUSH_CARD",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_MONSTERS_FINAL_ATK_GTE", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "s0": 1500, "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "RESTRUCTER_REVOLUTION",
+      "kind": "SPELL",
+      "meta": "BURN",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "BURN_PER_OPP_HAND_CARD", "s0": 200, "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "BECKON_TO_DARKNESS",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_HIGHEST_ATK_IN_ROW", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "DARK_PIERCING_LIGHT",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "FACE_UP_MONSTERS_IN_ROW", "a0": "INACTIVE_DUELIST_MONSTER_ROW" },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "SPELLBINDING_CIRCLE",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DECREMENT_PERM_STAGE_ROW", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": 1 },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "SHADOW_SPELL",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DECREMENT_PERM_STAGE_ROW", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": 2 },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "THE_INEXPERIENCED_SPY",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "FACE_UP_HAND", "a0": "INACTIVE_DUELIST" },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "STOP_DEFENSE",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "APPLY_STOP_DEFENSE" },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "CURSEBREAKER",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "RESET_NEGATIVE_PERM_STAGE_ROW", "a0": "ACTIVE_DUELIST_MONSTER_ROW" },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
     }
   ]
 }

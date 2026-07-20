@@ -3,6 +3,7 @@
 #include "constants/custom_fields_generated.h"
 #include "constants/duel_fields.h"
 #include "constants/monster_effects.h"
+#include "constants/spell_effects.h"
 #include "overworld.h"
 
 const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))) = {
@@ -70,10 +71,10 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .ignore_tribute_requirements = FALSE,
     .card_in_hand_1 = DIAN_KETO_THE_CURE_MASTER,
     .card_in_hand_2 = MYSTIK_WOK,
-    .card_in_hand_3 = DESTINY_HERO_DIAMOND_DUDE,
-    .card_in_hand_4 = OOKAZI,
-    .card_in_hand_5 = METEOR_OF_DESTRUCTION,
-    .opponent_deck_card_id = EATGABOON,
+    .card_in_hand_3 = THE_INEXPERIENCED_SPY,
+    .card_in_hand_4 = RESTRUCTER_REVOLUTION,
+    .card_in_hand_5 = BECKON_TO_DARKNESS,
+    .opponent_deck_card_id = CARD_NONE,
     .player_deck_card_id = CARD_NONE,
     .player_extra_deck_card_id = CARD_NONE,
     .skip_to_duel = TRUE,

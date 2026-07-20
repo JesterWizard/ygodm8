@@ -154,8 +154,9 @@ No Lua/VM. JSON scripts remain optional codegen for simple activate **steps**; c
 - [x] Phase 0–5 and prior follow-ups (see history above)
 - [x] Large type-wipe / LP / Punch batch (30 scripts)
 - [x] CCTO core + registry bridge for all scripted activates + damage-calc continuous
+- [x] Heavy Storm / Final Destiny / Crush Card pack (+8 board/LP spells → 41 scripts)
 - [ ] Migrate remaining LynJump/custom effects onto `struct Effect` rows (escape hatch = custom op)
-- [ ] Next ≥10 pack: Heavy Storm / Final Destiny / Crush Card / more battle_effects as CCTO
+- [ ] Next ≥10 pack: Swords / Change of Heart / more battle_effects as CCTO
 
 ## Limitations & Bugs
 

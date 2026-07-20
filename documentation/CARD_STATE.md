@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect CCTO (YGOPRO-shaped C registry)
+**Last worked on:** 2026-07-20 — CCTO pack: Heavy Storm / Crush Card / Final Destiny (+8)
 
-**Outcome:** Uniform `struct Effect` (type + code + cond/cost/target/op). All 30 JSON scripts emit ACTIVATE rows; damage-calc ATK boosts are CONTINUOUS Effects. Dispatch/events go through `Effect_*`. Unconverted LynJump cards still legacy.
+**Outcome:** +11 vanilla spells → JSON scripts / CCTO (table 30→41). New ops: hand-except-gods, ATK≥ wipe, highest ATK, burn-per-hand, face-up, stage decrement/reset, Stop Defense.
 
-**Open / next:** Wrap more legacy cards as Effect rows (≥10/pack); Heavy Storm / Crush Card / battle continuous as CCTO.
+**Open / next:** Next ≥10 pack (Swords / Change of Heart / more battle continuous as CCTO rows).

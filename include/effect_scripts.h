@@ -38,7 +38,25 @@ enum EffectScriptStepOp {
   /* s0 = opponent heal. Draw 1 + give opp LP (Upstart Goblin). */
   EFFECT_SCRIPT_UPSTART_THROUGH_TRAPS,
   /* s0 = heal both duelists (Rain of Mercy). */
-  EFFECT_SCRIPT_BOTH_PLAYERS_HEAL_THROUGH_TRAPS
+  EFFECT_SCRIPT_BOTH_PLAYERS_HEAL_THROUGH_TRAPS,
+  /* a0 = duelist, a2 = updateGfx. Skip gods (Final Destiny). */
+  EFFECT_SCRIPT_DESTROY_ALL_HAND_EXCEPT_GODS,
+  /* a0 = turnRow, s0 = min final ATK, a2 = updateGfx (Crush Card). */
+  EFFECT_SCRIPT_DESTROY_MONSTERS_FINAL_ATK_GTE,
+  /* a0 = turnRow, a2 = updateGfx (Beckon to Darkness). */
+  EFFECT_SCRIPT_DESTROY_HIGHEST_ATK_IN_ROW,
+  /* s0 = LP per opp hand card (Restructer Revolution). */
+  EFFECT_SCRIPT_BURN_PER_OPP_HAND_CARD,
+  /* a0 = turnRow — set isFaceUp on occupied monster zones. */
+  EFFECT_SCRIPT_FACE_UP_MONSTERS_IN_ROW,
+  /* a0 = duelist — set isFaceUp on hand cards. */
+  EFFECT_SCRIPT_FACE_UP_HAND,
+  /* a0 = turnRow, a1 = times to DecrementPermStage. */
+  EFFECT_SCRIPT_DECREMENT_PERM_STAGE_ROW,
+  /* a0 = turnRow — ResetPermStage when PermStage < 0. */
+  EFFECT_SCRIPT_RESET_NEGATIVE_PERM_STAGE_ROW,
+  /* Stop Defense body (no args). */
+  EFFECT_SCRIPT_APPLY_STOP_DEFENSE
 };
 
 /* card.h enum ordinals remapped by card_enums.h for FISH/REPTILE — use for wipes. */

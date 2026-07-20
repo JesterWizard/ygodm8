@@ -58,13 +58,29 @@ enum DuelActionResult Duel_DestroyAllMonstersMatching(u8 turnRow, MonsterZonePre
                                                        u8 updateGfx);
 enum DuelActionResult Duel_DestroyAllMonstersOfType(u8 turnRow, u8 monsterType, u8 updateGfx);
 enum DuelActionResult Duel_DestroyAllInTurnRow(u8 turnRow, u8 graveyardDuelist, u8 updateGfx);
+/* Crush Card: final ATK (field+stage) >= atkMin; skip gods. */
+enum DuelActionResult Duel_DestroyMonstersInRowWithFinalAtkGte(u8 turnRow, u16 atkMin,
+                                                              u8 updateGfx);
+/* Beckon to Darkness: one highest-ATK non-god in row. */
+enum DuelActionResult Duel_DestroyHighestAtkMonsterInRow(u8 turnRow, u8 updateGfx);
 
 enum DuelActionResult Duel_DiscardFromHand(u8 duelist, u8 count, HandCardPredicate pred,
                                            u8 updateGfx);
 enum DuelActionResult Duel_DiscardRandomFromHand(u8 duelist, u8 count, u8 updateGfx);
 s8 Duel_PickRandomHandZone(u8 turnDuelist);
 enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx);
+/* Final Destiny hand wipe — match vanilla IsGodCard skip. */
+enum DuelActionResult Duel_DestroyAllHandCardsExceptGods(u8 duelist, u8 updateGfx);
 enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx);
+/* Restructer Revolution: burn (opp hand count * perCard). */
+enum DuelActionResult Duel_BurnPerOpponentHandCard(u16 perCard, u8 updateGfx);
+
+void Duel_FaceUpMonstersInTurnRow(u8 turnRow);
+void Duel_FaceUpHandCards(u8 duelist);
+void Duel_DecrementPermStageInTurnRow(u8 turnRow, u8 times);
+void Duel_ResetNegativePermStagesInTurnRow(u8 turnRow);
+/* Stop Defense: block opp defense + force ATK face-up on opp monsters. */
+void Duel_ApplyStopDefense(void);
 
 void Duel_IncrementPermStageOnDuelistMonsters(u8 turnDuelist);
 void Duel_RefreshMonsterStatOverlays(void);

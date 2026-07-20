@@ -685,6 +685,65 @@ enum DuelActionResult Duel_DestroyAllInTurnRow(u8 turnRow, u8 graveyardDuelist, 
   return result;
 }
 
+static u8 GraveyardDuelistForMonsterTurnRow(u8 turnRow)
+{
+  return (turnRow == ACTIVE_DUELIST_MONSTER_ROW) ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+}
+
+enum DuelActionResult Duel_DestroyMonstersInRowWithFinalAtkGte(u8 turnRow, u16 atkMin,
+                                                              u8 updateGfx)
+{
+  u8 col;
+  u8 graveyardDuelist;
+  enum DuelActionResult result = DUEL_ACTION_NO_TARGET;
+
+  if (turnRow != INACTIVE_DUELIST_MONSTER_ROW && turnRow != ACTIVE_DUELIST_MONSTER_ROW)
+    return DUEL_ACTION_INVALID;
+
+  graveyardDuelist = GraveyardDuelistForMonsterTurnRow(turnRow);
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[turnRow][col];
+
+    if (zone->id == CARD_NONE || IsGodCard(zone->id) == 1)
+      continue;
+
+    if (Duel_GetZoneFinalAtk(zone) < atkMin)
+      continue;
+
+    ClearZoneAndSendMonToGraveyard(zone, graveyardDuelist);
+    result = DUEL_ACTION_OK;
+
+    if (IsDuelOver() == TRUE)
+      return DUEL_ACTION_DUEL_OVER;
+  }
+
+  MaybeUpdateGfx(updateGfx);
+  return result;
+}
+
+enum DuelActionResult Duel_DestroyHighestAtkMonsterInRow(u8 turnRow, u8 updateGfx)
+{
+  u8 col;
+  u8 graveyardDuelist;
+
+  if (turnRow != INACTIVE_DUELIST_MONSTER_ROW && turnRow != ACTIVE_DUELIST_MONSTER_ROW)
+    return DUEL_ACTION_INVALID;
+
+  if (NumEmptyZonesAndGodCardsInRow(gTurnZones[turnRow]) == MAX_ZONES_IN_ROW)
+    return DUEL_ACTION_NO_TARGET;
+
+  col = (u8)HighestAtkMonInRowExceptGodCards(gTurnZones[turnRow]);
+  graveyardDuelist = GraveyardDuelistForMonsterTurnRow(turnRow);
+  ClearZoneAndSendMonToGraveyard(gTurnZones[turnRow][col], graveyardDuelist);
+
+  if (IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+
+  MaybeUpdateGfx(updateGfx);
+  return DUEL_ACTION_OK;
+}
+
 static s8 PickRandomHandZone(struct DuelCard **handRow)
 {
   u8 i;
@@ -818,6 +877,121 @@ enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx)
 
   MaybeUpdateGfx(updateGfx);
   return result;
+}
+
+enum DuelActionResult Duel_DestroyAllHandCardsExceptGods(u8 duelist, u8 updateGfx)
+{
+  struct DuelCard **handRow = gTurnHands[duelist];
+  u8 i;
+  u8 maxSlots = ExpandedHand_MaxSlots();
+  enum DuelActionResult result = DUEL_ACTION_NO_TARGET;
+  struct DuelCard *slot;
+
+  for (i = 0; i < maxSlots; i++) {
+    slot = ExpandedHand_ZoneAtHandRow(handRow, i);
+    if (slot->id == CARD_NONE || IsGodCard(slot->id))
+      continue;
+
+    ClearZoneAndSendMonToGraveyard(slot, duelist);
+    result = DUEL_ACTION_OK;
+
+    if (IsDuelOver() == TRUE)
+      return DUEL_ACTION_DUEL_OVER;
+  }
+
+  MaybeUpdateGfx(updateGfx);
+  return result;
+}
+
+enum DuelActionResult Duel_BurnPerOpponentHandCard(u16 perCard, u8 updateGfx)
+{
+  u16 count;
+  s32 damage;
+
+  if (perCard == 0)
+    return DUEL_ACTION_INVALID;
+
+  /* Match vanilla Restructer: MAX_ZONES_IN_ROW - empty in turn hand row. */
+  count = (u16)(MAX_ZONES_IN_ROW - NumEmptyZonesInRow(gTurnHands[INACTIVE_DUELIST]));
+  damage = (s32)count * (s32)perCard;
+  if (damage == 0)
+    return DUEL_ACTION_OK;
+
+  return Duel_ChangeLp(INACTIVE_DUELIST, -damage, updateGfx);
+}
+
+void Duel_FaceUpMonstersInTurnRow(u8 turnRow)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[turnRow][col];
+
+    if (zone->id != CARD_NONE)
+      zone->isFaceUp = 1;
+  }
+}
+
+void Duel_FaceUpHandCards(u8 duelist)
+{
+  u8 i;
+  u8 maxSlots = ExpandedHand_MaxSlots();
+  struct DuelCard **handRow = gTurnHands[duelist];
+
+  for (i = 0; i < maxSlots; i++) {
+    struct DuelCard *slot = ExpandedHand_ZoneAtHandRow(handRow, i);
+
+    if (slot->id != CARD_NONE)
+      slot->isFaceUp = 1;
+  }
+}
+
+void Duel_DecrementPermStageInTurnRow(u8 turnRow, u8 times)
+{
+  u8 col;
+  u8 t;
+
+  if (times == 0)
+    return;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[turnRow][col];
+
+    if (zone->id == CARD_NONE)
+      continue;
+
+    for (t = 0; t < times; t++)
+      DecrementPermStage(zone);
+  }
+}
+
+void Duel_ResetNegativePermStagesInTurnRow(u8 turnRow)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[turnRow][col];
+
+    if (zone->id != CARD_NONE && PermStage(zone) < 0)
+      ResetPermStage(zone);
+  }
+}
+
+void Duel_ApplyStopDefense(void)
+{
+  u8 col;
+
+  gTurnDuelistBattleState[INACTIVE_DUELIST]->defenseBlocked = 1;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][col];
+
+    if (zone->id == CARD_NONE)
+      continue;
+
+    zone->isDefending = 0;
+    zone->isFaceUp = 1;
+  }
 }
 
 enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx)

@@ -216,6 +216,42 @@ static enum DuelActionResult RunStep(const struct EffectScript *script,
       return DUEL_ACTION_BLOCKED;
     return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : result;
 
+  case EFFECT_SCRIPT_DESTROY_ALL_HAND_EXCEPT_GODS:
+    return Duel_DestroyAllHandCardsExceptGods(step->a0, step->a2);
+
+  case EFFECT_SCRIPT_DESTROY_MONSTERS_FINAL_ATK_GTE:
+    if (step->s0 <= 0)
+      return DUEL_ACTION_INVALID;
+    return Duel_DestroyMonstersInRowWithFinalAtkGte(step->a0, (u16)step->s0, step->a2);
+
+  case EFFECT_SCRIPT_DESTROY_HIGHEST_ATK_IN_ROW:
+    return Duel_DestroyHighestAtkMonsterInRow(step->a0, step->a2);
+
+  case EFFECT_SCRIPT_BURN_PER_OPP_HAND_CARD:
+    if (step->s0 <= 0)
+      return DUEL_ACTION_INVALID;
+    return Duel_BurnPerOpponentHandCard((u16)step->s0, step->a2);
+
+  case EFFECT_SCRIPT_FACE_UP_MONSTERS_IN_ROW:
+    Duel_FaceUpMonstersInTurnRow(step->a0);
+    return DUEL_ACTION_OK;
+
+  case EFFECT_SCRIPT_FACE_UP_HAND:
+    Duel_FaceUpHandCards(step->a0);
+    return DUEL_ACTION_OK;
+
+  case EFFECT_SCRIPT_DECREMENT_PERM_STAGE_ROW:
+    Duel_DecrementPermStageInTurnRow(step->a0, step->a1);
+    return DUEL_ACTION_OK;
+
+  case EFFECT_SCRIPT_RESET_NEGATIVE_PERM_STAGE_ROW:
+    Duel_ResetNegativePermStagesInTurnRow(step->a0);
+    return DUEL_ACTION_OK;
+
+  case EFFECT_SCRIPT_APPLY_STOP_DEFENSE:
+    Duel_ApplyStopDefense();
+    return DUEL_ACTION_OK;
+
   default:
     return DUEL_ACTION_INVALID;
   }
