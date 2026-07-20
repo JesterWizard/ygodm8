@@ -108,6 +108,51 @@
         { "op": "BURN_THROUGH_TRAPS", "s0": 1000, "a2": true },
         { "op": "END" }
       ]
+    },
+    {
+      "cardId": "MOOYAN_CURRY",
+      "kind": "SPELL",
+      "meta": "HEAL",
+      "steps": [
+        { "op": "HEAL_THROUGH_TRAPS", "s0": 200, "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "RED_MEDICINE",
+      "kind": "SPELL",
+      "meta": "HEAL",
+      "steps": [
+        { "op": "HEAL_THROUGH_TRAPS", "s0": 500, "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "GOBLINS_SECRET_REMEDY",
+      "kind": "SPELL",
+      "meta": "HEAL",
+      "steps": [
+        { "op": "HEAL_THROUGH_TRAPS", "s0": 1000, "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "SOUL_OF_THE_PURE",
+      "kind": "SPELL",
+      "meta": "HEAL",
+      "steps": [
+        { "op": "HEAL_THROUGH_TRAPS", "s0": 2000, "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "DIAN_KETO_THE_CURE_MASTER",
+      "kind": "SPELL",
+      "meta": "HEAL",
+      "steps": [
+        { "op": "HEAL_THROUGH_TRAPS", "s0": 5000, "a2": true },
+        { "op": "END" }
+      ]
     }
   ]
 }

@@ -21,8 +21,10 @@ enum EffectScriptStepOp {
   EFFECT_SCRIPT_REQUIRE_COND,
   /* a0 = EffectCondId; destroy first match (AI / no-pick targeting). */
   EFFECT_SCRIPT_DESTROY_FIRST_BY_COND,
-  /* s0 = burn damage (positive). Own-trap path via TryResolveSpellThroughTrapsEx. */
-  EFFECT_SCRIPT_BURN_THROUGH_TRAPS
+  /* s0 = burn damage (positive). Own-trap path via Duel_TryResolveBurnSpellThroughTraps. */
+  EFFECT_SCRIPT_BURN_THROUGH_TRAPS,
+  /* s0 = heal amount (positive). Own-trap path via Duel_TryResolveHealSpellThroughTraps. */
+  EFFECT_SCRIPT_HEAL_THROUGH_TRAPS
 };
 
 /* Metadata categories for Phase 5 AI (stable tags; sparse for now). */
@@ -31,7 +33,8 @@ enum EffectMetaCategory {
   EFFECT_META_DRAW,
   EFFECT_META_DESTROY,
   EFFECT_META_BURN,
-  EFFECT_META_SEARCH
+  EFFECT_META_SEARCH,
+  EFFECT_META_HEAL
 };
 
 struct EffectScriptStep {

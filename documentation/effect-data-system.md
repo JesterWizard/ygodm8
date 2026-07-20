@@ -127,6 +127,7 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 | Field continuous | `EFFECT_EVENT_ON_FIELD_CHANGE` → Rivalry / Level Limit / Amazoness / Ring | Notify / DestroyZone / battle GY / PostBoardScan emit |
 | Damage-calc event | `EFFECT_EVENT_ON_DAMAGE_CALC` → Skyscraper + Inferno ATK boosts | Emit from `RefreshPendingBattleActionStatsFromZones` |
 | Burn scripts | `EFFECT_SCRIPT_BURN_THROUGH_TRAPS` | Sparks…Tremendous Fire, Meteor |
+| Heal scripts | `EFFECT_SCRIPT_HEAL_THROUGH_TRAPS` | Mooyan Curry…Dian Keto |
 
 ## TODO
 
@@ -145,7 +146,7 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 - [x] Thin redundant `Duel_Check*AfterFieldChange` call sites that already emit field/summon/leave events
 - [x] Grow more scripts in the JSON manifest; migrate burn/heal LynJump spells carefully (own trap LP path)
 - [x] Subscribe damage-calc continuous ATK boosts to `ON_DAMAGE_CALC` instead of only Apply* chains
-- [ ] Heal LynJump spells (Mooyan Curry family) via a heal-through-traps step
+- [x] Heal LynJump spells (Mooyan Curry family) via a heal-through-traps step
 - [ ] More damage-calc subscribers beyond Skyscraper / Inferno
 - [ ] More JSON scripts (draw/search/simple destroy)
 
@@ -153,6 +154,6 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 
 - Until Phase 3, continuous/trigger ceilings in PARTIAL_EFFECTS will keep growing as agents implement stand-in bodies.
 - C-table scripts (2A) still need merge discipline; they do not by themselves make “thousands of cards” cheap — that is the 2B authoring step.
-- Heal LynJump spells that pass trap LP via `Duel_TryResolveSpellThroughTrapsEx` still need a dedicated step op (burns use `BURN_THROUGH_TRAPS`).
+- Burn/heal script args must not stash in `APPEND_DATA` (ROM) — use `Duel_TryResolveBurn/HealSpellThroughTraps` helpers.
 - Metadata for AI is useless until categories are stable and populated; do not block Phases 0–3 on AI work.
 - Report gaps (missing taxonomy tags, wrong Phase ROI) against this doc or the taxonomy file.

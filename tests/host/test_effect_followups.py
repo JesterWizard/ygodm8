@@ -37,12 +37,19 @@ class TestEffectFollowups(unittest.TestCase):
         self.assertIn("EFFECT_SCRIPT_REQUIRE_COND", hdr)
         self.assertIn("EFFECT_SCRIPT_DESTROY_FIRST_BY_COND", hdr)
         self.assertIn("EFFECT_SCRIPT_BURN_THROUGH_TRAPS", hdr)
+        self.assertIn("EFFECT_SCRIPT_HEAL_THROUGH_TRAPS", hdr)
+        self.assertIn("MOOYAN_CURRY", table)
+        self.assertIn("HEAL_THROUGH_TRAPS", table)
+        self.assertIn("Duel_TryResolveBurnSpellThroughTraps", src)
+        self.assertNotIn("sBurnThroughTrapsSpellId", src)
 
     def test_legacy_meta_expanded(self):
         src = read("src_custom/effect_system/effect_scripts.c")
         self.assertIn("SPELL_EFFECT_HEAVY_STORM", src)
         self.assertIn("SPELL_EFFECT_HARPIES_FEATHER_DUSTER", src)
         self.assertIn("SPELL_EFFECT_RESTRUCTER_REVOLUTION", src)
+        self.assertIn("SPELL_EFFECT_MOOYAN_CURRY", src)
+        self.assertIn("EFFECT_META_HEAL", read("include/effect_scripts.h"))
 
     def test_on_damage_calc_subscribed(self):
         src = read("src_custom/card_hooks.c")

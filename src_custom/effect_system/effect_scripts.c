@@ -77,6 +77,12 @@ static u8 EffectMeta_GetCategoryLegacy(u16 cardId)
   case SPELL_EFFECT_TREMENDOUS_FIRE:
   case SPELL_EFFECT_RESTRUCTER_REVOLUTION:
     return EFFECT_META_BURN;
+  case SPELL_EFFECT_MOOYAN_CURRY:
+  case SPELL_EFFECT_RED_MEDICINE:
+  case SPELL_EFFECT_GOBLINS_SECRET_REMEDY:
+  case SPELL_EFFECT_SOUL_OF_THE_PURE:
+  case SPELL_EFFECT_DIAN_KETO_THE_CURE_MASTER:
+    return EFFECT_META_HEAL;
   case SPELL_EFFECT_POT_OF_GREED:
     return EFFECT_META_DRAW;
   default:
@@ -95,16 +101,6 @@ u8 EffectMeta_GetCategory(u16 cardId)
   return EffectMeta_GetCategoryLegacy(cardId);
 }
 
-static u16 sBurnThroughTrapsSpellId APPEND_DATA = {0};
-static u16 sBurnThroughTrapsDamage APPEND_DATA = {0};
-static u8 sBurnThroughTrapsDestroyGfx APPEND_DATA = {0};
-
-static void BurnThroughTrapsBody(void)
-{
-  Duel_ResolveBurnSpell(sBurnThroughTrapsSpellId, sBurnThroughTrapsDamage,
-                        sBurnThroughTrapsDestroyGfx);
-}
-
 static enum DuelActionResult RunStep(const struct EffectScript *script,
                                      const struct EffectScriptStep *step)
 {
@@ -112,6 +108,7 @@ static enum DuelActionResult RunStep(const struct EffectScript *script,
   struct DuelCard *target;
   u8 fixedRow;
   u8 col;
+  enum DuelActionResult result;
 
   switch (step->op) {
   case EFFECT_SCRIPT_END:
@@ -157,13 +154,18 @@ static enum DuelActionResult RunStep(const struct EffectScript *script,
   case EFFECT_SCRIPT_BURN_THROUGH_TRAPS:
     if (step->s0 <= 0)
       return DUEL_ACTION_INVALID;
-    sBurnThroughTrapsSpellId = script->cardId;
-    sBurnThroughTrapsDamage = (u16)step->s0;
-    sBurnThroughTrapsDestroyGfx = TRUE;
-    if (Duel_TryResolveSpellThroughTrapsEx(script->cardId, (u16)step->s0, BurnThroughTrapsBody)
-        == DUEL_ACTION_BLOCKED)
+    result = Duel_TryResolveBurnSpellThroughTraps(script->cardId, step->s0);
+    if (result == DUEL_ACTION_BLOCKED)
       return DUEL_ACTION_BLOCKED;
-    return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : DUEL_ACTION_OK;
+    return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : result;
+
+  case EFFECT_SCRIPT_HEAL_THROUGH_TRAPS:
+    if (step->s0 <= 0)
+      return DUEL_ACTION_INVALID;
+    result = Duel_TryResolveHealSpellThroughTraps(script->cardId, step->s0);
+    if (result == DUEL_ACTION_BLOCKED)
+      return DUEL_ACTION_BLOCKED;
+    return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : result;
 
   default:
     return DUEL_ACTION_INVALID;

@@ -1842,6 +1842,51 @@ enum DuelActionResult Duel_ResolveBurnSpell(u16 spellId, s32 damage, u8 destroyS
   return DUEL_ACTION_OK;
 }
 
+enum DuelActionResult Duel_ResolveHealSpell(u16 spellId, s32 heal, u8 destroySpellGfx)
+{
+  enum DuelActionResult result;
+
+  result = Duel_ChangeLp(ACTIVE_DUELIST, heal, FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER)
+    return result;
+
+  Duel_ShowEffectText(spellId);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST,
+                   destroySpellGfx);
+  return DUEL_ACTION_OK;
+}
+
+enum DuelActionResult Duel_TryResolveBurnSpellThroughTraps(u16 spellId, s32 damage)
+{
+  /* Inline trap gate — do not stash args in APPEND_DATA (ROM; writes are no-ops). */
+  if (GetTypeGroup(spellId) == TYPE_GROUP_SPELL) {
+    SetupSpellTrapOrigin();
+
+    if (!Duel_IsOriginActivationProtectedFromNegation()
+        && IsTrapTriggered() == TRUE && !gHideEffectText) {
+      ActivateTrapEffect((u16)damage);
+      return DUEL_ACTION_BLOCKED;
+    }
+  }
+
+  return Duel_ResolveBurnSpell(spellId, damage, TRUE);
+}
+
+enum DuelActionResult Duel_TryResolveHealSpellThroughTraps(u16 spellId, s32 heal)
+{
+  if (GetTypeGroup(spellId) == TYPE_GROUP_SPELL) {
+    SetupSpellTrapOrigin();
+
+    if (!Duel_IsOriginActivationProtectedFromNegation()
+        && IsTrapTriggered() == TRUE && !gHideEffectText) {
+      ActivateTrapEffect((u16)heal);
+      return DUEL_ACTION_BLOCKED;
+    }
+  }
+
+  return Duel_ResolveHealSpell(spellId, heal, TRUE);
+}
+
 void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId)
 {
   if (gHideEffectText)

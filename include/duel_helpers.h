@@ -149,6 +149,10 @@ enum DuelActionResult Duel_ChangeLpSuppressingEffectText(u8 turnDuelist, s32 del
 enum DuelActionResult Duel_ChangeLpWithPrefaceText(u8 turnDuelist, s32 delta, u16 cardId,
                                                    u8 textType, u8 updateGfx);
 enum DuelActionResult Duel_ResolveBurnSpell(u16 spellId, s32 damage, u8 destroySpellGfx);
+enum DuelActionResult Duel_ResolveHealSpell(u16 spellId, s32 heal, u8 destroySpellGfx);
+/* Trap gate + burn/heal body without ROM-backed callback statics (APPEND_DATA). */
+enum DuelActionResult Duel_TryResolveBurnSpellThroughTraps(u16 spellId, s32 damage);
+enum DuelActionResult Duel_TryResolveHealSpellThroughTraps(u16 spellId, s32 heal);
 void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId);
 
 void Duel_ResetDestroyMaskState(u8 *destroyMask, u8 *fixedMonsterRow);

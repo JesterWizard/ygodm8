@@ -69,6 +69,31 @@ static const struct EffectScriptStep sMETEOR_OF_DESTRUCTIONSteps[] __attribute__
   { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
 };
 
+static const struct EffectScriptStep sMOOYAN_CURRYSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_HEAL_THROUGH_TRAPS, 0, 0, TRUE, 200 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sRED_MEDICINESteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_HEAL_THROUGH_TRAPS, 0, 0, TRUE, 500 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sGOBLINS_SECRET_REMEDYSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_HEAL_THROUGH_TRAPS, 0, 0, TRUE, 1000 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sSOUL_OF_THE_PURESteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_HEAL_THROUGH_TRAPS, 0, 0, TRUE, 2000 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sDIAN_KETO_THE_CURE_MASTERSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_HEAL_THROUGH_TRAPS, 0, 0, TRUE, 5000 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
 static const struct EffectScript sEffectScripts[] __attribute__((section(".text"))) = {
   {
     ONE_DAY_OF_PEACE,
@@ -158,6 +183,51 @@ static const struct EffectScript sEffectScripts[] __attribute__((section(".text"
     sMETEOR_OF_DESTRUCTIONSteps,
     { EFFECT_META_BURN, 0, 0 },
     CanActivateMeteorOfDestruction,
+    NULL,
+  },
+  {
+    MOOYAN_CURRY,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sMOOYAN_CURRYSteps),
+    sMOOYAN_CURRYSteps,
+    { EFFECT_META_HEAL, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    RED_MEDICINE,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sRED_MEDICINESteps),
+    sRED_MEDICINESteps,
+    { EFFECT_META_HEAL, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    GOBLINS_SECRET_REMEDY,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sGOBLINS_SECRET_REMEDYSteps),
+    sGOBLINS_SECRET_REMEDYSteps,
+    { EFFECT_META_HEAL, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    SOUL_OF_THE_PURE,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sSOUL_OF_THE_PURESteps),
+    sSOUL_OF_THE_PURESteps,
+    { EFFECT_META_HEAL, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    DIAN_KETO_THE_CURE_MASTER,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sDIAN_KETO_THE_CURE_MASTERSteps),
+    sDIAN_KETO_THE_CURE_MASTERSteps,
+    { EFFECT_META_HEAL, 0, 0 },
+    NULL,
     NULL,
   },
 };

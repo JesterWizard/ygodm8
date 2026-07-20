@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect data system next pass (thin checks / burns / damage-calc)
+**Last worked on:** 2026-07-20 — Burn popup fix + heal scripts
 
-**Outcome:** Replaced leftover `Duel_Check*` call sites with `ON_FIELD_CHANGE` emits (DestroyZone + battle GY + PostBoardScan). `BURN_THROUGH_TRAPS` script op + Sparks→Meteor burn pilots in JSON. Skyscraper/Inferno subscribe to `ON_DAMAGE_CALC`.
+**Outcome:** Burn popups skipped because `BURN_THROUGH_TRAPS` stashed args in `APPEND_DATA` (ROM; writes no-ops → spellId/damage 0). Fixed via `Duel_TryResolveBurnSpellThroughTraps`. Added `HEAL_THROUGH_TRAPS` + Mooyan→Dian Keto JSON scripts.
 
-**Open / next:** Heal-through-traps step; more damage-calc subscribers; more JSON scripts.
+**Open / next:** More damage-calc subscribers beyond Skyscraper/Inferno; more JSON scripts (draw/search/simple destroy).
