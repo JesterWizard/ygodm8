@@ -1,0 +1,83 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GRAVEKEEPERS_DESCENDANT",
+      "card_name": "Gravekeeper's Descendant",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_descendant.c",
+      "effect_text": "You can Tribute 1 other face-up \"Gravekeeper's\" monster to target 1 card your opponent controls; destroy that target. You can Tribute 1 other face-up Gravekeeper's monster to target 1 card your opponent controls; destroy that target.",
+      "tags": [
+        "destroy",
+        "faceup",
+        "monster",
+        "target1",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_CANNONHOLDER",
+      "clone_path": "src_custom/activated_effects/gravekeepers_cannonholder.c",
+      "clone_score": 0.78
+    },
+    {
+      "card_const": "EHREN_LIGHTSWORN_MONK",
+      "card_name": "Ehren, Lightsworn Monk",
+      "kind": "activated",
+      "archetype": "EHREN",
+      "path": "src_custom/activated_effects/ehren_lightsworn_monk.c",
+      "effect_text": "Shuffle Def monster; mill 3 at End. If this card attacks a Defense Position monster, before damage calculation: Shuffle that monster into the Deck. Once per turn, during your End Phase: Send the top 3 cards of your Deck to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "JAIN_LIGHTSWORN_PALADIN",
+      "clone_path": "src_custom/activated_effects/jain_lightsworn_paladin.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "DARK_MAGICIAN_THE_DRAGON_KNIGHT",
+      "card_name": "Dark Magician the Dragon Knight",
+      "kind": "activated",
+      "archetype": "DARK_MAGICIAN_THE",
+      "path": "src_custom/activated_effects/dark_magician_the_dragon_knight.c",
+      "effect_text": "Dark Magician + 1 Dragon monster This card's name becomes Dark Magician while on the field or in the GY. Your opponent cannot target Spells/Traps you control with card effects, also they cannot be destroyed by your opponent's card effects.",
+      "tags": [
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NEOS_ALIUS",
+      "clone_path": "src_custom/activated_effects/elemental_hero_neos_alius.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "X_SABER_AIRBELLUM",
+      "card_name": "X-Saber Airbellum",
+      "kind": "activated",
+      "archetype": "X",
+      "path": "src_custom/activated_effects/x_saber_airbellum.c",
+      "effect_text": "If this card inflicts battle damage to your opponent by a direct attack: Discard 1 random card from your opponent's hand If this card inflicts battle damage to your opponent by a direct attack: Discard 1 random card from your opponent's hand.",
+      "tags": [
+        "burn",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DES_KOALA",
+      "clone_path": "src_custom/activated_effects/des_koala.c",
+      "clone_score": 0.67
+    }
+  ]
+}

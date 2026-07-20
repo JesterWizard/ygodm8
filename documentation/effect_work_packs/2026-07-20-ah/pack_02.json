@@ -1,0 +1,87 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "HERALD_OF_CREATION",
+      "card_name": "Herald of Creation",
+      "kind": "activated",
+      "archetype": "HERALD_OF",
+      "path": "src_custom/activated_effects/herald_of_creation.c",
+      "effect_text": "Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that  Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that target to your hand.",
+      "tags": [
+        "gy",
+        "hand",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MASK_OF_DARKNESS",
+      "clone_path": "src_custom/activated_effects/mask_of_darkness.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "REPTILIANNE_MEDUSA",
+      "card_name": "Reptilianne Medusa",
+      "kind": "activated",
+      "archetype": "REPTILIANNE",
+      "path": "src_custom/activated_effects/reptilianne_medusa.c",
+      "effect_text": "Discard 1; select face-up opp monster; its ATK becomes 0. Send 1 card from your hand to the Graveyard and select 1 face-up monster your opponent controls. The ATK of the selected monster becomes 0, and it cannot change its battle position.",
+      "tags": [
+        "faceup",
+        "gy",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NEOS_ALIUS",
+      "clone_path": "src_custom/activated_effects/elemental_hero_neos_alius.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "LUMINA_LIGHTSWORN_SUMMONER",
+      "card_name": "Lumina, Lightsworn Summoner",
+      "kind": "activated",
+      "archetype": "LUMINA",
+      "path": "src_custom/activated_effects/lumina_lightsworn_summoner.c",
+      "effect_text": "Discard to SS low LS; mill 3. Once per turn: You can discard 1 card, then target 1 Level 4 or lower Lightsworn monster in your GY; Special Summon that target. Once per turn, during your End Phase: Send the top 3 cards of your Deck to the GY.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "JAIN_LIGHTSWORN_PALADIN",
+      "clone_path": "src_custom/activated_effects/jain_lightsworn_paladin.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "VISION_HERO_ADORATION",
+      "card_name": "Vision HERO Adoration",
+      "kind": "activated",
+      "archetype": "VISION_HERO",
+      "path": "src_custom/activated_effects/vision_hero_adoration.c",
+      "effect_text": "2 HERO monsters Once per turn: You can target 1 face-up monster your opponent controls and 1 other HERO monster you control; the opponent's targeted monster loses ATK and DEF equal to the ATK of your targeted monster, until the end of this turn.",
+      "tags": [
+        "faceup",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COPYCAT",
+      "clone_path": "src_custom/activated_effects/copycat.c",
+      "clone_score": 0.75
+    }
+  ]
+}

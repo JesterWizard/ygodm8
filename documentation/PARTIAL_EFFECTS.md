@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:03 UTC  
-**Remaining partials:** `400`
+**Last updated:** 2026-07-20 18:15 UTC  
+**Remaining partials:** `411`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 69 |
+| `activated` | 80 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **400** |
+| **total** | **411** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (69)
+## activated (80)
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1468,6 +1468,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
 - L17: targets face-up monsters on opponent's side with ATK >= 2400 or DEF >= 2400. Upgrade path: scan backrow S/T cards if the card text ever changes.
 
+### `CYBERNETIC_MAGICIAN`
+- path: `src_custom/activated_effects/cybernetic_magician.c`
+- L63: until End Phase clear needs EP tempStage reset hook.
+
 ### `D_D_WARRIOR`
 - path: `src_custom/activated_effects/d_d_warrior.c`
 - L12: after damage calc banish both needs battle hook. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
@@ -1486,6 +1490,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L22: hand normal/tribute summon copies isFaceUp=0; attack-position still counts
 - L63: GBA "face-up" = isFaceUp bit; attack-position keeps isFaceUp=0 until flip
 
+### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
+- path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
+- L12: name becomes Dark Magician + S/T protection need permanent/name hooks. Ceiling: not ignition-activatable here; upgrade: permanent overlay.
+
 ### `DEEP_SEA_DIVA`
 - path: `src_custom/activated_effects/deep_sea_diva.c`
 - L58: Normal Summon trigger needs summon hook. Ceiling: once via usage while face-up if Lv≤3 Sea Serpent in Deck.
@@ -1493,6 +1501,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DESTINY_HERO_MALICIOUS`
 - path: `src_custom/activated_effects/destiny_hero_malicious.c`
 - L43: GY ignition needs GY-menu wire. Ceiling: allow when Malicious in GY + another in Deck (callable if gMonEffect set to Malicious).
+
+### `EHREN_LIGHTSWORN_MONK`
+- path: `src_custom/activated_effects/ehren_lightsworn_monk.c`
+- L12: battle shuffle + End Phase mill 3 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: battle + EP mill.
 
 ### `ELEMENTAL_HERO_BLAZEMAN`
 - path: `src_custom/activated_effects/elemental_hero_blazeman.c`
@@ -1552,6 +1564,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gravekeepers_curse.c`
 - L20: printed is If Summoned trigger. Ceiling: allow once via usage when manually activated / summon-dispatch calls Activate.
 
+### `GRAVEKEEPERS_DESCENDANT`
+- path: `src_custom/activated_effects/gravekeepers_descendant.c`
+- L29: attack-position summons keep isFaceUp=0 until end-of-turn flip.
+
 ### `GRAVEKEEPERS_GUARD`
 - path: `src_custom/activated_effects/gravekeepers_guard.c`
 - L85: FLIP trigger needs flip hook.
@@ -1559,6 +1575,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GRAVEKEEPERS_HERATIC`
 - path: `src_custom/activated_effects/gravekeepers_heratic.c`
 - L12: continuous unaffected-while-Necrovalley needs permanent protection gate. Ceiling: not ignition-activatable here; upgrade: permanent effect while Duel_IsBackrowCardOnField(NECROVALLEY).
+
+### `GRAVEKEEPERS_RECRUITER`
+- path: `src_custom/activated_effects/gravekeepers_recruiter.c`
+- L102: sent-to-GY trigger needs destroy/send hook. Ceiling: once via usage if GK ≤1500 DEF in Deck and hand space.
 
 ### `GRAVEKEEPERS_SPEAR_SOLDIER`
 - path: `src_custom/activated_effects/gravekeepers_spear_soldier.c`
@@ -1608,6 +1628,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/levia_dragon_daedalus.c`
 - L124: walk gDuel.board directly; gFixedZones column order differs on opponent rows, so row/col checks against gMonEffect can skip the wrong slot.
 
+### `LUMINA_LIGHTSWORN_SUMMONER`
+- path: `src_custom/activated_effects/lumina_lightsworn_summoner.c`
+- L236: End Phase mill 3 needs EP phase hook.
+
 ### `MAGICAL_PLANT_MANDRAGOLA`
 - path: `src_custom/activated_effects/magical_plant_mandragola.c`
 - L12: FLIP place Spell Counters needs flip + counter storage. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
@@ -1620,6 +1644,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/man_thro_tro.c`
 - L21: Ojama Trio monster form is the only token-like field unit today
 
+### `MANJU_OF_THE_TEN_THOUSAND_HANDS`
+- path: `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c`
+- L113: Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage if Ritual Monster or Ritual Spell in Deck and hand space.
+
 ### `MEZUKI`
 - path: `src_custom/activated_effects/mezuki.c`
 - L169: GY ignition needs GY-menu wire. Ceiling: allow when Mezuki + another Zombie in expanded GY (callable if gMonEffect set to Mezuki).
@@ -1627,6 +1655,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MIRAGE_DRAGON`
 - path: `src_custom/activated_effects/mirage_dragon.c`
 - L12: opp cannot activate Traps in Battle Phase needs trap-activation gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `MIRROR_FORCE_DRAGON`
+- path: `src_custom/activated_effects/mirror_force_dragon.c`
+- L12: when targeted for attack/effect trigger needs protection hook. Ceiling: not ignition-activatable here; upgrade: trigger destroy-all.
 
 ### `MOLTEN_ZOMBIE`
 - path: `src_custom/activated_effects/molten_zombie.c`
@@ -1639,6 +1671,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `PROTECTOR_OF_THE_SANCTUARY`
 - path: `src_custom/activated_effects/protector_of_the_sanctuary.c`
 - L12: opp cannot draw except Draw Phase needs draw-gate LynJump. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `REPTILIANNE_MEDUSA`
+- path: `src_custom/activated_effects/reptilianne_medusa.c`
+- L76: cannot change battle position needs position-change gate.
 
 ### `RINYAN_LIGHTSWORN_ROGUE`
 - path: `src_custom/activated_effects/rinyan_lightsworn_rogue.c`
@@ -1699,9 +1735,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/venom_snake.c`
 - L87: cannot-attack-this-turn needs attack gate on unk4.
 
+### `VISION_HERO_ADORATION`
+- path: `src_custom/activated_effects/vision_hero_adoration.c`
+- L105: until end of turn clear needs EOT tempStage reset hook.
+
 ### `WARM_WORM`
 - path: `src_custom/activated_effects/warm_worm.c`
 - L18: printed trigger is when destroyed. Ceiling: once via usage.
+
+### `X_SABER_AIRBELLUM`
+- path: `src_custom/activated_effects/x_saber_airbellum.c`
+- L12: direct-attack battle-damage trigger needs battle hook. Ceiling: not ignition-activatable here; upgrade: battle end discard.
 
 ## permanent (27)
 

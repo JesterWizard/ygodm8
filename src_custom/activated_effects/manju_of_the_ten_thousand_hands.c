@@ -1,65 +1,143 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsRitualMonsterCard(u16 cardId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.color == RITUAL_CARD;
 }
 
-static void CancelTargeting(void)
+static u8 IsRitualSpellCard(u16 cardId)
 {
-  PlayMusic(SFX_CANCEL);
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_SPELL)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.color == RITUAL_CARD;
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u16 FindDeckManjuTarget(void)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+  u16 spellTarget = CARD_NONE;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsRitualMonsterCard(cardId))
+      return cardId;
+
+    if (spellTarget == CARD_NONE && IsRitualSpellCard(cardId))
+      spellTarget = cardId;
+  }
+
+  return spellTarget;
+}
+
+static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
+{
+  handSlot->id = cardId;
+  handSlot->isFaceUp = FALSE;
+  handSlot->isLocked = FALSE;
+  handSlot->isDefending = FALSE;
+  handSlot->unkTwo = 0;
+  handSlot->unkThree = 0;
+  handSlot->unk4 = 0;
+  handSlot->willChangeSides = FALSE;
+  ResetPermStage(handSlot);
+  ResetTempStage(handSlot);
+}
+
+static u8 AddDeckManjuTargetToHand(u16 cardId)
+{
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+  s8 handZone;
+
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  handZone = FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]);
+  if (handZone < 0)
+    return FALSE;
+
+  for (i = top; i < deckSize; i++) {
+    if (gDuelDecks[fixedDuelist].cards[i] != cardId)
+      continue;
+
+    if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, i, FALSE) != DUEL_ACTION_OK)
+      return FALSE;
+
+    InitHandSlotFromCard(
+        SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], (u8)handZone), cardId);
+    return TRUE;
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateMANJU_OF_THE_TEN_THOUSAND_HANDS(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != MANJU_OF_THE_TEN_THOUSAND_HANDS)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != MANJU_OF_THE_TEN_THOUSAND_HANDS)
+    return FALSE;
+
+  /* ponytail: Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage
+   * if Ritual Monster or Ritual Spell in Deck and hand space. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
+    return FALSE;
+
+  return FindDeckManjuTarget() != CARD_NONE;
 }
 
 void ActivateMANJU_OF_THE_TEN_THOUSAND_HANDSEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u16 cardId;
+
   Duel_ShowEffectTextTyped(MANJU_OF_THE_TEN_THOUSAND_HANDS, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  cardId = FindDeckManjuTarget();
+  if (cardId == CARD_NONE)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (!AddDeckManjuTargetToHand(cardId))
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
 }
