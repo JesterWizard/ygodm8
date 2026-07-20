@@ -1,0 +1,82 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ANCIENT_GEAR_WORKSHOP",
+      "card_name": "Ancient Gear Workshop",
+      "kind": "spell",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/spell_effects/ancient_gear_workshop.c",
+      "effect_text": "Target 1 Ancient Gear monster in your Graveyard; add that target to your hand. Target 1 Ancient Gear monster in your Graveyard; add that target to your hand.",
+      "tags": [
+        "gy",
+        "hand",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE",
+      "clone_path": "src_custom/spell_effects/twin_swords_of_flashing_light_tryce.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "DARK_MAGIC_ATTACK",
+      "card_name": "Dark Magic Attack",
+      "kind": "spell",
+      "archetype": "DARK_MAGIC",
+      "path": "src_custom/spell_effects/dark_magic_attack.c",
+      "effect_text": "If you control Dark Magician: destroy all Spells/Traps your opponent controls. If you control Dark Magician: Destroy all Spells and Traps your opponent controls.",
+      "tags": [
+        "destroy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BLOCK_ATTACK",
+      "clone_path": "src_custom/spell_effects/block_attack.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "SILVERS_CRY",
+      "card_name": "Silver's Cry",
+      "kind": "spell",
+      "archetype": "SILVERS",
+      "path": "src_custom/spell_effects/silvers_cry.c",
+      "effect_text": "Target 1 Dragon Normal in GY; Special Summon it. 1/turn. Target 1 Dragon Normal Monster in your GY; Special Summon that target. You can only activate 1 Silver's Cry per turn.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "SALVAGE",
+      "card_name": "Salvage",
+      "kind": "spell",
+      "archetype": "SALVAGE",
+      "path": "src_custom/spell_effects/salvage.c",
+      "effect_text": "Target 2 WATER monsters with 1500 or less ATK in your Graveyard; add those targets to your hand. Target 2 WATER monsters with 1500 or less ATK in your Graveyard; add those targets to your hand.",
+      "tags": [
+        "gy",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE",
+      "clone_path": "src_custom/spell_effects/twin_swords_of_flashing_light_tryce.c",
+      "clone_score": 0.67
+    }
+  ]
+}

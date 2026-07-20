@@ -1248,6 +1248,122 @@ def write_stub_list(
     return out_path
 
 
+_PONYTAIL_LINE = re.compile(
+    r"(?://|/\*)\s*ponytail:\s*(.+?)(?:\*/)?\s*$",
+    re.IGNORECASE,
+)
+
+
+def collect_ponytail_partials() -> list[dict]:
+    """Scan effect dirs for ponytail: ceilings (partial impl needing follow-up)."""
+    rows: list[dict] = []
+    for kind, rel in EFFECT_DIRS:
+        directory = ROOT / rel
+        if not directory.is_dir():
+            continue
+        for path in sorted(directory.glob("*.c")):
+            text = path.read_text(encoding="utf-8", errors="replace")
+            if "ponytail:" not in text.lower():
+                continue
+            notes: list[str] = []
+            # Capture single-line and start of block comments
+            for i, line in enumerate(text.splitlines(), 1):
+                m = _PONYTAIL_LINE.search(line)
+                if not m:
+                    continue
+                note = m.group(1).strip()
+                # Pull continuation lines of block comments (no new sentence starters)
+                if "/*" in line and "*/" not in line:
+                    for cont in text.splitlines()[i : i + 4]:
+                        cont_s = cont.strip().lstrip("*").strip()
+                        if cont_s.endswith("*/"):
+                            note = (note + " " + cont_s[:-2].strip()).strip()
+                            break
+                        if cont_s and not cont_s.lower().startswith("ponytail:"):
+                            note = (note + " " + cont_s).strip()
+                notes.append(f"L{i}: {note}")
+            if not notes:
+                # Fallback: any line containing ponytail
+                for i, line in enumerate(text.splitlines(), 1):
+                    if "ponytail:" in line.lower():
+                        notes.append(f"L{i}: {line.strip()[:200]}")
+            rows.append(
+                {
+                    "card_const": stem_to_const(path.stem),
+                    "kind": kind,
+                    "path": str(path.relative_to(ROOT)),
+                    "notes": notes,
+                }
+            )
+    return rows
+
+
+def write_partials_list(out_path: Path | None = None) -> Path:
+    """Living backlog of implemented-but-incomplete effects (ponytail ceilings)."""
+    from datetime import datetime, timezone
+
+    if out_path is None:
+        out_path = ROOT / "documentation" / "PARTIAL_EFFECTS.md"
+
+    rows = collect_ponytail_partials()
+    by_kind = Counter(r["kind"] for r in rows)
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+    lines = [
+        "# Partial Effects Backlog",
+        "",
+        "Auto-generated living list of effect files with `ponytail:` ceilings "
+        "(implemented, but missing hooks / engine pieces).",
+        "Find follow-up work here — stubs live in `STUB_EFFECTS.md`.",
+        "Rows vanish when all `ponytail:` comments are removed from the file.",
+        "",
+        "```bash",
+        "python3 tools/stub_effect_queue.py --write-list   # stubs + partials",
+        "```",
+        "",
+        f"**Last updated:** {stamp}  ",
+        f"**Remaining partials:** `{len(rows)}`",
+        "",
+        "## Counts by kind",
+        "",
+        "| Kind | Count |",
+        "|------|------:|",
+    ]
+    for kind, _ in EFFECT_DIRS:
+        if by_kind.get(kind):
+            lines.append(f"| `{kind}` | {by_kind[kind]} |")
+    lines.append(f"| **total** | **{len(rows)}** |")
+    lines.append("")
+
+    for kind, _ in EFFECT_DIRS:
+        kind_rows = [r for r in rows if r["kind"] == kind]
+        if not kind_rows:
+            continue
+        lines.append(f"## {kind} ({len(kind_rows)})")
+        lines.append("")
+        for r in kind_rows:
+            lines.append(f"### `{r['card_const']}`")
+            lines.append(f"- path: `{r['path']}`")
+            for note in r["notes"]:
+                # Escape pipes for markdown safety
+                safe = note.replace("|", "\\|")
+                lines.append(f"- {safe}")
+            lines.append("")
+
+    out_path.write_text("\n".join(lines).rstrip() + "\n")
+    print(f"Wrote {out_path.relative_to(ROOT)} ({len(rows)} partials)", file=sys.stderr)
+    return out_path
+
+
+def write_backlogs() -> None:
+    """Refresh both living lists (stubs + partials)."""
+    meta = load_manifest()
+    files = scan_effects(meta)
+    assign_clones(files)
+    write_stub_list([f for f in files if f.is_stub], meta)
+    write_partials_list()
+
+
 def filtered_stubs(args: argparse.Namespace) -> tuple[dict[str, CardMeta], list[EffectFile]]:
     meta = load_manifest()
     files = scan_effects(meta)
@@ -1322,7 +1438,7 @@ def main() -> int:
     parser.add_argument(
         "--write-list",
         action="store_true",
-        help="Write documentation/STUB_EFFECTS.md (all remaining stubs; shrinks as implemented)",
+        help="Write STUB_EFFECTS.md + PARTIAL_EFFECTS.md (living backlogs)",
     )
     parser.add_argument("--self-check", action="store_true", help="Run assert-based smoke check")
     args = parser.parse_args()
@@ -1334,11 +1450,7 @@ def main() -> int:
         parser.error("use only one of --fill / --fill-all")
 
     if args.write_list and not (args.fill or args.fill_all or args.work_pack is not None):
-        meta = load_manifest()
-        files = scan_effects(meta)
-        assign_clones(files)
-        stubs = [f for f in files if f.is_stub]
-        write_stub_list(stubs, meta)
+        write_backlogs()
         return 0
 
     if args.fill:
@@ -1346,19 +1458,13 @@ def main() -> int:
             parser.error("--fill requires CARD_CONST")
         rc = fill_template(args)
         if rc == 0 and args.write_list:
-            meta = load_manifest()
-            files = scan_effects(meta)
-            assign_clones(files)
-            write_stub_list([f for f in files if f.is_stub], meta)
+            write_backlogs()
         return rc
 
     if args.fill_all:
         rc = fill_all(args)
         if rc == 0 and not args.dry_run:
-            meta = load_manifest()
-            files = scan_effects(meta)
-            assign_clones(files)
-            write_stub_list([f for f in files if f.is_stub], meta)
+            write_backlogs()
         return rc
 
     if args.work_pack is not None:

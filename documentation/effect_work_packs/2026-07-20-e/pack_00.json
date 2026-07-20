@@ -1,0 +1,78 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ROYAL_TRIBUTE",
+      "card_name": "Royal Tribute",
+      "kind": "spell",
+      "archetype": "ROYAL",
+      "path": "src_custom/spell_effects/royal_tribute.c",
+      "effect_text": "If you control Necrovalley: Both players discard any monsters in their hands. If you control Necrovalley: Both players discard any monsters in their hands.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": null,
+      "clone_path": null,
+      "clone_score": 0.0
+    },
+    {
+      "card_const": "MYSTIK_WOK",
+      "card_name": "Mystik Wok",
+      "kind": "spell",
+      "archetype": "MYSTIK",
+      "path": "src_custom/spell_effects/mystik_wok.c",
+      "effect_text": "Tribute 1 monster. Select either its ATK or DEF and gain that many Life Points. Tribute 1 monster. Select either its ATK or DEF and gain that many Life Points.",
+      "tags": [
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_ROOM_OF_NIGHTMARE",
+      "clone_path": "src_custom/spell_effects/dark_room_of_nightmare.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "NEX",
+      "card_name": "NEX",
+      "kind": "spell",
+      "archetype": "NEX",
+      "path": "src_custom/spell_effects/nex.c",
+      "effect_text": "Send Neo-Spacian; SS its Lv4 form. Send 1 face-up Neo-Spacian monster you control to the Graveyard. Special Summon 1 Level 4 monster with the same name from your Extra Deck.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "DIMENSION_FUSION",
+      "card_name": "Dimension Fusion",
+      "kind": "spell",
+      "archetype": "DIMENSION",
+      "path": "src_custom/spell_effects/dimension_fusion.c",
+      "effect_text": "Pay 2000 LP. Both players Special Summon as many banished monsters as possible. Pay 2000 Life Points. Both players Special Summon as many of their removed from play monsters as possible.",
+      "tags": [
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COURT_OF_JUSTICE",
+      "clone_path": "src_custom/spell_effects/court_of_justice.c",
+      "clone_score": 1.0
+    }
+  ]
+}

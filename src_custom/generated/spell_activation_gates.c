@@ -17,6 +17,7 @@ struct SpellActivationGateEntry {
 };
 
 extern u8 CanActivateACE_OF_SWORD(void);
+extern u8 CanActivateAQUA_JET(void);
 extern u8 CanActivateAutonomousActionUnit(void);
 extern u8 CanActivateA_HERO_LIVES(void);
 extern u8 CanActivateA_WINGBEAT_OF_GIANT_DRAGON(void);
@@ -26,10 +27,13 @@ extern u8 CanActivateChaosGreed(void);
 extern u8 CanActivateCHARGE_OF_THE_LIGHT_BRIGADE(void);
 extern u8 CanActivateCOCOON_REBIRTH(void);
 extern u8 CanActivateConfiscation(void);
+extern u8 CanActivateCONTACT(void);
 extern u8 CanActivateCONVERT_CONTACT(void);
+extern u8 CanActivateDARK_BURNING_ATTACK(void);
 extern u8 CanActivateDedicationThroughLightAndDarkness(void);
 extern u8 CanActivateDelinquentDuo(void);
 extern u8 CanActivateDESTINY_DRAW(void);
+extern u8 CanActivateDIMENSION_FUSION(void);
 extern u8 CanActivateDOUBLE_CYCLONE(void);
 extern u8 CanActivateEEmergencyCall(void);
 extern u8 CanActivateFinalCountdown(void);
@@ -37,6 +41,7 @@ extern u8 CanActivateFutureFusion(void);
 extern u8 CanActivateGuardianTreasure(void);
 extern u8 CanActivateINSECT_IMITATION(void);
 extern u8 CanActivateKnightsTitle(void);
+extern u8 CanActivateLEVEL_TUNING(void);
 extern u8 CanActivateMAGICAL_DIMENSION(void);
 extern u8 CanActivateMETAMORPHOSIS(void);
 extern u8 CanActivateMeteorOfDestruction(void);
@@ -45,8 +50,11 @@ extern u8 CanActivateMonsterReborn(void);
 extern u8 CanActivateMORAY_OF_GREED(void);
 extern u8 CanActivateMORPHTRONIC_CORD(void);
 extern u8 CanActivateMORPHTRONIC_RUSTY_ENGINE(void);
+extern u8 CanActivateMYSTIK_WOK(void);
+extern u8 CanActivateNEX(void);
 extern u8 CanActivatePHOTON_GENERATOR_UNIT(void);
 extern u8 CanActivatePrematureBurial(void);
+extern u8 CanActivateROYAL_TRIBUTE(void);
 extern u8 CanActivateSHARE_THE_PAIN(void);
 extern u8 CanActivateSNAKE_RAIN(void);
 extern u8 CanActivateSOLAR_RECHARGE(void);
@@ -58,6 +66,7 @@ extern u8 CanActivateTWISTER(void);
 
 static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute__((section(".text"))) = {
   { ACE_OF_SWORD, CanActivateACE_OF_SWORD, TRUE },
+  { AQUA_JET, CanActivateAQUA_JET, TRUE },
   { AUTONOMOUS_ACTION_UNIT, CanActivateAutonomousActionUnit, TRUE },
   { A_HERO_LIVES, CanActivateA_HERO_LIVES, TRUE },
   { A_WINGBEAT_OF_GIANT_DRAGON, CanActivateA_WINGBEAT_OF_GIANT_DRAGON, TRUE },
@@ -67,10 +76,13 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { CHARGE_OF_THE_LIGHT_BRIGADE, CanActivateCHARGE_OF_THE_LIGHT_BRIGADE, TRUE },
   { COCOON_REBIRTH, CanActivateCOCOON_REBIRTH, TRUE },
   { CONFISCATION, CanActivateConfiscation, TRUE },
+  { CONTACT, CanActivateCONTACT, TRUE },
   { CONVERT_CONTACT, CanActivateCONVERT_CONTACT, TRUE },
+  { DARK_BURNING_ATTACK, CanActivateDARK_BURNING_ATTACK, TRUE },
   { DEDICATION_THROUGH_LIGHT_AND_DARKNESS, CanActivateDedicationThroughLightAndDarkness, TRUE },
   { DELINQUENT_DUO, CanActivateDelinquentDuo, TRUE },
   { DESTINY_DRAW, CanActivateDESTINY_DRAW, TRUE },
+  { DIMENSION_FUSION, CanActivateDIMENSION_FUSION, TRUE },
   { DOUBLE_CYCLONE, CanActivateDOUBLE_CYCLONE, TRUE },
   { E_EMERGENCY_CALL, CanActivateEEmergencyCall, TRUE },
   { FINAL_COUNTDOWN, CanActivateFinalCountdown, TRUE },
@@ -78,6 +90,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { GUARDIAN_TREASURE, CanActivateGuardianTreasure, FALSE },
   { INSECT_IMITATION, CanActivateINSECT_IMITATION, TRUE },
   { KNIGHTS_TITLE, CanActivateKnightsTitle, TRUE },
+  { LEVEL_TUNING, CanActivateLEVEL_TUNING, TRUE },
   { MAGICAL_DIMENSION, CanActivateMAGICAL_DIMENSION, TRUE },
   { METAMORPHOSIS, CanActivateMETAMORPHOSIS, TRUE },
   { METEOR_OF_DESTRUCTION, CanActivateMeteorOfDestruction, TRUE },
@@ -86,8 +99,11 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { MORAY_OF_GREED, CanActivateMORAY_OF_GREED, TRUE },
   { MORPHTRONIC_CORD, CanActivateMORPHTRONIC_CORD, TRUE },
   { MORPHTRONIC_RUSTY_ENGINE, CanActivateMORPHTRONIC_RUSTY_ENGINE, TRUE },
+  { MYSTIK_WOK, CanActivateMYSTIK_WOK, TRUE },
+  { NEX, CanActivateNEX, TRUE },
   { PHOTON_GENERATOR_UNIT, CanActivatePHOTON_GENERATOR_UNIT, TRUE },
   { PREMATURE_BURIAL, CanActivatePrematureBurial, TRUE },
+  { ROYAL_TRIBUTE, CanActivateROYAL_TRIBUTE, TRUE },
   { SHARE_THE_PAIN, CanActivateSHARE_THE_PAIN, TRUE },
   { SNAKE_RAIN, CanActivateSNAKE_RAIN, TRUE },
   { SOLAR_RECHARGE, CanActivateSOLAR_RECHARGE, TRUE },

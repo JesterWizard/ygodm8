@@ -1,24 +1,173 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "removed_from_play.h"
+#include "spell_economics.h"
+#include "spell_effects.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+#define DIMENSION_FUSION_LP_COST 2000
+
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+
+extern u16 gRemovedFromPlay[2][REMOVED_FROM_PLAY_CAPACITY];
+
+static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
+{
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static u8 CanPayDimensionFusionCost(void)
+{
+  if (IsSpellEconomicsActiveForActiveDuelist())
+    return TRUE;
+
+  if (WhoseTurn() == DUEL_PLAYER)
+    return gDuelLifePoints[DUEL_PLAYER] >= DIMENSION_FUSION_LP_COST;
+
+  return gDuelLifePoints[DUEL_OPPONENT] >= DIMENSION_FUSION_LP_COST;
+}
+
+static u8 TurnDuelistHasEmptyMonsterZone(u8 turnDuelist)
+{
+  return FirstEmptyZoneInRow(gTurnZones[Duel_TurnMonsterRowForDuelist(turnDuelist)]) >= 0;
+}
+
+static u8 FindFirstBanishedMonsterIndex(u8 fixedDuelist)
+{
+  u8 count = RemovedFromPlay_GetCount(fixedDuelist);
+  u8 i;
+
+  for (i = 0; i < count; i++) {
+    u16 cardId = RemovedFromPlay_GetCardAt(fixedDuelist, i);
+
+    if (Duel_CardIsMonster(cardId) && !Duel_CardCannotBeSpecialSummoned(cardId))
+      return i;
+  }
+
+  return 0xFF;
+}
+
+static u8 FixedDuelistHasSummonableBanished(u8 fixedDuelist)
+{
+  return FindFirstBanishedMonsterIndex(fixedDuelist) != 0xFF;
+}
+
+u8 CanActivateDIMENSION_FUSION(void)
+{
+  u8 activeFixed;
+  u8 inactiveFixed;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  if (!CanPayDimensionFusionCost())
+    return FALSE;
+
+  if (!RemovedFromPlay_IsEnabled())
+    return FALSE;
+
+  activeFixed = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
+  inactiveFixed = FixedDuelistForTurnDuelist(INACTIVE_DUELIST);
+
+  if (FixedDuelistHasSummonableBanished(activeFixed) && TurnDuelistHasEmptyMonsterZone(ACTIVE_DUELIST))
+    return TRUE;
+
+  if (FixedDuelistHasSummonableBanished(inactiveFixed)
+      && TurnDuelistHasEmptyMonsterZone(INACTIVE_DUELIST))
+    return TRUE;
+
+  return FALSE;
+}
+
+/* ponytail: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
+ * Ceiling: local mutate of gRemovedFromPlay; upgrade: add RemoveAt to removed_from_play.c. */
+static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
+{
+  u8 count;
+  u8 i;
+
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  count = RemovedFromPlay_GetCount(fixedDuelist);
+  if (index >= count)
+    return;
+
+  for (i = index + 1; i < count; i++)
+    gRemovedFromPlay[fixedDuelist][i - 1] = gRemovedFromPlay[fixedDuelist][i];
+
+  gRemovedFromPlay[fixedDuelist][count - 1] = CARD_NONE;
+}
+
+static void SpecialSummonBanishedForTurnDuelist(u8 turnDuelist)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
+
+  while (TurnDuelistHasEmptyMonsterZone(turnDuelist)) {
+    u8 index = FindFirstBanishedMonsterIndex(fixedDuelist);
+    u16 cardId;
+    enum DuelActionResult result;
+
+    if (index == 0xFF)
+      break;
+
+    cardId = RemovedFromPlay_GetCardAt(fixedDuelist, index);
+    result = Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts);
+    if (result != DUEL_ACTION_OK && result != DUEL_ACTION_DUEL_OVER)
+      break;
+
+    RemoveBanishedAt(fixedDuelist, index);
+
+    if (IsDuelOver() == TRUE)
+      return;
+  }
+}
 
 static void DIMENSION_FUSION_ResolveBody(void)
 {
+  struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+
   Duel_ShowEffectText(DIMENSION_FUSION);
 
-  /* TODO: implement effect */
+  if (IsDuelOver() == TRUE || !CanActivateDIMENSION_FUSION())
+    return;
+
+  if (!IsSpellEconomicsActiveForActiveDuelist()) {
+    if (Duel_ChangeLp(ACTIVE_DUELIST, -DIMENSION_FUSION_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
+      return;
+  }
+
+  /* ponytail: RFP zone is id-list only (no face/position memory). Ceiling: SS face-up ATK
+   * via Duel_SpecialSummonMonsterId; upgrade: store zone state on banish + restore on return. */
+  SpecialSummonBanishedForTurnDuelist(ACTIVE_DUELIST);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  SpecialSummonBanishedForTurnDuelist(INACTIVE_DUELIST);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
+  UpdateDuelGfxExceptField();
 }
 
 APPEND_TEXT void EffectDIMENSION_FUSION(void)
 {
-  if (Duel_TryResolveSpellThroughTraps(DIMENSION_FUSION, DIMENSION_FUSION_ResolveBody) == DUEL_ACTION_BLOCKED)
+  if (!CanActivateDIMENSION_FUSION()) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
+
+  if (Duel_TryResolveSpellThroughTrapsEx(DIMENSION_FUSION, DIMENSION_FUSION_LP_COST,
+                                         DIMENSION_FUSION_ResolveBody)
+      == DUEL_ACTION_BLOCKED)
     return;
 }

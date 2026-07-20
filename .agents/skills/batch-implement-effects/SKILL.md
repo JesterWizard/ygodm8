@@ -43,6 +43,7 @@ Work packs land in `documentation/effect_work_packs/YYYY-MM-DD/` (`index.json`, 
 - Every card in the pack has a non-stub body matching printed text (or a `ponytail:` ceiling note for missing engine support).
 - `make` passes once for the whole batch.
 - Session log lists the pack size and outcomes, not one card.
-- Regenerate the living stub backlog:
-  `python3 tools/stub_effect_queue.py --write-list` → `documentation/STUB_EFFECTS.md`
-  (entries vanish automatically when TODOs are gone).
+- Regenerate living backlogs:
+  `python3 tools/stub_effect_queue.py --write-list`
+  → `documentation/STUB_EFFECTS.md` (TODO stubs)
+  → `documentation/PARTIAL_EFFECTS.md` (`ponytail:` ceilings — still need hooks)
