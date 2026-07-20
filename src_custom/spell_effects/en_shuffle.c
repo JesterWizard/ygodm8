@@ -234,8 +234,7 @@ static void FinishEnShuffle(u8 fixedRow, u8 fixedCol)
   ReturnCardToDeck(ACTIVE_DUELIST, shuffledId);
   Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
   NotifyDynamicEquipFieldChanged();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
   EffectOpt_MarkUsed(EN_SHUFFLE);
 
   if (IsDuelOver() == TRUE)

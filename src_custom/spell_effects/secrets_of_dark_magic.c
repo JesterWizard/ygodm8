@@ -7,6 +7,7 @@
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "dynamic_equip.h"
 #include "exchange_hand_selection.h"
 #include "expanded_graveyard.h"
@@ -527,8 +528,7 @@ static void ResolveSecretsRitual(void)
   }
 
   NotifyDynamicEquipFieldChanged();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 
   if (IsDuelOver() == TRUE)
     return;

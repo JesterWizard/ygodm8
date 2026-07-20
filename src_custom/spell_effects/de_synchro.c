@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "dynamic_equip.h"
 #include "spell_effects.h"
 
@@ -75,8 +76,7 @@ static void ReturnSynchroToExtraDeck(struct DuelCard *zone)
   cardId = zone->id;
   ClearZone(zone);
   NotifyDynamicEquipFieldChanged();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 
   /* ponytail: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the
    * player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field

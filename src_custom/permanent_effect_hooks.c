@@ -30,6 +30,8 @@
 #include "level_limit_area_b.h"
 #include "level_limit_area_a.h"
 #include "duel_helpers.h"
+#include "constants/card_ids.h"
+#include "effect_events.h"
 #include "duel_attack_restrictions.h"
 #include "ring_of_destruction.h"
 #include "dark_dust_spirit.h"
@@ -1264,18 +1266,11 @@ static void TryActivatingPermanentEffectsPostBoardScan(u8 aiSim)
     TheBigSaturn_TryResolveGyDamage();
     TheWickedEraser_TryResolveFieldWipe();
   }
-  if (!aiSim || IsLevelLimitAreaBActiveOnField())
-    Duel_CheckLevelLimitAreaBAfterFieldChange();
-  if (!aiSim || IsLevelLimitAreaAActiveOnField())
-    Duel_CheckLevelLimitAreaAAfterFieldChange();
   Duel_RefreshAttackRestrictions();
 
-  if (aiSim)
-    return;
-
-  Duel_CheckRivalryOfWarlordsAfterFieldChange();
-  Duel_CheckAmazonessTigerAfterFieldChange();
-  Duel_CheckRingOfDestructionAfterFieldChange();
+  /* Level Limit / Rivalry / Amazoness / Ring via ON_FIELD_CHANGE subscribers.
+   * Rivalry/Ring skip when gHideEffectText (aiSim). */
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 }
 
 void PermanentEffect_RunSimBoardScan(void)

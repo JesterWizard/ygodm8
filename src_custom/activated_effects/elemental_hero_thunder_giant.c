@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "dynamic_equip.h"
 #include "elemental_hero_thunder_giant.h"
 #include "god_card.h"
@@ -95,8 +96,7 @@ static void DestroyTarget(u8 fixedRow, u8 fixedCol)
     return;
 
   NotifyDynamicEquipFieldChanged();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia();
   if (IsDuelOver() != TRUE)

@@ -21,9 +21,7 @@
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_gaia.h"
 #include "harpie_lady_1.h"
-#include "elemental_hero_inferno.h"
 #include "effect_events.h"
-#include "skyscraper.h"
 #include "the_tripper_mercury.h"
 #include "the_wicked_dreadroot.h"
 #include "the_grand_jupiter.h"
@@ -653,9 +651,6 @@ void RefreshPendingBattleActionStatsFromZones(void)
                          sActionData.playerCardId != CARD_NONE
                              ? gFixedZones[sActionData.playerMonsterRow][sActionData.unkA]
                              : NULL);
-
-  ApplyElementalHeroInfernoBattleAtkBoost();
-  ApplySkyscraperBattleAtkBoost();
 }
 
 LYN_REPLACE_CHECK(SetFinalStat);

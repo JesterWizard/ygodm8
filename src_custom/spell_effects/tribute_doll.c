@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "dynamic_equip.h"
 #include "exchange_hand_selection.h"
 #include "spell_effects.h"
@@ -287,8 +288,7 @@ static void ResolveTributeDollCore(struct DuelCard *spellZone, u8 tributeRow, u8
     return;
 
   NotifyDynamicEquipFieldChanged();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 
   if (IsDuelOver() == TRUE)
     return;

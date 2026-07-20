@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "custom_decks/custom_decks.h"
 #include "duel.h"
 #include "duel_main.h"
@@ -332,8 +333,7 @@ static bool8 RunDuelTurnLoop(void) {
     ResetNumTributes();
     ClearPendingTributeSummonCardId();
     UpdateDuelZonePtrs(turn);
-    Duel_CheckLevelLimitAreaBAfterFieldChange();
-    Duel_CheckLevelLimitAreaAAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
     Duel_RefreshAttackRestrictions();
     if (!IsRoyalDecreeActiveOnField()) {
     TryActivateJarOfGreedOnOpponentTurnStart();

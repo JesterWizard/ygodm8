@@ -3,6 +3,7 @@
 #include "ameba.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "possessed_dark_soul.h"
 
@@ -132,7 +133,6 @@ void ActivatePossessedDarkSoulEffect(void)
     return;
 
   TakeAllPossessedDarkSoulTargets();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
   UpdateDuelGfxExceptField();
 }

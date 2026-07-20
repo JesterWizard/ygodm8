@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "dynamic_equip.h"
 #include "spell_effects.h"
 
@@ -155,8 +156,6 @@ static void FinishMonsterRecovery(u8 fixedRow, u8 fixedCol)
   monsterId = target->id;
   ClearZone(target);
   NotifyDynamicEquipFieldChanged();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
   Duel_NotifyFixedMonsterRowChanged(fixedRow);
   ReturnCardToDeck(ACTIVE_DUELIST, monsterId);
 

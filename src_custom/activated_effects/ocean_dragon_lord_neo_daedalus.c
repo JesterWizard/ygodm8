@@ -5,6 +5,7 @@
 #include "constants/duel_fields.h"
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
@@ -68,10 +69,7 @@ static void ResetFieldToArenaAfterUmiCost(void)
   if (!gHideEffectText)
     SetDuelFieldGfx(gDuel.field);
 
-  Duel_CheckRivalryOfWarlordsAfterFieldChange();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
-  Duel_CheckAmazonessTigerAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 }
 
 static u8 CanPayNeoDaedalusCost(void)

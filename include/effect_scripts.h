@@ -20,7 +20,9 @@ enum EffectScriptStepOp {
   /* a0 = EffectCondId; fail closed if no match on field. */
   EFFECT_SCRIPT_REQUIRE_COND,
   /* a0 = EffectCondId; destroy first match (AI / no-pick targeting). */
-  EFFECT_SCRIPT_DESTROY_FIRST_BY_COND
+  EFFECT_SCRIPT_DESTROY_FIRST_BY_COND,
+  /* s0 = burn damage (positive). Own-trap path via TryResolveSpellThroughTrapsEx. */
+  EFFECT_SCRIPT_BURN_THROUGH_TRAPS
 };
 
 /* Metadata categories for Phase 5 AI (stable tags; sparse for now). */

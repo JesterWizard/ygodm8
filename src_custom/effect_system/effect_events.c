@@ -5,6 +5,8 @@
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "effect_events.h"
+#include "elemental_hero_inferno.h"
+#include "skyscraper.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -21,12 +23,20 @@ static void EffectEvent_OnFieldChangeHandler(const struct EffectEvent *ev)
   Duel_CheckLevelLimitAreaAAfterFieldChange();
   Duel_CheckAmazonessTigerAfterFieldChange();
 
-  /* Rivalry text flips: match prior NotifyFixedMonsterRowChanged gate. */
-  if (gHideEffectText || WhoseTurn() != DUEL_PLAYER)
+  /* Rivalry / Ring text flips skip AI-sim (gHideEffectText). */
+  if (gHideEffectText)
     return;
 
   Duel_CheckRivalryOfWarlordsAfterFieldChange();
   Duel_CheckRingOfDestructionAfterFieldChange();
+}
+
+static void EffectEvent_OnDamageCalcHandler(const struct EffectEvent *ev)
+{
+  (void)ev;
+
+  ApplyElementalHeroInfernoBattleAtkBoost();
+  ApplySkyscraperBattleAtkBoost();
 }
 
 void EffectEvent_EnsureInit(void)
@@ -36,6 +46,7 @@ void EffectEvent_EnsureInit(void)
 
   sEffectEventsInited = TRUE;
   EffectEvent_Subscribe(EFFECT_EVENT_ON_FIELD_CHANGE, EffectEvent_OnFieldChangeHandler);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DAMAGE_CALC, EffectEvent_OnDamageCalcHandler);
 }
 
 void EffectEvent_Subscribe(u8 eventId, EffectEventHandler handler)

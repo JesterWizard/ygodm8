@@ -3,6 +3,7 @@
 #include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "dynamic_equip.h"
 #include "elemental_hero_terra_firma.h"
 #include "monster_effect_usage.h"
@@ -151,8 +152,7 @@ static void ApplyTributeAtkBoost(u8 fixedRow, u8 fixedCol)
   }
 
   NotifyDynamicEquipFieldChanged();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 }
 
 static void BeginTerraFirmaTargeting(void)

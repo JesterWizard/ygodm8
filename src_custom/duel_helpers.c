@@ -554,11 +554,13 @@ enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx)
 enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelist, u8 updateGfx)
 {
   u16 cardId;
+  u8 wasMonster;
 
   if (zone == NULL || zone->id == CARD_NONE)
     return DUEL_ACTION_NO_TARGET;
 
   cardId = zone->id;
+  wasMonster = GetTypeGroup(cardId) == TYPE_GROUP_MONSTER;
   EffectEvent_EmitSimple(EFFECT_EVENT_ON_DESTROY, cardId, zone);
   EffectEvent_EmitSimple(EFFECT_EVENT_ON_LEAVE_FIELD, cardId, zone);
 
@@ -566,6 +568,9 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
   MarkTheSupremacySunDestroyedFromField(zone);
   ClearZoneAndSendMonToGraveyard(zone, graveyardDuelist);
   MaybeUpdateGfx(updateGfx);
+
+  if (wasMonster)
+    EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 
   if (IsDuelOver() == TRUE)
     return DUEL_ACTION_DUEL_OVER;

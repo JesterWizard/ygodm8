@@ -1,18 +1,16 @@
 #include "global.h"
 #include "common-chax.h"
-#include "duel_helpers.h"
+#include "constants/card_ids.h"
+#include "effect_scripts.h"
+#include "effect_system.h"
 #include "spell_effects.h"
 
-#define SPARKS_DAMAGE 200
-
-static void Sparks_ResolveBody(void)
-{
-  Duel_ResolveBurnSpell(SPARKS, SPARKS_DAMAGE, TRUE);
-}
-
+/* Body in effect_scripts (Phase 4b). LynJump kept if vanilla table is reached. */
 LYN_REPLACE_CHECK(EffectSparks);
 APPEND_TEXT void EffectSparks__Replacement(void)
 {
-  if (Duel_TryResolveSpellThroughTrapsEx(SPARKS, SPARKS_DAMAGE, Sparks_ResolveBody) == DUEL_ACTION_BLOCKED)
-    return;
+  const struct EffectScript *script = EffectScript_Find(SPARKS, EFFECT_KIND_SPELL);
+
+  if (script != NULL)
+    EffectScript_Run(script);
 }

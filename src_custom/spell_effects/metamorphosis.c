@@ -3,6 +3,7 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "dynamic_equip.h"
 #include "spell_effects.h"
 
@@ -79,8 +80,7 @@ static void FinishMetamorphosis(u8 tributeRow, u8 tributeCol)
     return;
 
   NotifyDynamicEquipFieldChanged();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 
   /* ponytail: Extra Deck Special Summon (Fusion of matching Level) needs a duel-time
    * Extra Deck browser + SS path. Trunk ExtraDeck_* APIs are deck-builder only and

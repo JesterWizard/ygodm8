@@ -124,8 +124,9 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 | Phase 4 pilots | One Day of Peace, Pot of Greed, Grand Convergence | Routed via `EffectDispatch` → `EffectScript_Run` |
 | Phase 5 AI meta | `EffectMeta_GetCategory` + `AiMod_EffectSemantics` in [`ai_modifiers.c`](../src_custom/ai_decision/ai_modifiers.c) | Semantic activate nudges; legacy spellEffect fallback |
 | Phase 4b generator | [`tools/generate_effect_scripts.py`](../tools/generate_effect_scripts.py) + [`tools/effect_scripts_manifest.json`](../tools/effect_scripts_manifest.json) | Emits `src_custom/generated/effect_scripts_table.inc` |
-| Field continuous | `EFFECT_EVENT_ON_FIELD_CHANGE` → Rivalry / Level Limit / Amazoness / Ring | `Duel_NotifyFixedMonsterRowChanged` emits; PostBoardScan still checks |
-| Damage-calc event | `EFFECT_EVENT_ON_DAMAGE_CALC` from `RefreshPendingBattleActionStatsFromZones` | Subscribe continuous ATK boosts gradually |
+| Field continuous | `EFFECT_EVENT_ON_FIELD_CHANGE` → Rivalry / Level Limit / Amazoness / Ring | Notify / DestroyZone / battle GY / PostBoardScan emit |
+| Damage-calc event | `EFFECT_EVENT_ON_DAMAGE_CALC` → Skyscraper + Inferno ATK boosts | Emit from `RefreshPendingBattleActionStatsFromZones` |
+| Burn scripts | `EFFECT_SCRIPT_BURN_THROUGH_TRAPS` | Sparks…Tremendous Fire, Meteor |
 
 ## TODO
 
@@ -141,15 +142,17 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 - [x] Emit `ON_DAMAGE_CALC` from damage-calc Apply sites; subscribe continuous triggers to events instead of `Duel_Check*AfterFieldChange`
 - [x] Grow script table; add condition/selector step ops for targeting cards
 - [x] Expand legacy `spellEffect` → meta map as more vanilla effects matter to AI
-- [ ] Thin redundant `Duel_Check*AfterFieldChange` call sites that already emit field/summon/leave events
-- [ ] Grow more scripts in the JSON manifest; migrate burn/heal LynJump spells carefully (own trap LP path)
-- [ ] Subscribe damage-calc continuous ATK boosts to `ON_DAMAGE_CALC` instead of only Apply* chains
+- [x] Thin redundant `Duel_Check*AfterFieldChange` call sites that already emit field/summon/leave events
+- [x] Grow more scripts in the JSON manifest; migrate burn/heal LynJump spells carefully (own trap LP path)
+- [x] Subscribe damage-calc continuous ATK boosts to `ON_DAMAGE_CALC` instead of only Apply* chains
+- [ ] Heal LynJump spells (Mooyan Curry family) via a heal-through-traps step
+- [ ] More damage-calc subscribers beyond Skyscraper / Inferno
+- [ ] More JSON scripts (draw/search/simple destroy)
 
 ## Limitations & Bugs
 
 - Until Phase 3, continuous/trigger ceilings in PARTIAL_EFFECTS will keep growing as agents implement stand-in bodies.
 - C-table scripts (2A) still need merge discipline; they do not by themselves make “thousands of cards” cheap — that is the 2B authoring step.
-- Burn/heal LynJump spells that pass trap LP via `Duel_TryResolveSpellThroughTrapsEx` must not be dispatched as scripts until that path is modeled as a step op.
+- Heal LynJump spells that pass trap LP via `Duel_TryResolveSpellThroughTrapsEx` still need a dedicated step op (burns use `BURN_THROUGH_TRAPS`).
 - Metadata for AI is useless until categories are stable and populated; do not block Phases 0–3 on AI work.
 - Report gaps (missing taxonomy tags, wrong Phase ROI) against this doc or the taxonomy file.
-- `PostBoardScan` still calls `Duel_Check*` directly (board-scan timing ≠ notify); field-change event covers Notify paths.

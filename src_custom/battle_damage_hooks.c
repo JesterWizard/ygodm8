@@ -243,6 +243,9 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
 
   Duel_RemapMutualDestroyBattleAnim(playerGraveyardDestroy, opponentGraveyardDestroy);
 
+  {
+    u8 fieldChanged = FALSE;
+
   if (sActionData.flags & 1) {
     struct DuelCard *zone = gFixedZones[sActionData.playerMonsterRow][sActionData.unkA];
 
@@ -260,6 +263,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       EffectEvent_EmitSimple(EFFECT_EVENT_ON_BATTLE_DESTROY, zone->id, zone);
       EffectEvent_EmitSimple(EFFECT_EVENT_ON_LEAVE_FIELD, zone->id, zone);
       ClearZoneAndSendMonToGraveyard2(zone, 0);
+      fieldChanged = TRUE;
     }
   }
   if (sActionData.flags & 2) {
@@ -278,7 +282,12 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       EffectEvent_EmitSimple(EFFECT_EVENT_ON_BATTLE_DESTROY, zone->id, zone);
       EffectEvent_EmitSimple(EFFECT_EVENT_ON_LEAVE_FIELD, zone->id, zone);
       ClearZoneAndSendMonToGraveyard2(zone, 1);
+      fieldChanged = TRUE;
     }
+  }
+
+  if (fieldChanged)
+    EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
   }
 
   MarkVampireBabyBattleDestruction(

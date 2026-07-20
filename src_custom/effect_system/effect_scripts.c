@@ -95,6 +95,16 @@ u8 EffectMeta_GetCategory(u16 cardId)
   return EffectMeta_GetCategoryLegacy(cardId);
 }
 
+static u16 sBurnThroughTrapsSpellId APPEND_DATA = {0};
+static u16 sBurnThroughTrapsDamage APPEND_DATA = {0};
+static u8 sBurnThroughTrapsDestroyGfx APPEND_DATA = {0};
+
+static void BurnThroughTrapsBody(void)
+{
+  Duel_ResolveBurnSpell(sBurnThroughTrapsSpellId, sBurnThroughTrapsDamage,
+                        sBurnThroughTrapsDestroyGfx);
+}
+
 static enum DuelActionResult RunStep(const struct EffectScript *script,
                                      const struct EffectScriptStep *step)
 {
@@ -144,6 +154,17 @@ static enum DuelActionResult RunStep(const struct EffectScript *script,
     target = gFixedZones[fixedRow][col];
     return Op_DestroyZone(target, GetDuelistForZone(target), step->a2);
 
+  case EFFECT_SCRIPT_BURN_THROUGH_TRAPS:
+    if (step->s0 <= 0)
+      return DUEL_ACTION_INVALID;
+    sBurnThroughTrapsSpellId = script->cardId;
+    sBurnThroughTrapsDamage = (u16)step->s0;
+    sBurnThroughTrapsDestroyGfx = TRUE;
+    if (Duel_TryResolveSpellThroughTrapsEx(script->cardId, (u16)step->s0, BurnThroughTrapsBody)
+        == DUEL_ACTION_BLOCKED)
+      return DUEL_ACTION_BLOCKED;
+    return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : DUEL_ACTION_OK;
+
   default:
     return DUEL_ACTION_INVALID;
   }
@@ -153,6 +174,7 @@ u8 EffectScript_Run(const struct EffectScript *script)
 {
   u8 i;
   enum DuelActionResult result;
+  u8 blocked = FALSE;
 
   if (script == NULL || script->steps == NULL)
     return FALSE;
@@ -168,13 +190,15 @@ u8 EffectScript_Run(const struct EffectScript *script)
       break;
 
     result = RunStep(script, &script->steps[i]);
-    if (result == DUEL_ACTION_DUEL_OVER || result == DUEL_ACTION_BLOCKED)
+    if (result == DUEL_ACTION_BLOCKED) {
+      blocked = TRUE;
       break;
-    if (IsDuelOver() == TRUE)
+    }
+    if (result == DUEL_ACTION_DUEL_OVER || IsDuelOver() == TRUE)
       break;
   }
 
-  if (script->afterSteps != NULL && IsDuelOver() != TRUE)
+  if (!blocked && script->afterSteps != NULL && IsDuelOver() != TRUE)
     script->afterSteps();
 
   return TRUE;

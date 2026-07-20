@@ -4,6 +4,8 @@
 void TrySpiritOfThePotOfGreedAfterPotOfGreed(void);
 u8 CanActivateGRAND_CONVERGENCE(void);
 u8 CanActivateAncientLeaf(void);
+void ResolveDarkRoomEffect(void);
+u8 CanActivateMeteorOfDestruction(void);
 
 static const struct EffectScriptStep sONE_DAY_OF_PEACESteps[] __attribute__((section(".text"))) = {
   { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
@@ -34,6 +36,36 @@ static const struct EffectScriptStep sANCIENT_LEAFSteps[] __attribute__((section
   { EFFECT_SCRIPT_CHANGE_LP, ACTIVE_DUELIST, 0, FALSE, -2000 },
   { EFFECT_SCRIPT_DRAW, ACTIVE_DUELIST, 2, TRUE, 0 },
   { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sSPARKSSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_BURN_THROUGH_TRAPS, 0, 0, TRUE, 200 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sHINOTAMASteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_BURN_THROUGH_TRAPS, 0, 0, TRUE, 500 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sFINAL_FLAMESteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_BURN_THROUGH_TRAPS, 0, 0, TRUE, 200 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sOOKAZISteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_BURN_THROUGH_TRAPS, 0, 0, TRUE, 800 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sTREMENDOUS_FIRESteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_BURN_THROUGH_TRAPS, 0, 0, TRUE, 1000 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sMETEOR_OF_DESTRUCTIONSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_BURN_THROUGH_TRAPS, 0, 0, TRUE, 1000 },
   { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
 };
 
@@ -72,6 +104,60 @@ static const struct EffectScript sEffectScripts[] __attribute__((section(".text"
     sANCIENT_LEAFSteps,
     { EFFECT_META_DRAW, 0, 0 },
     CanActivateAncientLeaf,
+    NULL,
+  },
+  {
+    SPARKS,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sSPARKSSteps),
+    sSPARKSSteps,
+    { EFFECT_META_BURN, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    HINOTAMA,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sHINOTAMASteps),
+    sHINOTAMASteps,
+    { EFFECT_META_BURN, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    FINAL_FLAME,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sFINAL_FLAMESteps),
+    sFINAL_FLAMESteps,
+    { EFFECT_META_BURN, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    OOKAZI,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sOOKAZISteps),
+    sOOKAZISteps,
+    { EFFECT_META_BURN, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    TREMENDOUS_FIRE,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sTREMENDOUS_FIRESteps),
+    sTREMENDOUS_FIRESteps,
+    { EFFECT_META_BURN, 0, 0 },
+    NULL,
+    ResolveDarkRoomEffect,
+  },
+  {
+    METEOR_OF_DESTRUCTION,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sMETEOR_OF_DESTRUCTIONSteps),
+    sMETEOR_OF_DESTRUCTIONSteps,
+    { EFFECT_META_BURN, 0, 0 },
+    CanActivateMeteorOfDestruction,
     NULL,
   },
 };

@@ -52,6 +52,62 @@
         { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
         { "op": "END" }
       ]
+    },
+    {
+      "cardId": "SPARKS",
+      "kind": "SPELL",
+      "meta": "BURN",
+      "steps": [
+        { "op": "BURN_THROUGH_TRAPS", "s0": 200, "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "HINOTAMA",
+      "kind": "SPELL",
+      "meta": "BURN",
+      "steps": [
+        { "op": "BURN_THROUGH_TRAPS", "s0": 500, "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "FINAL_FLAME",
+      "kind": "SPELL",
+      "meta": "BURN",
+      "steps": [
+        { "op": "BURN_THROUGH_TRAPS", "s0": 200, "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "OOKAZI",
+      "kind": "SPELL",
+      "meta": "BURN",
+      "steps": [
+        { "op": "BURN_THROUGH_TRAPS", "s0": 800, "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "TREMENDOUS_FIRE",
+      "kind": "SPELL",
+      "meta": "BURN",
+      "afterSteps": "ResolveDarkRoomEffect",
+      "steps": [
+        { "op": "BURN_THROUGH_TRAPS", "s0": 1000, "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "METEOR_OF_DESTRUCTION",
+      "kind": "SPELL",
+      "meta": "BURN",
+      "canActivate": "CanActivateMeteorOfDestruction",
+      "steps": [
+        { "op": "BURN_THROUGH_TRAPS", "s0": 1000, "a2": true },
+        { "op": "END" }
+      ]
     }
   ]
 }
