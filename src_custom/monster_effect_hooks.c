@@ -64,7 +64,6 @@
 #include "the_blazing_mars.h"
 #include "athena.h"
 #include "yubel.h"
-#include "amulet_dragon.h"
 #include "andro_sphinx.h"
 #include "apprentice_illusion_magician.h"
 #include "armed_dragon_lv5.h"
@@ -1559,10 +1558,6 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   }
 
   /* stub activated monster effect dispatches */
-  if (gMonEffect.id == AMULET_DRAGON) {
-    ActivateAMULET_DRAGONEffect();
-    return;
-  }
   if (gMonEffect.id == ANDRO_SPHINX) {
     ActivateANDRO_SPHINXEffect();
     return;
@@ -1948,7 +1943,6 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == THE_BLAZING_MARS
           || zone->id == ATHENA
           || zone->id == DARK_ARMED_DRAGON
-          || zone->id == AMULET_DRAGON
           || zone->id == ANDRO_SPHINX
           || zone->id == APPRENTICE_ILLUSION_MAGICIAN
           || zone->id == ARMED_DRAGON_LV5

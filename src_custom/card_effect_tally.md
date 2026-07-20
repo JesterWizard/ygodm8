@@ -287,7 +287,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `A Hero Lives` | `src_custom/spell_effects/a_hero_lives.c` |
 | `spell_effects` | `A Wingbeat Of Giant Dragon` | `src_custom/spell_effects/a_wingbeat_of_giant_dragon.c` |
 | `spell_effects` | `Allure Of Darkness` | `src_custom/spell_effects/allure_of_darkness.c` |
-| `activated_effects` | `Amulet Dragon` | `src_custom/activated_effects/amulet_dragon.c` |
+| `permanent_effects` | `Amulet Dragon` | `src_custom/activated_effects/amulet_dragon.c` |
 | `activated_effects` | `Andro Sphinx` | `src_custom/activated_effects/andro_sphinx.c` |
 | `trap_effects` | `Anti Spell Fragrance` | `src_custom/trap_effects/anti_spell_fragrance.c` |
 | `trap_effects` | `Appropriate` | `src_custom/trap_effects/appropriate.c` |

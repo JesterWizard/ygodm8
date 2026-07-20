@@ -104,7 +104,9 @@ u8 SphereMode_CanAttackMonsterZone(struct DuelCard *zone);
 struct DuelCard *HamonLordOfStrikingThunder_GetForcedAttackTarget(u8 defenderDuelist);
 u8 HamonLordOfStrikingThunder_CanAttackMonsterZone(struct DuelCard *zone);
 u8 UriaLordOfSearingFlames_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 AmuletDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 void TryRavielOnOpponentMonsterPlacement(struct DuelCard *zone);
+void TryAmuletDragonOnMonsterPlacement(struct DuelCard *zone);
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
 {
   struct DuelSummonOpts opts;
@@ -351,6 +353,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryAthenaOnMonsterPlacement(summonZone);
   TryElementalHeroStratosOnMonsterPlacement(summonZone);
   TryTheSuppressionPlutoOnMonsterPlacement(summonZone);
+  TryAmuletDragonOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   if (turnDuelist == ACTIVE_DUELIST)
     CourtOfJustice_RefreshHandUnlocks();
@@ -1169,6 +1172,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { THE_WICKED_ERASER, TheWickedEraser_ApplyDynamicZoneStats },
   { THE_WICKED_AVATAR, TheWickedAvatar_ApplyDynamicZoneStats },
   { URIA_LORD_OF_SEARING_FLAMES, UriaLordOfSearingFlames_ApplyDynamicZoneStats },
+  { AMULET_DRAGON, AmuletDragon_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {

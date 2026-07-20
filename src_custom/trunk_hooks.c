@@ -134,6 +134,14 @@ void ExtraDeck_AddCard(u16 cardId) {
     }
 }
 
+void ExtraDeck_FillWithCard(u16 cardId) {
+  u16 *extra = GetActiveExtraDeck();
+  u8 i;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    extra[i] = cardId;
+}
+
 u8 ExtraDeck_TryRemoveCard(u16 cardId) {
   u16 *extra = GetActiveExtraDeck();
   u8 i;

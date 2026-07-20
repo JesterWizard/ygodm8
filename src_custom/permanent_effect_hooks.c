@@ -32,6 +32,7 @@
 #include "duel_attack_restrictions.h"
 #include "ring_of_destruction.h"
 #include "dark_dust_spirit.h"
+#include "amulet_dragon.h"
 #include "harpie_lady_2.h"
 #include "ai_sim.h"
 #include "card.h"
@@ -406,6 +407,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = PETEN_THE_DARK_CLOWN,
     .shouldActivate = ShouldActivatePetenTheDarkClown,
     .activate = ActivatePetenTheDarkClown,
+  },
+  {
+    .cardId = AMULET_DRAGON,
+    .shouldActivate = ShouldActivateAmuletDragonDestroy,
+    .activate = ActivateAmuletDragonDestroy,
   },
   {
     .cardId = YUBEL,

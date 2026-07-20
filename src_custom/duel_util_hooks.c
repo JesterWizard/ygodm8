@@ -20,6 +20,7 @@ extern void DeclareLoser(unsigned char);
 void InitCardsForDuelDeck(unsigned char, unsigned short *);
 void InitDuelDeck(unsigned char, unsigned char);
 void ExtraDeck_AddCard(u16 cardId);
+void ExtraDeck_FillWithCard(u16 cardId);
 u8 ExtraDeck_GetCardQty(u16 cardId);
 
 static void CopyDuelDeckCards(unsigned char duelist, const unsigned short *deck) {
@@ -142,10 +143,13 @@ void InitDuelDeck__Replacement(unsigned char duelist, u16 duelistId) {
     for (i = 0; i < 40; i++)
       overrideDeck[i] = deckOverrideCardId;
     InitCardsForDuelDeck(duelist, overrideDeck);
-    return;
+  } else {
+    InitCardsForDuelDeck(duelist, (unsigned short *)deck);
   }
 
-  InitCardsForDuelDeck(duelist, (unsigned short *)deck);
+  if (duelistId == 0 && gRuntimeConfig.enable_extra_deck
+      && gRuntimeConfig.player_extra_deck_card_id != CARD_NONE)
+    ExtraDeck_FillWithCard(gRuntimeConfig.player_extra_deck_card_id);
 }
 
 LYN_REPLACE_CHECK(NumFaceUpMatchingAttributeInRow);

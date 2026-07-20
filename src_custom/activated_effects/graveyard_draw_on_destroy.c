@@ -62,7 +62,8 @@ u8 CardDefersGraveyardEffectUntilBattleFinish(u16 cardId)
       || cardId == GIANT_RAT || cardId == THE_THING_IN_THE_CRATER
       || cardId == ELEMENTAL_HERO_CORE || cardId == YUBEL
       || cardId == THE_WICKED_ERASER
-      || cardId == YUBEL_TERROR_INCARNATE;
+      || cardId == YUBEL_TERROR_INCARNATE
+      || cardId == AMULET_DRAGON;
 }
 
 static u8 GraveyardScanDuelistToFixed(u8 duelist)

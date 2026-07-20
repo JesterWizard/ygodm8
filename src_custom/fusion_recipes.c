@@ -46,6 +46,7 @@ APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
   { ELEMENTAL_HERO_SUNRISE, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ELEMENTAL_HERO, 0, 0 },
   /* ponytail: material2+ are variable Machines; fusion_duel selects 2–4 materials. */
   { CHIMERATECH_OVERDRAGON, FUSION_RECIPE_MACHINE, FUSION_RECIPE_MACHINE, 0, 0 },
+  { AMULET_DRAGON, DARK_MAGICIAN, FUSION_RECIPE_DRAGON, 0, 0 },
   { .result=CYBER_TWIN_DRAGON, .material1=CYBER_DRAGON, .material2=CYBER_DRAGON, 0, 0},
   { .result=CYBER_END_DRAGON, .material1=CYBER_DRAGON, .material2=CYBER_DRAGON, CYBER_DRAGON, 0},
 };
@@ -112,6 +113,9 @@ u8 FusionRecipe_MaterialIsConcrete(u16 material)
   if (material == FUSION_RECIPE_MACHINE)
     return FALSE;
 
+  if (material == FUSION_RECIPE_DRAGON)
+    return FALSE;
+
   if ((material & ~FUSION_RECIPE_ATTRIBUTE_VALUE_MASK) == FUSION_RECIPE_ATTRIBUTE_BASE)
     return FALSE;
 
@@ -133,6 +137,9 @@ u8 FusionRecipe_MaterialMatches(u16 need, u16 cardId)
 
   if (need == FUSION_RECIPE_MACHINE)
     return Duel_CardHasMonsterType(cardId, TYPE_MACHINE);
+
+  if (need == FUSION_RECIPE_DRAGON)
+    return Duel_CardHasMonsterType(cardId, TYPE_DRAGON);
 
   if ((need & ~FUSION_RECIPE_ATTRIBUTE_VALUE_MASK) == FUSION_RECIPE_ATTRIBUTE_BASE) {
     attribute = need & FUSION_RECIPE_ATTRIBUTE_VALUE_MASK;
