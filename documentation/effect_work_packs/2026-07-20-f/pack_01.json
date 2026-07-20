@@ -1,0 +1,84 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MORPHTRONIC_ACCELERATOR",
+      "card_name": "Morphtronic Accelerator",
+      "kind": "spell",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/spell_effects/morphtronic_accelerator.c",
+      "effect_text": "Return 1 Morphtronic monster from your hand to the Deck. Destroy 1 card on the field, and draw 1 card. Return 1 Morphtronic monster from your hand to the Deck. Destroy 1 card on the field, and draw 1 card.",
+      "tags": [
+        "deck",
+        "destroy",
+        "draw",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "POLYMERIZATION",
+      "clone_path": "src_custom/spell_effects/polymerization.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "DARK_BURNING_MAGIC",
+      "card_name": "Dark Burning Magic",
+      "kind": "spell",
+      "archetype": "DARK_BURNING",
+      "path": "src_custom/spell_effects/dark_burning_magic.c",
+      "effect_text": "If you control Dark Magician and Dark Magician Girl: destroy all opponent cards. If you control monsters whose original names are Dark Magician and Dark Magician Girl: Destroy all cards your opponent controls.",
+      "tags": [
+        "destroy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_BURNING_ATTACK",
+      "clone_path": "src_custom/spell_effects/dark_burning_attack.c",
+      "clone_score": 1.35
+    },
+    {
+      "card_const": "REPTILIANNE_SPAWN",
+      "card_name": "Reptilianne Spawn",
+      "kind": "spell",
+      "archetype": "REPTILIANNE",
+      "path": "src_custom/spell_effects/reptilianne_spawn.c",
+      "effect_text": "Banish 1 Reptilianne from GY; SS 2 Tokens (ATK/DEF 0). Remove from play 1 Reptilianne monster from your Graveyard. Special Summon 2 Reptilianne Tokens (Reptile-Type/EARTH/Level 1/ATK 0/DEF 0) to your side of the field.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "LIGHTSWORN_SABRE",
+      "card_name": "Lightsworn Sabre",
+      "kind": "spell",
+      "archetype": "LIGHTSWORN",
+      "path": "src_custom/spell_effects/lightsworn_sabre.c",
+      "effect_text": "Equip Lightsworn +700; re-equip mill. Equip only to a Lightsworn monster. It gains 700 ATK. When this card is sent from your Deck to the Graveyard: You can target 1 Lightsworn monster you control; equip this card to that target.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.75
+    }
+  ]
+}

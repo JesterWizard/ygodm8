@@ -8,22 +8,22 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 14:57 UTC  
-**Remaining partials:** `104`
+**Last updated:** 2026-07-20 15:09 UTC  
+**Remaining partials:** `111`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 40 |
+| `spell` | 47 |
 | `trap` | 9 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **104** |
+| **total** | **111** |
 
-## spell (40)
+## spell (47)
 
 ### `ARCANA_READING`
 - path: `src_custom/spell_effects/arcana_reading.c`
@@ -45,6 +45,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `BURDEN_OF_THE_MIGHTY`
 - path: `src_custom/spell_effects/burden_of_the_mighty.c`
 - L14: continuous -100 ATK × Level on each face-up opponent monster needs a field-stat / continuous ATK overlay outside this file (no in-file hook into Duel_TryApplyDynamicZoneStats or Refresh overlays). Ceiling: face-up continuous only; upgrade: stat overlay → if face-up BURDEN_OF_THE_MIGHTY then each face-up opp monster ATK -= 100 * level.
+
+### `CALL_OF_THE_MUMMY`
+- path: `src_custom/spell_effects/call_of_the_mummy.c`
+- L97: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up OPT re-activation may need card_hooks GetSpellType + CALL_OF_THE_MUMMY listed. Ceiling: first-activation OPT works; upgrade: add to NORMAL spell-type list.
 
 ### `CHAIN_STRIKE`
 - path: `src_custom/spell_effects/chain_strike.c`
@@ -111,6 +115,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L92: no dedicated choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L189: End Phase "sent from hand/field this turn → add up to 3 different Harpie cards from Deck" needs a GY/sent-this-turn + End Phase hook. Ceiling: only on-activate Elegant Egotist search works; upgrade: turn_effect or GY send tracker that opens a multi-pick Harpie deck search.
 
+### `ILLUSION_MAGIC`
+- path: `src_custom/spell_effects/illusion_magic.c`
+- L136: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
+- L322: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple Illusion Magic per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
+
 ### `KNIGHTS_TITLE`
 - path: `src_custom/spell_effects/knights_title.c`
 - L109: special-face-up sets unk4=2 and blocks DMK's on-summon effect
@@ -122,6 +131,12 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `LEVEL_TUNING`
 - path: `src_custom/spell_effects/level_tuning.c`
 - L50: no TempLevel / zone level-mod field (DuelCard has only tempStage; level lives in ROM card data via SetCardInfo). Cannot apply -1 Level here. End Phase restore also needs a turn hook outside this file. Ceiling: printed Level unchanged; upgrade: TempLevel overlay + turn_effect_hooks End Phase clear that restores marked zones.
+
+### `LIGHTSWORN_SABRE`
+- path: `src_custom/spell_effects/lightsworn_sabre.c`
+- L60: stage unit is 500 ATK — applied +500, not printed +700. Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART (ApplyHeatedHeartAtkBonusToCardInfo) after listing LIGHTSWORN_SABRE in IsActiveDynamicEquipSpellZone.
+- L72: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add LIGHTSWORN_SABRE to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
+- L77: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path → if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and RegisterDynamicEquip again.
 
 ### `MASK_OF_THE_ACCURSED`
 - path: `src_custom/spell_effects/mask_of_the_accursed.c`
@@ -153,6 +168,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/nex.c`
 - L155: duel Extra Deck browser/SS missing (Trunk ExtraDeck_* is deck-builder only). Ceiling: spawn Lv4 Neo form by id when not in Main Deck; upgrade: Extra Deck pick + SS.
 
+### `ONE_DAY_OF_PEACE`
+- path: `src_custom/spell_effects/one_day_of_peace.c`
+- L24: neither player takes damage until end of opponent's next turn needs an LP/damage gate outside this file (no damage-immunity helper). Ceiling: both draw only; upgrade: turn_effect / ChangeLp hook → skip damage while One Day of Peace lock is active through opponent's next End Phase.
+
 ### `POISON_OF_THE_OLD_MAN`
 - path: `src_custom/spell_effects/poison_of_the_old_man.c`
 - L27: no dedicated choice UI — A = burn 800, B = gain 1200 LP. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
@@ -169,6 +188,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `POWER_FILTER`
 - path: `src_custom/spell_effects/power_filter.c`
 - L14: SS lock for monsters with ATK ≤1000 needs a CanSpecialSummon / PlaceMonster gate outside this file (no in-file summon dispatch). Ceiling: continuous face-up only; upgrade: LynJump Duel_CardCannotBeSpecialSummoned (or PlaceMonsterFromId) → if face-up POWER_FILTER on field and printed ATK ≤1000 then block.
+
+### `REPTILIANNE_SPAWN`
+- path: `src_custom/spell_effects/reptilianne_spawn.c`
+- L13: no Reptilianne Token card id in trunk — MOON_TOKEN is Lv1/0/0 stand-in. Ceiling: wrong Type/Attribute (Fairy/LIGHT vs Reptile/EARTH); upgrade: add REPTILIANNE_TOKEN card data + art, then swap this define.
 
 ### `SCAPEGOAT`
 - path: `src_custom/spell_effects/scapegoat.c`
@@ -188,10 +211,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/solar_recharge.c`
 - L79: mill helper advances deck top only (no expanded-GY push), matching charge_of_the_light_brigade. Ceiling: milled cards may not appear in GY UI.
 
+### `THE_A_FORCES`
+- path: `src_custom/spell_effects/the_a_forces.c`
+- L14: continuous +200 ATK per Warrior/Spellcaster you control on your Warriors needs a field-stat / continuous ATK overlay outside this file (no in-file hook into Duel_TryApplyDynamicZoneStats or Refresh overlays). Ceiling: face-up continuous only; upgrade: stat overlay → if face-up THE_A_FORCES then each face-up Warrior you control ATK += 200 *
+
 ### `THE_SACRED_WATERS_IN_THE_SKY`
 - path: `src_custom/spell_effects/the_sacred_waters_in_the_sky.c`
 - L252: no dedicated choice UI — A = activate Sanctuary, B = search mention. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L535: battle-destruction protection ("banish this from GY instead") needs a battle/destroy redirect hook. Ceiling: activate + LP gain only; upgrade: battle_damage / destroy-protection hook checking GY Sacred Waters.
+
+### `VIPERS_REBIRTH`
+- path: `src_custom/spell_effects/vipers_rebirth.c`
+- L221: End Phase destroy of the SS'd monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS). Ceiling: SS only; upgrade: turn_effect_hooks End Phase → destroy marked zone.
 
 ### `WETLANDS`
 - path: `src_custom/spell_effects/wetlands.c`

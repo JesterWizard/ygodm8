@@ -30,6 +30,7 @@ extern u8 CanActivateConfiscation(void);
 extern u8 CanActivateCONTACT(void);
 extern u8 CanActivateCONVERT_CONTACT(void);
 extern u8 CanActivateDARK_BURNING_ATTACK(void);
+extern u8 CanActivateDARK_BURNING_MAGIC(void);
 extern u8 CanActivateDedicationThroughLightAndDarkness(void);
 extern u8 CanActivateDelinquentDuo(void);
 extern u8 CanActivateDESTINY_DRAW(void);
@@ -38,31 +39,39 @@ extern u8 CanActivateDOUBLE_CYCLONE(void);
 extern u8 CanActivateEEmergencyCall(void);
 extern u8 CanActivateFinalCountdown(void);
 extern u8 CanActivateFutureFusion(void);
+extern u8 CanActivateGRAND_CONVERGENCE(void);
 extern u8 CanActivateGuardianTreasure(void);
+extern u8 CanActivateILLUSION_MAGIC(void);
 extern u8 CanActivateINSECT_IMITATION(void);
 extern u8 CanActivateKnightsTitle(void);
 extern u8 CanActivateLEVEL_TUNING(void);
+extern u8 CanActivateLIGHTSWORN_SABRE(void);
 extern u8 CanActivateMAGICAL_DIMENSION(void);
 extern u8 CanActivateMETAMORPHOSIS(void);
 extern u8 CanActivateMeteorOfDestruction(void);
 extern u8 CanActivateMONSTER_GATE(void);
 extern u8 CanActivateMonsterReborn(void);
 extern u8 CanActivateMORAY_OF_GREED(void);
+extern u8 CanActivateMORPHTRONIC_ACCELERATOR(void);
 extern u8 CanActivateMORPHTRONIC_CORD(void);
 extern u8 CanActivateMORPHTRONIC_RUSTY_ENGINE(void);
 extern u8 CanActivateMYSTIK_WOK(void);
 extern u8 CanActivateNEX(void);
 extern u8 CanActivatePHOTON_GENERATOR_UNIT(void);
 extern u8 CanActivatePrematureBurial(void);
+extern u8 CanActivateREPTILIANNE_POISON(void);
+extern u8 CanActivateREPTILIANNE_SPAWN(void);
 extern u8 CanActivateROYAL_TRIBUTE(void);
 extern u8 CanActivateSHARE_THE_PAIN(void);
 extern u8 CanActivateSNAKE_RAIN(void);
 extern u8 CanActivateSOLAR_RECHARGE(void);
 extern u8 CanActivateSUMMONERS_ART(void);
+extern u8 CanActivateTHAT_GRASS_LOOKS_GREENER(void);
 extern u8 CanActivateTheFluteOfSummoningDragon(void);
 extern u8 CanActivateTheForcefulSentry(void);
 extern u8 CanActivateTradeIn(void);
 extern u8 CanActivateTWISTER(void);
+extern u8 CanActivateVIPERS_REBIRTH(void);
 
 static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute__((section(".text"))) = {
   { ACE_OF_SWORD, CanActivateACE_OF_SWORD, TRUE },
@@ -79,6 +88,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { CONTACT, CanActivateCONTACT, TRUE },
   { CONVERT_CONTACT, CanActivateCONVERT_CONTACT, TRUE },
   { DARK_BURNING_ATTACK, CanActivateDARK_BURNING_ATTACK, TRUE },
+  { DARK_BURNING_MAGIC, CanActivateDARK_BURNING_MAGIC, TRUE },
   { DEDICATION_THROUGH_LIGHT_AND_DARKNESS, CanActivateDedicationThroughLightAndDarkness, TRUE },
   { DELINQUENT_DUO, CanActivateDelinquentDuo, TRUE },
   { DESTINY_DRAW, CanActivateDESTINY_DRAW, TRUE },
@@ -87,31 +97,39 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { E_EMERGENCY_CALL, CanActivateEEmergencyCall, TRUE },
   { FINAL_COUNTDOWN, CanActivateFinalCountdown, TRUE },
   { FUTURE_FUSION, CanActivateFutureFusion, TRUE },
+  { GRAND_CONVERGENCE, CanActivateGRAND_CONVERGENCE, TRUE },
   { GUARDIAN_TREASURE, CanActivateGuardianTreasure, FALSE },
+  { ILLUSION_MAGIC, CanActivateILLUSION_MAGIC, TRUE },
   { INSECT_IMITATION, CanActivateINSECT_IMITATION, TRUE },
   { KNIGHTS_TITLE, CanActivateKnightsTitle, TRUE },
   { LEVEL_TUNING, CanActivateLEVEL_TUNING, TRUE },
+  { LIGHTSWORN_SABRE, CanActivateLIGHTSWORN_SABRE, TRUE },
   { MAGICAL_DIMENSION, CanActivateMAGICAL_DIMENSION, TRUE },
   { METAMORPHOSIS, CanActivateMETAMORPHOSIS, TRUE },
   { METEOR_OF_DESTRUCTION, CanActivateMeteorOfDestruction, TRUE },
   { MONSTER_GATE, CanActivateMONSTER_GATE, TRUE },
   { MONSTER_REBORN, CanActivateMonsterReborn, TRUE },
   { MORAY_OF_GREED, CanActivateMORAY_OF_GREED, TRUE },
+  { MORPHTRONIC_ACCELERATOR, CanActivateMORPHTRONIC_ACCELERATOR, TRUE },
   { MORPHTRONIC_CORD, CanActivateMORPHTRONIC_CORD, TRUE },
   { MORPHTRONIC_RUSTY_ENGINE, CanActivateMORPHTRONIC_RUSTY_ENGINE, TRUE },
   { MYSTIK_WOK, CanActivateMYSTIK_WOK, TRUE },
   { NEX, CanActivateNEX, TRUE },
   { PHOTON_GENERATOR_UNIT, CanActivatePHOTON_GENERATOR_UNIT, TRUE },
   { PREMATURE_BURIAL, CanActivatePrematureBurial, TRUE },
+  { REPTILIANNE_POISON, CanActivateREPTILIANNE_POISON, TRUE },
+  { REPTILIANNE_SPAWN, CanActivateREPTILIANNE_SPAWN, TRUE },
   { ROYAL_TRIBUTE, CanActivateROYAL_TRIBUTE, TRUE },
   { SHARE_THE_PAIN, CanActivateSHARE_THE_PAIN, TRUE },
   { SNAKE_RAIN, CanActivateSNAKE_RAIN, TRUE },
   { SOLAR_RECHARGE, CanActivateSOLAR_RECHARGE, TRUE },
   { SUMMONERS_ART, CanActivateSUMMONERS_ART, TRUE },
+  { THAT_GRASS_LOOKS_GREENER, CanActivateTHAT_GRASS_LOOKS_GREENER, TRUE },
   { THE_FLUTE_OF_SUMMONING_DRAGON, CanActivateTheFluteOfSummoningDragon, TRUE },
   { THE_FORCEFUL_SENTRY, CanActivateTheForcefulSentry, TRUE },
   { TRADE_IN, CanActivateTradeIn, TRUE },
   { TWISTER, CanActivateTWISTER, TRUE },
+  { VIPERS_REBIRTH, CanActivateVIPERS_REBIRTH, TRUE },
 };
 
 u8 TryRejectSpellActivationGate(u16 cardId)
