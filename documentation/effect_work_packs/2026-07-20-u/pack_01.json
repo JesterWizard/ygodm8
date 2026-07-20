@@ -1,0 +1,83 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "VENOM_BURN",
+      "card_name": "Venom Burn",
+      "kind": "trap",
+      "archetype": "VENOM",
+      "path": "src_custom/trap_effects/venom_burn.c",
+      "effect_text": "Remove Venom Counters; 700 damage each. Select 1 monster with a Venom Counter(s). Remove all Venom Counters from that card, and inflict 700 damage to your opponent for each Venom Counter removed.",
+      "tags": [
+        "burn",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 700,
+      "clone_const": "DRAGON_S_RAGE",
+      "clone_path": "src_custom/trap_effects/dragon_s_rage.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "LIGHTSWORN_JUDGEMENT",
+      "card_name": "Lightsworn Judgment",
+      "kind": "trap",
+      "archetype": "LIGHTSWORN",
+      "path": "src_custom/trap_effects/lightsworn_judgement.c",
+      "effect_text": "Topdeck; mill to search JD. Place this card on top of the Deck. If this card is sent from the Deck to the Graveyard by a Lightsworn monster's effect: You can add 1 Judgment Dragon from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHT_SPIRAL",
+      "clone_path": "src_custom/trap_effects/light_spiral.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "GLADIATOR_BEASTS_MEDUSA_SHIELD",
+      "card_name": "Gladiator Beast's Medusa Shield",
+      "kind": "trap",
+      "archetype": "GLADIATOR_BEASTS",
+      "path": "src_custom/trap_effects/gladiator_beasts_medusa_shield.c",
+      "effect_text": "Protect GB; negate; Set Trap from Deck. Target 1 Gladiator Beast you control; it cannot be destroyed by card effects. Once per turn: negate 1 opp monster effect. If sent to GY this turn: Set 1 Gladiator Beast Trap from Deck.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHT_SPIRAL",
+      "clone_path": "src_custom/trap_effects/light_spiral.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "AEGIS_OF_THE_OCEAN_DRAGON_LORD",
+      "card_name": "Aegis of the Ocean Dragon Lord",
+      "kind": "trap",
+      "archetype": "AEGIS",
+      "path": "src_custom/trap_effects/aegis_of_the_ocean_dragon_lord.c",
+      "effect_text": "Until the End Phase, face-up Level 3 or lower WATER monsters you control cannot be destroyed by battle or by card effect Until the End Phase, face-up Level 3 or lower WATER monsters you control cannot be destroyed by battle or by card effects.",
+      "tags": [
+        "faceup"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LEVEL_LIMIT_AREA_A",
+      "clone_path": "src_custom/trap_effects/level_limit_area_a.c",
+      "clone_score": 1.0
+    }
+  ]
+}

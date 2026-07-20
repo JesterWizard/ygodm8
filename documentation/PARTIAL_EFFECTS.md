@@ -8,20 +8,20 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 16:30 UTC  
-**Remaining partials:** `266`
+**Last updated:** 2026-07-20 16:45 UTC  
+**Remaining partials:** `278`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 185 |
-| `trap` | 26 |
+| `trap` | 38 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **266** |
+| **total** | **278** |
 
 ## spell (185)
 
@@ -922,7 +922,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/wetlands.c`
 - L87: +1200 ATK for Aqua/WATER/Level≤2 needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up WETLANDS and TYPE_AQUA + ATTRIBUTE_WATER + level≤2 then ATK += 1200.
 
-## trap (26)
+## trap (38)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -933,13 +933,37 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/ace_of_wand.c`
 - L33: needs destroy-by-effect trigger wire + trapEffect ID.
 
+### `AEGIS_OF_THE_OCEAN_DRAGON_LORD`
+- path: `src_custom/trap_effects/aegis_of_the_ocean_dragon_lord.c`
+- L37: battle/effect destroy protect until EP + trapEffect wire. Ceiling: marks unk4 on matching monsters; upgrade: destroy gates skip marked until End Phase clear + trap dispatcher.
+
 ### `ANGELS_TEAR`
 - path: `src_custom/trap_effects/angels_tear.c`
 - L342: need 4 banish targets plus 1 summon target.
 
+### `ANTI_SPELL_FRAGRANCE`
+- path: `src_custom/trap_effects/anti_spell_fragrance.c`
+- L11: both players must Set Spells before activate (next turn) needs spell-activation gate. Ceiling: face-up continuous only; upgrade: spell activate validator requires prior Set + turn delay. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
+- L22: TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `BACKFIRE`
+- path: `src_custom/trap_effects/backfire.c`
+- L11: FIRE monster destroyed → 500 to opp needs destroy hook. Ceiling: face-up continuous only; upgrade: OnDestroy FIRE face-up owned → Duel_ChangeLp(opp, -500). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
+- L22: TryActivateBACKFIREOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
 ### `BOTTOMLESS_SHIFTING_SAND`
 - path: `src_custom/trap_effects/bottomless_shifting_sand.c`
 - L10: GBA hand cap is 5; TCG rule uses 4 — scale self-destruct threshold down
+
+### `DES_COUNTERBLOW`
+- path: `src_custom/trap_effects/des_counterblow.c`
+- L11: destroy monster that inflicts direct battle damage needs battle LP hook. Ceiling: face-up continuous only; upgrade: after direct battle damage → Duel_DestroyZone(attacker). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
+- L22: TryActivateDES_COUNTERBLOWOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `DOPPELGANGER`
+- path: `src_custom/trap_effects/doppelganger.c`
+- L11: when you take monster-effect damage → mirror to opp needs LP/effect-damage hook. Ceiling: face-up continuous only; upgrade: after effect damage from opp monster → Duel_ChangeLp(opp, -same). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
+- L22: TryActivateDOPPELGANGEROnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `DRAGON_S_RAGE`
 - path: `src_custom/trap_effects/dragon_s_rage.c`
@@ -962,6 +986,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/gladiator_beast_war_chariot.c`
 - L32: negate Effect Monster activation + destroy needs negation hook. Ceiling: destroys origin monster if present; upgrade: full negate.
 
+### `GLADIATOR_BEASTS_MEDUSA_SHIELD`
+- path: `src_custom/trap_effects/gladiator_beasts_medusa_shield.c`
+- L46: cannot be destroyed by card effects / OPT negate opp monster / if sent GY this turn Set GB Trap from Deck need destroy/negate/GY hooks. Ceiling: continuous face-up + marks only.
+- L55: needs trapEffect ID + dispatcher wire + PickZone.
+
 ### `GLADIATOR_BEASTS_VALOR`
 - path: `src_custom/trap_effects/gladiator_beasts_valor.c`
 - L32: opp can only attack GB monsters needs attack-target gate. Ceiling: face-up continuous only.
@@ -981,6 +1010,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `LIGHT_SPIRAL`
 - path: `src_custom/trap_effects/light_spiral.c`
 - L11: Lightsworn mill → banish opp top Deck needs mill hook. Ceiling: face-up continuous only.
+
+### `LIGHTSWORN_BARRIER`
+- path: `src_custom/trap_effects/lightsworn_barrier.c`
+- L13: LS targeted for attack → mill top 2 → negate attack needs attack- declaration hook. Ceiling: face-up continuous only; upgrade: on attack target if Duel_CardNameContains(defender, Lightsworn) → mill 2 + NegateAttack.
+
+### `LIGHTSWORN_JUDGEMENT`
+- path: `src_custom/trap_effects/lightsworn_judgement.c`
+- L45: if sent Deck→GY by Lightsworn effect → add Judgment Dragon needs mill/GY hook. Ceiling: places on Deck top only; upgrade: on LS mill of this card → search JUDGMENT_DRAGON to hand.
 
 ### `MAGIC_CYLINDER`
 - path: `src_custom/trap_effects/magic_cylinder.c`
@@ -1008,9 +1045,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L43: Arcana Force coin result stored in unk4/effect flags — flip bit0. Ceiling: toggles unk4 bit0; upgrade: real coin-result invert hook.
 - L52: needs trapEffect ID + dispatcher wire + PickZone.
 
+### `RISE_OF_THE_SNAKE_DEITY`
+- path: `src_custom/trap_effects/rise_of_the_snake_deity.c`
+- L16: printed trigger is Vennominon destroyed except by battle. Ceiling: when Effect runs, SS Vennominaga from hand/Deck; upgrade: destroy hook gates activation to non-battle Vennominon leave.
+
 ### `SERPENT_SUPPRESSION`
 - path: `src_custom/trap_effects/serpent_suppression.c`
 - L14: opp 0-ATK Attack Position cannot be destroyed by battle with Reptilianne needs battle-destroy gate. Ceiling: face-up continuous only.
+
+### `SNAKE_DEITYS_COMMAND`
+- path: `src_custom/trap_effects/snake_deitys_command.c`
+- L71: full Spell negate (prevent resolve) needs negation gate like Magic Jammer. Ceiling: destroys origin Spell zone; upgrade: trapEffect counter + cancel spell resolve.
 
 ### `SNAKE_WHISTLE`
 - path: `src_custom/trap_effects/snake_whistle.c`
@@ -1024,6 +1069,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/thumbs_down.c`
 - L31: destroy by battle/effect → controller takes 500 each needs destroy hook. Ceiling: face-up continuous only.
 
+### `TOUR_OF_DOOM`
+- path: `src_custom/trap_effects/tour_of_doom.c`
+- L11: opp Standby coin → Heads: opp cannot NS/Flip until EP; Tails: you cannot next turn. Ceiling: face-up continuous only; upgrade: Standby turn_effect → RandRange coin + summoningBlocked flags. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
+- L22: TryActivateTOUR_OF_DOOMOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
 ### `TROJAN_GLADIATOR_BEAST`
 - path: `src_custom/trap_effects/trojan_gladiator_beast.c`
 - L50: summoned to controller's field not opponent — need cross-field SS. Ceiling: SS to own field then draw; upgrade: SS to ACTIVE monster row.
@@ -1032,6 +1082,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `VANQUISHING_LIGHT`
 - path: `src_custom/trap_effects/vanquishing_light.c`
 - L38: negate Summon + destroy summoned needs summon-negation hook. Ceiling: tributes a Lightsworn only; upgrade: cancel pending summon + destroy.
+
+### `VENOM_BURN`
+- path: `src_custom/trap_effects/venom_burn.c`
+- L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
 ## activated (24)
 

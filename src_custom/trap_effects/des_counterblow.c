@@ -3,11 +3,21 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static void ActivateDES_COUNTERBLOWZone(struct DuelCard *zone)
+{
+  if (Duel_ActivateContinuousTrapPreamble(zone, DES_COUNTERBLOW) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-/* TODO: implement trap effect for DES_COUNTERBLOW */
+  /* ponytail: destroy monster that inflicts direct battle damage needs battle LP hook.
+   * Ceiling: face-up continuous only; upgrade: after direct battle damage →
+   * Duel_DestroyZone(attacker).
+   * Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file. */
+}
+
+void TryActivateDES_COUNTERBLOWOnOpponentTurnStart(void)
+{
+  Duel_TryActivateBackrowTrapOnTurnStart(DES_COUNTERBLOW, ActivateDES_COUNTERBLOWZone);
+}
+
+/* ponytail: TryActivateDES_COUNTERBLOWOnOpponentTurnStart must be called from
+ * turn_effect_hooks. Ceiling: body ready, not wired. */

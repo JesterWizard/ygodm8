@@ -1,0 +1,84 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "DES_COUNTERBLOW",
+      "card_name": "Des Counterblow",
+      "kind": "trap",
+      "archetype": "DES",
+      "path": "src_custom/trap_effects/des_counterblow.c",
+      "effect_text": "Destroy any monster that inflicts Battle Damage to a player's Life Points by attacking directly. Destroy any monster that inflicts Battle Damage to a player's Life Points by attacking directly.",
+      "tags": [
+        "destroy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BOTTOMLESS_SHIFTING_SAND",
+      "clone_path": "src_custom/trap_effects/bottomless_shifting_sand.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "SNAKE_DEITYS_COMMAND",
+      "card_name": "Snake Deity's Command",
+      "kind": "trap",
+      "archetype": "SNAKE",
+      "path": "src_custom/trap_effects/snake_deitys_command.c",
+      "effect_text": "Reveal Venom in hand; negate opp Spell activation and destroy it. Activate by showing your opponent 1 Venom monster in your hand. Negate the activation and effect of an opponent's Spell Card, and destroy it.",
+      "tags": [
+        "destroy",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SNAKE_WHISTLE",
+      "clone_path": "src_custom/trap_effects/snake_whistle.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "BACKFIRE",
+      "card_name": "Backfire",
+      "kind": "trap",
+      "archetype": "BACKFIRE",
+      "path": "src_custom/trap_effects/backfire.c",
+      "effect_text": "If a face-up FIRE monster(s) you control is destroyed and sent to the GY: Inflict 500 damage to your opponent. If a face-up FIRE monster(s) you control is destroyed and sent to the GY: Inflict 500 damage to your opponent.",
+      "tags": [
+        "burn",
+        "faceup",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 500,
+      "clone_const": "COFFIN_SELLER",
+      "clone_path": "src_custom/trap_effects/coffin_seller.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "RISE_OF_THE_SNAKE_DEITY",
+      "card_name": "Rise of the Snake Deity",
+      "kind": "trap",
+      "archetype": "RISE",
+      "path": "src_custom/trap_effects/rise_of_the_snake_deity.c",
+      "effect_text": "When Vennominon destroyed: SS Vennominaga from hand/Deck. When a face-up Vennominon the King of Poisonous Snakes you control is destroyed, except by battle: Special Summon 1 Vennominaga the Deity of Poisonous Snakes from your hand or Deck.",
+      "tags": [
+        "deck",
+        "faceup",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LEVEL_LIMIT_AREA_A",
+      "clone_path": "src_custom/trap_effects/level_limit_area_a.c",
+      "clone_score": 0.25
+    }
+  ]
+}

@@ -3,11 +3,46 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
 
-/* TODO: implement trap effect for LIGHTSWORN_JUDGEMENT */
+static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
+{
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static void PlaceCardOnDeckTop(u8 turnDuelist, u16 cardId)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+
+  if (cardId == CARD_NONE)
+    return;
+
+  if (gDuelDecks[fixedDuelist].cardsDrawn > 0)
+    gDuelDecks[fixedDuelist].cardsDrawn--;
+
+  gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
+}
+
+APPEND_TEXT void EffectLIGHTSWORN_JUDGEMENT(void)
+{
+  struct DuelCard *trapZone =
+      gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
+
+  Duel_ShowTrapResponseText(LIGHTSWORN_JUDGEMENT, gTrapEffectData.originCardId);
+
+  /* Activate: place this card on top of the Deck. */
+  if (trapZone != NULL && trapZone->id == LIGHTSWORN_JUDGEMENT) {
+    PlaceCardOnDeckTop(INACTIVE_DUELIST, LIGHTSWORN_JUDGEMENT);
+    ClearZone(trapZone);
+  }
+
+  UpdateDuelGfxExceptField();
+
+  /* ponytail: if sent Deck→GY by Lightsworn effect → add Judgment Dragon needs
+   * mill/GY hook. Ceiling: places on Deck top only; upgrade: on LS mill of this
+   * card → search JUDGMENT_DRAGON to hand. */
+}

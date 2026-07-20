@@ -3,11 +3,21 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static void ActivateANTI_SPELL_FRAGRANCEZone(struct DuelCard *zone)
+{
+  if (Duel_ActivateContinuousTrapPreamble(zone, ANTI_SPELL_FRAGRANCE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-/* TODO: implement trap effect for ANTI_SPELL_FRAGRANCE */
+  /* ponytail: both players must Set Spells before activate (next turn) needs spell-activation gate.
+   * Ceiling: face-up continuous only; upgrade: spell activate validator requires
+   * prior Set + turn delay.
+   * Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file. */
+}
+
+void TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart(void)
+{
+  Duel_TryActivateBackrowTrapOnTurnStart(ANTI_SPELL_FRAGRANCE, ActivateANTI_SPELL_FRAGRANCEZone);
+}
+
+/* ponytail: TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart must be called from
+ * turn_effect_hooks. Ceiling: body ready, not wired. */
