@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 21:22 UTC  
-**Remaining partials:** `837`
+**Last updated:** 2026-07-20 21:26 UTC  
+**Remaining partials:** `849`
 
 ## Counts by kind
 
@@ -18,10 +18,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 | `spell` | 185 |
 | `trap` | 115 |
 | `activated` | 452 |
-| `permanent` | 81 |
+| `permanent` | 93 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **837** |
+| **total** | **849** |
 
 ## spell (185)
 
@@ -3313,7 +3313,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (81)
+## permanent (93)
 
 ### `AMAZONESS_TIGER`
 - path: `src_custom/permanent_effects/amazoness_tiger.c`
@@ -3403,13 +3403,34 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/destiny_hero_dogma.c`
 - L77: true trigger is opp next Standby after 3-tribute SS; on-summon halve LP once.
 
+### `DESTINY_HERO_DOUBLE_DUDE`
+- path: `src_custom/permanent_effects/destiny_hero_double_dude.c`
+- L8: double attack + destroyed Standby 2 Tokens need battle/turn hooks.
+
+### `DESTINY_HERO_DRAWHAND`
+- path: `src_custom/permanent_effects/destiny_hero_drawhand.c`
+- L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
+- L98: HERO-effect SS gate not checked; on-summon mutual draw stand-in.
+
 ### `DESTINY_HERO_DREAD_SERVANT`
 - path: `src_custom/permanent_effects/destiny_hero_dread_servant.c`
 - L8: Clock Tower counters + battle-destroy S/T need NS/battle hooks.
 
+### `DRAGON_SPIRIT_OF_WHITE`
+- path: `src_custom/permanent_effects/dragon_spirit_of_white.c`
+- L98: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks.
+
 ### `EL_SHADDOLL_ANOYATYLLIS`
 - path: `src_custom/permanent_effects/el_shaddoll_anoyatyllis.c`
 - L126: SS-from-hand/GY via S/T lock needs continuous summon gate.
+
+### `EL_SHADDOLL_APKALLONE`
+- path: `src_custom/permanent_effects/el_shaddoll_apkallone.c`
+- L258: battle indestructible needs battle hook.
+
+### `EL_SHADDOLL_CONSTRUCT`
+- path: `src_custom/permanent_effects/el_shaddoll_construct.c`
+- L194: battle vs SS monster destroy needs Damage Step hook.
 
 ### `EL_SHADDOLL_WINDA`
 - path: `src_custom/permanent_effects/el_shaddoll_winda.c`
@@ -3417,7 +3438,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 
 ### `ELEMENTAL_HERO_AIR_NEOS`
 - path: `src_custom/permanent_effects/elemental_hero_air_neos.c`
-- L43: End Phase shuffle to Extra Deck needs turn_effect hook — ApplyDynamicZoneStats only.
+- L44: End Phase shuffle to Extra Deck needs turn_effect hook — ApplyDynamicZoneStats only.
 
 ### `ELEMENTAL_HERO_CAPTAIN_GOLD`
 - path: `src_custom/permanent_effects/elemental_hero_captain_gold.c`
@@ -3447,11 +3468,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 
 ### `EVIL_DRAGON_ANANTA`
 - path: `src_custom/permanent_effects/evil_dragon_ananta.c`
-- L51: End Phase destroy 1 card needs turn_effect hook — ApplyDynamicZoneStats only.
+- L52: End Phase destroy 1 card needs turn_effect hook — ApplyDynamicZoneStats only.
 
 ### `EVIL_HERO_INFERNAL_PRODIGY`
 - path: `src_custom/permanent_effects/evil_hero_infernal_prodigy.c`
 - L8: empty-field hand SS is FromHand activated; End-Phase tribute draw needs turn hook.
+
+### `EVIL_HERO_INFERNAL_SNIPER`
+- path: `src_custom/permanent_effects/evil_hero_infernal_sniper.c`
+- L8: spell immunity + Standby burn 1000 (face-up DEF) need continuous/phase hooks.
 
 ### `EVIL_HERO_MALICIOUS_EDGE`
 - path: `src_custom/permanent_effects/evil_hero_malicious_edge.c`
@@ -3460,6 +3485,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `EVIL_HERO_MALICIOUS_FIEND`
 - path: `src_custom/permanent_effects/evil_hero_malicious_fiend.c`
 - L8: forced attack + face-up Attack Position need battle redirect hooks.
+
+### `EVIL_HERO_WILD_CYCLONE`
+- path: `src_custom/permanent_effects/evil_hero_wild_cyclone.c`
+- L8: attack S/T lock + battle-damage destroy face-down S/T need battle/chain hooks.
 
 ### `EXECUTOR_MAKYURA`
 - path: `src_custom/permanent_effects/executor_makyura.c`
@@ -3497,9 +3526,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/gladiator_beast_retiari.c`
 - L110: GB tag-out after battle needs battle-end hook.
 
+### `GLADIATOR_BEAST_SAMNITE`
+- path: `src_custom/permanent_effects/gladiator_beast_samnite.c`
+- L8: battle search + GB tag-out need battle-end/destroy hooks.
+
 ### `GLADIATOR_BEAST_SECUTOR`
 - path: `src_custom/permanent_effects/gladiator_beast_secutor.c`
 - L8: battle-end tag SS 2 GB from Deck needs battle-end hook.
+
+### `GLADIATOR_BEAST_SPARTACUS`
+- path: `src_custom/permanent_effects/gladiator_beast_spartacus.c`
+- L95: Hoplomus-only SS + GB tag-out need summon/battle-end hooks.
 
 ### `GLADIATOR_BEAST_TORAX`
 - path: `src_custom/permanent_effects/gladiator_beast_torax.c`
@@ -3520,6 +3557,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GREAT_MAJU_GARZETT`
 - path: `src_custom/permanent_effects/great_maju_garzett.c`
 - L48: ram_map byte packing can leave u16 fields at odd EWRAM addresses;
+
+### `GRINDER_GOLEM`
+- path: `src_custom/permanent_effects/grinder_golem.c`
+- L8: hand SS to opp field + Grinder Tokens + NS/Set lock need summon/token hooks.
 
 ### `HARPIES_PET_PHANTASMAL_DRAGON`
 - path: `src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c`
@@ -3610,6 +3651,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L96: custom targeted spells store fixed-row origins in row2.
 - L257: GY permanent scan misses some opponent-turn effect destroys (Core pattern).
 
+### `THE_DARK_MAGICIANS`
+- path: `src_custom/permanent_effects/the_dark_magicians.c`
+- L154: OPT draw on S/T activation needs chain/OPT hooks.
+- L177: Deck-first SS order; hand/GY picker not wired.
+
 ### `THE_DESPAIR_URANUS`
 - path: `src_custom/permanent_effects/the_despair_uranus.c`
 - L19: GetTypeGroup → SetCardInfo clobbers gCardInfo.atk/def mid-pipeline.
@@ -3632,9 +3678,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/the_wicked_dreadroot.c`
 - L30: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.atk/def that the stat pipeline already computed for zone.
 
+### `THUNDER_DRAGON_COLOSSUS`
+- path: `src_custom/permanent_effects/thunder_dragon_colossus.c`
+- L8: opp search lock + battle/effect destroy→GY-banish need continuous/battle hooks.
+
 ### `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES`
 - path: `src_custom/permanent_effects/vennominon_the_king_of_poisonous_snakes.c`
-- L53: battle destroy → banish Reptile + SS self needs battle/GY hook.
+- L54: battle destroy → banish Reptile + SS self needs battle/GY hook.
 
 ### `WULF_LIGHTSWORN_BEAST`
 - path: `src_custom/permanent_effects/wulf_lightsworn_beast.c`

@@ -1,0 +1,90 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "EVIL_HERO_INFERNAL_SNIPER",
+      "card_name": "Evil HERO Infernal Sniper",
+      "kind": "permanent",
+      "archetype": "EVIL_HERO_INFERNAL",
+      "path": "src_custom/permanent_effects/evil_hero_infernal_sniper.c",
+      "effect_text": "Dark Fusion. Spell immune. Standby: burn 1000 if face-up Defense. Elemental HERO Clayman + Elemental HERO Burstinatrix Must be Special Summoned with Dark Fusion and cannot be Special Summoned by other ways. This card cannot be destroyed by Spell Cards. During each of your Standby Phases: Inflict 1000 damage to your opponent. This card must be in face-up Defense Position to activate and to resolve this effect.",
+      "tags": [
+        "burn",
+        "faceup",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 1000,
+      "clone_const": "EVIL_HERO_INFERNAL_PRODIGY",
+      "clone_path": "src_custom/permanent_effects/evil_hero_infernal_prodigy.c",
+      "clone_score": 0.55
+    },
+    {
+      "card_const": "EVIL_HERO_WILD_CYCLONE",
+      "card_name": "Evil HERO Wild Cyclone",
+      "kind": "permanent",
+      "archetype": "EVIL_HERO",
+      "path": "src_custom/permanent_effects/evil_hero_wild_cyclone.c",
+      "effect_text": "On attack: lock S/T. On battle damage: destroy face-down S/T. Elemental HERO Avian + Elemental HERO Wildheart Must be Special Summoned with Dark Fusion and cannot be Special Summoned by other ways. If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step. When this card inflicts Battle Damage to your opponent: Destroy all face-down Spell and Trap Cards your opponent controls.",
+      "tags": [
+        "burn",
+        "destroy",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CAIUS_THE_SHADOW_MONARCH",
+      "clone_path": "src_custom/permanent_effects/caius_the_shadow_monarch.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_SAMNITE",
+      "card_name": "Gladiator Beast Samnite",
+      "kind": "permanent",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/permanent_effects/gladiator_beast_samnite.c",
+      "effect_text": "Search on battle kill; tag out. If this card was Special Summoned by the effect of a Gladiator Beast monster, when this card destroys an opponent's monster by battle and sends it to the Graveyard, you can add 1 Gladiator Beast card from your Deck to your hand. At the end of the Battle Phase, if this card attacked or was attacked, you can return it to the Deck to Special Summon 1 Gladiator Beast monster from your Deck, except Gladiator Beast Samnite.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "search",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GLADIATOR_BEAST_ALEXANDER",
+      "clone_path": "src_custom/permanent_effects/gladiator_beast_alexander.c",
+      "clone_score": 0.72
+    },
+    {
+      "card_const": "EL_SHADDOLL_APKALLONE",
+      "card_name": "El Shaddoll Apkallone",
+      "kind": "permanent",
+      "archetype": "EL_SHADDOLL",
+      "path": "src_custom/permanent_effects/el_shaddoll_apkallone.c",
+      "effect_text": "On SS: negate face-up. GY: add Shaddoll, discard 1. 2 Shaddoll monsters with different Attributes Must first be Fusion Summoned. Cannot be destroyed by battle. You can only use each of the following effects of El Shaddoll Apkallone once per turn. If this card is Special Summoned: You can target 1 face-up card on the field; negate its effects. If this card is sent to the GY: You can add 1 Shaddoll card from your Deck or GY to your hand, then discard 1 card.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EL_SHADDOLL_WINDA",
+      "clone_path": "src_custom/permanent_effects/el_shaddoll_winda.c",
+      "clone_score": 0.8
+    }
+  ]
+}

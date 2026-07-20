@@ -1,0 +1,92 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GRINDER_GOLEM",
+      "card_name": "Grinder Golem",
+      "kind": "permanent",
+      "archetype": "GRINDER",
+      "path": "src_custom/permanent_effects/grinder_golem.c",
+      "effect_text": "SS to opp field; make 2 Tokens on yours. No NS/Set that turn. Cannot be Normal Summoned or Set. Must first be Special Summoned (from your hand) to your opponent's side of the field by Special Summoning 2 Grinder Tokens (Fiend-Type/DARK/Level 1/ATK 0/DEF 0) in face-up Attack Position on your side of the field. If you Special Summon this monster, you cannot Normal Summon or Set a monster during the same turn.",
+      "tags": [
+        "faceup",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_MAGICIAN_OF_CHAOS",
+      "clone_path": "src_custom/permanent_effects/dark_magician_of_chaos.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "EL_SHADDOLL_CONSTRUCT",
+      "card_name": "El Shaddoll Construct",
+      "kind": "permanent",
+      "archetype": "EL_SHADDOLL",
+      "path": "src_custom/permanent_effects/el_shaddoll_construct.c",
+      "effect_text": "On SS: mill Shaddoll. Battle vs SS: destroy. GY: add S/T. 1 Shaddoll monster + 1 LIGHT monster Must first be Fusion Summoned. If this card is Special Summoned: You can send 1 Shaddoll card from your Deck to the GY. At the start of the Damage Step, if this card battles a Special Summoned monster: Destroy that monster. If this card is sent to the GY: You can target 1 Shaddoll Spell/Trap in your GY; add it to your hand.",
+      "tags": [
+        "deck",
+        "destroy",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EL_SHADDOLL_WINDA",
+      "clone_path": "src_custom/permanent_effects/el_shaddoll_winda.c",
+      "clone_score": 0.99
+    },
+    {
+      "card_const": "DESTINY_HERO_DRAWHAND",
+      "card_name": "Destiny HERO - Drawhand",
+      "kind": "permanent",
+      "archetype": "DESTINY_HERO",
+      "path": "src_custom/permanent_effects/destiny_hero_drawhand.c",
+      "effect_text": "If this card is Special Summoned by the effect of a HERO monster: You can make each player draw 1 card. During the nex If this card is Special Summoned by the effect of a HERO monster: You can make each player draw 1 card. During the next Standby Phase after this card was sent to the GY: You can Special Summon this card from your GY, but banish it when it leaves the field. You can only use each effect of Destiny HERO - Drawhand once per turn.",
+      "tags": [
+        "draw",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_ESCURIDAO",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_escuridao.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "THUNDER_DRAGON_COLOSSUS",
+      "card_name": "Thunder Dragon Colossus",
+      "kind": "permanent",
+      "archetype": "THUNDER_DRAGON",
+      "path": "src_custom/permanent_effects/thunder_dragon_colossus.c",
+      "effect_text": "Thunder Dragon + 1 Thunder monster Must be either Fusion Summoned, or Special Summoned during the turn a Thunder monster's effect was activated in the hand, by Tributing 1 Thunder Effect non-Fusion Monster (in which case you do not use Polymerization). Cards cannot be added from the Main Deck to your opponent's hand except by drawing them. If this card would be destroyed by battle or card effect, you can banish 1 Thunder monster from your GY instead.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HORUS_THE_BLACK_FLAME_DRAGON_LV4",
+      "clone_path": "src_custom/permanent_effects/horus_the_black_flame_dragon_lv4.c",
+      "clone_score": 0.62
+    }
+  ]
+}
