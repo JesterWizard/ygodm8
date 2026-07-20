@@ -1,0 +1,83 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "AROMAGE_ROSEMARY",
+      "card_name": "Aromage Rosemary",
+      "kind": "activated",
+      "archetype": "AROMAGE",
+      "path": "src_custom/activated_effects/aromage_rosemary.c",
+      "effect_text": "If LP higher: Plant attacks lock monster effects. Once/turn if gain LP: change position. While your LP are higher than your opponent's, if a Plant monster you control attacks, your opponent cannot activate monster effects until the end of the Damage Step. Once per turn, if you gain LP: Target 1 face-up monster on the field; change its battle position.",
+      "tags": [
+        "faceup",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COPYCAT",
+      "clone_path": "src_custom/activated_effects/copycat.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "AROMAGE_BERGAMOT",
+      "card_name": "Aromage Bergamot",
+      "kind": "activated",
+      "archetype": "AROMAGE",
+      "path": "src_custom/activated_effects/aromage_bergamot.c",
+      "effect_text": "If LP higher: Plants pierce. Once/turn if gain LP: +1000 ATK/DEF until opp. turn end. While your LP is higher than your opponent's, if a Plant-Type monster you control attacks a Defense Position monster, inflict piercing battle damage to your opponent. Once per turn, if you gain LP: This card gains 1000 ATK and DEF until the end of your opponent's turn.",
+      "tags": [
+        "burn",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AROMAGE_CANANGA",
+      "clone_path": "src_custom/activated_effects/aromage_cananga.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "LEVEL_EATER",
+      "card_name": "Level Eater",
+      "kind": "activated",
+      "archetype": "LEVEL",
+      "path": "src_custom/activated_effects/level_eater.c",
+      "effect_text": "If this card is in your Graveyard: You can target 1 Level 5 or higher monster you control; reduce its Level by 1, and if If this card is in your Graveyard: You can target 1 Level 5 or higher monster you control; reduce its Level by 1, and if you do, Special Summon this card. This face-up card on the field cannot be Tributed, except for a Tribute Summon.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GAIA",
+      "clone_path": "src_custom/activated_effects/elemental_hero_gaia.c",
+      "clone_score": 0.57
+    },
+    {
+      "card_const": "ROAD_SYNCHRON",
+      "card_name": "Road Synchron",
+      "kind": "activated",
+      "archetype": "ROAD",
+      "path": "src_custom/activated_effects/road_synchron.c",
+      "effect_text": "When using this card as Synchro Material for the Synchro Summon of a monster other than Road Warrior, reduce this card When using this card as Synchro Material for the Synchro Summon of a monster other than Road Warrior, reduce this card's Level by 2. If this card attacks, at the end of the Damage Step: Increase its Level by 1 until the end of this turn.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AROMAGE_CANANGA",
+      "clone_path": "src_custom/activated_effects/aromage_cananga.c",
+      "clone_score": 0.5
+    }
+  ]
+}

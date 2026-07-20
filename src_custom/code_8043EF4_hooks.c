@@ -247,6 +247,8 @@ u8 TrySpecialSummonUriaLordOfSearingFlamesFromHand(u8);
 u8 TrySpecialSummonRavielLordOfPhantasmsFromHand(u8);
 u8 TrySpecialSummonTurboBoosterFromHand(u8);
 u8 TrySpecialSummonGreenBaboonFromHand(u8);
+u8 TrySpecialSummonBeastMachineKingBarbarosUrFromHand(u8);
+u8 TryActivateEvilHeroAdustedGoldFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -469,6 +471,11 @@ void sub_80441D0__Replacement(void)
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
+      } else if (handCardId == EVIL_HERO_ADUSTED_GOLD
+          && TryActivateEvilHeroAdustedGoldFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
       } else if (handCardId == ANCIENT_GEAR
           && TrySpecialSummonAncientGearFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
@@ -521,6 +528,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == GREEN_BABOON_DEFENDER_OF_THE_FOREST
           && TrySpecialSummonGreenBaboonFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == BEAST_MACHINE_KING_BARBAROS_UR
+          && TrySpecialSummonBeastMachineKingBarbarosUrFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

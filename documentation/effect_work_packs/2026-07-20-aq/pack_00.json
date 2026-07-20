@@ -1,0 +1,90 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GLADIATOR_BEAST_MURMILLO",
+      "card_name": "Gladiator Beast Murmillo",
+      "kind": "activated",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/activated_effects/gladiator_beast_murmillo.c",
+      "effect_text": "Destroy monster; tag out after. When this card is Special Summoned by the effect of a Gladiator Beast monster: Target 1 face-up monster; destroy that target. At the end of the Battle Phase, if this card attacked or was attacked: You can shuffle it into the Deck; Special Summon 1 Gladiator Beast monster from your Deck, except Gladiator Beast Murmillo.",
+      "tags": [
+        "deck",
+        "destroy",
+        "faceup",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GAIA",
+      "clone_path": "src_custom/activated_effects/elemental_hero_gaia.c",
+      "clone_score": 0.57
+    },
+    {
+      "card_const": "SKILLED_WHITE_MAGICIAN",
+      "card_name": "Skilled White Magician",
+      "kind": "activated",
+      "archetype": "SKILLED",
+      "path": "src_custom/activated_effects/skilled_white_magician.c",
+      "effect_text": "Each time a Spell Card is activated, place 1 Spell Counter on this card when that Spell Card resolves (max. 3). You can  Each time a Spell Card is activated, place 1 Spell Counter on this card when that Spell Card resolves (max. 3). You can Tribute this card with 3 Spell Counters on it; Special Summon 1 Buster Blader from your hand, Deck, or Graveyard.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_FORTRESS_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_fortress_dragon.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "BEAST_MACHINE_KING_BARBAROS_UR",
+      "card_name": "Beast Machine King Barbaros \u00dcr",
+      "kind": "activated",
+      "archetype": "BEAST",
+      "path": "src_custom/activated_effects/beast_machine_king_barbaros_ur.c",
+      "effect_text": "You can Special Summon this card (from your hand) by banishing 1 Machine-Type monster and 1 Beast-Warrior-Type monster f You can Special Summon this card (from your hand) by banishing 1 Machine-Type monster and 1 Beast-Warrior-Type monster from your hand, field, and/or Graveyard. If this card attacks or is attacked, your opponent takes no battle damage.",
+      "tags": [
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CRIMSON_BLADER",
+      "clone_path": "src_custom/activated_effects/crimson_blader.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "EVIL_HERO_ADUSTED_GOLD",
+      "card_name": "Evil HERO Adusted Gold",
+      "kind": "activated",
+      "archetype": "EVIL_HERO",
+      "path": "src_custom/activated_effects/evil_hero_adusted_gold.c",
+      "effect_text": "Discard: search Dark Fusion or related. Can't attack without a Fusion. You can discard this card; add 1 Dark Fusion, or 1 card that specifically lists Dark Fusion in its text, from your Deck to your hand, except Evil HERO Adusted Gold. You can only use this effect of Evil HERO Adusted Gold once per turn. Cannot attack unless you control a Fusion Monster.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EVIL_HERO_LIGHTNING_GOLEM",
+      "clone_path": "src_custom/activated_effects/evil_hero_lightning_golem.c",
+      "clone_score": 0.52
+    }
+  ]
+}
