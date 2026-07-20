@@ -1,0 +1,89 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ATLANTEAN_HEAVY_INFANTRY",
+      "card_name": "Atlantean Heavy Infantry",
+      "kind": "activated",
+      "archetype": "ATLANTEAN",
+      "path": "src_custom/activated_effects/atlantean_heavy_infantry.c",
+      "effect_text": "During your Main Phase, you can Normal Summon 1 Level 4 or lower Sea Serpent-Type monster in addition to your Normal Sum During your Main Phase, you can Normal Summon 1 Level 4 or lower Sea Serpent-Type monster in addition to your Normal Summon/Set. (You can only gain this effect once per turn.) When this card is sent to the Graveyard to activate a WATER monster's effect: Target 1 face-up card your opponent controls; destroy that target.",
+      "tags": [
+        "destroy",
+        "faceup",
+        "gy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ATLANTEAN_ATTACK_SQUAD",
+      "clone_path": "src_custom/activated_effects/atlantean_attack_squad.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "AZURE_EYES_SILVER_DRAGON",
+      "card_name": "Azure-Eyes Silver Dragon",
+      "kind": "activated",
+      "archetype": "AZURE",
+      "path": "src_custom/activated_effects/azure_eyes_silver_dragon.c",
+      "effect_text": "1 Tuner + 1+ non-Tuner Normal Monsters. If Special Summoned: until end of next turn, Dragon monsters you 1 Tuner + 1+ non-Tuner Normal Monsters If this card is Special Summoned: Until the end of the next turn, neither player can target Dragon monsters you currently control with card effects, also they cannot be destroyed by card effects. Once per turn, during your Standby Phase: You can target 1 Normal Monster in your GY; Special Summon it.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CRIMSON_BLADER",
+      "clone_path": "src_custom/activated_effects/crimson_blader.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "NEHSHADDOLL_GENIUS",
+      "card_name": "Nehshaddoll Genius",
+      "kind": "activated",
+      "archetype": "NEHSHADDOLL",
+      "path": "src_custom/activated_effects/nehshaddoll_genius.c",
+      "effect_text": "FLIP: Shaddoll unaffected. Sent by effect: lock 1 Effect Monster. FLIP: You can target 1 Shaddoll monster you control; that face-up monster is unaffected by monster effects this turn, except its own. If this card is sent to the GY by card effect: You can target 1 Effect Monster on the field; neither player can activate that target's effects on the field this turn. You can only use 1 Nehshaddoll Genius effect per turn, and only once that turn.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COPYCAT",
+      "clone_path": "src_custom/activated_effects/copycat.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "MINERVA_LIGHTSWORN_MAIDEN",
+      "card_name": "Minerva, Lightsworn Maiden",
+      "kind": "activated",
+      "archetype": "MINERVA",
+      "path": "src_custom/activated_effects/minerva_lightsworn_maiden.c",
+      "effect_text": "Search LIGHT Dragon; mill effects. When this card is Normal Summoned: You can add 1 LIGHT Dragon-Type monster from your Deck to your hand, whose Level is less than or equal to the total number of Lightsworn monsters with different names in your Graveyard. If this card is sent from the hand or Deck to the Graveyard: Send the top card of your Deck to the Graveyard. During each of your End Phases: Send the top 2 cards of your Deck to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_TRAINEE",
+      "clone_path": "src_custom/activated_effects/amazoness_trainee.c",
+      "clone_score": 0.5
+    }
+  ]
+}

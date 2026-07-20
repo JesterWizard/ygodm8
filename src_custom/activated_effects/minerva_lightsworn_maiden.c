@@ -2,64 +2,160 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+extern const CardData gCardData_NEW[];
+
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
+
+#define MINERVA_DISTINCT_CAP 16
+
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsLightswornMonster(u16 cardId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sLightswornName);
 }
 
-static void CancelTargeting(void)
+static u8 CountDistinctLightswornNamesInGy(u8 fixedDuelist)
 {
-  PlayMusic(SFX_CANCEL);
+  u16 seen[MINERVA_DISTINCT_CAP];
+  u8 distinct = 0;
+  u8 i;
+  u8 j;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    u16 cardId = gDuel.duelistbattleState[fixedDuelist].graveyard;
+
+    return IsLightswornMonster(cardId) ? 1 : 0;
+  }
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    u16 cardId = GraveyardExpand_GetCardAt(fixedDuelist, i);
+    u8 already = FALSE;
+
+    if (!IsLightswornMonster(cardId))
+      continue;
+
+    for (j = 0; j < distinct; j++) {
+      if (seen[j] == cardId) {
+        already = TRUE;
+        break;
+      }
+    }
+
+    if (already)
+      continue;
+
+    if (distinct >= MINERVA_DISTINCT_CAP)
+      break;
+
+    seen[distinct++] = cardId;
+  }
+
+  return distinct;
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u8 IsLightDragonSearchTarget(u16 cardId, u8 maxLevel)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  if (gCardInfo.attribute != ATTRIBUTE_LIGHT)
+    return FALSE;
+
+  if (!Duel_CardHasMonsterType(cardId, TYPE_DRAGON))
+    return FALSE;
+
+  if (gCardData_NEW[cardId].level == 0 || gCardData_NEW[cardId].level > maxLevel)
+    return FALSE;
+
+  return TRUE;
+}
+
+static u16 FindLightDragonInDeck(u8 maxLevel)
+{
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  if (maxLevel == 0)
+    return CARD_NONE;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsLightDragonSearchTarget(cardId, maxLevel))
+      return cardId;
+  }
+
+  return CARD_NONE;
 }
 
 unsigned char CanActivateMINERVA_LIGHTSWORN_MAIDEN(void)
 {
+  struct DuelCard *zone;
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 maxLevel;
+
   if (gMonEffect.id != MINERVA_LIGHTSWORN_MAIDEN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != MINERVA_LIGHTSWORN_MAIDEN)
+    return FALSE;
+
+  /* ponytail: Normal Summon trigger + mill/End Phase branches need summon/phase
+   * hooks. Ceiling: field OPT search LIGHT Dragon Lv≤ distinct LS names in GY. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
+    return FALSE;
+
+  maxLevel = CountDistinctLightswornNamesInGy(fixedDuelist);
+  return FindLightDragonInDeck(maxLevel) != CARD_NONE;
 }
 
 void ActivateMINERVA_LIGHTSWORN_MAIDENEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 maxLevel;
+  u16 searchId;
+
   Duel_ShowEffectTextTyped(MINERVA_LIGHTSWORN_MAIDEN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  maxLevel = CountDistinctLightswornNamesInGy(fixedDuelist);
+  searchId = FindLightDragonInDeck(maxLevel);
+  if (searchId == CARD_NONE)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, searchId, TRUE) != DUEL_ACTION_OK)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

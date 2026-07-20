@@ -1,0 +1,89 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GRAVEKEEPERS_AMBUSHER",
+      "card_name": "Gravekeeper's Ambusher",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_ambusher.c",
+      "effect_text": "When this card is flipped face-up: You can target 1 card in your opponent's GY; place that target on the bottom of their When this card is flipped face-up: You can target 1 card in your opponent's GY; place that target on the bottom of their Deck. If this card is sent from the field to the GY after being flipped face-up: You can target 1 Necrovalley card in your GY; add that target to your hand. These effects are unaffected by Necrovalley.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_SPIRITUALIST",
+      "clone_path": "src_custom/activated_effects/gravekeepers_spiritualist.c",
+      "clone_score": 0.64
+    },
+    {
+      "card_const": "MICHAEL_THE_ARCH_LIGHTSWORN",
+      "card_name": "Michael, the Arch-Lightsworn",
+      "kind": "activated",
+      "archetype": "MICHAEL",
+      "path": "src_custom/activated_effects/michael_the_arch_lightsworn.c",
+      "effect_text": "Banish for LP; recycle LS; mill 3. 1 Tuner + 1 or more non-Tuner LIGHT monsters Once per turn: You can pay 1000 LP, then target 1 card on the field; banish that target. When this card is destroyed: You can target any number of other Lightsworn monsters in your Graveyard; shuffle them into the Deck, and if you do, you gain 300 LP for each returned card. Once per turn, during your End Phase: Send the top 3 cards of your Deck to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_TRAINEE",
+      "clone_path": "src_custom/activated_effects/amazoness_trainee.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "ANCIENT_GEAR_KNIGHT",
+      "card_name": "Ancient Gear Knight",
+      "kind": "activated",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/activated_effects/ancient_gear_knight.c",
+      "effect_text": "This card is treated as a Normal Monster while face-up on the field or in the Graveyard. While this card is a Normal Mon This card is treated as a Normal Monster while face-up on the field or in the Graveyard. While this card is a Normal Monster on the field, you can Normal Summon it to have it become an Effect Monster with this effect. - If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_BEAST",
+      "clone_path": "src_custom/activated_effects/ancient_gear_beast.c",
+      "clone_score": 0.85
+    },
+    {
+      "card_const": "PUNISHMENT_DRAGON",
+      "card_name": "Punishment Dragon",
+      "kind": "activated",
+      "archetype": "PUNISHMENT",
+      "path": "src_custom/activated_effects/punishment_dragon.c",
+      "effect_text": "SS via banished LS; shuffle; mill 4. Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by possessing 4 or more banished Lightsworn monsters with different names. Once per turn (Quick Effect): You can pay 1000 LP; shuffle into the Decks, all cards in the GYs and all face-up banished cards, except Lightsworn monsters. Once per turn, if your Lightsworn monster's effect is activated: Send the top 4 cards of your Deck to the GY.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.57
+    }
+  ]
+}

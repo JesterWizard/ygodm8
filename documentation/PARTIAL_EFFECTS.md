@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:10 UTC  
-**Remaining partials:** `589`
+**Last updated:** 2026-07-20 19:13 UTC  
+**Remaining partials:** `601`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 258 |
+| `activated` | 270 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **589** |
+| **total** | **601** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (258)
+## activated (270)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1469,6 +1469,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/ancient_gear_golem.c`
 - L12: attack → opp cannot activate S/T until Damage Step + piercing need battle/attack hooks. Ceiling: not ignition-activatable here; upgrade: battle Spell/Trap lock while attacking + DEF-pierce damage step.
 
+### `ANCIENT_GEAR_KNIGHT`
+- path: `src_custom/activated_effects/ancient_gear_knight.c`
+- L12: Gemini Normal Monster treatment + attack S/T lock need summon/battle hooks. Ceiling: not ignition-activatable here.
+
 ### `ANCIENT_GEAR_SOLDIER`
 - path: `src_custom/activated_effects/ancient_gear_soldier.c`
 - L12: attack → opp cannot activate S/T until end of Damage Step needs battle lock hook. Ceiling: not ignition-activatable here; upgrade: battle phase Spell/Trap activation gate while this card is attacking.
@@ -1477,6 +1481,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/arcana_force_xix_the_sun.c`
 - L81: on-Summon coin (Heads Set coin Spell / Tails wipe S/T) need summon hook. Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours.
 - L121: requires coin-toss card on field — skipped; SS anytime when legal.
+
+### `ARCANA_FORCE_XV_THE_FIEND`
+- path: `src_custom/activated_effects/arcana_force_xv_the_fiend.c`
+- L206: on-Summon coin + discard search use summon/FromHand paths. Ceiling: OPT coin → destroy 1 monster or wipe field.
+
+### `ARCANA_KNIGHT_JOKER`
+- path: `src_custom/activated_effects/arcana_knight_joker.c`
+- L12: discard matching type to negate activation needs chain/response hooks. Ceiling: not ignition-activatable here.
 
 ### `ARCANITE_MAGICIAN`
 - path: `src_custom/activated_effects/arcanite_magician.c`
@@ -1535,9 +1547,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/atlantean_dragoons.c`
 - L101: Lv3- Sea Serpent direct attack + sent-for-WATER-effect search need continuous/send hooks. Ceiling: OPT add 1 Sea Serpent except self from Deck.
 
+### `ATLANTEAN_HEAVY_INFANTRY`
+- path: `src_custom/activated_effects/atlantean_heavy_infantry.c`
+- L111: extra Normal Summon Sea Serpent + sent-for-WATER destroy need summon/send hooks. Ceiling: OPT destroy 1 Set Spell/Trap.
+
 ### `ATLANTEAN_MARKSMAN`
 - path: `src_custom/activated_effects/atlantean_marksman.c`
 - L75: battle-damage trigger + sent-for-WATER destroy Set S/T need battle/send hooks. Ceiling: OPT SS Lv≤4 Atlantean Sea Serpent from Deck.
+
+### `AZURE_EYES_SILVER_DRAGON`
+- path: `src_custom/activated_effects/azure_eyes_silver_dragon.c`
+- L47: until end of next turn clear needs EOT hook.
+- L66: Special Summon protection + Standby SS Normal need summon/phase hooks. Ceiling: OPT mark your Dragons protected (unk4).
 
 ### `BABYCERASAURUS`
 - path: `src_custom/activated_effects/babycerasaurus.c`
@@ -1827,6 +1848,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gladiator_beast_hoplomus.c`
 - L110: end-of-Battle-Phase + attacked/was-attacked gate + DEF 2400 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
 
+### `GLADIATOR_BEAST_LANISTA`
+- path: `src_custom/activated_effects/gladiator_beast_lanista.c`
+- L154: on-SS name copy + end-of-BP tag gate need summon/battle hooks. Ceiling: OPT banish 1 GB from GY (unkTwo name copy) or tag-out.
+- L181: copied name until End Phase needs name-override hook; unkTwo stores copied card id as stand-in.
+
 ### `GLADIATOR_BEAST_LAQUARI`
 - path: `src_custom/activated_effects/gladiator_beast_laquari.c`
 - L110: end-of-Battle-Phase + attacked/was-attacked gate + ATK 2100 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
@@ -1850,6 +1876,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GRANMARG_THE_ROCK_MONARCH`
 - path: `src_custom/activated_effects/granmarg_the_rock_monarch.c`
 - L105: Tribute Summon trigger. Ceiling: once via usage if Set target.
+
+### `GRAVEKEEPERS_AMBUSHER`
+- path: `src_custom/activated_effects/gravekeepers_ambusher.c`
+- L146: flip trigger + Necrovalley search need flip/send hooks. Ceiling: OPT put 1 opponent GY card on bottom of their Deck.
 
 ### `GRAVEKEEPERS_CHIEF`
 - path: `src_custom/activated_effects/gravekeepers_chief.c`
@@ -1966,6 +1996,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `HOLACTIE_THE_CREATOR_OF_LIGHT`
 - path: `src_custom/activated_effects/holactie_the_creator_of_light.c`
 - L64: SS-this-card-wins-Duel needs win-on-summon hook; no duel_helpers win API. Ceiling: not field-ignition activatable; use FromHand tribute path.
+
+### `HONEST`
+- path: `src_custom/activated_effects/honest.c`
+- L95: Damage Step hand discard uses FromHand path. Ceiling: Main Phase return this face-up card to the hand.
 
 ### `HORUS_THE_BLACK_FLAME_DRAGON_LV8`
 - path: `src_custom/activated_effects/horus_the_black_flame_dragon_lv8.c`
@@ -2091,6 +2125,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/mezuki.c`
 - L169: GY ignition needs GY-menu wire. Ceiling: allow when Mezuki + another Zombie in expanded GY (callable if gMonEffect set to Mezuki).
 
+### `MICHAEL_THE_ARCH_LIGHTSWORN`
+- path: `src_custom/activated_effects/michael_the_arch_lightsworn.c`
+- L137: destroy→shuffle Lightsworn + End Phase mill 3 need destroy/EP hooks. Ceiling: pay 1000 LP → banish 1 field card.
+
+### `MINERVA_LIGHTSWORN_MAIDEN`
+- path: `src_custom/activated_effects/minerva_lightsworn_maiden.c`
+- L124: Normal Summon trigger + mill/End Phase branches need summon/phase hooks. Ceiling: field OPT search LIGHT Dragon Lv≤ distinct LS names in GY.
+
 ### `MIRAGE_DRAGON`
 - path: `src_custom/activated_effects/mirage_dragon.c`
 - L12: opp cannot activate Traps in Battle Phase needs trap-activation gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
@@ -2164,6 +2206,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L86: Normal Summon shuffle + banish-mill branches need summon/banish hooks. Ceiling: OPT shuffle all banished into Decks + tempStage per card.
 - L107: tempStage unit is ~500 ATK, not printed +100; upgrade: exact overlay.
 
+### `NEHSHADDOLL_GENIUS`
+- path: `src_custom/activated_effects/nehshaddoll_genius.c`
+- L54: until end of turn clear needs EOT unk4 reset hook.
+- L110: FLIP Shaddoll unaffected + sent-by-effect branches need flip/send hooks. Ceiling: OPT negate 1 face-up Effect Monster (unk4).
+
 ### `NEO_SPACE_CONNECTOR`
 - path: `src_custom/activated_effects/neo_space_connector.c`
 - L61: on-Normal-Summon trigger + tribute-bounce second effect need summon/tribute hooks. Ceiling: OPT SS Neo-Spacian or Neos from Deck DEF.
@@ -2200,6 +2247,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `PROTECTOR_OF_THE_SANCTUARY`
 - path: `src_custom/activated_effects/protector_of_the_sanctuary.c`
 - L12: opp cannot draw except Draw Phase needs draw-gate LynJump. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `PUNISHMENT_DRAGON`
+- path: `src_custom/activated_effects/punishment_dragon.c`
+- L191: hand SS via 4+ banished LS uses FromHand path; LS mill 4 needs effect-activation hook. Ceiling: pay 1000 → shuffle all banished into Decks.
 
 ### `QUINTET_MAGICIAN`
 - path: `src_custom/activated_effects/quintet_magician.c`

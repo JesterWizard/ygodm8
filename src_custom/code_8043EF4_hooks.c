@@ -268,6 +268,9 @@ u8 TrySpecialSummonRainbowDarkDragonFromHand(u8);
 u8 TrySpecialSummonLightswornDragonlingFromHand(u8);
 u8 TryActivateAshBlossomFromHand(u8);
 u8 TrySpecialSummonPoseidraFromHand(u8);
+u8 TrySpecialSummonPunishmentDragonFromHand(u8);
+u8 TryActivateHonestFromHand(u8);
+u8 TryActivateArcanaForceXvTheFiendFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -288,7 +291,7 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == OCEAN_DRAGON_LORD_NEO_DAEDALUS || cardId == LIGHTRAY_DAEDALUS
       || cardId == HOLACTIE_THE_CREATOR_OF_LIGHT || cardId == CYBER_ELTANIN
       || cardId == HELIOS_DUO_MEGISTUS || cardId == RAINBOW_DARK_DRAGON
-      || cardId == POSEIDRA_THE_ATLANTEAN_DRAGON;
+      || cardId == POSEIDRA_THE_ATLANTEAN_DRAGON || cardId == PUNISHMENT_DRAGON;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -652,6 +655,21 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == POSEIDRA_THE_ATLANTEAN_DRAGON
           && TrySpecialSummonPoseidraFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == PUNISHMENT_DRAGON
+          && TrySpecialSummonPunishmentDragonFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == HONEST
+          && TryActivateHonestFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ARCANA_FORCE_XV_THE_FIEND
+          && TryActivateArcanaForceXvTheFiendFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
