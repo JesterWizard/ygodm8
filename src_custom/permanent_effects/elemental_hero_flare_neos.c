@@ -2,84 +2,62 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+#define ELEMENTAL_HERO_FLARE_NEOS_ATK_PER_ST 400
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 CountAllSpellTrapsOnField(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  u8 row;
+  u8 col;
+  u8 count = 0;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *slot = gFixedZones[row][col];
+
+      if (slot == NULL || slot->id == CARD_NONE)
+        continue;
+      if (GetTypeGroup(slot->id) == TYPE_GROUP_MONSTER)
+        continue;
+
+      count++;
+    }
+  }
+
+  return count;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+u8 ElementalHeroFlareNeos_ApplyDynamicZoneStats(struct DuelCard *zone)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  u16 baseAtk;
+  u32 atk;
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
+  if (zone == NULL || zone->id != ELEMENTAL_HERO_FLARE_NEOS)
+    return FALSE;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  baseAtk = gCardData_NEW[zone->id].atk;
+  atk = (u32)baseAtk + (u32)CountAllSpellTrapsOnField() * ELEMENTAL_HERO_FLARE_NEOS_ATK_PER_ST;
+  Duel_WriteCardInfoStats(zone->id, Duel_ClampStat(atk), gCardData_NEW[zone->id].def);
+  return TRUE;
 }
 
 unsigned char ShouldActivateELEMENTAL_HERO_FLARE_NEOS(void)
 {
-  struct DuelCard *zone;
-
-  if (gActiveEffect.cardId != ELEMENTAL_HERO_FLARE_NEOS)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != ELEMENTAL_HERO_FLARE_NEOS)
-    return FALSE;
-
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
-      && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
-    return FALSE;
-
-  /* TODO: add field-has-target check */
-  return TRUE;
+  /* ponytail: End Phase shuffle to Extra Deck needs turn_effect hook — ApplyDynamicZoneStats only. */
+  (void)gActiveEffect;
+  return FALSE;
 }
 
 void ActivateELEMENTAL_HERO_FLARE_NEOS(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
-
-  Duel_ShowEffectTextTyped(ELEMENTAL_HERO_FLARE_NEOS, 8);
-
-  if (IsDuelOver() == TRUE)
-    return;
-
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
-
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void ElementalHeroFlareNeos_SelfCheck(void)
+{
+  struct DuelCard zone;
+
+  zone.id = ELEMENTAL_HERO_FLARE_NEOS;
+  ElementalHeroFlareNeos_ApplyDynamicZoneStats(&zone);
+}
+#endif

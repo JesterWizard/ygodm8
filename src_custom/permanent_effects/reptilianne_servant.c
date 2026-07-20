@@ -2,42 +2,36 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
+void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
+void TryActivatingPermanentEffects(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsOtherFaceUpMonster(struct DuelCard *self, struct DuelCard *zone)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+  if (zone == self)
+    return FALSE;
+  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return IsCardFaceUp(zone);
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 FieldHasOtherFaceUpMonster(struct DuelCard *self)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  u8 row;
+  u8 col;
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
+  for (row = ACTIVE_DUELIST_MONSTER_ROW; row <= INACTIVE_DUELIST_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsOtherFaceUpMonster(self, gTurnZones[row][col]))
+        return TRUE;
+    }
+  }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
   return FALSE;
 }
 
@@ -48,38 +42,34 @@ unsigned char ShouldActivateREPTILIANNE_SERVANT(void)
   if (gActiveEffect.cardId != REPTILIANNE_SERVANT)
     return FALSE;
 
-  if (GetPendingTributeSummonCardId() != REPTILIANNE_SERVANT)
-    return FALSE;
-
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
       && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
     return FALSE;
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
+  if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
-  return TRUE;
+  return FieldHasOtherFaceUpMonster(zone);
 }
 
 void ActivateREPTILIANNE_SERVANT(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  struct DuelCard *zone;
 
   Duel_ShowEffectTextTyped(REPTILIANNE_SERVANT, 8);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+  if (zone == NULL || !FieldHasOtherFaceUpMonster(zone))
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  zone->unk4 = 1;
+  ClearZone(zone);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+  /* ponytail: cannot-be-attacked + NS lock + spell-target destroy need battle/continuous hooks. */
 }

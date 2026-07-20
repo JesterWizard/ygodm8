@@ -107,6 +107,8 @@ u8 UriaLordOfSearingFlames_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmuletDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 NeoSpacianFlareScarab_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ShireLightswornSpirit_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 GaronithLightswornDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ElementalHeroFlareNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol);
 u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone);
 void TryRavielOnOpponentMonsterPlacement(struct DuelCard *zone);
@@ -1179,6 +1181,8 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { AMULET_DRAGON, AmuletDragon_ApplyDynamicZoneStats },
   { NEO_SPACIAN_FLARE_SCARAB, NeoSpacianFlareScarab_ApplyDynamicZoneStats },
   { SHIRE_LIGHTSWORN_SPIRIT, ShireLightswornSpirit_ApplyDynamicZoneStats },
+  { GARONITH_LIGHTSWORN_DRAGON, GaronithLightswornDragon_ApplyDynamicZoneStats },
+  { ELEMENTAL_HERO_FLARE_NEOS, ElementalHeroFlareNeos_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
