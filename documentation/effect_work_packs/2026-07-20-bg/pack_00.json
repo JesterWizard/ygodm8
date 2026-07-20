@@ -1,0 +1,91 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "CYBER_SLASH_HARPIE_LADY",
+      "card_name": "Cyber Slash Harpie Lady",
+      "kind": "activated",
+      "archetype": "CYBER_SLASH",
+      "path": "src_custom/activated_effects/cyber_slash_harpie_lady.c",
+      "effect_text": "Harpie can be Tuner. Named Harpie Lady. Quick: bounce 1 opp card or your Harpie. OPT. 1 Tuner + 1+ non-Tuner monsters For this card's Synchro Summon, you can treat 1 Harpie monster you control as a Tuner. This card's name becomes Harpie Lady while on the field or in the GY. When a Spell/Trap Card or effect is activated (except during the Damage Step) (Quick Effect): You can target 1 monster your opponent controls or 1 Harpie monster you control; return it to the hand. You can only use this effec",
+      "tags": [
+        "gy",
+        "hand",
+        "monster",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SHADDOLL_HOUND",
+      "clone_path": "src_custom/activated_effects/shaddoll_hound.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "EVIL_HERO_MALICIOUS_BANE",
+      "card_name": "Evil HERO Malicious Bane",
+      "kind": "activated",
+      "archetype": "EVIL_HERO_MALICIOUS",
+      "path": "src_custom/activated_effects/evil_hero_malicious_bane.c",
+      "effect_text": "Destroy opp with ATK <= this; gain 200 each. HERO attack lock. 1 Evil HERO monster + 1 Level 5 or higher monster Must be Special Summoned with Dark Fusion. Cannot be destroyed by battle or card effects. During your Main Phase: You can destroy all monsters your opponent controls with ATK less than or equal to this card's, also this card gains 200 ATK for each monster destroyed this way, also you cannot declare an attack for the rest of this turn, except with HERO monsters. You can only use this e",
+      "tags": [
+        "destroy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NECROID_SHAMAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_necroid_shaman.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "VISION_HERO_FARIS",
+      "card_name": "Vision HERO Faris",
+      "kind": "activated",
+      "archetype": "VISION_HERO",
+      "path": "src_custom/activated_effects/vision_hero_faris.c",
+      "effect_text": "You can discard 1 other HERO monster; Special Summon this card from your hand. If this card is Normal or Special Summo You can discard 1 other HERO monster; Special Summon this card from your hand. If this card is Normal or Special Summoned: You can place 1 Vision HERO monster from your Deck, except Vision HERO Faris, in your Spell & Trap Zone as a face-up Continuous Trap, also you cannot Special Summon monsters from the Extra Deck for the rest of this turn, except HERO monsters. You can only us",
+      "tags": [
+        "deck",
+        "faceup",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VISION_HERO_ADORATION",
+      "clone_path": "src_custom/activated_effects/vision_hero_adoration.c",
+      "clone_score": 0.52
+    },
+    {
+      "card_const": "APPRENTICE_ILLUSION_MAGICIAN",
+      "card_name": "Apprentice Illusion Magician",
+      "kind": "activated",
+      "archetype": "APPRENTICE",
+      "path": "src_custom/activated_effects/apprentice_illusion_magician.c",
+      "effect_text": "You can Special Summon this card (from your hand) by discarding 1 card. If this card is Normal or Special Summoned: You  You can Special Summon this card (from your hand) by discarding 1 card. If this card is Normal or Special Summoned: You can add 1 Dark Magician from your Deck to your hand. During damage calculation, if your other DARK Spellcaster monster battles an opponent's monster (Quick Effect): You can send this card from your hand or face-up field to the GY; that monster you control gai",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "search",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.5
+    }
+  ]
+}

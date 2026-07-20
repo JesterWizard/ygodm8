@@ -294,6 +294,10 @@ u8 TrySpecialSummonGladiatorBeastGistelFromHand(u8);
 u8 TrySpecialSummonTheAgentOfDestructionVenusFromHand(u8);
 u8 TrySpecialSummonReptilianneLamiaFromHand(u8);
 u8 TryActivateArcanaForceXiiTheHangmanFromHand(u8);
+u8 TrySpecialSummonVisionHeroFarisFromHand(u8);
+u8 TrySpecialSummonApprenticeIllusionMagicianFromHand(u8);
+u8 TrySpecialSummonAncientGearStatueFromHand(u8);
+u8 TrySpecialSummonDarkMagicianTheMagicianOfBlackMagicFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -810,6 +814,26 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == ARCANA_FORCE_XII_THE_HANGMAN
           && TryActivateArcanaForceXiiTheHangmanFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == VISION_HERO_FARIS
+          && TrySpecialSummonVisionHeroFarisFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == APPRENTICE_ILLUSION_MAGICIAN
+          && TrySpecialSummonApprenticeIllusionMagicianFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ANCIENT_GEAR_STATUE
+          && TrySpecialSummonAncientGearStatueFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC
+          && TrySpecialSummonDarkMagicianTheMagicianOfBlackMagicFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

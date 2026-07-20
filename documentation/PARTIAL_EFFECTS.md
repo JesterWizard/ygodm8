@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:53 UTC  
-**Remaining partials:** `682`
+**Last updated:** 2026-07-20 20:01 UTC  
+**Remaining partials:** `694`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 351 |
+| `activated` | 363 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **682** |
+| **total** | **694** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (351)
+## activated (363)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1430,6 +1430,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
 - L16: Amazoness-Tiger name + GY ATK boost need continuous hooks. Ceiling: SS from hand only; upgrade: on Amazoness summon trigger.
+
+### `AMAZONESS_PET_LIGER`
+- path: `src_custom/activated_effects/amazoness_pet_liger.c`
+- L55: -800 ≈ -2 tempStage (~-1000); battle-after / cannot-attack Amazoness FALSE.
+- L98: once-per-battle +500 / cannot-attack Amazoness need battle hooks. Ceiling: OPT −2 tempStage on 1 face-up opp monster.
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1493,6 +1498,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/ancient_gear_soldier.c`
 - L12: attack → opp cannot activate S/T until end of Damage Step needs battle lock hook. Ceiling: not ignition-activatable here; upgrade: battle phase Spell/Trap activation gate while this card is attacking.
 
+### `ANCIENT_GEAR_STATUE`
+- path: `src_custom/activated_effects/ancient_gear_statue.c`
+- L111: ignore summoning conditions partial via CannotBeSS check. Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck.
+- L189: once-per-turn FromHand not tracked without turn flag.
+
 ### `ANCIENT_SACRED_WYVERN`
 - path: `src_custom/activated_effects/ancient_sacred_wyvern.c`
 - L31: continuous LP→ATK + battle-reborn need permanent/battle hooks. Ceiling: OPT refresh tempStage from LP difference/500.
@@ -1500,6 +1510,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANDRO_SPHINX`
 - path: `src_custom/activated_effects/andro_sphinx.c`
 - L32: battle burn half ATK + GY SS ban need battle/GY hooks. Ceiling: not field-ignition; FromHand pay 500 + Pyramid → SS.
+
+### `APPRENTICE_ILLUSION_MAGICIAN`
+- path: `src_custom/activated_effects/apprentice_illusion_magician.c`
+- L120: on-NS/SS search auto + hand/field send +2000 Quick need summon/ damage hooks. Ceiling: OPT add Dark Magician from Deck.
 
 ### `ARCANA_FORCE_V_THE_HIEROPHANT`
 - path: `src_custom/activated_effects/arcana_force_v_the_hierophant.c`
@@ -1736,6 +1750,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/cyber_phoenix.c`
 - L12: Attack Position S/T negate + destroy-by-battle draw need continuous and battle hooks. Ceiling: not field-ignition activatable here.
 
+### `CYBER_SLASH_HARPIE_LADY`
+- path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
+- L196: Quick on S/T activation + Synchro/name hooks missing. Ceiling: OPT bounce 1 opp card or your Harpie to hand.
+
 ### `CYBER_VALLEY`
 - path: `src_custom/activated_effects/cyber_valley.c`
 - L107: end Battle Phase needs phase hook; draw 1 is attack-target stand-in.
@@ -1770,6 +1788,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
 - path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
 - L12: name becomes Dark Magician + S/T protection need permanent/name hooks. Ceiling: not ignition-activatable here; upgrade: permanent overlay.
+
+### `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC`
+- path: `src_custom/activated_effects/dark_magician_the_magician_of_black_magic.c`
+- L33: name=DM + destroy-revive/Set need name/destroy hooks. Ceiling: not field-ignition; FromHand if Shining Sarcophagus.
 
 ### `DARK_STRIKE_FIGHTER`
 - path: `src_custom/activated_effects/dark_strike_fighter.c`
@@ -1977,6 +1999,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L57: second Standby Phase GY return needs turn/Standby hook; unk4=2 marks extra attack stand-in. Ceiling: banish self → target Fiend unk4=2.
 - L110: Main Phase 1 gate + second Standby GY return need phase/Standby hooks. Ceiling: OPT banish self → mark 1 Fiend unk4 for extra attack stand-in.
 
+### `EVIL_HERO_MALICIOUS_BANE`
+- path: `src_custom/activated_effects/evil_hero_malicious_bane.c`
+- L75: destruction immunity + HERO-only attack gate need destroy/attack hooks. Ceiling: OPT destroy opp monsters with ATK≤self, +tempStage, mark unk4.
+- L105: +200 ATK each via tempStage (~500/unit); attack lock only marks self unk4.
+
 ### `EVIL_HERO_NEOS_LORD`
 - path: `src_custom/activated_effects/evil_hero_neos_lord.c`
 - L144: indestructible + on-SS/opp-GY-sent take-control triggers need continuous/summon hooks. Ceiling: OPT take control of 1 face-up opp monster.
@@ -2092,6 +2119,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
 - L110: end-of-Battle-Phase + battled gate + discard-GB draw 2 on GB-SS need battle/summon hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
 
+### `GLADIATOR_BEAST_VESPASIUS`
+- path: `src_custom/activated_effects/gladiator_beast_vespasius.c`
+- L121: FromHand battle SS + continuous +500 while GB-SS'd + end-BP battled gate need battle/summon hooks. Ceiling: OPT tag-out shuffle→SS.
+
 ### `GODDESS_BOW`
 - path: `src_custom/activated_effects/goddess_bow.c`
 - L12: Hermos fusion + equip + battle-phase negate/second attack need fusion/equip/chain hooks. Ceiling: not ignition-activatable here.
@@ -2193,6 +2224,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `HARPIE_CHANNELER`
 - path: `src_custom/activated_effects/harpie_channeler.c`
 - L84: Level 7 with Dragon + name becomes Harpie Lady need continuous/name hooks.
+
+### `HARPIE_CONDUCTOR`
+- path: `src_custom/activated_effects/harpie_conductor.c`
+- L20: no SS-origin flag; face-up/ATK stand-in for Special Summoned.
+- L99: name Lady + protect destroy redirect + on-Harpie-return trigger need name/destroy/return hooks. Ceiling: OPT bounce 1 face-up/ATK opp monster.
 
 ### `HARPIE_DANCER`
 - path: `src_custom/activated_effects/harpie_dancer.c`
@@ -2446,6 +2482,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_cameran.c`
 - L128: DEF cannot-be-targeted continuous + battle-destroy trigger need battle/continuous hooks. Ceiling: ATK OPT SS Lv4 Morphtronic from hand/GY.
 
+### `MORPHTRONIC_CELFON`
+- path: `src_custom/activated_effects/morphtronic_celfon.c`
+- L136: reveal/look UI missing; die roll + SS/add among top N. Ceiling: ATK OPT die→SS Lv≤4 Morphtronic; DEF OPT die→add Morphtronic.
+
 ### `MORPHTRONIC_CLOCKEN`
 - path: `src_custom/activated_effects/morphtronic_clocken.c`
 - L26: +500 ATK per Morph Counter in ATK Position needs stat overlay hook. Ceiling: DEF OPT place unk4 counter, else tribute self → burn 1000*(unk4 or 1).
@@ -2466,6 +2506,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_radion.c`
 - L12: position-based Morphtronic ATK/DEF boost needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position gate.
 
+### `MORPHTRONIC_REMOTEN`
+- path: `src_custom/activated_effects/morphtronic_remoten.c`
+- L213: position-gated OPT search. ATK: banish GY Morphtronic → add same Lv. DEF: discard Morphtronic → add other same Lv.
+
 ### `MORPHTRONIC_SCOPEN`
 - path: `src_custom/activated_effects/morphtronic_scopen.c`
 - L58: DEF Position → treat as Level 4 + EP destroy on ATK-mode SS need position/EP hooks. Ceiling: ATK Position OPT SS 1 Lv4 Morphtronic from hand.
@@ -2473,6 +2517,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MORPHTRONIC_SLINGEN`
 - path: `src_custom/activated_effects/morphtronic_slingen.c`
 - L160: DEF destroy-other-Morphtronic substitute needs destroy redirect hook. Ceiling: ATK OPT tribute 1 other Morphtronic → destroy 1 field card.
+
+### `MORPHTRONIC_STAPLEN`
+- path: `src_custom/activated_effects/morphtronic_staplen.c`
+- L92: ATK attack-redirect + DEF battle-immune / on-attack change need battle hooks. Ceiling: OPT change 1 opp ATK monster to DEF.
 
 ### `MORPHTRONIC_VACUUMEN`
 - path: `src_custom/activated_effects/morphtronic_vacuumen.c`
@@ -2848,6 +2896,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `VISION_HERO_ADORATION`
 - path: `src_custom/activated_effects/vision_hero_adoration.c`
 - L105: until end of turn clear needs EOT tempStage reset hook.
+
+### `VISION_HERO_FARIS`
+- path: `src_custom/activated_effects/vision_hero_faris.c`
+- L148: Continuous Trap place + ED HERO lock need place/ED hooks. Ceiling: OPT add 1 Vision HERO from Deck to hand.
 
 ### `VISION_HERO_GRAVITO`
 - path: `src_custom/activated_effects/vision_hero_gravito.c`
