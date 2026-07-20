@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:00 UTC  
-**Remaining partials:** `553`
+**Last updated:** 2026-07-20 19:03 UTC  
+**Remaining partials:** `565`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 222 |
+| `activated` | 234 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **553** |
+| **total** | **565** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (222)
+## activated (234)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1476,6 +1476,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ARCHLORD_KRISTYA`
 - path: `src_custom/activated_effects/archlord_kristya.c`
 - L322: engine treats level 5+ with no tribute as special-like (Cyber Dragon, etc.).
+
+### `ARMITYLE_THE_CHAOS_PHANTASM`
+- path: `src_custom/activated_effects/armityle_the_chaos_phantasm.c`
+- L12: Extra Deck banish-fusion SS + battle indestructible + turn-only +10000 ATK need summon/permanent/battle hooks. Ceiling: not ignition here.
 
 ### `AROMA_JAR`
 - path: `src_custom/activated_effects/aroma_jar.c`
@@ -1571,6 +1575,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/chimeratech_megafleet_dragon.c`
 - L12: original ATK = 1200 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not ignition-activatable here.
 
+### `CLEAR_VICE_DRAGON`
+- path: `src_custom/activated_effects/clear_vice_dragon.c`
+- L12: Clear World immunity + battle ATK double + discard-to-save need continuous/battle/destruction hooks. Ceiling: not ignition-activatable here.
+
 ### `COLOSSAL_FIGHTER`
 - path: `src_custom/activated_effects/colossal_fighter.c`
 - L119: +100 ATK per Warrior in any GY needs stat overlay; battle-destroy trigger deferred. Ceiling: OPT SS 1 Warrior from either GY once via usage.
@@ -1582,6 +1590,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `CRIMSON_BLADER`
 - path: `src_custom/activated_effects/crimson_blader.c`
 - L12: battle destroy → opp cannot NS/SS Lv5+ next turn needs battle destroy + summon-lock hooks. Ceiling: not ignition-activatable here.
+
+### `CYBER_ELTANIN`
+- path: `src_custom/activated_effects/cyber_eltanin.c`
+- L122: continuous ATK/DEF = banished×500 needs permanent overlay hook. Ceiling: not field-ignition activatable; use FromHand banish path.
+- L188: permStage unit is ~500 ATK/DEF each, not exact banished×500 overlay.
 
 ### `CYBER_LASER_DRAGON`
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
@@ -1878,6 +1891,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/harpie_queen.c`
 - L14: * ponytail: name becomes Harpie Lady on field/GY needs name override hook. */
 
+### `HELIOS_DUO_MEGISTUS`
+- path: `src_custom/activated_effects/helios_duo_megistus.c`
+- L58: battle-destroy End Phase SS Megistus needs battle/EP hooks. Ceiling: OPT refresh stages from banished-monster count.
+- L146: permStage unit is ~500 ATK/DEF each, not exact banished×200 overlay.
+
 ### `HELIOS_THE_PRIMORDIAL_SUN`
 - path: `src_custom/activated_effects/helios_the_primordial_sun.c`
 - L41: continuous ATK/DEF = banished×100 needs permanent overlay. Ceiling: OPT stages ≈ (banished×100)/500.
@@ -1885,6 +1903,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `HERALD_OF_PERFECTION`
 - path: `src_custom/activated_effects/herald_of_perfection.c`
 - L12: quick negate by sending Fairy from hand needs chain/negation hooks. Ceiling: not field-ignition activatable here; upgrade: either-turn chain interrupt → discard Fairy → negate + destroy activated card.
+
+### `HERALD_OF_ULIMATENESS`
+- path: `src_custom/activated_effects/herald_of_ulimateness.c`
+- L12: quick negate by sending Fairy from hand needs chain/negation hooks. Ceiling: not field-ignition activatable here; upgrade: either-turn chain interrupt → discard Fairy → negate + destroy activated card.
+
+### `HOLACTIE_THE_CREATOR_OF_LIGHT`
+- path: `src_custom/activated_effects/holactie_the_creator_of_light.c`
+- L64: SS-this-card-wins-Duel needs win-on-summon hook; no duel_helpers win API. Ceiling: not field-ignition activatable; use FromHand tribute path.
 
 ### `HOURGLASS_OF_LIFE`
 - path: `src_custom/activated_effects/hourglass_of_life.c`
@@ -1914,6 +1940,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `LADY_OF_D`
 - path: `src_custom/activated_effects/lady_of_d.c`
 - L47: opp cannot target your face-up Dragons for attacks needs target- redirect hook. Ceiling: OPT discard 1 Dragon from hand (destroy-save stand-in).
+
+### `LEGENDARY_KNIGHT_CRITIAS`
+- path: `src_custom/activated_effects/legendary_knight_critias.c`
+- L99: Legend of Heart SS + when-attacked Set Trap from GY need summon/battle hooks. Ceiling: OPT banish 1 face-up Spell/Trap on the field.
 
 ### `LEGENDARY_KNIGHT_TIMAEUS`
 - path: `src_custom/activated_effects/legendary_knight_timaeus.c`
@@ -2054,6 +2084,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_videon.c`
 - L12: position-based ATK/DEF per Equip needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position/equip gate.
 
+### `MUCUS_YOLK`
+- path: `src_custom/activated_effects/mucus_yolk.c`
+- L21: direct attack + Standby +1000 after battle damage need battle/EP hooks. Ceiling: OPT +2 tempStage (~1000 ATK stand-in for printed Standby gain).
+
 ### `NAELSHADDOLL_ARIEL`
 - path: `src_custom/activated_effects/naelshaddoll_ariel.c`
 - L72: FLIP SS banished Shaddoll + sent-by-effect branch need flip/RFP hooks. Ceiling: OPT banish up to 3 cards from either GY.
@@ -2075,6 +2109,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/neo_spacian_dark_panther.c`
 - L12: copy opp monster name/effects needs engine name/effect overlay. Ceiling: not ignition-activatable here; upgrade: permanent/name/effect copy.
 
+### `NEO_SPACIAN_MARINE_DOLPHIN`
+- path: `src_custom/activated_effects/neo_spacian_marine_dolphin.c`
+- L79: treated-as Aqua Dolphin name + NEX-only SS need continuous/summon hooks.
+
 ### `NUMBER_39_UTOPIA`
 - path: `src_custom/activated_effects/number_39_utopia.c`
 - L12: attack negate via detach + no-material self-destroy need battle hook and XYZ material system. Ceiling: not field-ignition activatable.
@@ -2094,6 +2132,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `QUINTET_MAGICIAN`
 - path: `src_custom/activated_effects/quintet_magician.c`
 - L64: Fusion-with-5-Spellcasters gate + untributable/undestroyable need fusion/summon hooks. Ceiling: once via usage destroy all opp cards.
+
+### `RAIDEN_HAND_OF_THE_LIGHTSWORN`
+- path: `src_custom/activated_effects/raiden_hand_of_the_lightsworn.c`
+- L59: End Phase mill 2 needs EP hook. Ceiling: Main Phase OPT mill 2.
+- L82: +1 tempStage (~500 ATK, not exact +200); until opp EP clear needs hook.
 
 ### `REPTILIANNE_MEDUSA`
 - path: `src_custom/activated_effects/reptilianne_medusa.c`
@@ -2155,6 +2198,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `SILENT_MAGICIAN_LV8`
 - path: `src_custom/activated_effects/silent_magician_lv8.c`
 - L12: continuous immunity to opponent Spell effects needs spell-target gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-immune hook.
+
+### `SILENT_SWORDSMAN_LV3`
+- path: `src_custom/activated_effects/silent_swordsman_lv3.c`
+- L70: spell negate continuous + summon/flip turn gate need hooks. Ceiling: Standby OPT send self → SS LV5 from hand/Deck.
 
 ### `SILENT_SWORDSMAN_LV5`
 - path: `src_custom/activated_effects/silent_swordsman_lv5.c`
@@ -2250,6 +2297,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `THUNDER_END_DRAGON`
 - path: `src_custom/activated_effects/thunder_end_dragon.c`
 - L59: no Xyz detach cost; OPT destroy-all-other-monsters stand-in. Ceiling: materials not checked; upgrade: overlay detach before destroy.
+
+### `TIME_MAGIC_HAMMER`
+- path: `src_custom/activated_effects/time_magic_hammer.c`
+- L12: Hermos equip + battle-step dice banish need summon/equip/battle hooks. Ceiling: not field-ignition activatable here.
 
 ### `TORNADO_BIRD`
 - path: `src_custom/activated_effects/tornado_bird.c`

@@ -1,0 +1,80 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "RAIDEN_HAND_OF_THE_LIGHTSWORN",
+      "card_name": "Raiden, Hand of the Lightsworn",
+      "kind": "activated",
+      "archetype": "RAIDEN",
+      "path": "src_custom/activated_effects/raiden_hand_of_the_lightsworn.c",
+      "effect_text": "Mill 2 for ATK; End Phase mill 2. During your Main Phase: You can send the top 2 cards of your Deck to the GY, then if any Lightsworn monsters were sent to the GY by this effect, this card gains 200 ATK until the end of your opponent's turn. You can only use this effect of Raiden, Hand of the Lightsworn once per turn. Once per turn, during your End Phase: Send the top 2 cards of your Deck to the GY.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_TRAINEE",
+      "clone_path": "src_custom/activated_effects/amazoness_trainee.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "ARMITYLE_THE_CHAOS_PHANTASM",
+      "card_name": "Armityle the Chaos Phantasm",
+      "kind": "activated",
+      "archetype": "ARMITYLE",
+      "path": "src_custom/activated_effects/armityle_the_chaos_phantasm.c",
+      "effect_text": "Uria, Lord of Searing Flames + Hamon, Lord of Striking Thunder + Raviel, Lord of Phantasms\r\nMust first be Special  Uria, Lord of Searing Flames + Hamon, Lord of Striking Thunder + Raviel, Lord of Phantasms Must first be Special Summoned (from your Extra Deck) by banishing the above cards you control. (You do not use Polymerization.) Cannot be destroyed by battle. Gains 10,000 ATK during your turn only.",
+      "tags": [
+        "deck",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TEST_TIGER",
+      "clone_path": "src_custom/activated_effects/test_tiger.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "MUCUS_YOLK",
+      "card_name": "Mucus Yolk",
+      "kind": "activated",
+      "archetype": "MUCUS",
+      "path": "src_custom/activated_effects/mucus_yolk.c",
+      "effect_text": "This card can attack your opponent's Life Points directly. Each time this card inflicts Battle Damage to your opponent's This card can attack your opponent's Life Points directly. Each time this card inflicts Battle Damage to your opponent's Life Points, increase the ATK of this card by 1000 points during your next Standby Phase. The ATK increase lasts as long as this card remains face-up on the field.",
+      "tags": [
+        "burn",
+        "faceup"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_LADY_HEAT",
+      "clone_path": "src_custom/activated_effects/elemental_hero_lady_heat.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "HELIOS_DUO_MEGISTUS",
+      "card_name": "Helios Duo Megistus",
+      "kind": "activated",
+      "archetype": "HELIOS",
+      "path": "src_custom/activated_effects/helios_duo_megistus.c",
+      "effect_text": "You can Special Summon this card by Tributing 1 Helios - The Primordial Sun. This card's ATK and DEF are equal to the You can Special Summon this card by Tributing 1 Helios - The Primordial Sun. This card's ATK and DEF are equal to the number of removed from play monsters x 200. If this card is destroyed by battle and sent to the Graveyard, Special Summon it during the End Phase, and it gains 300 ATK and DEF.",
+      "tags": [
+        "gy",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TEST_TIGER",
+      "clone_path": "src_custom/activated_effects/test_tiger.c",
+      "clone_score": 0.67
+    }
+  ]
+}

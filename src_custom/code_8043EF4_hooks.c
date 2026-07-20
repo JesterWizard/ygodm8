@@ -258,6 +258,9 @@ u8 TrySpecialSummonTestTigerFromHand(u8);
 u8 TrySpecialSummonOceanDragonLordNeoDaedalusFromHand(u8);
 u8 TrySpecialSummonTheAgentOfEntropyUranusFromHand(u8);
 u8 TrySpecialSummonLightrayDaedalusFromHand(u8);
+u8 TrySpecialSummonHolactieTheCreatorOfLightFromHand(u8);
+u8 TrySpecialSummonCyberEltaninFromHand(u8);
+u8 TrySpecialSummonHeliosDuoMegistusFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -275,7 +278,9 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == URIA_LORD_OF_SEARING_FLAMES
       || cardId == RAVIEL_LORD_OF_PHANTASMS
       || cardId == MONTAGE_DRAGON || cardId == ARCANA_FORCE_XIX_THE_SUN
-      || cardId == OCEAN_DRAGON_LORD_NEO_DAEDALUS || cardId == LIGHTRAY_DAEDALUS;
+      || cardId == OCEAN_DRAGON_LORD_NEO_DAEDALUS || cardId == LIGHTRAY_DAEDALUS
+      || cardId == HOLACTIE_THE_CREATOR_OF_LIGHT || cardId == CYBER_ELTANIN
+      || cardId == HELIOS_DUO_MEGISTUS;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -589,6 +594,21 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == LIGHTRAY_DAEDALUS
           && TrySpecialSummonLightrayDaedalusFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == HOLACTIE_THE_CREATOR_OF_LIGHT
+          && TrySpecialSummonHolactieTheCreatorOfLightFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == CYBER_ELTANIN
+          && TrySpecialSummonCyberEltaninFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == HELIOS_DUO_MEGISTUS
+          && TrySpecialSummonHeliosDuoMegistusFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

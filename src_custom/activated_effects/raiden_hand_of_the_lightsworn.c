@@ -4,62 +4,90 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void RefreshFieldMonsterStatOverlays(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
+
+#define RAIDEN_MILL_COUNT 2
+
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsLightswornMonster(u16 cardId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sLightswornName);
 }
 
-static void CancelTargeting(void)
+static u8 DeckTopWillMillLightsworn(u8 count)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  for (i = top; i < top + count && i < deckSize; i++) {
+    if (IsLightswornMonster(gDuelDecks[fixedDuelist].cards[i]))
+      return TRUE;
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateRAIDEN_HAND_OF_THE_LIGHTSWORN(void)
 {
+  struct DuelCard *zone;
+  u8 fixedDuelist = FixedDuelistForActive();
+
   if (gMonEffect.id != RAIDEN_HAND_OF_THE_LIGHTSWORN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != RAIDEN_HAND_OF_THE_LIGHTSWORN)
+    return FALSE;
+
+  /* ponytail: End Phase mill 2 needs EP hook. Ceiling: Main Phase OPT mill 2. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return gDuelDecks[fixedDuelist].cardsDrawn + RAIDEN_MILL_COUNT <= NumCardsInDeck(fixedDuelist);
 }
 
 void ActivateRAIDEN_HAND_OF_THE_LIGHTSWORNEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 milledLightsworn;
+
   Duel_ShowEffectTextTyped(RAIDEN_HAND_OF_THE_LIGHTSWORN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  milledLightsworn = DeckTopWillMillLightsworn(RAIDEN_MILL_COUNT);
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (Duel_MillTopDeckCards(ACTIVE_DUELIST, RAIDEN_MILL_COUNT, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  if (milledLightsworn) {
+    /* ponytail: +1 tempStage (~500 ATK, not exact +200); until opp EP clear needs hook. */
+    if (self->tempStage < 127)
+      self->tempStage += 1;
+    RefreshFieldMonsterStatOverlays();
+  }
+
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

@@ -1,0 +1,88 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SILENT_SWORDSMAN_LV3",
+      "card_name": "Silent Swordsman LV3",
+      "kind": "activated",
+      "archetype": "SILENT_SWORDSMAN",
+      "path": "src_custom/activated_effects/silent_swordsman_lv3.c",
+      "effect_text": "Negate your opponent's Spell effects that target this card. During your Standby Phase: You can send this face-up card to Negate your opponent's Spell effects that target this card. During your Standby Phase: You can send this face-up card to the Graveyard; Special Summon 1 Silent Swordsman LV5 from your hand or Deck. You cannot activate this effect the turn this card is Summoned or flipped face-up.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SILENT_SWORDSMAN_LV5",
+      "clone_path": "src_custom/activated_effects/silent_swordsman_lv5.c",
+      "clone_score": 0.52
+    },
+    {
+      "card_const": "HOLACTIE_THE_CREATOR_OF_LIGHT",
+      "card_name": "Holactie the Creator of Light",
+      "kind": "activated",
+      "archetype": "HOLACTIE",
+      "path": "src_custom/activated_effects/holactie_the_creator_of_light.c",
+      "effect_text": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 3 monsters whose  Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 3 monsters whose original names are Slifer the Sky Dragon, Obelisk the Tormentor, and The Winged Dragon of Ra. This card's Special Summon cannot be negated. The player that Special Summons this card wins the Duel.",
+      "tags": [
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TEST_TIGER",
+      "clone_path": "src_custom/activated_effects/test_tiger.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "NEO_SPACIAN_MARINE_DOLPHIN",
+      "card_name": "Neo-Spacian Marine Dolphin",
+      "kind": "activated",
+      "archetype": "NEO_SPACIAN",
+      "path": "src_custom/activated_effects/neo_spacian_marine_dolphin.c",
+      "effect_text": "NEX only; Aqua Dolphin hand peek. This card's name is also treated as Neo-Spacian Aqua Dolphin. This card cannot be Special Summoned except with NEX. Once per turn, you can discard 1 card to look at your opponent's hand and select 1 Monster Card in it. If you control a monster with ATK greater than or equal to the selected monster's, destroy the selected monster and inflict 500 damage to your opponent.",
+      "tags": [
+        "burn",
+        "destroy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 500,
+      "clone_const": "NEO_SPACIAN_AQUA_DOLPHIN",
+      "clone_path": "src_custom/activated_effects/neo_spacian_aqua_dolphin.c",
+      "clone_score": 0.64
+    },
+    {
+      "card_const": "HERALD_OF_ULIMATENESS",
+      "card_name": "Herald of Ultimateness",
+      "kind": "activated",
+      "archetype": "HERALD_OF",
+      "path": "src_custom/activated_effects/herald_of_ulimateness.c",
+      "effect_text": "You can Ritual Summon this card with Oracle of the Herald. Must be Ritual Summoned, and cannot be Special Summoned by other ways. During either player's turn, when your opponent would Special Summon a monster(s), OR activates a Spell Card, Trap Card, or monster effect: You can send 1 Fairy-Type monster from your hand to the Graveyard; negate the Special Summon or activation, and if you do, destroy that card.",
+      "tags": [
+        "destroy",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HERALD_OF_PERFECTION",
+      "clone_path": "src_custom/activated_effects/herald_of_perfection.c",
+      "clone_score": 0.92
+    }
+  ]
+}
