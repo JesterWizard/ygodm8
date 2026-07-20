@@ -1,0 +1,79 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ARCANA_FORCE_IV_THE_EMPEROR",
+      "card_name": "Arcana Force IV - The Emperor",
+      "kind": "permanent",
+      "archetype": "ARCANA_FORCE",
+      "path": "src_custom/permanent_effects/arcana_force_iv_the_emperor.c",
+      "effect_text": "Coin: your or opp monsters gain 500 ATK. When this card is Summoned, toss a coin: Heads: All Arcana Force monsters you control gain 500 ATK. Tails: All Arcana Force monsters you control lose 500 ATK.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "REPTILIANNE_VIPER",
+      "clone_path": "src_custom/permanent_effects/reptilianne_viper.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "SHIRE_LIGHTSWORN_SPIRIT",
+      "card_name": "Shire, Lightsworn Spirit",
+      "kind": "permanent",
+      "archetype": "SHIRE",
+      "path": "src_custom/permanent_effects/shire_lightsworn_spirit.c",
+      "effect_text": "+300 ATK per GY LS; End mill 2. This card gains 300 ATK for each Lightsworn monster with a different name in your Graveyard. During each of your End Phases: Send the top 2 cards of your Deck to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DES_FERAL_IMP",
+      "clone_path": "src_custom/permanent_effects/des_feral_imp.c",
+      "clone_score": 0.43
+    },
+    {
+      "card_const": "DESPAIR_FROM_THE_DARK",
+      "card_name": "Despair from the Dark",
+      "kind": "permanent",
+      "archetype": "DESPAIR",
+      "path": "src_custom/permanent_effects/despair_from_the_dark.c",
+      "effect_text": "If this card is sent from your hand or Deck to your GY by an opponent's card effect: Special Summon this card. If this card is sent from your hand or Deck to your GY by an opponent's card effect: Special Summon this card.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "WULF_LIGHTSWORN_BEAST",
+      "clone_path": "src_custom/permanent_effects/wulf_lightsworn_beast.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "ARCANA_FORCE_VI_THE_LOVERS",
+      "card_name": "Arcana Force VI - The Lovers",
+      "kind": "permanent",
+      "archetype": "ARCANA_FORCE",
+      "path": "src_custom/permanent_effects/arcana_force_vi_the_lovers.c",
+      "effect_text": "Coin: double Tribute or cannot Tribute. When this card is Summoned, toss a coin: Heads: This card can be treated as 2 Tributes for the Tribute Summon of an Arcana Force monster. Tails: You cannot Tribute Summon Arcana Force monsters.",
+      "tags": [
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ARCANA_FORCE_VIII_THE_STRENGTH",
+      "clone_path": "src_custom/permanent_effects/arcana_force_viii_the_strength.c",
+      "clone_score": 0.68
+    }
+  ]
+}

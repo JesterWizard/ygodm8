@@ -1,85 +1,106 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
-#include "duel_helpers.h"
 #include "dynamic_equip.h"
-#include "summon_tribute.h"
+#include "duel_helpers.h"
+#include "expanded_graveyard.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+#define SHIRE_DISTINCT_CAP 32
+#define SHIRE_ATK_PER_NAME 300
+
+static u8 IsLightswornMonster(u16 cardId)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sLightswornName);
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 CountDistinctLightswornNamesInGy(u8 fixedDuelist)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u16 seen[SHIRE_DISTINCT_CAP];
+  u8 distinct = 0;
+  u8 i;
+  u8 j;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    u16 cardId = gDuel.duelistbattleState[fixedDuelist].graveyard;
+
+    return IsLightswornMonster(cardId) ? 1 : 0;
+  }
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    u16 cardId = GraveyardExpand_GetCardAt(fixedDuelist, i);
+    u8 already = FALSE;
+
+    if (!IsLightswornMonster(cardId))
+      continue;
+
+    for (j = 0; j < distinct; j++) {
+      if (seen[j] == cardId) {
+        already = TRUE;
+        break;
+      }
+    }
+
+    if (already)
+      continue;
+
+    if (distinct >= SHIRE_DISTINCT_CAP)
+      break;
+
+    seen[distinct++] = cardId;
+  }
+
+  return distinct;
 }
 
-static void CancelTargeting(void)
+static u16 ShireCurrentAtk(struct DuelCard *zone)
 {
-  PlayMusic(SFX_CANCEL);
+  u8 fixedDuelist = GetDuelistForZone(zone);
+  u32 baseAtk = gCardData_NEW[zone->id].atk;
+
+  if (fixedDuelist == 0xFF)
+    return (u16)baseAtk;
+
+  return Duel_StatFromCount(
+      CountDistinctLightswornNamesInGy(fixedDuelist),
+      SHIRE_ATK_PER_NAME,
+      baseAtk);
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+u8 ShireLightswornSpirit_ApplyDynamicZoneStats(struct DuelCard *zone)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  u16 atk;
+
+  if (zone == NULL || zone->id != SHIRE_LIGHTSWORN_SPIRIT)
+    return FALSE;
+
+  atk = ShireCurrentAtk(zone);
+  SetCardInfo(zone->id);
+  Duel_WriteCardInfoStats(zone->id, atk, gCardData_NEW[zone->id].def);
+  return TRUE;
 }
 
 unsigned char ShouldActivateSHIRE_LIGHTSWORN_SPIRIT(void)
 {
-  struct DuelCard *zone;
-
-  if (gActiveEffect.cardId != SHIRE_LIGHTSWORN_SPIRIT)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != SHIRE_LIGHTSWORN_SPIRIT)
-    return FALSE;
-
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
-      && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
-    return FALSE;
-
-  /* TODO: add field-has-target check */
-  return TRUE;
+  /* ponytail: End Phase mill 2 needs turn_effect hook — ApplyDynamicZoneStats only. */
+  (void)gActiveEffect;
+  return FALSE;
 }
 
 void ActivateSHIRE_LIGHTSWORN_SPIRIT(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
-
-  Duel_ShowEffectTextTyped(SHIRE_LIGHTSWORN_SPIRIT, 8);
-
-  if (IsDuelOver() == TRUE)
-    return;
-
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
-
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void ShireLightswornSpirit_SelfCheck(void)
+{
+  struct DuelCard zone;
+
+  zone.id = SHIRE_LIGHTSWORN_SPIRIT;
+  ShireLightswornSpirit_ApplyDynamicZoneStats(&zone);
+}
+#endif

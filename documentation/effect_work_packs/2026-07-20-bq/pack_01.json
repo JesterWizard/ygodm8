@@ -1,0 +1,82 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "AURKUS_LIGHTSWORN_DRUID",
+      "card_name": "Aurkus, Lightsworn Druid",
+      "kind": "permanent",
+      "archetype": "AURKUS",
+      "path": "src_custom/permanent_effects/aurkus_lightsworn_druid.c",
+      "effect_text": "Protect Lightsworn; mill 2 at End. Neither player can target Lightsworn monsters (anywhere) with card effects. During each of your End Phases: Send the top 2 cards of your Deck to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "REPTILIANNE_VIPER",
+      "clone_path": "src_custom/permanent_effects/reptilianne_viper.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_ESSEDARII",
+      "card_name": "Gladiator Beast Essedarii",
+      "kind": "permanent",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/permanent_effects/gladiator_beast_essedarii.c",
+      "effect_text": "Contact Fusion; tag after battle. 2 Gladiator Beast monsters Must first be Special Summoned (from your Extra Deck) by shuffling the above cards you control into the Deck. (You do not use Polymerization.)",
+      "tags": [
+        "deck",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "FENRIR",
+      "clone_path": "src_custom/permanent_effects/fenrir.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "JENIS_LIGHTSWORN_MENDER",
+      "card_name": "Jenis, Lightsworn Mender",
+      "kind": "permanent",
+      "archetype": "JENIS",
+      "path": "src_custom/permanent_effects/jenis_lightsworn_mender.c",
+      "effect_text": "Heal per miller; mill 2 at End. During the End Phase, if a card(s) was sent from your Deck to the Graveyard by the effect of a Lightsworn card this turn: Inflict 500 damage to your opponent, and if you do, gain 500 LP.",
+      "tags": [
+        "burn",
+        "deck",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 500,
+      "clone_const": "REPTILIANNE_VIPER",
+      "clone_path": "src_custom/permanent_effects/reptilianne_viper.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "EVIL_HERO_MALICIOUS_EDGE",
+      "card_name": "Evil HERO Malicious Edge",
+      "kind": "permanent",
+      "archetype": "EVIL_HERO_MALICIOUS",
+      "path": "src_custom/permanent_effects/evil_hero_malicious_edge.c",
+      "effect_text": "1 Tribute if opp has a monster. Piercing battle damage. If your opponent controls a monster, you can Tribute Summon this card face-up with 1 Tribute. If this card attacks a Defense Position monster, inflict piercing battle damage.",
+      "tags": [
+        "burn",
+        "faceup",
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_KNOSPE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_knospe.c",
+      "clone_score": 0.6
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "DESTINY_HERO_DEFENDER",
+      "card_name": "Destiny HERO - Defender",
+      "kind": "permanent",
+      "archetype": "DESTINY_HERO",
+      "path": "src_custom/permanent_effects/destiny_hero_defender.c",
+      "effect_text": "Destiny HERO - Defender During each of your opponent's Standby Phases: Your opponent draws 1 card. This card must be in face-up Defense Position to activate and to resolve this effect.",
+      "tags": [
+        "faceup"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "REPTILIANNE_VIPER",
+      "clone_path": "src_custom/permanent_effects/reptilianne_viper.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "DARKLORD_NURSE_REFICULE",
+      "card_name": "Darklord Nurse Reficule",
+      "kind": "permanent",
+      "archetype": "DARKLORD",
+      "path": "src_custom/permanent_effects/darklord_nurse_reficule.c",
+      "effect_text": "Any effect that would make your opponent gain LP inflicts the same amount of damage to them, instead. Any effect that would make your opponent gain LP inflicts the same amount of damage to them, instead.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "REPTILIANNE_VIPER",
+      "clone_path": "src_custom/permanent_effects/reptilianne_viper.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "LIGHT_SERPENT",
+      "card_name": "Lightserpent",
+      "kind": "permanent",
+      "archetype": "LIGHT",
+      "path": "src_custom/permanent_effects/light_serpent.c",
+      "effect_text": "If sent from hand to GY: SS it from GY. Not Synchro Material. If this card is sent from the hand to your Graveyard: You can Special Summon it from the Graveyard. This card cannot be used as a Synchro Material Monster.",
+      "tags": [
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_THE_SHINING",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_the_shining.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_TORAX",
+      "card_name": "Gladiator Beast Torax",
+      "kind": "permanent",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/permanent_effects/gladiator_beast_torax.c",
+      "effect_text": "Draw 2 discard 1; tag out after. If this card was Special Summoned by the effect of a Gladiator Beast monster, at the end of any Battle Phase that this card attacked or was attacked, you can return it to the Deck to draw 1 card.",
+      "tags": [
+        "deck",
+        "draw",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "FENRIR",
+      "clone_path": "src_custom/permanent_effects/fenrir.c",
+      "clone_score": 0.33
+    }
+  ]
+}

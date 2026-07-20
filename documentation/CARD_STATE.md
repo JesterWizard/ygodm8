@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack BP: 12 permanent monsters (BO–BT; Composer 2.5 Fast)
+**Last worked on:** 2026-07-20 — Effect pack BQ: 12 permanent monsters (Composer 2.5 Fast)
 
-**Outcome:** make OK. Stubs **104 → 92** (permanent **81**). Partials **3**.
+**Outcome:** make OK. Stubs **92 → 80** (permanent **69**).
 
-**Open / next:** BQ–BT permanent packs remaining.
+**Open / next:** BR–BT permanent packs remaining.

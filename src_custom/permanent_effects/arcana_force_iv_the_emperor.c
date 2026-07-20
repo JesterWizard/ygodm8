@@ -2,43 +2,51 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static const char sArcanaForceName[] APPEND_RODATA = "Arcana Force";
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static struct DuelCard *SelfZone(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  return gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 SummonerFixedMonsterRow(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u8 fixedRow;
+  u8 col;
+
+  if (!Duel_FindFixedMonsterZone(SelfZone(), &fixedRow, &col))
+    return PLAYER_MONSTER_ROW;
+
+  return fixedRow;
 }
 
-static void CancelTargeting(void)
+static u8 IsArcanaForceMonster(u16 cardId)
 {
-  PlayMusic(SFX_CANCEL);
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sArcanaForceName);
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static void ApplyCoinToArcanaForceMonsters(u8 heads)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  u8 fixedRow = SummonerFixedMonsterRow();
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+    if (zone == NULL || zone->id == CARD_NONE)
+      continue;
+    if (!IsArcanaForceMonster(zone->id))
+      continue;
+
+    if (heads)
+      IncrementTempStage(zone);
+    else
+      DecrementTempStage(zone);
+  }
 }
 
 unsigned char ShouldActivateARCANA_FORCE_IV_THE_EMPEROR(void)
@@ -46,9 +54,6 @@ unsigned char ShouldActivateARCANA_FORCE_IV_THE_EMPEROR(void)
   struct DuelCard *zone;
 
   if (gActiveEffect.cardId != ARCANA_FORCE_IV_THE_EMPEROR)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != ARCANA_FORCE_IV_THE_EMPEROR)
     return FALSE;
 
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
@@ -59,27 +64,24 @@ unsigned char ShouldActivateARCANA_FORCE_IV_THE_EMPEROR(void)
   if (zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
   return TRUE;
 }
 
 void ActivateARCANA_FORCE_IV_THE_EMPEROR(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  struct DuelCard *zone;
+  u8 heads;
 
   Duel_ShowEffectTextTyped(ARCANA_FORCE_IV_THE_EMPEROR, 8);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  zone = SelfZone();
+  if (zone == NULL)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  zone->unk4 = 1;
+  heads = RandRangeU8(0, 1) == 1;
+  ApplyCoinToArcanaForceMonsters(heads);
+  /* ponytail: ±500 ATK uses tempStage (~500/stage); only your Arcana Force on field. */
 }
