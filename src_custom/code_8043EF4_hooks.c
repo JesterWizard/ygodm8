@@ -290,6 +290,10 @@ u8 TrySpecialSummonDarknessNeosphereFromHand(u8);
 u8 TrySpecialSummonMazeraDevilleFromHand(u8);
 u8 TryActivateCrossKeeperFromHand(u8);
 u8 TrySpecialSummonAndroSphinxFromHand(u8);
+u8 TrySpecialSummonGladiatorBeastGistelFromHand(u8);
+u8 TrySpecialSummonTheAgentOfDestructionVenusFromHand(u8);
+u8 TrySpecialSummonReptilianneLamiaFromHand(u8);
+u8 TryActivateArcanaForceXiiTheHangmanFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -786,6 +790,26 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == ANDRO_SPHINX
           && TrySpecialSummonAndroSphinxFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GLADIATOR_BEAST_GISTEL
+          && TrySpecialSummonGladiatorBeastGistelFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == THE_AGENT_OF_DESTRUCTION_VENUS
+          && TrySpecialSummonTheAgentOfDestructionVenusFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == REPTILIANNE_LAMIA
+          && TrySpecialSummonReptilianneLamiaFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ARCANA_FORCE_XII_THE_HANGMAN
+          && TryActivateArcanaForceXiiTheHangmanFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

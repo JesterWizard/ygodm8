@@ -4,62 +4,74 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void RefreshFieldMonsterStatOverlays(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+#define THEINEN_LP_COST 500
+#define THEINEN_ATK_STAGES 7 /* ~3000 ATK */
+
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 CanPayCost(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return gDuelLifePoints[FixedDuelistForActive()] >= THEINEN_LP_COST;
 }
 
 unsigned char CanActivateTHEINEN_THE_GREAT_SPHINX(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != THEINEN_THE_GREAT_SPHINX)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != THEINEN_THE_GREAT_SPHINX)
+    return FALSE;
+
+  /* ponytail: Andro+Teleia destroy SS from hand/Deck needs destroy hook.
+   * Ceiling: OPT pay 500 → +7 tempStage (~3000 ATK). */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return CanPayCost();
 }
 
 void ActivateTHEINEN_THE_GREAT_SPHINXEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  s8 stages;
+
   Duel_ShowEffectTextTyped(THEINEN_THE_GREAT_SPHINX, 2);
+
+  if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  if (!CanPayCost())
+    return;
+
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -(s32)THEINEN_LP_COST, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  stages = self->tempStage + THEINEN_ATK_STAGES;
+  if (stages > 126)
+    stages = 126;
+  self->tempStage = stages;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  RefreshFieldMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

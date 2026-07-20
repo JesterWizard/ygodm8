@@ -1,0 +1,89 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "DIVINER_OF_THE_HERALD",
+      "card_name": "Diviner of the Herald",
+      "kind": "activated",
+      "archetype": "DIVINER",
+      "path": "src_custom/activated_effects/diviner_of_the_herald.c",
+      "effect_text": "If this card is Normal or Special Summoned: You can send 1 Fairy monster from your Deck or Extra Deck to the GY, and if  If this card is Normal or Special Summoned: You can send 1 Fairy monster from your Deck or Extra Deck to the GY, and if you do, increase this card's Level by that monster's Level, until the end of this turn. If this card is Tributed: You can Special Summon 1 Level 2 or lower Fairy monster from your hand or Deck, except Diviner of the Herald. You can only use each effect of Div",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "GANDORA_X_THE_DRAGON_OF_DESTRUCTION",
+      "card_name": "Gandora-X the Dragon of Demolition",
+      "kind": "activated",
+      "archetype": "GANDORA_X_THE_DRAGON_OF",
+      "path": "src_custom/activated_effects/gandora_x_the_dragon_of_destruction.c",
+      "effect_text": "When this card is Normal or Special Summoned from the hand: You can destroy as many other monsters on the field as possi When this card is Normal or Special Summoned from the hand: You can destroy as many other monsters on the field as possible, and if you do, inflict damage to your opponent equal to the highest original ATK on the field among those destroyed monsters (your choice, if tied). This card's ATK becomes equal to the damage inflicted to your opponent by this effect. Once per turn, dur",
+      "tags": [
+        "burn",
+        "destroy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ATHENA",
+      "clone_path": "src_custom/activated_effects/athena.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "BLUE_EYES_TYRANT_DRAGON",
+      "card_name": "Blue-Eyes Tyrant Dragon",
+      "kind": "activated",
+      "archetype": "BLUE_EYES",
+      "path": "src_custom/activated_effects/blue_eyes_tyrant_dragon.c",
+      "effect_text": "Blue-Eyes White Dragon + 1 Dragon. Must first be Fusion Summoned, or Special Summoned from Extra Deck by Blue-Eyes White Dragon + 1 Dragon monster Must first be either Fusion Summoned, or Special Summoned from your Extra Deck by Tributing 1 Blue-Eyes White Dragon equipped with a Fusion Monster. Unaffected by Trap Cards or effects. This card can attack all monsters your opponent controls, once each. Once per turn, at the end of the Damage Step, if this card battled: You can target 1 Trap in your ",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AZURE_EYES_SILVER_DRAGON",
+      "clone_path": "src_custom/activated_effects/azure_eyes_silver_dragon.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER",
+      "card_name": "Destiny HERO - Destroyer Phoenix Enforcer",
+      "kind": "activated",
+      "archetype": "DESTINY_HERO",
+      "path": "src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c",
+      "effect_text": "Destiny HERO - Destroyer Phoenix Enforcer 1 Level 6 or higher HERO monster + 1 Destiny HERO monster Monsters your opponent controls lose 200 ATK for each HERO card in your GY. You can only use each of the following effects of Destiny HERO - Destroyer Phoenix Enforcer once per turn. (Quick Effect): You can destroy both 1 card you control and 1 card on the field. If this card is destroyed by battle or card effect: You can activate this effect; Special Summon 1 Destiny HERO monster from your GY dur",
+      "tags": [
+        "destroy",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DESTINY_HERO_PLASMA",
+      "clone_path": "src_custom/activated_effects/destiny_hero_plasma.c",
+      "clone_score": 0.85
+    }
+  ]
+}

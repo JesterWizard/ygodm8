@@ -2,28 +2,64 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsFaceUpSpellTrapZone(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone;
+  u8 typeGroup;
+
+  if (fixedRow > PLAYER_BACKROW)
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  if (zone == NULL || zone->id == CARD_NONE || !zone->isFaceUp)
+    return FALSE;
+
+  typeGroup = GetTypeGroup(zone->id);
+  return typeGroup == TYPE_GROUP_SPELL || typeGroup == TYPE_GROUP_TRAP;
+}
+
+static u8 FieldHasFaceUpSpellTrap(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsFaceUpSpellTrapZone(row, col))
+        return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
 static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (!IsFaceUpSpellTrapZone(fixedRow, fixedCol) || zone == NULL)
+    return;
+
+  if (Duel_BanishZone(zone, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  NotifyDynamicEquipFieldChanged();
+
+  if (self != NULL)
+    MarkMonsterEffectUsed(self);
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 static void CancelTargeting(void)
@@ -33,17 +69,39 @@ static void CancelTargeting(void)
 
 static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsFaceUpSpellTrapZone(row, col)) {
+        *outRow = row;
+        *outCol = col;
+        return TRUE;
+      }
+    }
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateLEGENDARY_KNIGHT_HERMOS(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != LEGENDARY_KNIGHT_HERMOS)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != LEGENDARY_KNIGHT_HERMOS)
+    return FALSE;
+
+  /* ponytail: Legend of Heart SS + when-attacked GY name/effect copy need
+   * summon/battle hooks. Ceiling: OPT banish 1 face-up Spell/Trap. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return FieldHasFaceUpSpellTrap();
 }
 
 void ActivateLEGENDARY_KNIGHT_HERMOSEffect(void)
@@ -56,7 +114,7 @@ void ActivateLEGENDARY_KNIGHT_HERMOSEffect(void)
   gDuelCursor.destY = gMonEffect.row;
   gDuelCursor.destX = gMonEffect.zone;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  Duel_SetupPickZone(IsFaceUpSpellTrapZone, ResolveTarget, CancelTargeting, AiPickTarget);
 
   if (WhoseTurn() == DUEL_PLAYER)
     Duel_EnterPickZoneTargeting();

@@ -2,64 +2,186 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "god_card.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+extern const CardData gCardData_NEW[];
+
+static u8 CountDifferentAttributesOnField(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  u8 seen[16];
+  u8 row;
+  u8 col;
+  u8 i;
+  u8 count = 0;
+
+  for (i = 0; i < 16; i++)
+    seen[i] = FALSE;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+      u8 attr;
+
+      if (zone == NULL || zone->id == CARD_NONE
+          || GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+        continue;
+
+      SetCardInfo(zone->id);
+      attr = gCardInfo.attribute;
+      if (attr >= 16 || seen[attr])
+        continue;
+
+      seen[attr] = TRUE;
+      count++;
+    }
+  }
+
+  return count;
+}
+
+static u8 IsOppFieldCard(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone;
+
+  if (fixedRow != INACTIVE_DUELIST_MONSTER_ROW && fixedRow != INACTIVE_DUELIST_BACKROW)
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  if (zone == NULL || zone->id == CARD_NONE || IsGodCard(zone->id))
+    return FALSE;
+
+  return TRUE;
+}
+
+static u8 OppFieldHasCard(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = INACTIVE_DUELIST_MONSTER_ROW; row <= INACTIVE_DUELIST_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsOppFieldCard(row, col))
+        return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 CountOppFieldCards(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u8 row;
+  u8 col;
+  u8 count = 0;
+
+  for (row = INACTIVE_DUELIST_MONSTER_ROW; row <= INACTIVE_DUELIST_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsOppFieldCard(row, col))
+        count++;
+    }
+  }
+
+  return count;
 }
 
-static void CancelTargeting(void)
+static u8 DestroyUpToNOppCards(u8 max)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u8 destroyed = 0;
+  u8 row;
+  u8 col;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  while (destroyed < max) {
+    u8 bestRow = 0xFF;
+    u8 bestCol = 0xFF;
+    u16 bestScore = 0;
+
+    for (row = INACTIVE_DUELIST_MONSTER_ROW; row <= INACTIVE_DUELIST_BACKROW; row++) {
+      for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+        struct DuelCard *zone;
+        u16 score;
+
+        if (!IsOppFieldCard(row, col))
+          continue;
+
+        zone = gFixedZones[row][col];
+        if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER)
+          score = gCardData_NEW[zone->id].atk + 100;
+        else
+          score = 50;
+
+        if (bestRow == 0xFF || score > bestScore) {
+          bestScore = score;
+          bestRow = row;
+          bestCol = col;
+        }
+      }
+    }
+
+    if (bestRow == 0xFF)
+      break;
+
+    if (Duel_DestroyZone(gFixedZones[bestRow][bestCol], INACTIVE_DUELIST, FALSE)
+        == DUEL_ACTION_DUEL_OVER)
+      return destroyed;
+
+    destroyed++;
+  }
+
+  return destroyed;
 }
 
 unsigned char CanActivateELEMENTAL_HERO_SHINING_NEOS_WINGMAN(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != ELEMENTAL_HERO_SHINING_NEOS_WINGMAN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != ELEMENTAL_HERO_SHINING_NEOS_WINGMAN)
+    return FALSE;
+
+  /* ponytail: GY ATK gain + effect destroy immunity + battle burn need permanent/
+   * battle hooks. Ceiling: OPT destroy opp cards up to different Attributes. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return CountDifferentAttributesOnField() > 0 && OppFieldHasCard();
 }
 
 void ActivateELEMENTAL_HERO_SHINING_NEOS_WINGMANEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 max;
+  u8 oppCount;
+
   Duel_ShowEffectTextTyped(ELEMENTAL_HERO_SHINING_NEOS_WINGMAN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  max = CountDifferentAttributesOnField();
+  oppCount = CountOppFieldCards();
+  if (max > oppCount)
+    max = oppCount;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (max == 0)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  /* ponytail: multi-target picker not wired; auto-destroy highest-value opp cards. */
+  if (DestroyUpToNOppCards(max) == 0)
+    return;
+
+  NotifyDynamicEquipFieldChanged();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

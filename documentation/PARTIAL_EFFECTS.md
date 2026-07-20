@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:46 UTC  
-**Remaining partials:** `670`
+**Last updated:** 2026-07-20 19:53 UTC  
+**Remaining partials:** `682`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 339 |
+| `activated` | 351 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **670** |
+| **total** | **682** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (339)
+## activated (351)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1505,6 +1505,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/arcana_force_v_the_hierophant.c`
 - L86: on-Summon coin + discard summon-lock need summon/FromHand paths. Ceiling: OPT coin → SS 1 Arcana Force from Deck.
 - L153: discard only; opp cannot respond to Arcana Summons needs turn flag hook.
+
+### `ARCANA_FORCE_XII_THE_HANGMAN`
+- path: `src_custom/activated_effects/arcana_force_xii_the_hangman.c`
+- L139: on-Summon coin should fire at summon; OPT stand-in here. Ceiling: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF.
+- L170: coin targeting uses auto-pick highest ATK; upgrade: PickZone.
 
 ### `ARCANA_FORCE_XIX_THE_SUN`
 - path: `src_custom/activated_effects/arcana_force_xix_the_sun.c`
@@ -1653,6 +1658,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `BLUE_EYES_SOLID_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_solid_dragon.c`
 - L49: summon Quick shuffle→SS BEWD + per-effect usage need hooks.
+
+### `BLUE_EYES_TYRANT_DRAGON`
+- path: `src_custom/activated_effects/blue_eyes_tyrant_dragon.c`
+- L94: multi-attack + Trap immunity + battle-end Set need battle/permanent hooks. Ceiling: OPT Set 1 Trap from GY to backrow.
 
 ### `BOOT_UP_SOLDIER_DREAD_DYNAMO`
 - path: `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c`
@@ -1813,6 +1822,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/destiny_hero_denier.c`
 - L189: GY SS when other D-HERO present needs GY/once-per-duel hooks. Ceiling: OPT put 1 D-HERO from Deck/GY/banished on top of Deck.
 
+### `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER`
+- path: `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c`
+- L154: second target picker not chained; auto-destroy best remaining card.
+- L227: Quick destroy + GY revive + continuous ATK loss need quick/GY/ permanent hooks. Ceiling: OPT destroy 1 you control + 1 other field card.
+
 ### `DESTINY_HERO_DIAMOND_DUDE`
 - path: `src_custom/activated_effects/destiny_hero_diamond_dude.c`
 - L57: next-turn GY Normal Spell activation needs Main Phase hook.
@@ -1858,6 +1872,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DESTINY_HERO_PLASMA`
 - path: `src_custom/activated_effects/destiny_hero_plasma.c`
 - L95: equip/absorb + half-ATK boost + continuous opp negate need equip hooks. Ceiling: destroy 1 opp monster.
+
+### `DIVINER_OF_THE_HERALD`
+- path: `src_custom/activated_effects/diviner_of_the_herald.c`
+- L89: on-NS/SS mill + tribute SS Fairy need summon/tribute hooks. Ceiling: OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in).
+- L110: Level bump until EOT needs level-override hook; unkTwo stores milled Level.
 
 ### `EHREN_LIGHTSWORN_MONK`
 - path: `src_custom/activated_effects/ehren_lightsworn_monk.c`
@@ -1920,6 +1939,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ELEMENTAL_HERO_OCEAN`
 - path: `src_custom/activated_effects/elemental_hero_ocean.c`
 - L81: skip stale GY Ocean while the activator is still on field
+
+### `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN`
+- path: `src_custom/activated_effects/elemental_hero_shining_neos_wingman.c`
+- L150: GY ATK gain + effect destroy immunity + battle burn need permanent/ battle hooks. Ceiling: OPT destroy opp cards up to different Attributes.
+- L177: multi-target picker not wired; auto-destroy highest-value opp cards.
 
 ### `ELEMENTAL_HERO_STORM_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_storm_neos.c`
@@ -1994,6 +2018,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gagagigo_the_risen.c`
 - L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
+### `GANDORA_X_THE_DRAGON_OF_DESTRUCTION`
+- path: `src_custom/activated_effects/gandora_x_the_dragon_of_destruction.c`
+- L101: on-NS/SS-from-hand wipe + EP self-destroy need summon/EP hooks. Ceiling: OPT destroy all other monsters + burn highest original ATK + set ATK.
+- L129: set ATK = damage via tempStage (~500/unit); EP self-destroy FALSE.
+
 ### `GLADIATOR_BEAST_ANDABATA`
 - path: `src_custom/activated_effects/gladiator_beast_andabata.c`
 - L135: Extra Deck return + Lv≤7 GB Fusion Extra SS need ED/Fusion APIs.
@@ -2023,6 +2052,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEAST_EQUESTE`
 - path: `src_custom/activated_effects/gladiator_beast_equeste.c`
 - L158: on-GB-tag SS add trigger + end-of-BP battled gate need summon/battle hooks. Ceiling: OPT add 1 GB from GY to hand, else tag-out shuffle→SS.
+
+### `GLADIATOR_BEAST_GISTEL`
+- path: `src_custom/activated_effects/gladiator_beast_gistel.c`
+- L162: on-GB-SS search + end-BP battled tag gate need summon/battle hooks. Ceiling: OPT search Gladiator S/T, else tag-out. FromHand: reveal+SS both.
 
 ### `GLADIATOR_BEAST_GYZARUS`
 - path: `src_custom/activated_effects/gladiator_beast_gyzarus.c`
@@ -2256,6 +2289,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `LEGENDARY_KNIGHT_CRITIAS`
 - path: `src_custom/activated_effects/legendary_knight_critias.c`
 - L99: Legend of Heart SS + when-attacked Set Trap from GY need summon/battle hooks. Ceiling: OPT banish 1 face-up Spell/Trap on the field.
+
+### `LEGENDARY_KNIGHT_HERMOS`
+- path: `src_custom/activated_effects/legendary_knight_hermos.c`
+- L99: Legend of Heart SS + when-attacked GY name/effect copy need summon/battle hooks. Ceiling: OPT banish 1 face-up Spell/Trap.
 
 ### `LEGENDARY_KNIGHT_TIMAEUS`
 - path: `src_custom/activated_effects/legendary_knight_timaeus.c`
@@ -2533,6 +2570,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/reeshaddoll_wendi.c`
 - L59: FLIP vs sent-by-effect face-down DEF branches need flip/send hooks. Ceiling: OPT SS 1 other Shaddoll from Deck face-up DEF.
 
+### `REESHADDOLL_WENDIKURUHU`
+- path: `src_custom/activated_effects/reeshaddoll_wendikuruhu.c`
+- L73: Quick face-up→face-down follow-up + GY Shaddoll add need flip/send hooks. Ceiling: OPT flip all face-down monsters face-up DEF.
+
+### `REPTILIANNE_LAMIA`
+- path: `src_custom/activated_effects/reptilianne_lamia.c`
+- L97: GY synchro-material ATK-0 need synchro hook. Ceiling: not field-ignition; FromHand ATK-0 + SS + self-damage.
+- L146: FromHand targeting not wired; auto-pick highest original ATK opp.
+
 ### `REPTILIANNE_MEDUSA`
 - path: `src_custom/activated_effects/reptilianne_medusa.c`
 - L76: cannot change battle position needs position-change gate.
@@ -2663,6 +2709,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L50: opening hand is seeded before duel gfx; skip like Solemn Wishes.
 - L54: unk18 != 0 means battle/damage resolution is active.
 
+### `THE_AGENT_OF_DESTRUCTION_VENUS`
+- path: `src_custom/activated_effects/the_agent_of_destruction_venus.c`
+- L66: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
+- L192: leave-field Deck bottom for Shine Balls needs leave hook. Ceiling: OPT pay 500×N → SS N Mystical Shine Ball from banished/GY.
+
 ### `THE_AGENT_OF_ENTROPY_URANUS`
 - path: `src_custom/activated_effects/the_agent_of_entropy_uranus.c`
 - L117: tempStage stores milled Level, not a true level change hook.
@@ -2704,6 +2755,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/the_winged_dragon_of_ra_sphere_mode.c`
 - L57: hand permanent-effect scan is skipped when turn_off_visual_scanner is on (gHideEffectText), so use Blue Eyes Shining-style post-board-scan auto-summon.
 - L159: in-place tribute replacement; Duel_SpecialSummon* needs an empty zone
+
+### `THEINEN_THE_GREAT_SPHINX`
+- path: `src_custom/activated_effects/theinen_the_great_sphinx.c`
+- L39: Andro+Teleia destroy SS from hand/Deck needs destroy hook. Ceiling: OPT pay 500 → +7 tempStage (~3000 ATK).
 
 ### `THESTALOS_THE_FIRESTORM_MONARCH`
 - path: `src_custom/activated_effects/thestalos_the_firestorm_monarch.c`
