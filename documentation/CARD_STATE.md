@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack BW: 9 permanent (Composer 2.5 Fast; last permanent batch)
+**Last worked on:** 2026-07-20 — Effect pack BX: 11 battle/turn (Composer 2.5 Fast; final stubs)
 
-**Outcome:** make OK (GetDuelistForZone include fix). Stubs **20 → 11** (permanent exhausted).
+**Outcome:** make OK. Stubs **11 → 0**. Effect stub backlog cleared for this arc.
 
-**Open / next:** BX–BZ battle/turn stubs.
+**Open / next:** Partial ceilings in PARTIAL_EFFECTS.md; no more STUB_EFFECTS batches unless new stubs appear.

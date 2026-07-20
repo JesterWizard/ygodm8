@@ -485,6 +485,30 @@ _kernel_malloc_ewram gYubelTerrorAttackedReflectPending, 1
 _kernel_malloc_ewram gPendingHyperHammerheadRow, 1
 @ Fixed monster column for a pending Hyper Hammerhead bounce.
 _kernel_malloc_ewram gPendingHyperHammerheadCol, 1
+@ Fixed monster rows/cols for pending Neo-Spacian Grand Mole dual bounce, else 0xFF.
+_kernel_malloc_ewram gPendingNeoSpacianGrandMoleRow0, 1
+_kernel_malloc_ewram gPendingNeoSpacianGrandMoleCol0, 1
+_kernel_malloc_ewram gPendingNeoSpacianGrandMoleRow1, 1
+_kernel_malloc_ewram gPendingNeoSpacianGrandMoleCol1, 1
+@ DUEL_PLAYER/DUEL_OPPONENT burn pending for Lightning Warrior, else 0xFF.
+_kernel_malloc_ewram gPendingLightningWarriorDuelist, 1
+@ ponytail: pad keeps gPendingLightningWarriorBurn on an even EWRAM address.
+_kernel_malloc_ewram gPendingLightningWarriorBurn_Align, 1
+_kernel_malloc_ewram gPendingLightningWarriorBurn, 2
+_kernel_malloc_ewram gPendingLightningWarriorEffectCardId, 2
+@ TRUE while Neo-Spacian Glow Moss draw/type branch is pending.
+_kernel_malloc_ewram gPendingNeoSpacianGlowMossDraw, 1
+@ TRUE while Neo-Spacian Twinkle Moss draw/type branch is pending.
+_kernel_malloc_ewram gPendingNeoSpacianTwinkleMossDraw, 1
+@ TRUE while Reptilianne Gorgon post-battle ATK zero is pending.
+_kernel_malloc_ewram gPendingReptilianneGorgonZeroAtk, 1
+@ DUEL_PLAYER/DUEL_OPPONENT discard/mill target for Don Zaloog, else 0xFF.
+_kernel_malloc_ewram gPendingDonZaloogTargetDuelist, 1
+@ Opponent fixed monster row for pending Red Dragon Archfiend board wipe, else 0xFF.
+_kernel_malloc_ewram gPendingRedDragonArchfiendFixedRow, 1
+@ Controller/graveyard duelists for pending Reptilianne Scylla revive, else 0xFF.
+_kernel_malloc_ewram gPendingReptilianneScyllaController, 1
+_kernel_malloc_ewram gPendingReptilianneScyllaGraveyardDuelist, 1
 @ Fixed monster row/col for pending D.D. Warrior banish (warrior + battled monster), else 0xFF.
 _kernel_malloc_ewram gPendingDDWarriorWarriorRow, 1
 _kernel_malloc_ewram gPendingDDWarriorWarriorCol, 1

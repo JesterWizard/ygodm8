@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 21:30 UTC  
-**Remaining partials:** `870`
+**Last updated:** 2026-07-20 21:35 UTC  
+**Remaining partials:** `874`
 
 ## Counts by kind
 
@@ -19,9 +19,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| `battle` | 3 |
-| `turn` | 1 |
-| **total** | **870** |
+| `battle` | 5 |
+| `turn` | 3 |
+| **total** | **874** |
 
 ## spell (185)
 
@@ -3789,7 +3789,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/zeriel.c`
 - L44: GetTypeGroup/SetCardInfo would clobber gCardInfo.atk already computed.
 
-## battle (3)
+## battle (5)
 
 ### `CYBER_BARRIER_DRAGON`
 - path: `src_custom/battle_effects/cyber_barrier_dragon.c`
@@ -3803,7 +3803,24 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/battle_effects/elemental_hero_voltic.c`
 - L76: no banished-zone / removed-from-play storage yet — show text only; optional target + special summon deferred until banish zone exists.
 
-## turn (1)
+### `NEO_SPACIAN_GLOW_MOSS`
+- path: `src_custom/battle_effects/neo_spacian_glow_moss.c`
+- L88: Monster = end Battle Phase; Spell = optional direct attack — no phase/attack hooks.
+
+### `RED_DRAGON_ARCHFIEND`
+- path: `src_custom/battle_effects/red_dragon_archfiend.c`
+- L121: End Phase destroy other non-attacking monsters FALSE — no EP attacker tracking.
+
+## turn (3)
+
+### `DESTINY_HERO_FEAR_MONGER`
+- path: `src_custom/turn_effects/destiny_hero_fear_monger.c`
+- L83: no destroyed-by-battle-since-last-Standby tracking; any GY Fear Monger qualifies.
+
+### `THE_WHITE_STONE_OF_ANCIENTS`
+- path: `src_custom/turn_effects/the_white_stone_of_ancients.c`
+- L89: End Phase + sent-this-turn not tracked; any GY White Stone qualifies.
+- L117: banish-to-add Blue-Eyes GY effect FALSE — no once-per-turn banish hook.
 
 ### `YUBEL`
 - path: `src_custom/turn_effects/yubel.c`

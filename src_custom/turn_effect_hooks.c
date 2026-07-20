@@ -67,6 +67,12 @@ void ActivateDancingFairyTurnEffect(void);
 unsigned char ShouldActivateSpiritOfTheBreezeTurnEffect(void);
 void ActivateSpiritOfTheBreezeTurnEffect(void);
 void ActivateDarklordMarieTurnEffect(void);
+u8 ShouldActivateDestinyHeroFearMongerTurnEffect(void);
+void ActivateDestinyHeroFearMongerTurnEffect(void);
+u8 ShouldActivateArmedDragonLv3TurnEffect(void);
+void ActivateArmedDragonLv3TurnEffect(void);
+u8 ShouldActivateTheWhiteStoneOfAncientsTurnEffect(void);
+void ActivateTheWhiteStoneOfAncientsTurnEffect(void);
 unsigned char ShouldActivateUnstoppableExodiaIncarnateTurnEffect(void);
 void ActivateUnstoppableExodiaIncarnateTurnEffect(void);
 unsigned char ShouldActivateBlueEyesChaosDragonTurnEffect(void);
@@ -152,6 +158,9 @@ static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".
   { SPIRIT_OF_THE_BREEZE, MatchActiveDuelistMonsterRow, ShouldActivateSpiritOfTheBreezeTurnEffect, ActivateSpiritOfTheBreezeTurnEffect },
   { DARK_DUST_SPIRIT, MatchActiveDuelistMonsterRow, ShouldActivateDarkDustSpiritTurnEffect, ActivateDarkDustSpiritTurnEffect },
   { DARKLORD_MARIE, MatchActiveDuelistGraveyard, NULL, ActivateDarklordMarieTurnEffect },
+  { DESTINY_HERO_FEAR_MONGER, MatchActiveDuelistGraveyard, ShouldActivateDestinyHeroFearMongerTurnEffect, ActivateDestinyHeroFearMongerTurnEffect },
+  { ARMED_DRAGON_LV3, MatchActiveDuelistMonsterRow, ShouldActivateArmedDragonLv3TurnEffect, ActivateArmedDragonLv3TurnEffect },
+  { THE_WHITE_STONE_OF_ANCIENTS, MatchActiveDuelistGraveyard, ShouldActivateTheWhiteStoneOfAncientsTurnEffect, ActivateTheWhiteStoneOfAncientsTurnEffect },
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, MatchActiveDuelistMonsterRow, ShouldActivateUnstoppableExodiaIncarnateTurnEffect, ActivateUnstoppableExodiaIncarnateTurnEffect },
   { BLUE_EYES_CHAOS_DRAGON, MatchActiveDuelistMonsterRow, ShouldActivateBlueEyesChaosDragonTurnEffect, ActivateBlueEyesChaosDragonTurnEffect },
   { THE_GRAND_JUPITER, MatchAnyMonsterRow, ShouldActivateTheGrandJupiterTurnEffect, ActivateTheGrandJupiterTurnEffect },
@@ -346,9 +355,3 @@ void TryActivatingTurnEffects__Replacement(void) {
     return;
   CheckBoardForTurnEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
 }
-/* ARMED_DRAGON_LV3 turn effect */
-  /* TODO: wire ARMED_DRAGON_LV3 in turn effect hooks */
-/* DESTINY_HERO_FEAR_MONGER turn effect */
-  /* TODO: wire DESTINY_HERO_FEAR_MONGER in turn effect hooks */
-/* THE_WHITE_STONE_OF_ANCIENTS turn effect */
-  /* TODO: wire THE_WHITE_STONE_OF_ANCIENTS in turn effect hooks */

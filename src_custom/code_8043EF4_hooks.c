@@ -68,6 +68,14 @@
 #include "dark_magician_of_chaos.h"
 #include "needle_burrower.h"
 #include "hyper_hammerhead.h"
+#include "neo_spacian_grand_mole.h"
+#include "lightning_warrior.h"
+#include "neo_spacian_glow_moss.h"
+#include "neo_spacian_twinkle_moss.h"
+#include "reptilianne_gorgon.h"
+#include "don_zaloog.h"
+#include "red_dragon_archfiend.h"
+#include "reptilianne_scylla.h"
 #include "des_kangaroo.h"
 #include "d_d_warrior.h"
 #include "absorbing_kid_from_the_sky.h"
@@ -1773,6 +1781,14 @@ void sub_8044570__Replacement(void)
       ResolveSasukeSamurai3BattleEffect();
       ResolveNeedleBurrowerBattleEffect();
       ResolveHyperHammerheadBattleEffect();
+      ResolveNeoSpacianGrandMoleBattleEffect();
+      ResolveLightningWarriorBattleEffect();
+      ResolveNeoSpacianGlowMossBattleEffect();
+      ResolveNeoSpacianTwinkleMossBattleEffect();
+      ResolveReptilianneGorgonBattleEffect();
+      ResolveDonZaloogBattleEffect();
+      ResolveRedDragonArchfiendBattleEffect();
+      ResolveReptilianneScyllaBattleEffect();
       ResolveDDWarriorBattleEffect();
       ResolveDesKangarooBattleEffect();
       ResolveAbsorbingKidFromTheSkyBattleEffect();
@@ -1911,6 +1927,14 @@ void TryAttackWithMonster__Replacement(void)
       ResolveSasukeSamurai3BattleEffect();
       ResolveNeedleBurrowerBattleEffect();
       ResolveHyperHammerheadBattleEffect();
+      ResolveNeoSpacianGrandMoleBattleEffect();
+      ResolveLightningWarriorBattleEffect();
+      ResolveNeoSpacianGlowMossBattleEffect();
+      ResolveNeoSpacianTwinkleMossBattleEffect();
+      ResolveReptilianneGorgonBattleEffect();
+      ResolveDonZaloogBattleEffect();
+      ResolveRedDragonArchfiendBattleEffect();
+      ResolveReptilianneScyllaBattleEffect();
       ResolveDDWarriorBattleEffect();
       ResolveDesKangarooBattleEffect();
       ResolveAbsorbingKidFromTheSkyBattleEffect();

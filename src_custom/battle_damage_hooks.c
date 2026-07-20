@@ -33,6 +33,14 @@
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
 #include "hyper_hammerhead.h"
+#include "neo_spacian_grand_mole.h"
+#include "lightning_warrior.h"
+#include "neo_spacian_glow_moss.h"
+#include "neo_spacian_twinkle_moss.h"
+#include "reptilianne_gorgon.h"
+#include "don_zaloog.h"
+#include "red_dragon_archfiend.h"
+#include "reptilianne_scylla.h"
 #include "gyaku_gire_panda.h"
 #include "sasuke_samurai_3.h"
 #include "d_d_warrior.h"
@@ -297,6 +305,14 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyYataGarasuBattleEffect();
   ApplyFenrirBattleEffect();
   ApplyHyperHammerheadBattleEffect();
+  ApplyNeoSpacianGrandMoleBattleEffect();
+  ApplyLightningWarriorBattleEffect();
+  ApplyNeoSpacianGlowMossBattleEffect();
+  ApplyNeoSpacianTwinkleMossBattleEffect();
+  ApplyReptilianneGorgonBattleEffect();
+  ApplyDonZaloogBattleEffect();
+  ApplyRedDragonArchfiendBattleEffect();
+  ApplyReptilianneScyllaBattleEffect();
   ApplySasukeSamurai3BattleEffect();
   ApplyHarpieLady2FlipNegation();
   ApplyHarpieLady3AttackLock();
@@ -309,21 +325,3 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   }
 }
 /* Light End Dragon converted to activated effect in activated_effects/light_end_dragon.c */
-/* D_D_WARRIOR battle effect */
-  /* TODO: wire D_D_WARRIOR in battle damage hooks */
-/* DON_ZALOOG battle effect */
-  /* TODO: wire DON_ZALOOG in battle damage hooks */
-/* LIGHTNING_WARRIOR battle effect */
-  /* TODO: wire LIGHTNING_WARRIOR in battle damage hooks */
-/* RED_DRAGON_ARCHFIEND battle effect */
-  /* TODO: wire RED_DRAGON_ARCHFIEND in battle damage hooks */
-/* REPTILIANNE_GORGON battle effect */
-  /* TODO: wire REPTILIANNE_GORGON in battle damage hooks */
-/* REPTILIANNE_SCYLLA battle effect */
-  /* TODO: wire REPTILIANNE_SCYLLA in battle damage hooks */
-/* NEO_SPACIAN_GLOW_MOSS battle effect */
-  /* TODO: wire NEO_SPACIAN_GLOW_MOSS in battle damage hooks */
-/* NEO_SPACIAN_GRAND_MOLE battle effect */
-  /* TODO: wire NEO_SPACIAN_GRAND_MOLE in battle damage hooks */
-/* NEO_SPACIAN_TWINKLE_MOSS battle effect */
-  /* TODO: wire NEO_SPACIAN_TWINKLE_MOSS in battle damage hooks */

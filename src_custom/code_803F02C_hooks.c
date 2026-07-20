@@ -77,6 +77,14 @@
 #include "dark_magician_of_chaos.h"
 #include "needle_burrower.h"
 #include "hyper_hammerhead.h"
+#include "neo_spacian_grand_mole.h"
+#include "lightning_warrior.h"
+#include "neo_spacian_glow_moss.h"
+#include "neo_spacian_twinkle_moss.h"
+#include "reptilianne_gorgon.h"
+#include "don_zaloog.h"
+#include "red_dragon_archfiend.h"
+#include "reptilianne_scylla.h"
 #include "des_kangaroo.h"
 #include "absorbing_kid_from_the_sky.h"
 #include "airknight_parshath.h"
@@ -500,6 +508,14 @@ void InitBoard__Replacement(void) {
   ClearSasukeSamurai3DrawPending();
   ClearNeedleBurrowerPending();
   ClearHyperHammerheadPending();
+  ClearNeoSpacianGrandMolePending();
+  ClearLightningWarriorPending();
+  gPendingNeoSpacianGlowMossDraw = FALSE;
+  gPendingNeoSpacianTwinkleMossDraw = FALSE;
+  gPendingReptilianneGorgonZeroAtk = FALSE;
+  ClearDonZaloogPending();
+  ClearRedDragonArchfiendPending();
+  ClearReptilianneScyllaPending();
   ClearDesKangarooPending();
   ClearAbsorbingKidFromTheSkyPending();
   ClearCoffinSellerPending();
