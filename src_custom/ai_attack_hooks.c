@@ -34,6 +34,8 @@
 #include "elemental_hero_knospe.h"
 #include "elemental_hero_ice_edge.h"
 #include "jowls_of_dark_demise.h"
+#include "neo_spacian_glow_moss.h"
+#include "red_dragon_archfiend.h"
 #include "duel_helpers.h"
 #include "d_d_warrior.h"
 #include "lesser_fiend.h"
@@ -182,6 +184,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
       && !CanElementalHeroMarinerAttackDirectly(attacker->id)
       && !CanElementalHeroKnospeAttackDirectly(attacker->id)
       && !CanElementalHeroIceEdgeAttackDirectly(attacker)
+      && !CanNeoSpacianGlowMossAttackDirectly(attacker)
       && !CanThunderNyanNyanAttackDirectly(attacker->id))
     return;
 
@@ -194,6 +197,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   AiPrepareAttacker(attacker);
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
+  MarkMonsterDeclaredAttackThisTurn(attacker);
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, NULL);
   TryShowBlackTyrannoDirectAttackText(attacker->id);
   TryShowDrillagoDirectAttackText(attacker->id);
@@ -246,6 +250,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   RefreshPendingSasukeBattleTarget();
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
+  MarkMonsterDeclaredAttackThisTurn(attacker);
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, defender);
 
   if (WhoseTurn() == DUEL_PLAYER) {

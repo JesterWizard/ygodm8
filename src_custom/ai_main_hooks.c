@@ -11,6 +11,7 @@
 #include "permanent_effect.h"
 #include "yubel.h"
 #include "hamon_lord_of_striking_thunder.h"
+#include "red_dragon_archfiend.h"
 
 void TryActivatingTurnEffects(void);
 void TryAttackVoicing(void);
@@ -87,4 +88,5 @@ void AI_Main__Replacement(void)
   }
 
   ResolveYubelEndPhaseEffectsAtTurnEnd();
+  TryApplyRedDragonArchfiendEndPhaseEffect();
 }

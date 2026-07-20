@@ -2,7 +2,11 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
+
+extern u8 gWhiteStoneSentToGyThisTurn;
+extern u8 gWhiteStoneSentToGyPrevTurn;
 
 static const char sBlueEyesName[] APPEND_RODATA = "Blue-Eyes";
 
@@ -74,9 +78,41 @@ static u8 CanSpecialSummonBlueEyesFromDeck(u8 turnDuelist)
   return FindBlueEyesInDeck(turnDuelist) != CARD_NONE;
 }
 
+static void MarkWhiteStoneSentToGy(u8 controller)
+{
+  if (controller == DUEL_PLAYER)
+    gWhiteStoneSentToGyThisTurn |= 1;
+  else if (controller == DUEL_OPPONENT)
+    gWhiteStoneSentToGyThisTurn |= 2;
+}
+
+static void OnWhiteStoneLeaveField(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->cardId != THE_WHITE_STONE_OF_ANCIENTS)
+    return;
+
+  MarkWhiteStoneSentToGy(ev->controller);
+}
+
+void TheWhiteStoneOfAncients_AgeSentFlags(void)
+{
+  gWhiteStoneSentToGyPrevTurn = gWhiteStoneSentToGyThisTurn;
+  gWhiteStoneSentToGyThisTurn = 0;
+}
+
+void TheWhiteStoneOfAncients_EnsureInit(void)
+{
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnWhiteStoneLeaveField);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnWhiteStoneLeaveField);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_BATTLE_DESTROY, OnWhiteStoneLeaveField);
+}
+
 u8 ShouldActivateTheWhiteStoneOfAncientsTurnEffect(void)
 {
   u8 fixedDuelist;
+  u8 bit;
+
+  TheWhiteStoneOfAncients_EnsureInit();
 
   if (gActiveEffect.cardId != THE_WHITE_STONE_OF_ANCIENTS)
     return FALSE;
@@ -85,8 +121,12 @@ u8 ShouldActivateTheWhiteStoneOfAncientsTurnEffect(void)
     return FALSE;
 
   fixedDuelist = FixedDuelistForActiveTurn();
+  bit = (fixedDuelist == DUEL_PLAYER) ? 1 : 2;
 
-  /* ponytail: End Phase + sent-this-turn not tracked; any GY White Stone qualifies. */
+  /* Engine runs turn effects at next turn start ≈ End Phase of prior turn. */
+  if ((gWhiteStoneSentToGyPrevTurn & bit) == 0)
+    return FALSE;
+
   if (!GraveyardContainsWhiteStone(fixedDuelist))
     return FALSE;
 
@@ -95,11 +135,15 @@ u8 ShouldActivateTheWhiteStoneOfAncientsTurnEffect(void)
 
 void ActivateTheWhiteStoneOfAncientsTurnEffect(void)
 {
+  u8 fixedDuelist = FixedDuelistForActiveTurn();
+  u8 bit = (fixedDuelist == DUEL_PLAYER) ? 1 : 2;
   u16 cardId;
   struct DuelSummonOpts opts;
 
   if (!ShouldActivateTheWhiteStoneOfAncientsTurnEffect())
     return;
+
+  gWhiteStoneSentToGyPrevTurn &= (u8)~bit;
 
   cardId = FindBlueEyesInDeck(ACTIVE_DUELIST);
   if (cardId == CARD_NONE)
@@ -114,4 +158,5 @@ void ActivateTheWhiteStoneOfAncientsTurnEffect(void)
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, cardId, opts);
 }
 
-/* ponytail: banish-to-add Blue-Eyes GY effect FALSE — no once-per-turn banish hook. */
+/* ponytail: GY banish → add Blue-Eyes needs GY ignition. Ceiling: banish this
+ * from GY once per turn; add 1 Blue-Eyes monster from Deck to hand. */

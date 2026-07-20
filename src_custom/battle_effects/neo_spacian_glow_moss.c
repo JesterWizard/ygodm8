@@ -5,8 +5,7 @@
 #include "duel_helpers.h"
 #include "neo_spacian_glow_moss.h"
 
-#define FLAG_GRAVEYARD_PLAYER 1
-#define FLAG_GRAVEYARD_OPPONENT 2
+void LockMonsterCardsInRow(unsigned char turnRow);
 
 struct NeoSpacianGlowMossActionData {
   unsigned short playerCardId;
@@ -31,7 +30,6 @@ struct NeoSpacianGlowMossActionData {
 };
 
 extern struct NeoSpacianGlowMossActionData sActionData;
-
 extern u8 gPendingNeoSpacianGlowMossDraw;
 
 static u8 IsMossBattleAction(u8 id)
@@ -65,6 +63,13 @@ static u16 PeekTopDeckCard(u8 turnDuelist)
   return gDuelDecks[fixedDuelist].cards[top];
 }
 
+u8 CanNeoSpacianGlowMossAttackDirectly(const struct DuelCard *zone)
+{
+  return zone != NULL
+      && (zone->id == NEO_SPACIAN_GLOW_MOSS || zone->id == NEO_SPACIAN_TWINKLE_MOSS)
+      && zone->unkTwo;
+}
+
 void ApplyNeoSpacianMossDrawnTypeEffect(u16 drawnCardId, u8 mossFixedRow, u8 mossFixedCol,
                                         u16 effectCardId)
 {
@@ -74,9 +79,10 @@ void ApplyNeoSpacianMossDrawnTypeEffect(u16 drawnCardId, u8 mossFixedRow, u8 mos
   if (drawnCardId == CARD_NONE)
     return;
 
+  mossZone = gFixedZones[mossFixedRow][mossFixedCol];
   typeGroup = GetTypeGroup(drawnCardId);
+
   if (typeGroup == TYPE_GROUP_TRAP) {
-    mossZone = gFixedZones[mossFixedRow][mossFixedCol];
     if (mossZone != NULL && mossZone->id != CARD_NONE) {
       mossZone->isDefending = TRUE;
       if (!mossZone->isFaceUp)
@@ -85,9 +91,16 @@ void ApplyNeoSpacianMossDrawnTypeEffect(u16 drawnCardId, u8 mossFixedRow, u8 mos
     return;
   }
 
-  /* ponytail: Monster = end Battle Phase; Spell = optional direct attack — no phase/attack hooks. */
-  (void)effectCardId;
-  (void)typeGroup;
+  if (typeGroup == TYPE_GROUP_MONSTER) {
+    /* End the Battle Phase — lock remaining attackers for the turn player. */
+    LockMonsterCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
+    (void)effectCardId;
+    return;
+  }
+
+  /* Spell: grant optional direct attack for remaining attacks this turn. */
+  if (typeGroup == TYPE_GROUP_SPELL && mossZone != NULL && mossZone->id != CARD_NONE)
+    mossZone->unkTwo = TRUE;
 }
 
 static void TryGlowMossDrawAndBranch(u8 drawDuelist, u8 mossFixedRow, u8 mossFixedCol,

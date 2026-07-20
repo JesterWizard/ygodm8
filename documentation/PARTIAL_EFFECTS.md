@@ -9,36 +9,31 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-20 22:17 UTC  
-**Remaining partials:** `872`
+**Last updated:** 2026-07-20 23:36 UTC  
+**Remaining partials:** `863`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 183 |
+| `spell` | 181 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| `battle` | 5 |
-| `turn` | 3 |
-| **total** | **872** |
+| `turn` | 1 |
+| **total** | **863** |
 
-## spell (183)
+## spell (181)
 
 ### `ALLURING_MIRROR_SPLIT`
 - path: `src_custom/spell_effects/alluring_mirror_split.c`
-- L14: battle-destroy of Harpie Lady / Sisters → SS different-name Harpie from Deck needs a battle-destroy listener + OPT bit outside this file. Ceiling: continuous face-up only; upgrade: after battle destroy → if face-up ALLURING_MIRROR_SPLIT and destroyed is Harpie Lady / Sisters then Deck SS Harpie with original name != destroyed.
-- L20: when this card is destroyed by a Harpie effect or opponent's effect → SS 1 Harpie from GY needs a destroy-reason hook outside this file. Ceiling: no floating on leave; upgrade: ClearZoneAndSendMonToGraveyard / destroy path → if id was ALLURING_MIRROR_SPLIT and reason matches, PickZone GY Harpie → Duel_SpecialSummonFromGrave.
+- L9: battle-destroy of Harpie Lady / Sisters → SS different-name Harpie from Deck needs a battle-destroy listener + OPT bit outside this file. Ceiling: continuous face-up only; upgrade: after battle destroy → if face-up ALLURING_MIRROR_SPLIT and destroyed is Harpie Lady / Sisters then Deck SS Harpie with original name != destroyed.
+- L15: when this card is destroyed by a Harpie effect or opponent's effect → SS 1 Harpie from GY needs a destroy-reason hook outside this file. Ceiling: no floating on leave; upgrade: ClearZoneAndSendMonToGraveyard / destroy path → if id was ALLURING_MIRROR_SPLIT and reason matches, PickZone GY Harpie → Duel_SpecialSummonFromGrave.
 
 ### `AMAZONESS_CALL`
 - path: `src_custom/spell_effects/amazoness_call.c`
 - L94: no dedicated hand/GY choice UI — A = add to hand, B = send to GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - L279: GY banish → target 1 Amazoness you control; that monster can attack all opponent monsters once each, also other monsters cannot attack needs GY ignition + battle multi-attack hooks outside this file. Ceiling: on-field deck search only; upgrade: GY activate → banish AMAZONESS_CALL → PickZone Duel_IsAmazonessCard → mark zone for multi-attack
-
-### `AMAZONESS_FIGHTING_SPIRIT`
-- path: `src_custom/spell_effects/amazoness_fighting_spirit.c`
-- L14: Amazoness vs higher-ATK +1000 during damage calculation only needs a battle_effects damage-calc hook (like skyscraper.c) outside this file. Ceiling: face-up continuous only; upgrade: ApplyAmazonessFightingSpiritBattleAtkBoost → if face-up AMAZONESS_FIGHTING_SPIRIT on controller's field, attacker passes Duel_IsAmazonessCard, and defender ATK > attacker ATK, then attacker ATK += 1000.
 
 ### `AMAZONESS_HEIRLOOM`
 - path: `src_custom/spell_effects/amazoness_heirloom.c`
@@ -61,9 +56,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ANCIENT_GEAR_CASTLE`
 - path: `src_custom/spell_effects/ancient_gear_castle.c`
-- L17: +300 ATK for Ancient Gear monsters needs a continuous field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers registered monster ids; 1 stage ~= 500 ATK so printed +300 is not exact). Ceiling: continuous face-up only; upgrade: LynJump/stat overlay → if face-up ANCIENT_GEAR_CASTLE and Duel_CardNameContains(id, "Ancient Gear")
-- L24: Counter on each Normal Summon/Set needs a summon/set hook outside this file (no in-file summon dispatch). Ceiling: unk4 stays 0; upgrade: after Normal Summon/Set → if face-up ANCIENT_GEAR_CASTLE on controller's field then zone->unk4++.
-- L29: Tribute this card instead when Tribute Summoning an Ancient Gear (if counters >= required Tributes) needs a tribute-count / substitute hook outside this file. Ceiling: never substitutes; upgrade: tribute gate → if face-up ANCIENT_GEAR_CASTLE && unk4 >= required && summoning Ancient Gear then destroy this card as the Tribute(s).
+- L8: +300 ATK for Ancient Gear monsters needs a continuous field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers registered monster ids; 1 stage ~= 500 ATK so printed +300 is not exact). Ceiling: continuous face-up only; upgrade: LynJump/stat overlay → if face-up ANCIENT_GEAR_CASTLE and Duel_CardNameContains(id, "Ancient Gear")
+- L15: Counter on each Normal Summon/Set needs a summon/set hook outside this file (no in-file summon dispatch). Ceiling: unk4 stays 0; upgrade: after Normal Summon/Set → if face-up ANCIENT_GEAR_CASTLE on controller's field then zone->unk4++.
+- L20: Tribute this card instead when Tribute Summoning an Ancient Gear (if counters >= required Tributes) needs a tribute-count / substitute hook outside this file. Ceiling: never substitutes; upgrade: tribute gate → if face-up ANCIENT_GEAR_CASTLE && unk4 >= required && summoning Ancient Gear then destroy this card as the Tribute(s).
 
 ### `ANCIENT_GEAR_DRILL`
 - path: `src_custom/spell_effects/ancient_gear_drill.c`
@@ -190,9 +185,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CLOCK_TOWER_PRISON`
 - path: `src_custom/spell_effects/clock_tower_prison.c`
-- L20: Opp Standby Clock Counter placement needs a turn_effect Standby hook outside this file (no in-file Standby dispatch). Ceiling: continuous face-up + unk4 counter slot (never rises alone); upgrade: opp Standby → if face-up CLOCK_TOWER_PRISON then unk4++ (cap CLOCK_TOWER_PRISON_MAX_COUNTERS).
-- L26: 4+ counters → no battle damage needs a battle-damage gate outside this file. Ceiling: continuous only; upgrade: battle LP calc → if face-up CLOCK_TOWER_PRISON with unk4 >= 4 then battle damage to controller = 0.
-- L30: destroy with 4+ counters → SS Destiny HERO - Dreadmaster from hand/Deck needs a destroy/leave-field hook outside this file. Ceiling: continuous face-up only; upgrade: OnDestroy → if unk4 >= 4 then Duel_SpecialSummonFromHand/Deck(DESTINY_HERO_DREADMASTER).
+- L10: Opp Standby Clock Counter placement needs a turn_effect Standby hook outside this file (no in-file Standby dispatch). Ceiling: continuous face-up + unk4 counter slot (never rises alone); upgrade: opp Standby → if face-up CLOCK_TOWER_PRISON then unk4++ (cap CLOCK_TOWER_PRISON_MAX_COUNTERS).
+- L16: 4+ counters → no battle damage needs a battle-damage gate outside this file. Ceiling: continuous only; upgrade: battle LP calc → if face-up CLOCK_TOWER_PRISON with unk4 >= 4 then battle damage to controller = 0.
+- L20: destroy with 4+ counters → SS Destiny HERO - Dreadmaster from hand/Deck needs a destroy/leave-field hook outside this file. Ceiling: continuous face-up only; upgrade: OnDestroy → if unk4 >= 4 then Duel_SpecialSummonFromHand/Deck(DESTINY_HERO_DREADMASTER).
 
 ### `COCOON_REBIRTH`
 - path: `src_custom/spell_effects/cocoon_rebirth.c`
@@ -216,10 +211,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CONTACT_GATE`
 - path: `src_custom/spell_effects/contact_gate.c`
 - L337: ED Fusion-only lock + GY ignition (banish this → SS banished Neo) need hooks outside this file. Ceiling: field SS path only.
-
-### `CONTINUOUS_DESTRUCTION_PUNCH`
-- path: `src_custom/spell_effects/continuous_destruction_punch.c`
-- L14: post-damage-calc "DEF > ATK → destroy attacker" needs a battle_effects hook (clone des_kangaroo.c MarkPendingAttackerDestroy) outside this file. Ceiling: continuous face-up only; upgrade: after damage calc, if face-up CONTINUOUS_DESTRUCTION_PUNCH on defender's controller, defender is DEF position, and defender DEF > attacker ATK, destroy attacker (damage normal).
 
 ### `CONVERT_CONTACT`
 - path: `src_custom/spell_effects/convert_contact.c`
@@ -340,16 +331,16 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EN_SHUFFLE`
 - path: `src_custom/spell_effects/en_shuffle.c`
-- L309: GY ignition (banish this; shuffle E-HERO+Neo OR Neos from GY → Deck, draw 1) needs a GY-activate spell path outside this file. Ceiling: on-field shuffle+SS only; upgrade: GY activate → banish EN_SHUFFLE → return pair/Neos → Duel_DrawCards(1).
+- L308: GY ignition (banish this; shuffle E-HERO+Neo OR Neos from GY → Deck, draw 1) needs a GY-activate spell path outside this file. Ceiling: on-field shuffle+SS only; upgrade: GY activate → banish EN_SHUFFLE → return pair/Neos → Duel_DrawCards(1).
 
 ### `EN_WAVE`
 - path: `src_custom/spell_effects/en_wave.c`
-- L16: OPT "E-HERO used as Fusion material → GY/banish (not Damage Step): SS 1 Neo-Spacian or ELEMENTAL_HERO_NEOS from Deck" needs a fusion-material send listener outside this file. Ceiling: continuous face-up only; upgrade: after Fusion material leave → if face-up EN_WAVE and OPT clear, DeckMenu Neo-Spacian / NEOS → Duel_SpecialSummonFromDeck.
-- L22: OPT "Neo-Spacian or ELEMENTAL_HERO_NEOS shuffled from field/GY into Deck/Extra Deck (not Damage Step): SS 1 Elemental HERO from GY" needs a shuffle-into-deck listener + GY pick outside this file. Ceiling: continuous face-up only; upgrade: on shuffle → if face-up EN_WAVE and OPT clear, PickZone/DeckMenu E-HERO in GY → Duel_SpecialSummonFromGrave.
+- L11: OPT "E-HERO used as Fusion material → GY/banish (not Damage Step): SS 1 Neo-Spacian or ELEMENTAL_HERO_NEOS from Deck" needs a fusion-material send listener outside this file. Ceiling: continuous face-up only; upgrade: after Fusion material leave → if face-up EN_WAVE and OPT clear, DeckMenu Neo-Spacian / NEOS → Duel_SpecialSummonFromDeck.
+- L17: OPT "Neo-Spacian or ELEMENTAL_HERO_NEOS shuffled from field/GY into Deck/Extra Deck (not Damage Step): SS 1 Elemental HERO from GY" needs a shuffle-into-deck listener + GY pick outside this file. Ceiling: continuous face-up only; upgrade: on shuffle → if face-up EN_WAVE and OPT clear, PickZone/DeckMenu E-HERO in GY → Duel_SpecialSummonFromGrave.
 
 ### `END_OF_THE_WORLD`
 - path: `src_custom/spell_effects/end_of_the_world.c`
-- L15: Ruin, Queen of Oblivion is not in the trunk — only Demise is Ritual- Summonable via this card. Ceiling: Demise only; upgrade: add Ruin card + ID.
+- L16: Ruin, Queen of Oblivion is not in the trunk — only Demise is Ritual- Summonable via this card. Ceiling: Demise only; upgrade: add Ruin card + ID.
 
 ### `EVIL_ASSAULT`
 - path: `src_custom/spell_effects/evil_assault.c`
@@ -413,7 +404,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GADGET_BOX`
 - path: `src_custom/spell_effects/gadget_box.c`
 - L9: no dedicated Gadget Box Token card id — reuse MOON_TOKEN like other token spells. Ceiling: wrong printed name/stats; upgrade: real token card.
-- L23: OPT remove 1 Morph Counter → SS Gadget Box Token + ED Synchro-only lock while Token present need Main Phase ignition + SS gate outside this file. Ceiling: continuous face-up with unk4=3 counters only; upgrade: ignition → unk4-- → Duel_SpecialSummonMonsterId(GADGET_BOX_TOKEN_ID) + ED lock flag.
+- L13: OPT remove 1 Morph Counter → SS Gadget Box Token + ED Synchro-only lock while Token present need Main Phase ignition + SS gate outside this file. Ceiling: continuous face-up with unk4=3 counters only; upgrade: ignition → unk4-- → Duel_SpecialSummonMonsterId(GADGET_BOX_TOKEN_ID) + ED lock flag.
 
 ### `GEARTOWN`
 - path: `src_custom/spell_effects/geartown.c`
@@ -490,7 +481,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ILLUSION_MAGIC`
 - path: `src_custom/spell_effects/illusion_magic.c`
-- L136: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
+- L137: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L322: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple Illusion Magic per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
 
 ### `INFECTED_MAIL`
@@ -541,7 +532,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `LIGHT_BARRIER`
 - path: `src_custom/spell_effects/light_barrier.c`
-- L14: Standby coin (Tails → negate until next Standby), Arcana Force summon choose-without-coin, and battle-destroy LP gain need turn_effect / summon / battle_effects hooks outside this file. Ceiling: continuous face-up only (Arcana Reading already checks face-up LIGHT_BARRIER for choose-Heads path); upgrade:
+- L8: Standby coin (Tails → negate until next Standby), Arcana Force summon choose-without-coin, and battle-destroy LP gain need turn_effect / summon / battle_effects hooks outside this file. Ceiling: continuous face-up only (Arcana Reading already checks face-up LIGHT_BARRIER for choose-Heads path); upgrade:
 
 ### `LIGHT_FORCE`
 - path: `src_custom/spell_effects/light_force.c`
@@ -647,7 +638,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `MYSTIK_WOK`
 - path: `src_custom/spell_effects/mystik_wok.c`
-- L92: no dedicated ATK/DEF choice UI — A = ATK, B = DEF. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L93: no dedicated ATK/DEF choice UI — A = ATK, B = DEF. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `NECROVALLEY`
 - path: `src_custom/spell_effects/necrovalley.c`
@@ -760,7 +751,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `SECOND_COIN_TOSS`
 - path: `src_custom/spell_effects/second_coin_toss.c`
-- L14: redo coin toss (OPT) needs a shared coin-flip hook wrapping RandRangeU8(0,1) / multi-coin callers (cup_of_ace, suit_of_sword_x, etc.). Ceiling: continuous face-up only; upgrade: after coin resolve, if face-up SECOND_COIN_TOSS on controller's field and effectUsedThisTurn clear, offer redo (player confirm / AI heuristic), re-roll all flips, then mark OPT.
+- L8: redo coin toss (OPT) needs a shared coin-flip hook wrapping RandRangeU8(0,1) / multi-coin callers (cup_of_ace, suit_of_sword_x, etc.). Ceiling: continuous face-up only; upgrade: after coin resolve, if face-up SECOND_COIN_TOSS on controller's field and effectUsedThisTurn clear, offer redo (player confirm / AI heuristic), re-roll all flips, then mark OPT.
 
 ### `SECRET_VILLAGE_OF_THE_SPELLCASTERS`
 - path: `src_custom/spell_effects/secret_village_of_the_spellcasters.c`
@@ -768,7 +759,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `SECRETS_OF_DARK_MAGIC`
 - path: `src_custom/spell_effects/secrets_of_dark_magic.c`
-- L318: no dedicated choice UI — A = Fusion, B = Ritual. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L319: no dedicated choice UI — A = Fusion, B = Ritual. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `SHADDOLL_FUSION`
 - path: `src_custom/spell_effects/shaddoll_fusion.c`
@@ -2136,8 +2127,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ELEMENTAL_HERO_TERRA_FIRMA`
 - path: `src_custom/activated_effects/elemental_hero_terra_firma.c`
-- L41: fixed POV — only reveal the player's own monster row
-- L69: attack-position summons stay isFaceUp=0 until end-of-turn flip
+- L42: fixed POV — only reveal the player's own monster row
+- L70: attack-position summons stay isFaceUp=0 until end-of-turn flip
 
 ### `ENLIGHTENMENT_DRAGON`
 - path: `src_custom/activated_effects/enlightenment_dragon.c`
@@ -2583,7 +2574,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `LEVIA_DRAGON_DAEDALUS`
 - path: `src_custom/activated_effects/levia_dragon_daedalus.c`
-- L124: walk gDuel.board directly; gFixedZones column order differs on opponent rows, so row/col checks against gMonEffect can skip the wrong slot.
+- L122: walk gDuel.board directly; gFixedZones column order differs on opponent rows, so row/col checks against gMonEffect can skip the wrong slot.
 
 ### `LEVIAIR_THE_SEA_DRAGON`
 - path: `src_custom/activated_effects/leviair_the_sea_dragon.c`
@@ -3771,39 +3762,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/zeriel.c`
 - L44: GetTypeGroup/SetCardInfo would clobber gCardInfo.atk already computed.
 
-## battle (5)
-
-### `CYBER_BARRIER_DRAGON`
-- path: `src_custom/battle_effects/cyber_barrier_dragon.c`
-- L48: Duel_ShowEffectText naturally skips during AI sim (gHideEffectText) but fires on real gameplay. No forced override — that would block the sim loop.
-
-### `ELEMENTAL_HERO_CORE`
-- path: `src_custom/battle_effects/elemental_hero_core.c`
-- L233: gHideEffectText marks AI attack simulation; keep printed ATK at base.
-
-### `ELEMENTAL_HERO_VOLTIC`
-- path: `src_custom/battle_effects/elemental_hero_voltic.c`
-- L76: no banished-zone / removed-from-play storage yet — show text only; optional target + special summon deferred until banish zone exists.
-
-### `NEO_SPACIAN_GLOW_MOSS`
-- path: `src_custom/battle_effects/neo_spacian_glow_moss.c`
-- L88: Monster = end Battle Phase; Spell = optional direct attack — no phase/attack hooks.
-
-### `RED_DRAGON_ARCHFIEND`
-- path: `src_custom/battle_effects/red_dragon_archfiend.c`
-- L121: End Phase destroy other non-attacking monsters FALSE — no EP attacker tracking.
-
-## turn (3)
-
-### `DESTINY_HERO_FEAR_MONGER`
-- path: `src_custom/turn_effects/destiny_hero_fear_monger.c`
-- L83: no destroyed-by-battle-since-last-Standby tracking; any GY Fear Monger qualifies.
+## turn (1)
 
 ### `THE_WHITE_STONE_OF_ANCIENTS`
 - path: `src_custom/turn_effects/the_white_stone_of_ancients.c`
-- L89: End Phase + sent-this-turn not tracked; any GY White Stone qualifies.
-- L117: banish-to-add Blue-Eyes GY effect FALSE — no once-per-turn banish hook.
-
-### `YUBEL`
-- path: `src_custom/turn_effects/yubel.c`
-- L110: hand normal/tribute summon copies isFaceUp=0; attack-position still counts
+- L161: GY banish → add Blue-Eyes needs GY ignition. Ceiling: banish this from GY once per turn; add 1 Blue-Eyes monster from Deck to hand.

@@ -642,6 +642,10 @@ void PlayerTurnMain__Replacement(void) {
   if (IsDuelOver() == TRUE)
     return;
 
+  TryApplyRedDragonArchfiendEndPhaseEffect();
+  if (IsDuelOver() == TRUE)
+    return;
+
   if (gPickZoneState.validator != NULL)
     Duel_RunPickZoneInputLoop();
   if (IsDuelOver() == TRUE)

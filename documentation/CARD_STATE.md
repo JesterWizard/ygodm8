@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — CCTO migrate custom spells (ID≥801)
+**Last worked on:** 2026-07-20 — Clear battle + turn PARTIALS
 
-**Outcome:** +14 custom spells → scripts/CCTO (table 41→55). New ops: `ACTIVATE_CONTINUOUS_ZONE`, mill-deck-diff, Thunder Crash burn-per. Continuous place cards keep `ponytail:` for triggers; activate path is scripted.
+**Outcome:** All 5 battle partials cleared. Turn: Fear Monger + Yubel done; White Stone End Phase SS wired (sent-this-turn flags). Only leftover turn pony: White Stone GY banish→add Blue-Eyes (needs GY ignition). `EffectEvent_Subscribe` now dedupes handlers. Partials 872→863; battle=0, turn=1.
 
-**Open / next:** More custom CCTO (coin/draw/discard composites); or surface-first OPT/battle-destroy for PARTIAL ceilings.
+**Open / next:** GY ignition surface (White Stone + Malicious-class backlog), or more custom CCTO / OPT ceilings.

@@ -107,7 +107,7 @@ static u8 IsYubelEligibleForEndPhase(const struct DuelCard *zone)
   if (zone->id != YUBEL)
     return FALSE;
 
-  /* ponytail: hand normal/tribute summon copies isFaceUp=0; attack-position still counts */
+  /* Attack-position still counts as face-up for End Phase (isFaceUp stays 0 until EOT). */
   return zone->isFaceUp || !zone->isDefending;
 }
 

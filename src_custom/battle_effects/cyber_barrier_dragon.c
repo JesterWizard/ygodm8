@@ -45,8 +45,7 @@ u8 TryNegateDeclaredAttackWithCyberBarrierDragon(void)
     gCyberBarrierDragonUsedMask |= 1u << col;
     LockMonsterCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
 
-    /* ponytail: Duel_ShowEffectText naturally skips during AI sim (gHideEffectText)
-     * but fires on real gameplay. No forced override — that would block the sim loop. */
+    /* gHideEffectText skips popup during AI sim; real play shows text. */
     gCardEffectTextData.cardId2 = attackerCardId;
     Duel_ShowEffectText(CYBER_BARRIER_DRAGON);
 

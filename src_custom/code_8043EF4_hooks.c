@@ -17,6 +17,8 @@
 #include "fairy_box.h"
 #include "mirror_wall.h"
 #include "cyber_barrier_dragon.h"
+#include "neo_spacian_glow_moss.h"
+#include "red_dragon_archfiend.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "card_passives.h"
@@ -1691,6 +1693,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanElementalHeroIceEdgeAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+      || CanNeoSpacianGlowMossAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
       || CanJowlsControlledMonsterAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]))
       && !Duel_ForcedAttackBlocksDirect(
@@ -1722,6 +1726,8 @@ void sub_8044570__Replacement(void)
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
       Duel_NotifyMonsterZoneChanged(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+      MarkMonsterDeclaredAttackThisTurn(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryArmElementalHeroSunriseOnAttackDeclared(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       TryShowBlackTyrannoDirectAttackText(
@@ -1873,6 +1879,8 @@ void TryAttackWithMonster__Replacement(void)
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isFaceUp = 1;
       Duel_NotifyMonsterZoneChanged(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isLocked = 1;
+      MarkMonsterDeclaredAttackThisTurn(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryArmElementalHeroSunriseOnAttackDeclared(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);

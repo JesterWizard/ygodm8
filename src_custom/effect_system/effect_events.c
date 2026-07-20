@@ -12,6 +12,9 @@ extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
 extern u16 gEffectOptUsedIds[EFFECT_OPT_MAX_CARDS];
 extern u8 gEffectOptUsedCount;
 
+void DestinyHeroFearMonger_EnsureInit(void);
+void TheWhiteStoneOfAncients_EnsureInit(void);
+
 static u8 sEffectEventsInited APPEND_DATA = {0};
 
 static void EffectEvent_OnFieldChangeHandler(const struct EffectEvent *ev)
@@ -37,17 +40,25 @@ void EffectEvent_EnsureInit(void)
 
   sEffectEventsInited = TRUE;
   EffectEvent_Subscribe(EFFECT_EVENT_ON_FIELD_CHANGE, EffectEvent_OnFieldChangeHandler);
+  DestinyHeroFearMonger_EnsureInit();
+  TheWhiteStoneOfAncients_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 
 void EffectEvent_Subscribe(u8 eventId, EffectEventHandler handler)
 {
+  u8 i;
   u8 n;
 
   if (eventId >= EFFECT_EVENT_COUNT || handler == NULL)
     return;
 
   n = gEffectEventHandlerCounts[eventId];
+  for (i = 0; i < n; i++) {
+    if (gEffectEventHandlers[eventId][i] == handler)
+      return;
+  }
+
   if (n >= EFFECT_EVENT_MAX_SUBSCRIBERS)
     return;
 

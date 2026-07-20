@@ -2,7 +2,10 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
+
+extern u8 gFearMongerBattleDestroyedPending;
 
 static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
 
@@ -68,9 +71,28 @@ static u8 CanSpecialSummonOtherDestinyHero(u8 turnDuelist)
   return FirstEmptyZoneInRow(gTurnZones[monsterRow]) >= 0;
 }
 
+static void OnFearMongerBattleDestroyed(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->cardId != DESTINY_HERO_FEAR_MONGER)
+    return;
+
+  if (ev->controller == DUEL_PLAYER)
+    gFearMongerBattleDestroyedPending |= 1;
+  else if (ev->controller == DUEL_OPPONENT)
+    gFearMongerBattleDestroyedPending |= 2;
+}
+
+void DestinyHeroFearMonger_EnsureInit(void)
+{
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_BATTLE_DESTROY, OnFearMongerBattleDestroyed);
+}
+
 u8 ShouldActivateDestinyHeroFearMongerTurnEffect(void)
 {
   u8 fixedDuelist;
+  u8 bit;
+
+  DestinyHeroFearMonger_EnsureInit();
 
   if (gActiveEffect.cardId != DESTINY_HERO_FEAR_MONGER)
     return FALSE;
@@ -79,8 +101,11 @@ u8 ShouldActivateDestinyHeroFearMongerTurnEffect(void)
     return FALSE;
 
   fixedDuelist = FixedDuelistForActiveTurn();
+  bit = (fixedDuelist == DUEL_PLAYER) ? 1 : 2;
 
-  /* ponytail: no destroyed-by-battle-since-last-Standby tracking; any GY Fear Monger qualifies. */
+  if ((gFearMongerBattleDestroyedPending & bit) == 0)
+    return FALSE;
+
   if (!GraveyardContainsFearMonger(fixedDuelist))
     return FALSE;
 
@@ -91,12 +116,16 @@ u8 ShouldActivateDestinyHeroFearMongerTurnEffect(void)
 void ActivateDestinyHeroFearMongerTurnEffect(void)
 {
   u8 fixedDuelist = FixedDuelistForActiveTurn();
+  u8 bit = (fixedDuelist == DUEL_PLAYER) ? 1 : 2;
   s16 gyIndex;
   u16 cardId;
   struct DuelSummonOpts opts;
 
   if (!ShouldActivateDestinyHeroFearMongerTurnEffect())
     return;
+
+  /* Consume battle-destroy pending for this controller. */
+  gFearMongerBattleDestroyedPending &= (u8)~bit;
 
   gyIndex = FindOtherDestinyHeroGyIndex(fixedDuelist);
   if (gyIndex < 0)

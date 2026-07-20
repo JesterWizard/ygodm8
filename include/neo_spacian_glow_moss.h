@@ -7,5 +7,6 @@ void ApplyNeoSpacianGlowMossBattleEffect(void);
 void ResolveNeoSpacianGlowMossBattleEffect(void);
 void ApplyNeoSpacianMossDrawnTypeEffect(u16 drawnCardId, u8 mossFixedRow, u8 mossFixedCol,
                                         u16 effectCardId);
+u8 CanNeoSpacianGlowMossAttackDirectly(const struct DuelCard *zone);
 
 #endif

@@ -230,7 +230,7 @@ void TryApplyElementalHeroCoreAtkDouble(void)
   struct DuelCard *zone;
   u16 *atkField;
 
-  /* ponytail: gHideEffectText marks AI attack simulation; keep printed ATK at base. */
+  /* gHideEffectText marks AI attack simulation; keep printed ATK at base. */
   if (gHideEffectText)
     return;
 

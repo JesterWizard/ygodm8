@@ -506,6 +506,13 @@ _kernel_malloc_ewram gPendingReptilianneGorgonZeroAtk, 1
 _kernel_malloc_ewram gPendingDonZaloogTargetDuelist, 1
 @ Opponent fixed monster row for pending Red Dragon Archfiend board wipe, else 0xFF.
 _kernel_malloc_ewram gPendingRedDragonArchfiendFixedRow, 1
+@ Bitmask of fixed monster cols that declared an attack this turn (per fixed row 0..3).
+_kernel_malloc_ewram gMonstersDeclaredAttackThisTurn, 4
+@ Fear Monger destroyed-by-battle pending (bit0=player, bit1=opponent) until Standby resolve.
+_kernel_malloc_ewram gFearMongerBattleDestroyedPending, 1
+@ White Stone sent-to-GY this turn (bit0=player, bit1=opponent); aged to prev at turn boundary.
+_kernel_malloc_ewram gWhiteStoneSentToGyThisTurn, 1
+_kernel_malloc_ewram gWhiteStoneSentToGyPrevTurn, 1
 @ Controller/graveyard duelists for pending Reptilianne Scylla revive, else 0xFF.
 _kernel_malloc_ewram gPendingReptilianneScyllaController, 1
 _kernel_malloc_ewram gPendingReptilianneScyllaGraveyardDuelist, 1

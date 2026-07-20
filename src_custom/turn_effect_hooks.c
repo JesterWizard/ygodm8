@@ -27,6 +27,7 @@
 #include "yubel.h"
 #include "effect_system.h"
 #include "effect_events.h"
+#include "red_dragon_archfiend.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -75,6 +76,7 @@ u8 ShouldActivateArmedDragonLv3TurnEffect(void);
 void ActivateArmedDragonLv3TurnEffect(void);
 u8 ShouldActivateTheWhiteStoneOfAncientsTurnEffect(void);
 void ActivateTheWhiteStoneOfAncientsTurnEffect(void);
+void TheWhiteStoneOfAncients_AgeSentFlags(void);
 unsigned char ShouldActivateUnstoppableExodiaIncarnateTurnEffect(void);
 void ActivateUnstoppableExodiaIncarnateTurnEffect(void);
 unsigned char ShouldActivateBlueEyesChaosDragonTurnEffect(void);
@@ -323,6 +325,8 @@ void TryActivatingTurnEffects__Replacement(void) {
   gActiveEffect.turn = WhoseTurn();
   gShieldAndSwordActive = FALSE;
   EffectEvent_OnTurnBoundary();
+  TheWhiteStoneOfAncients_AgeSentFlags();
+  ClearRedDragonArchfiendAttackDeclaredMask();
   ResetTheGrandJupiterEndPhaseFlags();
   Yubel_ClearTurnState();
   ClearCostDown();
