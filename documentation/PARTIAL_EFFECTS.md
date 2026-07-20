@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:23 UTC  
-**Remaining partials:** `442`
+**Last updated:** 2026-07-20 18:26 UTC  
+**Remaining partials:** `454`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 111 |
+| `activated` | 123 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **442** |
+| **total** | **454** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (111)
+## activated (123)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1430,10 +1430,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/amazoness_sage.c`
 - L98: end-of-Damage-Step-after-attack trigger needs battle hook. Ceiling: once via usage if opp Spell/Trap on field; upgrade: damage-step gate.
 
+### `AMAZONESS_TRAINEE`
+- path: `src_custom/activated_effects/amazoness_trainee.c`
+- L12: battle shuffle-to-deck-bottom + +200 ATK need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle destroy + stat overlay.
+
 ### `AMULET_DRAGON`
 - path: `src_custom/activated_effects/amulet_dragon.c`
 - L58: no multi-select GY UI — banish every Spell in both GYs (min.1 gate above).
 - L254: on-summon text after field draw so Amulet Dragon is visible (fusion uses updateGfx=FALSE).
+
+### `AN_OWL_OF_LUCK`
+- path: `src_custom/activated_effects/an_owl_of_luck.c`
+- L74: FLIP trigger needs flip hook. Ceiling: once via usage if Field Spell in Deck.
 
 ### `ANCIENT_GEAR_CANNON`
 - path: `src_custom/activated_effects/ancient_gear_cannon.c`
@@ -1649,6 +1657,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/green_gadget.c`
 - L60: NS/SS trigger needs summon hook. Ceiling: once via usage.
 
+### `GUNGNIR_DRAGON_OF_THE_ICE_BARRIER`
+- path: `src_custom/activated_effects/gungnir_dragon_of_the_ice_barrier.c`
+- L195: 2-discard path auto-destroys 2 cards; upgrade: sequential PickZone.
+
+### `HARPIE_DANCER`
+- path: `src_custom/activated_effects/harpie_dancer.c`
+- L77: granted NS after bounce — clear block like Necrovalley Throne.
+- L125: name becomes Harpie Lady on field/GY needs continuous rename hook.
+
 ### `HARPIE_QUEEN`
 - path: `src_custom/activated_effects/harpie_queen.c`
 - L14: * ponytail: name becomes Harpie Lady on field/GY needs name override hook. */
@@ -1668,6 +1685,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `JOWLS_OF_DARK_DEMISE`
 - path: `src_custom/activated_effects/jowls_of_dark_demise.c`
 - L70: Jowls direct-attack flag; cleared when zone resets
+
+### `JUNK_SYNCHRON`
+- path: `src_custom/activated_effects/junk_synchron.c`
+- L123: Normal Summon trigger needs summon hook. Ceiling: once via usage if GY Lv≤2.
 
 ### `KAIBAMAN`
 - path: `src_custom/activated_effects/kaibaman.c`
@@ -1746,6 +1767,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/protector_of_the_sanctuary.c`
 - L12: opp cannot draw except Draw Phase needs draw-gate LynJump. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
+### `QUINTET_MAGICIAN`
+- path: `src_custom/activated_effects/quintet_magician.c`
+- L64: Fusion-with-5-Spellcasters gate + untributable/undestroyable need fusion/summon hooks. Ceiling: once via usage destroy all opp cards.
+
 ### `REPTILIANNE_MEDUSA`
 - path: `src_custom/activated_effects/reptilianne_medusa.c`
 - L76: cannot change battle position needs position-change gate.
@@ -1753,6 +1778,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `RESCUE_CAT`
 - path: `src_custom/activated_effects/rescue_cat.c`
 - L123: negated effects + End Phase destroy not applied; upgrade: summon flags + turn-end cleanup gate.
+
+### `RESCUE_RABBIT`
+- path: `src_custom/activated_effects/rescue_rabbit.c`
+- L126: End Phase destroy + effect negate not applied; upgrade: turn-end gate.
 
 ### `RINYAN_LIGHTSWORN_ROGUE`
 - path: `src_custom/activated_effects/rinyan_lightsworn_rogue.c`
@@ -1774,6 +1803,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/shaddoll_beast.c`
 - L20: FLIP draw2/discard1 and GY-sent draw1 share 1/turn exclusivity. Ceiling: OPT draw 1 stand-in for GY effect only; upgrade: flip + GY hooks.
 
+### `SHADDOLL_DRAGON`
+- path: `src_custom/activated_effects/shaddoll_dragon.c`
+- L183: FLIP vs GY-sent exclusivity + trigger hooks deferred. Ceiling: bounce 1 opp card OR destroy 1 opp Spell/Trap once via usage.
+
 ### `SILENT_MAGICIAN_LV8`
 - path: `src_custom/activated_effects/silent_magician_lv8.c`
 - L12: continuous immunity to opponent Spell effects needs spell-target gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-immune hook.
@@ -1781,6 +1814,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `SILENT_SWORDSMAN_LV7`
 - path: `src_custom/activated_effects/silent_swordsman_lv7.c`
 - L12: continuous negate all Spell effects needs field-wide spell gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-negate hook.
+
+### `SPELL_STRIKER`
+- path: `src_custom/activated_effects/spell_striker.c`
+- L82: direct attack + no self battle damage need battle/attack hooks. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
 
 ### `SPINED_GILLMAN`
 - path: `src_custom/activated_effects/spined_gillman.c`
@@ -1825,6 +1862,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L57: hand permanent-effect scan is skipped when turn_off_visual_scanner is on (gHideEffectText), so use Blue Eyes Shining-style post-board-scan auto-summon.
 - L159: in-place tribute replacement; Duel_SpecialSummon* needs an empty zone
 
+### `THESTALOS_THE_FIRESTORM_MONARCH`
+- path: `src_custom/activated_effects/thestalos_the_firestorm_monarch.c`
+- L55: Tribute Summon trigger needs summon hook. Ceiling: once via usage if opp hand.
+
 ### `THUNDER_END_DRAGON`
 - path: `src_custom/activated_effects/thunder_end_dragon.c`
 - L59: no Xyz detach cost; OPT destroy-all-other-monsters stand-in. Ceiling: materials not checked; upgrade: overlay detach before destroy.
@@ -1833,6 +1874,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/tornado_bird.c`
 - L85: FLIP trigger needs flip hook. Ceiling: once via usage.
 
+### `TRISHULA_DRAGON_OF_THE_ICE_BARRIER`
+- path: `src_custom/activated_effects/trishula_dragon_of_the_ice_barrier.c`
+- L114: Synchro Summon trigger needs synchro hook. Ceiling: once via usage banish random opp hand + 1 field + 1 GY when available.
+
 ### `TROOP_DRAGON`
 - path: `src_custom/activated_effects/troop_dragon.c`
 - L21: battle-destroy→GY trigger. Ceiling: once via usage.
@@ -1840,6 +1885,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TUNINGWARE`
 - path: `src_custom/activated_effects/tuningware.c`
 - L12: Synchro level-2 treatment + draw-on-material need synchro hooks. Ceiling: not ignition-activatable here; upgrade: synchro summon gate.
+
+### `TURBO_ROCKET`
+- path: `src_custom/activated_effects/turbo_rocket.c`
+- L12: battle destruction immunity + post-damage burn need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle damage / destroy gate.
 
 ### `TYRANNO_INFINITY`
 - path: `src_custom/activated_effects/tyranno_infinity.c`

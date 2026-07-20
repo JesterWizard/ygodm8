@@ -2,64 +2,90 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "god_card.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static void DestroyAllOpponentCards(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  u8 row;
+  u8 col;
+
+  for (row = INACTIVE_DUELIST_MONSTER_ROW; row <= INACTIVE_DUELIST_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gTurnZones[row][col];
+
+      if (zone == NULL || zone->id == CARD_NONE)
+        continue;
+
+      if (IsGodCard(zone->id))
+        continue;
+
+      if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+        return;
+    }
+  }
+
+  NotifyDynamicEquipFieldChanged();
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 OpponentControlsCard(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  u8 row;
+  u8 col;
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
+  for (row = INACTIVE_DUELIST_MONSTER_ROW; row <= INACTIVE_DUELIST_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gTurnZones[row][col];
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+      if (zone != NULL && zone->id != CARD_NONE && !IsGodCard(zone->id))
+        return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateQUINTET_MAGICIAN(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != QUINTET_MAGICIAN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != QUINTET_MAGICIAN)
+    return FALSE;
+
+  /* ponytail: Fusion-with-5-Spellcasters gate + untributable/undestroyable need
+   * fusion/summon hooks. Ceiling: once via usage destroy all opp cards. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return OpponentControlsCard();
 }
 
 void ActivateQUINTET_MAGICIANEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
   Duel_ShowEffectTextTyped(QUINTET_MAGICIAN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (!OpponentControlsCard())
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  DestroyAllOpponentCards();
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

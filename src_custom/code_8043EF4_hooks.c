@@ -232,6 +232,7 @@ u8 TryActivateElementalHeroCaptainGoldFromHand(u8);
 u8 TryActivateHecatriceFromHand(u8);
 u8 TryActivateGRAVEKEEPERS_COMMANDANTFromHand(u8);
 u8 TryActivateZERADIAS_HERALD_OF_HEAVENFromHand(u8);
+u8 TrySpecialSummonSpellStrikerFromHand(u8);
 u8 TryActivateWARRIOR_OF_ATLANTISFromHand(u8);
 u8 TryActivateHARPIE_QUEENFromHand(u8);
 u8 TryActivateCHARM_OF_SHABTIFromHand(u8);
@@ -464,6 +465,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == ANCIENT_GEAR
           && TrySpecialSummonAncientGearFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == SPELL_STRIKER
+          && TrySpecialSummonSpellStrikerFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

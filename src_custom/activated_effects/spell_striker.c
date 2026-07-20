@@ -1,65 +1,132 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsSpellCard(u16 cardId)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  return cardId != CARD_NONE && GetTypeGroup(cardId) == TYPE_GROUP_SPELL;
+}
+
+static u8 FixedDuelistForActive(void)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static u8 OwnGyHasSpell(u8 fixedDuelist)
+{
+  u8 i;
+  u8 gyCount;
+
+  if (!GraveyardExpand_IsEnabled())
+    return IsSpellCard(gDuel.duelistbattleState[fixedDuelist].graveyard);
+
+  gyCount = GraveyardExpand_GetCount(fixedDuelist);
+  for (i = 0; i < gyCount; i++) {
+    if (IsSpellCard(GraveyardExpand_GetCardAt(fixedDuelist, i)))
+      return TRUE;
+  }
+
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static s8 FindFirstOwnSpellGyIndex(u8 fixedDuelist)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u8 i;
+  u8 gyCount;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    if (IsSpellCard(gDuel.duelistbattleState[fixedDuelist].graveyard))
+      return 0;
+    return -1;
+  }
+
+  gyCount = GraveyardExpand_GetCount(fixedDuelist);
+  for (i = 0; i < gyCount; i++) {
+    if (IsSpellCard(GraveyardExpand_GetCardAt(fixedDuelist, i)))
+      return (s8)i;
+  }
+
+  return -1;
 }
 
-static void CancelTargeting(void)
+static u8 BanishOneOwnSpellFromGy(u8 fixedDuelist)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  s8 gyIndex = FindFirstOwnSpellGyIndex(fixedDuelist);
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  if (gyIndex < 0)
+    return FALSE;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    Duel_BanishGraveyardTopTurn(ACTIVE_DUELIST);
+    return TRUE;
+  }
+
+  return Duel_BanishGraveyardAtFixed(fixedDuelist, (u8)gyIndex) != CARD_NONE;
 }
 
 unsigned char CanActivateSPELL_STRIKER(void)
 {
   if (gMonEffect.id != SPELL_STRIKER)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  /* ponytail: direct attack + no self battle damage need battle/attack hooks.
+   * Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path. */
+  return FALSE;
 }
 
 void ActivateSPELL_STRIKEREffect(void)
 {
   Duel_ShowEffectTextTyped(SPELL_STRIKER, 2);
+}
+
+u8 CanSpecialSummonSpellStrikerFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+  u8 fixedDuelist = FixedDuelistForActive();
+
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
+    return FALSE;
+
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != SPELL_STRIKER)
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return FALSE;
+
+  return OwnGyHasSpell(fixedDuelist);
+}
+
+u8 TrySpecialSummonSpellStrikerFromHand(u8 handZone)
+{
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  u8 fixedDuelist = FixedDuelistForActive();
+
+  if (!CanSpecialSummonSpellStrikerFromHand(handZone))
+    return FALSE;
+
+  Duel_ShowEffectTextTyped(SPELL_STRIKER, 2);
 
   if (IsDuelOver() == TRUE)
-    return;
+    return TRUE;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (!BanishOneOwnSpellFromGy(fixedDuelist))
+    return FALSE;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (IsDuelOver() == TRUE)
+    return TRUE;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  return Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) == DUEL_ACTION_OK;
 }

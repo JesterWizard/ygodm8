@@ -1,0 +1,82 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "AN_OWL_OF_LUCK",
+      "card_name": "An Owl of Luck",
+      "kind": "activated",
+      "archetype": "AN",
+      "path": "src_custom/activated_effects/an_owl_of_luck.c",
+      "effect_text": "FLIP: Select 1 Field Spell Card from your Deck and place it on top of your Deck. If \"Necrovalley\" is on the field, you c FLIP: Select 1 Field Spell Card from your Deck and place it on top of your Deck. If Necrovalley is on the field, you can add the selected Field Spell Card to your hand instead.",
+      "tags": [
+        "deck",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AROMAGE_CANANGA",
+      "clone_path": "src_custom/activated_effects/aromage_cananga.c",
+      "clone_score": 0.33
+    },
+    {
+      "card_const": "THESTALOS_THE_FIRESTORM_MONARCH",
+      "card_name": "Thestalos the Firestorm Monarch",
+      "kind": "activated",
+      "archetype": "THESTALOS",
+      "path": "src_custom/activated_effects/thestalos_the_firestorm_monarch.c",
+      "effect_text": "If this card is Tribute Summoned: Discard 1 random card from your opponent's hand, then, if it was a Monster Card, infli If this card is Tribute Summoned: Discard 1 random card from your opponent's hand, then, if it was a Monster Card, inflict damage to your opponent equal to its original Level x 100.",
+      "tags": [
+        "burn",
+        "hand",
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_CANNONHOLDER",
+      "clone_path": "src_custom/activated_effects/gravekeepers_cannonholder.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "QUINTET_MAGICIAN",
+      "card_name": "Quintet Magician",
+      "kind": "activated",
+      "archetype": "QUINTET",
+      "path": "src_custom/activated_effects/quintet_magician.c",
+      "effect_text": "5 Spellcaster monsters Must be Fusion Summoned. If this card is Fusion Summoned using 5 Spellcaster monsters with different names: You can destroy all cards your opponent controls. This face-up card on the field cannot be Tributed, nor used as Fusion Material, also it cannot be destroyed by card effects.",
+      "tags": [
+        "destroy",
+        "faceup"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_SAGE",
+      "clone_path": "src_custom/activated_effects/amazoness_sage.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "SPELL_STRIKER",
+      "card_name": "Spell Striker",
+      "kind": "activated",
+      "archetype": "SPELL",
+      "path": "src_custom/activated_effects/spell_striker.c",
+      "effect_text": "You can Special Summon this card (from your hand) by banishing 1 Spell Card from your Graveyard. This card can attack di You can Special Summon this card (from your hand) by banishing 1 Spell Card from your Graveyard. This card can attack directly. You take no battle damage from attacks involving this card.",
+      "tags": [
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NECROID_SHAMAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_necroid_shaman.c",
+      "clone_score": 0.4
+    }
+  ]
+}

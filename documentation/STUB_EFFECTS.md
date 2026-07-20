@@ -7,40 +7,38 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 18:23 UTC  
-**Remaining stubs:** `457`
+**Last updated:** 2026-07-20 18:26 UTC  
+**Remaining stubs:** `445`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `activated` | 353 |
+| `activated` | 341 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **457** |
+| **total** | **445** |
 
-## activated (353)
+## activated (341)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
 | `ALECTOR_SOVEREIGN_OF_BIRDS` | `ALECTOR` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/alector_sovereign_of_birds.c` |
-| `AMAZONESS_AUGUSTA` | `AMAZONESS` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/amazoness_augusta.c` |
-| `AMAZONESS_BABY_TIGER` | `AMAZONESS` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/amazoness_baby_tiger.c` |
-| `AMAZONESS_EMPRESS` | `AMAZONESS` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/amazoness_empress.c` |
-| `AMAZONESS_PRINCESS` | `AMAZONESS` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/amazoness_princess.c` |
+| `AMAZONESS_AUGUSTA` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_augusta.c` |
+| `AMAZONESS_BABY_TIGER` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_baby_tiger.c` |
+| `AMAZONESS_EMPRESS` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_empress.c` |
+| `AMAZONESS_PRINCESS` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_princess.c` |
 | `AMAZONESS_SCOUTS` | `AMAZONESS` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/amazoness_scouts.c` |
-| `AMAZONESS_SPIRITUALIST` | `AMAZONESS` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/amazoness_spiritualist.c` |
-| `AMAZONESS_SPY` | `AMAZONESS` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/amazoness_spy.c` |
-| `AMAZONESS_TRAINEE` | `AMAZONESS` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/amazoness_trainee.c` |
+| `AMAZONESS_SPIRITUALIST` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_spiritualist.c` |
+| `AMAZONESS_SPY` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_spy.c` |
 | `AMAZONESS_WAR_CHIEF` | `AMAZONESS` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/amazoness_war_chief.c` |
 | `AMAZONESS_PET_LIGER` | `AMAZONESS_PET` | — | `COPYCAT` | `src_custom/activated_effects/amazoness_pet_liger.c` |
 | `AMAZONESS_PET_LIGER_KING` | `AMAZONESS_PET` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/amazoness_pet_liger_king.c` |
-| `AN_OWL_OF_LUCK` | `AN` | — | `AROMAGE_CANANGA` | `src_custom/activated_effects/an_owl_of_luck.c` |
 | `ANCIENT_FAIRY_DRAGON` | `ANCIENT` | — | `ANCIENT_GEAR` | `src_custom/activated_effects/ancient_fairy_dragon.c` |
 | `ANCIENT_SACRED_WYVERN` | `ANCIENT` | — | `ANCIENT_GEAR` | `src_custom/activated_effects/ancient_sacred_wyvern.c` |
 | `ANCIENT_GEAR_BEAST` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_SOLDIER` | `src_custom/activated_effects/ancient_gear_beast.c` |
-| `ANCIENT_GEAR_COMMANDER` | `ANCIENT_GEAR` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/ancient_gear_commander.c` |
+| `ANCIENT_GEAR_COMMANDER` | `ANCIENT_GEAR` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/ancient_gear_commander.c` |
 | `ANCIENT_GEAR_DARK_GOLEM` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_SOLDIER` | `src_custom/activated_effects/ancient_gear_dark_golem.c` |
 | `ANCIENT_GEAR_DRAGON` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_SOLDIER` | `src_custom/activated_effects/ancient_gear_dragon.c` |
 | `ANCIENT_GEAR_ENGINEER` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_SOLDIER` | `src_custom/activated_effects/ancient_gear_engineer.c` |
@@ -49,21 +47,21 @@ python3 tools/stub_effect_queue.py --write-list
 | `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_CANNON` | `src_custom/activated_effects/ancient_gear_golem_ultimate_pound.c` |
 | `ANCIENT_GEAR_KNIGHT` | `ANCIENT_GEAR` | — | `ELEMENTAL_HERO_NEOS_ALIUS` | `src_custom/activated_effects/ancient_gear_knight.c` |
 | `ANCIENT_GEAR_MEGATON_GOLEM` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_SOLDIER` | `src_custom/activated_effects/ancient_gear_megaton_golem.c` |
-| `ANCIENT_GEAR_STATUE` | `ANCIENT_GEAR` | — | `SUBSTITOAD` | `src_custom/activated_effects/ancient_gear_statue.c` |
+| `ANCIENT_GEAR_STATUE` | `ANCIENT_GEAR` | — | `HARPIE_DANCER` | `src_custom/activated_effects/ancient_gear_statue.c` |
 | `ANCIENT_GEAR_TANKER` | `ANCIENT_GEAR` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/ancient_gear_tanker.c` |
 | `ANCIENT_GEAR_GADJILTRON_CHIMERA` | `ANCIENT_GEAR_GADJILTRON` | — | `ENRAGED_BATTLE_OX` | `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c` |
 | `ANCIENT_GEAR_GADJILTRON_DRAGON` | `ANCIENT_GEAR_GADJILTRON` | — | `ENRAGED_BATTLE_OX` | `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c` |
 | `ANDRO_SPHINX` | `ANDRO` | — | `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | `src_custom/activated_effects/andro_sphinx.c` |
-| `APPRENTICE_ILLUSION_MAGICIAN` | `APPRENTICE` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/apprentice_illusion_magician.c` |
+| `APPRENTICE_ILLUSION_MAGICIAN` | `APPRENTICE` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/apprentice_illusion_magician.c` |
 | `ARCANA_KNIGHT_JOKER` | `ARCANA` | — | `ATLANTEAN_ATTACK_SQUAD` | `src_custom/activated_effects/arcana_knight_joker.c` |
-| `ARCANA_FORCE_V_THE_HIEROPHANT` | `ARCANA_FORCE` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/arcana_force_v_the_hierophant.c` |
+| `ARCANA_FORCE_V_THE_HIEROPHANT` | `ARCANA_FORCE` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/arcana_force_v_the_hierophant.c` |
 | `ARCANA_FORCE_XII_THE_HANGMAN` | `ARCANA_FORCE` | — | `ATHENA` | `src_custom/activated_effects/arcana_force_xii_the_hangman.c` |
 | `ARCANA_FORCE_XIX_THE_SUN` | `ARCANA_FORCE` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/arcana_force_xix_the_sun.c` |
-| `ARCANA_FORCE_XV_THE_FIEND` | `ARCANA_FORCE` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/arcana_force_xv_the_fiend.c` |
+| `ARCANA_FORCE_XV_THE_FIEND` | `ARCANA_FORCE` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/arcana_force_xv_the_fiend.c` |
 | `ARCANITE_MAGICIAN` | `ARCANITE` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/arcanite_magician.c` |
 | `ARMED_NEOS` | `ARMED` | — | `SUBSTITOAD` | `src_custom/activated_effects/armed_neos.c` |
 | `ARMED_DRAGON_LV10` | `ARMED_DRAGON` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/armed_dragon_lv10.c` |
-| `ARMED_DRAGON_LV5` | `ARMED_DRAGON` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/armed_dragon_lv5.c` |
+| `ARMED_DRAGON_LV5` | `ARMED_DRAGON` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/armed_dragon_lv5.c` |
 | `ARMED_DRAGON_LV7` | `ARMED_DRAGON` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/armed_dragon_lv7.c` |
 | `ARMITYLE_THE_CHAOS_PHANTASM` | `ARMITYLE` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/armityle_the_chaos_phantasm.c` |
 | `ARMORY_ARM` | `ARMORY` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/armory_arm.c` |
@@ -79,7 +77,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `AROMASERAPHY_ROSEMARY` | `AROMASERAPHY` | — | `COPYCAT` | `src_custom/activated_effects/aromaseraphy_rosemary.c` |
 | `AROMASERAPHY_SWEET_MARJORAM` | `AROMASERAPHY` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c` |
 | `ASH_BLOSSOM_AND_JOYOUS_SPRING` | `ASH` | — | `NIMBLE_MOMONGA` | `src_custom/activated_effects/ash_blossom_and_joyous_spring.c` |
-| `ATLANTEAN_DRAGOONS` | `ATLANTEAN` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/atlantean_dragoons.c` |
+| `ATLANTEAN_DRAGOONS` | `ATLANTEAN` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/atlantean_dragoons.c` |
 | `ATLANTEAN_HEAVY_INFANTRY` | `ATLANTEAN` | — | `ATLANTEAN_ATTACK_SQUAD` | `src_custom/activated_effects/atlantean_heavy_infantry.c` |
 | `ATLANTEAN_MARKSMAN` | `ATLANTEAN` | — | `ATLANTEAN_ATTACK_SQUAD` | `src_custom/activated_effects/atlantean_marksman.c` |
 | `AZURE_EYES_SILVER_DRAGON` | `AZURE` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/azure_eyes_silver_dragon.c` |
@@ -90,30 +88,30 @@ python3 tools/stub_effect_queue.py --write-list
 | `BLUE_EYES_JET_DRAGON` | `BLUE_EYES` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/blue_eyes_jet_dragon.c` |
 | `BLUE_EYES_SOLID_DRAGON` | `BLUE_EYES` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/blue_eyes_solid_dragon.c` |
 | `BLUE_EYES_SPIRIT_DRAGON` | `BLUE_EYES` | — | `SUBSTITOAD` | `src_custom/activated_effects/blue_eyes_spirit_dragon.c` |
-| `BLUE_EYES_TYRANT_DRAGON` | `BLUE_EYES` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/blue_eyes_tyrant_dragon.c` |
+| `BLUE_EYES_TYRANT_DRAGON` | `BLUE_EYES` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/blue_eyes_tyrant_dragon.c` |
 | `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON` | `BLUE_EYES` | — | `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c` |
 | `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` | `BLUE_EYES_ALTERNATIVE` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c` |
 | `BRIONAC_DRAGON_OF_THE_ICE_BARRIER` | `BRIONAC` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/brionac_dragon_of_the_ice_barrier.c` |
 | `CASTEL_THE_SKY_BLASTER_MUSKETEER` | `CASTEL` | — | `COPYCAT` | `src_custom/activated_effects/castel_the_sky_blaster_musketeer.c` |
-| `CELESTIAL_KNIGHTLORD_PARSHATH` | `CELESTIAL` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/celestial_knightlord_parshath.c` |
+| `CELESTIAL_KNIGHTLORD_PARSHATH` | `CELESTIAL` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/celestial_knightlord_parshath.c` |
 | `CHAOS_ANCIENT_GEAR_GIANT` | `CHAOS` | — | `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` | `src_custom/activated_effects/chaos_ancient_gear_giant.c` |
 | `CHIMERATECH_FORTRESS_DRAGON` | `CHIMERATECH` | — | `NIMBLE_MOMONGA` | `src_custom/activated_effects/chimeratech_fortress_dragon.c` |
-| `CHIMERATECH_MEGAFLEET_DRAGON` | `CHIMERATECH` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/chimeratech_megafleet_dragon.c` |
-| `CHIMERATECH_RAMPAGE_DRAGON` | `CHIMERATECH` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/chimeratech_rampage_dragon.c` |
+| `CHIMERATECH_MEGAFLEET_DRAGON` | `CHIMERATECH` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/chimeratech_megafleet_dragon.c` |
+| `CHIMERATECH_RAMPAGE_DRAGON` | `CHIMERATECH` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/chimeratech_rampage_dragon.c` |
 | `CLEAR_VICE_DRAGON` | `CLEAR` | — | `AROMAGE_CANANGA` | `src_custom/activated_effects/clear_vice_dragon.c` |
 | `COLOSSAL_FIGHTER` | `COLOSSAL` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/colossal_fighter.c` |
 | `CORAL_DRAGON` | `CORAL` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/coral_dragon.c` |
 | `CRIMSON_BLADER` | `CRIMSON` | — | `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | `src_custom/activated_effects/crimson_blader.c` |
 | `CRIMSON_DRAGON` | `CRIMSON` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/crimson_dragon.c` |
-| `CROSS_KEEPER` | `CROSS` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/cross_keeper.c` |
+| `CROSS_KEEPER` | `CROSS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/cross_keeper.c` |
 | `CURIOUS_THE_LIGHTSWORN_DOMINION` | `CURIOUS` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/curious_the_lightsworn_dominion.c` |
 | `CYBER_DRAGON_INFINITY` | `CYBER` | — | `COPYCAT` | `src_custom/activated_effects/cyber_dragon_infinity.c` |
 | `CYBER_ELTANIN` | `CYBER` | — | `CYBER_STEIN` | `src_custom/activated_effects/cyber_eltanin.c` |
 | `CYBER_PHOENIX` | `CYBER` | — | `CYBER_LASER_DRAGON` | `src_custom/activated_effects/cyber_phoenix.c` |
-| `CYBER_VALLEY` | `CYBER` | — | `COPYCAT` | `src_custom/activated_effects/cyber_valley.c` |
+| `CYBER_VALLEY` | `CYBER` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/cyber_valley.c` |
 | `CYBER_SLASH_HARPIE_LADY` | `CYBER_SLASH` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/cyber_slash_harpie_lady.c` |
 | `CYBER_SLASH_HARPY_LADY` | `CYBER_SLASH` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/cyber_slash_harpy_lady.c` |
-| `DARK_GREPHER` | `DARK` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/dark_grepher.c` |
+| `DARK_GREPHER` | `DARK` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/dark_grepher.c` |
 | `DARK_HORUS` | `DARK` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/dark_horus.c` |
 | `DARK_STRIKE_FIGHTER` | `DARK` | — | `GRAVEKEEPERS_CANNONHOLDER` | `src_custom/activated_effects/dark_strike_fighter.c` |
 | `DARKBLAZE_DRAGON` | `DARKBLAZE` | — | `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | `src_custom/activated_effects/darkblaze_dragon.c` |
@@ -127,14 +125,14 @@ python3 tools/stub_effect_queue.py --write-list
 | `DESTINY_END_DRAGOON` | `DESTINY` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/destiny_end_dragoon.c` |
 | `DESTINY_HERO_CAPTAIN_TENACIOUS` | `DESTINY_HERO` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/destiny_hero_captain_tenacious.c` |
 | `DESTINY_HERO_CELESTIAL` | `DESTINY_HERO` | — | `DESTINY_HERO_DUNKER` | `src_custom/activated_effects/destiny_hero_celestial.c` |
-| `DESTINY_HERO_DANGEROUS` | `DESTINY_HERO` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/destiny_hero_dangerous.c` |
+| `DESTINY_HERO_DANGEROUS` | `DESTINY_HERO` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/destiny_hero_dangerous.c` |
 | `DESTINY_HERO_DARK_ANGEL` | `DESTINY_HERO` | — | `DESTINY_HERO_BLADE_MASTER` | `src_custom/activated_effects/destiny_hero_dark_angel.c` |
-| `DESTINY_HERO_DASHER` | `DESTINY_HERO` | — | `SUBSTITOAD` | `src_custom/activated_effects/destiny_hero_dasher.c` |
+| `DESTINY_HERO_DASHER` | `DESTINY_HERO` | — | `HARPIE_DANCER` | `src_custom/activated_effects/destiny_hero_dasher.c` |
 | `DESTINY_HERO_DECIDER` | `DESTINY_HERO` | — | `DESTINY_HERO_DUNKER` | `src_custom/activated_effects/destiny_hero_decider.c` |
-| `DESTINY_HERO_DENIER` | `DESTINY_HERO` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/destiny_hero_denier.c` |
+| `DESTINY_HERO_DENIER` | `DESTINY_HERO` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/destiny_hero_denier.c` |
 | `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER` | `DESTINY_HERO` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c` |
 | `DESTINY_HERO_DESTROY_DOGMA` | `DESTINY_HERO` | — | `DESTINY_HERO_DUNKER` | `src_custom/activated_effects/destiny_hero_destroy_dogma.c` |
-| `DESTINY_HERO_DIAMOND_DUDE` | `DESTINY_HERO` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/destiny_hero_diamond_dude.c` |
+| `DESTINY_HERO_DIAMOND_DUDE` | `DESTINY_HERO` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/destiny_hero_diamond_dude.c` |
 | `DESTINY_HERO_DOMINANCE` | `DESTINY_HERO` | — | `DESTINY_HERO_DISK_COMMANDER` | `src_custom/activated_effects/destiny_hero_dominance.c` |
 | `DESTINY_HERO_DREAMER` | `DESTINY_HERO` | — | `DESTINY_HERO_MALICIOUS` | `src_custom/activated_effects/destiny_hero_dreamer.c` |
 | `DESTINY_HERO_DRILLDARK` | `DESTINY_HERO` | — | `DESTINY_HERO_DUNKER` | `src_custom/activated_effects/destiny_hero_drilldark.c` |
@@ -143,10 +141,10 @@ python3 tools/stub_effect_queue.py --write-list
 | `DESTINY_HERO_DYSTOPIA` | `DESTINY_HERO` | — | `DESTINY_HERO_DUNKER` | `src_custom/activated_effects/destiny_hero_dystopia.c` |
 | `DESTINY_HERO_PLASMA` | `DESTINY_HERO` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/destiny_hero_plasma.c` |
 | `DESTINY_HERO_DOOM_LORD` | `DESTINY_HERO_DOOM` | — | `COPYCAT` | `src_custom/activated_effects/destiny_hero_doom_lord.c` |
-| `DESTINY_HERO_DREADNOUGHT_MASTER` | `DESTINY_HERO_DREADNOUGHT` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/destiny_hero_dreadnought_master.c` |
+| `DESTINY_HERO_DREADNOUGHT_MASTER` | `DESTINY_HERO_DREADNOUGHT` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/destiny_hero_dreadnought_master.c` |
 | `DESTINY_HERO_DREADNOUGHT_SERVANT` | `DESTINY_HERO_DREADNOUGHT` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/destiny_hero_dreadnought_servant.c` |
 | `DIVINE_SERPENT_GEH` | `DIVINE` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/divine_serpent_geh.c` |
-| `DIVINER_OF_THE_HERALD` | `DIVINER` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/diviner_of_the_herald.c` |
+| `DIVINER_OF_THE_HERALD` | `DIVINER` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/diviner_of_the_herald.c` |
 | `EBON_ILLUSION_MAGICIAN` | `EBON` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/ebon_illusion_magician.c` |
 | `ELDER_ENTITY_NORDEN` | `ELDER` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/elder_entity_norden.c` |
 | `ELEMENTAL_HERO_AQUA_NEOS` | `ELEMENTAL_HERO` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/elemental_hero_aqua_neos.c` |
@@ -161,7 +159,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `ELEMENTAL_HERO_SPIRIT_OF_NEOS` | `ELEMENTAL_HERO` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/elemental_hero_spirit_of_neos.c` |
 | `ELEMENTAL_HERO_STORM_NEOS` | `ELEMENTAL_HERO` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/elemental_hero_storm_neos.c` |
 | `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN` | `ELEMENTAL_HERO_SHINING` | — | `ATHENA` | `src_custom/activated_effects/elemental_hero_shining_neos_wingman.c` |
-| `EL_SHADDOLL_MESHAHRAIL` | `EL_SHADDOLL` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/el_shaddoll_meshahrail.c` |
+| `EL_SHADDOLL_MESHAHRAIL` | `EL_SHADDOLL` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/el_shaddoll_meshahrail.c` |
 | `EL_SHADDOLL_WENDIGO` | `EL_SHADDOLL` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/el_shaddoll_wendigo.c` |
 | `ENLIGHTENMENT_DRAGON` | `ENLIGHTENMENT` | — | `NIMBLE_MOMONGA` | `src_custom/activated_effects/enlightenment_dragon.c` |
 | `EVIL_HERO_ADUSTED_GOLD` | `EVIL_HERO` | — | `EVIL_HERO_LIGHTNING_GOLEM` | `src_custom/activated_effects/evil_hero_adusted_gold.c` |
@@ -180,26 +178,26 @@ python3 tools/stub_effect_queue.py --write-list
 | `GAMECIAL_THE_SEA_TURTLE_KAIJU` | `GAMECIAL` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c` |
 | `GANDORA_G_THE_DRAGON_OF_DESTRUCTION` | `GANDORA` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/gandora_g_the_dragon_of_destruction.c` |
 | `GANDORA_X_THE_DRAGON_OF_DESTRUCTION` | `GANDORA_X_THE_DRAGON_OF` | — | `ATHENA` | `src_custom/activated_effects/gandora_x_the_dragon_of_destruction.c` |
-| `GATE_GUARDIANS_COMBINED` | `GATE` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/gate_guardians_combined.c` |
+| `GATE_GUARDIANS_COMBINED` | `GATE` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/gate_guardians_combined.c` |
 | `GLADIATOR_BEAST_ANDABATA` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/gladiator_beast_andabata.c` |
-| `GLADIATOR_BEAST_ATTORIX` | `GLADIATOR_BEAST` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/gladiator_beast_attorix.c` |
+| `GLADIATOR_BEAST_ATTORIX` | `GLADIATOR_BEAST` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/gladiator_beast_attorix.c` |
 | `GLADIATOR_BEAST_AUGUSTUS` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/gladiator_beast_augustus.c` |
 | `GLADIATOR_BEAST_BESTIARI` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/gladiator_beast_bestiari.c` |
-| `GLADIATOR_BEAST_CLAUDIUS` | `GLADIATOR_BEAST` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/gladiator_beast_claudius.c` |
-| `GLADIATOR_BEAST_DAREIOS` | `GLADIATOR_BEAST` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/gladiator_beast_dareios.c` |
-| `GLADIATOR_BEAST_DARIUS` | `GLADIATOR_BEAST` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/gladiator_beast_darius.c` |
+| `GLADIATOR_BEAST_CLAUDIUS` | `GLADIATOR_BEAST` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/gladiator_beast_claudius.c` |
+| `GLADIATOR_BEAST_DAREIOS` | `GLADIATOR_BEAST` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/gladiator_beast_dareios.c` |
+| `GLADIATOR_BEAST_DARIUS` | `GLADIATOR_BEAST` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/gladiator_beast_darius.c` |
 | `GLADIATOR_BEAST_DOMITIANUS` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/gladiator_beast_domitianus.c` |
 | `GLADIATOR_BEAST_DRAGASES` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/gladiator_beast_dragases.c` |
-| `GLADIATOR_BEAST_EQUESTE` | `GLADIATOR_BEAST` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/gladiator_beast_equeste.c` |
+| `GLADIATOR_BEAST_EQUESTE` | `GLADIATOR_BEAST` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/gladiator_beast_equeste.c` |
 | `GLADIATOR_BEAST_GISTEL` | `GLADIATOR_BEAST` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/gladiator_beast_gistel.c` |
 | `GLADIATOR_BEAST_GYZARUS` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/gladiator_beast_gyzarus.c` |
 | `GLADIATOR_BEAST_HERAKLINOS` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/gladiator_beast_heraklinos.c` |
 | `GLADIATOR_BEAST_HOPLOMUS` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/gladiator_beast_hoplomus.c` |
-| `GLADIATOR_BEAST_LANISTA` | `GLADIATOR_BEAST` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/gladiator_beast_lanista.c` |
+| `GLADIATOR_BEAST_LANISTA` | `GLADIATOR_BEAST` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/gladiator_beast_lanista.c` |
 | `GLADIATOR_BEAST_LAQUARI` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/gladiator_beast_laquari.c` |
 | `GLADIATOR_BEAST_MURMILLO` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/gladiator_beast_murmillo.c` |
 | `GLADIATOR_BEAST_NEROKIUS` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/gladiator_beast_nerokius.c` |
-| `GLADIATOR_BEAST_NOXIOUS` | `GLADIATOR_BEAST` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/gladiator_beast_noxious.c` |
+| `GLADIATOR_BEAST_NOXIOUS` | `GLADIATOR_BEAST` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/gladiator_beast_noxious.c` |
 | `GLADIATOR_BEAST_SAGITTARII` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/gladiator_beast_sagittarii.c` |
 | `GLADIATOR_BEAST_TAMER_EDITOR` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/gladiator_beast_tamer_editor.c` |
 | `GLADIATOR_BEAST_VESPASIUS` | `GLADIATOR_BEAST` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/gladiator_beast_vespasius.c` |
@@ -208,7 +206,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `GRAVEKEEPERS_AMBUSHER` | `GRAVEKEEPERS` | — | `GRAVEKEEPERS_PRIESTESS` | `src_custom/activated_effects/gravekeepers_ambusher.c` |
 | `GRAVEKEEPERS_CHIEF` | `GRAVEKEEPERS` | — | `GRAVEKEEPERS_DESCENDANT` | `src_custom/activated_effects/gravekeepers_chief.c` |
 | `GRAVEKEEPERS_HEADMAN` | `GRAVEKEEPERS` | — | `GRAVEKEEPERS_SPY` | `src_custom/activated_effects/gravekeepers_headman.c` |
-| `GRAVEKEEPERS_NOBLEMAN` | `GRAVEKEEPERS` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/gravekeepers_nobleman.c` |
+| `GRAVEKEEPERS_NOBLEMAN` | `GRAVEKEEPERS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/gravekeepers_nobleman.c` |
 | `GRAVEKEEPERS_ORACLE` | `GRAVEKEEPERS` | — | `GRAVEKEEPERS_DESCENDANT` | `src_custom/activated_effects/gravekeepers_oracle.c` |
 | `GRAVEKEEPERS_SHAMAN` | `GRAVEKEEPERS` | — | `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | `src_custom/activated_effects/gravekeepers_shaman.c` |
 | `GRAVEKEEPERS_SPIRITUALIST` | `GRAVEKEEPERS` | — | `GRAVEKEEPERS_GUARD` | `src_custom/activated_effects/gravekeepers_spiritualist.c` |
@@ -219,15 +217,13 @@ python3 tools/stub_effect_queue.py --write-list
 | `GREEN_BABOON_DEFENDER_OF_THE_FOREST` | `GREEN` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/green_baboon_defender_of_the_forest.c` |
 | `GUARDIAN_DREADSCYTHE` | `GUARDIAN` | — | `NIMBLE_MOMONGA` | `src_custom/activated_effects/guardian_dreadscythe.c` |
 | `GUARDIAN_EATOS` | `GUARDIAN` | — | `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | `src_custom/activated_effects/guardian_eatos.c` |
-| `GUNGNIR_DRAGON_OF_THE_ICE_BARRIER` | `GUNGNIR` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/gungnir_dragon_of_the_ice_barrier.c` |
-| `HARPIE_CHANNELER` | `HARPIE` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/harpie_channeler.c` |
-| `HARPIE_CONDUCTOR` | `HARPIE` | — | `HARPIE_QUEEN` | `src_custom/activated_effects/harpie_conductor.c` |
-| `HARPIE_DANCER` | `HARPIE` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/harpie_dancer.c` |
+| `HARPIE_CHANNELER` | `HARPIE` | — | `HARPIE_DANCER` | `src_custom/activated_effects/harpie_channeler.c` |
+| `HARPIE_CONDUCTOR` | `HARPIE` | — | `HARPIE_DANCER` | `src_custom/activated_effects/harpie_conductor.c` |
 | `HARPIE_HARPIST` | `HARPIE` | — | `HARPIE_QUEEN` | `src_custom/activated_effects/harpie_harpist.c` |
-| `HARPIE_ORACLE` | `HARPIE` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/harpie_oracle.c` |
+| `HARPIE_ORACLE` | `HARPIE` | — | `HARPIE_DANCER` | `src_custom/activated_effects/harpie_oracle.c` |
 | `HELIOS_DUO_MEGISTUS` | `HELIOS` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/helios_duo_megistus.c` |
 | `HELIOS_TRICE_MEGISTUS` | `HELIOS` | — | `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | `src_custom/activated_effects/helios_trice_megistus.c` |
-| `HELSHADDOLL_HOLLOW` | `HELSHADDOLL` | — | `COPYCAT` | `src_custom/activated_effects/helshaddoll_hollow.c` |
+| `HELSHADDOLL_HOLLOW` | `HELSHADDOLL` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/helshaddoll_hollow.c` |
 | `HERALD_OF_PERFECTION` | `HERALD_OF` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/herald_of_perfection.c` |
 | `HERALD_OF_THE_ARC_LIGHT` | `HERALD_OF` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/herald_of_the_arc_light.c` |
 | `HERALD_OF_ULIMATENESS` | `HERALD_OF` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/herald_of_ulimateness.c` |
@@ -235,11 +231,10 @@ python3 tools/stub_effect_queue.py --write-list
 | `HOLACTIE_THE_CREATOR_OF_LIGHT` | `HOLACTIE` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/holactie_the_creator_of_light.c` |
 | `HONEST` | `HONEST` | — | `ELEMENTAL_HERO_NEOS_ALIUS` | `src_custom/activated_effects/honest.c` |
 | `HORUS_THE_BLACK_FLAME_DRAGON_LV8` | `HORUS_THE_BLACK_FLAME_DRAGON` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/horus_the_black_flame_dragon_lv8.c` |
-| `ILLUSION_OF_CHAOS` | `ILLUSION` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/illusion_of_chaos.c` |
+| `ILLUSION_OF_CHAOS` | `ILLUSION` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/illusion_of_chaos.c` |
 | `JAIN_TWILIGHTSWORN_GENERAL` | `JAIN` | — | `JAIN_LIGHTSWORN_PALADIN` | `src_custom/activated_effects/jain_twilightsworn_general.c` |
 | `JUDGMENT_THE_DRAGON_OF_HEAVEN` | `JUDGMENT` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/judgment_the_dragon_of_heaven.c` |
-| `JUNK_SYNCHRON` | `JUNK` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/junk_synchron.c` |
-| `KEEPER_OF_DRAGON_MAGIC` | `KEEPER` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/keeper_of_dragon_magic.c` |
+| `KEEPER_OF_DRAGON_MAGIC` | `KEEPER` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/keeper_of_dragon_magic.c` |
 | `LADY_OF_D` | `LADY` | — | `ELEMENTAL_HERO_NEOS_ALIUS` | `src_custom/activated_effects/lady_of_d.c` |
 | `LEGENDARY_KNIGHT_CRITIAS` | `LEGENDARY_KNIGHT` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/legendary_knight_critias.c` |
 | `LEGENDARY_KNIGHT_HERMOS` | `LEGENDARY_KNIGHT` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/legendary_knight_hermos.c` |
@@ -248,28 +243,28 @@ python3 tools/stub_effect_queue.py --write-list
 | `LIFE_STREAM_DRAGON` | `LIFE` | — | `ELEMENTAL_HERO_NEOS_ALIUS` | `src_custom/activated_effects/life_stream_dragon.c` |
 | `LIGHTRAY_DAEDALUS` | `LIGHTRAY` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/lightray_daedalus.c` |
 | `LIGHTRAY_GEARFRIED` | `LIGHTRAY` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/lightray_gearfried.c` |
-| `LIGHTSWORN_DRAGONLING` | `LIGHTSWORN` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/lightsworn_dragonling.c` |
+| `LIGHTSWORN_DRAGONLING` | `LIGHTSWORN` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/lightsworn_dragonling.c` |
 | `LORD_OF_THE_RED` | `LORD` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/lord_of_the_red.c` |
 | `LUMINA_TWILIGHTSWORN_SHAMAN` | `LUMINA` | — | `LUMINA_LIGHTSWORN_SUMMONER` | `src_custom/activated_effects/lumina_twilightsworn_shaman.c` |
 | `LYLA_LIGHTSWORN_SORCERESS` | `LYLA` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/lyla_lightsworn_sorceress.c` |
 | `LYLA_TWILIGHTSWORN_ENCHANTRESS` | `LYLA` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/lyla_twilightsworn_enchantress.c` |
-| `MA_AT` | `MA` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/ma_at.c` |
+| `MA_AT` | `MA` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/ma_at.c` |
 | `MAGICAL_MARIONETTE` | `MAGICAL` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/magical_marionette.c` |
 | `MAGICAL_SCIENTIST` | `MAGICAL` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/magical_scientist.c` |
 | `MAGICIANS_ROBE` | `MAGICIANS` | — | `NIMBLE_MOMONGA` | `src_custom/activated_effects/magicians_robe.c` |
-| `MAGICIANS_SOULS` | `MAGICIANS` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/magicians_souls.c` |
+| `MAGICIANS_SOULS` | `MAGICIANS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/magicians_souls.c` |
 | `MAJESTIC_MECH_GORYU` | `MAJESTIC` | — | `GRAVEKEEPERS_CANNONHOLDER` | `src_custom/activated_effects/majestic_mech_goryu.c` |
 | `MAJESTY_HYPERION` | `MAJESTY` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/majesty_hyperion.c` |
 | `MASTER_HYPERION` | `MASTER` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/master_hyperion.c` |
 | `MASTER_OF_CHAOS` | `MASTER` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/master_of_chaos.c` |
 | `MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING` | `MASTER` | — | `COPYCAT` | `src_custom/activated_effects/master_peace_the_true_dracoslaying_king.c` |
-| `MASTERFLARE_HYPERION` | `MASTERFLARE` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/masterflare_hyperion.c` |
+| `MASTERFLARE_HYPERION` | `MASTERFLARE` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/masterflare_hyperion.c` |
 | `MAXX_C` | `MAXX` | — | `TUNINGWARE` | `src_custom/activated_effects/maxx_c.c` |
 | `MAZERA_DEVILLE` | `MAZERA` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/mazera_deville.c` |
-| `MICHAEL_THE_ARCH_LIGHTSWORN` | `MICHAEL` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/michael_the_arch_lightsworn.c` |
+| `MICHAEL_THE_ARCH_LIGHTSWORN` | `MICHAEL` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/michael_the_arch_lightsworn.c` |
 | `MILLENNIUM_EYES_RESTRICT` | `MILLENNIUM` | — | `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | `src_custom/activated_effects/millennium_eyes_restrict.c` |
-| `MINERVA_LIGHTSWORN_MAIDEN` | `MINERVA` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/minerva_lightsworn_maiden.c` |
-| `MINERVA_THE_ATHENIAN_LIGHTSWORN` | `MINERVA_THE` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/minerva_the_athenian_lightsworn.c` |
+| `MINERVA_LIGHTSWORN_MAIDEN` | `MINERVA` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/minerva_lightsworn_maiden.c` |
+| `MINERVA_THE_ATHENIAN_LIGHTSWORN` | `MINERVA_THE` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/minerva_the_athenian_lightsworn.c` |
 | `MINERVA_THE_EXHALTED_LIGHTSWORN` | `MINERVA_THE` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/minerva_the_exhalted_lightsworn.c` |
 | `MONTAGE_DRAGON` | `MONTAGE` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/montage_dragon.c` |
 | `MORPHTRONIC_BOARDEN` | `MORPHTRONIC` | — | `AROMAGE_CANANGA` | `src_custom/activated_effects/morphtronic_boarden.c` |
@@ -282,51 +277,48 @@ python3 tools/stub_effect_queue.py --write-list
 | `MORPHTRONIC_LANTRON` | `MORPHTRONIC` | — | `AROMAGE_CANANGA` | `src_custom/activated_effects/morphtronic_lantron.c` |
 | `MORPHTRONIC_MAGNEN` | `MORPHTRONIC` | — | `ATLANTEAN_ATTACK_SQUAD` | `src_custom/activated_effects/morphtronic_magnen.c` |
 | `MORPHTRONIC_MAGNEN_BAR` | `MORPHTRONIC` | — | `AROMA_JAR` | `src_custom/activated_effects/morphtronic_magnen_bar.c` |
-| `MORPHTRONIC_REMOTEN` | `MORPHTRONIC` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/morphtronic_remoten.c` |
-| `MORPHTRONIC_SCANNEN` | `MORPHTRONIC` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/morphtronic_scannen.c` |
+| `MORPHTRONIC_REMOTEN` | `MORPHTRONIC` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/morphtronic_remoten.c` |
+| `MORPHTRONIC_SCANNEN` | `MORPHTRONIC` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/morphtronic_scannen.c` |
 | `MORPHTRONIC_SCOPEN` | `MORPHTRONIC` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/morphtronic_scopen.c` |
 | `MORPHTRONIC_SLINGEN` | `MORPHTRONIC` | — | `GRANMARG_THE_ROCK_MONARCH` | `src_custom/activated_effects/morphtronic_slingen.c` |
-| `MORPHTRONIC_SMARTFON` | `MORPHTRONIC` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/morphtronic_smartfon.c` |
+| `MORPHTRONIC_SMARTFON` | `MORPHTRONIC` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/morphtronic_smartfon.c` |
 | `MORPHTRONIC_STAPLEN` | `MORPHTRONIC` | — | `ATLANTEAN_ATTACK_SQUAD` | `src_custom/activated_effects/morphtronic_staplen.c` |
-| `MORPHTRONIC_TELEFON` | `MORPHTRONIC` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/morphtronic_telefon.c` |
+| `MORPHTRONIC_TELEFON` | `MORPHTRONIC` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/morphtronic_telefon.c` |
 | `MORPHTRONIC_VACUUMEN` | `MORPHTRONIC` | — | `ELEMENTAL_HERO_LADY_HEAT` | `src_custom/activated_effects/morphtronic_vacuumen.c` |
 | `MUCUS_YOLK` | `MUCUS` | — | `ELEMENTAL_HERO_LADY_HEAT` | `src_custom/activated_effects/mucus_yolk.c` |
 | `NAELSHADDOLL_ARIEL` | `NAELSHADDOLL` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/naelshaddoll_ariel.c` |
 | `NATURIA_BEAST` | `NATURIA` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/naturia_beast.c` |
 | `NECROFACE` | `NECROFACE` | — | `AROMAGE_CANANGA` | `src_custom/activated_effects/necroface.c` |
 | `NEHSHADDOLL_GENIUS` | `NEHSHADDOLL` | — | `COPYCAT` | `src_custom/activated_effects/nehshaddoll_genius.c` |
-| `NEO_BLUE_EYES_ULTIMATE_DRAGON` | `NEO` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/neo_blue_eyes_ultimate_dragon.c` |
-| `NEO_SPACE_CONNECTOR` | `NEO` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/neo_space_connector.c` |
+| `NEO_BLUE_EYES_ULTIMATE_DRAGON` | `NEO` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/neo_blue_eyes_ultimate_dragon.c` |
+| `NEO_SPACE_CONNECTOR` | `NEO` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/neo_space_connector.c` |
 | `NEOS_WISEMAN` | `NEOS` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/neos_wiseman.c` |
 | `NEO_SPACIAN_AQUA_DOLPHIN` | `NEO_SPACIAN` | — | `NEO_SPACIAN_AIR_HUMMINGBIRD` | `src_custom/activated_effects/neo_spacian_aqua_dolphin.c` |
 | `NEO_SPACIAN_MARINE_DOLPHIN` | `NEO_SPACIAN` | — | `NEO_SPACIAN_AIR_HUMMINGBIRD` | `src_custom/activated_effects/neo_spacian_marine_dolphin.c` |
-| `NIBIRU_THE_PRIMAL_BEING` | `NIBIRU` | — | `SUBSTITOAD` | `src_custom/activated_effects/nibiru_the_primal_being.c` |
+| `NIBIRU_THE_PRIMAL_BEING` | `NIBIRU` | — | `HARPIE_DANCER` | `src_custom/activated_effects/nibiru_the_primal_being.c` |
 | `NITRO_WARRIOR` | `NITRO` | — | `COPYCAT` | `src_custom/activated_effects/nitro_warrior.c` |
 | `NUMBER_39_UTOPIA` | `NUMBER` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/number_39_utopia.c` |
 | `OCEAN_DRAGON_LORD_NEO_DAEDALUS` | `OCEAN` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/ocean_dragon_lord_neo_daedalus.c` |
 | `ORICHALCOS_SHUNOROS` | `ORICHALCOS` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/orichalcos_shunoros.c` |
-| `POSEIDRA_THE_ATLANTEAN_DRAGON` | `POSEIDRA` | — | `SUBSTITOAD` | `src_custom/activated_effects/poseidra_the_atlantean_dragon.c` |
-| `POWER_TOOL_BRAVER_DRAGON` | `POWER_TOOL` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/power_tool_braver_dragon.c` |
+| `POSEIDRA_THE_ATLANTEAN_DRAGON` | `POSEIDRA` | — | `HARPIE_DANCER` | `src_custom/activated_effects/poseidra_the_atlantean_dragon.c` |
+| `POWER_TOOL_BRAVER_DRAGON` | `POWER_TOOL` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/power_tool_braver_dragon.c` |
 | `POWER_TOOL_DRAGON` | `POWER_TOOL` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/power_tool_dragon.c` |
 | `PREDAPLANT_VERTE_ANACONDA` | `PREDAPLANT` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/predaplant_verte_anaconda.c` |
-| `PROTECTOR_OF_THE_AGENTS_MOON` | `PROTECTOR_OF_THE` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/protector_of_the_agents_moon.c` |
-| `PUNISHMENT_DRAGON` | `PUNISHMENT` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/punishment_dragon.c` |
+| `PROTECTOR_OF_THE_AGENTS_MOON` | `PROTECTOR_OF_THE` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/protector_of_the_agents_moon.c` |
+| `PUNISHMENT_DRAGON` | `PUNISHMENT` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/punishment_dragon.c` |
 | `QADSHADDOLL_KEIOS` | `QADSHADDOLL` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/qadshaddoll_keios.c` |
-| `QUINTET_MAGICIAN` | `QUINTET` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/quintet_magician.c` |
-| `RAIDEN_HAND_OF_THE_LIGHTSWORN` | `RAIDEN` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/raiden_hand_of_the_lightsworn.c` |
+| `RAIDEN_HAND_OF_THE_LIGHTSWORN` | `RAIDEN` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/raiden_hand_of_the_lightsworn.c` |
 | `RAINBOW_DARK_DRAGON` | `RAINBOW` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/rainbow_dark_dragon.c` |
-| `REESHADDOLL_WENDI` | `REESHADDOLL` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/reeshaddoll_wendi.c` |
+| `REESHADDOLL_WENDI` | `REESHADDOLL` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/reeshaddoll_wendi.c` |
 | `REESHADDOLL_WENDIKURUHU` | `REESHADDOLL` | — | `COPYCAT` | `src_custom/activated_effects/reeshaddoll_wendikuruhu.c` |
 | `REPTILIANNE_ECHIDNA` | `REPTILIANNE` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/reptilianne_echidna.c` |
 | `REPTILIANNE_LAMIA` | `REPTILIANNE` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/reptilianne_lamia.c` |
 | `REPTILIANNE_VASKII` | `REPTILIANNE` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/reptilianne_vaskii.c` |
-| `RESCUE_RABBIT` | `RESCUE` | — | `RESCUE_CAT` | `src_custom/activated_effects/rescue_rabbit.c` |
 | `ROAD_SYNCHRON` | `ROAD` | — | `AROMAGE_CANANGA` | `src_custom/activated_effects/road_synchron.c` |
-| `SHADDOLL_DRAGON` | `SHADDOLL` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/shaddoll_dragon.c` |
 | `SHADDOLL_FALCO` | `SHADDOLL` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/shaddoll_falco.c` |
-| `SHADDOLL_HEDGEHOG` | `SHADDOLL` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/shaddoll_hedgehog.c` |
+| `SHADDOLL_HEDGEHOG` | `SHADDOLL` | — | `SHADDOLL_DRAGON` | `src_custom/activated_effects/shaddoll_hedgehog.c` |
 | `SHADDOLL_HOUND` | `SHADDOLL` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/shaddoll_hound.c` |
-| `SHADDOLL_SQUAMATA` | `SHADDOLL` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/shaddoll_squamata.c` |
+| `SHADDOLL_SQUAMATA` | `SHADDOLL` | — | `SHADDOLL_DRAGON` | `src_custom/activated_effects/shaddoll_squamata.c` |
 | `SILENT_SWORDSMAN` | `SILENT` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/silent_swordsman.c` |
 | `SILENT_MAGICIAN_LV4` | `SILENT_MAGICIAN` | — | `SILENT_MAGICIAN_LV8` | `src_custom/activated_effects/silent_magician_lv4.c` |
 | `SILENT_SWORDSMAN_LV3` | `SILENT_SWORDSMAN` | — | `SILENT_SWORDSMAN_LV7` | `src_custom/activated_effects/silent_swordsman_lv3.c` |
@@ -335,8 +327,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `SIMORGH_BIRD_OF_ANCESTRY` | `SIMORGH` | — | `GRANMARG_THE_ROCK_MONARCH` | `src_custom/activated_effects/simorgh_bird_of_ancestry.c` |
 | `SKILLED_DARK_MAGICIAN` | `SKILLED` | — | `NIMBLE_MOMONGA` | `src_custom/activated_effects/skilled_dark_magician.c` |
 | `SKILLED_WHITE_MAGICIAN` | `SKILLED` | — | `NIMBLE_MOMONGA` | `src_custom/activated_effects/skilled_white_magician.c` |
-| `SOUL_ABSORBING_BONE_TOWER` | `SOUL` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/soul_absorbing_bone_tower.c` |
-| `SPELL_STRIKER` | `SPELL` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/spell_striker.c` |
+| `SOUL_ABSORBING_BONE_TOWER` | `SOUL` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/soul_absorbing_bone_tower.c` |
 | `STARDUST_DRAGON` | `STARDUST` | — | `SUBSTITOAD` | `src_custom/activated_effects/stardust_dragon.c` |
 | `TATSUNOKO` | `TATSUNOKO` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/tatsunoko.c` |
 | `TEST_BEAR` | `TEST` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/test_bear.c` |
@@ -346,7 +337,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO` | `THE` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/the_executor_of_the_underworld_pluto.c` |
 | `THE_LEGENDARY_EXODIA_INCARNATE` | `THE` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/the_legendary_exodia_incarnate.c` |
 | `THEINEN_THE_GREAT_SPHINX` | `THEINEN` | — | `ELEMENTAL_HERO_WILDEDGE` | `src_custom/activated_effects/theinen_the_great_sphinx.c` |
-| `THESTALOS_THE_FIRESTORM_MONARCH` | `THESTALOS` | — | `GRAVEKEEPERS_CANNONHOLDER` | `src_custom/activated_effects/thestalos_the_firestorm_monarch.c` |
 | `THE_AGENT_OF_DESTRUCTION_VENUS` | `THE_AGENT_OF` | — | `THE_AGENT_OF_CREATION_VENUS` | `src_custom/activated_effects/the_agent_of_destruction_venus.c` |
 | `THE_AGENT_OF_ENTROPY_URANUS` | `THE_AGENT_OF` | — | `THE_AGENT_OF_CREATION_VENUS` | `src_custom/activated_effects/the_agent_of_entropy_uranus.c` |
 | `THE_AGENT_OF_JUDGMENT_SATURN` | `THE_AGENT_OF` | — | `GRAVEKEEPERS_CANNONHOLDER` | `src_custom/activated_effects/the_agent_of_judgment_saturn.c` |
@@ -354,17 +344,15 @@ python3 tools/stub_effect_queue.py --write-list
 | `THE_AGENT_OF_MIRACLES_JUPITER` | `THE_AGENT_OF` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/the_agent_of_miracles_jupiter.c` |
 | `THE_AGENT_OF_MYSTERU_EARTH` | `THE_AGENT_OF` | — | `THE_AGENT_OF_CREATION_VENUS` | `src_custom/activated_effects/the_agent_of_mysteru_earth.c` |
 | `THUNDER_DRAGON_TITAN` | `THUNDER_DRAGON` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/thunder_dragon_titan.c` |
-| `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `TIMAEUS` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/timaeus_the_knight_of_destiny.c` |
+| `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `TIMAEUS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/timaeus_the_knight_of_destiny.c` |
 | `TIME_MAGIC_HAMMER` | `TIME` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/time_magic_hammer.c` |
 | `TIME_THIEF_REDOER` | `TIME` | — | `T_G_HYPER_LIBRARIAN` | `src_custom/activated_effects/time_thief_redoer.c` |
-| `TIMEAUS_THE_UNITED_DRAGON` | `TIMEAUS` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/timeaus_the_united_dragon.c` |
+| `TIMEAUS_THE_UNITED_DRAGON` | `TIMEAUS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/timeaus_the_united_dragon.c` |
 | `TOADALLY_AWESOME` | `TOADALLY` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/toadally_awesome.c` |
 | `TOHUSHADDOLL_GRYSTA` | `TOHUSHADDOLL` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/tohushaddoll_grysta.c` |
 | `TREEBORN_FROG` | `TREEBORN` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/treeborn_frog.c` |
-| `TRISHULA_DRAGON_OF_THE_ICE_BARRIER` | `TRISHULA` | — | `MASK_OF_DARKNESS` | `src_custom/activated_effects/trishula_dragon_of_the_ice_barrier.c` |
 | `TUALATIN` | `TUALATIN` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/tualatin.c` |
 | `TURBO_BOOSTER` | `TURBO` | — | `TURBO_CANNON` | `src_custom/activated_effects/turbo_booster.c` |
-| `TURBO_ROCKET` | `TURBO` | — | `TURBO_CANNON` | `src_custom/activated_effects/turbo_rocket.c` |
 | `TURBO_SYNCHRON` | `TURBO` | — | `TURBO_CANNON` | `src_custom/activated_effects/turbo_synchron.c` |
 | `ULTIMATE_ANCIENT_GEAR_GOLEM` | `ULTIMATE` | — | `ELEMENTAL_HERO_GAIA` | `src_custom/activated_effects/ultimate_ancient_gear_golem.c` |
 | `ULTIMATE_CONDUCTOR_TYRANNO` | `ULTIMATE` | — | `ATHENA` | `src_custom/activated_effects/ultimate_conductor_tyranno.c` |
@@ -374,7 +362,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `VISION_HERO_FARIS` | `VISION_HERO` | — | `VISION_HERO_ADORATION` | `src_custom/activated_effects/vision_hero_faris.c` |
 | `VISION_HERO_GRAVITO` | `VISION_HERO` | — | `VISION_HERO_ADORATION` | `src_custom/activated_effects/vision_hero_gravito.c` |
 | `VISION_HERO_INCREASE` | `VISION_HERO` | — | `VISION_HERO_ADORATION` | `src_custom/activated_effects/vision_hero_increase.c` |
-| `WEISS_LIGHTSWORN_ARCHFIEND` | `WEISS` | — | `EHREN_LIGHTSWORN_MONK` | `src_custom/activated_effects/weiss_lightsworn_archfiend.c` |
+| `WEISS_LIGHTSWORN_ARCHFIEND` | `WEISS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/weiss_lightsworn_archfiend.c` |
 | `WHITE_HORNED_DRAGON` | `WHITE` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/white_horned_dragon.c` |
 | `YAMORIMORI` | `YAMORIMORI` | — | `COPYCAT` | `src_custom/activated_effects/yamorimori.c` |
 
