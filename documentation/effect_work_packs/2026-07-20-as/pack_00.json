@@ -1,0 +1,87 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SHADDOLL_FALCO",
+      "card_name": "Shaddoll Falco",
+      "kind": "activated",
+      "archetype": "SHADDOLL",
+      "path": "src_custom/activated_effects/shaddoll_falco.c",
+      "effect_text": "FLIP: SS Shaddoll face-down. Sent by effect: SS this face-down. FLIP: You can target 1 Shaddoll monster in your GY, except Shaddoll Falco; Special Summon it in face-down Defense Position. If this card is sent to the GY by a card effect: You can Special Summon it in face-down Defense Position. You can only use 1 Shaddoll Falco effect per turn, and only once that turn.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CRIMSON_BLADER",
+      "clone_path": "src_custom/activated_effects/crimson_blader.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "NAELSHADDOLL_ARIEL",
+      "card_name": "Naelshaddoll Ariel",
+      "kind": "activated",
+      "archetype": "NAELSHADDOLL",
+      "path": "src_custom/activated_effects/naelshaddoll_ariel.c",
+      "effect_text": "FLIP: SS banished Shaddoll. Sent by effect: banish up to 3 from GYs. FLIP: You can target 1 of your banished Shaddoll monsters; Special Summon it in face-up or face-down Defense Position. If this card is sent to the GY by a card effect: You can target up to 3 cards in the GY(s); banish them. You can only use 1 Naelshaddoll Ariel effect per turn, and only once that turn.",
+      "tags": [
+        "faceup",
+        "gy",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GAIA",
+      "clone_path": "src_custom/activated_effects/elemental_hero_gaia.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "TURBO_SYNCHRON",
+      "card_name": "Turbo Synchron",
+      "kind": "activated",
+      "archetype": "TURBO",
+      "path": "src_custom/activated_effects/turbo_synchron.c",
+      "effect_text": "When this card declares an attack: You can change the attack target to Defense Position. When you take battle damage whi When this card declares an attack: You can change the attack target to Defense Position. When you take battle damage while this card is attacking: You can Special Summon 1 monster from your hand with ATK less than or equal to the battle damage you took.",
+      "tags": [
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TURBO_BOOSTER",
+      "clone_path": "src_custom/activated_effects/turbo_booster.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_GRAND_NEOS",
+      "card_name": "Elemental HERO Grand Neos",
+      "kind": "activated",
+      "archetype": "ELEMENTAL_HERO",
+      "path": "src_custom/activated_effects/elemental_hero_grand_neos.c",
+      "effect_text": "Bounce 1 opp monster; End return. Elemental HERO Neos + Neo-Spacian Grand Mole Must first be Special Summoned (from your Extra Deck) by shuffling the above cards you control into the Deck. (You do not use Polymerization.) Once per turn: You can target 1 monster your opponent controls; return that target to the hand. During the End Phase: Shuffle this card into the Extra Deck.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GAIA",
+      "clone_path": "src_custom/activated_effects/elemental_hero_gaia.c",
+      "clone_score": 0.78
+    }
+  ]
+}

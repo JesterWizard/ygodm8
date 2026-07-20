@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:52 UTC  
-**Remaining partials:** `520`
+**Last updated:** 2026-07-20 18:55 UTC  
+**Remaining partials:** `532`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 189 |
+| `activated` | 201 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **520** |
+| **total** | **532** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (189)
+## activated (201)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1504,6 +1504,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ATLANTEAN_ATTACK_SQUAD`
 - path: `src_custom/activated_effects/atlantean_attack_squad.c`
 - L12: continuous +800 ATK while controlling other Fish/SS/Aqua needs permanent overlay. Ceiling: not ignition-activatable here; upgrade: permanent ATK bonus check.
+
+### `ATLANTEAN_DRAGOONS`
+- path: `src_custom/activated_effects/atlantean_dragoons.c`
+- L101: Lv3- Sea Serpent direct attack + sent-for-WATER-effect search need continuous/send hooks. Ceiling: OPT add 1 Sea Serpent except self from Deck.
 
 ### `BABYCERASAURUS`
 - path: `src_custom/activated_effects/babycerasaurus.c`
@@ -1604,6 +1608,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/dark_strike_fighter.c`
 - L127: Main Phase 1 gate not wired; allow once via usage any main phase.
 
+### `DARKBLAZE_DRAGON`
+- path: `src_custom/activated_effects/darkblaze_dragon.c`
+- L12: GY SS double stats + battle-destroy burn need SS/battle hooks. Ceiling: not ignition-activatable here.
+
 ### `DARKLORD_DESIRE`
 - path: `src_custom/activated_effects/darklord_desire.c`
 - L56: -2 tempStage (~1000 ATK, not exact); until EP clear needs EOT hook.
@@ -1621,6 +1629,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/destiny_hero_blade_master.c`
 - L58: +2 tempStage (~1000 ATK, not exact +800); until EP clear needs EP tempStage reset hook.
 - L89: opponent Battle Phase gate not wired; allow when face-up D-HERO on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook.
+
+### `DESTINY_HERO_CAPTAIN_TENACIOUS`
+- path: `src_custom/activated_effects/destiny_hero_captain_tenacious.c`
+- L92: Standby Phase + battle-destroyed-since-last-Standby filter need phase/destroy hooks. Ceiling: OPT SS 1 D-HERO from your GY.
 
 ### `DESTINY_HERO_DIAMOND_DUDE`
 - path: `src_custom/activated_effects/destiny_hero_diamond_dude.c`
@@ -1643,6 +1655,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L73: banish-when-leaves needs leave-field hook; unk4 marks negated.
 - L124: SS-trigger timing + banish-when-leaves need summon/leave hooks. Ceiling: OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark.
 
+### `ELEMENTAL_HERO_AQUA_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_aqua_neos.c`
+- L20: Contact fusion + End Phase Extra Deck shuffle need fusion/EP hooks. Ceiling: OPT discard 1, then destroy 1 random opponent hand card.
+
 ### `ELEMENTAL_HERO_BLAZEMAN`
 - path: `src_custom/activated_effects/elemental_hero_blazeman.c`
 - L222: on-summon does not consume effectUsedThisTurn — that flag is only for the menu activated effect (popup_2). Otherwise popup_2 can never fire the turn Blazeman is summoned.
@@ -1654,6 +1670,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ELEMENTAL_HERO_GAIA`
 - path: `src_custom/activated_effects/elemental_hero_gaia.c`
 - L49: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.
+
+### `ELEMENTAL_HERO_GRAND_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_grand_neos.c`
+- L95: Contact fusion + End Phase Extra Deck shuffle need fusion/EP hooks. Ceiling: OPT bounce 1 opponent monster to hand.
 
 ### `ELEMENTAL_HERO_GREAT_TORNADO`
 - path: `src_custom/activated_effects/elemental_hero_great_tornado.c`
@@ -1866,6 +1886,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/lady_of_d.c`
 - L47: opp cannot target your face-up Dragons for attacks needs target- redirect hook. Ceiling: OPT discard 1 Dragon from hand (destroy-save stand-in).
 
+### `LEGENDARY_KNIGHT_TIMAEUS`
+- path: `src_custom/activated_effects/legendary_knight_timaeus.c`
+- L99: Legend of Heart SS + attacked-set-Spell-from-GY need summon/battle hooks. Ceiling: OPT banish 1 face-up Spell/Trap on the field.
+
 ### `LEKUNGA`
 - path: `src_custom/activated_effects/lekunga.c`
 - L12: no Lekunga Token card id — MOON_TOKEN stand-in. Ceiling: wrong Type/Attribute/stats (Fairy/LIGHT 0/0 vs Plant/WATER 700/700); upgrade: add LEKUNGA_TOKEN card data + art, then swap this define.
@@ -1896,6 +1920,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/lumina_twilightsworn_shaman.c`
 - L226: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
 - L314: EP mill 3 on other LS effect needs End Phase / LS trigger hook.
+
+### `LYLA_LIGHTSWORN_SORCERESS`
+- path: `src_custom/activated_effects/lyla_lightsworn_sorceress.c`
+- L104: position-lock + End Phase mill 3 need battle/EP hooks. Ceiling: OPT from face-up ATK: change to face-up DEF and destroy 1 opp Spell/Trap.
 
 ### `LYLA_TWILIGHTSWORN_ENCHANTRESS`
 - path: `src_custom/activated_effects/lyla_twilightsworn_enchantress.c`
@@ -1969,6 +1997,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_videon.c`
 - L12: position-based ATK/DEF per Equip needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position/equip gate.
 
+### `NAELSHADDOLL_ARIEL`
+- path: `src_custom/activated_effects/naelshaddoll_ariel.c`
+- L72: FLIP SS banished Shaddoll + sent-by-effect branch need flip/RFP hooks. Ceiling: OPT banish up to 3 cards from either GY.
+
 ### `NEO_SPACIAN_DARK_PANTHER`
 - path: `src_custom/activated_effects/neo_spacian_dark_panther.c`
 - L12: copy opp monster name/effects needs engine name/effect overlay. Ceiling: not ignition-activatable here; upgrade: permanent/name/effect copy.
@@ -2034,6 +2066,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/shaddoll_dragon.c`
 - L183: FLIP vs GY-sent exclusivity + trigger hooks deferred. Ceiling: bounce 1 opp card OR destroy 1 opp Spell/Trap once via usage.
 
+### `SHADDOLL_FALCO`
+- path: `src_custom/activated_effects/shaddoll_falco.c`
+- L115: FLIP vs GY-sent exclusivity + SS-self-on-send need trigger hooks. Ceiling: OPT SS 1 other Shaddoll from GY face-down DEF.
+
 ### `SHADDOLL_HEDGEHOG`
 - path: `src_custom/activated_effects/shaddoll_hedgehog.c`
 - L112: FLIP S/T vs GY-sent monster exclusivity + trigger hooks deferred. Ceiling: OPT search 1 Shaddoll S/T or monster from Deck once via usage.
@@ -2070,6 +2106,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/spined_gillman.c`
 - L32: continuous +400 ATK needs permanent overlay. Ceiling: OPT +1 stage (~500) to each Fish/SS/Aqua you control.
 
+### `STARDUST_DRAGON`
+- path: `src_custom/activated_effects/stardust_dragon.c`
+- L12: Quick Effect tribute-negate-destroy + End Phase GY SS need chain and EP hooks. Ceiling: not ignition-activatable here.
+
 ### `SUBSTITOAD`
 - path: `src_custom/activated_effects/substitoad.c`
 - L103: Frog battle protection not applied; upgrade: battle-destroy immunity.
@@ -2086,6 +2126,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/tethys_goddess_of_light.c`
 - L50: opening hand is seeded before duel gfx; skip like Solemn Wishes.
 - L54: unk18 != 0 means battle/damage resolution is active.
+
+### `THE_AGENT_OF_MYSTERU_EARTH`
+- path: `src_custom/activated_effects/the_agent_of_mysteru_earth.c`
+- L110: Normal Summon trigger needs summon hook. Ceiling: OPT add 1 The Agent except Earth from Deck, or Master Hyperion if Sanctuary is face-up.
 
 ### `THE_AGENT_OF_WISDOM_MERCURY`
 - path: `src_custom/activated_effects/the_agent_of_wisdom_mercury.c`
@@ -2149,6 +2193,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TURBO_ROCKET`
 - path: `src_custom/activated_effects/turbo_rocket.c`
 - L12: battle destruction immunity + post-damage burn need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle damage / destroy gate.
+
+### `TURBO_SYNCHRON`
+- path: `src_custom/activated_effects/turbo_synchron.c`
+- L12: attack-target DEF change + battle-damage SS from hand need battle hooks. Ceiling: not ignition-activatable here.
 
 ### `TYRANNO_INFINITY`
 - path: `src_custom/activated_effects/tyranno_infinity.c`
