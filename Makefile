@@ -161,6 +161,8 @@ SPELL_EFFECT_SOURCES := $(wildcard src_custom/spell_effects/*.c)
 EFFECT_SCRIPTS_GENERATOR := tools/generate_effect_scripts.py
 EFFECT_SCRIPTS_MANIFEST := tools/effect_scripts_manifest.json
 EFFECT_SCRIPTS_GENERATED := src_custom/generated/effect_scripts_table.inc
+EFFECT_REGISTRY_GENERATED := src_custom/generated/effect_registry.inc
+EFFECT_SCRIPT_OUTPUTS := $(EFFECT_SCRIPTS_GENERATED) $(EFFECT_REGISTRY_GENERATED)
 EVENTS_YAML := events/vanilla/vanilla_events.yaml
 EVENTS_CATALOG := events/vanilla/vanilla_event_catalog.md
 EVENTS_C_DIR := events/scripts
@@ -363,8 +365,8 @@ $(SPELL_EFFECT_DISPATCH_GENERATED): $(SPELL_EFFECT_DISPATCH_STAMP)
 	@test -f $@
 	@test -f $@
 
-$(EFFECT_SCRIPTS_GENERATED): $(EFFECT_SCRIPTS_MANIFEST) $(EFFECT_SCRIPTS_GENERATOR) | tools-rules
-	@echo "EFFECT  script tables (Phase 4b)"
+$(EFFECT_SCRIPT_OUTPUTS): $(EFFECT_SCRIPTS_MANIFEST) $(EFFECT_SCRIPTS_GENERATOR) | tools-rules
+	@echo "EFFECT  script + Effect registry tables"
 	python3 $(EFFECT_SCRIPTS_GENERATOR)
 
 $(DUELIST_REWARDS_GENERATED): $(DUELIST_REWARD_MANIFEST) $(DUELIST_REWARD_GENERATOR)
@@ -510,7 +512,10 @@ $(eval $(call custom_object_dep,mechanics_tutorial,src_custom/debug/debug_menu_m
 $(eval $(call custom_object_dep,spell_effect_hooks,$(SPELL_EFFECT_DISPATCH_STAMP)))
 $(eval $(call custom_object_dep,code_8043EF4_hooks,$(SPELL_EFFECT_DISPATCH_STAMP)))
 $(eval $(call custom_object_dep,generated/spell_activation_gates,$(SPELL_EFFECT_DISPATCH_STAMP)))
-$(eval $(call custom_object_dep,effect_system/effect_scripts,$(EFFECT_SCRIPTS_GENERATED)))
+$(eval $(call custom_object_dep,effect_system/effect_scripts,$(EFFECT_SCRIPT_OUTPUTS)))
+$(eval $(call custom_object_dep,effect_system/effect,$(EFFECT_REGISTRY_GENERATED)))
+$(eval $(call custom_object_dep,effect_system/effect_dispatch,$(EFFECT_REGISTRY_GENERATED)))
+$(eval $(call custom_object_dep,effect_system/effect_events,$(EFFECT_REGISTRY_GENERATED)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
 $(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES) $(DUEL_ICON_4BPP) $(DUEL_ICON_PAL)))
 $(eval $(call custom_object_dep,field_spell_gfx,$(FIELD_SPELL_GFX_STAMP) $(FIELD_SPELL_HUFFS) $(FIELD_SPELL_PALETTES)))

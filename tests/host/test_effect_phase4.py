@@ -37,9 +37,30 @@ class TestEffectPhase4(unittest.TestCase):
 
     def test_dispatch_uses_scripts(self):
         src = read("src_custom/effect_system/effect_dispatch.c")
-        self.assertIn("EffectScript_Find", src)
-        self.assertIn("EffectScript_Run", src)
+        self.assertIn("Effect_TryActivate", src)
+        self.assertIn("Effect_QueryShouldActivate", src)
         self.assertNotIn("Phase 0 has no converted", src)
+
+    def test_effect_ccto_registry(self):
+        hdr = read("include/effect.h")
+        for name in (
+            "EFFECT_TYPE_ACTIVATE",
+            "EFFECT_CODE_ACTIVATE",
+            "EffectCond_ScriptGate",
+            "EffectOp_RunScript",
+            "Effect_TryActivate",
+            "Effect_DispatchEvent",
+        ):
+            self.assertIn(name, hdr)
+        reg = read("src_custom/generated/effect_registry.inc")
+        self.assertIn("sEffectsFromScripts", reg)
+        self.assertIn("EffectOp_RunScript", reg)
+        self.assertIn("ONE_DAY_OF_PEACE", reg)
+        effect_c = read("src_custom/effect_system/effect.c")
+        self.assertIn("Op_DamageCalcAtkBoosts", effect_c)
+        events = read("src_custom/effect_system/effect_events.c")
+        self.assertIn("Effect_DispatchEvent", events)
+        self.assertNotIn("ApplySkyscraperBattleAtkBoost", events)
 
     def test_pot_of_greed_not_inline(self):
         hooks = read("src_custom/spell_effect_hooks.c")

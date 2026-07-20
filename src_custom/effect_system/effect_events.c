@@ -5,9 +5,7 @@
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "effect_events.h"
-#include "amazoness_fighting_spirit.h"
-#include "elemental_hero_inferno.h"
-#include "skyscraper.h"
+#include "effect.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -32,15 +30,6 @@ static void EffectEvent_OnFieldChangeHandler(const struct EffectEvent *ev)
   Duel_CheckRingOfDestructionAfterFieldChange();
 }
 
-static void EffectEvent_OnDamageCalcHandler(const struct EffectEvent *ev)
-{
-  (void)ev;
-
-  ApplyElementalHeroInfernoBattleAtkBoost();
-  ApplySkyscraperBattleAtkBoost();
-  ApplyAmazonessFightingSpiritBattleAtkBoost();
-}
-
 void EffectEvent_EnsureInit(void)
 {
   if (sEffectEventsInited)
@@ -48,7 +37,7 @@ void EffectEvent_EnsureInit(void)
 
   sEffectEventsInited = TRUE;
   EffectEvent_Subscribe(EFFECT_EVENT_ON_FIELD_CHANGE, EffectEvent_OnFieldChangeHandler);
-  EffectEvent_Subscribe(EFFECT_EVENT_ON_DAMAGE_CALC, EffectEvent_OnDamageCalcHandler);
+  /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 
 void EffectEvent_Subscribe(u8 eventId, EffectEventHandler handler)
@@ -75,6 +64,9 @@ void EffectEvent_Emit(const struct EffectEvent *ev)
 
   if (ev == NULL || ev->type >= EFFECT_EVENT_COUNT)
     return;
+
+  /* Registered Effects (TRIGGER / CONTINUOUS) — YGOPRO-style by code. */
+  Effect_DispatchEvent(ev);
 
   n = gEffectEventHandlerCounts[ev->type];
   for (i = 0; i < n; i++) {

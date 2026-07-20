@@ -110,37 +110,52 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 | Ad hoc field notifies | `Duel_NotifyMonsterZoneChanged` in `duel_helpers.c` | Hard-coded `Duel_Check*AfterFieldChange` — Phase 3 migration target |
 | Smarter AI today | [`smarter-ai.md`](smarter-ai.md) / `src_custom/ai_decision/` | Action categories, not effect semantics |
 | Planned system root | `src_custom/effect_system/` | Dispatch, ops, conditions, selectors, events, metadata |
-| Phase 0 dispatch | `EffectDispatch_TryActivate` / `QueryShouldActivate` in [`effect_dispatch.c`](../src_custom/effect_system/effect_dispatch.c) | Empty conversion table → always legacy |
+| **Effect CCTO (uniform)** | [`effect.h`](../include/effect.h) / [`effect.c`](../src_custom/effect_system/effect.c) | YGOPRO-shaped type+code+cond/cost/target/op; activate + events |
+| Generated Effect rows | [`effect_registry.inc`](../src_custom/generated/effect_registry.inc) | One ACTIVATE Effect per JSON script (`EffectOp_RunScript`) |
+| Phase 0 dispatch | `EffectDispatch_*` → `Effect_TryActivate` / `QueryShouldActivate` | Converted → CCTO; else legacy |
 | Phase 0 header | [`effect_system.h`](../include/effect_system.h) | Kinds + result codes |
 | Phase 1 ops | `Op_*` / `EffectOp_Run` in [`effect_ops.h`](../include/effect_ops.h) / [`effect_ops.c`](../src_custom/effect_system/effect_ops.c) | Draw, mill, destroy, LP, search-by-id |
 | Phase 1 pilots | `one_day_of_peace.c`, `d_burst.c`, `grand_convergence.c` | Compose via `Op_*` |
 | Phase 2 conditions | [`effect_conditions.h`](../include/effect_conditions.h) / [`effect_conditions.c`](../src_custom/effect_system/effect_conditions.c) | Opp S/T, face-up spell, opp monster, … |
 | Phase 2 selectors | [`effect_selectors.h`](../include/effect_selectors.h) / [`effect_selectors.c`](../src_custom/effect_system/effect_selectors.c) | First/exists on field; AI first-match |
 | Phase 2 pilots | `d_burst.c`, `dragon_spirit_of_white.c` | Shared PickZone validators |
-| Phase 3 events | [`effect_events.h`](../include/effect_events.h) / [`effect_events.c`](../src_custom/effect_system/effect_events.c) | Subscribe/Emit + OPT |
+| Phase 3 events | [`effect_events.h`](../include/effect_events.h) / [`effect_events.c`](../src_custom/effect_system/effect_events.c) | Subscribe/Emit + OPT; `Emit` → `Effect_DispatchEvent` |
 | Phase 3 emit sites | `duel_helpers.c`, `battle_damage_hooks.c`, `turn_effect_hooks.c` | Summon / destroy / battle-destroy / turn boundary |
 | Phase 3 OPT pilots | `amazoness_call.c`, `d_burst.c` | `EffectOpt_*` cleared on turn boundary |
-| Phase 4 scripts | [`effect_scripts.h`](../include/effect_scripts.h) / [`effect_scripts.c`](../src_custom/effect_system/effect_scripts.c) | Ordered op steps + metadata |
-| Phase 4 pilots | One Day of Peace, Pot of Greed, Grand Convergence | Routed via `EffectDispatch` → `EffectScript_Run` |
-| Phase 5 AI meta | `EffectMeta_GetCategory` + `AiMod_EffectSemantics` in [`ai_modifiers.c`](../src_custom/ai_decision/ai_modifiers.c) | Semantic activate nudges; legacy spellEffect fallback |
-| Phase 4b generator | [`tools/generate_effect_scripts.py`](../tools/generate_effect_scripts.py) + [`tools/effect_scripts_manifest.json`](../tools/effect_scripts_manifest.json) | Emits `src_custom/generated/effect_scripts_table.inc` |
-| Field continuous | `EFFECT_EVENT_ON_FIELD_CHANGE` → Rivalry / Level Limit / Amazoness / Ring | Notify / DestroyZone / battle GY / PostBoardScan emit |
-| Damage-calc event | `EFFECT_EVENT_ON_DAMAGE_CALC` → Skyscraper + Inferno ATK boosts | Emit from `RefreshPendingBattleActionStatsFromZones` |
+| Phase 4 scripts | [`effect_scripts.h`](../include/effect_scripts.h) / [`effect_scripts.c`](../src_custom/effect_system/effect_scripts.c) | Step tables = **operation backend** for ACTIVATE Effects |
+| Phase 4 pilots | One Day of Peace, Pot of Greed, Grand Convergence | Routed via CCTO → `EffectOp_RunScript` |
+| Phase 5 AI meta | `EffectMeta_GetCategory` + `AiMod_EffectSemantics` in [`ai_modifiers.c`](../src_custom/ai_decision/ai_modifiers.c) | Prefers `Effect_GetCategory`; legacy fallback |
+| Phase 4b generator | [`tools/generate_effect_scripts.py`](../tools/generate_effect_scripts.py) + manifest | Emits scripts table **and** Effect registry |
+| Field continuous | `EFFECT_EVENT_ON_FIELD_CHANGE` → Rivalry / Level Limit / Amazoness / Ring | Still `EffectEvent_Subscribe` handlers |
+| Damage-calc continuous | CCTO `EFFECT_TYPE_CONTINUOUS` + `ON_DAMAGE_CALC` | Inferno / Skyscraper / Fighting Spirit in `sEffectsExtra` |
 | Burn scripts | `EFFECT_SCRIPT_BURN_THROUGH_TRAPS` | Sparks…Tremendous Fire, Meteor |
 | Heal scripts | `EFFECT_SCRIPT_HEAL_THROUGH_TRAPS` | Mooyan Curry…Dian Keto |
 | Destroy/search scripts | Dark Hole, Raigeki, Fusion Sage, type-wipes, Feather Duster | |
 | LP scripts | Goblin Thief / Upstart / Rain of Mercy through-traps ops | |
-| Damage-calc / battle | Skyscraper, Inferno, Amazoness Fighting Spirit; Continuous Destruction Punch | |
+| Battle destroy | Continuous Destruction Punch | Des Kangaroo-style pending |
+
+## Uniform format (CCTO)
+
+Public shape for converted effects (YGOPRO Structure of a card script, in C):
+
+- `type` — ACTIVATE / TRIGGER / CONTINUOUS  
+- `code` — `EFFECT_CODE_ACTIVATE` or `EFFECT_EVENT_*`  
+- `condition` / `cost` / `target` / `operation` — function pointers (`EffectCheckFn` / `EffectResolveFn`)  
+
+No Lua/VM. JSON scripts remain optional codegen for simple activate **steps**; complex cards use a custom `operation` on the same `struct Effect`. Unconverted LynJump cards stay legacy until wrapped.
 
 ## Working agreement
 
 - Prefer **≥10 script/effect items per pass** for effect-data work — avoid drip 1–3 card sessions unless debugging.
+- New converted cards: register `struct Effect` (hand or generated). Do not invent a second public format.
 
 ## TODO
 
 - [x] Phase 0–5 and prior follow-ups (see history above)
 - [x] Large type-wipe / LP / Punch batch (30 scripts)
-- [ ] Next ≥10 pack: Heavy Storm / Final Destiny / Crush Card / more battle_effects
+- [x] CCTO core + registry bridge for all scripted activates + damage-calc continuous
+- [ ] Migrate remaining LynJump/custom effects onto `struct Effect` rows (escape hatch = custom op)
+- [ ] Next ≥10 pack: Heavy Storm / Final Destiny / Crush Card / more battle_effects as CCTO
 
 ## Limitations & Bugs
 
@@ -150,3 +165,5 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 - Metadata for AI is useless until categories are stable and populated; do not block Phases 0–3 on AI work.
 - Report gaps (missing taxonomy tags, wrong Phase ROI) against this doc or the taxonomy file.
 - Further damage-calc subscribers (Supreme King's Castle OPT send, piercing, etc.) remain card-specific battle_effects work.
+- CCTO does **not** mean every card is converted — only registry rows + legacy fallthrough.
+- `EffectCondFn` / `EffectOpFn` in conditions/ops headers are **opcode registries**; CCTO uses `EffectCheckFn` / `EffectResolveFn` to avoid the name clash.

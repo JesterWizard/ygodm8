@@ -11,6 +11,7 @@
 #include "effect_scripts.h"
 #include "effect_selectors.h"
 #include "effect_system.h"
+#include "effect.h"
 #include "spirit_of_the_pot_of_greed.h"
 #include "card.h"
 #include "constants/spell_effects.h"
@@ -44,7 +45,7 @@ const struct EffectScript *EffectScript_FindAny(u16 cardId)
 
 u8 EffectMeta_HasConvertedScript(u16 cardId)
 {
-  return EffectScript_FindAny(cardId) != NULL;
+  return Effect_HasCard(cardId) || EffectScript_FindAny(cardId) != NULL;
 }
 
 static u8 EffectMeta_GetCategoryLegacy(u16 cardId)
@@ -92,10 +93,17 @@ static u8 EffectMeta_GetCategoryLegacy(u16 cardId)
 
 u8 EffectMeta_GetCategory(u16 cardId)
 {
-  const struct EffectScript *script = EffectScript_FindAny(cardId);
+  u8 cat = Effect_GetCategory(cardId);
 
-  if (script != NULL)
-    return script->meta.category;
+  if (cat != EFFECT_META_NONE)
+    return cat;
+
+  {
+    const struct EffectScript *script = EffectScript_FindAny(cardId);
+
+    if (script != NULL)
+      return script->meta.category;
+  }
 
   /* Legacy fallback for unconverted cards with known spellEffect tags. */
   return EffectMeta_GetCategoryLegacy(cardId);
