@@ -1,0 +1,85 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "COCOON_REBIRTH",
+      "card_name": "Cocoon Rebirth",
+      "kind": "spell",
+      "archetype": "COCOON",
+      "path": "src_custom/spell_effects/cocoon_rebirth.c",
+      "effect_text": "Tribute Chrysalis; SS its Neo-Spacian. You can Tribute 1 face-up Chrysalis monster you control to Special Summon 1 Neo-Spacian monster written in the card text of that card from either player's Graveyard.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": "tribute_summon",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TRIBUTE_DOLL",
+      "clone_path": "src_custom/spell_effects/tribute_doll.c",
+      "clone_score": 0.73
+    },
+    {
+      "card_const": "MORPHTRONIC_RUSTY_ENGINE",
+      "card_name": "Morphtronic Rusty Engine",
+      "kind": "spell",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/spell_effects/morphtronic_rusty_engine.c",
+      "effect_text": "Equip only to a Morphtronic monster. If the equipped monster is destroyed, inflict damage to each player equal to its  Equip only to a Morphtronic monster. If the equipped monster is destroyed, inflict damage to each player equal to its original ATK.",
+      "tags": [
+        "burn",
+        "monster"
+      ],
+      "pattern": "burn",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BIG_BANG_SHOT",
+      "clone_path": "src_custom/spell_effects/big_bang_shot.c",
+      "clone_score": 1.4
+    },
+    {
+      "card_const": "BACKUP_SQUAD",
+      "card_name": "Backup Squad",
+      "kind": "spell",
+      "archetype": "BACKUP",
+      "path": "src_custom/spell_effects/backup_squad.c",
+      "effect_text": "Each time you take 1000 or more damage by your opponent's card effect or their monster's attack: Draw 1 card for every 1 Each time you take 1000 or more damage by your opponent's card effect or their monster's attack: Draw 1 card for every 1000 damage you took.",
+      "tags": [
+        "draw",
+        "monster"
+      ],
+      "pattern": "draw_n",
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "CARD_DESTRUCTION",
+      "clone_path": "src_custom/spell_effects/card_destruction.c",
+      "clone_score": 0.73
+    },
+    {
+      "card_const": "MONSTER_GATE",
+      "card_name": "Monster Gate",
+      "kind": "spell",
+      "archetype": "MONSTER",
+      "path": "src_custom/spell_effects/monster_gate.c",
+      "effect_text": "Tribute 1 monster. Excavate until a Normal Summonable monster found. Special Summon it, send rest to GY. Tribute 1 monster; excavate cards from the top of your Deck until you excavate a monster that can be Normal Summoned/Set. Special Summon it, also send the other excavated cards to the GY.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": "tribute_summon",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TRIBUTE_DOLL",
+      "clone_path": "src_custom/spell_effects/tribute_doll.c",
+      "clone_score": 0.73
+    }
+  ]
+}

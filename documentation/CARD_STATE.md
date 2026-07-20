@@ -1,24 +1,24 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Stub backlog list + implemented effect pack (12 spells)
+**Last worked on:** 2026-07-20 — Effect pack B: 12 more spells
 
 **Files touched:**
 - `documentation/STUB_EFFECTS.md`
-- `tools/stub_effect_queue.py`
-- `src_custom/spell_effects/destiny_draw.c`
-- `src_custom/spell_effects/moray_of_greed.c`
-- `src_custom/spell_effects/charge_of_the_light_brigade.c`
-- `src_custom/spell_effects/poison_of_the_old_man.c`
-- `src_custom/spell_effects/cup_of_ace.c`
-- `src_custom/spell_effects/gladiator_proving_ground.c`
-- `src_custom/spell_effects/the_melody_of_awakening_dragon.c`
-- `src_custom/spell_effects/ancient_leaf.c`
-- `src_custom/spell_effects/summoners_art.c`
-- `src_custom/spell_effects/ace_of_sword.c`
-- `src_custom/spell_effects/twister.c`
-- `src_custom/spell_effects/double_cyclone.c`
+- `documentation/effect_work_packs/2026-07-20-b/`
+- `src_custom/spell_effects/photon_generator_unit.c`
+- `src_custom/spell_effects/metamorphosis.c`
+- `src_custom/spell_effects/mask_of_the_accursed.c`
+- `src_custom/spell_effects/magical_dimension.c`
+- `src_custom/spell_effects/cocoon_rebirth.c`
+- `src_custom/spell_effects/morphtronic_rusty_engine.c`
+- `src_custom/spell_effects/backup_squad.c`
+- `src_custom/spell_effects/monster_gate.c`
+- `src_custom/spell_effects/insect_imitation.c`
+- `src_custom/spell_effects/morphtronic_cord.c`
+- `src_custom/spell_effects/dragon_ravine.c`
+- `src_custom/spell_effects/dark_magic_inheritance.c`
 
-**Outcome:** make OK; STUB_EFFECTS.md 895→883; 12 spells implemented
+**Outcome:** make OK; STUB_EFFECTS regenerated; 12 spells (several with ponytail ceilings for equip/continuous hooks)
 
 **Open / next:**
-- implement next effect pack (work-pack 12)
+- implement next effect pack; optionally wire Mask/Cord/Backup/Rusty Engine external hooks

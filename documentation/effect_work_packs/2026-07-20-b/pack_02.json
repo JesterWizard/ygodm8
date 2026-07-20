@@ -1,0 +1,88 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "INSECT_IMITATION",
+      "card_name": "Insect Imitation",
+      "kind": "spell",
+      "archetype": "INSECT",
+      "path": "src_custom/spell_effects/insect_imitation.c",
+      "effect_text": "Tribute 1 monster. Special Summon 1 Insect-Type monster from your Deck whose Level is 1 higher than the  Tribute 1 monster. Special Summon 1 Insect-Type monster from your Deck whose Level is 1 higher than the Tributed monster's.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": "tribute_summon",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TRIBUTE_DOLL",
+      "clone_path": "src_custom/spell_effects/tribute_doll.c",
+      "clone_score": 0.8
+    },
+    {
+      "card_const": "MORPHTRONIC_CORD",
+      "card_name": "Morphtronic Cord",
+      "kind": "spell",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/spell_effects/morphtronic_cord.c",
+      "effect_text": "Equip only to a Morphtronic monster. Each time the equipped monster's battle position is changed, destroy 1 Spell or T Equip only to a Morphtronic monster. Each time the equipped monster's battle position is changed, destroy 1 Spell or Trap Card on the field.",
+      "tags": [
+        "destroy",
+        "monster",
+        "st"
+      ],
+      "pattern": "destroy_zone",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BLOCK_ATTACK",
+      "clone_path": "src_custom/spell_effects/block_attack.c",
+      "clone_score": 0.73
+    },
+    {
+      "card_const": "DRAGON_RAVINE",
+      "card_name": "Dragon Ravine",
+      "kind": "spell",
+      "archetype": "DRAGON",
+      "path": "src_custom/spell_effects/dragon_ravine.c",
+      "effect_text": "OPT: discard 1; add Lv4- Dragunity from Deck, or send 1 Dragon from Deck to GY. Once per turn: You can discard 1 card, then activate 1 of these effects; Add 1 Level 4 or lower Dragunity monster from your Deck to your hand. Send 1 Dragon monster from your Deck to the GY.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "search"
+      ],
+      "pattern": "search",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "DARK_MAGIC_INHERITANCE",
+      "card_name": "Dark Magic Inheritance",
+      "kind": "spell",
+      "archetype": "DARK_MAGIC",
+      "path": "src_custom/spell_effects/dark_magic_inheritance.c",
+      "effect_text": "Banish 2 Spells from GY; add 1 DM/DMG Spell/Trap from Deck. Once per turn. Banish 2 Spells from your GY; add 1 Spell/Trap from your Deck to your hand, that specifically lists the card Dark Magician or Dark Magician Girl in its text, except Dark Magic Inheritance. You can only activate 1 Dark Magic Inheritance per turn.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "search",
+        "st"
+      ],
+      "pattern": "search",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "E_EMERGENCY_CALL",
+      "clone_path": "src_custom/spell_effects/e_emergency_call.c",
+      "clone_score": 0.57
+    }
+  ]
+}

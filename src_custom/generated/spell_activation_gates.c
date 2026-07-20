@@ -23,6 +23,7 @@ extern u8 CanActivateA_WINGBEAT_OF_GIANT_DRAGON(void);
 extern u8 CanActivateBookOfLife(void);
 extern u8 CanActivateChaosGreed(void);
 extern u8 CanActivateCHARGE_OF_THE_LIGHT_BRIGADE(void);
+extern u8 CanActivateCOCOON_REBIRTH(void);
 extern u8 CanActivateConfiscation(void);
 extern u8 CanActivateDedicationThroughLightAndDarkness(void);
 extern u8 CanActivateDelinquentDuo(void);
@@ -32,10 +33,17 @@ extern u8 CanActivateEEmergencyCall(void);
 extern u8 CanActivateFinalCountdown(void);
 extern u8 CanActivateFutureFusion(void);
 extern u8 CanActivateGuardianTreasure(void);
+extern u8 CanActivateINSECT_IMITATION(void);
 extern u8 CanActivateKnightsTitle(void);
+extern u8 CanActivateMAGICAL_DIMENSION(void);
+extern u8 CanActivateMETAMORPHOSIS(void);
 extern u8 CanActivateMeteorOfDestruction(void);
+extern u8 CanActivateMONSTER_GATE(void);
 extern u8 CanActivateMonsterReborn(void);
 extern u8 CanActivateMORAY_OF_GREED(void);
+extern u8 CanActivateMORPHTRONIC_CORD(void);
+extern u8 CanActivateMORPHTRONIC_RUSTY_ENGINE(void);
+extern u8 CanActivatePHOTON_GENERATOR_UNIT(void);
 extern u8 CanActivatePrematureBurial(void);
 extern u8 CanActivateSUMMONERS_ART(void);
 extern u8 CanActivateTheFluteOfSummoningDragon(void);
@@ -51,6 +59,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { BOOK_OF_LIFE, CanActivateBookOfLife, TRUE },
   { CHAOS_GREED, CanActivateChaosGreed, TRUE },
   { CHARGE_OF_THE_LIGHT_BRIGADE, CanActivateCHARGE_OF_THE_LIGHT_BRIGADE, TRUE },
+  { COCOON_REBIRTH, CanActivateCOCOON_REBIRTH, TRUE },
   { CONFISCATION, CanActivateConfiscation, TRUE },
   { DEDICATION_THROUGH_LIGHT_AND_DARKNESS, CanActivateDedicationThroughLightAndDarkness, TRUE },
   { DELINQUENT_DUO, CanActivateDelinquentDuo, TRUE },
@@ -60,10 +69,17 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { FINAL_COUNTDOWN, CanActivateFinalCountdown, TRUE },
   { FUTURE_FUSION, CanActivateFutureFusion, TRUE },
   { GUARDIAN_TREASURE, CanActivateGuardianTreasure, FALSE },
+  { INSECT_IMITATION, CanActivateINSECT_IMITATION, TRUE },
   { KNIGHTS_TITLE, CanActivateKnightsTitle, TRUE },
+  { MAGICAL_DIMENSION, CanActivateMAGICAL_DIMENSION, TRUE },
+  { METAMORPHOSIS, CanActivateMETAMORPHOSIS, TRUE },
   { METEOR_OF_DESTRUCTION, CanActivateMeteorOfDestruction, TRUE },
+  { MONSTER_GATE, CanActivateMONSTER_GATE, TRUE },
   { MONSTER_REBORN, CanActivateMonsterReborn, TRUE },
   { MORAY_OF_GREED, CanActivateMORAY_OF_GREED, TRUE },
+  { MORPHTRONIC_CORD, CanActivateMORPHTRONIC_CORD, TRUE },
+  { MORPHTRONIC_RUSTY_ENGINE, CanActivateMORPHTRONIC_RUSTY_ENGINE, TRUE },
+  { PHOTON_GENERATOR_UNIT, CanActivatePHOTON_GENERATOR_UNIT, TRUE },
   { PREMATURE_BURIAL, CanActivatePrematureBurial, TRUE },
   { SUMMONERS_ART, CanActivateSUMMONERS_ART, TRUE },
   { THE_FLUTE_OF_SUMMONING_DRAGON, CanActivateTheFluteOfSummoningDragon, TRUE },

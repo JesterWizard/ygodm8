@@ -7,22 +7,22 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 14:18 UTC  
-**Remaining stubs:** `883`
+**Last updated:** 2026-07-20 14:31 UTC  
+**Remaining stubs:** `871`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 209 |
+| `spell` | 197 |
 | `trap` | 109 |
 | `activated` | 461 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **883** |
+| **total** | **871** |
 
-## spell (209)
+## spell (197)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
@@ -46,12 +46,11 @@ python3 tools/stub_effect_queue.py --write-list
 | `AQUA_JET` | `AQUA` | — | `H_HEATED_HEART` | `src_custom/spell_effects/aqua_jet.c` |
 | `ARCANA_READING` | `ARCANA` | search | `MIRACLE_FUSION` | `src_custom/spell_effects/arcana_reading.c` |
 | `ARCANA_SPREAD` | `ARCANA` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/arcana_spread.c` |
-| `ARCANE_BARRIER` | `ARCANE` | — | `UNITED_WE_STAND` | `src_custom/spell_effects/arcane_barrier.c` |
+| `ARCANE_BARRIER` | `ARCANE` | — | `BACKUP_SQUAD` | `src_custom/spell_effects/arcane_barrier.c` |
 | `AROMA_BLEND` | `AROMA` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/aroma_blend.c` |
 | `AROMA_GARDEN` | `AROMA` | — | `UNITED_WE_STAND` | `src_custom/spell_effects/aroma_garden.c` |
 | `AROMA_GARDENING` | `AROMA` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/aroma_gardening.c` |
 | `ATTACK_PHEROMONES` | `ATTACK` | — | `UNITED_WE_STAND` | `src_custom/spell_effects/attack_pheromones.c` |
-| `BACKUP_SQUAD` | `BACKUP` | draw_n | `CARD_DESTRUCTION` | `src_custom/spell_effects/backup_squad.c` |
 | `BERSERKER_SOUL` | `BERSERKER` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/berserker_soul.c` |
 | `BIG_EVOLUTION_PILL` | `BIG` | — | `COST_DOWN` | `src_custom/spell_effects/big_evolution_pill.c` |
 | `BOND_BETWEEN_TEACHER_AND_STUDENT` | `BOND` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/bond_between_teacher_and_student.c` |
@@ -65,7 +64,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `CHICKEN_GAME` | `CHICKEN` | — | `CARD_DESTRUCTION` | `src_custom/spell_effects/chicken_game.c` |
 | `CLOCK_TOWER_PRISON` | `CLOCK` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/clock_tower_prison.c` |
 | `COCOON_PARTY` | `COCOON` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/cocoon_party.c` |
-| `COCOON_REBIRTH` | `COCOON` | tribute_summon | `TRIBUTE_DOLL` | `src_custom/spell_effects/cocoon_rebirth.c` |
 | `COLD_WAVE` | `COLD` | — | `MAGE_POWER` | `src_custom/spell_effects/cold_wave.c` |
 | `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS` | `COLOSSEUM` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/colosseum_cage_of_the_gladiator_beasts.c` |
 | `CONTACT` | `CONTACT` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/contact.c` |
@@ -83,7 +81,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `DARK_BURNING_ATTACK` | `DARK_BURNING` | — | `UNITED_WE_STAND` | `src_custom/spell_effects/dark_burning_attack.c` |
 | `DARK_BURNING_MAGIC` | `DARK_BURNING` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/dark_burning_magic.c` |
 | `DARK_MAGIC_ATTACK` | `DARK_MAGIC` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/dark_magic_attack.c` |
-| `DARK_MAGIC_INHERITANCE` | `DARK_MAGIC` | search | `E_EMERGENCY_CALL` | `src_custom/spell_effects/dark_magic_inheritance.c` |
 | `DARK_MAGIC_VEIL` | `DARK_MAGIC` | — | `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | `src_custom/spell_effects/dark_magic_veil.c` |
 | `DARK_MAGICIAN_CIRCLE` | `DARK_MAGICIAN` | — | `POLYMERIZATION` | `src_custom/spell_effects/dark_magician_circle.c` |
 | `DE_SYNCHRO` | `DE` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/de_synchro.c` |
@@ -92,7 +89,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `DOCTOR_D` | `DOCTOR` | — | `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | `src_custom/spell_effects/doctor_d.c` |
 | `DOUBLE_SPELL` | `DOUBLE` | — | `DOUBLE_CYCLONE` | `src_custom/spell_effects/double_spell.c` |
 | `DOUBLE_TOOL_C_AND_D` | `DOUBLE` | — | `KAISER_COLOSSEUM` | `src_custom/spell_effects/double_tool_c_and_d.c` |
-| `DRAGON_RAVINE` | `DRAGON` | search | `MIRACLE_FUSION` | `src_custom/spell_effects/dragon_ravine.c` |
 | `DRAGON_SHRINE` | `DRAGON` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/dragon_shrine.c` |
 | `DRAGONS_MIRROR` | `DRAGONS` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/dragons_mirror.c` |
 | `EL_SHADDOLL_FUSION` | `EL_SHADDOLL` | — | `POLYMERIZATION` | `src_custom/spell_effects/el_shaddoll_fusion.c` |
@@ -132,7 +128,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `INFECTED_MAIL` | `INFECTED` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/infected_mail.c` |
 | `INFERNO_FIRE_BLAST` | `INFERNO` | — | `H_HEATED_HEART` | `src_custom/spell_effects/inferno_fire_blast.c` |
 | `INFERNO_TEMPEST` | `INFERNO` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/inferno_tempest.c` |
-| `INSECT_IMITATION` | `INSECT` | tribute_summon | `TRIBUTE_DOLL` | `src_custom/spell_effects/insect_imitation.c` |
 | `INSTANT_CONTACT` | `INSTANT` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/instant_contact.c` |
 | `INSTANT_FUSION` | `INSTANT` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/instant_fusion.c` |
 | `INSTANT_NEO_SPACE` | `INSTANT` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/instant_neo_space.c` |
@@ -144,28 +139,22 @@ python3 tools/stub_effect_queue.py --write-list
 | `LIGHTNING_STORM` | `LIGHTNING` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/lightning_storm.c` |
 | `LIGHTSWORN_SABRE` | `LIGHTSWORN` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/lightsworn_sabre.c` |
 | `LIGHTSWORN_SANCTUARY` | `LIGHTSWORN` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/lightsworn_sanctuary.c` |
-| `MAGICAL_DIMENSION` | `MAGICAL` | tribute_summon | `TRIBUTE_DOLL` | `src_custom/spell_effects/magical_dimension.c` |
 | `MAGICAL_STONE_EXCAVATION` | `MAGICAL` | — | `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | `src_custom/spell_effects/magical_stone_excavation.c` |
 | `MAGICIANS_LEFT_HAND` | `MAGICIANS` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/magicians_left_hand.c` |
 | `MAGICIANS_RIGHT_HAND` | `MAGICIANS` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/magicians_right_hand.c` |
 | `MARCH_OF_THE_DARK_BRIGADE` | `MARCH` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/march_of_the_dark_brigade.c` |
 | `MASK_OF_DISPEL` | `MASK_OF` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/mask_of_dispel.c` |
-| `MASK_OF_THE_ACCURSED` | `MASK_OF` | burn | `BIG_BANG_SHOT` | `src_custom/spell_effects/mask_of_the_accursed.c` |
 | `MAUSOLEUM_OF_THE_EMPEROR` | `MAUSOLEUM` | — | `DARK_ROOM_OF_NIGHTMARE` | `src_custom/spell_effects/mausoleum_of_the_emperor.c` |
-| `METAMORPHOSIS` | `METAMORPHOSIS` | tribute_summon | `TRIBUTE_DOLL` | `src_custom/spell_effects/metamorphosis.c` |
 | `MIRACLE_CONTACT` | `MIRACLE` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/miracle_contact.c` |
 | `MIRAGE_OF_NIGHTMARE` | `MIRAGE` | — | `GUARDIAN_TREASURE` | `src_custom/spell_effects/mirage_of_nightmare.c` |
 | `MOLTING_ESCAPE` | `MOLTING` | — | `KAISER_COLOSSEUM` | `src_custom/spell_effects/molting_escape.c` |
-| `MONSTER_GATE` | `MONSTER` | tribute_summon | `TRIBUTE_DOLL` | `src_custom/spell_effects/monster_gate.c` |
 | `MONSTER_RECOVERY` | `MONSTER` | — | `POLYMERIZATION` | `src_custom/spell_effects/monster_recovery.c` |
 | `MORALE_BOOST` | `MORALE` | — | — | `src_custom/spell_effects/morale_boost.c` |
 | `MORPHTRONIC_ACCELERATOR` | `MORPHTRONIC` | — | `POLYMERIZATION` | `src_custom/spell_effects/morphtronic_accelerator.c` |
 | `MORPHTRONIC_CONVERTER` | `MORPHTRONIC` | — | `POLYMERIZATION` | `src_custom/spell_effects/morphtronic_converter.c` |
-| `MORPHTRONIC_CORD` | `MORPHTRONIC` | destroy_zone | `BLOCK_ATTACK` | `src_custom/spell_effects/morphtronic_cord.c` |
-| `MORPHTRONIC_ENGINE` | `MORPHTRONIC` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/morphtronic_engine.c` |
+| `MORPHTRONIC_ENGINE` | `MORPHTRONIC` | — | `MORPHTRONIC_CORD` | `src_custom/spell_effects/morphtronic_engine.c` |
 | `MORPHTRONIC_MAP` | `MORPHTRONIC` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/morphtronic_map.c` |
 | `MORPHTRONIC_REPAIR_UNIT` | `MORPHTRONIC` | — | `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | `src_custom/spell_effects/morphtronic_repair_unit.c` |
-| `MORPHTRONIC_RUSTY_ENGINE` | `MORPHTRONIC` | burn | `BIG_BANG_SHOT` | `src_custom/spell_effects/morphtronic_rusty_engine.c` |
 | `MYSTIC_MINE` | `MYSTIC` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/mystic_mine.c` |
 | `MYSTIK_WOK` | `MYSTIK` | — | `DARK_ROOM_OF_NIGHTMARE` | `src_custom/spell_effects/mystik_wok.c` |
 | `NECROVALLEY` | `NECROVALLEY` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/necrovalley.c` |
@@ -183,9 +172,8 @@ python3 tools/stub_effect_queue.py --write-list
 | `PANDEMONIUM` | `PANDEMONIUM` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/pandemonium.c` |
 | `PARALLEL_WORLD_FUSION` | `PARALLEL` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/parallel_world_fusion.c` |
 | `PENTACLE_OF_ACE` | `PENTACLE` | — | — | `src_custom/spell_effects/pentacle_of_ace.c` |
-| `PHOTON_GENERATOR_UNIT` | `PHOTON` | tribute_summon | `GUARDIAN_TREASURE` | `src_custom/spell_effects/photon_generator_unit.c` |
 | `POT_OF_AVARICE` | `POT_OF` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/pot_of_avarice.c` |
-| `POT_OF_EXTRAVAGANCE` | `POT_OF` | draw_n | `CARD_DESTRUCTION` | `src_custom/spell_effects/pot_of_extravagance.c` |
+| `POT_OF_EXTRAVAGANCE` | `POT_OF` | draw_n | `BACKUP_SQUAD` | `src_custom/spell_effects/pot_of_extravagance.c` |
 | `POWER_FILTER` | `POWER` | — | `COURT_OF_JUSTICE` | `src_custom/spell_effects/power_filter.c` |
 | `PSEUDO_SPACE` | `PSEUDO` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/pseudo_space.c` |
 | `REALM_OF_LIGHT` | `REALM` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/realm_of_light.c` |
@@ -201,7 +189,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `SECRET_VILLAGE_OF_THE_SPELLCASTERS` | `SECRET` | — | `KAISER_COLOSSEUM` | `src_custom/spell_effects/secret_village_of_the_spellcasters.c` |
 | `SECRETS_OF_DARK_MAGIC` | `SECRETS` | — | `POLYMERIZATION` | `src_custom/spell_effects/secrets_of_dark_magic.c` |
 | `SHADDOLL_FUSION` | `SHADDOLL` | — | `POLYMERIZATION` | `src_custom/spell_effects/shaddoll_fusion.c` |
-| `SHARD_OF_GREED` | `SHARD` | — | `CARD_DESTRUCTION` | `src_custom/spell_effects/shard_of_greed.c` |
+| `SHARD_OF_GREED` | `SHARD` | — | `BACKUP_SQUAD` | `src_custom/spell_effects/shard_of_greed.c` |
 | `SHARE_THE_PAIN` | `SHARE` | — | `DARK_ROOM_OF_NIGHTMARE` | `src_custom/spell_effects/share_the_pain.c` |
 | `SHINING_SARCOPHAGUS` | `SHINING` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/shining_sarcophagus.c` |
 | `SILVERS_CRY` | `SILVERS` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/silvers_cry.c` |
