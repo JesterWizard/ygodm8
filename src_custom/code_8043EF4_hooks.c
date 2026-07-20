@@ -319,6 +319,9 @@ u8 TrySpecialSummonGorzTheEmissaryOfDarknessFromHand(u8);
 u8 TrySpecialSummonMajestyHyperionFromHand(u8);
 u8 TrySpecialSummonTheLegendaryExodiaIncarnateFromHand(u8);
 u8 TrySpecialSummonTheAgentOfLifeNeptuneFromHand(u8);
+u8 TrySpecialSummonDestinyHeroDestroyDogmaFromHand(u8);
+u8 TrySpecialSummonBlueEyesJetDragonFromHand(u8);
+u8 TrySpecialSummonMorphtronicSmartfonFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -346,7 +349,9 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == EVIL_HERO_DEAD_END_PRISON
       || cardId == LIGHTRAY_GEARFRIED
       || cardId == MORPHTRONIC_SCANNEN
-      || cardId == THE_LEGENDARY_EXODIA_INCARNATE;
+      || cardId == THE_LEGENDARY_EXODIA_INCARNATE
+      || cardId == DESTINY_HERO_DESTROY_DOGMA
+      || cardId == MORPHTRONIC_SMARTFON;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -965,6 +970,21 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == THE_AGENT_OF_LIFE_NEPTUNE
           && TrySpecialSummonTheAgentOfLifeNeptuneFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DESTINY_HERO_DESTROY_DOGMA
+          && TrySpecialSummonDestinyHeroDestroyDogmaFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == BLUE_EYES_JET_DRAGON
+          && TrySpecialSummonBlueEyesJetDragonFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == MORPHTRONIC_SMARTFON
+          && TrySpecialSummonMorphtronicSmartfonFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

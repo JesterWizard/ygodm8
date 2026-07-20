@@ -7,39 +7,27 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 20:55 UTC  
-**Remaining stubs:** `121`
+**Last updated:** 2026-07-20 21:05 UTC  
+**Remaining stubs:** `109`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `activated` | 17 |
+| `activated` | 5 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **121** |
+| **total** | **109** |
 
-## activated (17)
+## activated (5)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
-| `ANCIENT_GEAR_COMMANDER` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_BEAST` | `src_custom/activated_effects/ancient_gear_commander.c` |
-| `ANCIENT_GEAR_FRAME` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_TANKER` | `src_custom/activated_effects/ancient_gear_frame.c` |
-| `ANCIENT_GEAR_MEGATON_GOLEM` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_TANKER` | `src_custom/activated_effects/ancient_gear_megaton_golem.c` |
-| `BLUE_EYES_JET_DRAGON` | `BLUE_EYES` | — | `BLUE_EYES_TYRANT_DRAGON` | `src_custom/activated_effects/blue_eyes_jet_dragon.c` |
-| `CELESTIAL_KNIGHTLORD_PARSHATH` | `CELESTIAL` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/celestial_knightlord_parshath.c` |
-| `DESTINY_HERO_DESTROY_DOGMA` | `DESTINY_HERO` | — | `DESTINY_HERO_DECIDER` | `src_custom/activated_effects/destiny_hero_destroy_dogma.c` |
-| `DESTINY_HERO_DREADNOUGHT_MASTER` | `DESTINY_HERO_DREADNOUGHT` | — | `DESTINY_HERO_DREADNOUGHT_SERVANT` | `src_custom/activated_effects/destiny_hero_dreadnought_master.c` |
+| `CELESTIAL_KNIGHTLORD_PARSHATH` | `CELESTIAL` | — | `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `src_custom/activated_effects/celestial_knightlord_parshath.c` |
 | `DIVINE_SERPENT_GEH` | `DIVINE` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/divine_serpent_geh.c` |
-| `ELEMENTAL_HERO_COSMO_NEOS` | `ELEMENTAL_HERO` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/elemental_hero_cosmo_neos.c` |
-| `GUARDIAN_DREADSCYTHE` | `GUARDIAN` | — | `CHIMERATECH_FORTRESS_DRAGON` | `src_custom/activated_effects/guardian_dreadscythe.c` |
-| `MASTERFLARE_HYPERION` | `MASTERFLARE` | — | `SHADDOLL_HOUND` | `src_custom/activated_effects/masterflare_hyperion.c` |
-| `MORPHTRONIC_SMARTFON` | `MORPHTRONIC` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/morphtronic_smartfon.c` |
-| `MORPHTRONIC_TELEFON` | `MORPHTRONIC` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/morphtronic_telefon.c` |
-| `SILENT_SWORDSMAN` | `SILENT` | — | `ELEMENTAL_HERO_MAGMA_NEOS` | `src_custom/activated_effects/silent_swordsman.c` |
-| `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `TIMAEUS` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/timaeus_the_knight_of_destiny.c` |
-| `TOADALLY_AWESOME` | `TOADALLY` | — | `HERALD_OF_ULTIMATENESS` | `src_custom/activated_effects/toadally_awesome.c` |
+| `GUARDIAN_DREADSCYTHE` | `GUARDIAN` | — | `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `src_custom/activated_effects/guardian_dreadscythe.c` |
+| `SILENT_SWORDSMAN` | `SILENT` | — | `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `src_custom/activated_effects/silent_swordsman.c` |
 | `ULTIMATE_CONDUCTOR_TYRANNO` | `ULTIMATE` | — | `DESTINY_HERO_DECIDER` | `src_custom/activated_effects/ultimate_conductor_tyranno.c` |
 
 ## permanent (93)

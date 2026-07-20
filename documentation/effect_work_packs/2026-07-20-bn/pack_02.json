@@ -1,0 +1,89 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MASTERFLARE_HYPERION",
+      "card_name": "Masterflare Hyperion",
+      "kind": "activated",
+      "archetype": "MASTERFLARE",
+      "path": "src_custom/activated_effects/masterflare_hyperion.c",
+      "effect_text": "1 Tuner + 1+ non-Tuner Fairy monsters\r\nYou can send 1 \"The Agent\" monster, or 1 monster that mentions \"The Sanctuary in  1 Tuner + 1+ non-Tuner Fairy monsters You can send 1 The Agent monster, or 1 monster that mentions The Sanctuary in the Sky, from your hand, Deck, or Extra Deck to the GY; until the End Phase, this card's name becomes that monster's original name, and replace this effect with that monster's original effects. When your opponent activates a card or effect (Quick Effect): You can",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SHADDOLL_HOUND",
+      "clone_path": "src_custom/activated_effects/shaddoll_hound.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "MORPHTRONIC_TELEFON",
+      "card_name": "Morphtronic Telefon",
+      "kind": "activated",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/activated_effects/morphtronic_telefon.c",
+      "effect_text": "- Attack Position: Once per turn, during your Main Phase: You can roll a six-sided die and gain LP equal to the result x - Attack Position: Once per turn, during your Main Phase: You can roll a six-sided die and gain LP equal to the result x 100, then you can Special Summon 1 Morphtronic monster from your GY with a Level equal to or lower than the result. - Defense Position: Once per turn, during your Main Phase: You can roll a six-sided die, excavate that many cards from the top of your Deck (o",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.8
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_COSMO_NEOS",
+      "card_name": "Elemental HERO Cosmo Neos",
+      "kind": "activated",
+      "archetype": "ELEMENTAL_HERO",
+      "path": "src_custom/activated_effects/elemental_hero_cosmo_neos.c",
+      "effect_text": "Lock opp; End destroy their field. Elemental HERO Neos + 3 Neo-Spacian monsters with different Attributes Must first be Special Summoned (from your Extra Deck) by shuffling the above cards you control into the Deck. (You do not use Polymerization.) If this card is Special Summoned from the Extra Deck: You can activate this effect; for the rest of this turn, your opponent cannot activate cards, also cards your opponent controls cannot activate their effects. Your opponent cannot activate cards or",
+      "tags": [
+        "deck",
+        "destroy",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NECROID_SHAMAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_necroid_shaman.c",
+      "clone_score": 1.1
+    },
+    {
+      "card_const": "ANCIENT_GEAR_FRAME",
+      "card_name": "Ancient Gear Frame",
+      "kind": "activated",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/activated_effects/ancient_gear_frame.c",
+      "effect_text": "You can discard 1 card; add 1 Ancient Gear Golem, or 1 Spell/Trap that specifically lists the card Ancient Gear Golem You can discard 1 card; add 1 Ancient Gear Golem, or 1 Spell/Trap that specifically lists the card Ancient Gear Golem in its text, from your Deck to your hand. You can only use this effect of Ancient Gear Frame once per turn. If this card attacks, your opponent cannot activate Spell/Trap Cards until the end of the Damage Step. If this face-up card in its owner's control leaves th",
+      "tags": [
+        "deck",
+        "faceup",
+        "hand",
+        "search",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_TANKER",
+      "clone_path": "src_custom/activated_effects/ancient_gear_tanker.c",
+      "clone_score": 0.6
+    }
+  ]
+}

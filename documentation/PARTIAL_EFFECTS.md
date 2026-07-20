@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 20:55 UTC  
-**Remaining partials:** `766`
+**Last updated:** 2026-07-20 21:05 UTC  
+**Remaining partials:** `778`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 435 |
+| `activated` | 447 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **766** |
+| **total** | **778** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (435)
+## activated (447)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1505,6 +1505,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/ancient_gear_cannon.c`
 - L47: Battle Phase Trap lock not applied; upgrade: trap-activation gate.
 
+### `ANCIENT_GEAR_COMMANDER`
+- path: `src_custom/activated_effects/ancient_gear_commander.c`
+- L202: NS stand-in → SS AG; GY banish SS Golem FALSE. Ceiling: OPT send AG Golem hand/field/Deck → SS AG hand/Deck.
+
 ### `ANCIENT_GEAR_DARK_GOLEM`
 - path: `src_custom/activated_effects/ancient_gear_dark_golem.c`
 - L60: name=AG Golem + cannot-Set lock FALSE. Ceiling: OPT add up to 2 Ancient Gear/Geartown from Deck then discard 1.
@@ -1516,6 +1520,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANCIENT_GEAR_ENGINEER`
 - path: `src_custom/activated_effects/ancient_gear_engineer.c`
 - L12: trap negate + attack lock + end-of-Damage-Step destroy need battle/trap hooks. Ceiling: not field-ignition activatable here.
+
+### `ANCIENT_GEAR_FRAME`
+- path: `src_custom/activated_effects/ancient_gear_frame.c`
+- L68: attack S/T lock + leave-field SS FALSE. Ceiling: OPT discard 1 → add AG Golem or S/T mentioning Golem from Deck.
 
 ### `ANCIENT_GEAR_GADJILTRON_CHIMERA`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c`
@@ -1537,6 +1545,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANCIENT_GEAR_KNIGHT`
 - path: `src_custom/activated_effects/ancient_gear_knight.c`
 - L12: Gemini Normal Monster treatment + attack S/T lock need summon/battle hooks. Ceiling: not ignition-activatable here.
+
+### `ANCIENT_GEAR_MEGATON_GOLEM`
+- path: `src_custom/activated_effects/ancient_gear_megaton_golem.c`
+- L123: multi-attack + leave-field SS FALSE. Ceiling: OPT SS AG Golem from hand/GY.
 
 ### `ANCIENT_GEAR_SOLDIER`
 - path: `src_custom/activated_effects/ancient_gear_soldier.c`
@@ -1732,6 +1744,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c`
 - L55: cannot-attack-this-turn needs attack-gate; mark unk4.
 - L98: protect + up-to-3-if-Alt-material need fusion/material hooks. Ceiling: OPT destroy 1 opp card; mark self unk4 cannot-attack.
+
+### `BLUE_EYES_JET_DRAGON`
+- path: `src_custom/activated_effects/blue_eyes_jet_dragon.c`
+- L197: protect + destroy-trigger SS FALSE. Ceiling: field OPT bounce 1; FromHand if BEWD field/GY → SS.
 
 ### `BLUE_EYES_SOLID_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_solid_dragon.c`
@@ -1958,6 +1974,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/destiny_hero_denier.c`
 - L189: GY SS when other D-HERO present needs GY/once-per-duel hooks. Ceiling: OPT put 1 D-HERO from Deck/GY/banished on top of Deck.
 
+### `DESTINY_HERO_DESTROY_DOGMA`
+- path: `src_custom/activated_effects/destiny_hero_destroy_dogma.c`
+- L103: Quick destroy/negate FALSE; Standby burn → immediate burn. Ceiling: FromHand banish 3 Warrior/DARK → SS + burn 2000.
+
 ### `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER`
 - path: `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c`
 - L154: second target picker not chained; auto-destroy best remaining card.
@@ -1979,6 +1999,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DESTINY_HERO_DOOM_LORD`
 - path: `src_custom/activated_effects/destiny_hero_doom_lord.c`
 - L66: cannot-attack-this-turn needs attack-gate on unk4; return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster; mark self unk4.
+
+### `DESTINY_HERO_DREADNOUGHT_MASTER`
+- path: `src_custom/activated_effects/destiny_hero_dreadnought_master.c`
+- L60: SS trigger → OPT ignition; cards-mentioning-D-HERO FALSE. Ceiling: OPT add up to 2 Destiny HERO from Deck.
 
 ### `DESTINY_HERO_DREADNOUGHT_SERVANT`
 - path: `src_custom/activated_effects/destiny_hero_dreadnought_servant.c`
@@ -2055,6 +2079,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ELEMENTAL_HERO_CHAOS_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_chaos_neos.c`
 - L88: EP shuffle/Set-all + exact 3H/2H/1H/0H branch table FALSE. Ceiling: OPT 3 coin → destroy heads-count opp monsters.
+
+### `ELEMENTAL_HERO_COSMO_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_cosmo_neos.c`
+- L72: activation lock / End Phase field wipe FALSE. Ceiling: OPT destroy all opp Spell/Trap.
 
 ### `ELEMENTAL_HERO_DARK_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_dark_neos.c`
@@ -2660,6 +2688,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L54: Quick Effect destroy→banish stand-in via Duel_BanishZone.
 - L111: Tribute Continuous S/T + unaffected-by-type FALSE. Ceiling: OPT banish 1 other field card (Quick destroy stand-in).
 
+### `MASTERFLARE_HYPERION`
+- path: `src_custom/activated_effects/masterflare_hyperion.c`
+- L237: name/effect copy + Quick negate FALSE. Ceiling: OPT mill Agent/Sanctuary-mention, else OPT banish Fairy → destroy 1.
+
 ### `MAXX_C`
 - path: `src_custom/activated_effects/maxx_c.c`
 - L55: draw-on-opponent-Special-Summon this turn not wired; upgrade: SS hook + simple turn flag when one exists.
@@ -2765,9 +2797,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_slingen.c`
 - L160: DEF destroy-other-Morphtronic substitute needs destroy redirect hook. Ceiling: ATK OPT tribute 1 other Morphtronic → destroy 1 field card.
 
+### `MORPHTRONIC_SMARTFON`
+- path: `src_custom/activated_effects/morphtronic_smartfon.c`
+- L228: reveal UI FALSE. Ceiling: ATK die excavate add; DEF GY add Morphtronic. FromHand: banish Morphtronic GY → SS.
+
 ### `MORPHTRONIC_STAPLEN`
 - path: `src_custom/activated_effects/morphtronic_staplen.c`
 - L92: ATK attack-redirect + DEF battle-immune / on-attack change need battle hooks. Ceiling: OPT change 1 opp ATK monster to DEF.
+
+### `MORPHTRONIC_TELEFON`
+- path: `src_custom/activated_effects/morphtronic_telefon.c`
+- L176: reveal UI FALSE. Ceiling: ATK die→LP+SS Morph Lv≤roll; DEF die excavate add.
 
 ### `MORPHTRONIC_VACUUMEN`
 - path: `src_custom/activated_effects/morphtronic_vacuumen.c`
@@ -3118,6 +3158,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/thunder_end_dragon.c`
 - L59: no Xyz detach cost; OPT destroy-all-other-monsters stand-in. Ceiling: materials not checked; upgrade: overlay detach before destroy.
 
+### `TIMAEUS_THE_KNIGHT_OF_DESTINY`
+- path: `src_custom/activated_effects/timaeus_the_knight_of_destiny.c`
+- L53: unaffected + once-per-battle damage calc FALSE. Ceiling: OPT set ATK/DEF ≈ highest field ATK via tempStage.
+
 ### `TIME_MAGIC_HAMMER`
 - path: `src_custom/activated_effects/time_magic_hammer.c`
 - L12: Hermos equip + battle-step dice banish need summon/equip/battle hooks. Ceiling: not field-ignition activatable here.
@@ -3129,6 +3173,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TIMEAUS_THE_UNITED_DRAGON`
 - path: `src_custom/activated_effects/timeaus_the_united_dragon.c`
 - L147: Main Phase Fusion Summon needs fusion UI hook. Ceiling: SS from hand via send cost uses FromHand path.
+
+### `TOADALLY_AWESOME`
+- path: `src_custom/activated_effects/toadally_awesome.c`
+- L212: detach/Standby/negate FALSE. Ceiling: OPT SS Frog from Deck, else OPT send Aqua → destroy 1 opp.
 
 ### `TOHUSHADDOLL_GRYSTA`
 - path: `src_custom/activated_effects/tohushaddoll_grysta.c`

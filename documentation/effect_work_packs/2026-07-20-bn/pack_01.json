@@ -1,0 +1,90 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ANCIENT_GEAR_MEGATON_GOLEM",
+      "card_name": "Ancient Gear Megaton Golem",
+      "kind": "activated",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/activated_effects/ancient_gear_megaton_golem.c",
+      "effect_text": "3 Ancient Gear monsters\r\nIf this card attacks, your opponent cannot activate Spell/Trap Cards until the end of the Dam 3 Ancient Gear monsters If this card attacks, your opponent cannot activate Spell/Trap Cards until the end of the Damage Step. If this card was Fusion Summoned using 2 or more Ancient Gear Golem and/or Ancient Gear Golem - Ultimate Pound as material, it can attack up to that many times during each Battle Phase. If this face-up Fusion Summoned card in its owner's control leaves t",
+      "tags": [
+        "deck",
+        "faceup",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_TANKER",
+      "clone_path": "src_custom/activated_effects/ancient_gear_tanker.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "BLUE_EYES_JET_DRAGON",
+      "card_name": "Blue-Eyes Jet Dragon",
+      "kind": "activated",
+      "archetype": "BLUE_EYES",
+      "path": "src_custom/activated_effects/blue_eyes_jet_dragon.c",
+      "effect_text": "Other face-up Blue-Eyes you control cannot be destroyed by card effects. Once each per turn: if a field card Other cards you control cannot be destroyed by your opponent's card effects. You can only use each of the following effects of Blue-Eyes Jet Dragon once per turn, and can only activate them while Blue-Eyes White Dragon is on your field or in your GY. If a card(s) on the field is destroyed by battle or card effect: You can Special Summon this card from the GY (if it was there when the card",
+      "tags": [
+        "faceup",
+        "gy",
+        "hand",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BLUE_EYES_TYRANT_DRAGON",
+      "clone_path": "src_custom/activated_effects/blue_eyes_tyrant_dragon.c",
+      "clone_score": 0.72
+    },
+    {
+      "card_const": "MORPHTRONIC_SMARTFON",
+      "card_name": "Morphtronic Smartfon",
+      "kind": "activated",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/activated_effects/morphtronic_smartfon.c",
+      "effect_text": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 1 Morphtronic monster from Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 1 Morphtronic monster from your Graveyard. - While in Attack Position: Once per turn: You can roll a six-sided die, excavate that many cards from the top of your Deck, add 1 excavated Morphtronic card to your hand, also shuffle the rest back into the Deck. - While in Defense Position: Onc",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "TIMAEUS_THE_KNIGHT_OF_DESTINY",
+      "card_name": "Timaeus the Knight of Destiny",
+      "kind": "activated",
+      "archetype": "TIMAEUS",
+      "path": "src_custom/activated_effects/timaeus_the_knight_of_destiny.c",
+      "effect_text": "Legendary Knight Timaeus + Legendary Knight Critias + Legendary Knight Hermos Must be Special Summoned (from your Extra Deck) by sending the above cards you control to the Graveyard, and cannot be Special Summoned by other ways. (You do not use Polymerization.) Unaffected by other cards' effects. Once per battle, if this card battles, during damage calculation (in either player's turn): You can make this card's ATK and DEF become equal to the ATK of the monster on the field with the highest ATK ",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.67
+    }
+  ]
+}
