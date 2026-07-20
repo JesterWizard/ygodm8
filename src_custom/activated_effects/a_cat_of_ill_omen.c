@@ -4,62 +4,111 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsTrapCard(u16 cardId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  return cardId != CARD_NONE && GetTypeGroup(cardId) == TYPE_GROUP_TRAP;
 }
 
-static void CancelTargeting(void)
+static u16 FindDeckTrapIndex(u8 fixedDuelist, u8 *outIndex)
 {
-  PlayMusic(SFX_CANCEL);
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsTrapCard(cardId)) {
+      *outIndex = i;
+      return cardId;
+    }
+  }
+
+  return CARD_NONE;
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static void PlaceCardOnDeckTop(u8 fixedDuelist, u16 cardId)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  if (gDuelDecks[fixedDuelist].cardsDrawn > 0)
+    gDuelDecks[fixedDuelist].cardsDrawn--;
+
+  gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
+}
+
+static u8 MoveDeckTrapToTop(u8 fixedDuelist, u8 deckIndex, u16 cardId)
+{
+  if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, deckIndex, FALSE) != DUEL_ACTION_OK)
+    return FALSE;
+
+  PlaceCardOnDeckTop(fixedDuelist, cardId);
+  return TRUE;
 }
 
 unsigned char CanActivateA_CAT_OF_ILL_OMEN(void)
 {
+  struct DuelCard *zone;
+  u8 fixedDuelist;
+  u8 deckIndex;
+  u8 necrovalley;
+
   if (gMonEffect.id != A_CAT_OF_ILL_OMEN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != A_CAT_OF_ILL_OMEN)
+    return FALSE;
+
+  /* ponytail: FLIP trigger needs flip hook. Ceiling: once via usage if Trap in Deck. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  fixedDuelist = FixedDuelistForActive();
+  if (FindDeckTrapIndex(fixedDuelist, &deckIndex) == CARD_NONE)
+    return FALSE;
+
+  necrovalley = Duel_IsBackrowCardOnField(NECROVALLEY, TRUE);
+  if (necrovalley && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
+    return FALSE;
+
+  return TRUE;
 }
 
 void ActivateA_CAT_OF_ILL_OMENEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckIndex;
+  u16 trapId;
+
   Duel_ShowEffectTextTyped(A_CAT_OF_ILL_OMEN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  trapId = FindDeckTrapIndex(fixedDuelist, &deckIndex);
+  if (trapId == CARD_NONE)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (Duel_IsBackrowCardOnField(NECROVALLEY, TRUE)) {
+    if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
+      return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+    if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, trapId, TRUE) != DUEL_ACTION_OK)
+      return;
+  } else if (!MoveDeckTrapToTop(fixedDuelist, deckIndex, trapId)) {
+    return;
+  }
+
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
 }

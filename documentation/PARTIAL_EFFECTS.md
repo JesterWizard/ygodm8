@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:18 UTC  
-**Remaining partials:** `421`
+**Last updated:** 2026-07-20 18:20 UTC  
+**Remaining partials:** `432`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 90 |
+| `activated` | 101 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **421** |
+| **total** | **432** |
 
 ## spell (185)
 
@@ -1416,16 +1416,28 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (90)
+## activated (101)
+
+### `A_CAT_OF_ILL_OMEN`
+- path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
+- L71: FLIP trigger needs flip hook. Ceiling: once via usage if Trap in Deck.
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
 - L12: Amazoness cannot be destroyed by battle needs battle-destroy protection. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
+### `AMAZONESS_SAGE`
+- path: `src_custom/activated_effects/amazoness_sage.c`
+- L98: end-of-Damage-Step-after-attack trigger needs battle hook. Ceiling: once via usage if opp Spell/Trap on field; upgrade: damage-step gate.
+
 ### `AMULET_DRAGON`
 - path: `src_custom/activated_effects/amulet_dragon.c`
 - L58: no multi-select GY UI — banish every Spell in both GYs (min.1 gate above).
 - L254: on-summon text after field draw so Amulet Dragon is visible (fusion uses updateGfx=FALSE).
+
+### `ANCIENT_GEAR_CANNON`
+- path: `src_custom/activated_effects/ancient_gear_cannon.c`
+- L47: Battle Phase Trap lock not applied; upgrade: trap-activation gate.
 
 ### `ANCIENT_GEAR_SOLDIER`
 - path: `src_custom/activated_effects/ancient_gear_soldier.c`
@@ -1434,6 +1446,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ARCHLORD_KRISTYA`
 - path: `src_custom/activated_effects/archlord_kristya.c`
 - L322: engine treats level 5+ with no tribute as special-like (Cyber Dragon, etc.).
+
+### `AROMA_JAR`
+- path: `src_custom/activated_effects/aroma_jar.c`
+- L12: FLIP battle protection + End Phase LP gain need FLIP/continuous hooks. Ceiling: not ignition-activatable here; upgrade: flip + turn-end overlay.
 
 ### `ATHENA`
 - path: `src_custom/activated_effects/athena.c`
@@ -1560,6 +1576,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/elemental_hero_terra_firma.c`
 - L41: fixed POV — only reveal the player's own monster row
 - L69: attack-position summons stay isFaceUp=0 until end-of-turn flip
+
+### `ENRAGED_BATTLE_OX`
+- path: `src_custom/activated_effects/enraged_battle_ox.c`
+- L12: piercing battle damage needs battle damage gate. Ceiling: not ignition-activatable here; upgrade: permanent/battle overlay.
 
 ### `EVIL_HERO_SINISTER_NECROM`
 - path: `src_custom/activated_effects/evil_hero_sinister_necrom.c`
@@ -1693,6 +1713,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/molten_zombie.c`
 - L18: printed trigger is SS from GY. Ceiling: once via usage when Activate runs (summon-dispatch or manual).
 
+### `MORPHTRONIC_RADION`
+- path: `src_custom/activated_effects/morphtronic_radion.c`
+- L12: position-based Morphtronic ATK/DEF boost needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position gate.
+
 ### `NEO_SPACIAN_DARK_PANTHER`
 - path: `src_custom/activated_effects/neo_spacian_dark_panther.c`
 - L12: copy opp monster name/effects needs engine name/effect overlay. Ceiling: not ignition-activatable here; upgrade: permanent/name/effect copy.
@@ -1708,6 +1732,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `REPTILIANNE_MEDUSA`
 - path: `src_custom/activated_effects/reptilianne_medusa.c`
 - L76: cannot change battle position needs position-change gate.
+
+### `RESCUE_CAT`
+- path: `src_custom/activated_effects/rescue_cat.c`
+- L123: negated effects + End Phase destroy not applied; upgrade: summon flags + turn-end cleanup gate.
 
 ### `RINYAN_LIGHTSWORN_ROGUE`
 - path: `src_custom/activated_effects/rinyan_lightsworn_rogue.c`
@@ -1725,10 +1753,22 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/spined_gillman.c`
 - L32: continuous +400 ATK needs permanent overlay. Ceiling: OPT +1 stage (~500) to each Fish/SS/Aqua you control.
 
+### `SUBSTITOAD`
+- path: `src_custom/activated_effects/substitoad.c`
+- L103: Frog battle protection not applied; upgrade: battle-destroy immunity.
+
+### `T_G_HYPER_LIBRARIAN`
+- path: `src_custom/activated_effects/t_g_hyper_librarian.c`
+- L12: Synchro Summon draw trigger needs synchro hook. Ceiling: not ignition-activatable here; upgrade: synchro summon gate.
+
 ### `TETHYS_GODDESS_OF_LIGHT`
 - path: `src_custom/activated_effects/tethys_goddess_of_light.c`
 - L50: opening hand is seeded before duel gfx; skip like Solemn Wishes.
 - L54: unk18 != 0 means battle/damage resolution is active.
+
+### `THE_AGENT_OF_WISDOM_MERCURY`
+- path: `src_custom/activated_effects/the_agent_of_wisdom_mercury.c`
+- L20: Standby Phase empty-hand-last-EP check needs turn-end hook. Ceiling: once via usage if hand empty; upgrade: standby/end-phase gate.
 
 ### `THE_BLAZING_MARS`
 - path: `src_custom/activated_effects/the_blazing_mars.c`
@@ -1763,6 +1803,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TROOP_DRAGON`
 - path: `src_custom/activated_effects/troop_dragon.c`
 - L21: battle-destroy→GY trigger. Ceiling: once via usage.
+
+### `TUNINGWARE`
+- path: `src_custom/activated_effects/tuningware.c`
+- L12: Synchro level-2 treatment + draw-on-material need synchro hooks. Ceiling: not ignition-activatable here; upgrade: synchro summon gate.
 
 ### `TYRANNO_INFINITY`
 - path: `src_custom/activated_effects/tyranno_infinity.c`

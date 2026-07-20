@@ -1,0 +1,82 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "AMAZONESS_SAGE",
+      "card_name": "Amazoness Sage",
+      "kind": "activated",
+      "archetype": "AMAZONESS",
+      "path": "src_custom/activated_effects/amazoness_sage.c",
+      "effect_text": "At the end of the Damage Step, if this card attacked and is still on the field: Target 1 Spell/Trap your opponent contro At the end of the Damage Step, if this card attacked and is still on the field: Target 1 Spell/Trap your opponent controls; destroy that target.",
+      "tags": [
+        "destroy",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_ARCHER",
+      "clone_path": "src_custom/activated_effects/amazoness_archer.c",
+      "clone_score": 0.52
+    },
+    {
+      "card_const": "ROAD_WARRIOR",
+      "card_name": "Road Warrior",
+      "kind": "activated",
+      "archetype": "ROAD",
+      "path": "src_custom/activated_effects/road_warrior.c",
+      "effect_text": "Road Synchron + 2 or more non-Tuner monsters\nOnce per turn: You can Special Summon 1 Level 2 or lower Warrior or Machi Road Synchron + 2 or more non-Tuner monsters Once per turn: You can Special Summon 1 Level 2 or lower Warrior or Machine-Type monster from your Deck.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_WILDEDGE",
+      "clone_path": "src_custom/activated_effects/elemental_hero_wildedge.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "TUNINGWARE",
+      "card_name": "Tuningware",
+      "kind": "activated",
+      "archetype": "TUNINGWARE",
+      "path": "src_custom/activated_effects/tuningware.c",
+      "effect_text": "This card can be treated as a Level 2 monster when used for a Synchro Summon. If this card is sent to the Graveyard for  This card can be treated as a Level 2 monster when used for a Synchro Summon. If this card is sent to the Graveyard for a Synchro Summon: Draw 1 card.",
+      "tags": [
+        "draw",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "DARK_MAGICIAN_THE_DRAGON_KNIGHT",
+      "clone_path": "src_custom/activated_effects/dark_magician_the_dragon_knight.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "ANCIENT_GEAR_CANNON",
+      "card_name": "Ancient Gear Cannon",
+      "kind": "activated",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/activated_effects/ancient_gear_cannon.c",
+      "effect_text": "You can Tribute this card; inflict 500 damage to your opponent, and if you do, neither player can activate Trap Cards du You can Tribute this card; inflict 500 damage to your opponent, and if you do, neither player can activate Trap Cards during the Battle Phase of this turn.",
+      "tags": [
+        "burn",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 500,
+      "clone_const": "GRAVEKEEPERS_CANNONHOLDER",
+      "clone_path": "src_custom/activated_effects/gravekeepers_cannonholder.c",
+      "clone_score": 0.75
+    }
+  ]
+}

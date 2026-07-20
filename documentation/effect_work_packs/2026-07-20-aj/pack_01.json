@@ -1,0 +1,81 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "AROMA_JAR",
+      "card_name": "Aroma Jar",
+      "kind": "activated",
+      "archetype": "AROMA",
+      "path": "src_custom/activated_effects/aroma_jar.c",
+      "effect_text": "If flipped: cannot be destroyed by battle. During each End Phase: gain 500 LP. If this card is flipped face-up, this card cannot be destroyed by battle while it is face-up on the field. If this card is flipped face-up, during each player's End Phase: You gain 500 LP.",
+      "tags": [
+        "faceup"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_PRIESTESS",
+      "clone_path": "src_custom/activated_effects/gravekeepers_priestess.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "A_CAT_OF_ILL_OMEN",
+      "card_name": "A Cat of Ill Omen",
+      "kind": "activated",
+      "archetype": "A",
+      "path": "src_custom/activated_effects/a_cat_of_ill_omen.c",
+      "effect_text": "FLIP: Choose 1 Trap from your Deck and place it on top of your Deck, or, if \"Necrovalley\" is on the field, you can add t FLIP: Choose 1 Trap from your Deck and place it on top of your Deck, or, if Necrovalley is on the field, you can add that Trap to your hand instead.",
+      "tags": [
+        "deck",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "NEO_SPACIAN_AIR_HUMMINGBIRD",
+      "clone_path": "src_custom/activated_effects/neo_spacian_air_hummingbird.c",
+      "clone_score": 0.33
+    },
+    {
+      "card_const": "THE_AGENT_OF_WISDOM_MERCURY",
+      "card_name": "The Agent of Wisdom - Mercury",
+      "kind": "activated",
+      "archetype": "THE_AGENT_OF",
+      "path": "src_custom/activated_effects/the_agent_of_wisdom_mercury.c",
+      "effect_text": "During your Standby Phase, if you controlled this face-up card and had no cards in your hand at the end of the opponent' During your Standby Phase, if you controlled this face-up card and had no cards in your hand at the end of the opponent's last End Phase: Draw 1 card.",
+      "tags": [
+        "draw",
+        "faceup",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "TETHYS_GODDESS_OF_LIGHT",
+      "clone_path": "src_custom/activated_effects/tethys_goddess_of_light.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "SUBSTITOAD",
+      "card_name": "Substitoad",
+      "kind": "activated",
+      "archetype": "SUBSTITOAD",
+      "path": "src_custom/activated_effects/substitoad.c",
+      "effect_text": "You can Tribute 1 monster to Special Summon 1 Frog monster from your Deck, except Frog the Jam. Frog monsters, exc You can Tribute 1 monster to Special Summon 1 Frog monster from your Deck, except Frog the Jam. Frog monsters, except Frog the Jam, cannot be destroyed by battle.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ARCHLORD_KRISTYA",
+      "clone_path": "src_custom/activated_effects/archlord_kristya.c",
+      "clone_score": 0.4
+    }
+  ]
+}

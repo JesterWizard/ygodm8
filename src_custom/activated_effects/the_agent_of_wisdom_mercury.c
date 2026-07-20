@@ -4,62 +4,42 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
-
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
-
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
-}
 
 unsigned char CanActivateTHE_AGENT_OF_WISDOM_MERCURY(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != THE_AGENT_OF_WISDOM_MERCURY)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != THE_AGENT_OF_WISDOM_MERCURY)
+    return FALSE;
+
+  /* ponytail: Standby Phase empty-hand-last-EP check needs turn-end hook.
+   * Ceiling: once via usage if hand empty; upgrade: standby/end-phase gate. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return Duel_CountCardsInHand(gTurnHands[ACTIVE_DUELIST]) == 0;
 }
 
 void ActivateTHE_AGENT_OF_WISDOM_MERCURYEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
   Duel_ShowEffectTextTyped(THE_AGENT_OF_WISDOM_MERCURY, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (Duel_CountCardsInHand(gTurnHands[ACTIVE_DUELIST]) != 0)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (Duel_DrawCards(ACTIVE_DUELIST, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
 }
