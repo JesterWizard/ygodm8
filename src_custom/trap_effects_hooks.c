@@ -13,6 +13,7 @@
 #include "seven_tools_of_the_bandit.h"
 #include "blast_held_by_a_tribute.h"
 #include "mirror_force.h"
+#include "a_hero_emerges.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -282,6 +283,14 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectMirrorForce();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_A_HERO_EMERGES) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectAHeroEmerges();
+    TryResumeInterruptedAttackAfterDrainingShield();
     return;
   }
 

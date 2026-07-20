@@ -225,6 +225,18 @@ class CardManifestTests(unittest.TestCase):
         self.assertIn("GetCardEffectText", lookup)
         self.assertIn("[CARD_EFFECT_TEXT_ELEMENTAL_HERO_CORE_POPUP_2]", lookup)
 
+    def test_wrap_activation_page_paginates_past_four_lines(self):
+        text = (
+            "When an opponent's monster declares an attack: Your opponent chooses "
+            "1 random card from your hand, then if it is a monster that can be "
+            "Special Summoned, Special Summon it. Otherwise, send it to the Graveyard."
+        )
+        wrapped = card_art.wrap_activation_page(text)
+        pages = wrapped.split("#1")
+        self.assertGreater(len(pages), 1)
+        for page in pages:
+            self.assertLessEqual(len(page.split("#0")), card_art.ACTIVATION_LINES_PER_PAGE)
+
 
 if __name__ == "__main__":
     unittest.main()

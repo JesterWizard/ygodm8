@@ -968,8 +968,12 @@ def wrap_page(text: str) -> list[str]:
     return lines
 
 
+ACTIVATION_LINE_WIDTH = 27
+ACTIVATION_LINES_PER_PAGE = 4
+
+
 def wrap_activation_lines(text: str) -> list[str]:
-    width = 27
+    width = ACTIVATION_LINE_WIDTH
     words = re.findall(r"#\d+|[^\s#]+", text)
     lines = []
 
@@ -1016,6 +1020,7 @@ def normalize_activation_page(text: str) -> str:
 
 
 def wrap_activation_page(text: str) -> str:
+    """Word-wrap at 27 cols; spill past 4 lines onto later pages via #1."""
     normalized = normalize_activation_page(text)
     lines = []
     for line in normalized.split("#0"):
@@ -1023,7 +1028,13 @@ def wrap_activation_page(text: str) -> str:
             lines.extend(wrap_activation_lines(line))
         else:
             lines.append("")
-    return "#0".join(lines)
+    if not lines:
+        return ""
+
+    pages = []
+    for i in range(0, len(lines), ACTIVATION_LINES_PER_PAGE):
+        pages.append("#0".join(lines[i : i + ACTIVATION_LINES_PER_PAGE]))
+    return "#1".join(pages)
 
 
 DESC_ROW_WIDTHS = (12, 14, 14, 14, 12)

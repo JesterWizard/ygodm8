@@ -249,7 +249,8 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
                 "pages": wrap_effect_text(api_card.get("desc", card_name)),
             },
             "effect_texts": {
-                "popup_1": api_card.get("desc", card_name)[:120],
+                # Full text; wrap_activation_page paginates past 4×27.
+                "popup_1": api_card.get("desc", card_name),
             },
         })
         return entry
@@ -296,7 +297,8 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
         entry = order_card_entry(entry)
     if color in ("EFFECT_CARD", "FUSION_CARD", "SYNCHRO_CARD", "XYZ_CARD", "PENDULUM_CARD", "LINK_CARD") and api_card.get("desc"):
         entry["effect_texts"] = {
-            "popup_1": api_card.get("desc", card_name)[:120],
+            # Full text; wrap_activation_page paginates past 4×27.
+            "popup_1": api_card.get("desc", card_name),
         }
         entry = order_card_entry(entry)
     return entry

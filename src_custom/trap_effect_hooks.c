@@ -14,6 +14,7 @@
 #include "seven_tools_of_the_bandit.h"
 #include "blast_held_by_a_tribute.h"
 #include "mirror_force.h"
+#include "a_hero_emerges.h"
 #include "big_bang_shot.h"
 #include "riryoku.h"
 
@@ -330,6 +331,14 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
       if (ret)
         gTrapEffectData.trapCardId = TRAP_MIRROR_FORCE;
       break;
+    case TRAP_A_HERO_EMERGES:
+      ret = FALSE;
+      if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER
+          && Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) > 0) {
+        gTrapEffectData.trapCardId = TRAP_A_HERO_EMERGES;
+        ret = TRUE;
+      }
+      break;
     default:
       ret = FALSE;
       break;
@@ -377,8 +386,6 @@ unsigned IsTrapTriggered__Replacement(void) {
 }
 
 /* LEVEL_LIMIT_AREA_A handled via spell_effect_hooks.c (manual activation) */
-/* A_HERO_EMERGES trap effect */
-  /* TODO: wire A_HERO_EMERGES in trap dispatcher */
 /* ANTI_SPELL_FRAGRANCE trap effect */
   /* TODO: wire ANTI_SPELL_FRAGRANCE in trap dispatcher */
 /* APPROPRIATE trap effect */

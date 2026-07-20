@@ -25552,7 +25552,7 @@ const CardData gCardData_NEW[2088] APPEND_RODATA = {
     .color = TRAP_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
-    .trapEffect = 0,
+    .trapEffect = 35,
     .password = {2, 1, 5, 9, 7, 1, 1, 7},
     .description = gDescription_AHeroEmerges,
   },

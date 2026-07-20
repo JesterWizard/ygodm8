@@ -90,9 +90,9 @@ Write the full TCG/OCG effect text as one string. Prefer the real printed text �
 
 ### Popup / activation text (in-duel popup box)
 
-Each popup is max 4 lines of 27 characters each (108 chars total).
+Each popup screen is 4 lines of 27 characters. `wrap_activation_page()` word-wraps at 27 cols and inserts `#1` page breaks so leftover lines continue on the next screen.
 
-Use `wrap_activation_page()` to validate. Popups exceeding 4 lines wrap off-screen and must be condensed.
+Use `wrap_activation_page()` to validate. Long TCG text can stay as one string — the generator paginates automatically.
 
 ### Quotes
 
@@ -130,7 +130,7 @@ Practical advice for newcomers:
 - Run `make`.
 - If the generator fails, shorten the wording rather than forcing awkward punctuation.
 - If the text compiles but looks wrong in-game, adjust the wording until it fits the current row model cleanly.
-- For popup (activation) text: keep it ≤4 lines of 27 chars. Use `wrap_activation_page()` from `add_card_art.py` to validate.
+- For popup (activation) text: write the full wording as one string. `wrap_activation_page()` wraps at 27 cols and paginates past 4 lines with `#1`.
 - Omit `"` quotes around monster card names — the in-game font cannot render them.
 
 Build behavior:

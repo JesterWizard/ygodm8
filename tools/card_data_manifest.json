@@ -19765,7 +19765,7 @@
       "color": "TRAP_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
-      "trapEffect": 0,
+      "trapEffect": 35,
       "cost": 15,
       "password": [2, 1, 5, 9, 7, 1, 1, 7],
       "description": {
@@ -19773,7 +19773,7 @@
         "pages": "When an opponent's monster declares an attack: Your opponent chooses 1 random card from your hand, then if it is a monster that can be Special Summoned, Special Summon it. Otherwise, send it to the Graveyard."
       },
       "effect_texts": {
-        "popup_1": "When an opponent's monster declares an attack: Your opponent chooses 1 random card from your hand, then if it is a monst"
+        "popup_1": "When an opponent's monster declares an attack: Your opponent chooses 1 random card from your hand, then if it is a monster that can be Special Summoned, Special Summon it. Otherwise, send it to the Graveyard."
       }
     },
     {

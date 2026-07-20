@@ -78,4 +78,5 @@ Single-popup cards only need `popup_1`. `ActivatePermanentEffectCardText` still 
 - The generated includes are build artifacts and should not be edited by hand.
 - Activation text is emitted as plain duel text; it does not use the card-description `^n` header or leading padding.
 - Activation text is word-wrapped at 27 columns and words are moved whole to the next line when they do not fit.
-- If the manifest text does not fit the renderer's expected layout, the generator will fail and the wording must be shortened.
+- Lines beyond 4 on one screen are spilled onto later pages (`#1` between pages) by `wrap_activation_page()`.
+- If a single word is longer than 27 characters and cannot be hyphenated, generation fails and the wording must be shortened.

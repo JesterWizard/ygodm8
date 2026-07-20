@@ -197,8 +197,8 @@ Add **after** the manifest entry is in place — the `description.pages` and `ef
 - Validate with `wrap_description_page()` from `add_card_art.py`.
 
 **Popup / activation text (`effect_texts.popup_1`):**
-- Max 4 lines of 27 characters each = 108 chars total.
-- Condense wording to fit. Lines beyond 4 wrap off-screen.
+- Each screen is 4 lines × 27 chars. Write the full wording as one string.
+- `wrap_activation_page()` wraps at 27 cols and paginates overflow with `#1` (no need to condense to 108 chars).
 - Validate with `wrap_activation_page()` from `add_card_art.py`.
 
 **Quotes around card names:**
@@ -207,11 +207,12 @@ Add **after** the manifest entry is in place — the `description.pages` and `ef
 **Quick validation in terminal:**
 ```bash
 python3 -c "
-from tools.add_card_art import wrap_description_page, wrap_activation_page
-print(wrap_description_page('Your text here...'))
+from tools.add_card_art import wrap_activation_page, ACTIVATION_LINES_PER_PAGE
 wrapped = wrap_activation_page('Your popup text...')
-lines = wrapped.split('#0')
-print(f'{len(lines)} lines: {\"OK\" if len(lines) <= 4 else \"FAIL\"}')
+for i, page in enumerate(wrapped.split('#1'), 1):
+    lines = page.split('#0')
+    print(f'page {i}: {len(lines)} lines (max {ACTIVATION_LINES_PER_PAGE})')
+    print(page.replace('#0', '\n'))
 "
 ```
 
