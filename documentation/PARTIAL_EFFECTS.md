@@ -8,20 +8,20 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 17:15 UTC  
-**Remaining partials:** `337`
+**Last updated:** 2026-07-20 17:22 UTC  
+**Remaining partials:** `349`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 185 |
-| `trap` | 97 |
+| `trap` | 109 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **337** |
+| **total** | **349** |
 
 ## spell (185)
 
@@ -922,7 +922,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/wetlands.c`
 - L87: +1200 ATK for Aqua/WATER/Level≤2 needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up WETLANDS and TYPE_AQUA + ATTRIBUTE_WATER + level≤2 then ATK += 1200.
 
-## trap (97)
+## trap (109)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -963,6 +963,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L11: both players must Set Spells before activate (next turn) needs spell-activation gate. Ceiling: face-up continuous only; upgrade: spell activate validator requires prior Set + turn delay. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - L22: TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
+### `APPARATION`
+- path: `src_custom/trap_effects/apparation.c`
+- L37: printed trigger is HERO destroy. Ceiling: if origin was a HERO monster OR we control a HERO, allow Deck SS.
+
 ### `APPROPRIATE`
 - path: `src_custom/trap_effects/appropriate.c`
 - L11: activate when opp draws outside Draw Phase; then each such draw → you draw 2. Ceiling: face-up continuous only; upgrade: non-Draw-Phase draw hook → Duel_DrawCards(controller, 2). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
@@ -997,6 +1001,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `BOTTOMLESS_SHIFTING_SAND`
 - path: `src_custom/trap_effects/bottomless_shifting_sand.c`
 - L10: GBA hand cap is 5; TCG rule uses 4 — scale self-destruct threshold down
+
+### `BREAK_THE_DESTINY`
+- path: `src_custom/trap_effects/break_the_destiny.c`
+- L34: skip opp next Main Phase 1 + GY search Destiny-mention S/T need phase/GY hooks. Ceiling: destroy 1 Lv8+ Destiny HERO / Destiny End Dragoon.
+
+### `CHAIN_MATERIAL`
+- path: `src_custom/trap_effects/chain_material.c`
+- L15: Fusion material from Deck/hand/field/GY + cannot attack + End Phase destroy Fusion need fusion/battle/turn hooks. Ceiling: face-up continuous mark (unk4) that Fusion may banish materials broadly.
+
+### `CROSS_DIMENSONAL_DUEL`
+- path: `src_custom/trap_effects/cross_dimensonal_duel.c`
+- L27: next Standby return at double ATK + GY protect Golem need turn/destroy hooks. Ceiling: banish 1 Ancient Gear you control.
 
 ### `D_TIME`
 - path: `src_custom/trap_effects/d_time.c`
@@ -1046,9 +1062,19 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/dramatic_rescue.c`
 - L41: printed trigger is card targeting an Amazoness. Ceiling: bounce origin-row monster if Amazoness + SS other from hand; upgrade: target-chain hook when target passes Duel_IsAmazonessCard.
 
+### `DRIED_WINDS`
+- path: `src_custom/trap_effects/dried_winds.c`
+- L47: LP-gain destroy + OPT flags need LP-gain hook. Ceiling: if Aroma + LP≥opp+3000, pay difference and destroy opp face-up monsters while remaining budget covers printed ATK.
+- L90: TryActivateDRIED_WINDSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
 ### `DUST_TORNADO`
 - path: `src_custom/trap_effects/dust_tornado.c`
 - L112: optional hand pick — B skips; upgrade path: shared helper in exchange_hand_selection
+
+### `ETERNAL_SOUL`
+- path: `src_custom/trap_effects/eternal_soul.c`
+- L75: DM unaffected by opp + destroy all on leave need protection / leave hooks. Ceiling: OPT stand-in — SS Dark Magician from hand/GY, else search Dark Magic Attack / Thousand Knives.
+- L111: TryActivateETERNAL_SOULOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `EXCHANGE_OF_THE_SPIRIT`
 - path: `src_custom/trap_effects/exchange_of_the_spirit.c`
@@ -1057,6 +1083,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `FAIRY_BOX`
 - path: `src_custom/trap_effects/fairy_box.c`
 - L96: age both fixed backrows so a trap set last turn is live when the other duelist attacks
+
+### `FAVOURITE_CONTACT`
+- path: `src_custom/trap_effects/favourite_contact.c`
+- L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API. Ceiling: return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
 
 ### `FORGOTTEN_TEMPLE_OF_THE_DEEP`
 - path: `src_custom/trap_effects/forgotten_temple_of_the_deep.c`
@@ -1083,6 +1113,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEASTS_VALOR`
 - path: `src_custom/trap_effects/gladiator_beasts_valor.c`
 - L32: opp can only attack GB monsters needs attack-target gate. Ceiling: face-up continuous only.
+
+### `GLADIATOR_NAUMACHIA`
+- path: `src_custom/trap_effects/gladiator_naumachia.c`
+- L44: forced attack + destroy-search GB from Deck need battle/destroy hooks. Ceiling: if GB on field, mark opp must-attack; shuffle 1 GB from hand/GY and boost 1 GB by +1 stage (~original DEF stand-in).
+- L102: TryActivateGLADIATOR_NAUMACHIAOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `GLORIOUS_ILLUSION`
 - path: `src_custom/trap_effects/glorious_illusion.c`
@@ -1157,6 +1192,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/magical_arm_shield.c`
 - L23: attack declare + redirect damage calc need battle hooks. Ceiling: take control of 1 face-up opp monster except origin attacker (Change of Heart style move to our monster row).
 
+### `MAGICAL_HATS`
+- path: `src_custom/trap_effects/magical_hats.c`
+- L34: face-down DEF 0/0 hat tokens + shuffle + End BP destroy need token zones / battle-phase gate. Ceiling: pull 2 S/T from Deck onto empty monster zones face-down DEF; Set 1 own monster face-down.
+
 ### `MAGICIAN_NAVIGATION`
 - path: `src_custom/trap_effects/magician_navigation.c`
 - L58: GY banish negate S/T needs GY ignition + face-up S/T target. Ceiling: SS Dark Magician from hand, then Deck SS Lv7− DARK Spellcaster.
@@ -1192,6 +1231,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/morphtronic_forcefield.c`
 - L81: negate ST that would destroy face-up Morphtronic needs destroy- targeting chain gate. Ceiling: destroy origin ST if present + search Morphtronic; upgrade: full negate + trapEffect.
 
+### `MORPHTRONIC_IMPACT_RETURN`
+- path: `src_custom/trap_effects/morphtronic_impact_return.c`
+- L38: GY banish SS Morphtronic need GY ignition. Ceiling: shuffle 1 Morphtronic from hand into Deck, shuffle up to 2 opp S/T into Deck.
+
 ### `MORPHTRONIC_MIXUP`
 - path: `src_custom/trap_effects/morphtronic_mixup.c`
 - L75: PickZone for 2 targets + opp choice UI; trapEffect wire.
@@ -1200,9 +1243,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/morphtronic_monitron.c`
 - L14: when Morphtronic Summoned → optional to Defense needs summon hook. Ceiling: face-up continuous only.
 
+### `NECROVALLEY_TEMPLE`
+- path: `src_custom/trap_effects/necrovalley_temple.c`
+- L90: -500 ATK/DEF while GK+Necrovalley need stat overlay; destroy-Set Necrovalley S/T from Deck need destroy hook. Ceiling: if GK present, try place Necrovalley from hand/GY; mark opp monsters -1 stage.
+- L115: TryActivateNECROVALLEY_TEMPLEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
 ### `NEEDLE_WALL`
 - path: `src_custom/trap_effects/needle_wall.c`
 - L44: TryActivateNEEDLE_WALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired. Standby re-roll not looped.
+
+### `NEXT`
+- path: `src_custom/trap_effects/next.c`
+- L42: negate effects + Extra Deck lock (Fusion only) need gates. Ceiling: SS distinct Neo-Spacians / Neos from hand then GY in DEF.
 
 ### `NUMINOUS_HEALER`
 - path: `src_custom/trap_effects/numinous_healer.c`

@@ -1,0 +1,23 @@
+# Effect work pack 00 (4 cards)
+
+Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher — serialize those. Do not leave TODO bodies. One make at the end of the whole batch.
+
+## DRIED_WINDS (trap)
+- file: `src_custom/trap_effects/dried_winds.c`
+- clone: `src_custom/trap_effects/morphtronic_bind.c` (MORPHTRONIC_BIND)
+- text: On LP gain: destroy 1 opp monster. Aroma +3000 LP: pay diff; destroy opp up to ATK. If you gain LP: Target 1 face-up monster your opponent controls; destroy it. If you control an Aroma monster and your LP is at least 3000 higher than your opponent's: You can pay LP equal to the difference; destroy face-up monsters your opponent controls whose combined ATK is less than or equal to the LP you paid to activate this effect. You can only use each effect of Dried Winds once per turn.
+
+## CROSS_DIMENSONAL_DUEL (trap)
+- file: `src_custom/trap_effects/cross_dimensonal_duel.c`
+- clone: `src_custom/trap_effects/scrap_iron_scarecrow.c` (SCRAP_IRON_SCARECROW)
+- text: Target 1 Ancient Gear monster you control; banish it. During the next Standby Phase, return that banished monster to t Target 1 Ancient Gear monster you control; banish it. During the next Standby Phase, return that banished monster to the field, and if you do, its ATK becomes double its original ATK until the end of that turn. If 1 or more Ancient Gear Golem or Ancient Gear Golem - Ultimate Pound you control would be destroyed by battle or card effect, you can banish this card from your GY inst
+
+## MAGICAL_HATS (trap)
+- file: `src_custom/trap_effects/magical_hats.c`
+- clone: `src_custom/trap_effects/magical_arm_shield.c` (MAGICAL_ARM_SHIELD)
+- text: Opponent BP: pick 2 S/T from Deck + 1 monster. SS as 0/0 face-down. Destroy Deck cards at end of BP. During your opponent's Battle Phase: Choose 2 Spell/Trap Cards from your Deck and 1 monster in your Main Monster Zone. Special Summon them as Normal Monsters (ATK 0/DEF 0) in face-down Defense Position, Set the chosen monster if it is face-up, and shuffle them on the field. The 2 cards chosen from your Deck are destroyed at the end of the Battle Phase, and cannot remain on the field except during
+
+## BREAK_THE_DESTINY (trap)
+- file: `src_custom/trap_effects/break_the_destiny.c`
+- clone: `src_custom/trap_effects/lightsworn_judgement.c` (LIGHTSWORN_JUDGEMENT)
+- text: Target Lv8+ D-HERO or Dest End Dragoon; destroy it, opp skips M1. Banish from GY: add S/T listing them. Target 1 Level 8 or higher Destiny HERO monster, or 1 Destiny End Dragoon, you control; destroy it, and if you do, your opponent skips their next Main Phase 1. You can banish this card from your GY; add 1 Spell/Trap from your Deck to your hand that specifically lists a Destiny HERO monster's card name or Destiny End Dragoon in its text, except Break the Destiny. You can only use 1 Break the De
