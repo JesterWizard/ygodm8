@@ -40,7 +40,10 @@ Use this skill when creating or moving a card-specific effect.
 
 ## Fast Path (with tools)
 
-**Fastest: `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>`**
+**Batch stub backlog: `python3 tools/stub_effect_queue.py`**
+Lists TODO effect stubs sorted by archetype + effect-text fingerprint, with a suggested clone source. Filter with `--pattern draw_n|burn|destroy_zone|search|tribute_summon`, `--archetype PREFIX`, `--kind spell`. Fill a spell stub from a template: `python3 tools/stub_effect_queue.py --fill burn CARD --damage 500` (also `draw_n`, `destroy_zone`, `search`, `tribute_summon`).
+
+**Fastest wire: `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>`**
 This creates the hook `.c` file, wires the dispatcher, and updates `card_effect_tally.md` in one command.
 
 For cursor targeting effects, use `Duel_PickZone` (no header file, no cursor constant, no `code_8043EF4_hooks.c` edit):

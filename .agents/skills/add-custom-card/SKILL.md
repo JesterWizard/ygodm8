@@ -31,7 +31,7 @@ Search when **classifying or implementing effects** (grep similar cards in `src_
 [ ] 1. Fetch card data — try YGOProDeck first, Yugipedia fallback
 [ ] 2. Scaffold manifest (+ optional wire): `python3 tools/add_custom_card.py --passcode XXXXXXXX --write --type spell --wire --runtime-hand 1`
 [ ] 3. Check art: `512x512/<stem>.png` (preferred) or `80x80/<stem>.png`
-[ ] 4. Implement effects (required for spells/traps/effect monsters — see Step 6)
+[ ] 4. Implement effects — for stubs: `python3 tools/stub_effect_queue.py --kind spell --pattern burn` then `--fill …` or clone the suggested source
 [ ] 5. Build: `make test-cards-link` (or `make test-cards-build` for full ROM)
 ```
 

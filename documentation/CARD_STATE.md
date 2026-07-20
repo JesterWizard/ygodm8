@@ -1,16 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Implemented A Wingbeat of Giant Dragon spell effect
+**Last worked on:** 2026-07-20 — Implemented Allure of Darkness spell effect
 
 **Files touched:**
-- `src_custom/spell_effects/a_wingbeat_of_giant_dragon.c`
+- `src_custom/spell_effects/allure_of_darkness.c`
 - `tools/card_data_manifest.json`
 - `configs/runtime.c`
-- `src_custom/debug/debug_menu_timed_duel_layouts.c`
-- `include/debug_menu_timed_duel_layouts.h`
-- `src_custom/debug/debug_menu_timed_duel_table.inc`
 
-**Outcome:** make OK. Return Level 5+ Dragon you control to hand, then destroy all S/T on field. Timed Duel 4: BEWD + filled opponent backrow + Wingbeat in hand.
+**Outcome:** make OK; draw 2 then banish 1 DARK from hand or dump hand to GY
 
 **Open / next:**
-- Playtest Timed Duel 4 from debug menu
+- playtest: activate with/without DARK in hand after draw
