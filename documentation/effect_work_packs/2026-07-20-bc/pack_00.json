@@ -1,0 +1,91 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "HERALD_OF_THE_ARC_LIGHT",
+      "card_name": "Herald of the Arc Light",
+      "kind": "activated",
+      "archetype": "HERALD_OF",
+      "path": "src_custom/activated_effects/herald_of_the_arc_light.c",
+      "effect_text": "1 Tuner + 1+ non-Tuner monsters\r\nAny monster sent from the hand or Main Deck to the GY is banished instead. When a Spell 1 Tuner + 1+ non-Tuner monsters Any monster sent from the hand or Main Deck to the GY is banished instead. When a Spell/Trap Card, or monster effect, is activated (Quick Effect): You can Tribute this card; negate the activation, and if you do, destroy that card. If this card is sent to the GY: You can add 1 Ritual Monster or 1 Ritual Spell from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "destroy",
+        "gy",
+        "hand",
+        "monster",
+        "search",
+        "st",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HERALD_OF_PERFECTION",
+      "clone_path": "src_custom/activated_effects/herald_of_perfection.c",
+      "clone_score": 0.91
+    },
+    {
+      "card_const": "CHAOS_ANCIENT_GEAR_GIANT",
+      "card_name": "Chaos Ancient Gear Giant",
+      "kind": "activated",
+      "archetype": "CHAOS",
+      "path": "src_custom/activated_effects/chaos_ancient_gear_giant.c",
+      "effect_text": "4 Ancient Gear monsters\r\nMust be Fusion Summoned and cannot be Special Summoned by other ways. Unaffected by Spell/Tra 4 Ancient Gear monsters Must be Fusion Summoned and cannot be Special Summoned by other ways. Unaffected by Spell/Trap effects. Your opponent's monsters cannot activate their effects during the Battle Phase. This card can attack all monsters your opponent controls, once each. If this card attacks a Defense Position monster, inflict piercing battle damage to your opponent.",
+      "tags": [
+        "burn",
+        "monster",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_GOLEM",
+      "clone_path": "src_custom/activated_effects/ancient_gear_golem.c",
+      "clone_score": 0.8
+    },
+    {
+      "card_const": "HELIOS_TRICE_MEGISTUS",
+      "card_name": "Helios Trice Megistus",
+      "kind": "activated",
+      "archetype": "HELIOS",
+      "path": "src_custom/activated_effects/helios_trice_megistus.c",
+      "effect_text": "You can Special Summon this card by Tributing 1 Helios Duo Megistus. This card's ATK and DEF are each equal to the num You can Special Summon this card by Tributing 1 Helios Duo Megistus. This card's ATK and DEF are each equal to the number of removed from play monsters x 300. After this card attacks, it can attack once more if your opponent controls a monster. If this card is destroyed by battle and sent to the Graveyard, Special Summon it during the End Phase and it gains 500 ATK and DEF.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CRIMSON_BLADER",
+      "clone_path": "src_custom/activated_effects/crimson_blader.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "HARPIE_ORACLE",
+      "card_name": "Harpie Oracle",
+      "kind": "activated",
+      "archetype": "HARPIE",
+      "path": "src_custom/activated_effects/harpie_oracle.c",
+      "effect_text": "Name Lady. SS from hand with Lv5+ Harpie; GY search S/T. OPT. This card's name becomes Harpie Lady while on the field or in the GY. You can only use each of these effects of Harpie Oracle once per turn. If you control a Level 5 or higher Harpie monster: You can Special Summon this card from your hand. If this card is Normal or Special Summoned: You can add 1 Spell/Trap from your GY to your hand, that specifically lists the card Harpie Lady Sisters in its text, during the End Phase of this turn.",
+      "tags": [
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HERALD_OF_ULTIMATENESS",
+      "clone_path": "src_custom/activated_effects/herald_of_ultimateness.c",
+      "clone_score": 0.71
+    }
+  ]
+}

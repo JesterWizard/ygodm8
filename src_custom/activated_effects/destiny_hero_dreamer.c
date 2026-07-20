@@ -1,65 +1,92 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static s16 FindDreamerInGy(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 i;
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
+  if (!GraveyardExpand_IsEnabled()) {
+    if (gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard == DESTINY_HERO_DREAMER)
+      return 0;
+    return -1;
+  }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (GraveyardExpand_GetCardAt(fixedDuelist, i) == DESTINY_HERO_DREAMER)
+      return (s16)i;
+  }
+
+  return -1;
 }
 
 unsigned char CanActivateDESTINY_HERO_DREAMER(void)
 {
   if (gMonEffect.id != DESTINY_HERO_DREAMER)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  /* ponytail: Damage Step battle protect + banish-on-leave need battle/GY hooks.
+   * Ceiling: GY ignition SS when Dreamer in GY + empty monster zone. */
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  if (FindDreamerInGy() < 0)
+    return FALSE;
+
+  return FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) >= 0;
 }
 
 void ActivateDESTINY_HERO_DREAMEREffect(void)
 {
+  s16 gyIndex;
+  struct DuelSummonOpts opts;
+  u8 fixedDuelist = FixedDuelistForActive();
+  u16 cardId;
+
   Duel_ShowEffectTextTyped(DESTINY_HERO_DREAMER, 2);
 
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  gyIndex = FindDreamerInGy();
+  if (gyIndex < 0)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (ArchlordKristya_IsSpecialSummonLocked()
+      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  if (!GraveyardExpand_IsEnabled()) {
+    cardId = gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard;
+    gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard = CARD_NONE;
+  } else {
+    cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, (u8)gyIndex);
+    GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  }
+
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts) != DUEL_ACTION_OK)
+    return;
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

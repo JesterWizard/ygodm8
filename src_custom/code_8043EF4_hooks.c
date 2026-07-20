@@ -267,6 +267,10 @@ u8 TrySpecialSummonLightrayDaedalusFromHand(u8);
 u8 TrySpecialSummonHolactieTheCreatorOfLightFromHand(u8);
 u8 TrySpecialSummonCyberEltaninFromHand(u8);
 u8 TrySpecialSummonHeliosDuoMegistusFromHand(u8);
+u8 TrySpecialSummonHeliosTriceMegistusFromHand(u8);
+u8 TrySpecialSummonHarpieOracleFromHand(u8);
+u8 TrySpecialSummonAmazonessWarChiefFromHand(u8);
+u8 TrySpecialSummonMagiciansSoulsFromHand(u8);
 u8 TrySpecialSummonOrichalcosShunorosFromHand(u8);
 u8 TryActivateWeissLightswornArchfiendFromHand(u8);
 u8 TrySpecialSummonAlectorSovereignOfBirdsFromHand(u8);
@@ -302,7 +306,8 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == MONTAGE_DRAGON || cardId == ARCANA_FORCE_XIX_THE_SUN
       || cardId == OCEAN_DRAGON_LORD_NEO_DAEDALUS || cardId == LIGHTRAY_DAEDALUS
       || cardId == HOLACTIE_THE_CREATOR_OF_LIGHT || cardId == CYBER_ELTANIN
-      || cardId == HELIOS_DUO_MEGISTUS || cardId == RAINBOW_DARK_DRAGON
+      || cardId == HELIOS_DUO_MEGISTUS || cardId == HELIOS_TRICE_MEGISTUS
+      || cardId == RAINBOW_DARK_DRAGON
       || cardId == POSEIDRA_THE_ATLANTEAN_DRAGON || cardId == PUNISHMENT_DRAGON;
 }
 
@@ -662,6 +667,26 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == HELIOS_DUO_MEGISTUS
           && TrySpecialSummonHeliosDuoMegistusFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == HELIOS_TRICE_MEGISTUS
+          && TrySpecialSummonHeliosTriceMegistusFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == HARPIE_ORACLE
+          && TrySpecialSummonHarpieOracleFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == AMAZONESS_WAR_CHIEF
+          && TrySpecialSummonAmazonessWarChiefFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == MAGICIANS_SOULS
+          && TrySpecialSummonMagiciansSoulsFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

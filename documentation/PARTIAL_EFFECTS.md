@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:23 UTC  
-**Remaining partials:** `634`
+**Last updated:** 2026-07-20 19:32 UTC  
+**Remaining partials:** `646`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 303 |
+| `activated` | 315 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **634** |
+| **total** | **646** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (303)
+## activated (315)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1451,6 +1451,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AMAZONESS_TRAINEE`
 - path: `src_custom/activated_effects/amazoness_trainee.c`
 - L12: battle shuffle-to-deck-bottom + +200 ATK need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle destroy + stat overlay.
+
+### `AMAZONESS_WAR_CHIEF`
+- path: `src_custom/activated_effects/amazoness_war_chief.c`
+- L118: on-NS/SS Set + Amazoness-only attack lock need summon/attack hooks. Ceiling: OPT Set 1 Amazoness S/T or Polymerization from Deck.
 
 ### `AMULET_DRAGON`
 - path: `src_custom/activated_effects/amulet_dragon.c`
@@ -1646,6 +1650,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/chainsaw_insect.c`
 - L12: opp draws after Damage Step needs battle end hook. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
 
+### `CHAOS_ANCIENT_GEAR_GIANT`
+- path: `src_custom/activated_effects/chaos_ancient_gear_giant.c`
+- L12: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock + multi-attack + piercing need fusion/battle hooks. Ceiling: not ignition-activatable here.
+
 ### `CHARM_OF_SHABTI`
 - path: `src_custom/activated_effects/charm_of_shabti.c`
 - L43: battle protection for Gravekeeper's monsters not applied. Ceiling: discard only; upgrade: battle-destroy immunity gate until EP.
@@ -1772,6 +1780,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/destiny_hero_disk_commander.c`
 - L20: SS-from-GY trigger + once per duel. Ceiling: OPT draw 2 stand-in when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE.
 
+### `DESTINY_HERO_DREAMER`
+- path: `src_custom/activated_effects/destiny_hero_dreamer.c`
+- L45: Damage Step battle protect + banish-on-leave need battle/GY hooks. Ceiling: GY ignition SS when Dreamer in GY + empty monster zone.
+
 ### `DESTINY_HERO_DRILLDARK`
 - path: `src_custom/activated_effects/destiny_hero_drilldark.c`
 - L64: on-Summon trigger + piercing need summon/battle hooks. Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK.
@@ -1883,6 +1895,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L57: second Standby Phase GY return needs turn/Standby hook; unk4=2 marks extra attack stand-in. Ceiling: banish self → target Fiend unk4=2.
 - L110: Main Phase 1 gate + second Standby GY return need phase/Standby hooks. Ceiling: OPT banish self → mark 1 Fiend unk4 for extra attack stand-in.
 
+### `EVIL_HERO_NEOS_LORD`
+- path: `src_custom/activated_effects/evil_hero_neos_lord.c`
+- L144: indestructible + on-SS/opp-GY-sent take-control triggers need continuous/summon hooks. Ceiling: OPT take control of 1 face-up opp monster.
+
 ### `EVIL_HERO_SINISTER_NECROM`
 - path: `src_custom/activated_effects/evil_hero_sinister_necrom.c`
 - L103: GY ignition needs GY-menu wire. Ceiling: allow when Sinister Necrom in GY + Evil HERO in hand or Deck (callable if gMonEffect set).
@@ -1919,6 +1935,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GAGAGIGO_THE_RISEN`
 - path: `src_custom/activated_effects/gagagigo_the_risen.c`
 - L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `GLADIATOR_BEAST_ATTORIX`
+- path: `src_custom/activated_effects/gladiator_beast_attorix.c`
+- L130: on-GB-SS name/Level copy + end-of-BP battled tag gate need summon/ battle hooks. Ceiling: OPT send 1 other GB from Deck to GY (unkTwo name copy) or tag-out shuffle→SS.
+- L157: copied name/Level until End Phase needs name-override hook; unkTwo stores sent card id as stand-in.
 
 ### `GLADIATOR_BEAST_AUGUSTUS`
 - path: `src_custom/activated_effects/gladiator_beast_augustus.c`
@@ -2068,6 +2089,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L77: granted NS after bounce — clear block like Necrovalley Throne.
 - L125: name becomes Harpie Lady on field/GY needs continuous rename hook.
 
+### `HARPIE_ORACLE`
+- path: `src_custom/activated_effects/harpie_oracle.c`
+- L124: name becomes Harpie Lady + End Phase Sisters S/T add need name/EP hooks. Ceiling: OPT add 1 Harpie from GY to hand.
+
 ### `HARPIE_QUEEN`
 - path: `src_custom/activated_effects/harpie_queen.c`
 - L14: * ponytail: name becomes Harpie Lady on field/GY needs name override hook. */
@@ -2081,9 +2106,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/helios_the_primordial_sun.c`
 - L41: continuous ATK/DEF = banished×100 needs permanent overlay. Ceiling: OPT stages ≈ (banished×100)/500.
 
+### `HELIOS_TRICE_MEGISTUS`
+- path: `src_custom/activated_effects/helios_trice_megistus.c`
+- L58: extra battle + battle-destroy End Phase SS +500 need battle/EP hooks. Ceiling: OPT refresh permStage from banished-monster count.
+- L146: permStage unit is ~500 ATK/DEF each, not exact banished×300 overlay.
+
 ### `HERALD_OF_PERFECTION`
 - path: `src_custom/activated_effects/herald_of_perfection.c`
 - L12: quick negate by sending Fairy from hand needs chain/negation hooks. Ceiling: not field-ignition activatable here; upgrade: either-turn chain interrupt → discard Fairy → negate + destroy activated card.
+
+### `HERALD_OF_THE_ARC_LIGHT`
+- path: `src_custom/activated_effects/herald_of_the_arc_light.c`
+- L12: deck/hand mill-banish + Quick tribute-negate need send/chain hooks. Ceiling: not field-ignition activatable here; upgrade: continuous banish + either-turn chain interrupt → tribute self → negate + destroy.
 
 ### `HERALD_OF_ULIMATENESS`
 - path: `src_custom/activated_effects/herald_of_ulimateness.c`
@@ -2209,6 +2243,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/magicians_robe.c`
 - L56: opp-turn quick + GY SS banish-on-leave need phase/GY hooks. Ceiling: discard S/T from hand → SS DM from Deck via FromHand path.
 - L76: opponent's turn gate not wired.
+
+### `MAGICIANS_SOULS`
+- path: `src_custom/activated_effects/magicians_souls.c`
+- L143: Continuous Spell placement + DM/DMG GY SS branch need placement/ GY hooks. Ceiling: OPT send 1–2 S/T from hand/field → draw that many.
 
 ### `MAGNA_DRAGO`
 - path: `src_custom/activated_effects/magna_drago.c`
@@ -2381,6 +2419,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/punishment_dragon.c`
 - L191: hand SS via 4+ banished LS uses FromHand path; LS mill 4 needs effect-activation hook. Ceiling: pay 1000 → shuffle all banished into Decks.
 
+### `QADSHADDOLL_KEIOS`
+- path: `src_custom/activated_effects/qadshaddoll_keios.c`
+- L50: FLIP vs sent-by-effect exclusivity + mill ATK gain need flip/send hooks. Ceiling: OPT SS 1 Shaddoll from hand face-up DEF.
+
 ### `QUINTET_MAGICIAN`
 - path: `src_custom/activated_effects/quintet_magician.c`
 - L64: Fusion-with-5-Spellcasters gate + untributable/undestroyable need fusion/summon hooks. Ceiling: once via usage destroy all opp cards.
@@ -2458,6 +2500,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `SHADDOLL_SQUAMATA`
 - path: `src_custom/activated_effects/shaddoll_squamata.c`
 - L154: FLIP destroy vs GY-sent mill exclusivity + trigger hooks deferred. Ceiling: destroy 1 opp monster OR mill 1 Shaddoll from Deck once via usage.
+
+### `SILENT_MAGICIAN_LV4`
+- path: `src_custom/activated_effects/silent_magician_lv4.c`
+- L70: Spell Counter place/ATK + Standby-after-5th counter need draw/ counter hooks. Ceiling: OPT send self → SS Silent Magician LV8 from hand/Deck.
 
 ### `SILENT_MAGICIAN_LV8`
 - path: `src_custom/activated_effects/silent_magician_lv8.c`
@@ -2618,6 +2664,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TYRANT_BURST_DRAGON`
 - path: `src_custom/activated_effects/tyrant_burst_dragon.c`
 - L12: multi-attack + equip-to-monster need battle/equip continuous hooks. Ceiling: not ignition-activatable here; upgrade: permanent battle/equip gate.
+
+### `ULTIMATE_ANCIENT_GEAR_GOLEM`
+- path: `src_custom/activated_effects/ultimate_ancient_gear_golem.c`
+- L51: piercing + attack S/T lock + on-destroy SS need battle/destroy hooks. Ceiling: OPT SS Ancient Gear Golem from GY.
 
 ### `ULTIMATE_OBEDIENT_FIEND`
 - path: `src_custom/activated_effects/ultimate_obedient_fiend.c`
