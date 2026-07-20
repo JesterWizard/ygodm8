@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 17:48 UTC  
-**Remaining partials:** `370`
+**Last updated:** 2026-07-20 17:52 UTC  
+**Remaining partials:** `381`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 39 |
+| `activated` | 50 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **370** |
+| **total** | **381** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (39)
+## activated (50)
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1447,6 +1447,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `CYBER_LASER_DRAGON`
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
 - L17: targets face-up monsters on opponent's side with ATK >= 2400 or DEF >= 2400. Upgrade path: scan backrow S/T cards if the card text ever changes.
+
+### `D_D_WARRIOR`
+- path: `src_custom/activated_effects/d_d_warrior.c`
+- L12: after damage calc banish both needs battle hook. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
 
 ### `DARK_ARMED_DRAGON`
 - path: `src_custom/activated_effects/dark_armed_dragon.c`
@@ -1492,6 +1496,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L41: fixed POV — only reveal the player's own monster row
 - L69: attack-position summons stay isFaceUp=0 until end-of-turn flip
 
+### `FLAME_RULER`
+- path: `src_custom/activated_effects/flame_ruler.c`
+- L12: treat as 2 Tributes for FIRE Tribute Summon needs tribute-cost LynJump. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
+
 ### `GAGAGIGO_THE_RISEN`
 - path: `src_custom/activated_effects/gagagigo_the_risen.c`
 - L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
@@ -1507,6 +1515,26 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GRAVEKEEPERS_CURSE`
 - path: `src_custom/activated_effects/gravekeepers_curse.c`
 - L20: printed is If Summoned trigger. Ceiling: allow once via usage when manually activated / summon-dispatch calls Activate.
+
+### `GRAVEKEEPERS_GUARD`
+- path: `src_custom/activated_effects/gravekeepers_guard.c`
+- L85: FLIP trigger needs flip hook.
+
+### `GRAVEKEEPERS_SPY`
+- path: `src_custom/activated_effects/gravekeepers_spy.c`
+- L58: FLIP trigger needs flip hook.
+
+### `GRAVEKEEPERS_VASSAL`
+- path: `src_custom/activated_effects/gravekeepers_vassal.c`
+- L12: battle damage as effect damage needs battle-damage type gate. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
+
+### `GREEN_GADGET`
+- path: `src_custom/activated_effects/green_gadget.c`
+- L60: NS/SS trigger needs summon hook. Ceiling: once via usage.
+
+### `HELIOS_THE_PRIMORDIAL_SUN`
+- path: `src_custom/activated_effects/helios_the_primordial_sun.c`
+- L41: continuous ATK/DEF = banished×100 needs permanent overlay. Ceiling: OPT stages ≈ (banished×100)/500.
 
 ### `HOURGLASS_OF_LIFE`
 - path: `src_custom/activated_effects/hourglass_of_life.c`
@@ -1552,6 +1580,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/rinyan_lightsworn_rogue.c`
 - L41: FLIP trigger needs flip hook. Ceiling: once via usage if LS in GY.
 
+### `RYKO_LIGHTSWORN_HUNTER`
+- path: `src_custom/activated_effects/ryko_lightsworn_hunter.c`
+- L107: FLIP trigger needs flip hook. Ceiling: once via usage.
+
 ### `SPINED_GILLMAN`
 - path: `src_custom/activated_effects/spined_gillman.c`
 - L32: continuous +400 ATK needs permanent overlay. Ceiling: OPT +1 stage (~500) to each Fish/SS/Aqua you control.
@@ -1565,6 +1597,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/the_blazing_mars.c`
 - L48: no multi-select GY banish + hand/GY activation path yet — banish 3 other monsters to Special Summon deferred until expanded GY targeting exists.
 - L63: no Main Phase 1 gate yet — field burn is activatable in any main phase.
+
+### `THE_CALCULATOR`
+- path: `src_custom/activated_effects/the_calculator.c`
+- L40: continuous ATK = levels×300 needs permanent overlay. Ceiling: OPT refresh perm stages ≈ (levels×300)/500.
 
 ### `THE_SUPPRESSION_PLUTO`
 - path: `src_custom/activated_effects/the_suppression_pluto.c`
@@ -1582,6 +1618,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TORNADO_BIRD`
 - path: `src_custom/activated_effects/tornado_bird.c`
 - L85: FLIP trigger needs flip hook. Ceiling: once via usage.
+
+### `TYRANNO_INFINITY`
+- path: `src_custom/activated_effects/tyranno_infinity.c`
+- L52: original ATK = banished Dinos×1000 needs permanent overlay. Ceiling: OPT stages ≈ (count×1000)/500.
+
+### `WARM_WORM`
+- path: `src_custom/activated_effects/warm_worm.c`
+- L18: printed trigger is when destroyed. Ceiling: once via usage.
 
 ## permanent (27)
 

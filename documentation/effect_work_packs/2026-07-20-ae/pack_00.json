@@ -1,0 +1,79 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "RYKO_LIGHTSWORN_HUNTER",
+      "card_name": "Ryko, Lightsworn Hunter",
+      "kind": "activated",
+      "archetype": "RYKO",
+      "path": "src_custom/activated_effects/ryko_lightsworn_hunter.c",
+      "effect_text": "FLIP: destroy 1; mill top 3. FLIP: Apply these effects (simultaneously). You can destroy 1 card on the field. Send the top 3 cards of your Deck to the GY.",
+      "tags": [
+        "deck",
+        "destroy",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_TEMPEST",
+      "clone_path": "src_custom/activated_effects/elemental_hero_tempest.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "FLAME_RULER",
+      "card_name": "Flame Ruler",
+      "kind": "activated",
+      "archetype": "FLAME",
+      "path": "src_custom/activated_effects/flame_ruler.c",
+      "effect_text": "This card can be treated as 2 Tributes for the Tribute Summon of a FIRE monster. This card can be treated as 2 Tributes for the Tribute Summon of a FIRE monster.",
+      "tags": [
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRANMARG_THE_ROCK_MONARCH",
+      "clone_path": "src_custom/activated_effects/granmarg_the_rock_monarch.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "THE_CALCULATOR",
+      "card_name": "The Calculator",
+      "kind": "activated",
+      "archetype": "THE",
+      "path": "src_custom/activated_effects/the_calculator.c",
+      "effect_text": "The ATK of this card is the combined Levels of all face-up monsters you control x 300. The ATK of this card is the combined Levels of all face-up monsters you control x 300.",
+      "tags": [
+        "faceup"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "WARM_WORM",
+      "card_name": "Warm Worm",
+      "kind": "activated",
+      "archetype": "WARM",
+      "path": "src_custom/activated_effects/warm_worm.c",
+      "effect_text": "If this card is destroyed, send the top 3 cards of your opponent's Deck to the Graveyard. If this card is destroyed, send the top 3 cards of your opponent's Deck to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "NIMBLE_MOMONGA",
+      "clone_path": "src_custom/activated_effects/nimble_momonga.c",
+      "clone_score": 0.5
+    }
+  ]
+}

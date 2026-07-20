@@ -1,0 +1,80 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GRAVEKEEPERS_GUARD",
+      "card_name": "Gravekeeper's Guard",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_guard.c",
+      "effect_text": "FLIP: Target 1 monster your opponent controls; return that target to the hand. FLIP: Target 1 monster your opponent controls; return that target to the hand.",
+      "tags": [
+        "hand",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "INVADER_OF_THE_THRONE",
+      "clone_path": "src_custom/activated_effects/invader_of_the_throne.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "GRAVEKEEPERS_SPY",
+      "card_name": "Gravekeeper's Spy",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_spy.c",
+      "effect_text": "FLIP: Special Summon 1 \"Gravekeeper's\" monster with 1500 or less ATK from your Deck. FLIP: Special Summon 1 Gravekeeper's monster with 1500 or less ATK from your Deck.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_WILDEDGE",
+      "clone_path": "src_custom/activated_effects/elemental_hero_wildedge.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "GREEN_GADGET",
+      "card_name": "Green Gadget",
+      "kind": "activated",
+      "archetype": "GREEN",
+      "path": "src_custom/activated_effects/green_gadget.c",
+      "effect_text": "When Normal or Special Summoned, add 1 Red Gadget from your Deck to your hand. When this card is Normal or Special Summoned: You can add 1 Red Gadget from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "hand",
+        "search",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NECROID_SHAMAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_necroid_shaman.c",
+      "clone_score": 0.33
+    },
+    {
+      "card_const": "GRAVEKEEPERS_VASSAL",
+      "card_name": "Gravekeeper's Vassal",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_vassal.c",
+      "effect_text": "Any battle damage this card inflicts to your opponent is treated as effect damage instead. Any battle damage this card inflicts to your opponent is treated as effect damage instead.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 1.0
+    }
+  ]
+}

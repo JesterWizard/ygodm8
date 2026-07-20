@@ -4,62 +4,62 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
+void RefreshFieldMonsterStatOverlays(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 SumFaceUpLevelsOnRow(u8 row)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  u8 col;
+  u8 total = 0;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[row][col];
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
+    if (zone == NULL || !zone->isFaceUp || zone->id == CARD_NONE)
+      continue;
+    if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+      continue;
+    SetCardInfo(zone->id);
+    total += gCardInfo.level;
+  }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return total;
 }
 
 unsigned char CanActivateTHE_CALCULATOR(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != THE_CALCULATOR)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != THE_CALCULATOR)
+    return FALSE;
+
+  /* ponytail: continuous ATK = levels×300 needs permanent overlay.
+   * Ceiling: OPT refresh perm stages ≈ (levels×300)/500. */
+  return CanUseMonsterEffect(zone);
 }
 
 void ActivateTHE_CALCULATOREffect(void)
 {
+  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 levels;
+  u8 stages;
+
   Duel_ShowEffectTextTyped(THE_CALCULATOR, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (zone == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  levels = SumFaceUpLevelsOnRow(gMonEffect.row);
+  stages = (u8)((levels * 300) / 500);
+  if (stages > 20)
+    stages = 20;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  SetPermStage(zone, stages);
+  MarkMonsterEffectUsed(zone);
+  RefreshFieldMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
 }

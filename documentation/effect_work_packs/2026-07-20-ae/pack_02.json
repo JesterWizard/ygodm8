@@ -1,0 +1,74 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "CHRYSALIS_CHICKY",
+      "card_name": "Chrysalis Chicky",
+      "kind": "activated",
+      "archetype": "CHRYSALIS",
+      "path": "src_custom/activated_effects/chrysalis_chicky.c",
+      "effect_text": "Tribute; SS Air Hummingbird. You can Tribute this card while Neo Space is on the field to Special Summon 1 Neo-Spacian Air Hummingbird from your hand or Deck.",
+      "tags": [
+        "deck",
+        "hand",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHRYSALIS_DOLPHIN",
+      "clone_path": "src_custom/activated_effects/chrysalis_dolphin.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "D_D_WARRIOR",
+      "card_name": "D.D. Warrior",
+      "kind": "activated",
+      "archetype": "D_D",
+      "path": "src_custom/activated_effects/d_d_warrior.c",
+      "effect_text": "After damage calculation, banish the battled monster and this card. After damage calculation, when this card battles a monster: Banish that monster, also banish this card.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BOOT_UP_SOLDIER_DREAD_DYNAMO",
+      "clone_path": "src_custom/activated_effects/boot_up_soldier_dread_dynamo.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "HELIOS_THE_PRIMORDIAL_SUN",
+      "card_name": "Helios - The Primordial Sun",
+      "kind": "activated",
+      "archetype": "HELIOS",
+      "path": "src_custom/activated_effects/helios_the_primordial_sun.c",
+      "effect_text": "This card's ATK and DEF are each equal to the number of removed from play monsters x 100. This card's ATK and DEF are each equal to the number of removed from play monsters x 100.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "TYRANNO_INFINITY",
+      "card_name": "Tyranno Infinity",
+      "kind": "activated",
+      "archetype": "TYRANNO",
+      "path": "src_custom/activated_effects/tyranno_infinity.c",
+      "effect_text": "The original ATK of this card is the number of your banished Dinosaur-Type monsters x 1000. The original ATK of this card is the number of your banished Dinosaur-Type monsters x 1000.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 1.0
+    }
+  ]
+}

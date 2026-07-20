@@ -3,63 +3,64 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "removed_from_play.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
+void RefreshFieldMonsterStatOverlays(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 CountBanishedMonsters(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  u8 total = 0;
+  u8 d;
+  u8 i;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  if (!RemovedFromPlay_IsEnabled())
+    return 0;
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
+  for (d = 0; d < 2; d++) {
+    for (i = 0; i < RemovedFromPlay_GetCount(d); i++) {
+      if (GetTypeGroup(RemovedFromPlay_GetCardAt(d, i)) == TYPE_GROUP_MONSTER)
+        total++;
+    }
+  }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return total;
 }
 
 unsigned char CanActivateHELIOS_THE_PRIMORDIAL_SUN(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != HELIOS_THE_PRIMORDIAL_SUN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != HELIOS_THE_PRIMORDIAL_SUN)
+    return FALSE;
+
+  /* ponytail: continuous ATK/DEF = banished×100 needs permanent overlay.
+   * Ceiling: OPT stages ≈ (banished×100)/500. */
+  return CanUseMonsterEffect(zone);
 }
 
 void ActivateHELIOS_THE_PRIMORDIAL_SUNEffect(void)
 {
+  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 banished;
+  u8 stages;
+
   Duel_ShowEffectTextTyped(HELIOS_THE_PRIMORDIAL_SUN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (zone == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  banished = CountBanishedMonsters();
+  stages = (u8)((banished * 100) / 500);
+  if (stages > 20)
+    stages = 20;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  SetPermStage(zone, stages);
+  MarkMonsterEffectUsed(zone);
+  RefreshFieldMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
 }
