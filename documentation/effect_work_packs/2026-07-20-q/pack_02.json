@@ -1,0 +1,85 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ANCIENT_GEAR_FACTORY",
+      "card_name": "Ancient Gear Factory",
+      "kind": "spell",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/spell_effects/ancient_gear_factory.c",
+      "effect_text": "Reveal 1 Level 5 or higher Ancient Gear monster from your hand, then banish a number of Ancient Gear monsters from y Reveal 1 Level 5 or higher Ancient Gear monster from your hand, then banish a number of Ancient Gear monsters from your Graveyard, whose combined Levels are double the revealed monster's, and if you do, if you Normal Summon the revealed monster this turn, you must Normal Smmon it without Tributing.",
+      "tags": [
+        "gy",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE",
+      "clone_path": "src_custom/spell_effects/twin_swords_of_flashing_light_tryce.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "NEPHE_SHADDOLL_FUSION",
+      "card_name": "Nephe Shaddoll Fusion",
+      "kind": "spell",
+      "archetype": "NEPHE",
+      "path": "src_custom/spell_effects/nephe_shaddoll_fusion.c",
+      "effect_text": "Equip Shaddoll; set Attribute. Fusion Summon Shaddoll Fusion using equipped. OPT. Activate this card by declaring 1 Attribute. Equip only to a Shaddoll monster, and it becomes that Attribute. During your Main Phase: You can Fusion Summon 1 Shaddoll Fusion Monster from your Extra Deck, using monsters from your hand or field as Fusion Material, including the equipped monster. You can only use this effect of Nephe Shaddoll Fusion once per turn.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_FUSION",
+      "clone_path": "src_custom/spell_effects/dark_fusion.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "SOUL_SERVANT",
+      "card_name": "Soul Servant",
+      "kind": "spell",
+      "archetype": "SOUL",
+      "path": "src_custom/spell_effects/soul_servant.c",
+      "effect_text": "Stack DM card on Deck. GY: draw for Palladium/DM. Place 1 card on top of the Deck from your hand, Deck, or GY, that is Dark Magician or specifically lists Dark Magician or Dark Magician Girl in its text, except Soul Servant. During your Main Phase: You can banish this card from your GY; draw cards equal to the number of Palladium monsters, Dark Magician, and/or Dark Magician Girl, with different names, on the field and in the GYs. You can only use this effect of Soul Servant once per turn.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "REALM_OF_LIGHT",
+      "clone_path": "src_custom/spell_effects/realm_of_light.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "EVIL_ASSAULT",
+      "card_name": "Evil Assault",
+      "kind": "spell",
+      "archetype": "EVIL",
+      "path": "src_custom/spell_effects/evil_assault.c",
+      "effect_text": "Discard 1; add or SS Lv4- Evil HERO from Deck. GY: banish; add Dark Fusion. Discard 1 card; take 1 Level 4 or lower Evil HERO monster from your Deck and either add it to your hand or Special Summon it, also for the rest of this turn after this card resolves, you cannot Special Summon from the Extra Deck, except HERO monsters. If this card is in your GY, except the turn it was sent there: You can banish this card from your GY; add 1 Dark Fusion from your GY to your hand. You can only use each eff",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 1.0
+    }
+  ]
+}

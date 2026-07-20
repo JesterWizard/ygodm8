@@ -1,0 +1,90 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GENERATION_NEXT",
+      "card_name": "Generation Next",
+      "kind": "spell",
+      "archetype": "GENERATION",
+      "path": "src_custom/spell_effects/generation_next.c",
+      "effect_text": "Add/SS Neo-HERO by LP gap. If your LP are lower than your opponent's: Add to your hand, or Special Summon, 1 Elemental HERO monster, Kuriboh monster, or Neo-Spacian monster from your Deck or GY, with ATK less than or equal to the difference in LPs, also for the rest of this turn, you cannot activate cards, or the effects of cards, with the same name as that card. You can only activate 1 Generation Next per turn.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "SPELL_GEAR",
+      "card_name": "Spell Gear",
+      "kind": "spell",
+      "archetype": "SPELL",
+      "path": "src_custom/spell_effects/spell_gear.c",
+      "effect_text": "Send 3 Ancient Gear cards you control to the Graveyard. You can Special Summon up to 1 Ancient Gear Golem from your  Send 3 Ancient Gear cards you control to the Graveyard. You can Special Summon up to 1 Ancient Gear Golem from your hand and 1 from your Deck, ignoring the Summoning conditions. Then, destroy all monsters you control except Ancient Gear Golems. You cannot Normal Summon or Set until the end of your next turn.",
+      "tags": [
+        "deck",
+        "destroy",
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "THE_CLAW_OF_HERMOS",
+      "card_name": "The Claw of Hermos",
+      "kind": "spell",
+      "archetype": "THE",
+      "path": "src_custom/spell_effects/the_claw_of_hermos.c",
+      "effect_text": "(This card is also always treated as Legendary Dragon Hermos.)\r\nSend 1 monster from your hand or field to the GY, of t (This card is also always treated as Legendary Dragon Hermos.) Send 1 monster from your hand or field to the GY, of the Type that is listed on a Fusion Monster that can only be Special Summoned with The Claw of Hermos (if that card is Set, reveal it), then Special Summon that Fusion Monster from your Extra Deck. You can only activate 1 The Claw of Hermos per turn.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "EN_WAVE",
+      "card_name": "EN Wave",
+      "kind": "spell",
+      "archetype": "EN",
+      "path": "src_custom/spell_effects/en_wave.c",
+      "effect_text": "Search Neo/Neos; GY revive E-HERO. If your Elemental HERO monster is used as material for a Fusion Summon, and sent to the GY or banished (except during the Damage Step): You can Special Summon 1 Neo-Spacian monster or 1 Elemental HERO Neos from your Deck. If a Neo-Spacian monster or Elemental HERO Neos you control or in your GY is shuffled into your Deck or Extra Deck (except during the Damage Step): You can Special Summon 1 Elemental HERO monster from your GY. You can only use each effect of E",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 0.8
+    }
+  ]
+}

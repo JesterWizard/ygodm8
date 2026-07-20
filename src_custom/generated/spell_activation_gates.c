@@ -81,6 +81,7 @@ extern u8 CanActivateMeteorOfDestruction(void);
 extern u8 CanActivateMOLTING_ESCAPE(void);
 extern u8 CanActivateMONSTER_GATE(void);
 extern u8 CanActivateMonsterReborn(void);
+extern u8 CanActivateMONSTER_RECOVERY(void);
 extern u8 CanActivateMORAY_OF_GREED(void);
 extern u8 CanActivateMORPHTRONIC_ACCELERATOR(void);
 extern u8 CanActivateMORPHTRONIC_CORD(void);
@@ -94,6 +95,7 @@ extern u8 CanActivateOVER_DESTINY(void);
 extern u8 CanActivatePAINFUL_CHOICE(void);
 extern u8 CanActivatePHOTON_GENERATOR_UNIT(void);
 extern u8 CanActivatePrematureBurial(void);
+extern u8 CanActivateREASONING(void);
 extern u8 CanActivateREPTILANNE_RAGE(void);
 extern u8 CanActivateREPTILIANNE_POISON(void);
 extern u8 CanActivateREPTILIANNE_SPAWN(void);
@@ -101,6 +103,7 @@ extern u8 CanActivateROYAL_TRIBUTE(void);
 extern u8 CanActivateSHARE_THE_PAIN(void);
 extern u8 CanActivateSNAKE_RAIN(void);
 extern u8 CanActivateSOLAR_RECHARGE(void);
+extern u8 CanActivateSPELL_GEAR(void);
 extern u8 CanActivateSUMMONERS_ART(void);
 extern u8 CanActivateTHAT_GRASS_LOOKS_GREENER(void);
 extern u8 CanActivateTheFluteOfSummoningDragon(void);
@@ -180,6 +183,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { MOLTING_ESCAPE, CanActivateMOLTING_ESCAPE, TRUE },
   { MONSTER_GATE, CanActivateMONSTER_GATE, TRUE },
   { MONSTER_REBORN, CanActivateMonsterReborn, TRUE },
+  { MONSTER_RECOVERY, CanActivateMONSTER_RECOVERY, TRUE },
   { MORAY_OF_GREED, CanActivateMORAY_OF_GREED, TRUE },
   { MORPHTRONIC_ACCELERATOR, CanActivateMORPHTRONIC_ACCELERATOR, TRUE },
   { MORPHTRONIC_CORD, CanActivateMORPHTRONIC_CORD, TRUE },
@@ -193,6 +197,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { PAINFUL_CHOICE, CanActivatePAINFUL_CHOICE, TRUE },
   { PHOTON_GENERATOR_UNIT, CanActivatePHOTON_GENERATOR_UNIT, TRUE },
   { PREMATURE_BURIAL, CanActivatePrematureBurial, TRUE },
+  { REASONING, CanActivateREASONING, TRUE },
   { REPTILANNE_RAGE, CanActivateREPTILANNE_RAGE, TRUE },
   { REPTILIANNE_POISON, CanActivateREPTILIANNE_POISON, TRUE },
   { REPTILIANNE_SPAWN, CanActivateREPTILIANNE_SPAWN, TRUE },
@@ -200,6 +205,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { SHARE_THE_PAIN, CanActivateSHARE_THE_PAIN, TRUE },
   { SNAKE_RAIN, CanActivateSNAKE_RAIN, TRUE },
   { SOLAR_RECHARGE, CanActivateSOLAR_RECHARGE, TRUE },
+  { SPELL_GEAR, CanActivateSPELL_GEAR, TRUE },
   { SUMMONERS_ART, CanActivateSUMMONERS_ART, TRUE },
   { THAT_GRASS_LOOKS_GREENER, CanActivateTHAT_GRASS_LOOKS_GREENER, TRUE },
   { THE_FLUTE_OF_SUMMONING_DRAGON, CanActivateTheFluteOfSummoningDragon, TRUE },

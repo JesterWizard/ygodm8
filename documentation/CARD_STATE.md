@@ -1,18 +1,18 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect packs L+M+N: 36 spells
+**Last worked on:** 2026-07-20 — Effect packs O+P+Q: 36 spells
 
 **Files touched:**
 - `documentation/STUB_EFFECTS.md`
 - `documentation/PARTIAL_EFFECTS.md`
-- `documentation/effect_work_packs/2026-07-20-l/`
-- `documentation/effect_work_packs/2026-07-20-m/`
-- `documentation/effect_work_packs/2026-07-20-n/`
-- Pack L: `celestial_sword_eatos.c`, `parallel_world_fusion.c`, `arcane_barrier.c`, `chicken_game.c`, `neo_space.c`, `mirage_of_nightmare.c`, `hero_flash.c`, `fusion_deployment.c`, `morale_boost.c`, `twlight_twin_dragons.c`, `bubble_blaster.c`, `aroma_gardening.c`
-- Pack M: `cybernetic_zone.c`, `ante.c`, `shaddoll_fusion.c`, `light_barrier.c`, `weapon_change.c`, `chain_summoning.c`, `lemuria_the_forgotten_city.c`, `evil_mind.c`, `instant_fusion.c`, `the_law_of_the_normal.c`, `amazoness_village.c`, `ancient_gear_fusion.c`
-- Pack N: `end_of_the_world.c`, `hidden_temples_of_necrovalley.c`, `doctor_d.c`, `aroma_garden.c`, `lightning_storm.c`, `necrovalley.c`, `bond_between_teacher_and_student.c`, `big_evolution_pill.c`, `morphtronic_engine.c`, `colosseum_cage_of_the_gladiator_beasts.c`, `gravekeepers_inscription.c`, `mystic_mine.c`
+- `documentation/effect_work_packs/2026-07-20-o/`
+- `documentation/effect_work_packs/2026-07-20-p/`
+- `documentation/effect_work_packs/2026-07-20-q/`
+- Pack O: `clock_tower_prison.c`, `chaos_form.c`, `en_shuffle.c`, `dark_contact.c`, `instant_contact.c`, `the_eye_of_timaeus.c`, `lightsworn_sanctuary.c`, `alluring_mirror_split.c`, `pandemonium.c`, `morphtronic_repair_unit.c`, `the_fang_of_critias.c`, `flavian_colosseum_of_the_gladiator_beasts.c`
+- Pack P: `mausoleum_of_the_emperor.c`, `monster_recovery.c`, `reasoning.c`, `light_force.c`, `the_gaze_of_timaeus.c`, `vision_fusion.c`, `supreme_kings_castle.c`, `ultra_polymerization.c`, `generation_next.c`, `spell_gear.c`, `the_claw_of_hermos.c`, `en_wave.c`
+- Pack Q: `ancient_gear_castle.c`, `harpies_feather_rest.c`, `arcana_spread.c`, `amazoness_call.c`, `morphtronic_map.c`, `secrets_of_dark_magic.c`, `fusion_destiny.c`, `aroma_blend.c`, `ancient_gear_factory.c`, `nephe_shaddoll_fusion.c`, `soul_servant.c`, `evil_assault.c`
 
-**Outcome:** make OK; stubs+partials refreshed
+**Outcome:** make OK (fixed aroma_blend + secrets_of_dark_magic includes); stubs+partials refreshed
 
 **Open / next:**
 - implement next pack
