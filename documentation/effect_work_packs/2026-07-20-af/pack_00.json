@@ -1,0 +1,77 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GRAVEKEEPERS_COMMANDANT",
+      "card_name": "Gravekeeper's Commandant",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_commandant.c",
+      "effect_text": "You can discard this card to the Graveyard; add 1 \"Necrovalley\" from your Deck to your hand. You can discard this card to the Graveyard; add 1 Necrovalley from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_GUARD",
+      "clone_path": "src_custom/activated_effects/gravekeepers_guard.c",
+      "clone_score": 0.52
+    },
+    {
+      "card_const": "BIRDFACE",
+      "card_name": "Birdface",
+      "kind": "activated",
+      "archetype": "BIRDFACE",
+      "path": "src_custom/activated_effects/birdface.c",
+      "effect_text": "When destroyed by battle and sent to GY: add 1 Harpie Lady from Deck to hand. When this card is destroyed by battle and sent to the GY: You can add 1 Harpie Lady from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MASK_OF_DARKNESS",
+      "clone_path": "src_custom/activated_effects/mask_of_darkness.c",
+      "clone_score": 0.33
+    },
+    {
+      "card_const": "CHAINSAW_INSECT",
+      "card_name": "Chainsaw Insect",
+      "kind": "activated",
+      "archetype": "CHAINSAW",
+      "path": "src_custom/activated_effects/chainsaw_insect.c",
+      "effect_text": "At the end of the Damage Step, if this card attacked or was attacked: Your opponent draws 1 card. At the end of the Damage Step, if this card attacked or was attacked: Your opponent draws 1 card.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "FUSILIER_DRAGON_THE_DUAL_MODE_BEAST",
+      "card_name": "Fusilier Dragon, the Dual-Mode Beast",
+      "kind": "activated",
+      "archetype": "FUSILIER",
+      "path": "src_custom/activated_effects/fusilier_dragon_the_dual_mode_beast.c",
+      "effect_text": "You can Normal Summon/Set this card without Tributing, but its original ATK and DEF become halved. You can Normal Summon/Set this card without Tributing, but its original ATK and DEF become halved.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 1.0
+    }
+  ]
+}

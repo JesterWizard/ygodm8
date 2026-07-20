@@ -4,26 +4,53 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
+
+static u8 OpponentMonsterRow(void)
+{
+  if (gMonEffect.row == PLAYER_MONSTER_ROW)
+    return OPPONENT_MONSTER_ROW;
+
+  return PLAYER_MONSTER_ROW;
+}
 
 static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone;
+
+  if (fixedRow != OpponentMonsterRow())
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  return zone != NULL && zone->id != CARD_NONE;
+}
+
+static u8 FieldHasTarget(void)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (IsValidTarget(OpponentMonsterRow(), col))
+      return TRUE;
+  }
+
   return FALSE;
 }
 
 static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (!IsValidTarget(fixedRow, fixedCol) || zone == NULL)
+    return;
+
+  zone->unk4 += 2; /* Venom Counters */
+  if (self != NULL) {
+    self->unk4 |= 0x80;
+    MarkMonsterEffectUsed(self);
+  }
+  UpdateDuelGfxExceptField();
 }
 
 static void CancelTargeting(void)
@@ -33,17 +60,32 @@ static void CancelTargeting(void)
 
 static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  u8 col;
+
+  *outRow = OpponentMonsterRow();
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (IsValidTarget(*outRow, col)) {
+      *outCol = col;
+      return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateVENOM_BOA(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != VENOM_BOA)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != VENOM_BOA)
+    return FALSE;
+
+  /* ponytail: cannot-attack-this-turn needs attack gate on unk4. */
+  return CanUseMonsterEffect(zone) && FieldHasTarget();
 }
 
 void ActivateVENOM_BOAEffect(void)

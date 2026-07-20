@@ -230,6 +230,8 @@ u8 TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(u8);
 u8 TrySpecialSummonArchlordKristyaFromHand(u8);
 u8 TryActivateElementalHeroCaptainGoldFromHand(u8);
 u8 TryActivateHecatriceFromHand(u8);
+u8 TryActivateGRAVEKEEPERS_COMMANDANTFromHand(u8);
+u8 TryActivateWARRIOR_OF_ATLANTISFromHand(u8);
 u8 TrySpecialSummonTheTrickyFromHand(u8);
 u8 TrySpecialSummonHamonLordOfStrikingThunderFromHand(u8);
 u8 TrySpecialSummonUriaLordOfSearingFlamesFromHand(u8);
@@ -422,6 +424,16 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == HECATRICE
           && TryActivateHecatriceFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GRAVEKEEPERS_COMMANDANT
+          && TryActivateGRAVEKEEPERS_COMMANDANTFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == WARRIOR_OF_ATLANTIS
+          && TryActivateWARRIOR_OF_ATLANTISFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

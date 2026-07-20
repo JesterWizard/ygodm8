@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 17:52 UTC  
-**Remaining partials:** `381`
+**Last updated:** 2026-07-20 17:55 UTC  
+**Remaining partials:** `391`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 50 |
+| `activated` | 60 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **381** |
+| **total** | **391** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (50)
+## activated (60)
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1440,9 +1440,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/barrier_statue_of_the_stormwinds.c`
 - L12: no SS except WIND needs Special Summon lock gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
+### `BIRDFACE`
+- path: `src_custom/activated_effects/birdface.c`
+- L20: battle-destroy→GY trigger. Ceiling: once via usage if Harpie Lady in Deck and hand space.
+
 ### `BOOT_UP_SOLDIER_DREAD_DYNAMO`
 - path: `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c`
 - L39: continuous +2000 while Gadget on field needs permanent overlay. Ceiling: OPT apply +4 stages (~2000) if Gadget present.
+
+### `CHAINSAW_INSECT`
+- path: `src_custom/activated_effects/chainsaw_insect.c`
+- L12: opp draws after Damage Step needs battle end hook. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
 
 ### `CYBER_LASER_DRAGON`
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
@@ -1457,10 +1465,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L174: allow self-target for faithful TCG simulation; player can choose suboptimally
 - L317: auto-target. No GY picker (DeckMenu screen switch corrupts VRAM from inside monster effect handler) and no PickZone cursor state (200 conflicts with game loop after MonsterActionMenu case 4 returns). Picks the best field target via AiPickTarget logic. Upgrade path: dedicated cursor state + A/B handlers like Cannon Soldier.
 
+### `DARK_BLADE_THE_DRAGON_KNIGHT`
+- path: `src_custom/activated_effects/dark_blade_the_dragon_knight.c`
+- L31: battle-damage trigger. Ceiling: once via usage if opp GY has monsters.
+
 ### `DARK_DUST_SPIRIT`
 - path: `src_custom/activated_effects/dark_dust_spirit.c`
 - L22: hand normal/tribute summon copies isFaceUp=0; attack-position still counts
 - L63: GBA "face-up" = isFaceUp bit; attack-position keeps isFaceUp=0 until flip
+
+### `DESTINY_HERO_MALICIOUS`
+- path: `src_custom/activated_effects/destiny_hero_malicious.c`
+- L43: GY ignition needs GY-menu wire. Ceiling: allow when Malicious in GY + another in Deck (callable if gMonEffect set to Malicious).
 
 ### `ELEMENTAL_HERO_BLAZEMAN`
 - path: `src_custom/activated_effects/elemental_hero_blazeman.c`
@@ -1500,6 +1516,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/flame_ruler.c`
 - L12: treat as 2 Tributes for FIRE Tribute Summon needs tribute-cost LynJump. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
 
+### `FUSILIER_DRAGON_THE_DUAL_MODE_BEAST`
+- path: `src_custom/activated_effects/fusilier_dragon_the_dual_mode_beast.c`
+- L12: NS without tribute + halved ATK/DEF needs summon tribute gate. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
+
 ### `GAGAGIGO_THE_RISEN`
 - path: `src_custom/activated_effects/gagagigo_the_risen.c`
 - L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
@@ -1519,6 +1539,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GRAVEKEEPERS_GUARD`
 - path: `src_custom/activated_effects/gravekeepers_guard.c`
 - L85: FLIP trigger needs flip hook.
+
+### `GRAVEKEEPERS_SPEAR_SOLDIER`
+- path: `src_custom/activated_effects/gravekeepers_spear_soldier.c`
+- L12: piercing battle damage needs battle damage gate. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
 
 ### `GRAVEKEEPERS_SPY`
 - path: `src_custom/activated_effects/gravekeepers_spy.c`
@@ -1551,6 +1575,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `LEVIA_DRAGON_DAEDALUS`
 - path: `src_custom/activated_effects/levia_dragon_daedalus.c`
 - L124: walk gDuel.board directly; gFixedZones column order differs on opponent rows, so row/col checks against gMonEffect can skip the wrong slot.
+
+### `MAGICAL_PLANT_MANDRAGOLA`
+- path: `src_custom/activated_effects/magical_plant_mandragola.c`
+- L12: FLIP place Spell Counters needs flip + counter storage. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
 
 ### `MAGNA_DRAGO`
 - path: `src_custom/activated_effects/magna_drago.c`
@@ -1619,9 +1647,21 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/tornado_bird.c`
 - L85: FLIP trigger needs flip hook. Ceiling: once via usage.
 
+### `TROOP_DRAGON`
+- path: `src_custom/activated_effects/troop_dragon.c`
+- L21: battle-destroy→GY trigger. Ceiling: once via usage.
+
 ### `TYRANNO_INFINITY`
 - path: `src_custom/activated_effects/tyranno_infinity.c`
 - L52: original ATK = banished Dinos×1000 needs permanent overlay. Ceiling: OPT stages ≈ (count×1000)/500.
+
+### `VENOM_BOA`
+- path: `src_custom/activated_effects/venom_boa.c`
+- L87: cannot-attack-this-turn needs attack gate on unk4.
+
+### `VENOM_SNAKE`
+- path: `src_custom/activated_effects/venom_snake.c`
+- L87: cannot-attack-this-turn needs attack gate on unk4.
 
 ### `WARM_WORM`
 - path: `src_custom/activated_effects/warm_worm.c`

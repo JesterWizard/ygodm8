@@ -1,0 +1,83 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "DARK_BLADE_THE_DRAGON_KNIGHT",
+      "card_name": "Dark Blade the Dragon Knight",
+      "kind": "activated",
+      "archetype": "DARK",
+      "path": "src_custom/activated_effects/dark_blade_the_dragon_knight.c",
+      "effect_text": "Dark Blade + Pitch-Dark Dragon Each time this card inflicts Battle Damage to your opponent, you can select up to 3 Monster Cards from your opponent's Graveyard and remove them from play.",
+      "tags": [
+        "burn",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LYRILUSC_INDEPENDENT_NIGHTINGALE",
+      "clone_path": "src_custom/activated_effects/lyrilusc_independent_nightingale.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "WARRIOR_OF_ATLANTIS",
+      "card_name": "Warrior of Atlantis",
+      "kind": "activated",
+      "archetype": "WARRIOR",
+      "path": "src_custom/activated_effects/warrior_of_atlantis.c",
+      "effect_text": "You can discard this card to the Graveyard; add 1 A Legendary Ocean from your Deck to your hand. You can discard this card to the Graveyard; add 1 A Legendary Ocean from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MASK_OF_DARKNESS",
+      "clone_path": "src_custom/activated_effects/mask_of_darkness.c",
+      "clone_score": 0.33
+    },
+    {
+      "card_const": "GRAVEKEEPERS_SPEAR_SOLDIER",
+      "card_name": "Gravekeeper's Spear Soldier",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_spear_soldier.c",
+      "effect_text": "If this card attacks a Defense Position monster, inflict piercing Battle Damage to your opponent. If this card attacks a Defense Position monster, inflict piercing Battle Damage to your opponent.",
+      "tags": [
+        "burn",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_CURSE",
+      "clone_path": "src_custom/activated_effects/gravekeepers_curse.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "TROOP_DRAGON",
+      "card_name": "Troop Dragon",
+      "kind": "activated",
+      "archetype": "TROOP",
+      "path": "src_custom/activated_effects/troop_dragon.c",
+      "effect_text": "If this card is destroyed by battle and sent to the GY: Special Summon 1 \"Troop Dragon\" from your Deck. If this card is destroyed by battle and sent to the GY: Special Summon 1 Troop Dragon from your Deck.",
+      "tags": [
+        "deck",
+        "gy",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "NIMBLE_MOMONGA",
+      "clone_path": "src_custom/activated_effects/nimble_momonga.c",
+      "clone_score": 0.75
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MAGICAL_PLANT_MANDRAGOLA",
+      "card_name": "Magical Plant Mandragola",
+      "kind": "activated",
+      "archetype": "MAGICAL",
+      "path": "src_custom/activated_effects/magical_plant_mandragola.c",
+      "effect_text": "FLIP: Place 1 Spell Counter on each face-up card you can place a Spell Counter on. FLIP: Place 1 Spell Counter on each face-up card on the field that you can place a Spell Counter on.",
+      "tags": [
+        "faceup"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "THE_CALCULATOR",
+      "clone_path": "src_custom/activated_effects/the_calculator.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "DESTINY_HERO_MALICIOUS",
+      "card_name": "Destiny HERO - Malicious",
+      "kind": "activated",
+      "archetype": "DESTINY_HERO",
+      "path": "src_custom/activated_effects/destiny_hero_malicious.c",
+      "effect_text": "You can banish this card from your GY; Special Summon 1 Destiny HERO - Malicious from your Deck. You can banish this card from your GY; Special Summon 1 Destiny HERO - Malicious from your Deck.",
+      "tags": [
+        "deck",
+        "gy",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "NIMBLE_MOMONGA",
+      "clone_path": "src_custom/activated_effects/nimble_momonga.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "VENOM_SNAKE",
+      "card_name": "Venom Snake",
+      "kind": "activated",
+      "archetype": "VENOM",
+      "path": "src_custom/activated_effects/venom_snake.c",
+      "effect_text": "OPT: place 1 Venom Counter; cannot attack. Once per turn, you can place 1 Venom Counter on 1 monster your opponent controls. If you activate this effect, this card cannot attack during this turn.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 0.85
+    },
+    {
+      "card_const": "VENOM_BOA",
+      "card_name": "Venom Boa",
+      "kind": "activated",
+      "archetype": "VENOM",
+      "path": "src_custom/activated_effects/venom_boa.c",
+      "effect_text": "OPT: place 2 Venom Counters; cannot attack. Once per turn, you can place 2 Venom Counters on 1 monster your opponent controls. If you activate this effect, this card cannot attack during this turn.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 0.85
+    }
+  ]
+}
