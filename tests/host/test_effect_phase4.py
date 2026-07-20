@@ -27,11 +27,13 @@ class TestEffectPhase4(unittest.TestCase):
 
     def test_scripts_table(self):
         src = read("src_custom/effect_system/effect_scripts.c")
-        self.assertIn("ONE_DAY_OF_PEACE", src)
-        self.assertIn("POT_OF_GREED", src)
-        self.assertIn("GRAND_CONVERGENCE", src)
-        self.assertIn("sEffectScripts", src)
-        self.assertIn("TrySpiritOfThePotOfGreedAfterPotOfGreed", src)
+        table = read("src_custom/generated/effect_scripts_table.inc")
+        self.assertIn('../generated/effect_scripts_table.inc', src)
+        self.assertIn("ONE_DAY_OF_PEACE", table)
+        self.assertIn("POT_OF_GREED", table)
+        self.assertIn("GRAND_CONVERGENCE", table)
+        self.assertIn("sEffectScripts", table)
+        self.assertIn("TrySpiritOfThePotOfGreedAfterPotOfGreed", table)
 
     def test_dispatch_uses_scripts(self):
         src = read("src_custom/effect_system/effect_dispatch.c")

@@ -22,6 +22,7 @@
 #include "elemental_hero_gaia.h"
 #include "harpie_lady_1.h"
 #include "elemental_hero_inferno.h"
+#include "effect_events.h"
 #include "skyscraper.h"
 #include "the_tripper_mercury.h"
 #include "the_wicked_dreadroot.h"
@@ -647,6 +648,11 @@ void RefreshPendingBattleActionStatsFromZones(void)
           zone, &sActionData.opponentCardAtkOrLifePointsMod,
           &sActionData.opponentCardDefense, &sActionData.opponentCardAttribute);
   }
+
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_DAMAGE_CALC, sActionData.playerCardId,
+                         sActionData.playerCardId != CARD_NONE
+                             ? gFixedZones[sActionData.playerMonsterRow][sActionData.unkA]
+                             : NULL);
 
   ApplyElementalHeroInfernoBattleAtkBoost();
   ApplySkyscraperBattleAtkBoost();

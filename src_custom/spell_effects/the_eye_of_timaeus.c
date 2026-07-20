@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -23,10 +24,7 @@ static const u8 sEyeOfTimaeusPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_FUSION_SUMMON,
 };
 
-/* ponytail: OPT bit never cleared mid-duel without turn_effect reset hook.
- * Ceiling: blocks 2nd Eye of Timaeus only until soft-reset / new duel BSS;
- * upgrade: turn_effect Standby → sEyeOfTimaeusUsedThisTurn = 0. */
-static u8 sEyeOfTimaeusUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 ActiveMonsterFixedRow(void)
 {
@@ -152,7 +150,7 @@ static u8 HasEyeOfTimaeusTarget(void)
 
 static u8 CanActivateEyeOfTimaeus(void)
 {
-  if (sEyeOfTimaeusUsedThisTurn)
+  if (EffectOpt_IsUsed(THE_EYE_OF_TIMAEUS))
     return FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
@@ -252,7 +250,7 @@ static void ExecuteEyeOfTimaeus(struct DuelCard *materialZone, const struct Fusi
   ElementalHeroAbsoluteZero_EndSuppressLeave();
   UpdateDuelGfxExceptField();
 
-  sEyeOfTimaeusUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(THE_EYE_OF_TIMAEUS);
 
   /* ponytail: "also always treated as Legendary Dragon Timaeus" name-treat needs
    * a name-alias outside this file. Ceiling: fusion via listed DM material only;

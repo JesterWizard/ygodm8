@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -39,7 +40,7 @@ static const u8 sHermosPickLabels[] APPEND_RODATA = {
 
 /* ponytail: OPT needs turn-scoped flag cleared outside this file.
  * Ceiling: multiple Claw per turn until soft-reset; upgrade: Standby clear. */
-static u8 sClawUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 static u16 sHermosChosenFusion APPEND_DATA = {0};
 static u8 sHermosRequiredType APPEND_DATA = {0};
 
@@ -169,7 +170,7 @@ static u8 CanActivateClawOfHermos(void)
 {
   u16 targets[ARRAY_COUNT(sHermosFusions)];
 
-  if (sClawUsedThisTurn)
+  if (EffectOpt_IsUsed(THE_CLAW_OF_HERMOS))
     return FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
@@ -301,7 +302,7 @@ static void FinishHermosSummon(void)
   if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, sHermosChosenFusion, opts) != DUEL_ACTION_OK)
     return;
 
-  sClawUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(THE_CLAW_OF_HERMOS);
 }
 
 static void CancelHermosTargeting(void)

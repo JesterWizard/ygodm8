@@ -14,6 +14,8 @@ enum EffectEventId {
   EFFECT_EVENT_ON_DAMAGE_CALC,
   EFFECT_EVENT_ON_TURN_STANDBY,
   EFFECT_EVENT_ON_LEAVE_FIELD,
+  /* Monster row composition changed (NotifyFixedMonsterRowChanged). */
+  EFFECT_EVENT_ON_FIELD_CHANGE,
   EFFECT_EVENT_COUNT
 };
 
@@ -35,6 +37,9 @@ typedef void (*EffectEventHandler)(const struct EffectEvent *ev);
 void EffectEvent_Subscribe(u8 eventId, EffectEventHandler handler);
 void EffectEvent_Emit(const struct EffectEvent *ev);
 void EffectEvent_EmitSimple(u8 eventId, u16 cardId, struct DuelCard *zone);
+
+/* Lazy-init: subscribe field-continuous checks to ON_FIELD_CHANGE. */
+void EffectEvent_EnsureInit(void);
 
 /* Turn-boundary: clear OPT bits and emit ON_TURN_STANDBY. */
 void EffectEvent_OnTurnBoundary(void);

@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -20,7 +21,7 @@ static const u8 sMorphConvPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-static u8 sMorphConverterUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 static u16 sMorphConverterExcludeId APPEND_DATA = {0};
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
@@ -230,7 +231,7 @@ static void MorphConverterOnTarget(u8 fixedRow, u8 fixedCol)
   else
     ResolveAttackPosition(zone);
 
-  sMorphConverterUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(MORPHTRONIC_CONVERTER);
   UpdateDuelGfxExceptField();
 }
 
@@ -262,7 +263,7 @@ static u8 MorphConverterAiPick(u8 *outRow, u8 *outCol)
 
 u8 CanActivateMORPHTRONIC_CONVERTER(void)
 {
-  if (sMorphConverterUsedThisTurn)
+  if (EffectOpt_IsUsed(MORPHTRONIC_CONVERTER))
     return FALSE;
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;

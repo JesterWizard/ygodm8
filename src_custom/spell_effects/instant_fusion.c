@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -22,10 +23,7 @@ static const u8 sInstantFusionPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-/* ponytail: OPT bit never cleared mid-duel without turn_effect reset hook.
- * Ceiling: blocks 2nd Instant Fusion only until soft-reset / new duel BSS;
- * upgrade: turn_effect Standby → sInstantFusionUsedThisTurn = 0. */
-static u8 sInstantFusionUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u16 *ActiveExtraDeck(void)
 {
@@ -180,7 +178,7 @@ static u8 CanActivateInstantFusion(void)
 {
   u16 targets[EXTRA_DECK_SIZE];
 
-  if (sInstantFusionUsedThisTurn)
+  if (EffectOpt_IsUsed(INSTANT_FUSION))
     return FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
@@ -235,7 +233,7 @@ static void INSTANT_FUSION_ResolveBody(void)
   if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, chosenId, opts) != DUEL_ACTION_OK)
     return;
 
-  sInstantFusionUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(INSTANT_FUSION);
 
   /* ponytail: End Phase destroy of the Instant Fusion monster needs a turn_effect
    * hook outside this file (no in-file End Phase destroy queue without BSS mark).

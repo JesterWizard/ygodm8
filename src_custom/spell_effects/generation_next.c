@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -28,7 +29,7 @@ static const u8 sGenerationNextPickLabels[] APPEND_RODATA = {
 /* ponytail: OPT / same-name lock need turn-scoped flags outside this file.
  * Ceiling: multiple Generation Next / same-name activate allowed; upgrade:
  * BSS turn bit + last-chosen cardId lock checked at activation. */
-static u8 sGenerationNextUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -147,7 +148,7 @@ static u8 CanActivateGenerationNext(void)
 {
   u16 gap = ActiveLpGap();
 
-  if (sGenerationNextUsedThisTurn)
+  if (EffectOpt_IsUsed(GENERATION_NEXT))
     return FALSE;
 
   if (gap == 0)
@@ -465,7 +466,7 @@ static void GENERATION_NEXT_ResolveBody(void)
       return;
   }
 
-  sGenerationNextUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(GENERATION_NEXT);
   UpdateDuelGfxExceptField();
 }
 

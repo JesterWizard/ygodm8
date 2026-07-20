@@ -1657,10 +1657,9 @@ void Duel_NotifyFixedMonsterRowChanged(u8 fixedRow)
   if (!Duel_IsFixedMonsterRow(fixedRow))
     return;
 
-  /* ponytail: opponent AI may call sub_8040EF0 after CopyCard and wipe text shown
-   * mid-action; player-turn notifies can flip immediately. */
-  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
-    RivalryOfWarlords_CheckAfterFieldChange();
+  /* Field-continuous checks (Rivalry / Level Limit / Amazoness Tiger / Ring)
+   * subscribe to ON_FIELD_CHANGE via EffectEvent_EnsureInit. */
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 }
 
 void Duel_NotifyMonsterZoneChanged(struct DuelCard *zone)

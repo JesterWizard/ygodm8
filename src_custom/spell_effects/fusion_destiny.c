@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -16,10 +17,7 @@
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyard);
 void UpdateDuelGfxExceptField(void);
 
-/* ponytail: OPT flag never clears without a turn-end hook outside this file.
- * Ceiling: once per duel after first activation; upgrade: turn_effect_hooks
- * End Phase / turn-start → sFusionDestinyUsedThisTurn = 0. */
-static u8 sFusionDestinyUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
 
@@ -167,7 +165,7 @@ static u8 CanActivateFusionDestiny(void)
   u8 sourceCount;
   u8 feasibleIndices[8];
 
-  if (sFusionDestinyUsedThisTurn)
+  if (EffectOpt_IsUsed(FUSION_DESTINY))
     return FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
@@ -341,7 +339,7 @@ static void ExecuteFusionDestiny(const struct FusionRecipe *recipe,
   FusionDuel_SpecialSummonResult(recipe->result, selectedCount);
   ElementalHeroAbsoluteZero_EndSuppressLeave();
 
-  sFusionDestinyUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(FUSION_DESTINY);
 
   /* ponytail: destroy summoned Fusion during End Phase of next turn needs a
    * turn_effect hook + 2-turn stamp outside this file. Ceiling: Fusion Summon

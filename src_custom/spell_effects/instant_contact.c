@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -25,10 +26,7 @@ static const u8 sInstantContactPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-/* ponytail: OPT bit never cleared mid-duel without turn_effect reset hook.
- * Ceiling: blocks 2nd Instant Contact only until soft-reset / new duel BSS;
- * upgrade: turn_effect Standby → sInstantContactUsedThisTurn = 0. */
-static u8 sInstantContactUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -222,7 +220,7 @@ static u8 CanActivateInstantContact(void)
 {
   u16 targets[EXTRA_DECK_SIZE];
 
-  if (sInstantContactUsedThisTurn)
+  if (EffectOpt_IsUsed(INSTANT_CONTACT))
     return FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
@@ -287,7 +285,7 @@ static void INSTANT_CONTACT_ResolveBody(void)
   if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, chosenId, opts) != DUEL_ACTION_OK)
     return;
 
-  sInstantContactUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(INSTANT_CONTACT);
 
   /* ponytail: without Neos, effects negated + End Phase return to Extra need
    * negate + turn_effect hooks outside this file. Ceiling: SS + attack-lock only

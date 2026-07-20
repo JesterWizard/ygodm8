@@ -23,6 +23,7 @@ extern u8 CanActivateANCIENT_GEAR_DRILL(void);
 extern u8 CanActivateANCIENT_GEAR_EXPLOSIVE(void);
 extern u8 CanActivateANCIENT_GEAR_FIST(void);
 extern u8 CanActivateANCIENT_GEAR_TANK(void);
+extern u8 CanActivateAncientLeaf(void);
 extern u8 CanActivateANTE(void);
 extern u8 CanActivateAQUA_JET(void);
 extern u8 CanActivateAutonomousActionUnit(void);
@@ -132,6 +133,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { ANCIENT_GEAR_EXPLOSIVE, CanActivateANCIENT_GEAR_EXPLOSIVE, TRUE },
   { ANCIENT_GEAR_FIST, CanActivateANCIENT_GEAR_FIST, TRUE },
   { ANCIENT_GEAR_TANK, CanActivateANCIENT_GEAR_TANK, TRUE },
+  { ANCIENT_LEAF, CanActivateAncientLeaf, TRUE },
   { ANTE, CanActivateANTE, TRUE },
   { AQUA_JET, CanActivateAQUA_JET, TRUE },
   { AUTONOMOUS_ACTION_UNIT, CanActivateAutonomousActionUnit, TRUE },

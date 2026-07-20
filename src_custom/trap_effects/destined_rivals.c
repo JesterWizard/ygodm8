@@ -1,12 +1,13 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 
 void UpdateDuelGfxExceptField(void);
 
-static u8 sDestinedRivalsUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 ControlsBlueEyesOrDarkMagician(void)
 {
@@ -32,7 +33,7 @@ APPEND_TEXT void EffectDESTINED_RIVALS(void)
 
   Duel_ShowTrapResponseText(DESTINED_RIVALS, gTrapEffectData.originCardId);
 
-  if (sDestinedRivalsUsedThisTurn || !ControlsBlueEyesOrDarkMagician()) {
+  if (EffectOpt_IsUsed(DESTINED_RIVALS) || !ControlsBlueEyesOrDarkMagician()) {
     Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                      INACTIVE_DUELIST, FALSE);
     return;
@@ -45,7 +46,7 @@ APPEND_TEXT void EffectDESTINED_RIVALS(void)
       zone->effectExhausted = TRUE;
   }
 
-  sDestinedRivalsUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(DESTINED_RIVALS);
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();

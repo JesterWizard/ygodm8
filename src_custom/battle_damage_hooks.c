@@ -281,8 +281,6 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     }
   }
 
-  /* ponytail: damage-calc ATK boosts still need per-card Apply* hooks; emit
-   * EFFECT_EVENT_ON_DAMAGE_CALC from those sites when migrating. */
   MarkVampireBabyBattleDestruction(
       sActionData.playerCardId, sActionData.opponentCardId, sActionData.flags);
   if (sActionData.flags & 4)

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -17,7 +18,7 @@ static const u8 sContactGatePickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-static u8 sContactGateUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -275,7 +276,7 @@ u8 CanActivateCONTACT_GATE(void)
 {
   u16 ids[2];
 
-  if (sContactGateUsedThisTurn)
+  if (EffectOpt_IsUsed(CONTACT_GATE))
     return FALSE;
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
@@ -330,7 +331,7 @@ static void CONTACT_GATE_ResolveBody(void)
       return;
   }
 
-  sContactGateUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(CONTACT_GATE);
   UpdateDuelGfxExceptField();
 
   /* ponytail: ED Fusion-only lock + GY ignition (banish this → SS banished Neo)

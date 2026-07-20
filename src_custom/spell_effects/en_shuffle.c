@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -12,10 +13,7 @@
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 
-/* ponytail: OPT flags never clear without a turn-end hook outside this file.
- * Ceiling: once per duel after first field use; upgrade: turn_effect_hooks
- * End Phase / turn-start → sEnShuffleFieldUsedThisTurn = 0. */
-static u8 sEnShuffleFieldUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 static u16 sEnShuffleExcludeId APPEND_DATA = {0};
 
 static const char sNeoSpacianName[] APPEND_RODATA = "Neo-Spacian";
@@ -109,7 +107,7 @@ static u8 DeckHasDifferentNameSummon(u16 excludeId)
 
 static u8 CanActivateEnShuffle(void)
 {
-  if (sEnShuffleFieldUsedThisTurn)
+  if (EffectOpt_IsUsed(EN_SHUFFLE))
     return FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
@@ -238,7 +236,7 @@ static void FinishEnShuffle(u8 fixedRow, u8 fixedCol)
   NotifyDynamicEquipFieldChanged();
   Duel_CheckLevelLimitAreaBAfterFieldChange();
   Duel_CheckLevelLimitAreaAAfterFieldChange();
-  sEnShuffleFieldUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(EN_SHUFFLE);
 
   if (IsDuelOver() == TRUE)
     return;

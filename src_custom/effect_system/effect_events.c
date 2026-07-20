@@ -11,6 +11,33 @@ extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
 extern u16 gEffectOptUsedIds[EFFECT_OPT_MAX_CARDS];
 extern u8 gEffectOptUsedCount;
 
+static u8 sEffectEventsInited APPEND_DATA = {0};
+
+static void EffectEvent_OnFieldChangeHandler(const struct EffectEvent *ev)
+{
+  (void)ev;
+
+  Duel_CheckLevelLimitAreaBAfterFieldChange();
+  Duel_CheckLevelLimitAreaAAfterFieldChange();
+  Duel_CheckAmazonessTigerAfterFieldChange();
+
+  /* Rivalry text flips: match prior NotifyFixedMonsterRowChanged gate. */
+  if (gHideEffectText || WhoseTurn() != DUEL_PLAYER)
+    return;
+
+  Duel_CheckRivalryOfWarlordsAfterFieldChange();
+  Duel_CheckRingOfDestructionAfterFieldChange();
+}
+
+void EffectEvent_EnsureInit(void)
+{
+  if (sEffectEventsInited)
+    return;
+
+  sEffectEventsInited = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_FIELD_CHANGE, EffectEvent_OnFieldChangeHandler);
+}
+
 void EffectEvent_Subscribe(u8 eventId, EffectEventHandler handler)
 {
   u8 n;
@@ -30,6 +57,8 @@ void EffectEvent_Emit(const struct EffectEvent *ev)
 {
   u8 i;
   u8 n;
+
+  EffectEvent_EnsureInit();
 
   if (ev == NULL || ev->type >= EFFECT_EVENT_COUNT)
     return;

@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "fusion_duel.h"
@@ -15,7 +16,7 @@ void UpdateDuelGfxExceptField(void);
 /* ponytail: OPT / GY ignition (banish → Extra Deck material) need hooks outside
  * this file. Ceiling: field Fusion only once per BSS; upgrade: turn_effect reset
  * + GY ignition → mark Amazoness Extra material flag. */
-static u8 sAmazonessSecretArtsUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 RecipeIsAmazonessFusion(const struct FusionRecipe *recipe)
 {
@@ -83,7 +84,7 @@ static void RunPlayerAmazonessSecretArtsFlow(void)
   u8 feasibleCount;
   const struct FusionRecipe *recipe;
 
-  if (sAmazonessSecretArtsUsedThisTurn) {
+  if (EffectOpt_IsUsed(AMAZONESS_SECRET_ARTS)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
@@ -115,7 +116,7 @@ static void RunPlayerAmazonessSecretArtsFlow(void)
     return;
 
   FusionDuel_ExecutePolymerization(recipe, sources, sourceCount, AMAZONESS_SECRET_ARTS, FALSE);
-  sAmazonessSecretArtsUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(AMAZONESS_SECRET_ARTS);
 }
 
 static void AMAZONESS_SECRET_ARTS_ResolveBody(void)
@@ -125,7 +126,7 @@ static void AMAZONESS_SECRET_ARTS_ResolveBody(void)
     u8 sourceCount;
     s8 bestIdx;
 
-    if (sAmazonessSecretArtsUsedThisTurn) {
+    if (EffectOpt_IsUsed(AMAZONESS_SECRET_ARTS)) {
       if (!gHideEffectText)
         PlayMusic(SFX_FORBIDDEN);
       return;
@@ -147,7 +148,7 @@ static void AMAZONESS_SECRET_ARTS_ResolveBody(void)
 
     FusionDuel_ExecutePolymerization(&gFusionRecipes[bestIdx], sources, sourceCount,
                                      AMAZONESS_SECRET_ARTS, TRUE);
-    sAmazonessSecretArtsUsedThisTurn = TRUE;
+    EffectOpt_MarkUsed(AMAZONESS_SECRET_ARTS);
     return;
   }
 

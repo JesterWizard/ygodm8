@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -14,10 +15,7 @@
 
 void UpdateDuelGfxExceptField(void);
 
-/* ponytail: OPT flag never clears without a turn-end hook outside this file.
- * Ceiling: once per duel after first activation; upgrade: turn_effect_hooks
- * End Phase / turn-start → sFusionDeploymentUsedThisTurn = 0. */
-static u8 sFusionDeploymentUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static const u8 sFusionDeploymentPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -318,7 +316,7 @@ static u8 CanActivateFusionDeployment(void)
   u8 savedDeckMenu[sizeof(gDeckMenu)];
   u8 menuCount;
 
-  if (sFusionDeploymentUsedThisTurn)
+  if (EffectOpt_IsUsed(FUSION_DEPLOYMENT))
     return FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
@@ -359,7 +357,7 @@ static void FUSION_DEPLOYMENT_ResolveBody(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  sFusionDeploymentUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(FUSION_DEPLOYMENT);
 
   if (SpecialSummonMaterialFromHandOrDeck(materialId) == DUEL_ACTION_DUEL_OVER)
     return;

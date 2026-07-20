@@ -1,13 +1,14 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
 
-static u8 sPhoenixFormationUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 IsHarpieLadyOrSisters(u16 cardId)
 {
@@ -39,7 +40,7 @@ u8 CanActivateHARPIE_LADY_PHOENIX_FORMATION(void)
 {
   u8 col;
 
-  if (sPhoenixFormationUsedThisTurn)
+  if (EffectOpt_IsUsed(HARPIE_LADY_PHOENIX_FORMATION))
     return FALSE;
   if (CountHarpieLadyOrSisters() < 3)
     return FALSE;
@@ -97,7 +98,7 @@ static void HARPIE_LADY_PHOENIX_FORMATION_ResolveBody(void)
       return;
   }
 
-  sPhoenixFormationUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(HARPIE_LADY_PHOENIX_FORMATION);
   UpdateDuelGfxExceptField();
 
   /* ponytail: cannot SS from Main/Extra Deck + cannot conduct Battle Phase this

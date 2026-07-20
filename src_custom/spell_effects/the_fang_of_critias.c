@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "exchange_hand_selection.h"
@@ -18,10 +19,7 @@ u8 ExtraDeck_TryRemoveCard(u16 cardId);
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
 
-/* ponytail: OPT bit never cleared mid-duel without turn_effect reset hook.
- * Ceiling: blocks 2nd Fang only until soft-reset / new duel BSS;
- * upgrade: turn_effect Standby → sFangOfCritiasUsedThisTurn = 0. */
-static u8 sFangOfCritiasUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 struct CritiasTrapFusion {
   u16 trapId;
@@ -131,7 +129,7 @@ static u8 FieldHasCritiasTrap(void)
 
 static u8 CanActivateFangOfCritias(void)
 {
-  if (sFangOfCritiasUsedThisTurn)
+  if (EffectOpt_IsUsed(THE_FANG_OF_CRITIAS))
     return FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
@@ -262,7 +260,7 @@ static void ResolveCritiasFieldTrap(u8 fixedRow, u8 fixedCol)
   if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, fusionId, opts) != DUEL_ACTION_OK)
     return;
 
-  sFangOfCritiasUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(THE_FANG_OF_CRITIAS);
 }
 
 static void CancelCritiasFieldTargeting(void)
@@ -309,7 +307,7 @@ static void ResolveFromHand(void)
   if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, fusionId, opts) != DUEL_ACTION_OK)
     return;
 
-  sFangOfCritiasUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(THE_FANG_OF_CRITIAS);
 }
 
 static void BeginFieldTrapPick(void)

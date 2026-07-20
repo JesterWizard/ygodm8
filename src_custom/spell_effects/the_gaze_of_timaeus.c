@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -18,10 +19,7 @@ void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyard);
 void UpdateDuelGfxExceptField(void);
 u8 ExtraDeck_TryRemoveCard(u16 cardId);
 
-/* ponytail: OPT flag never clears without a turn-end hook outside this file.
- * Ceiling: once per duel after first activation; upgrade: turn_effect_hooks
- * End Phase / turn-start → sGazeOfTimaeusUsedThisTurn = 0. */
-static u8 sGazeOfTimaeusUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static const u8 sGazePickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -218,7 +216,7 @@ static u8 HasUsableGazeTarget(void)
   u16 fusions[EXTRA_DECK_SIZE];
   u8 i;
 
-  if (sGazeOfTimaeusUsedThisTurn)
+  if (EffectOpt_IsUsed(THE_GAZE_OF_TIMAEUS))
     return FALSE;
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
@@ -385,7 +383,7 @@ static void ExecuteGazeFusion(const struct FusionMaterialSource *source, u16 res
   ElementalHeroAbsoluteZero_EndSuppressLeave();
   UpdateDuelGfxExceptField();
 
-  sGazeOfTimaeusUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(THE_GAZE_OF_TIMAEUS);
 
   /* ponytail: End Phase banish of the Fusion during the next turn needs a
    * turn_effect queue outside this file. Ceiling: Fusion SS + shuffle only;

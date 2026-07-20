@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -9,7 +10,7 @@
 
 void UpdateDuelGfxExceptField(void);
 
-static u8 sTrapTrickUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -50,7 +51,7 @@ APPEND_TEXT void EffectTRAP_TRICK(void)
 
   Duel_ShowTrapResponseText(TRAP_TRICK, gTrapEffectData.originCardId);
 
-  if (sTrapTrickUsedThisTurn) {
+  if (EffectOpt_IsUsed(TRAP_TRICK)) {
     Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                      INACTIVE_DUELIST, FALSE);
     return;
@@ -102,7 +103,7 @@ APPEND_TEXT void EffectTRAP_TRICK(void)
     }
   }
 
-  sTrapTrickUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(TRAP_TRICK);
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();

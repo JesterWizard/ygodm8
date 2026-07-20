@@ -16,7 +16,11 @@ enum EffectScriptStepOp {
   EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_ROW,
   EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL,
   EFFECT_SCRIPT_OPT_REQUIRE,
-  EFFECT_SCRIPT_OPT_MARK
+  EFFECT_SCRIPT_OPT_MARK,
+  /* a0 = EffectCondId; fail closed if no match on field. */
+  EFFECT_SCRIPT_REQUIRE_COND,
+  /* a0 = EffectCondId; destroy first match (AI / no-pick targeting). */
+  EFFECT_SCRIPT_DESTROY_FIRST_BY_COND
 };
 
 /* Metadata categories for Phase 5 AI (stable tags; sparse for now). */

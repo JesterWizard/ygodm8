@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -26,10 +27,7 @@ static const u8 sArcanaSpreadPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-/* ponytail: OPT bit never cleared mid-duel without turn_effect reset hook.
- * Ceiling: blocks 2nd Arcana Spread only until soft-reset / new duel BSS;
- * upgrade: turn_effect Standby → sArcanaSpreadUsedThisTurn = 0. */
-static u8 sArcanaSpreadUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -146,7 +144,7 @@ static u8 CanActivateArcanaSpread(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
 
-  if (sArcanaSpreadUsedThisTurn)
+  if (EffectOpt_IsUsed(ARCANA_SPREAD))
     return FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
@@ -442,7 +440,7 @@ static void ARCANA_SPREAD_ResolveBody(void)
   else
     ResolveTailsFromGy();
 
-  sArcanaSpreadUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(ARCANA_SPREAD);
   UpdateDuelGfxExceptField();
 
   /* ponytail: GY banish → add 1 coin-toss card from GY to hand needs a GY

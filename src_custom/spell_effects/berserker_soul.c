@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -12,7 +13,7 @@ void UpdateDuelGfxExceptField(void);
 #define BERSERKER_SOUL_DAMAGE 500
 #define BERSERKER_SOUL_MAX_REPEATS 8
 
-static u8 sBerserkerSoulUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -55,7 +56,7 @@ u8 CanActivateBERSERKER_SOUL(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
 
-  if (sBerserkerSoulUsedThisTurn)
+  if (EffectOpt_IsUsed(BERSERKER_SOUL))
     return FALSE;
   if (!HandHasAnyCard())
     return FALSE;
@@ -103,7 +104,7 @@ static void BERSERKER_SOUL_ResolveBody(void)
       return;
   }
 
-  sBerserkerSoulUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(BERSERKER_SOUL);
   UpdateDuelGfxExceptField();
 }
 

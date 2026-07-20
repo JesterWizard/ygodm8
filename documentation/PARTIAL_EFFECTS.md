@@ -9,22 +9,22 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-20 22:03 UTC  
-**Remaining partials:** `874`
+**Last updated:** 2026-07-20 22:17 UTC  
+**Remaining partials:** `872`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 185 |
+| `spell` | 183 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
 | `battle` | 5 |
 | `turn` | 3 |
-| **total** | **874** |
+| **total** | **872** |
 
-## spell (185)
+## spell (183)
 
 ### `ALLURING_MIRROR_SPLIT`
 - path: `src_custom/spell_effects/alluring_mirror_split.c`
@@ -48,7 +48,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AMAZONESS_SECRET_ARTS`
 - path: `src_custom/spell_effects/amazoness_secret_arts.c`
-- L15: OPT / GY ignition (banish → Extra Deck material) need hooks outside this file. Ceiling: field Fusion only once per BSS; upgrade: turn_effect reset + GY ignition → mark Amazoness Extra material flag.
+- L16: OPT / GY ignition (banish → Extra Deck material) need hooks outside this file. Ceiling: field Fusion only once per BSS; upgrade: turn_effect reset + GY ignition → mark Amazoness Extra material flag.
 
 ### `AMAZONESS_VILLAGE`
 - path: `src_custom/spell_effects/amazoness_village.c`
@@ -92,9 +92,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ARCANA_SPREAD`
 - path: `src_custom/spell_effects/arcana_spread.c`
-- L29: OPT bit never cleared mid-duel without turn_effect reset hook. Ceiling: blocks 2nd Arcana Spread only until soft-reset / new duel BSS; upgrade: turn_effect Standby → sArcanaSpreadUsedThisTurn = 0.
-- L173: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L448: GY banish → add 1 coin-toss card from GY to hand needs a GY ignition path outside this spell file (no in-file graveyard activation). Ceiling: on-field coin SS only; upgrade: GY activate → banish ARCANA_SPREAD then DeckMenu pick IsCoinTossCard from GY → add to hand (OPT shared).
+- L171: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
+- L446: GY banish → add 1 coin-toss card from GY to hand needs a GY ignition path outside this spell file (no in-file graveyard activation). Ceiling: on-field coin SS only; upgrade: GY activate → banish ARCANA_SPREAD then DeckMenu pick IsCoinTossCard from GY → add to hand (OPT shared).
 
 ### `ARCANE_BARRIER`
 - path: `src_custom/spell_effects/arcane_barrier.c`
@@ -127,7 +126,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `BERSERKER_SOUL`
 - path: `src_custom/spell_effects/berserker_soul.c`
-- L74: printed trigger is direct-attack damage ≤1500 — no battle-damage hook in-file. Ceiling: activatable as Normal Spell when hand+deck available; upgrade: battle_effects after direct dmg ≤1500 → allow activation.
+- L75: printed trigger is direct-attack damage ≤1500 — no battle-damage hook in-file. Ceiling: activatable as Normal Spell when hand+deck available; upgrade: battle_effects after direct dmg ≤1500 → allow activation.
 
 ### `BIG_BANG_SHOT`
 - path: `src_custom/spell_effects/big_bang_shot.c`
@@ -216,7 +215,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CONTACT_GATE`
 - path: `src_custom/spell_effects/contact_gate.c`
-- L336: ED Fusion-only lock + GY ignition (banish this → SS banished Neo) need hooks outside this file. Ceiling: field SS path only.
+- L337: ED Fusion-only lock + GY ignition (banish this → SS banished Neo) need hooks outside this file. Ceiling: field SS path only.
 
 ### `CONTINUOUS_DESTRUCTION_PUNCH`
 - path: `src_custom/spell_effects/continuous_destruction_punch.c`
@@ -336,13 +335,12 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EN_ENGAGE_NEO_SPACE`
 - path: `src_custom/spell_effects/en_engage_neo_space.c`
-- L312: 1 stage ~= 500 ATK so +2 ≈ +1000.
-- L324: ED Fusion-only SS lock this turn needs SpecialSummon gate outside this file. Ceiling: no lock; upgrade: turn flag → ED non-Fusion blocked.
+- L313: 1 stage ~= 500 ATK so +2 ≈ +1000.
+- L325: ED Fusion-only SS lock this turn needs SpecialSummon gate outside this file. Ceiling: no lock; upgrade: turn flag → ED non-Fusion blocked.
 
 ### `EN_SHUFFLE`
 - path: `src_custom/spell_effects/en_shuffle.c`
-- L15: OPT flags never clear without a turn-end hook outside this file. Ceiling: once per duel after first field use; upgrade: turn_effect_hooks End Phase / turn-start → sEnShuffleFieldUsedThisTurn = 0.
-- L311: GY ignition (banish this; shuffle E-HERO+Neo OR Neos from GY → Deck, draw 1) needs a GY-activate spell path outside this file. Ceiling: on-field shuffle+SS only; upgrade: GY activate → banish EN_SHUFFLE → return pair/Neos → Duel_DrawCards(1).
+- L309: GY ignition (banish this; shuffle E-HERO+Neo OR Neos from GY → Deck, draw 1) needs a GY-activate spell path outside this file. Ceiling: on-field shuffle+SS only; upgrade: GY activate → banish EN_SHUFFLE → return pair/Neos → Duel_DrawCards(1).
 
 ### `EN_WAVE`
 - path: `src_custom/spell_effects/en_wave.c`
@@ -395,15 +393,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `FUSION_DEPLOYMENT`
 - path: `src_custom/spell_effects/fusion_deployment.c`
-- L17: OPT flag never clears without a turn-end hook outside this file. Ceiling: once per duel after first activation; upgrade: turn_effect_hooks End Phase / turn-start → sFusionDeploymentUsedThisTurn = 0.
-- L118: Extra Deck disabled — browse gFusionRecipes results instead. Ceiling: not a real ED reveal; upgrade: require enable_extra_deck.
-- L367: "cannot Special Summon from Extra Deck except Fusion Monsters this turn" needs a summon-lock flag outside this file (no in-file Extra Deck summon gate). Ceiling: SS material only; upgrade: turn flag → Extra Deck SS gate allows only FUSION_CARD results while set.
+- L116: Extra Deck disabled — browse gFusionRecipes results instead. Ceiling: not a real ED reveal; upgrade: require enable_extra_deck.
+- L365: "cannot Special Summon from Extra Deck except Fusion Monsters this turn" needs a summon-lock flag outside this file (no in-file Extra Deck summon gate). Ceiling: SS material only; upgrade: turn flag → Extra Deck SS gate allows only FUSION_CARD results while set.
 
 ### `FUSION_DESTINY`
 - path: `src_custom/spell_effects/fusion_destiny.c`
-- L19: OPT flag never clears without a turn-end hook outside this file. Ceiling: once per duel after first activation; upgrade: turn_effect_hooks End Phase / turn-start → sFusionDestinyUsedThisTurn = 0.
-- L346: destroy summoned Fusion during End Phase of next turn needs a turn_effect hook + 2-turn stamp outside this file. Ceiling: Fusion Summon only; upgrade: mark result zone / BSS turn counter → End Phase destroy.
-- L350: "cannot Special Summon except DARK HERO" this turn needs a summon lock flag outside this file (ATTRIBUTE_SHADOW + name contains HERO). Ceiling: no SS lock; upgrade: turn flag → SpecialSummon gate allows only DARK HERO while set.
+- L344: destroy summoned Fusion during End Phase of next turn needs a turn_effect hook + 2-turn stamp outside this file. Ceiling: Fusion Summon only; upgrade: mark result zone / BSS turn counter → End Phase destroy.
+- L348: "cannot Special Summon except DARK HERO" this turn needs a summon lock flag outside this file (ATTRIBUTE_SHADOW + name contains HERO). Ceiling: no SS lock; upgrade: turn flag → SpecialSummon gate allows only DARK HERO while set.
 
 ### `FUSION_GATE`
 - path: `src_custom/spell_effects/fusion_gate.c`
@@ -426,9 +422,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GENERATION_NEXT`
 - path: `src_custom/spell_effects/generation_next.c`
-- L28: OPT / same-name lock need turn-scoped flags outside this file. Ceiling: multiple Generation Next / same-name activate allowed; upgrade: BSS turn bit + last-chosen cardId lock checked at activation.
-- L171: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L197: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L29: OPT / same-name lock need turn-scoped flags outside this file. Ceiling: multiple Generation Next / same-name activate allowed; upgrade: BSS turn bit + last-chosen cardId lock checked at activation.
+- L172: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L198: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `GLADIATOR_BEAST_BATTLE_HALBERD`
 - path: `src_custom/spell_effects/gladiator_beast_battle_halberd.c`
@@ -466,13 +462,12 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `HARPIE_LADY_PHOENIX_FORMATION`
 - path: `src_custom/spell_effects/harpie_lady_phoenix_formation.c`
-- L103: cannot SS from Main/Extra Deck + cannot conduct Battle Phase this turn need summon/phase gates outside this file. Ceiling: destroy+burn only.
+- L104: cannot SS from Main/Extra Deck + cannot conduct Battle Phase this turn need summon/phase gates outside this file. Ceiling: destroy+burn only.
 
 ### `HARPIES_FEATHER_REST`
 - path: `src_custom/spell_effects/harpies_feather_rest.c`
-- L15: OPT bit never cleared mid-duel without turn_effect reset hook. Ceiling: blocks 2nd Rest only until soft-reset / new duel BSS; upgrade: turn_effect Standby → sHarpiesFeatherRestUsedThisTurn = 0.
-- L143: no multi-select GY UI — return 3 most recent Harpie Lady / Harpie Lady Sisters. Ceiling: no targeting; upgrade: DeckMenu multi-pick.
-- L188: "cannot Special Summon except WIND for the rest of this turn" needs a Special Summon lock hook outside this file (ArchlordKristya-style attribute gate). Ceiling: no SS lock after resolve; upgrade: turn flag → Duel_SpecialSummon* reject non-ATTRIBUTE_WIND until End Phase clear.
+- L141: no multi-select GY UI — return 3 most recent Harpie Lady / Harpie Lady Sisters. Ceiling: no targeting; upgrade: DeckMenu multi-pick.
+- L186: "cannot Special Summon except WIND for the rest of this turn" needs a Special Summon lock hook outside this file (ArchlordKristya-style attribute gate). Ceiling: no SS lock after resolve; upgrade: turn flag → Duel_SpecialSummon* reject non-ATTRIBUTE_WIND until End Phase clear.
 
 ### `HARPIES_HUNTING_GROUND`
 - path: `src_custom/spell_effects/harpies_hunting_ground.c`
@@ -514,13 +509,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `INSTANT_CONTACT`
 - path: `src_custom/spell_effects/instant_contact.c`
-- L28: OPT bit never cleared mid-duel without turn_effect reset hook. Ceiling: blocks 2nd Instant Contact only until soft-reset / new duel BSS; upgrade: turn_effect Standby → sInstantContactUsedThisTurn = 0.
-- L292: without Neos, effects negated + End Phase return to Extra need negate + turn_effect hooks outside this file. Ceiling: SS + attack-lock only when Neos absent; upgrade: mark zone / turn_effect End Phase → ExtraDeck return + effect-negate while marked.
+- L290: without Neos, effects negated + End Phase return to Extra need negate + turn_effect hooks outside this file. Ceiling: SS + attack-lock only when Neos absent; upgrade: mark zone / turn_effect End Phase → ExtraDeck return + effect-negate while marked.
 
 ### `INSTANT_FUSION`
 - path: `src_custom/spell_effects/instant_fusion.c`
-- L25: OPT bit never cleared mid-duel without turn_effect reset hook. Ceiling: blocks 2nd Instant Fusion only until soft-reset / new duel BSS; upgrade: turn_effect Standby → sInstantFusionUsedThisTurn = 0.
-- L240: End Phase destroy of the Instant Fusion monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS mark). Ceiling: SS + attack-lock only; upgrade: turn_effect_hooks End Phase → destroy zone marked by Instant Fusion this turn. Treated-as-Fusion-Summon name checks also need a summon-tag outside this file.
+- L238: End Phase destroy of the Instant Fusion monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS mark). Ceiling: SS + attack-lock only; upgrade: turn_effect_hooks End Phase → destroy zone marked by Instant Fusion this turn. Treated-as-Fusion-Summon name checks also need a summon-tag outside this file.
 
 ### `INSTANT_NEO_SPACE`
 - path: `src_custom/spell_effects/instant_neo_space.c`
@@ -695,10 +688,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/oil.c`
 - L232: once-per-turn activation not tracked (no BSS turn flag editable from this spell file alone). Ceiling: can activate multiple Oils per turn; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
 
-### `ONE_DAY_OF_PEACE`
-- path: `src_custom/spell_effects/one_day_of_peace.c`
-- L25: neither player takes damage until end of opponent's next turn needs an LP/damage gate outside this file (no damage-immunity helper). Ceiling: both draw only; upgrade: turn_effect / ChangeLp hook → skip damage while One Day of Peace lock is active through opponent's next End Phase.
-
 ### `OVER_DESTINY`
 - path: `src_custom/spell_effects/over_destiny.c`
 - L326: End Phase destroy of the SS'd monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS). Ceiling: SS only; upgrade: turn_effect_hooks End Phase → destroy marked zone.
@@ -842,25 +831,22 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `THE_CLAW_OF_HERMOS`
 - path: `src_custom/spell_effects/the_claw_of_hermos.c`
-- L40: OPT needs turn-scoped flag cleared outside this file. Ceiling: multiple Claw per turn until soft-reset; upgrade: Standby clear.
-- L193: no dedicated field/hand choice UI — A = field, B = hand. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L352: Set reveal has no dedicated flip UI — send face-down as-is. Ceiling: no reveal animation; upgrade: brief face-up before GY send.
+- L41: OPT needs turn-scoped flag cleared outside this file. Ceiling: multiple Claw per turn until soft-reset; upgrade: Standby clear.
+- L194: no dedicated field/hand choice UI — A = field, B = hand. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L353: Set reveal has no dedicated flip UI — send face-down as-is. Ceiling: no reveal animation; upgrade: brief face-up before GY send.
 
 ### `THE_EYE_OF_TIMAEUS`
 - path: `src_custom/spell_effects/the_eye_of_timaeus.c`
-- L26: OPT bit never cleared mid-duel without turn_effect reset hook. Ceiling: blocks 2nd Eye of Timaeus only until soft-reset / new duel BSS; upgrade: turn_effect Standby → sEyeOfTimaeusUsedThisTurn = 0.
-- L257: "also always treated as Legendary Dragon Timaeus" name-treat needs a name-alias outside this file. Ceiling: fusion via listed DM material only; upgrade: Duel_GetEffectiveCardId / name-contains Legendary Dragon Timaeus.
+- L255: "also always treated as Legendary Dragon Timaeus" name-treat needs a name-alias outside this file. Ceiling: fusion via listed DM material only; upgrade: Duel_GetEffectiveCardId / name-contains Legendary Dragon Timaeus.
 
 ### `THE_FANG_OF_CRITIAS`
 - path: `src_custom/spell_effects/the_fang_of_critias.c`
-- L21: OPT bit never cleared mid-duel without turn_effect reset hook. Ceiling: blocks 2nd Fang only until soft-reset / new duel BSS; upgrade: turn_effect Standby → sFangOfCritiasUsedThisTurn = 0.
-- L155: no dedicated hand/field choice UI — A = hand, B = field. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L358: "always treated as Legendary Dragon Critias" name/tag needs a treat-as outside this file. Ceiling: activation + trap-send + Extra Deck SS only; upgrade: name-contains / archetype tag = Legendary Dragon Critias.
+- L153: no dedicated hand/field choice UI — A = hand, B = field. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L356: "always treated as Legendary Dragon Critias" name/tag needs a treat-as outside this file. Ceiling: activation + trap-send + Extra Deck SS only; upgrade: name-contains / archetype tag = Legendary Dragon Critias.
 
 ### `THE_GAZE_OF_TIMAEUS`
 - path: `src_custom/spell_effects/the_gaze_of_timaeus.c`
-- L21: OPT flag never clears without a turn-end hook outside this file. Ceiling: once per duel after first activation; upgrade: turn_effect_hooks End Phase / turn-start → sGazeOfTimaeusUsedThisTurn = 0.
-- L390: End Phase banish of the Fusion during the next turn needs a turn_effect queue outside this file. Ceiling: Fusion SS + shuffle only; upgrade: mark summoned zone + turn_effect End Phase (controller's next End Phase) → Duel_BanishZone. "Treated as Eye of Timaeus" name checks also need a summon-tag outside this file.
+- L388: End Phase banish of the Fusion during the next turn needs a turn_effect queue outside this file. Ceiling: Fusion SS + shuffle only; upgrade: mark summoned zone + turn_effect End Phase (controller's next End Phase) → Duel_BanishZone. "Treated as Eye of Timaeus" name checks also need a summon-tag outside this file.
 
 ### `THE_SACRED_WATERS_IN_THE_SKY`
 - path: `src_custom/spell_effects/the_sacred_waters_in_the_sky.c`
@@ -903,10 +889,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `VIPERS_REBIRTH`
 - path: `src_custom/spell_effects/vipers_rebirth.c`
 - L221: End Phase destroy of the SS'd monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS). Ceiling: SS only; upgrade: turn_effect_hooks End Phase → destroy marked zone.
-
-### `VISION_FUSION`
-- path: `src_custom/spell_effects/vision_fusion.c`
-- L18: OPT flag never clears without a turn-end hook outside this file. Ceiling: once per duel after first activation; upgrade: turn_effect_hooks End Phase / turn-start → sVisionFusionUsedThisTurn = 0.
 
 ### `WATERHAZARD`
 - path: `src_custom/spell_effects/waterhazard.c`
@@ -1065,7 +1047,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINED_RIVALS`
 - path: `src_custom/trap_effects/destined_rivals.c`
-- L53: effectExhausted until EP + OPT turn reset need End Phase / turn_effect clear. Ceiling: marks opp face-up monsters exhausted.
+- L54: effectExhausted until EP + OPT turn reset need End Phase / turn_effect clear. Ceiling: marks opp face-up monsters exhausted.
 
 ### `DOPPELGANGER`
 - path: `src_custom/trap_effects/doppelganger.c`
@@ -1382,9 +1364,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `TRAP_TRICK`
 - path: `src_custom/trap_effects/trap_trick.c`
-- L29: no Continuous/Counter trap type split — treat all traps as Normal.
-- L101: "can activate this turn" — leave unlocked.
-- L110: only 1 Trap activate rest of turn + OPT reset need gates.
+- L30: no Continuous/Counter trap type split — treat all traps as Normal.
+- L102: "can activate this turn" — leave unlocked.
+- L111: only 1 Trap activate rest of turn + OPT reset need gates.
 
 ### `TROJAN_GLADIATOR_BEAST`
 - path: `src_custom/trap_effects/trojan_gladiator_beast.c`

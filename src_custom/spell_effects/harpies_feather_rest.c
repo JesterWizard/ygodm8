@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -12,10 +13,7 @@ void UpdateDuelGfxExceptField(void);
 
 static const char sHarpieName[] APPEND_RODATA = "Harpie";
 
-/* ponytail: OPT bit never cleared mid-duel without turn_effect reset hook.
- * Ceiling: blocks 2nd Rest only until soft-reset / new duel BSS;
- * upgrade: turn_effect Standby → sHarpiesFeatherRestUsedThisTurn = 0. */
-static u8 sHarpiesFeatherRestUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -94,7 +92,7 @@ static u8 CanActivateHarpiesFeatherRest(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
 
-  if (sHarpiesFeatherRestUsedThisTurn)
+  if (EffectOpt_IsUsed(HARPIES_FEATHER_REST))
     return FALSE;
 
   if (!GraveyardExpand_IsEnabled())
@@ -180,7 +178,7 @@ static void HARPIES_FEATHER_REST_ResolveBody(void)
   if (Duel_DrawCards(ACTIVE_DUELIST, drawCount, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  sHarpiesFeatherRestUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(HARPIES_FEATHER_REST);
 
   if (spellZone != NULL && spellZone->id == HARPIES_FEATHER_REST)
     Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);

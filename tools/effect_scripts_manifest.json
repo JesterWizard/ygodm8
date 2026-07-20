@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "comment": "Phase 4b source of truth for EffectScript C tables. Regenerate: python3 tools/generate_effect_scripts.py",
+  "scripts": [
+    {
+      "cardId": "ONE_DAY_OF_PEACE",
+      "kind": "SPELL",
+      "meta": "DRAW",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DRAW", "a0": "ACTIVE_DUELIST", "a1": 1, "a2": false },
+        { "op": "DRAW", "a0": "INACTIVE_DUELIST", "a1": 1, "a2": true },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "POT_OF_GREED",
+      "kind": "SPELL",
+      "meta": "DRAW",
+      "afterSteps": "TrySpiritOfThePotOfGreedAfterPotOfGreed",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DRAW", "a0": "ACTIVE_DUELIST", "a1": 2, "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "GRAND_CONVERGENCE",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "canActivate": "CanActivateGRAND_CONVERGENCE",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "CHANGE_LP", "a0": "INACTIVE_DUELIST", "s0": -300, "a2": false },
+        { "op": "DESTROY_ALL_MONSTERS_ROW", "a0": "ACTIVE_DUELIST_MONSTER_ROW", "a2": false },
+        { "op": "DESTROY_ALL_MONSTERS_ROW", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "ANCIENT_LEAF",
+      "kind": "SPELL",
+      "meta": "DRAW",
+      "canActivate": "CanActivateAncientLeaf",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "CHANGE_LP", "a0": "ACTIVE_DUELIST", "s0": -2000, "a2": false },
+        { "op": "DRAW", "a0": "ACTIVE_DUELIST", "a1": 2, "a2": true },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    }
+  ]
+}

@@ -123,7 +123,9 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 | Phase 4 scripts | [`effect_scripts.h`](../include/effect_scripts.h) / [`effect_scripts.c`](../src_custom/effect_system/effect_scripts.c) | Ordered op steps + metadata |
 | Phase 4 pilots | One Day of Peace, Pot of Greed, Grand Convergence | Routed via `EffectDispatch` → `EffectScript_Run` |
 | Phase 5 AI meta | `EffectMeta_GetCategory` + `AiMod_EffectSemantics` in [`ai_modifiers.c`](../src_custom/ai_decision/ai_modifiers.c) | Semantic activate nudges; legacy spellEffect fallback |
-| Planned 2B generator | `tools/generate_effect_scripts.py` | Phase 4b only |
+| Phase 4b generator | [`tools/generate_effect_scripts.py`](../tools/generate_effect_scripts.py) + [`tools/effect_scripts_manifest.json`](../tools/effect_scripts_manifest.json) | Emits `src_custom/generated/effect_scripts_table.inc` |
+| Field continuous | `EFFECT_EVENT_ON_FIELD_CHANGE` → Rivalry / Level Limit / Amazoness / Ring | `Duel_NotifyFixedMonsterRowChanged` emits; PostBoardScan still checks |
+| Damage-calc event | `EFFECT_EVENT_ON_DAMAGE_CALC` from `RefreshPendingBattleActionStatsFromZones` | Subscribe continuous ATK boosts gradually |
 
 ## TODO
 
@@ -132,17 +134,22 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 - [x] Phase 2: condition + selector registries
 - [x] Phase 3: event bus; replace notify chain incrementally; generic OPT Standby clear
 - [x] Phase 4: C-table effect scripts for a handful of simple cards
-- [ ] Phase 4b: JSON manifest → codegen (after opcode/event freeze)
+- [x] Phase 4b: JSON manifest → codegen (after opcode/event freeze)
 - [x] Phase 5: AI metadata consumption with legacy fallback
-- [ ] Keep taxonomy regenerated whenever `--write-list` runs
-- [ ] Migrate remaining `*UsedThisTurn` APPEND_DATA flags to `EffectOpt_*`
-- [ ] Emit `ON_DAMAGE_CALC` from damage-calc Apply sites; subscribe continuous triggers to events instead of `Duel_Check*AfterFieldChange`
-- [ ] Grow script table; add condition/selector step ops for targeting cards
-- [ ] Expand legacy `spellEffect` → meta map as more vanilla effects matter to AI
+- [x] Keep taxonomy regenerated whenever `--write-list` runs
+- [x] Migrate remaining `*UsedThisTurn` APPEND_DATA flags to `EffectOpt_*`
+- [x] Emit `ON_DAMAGE_CALC` from damage-calc Apply sites; subscribe continuous triggers to events instead of `Duel_Check*AfterFieldChange`
+- [x] Grow script table; add condition/selector step ops for targeting cards
+- [x] Expand legacy `spellEffect` → meta map as more vanilla effects matter to AI
+- [ ] Thin redundant `Duel_Check*AfterFieldChange` call sites that already emit field/summon/leave events
+- [ ] Grow more scripts in the JSON manifest; migrate burn/heal LynJump spells carefully (own trap LP path)
+- [ ] Subscribe damage-calc continuous ATK boosts to `ON_DAMAGE_CALC` instead of only Apply* chains
 
 ## Limitations & Bugs
 
 - Until Phase 3, continuous/trigger ceilings in PARTIAL_EFFECTS will keep growing as agents implement stand-in bodies.
 - C-table scripts (2A) still need merge discipline; they do not by themselves make “thousands of cards” cheap — that is the 2B authoring step.
+- Burn/heal LynJump spells that pass trap LP via `Duel_TryResolveSpellThroughTrapsEx` must not be dispatched as scripts until that path is modeled as a step op.
 - Metadata for AI is useless until categories are stable and populated; do not block Phases 0–3 on AI work.
 - Report gaps (missing taxonomy tags, wrong Phase ROI) against this doc or the taxonomy file.
+- `PostBoardScan` still calls `Duel_Check*` directly (board-scan timing ≠ notify); field-change event covers Notify paths.

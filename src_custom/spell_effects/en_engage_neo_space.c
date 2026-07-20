@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -22,7 +23,7 @@ static const u8 sEnEngagePickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-static u8 sEnEngageUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -210,7 +211,7 @@ static void AddPolymerization(void)
 
 u8 CanActivateEN_ENGAGE_NEO_SPACE(void)
 {
-  if (sEnEngageUsedThisTurn)
+  if (EffectOpt_IsUsed(EN_ENGAGE_NEO_SPACE))
     return FALSE;
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
@@ -318,7 +319,7 @@ static void EN_ENGAGE_NEO_SPACE_ResolveBody(void)
   }
 
   AddPolymerization();
-  sEnEngageUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(EN_ENGAGE_NEO_SPACE);
   UpdateDuelGfxExceptField();
 
   /* ponytail: ED Fusion-only SS lock this turn needs SpecialSummon gate outside

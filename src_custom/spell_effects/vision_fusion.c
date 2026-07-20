@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "elemental_hero_absolute_zero.h"
@@ -15,10 +16,7 @@ void UpdateDuelGfxExceptField(void);
 
 static const char sHeroArchetypeName[] APPEND_RODATA = "HERO";
 
-/* ponytail: OPT flag never clears without a turn-end hook outside this file.
- * Ceiling: once per duel after first activation; upgrade: turn_effect_hooks
- * End Phase / turn-start → sVisionFusionUsedThisTurn = 0. */
-static u8 sVisionFusionUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 RecipeIsHeroFusion(const struct FusionRecipe *recipe)
 {
@@ -175,7 +173,7 @@ static void ExecuteVisionFusion(const struct FusionRecipe *recipe,
   ElementalHeroAbsoluteZero_EndSuppressLeave();
   UpdateDuelGfxExceptField();
 
-  sVisionFusionUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(VISION_FUSION);
 }
 
 static void RunPlayerVisionFusionFlow(void)
@@ -186,7 +184,7 @@ static void RunPlayerVisionFusionFlow(void)
   u8 feasibleCount;
   const struct FusionRecipe *recipe;
 
-  if (sVisionFusionUsedThisTurn) {
+  if (EffectOpt_IsUsed(VISION_FUSION)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
@@ -233,7 +231,7 @@ static void VISION_FUSION_ResolveBody(void)
     u8 sourceCount;
     s8 bestIdx;
 
-    if (sVisionFusionUsedThisTurn) {
+    if (EffectOpt_IsUsed(VISION_FUSION)) {
       if (!gHideEffectText)
         PlayMusic(SFX_FORBIDDEN);
       return;
@@ -269,7 +267,7 @@ static void VISION_FUSION_ResolveBody(void)
 
 APPEND_TEXT void EffectVISION_FUSION(void)
 {
-  if (sVisionFusionUsedThisTurn) {
+  if (EffectOpt_IsUsed(VISION_FUSION)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
