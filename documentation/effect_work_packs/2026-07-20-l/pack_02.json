@@ -1,0 +1,80 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MORALE_BOOST",
+      "card_name": "Morale Boost",
+      "kind": "spell",
+      "archetype": "MORALE",
+      "path": "src_custom/spell_effects/morale_boost.c",
+      "effect_text": "Equip Spell equipped: gain 1000 LP. Equip Spell leaves field: take 1000 damage. Each time a player equips an Equip Spell Card, increase the Life Points of the controller of that Equip Spell Card by 1000 points. Each time an Equip Spell Card is removed from the field, the controller of that Equip Spell Card takes 1000 points of damage.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": null,
+      "clone_path": null,
+      "clone_score": 0.0
+    },
+    {
+      "card_const": "TWLIGHT_TWIN_DRAGONS",
+      "card_name": "Twilight Twin Dragons",
+      "kind": "spell",
+      "archetype": "TWLIGHT",
+      "path": "src_custom/spell_effects/twlight_twin_dragons.c",
+      "effect_text": "Recycle JD/PD; mill top 4. If you control Punishment Dragon: Target 1 Judgment Dragon in your GY; add it to your hand, then send the top 4 cards of your Deck to the GY. If this card is sent from the Deck to the GY by a Lightsworn monster's effect: You can target 1 Punishment Dragon in your GY; add it to your hand, then banish the top 4 cards of your Deck.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "BUBBLE_BLASTER",
+      "card_name": "Bubble Blaster",
+      "kind": "spell",
+      "archetype": "BUBBLE",
+      "path": "src_custom/spell_effects/bubble_blaster.c",
+      "effect_text": "Equip to E-HERO Bubbleman. +800 ATK. If destroyed by battle, destroy this instead; battle damage 0. You can only equip this card to Elemental Hero Bubbleman. Increase the ATK of the equipped monster by 800 points. If the equipped monster would be destroyed as a result of battle, destroy this card instead, and make the Battle Damage to the controller of the equipped monster 0.",
+      "tags": [
+        "destroy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CONTINUOUS_DESTRUCTION_PUNCH",
+      "clone_path": "src_custom/spell_effects/continuous_destruction_punch.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "AROMA_GARDENING",
+      "card_name": "Aroma Gardening",
+      "kind": "spell",
+      "archetype": "AROMA",
+      "path": "src_custom/spell_effects/aroma_gardening.c",
+      "effect_text": "On Aroma Summon: +1000 LP. If attacked while LP lower: SS Aroma from Deck. If you Normal or Special Summon an Aroma monster(s) (except during the Damage Step): You can gain 1000 LP. When an opponent's monster declares an attack, while your LP are lower than your opponent's: You can Special Summon 1 Aroma monster from your Deck. You can only use each effect of Aroma Gardening once per turn.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 0.6
+    }
+  ]
+}

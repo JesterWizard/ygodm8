@@ -1,24 +1,209 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "constants/card_enums.h"
+#include "constants/duel_fields.h"
+#include "constants/music_ids.h"
+#include "constants/spell_effects.h"
+#include "custom_field_spell.h"
 #include "duel_helpers.h"
+#include "spell_effects.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+void SetDuelFieldGfx(u8 field);
+
+static u8 IsWaterMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.attribute == ATTRIBUTE_WATER;
+}
+
+static u8 IsVanillaTerrainFieldSpell(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_SPELL)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.spellEffect >= SPELL_EFFECT_FOREST && gCardInfo.spellEffect <= SPELL_EFFECT_YAMI;
+}
+
+static u8 IsFieldSpellCardOnField(u16 cardId)
+{
+  if (cardId == LEMURIA_THE_FORGOTTEN_CITY || cardId == HARPIES_HUNTING_GROUND
+      || cardId == PSEUDO_SPACE || cardId == SKYSCRAPER_2_HERO_CITY || cardId == SKYSCRAPER
+      || cardId == WETLANDS || cardId == GEARTOWN || cardId == DRAGON_RAVINE
+      || cardId == BURNING_LAND || cardId == SEAL_OF_ORICHALCOS || cardId == FUSION_GATE)
+    return TRUE;
+
+  return IsVanillaTerrainFieldSpell(cardId);
+}
+
+static u8 GetTurnDuelistForFixedRow(u8 fixedRow)
+{
+  if (fixedRow <= OPPONENT_MONSTER_ROW)
+    return WhoseTurn() == DUEL_PLAYER ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+
+  return WhoseTurn() == DUEL_PLAYER ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+}
+
+static void ResetActiveFieldTerrain(void)
+{
+  RevertCustomFieldToArena();
+
+  if (gDuel.field == FIELD_ARENA)
+    return;
+
+  gDuel.field = FIELD_ARENA;
+
+  if (!gHideEffectText)
+    SetDuelFieldGfx(gDuel.field);
+}
+
+static void DestroyOtherFieldSpellsOnBoard(struct DuelCard *activatingZone)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone == activatingZone || zone->id == CARD_NONE)
+        continue;
+
+      if (!IsFieldSpellCardOnField(zone->id))
+        continue;
+
+      Duel_DestroyZone(zone, GetTurnDuelistForFixedRow(row), FALSE);
+
+      if (IsDuelOver() == TRUE)
+        return;
+    }
+  }
+
+  ResetActiveFieldTerrain();
+}
+
+static u8 CountControlledWaterMonsters(void)
+{
+  u8 i;
+  u8 count = 0;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i];
+
+    if (zone == NULL || zone->id == CARD_NONE)
+      continue;
+
+    if (IsWaterMonster(zone->id))
+      count++;
+  }
+
+  return count;
+}
+
+static u8 CanActivateLemuriaIgnition(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != LEMURIA_THE_FORGOTTEN_CITY || zone->isFaceUp == FALSE)
+    return FALSE;
+
+  if (zone->effectUsedThisTurn)
+    return FALSE;
+
+  return CountControlledWaterMonsters() > 0;
+}
+
+static void ResolveLemuriaIgnition(struct DuelCard *zone)
+{
+  u8 waterCount;
+
+  if (!CanActivateLemuriaIgnition(zone))
+    return;
+
+  Duel_ShowEffectText(LEMURIA_THE_FORGOTTEN_CITY);
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  waterCount = CountControlledWaterMonsters();
+  if (waterCount == 0)
+    return;
+
+  /* ponytail: no per-zone Level overlay API — levels come from SetCardInfo /
+   * Legendary Ocean adjusters only. Ceiling: OPT marks used + shows text;
+   * Levels unchanged. Upgrade: turn-scoped level bonus on each controlled WATER
+   * (= waterCount) cleared at End Phase (card_hooks GetLegendaryOcean-style). */
+  (void)waterCount;
+
+  zone->effectUsedThisTurn = TRUE;
+}
+
+static void ApplyLemuriaAsUmiField(void)
+{
+  gDuel.field = FIELD_UMI;
+
+  if (!gHideEffectText)
+    SetDuelFieldGfx(FIELD_UMI);
+}
 
 static void LEMURIA_THE_FORGOTTEN_CITY_ResolveBody(void)
 {
-  Duel_ShowEffectText(LEMURIA_THE_FORGOTTEN_CITY);
+  struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
-  /* TODO: implement effect */
+  /* Re-activation of face-up field (OPT Main Phase Level gain). */
+  if (zone != NULL && zone->isLocked) {
+    if (!CanActivateLemuriaIgnition(zone)) {
+      if (!gHideEffectText)
+        PlayMusic(SFX_FORBIDDEN);
+      return;
+    }
+
+    ResolveLemuriaIgnition(zone);
+    return;
+  }
+
+  DestroyOtherFieldSpellsOnBoard(zone);
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  /* Name treated as Umi → apply Umi terrain while this stays face-up. */
+  ApplyLemuriaAsUmiField();
+  Duel_ActivateContinuousZone(zone);
+
+  /* ponytail: +200 ATK/DEF for all WATER monsters needs a field-stat applier
+   * outside this file (clone ApplyLegendaryOceanFieldStatBoostForZone).
+   * Ceiling: face-up field + FIELD_UMI only; upgrade: LynJump/stat overlay →
+   * if face-up LEMURIA and ATTRIBUTE_WATER then ATK/DEF += 200. */
+
+  if (CanActivateLemuriaIgnition(zone))
+    ResolveLemuriaIgnition(zone);
+  else
+    Duel_ShowEffectText(LEMURIA_THE_FORGOTTEN_CITY);
 }
 
 APPEND_TEXT void EffectLEMURIA_THE_FORGOTTEN_CITY(void)
 {
-  if (Duel_TryResolveSpellThroughTraps(LEMURIA_THE_FORGOTTEN_CITY, LEMURIA_THE_FORGOTTEN_CITY_ResolveBody) == DUEL_ACTION_BLOCKED)
+  /* ponytail: not in GetSpellType NORMAL override — face-up OPT re-activation
+   * may need card_hooks GetSpellType + LEMURIA listed (same as SKYSCRAPER_2). */
+  if (Duel_TryResolveSpellThroughTraps(LEMURIA_THE_FORGOTTEN_CITY,
+                                       LEMURIA_THE_FORGOTTEN_CITY_ResolveBody)
+      == DUEL_ACTION_BLOCKED)
     return;
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void LEMURIA_THE_FORGOTTEN_CITY_SelfCheck(void)
+{
+  SetCardInfo(TORPEDO_FISH);
+  if (gCardInfo.attribute != ATTRIBUTE_WATER)
+    while (1)
+      ;
+  SetCardInfo(BLUE_EYES_WHITE_DRAGON);
+  if (gCardInfo.attribute == ATTRIBUTE_WATER)
+    while (1)
+      ;
+}
+#endif

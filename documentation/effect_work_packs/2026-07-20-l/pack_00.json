@@ -1,0 +1,83 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "CELESTIAL_SWORD_EATOS",
+      "card_name": "Celestial Sword - Eatos",
+      "kind": "spell",
+      "archetype": "CELESTIAL",
+      "path": "src_custom/spell_effects/celestial_sword_eatos.c",
+      "effect_text": "Equipped gains 500 ATK. When sent to GY: target Guardian Eatos; gains 500 ATK per banished monster. (This card is always treated as a Noble Arms card.) The equipped monster gains 500 ATK. When this card is sent from the field to the Graveyard: You can target 1 Guardian Eatos you control; it gains 500 ATK for each banished monster.",
+      "tags": [
+        "gy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DRAGONS_MIRROR",
+      "clone_path": "src_custom/spell_effects/dragons_mirror.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "PARALLEL_WORLD_FUSION",
+      "card_name": "Parallel World Fusion",
+      "kind": "spell",
+      "archetype": "PARALLEL",
+      "path": "src_custom/spell_effects/parallel_world_fusion.c",
+      "effect_text": "Fusion Summon 1 Elemental HERO Fusion Monster from your Extra Deck by shuffling your banished Fusion Materia Fusion Summon 1 Elemental HERO Fusion Monster from your Extra Deck, by shuffling your banished Fusion Materials listed on it into your Deck. You cannot Special Summon monsters except by this card's effect, during the turn you activate this card.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "ARCANE_BARRIER",
+      "card_name": "Arcane Barrier",
+      "kind": "spell",
+      "archetype": "ARCANE",
+      "path": "src_custom/spell_effects/arcane_barrier.c",
+      "effect_text": "Each time a face-up Spellcaster monster(s) on the field is destroyed, place 1 Spell Counter on this card (max. 4). You c Each time a face-up Spellcaster monster(s) on the field is destroyed, place 1 Spell Counter on this card (max. 4). You can send this card and 1 face-up Spellcaster monster you control to the GY; draw 1 card for each Spell Counter that was on this card.",
+      "tags": [
+        "draw",
+        "faceup",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "ATTACK_PHEROMONES",
+      "clone_path": "src_custom/spell_effects/attack_pheromones.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "CHICKEN_GAME",
+      "card_name": "Chicken Game",
+      "kind": "spell",
+      "archetype": "CHICKEN",
+      "path": "src_custom/spell_effects/chicken_game.c",
+      "effect_text": "Lowest LP player takes no damage. Turn MP: pay 1000 LP; draw 1 or gain 1000 LP. No response. The player with the lowest LP takes no damage. Once per turn, during the Main Phase: The turn player can pay 1000 LP, then activate 1 of these effects; Draw 1 card. Destroy this card. Your opponent gains 1000 LP. Neither player can activate cards or effects in response to this effect's activation.",
+      "tags": [
+        "destroy",
+        "draw"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "CARD_DESTRUCTION",
+      "clone_path": "src_custom/spell_effects/card_destruction.c",
+      "clone_score": 1.0
+    }
+  ]
+}

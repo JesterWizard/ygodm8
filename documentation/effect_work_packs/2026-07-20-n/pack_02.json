@@ -1,0 +1,80 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MORPHTRONIC_ENGINE",
+      "card_name": "Morphtronic Engine",
+      "kind": "spell",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/spell_effects/morphtronic_engine.c",
+      "effect_text": "Equip only to a Level 3 Morphtronic monster. Its ATK becomes double its original ATK. During your second Standby Phase Equip only to a Level 3 Morphtronic monster. Its ATK becomes double its original ATK. During your second Standby Phase after this card's activation, destroy this card, and take damage equal to the original ATK of the equipped monster.",
+      "tags": [
+        "destroy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CONTINUOUS_DESTRUCTION_PUNCH",
+      "clone_path": "src_custom/spell_effects/continuous_destruction_punch.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS",
+      "card_name": "Colosseum - Cage of the Gladiator Beasts",
+      "kind": "spell",
+      "archetype": "COLOSSEUM",
+      "path": "src_custom/spell_effects/colosseum_cage_of_the_gladiator_beasts.c",
+      "effect_text": "Counters boost Gladiator Beasts. Place 1 Counter on this card each time a monster is Special Summoned from either player's Deck. All Gladiator Beast monsters gain 100 ATK and DEF for each of these counters on this card. If this card would be destroyed by a card effect, you can discard 1 Colosseum - Cage of the Gladiator Beasts to prevent this card from being destroyed.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "GRAVEKEEPERS_INSCRIPTION",
+      "card_name": "Gravekeeper's Inscription",
+      "kind": "spell",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/spell_effects/gravekeepers_inscription.c",
+      "effect_text": "At the start of your Main Phase 1: Apply 1 of the following effects until the end of your opponent's turn. - Neither pl At the start of your Main Phase 1: Apply 1 of the following effects until the end of your opponent's turn. - Neither player can activate card effects in the GY. - Neither player can banish cards from the GY. - Neither player can Special Summon monsters from the GYs.",
+      "tags": [
+        "gy",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CALL_OF_THE_MUMMY",
+      "clone_path": "src_custom/spell_effects/call_of_the_mummy.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "MYSTIC_MINE",
+      "card_name": "Mystic Mine",
+      "kind": "spell",
+      "archetype": "MYSTIC",
+      "path": "src_custom/spell_effects/mystic_mine.c",
+      "effect_text": "Player with fewer monsters: no monster effects/attacks. Tie: destroy. If your opponent controls more monsters than you do, your opponent cannot activate monster effects or declare an attack. If you control more monsters than your opponent does, you cannot activate monster effects or declare an attack. Once per turn, during the End Phase, if both players control the same number of monsters: Destroy this card.",
+      "tags": [
+        "destroy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CONTINUOUS_DESTRUCTION_PUNCH",
+      "clone_path": "src_custom/spell_effects/continuous_destruction_punch.c",
+      "clone_score": 1.0
+    }
+  ]
+}

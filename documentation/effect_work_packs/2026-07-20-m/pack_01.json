@@ -1,0 +1,77 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "WEAPON_CHANGE",
+      "card_name": "Weapon Change",
+      "kind": "spell",
+      "archetype": "WEAPON",
+      "path": "src_custom/spell_effects/weapon_change.c",
+      "effect_text": "Once during each of your Standby Phases: You can pay 700 Life Points, then target 1 Warrior or Machine-Type monster you  Once during each of your Standby Phases: You can pay 700 Life Points, then target 1 Warrior or Machine-Type monster you control; switch the current ATK and DEF of that target until the end of your opponent's next turn.",
+      "tags": [
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_FIGHTING_SPIRIT",
+      "clone_path": "src_custom/spell_effects/amazoness_fighting_spirit.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "CHAIN_SUMMONING",
+      "card_name": "Chain Summoning",
+      "kind": "spell",
+      "archetype": "CHAIN",
+      "path": "src_custom/spell_effects/chain_summoning.c",
+      "effect_text": "Activate as Chain Link 3 or higher: You can conduct up to 3 Normal Summons/Sets this turn, not just 1. You cannot activa Activate as Chain Link 3 or higher: You can conduct up to 3 Normal Summons/Sets this turn, not just 1. You cannot activate this card if multiple cards with the same name, or the effects of such cards, are already activated in that Chain.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHAIN_ENERGY",
+      "clone_path": "src_custom/spell_effects/chain_energy.c",
+      "clone_score": 0.35
+    },
+    {
+      "card_const": "LEMURIA_THE_FORGOTTEN_CITY",
+      "card_name": "Lemuria, the Forgotten City",
+      "kind": "spell",
+      "archetype": "LEMURIA",
+      "path": "src_custom/spell_effects/lemuria_the_forgotten_city.c",
+      "effect_text": "This card's name is treated as Umi. All WATER monsters gain 200 ATK and DEF. Once per turn, during your Main Phase: Yo This card's name is treated as Umi. All WATER monsters gain 200 ATK and DEF. Once per turn, during your Main Phase: You can have all WATER monsters you currently control gain Levels equal to the number of WATER monsters you currently control, until the End Phase.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": null,
+      "clone_path": null,
+      "clone_score": 0.0
+    },
+    {
+      "card_const": "EVIL_MIND",
+      "card_name": "Evil Mind",
+      "kind": "spell",
+      "archetype": "EVIL",
+      "path": "src_custom/spell_effects/evil_mind.c",
+      "effect_text": "If Fiend: draw / search HERO or Dark Fusion / search Poly by GY count. If you control a Fiend monster: Activate 1 of these effects, based on the number of monsters in your opponent's GY; 1+: Draw 1 card. 4+: Add 1 HERO monster or 1 Dark Fusion from your Deck to your hand. 10+: Add 1 Polymerization Spell or 1 Fusion Spell from your Deck to your hand. You can only activate 1 Evil Mind per turn.",
+      "tags": [
+        "deck",
+        "draw",
+        "gy",
+        "hand",
+        "monster",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 0.57
+    }
+  ]
+}

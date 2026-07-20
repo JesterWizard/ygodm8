@@ -23,11 +23,16 @@ extern u8 CanActivateANCIENT_GEAR_DRILL(void);
 extern u8 CanActivateANCIENT_GEAR_EXPLOSIVE(void);
 extern u8 CanActivateANCIENT_GEAR_FIST(void);
 extern u8 CanActivateANCIENT_GEAR_TANK(void);
+extern u8 CanActivateANTE(void);
 extern u8 CanActivateAQUA_JET(void);
 extern u8 CanActivateAutonomousActionUnit(void);
 extern u8 CanActivateA_HERO_LIVES(void);
 extern u8 CanActivateA_WINGBEAT_OF_GIANT_DRAGON(void);
+extern u8 CanActivateBIG_EVOLUTION_PILL(void);
+extern u8 CanActivateBOND_BETWEEN_TEACHER_AND_STUDENT(void);
 extern u8 CanActivateBookOfLife(void);
+extern u8 CanActivateBUBBLE_BLASTER(void);
+extern u8 CanActivateCELESTIAL_SWORD_EATOS(void);
 extern u8 CanActivateCHAIN_STRIKE(void);
 extern u8 CanActivateChaosGreed(void);
 extern u8 CanActivateCHARGE_OF_THE_LIGHT_BRIGADE(void);
@@ -35,6 +40,7 @@ extern u8 CanActivateCOCOON_REBIRTH(void);
 extern u8 CanActivateConfiscation(void);
 extern u8 CanActivateCONTACT(void);
 extern u8 CanActivateCONVERT_CONTACT(void);
+extern u8 CanActivateCYBERNETIC_ZONE(void);
 extern u8 CanActivateDARK_BURNING_ATTACK(void);
 extern u8 CanActivateDARK_BURNING_MAGIC(void);
 extern u8 CanActivateDedicationThroughLightAndDarkness(void);
@@ -45,6 +51,7 @@ extern u8 CanActivateDIMENSION_FUSION(void);
 extern u8 CanActivateDOUBLE_CYCLONE(void);
 extern u8 CanActivateDOUBLE_SPELL(void);
 extern u8 CanActivateDRAGON_SHRINE(void);
+extern u8 CanActivateEVIL_MIND(void);
 extern u8 CanActivateEEmergencyCall(void);
 extern u8 CanActivateFACTORY_OF_ONE_HUNDRED_MACHINES(void);
 extern u8 CanActivateFinalCountdown(void);
@@ -64,6 +71,7 @@ extern u8 CanActivateINFERNO_FIRE_BLAST(void);
 extern u8 CanActivateINSECT_IMITATION(void);
 extern u8 CanActivateKnightsTitle(void);
 extern u8 CanActivateLEVEL_TUNING(void);
+extern u8 CanActivateLIGHTNING_STORM(void);
 extern u8 CanActivateLIGHTSWORN_SABRE(void);
 extern u8 CanActivateMAGICAL_DIMENSION(void);
 extern u8 CanActivateMARCH_OF_THE_DARK_BRIGADE(void);
@@ -76,6 +84,7 @@ extern u8 CanActivateMonsterReborn(void);
 extern u8 CanActivateMORAY_OF_GREED(void);
 extern u8 CanActivateMORPHTRONIC_ACCELERATOR(void);
 extern u8 CanActivateMORPHTRONIC_CORD(void);
+extern u8 CanActivateMORPHTRONIC_ENGINE(void);
 extern u8 CanActivateMORPHTRONIC_RUSTY_ENGINE(void);
 extern u8 CanActivateMYSTIK_WOK(void);
 extern u8 CanActivateNEUTRON_BLAST(void);
@@ -96,9 +105,11 @@ extern u8 CanActivateSUMMONERS_ART(void);
 extern u8 CanActivateTHAT_GRASS_LOOKS_GREENER(void);
 extern u8 CanActivateTheFluteOfSummoningDragon(void);
 extern u8 CanActivateTheForcefulSentry(void);
+extern u8 CanActivateTHE_LAW_OF_THE_NORMAL(void);
 extern u8 CanActivateTHE_SHALLOW_GRAVE(void);
 extern u8 CanActivateTradeIn(void);
 extern u8 CanActivateTWISTER(void);
+extern u8 CanActivateTWLIGHT_TWIN_DRAGONS(void);
 extern u8 CanActivateUNSTABLE_EVOLUTION(void);
 extern u8 CanActivateVENOM_SHOT(void);
 extern u8 CanActivateVIPERS_REBIRTH(void);
@@ -111,11 +122,16 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { ANCIENT_GEAR_EXPLOSIVE, CanActivateANCIENT_GEAR_EXPLOSIVE, TRUE },
   { ANCIENT_GEAR_FIST, CanActivateANCIENT_GEAR_FIST, TRUE },
   { ANCIENT_GEAR_TANK, CanActivateANCIENT_GEAR_TANK, TRUE },
+  { ANTE, CanActivateANTE, TRUE },
   { AQUA_JET, CanActivateAQUA_JET, TRUE },
   { AUTONOMOUS_ACTION_UNIT, CanActivateAutonomousActionUnit, TRUE },
   { A_HERO_LIVES, CanActivateA_HERO_LIVES, TRUE },
   { A_WINGBEAT_OF_GIANT_DRAGON, CanActivateA_WINGBEAT_OF_GIANT_DRAGON, TRUE },
+  { BIG_EVOLUTION_PILL, CanActivateBIG_EVOLUTION_PILL, TRUE },
+  { BOND_BETWEEN_TEACHER_AND_STUDENT, CanActivateBOND_BETWEEN_TEACHER_AND_STUDENT, TRUE },
   { BOOK_OF_LIFE, CanActivateBookOfLife, TRUE },
+  { BUBBLE_BLASTER, CanActivateBUBBLE_BLASTER, TRUE },
+  { CELESTIAL_SWORD_EATOS, CanActivateCELESTIAL_SWORD_EATOS, TRUE },
   { CHAIN_STRIKE, CanActivateCHAIN_STRIKE, TRUE },
   { CHAOS_GREED, CanActivateChaosGreed, TRUE },
   { CHARGE_OF_THE_LIGHT_BRIGADE, CanActivateCHARGE_OF_THE_LIGHT_BRIGADE, TRUE },
@@ -123,6 +139,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { CONFISCATION, CanActivateConfiscation, TRUE },
   { CONTACT, CanActivateCONTACT, TRUE },
   { CONVERT_CONTACT, CanActivateCONVERT_CONTACT, TRUE },
+  { CYBERNETIC_ZONE, CanActivateCYBERNETIC_ZONE, TRUE },
   { DARK_BURNING_ATTACK, CanActivateDARK_BURNING_ATTACK, TRUE },
   { DARK_BURNING_MAGIC, CanActivateDARK_BURNING_MAGIC, TRUE },
   { DEDICATION_THROUGH_LIGHT_AND_DARKNESS, CanActivateDedicationThroughLightAndDarkness, TRUE },
@@ -133,6 +150,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { DOUBLE_CYCLONE, CanActivateDOUBLE_CYCLONE, TRUE },
   { DOUBLE_SPELL, CanActivateDOUBLE_SPELL, TRUE },
   { DRAGON_SHRINE, CanActivateDRAGON_SHRINE, TRUE },
+  { EVIL_MIND, CanActivateEVIL_MIND, TRUE },
   { E_EMERGENCY_CALL, CanActivateEEmergencyCall, TRUE },
   { FACTORY_OF_ONE_HUNDRED_MACHINES, CanActivateFACTORY_OF_ONE_HUNDRED_MACHINES, TRUE },
   { FINAL_COUNTDOWN, CanActivateFinalCountdown, TRUE },
@@ -152,6 +170,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { INSECT_IMITATION, CanActivateINSECT_IMITATION, TRUE },
   { KNIGHTS_TITLE, CanActivateKnightsTitle, TRUE },
   { LEVEL_TUNING, CanActivateLEVEL_TUNING, TRUE },
+  { LIGHTNING_STORM, CanActivateLIGHTNING_STORM, TRUE },
   { LIGHTSWORN_SABRE, CanActivateLIGHTSWORN_SABRE, TRUE },
   { MAGICAL_DIMENSION, CanActivateMAGICAL_DIMENSION, TRUE },
   { MARCH_OF_THE_DARK_BRIGADE, CanActivateMARCH_OF_THE_DARK_BRIGADE, TRUE },
@@ -164,6 +183,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { MORAY_OF_GREED, CanActivateMORAY_OF_GREED, TRUE },
   { MORPHTRONIC_ACCELERATOR, CanActivateMORPHTRONIC_ACCELERATOR, TRUE },
   { MORPHTRONIC_CORD, CanActivateMORPHTRONIC_CORD, TRUE },
+  { MORPHTRONIC_ENGINE, CanActivateMORPHTRONIC_ENGINE, TRUE },
   { MORPHTRONIC_RUSTY_ENGINE, CanActivateMORPHTRONIC_RUSTY_ENGINE, TRUE },
   { MYSTIK_WOK, CanActivateMYSTIK_WOK, TRUE },
   { NEUTRON_BLAST, CanActivateNEUTRON_BLAST, TRUE },
@@ -184,9 +204,11 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { THAT_GRASS_LOOKS_GREENER, CanActivateTHAT_GRASS_LOOKS_GREENER, TRUE },
   { THE_FLUTE_OF_SUMMONING_DRAGON, CanActivateTheFluteOfSummoningDragon, TRUE },
   { THE_FORCEFUL_SENTRY, CanActivateTheForcefulSentry, TRUE },
+  { THE_LAW_OF_THE_NORMAL, CanActivateTHE_LAW_OF_THE_NORMAL, TRUE },
   { THE_SHALLOW_GRAVE, CanActivateTHE_SHALLOW_GRAVE, TRUE },
   { TRADE_IN, CanActivateTradeIn, TRUE },
   { TWISTER, CanActivateTWISTER, TRUE },
+  { TWLIGHT_TWIN_DRAGONS, CanActivateTWLIGHT_TWIN_DRAGONS, TRUE },
   { UNSTABLE_EVOLUTION, CanActivateUNSTABLE_EVOLUTION, TRUE },
   { VENOM_SHOT, CanActivateVENOM_SHOT, TRUE },
   { VIPERS_REBIRTH, CanActivateVIPERS_REBIRTH, TRUE },

@@ -1,0 +1,82 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "CYBERNETIC_ZONE",
+      "card_name": "Cybernetic Zone",
+      "kind": "spell",
+      "archetype": "CYBERNETIC",
+      "path": "src_custom/spell_effects/cybernetic_zone.c",
+      "effect_text": "Select 1 face-up Machine-Type Fusion Monster you control and remove it from play until the End Phase of this turn. When  Select 1 face-up Machine-Type Fusion Monster you control and remove it from play until the End Phase of this turn. When that monster is returned to the field, double its ATK. During your next Standby Phase, destroy it.",
+      "tags": [
+        "destroy",
+        "faceup",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SWAMP",
+      "clone_path": "src_custom/spell_effects/venom_swamp.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "ANTE",
+      "card_name": "Ante",
+      "kind": "spell",
+      "archetype": "ANTE",
+      "path": "src_custom/spell_effects/ante.c",
+      "effect_text": "Each Player reveals 1 card from their hand. If one card is higher Level than the other, the card with the lower Level is Each Player reveals 1 card from their hand. If one card is higher Level than the other, the card with the lower Level is sent to the Graveyard, and the player who revealed it takes 1000 damage. (Non-Monster Cards are treated as Level 0.)",
+      "tags": [
+        "gy",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE",
+      "clone_path": "src_custom/spell_effects/twin_swords_of_flashing_light_tryce.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "SHADDOLL_FUSION",
+      "card_name": "Shaddoll Fusion",
+      "kind": "spell",
+      "archetype": "SHADDOLL",
+      "path": "src_custom/spell_effects/shaddoll_fusion.c",
+      "effect_text": "Fusion Summon Shaddoll. If opp Extra: can use materials from Deck. Fusion Summon 1 Shaddoll Fusion Monster from your Extra Deck, using monsters from your hand or field as Fusion Material. If your opponent controls a monster that was Special Summoned from the Extra Deck, you can also use monsters in your Deck as Fusion Material. You can only activate 1 Shaddoll Fusion per turn.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 0.8
+    },
+    {
+      "card_const": "LIGHT_BARRIER",
+      "card_name": "Light Barrier",
+      "kind": "spell",
+      "archetype": "LIGHT",
+      "path": "src_custom/spell_effects/light_barrier.c",
+      "effect_text": "Choose Arcana coin; heal on battle. During your Standby Phase, toss a coin. If the result is Tails, the following effects are negated until your next Standby Phase: When you Summon an Arcana Force monster, choose which effect to apply without tossing a coin. If an Arcana Force monster destroys an opponent's monster by battle, you gain Life Points equal to the destroyed monster's original ATK.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_FIGHTING_SPIRIT",
+      "clone_path": "src_custom/spell_effects/amazoness_fighting_spirit.c",
+      "clone_score": 1.0
+    }
+  ]
+}
