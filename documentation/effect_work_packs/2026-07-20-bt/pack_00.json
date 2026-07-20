@@ -1,0 +1,89 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "HORUS_THE_BLACK_FLAME_DRAGON_LV6",
+      "card_name": "Horus the Black Flame Dragon LV6",
+      "kind": "permanent",
+      "archetype": "HORUS_THE_BLACK_FLAME_DRAGON",
+      "path": "src_custom/permanent_effects/horus_the_black_flame_dragon_lv6.c",
+      "effect_text": "This card is unaffected by Spell effects. During the End Phase, if this card destroyed a monster by battle  This card is unaffected by Spell effects. During the End Phase, if this card destroyed a monster by battle this turn: You can send this face-up card to the Graveyard; Special Summon 1 Horus the Black Flame Dragon LV8 from your hand or Deck.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HORUS_THE_BLACK_FLAME_DRAGON_LV4",
+      "clone_path": "src_custom/permanent_effects/horus_the_black_flame_dragon_lv4.c",
+      "clone_score": 1.1
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_DIMACARI",
+      "card_name": "Gladiator Beast Dimacari",
+      "kind": "permanent",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/permanent_effects/gladiator_beast_dimacari.c",
+      "effect_text": "Double attack; tag out after battle. If this card was Special Summoned by the effect of a Gladiator Beast monster, it can attack twice during each Battle Phase. At the end of the Battle Phase, if this card attacked or was attacked, you can return it to the Deck to Special Summon 1 Gladiator Beast monster from your Deck, except Gladiator Beast Dimacari.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GLADIATOR_BEAST_SECUTOR",
+      "clone_path": "src_custom/permanent_effects/gladiator_beast_secutor.c",
+      "clone_score": 0.95
+    },
+    {
+      "card_const": "EL_SHADDOLL_WINDA",
+      "card_name": "El Shaddoll Winda",
+      "kind": "permanent",
+      "archetype": "EL_SHADDOLL",
+      "path": "src_custom/permanent_effects/el_shaddoll_winda.c",
+      "effect_text": "Opp can't destroy this. SS lock once/turn each. GY: add S/T. 1 Shaddoll monster + 1 DARK monster Must first be Fusion Summoned. Cannot be destroyed by an opponent's card effects. Each player can only Special Summon monster(s) once per turn while this card is face-up on the field. If this card is sent to the GY: You can target 1 Shaddoll Spell/Trap in your GY; add it to your hand.",
+      "tags": [
+        "destroy",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EL_SHADDOLL_ANOYATYLLIS",
+      "clone_path": "src_custom/permanent_effects/el_shaddoll_anoyatyllis.c",
+      "clone_score": 0.95
+    },
+    {
+      "card_const": "ARCANA_FORCE_0_THE_FOOL",
+      "card_name": "Arcana Force 0 - The Fool",
+      "kind": "permanent",
+      "archetype": "ARCANA_FORCE",
+      "path": "src_custom/permanent_effects/arcana_force_0_the_fool.c",
+      "effect_text": "Indestructible. Coin: immunity or self-negate. This card cannot be destroyed by battle. This card cannot be changed to Defense Position, except with a card effect. When this card is Summoned: Toss a coin and gain the appropriate effect. Heads: Negate your card effects that target this card, and destroy them. Tails: Negate your opponent's card effects that target this card, and destroy them.",
+      "tags": [
+        "destroy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_SUNRISE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_sunrise.c",
+      "clone_score": 0.75
+    }
+  ]
+}

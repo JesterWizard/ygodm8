@@ -1,0 +1,78 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "HARPIES_PET_PHANTASMAL_DRAGON",
+      "card_name": "Harpie's Pet Phantasmal Dragon",
+      "kind": "permanent",
+      "archetype": "HARPIES_PET",
+      "path": "src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c",
+      "effect_text": "Direct attack. Protect Harpies. End Phase: detach 1 material. 3 Level 4 WIND monsters This card's effects can only be applied/resolved while it has Xyz Material. This card can attack your opponent directly. Your opponent cannot target any Harpie monsters with effects or for attacks. During each of your End Phases: Detach 1 Xyz Material from this card.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "REPTILIANNE_VIPER",
+      "clone_path": "src_custom/permanent_effects/reptilianne_viper.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "VENNOMINON_THE_KING_OF_POISONOUS_SNAKES",
+      "card_name": "Vennominon the King of Poisonous Snakes",
+      "kind": "permanent",
+      "archetype": "VENNOMINON",
+      "path": "src_custom/permanent_effects/vennominon_the_king_of_poisonous_snakes.c",
+      "effect_text": "ATK per Reptile. If destroyed: banish; SS self. Cannot be Special Summoned by another Effect Monster's effect. This card is unaffected by Venom Swamp. This card gains 500 ATK for each Reptile-Type monster in your Graveyard. When this card is destroyed by battle and sent to the Graveyard: You can banish 1 other Reptile-Type monster from your Graveyard; Special Summon this card.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_ESCURIDAO",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_escuridao.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_AIR_NEOS",
+      "card_name": "Elemental HERO Air Neos",
+      "kind": "permanent",
+      "archetype": "ELEMENTAL_HERO",
+      "path": "src_custom/permanent_effects/elemental_hero_air_neos.c",
+      "effect_text": "ATK = LP gap; return at End Phase. Elemental Hero Neos + Neo-Spacian Air Hummingbird This card can only be Special Summoned from your Extra Deck by returning the above cards you control to the Deck. (You do not use Polymerization.) While your Life Points are lower than your opponent's, this card gains ATK equal to the difference. This card returns to the Extra Deck during the End Phase.",
+      "tags": [
+        "deck",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_FLARE_NEOS",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_flare_neos.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_ALEXANDER",
+      "card_name": "Gladiator Beast Alexander",
+      "kind": "permanent",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/permanent_effects/gladiator_beast_alexander.c",
+      "effect_text": "Spell immune; tag out after battle. This card cannot be Special Summoned except by the effect of Gladiator Beast Dimacari. If this card was Special Summoned, it is unaffected by the effects of Spell Cards. At the end of the Battle Phase, if this card attacked or was attacked, you can return it to the Deck to Special Summon 1 Gladiator Beast monster from your Deck, except Gladiator Beast Alexander.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GLADIATOR_BEAST_SECUTOR",
+      "clone_path": "src_custom/permanent_effects/gladiator_beast_secutor.c",
+      "clone_score": 0.95
+    }
+  ]
+}

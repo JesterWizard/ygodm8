@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 21:20 UTC  
-**Remaining partials:** `825`
+**Last updated:** 2026-07-20 21:22 UTC  
+**Remaining partials:** `837`
 
 ## Counts by kind
 
@@ -18,10 +18,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 | `spell` | 185 |
 | `trap` | 115 |
 | `activated` | 452 |
-| `permanent` | 69 |
+| `permanent` | 81 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **825** |
+| **total** | **837** |
 
 ## spell (185)
 
@@ -3313,7 +3313,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (69)
+## permanent (81)
 
 ### `AMAZONESS_TIGER`
 - path: `src_custom/permanent_effects/amazoness_tiger.c`
@@ -3323,6 +3323,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/ameba.c`
 - L23: AI candidate sim runs real effect code but restores duel state; do not queue burns that survive into the chosen action.
 - L72: skip nested UpdateDuelGfxExceptField; caller just refreshed field.
+
+### `ARCANA_FORCE_0_THE_FOOL`
+- path: `src_custom/permanent_effects/arcana_force_0_the_fool.c`
+- L48: battle indestructible + targeting immunity need battle/target hooks.
 
 ### `ARCANA_FORCE_I_THE_MAGICIAN`
 - path: `src_custom/permanent_effects/arcana_force_i_the_magician.c`
@@ -3345,6 +3349,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/arcana_force_vii_the_chariot.c`
 - L125: battle SS destroyed monster needs battle-end hook; unk4=1 only.
 - L130: tails control switch is immediate; heads steal not wired.
+
+### `ARCANA_FORCE_XIV_TEMPERANCE`
+- path: `src_custom/permanent_effects/arcana_force_xiv_temperance.c`
+- L48: hand discard battle-damage cancel + halve damage need battle hooks.
 
 ### `ARCANA_FORCE_XVIII_THE_MOON`
 - path: `src_custom/permanent_effects/arcana_force_xviii_the_moon.c`
@@ -3403,6 +3411,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/el_shaddoll_anoyatyllis.c`
 - L126: SS-from-hand/GY via S/T lock needs continuous summon gate.
 
+### `EL_SHADDOLL_WINDA`
+- path: `src_custom/permanent_effects/el_shaddoll_winda.c`
+- L126: opp destroy immunity + SS-once lock need continuous hooks.
+
+### `ELEMENTAL_HERO_AIR_NEOS`
+- path: `src_custom/permanent_effects/elemental_hero_air_neos.c`
+- L43: End Phase shuffle to Extra Deck needs turn_effect hook — ApplyDynamicZoneStats only.
+
 ### `ELEMENTAL_HERO_CAPTAIN_GOLD`
 - path: `src_custom/permanent_effects/elemental_hero_captain_gold.c`
 - L68: with Skyscraper active, prefer normal summon as a 2100 beater
@@ -3428,6 +3444,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ELEMENTAL_HERO_THE_SHINING`
 - path: `src_custom/permanent_effects/elemental_hero_the_shining.c`
 - L22: no banished-zone storage yet — +300 ATK per banished E-HERO and return up to 2 banished E-HEROes to hand deferred until banish zone exists.
+
+### `EVIL_DRAGON_ANANTA`
+- path: `src_custom/permanent_effects/evil_dragon_ananta.c`
+- L51: End Phase destroy 1 card needs turn_effect hook — ApplyDynamicZoneStats only.
 
 ### `EVIL_HERO_INFERNAL_PRODIGY`
 - path: `src_custom/permanent_effects/evil_hero_infernal_prodigy.c`
@@ -3457,6 +3477,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/garoth_lightsworn_warrior.c`
 - L113: true trigger is other LS mills; on-summon mill 2 + draw LS is stand-in.
 
+### `GLADIATOR_BEAST_ALEXANDER`
+- path: `src_custom/permanent_effects/gladiator_beast_alexander.c`
+- L8: spell immunity + GB tag-out need continuous/battle-end hooks.
+
+### `GLADIATOR_BEAST_DIMACARI`
+- path: `src_custom/permanent_effects/gladiator_beast_dimacari.c`
+- L8: double attack + GB tag-out need battle-end/summon hooks.
+
 ### `GLADIATOR_BEAST_ESSEDARII`
 - path: `src_custom/permanent_effects/gladiator_beast_essedarii.c`
 - L8: Contact Fusion has no permanent ignition path.
@@ -3464,6 +3492,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEAST_OCTAVIUS`
 - path: `src_custom/permanent_effects/gladiator_beast_octavius.c`
 - L139: GB-tag SS + battle-end tag-out need summon/battle-end hooks.
+
+### `GLADIATOR_BEAST_RETIARI`
+- path: `src_custom/permanent_effects/gladiator_beast_retiari.c`
+- L110: GB tag-out after battle needs battle-end hook.
 
 ### `GLADIATOR_BEAST_SECUTOR`
 - path: `src_custom/permanent_effects/gladiator_beast_secutor.c`
@@ -3489,6 +3521,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/great_maju_garzett.c`
 - L48: ram_map byte packing can leave u16 fields at odd EWRAM addresses;
 
+### `HARPIES_PET_PHANTASMAL_DRAGON`
+- path: `src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c`
+- L8: direct attack + Harpie protect + End Phase detach need battle/xyz hooks.
+
 ### `HERO_KID`
 - path: `src_custom/permanent_effects/hero_kid.c`
 - L76: true trigger is Special Summon; on-summon stand-in covers SS path.
@@ -3496,6 +3532,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `HORUS_THE_BLACK_FLAME_DRAGON_LV4`
 - path: `src_custom/permanent_effects/horus_the_black_flame_dragon_lv4.c`
 - L8: control lock + End Phase LV6 SS need continuous/battle-end hooks.
+
+### `HORUS_THE_BLACK_FLAME_DRAGON_LV6`
+- path: `src_custom/permanent_effects/horus_the_black_flame_dragon_lv6.c`
+- L8: spell immunity + End Phase LV8 SS need continuous/battle-end hooks.
 
 ### `JENIS_LIGHTSWORN_MENDER`
 - path: `src_custom/permanent_effects/jenis_lightsworn_mender.c`
@@ -3528,6 +3568,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `NEO_SPACIAN_FLARE_SCARAB`
 - path: `src_custom/permanent_effects/neo_spacian_flare_scarab.c`
 - L58: continuous +400 ATK per opp Spell/Trap — ApplyDynamicZoneStats only.
+
+### `OSHALEON`
+- path: `src_custom/permanent_effects/oshaleon.c`
+- L109: must-attack-this restriction needs attack-gate hook.
 
 ### `PETEN_THE_DARK_CLOWN`
 - path: `src_custom/permanent_effects/peten_the_dark_clown.c`
@@ -3587,6 +3631,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `THE_WICKED_DREADROOT`
 - path: `src_custom/permanent_effects/the_wicked_dreadroot.c`
 - L30: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.atk/def that the stat pipeline already computed for zone.
+
+### `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES`
+- path: `src_custom/permanent_effects/vennominon_the_king_of_poisonous_snakes.c`
+- L53: battle destroy → banish Reptile + SS self needs battle/GY hook.
 
 ### `WULF_LIGHTSWORN_BEAST`
 - path: `src_custom/permanent_effects/wulf_lightsworn_beast.c`
