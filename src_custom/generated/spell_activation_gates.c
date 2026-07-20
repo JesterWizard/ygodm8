@@ -26,6 +26,7 @@ extern u8 CanActivateChaosGreed(void);
 extern u8 CanActivateCHARGE_OF_THE_LIGHT_BRIGADE(void);
 extern u8 CanActivateCOCOON_REBIRTH(void);
 extern u8 CanActivateConfiscation(void);
+extern u8 CanActivateCONVERT_CONTACT(void);
 extern u8 CanActivateDedicationThroughLightAndDarkness(void);
 extern u8 CanActivateDelinquentDuo(void);
 extern u8 CanActivateDESTINY_DRAW(void);
@@ -46,6 +47,9 @@ extern u8 CanActivateMORPHTRONIC_CORD(void);
 extern u8 CanActivateMORPHTRONIC_RUSTY_ENGINE(void);
 extern u8 CanActivatePHOTON_GENERATOR_UNIT(void);
 extern u8 CanActivatePrematureBurial(void);
+extern u8 CanActivateSHARE_THE_PAIN(void);
+extern u8 CanActivateSNAKE_RAIN(void);
+extern u8 CanActivateSOLAR_RECHARGE(void);
 extern u8 CanActivateSUMMONERS_ART(void);
 extern u8 CanActivateTheFluteOfSummoningDragon(void);
 extern u8 CanActivateTheForcefulSentry(void);
@@ -63,6 +67,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { CHARGE_OF_THE_LIGHT_BRIGADE, CanActivateCHARGE_OF_THE_LIGHT_BRIGADE, TRUE },
   { COCOON_REBIRTH, CanActivateCOCOON_REBIRTH, TRUE },
   { CONFISCATION, CanActivateConfiscation, TRUE },
+  { CONVERT_CONTACT, CanActivateCONVERT_CONTACT, TRUE },
   { DEDICATION_THROUGH_LIGHT_AND_DARKNESS, CanActivateDedicationThroughLightAndDarkness, TRUE },
   { DELINQUENT_DUO, CanActivateDelinquentDuo, TRUE },
   { DESTINY_DRAW, CanActivateDESTINY_DRAW, TRUE },
@@ -83,6 +88,9 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { MORPHTRONIC_RUSTY_ENGINE, CanActivateMORPHTRONIC_RUSTY_ENGINE, TRUE },
   { PHOTON_GENERATOR_UNIT, CanActivatePHOTON_GENERATOR_UNIT, TRUE },
   { PREMATURE_BURIAL, CanActivatePrematureBurial, TRUE },
+  { SHARE_THE_PAIN, CanActivateSHARE_THE_PAIN, TRUE },
+  { SNAKE_RAIN, CanActivateSNAKE_RAIN, TRUE },
+  { SOLAR_RECHARGE, CanActivateSOLAR_RECHARGE, TRUE },
   { SUMMONERS_ART, CanActivateSUMMONERS_ART, TRUE },
   { THE_FLUTE_OF_SUMMONING_DRAGON, CanActivateTheFluteOfSummoningDragon, TRUE },
   { THE_FORCEFUL_SENTRY, CanActivateTheForcefulSentry, TRUE },

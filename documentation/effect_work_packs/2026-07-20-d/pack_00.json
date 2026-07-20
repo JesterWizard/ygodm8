@@ -1,0 +1,83 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SOLAR_RECHARGE",
+      "card_name": "Solar Recharge",
+      "kind": "spell",
+      "archetype": "SOLAR",
+      "path": "src_custom/spell_effects/solar_recharge.c",
+      "effect_text": "Discard LS; draw 2; mill 2. Discard 1 Lightsworn monster; draw 2 cards, then send the top 2 cards of your Deck to the GY.",
+      "tags": [
+        "deck",
+        "draw",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": 2,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "SNAKE_RAIN",
+      "card_name": "Snake Rain",
+      "kind": "spell",
+      "archetype": "SNAKE",
+      "path": "src_custom/spell_effects/snake_rain.c",
+      "effect_text": "Discard 1; send 4 Reptiles from Deck to GY. Discard 1 card. Select 4 Reptile-Type monsters from your Deck and send them to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "SHARE_THE_PAIN",
+      "card_name": "Share the Pain",
+      "kind": "spell",
+      "archetype": "SHARE",
+      "path": "src_custom/spell_effects/share_the_pain.c",
+      "effect_text": "Tribute 1 monster; make your opponent Tribute 1 monster (for no effect). Tribute 1 monster; make your opponent Tribute 1 monster (for no effect).",
+      "tags": [
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_ROOM_OF_NIGHTMARE",
+      "clone_path": "src_custom/spell_effects/dark_room_of_nightmare.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "CONVERT_CONTACT",
+      "card_name": "Convert Contact",
+      "kind": "spell",
+      "archetype": "CONVERT",
+      "path": "src_custom/spell_effects/convert_contact.c",
+      "effect_text": "Send 2 Neo-Spacians; draw 2. If you control no monsters: Send 2 Neo-Spacian monsters (1 from your hand and 1 from your Deck) to the GY, then draw 2 cards.",
+      "tags": [
+        "deck",
+        "draw",
+        "gy",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": 2,
+      "burn_damage": null,
+      "clone_const": "GUARDIAN_TREASURE",
+      "clone_path": "src_custom/spell_effects/guardian_treasure.c",
+      "clone_score": 0.4
+    }
+  ]
+}

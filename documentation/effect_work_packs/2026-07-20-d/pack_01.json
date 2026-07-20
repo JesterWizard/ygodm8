@@ -1,0 +1,79 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "WETLANDS",
+      "card_name": "Wetlands",
+      "kind": "spell",
+      "archetype": "WETLANDS",
+      "path": "src_custom/spell_effects/wetlands.c",
+      "effect_text": "All Aqua-Type/WATER/Level 2 or lower monsters gain 1200 ATK. All Aqua-Type/WATER/Level 2 or lower monsters gain 1200 ATK.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": null,
+      "clone_path": null,
+      "clone_score": 0.0
+    },
+    {
+      "card_const": "MAGICAL_STONE_EXCAVATION",
+      "card_name": "Magical Stone Excavation",
+      "kind": "spell",
+      "archetype": "MAGICAL",
+      "path": "src_custom/spell_effects/magical_stone_excavation.c",
+      "effect_text": "Discard 2 cards, then target 1 Spell in your GY; add it to your hand. Discard 2 cards, then target 1 Spell in your GY; add it to your hand.",
+      "tags": [
+        "gy",
+        "hand",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE",
+      "clone_path": "src_custom/spell_effects/twin_swords_of_flashing_light_tryce.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "BURDEN_OF_THE_MIGHTY",
+      "card_name": "Burden of the Mighty",
+      "kind": "spell",
+      "archetype": "BURDEN",
+      "path": "src_custom/spell_effects/burden_of_the_mighty.c",
+      "effect_text": "Each face-up monster your opponent controls loses 100 ATK x its own Level. Each face-up monster your opponent controls loses 100 ATK x its own Level.",
+      "tags": [
+        "faceup",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "UNITED_WE_STAND",
+      "clone_path": "src_custom/spell_effects/united_we_stand.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "COCOON_PARTY",
+      "card_name": "Cocoon Party",
+      "kind": "spell",
+      "archetype": "COCOON",
+      "path": "src_custom/spell_effects/cocoon_party.c",
+      "effect_text": "SS Chrysalis per Neo-Spacian in GY. Special Summon 1 Chrysalis monster from your Deck for each Neo-Spacian monster with a different name in your Graveyard.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.75
+    }
+  ]
+}
