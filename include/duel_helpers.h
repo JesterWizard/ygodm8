@@ -175,6 +175,11 @@ enum DuelActionResult Duel_TryResolveStealLpThroughTraps(u16 spellId, s32 amount
 enum DuelActionResult Duel_TryResolveUpstartThroughTraps(u16 spellId, s32 opponentHeal);
 enum DuelActionResult Duel_TryResolveBothPlayersHealThroughTraps(u16 spellId, s32 heal);
 enum DuelActionResult Duel_TryResolveDestroyInactiveMonstersThroughTraps(u16 spellId);
+/* Thunder Crash-style: wipe active monster row, burn per destroyed. */
+enum DuelActionResult Duel_TryResolveDestroyActiveMonstersBurnPerThroughTraps(u16 spellId,
+                                                                              u16 damagePer);
+/* That Grass Looks Greener: mill until remaining deck == opponent's. */
+enum DuelActionResult Duel_MillDeckDifferenceToMatchOpponent(u8 updateGfx);
 void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId);
 
 void Duel_ResetDestroyMaskState(u8 *destroyMask, u8 *fixedMonsterRow);

@@ -252,6 +252,29 @@ static enum DuelActionResult RunStep(const struct EffectScript *script,
     Duel_ApplyStopDefense();
     return DUEL_ACTION_OK;
 
+  case EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE:
+    spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+    Duel_ActivateContinuousZone(spellZone);
+    if (spellZone != NULL) {
+      if (step->a0 == 1)
+        spellZone->unk4 = step->a1;
+      else if (step->a0 == 2)
+        ResetPermStage(spellZone);
+    }
+    return DUEL_ACTION_OK;
+
+  case EFFECT_SCRIPT_MILL_DECK_DIFFERENCE_TO_OPP:
+    return Duel_MillDeckDifferenceToMatchOpponent(step->a2);
+
+  case EFFECT_SCRIPT_DESTROY_ACTIVE_MONSTERS_BURN_PER_THROUGH_TRAPS:
+    if (step->s0 <= 0)
+      return DUEL_ACTION_INVALID;
+    result = Duel_TryResolveDestroyActiveMonstersBurnPerThroughTraps(script->cardId,
+                                                                     (u16)step->s0);
+    if (result == DUEL_ACTION_BLOCKED)
+      return DUEL_ACTION_BLOCKED;
+    return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : result;
+
   default:
     return DUEL_ACTION_INVALID;
   }

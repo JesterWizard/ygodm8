@@ -7,6 +7,9 @@ u8 CanActivateAncientLeaf(void);
 void ResolveDarkRoomEffect(void);
 u8 CanActivateMeteorOfDestruction(void);
 u8 CanActivateFusionSage(void);
+u8 CanActivateChaosGreed(void);
+u8 CanActivateDARK_MAGIC_ATTACK(void);
+u8 CanActivateTHAT_GRASS_LOOKS_GREENER(void);
 
 static const struct EffectScriptStep sONE_DAY_OF_PEACESteps[] __attribute__((section(".text"))) = {
   { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
@@ -273,6 +276,92 @@ static const struct EffectScriptStep sCURSEBREAKERSteps[] __attribute__((section
   { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
   { EFFECT_SCRIPT_RESET_NEGATIVE_PERM_STAGE_ROW, ACTIVE_DUELIST_MONSTER_ROW, 0, 0, 0 },
   { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sAMAZONESS_FIGHTING_SPIRITSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sCONTINUOUS_DESTRUCTION_PUNCHSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sLIGHT_BARRIERSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sEN_WAVESteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sALLURING_MIRROR_SPLITSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sSECOND_COIN_TOSSSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sCLOCK_TOWER_PRISONSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 1, 0, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sANCIENT_GEAR_CASTLESteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 1, 0, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sGADGET_BOXSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 1, 3, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sDARK_SNAKE_SYNDROMESteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE, 2, 0, 0, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sCHAOS_GREEDSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, FALSE, 0 },
+  { EFFECT_SCRIPT_DRAW, ACTIVE_DUELIST, 2, TRUE, 0 },
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sDARK_MAGIC_ATTACKSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_IN_TURN_ROW, INACTIVE_DUELIST_BACKROW, INACTIVE_DUELIST, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sTHAT_GRASS_LOOKS_GREENERSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_MILL_DECK_DIFFERENCE_TO_OPP, 0, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sTHUNDER_CRASHSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_DESTROY_ACTIVE_MONSTERS_BURN_PER_THROUGH_TRAPS, 0, 0, 0, 300 },
   { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
 };
 
@@ -643,6 +732,132 @@ static const struct EffectScript sEffectScripts[] __attribute__((section(".text"
     ARRAY_COUNT(sCURSEBREAKERSteps),
     sCURSEBREAKERSteps,
     { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    AMAZONESS_FIGHTING_SPIRIT,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sAMAZONESS_FIGHTING_SPIRITSteps),
+    sAMAZONESS_FIGHTING_SPIRITSteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    CONTINUOUS_DESTRUCTION_PUNCH,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sCONTINUOUS_DESTRUCTION_PUNCHSteps),
+    sCONTINUOUS_DESTRUCTION_PUNCHSteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    LIGHT_BARRIER,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sLIGHT_BARRIERSteps),
+    sLIGHT_BARRIERSteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    EN_WAVE,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sEN_WAVESteps),
+    sEN_WAVESteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    ALLURING_MIRROR_SPLIT,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sALLURING_MIRROR_SPLITSteps),
+    sALLURING_MIRROR_SPLITSteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    SECOND_COIN_TOSS,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sSECOND_COIN_TOSSSteps),
+    sSECOND_COIN_TOSSSteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    CLOCK_TOWER_PRISON,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sCLOCK_TOWER_PRISONSteps),
+    sCLOCK_TOWER_PRISONSteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    ANCIENT_GEAR_CASTLE,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sANCIENT_GEAR_CASTLESteps),
+    sANCIENT_GEAR_CASTLESteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    GADGET_BOX,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sGADGET_BOXSteps),
+    sGADGET_BOXSteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    DARK_SNAKE_SYNDROME,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sDARK_SNAKE_SYNDROMESteps),
+    sDARK_SNAKE_SYNDROMESteps,
+    { EFFECT_META_NONE, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    CHAOS_GREED,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sCHAOS_GREEDSteps),
+    sCHAOS_GREEDSteps,
+    { EFFECT_META_DRAW, 0, 0 },
+    CanActivateChaosGreed,
+    NULL,
+  },
+  {
+    DARK_MAGIC_ATTACK,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sDARK_MAGIC_ATTACKSteps),
+    sDARK_MAGIC_ATTACKSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    CanActivateDARK_MAGIC_ATTACK,
+    NULL,
+  },
+  {
+    THAT_GRASS_LOOKS_GREENER,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sTHAT_GRASS_LOOKS_GREENERSteps),
+    sTHAT_GRASS_LOOKS_GREENERSteps,
+    { EFFECT_META_NONE, 0, 0 },
+    CanActivateTHAT_GRASS_LOOKS_GREENER,
+    NULL,
+  },
+  {
+    THUNDER_CRASH,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sTHUNDER_CRASHSteps),
+    sTHUNDER_CRASHSteps,
+    { EFFECT_META_BURN, 0, 0 },
     NULL,
     NULL,
   },

@@ -2,34 +2,29 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_scripts.h"
+#include "effect_system.h"
 #include "spell_effects.h"
 
-static void ALLURING_MIRROR_SPLIT_ResolveBody(void)
-{
-  struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+/* ponytail: battle-destroy of Harpie Lady / Sisters → SS different-name Harpie
+ * from Deck needs a battle-destroy listener + OPT bit outside this file.
+ * Ceiling: continuous face-up only; upgrade: after battle destroy → if face-up
+ * ALLURING_MIRROR_SPLIT and destroyed is Harpie Lady / Sisters then Deck SS
+ * Harpie with original name != destroyed. */
 
-  Duel_ActivateContinuousZone(zone);
-  Duel_ShowEffectText(ALLURING_MIRROR_SPLIT);
-
-  /* ponytail: battle-destroy of Harpie Lady / Sisters → SS different-name Harpie
-   * from Deck needs a battle-destroy listener + OPT bit outside this file.
-   * Ceiling: continuous face-up only; upgrade: after battle destroy → if face-up
-   * ALLURING_MIRROR_SPLIT and destroyed is Harpie Lady / Sisters then Deck SS
-   * Harpie with original name != destroyed. */
-
-  /* ponytail: when this card is destroyed by a Harpie effect or opponent's effect
-   * → SS 1 Harpie from GY needs a destroy-reason hook outside this file.
-   * Ceiling: no floating on leave; upgrade: ClearZoneAndSendMonToGraveyard /
-   * destroy path → if id was ALLURING_MIRROR_SPLIT and reason matches, PickZone
-   * GY Harpie → Duel_SpecialSummonFromGrave. */
-}
+/* ponytail: when this card is destroyed by a Harpie effect or opponent's effect
+ * → SS 1 Harpie from GY needs a destroy-reason hook outside this file.
+ * Ceiling: no floating on leave; upgrade: ClearZoneAndSendMonToGraveyard /
+ * destroy path → if id was ALLURING_MIRROR_SPLIT and reason matches, PickZone
+ * GY Harpie → Duel_SpecialSummonFromGrave. */
 
 APPEND_TEXT void EffectALLURING_MIRROR_SPLIT(void)
 {
-  if (Duel_TryResolveSpellThroughTraps(ALLURING_MIRROR_SPLIT,
-                                       ALLURING_MIRROR_SPLIT_ResolveBody)
-      == DUEL_ACTION_BLOCKED)
-    return;
+  const struct EffectScript *script =
+      EffectScript_Find(ALLURING_MIRROR_SPLIT, EFFECT_KIND_SPELL);
+
+  if (script != NULL)
+    EffectScript_Run(script);
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

@@ -2,10 +2,9 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "chaos_greed.h"
-#include "duel_helpers.h"
+#include "effect_scripts.h"
+#include "effect_system.h"
 #include "spell_effects.h"
-
-#define CHAOS_GREED_DRAW_COUNT 2
 
 static u8 FieldRowHasCardsExceptChaosGreed(u8 turnRow)
 {
@@ -41,15 +40,8 @@ u8 CanActivateChaosGreed(void)
 
 APPEND_TEXT void EffectChaosGreed(void)
 {
-  struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+  const struct EffectScript *script = EffectScript_Find(CHAOS_GREED, EFFECT_KIND_SPELL);
 
-  if (!CanActivateChaosGreed())
-    return;
-
-  Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
-
-  if (Duel_DrawCards(ACTIVE_DUELIST, CHAOS_GREED_DRAW_COUNT, TRUE) == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  Duel_ShowEffectText(CHAOS_GREED);
+  if (script != NULL)
+    EffectScript_Run(script);
 }

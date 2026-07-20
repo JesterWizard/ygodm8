@@ -2222,6 +2222,76 @@ enum DuelActionResult Duel_TryResolveDestroyInactiveMonstersThroughTraps(u16 spe
                           TRUE);
 }
 
+enum DuelActionResult Duel_TryResolveDestroyActiveMonstersBurnPerThroughTraps(u16 spellId,
+                                                                              u16 damagePer)
+{
+  u8 monstersBefore;
+  u8 monstersDestroyed;
+  enum DuelActionResult result;
+
+  if (damagePer == 0)
+    return DUEL_ACTION_INVALID;
+
+  if (GetTypeGroup(spellId) == TYPE_GROUP_SPELL) {
+    SetupSpellTrapOrigin();
+
+    if (!Duel_IsOriginActivationProtectedFromNegation()
+        && IsTrapTriggered() == TRUE && !gHideEffectText) {
+      ActivateTrapEffect(0);
+      return DUEL_ACTION_BLOCKED;
+    }
+  }
+
+  Duel_ShowEffectText(spellId);
+  if (IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+
+  monstersBefore = Duel_CountMonstersOnTurnRow(ACTIVE_DUELIST_MONSTER_ROW);
+  result = Duel_DestroyAllMonstersMatching(ACTIVE_DUELIST_MONSTER_ROW, NULL, FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER || IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+
+  monstersDestroyed = monstersBefore - Duel_CountMonstersOnTurnRow(ACTIVE_DUELIST_MONSTER_ROW);
+  if (monstersDestroyed > 0) {
+    result = Duel_ChangeLp(INACTIVE_DUELIST, -(s32)monstersDestroyed * (s32)damagePer, FALSE);
+    if (result == DUEL_ACTION_DUEL_OVER || IsDuelOver() == TRUE)
+      return DUEL_ACTION_DUEL_OVER;
+  }
+
+  return Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST,
+                          TRUE);
+}
+
+enum DuelActionResult Duel_MillDeckDifferenceToMatchOpponent(u8 updateGfx)
+{
+  u8 myRemaining;
+  u8 oppRemaining;
+  u8 millCount;
+  u8 activeFixed;
+  u8 inactiveFixed;
+  u8 deckSize;
+  u8 top;
+
+  activeFixed = (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+                    ? DUEL_PLAYER
+                    : DUEL_OPPONENT;
+  inactiveFixed = (activeFixed == DUEL_PLAYER) ? DUEL_OPPONENT : DUEL_PLAYER;
+
+  deckSize = NumCardsInDeck(activeFixed);
+  top = gDuelDecks[activeFixed].cardsDrawn;
+  myRemaining = (deckSize > top) ? (u8)(deckSize - top) : 0;
+
+  deckSize = NumCardsInDeck(inactiveFixed);
+  top = gDuelDecks[inactiveFixed].cardsDrawn;
+  oppRemaining = (deckSize > top) ? (u8)(deckSize - top) : 0;
+
+  if (myRemaining <= oppRemaining)
+    return DUEL_ACTION_BLOCKED;
+
+  millCount = (u8)(myRemaining - oppRemaining);
+  return Duel_MillTopDeckCards(ACTIVE_DUELIST, millCount, updateGfx);
+}
+
 void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId)
 {
   if (gHideEffectText)

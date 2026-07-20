@@ -4,6 +4,8 @@
 #include "dark_snake_syndrome.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_scripts.h"
+#include "effect_system.h"
 #include "imperial_order.h"
 #include "spell_effects.h"
 
@@ -66,9 +68,9 @@ void TryApplyDarkSnakeSyndromeStandbyDamage(void)
 
 APPEND_TEXT void EffectDarkSnakeSyndrome(void)
 {
-  struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+  const struct EffectScript *script =
+      EffectScript_Find(DARK_SNAKE_SYNDROME, EFFECT_KIND_SPELL);
 
-  Duel_ActivateContinuousZone(zone);
-  ResetPermStage(zone);
-  Duel_ShowEffectText(DARK_SNAKE_SYNDROME);
+  if (script != NULL)
+    EffectScript_Run(script);
 }

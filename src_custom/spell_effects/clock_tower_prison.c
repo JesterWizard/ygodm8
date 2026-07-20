@@ -1,43 +1,34 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
-#include "constants/music_ids.h"
-#include "duel_helpers.h"
+#include "effect_scripts.h"
+#include "effect_system.h"
 #include "spell_effects.h"
 
 #define CLOCK_TOWER_PRISON_MAX_COUNTERS 4
 
-static void CLOCK_TOWER_PRISON_ResolveBody(void)
-{
-  struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+/* ponytail: Opp Standby Clock Counter placement needs a turn_effect Standby
+ * hook outside this file (no in-file Standby dispatch).
+ * Ceiling: continuous face-up + unk4 counter slot (never rises alone);
+ * upgrade: opp Standby → if face-up CLOCK_TOWER_PRISON then unk4++
+ * (cap CLOCK_TOWER_PRISON_MAX_COUNTERS). */
 
-  Duel_ActivateContinuousZone(zone);
-  if (zone != NULL)
-    zone->unk4 = 0;
+/* ponytail: 4+ counters → no battle damage needs a battle-damage gate outside
+ * this file. Ceiling: continuous only; upgrade: battle LP calc → if face-up
+ * CLOCK_TOWER_PRISON with unk4 >= 4 then battle damage to controller = 0. */
 
-  Duel_ShowEffectText(CLOCK_TOWER_PRISON);
-
-  /* ponytail: Opp Standby Clock Counter placement needs a turn_effect Standby
-   * hook outside this file (no in-file Standby dispatch).
-   * Ceiling: continuous face-up + unk4 counter slot (never rises alone);
-   * upgrade: opp Standby → if face-up CLOCK_TOWER_PRISON then unk4++
-   * (cap CLOCK_TOWER_PRISON_MAX_COUNTERS). */
-
-  /* ponytail: 4+ counters → no battle damage needs a battle-damage gate outside
-   * this file. Ceiling: continuous only; upgrade: battle LP calc → if face-up
-   * CLOCK_TOWER_PRISON with unk4 >= 4 then battle damage to controller = 0. */
-
-  /* ponytail: destroy with 4+ counters → SS Destiny HERO - Dreadmaster from
-   * hand/Deck needs a destroy/leave-field hook outside this file.
-   * Ceiling: continuous face-up only; upgrade: OnDestroy → if unk4 >= 4 then
-   * Duel_SpecialSummonFromHand/Deck(DESTINY_HERO_DREADMASTER). */
-}
+/* ponytail: destroy with 4+ counters → SS Destiny HERO - Dreadmaster from
+ * hand/Deck needs a destroy/leave-field hook outside this file.
+ * Ceiling: continuous face-up only; upgrade: OnDestroy → if unk4 >= 4 then
+ * Duel_SpecialSummonFromHand/Deck(DESTINY_HERO_DREADMASTER). */
 
 APPEND_TEXT void EffectCLOCK_TOWER_PRISON(void)
 {
-  if (Duel_TryResolveSpellThroughTraps(CLOCK_TOWER_PRISON, CLOCK_TOWER_PRISON_ResolveBody)
-      == DUEL_ACTION_BLOCKED)
-    return;
+  const struct EffectScript *script =
+      EffectScript_Find(CLOCK_TOWER_PRISON, EFFECT_KIND_SPELL);
+
+  if (script != NULL)
+    EffectScript_Run(script);
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

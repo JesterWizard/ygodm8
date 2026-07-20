@@ -441,6 +441,156 @@
         { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
         { "op": "END" }
       ]
+    },
+    {
+      "cardId": "AMAZONESS_FIGHTING_SPIRIT",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "comment": "Activate = continuous place; battle ATK via ON_DAMAGE_CALC",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE" },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "CONTINUOUS_DESTRUCTION_PUNCH",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "comment": "Activate = continuous place; battle destroy via battle_effects",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE" },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "LIGHT_BARRIER",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE" },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "EN_WAVE",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE" },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "ALLURING_MIRROR_SPLIT",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE" },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "SECOND_COIN_TOSS",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE" },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "CLOCK_TOWER_PRISON",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "comment": "a0=1 set unk4=a1 (0)",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE", "a0": 1, "a1": 0 },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "ANCIENT_GEAR_CASTLE",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE", "a0": 1, "a1": 0 },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "GADGET_BOX",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "comment": "Start with 3 Morph Counters in unk4",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE", "a0": 1, "a1": 3 },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "DARK_SNAKE_SYNDROME",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "comment": "a0=2 ResetPermStage on place",
+      "steps": [
+        { "op": "ACTIVATE_CONTINUOUS_ZONE", "a0": 2 },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "CHAOS_GREED",
+      "kind": "SPELL",
+      "meta": "DRAW",
+      "canActivate": "CanActivateChaosGreed",
+      "steps": [
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": false },
+        { "op": "DRAW", "a0": "ACTIVE_DUELIST", "a1": 2, "a2": true },
+        { "op": "SHOW_TEXT" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "DARK_MAGIC_ATTACK",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "canActivate": "CanActivateDARK_MAGIC_ATTACK",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "INACTIVE_DUELIST_BACKROW", "a1": "INACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "THAT_GRASS_LOOKS_GREENER",
+      "kind": "SPELL",
+      "meta": "NONE",
+      "canActivate": "CanActivateTHAT_GRASS_LOOKS_GREENER",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "MILL_DECK_DIFFERENCE_TO_OPP", "a2": true },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "THUNDER_CRASH",
+      "kind": "SPELL",
+      "meta": "BURN",
+      "steps": [
+        { "op": "DESTROY_ACTIVE_MONSTERS_BURN_PER_THROUGH_TRAPS", "s0": 300 },
+        { "op": "END" }
+      ]
     }
   ]
 }

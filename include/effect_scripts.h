@@ -56,7 +56,14 @@ enum EffectScriptStepOp {
   /* a0 = turnRow — ResetPermStage when PermStage < 0. */
   EFFECT_SCRIPT_RESET_NEGATIVE_PERM_STAGE_ROW,
   /* Stop Defense body (no args). */
-  EFFECT_SCRIPT_APPLY_STOP_DEFENSE
+  EFFECT_SCRIPT_APPLY_STOP_DEFENSE,
+  /* Place activating spell face-up continuous (Duel_ActivateContinuousZone).
+   * a0: 0=leave unk4/stage, 1=set unk4=a1, 2=ResetPermStage. */
+  EFFECT_SCRIPT_ACTIVATE_CONTINUOUS_ZONE,
+  /* Mill own deck until remaining size matches opponent (That Grass). */
+  EFFECT_SCRIPT_MILL_DECK_DIFFERENCE_TO_OPP,
+  /* Thunder Crash: trap gate, wipe active monsters, burn s0 LP per destroyed. */
+  EFFECT_SCRIPT_DESTROY_ACTIVE_MONSTERS_BURN_PER_THROUGH_TRAPS
 };
 
 /* card.h enum ordinals remapped by card_enums.h for FISH/REPTILE — use for wipes. */

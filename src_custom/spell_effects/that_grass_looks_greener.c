@@ -3,6 +3,8 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_scripts.h"
+#include "effect_system.h"
 #include "spell_effects.h"
 
 extern int NumCardsInDeck(unsigned char);
@@ -32,38 +34,11 @@ u8 CanActivateTHAT_GRASS_LOOKS_GREENER(void)
   return RemainingDeckCards(ACTIVE_DUELIST) > RemainingDeckCards(INACTIVE_DUELIST);
 }
 
-static void THAT_GRASS_LOOKS_GREENER_ResolveBody(void)
-{
-  struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
-  u8 myRemaining;
-  u8 oppRemaining;
-  u8 millCount;
-
-  Duel_ShowEffectText(THAT_GRASS_LOOKS_GREENER);
-
-  if (IsDuelOver() == TRUE || !CanActivateTHAT_GRASS_LOOKS_GREENER())
-    return;
-
-  myRemaining = RemainingDeckCards(ACTIVE_DUELIST);
-  oppRemaining = RemainingDeckCards(INACTIVE_DUELIST);
-  millCount = (u8)(myRemaining - oppRemaining);
-
-  if (Duel_MillTopDeckCards(ACTIVE_DUELIST, millCount, TRUE) == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
-}
-
 APPEND_TEXT void EffectTHAT_GRASS_LOOKS_GREENER(void)
 {
-  if (!CanActivateTHAT_GRASS_LOOKS_GREENER()) {
-    if (!gHideEffectText)
-      PlayMusic(SFX_FORBIDDEN);
-    return;
-  }
+  const struct EffectScript *script =
+      EffectScript_Find(THAT_GRASS_LOOKS_GREENER, EFFECT_KIND_SPELL);
 
-  if (Duel_TryResolveSpellThroughTraps(THAT_GRASS_LOOKS_GREENER,
-                                       THAT_GRASS_LOOKS_GREENER_ResolveBody)
-      == DUEL_ACTION_BLOCKED)
-    return;
+  if (script != NULL)
+    EffectScript_Run(script);
 }
