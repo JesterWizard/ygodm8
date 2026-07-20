@@ -4,62 +4,113 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+#define MESHAHRAIL_LP_COST 800
+
+static const char sShaddollName[] APPEND_RODATA = "Shaddoll";
+static const char sVoidName[] APPEND_RODATA = "Void";
+
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 CanPayMeshahrailCost(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  return gDuelLifePoints[FixedDuelistForActive()] >= MESHAHRAIL_LP_COST;
 }
 
-static void CancelTargeting(void)
+static u8 IsShaddollOrVoidSearch(u16 cardId)
 {
-  PlayMusic(SFX_CANCEL);
+  u8 typeGroup;
+
+  if (cardId == CARD_NONE || cardId == EL_SHADDOLL_MESHAHRAIL)
+    return FALSE;
+
+  if (Duel_CardNameContains(cardId, sShaddollName))
+    return TRUE;
+
+  typeGroup = GetTypeGroup(cardId);
+  if (typeGroup != TYPE_GROUP_SPELL && typeGroup != TYPE_GROUP_TRAP)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sVoidName);
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u16 FindDeckShaddollOrVoid(void)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsShaddollOrVoidSearch(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
 }
 
 unsigned char CanActivateEL_SHADDOLL_MESHAHRAIL(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != EL_SHADDOLL_MESHAHRAIL)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != EL_SHADDOLL_MESHAHRAIL)
+    return FALSE;
+
+  /* ponytail: unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks.
+   * Ceiling: OPT pay 800 → add 1 Shaddoll or Void S/T from Deck. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (!CanPayMeshahrailCost())
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
+    return FALSE;
+
+  return FindDeckShaddollOrVoid() != CARD_NONE;
 }
 
 void ActivateEL_SHADDOLL_MESHAHRAILEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u16 cardId;
+
   Duel_ShowEffectTextTyped(EL_SHADDOLL_MESHAHRAIL, 2);
+
+  if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  cardId = FindDeckShaddollOrVoid();
+  if (cardId == CARD_NONE || !CanPayMeshahrailCost())
+    return;
+
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -(s32)MESHAHRAIL_LP_COST, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, cardId, TRUE) != DUEL_ACTION_OK)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

@@ -140,6 +140,8 @@ unsigned char CanActivateCYBER_ELTANIN(void);
 void ActivateCYBER_ELTANINEffect(void);
 unsigned char CanActivateCYBER_PHOENIX(void);
 void ActivateCYBER_PHOENIXEffect(void);
+unsigned char CanActivateCYBER_VALLEY(void);
+void ActivateCYBER_VALLEYEffect(void);
 unsigned char CanActivateDARK_ARMED_DRAGON(void);
 void ActivateDARK_ARMED_DRAGONEffect(void);
 unsigned char CanActivateDECOY_DRAGON(void);
@@ -999,6 +1001,26 @@ unsigned char CanActivateMonsterEffect(void) {
     canActivate = CanActivateElementalHeroNeosAlius();
   else if (gMonEffect.id == JUNK_SYNCHRON)
     canActivate = CanActivateJUNK_SYNCHRON();
+  else if (gMonEffect.id == EL_SHADDOLL_MESHAHRAIL)
+    canActivate = CanActivateEL_SHADDOLL_MESHAHRAIL();
+  else if (gMonEffect.id == DESTINY_HERO_DOMINANCE)
+    canActivate = CanActivateDESTINY_HERO_DOMINANCE();
+  else if (gMonEffect.id == EVIL_HERO_DARKEST_KNIGHT)
+    canActivate = CanActivateEVIL_HERO_DARKEST_KNIGHT();
+  else if (gMonEffect.id == AROMAGE_MARJORAM)
+    canActivate = CanActivateAROMAGE_MARJORAM();
+  else if (gMonEffect.id == GLADIATOR_BEAST_NEROKIUS)
+    canActivate = CanActivateGLADIATOR_BEAST_NEROKIUS();
+  else if (gMonEffect.id == GLADIATOR_BEAST_ANDABATA)
+    canActivate = CanActivateGLADIATOR_BEAST_ANDABATA();
+  else if (gMonEffect.id == TEST_PANTHER)
+    canActivate = CanActivateTEST_PANTHER();
+  else if (gMonEffect.id == DESTINY_HERO_DECIDER)
+    canActivate = CanActivateDESTINY_HERO_DECIDER();
+  else if (gMonEffect.id == MINERVA_THE_ATHENIAN_LIGHTSWORN)
+    canActivate = CanActivateMINERVA_THE_ATHENIAN_LIGHTSWORN();
+  else if (gMonEffect.id == ARMED_NEOS)
+    canActivate = CanActivateARMED_NEOS();
   else if (zone->id == THE_GRAND_JUPITER)
     canActivate = CanActivateTheGrandJupiter();
   else {
@@ -1182,6 +1204,9 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_DESTINY_HERO_DOMINANCE:
         canActivate = CanActivateDESTINY_HERO_DOMINANCE();
+        break;
+      case MONSTER_EFFECT_CYBER_VALLEY:
+        canActivate = CanActivateCYBER_VALLEY();
         break;
       case DESTINY_HERO_DOOM_LORD:
         canActivate = CanActivateDESTINY_HERO_DOOM_LORD();
@@ -1950,6 +1975,17 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ARMED_DRAGON_LV10
           || zone->id == URIA_LORD_OF_SEARING_FLAMES
           || zone->id == RAVIEL_LORD_OF_PHANTASMS
+          || zone->id == EL_SHADDOLL_MESHAHRAIL
+          || zone->id == DESTINY_HERO_DOMINANCE
+          || zone->id == EVIL_HERO_DARKEST_KNIGHT
+          || zone->id == CYBER_VALLEY
+          || zone->id == AROMAGE_MARJORAM
+          || zone->id == GLADIATOR_BEAST_NEROKIUS
+          || zone->id == GLADIATOR_BEAST_ANDABATA
+          || zone->id == TEST_PANTHER
+          || zone->id == DESTINY_HERO_DECIDER
+          || zone->id == MINERVA_THE_ATHENIAN_LIGHTSWORN
+          || zone->id == ARMED_NEOS
           || effectCardId != zone->id
           || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
         gMonEffect.id = effectCardId;
@@ -1961,7 +1997,7 @@ void MonsterActionMenu__Replacement(void) {
         }
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
-        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != AMAZONESS_ARCHER && gMonEffect.id != ELEMENTAL_HERO_NEOS_ALIUS && gMonEffect.id != JUNK_SYNCHRON) || !CanActivateMonsterEffect()) {
+        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != AMAZONESS_ARCHER && gMonEffect.id != ELEMENTAL_HERO_NEOS_ALIUS && gMonEffect.id != JUNK_SYNCHRON && gMonEffect.id != EL_SHADDOLL_MESHAHRAIL && gMonEffect.id != EVIL_HERO_DARKEST_KNIGHT && gMonEffect.id != AROMAGE_MARJORAM && gMonEffect.id != GLADIATOR_BEAST_NEROKIUS && gMonEffect.id != GLADIATOR_BEAST_ANDABATA && gMonEffect.id != TEST_PANTHER && gMonEffect.id != MINERVA_THE_ATHENIAN_LIGHTSWORN && gMonEffect.id != ARMED_NEOS) || !CanActivateMonsterEffect()) {
 FAILED:
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();

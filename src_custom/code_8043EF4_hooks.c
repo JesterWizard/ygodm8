@@ -289,6 +289,7 @@ u8 TrySpecialSummonGuardianEatosFromHand(u8);
 u8 TrySpecialSummonDarknessNeosphereFromHand(u8);
 u8 TrySpecialSummonMazeraDevilleFromHand(u8);
 u8 TryActivateCrossKeeperFromHand(u8);
+u8 TrySpecialSummonAndroSphinxFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -780,6 +781,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == CROSS_KEEPER
           && TryActivateCrossKeeperFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ANDRO_SPHINX
+          && TrySpecialSummonAndroSphinxFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

@@ -14,7 +14,7 @@ unsigned char CanActivateROAD_SYNCHRON(void)
   return FALSE;
 }
 
-void ActivateROAD_SYNCHONEffect(void)
+void ActivateROAD_SYNCHRONEffect(void)
 {
   Duel_ShowEffectTextTyped(ROAD_SYNCHRON, 2);
 }
