@@ -2,28 +2,62 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "god_card.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+#define GADJILTRON_BURN 700
+
+static u8 IsOppDefMonster(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone;
+
+  if (fixedRow != INACTIVE_DUELIST_MONSTER_ROW)
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER || IsGodCard(zone->id))
+    return FALSE;
+
+  return zone->isDefending == TRUE;
+}
+
+static u8 OppHasDefMonster(void)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (IsOppDefMonster(INACTIVE_DUELIST_MONSTER_ROW, col))
+      return TRUE;
+  }
+
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static void ResolveDestroyDef(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (!IsOppDefMonster(fixedRow, fixedCol) || zone == NULL || self == NULL)
+    return;
+
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  NotifyDynamicEquipFieldChanged();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 static void CancelTargeting(void)
@@ -31,35 +65,69 @@ static void CancelTargeting(void)
   PlayMusic(SFX_CANCEL);
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u8 AiPickDef(u8 *outRow, u8 *outCol)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  u8 col;
+
+  *outRow = INACTIVE_DUELIST_MONSTER_ROW;
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (IsOppDefMonster(*outRow, col)) {
+      *outCol = col;
+      return TRUE;
+    }
+  }
+
   return FALSE;
+}
+
+static void DoBurn(struct DuelCard *self)
+{
+  if (Duel_ChangeLp(INACTIVE_DUELIST, -(s32)GADJILTRON_BURN, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 unsigned char CanActivateANCIENT_GEAR_GADJILTRON_DRAGON(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != ANCIENT_GEAR_GADJILTRON_DRAGON)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != ANCIENT_GEAR_GADJILTRON_DRAGON)
+    return FALSE;
+
+  /* ponytail: pierce/burn/draw + attack S/T lock FALSE (lock elsewhere).
+   * Ceiling: OPT destroy 1 DEF opp (pierce stand-in) OR OPT burn 700. */
+  return CanUseMonsterEffect(zone);
 }
 
 void ActivateANCIENT_GEAR_GADJILTRON_DRAGONEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
   Duel_ShowEffectTextTyped(ANCIENT_GEAR_GADJILTRON_DRAGON, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (OppHasDefMonster()) {
+    gDuelCursor.destY = gMonEffect.row;
+    gDuelCursor.destX = gMonEffect.zone;
+    Duel_SetupPickZone(IsOppDefMonster, ResolveDestroyDef, CancelTargeting, AiPickDef);
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+    if (WhoseTurn() == DUEL_PLAYER)
+      Duel_EnterPickZoneTargeting();
+    else
+      Duel_ResolvePickZoneForAi();
+    return;
+  }
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  DoBurn(self);
 }

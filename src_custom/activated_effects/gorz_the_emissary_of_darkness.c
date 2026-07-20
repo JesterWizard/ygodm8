@@ -1,65 +1,85 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 ActiveControlsNoCards(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  u8 col;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *mon = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+    struct DuelCard *st = gTurnZones[ACTIVE_DUELIST_BACKROW][col];
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
+    if (mon != NULL && mon->id != CARD_NONE)
+      return FALSE;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+    if (st != NULL && st->id != CARD_NONE)
+      return FALSE;
+  }
+
+  return TRUE;
 }
 
 unsigned char CanActivateGORZ_THE_EMISSARY_OF_DARKNESS(void)
 {
   if (gMonEffect.id != GORZ_THE_EMISSARY_OF_DARKNESS)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  /* ponytail: damage-gate + Token FALSE.
+   * Ceiling: FromHand empty-field SS. */
+  return FALSE;
 }
 
 void ActivateGORZ_THE_EMISSARY_OF_DARKNESSEffect(void)
 {
   Duel_ShowEffectTextTyped(GORZ_THE_EMISSARY_OF_DARKNESS, 2);
+}
+
+u8 CanSpecialSummonGorzTheEmissaryOfDarknessFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
+    return FALSE;
+
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != GORZ_THE_EMISSARY_OF_DARKNESS)
+    return FALSE;
+
+  if (!ActiveControlsNoCards())
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  return FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) >= 0;
+}
+
+u8 TrySpecialSummonGorzTheEmissaryOfDarknessFromHand(u8 handZone)
+{
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+
+  if (!CanSpecialSummonGorzTheEmissaryOfDarknessFromHand(handZone))
+    return FALSE;
+
+  Duel_ShowEffectTextTyped(GORZ_THE_EMISSARY_OF_DARKNESS, 2);
 
   if (IsDuelOver() == TRUE)
-    return;
+    return TRUE;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
+    return FALSE;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  UpdateDuelGfxExceptField();
+  return TRUE;
 }
+
+#if !defined(__GNUC__)
+u8 CanSpecialSummonGorzTheEmissaryOfDarknessFromHand(u8 handZone);
+u8 TrySpecialSummonGorzTheEmissaryOfDarknessFromHand(u8 handZone);
+#endif

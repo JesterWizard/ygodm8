@@ -309,10 +309,16 @@ u8 TrySpecialSummonEvilHeroDeadEndPrisonFromHand(u8);
 u8 TrySpecialSummonEvilHeroViciousClawsFromHand(u8);
 u8 TrySpecialSummonLightrayGearfriedFromHand(u8);
 u8 TrySpecialSummonDarkMagicianGirlTheMagiciansApprenticeFromHand(u8);
+u8 TrySpecialSummonDarkMagicianGirlTheMagiciansApprenticeAltFromHand(u8);
 u8 TrySpecialSummonNibiruThePrimalBeingFromHand(u8);
 u8 TrySpecialSummonDestinyHeroDreadnoughtServantFromHand(u8);
 u8 TrySpecialSummonMorphtronicScannenFromHand(u8);
 u8 TrySpecialSummonGamecialTheSeaTurtleKaijuFromHand(u8);
+u8 TrySpecialSummonDestinyHeroDarkAngelFromHand(u8);
+u8 TrySpecialSummonGorzTheEmissaryOfDarknessFromHand(u8);
+u8 TrySpecialSummonMajestyHyperionFromHand(u8);
+u8 TrySpecialSummonTheLegendaryExodiaIncarnateFromHand(u8);
+u8 TrySpecialSummonTheAgentOfLifeNeptuneFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -339,7 +345,8 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == MA_AT || cardId == NEOS_WISEMAN
       || cardId == EVIL_HERO_DEAD_END_PRISON
       || cardId == LIGHTRAY_GEARFRIED
-      || cardId == MORPHTRONIC_SCANNEN;
+      || cardId == MORPHTRONIC_SCANNEN
+      || cardId == THE_LEGENDARY_EXODIA_INCARNATE;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -911,6 +918,11 @@ void sub_80441D0__Replacement(void)
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
+      } else if (handCardId == DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE
+          && TrySpecialSummonDarkMagicianGirlTheMagiciansApprenticeAltFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
       } else if (handCardId == NIBIRU_THE_PRIMAL_BEING
           && TrySpecialSummonNibiruThePrimalBeingFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
@@ -928,6 +940,31 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == GAMECIAL_THE_SEA_TURTLE_KAIJU
           && TrySpecialSummonGamecialTheSeaTurtleKaijuFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DESTINY_HERO_DARK_ANGEL
+          && TrySpecialSummonDestinyHeroDarkAngelFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GORZ_THE_EMISSARY_OF_DARKNESS
+          && TrySpecialSummonGorzTheEmissaryOfDarknessFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == MAJESTY_HYPERION
+          && TrySpecialSummonMajestyHyperionFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == THE_LEGENDARY_EXODIA_INCARNATE
+          && TrySpecialSummonTheLegendaryExodiaIncarnateFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == THE_AGENT_OF_LIFE_NEPTUNE
+          && TrySpecialSummonTheAgentOfLifeNeptuneFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

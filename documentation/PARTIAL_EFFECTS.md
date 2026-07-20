@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 20:43 UTC  
-**Remaining partials:** `754`
+**Last updated:** 2026-07-20 20:55 UTC  
+**Remaining partials:** `766`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 423 |
+| `activated` | 435 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **754** |
+| **total** | **766** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (423)
+## activated (435)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1520,6 +1520,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANCIENT_GEAR_GADJILTRON_CHIMERA`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c`
 - L12: Green/Red/Yellow Gadget tribute branches (+300 ATK, direct burn, battle burn) need summon/tribute hooks. Ceiling: not ignition-activatable.
+
+### `ANCIENT_GEAR_GADJILTRON_DRAGON`
+- path: `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c`
+- L106: pierce/burn/draw + attack S/T lock FALSE (lock elsewhere). Ceiling: OPT destroy 1 DEF opp (pierce stand-in) OR OPT burn 700.
 
 ### `ANCIENT_GEAR_GOLEM`
 - path: `src_custom/activated_effects/ancient_gear_golem.c`
@@ -1801,6 +1805,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/crimson_blader.c`
 - L12: battle destroy → opp cannot NS/SS Lv5+ next turn needs battle destroy + summon-lock hooks. Ceiling: not ignition-activatable here.
 
+### `CRIMSON_DRAGON`
+- path: `src_custom/activated_effects/crimson_dragon.c`
+- L123: Extra Deck Synchro SS FALSE; Deck Dragon stand-in.
+- L138: on-SS search + Extra Synchro return FALSE. Ceiling: OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon.
+
 ### `CROSS_KEEPER`
 - path: `src_custom/activated_effects/cross_keeper.c`
 - L145: GY draw-on-E-HERO-Fusion need Fusion/GY hooks. Ceiling: send self → SS Elemental HERO or Neo-Spacian from hand/GY.
@@ -1808,6 +1817,12 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `CURIOUS_THE_LIGHTSWORN_DOMINION`
 - path: `src_custom/activated_effects/curious_the_lightsworn_dominion.c`
 - L33: Link Summon mill + leave-field GY add + mill-cascade need summon/ leave-field hooks. Ceiling: OPT mill 1 from Deck.
+
+### `CYBER_DRAGON_INFINITY`
+- path: `src_custom/activated_effects/cyber_dragon_infinity.c`
+- L34: ATK summons keep isFaceUp=0 until EOT flip.
+- L61: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
+- L109: Xyz attach materials + negate FALSE. Ceiling: OPT ClearZone 1 face-up ATK monster (absorb) + tempStage self.
 
 ### `CYBER_ELTANIN`
 - path: `src_custom/activated_effects/cyber_eltanin.c`
@@ -1866,6 +1881,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L61: name=DMG + GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
 - L129: name becomes Dark Magician Girl FALSE (no name-override hook).
 
+### `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE`
+- path: `src_custom/activated_effects/dark_magician_girl_the_magicians_apprentice.c`
+- L61: name=DMG + GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
+- L129: name becomes Dark Magician Girl FALSE (no name-override hook).
+
 ### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
 - path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
 - L12: name becomes Dark Magician + S/T protection need permanent/name hooks. Ceiling: not ignition-activatable here; upgrade: permanent overlay.
@@ -1904,6 +1924,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/deep_sea_diva.c`
 - L58: Normal Summon trigger needs summon hook. Ceiling: once via usage while face-up if Lv≤3 Sea Serpent in Deck.
 
+### `DESTINY_END_DRAGOON`
+- path: `src_custom/activated_effects/destiny_end_dragoon.c`
+- L65: cannot conduct Battle Phase — unk4 lock stand-in. GY revive FALSE.
+- L105: GY revive FALSE. Ceiling: OPT destroy 1 opp monster + burn its ATK + cannot BP (unk4).
+
 ### `DESTINY_HERO_BLADE_MASTER`
 - path: `src_custom/activated_effects/destiny_hero_blade_master.c`
 - L58: +2 tempStage (~1000 ATK, not exact +800); until EP clear needs EP tempStage reset hook.
@@ -1916,6 +1941,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DESTINY_HERO_CELESTIAL`
 - path: `src_custom/activated_effects/destiny_hero_celestial.c`
 - L101: attack-declare destroy + GY draw-if-no-hand need battle/GY hooks. Ceiling: OPT destroy 1 face-up opp Spell + burn 500.
+
+### `DESTINY_HERO_DARK_ANGEL`
+- path: `src_custom/activated_effects/destiny_hero_dark_angel.c`
+- L81: field spell-negate FALSE. Ceiling: FromHand discard → SS D-HERO to opp DEF.
 
 ### `DESTINY_HERO_DASHER`
 - path: `src_custom/activated_effects/destiny_hero_dasher.c`
@@ -2022,6 +2051,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ELEMENTAL_HERO_BRAVE_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_brave_neos.c`
 - L67: +100 ATK per Neo-Spacian/HERO in GY + battle-destroy search gate need stat/battle hooks. Ceiling: OPT add 1 Neos/HERO Spell/Trap from Deck.
+
+### `ELEMENTAL_HERO_CHAOS_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_chaos_neos.c`
+- L88: EP shuffle/Set-all + exact 3H/2H/1H/0H branch table FALSE. Ceiling: OPT 3 coin → destroy heads-count opp monsters.
 
 ### `ELEMENTAL_HERO_DARK_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_dark_neos.c`
@@ -2289,6 +2322,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/golden_homunculus.c`
 - L47: continuous +300 ATK/DEF per banished needs permanent stat overlay. Ceiling: OPT refresh sets perm stages ≈ banished*300/500.
 
+### `GORZ_THE_EMISSARY_OF_DARKNESS`
+- path: `src_custom/activated_effects/gorz_the_emissary_of_darkness.c`
+- L34: damage-gate + Token FALSE. Ceiling: FromHand empty-field SS.
+
 ### `GRANMARG_THE_ROCK_MONARCH`
 - path: `src_custom/activated_effects/granmarg_the_rock_monarch.c`
 - L105: Tribute Summon trigger. Ceiling: once via usage if Set target.
@@ -2325,6 +2362,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gravekeepers_nobleman.c`
 - L57: destroyed-by-battle trigger needs battle/destroy hook. Ceiling: OPT SS 1 GK from Deck face-down DEF except Nobleman.
 - L87: no DUEL_SUMMON_SPECIAL_FACE_DOWN_DEF — NORMAL_SET stand-in.
+
+### `GRAVEKEEPERS_ORACLE`
+- path: `src_custom/activated_effects/gravekeepers_oracle.c`
+- L93: Tribute Summon sequence (destroy/flip/ATK) FALSE. Ceiling: OPT destroy up to 2 cards on opp field.
+- L110: multi-target picker not wired; auto-destroy up to 2 opp cards.
 
 ### `GRAVEKEEPERS_PRIESTESS`
 - path: `src_custom/activated_effects/gravekeepers_priestess.c`
@@ -2592,6 +2634,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MAJESTIC_MECH_GORYU`
 - path: `src_custom/activated_effects/majestic_mech_goryu.c`
 - L12: 1-tribute EP self-send + piercing battle damage need summon/battle hooks. Ceiling: not ignition-activatable here.
+
+### `MAJESTY_HYPERION`
+- path: `src_custom/activated_effects/majesty_hyperion.c`
+- L270: Fairy battle-damage share FALSE. Ceiling: OPT banish Fairy hand/GY → destroy 1 card. FromHand banish Agent → SS.
 
 ### `MAN_THRO_TRO`
 - path: `src_custom/activated_effects/man_thro_tro.c`
@@ -3010,6 +3056,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/the_agent_of_judgment_saturn.c`
 - L39: skip Battle Phase this turn needs phase-lock hook. Ceiling: tribute self → burn LP difference when Sanctuary face-up and LP higher.
 
+### `THE_AGENT_OF_LIFE_NEPTUNE`
+- path: `src_custom/activated_effects/the_agent_of_life_neptune.c`
+- L160: tribute-lock + banish search FALSE. Ceiling: FromHand discard self → SS Agent (or Hyperion if Sanctuary).
+
 ### `THE_AGENT_OF_MIRACLES_JUPITER`
 - path: `src_custom/activated_effects/the_agent_of_miracles_jupiter.c`
 - L132: +800 ATK until EP needs exact stage/EP clear; Sanctuary RFG revive FALSE. Ceiling: banish Agent from GY → +2 tempStage on LIGHT Fairy.
@@ -3034,6 +3084,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO`
 - path: `src_custom/activated_effects/the_executor_of_the_underworld_pluto.c`
 - L163: Quick via Sanctuary + GY add Sanctuary FALSE. Ceiling: OPT banish 1 monster from GY → flip 1 Effect Monster face-down DEF.
+
+### `THE_LEGENDARY_EXODIA_INCARNATE`
+- path: `src_custom/activated_effects/the_legendary_exodia_incarnate.c`
+- L125: ATK gain / unaffected FALSE. Ceiling: OPT add Forbidden One from GY. FromHand tribute Forbidden One → SS.
 
 ### `THE_SUPPRESSION_PLUTO`
 - path: `src_custom/activated_effects/the_suppression_pluto.c`

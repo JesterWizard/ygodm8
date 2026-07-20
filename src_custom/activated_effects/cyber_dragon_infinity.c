@@ -2,28 +2,74 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "god_card.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsFaceUpAtkMonster(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (fixedRow != PLAYER_MONSTER_ROW && fixedRow != OPPONENT_MONSTER_ROW)
+    return FALSE;
+
+  if (zone == NULL || zone == self || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER || IsGodCard(zone->id))
+    return FALSE;
+
+  if (zone->isDefending)
+    return FALSE;
+
+  if (IsCardFaceUp(zone))
+    return TRUE;
+
+  /* ponytail: ATK summons keep isFaceUp=0 until EOT flip. */
+  return TRUE;
+}
+
+static u8 FieldHasFaceUpAtkTarget(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsFaceUpAtkMonster(row, col))
+        return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static void ResolveAbsorb(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (!IsFaceUpAtkMonster(fixedRow, fixedCol) || zone == NULL || self == NULL)
+    return;
+
+  /* ponytail: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage. */
+  ClearZone(zone);
+  NotifyDynamicEquipFieldChanged();
+
+  if (self->tempStage < 127)
+    self->tempStage = (s8)(self->tempStage + 1);
+
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 static void CancelTargeting(void)
@@ -33,17 +79,39 @@ static void CancelTargeting(void)
 
 static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsFaceUpAtkMonster(row, col)) {
+        *outRow = row;
+        *outCol = col;
+        return TRUE;
+      }
+    }
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateCYBER_DRAGON_INFINITY(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != CYBER_DRAGON_INFINITY)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != CYBER_DRAGON_INFINITY)
+    return FALSE;
+
+  /* ponytail: Xyz attach materials + negate FALSE.
+   * Ceiling: OPT ClearZone 1 face-up ATK monster (absorb) + tempStage self. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return FieldHasFaceUpAtkTarget();
 }
 
 void ActivateCYBER_DRAGON_INFINITYEffect(void)
@@ -56,7 +124,7 @@ void ActivateCYBER_DRAGON_INFINITYEffect(void)
   gDuelCursor.destY = gMonEffect.row;
   gDuelCursor.destX = gMonEffect.zone;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  Duel_SetupPickZone(IsFaceUpAtkMonster, ResolveAbsorb, CancelTargeting, AiPickTarget);
 
   if (WhoseTurn() == DUEL_PLAYER)
     Duel_EnterPickZoneTargeting();
