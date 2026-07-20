@@ -233,6 +233,8 @@ u8 TryActivateHecatriceFromHand(u8);
 u8 TryActivateGRAVEKEEPERS_COMMANDANTFromHand(u8);
 u8 TryActivateWARRIOR_OF_ATLANTISFromHand(u8);
 u8 TryActivateHARPIE_QUEENFromHand(u8);
+u8 TryActivateCHARM_OF_SHABTIFromHand(u8);
+u8 TryActivateDESTINY_HERO_BLADE_MASTERFromHand(u8);
 u8 TrySpecialSummonAncientGearFromHand(u8);
 u8 TrySpecialSummonTheTrickyFromHand(u8);
 u8 TrySpecialSummonHamonLordOfStrikingThunderFromHand(u8);
@@ -441,6 +443,16 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == HARPIE_QUEEN
           && TryActivateHARPIE_QUEENFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == CHARM_OF_SHABTI
+          && TryActivateCHARM_OF_SHABTIFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DESTINY_HERO_BLADE_MASTER
+          && TryActivateDESTINY_HERO_BLADE_MASTERFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

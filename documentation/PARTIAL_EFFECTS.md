@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:15 UTC  
-**Remaining partials:** `411`
+**Last updated:** 2026-07-20 18:18 UTC  
+**Remaining partials:** `421`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 80 |
+| `activated` | 90 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **411** |
+| **total** | **421** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (80)
+## activated (90)
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1444,9 +1444,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/atlantean_attack_squad.c`
 - L12: continuous +800 ATK while controlling other Fish/SS/Aqua needs permanent overlay. Ceiling: not ignition-activatable here; upgrade: permanent ATK bonus check.
 
+### `BABYCERASAURUS`
+- path: `src_custom/activated_effects/babycerasaurus.c`
+- L59: destroyed-by-effect→GY trigger needs destroy hook. Ceiling: once via usage if Lv≤4 Dino in Deck and open MMZ.
+
 ### `BARRIER_STATUE_OF_THE_STORMWINDS`
 - path: `src_custom/activated_effects/barrier_statue_of_the_stormwinds.c`
 - L12: no SS except WIND needs Special Summon lock gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `BAZOO_THE_SOUL_EATER`
+- path: `src_custom/activated_effects/bazoo_the_soul_eater.c`
+- L98: +1 tempStage per banished (~500 ATK each, not exact +300); until opp EP clear needs EP tempStage reset hook.
 
 ### `BIRDFACE`
 - path: `src_custom/activated_effects/birdface.c`
@@ -1463,6 +1471,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `CHAINSAW_INSECT`
 - path: `src_custom/activated_effects/chainsaw_insect.c`
 - L12: opp draws after Damage Step needs battle end hook. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
+
+### `CHARM_OF_SHABTI`
+- path: `src_custom/activated_effects/charm_of_shabti.c`
+- L43: battle protection for Gravekeeper's monsters not applied. Ceiling: discard only; upgrade: battle-destroy immunity gate until EP.
 
 ### `CYBER_LASER_DRAGON`
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
@@ -1497,6 +1509,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DEEP_SEA_DIVA`
 - path: `src_custom/activated_effects/deep_sea_diva.c`
 - L58: Normal Summon trigger needs summon hook. Ceiling: once via usage while face-up if Lv≤3 Sea Serpent in Deck.
+
+### `DESTINY_HERO_BLADE_MASTER`
+- path: `src_custom/activated_effects/destiny_hero_blade_master.c`
+- L58: +2 tempStage (~1000 ATK, not exact +800); until EP clear needs EP tempStage reset hook.
+- L89: opponent Battle Phase gate not wired; allow when face-up D-HERO on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook.
+
+### `DESTINY_HERO_DISK_COMMANDER`
+- path: `src_custom/activated_effects/destiny_hero_disk_commander.c`
+- L20: SS-from-GY trigger + once per duel. Ceiling: OPT draw 2 stand-in when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE.
 
 ### `DESTINY_HERO_MALICIOUS`
 - path: `src_custom/activated_effects/destiny_hero_malicious.c`
@@ -1540,6 +1561,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L41: fixed POV — only reveal the player's own monster row
 - L69: attack-position summons stay isFaceUp=0 until end-of-turn flip
 
+### `EVIL_HERO_SINISTER_NECROM`
+- path: `src_custom/activated_effects/evil_hero_sinister_necrom.c`
+- L103: GY ignition needs GY-menu wire. Ceiling: allow when Sinister Necrom in GY + Evil HERO in hand or Deck (callable if gMonEffect set).
+
 ### `FLAME_RULER`
 - path: `src_custom/activated_effects/flame_ruler.c`
 - L12: treat as 2 Tributes for FIRE Tribute Summon needs tribute-cost LynJump. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
@@ -1575,6 +1600,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GRAVEKEEPERS_HERATIC`
 - path: `src_custom/activated_effects/gravekeepers_heratic.c`
 - L12: continuous unaffected-while-Necrovalley needs permanent protection gate. Ceiling: not ignition-activatable here; upgrade: permanent effect while Duel_IsBackrowCardOnField(NECROVALLEY).
+
+### `GRAVEKEEPERS_PRIESTESS`
+- path: `src_custom/activated_effects/gravekeepers_priestess.c`
+- L12: Necrovalley field treatment + GK ATK/DEF boost need continuous hooks. Ceiling: not ignition-activatable here; upgrade: permanent/field overlay.
 
 ### `GRAVEKEEPERS_RECRUITER`
 - path: `src_custom/activated_effects/gravekeepers_recruiter.c`
@@ -1664,6 +1693,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/molten_zombie.c`
 - L18: printed trigger is SS from GY. Ceiling: once via usage when Activate runs (summon-dispatch or manual).
 
+### `NEO_SPACIAN_DARK_PANTHER`
+- path: `src_custom/activated_effects/neo_spacian_dark_panther.c`
+- L12: copy opp monster name/effects needs engine name/effect overlay. Ceiling: not ignition-activatable here; upgrade: permanent/name/effect copy.
+
 ### `OJAMA_KING`
 - path: `src_custom/activated_effects/ojama_king.c`
 - L54: PickZone for up to 3 empty zones + continuous lock gate. Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
@@ -1683,6 +1716,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `RYKO_LIGHTSWORN_HUNTER`
 - path: `src_custom/activated_effects/ryko_lightsworn_hunter.c`
 - L107: FLIP trigger needs flip hook. Ceiling: once via usage.
+
+### `SHADDOLL_BEAST`
+- path: `src_custom/activated_effects/shaddoll_beast.c`
+- L20: FLIP draw2/discard1 and GY-sent draw1 share 1/turn exclusivity. Ceiling: OPT draw 1 stand-in for GY effect only; upgrade: flip + GY hooks.
 
 ### `SPINED_GILLMAN`
 - path: `src_custom/activated_effects/spined_gillman.c`
@@ -1714,6 +1751,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/the_winged_dragon_of_ra_sphere_mode.c`
 - L57: hand permanent-effect scan is skipped when turn_off_visual_scanner is on (gHideEffectText), so use Blue Eyes Shining-style post-board-scan auto-summon.
 - L159: in-place tribute replacement; Duel_SpecialSummon* needs an empty zone
+
+### `THUNDER_END_DRAGON`
+- path: `src_custom/activated_effects/thunder_end_dragon.c`
+- L59: no Xyz detach cost; OPT destroy-all-other-monsters stand-in. Ceiling: materials not checked; upgrade: overlay detach before destroy.
 
 ### `TORNADO_BIRD`
 - path: `src_custom/activated_effects/tornado_bird.c`
