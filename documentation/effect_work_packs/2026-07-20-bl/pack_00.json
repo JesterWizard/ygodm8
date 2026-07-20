@@ -1,0 +1,95 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "NIBIRU_THE_PRIMAL_BEING",
+      "card_name": "Nibiru, the Primal Being",
+      "kind": "activated",
+      "archetype": "NIBIRU",
+      "path": "src_custom/activated_effects/nibiru_the_primal_being.c",
+      "effect_text": "During the Main Phase, if your opponent Normal or Special Summoned 5 or more monsters this turn (Quick Effect): You can  During the Main Phase, if your opponent Normal or Special Summoned 5 or more monsters this turn (Quick Effect): You can Tribute as many face-up monsters on the field as possible, and if you do, Special Summon this card from your hand, then Special Summon 1 Primal Being Token (Rock/LIGHT/Level 11/ATK ?/DEF ?) to your opponent's field. (This Token's ATK/DEF become the combined o",
+      "tags": [
+        "faceup",
+        "hand",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ALECTOR_SOVEREIGN_OF_BIRDS",
+      "clone_path": "src_custom/activated_effects/alector_sovereign_of_birds.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO",
+      "card_name": "The Executor of the Underworld - Pluto",
+      "kind": "activated",
+      "archetype": "THE",
+      "path": "src_custom/activated_effects/the_executor_of_the_underworld_pluto.c",
+      "effect_text": "1 Tuner + 1+ non-Tuner monsters\r\n(This card is always treated as a \"The Agent\" card.)\r\nOnce per turn: You can banish 1 m 1 Tuner + 1+ non-Tuner monsters (This card is always treated as a The Agent card.) Once per turn: You can banish 1 monster from your GY, then target 1 Effect Monster on the field; change it to face-down Defense Position. This is a Quick Effect if The Sanctuary in the Sky is on the field or in either GY. You can banish this card from your GY; add 1 The Sanctuary in the Sky from",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SHADDOLL_HOUND",
+      "clone_path": "src_custom/activated_effects/shaddoll_hound.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "DESTINY_HERO_DREADNOUGHT_SERVANT",
+      "card_name": "Destiny HERO - Dreadnought Servant",
+      "kind": "activated",
+      "archetype": "DESTINY_HERO_DREADNOUGHT",
+      "path": "src_custom/activated_effects/destiny_hero_dreadnought_servant.c",
+      "effect_text": "If you control a Destiny HERO monster or face-up Field Spell: SS this from hand, destroy 1 card you control, add Poly. If you control a Destiny HERO monster or a face-up Field Spell: You can Special Summon this card from your hand, then you can destroy 1 card you control, and if you do, add 1 Polymerization from your Deck to your hand. If you Special Summon a Level 8 Destiny HERO monster(s) (except during the Damage Step): You can banish this card from your GY, then target 1 card your opponent c",
+      "tags": [
+        "deck",
+        "destroy",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "search",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BLUE_EYES_TYRANT_DRAGON",
+      "clone_path": "src_custom/activated_effects/blue_eyes_tyrant_dragon.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "KEEPER_OF_DRAGON_MAGIC",
+      "card_name": "Keeper of Dragon Magic",
+      "kind": "activated",
+      "archetype": "KEEPER",
+      "path": "src_custom/activated_effects/keeper_of_dragon_magic.c",
+      "effect_text": "On NS/SS: discard; add Poly/Fusion. Reveal Fusion; SS listed material. OPT. If this card is Normal or Special Summoned: You can discard 1 card; add 1 Polymerization Normal Spell or Fusion Normal Spell from your Deck to your hand. You can reveal 1 Fusion Monster in your Extra Deck; Special Summon 1 of the Fusion Materials whose name is specifically listed on that monster from your GY, in face-down Defense Position. You can only use each effect of Keeper of Dragon Magic once per turn. You cannot S",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "search",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.57
+    }
+  ]
+}

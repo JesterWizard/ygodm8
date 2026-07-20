@@ -81,6 +81,7 @@ void ActivateMUCUS_YOLKEffect(void);
 unsigned char CanActivateNEO_BLUE_EYES_ULTIMATE_DRAGON(void);
 void ActivateNEO_BLUE_EYES_ULTIMATE_DRAGONEffect(void);
 void ActivateNEOS_WISEMANEffect(void);
+unsigned char CanActivateNIBIRU_THE_PRIMAL_BEING(void);
 void ActivateNIBIRU_THE_PRIMAL_BEINGEffect(void);
 void ActivateOJAMA_KINGEffect(void);
 void ActivateORICHALCOS_SHUNOROSEffect(void);
@@ -864,6 +865,8 @@ unsigned char CanActivateFUSILIER_DRAGON_THE_DUAL_MODE_BEAST(void);
 void ActivateFUSILIER_DRAGON_THE_DUAL_MODE_BEASTEffect(void);
 unsigned char CanActivateGAMECIAL_THE_SEA_TURTLE_KAIJU(void);
 void ActivateGAMECIAL_THE_SEA_TURTLE_KAIJUEffect(void);
+unsigned char CanActivateGATE_GUARDIANS_COMBINED(void);
+void ActivateGATE_GUARDIANS_COMBINEDEffect(void);
 unsigned char CanActivateGRAVEKEEPERS_AMBUSHER(void);
 void ActivateGRAVEKEEPERS_AMBUSHEREffect(void);
 unsigned char CanActivateGRAVEKEEPERS_CANNONHOLDER(void);
@@ -1110,6 +1113,30 @@ unsigned char CanActivateMonsterEffect(void) {
     canActivate = CanActivateANCIENT_GEAR_TANKER();
   else if (gMonEffect.id == ENLIGHTENMENT_DRAGON)
     canActivate = CanActivateENLIGHTENMENT_DRAGON();
+  else if (gMonEffect.id == NIBIRU_THE_PRIMAL_BEING)
+    canActivate = CanActivateNIBIRU_THE_PRIMAL_BEING();
+  else if (gMonEffect.id == THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO)
+    canActivate = CanActivateTHE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO();
+  else if (gMonEffect.id == DESTINY_HERO_DREADNOUGHT_SERVANT)
+    canActivate = CanActivateDESTINY_HERO_DREADNOUGHT_SERVANT();
+  else if (gMonEffect.id == KEEPER_OF_DRAGON_MAGIC)
+    canActivate = CanActivateKEEPER_OF_DRAGON_MAGIC();
+  else if (gMonEffect.id == VISION_HERO_INCREASE)
+    canActivate = CanActivateVISION_HERO_INCREASE();
+  else if (gMonEffect.id == ANCIENT_FAIRY_DRAGON)
+    canActivate = CanActivateANCIENT_FAIRY_DRAGON();
+  else if (gMonEffect.id == AMAZONESS_AUGUSTA)
+    canActivate = CanActivateAMAZONESS_AUGUSTA();
+  else if (gMonEffect.id == TIME_THIEF_REDOER)
+    canActivate = CanActivateTIME_THIEF_REDOER();
+  else if (gMonEffect.id == MORPHTRONIC_SCANNEN)
+    canActivate = CanActivateMORPHTRONIC_SCANNEN();
+  else if (gMonEffect.id == GLADIATOR_BEAST_CLAUDIUS)
+    canActivate = CanActivateGLADIATOR_BEAST_CLAUDIUS();
+  else if (gMonEffect.id == GAMECIAL_THE_SEA_TURTLE_KAIJU)
+    canActivate = CanActivateGAMECIAL_THE_SEA_TURTLE_KAIJU();
+  else if (gMonEffect.id == GATE_GUARDIANS_COMBINED)
+    canActivate = CanActivateGATE_GUARDIANS_COMBINED();
   else if (zone->id == THE_GRAND_JUPITER)
     canActivate = CanActivateTheGrandJupiter();
   else {
@@ -1811,6 +1838,10 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   }
   if (gMonEffect.id == DESTINY_HERO_DREADNOUGHT_MASTER) {
     ActivateDESTINY_HERO_DREADNOUGHT_MASTEREffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DREADNOUGHT_SERVANT) {
+    ActivateDESTINY_HERO_DREADNOUGHT_SERVANTEffect();
     return;
   }
   if (gMonEffect.id == DESTINY_HERO_DREAMER) {
@@ -3502,6 +3533,10 @@ FAILED:
   }
   if (gMonEffect.id == GAMECIAL_THE_SEA_TURTLE_KAIJU) {
     ActivateGAMECIAL_THE_SEA_TURTLE_KAIJUEffect();
+    return;
+  }
+  if (gMonEffect.id == GATE_GUARDIANS_COMBINED) {
+    ActivateGATE_GUARDIANS_COMBINEDEffect();
     return;
   }
   if (gMonEffect.id == GRAVEKEEPERS_AMBUSHER) {

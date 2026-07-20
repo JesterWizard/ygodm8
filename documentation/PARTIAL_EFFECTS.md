@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 20:33 UTC  
-**Remaining partials:** `742`
+**Last updated:** 2026-07-20 20:43 UTC  
+**Remaining partials:** `754`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 411 |
+| `activated` | 423 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **742** |
+| **total** | **754** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (411)
+## activated (423)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1426,6 +1426,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/alector_sovereign_of_birds.c`
 - L85: until end of turn clear needs EOT unk4 reset hook.
 - L141: hand SS when opp has 2+ same Attribute uses FromHand path.
+
+### `AMAZONESS_AUGUSTA`
+- path: `src_custom/activated_effects/amazoness_augusta.c`
+- L62: protect other Amazoness + second attack FALSE. Ceiling: OPT SS Amazoness from Deck (Fusion Summon trigger stand-in).
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -1487,6 +1491,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AN_OWL_OF_LUCK`
 - path: `src_custom/activated_effects/an_owl_of_luck.c`
 - L74: FLIP trigger needs flip hook. Ceiling: once via usage if Field Spell in Deck.
+
+### `ANCIENT_FAIRY_DRAGON`
+- path: `src_custom/activated_effects/ancient_fairy_dragon.c`
+- L135: cannot conduct Battle Phase — unk4 lock stand-in.
+- L196: true BP skip needs phase lock; unk4 stand-in. Ceiling: OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field.
 
 ### `ANCIENT_GEAR_BEAST`
 - path: `src_custom/activated_effects/ancient_gear_beast.c`
@@ -1942,6 +1951,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/destiny_hero_doom_lord.c`
 - L66: cannot-attack-this-turn needs attack-gate on unk4; return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster; mark self unk4.
 
+### `DESTINY_HERO_DREADNOUGHT_SERVANT`
+- path: `src_custom/activated_effects/destiny_hero_dreadnought_servant.c`
+- L89: GY banish destroy on Lv8 D-HERO SS FALSE. Ceiling: FromHand if control D-HERO or Field Spell → SS, destroy 1, add Poly.
+
 ### `DESTINY_HERO_DREAMER`
 - path: `src_custom/activated_effects/destiny_hero_dreamer.c`
 - L45: Damage Step battle protect + banish-on-leave need battle/GY hooks. Ceiling: GY ignition SS when Dreamer in GY + empty monster zone.
@@ -2157,6 +2170,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gagagigo_the_risen.c`
 - L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
+### `GAMECIAL_THE_SEA_TURTLE_KAIJU`
+- path: `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c`
+- L68: SS to opp field + Quick remove Kaiju Counter FALSE. Ceiling: FromHand tribute 1 opp → SS to your field (or free SS if opp has Kaiju).
+
 ### `GANDORA_G_THE_DRAGON_OF_DESTRUCTION`
 - path: `src_custom/activated_effects/gandora_g_the_dragon_of_destruction.c`
 - L125: destroy+banish → Duel_BanishZone (no GY).
@@ -2166,6 +2183,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gandora_x_the_dragon_of_destruction.c`
 - L101: on-NS/SS-from-hand wipe + EP self-destroy need summon/EP hooks. Ceiling: OPT destroy all other monsters + burn highest original ATK + set ATK.
 - L129: set ATK = damage via tempStage (~500/unit); EP self-destroy FALSE.
+
+### `GATE_GUARDIANS_COMBINED`
+- path: `src_custom/activated_effects/gate_guardians_combined.c`
+- L102: negate-on-target + leave-field SS FALSE. Ceiling: OPT destroy 1 opp card (negate stand-in).
 
 ### `GLADIATOR_BEAST_ANDABATA`
 - path: `src_custom/activated_effects/gladiator_beast_andabata.c`
@@ -2184,6 +2205,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEAST_BESTIARI`
 - path: `src_custom/activated_effects/gladiator_beast_bestiari.c`
 - L192: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy 1 opp S/T, else tag-out shuffle→SS.
+
+### `GLADIATOR_BEAST_CLAUDIUS`
+- path: `src_custom/activated_effects/gladiator_beast_claudius.c`
+- L61: double BP + opp-effect trigger FALSE. Ceiling: OPT SS Gladiator Beast from Deck (opp effect stand-in).
 
 ### `GLADIATOR_BEAST_DAREIOS`
 - path: `src_custom/activated_effects/gladiator_beast_dareios.c`
@@ -2463,6 +2488,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/kaibaman.c`
 - L96: tribute-replacement in same zone; not a marked special summon (unk4 stays 0)
 
+### `KEEPER_OF_DRAGON_MAGIC`
+- path: `src_custom/activated_effects/keeper_of_dragon_magic.c`
+- L185: reveal Fusion Extra material-name SS FALSE; any GY face-down stand-in. Ceiling: OPT discard → add Poly/Fusion Normal; else OPT SS any from GY face-down DEF.
+
 ### `LADY_OF_D`
 - path: `src_custom/activated_effects/lady_of_d.c`
 - L47: opp cannot target your face-up Dragons for attacks needs target- redirect hook. Ceiling: OPT discard 1 Dragon from hand (destroy-save stand-in).
@@ -2678,6 +2707,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_remoten.c`
 - L213: position-gated OPT search. ATK: banish GY Morphtronic → add same Lv. DEF: discard Morphtronic → add other same Lv.
 
+### `MORPHTRONIC_SCANNEN`
+- path: `src_custom/activated_effects/morphtronic_scannen.c`
+- L194: FromHand banish Morphtronic → SS; ATK/DEF OPT search modes.
+
 ### `MORPHTRONIC_SCOPEN`
 - path: `src_custom/activated_effects/morphtronic_scopen.c`
 - L58: DEF Position → treat as Level 4 + EP destroy on ATK-mode SS need position/EP hooks. Ceiling: ATK Position OPT SS 1 Lv4 Morphtronic from hand.
@@ -2740,6 +2773,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `NEOS_WISEMAN`
 - path: `src_custom/activated_effects/neos_wiseman.c`
 - L39: battle burn/heal + effect-destroy immunity FALSE. Ceiling: FromHand send Neos+Yubel → SS only.
+
+### `NIBIRU_THE_PRIMAL_BEING`
+- path: `src_custom/activated_effects/nibiru_the_primal_being.c`
+- L90: 5-summon gate + Primal Being Token to opp FALSE. Ceiling: FromHand wipe+SS if ≥5 face-up monsters on field.
 
 ### `NITRO_WARRIOR`
 - path: `src_custom/activated_effects/nitro_warrior.c`
@@ -2994,6 +3031,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/the_calculator.c`
 - L40: continuous ATK = levels×300 needs permanent overlay. Ceiling: OPT refresh perm stages ≈ (levels×300)/500.
 
+### `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO`
+- path: `src_custom/activated_effects/the_executor_of_the_underworld_pluto.c`
+- L163: Quick via Sanctuary + GY add Sanctuary FALSE. Ceiling: OPT banish 1 monster from GY → flip 1 Effect Monster face-down DEF.
+
 ### `THE_SUPPRESSION_PLUTO`
 - path: `src_custom/activated_effects/the_suppression_pluto.c`
 - L213: on-summon text after field draw so Pluto is visible.
@@ -3026,6 +3067,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TIME_MAGIC_HAMMER`
 - path: `src_custom/activated_effects/time_magic_hammer.c`
 - L12: Hermos equip + battle-step dice banish need summon/equip/battle hooks. Ceiling: not field-ignition activatable here.
+
+### `TIME_THIEF_REDOER`
+- path: `src_custom/activated_effects/time_thief_redoer.c`
+- L140: detach materials + banish-until-EP FALSE. Ceiling: OPT draw 1 OR return 1 face-up opp monster to Deck.
 
 ### `TIMEAUS_THE_UNITED_DRAGON`
 - path: `src_custom/activated_effects/timeaus_the_united_dragon.c`
@@ -3116,6 +3161,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/vision_hero_gravito.c`
 - L64: no RemovedFromPlay_RemoveAt — shift RFP array in place after add. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
 - L113: tribute self → SS 2 Vision HERO from Spell & Trap Zone needs equip zone API. Ceiling: OPT add 1 banished HERO monster to hand.
+
+### `VISION_HERO_INCREASE`
+- path: `src_custom/activated_effects/vision_hero_increase.c`
+- L69: GY Continuous Trap place + tribute HERO SS-self FALSE. Ceiling: OPT SS Vision HERO Lv≤4 from Deck (ST-zone SS stand-in).
 
 ### `WARM_WORM`
 - path: `src_custom/activated_effects/warm_worm.c`

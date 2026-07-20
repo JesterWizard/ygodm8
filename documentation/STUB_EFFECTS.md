@@ -7,25 +7,23 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 20:33 UTC  
-**Remaining stubs:** `145`
+**Last updated:** 2026-07-20 20:43 UTC  
+**Remaining stubs:** `133`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `activated` | 41 |
+| `activated` | 29 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **145** |
+| **total** | **133** |
 
-## activated (41)
+## activated (29)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
-| `AMAZONESS_AUGUSTA` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_augusta.c` |
-| `ANCIENT_FAIRY_DRAGON` | `ANCIENT` | — | `HERALD_OF_ULIMATENESS` | `src_custom/activated_effects/ancient_fairy_dragon.c` |
 | `ANCIENT_GEAR_COMMANDER` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_BEAST` | `src_custom/activated_effects/ancient_gear_commander.c` |
 | `ANCIENT_GEAR_FRAME` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_TANKER` | `src_custom/activated_effects/ancient_gear_frame.c` |
 | `ANCIENT_GEAR_MEGATON_GOLEM` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_TANKER` | `src_custom/activated_effects/ancient_gear_megaton_golem.c` |
@@ -38,33 +36,23 @@ python3 tools/stub_effect_queue.py --write-list
 | `DESTINY_END_DRAGOON` | `DESTINY` | — | `ARMORY_ARM` | `src_custom/activated_effects/destiny_end_dragoon.c` |
 | `DESTINY_HERO_DARK_ANGEL` | `DESTINY_HERO` | — | `DESTINY_HERO_DOMINANCE` | `src_custom/activated_effects/destiny_hero_dark_angel.c` |
 | `DESTINY_HERO_DESTROY_DOGMA` | `DESTINY_HERO` | — | `DESTINY_HERO_DECIDER` | `src_custom/activated_effects/destiny_hero_destroy_dogma.c` |
-| `DESTINY_HERO_DREADNOUGHT_MASTER` | `DESTINY_HERO_DREADNOUGHT` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/destiny_hero_dreadnought_master.c` |
-| `DESTINY_HERO_DREADNOUGHT_SERVANT` | `DESTINY_HERO_DREADNOUGHT` | — | `BLUE_EYES_TYRANT_DRAGON` | `src_custom/activated_effects/destiny_hero_dreadnought_servant.c` |
+| `DESTINY_HERO_DREADNOUGHT_MASTER` | `DESTINY_HERO_DREADNOUGHT` | — | `DESTINY_HERO_DREADNOUGHT_SERVANT` | `src_custom/activated_effects/destiny_hero_dreadnought_master.c` |
 | `DIVINE_SERPENT_GEH` | `DIVINE` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/divine_serpent_geh.c` |
 | `ELEMENTAL_HERO_CHAOS_NEOS` | `ELEMENTAL_HERO` | — | `ELEMENTAL_HERO_MAGMA_NEOS` | `src_custom/activated_effects/elemental_hero_chaos_neos.c` |
 | `ELEMENTAL_HERO_COSMO_NEOS` | `ELEMENTAL_HERO` | — | `ELEMENTAL_HERO_NECROID_SHAMAN` | `src_custom/activated_effects/elemental_hero_cosmo_neos.c` |
-| `GAMECIAL_THE_SEA_TURTLE_KAIJU` | `GAMECIAL` | — | `TURBO_SYNCHRON` | `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c` |
-| `GATE_GUARDIANS_COMBINED` | `GATE` | — | `HERALD_OF_ULIMATENESS` | `src_custom/activated_effects/gate_guardians_combined.c` |
-| `GLADIATOR_BEAST_CLAUDIUS` | `GLADIATOR_BEAST` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/gladiator_beast_claudius.c` |
 | `GORZ_THE_EMISSARY_OF_DARKNESS` | `GORZ` | — | `ANDRO_SPHINX` | `src_custom/activated_effects/gorz_the_emissary_of_darkness.c` |
 | `GRAVEKEEPERS_ORACLE` | `GRAVEKEEPERS` | — | `GRAVEKEEPERS_DESCENDANT` | `src_custom/activated_effects/gravekeepers_oracle.c` |
 | `GUARDIAN_DREADSCYTHE` | `GUARDIAN` | — | `CHIMERATECH_FORTRESS_DRAGON` | `src_custom/activated_effects/guardian_dreadscythe.c` |
-| `KEEPER_OF_DRAGON_MAGIC` | `KEEPER` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/keeper_of_dragon_magic.c` |
 | `MAJESTY_HYPERION` | `MAJESTY` | — | `AZURE_EYES_SILVER_DRAGON` | `src_custom/activated_effects/majesty_hyperion.c` |
 | `MASTERFLARE_HYPERION` | `MASTERFLARE` | — | `SHADDOLL_HOUND` | `src_custom/activated_effects/masterflare_hyperion.c` |
-| `MORPHTRONIC_SCANNEN` | `MORPHTRONIC` | — | `MORPHTRONIC_CELFON` | `src_custom/activated_effects/morphtronic_scannen.c` |
 | `MORPHTRONIC_SMARTFON` | `MORPHTRONIC` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/morphtronic_smartfon.c` |
 | `MORPHTRONIC_TELEFON` | `MORPHTRONIC` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/morphtronic_telefon.c` |
-| `NIBIRU_THE_PRIMAL_BEING` | `NIBIRU` | — | `ALECTOR_SOVEREIGN_OF_BIRDS` | `src_custom/activated_effects/nibiru_the_primal_being.c` |
 | `SILENT_SWORDSMAN` | `SILENT` | — | `ELEMENTAL_HERO_MAGMA_NEOS` | `src_custom/activated_effects/silent_swordsman.c` |
-| `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO` | `THE` | — | `SHADDOLL_HOUND` | `src_custom/activated_effects/the_executor_of_the_underworld_pluto.c` |
 | `THE_LEGENDARY_EXODIA_INCARNATE` | `THE` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/the_legendary_exodia_incarnate.c` |
 | `THE_AGENT_OF_LIFE_NEPTUNE` | `THE_AGENT_OF` | — | `THE_AGENT_OF_ENTROPY_URANUS` | `src_custom/activated_effects/the_agent_of_life_neptune.c` |
 | `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `TIMAEUS` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/timaeus_the_knight_of_destiny.c` |
-| `TIME_THIEF_REDOER` | `TIME` | — | `TIME_MAGIC_HAMMER` | `src_custom/activated_effects/time_thief_redoer.c` |
 | `TOADALLY_AWESOME` | `TOADALLY` | — | `HERALD_OF_ULTIMATENESS` | `src_custom/activated_effects/toadally_awesome.c` |
 | `ULTIMATE_CONDUCTOR_TYRANNO` | `ULTIMATE` | — | `DESTINY_HERO_DECIDER` | `src_custom/activated_effects/ultimate_conductor_tyranno.c` |
-| `VISION_HERO_INCREASE` | `VISION_HERO` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/vision_hero_increase.c` |
 
 ## permanent (93)
 

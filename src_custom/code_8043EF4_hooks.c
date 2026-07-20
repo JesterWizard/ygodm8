@@ -309,6 +309,10 @@ u8 TrySpecialSummonEvilHeroDeadEndPrisonFromHand(u8);
 u8 TrySpecialSummonEvilHeroViciousClawsFromHand(u8);
 u8 TrySpecialSummonLightrayGearfriedFromHand(u8);
 u8 TrySpecialSummonDarkMagicianGirlTheMagiciansApprenticeFromHand(u8);
+u8 TrySpecialSummonNibiruThePrimalBeingFromHand(u8);
+u8 TrySpecialSummonDestinyHeroDreadnoughtServantFromHand(u8);
+u8 TrySpecialSummonMorphtronicScannenFromHand(u8);
+u8 TrySpecialSummonGamecialTheSeaTurtleKaijuFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -334,7 +338,8 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == MAZERA_DEVILLE
       || cardId == MA_AT || cardId == NEOS_WISEMAN
       || cardId == EVIL_HERO_DEAD_END_PRISON
-      || cardId == LIGHTRAY_GEARFRIED;
+      || cardId == LIGHTRAY_GEARFRIED
+      || cardId == MORPHTRONIC_SCANNEN;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -903,6 +908,26 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE
           && TrySpecialSummonDarkMagicianGirlTheMagiciansApprenticeFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == NIBIRU_THE_PRIMAL_BEING
+          && TrySpecialSummonNibiruThePrimalBeingFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DESTINY_HERO_DREADNOUGHT_SERVANT
+          && TrySpecialSummonDestinyHeroDreadnoughtServantFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == MORPHTRONIC_SCANNEN
+          && TrySpecialSummonMorphtronicScannenFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GAMECIAL_THE_SEA_TURTLE_KAIJU
+          && TrySpecialSummonGamecialTheSeaTurtleKaijuFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
