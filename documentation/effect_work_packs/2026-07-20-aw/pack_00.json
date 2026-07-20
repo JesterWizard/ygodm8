@@ -1,0 +1,89 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "HARPIE_CHANNELER",
+      "card_name": "Harpie Channeler",
+      "kind": "activated",
+      "archetype": "HARPIE",
+      "path": "src_custom/activated_effects/harpie_channeler.c",
+      "effect_text": "Discard Harpie; SS Harpie from Deck. Lv7 with Dragon. Name Lady. You can discard 1 Harpie card; Special Summon 1 Harpie monster from your Deck in face-up Defense Position, except Harpie Channeler. You can only use this effect of Harpie Channeler once per turn. While you control a Dragon-Type monster, this card's Level becomes 7. This card's name becomes Harpie Lady while it is on the field or in the Graveyard.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "GRAVEKEEPERS_SPIRITUALIST",
+      "card_name": "Gravekeeper's Spiritualist",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_spiritualist.c",
+      "effect_text": "During your Main Phase, if \"Necrovalley\" is on the field: You can Fusion Summon 1 Spellcaster Fusion Monster from your E During your Main Phase, if Necrovalley is on the field: You can Fusion Summon 1 Spellcaster Fusion Monster from your Extra Deck, using this card you control and other monsters from your hand or field as Fusion Material. You can only use this effect of Gravekeeper's Spiritualist once per turn.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_GUARD",
+      "clone_path": "src_custom/activated_effects/gravekeepers_guard.c",
+      "clone_score": 0.55
+    },
+    {
+      "card_const": "ORICHALCOS_SHUNOROS",
+      "card_name": "Orichalcos Shunoros",
+      "kind": "activated",
+      "archetype": "ORICHALCOS",
+      "path": "src_custom/activated_effects/orichalcos_shunoros.c",
+      "effect_text": "This card cannot be Normal Summoned or Set. If a Normal Monster you control is destroyed by battle, you can Special Summ This card cannot be Normal Summoned or Set. If a Normal Monster you control is destroyed by battle, you can Special Summon this card from your hand. This card gains 1000 ATK for each monster your opponent controls. Face-up Level 4 Normal Monsters on the field cannot be destroyed by card effects.",
+      "tags": [
+        "faceup",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GREAT_TORNADO",
+      "clone_path": "src_custom/activated_effects/elemental_hero_great_tornado.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "WEISS_LIGHTSWORN_ARCHFIEND",
+      "card_name": "Weiss, Lightsworn Archfiend",
+      "kind": "activated",
+      "archetype": "WEISS",
+      "path": "src_custom/activated_effects/weiss_lightsworn_archfiend.c",
+      "effect_text": "Topdeck LS to SS; mill 2; GY SS. You can place 1 other Lightsworn card from your hand on top of the Deck; Special Summon this card from your hand, then send the top 2 cards of your Deck to the GY. If this card is sent from the Deck to the GY: You can target 1 Lightsworn monster in your GY, except Weiss, Lightsworn Archfiend; Special Summon it. You can only use each effect of Weiss, Lightsworn Archfiend once per turn.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.57
+    }
+  ]
+}

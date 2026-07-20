@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:03 UTC  
-**Remaining partials:** `565`
+**Last updated:** 2026-07-20 19:07 UTC  
+**Remaining partials:** `577`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 234 |
+| `activated` | 246 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **565** |
+| **total** | **577** |
 
 ## spell (185)
 
@@ -1416,11 +1416,16 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (234)
+## activated (246)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
 - L71: FLIP trigger needs flip hook. Ceiling: once via usage if Trap in Deck.
+
+### `ALECTOR_SOVEREIGN_OF_BIRDS`
+- path: `src_custom/activated_effects/alector_sovereign_of_birds.c`
+- L85: until end of turn clear needs EOT unk4 reset hook.
+- L141: hand SS when opp has 2+ same Attribute uses FromHand path.
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1664,6 +1669,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/destiny_hero_captain_tenacious.c`
 - L92: Standby Phase + battle-destroyed-since-last-Standby filter need phase/destroy hooks. Ceiling: OPT SS 1 D-HERO from your GY.
 
+### `DESTINY_HERO_DASHER`
+- path: `src_custom/activated_effects/destiny_hero_dasher.c`
+- L49: battle DEF change + draw-phase GY SS need battle/draw hooks. Ceiling: OPT tribute 1 other → +2 tempStage (~1000 ATK until End Phase).
+
 ### `DESTINY_HERO_DIAMOND_DUDE`
 - path: `src_custom/activated_effects/destiny_hero_diamond_dude.c`
 - L57: next-turn GY Normal Spell activation needs Main Phase hook.
@@ -1739,6 +1748,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/evil_hero_adusted_gold.c`
 - L63: cannot attack without Fusion Monster needs attack gate hook. Ceiling: not field-ignition activatable; discard search uses FromHand path.
 - L86: once-per-turn not tracked without turn hook.
+
+### `EVIL_HERO_INFERNAL_GAINER`
+- path: `src_custom/activated_effects/evil_hero_infernal_gainer.c`
+- L57: second Standby Phase GY return needs turn/Standby hook; unk4=2 marks extra attack stand-in. Ceiling: banish self → target Fiend unk4=2.
+- L110: Main Phase 1 gate + second Standby GY return need phase/Standby hooks. Ceiling: OPT banish self → mark 1 Fiend unk4 for extra attack stand-in.
 
 ### `EVIL_HERO_SINISTER_NECROM`
 - path: `src_custom/activated_effects/evil_hero_sinister_necrom.c`
@@ -1845,9 +1859,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gravekeepers_recruiter.c`
 - L102: sent-to-GY trigger needs destroy/send hook. Ceiling: once via usage if GK ≤1500 DEF in Deck and hand space.
 
+### `GRAVEKEEPERS_SHAMAN`
+- path: `src_custom/activated_effects/gravekeepers_shaman.c`
+- L12: DEF per GK in GY + GY effect negate + Necrovalley Field Spell lock need permanent hooks. Ceiling: not ignition-activatable here.
+
 ### `GRAVEKEEPERS_SPEAR_SOLDIER`
 - path: `src_custom/activated_effects/gravekeepers_spear_soldier.c`
 - L12: piercing battle damage needs battle damage gate. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
+
+### `GRAVEKEEPERS_SPIRITUALIST`
+- path: `src_custom/activated_effects/gravekeepers_spiritualist.c`
+- L12: Necrovalley-gated Spellcaster Fusion from Extra Deck needs fusion summon API. Ceiling: not ignition-activatable here.
 
 ### `GRAVEKEEPERS_SPY`
 - path: `src_custom/activated_effects/gravekeepers_spy.c`
@@ -1881,6 +1903,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GUNGNIR_DRAGON_OF_THE_ICE_BARRIER`
 - path: `src_custom/activated_effects/gungnir_dragon_of_the_ice_barrier.c`
 - L195: 2-discard path auto-destroys 2 cards; upgrade: sequential PickZone.
+
+### `HARPIE_CHANNELER`
+- path: `src_custom/activated_effects/harpie_channeler.c`
+- L84: Level 7 with Dragon + name becomes Harpie Lady need continuous/name hooks.
 
 ### `HARPIE_DANCER`
 - path: `src_custom/activated_effects/harpie_dancer.c`
@@ -2121,6 +2147,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/ojama_king.c`
 - L54: PickZone for up to 3 empty zones + continuous lock gate. Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
 
+### `ORICHALCOS_SHUNOROS`
+- path: `src_custom/activated_effects/orichalcos_shunoros.c`
+- L40: battle-trigger SS + Lv4 Normal indestructible need trigger/permanent hooks. Ceiling: OPT +2 tempStage per opp monster (~1000 ATK each).
+- L85: SS only when your Normal Monster destroyed by battle needs battle hook. Ceiling: hand SS anytime when zone open.
+
 ### `POWER_TOOL_DRAGON`
 - path: `src_custom/activated_effects/power_tool_dragon.c`
 - L55: reveal-3 opp-picks + equip destruction replace need reveal/destroy hooks. Ceiling: OPT add first Equip Spell from Deck.
@@ -2137,6 +2168,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/raiden_hand_of_the_lightsworn.c`
 - L59: End Phase mill 2 needs EP hook. Ceiling: Main Phase OPT mill 2.
 - L82: +1 tempStage (~500 ATK, not exact +200); until opp EP clear needs hook.
+
+### `REESHADDOLL_WENDI`
+- path: `src_custom/activated_effects/reeshaddoll_wendi.c`
+- L59: FLIP vs sent-by-effect face-down DEF branches need flip/send hooks. Ceiling: OPT SS 1 other Shaddoll from Deck face-up DEF.
 
 ### `REPTILIANNE_MEDUSA`
 - path: `src_custom/activated_effects/reptilianne_medusa.c`
@@ -2190,6 +2225,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `SHADDOLL_HEDGEHOG`
 - path: `src_custom/activated_effects/shaddoll_hedgehog.c`
 - L112: FLIP S/T vs GY-sent monster exclusivity + trigger hooks deferred. Ceiling: OPT search 1 Shaddoll S/T or monster from Deck once via usage.
+
+### `SHADDOLL_HOUND`
+- path: `src_custom/activated_effects/shaddoll_hound.c`
+- L93: FLIP vs sent-by-effect battle-position branch need flip/send hooks. Ceiling: OPT add 1 Shaddoll from GY to hand.
 
 ### `SHADDOLL_SQUAMATA`
 - path: `src_custom/activated_effects/shaddoll_squamata.c`
@@ -2259,6 +2298,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `THE_AGENT_OF_ENTROPY_URANUS`
 - path: `src_custom/activated_effects/the_agent_of_entropy_uranus.c`
 - L117: tempStage stores milled Level, not a true level change hook.
+
+### `THE_AGENT_OF_JUDGMENT_SATURN`
+- path: `src_custom/activated_effects/the_agent_of_judgment_saturn.c`
+- L39: skip Battle Phase this turn needs phase-lock hook. Ceiling: tribute self → burn LP difference when Sanctuary face-up and LP higher.
 
 ### `THE_AGENT_OF_MYSTERU_EARTH`
 - path: `src_custom/activated_effects/the_agent_of_mysteru_earth.c`
@@ -2367,9 +2410,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/vision_hero_adoration.c`
 - L105: until end of turn clear needs EOT tempStage reset hook.
 
+### `VISION_HERO_GRAVITO`
+- path: `src_custom/activated_effects/vision_hero_gravito.c`
+- L64: no RemovedFromPlay_RemoveAt — shift RFP array in place after add. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
+- L113: tribute self → SS 2 Vision HERO from Spell & Trap Zone needs equip zone API. Ceiling: OPT add 1 banished HERO monster to hand.
+
 ### `WARM_WORM`
 - path: `src_custom/activated_effects/warm_worm.c`
 - L18: printed trigger is when destroyed. Ceiling: once via usage.
+
+### `WEISS_LIGHTSWORN_ARCHFIEND`
+- path: `src_custom/activated_effects/weiss_lightsworn_archfiend.c`
+- L167: sent-from-Deck-to-GY trigger needs mill/send hook. Ceiling: field OPT SS 1 other Lightsworn from GY.
 
 ### `WHITE_HORNED_DRAGON`
 - path: `src_custom/activated_effects/white_horned_dragon.c`

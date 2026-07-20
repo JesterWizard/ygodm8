@@ -261,6 +261,9 @@ u8 TrySpecialSummonLightrayDaedalusFromHand(u8);
 u8 TrySpecialSummonHolactieTheCreatorOfLightFromHand(u8);
 u8 TrySpecialSummonCyberEltaninFromHand(u8);
 u8 TrySpecialSummonHeliosDuoMegistusFromHand(u8);
+u8 TrySpecialSummonOrichalcosShunorosFromHand(u8);
+u8 TryActivateWeissLightswornArchfiendFromHand(u8);
+u8 TrySpecialSummonAlectorSovereignOfBirdsFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -609,6 +612,21 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == HELIOS_DUO_MEGISTUS
           && TrySpecialSummonHeliosDuoMegistusFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ORICHALCOS_SHUNOROS
+          && TrySpecialSummonOrichalcosShunorosFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == WEISS_LIGHTSWORN_ARCHFIEND
+          && TryActivateWeissLightswornArchfiendFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ALECTOR_SOVEREIGN_OF_BIRDS
+          && TrySpecialSummonAlectorSovereignOfBirdsFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
