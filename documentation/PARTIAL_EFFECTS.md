@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:20 UTC  
-**Remaining partials:** `432`
+**Last updated:** 2026-07-20 18:23 UTC  
+**Remaining partials:** `442`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 101 |
+| `activated` | 111 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **432** |
+| **total** | **442** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (101)
+## activated (111)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1450,6 +1450,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AROMA_JAR`
 - path: `src_custom/activated_effects/aroma_jar.c`
 - L12: FLIP battle protection + End Phase LP gain need FLIP/continuous hooks. Ceiling: not ignition-activatable here; upgrade: flip + turn-end overlay.
+
+### `AROMAGE_CANANGA`
+- path: `src_custom/activated_effects/aromage_cananga.c`
+- L126: continuous -500 ATK/DEF + LP-gain trigger need permanent/LP hooks. Ceiling: OPT bounce 1 opp Spell/Trap if hand room; upgrade: LP-gain gate + continuous stat overlay when your LP is higher.
 
 ### `ATHENA`
 - path: `src_custom/activated_effects/athena.c`
@@ -1677,6 +1681,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/levia_dragon_daedalus.c`
 - L124: walk gDuel.board directly; gFixedZones column order differs on opponent rows, so row/col checks against gMonEffect can skip the wrong slot.
 
+### `LEVIAIR_THE_SEA_DRAGON`
+- path: `src_custom/activated_effects/leviair_the_sea_dragon.c`
+- L62: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
+- L107: no Xyz detach cost; OPT SS banished Lv≤4 stand-in when RFP enabled. Ceiling: materials not checked; upgrade: overlay detach before SS.
+
 ### `LUMINA_LIGHTSWORN_SUMMONER`
 - path: `src_custom/activated_effects/lumina_lightsworn_summoner.c`
 - L236: End Phase mill 3 needs EP phase hook.
@@ -1697,6 +1706,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c`
 - L113: Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage if Ritual Monster or Ritual Spell in Deck and hand space.
 
+### `MARSHMALLON`
+- path: `src_custom/activated_effects/marshmallon.c`
+- L12: battle destruction immunity + flip-attack burn need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle damage / destroy gate.
+
 ### `MEZUKI`
 - path: `src_custom/activated_effects/mezuki.c`
 - L169: GY ignition needs GY-menu wire. Ceiling: allow when Mezuki + another Zombie in expanded GY (callable if gMonEffect set to Mezuki).
@@ -1716,6 +1729,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MORPHTRONIC_RADION`
 - path: `src_custom/activated_effects/morphtronic_radion.c`
 - L12: position-based Morphtronic ATK/DEF boost needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position gate.
+
+### `MORPHTRONIC_VIDEON`
+- path: `src_custom/activated_effects/morphtronic_videon.c`
+- L12: position-based ATK/DEF per Equip needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position/equip gate.
 
 ### `NEO_SPACIAN_DARK_PANTHER`
 - path: `src_custom/activated_effects/neo_spacian_dark_panther.c`
@@ -1741,13 +1758,29 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/rinyan_lightsworn_rogue.c`
 - L41: FLIP trigger needs flip hook. Ceiling: once via usage if LS in GY.
 
+### `ROYAL_MAGICAL_LIBRARY`
+- path: `src_custom/activated_effects/royal_magical_library.c`
+- L22: Spell Counters on Spell activation need spell-resolve hook. Ceiling: ignition only when unk4>=3 (never rises alone); upgrade: on Spell resolve → if face-up ROYAL_MAGICAL_LIBRARY then zone->unk4++ (cap 3).
+
 ### `RYKO_LIGHTSWORN_HUNTER`
 - path: `src_custom/activated_effects/ryko_lightsworn_hunter.c`
 - L107: FLIP trigger needs flip hook. Ceiling: once via usage.
 
+### `RYKO_TWILIGHTSWORN_FIGHTER`
+- path: `src_custom/activated_effects/ryko_twilightsworn_fighter.c`
+- L191: NS/flip + other-Lightsworn mill 3 need summon/chain hooks. Ceiling: OPT banish LS from hand/GY then banish 1 field card; upgrade: NS/flip timing + mill-on-other-LS-effect hook.
+
 ### `SHADDOLL_BEAST`
 - path: `src_custom/activated_effects/shaddoll_beast.c`
 - L20: FLIP draw2/discard1 and GY-sent draw1 share 1/turn exclusivity. Ceiling: OPT draw 1 stand-in for GY effect only; upgrade: flip + GY hooks.
+
+### `SILENT_MAGICIAN_LV8`
+- path: `src_custom/activated_effects/silent_magician_lv8.c`
+- L12: continuous immunity to opponent Spell effects needs spell-target gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-immune hook.
+
+### `SILENT_SWORDSMAN_LV7`
+- path: `src_custom/activated_effects/silent_swordsman_lv7.c`
+- L12: continuous negate all Spell effects needs field-wide spell gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-negate hook.
 
 ### `SPINED_GILLMAN`
 - path: `src_custom/activated_effects/spined_gillman.c`
@@ -1812,6 +1845,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/tyranno_infinity.c`
 - L52: original ATK = banished Dinos×1000 needs permanent overlay. Ceiling: OPT stages ≈ (count×1000)/500.
 
+### `TYRANT_BURST_DRAGON`
+- path: `src_custom/activated_effects/tyrant_burst_dragon.c`
+- L12: multi-attack + equip-to-monster need battle/equip continuous hooks. Ceiling: not ignition-activatable here; upgrade: permanent battle/equip gate.
+
 ### `VENOM_BOA`
 - path: `src_custom/activated_effects/venom_boa.c`
 - L87: cannot-attack-this-turn needs attack gate on unk4.
@@ -1831,6 +1868,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `X_SABER_AIRBELLUM`
 - path: `src_custom/activated_effects/x_saber_airbellum.c`
 - L12: direct-attack battle-damage trigger needs battle hook. Ceiling: not ignition-activatable here; upgrade: battle end discard.
+
+### `ZERADIAS_HERALD_OF_HEAVEN`
+- path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
+- L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
 ## permanent (27)
 

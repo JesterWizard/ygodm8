@@ -4,62 +4,47 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
-
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
-}
+#define ROYAL_MAGICAL_LIBRARY_COUNTER_COST 3
 
 unsigned char CanActivateROYAL_MAGICAL_LIBRARY(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != ROYAL_MAGICAL_LIBRARY)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != ROYAL_MAGICAL_LIBRARY)
+    return FALSE;
+
+  /* ponytail: Spell Counters on Spell activation need spell-resolve hook.
+   * Ceiling: ignition only when unk4>=3 (never rises alone); upgrade: on Spell
+   * resolve → if face-up ROYAL_MAGICAL_LIBRARY then zone->unk4++ (cap 3). */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return zone->unk4 >= ROYAL_MAGICAL_LIBRARY_COUNTER_COST;
 }
 
 void ActivateROYAL_MAGICAL_LIBRARYEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
   Duel_ShowEffectTextTyped(ROYAL_MAGICAL_LIBRARY, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (self->unk4 < ROYAL_MAGICAL_LIBRARY_COUNTER_COST)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  self->unk4 = (u8)(self->unk4 - ROYAL_MAGICAL_LIBRARY_COUNTER_COST);
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  if (Duel_DrawCards(ACTIVE_DUELIST, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
 }

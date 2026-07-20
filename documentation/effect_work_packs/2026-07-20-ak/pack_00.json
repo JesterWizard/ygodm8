@@ -1,0 +1,75 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SILENT_SWORDSMAN_LV7",
+      "card_name": "Silent Swordsman LV7",
+      "kind": "activated",
+      "archetype": "SILENT_SWORDSMAN",
+      "path": "src_custom/activated_effects/silent_swordsman_lv7.c",
+      "effect_text": "Cannot be Normal Summoned/Set. Must be Special Summoned by Silent Swordsman LV5, and cannot be Special Summoned by oth Cannot be Normal Summoned/Set. Must be Special Summoned by Silent Swordsman LV5, and cannot be Special Summoned by other ways. Negate all Spell effects on the field.",
+      "tags": [
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NECROID_SHAMAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_necroid_shaman.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "LEVIAIR_THE_SEA_DRAGON",
+      "card_name": "Leviair the Sea Dragon",
+      "kind": "activated",
+      "archetype": "LEVIAIR",
+      "path": "src_custom/activated_effects/leviair_the_sea_dragon.c",
+      "effect_text": "2 Level 3 monsters\r\nOnce per turn: You can detach 1 material from this card, then target 1 banished Level 4 or lower mon 2 Level 3 monsters Once per turn: You can detach 1 material from this card, then target 1 banished Level 4 or lower monster; Special Summon that target to your field.",
+      "tags": [
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GAIA",
+      "clone_path": "src_custom/activated_effects/elemental_hero_gaia.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "ROYAL_MAGICAL_LIBRARY",
+      "card_name": "Royal Magical Library",
+      "kind": "activated",
+      "archetype": "ROYAL",
+      "path": "src_custom/activated_effects/royal_magical_library.c",
+      "effect_text": "Each time a Spell Card is activated, place 1 Spell Counter on this card when that Spell resolves (max. 3). You can remov Each time a Spell Card is activated, place 1 Spell Counter on this card when that Spell resolves (max. 3). You can remove 3 Spell Counters from this card; draw 1 card.",
+      "tags": [
+        "draw"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "DESTINY_HERO_DISK_COMMANDER",
+      "clone_path": "src_custom/activated_effects/destiny_hero_disk_commander.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "MARSHMALLON",
+      "card_name": "Marshmallon",
+      "kind": "activated",
+      "archetype": "MARSHMALLON",
+      "path": "src_custom/activated_effects/marshmallon.c",
+      "effect_text": "Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of th Cannot be destroyed by battle. After damage calculation, if this card was attacked, and was face-down at the start of the Damage Step: The attacking player takes 1000 damage.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_BOA",
+      "clone_path": "src_custom/activated_effects/venom_boa.c",
+      "clone_score": 1.0
+    }
+  ]
+}

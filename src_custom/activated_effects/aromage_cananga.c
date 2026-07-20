@@ -4,26 +4,92 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  handSlot->id = cardId;
+  handSlot->isFaceUp = FALSE;
+  handSlot->isLocked = FALSE;
+  handSlot->isDefending = FALSE;
+  handSlot->unkTwo = 0;
+  handSlot->unkThree = 0;
+  handSlot->unk4 = 0;
+  handSlot->willChangeSides = FALSE;
+  ResetPermStage(handSlot);
+  ResetTempStage(handSlot);
+}
+
+static u8 IsOppSpellTrapZone(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone;
+  u8 typeGroup;
+
+  if (fixedRow != OPPONENT_BACKROW)
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  typeGroup = GetTypeGroup(zone->id);
+  return typeGroup == TYPE_GROUP_SPELL || typeGroup == TYPE_GROUP_TRAP;
+}
+
+static u8 OppHasSpellTrapWithHandRoom(void)
+{
+  u8 col;
+
+  if (NumEmptyZonesInRow(gTurnHands[INACTIVE_DUELIST]) == 0)
+    return FALSE;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (IsOppSpellTrapZone(OPPONENT_BACKROW, col))
+      return TRUE;
+  }
+
   return FALSE;
+}
+
+static u8 BounceSpellTrapToHand(struct DuelCard *zone)
+{
+  s8 empty;
+  u16 cardId;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  empty = FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]);
+  if (empty < 0)
+    return FALSE;
+
+  cardId = zone->id;
+  ClearZone(zone);
+  InitHandSlotFromCard(gTurnHands[INACTIVE_DUELIST][empty], cardId);
+  return TRUE;
 }
 
 static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (!IsOppSpellTrapZone(fixedRow, fixedCol) || zone == NULL)
+    return;
+
+  if (!BounceSpellTrapToHand(zone))
+    return;
+
+  if (self != NULL)
+    MarkMonsterEffectUsed(self);
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia();
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 static void CancelTargeting(void)
@@ -33,17 +99,37 @@ static void CancelTargeting(void)
 
 static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  u8 col;
+
+  *outRow = OPPONENT_BACKROW;
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (IsOppSpellTrapZone(OPPONENT_BACKROW, col)) {
+      *outCol = col;
+      return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateAROMAGE_CANANGA(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != AROMAGE_CANANGA)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != AROMAGE_CANANGA)
+    return FALSE;
+
+  /* ponytail: continuous -500 ATK/DEF + LP-gain trigger need permanent/LP hooks.
+   * Ceiling: OPT bounce 1 opp Spell/Trap if hand room; upgrade: LP-gain gate +
+   * continuous stat overlay when your LP is higher. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return OppHasSpellTrapWithHandRoom();
 }
 
 void ActivateAROMAGE_CANANGAEffect(void)
@@ -56,7 +142,7 @@ void ActivateAROMAGE_CANANGAEffect(void)
   gDuelCursor.destY = gMonEffect.row;
   gDuelCursor.destX = gMonEffect.zone;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  Duel_SetupPickZone(IsOppSpellTrapZone, ResolveTarget, CancelTargeting, AiPickTarget);
 
   if (WhoseTurn() == DUEL_PLAYER)
     Duel_EnterPickZoneTargeting();

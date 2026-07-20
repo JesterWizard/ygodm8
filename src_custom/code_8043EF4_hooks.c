@@ -231,6 +231,7 @@ u8 TrySpecialSummonArchlordKristyaFromHand(u8);
 u8 TryActivateElementalHeroCaptainGoldFromHand(u8);
 u8 TryActivateHecatriceFromHand(u8);
 u8 TryActivateGRAVEKEEPERS_COMMANDANTFromHand(u8);
+u8 TryActivateZERADIAS_HERALD_OF_HEAVENFromHand(u8);
 u8 TryActivateWARRIOR_OF_ATLANTISFromHand(u8);
 u8 TryActivateHARPIE_QUEENFromHand(u8);
 u8 TryActivateCHARM_OF_SHABTIFromHand(u8);
@@ -433,6 +434,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == GRAVEKEEPERS_COMMANDANT
           && TryActivateGRAVEKEEPERS_COMMANDANTFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ZERADIAS_HERALD_OF_HEAVEN
+          && TryActivateZERADIAS_HERALD_OF_HEAVENFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

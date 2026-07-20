@@ -1,0 +1,79 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "TYRANT_BURST_DRAGON",
+      "card_name": "Tyrant Burst Dragon",
+      "kind": "activated",
+      "archetype": "TYRANT",
+      "path": "src_custom/activated_effects/tyrant_burst_dragon.c",
+      "effect_text": "Must be Special Summoned with The Fang of Critias, using Tyrant Wing. This card can attack all your opponent's monsters, once each. You can target 1 face-up monster you control; equip this monster to that target. It gains 400 ATK/DEF, also it can make 3 attacks during each Battle Phase.",
+      "tags": [
+        "faceup",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GAIA",
+      "clone_path": "src_custom/activated_effects/elemental_hero_gaia.c",
+      "clone_score": 0.8
+    },
+    {
+      "card_const": "SILENT_MAGICIAN_LV8",
+      "card_name": "Silent Magician LV8",
+      "kind": "activated",
+      "archetype": "SILENT_MAGICIAN",
+      "path": "src_custom/activated_effects/silent_magician_lv8.c",
+      "effect_text": "Cannot be Normal Summoned/Set. Must be Special Summoned by Silent Magician LV4 and cannot be Special Summoned by other Cannot be Normal Summoned/Set. Must be Special Summoned by Silent Magician LV4 and cannot be Special Summoned by other ways. Unaffected by your opponent's Spell effects.",
+      "tags": [
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NECROID_SHAMAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_necroid_shaman.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "AROMAGE_CANANGA",
+      "card_name": "Aromage Cananga",
+      "kind": "activated",
+      "archetype": "AROMAGE",
+      "path": "src_custom/activated_effects/aromage_cananga.c",
+      "effect_text": "If LP higher: opp. monsters -500. Once/turn if gain LP: bounce 1 opp. Spell/Trap. While your LP is higher than your opponent's, face-up monsters your opponent controls lose 500 ATK and DEF. Once per turn, if you gain LP: Target 1 Spell/Trap Card your opponent controls; return it to the hand.",
+      "tags": [
+        "faceup",
+        "hand",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COPYCAT",
+      "clone_path": "src_custom/activated_effects/copycat.c",
+      "clone_score": 0.33
+    },
+    {
+      "card_const": "MORPHTRONIC_VIDEON",
+      "card_name": "Morphtronic Videon",
+      "kind": "activated",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/activated_effects/morphtronic_videon.c",
+      "effect_text": "- While in Attack Position: This card gains 800 ATK for each Equip Card equipped to it. \n- While in Defense Position: Th - While in Attack Position: This card gains 800 ATK for each Equip Card equipped to it. - While in Defense Position: This card gains 800 DEF for each Equip Card equipped to it.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_BOA",
+      "clone_path": "src_custom/activated_effects/venom_boa.c",
+      "clone_score": 1.0
+    }
+  ]
+}
