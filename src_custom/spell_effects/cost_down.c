@@ -17,7 +17,7 @@ static u8 IsMonsterCardId(u16 cardId)
 static u8 IsCardInCostDownHandSlot(u8 handSlot, u16 cardId)
 {
   struct DuelCard *zone;
-  u8 maxSlot = IsSixCardHandEnabled() ? HAND_SLOT_EXTRA : (MAX_ZONES_IN_ROW - 1);
+  u8 maxSlot = ExpandedHand_MaxSlots() - 1;
 
   if (handSlot > maxSlot || cardId == CARD_NONE)
     return FALSE;
@@ -33,7 +33,7 @@ static u8 IsCardInCostDownHandSlot(u8 handSlot, u16 cardId)
 static u8 IsMonsterInCostDownHand(u16 cardId)
 {
   u8 i;
-  u8 maxSlot = IsSixCardHandEnabled() ? HAND_SLOT_EXTRA : (MAX_ZONES_IN_ROW - 1);
+  u8 maxSlot = ExpandedHand_MaxSlots() - 1;
 
   if (!gCostDownActive || !IsMonsterCardId(cardId))
     return FALSE;

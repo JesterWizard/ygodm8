@@ -90,6 +90,9 @@ void RefreshFieldMonsterStatOverlays(void)
       if (row == OPPONENT_MONSTER_ROW || row == PLAYER_MONSTER_ROW)
         StampFieldCardStage(tilePtr, ComputeFinalStage(zone));
 
+      if (row == PLAYER_HAND && ExpandedHand_ShouldHideHandAtkDef(DUEL_PLAYER))
+        continue;
+
       if (row == OPPONENT_MONSTER_ROW || row == PLAYER_MONSTER_ROW || row == PLAYER_HAND) {
         sub_80572A8(tilePtr, zone);
         sub_805733C(tilePtr, zone);
@@ -365,6 +368,7 @@ void sub_80577A4__Replacement(void) {
   u8 j;
 
   RefreshAllFieldCardTiles();
+  ExpandedHand_MaybeBlankHandTiles();
   SixCardHand_RefreshExtraTiles();
   RefreshAllWaveMotionCannonFieldCounters();
   CpuCopy16(g89A781C, gPaletteBuffer + 256, 320);

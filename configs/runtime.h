@@ -68,7 +68,7 @@ typedef struct {
     u8 enable_opponent_hand_field_scroll; // Scroll up past opponent backrow to view opponent hand on the field.
     u8 enable_summon_animations; // Show pop-up full-art BG0 animations on summon for registered boss monsters.
     u8 move_cursor_to_hand_on_draw; // After the draw phase, snap the player cursor to their hand.
-    u8 enable_six_card_hand; // Allow a 6th hand card; compress X spacing when 6 are held.
+    u8 expanded_card_hand; // Hands may exceed 6 mid-turn (overlap/blank art); EOT discard to 6.
     u8 enable_smarter_ai; // Vary among top-rated AI lines instead of one fixed optimal play.
     u8 fast_ai; // Light-score attacks + budgeted vanilla sims; board prune; cheaper GFX.
     u8 ignore_tribute_requirements; // When TRUE, all tribute summon requirements are waived.

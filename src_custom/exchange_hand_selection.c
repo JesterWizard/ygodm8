@@ -4,6 +4,7 @@
 #include "mini_card.h"
 #include "duel_opponent_hand_scroll.h"
 #include "exchange_hand_selection.h"
+#include "expanded_card_hand.h"
 
 extern u16 gNewButtons;
 extern u16 gRepeatedOrNewButtons;
@@ -160,7 +161,8 @@ static u8 HandZoneHasMatchingType(struct DuelCard **handRow, u8 zone, u8 type)
 
 static u8 HandZoneMatchesPredicate(struct DuelCard **handRow, u8 zone, HandCardPredicate predicate)
 {
-  u16 cardId = handRow[zone]->id;
+  struct DuelCard *slot = ExpandedHand_ZoneAtHandRow(handRow, zone);
+  u16 cardId = slot->id;
 
   if (cardId == CARD_NONE)
     return FALSE;
@@ -171,9 +173,10 @@ static u8 HandZoneMatchesPredicate(struct DuelCard **handRow, u8 zone, HandCardP
 static u8 FindFirstOccupiedHandZone(struct DuelCard **handRow)
 {
   u8 zone;
+  u8 maxSlots = ExpandedHand_MaxSlots();
 
-  for (zone = 0; zone < MAX_ZONES_IN_ROW; zone++) {
-    if (handRow[zone]->id != CARD_NONE)
+  for (zone = 0; zone < maxSlots; zone++) {
+    if (ExpandedHand_ZoneAtHandRow(handRow, zone)->id != CARD_NONE)
       return zone;
   }
 

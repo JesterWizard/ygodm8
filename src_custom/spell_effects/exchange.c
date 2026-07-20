@@ -31,12 +31,16 @@ static void RevealHandCards(u8 duelist)
       gTurnHands[duelist][i]->isFaceUp = TRUE;
   }
 
-  if (!IsSixCardHandEnabled())
+  if (!IsExpandedCardHandEnabled())
     return;
 
-  fixedDuelist = SixCardHand_FixedDuelistForHandRow(gTurnHands[duelist]);
-  if (fixedDuelist != 0xFF && gHandExtraSlots[fixedDuelist].id != CARD_NONE)
-    gHandExtraSlots[fixedDuelist].isFaceUp = TRUE;
+  fixedDuelist = ExpandedHand_FixedDuelistForHandRow(gTurnHands[duelist]);
+  if (fixedDuelist != 0xFF) {
+    for (i = 0; i < MAX_HAND_EXTRA; i++) {
+      if (gHandExtraSlots[fixedDuelist][i].id != CARD_NONE)
+        gHandExtraSlots[fixedDuelist][i].isFaceUp = TRUE;
+    }
+  }
 }
 
 static void TransferHandCard(u8 srcDuelist, u8 srcZone, u8 dstDuelist, u8 dstZone, u8 faceUp)

@@ -1,12 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Migrate all event scripts to map_09 dialogue style
+**Last worked on:** 2026-07-20 — Discard text wrap + hand OAM Z-order
 
 **Files touched:**
-- `tools/vanilla_events.py`, `events/scripts/map_*.c` (241 files), `events/README.md`
+- `src_custom/expanded_card_hand.c`
 
-**Outcome:** make OK. TEXT/TALK one-string-per-page; PORTRAIT+TEXT folded to TALK; branch `0x08F04040` → `EVENT_NOP`.
+**Outcome:** make OK. Discard prompt breaks before “your”. Overlap hand redraws all cards with OAM 10+i (left in front); 6th no longer covers 5th.
 
 **Open / next:**
-- Playtest a few non-map_09 scenes (shop, clock tower)
+- Playtest overlap stacking and discard popup line break
 - Playtest XYZ; Junk Synchron revive; Stardust negate

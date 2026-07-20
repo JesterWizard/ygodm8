@@ -80,18 +80,24 @@ static struct DuelCard *GetVisibleCardAtBoardPos(u8 y, u8 x) {
   struct DuelCard *card;
 
   if (IsOpponentHandFieldScrollEnabled() && y == OPPONENT_HAND_ROW) {
-    u8 zone = (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
-        ? (HAND_SLOT_EXTRA - x)
-        : (4 - x);
+    u8 count = ExpandedHand_Count(DUEL_OPPONENT);
+    u8 zone;
 
-    card = SixCardHand_GetFixed(DUEL_OPPONENT, zone);
+    if (IsExpandedCardHandEnabled() && count > MAX_ZONES_IN_ROW)
+      zone = count - 1 - x;
+    else if (IsExpandedCardHandEnabled() && ExpandedHand_UsesCompressedLayout(DUEL_OPPONENT))
+      zone = HAND_SIZE_LIMIT - 1 - x;
+    else
+      zone = 4 - x;
+
+    card = ExpandedHand_GetFixed(DUEL_OPPONENT, zone);
     if (card == NULL || card->id == CARD_NONE || !card->isFaceUp)
       return NULL;
     return card;
   }
 
   if (y == PLAYER_HAND) {
-    card = SixCardHand_GetPlayerHandZone(x);
+    card = ExpandedHand_GetPlayerHandZone(x);
     if (card == NULL || card->id == CARD_NONE)
       return NULL;
     return card;
@@ -165,8 +171,12 @@ static s16 GetOpponentHandCardScreenY(void)
 
 static u8 OpponentHandZoneFromCol(u8 col)
 {
-  if (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
-    return HAND_SLOT_EXTRA - col;
+  u8 count = ExpandedHand_Count(DUEL_OPPONENT);
+
+  if (IsExpandedCardHandEnabled() && count > MAX_ZONES_IN_ROW)
+    return count - 1 - col;
+  if (IsExpandedCardHandEnabled() && ExpandedHand_UsesCompressedLayout(DUEL_OPPONENT))
+    return HAND_SIZE_LIMIT - 1 - col;
   return 4 - col;
 }
 
@@ -285,7 +295,9 @@ void DrawOpponentHandZone(u8 col)
 
   tilePtr = OpponentHandTilePtr(col);
 
-  if (card->isFaceUp) {
+  if (ExpandedHand_UsesBlankOverlapLayout(DUEL_OPPONENT)) {
+    ExpandedHand_ComposeGreyArtTile(tilePtr);
+  } else if (card->isFaceUp) {
     ComposeFaceUpFieldMiniCard(tilePtr, card);
   } else {
     CopyFaceDownCardTiles(tilePtr);

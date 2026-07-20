@@ -414,6 +414,7 @@ static bool8 RunDuelTurnLoop(void) {
       continue;
     }
     TryReturnSphereModeAtTurnEnd();
+    ExpandedHand_EnforceSizeLimit(turn);
     FlipAtkPosCardsFaceUp(2);
     EndFirstTurnAttackBan();
     SwitchTurn();

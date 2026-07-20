@@ -466,10 +466,14 @@ u8 Duel_CountCardsInHand(struct DuelCard **handRow)
       count++;
   }
 
-  if (IsSixCardHandEnabled()) {
-    fixedDuelist = SixCardHand_FixedDuelistForHandRow(handRow);
-    if (fixedDuelist != 0xFF && gHandExtraSlots[fixedDuelist].id != CARD_NONE)
-      count++;
+  if (IsExpandedCardHandEnabled()) {
+    fixedDuelist = ExpandedHand_FixedDuelistForHandRow(handRow);
+    if (fixedDuelist != 0xFF) {
+      for (i = 0; i < MAX_HAND_EXTRA; i++) {
+        if (gHandExtraSlots[fixedDuelist][i].id != CARD_NONE)
+          count++;
+      }
+    }
   }
 
   return count;
@@ -498,7 +502,7 @@ enum DuelActionResult Duel_DrawCards(u8 duelist, u8 count, u8 updateGfx)
 
 enum DuelActionResult Duel_DrawCardsUntilHandSize(u8 turnDuelist, u8 targetHandSize, u8 updateGfx)
 {
-  u8 maxHand = IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW;
+  u8 maxHand = ExpandedHand_MaxSlots();
 
   while (Duel_CountCardsInHand(gTurnHands[turnDuelist]) < targetHandSize) {
     if (Duel_CountCardsInHand(gTurnHands[turnDuelist]) >= maxHand)
@@ -608,14 +612,17 @@ static s8 PickRandomHandZone(struct DuelCard **handRow)
   u8 occupied = Duel_CountCardsInHand(handRow);
   u8 chosen;
   u8 seen = 0;
+  u8 maxSlots = ExpandedHand_MaxSlots();
+  struct DuelCard *zone;
 
   if (occupied == 0)
     return -1;
 
   chosen = RandRangeU8(0, occupied - 1);
 
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (handRow[i]->id == CARD_NONE)
+  for (i = 0; i < maxSlots; i++) {
+    zone = ExpandedHand_ZoneAtHandRow(handRow, i);
+    if (zone->id == CARD_NONE)
       continue;
 
     if (seen == chosen)
@@ -645,6 +652,7 @@ enum DuelActionResult Duel_DiscardFromHand(u8 duelist, u8 count, HandCardPredica
 
   for (i = 0; i < count; i++) {
     s8 zone;
+    struct DuelCard *slot;
 
     if (Duel_CountCardsInHand(handRow) == 0)
       return DUEL_ACTION_NO_TARGET;
@@ -656,14 +664,18 @@ enum DuelActionResult Duel_DiscardFromHand(u8 duelist, u8 count, HandCardPredica
         zone = SelectHandCardMatchingPredicate(handRow, AnyHandCardForSelect);
     } else {
       zone = PickRandomHandZone(handRow);
-      if (zone >= 0 && !HandCardMatchesDiscardPred(handRow[zone]->id, pred))
-        return DUEL_ACTION_NO_TARGET;
+      if (zone >= 0) {
+        slot = ExpandedHand_ZoneAtHandRow(handRow, (u8)zone);
+        if (!HandCardMatchesDiscardPred(slot->id, pred))
+          return DUEL_ACTION_NO_TARGET;
+      }
     }
 
     if (zone < 0)
       return DUEL_ACTION_NO_TARGET;
 
-    ClearZoneAndSendMonToGraveyard(handRow[zone], duelist);
+    slot = ExpandedHand_ZoneAtHandRow(handRow, (u8)zone);
+    ClearZoneAndSendMonToGraveyard(slot, duelist);
 
     if (IsDuelOver() == TRUE)
       return DUEL_ACTION_DUEL_OVER;
@@ -680,6 +692,7 @@ enum DuelActionResult Duel_DiscardRandomFromHand(u8 duelist, u8 count, u8 update
 
   for (i = 0; i < count; i++) {
     s8 zone;
+    struct DuelCard *slot;
 
     if (Duel_CountCardsInHand(handRow) == 0)
       return DUEL_ACTION_NO_TARGET;
@@ -688,7 +701,8 @@ enum DuelActionResult Duel_DiscardRandomFromHand(u8 duelist, u8 count, u8 update
     if (zone < 0)
       return DUEL_ACTION_NO_TARGET;
 
-    ClearZoneAndSendMonToGraveyard(handRow[zone], duelist);
+    slot = ExpandedHand_ZoneAtHandRow(handRow, (u8)zone);
+    ClearZoneAndSendMonToGraveyard(slot, duelist);
 
     if (IsDuelOver() == TRUE)
       return DUEL_ACTION_DUEL_OVER;
@@ -707,13 +721,16 @@ enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx)
 {
   struct DuelCard **handRow = gTurnHands[duelist];
   u8 i;
+  u8 maxSlots = ExpandedHand_MaxSlots();
   enum DuelActionResult result = DUEL_ACTION_NO_TARGET;
+  struct DuelCard *slot;
 
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (handRow[i]->id == CARD_NONE)
+  for (i = 0; i < maxSlots; i++) {
+    slot = ExpandedHand_ZoneAtHandRow(handRow, i);
+    if (slot->id == CARD_NONE)
       continue;
 
-    ClearZoneAndSendMonToGraveyard(handRow[i], duelist);
+    ClearZoneAndSendMonToGraveyard(slot, duelist);
     result = DUEL_ACTION_OK;
 
     if (IsDuelOver() == TRUE)
@@ -999,9 +1016,20 @@ u8 Duel_FindFixedZone(struct DuelCard *zone, u8 *fixedRow, u8 *col)
     }
   }
 
-  if (IsSixCardHandEnabled() && zone == &gHandExtraSlots[DUEL_PLAYER]) {
+  if (IsExpandedCardHandEnabled() && ExpandedHand_IsHandZone(zone)
+      && ExpandedHand_OwnerOf(zone) == DUEL_PLAYER) {
     *fixedRow = PLAYER_HAND;
-    *col = HAND_SLOT_EXTRA;
+    *col = 0;
+    {
+      u8 i;
+
+      for (i = 0; i < MAX_HAND_CARDS; i++) {
+        if (ExpandedHand_GetFixed(DUEL_PLAYER, i) == zone) {
+          *col = i;
+          break;
+        }
+      }
+    }
     return TRUE;
   }
 

@@ -18,8 +18,12 @@ static u8 HasEmptyHandSlot(u8 duelist)
       return TRUE;
   }
 
-  if (IsSixCardHandEnabled() && gHandExtraSlots[duelist].id == CARD_NONE)
-    return TRUE;
+  if (IsExpandedCardHandEnabled()) {
+    for (i = 0; i < MAX_HAND_EXTRA; i++) {
+      if (gHandExtraSlots[duelist][i].id == CARD_NONE)
+        return TRUE;
+    }
+  }
 
   return FALSE;
 }

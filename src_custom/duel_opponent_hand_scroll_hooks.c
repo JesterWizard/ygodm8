@@ -196,13 +196,16 @@ u32 CanPlayerSeeCard__Replacement(unsigned char y, unsigned char x) {
   if (IsOpponentHandFieldScrollEnabled() && y == OPPONENT_HAND_ROW) {
     struct DuelCard *card;
     u8 zone;
+    u8 count = ExpandedHand_Count(DUEL_OPPONENT);
 
-    if (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
-      zone = HAND_SLOT_EXTRA - x;
+    if (IsExpandedCardHandEnabled() && count > MAX_ZONES_IN_ROW)
+      zone = count - 1 - x;
+    else if (IsExpandedCardHandEnabled() && ExpandedHand_UsesCompressedLayout(DUEL_OPPONENT))
+      zone = HAND_SIZE_LIMIT - 1 - x;
     else
       zone = 4 - x;
 
-    card = SixCardHand_GetFixed(DUEL_OPPONENT, zone);
+    card = ExpandedHand_GetFixed(DUEL_OPPONENT, zone);
     if (card == NULL || card->id == CARD_NONE)
       return 0;
     return !!card->isFaceUp;
@@ -220,7 +223,7 @@ u32 CanPlayerSeeCard__Replacement(unsigned char y, unsigned char x) {
         return 0;
       return 1;
     case 4:
-      if (x > SixCardHand_CursorMaxX(PLAYER_HAND))
+      if (x > ExpandedHand_CursorMaxX(PLAYER_HAND))
         return 0;
       return 1;
     default:
@@ -235,14 +238,20 @@ void DisplayCardInfoBar__Replacement(void) {
   if (IsOpponentHandFieldScrollEnabled()
       && gDuelCursor.currentY == OPPONENT_HAND_ROW
       && CanPlayerSeeCard__Replacement(OPPONENT_HAND_ROW, gDuelCursor.currentX) == 1) {
-    u8 handZone = (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
-        ? (HAND_SLOT_EXTRA - gDuelCursor.currentX)
-        : (4 - gDuelCursor.currentX);
+    u8 count = ExpandedHand_Count(DUEL_OPPONENT);
+    u8 handZone;
 
-    zone = SixCardHand_GetFixed(DUEL_OPPONENT, handZone);
+    if (IsExpandedCardHandEnabled() && count > MAX_ZONES_IN_ROW)
+      handZone = count - 1 - gDuelCursor.currentX;
+    else if (IsExpandedCardHandEnabled() && ExpandedHand_UsesCompressedLayout(DUEL_OPPONENT))
+      handZone = HAND_SIZE_LIMIT - 1 - gDuelCursor.currentX;
+    else
+      handZone = 4 - gDuelCursor.currentX;
+
+    zone = ExpandedHand_GetFixed(DUEL_OPPONENT, handZone);
   } else if (gDuelCursor.currentY == PLAYER_HAND
       && CanPlayerSeeCard__Replacement(PLAYER_HAND, gDuelCursor.currentX) == 1) {
-    zone = SixCardHand_GetPlayerHandZone(gDuelCursor.currentX);
+    zone = ExpandedHand_GetPlayerHandZone(gDuelCursor.currentX);
   } else if (CanPlayerSeeCard__Replacement(gDuelCursor.currentY, gDuelCursor.currentX) == 1) {
     zone = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX];
   }
