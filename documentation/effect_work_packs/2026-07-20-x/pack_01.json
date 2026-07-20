@@ -1,0 +1,86 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SPARK_BLASTER",
+      "card_name": "Spark Blaster",
+      "kind": "trap",
+      "archetype": "SPARK",
+      "path": "src_custom/trap_effects/spark_blaster.c",
+      "effect_text": "Equip only to Elemental HERO Sparkman. During your Main Phase: You can target 1 face-up monster; change the battle pos Equip only to Elemental HERO Sparkman. During your Main Phase: You can target 1 face-up monster; change the battle position of that target. After you use this effect 3 times, destroy this card.",
+      "tags": [
+        "destroy",
+        "faceup",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MORPHTRONIC_BIND",
+      "clone_path": "src_custom/trap_effects/morphtronic_bind.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "DARK_RENEWAL",
+      "card_name": "Dark Renewal",
+      "kind": "trap",
+      "archetype": "DARK",
+      "path": "src_custom/trap_effects/dark_renewal.c",
+      "effect_text": "On opp Summon: send that monster and your Spellcaster to GY; SS 1 DARK Spellcaster. When your opponent Normal or Special Summons a monster(s): Target 1 of those monsters and 1 Spellcaster monster you control; send both monsters to the GY, then you can Special Summon 1 DARK Spellcaster monster from your Deck or GY.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SOUL_LEVY",
+      "clone_path": "src_custom/trap_effects/soul_levy.c",
+      "clone_score": 0.8
+    },
+    {
+      "card_const": "TRAP_TRICK",
+      "card_name": "Trap Trick",
+      "kind": "trap",
+      "archetype": "TRAP",
+      "path": "src_custom/trap_effects/trap_trick.c",
+      "effect_text": "Banish Normal Trap; Set same name, usable now. Banish 1 Normal Trap from your Deck, except Trap Trick, and Set 1 card with the same name directly from your Deck, also it can be activated this turn. You can only activate 1 Trap Card for the rest of this turn after this card resolves. You can only activate 1 Trap Trick per turn.",
+      "tags": [
+        "deck"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHT_OF_DESTRUCTION",
+      "clone_path": "src_custom/trap_effects/light_of_destruction.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "TWILIGHT_ERASER",
+      "card_name": "Twilight Eraser",
+      "kind": "trap",
+      "archetype": "TWILIGHT",
+      "path": "src_custom/trap_effects/twilight_eraser.c",
+      "effect_text": "Banish 2 LS from GY; banish 2 field. If you control 2 or more Lightsworn monsters with the same Type but different names: Banish 2 Lightsworn monsters from your GY, then target 2 cards on the field; banish them. If this card is sent from the Deck to the GY by a Lightsworn monster's effect: You can Special Summon 1 Lightsworn monster from your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SOUL_LEVY",
+      "clone_path": "src_custom/trap_effects/soul_levy.c",
+      "clone_score": 0.8
+    }
+  ]
+}

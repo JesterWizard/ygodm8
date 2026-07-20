@@ -1,13 +1,48 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void IncrementPermStage(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
 
-/* TODO: implement trap effect for HALF_COUNTER */
+APPEND_TEXT void EffectHALF_COUNTER(void)
+{
+  struct DuelCard *defender;
+  struct DuelCard *attacker;
+  u16 halfAtk;
+  u8 stages;
+  u8 i;
+
+  Duel_ShowTrapResponseText(HALF_COUNTER, gTrapEffectData.originCardId);
+
+  /* ponytail: damage calculation when your monster attacked needs battle hook.
+   * Ceiling: when Effect runs, boost defender by ~half attacker original ATK
+   * via stages; upgrade: damage-calc targeting wire. */
+
+  defender = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][0];
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][i];
+
+    if (zone != NULL && zone->id != CARD_NONE) {
+      defender = zone;
+      break;
+    }
+  }
+
+  attacker = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
+  if (defender != NULL && attacker != NULL
+      && GetTypeGroup(attacker->id) == TYPE_GROUP_MONSTER) {
+    SetCardInfo(attacker->id);
+    halfAtk = gCardInfo.atk / 2;
+    /* ponytail: 1 stage ~= 500 ATK. */
+    stages = (u8)(halfAtk / 500);
+    for (i = 0; i < stages; i++)
+      IncrementPermStage(defender);
+  }
+
+  Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
+                   INACTIVE_DUELIST, FALSE);
+  UpdateDuelGfxExceptField();
+}

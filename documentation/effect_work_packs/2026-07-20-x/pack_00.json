@@ -1,0 +1,79 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "LIGHTSWORN_AEGIS",
+      "card_name": "Lightsworn Aegis",
+      "kind": "trap",
+      "archetype": "LIGHTSWORN",
+      "path": "src_custom/trap_effects/lightsworn_aegis.c",
+      "effect_text": "Negate opp cards; Set if milled. Target face-up cards your opponent controls, up to the number of Lightsworn monsters you control; negate their effects until the end of this turn. If this card is sent from the Deck to the GY: You can Set this card. You can only use each effect of Lightsworn Aegis once per turn.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHTSWORN_BARRIER",
+      "clone_path": "src_custom/trap_effects/lightsworn_barrier.c",
+      "clone_score": 0.85
+    },
+    {
+      "card_const": "ALL_OUT_ATTACKS",
+      "card_name": "All-Out Attacks",
+      "kind": "trap",
+      "archetype": "ALL",
+      "path": "src_custom/trap_effects/all_out_attacks.c",
+      "effect_text": "If a monster(s) is Special Summoned while this card is face-up on the field: Change that monster to face-up Attack Posit If a monster(s) is Special Summoned while this card is face-up on the field: Change that monster to face-up Attack Position, and must attack, if able, during the turn they are Special Summoned.",
+      "tags": [
+        "faceup",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EMBODIMENT_OF_APOPHIS",
+      "clone_path": "src_custom/trap_effects/embodiment_of_apophis.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "HALF_COUNTER",
+      "card_name": "Half Counter",
+      "kind": "trap",
+      "archetype": "HALF",
+      "path": "src_custom/trap_effects/half_counter.c",
+      "effect_text": "During damage calculation, if a monster you control is being attacked: Target that monster you control; that target gain During damage calculation, if a monster you control is being attacked: Target that monster you control; that target gains ATK equal to half the original ATK of the attacking monster, until the End Phase.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GIFT_OF_THE_MYSTICAL_ELF",
+      "clone_path": "src_custom/trap_effects/gift_of_the_mystical_elf.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "NUMINOUS_HEALER",
+      "card_name": "Numinous Healer",
+      "kind": "trap",
+      "archetype": "NUMINOUS",
+      "path": "src_custom/trap_effects/numinous_healer.c",
+      "effect_text": "You can only activate this card when you take damage to your Life Points. Increase your Life Points by 1000 points. Also You can only activate this card when you take damage to your Life Points. Increase your Life Points by 1000 points. Also, increase your Life Points by 500 points for each Numinous Healer card in your Graveyard.",
+      "tags": [
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHT_OF_DESTRUCTION",
+      "clone_path": "src_custom/trap_effects/light_of_destruction.c",
+      "clone_score": 0.5
+    }
+  ]
+}

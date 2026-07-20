@@ -8,20 +8,20 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 16:55 UTC  
-**Remaining partials:** `302`
+**Last updated:** 2026-07-20 17:02 UTC  
+**Remaining partials:** `314`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 185 |
-| `trap` | 62 |
+| `trap` | 74 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **302** |
+| **total** | **314** |
 
 ## spell (185)
 
@@ -922,7 +922,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/wetlands.c`
 - L87: +1200 ATK for Aqua/WATER/Level≤2 needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up WETLANDS and TYPE_AQUA + ATTRIBUTE_WATER + level≤2 then ATK += 1200.
 
-## trap (62)
+## trap (74)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -936,6 +936,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AEGIS_OF_THE_OCEAN_DRAGON_LORD`
 - path: `src_custom/trap_effects/aegis_of_the_ocean_dragon_lord.c`
 - L37: battle/effect destroy protect until EP + trapEffect wire. Ceiling: marks unk4 on matching monsters; upgrade: destroy gates skip marked until End Phase clear + trap dispatcher.
+
+### `ALL_OUT_ATTACKS`
+- path: `src_custom/trap_effects/all_out_attacks.c`
+- L11: when monster(s) SS while face-up → change to ATK and must attack that turn. Ceiling: face-up continuous only; upgrade: SS hook → isDefending=FALSE + forced-attack flag. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
+- L22: TryActivateALL_OUT_ATTACKSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `AMBUSH_FANGS`
 - path: `src_custom/trap_effects/ambush_fangs.c`
@@ -968,6 +973,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/bottomless_shifting_sand.c`
 - L10: GBA hand cap is 5; TCG rule uses 4 — scale self-destruct threshold down
 
+### `D_TIME`
+- path: `src_custom/trap_effects/d_time.c`
+- L61: when face-up E-HERO leaves field. Ceiling: when Effect runs, search Destiny HERO Lv ≤ origin level (or 4); upgrade: leave-field hook when Duel_IsElementalHeroCard.
+
+### `DAMAGE_EQUALS_REPTILE`
+- path: `src_custom/trap_effects/damage_equals_reptile.c`
+- L71: battle-damage involving Reptile trigger + OPT.
+
 ### `DAMAGE_POLARIZER`
 - path: `src_custom/trap_effects/damage_polarizer.c`
 - L13: negate effect-damage activation needs damage-effect chain gate. Ceiling: both players draw 1 when Effect runs; upgrade: trapEffect on effect-damage activate → cancel damage + draw.
@@ -975,6 +988,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DAMAGE_REPTILE`
 - path: `src_custom/trap_effects/damage_reptile.c`
 - L49: OPT when take battle damage involving Reptile. Ceiling: when Effect runs, SS Reptile from Deck with ATK ≤ a stand-in damage amount (origin ATK if monster); upgrade: battle-damage hook stores damage.
+
+### `DARK_RENEWAL`
+- path: `src_custom/trap_effects/dark_renewal.c`
+- L52: on opp NS/SS. Ceiling: send origin + your Spellcaster → GY, then SS DARK Spellcaster from Deck/GY; upgrade: summon trigger wire.
 
 ### `DES_COUNTERBLOW`
 - path: `src_custom/trap_effects/des_counterblow.c`
@@ -1003,6 +1020,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/dust_tornado.c`
 - L112: optional hand pick — B skips; upgrade path: shared helper in exchange_hand_selection
 
+### `EXCHANGE_OF_THE_SPIRIT`
+- path: `src_custom/trap_effects/exchange_of_the_spirit.c`
+- L32: full Deck↔GY swap is heavy — approximate by pushing all GY to deck bottom and rebuilding GY from current undrawn deck top chunk. Ceiling: incomplete swap if GY expand / deck sizes mismatch; upgrade: proper dual-buffer swap of entire Deck and GY stacks.
+
 ### `FAIRY_BOX`
 - path: `src_custom/trap_effects/fairy_box.c`
 - L96: age both fixed backrows so a trap set last turn is live when the other duelist attacks
@@ -1028,6 +1049,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/gravity_bind.c`
 - L64: face-down GB still blocks the declare; AI sim restore keeps it face-down every trial
 
+### `HALF_COUNTER`
+- path: `src_custom/trap_effects/half_counter.c`
+- L20: damage calculation when your monster attacked needs battle hook. Ceiling: when Effect runs, boost defender by ~half attacker original ATK via stages; upgrade: damage-calc targeting wire.
+- L39: 1 stage ~= 500 ATK.
+
 ### `HUMID_WINDS`
 - path: `src_custom/trap_effects/humid_winds.c`
 - L103: each effect OPT as face-up ignition needs Main Phase hooks + turn reset. Ceiling: one search+heal path on activate flip.
@@ -1052,6 +1078,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/light_spiral.c`
 - L11: Lightsworn mill → banish opp top Deck needs mill hook. Ceiling: face-up continuous only.
 
+### `LIGHTSWORN_AEGIS`
+- path: `src_custom/trap_effects/lightsworn_aegis.c`
+- L63: until EP negate + mill-from-Deck Set this card + OPT need End Phase clear / mill hook / turn reset. Ceiling: exhausts up to LS-count opp face-ups.
+
 ### `LIGHTSWORN_BARRIER`
 - path: `src_custom/trap_effects/lightsworn_barrier.c`
 - L13: LS targeted for attack → mill top 2 → negate attack needs attack- declaration hook. Ceiling: face-up continuous only; upgrade: on attack target if Duel_CardNameContains(defender, Lightsworn) → mill 2 + NegateAttack.
@@ -1059,6 +1089,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `LIGHTSWORN_JUDGEMENT`
 - path: `src_custom/trap_effects/lightsworn_judgement.c`
 - L45: if sent Deck→GY by Lightsworn effect → add Judgment Dragon needs mill/GY hook. Ceiling: places on Deck top only; upgrade: on LS mill of this card → search JUDGMENT_DRAGON to hand.
+
+### `MACRO_COSMOS`
+- path: `src_custom/trap_effects/macro_cosmos.c`
+- L31: any card sent to GY is banished instead needs GY-send redirect while face-up MACRO_COSMOS. Ceiling: continuous + optional Helios SS.
 
 ### `MAGIC_CYLINDER`
 - path: `src_custom/trap_effects/magic_cylinder.c`
@@ -1096,6 +1130,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MORPHTRONIC_MONITRON`
 - path: `src_custom/trap_effects/morphtronic_monitron.c`
 - L14: when Morphtronic Summoned → optional to Defense needs summon hook. Ceiling: face-up continuous only.
+
+### `NUMINOUS_HEALER`
+- path: `src_custom/trap_effects/numinous_healer.c`
+- L48: activate when you take damage. Ceiling: when Effect runs, heal 1000 + 500×GY copies; upgrade: LP-damage trigger wire.
 
 ### `PROPHECY`
 - path: `src_custom/trap_effects/prophecy.c`
@@ -1150,6 +1188,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/soul_levy.c`
 - L11: only control 1 + each opp SS → mill top 3 opp Deck need unique- continuous + summon hook. Ceiling: face-up continuous only; upgrade: after opp Special Summon → send top 3 of opp Deck to GY.
 
+### `SPARK_BLASTER`
+- path: `src_custom/trap_effects/spark_blaster.c`
+- L40: Main Phase OPT change battle position of 1 face-up + destroy after 3 uses need ignition + counter. Ceiling: equips to Sparkman; unk4 use counter starts at 0.
+
 ### `THUMBS_DOWN`
 - path: `src_custom/trap_effects/thumbs_down.c`
 - L31: destroy by battle/effect → controller takes 500 each needs destroy hook. Ceiling: face-up continuous only.
@@ -1168,10 +1210,20 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/trap_dustshoot.c`
 - L67: look at full hand + choose monster UI; trapEffect wire. Ceiling: auto first monster in opp hand → Deck shuffle.
 
+### `TRAP_TRICK`
+- path: `src_custom/trap_effects/trap_trick.c`
+- L29: no Continuous/Counter trap type split — treat all traps as Normal.
+- L101: "can activate this turn" — leave unlocked.
+- L110: only 1 Trap activate rest of turn + OPT reset need gates.
+
 ### `TROJAN_GLADIATOR_BEAST`
 - path: `src_custom/trap_effects/trojan_gladiator_beast.c`
 - L50: summoned to controller's field not opponent — need cross-field SS. Ceiling: SS to own field then draw; upgrade: SS to ACTIVE monster row.
 - L59: needs trapEffect ID + dispatcher wire.
+
+### `TWILIGHT_ERASER`
+- path: `src_custom/trap_effects/twilight_eraser.c`
+- L110: PickZone for 2 field targets + mill→SS Lightsworn from hand.
 
 ### `URGENT_TUNING`
 - path: `src_custom/trap_effects/urgent_tuning.c`

@@ -1,0 +1,86 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MACRO_COSMOS",
+      "card_name": "Macro Cosmos",
+      "kind": "trap",
+      "archetype": "MACRO",
+      "path": "src_custom/trap_effects/macro_cosmos.c",
+      "effect_text": "When this card resolves: You can Special Summon 1 Helios - The Primordial Sun from your hand or Deck. While this card  When this card resolves: You can Special Summon 1 Helios - The Primordial Sun from your hand or Deck. While this card is face-up on the field, any card sent to the Graveyard is banished instead.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SOUL_LEVY",
+      "clone_path": "src_custom/trap_effects/soul_levy.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "D_TIME",
+      "card_name": "D - Time",
+      "kind": "trap",
+      "archetype": "D",
+      "path": "src_custom/trap_effects/d_time.c",
+      "effect_text": "When a face-up Elemental HERO monster you control leaves the field: Add 1 Destiny HERO monster from your Deck to you When a face-up Elemental HERO monster you control leaves the field: Add 1 Destiny HERO monster from your Deck to your hand whose Level is less than or equal to that Elemental HERO monster's original Level.",
+      "tags": [
+        "deck",
+        "faceup",
+        "hand",
+        "monster",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHTSWORN_JUDGEMENT",
+      "clone_path": "src_custom/trap_effects/lightsworn_judgement.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "DAMAGE_EQUALS_REPTILE",
+      "card_name": "Damage = Reptile",
+      "kind": "trap",
+      "archetype": "DAMAGE",
+      "path": "src_custom/trap_effects/damage_equals_reptile.c",
+      "effect_text": "Once per turn, when you take Battle Damage from a battle involving a Reptile-Type monster, you can Special Summon 1 Rept Once per turn, when you take Battle Damage from a battle involving a Reptile-Type monster, you can Special Summon 1 Reptile-Type monster from your Deck with ATK less than or equal to the Battle Damage you took.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SOUL_LEVY",
+      "clone_path": "src_custom/trap_effects/soul_levy.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "EXCHANGE_OF_THE_SPIRIT",
+      "card_name": "Exchange of the Spirit",
+      "kind": "trap",
+      "archetype": "EXCHANGE",
+      "path": "src_custom/trap_effects/exchange_of_the_spirit.c",
+      "effect_text": "If both players have 15 or more cards in their Graveyards: Pay 1000 LP; each player swaps the cards in their Graveyard w If both players have 15 or more cards in their Graveyards: Pay 1000 LP; each player swaps the cards in their Graveyard with the cards in their Deck, then shuffles their Deck. You can only activate 1 Exchange of the Spirit per Duel.",
+      "tags": [
+        "deck",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHT_OF_DESTRUCTION",
+      "clone_path": "src_custom/trap_effects/light_of_destruction.c",
+      "clone_score": 1.0
+    }
+  ]
+}
