@@ -1,0 +1,72 @@
+{
+  "worker": 0,
+  "count": 3,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GLADIATOR_BEAST_GAIODIAZ",
+      "card_name": "Gladiator Beast Gaiodiaz",
+      "kind": "permanent",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/permanent_effects/gladiator_beast_gaiodiaz.c",
+      "effect_text": "Battle burn; tag for 2 low-Level GB. Gladiator Beast Spartacus + 1 Gladiator Beast monster This card can only be Special Summoned from your Extra Deck, by returning the above cards you control to the Deck. (You do not use Polymerization.) When this card destroys a monster by battle and sends it to the Graveyard, inflict damage to your opponent equal to the DEF of the destroyed monster. At the end of the Battle Phase, if this card attacked or was attacked, you can return it to the Extra Deck to S",
+      "tags": [
+        "burn",
+        "deck",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GLADIATOR_BEAST_SAMNITE",
+      "clone_path": "src_custom/permanent_effects/gladiator_beast_samnite.c",
+      "clone_score": 0.79
+    },
+    {
+      "card_const": "MAGICIAN_OF_DARK_ILLUSION",
+      "card_name": "Magician of Dark Illusion",
+      "kind": "permanent",
+      "archetype": "MAGICIAN",
+      "path": "src_custom/permanent_effects/magician_of_dark_illusion.c",
+      "effect_text": "Name = Dark Magician. Opp turn S/T: SS from hand. Field S/T: SS DM from GY. This card's name becomes Dark Magician while on the field. You can only use each of these effects of Magician of Dark Illusion once per turn. During your opponent's turn, if you activate a Spell/Trap Card or effect (except during the Damage Step): You can Special Summon this card from your hand. If you activate a Spell/Trap Card or effect while this card is face-up on your field (except during the Damage Step): You can t",
+      "tags": [
+        "faceup",
+        "gy",
+        "hand",
+        "ssummon",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EL_SHADDOLL_WINDA",
+      "clone_path": "src_custom/permanent_effects/el_shaddoll_winda.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "DRAGON_MASTER_MAGIA",
+      "card_name": "Dragon Master Magia",
+      "kind": "permanent",
+      "archetype": "DRAGON",
+      "path": "src_custom/permanent_effects/dragon_master_magia.c",
+      "effect_text": "Quick: negate and destroy opp card or effect once per type per turn. Blue-Eyes Ultimate Dragon or 3 Blue-Eyes monsters + 1 Chaos or Black Luster Soldier Ritual Monster Must be Fusion Summoned. When your opponent activates a card or effect (Quick Effect): You can negate the activation, and if you do, destroy that card. You can only use this effect of Dragon Master Magia in response to each card type (Monster, Spell, or Trap) once per turn. If this face-up card in its owner's control leaves the fi",
+      "tags": [
+        "deck",
+        "destroy",
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DRAGON_SPIRIT_OF_WHITE",
+      "clone_path": "src_custom/permanent_effects/dragon_spirit_of_white.c",
+      "clone_score": 0.57
+    }
+  ]
+}

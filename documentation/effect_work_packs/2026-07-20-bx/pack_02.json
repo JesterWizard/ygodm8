@@ -1,0 +1,69 @@
+{
+  "worker": 2,
+  "count": 3,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ARMED_DRAGON_LV3",
+      "card_name": "Armed Dragon LV3",
+      "kind": "turn",
+      "archetype": "ARMED_DRAGON",
+      "path": "src_custom/turn_effects/armed_dragon_lv3.c",
+      "effect_text": "During your Standby Phase: You can send this card to the GY; Special Summon 1 Armed Dragon LV5 from your hand or Deck. During your Standby Phase: You can send this card to the GY; Special Summon 1 Armed Dragon LV5 from your hand or Deck.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SINISTER_SERPENT",
+      "clone_path": "src_custom/turn_effects/sinister_serpent.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "REPTILIANNE_SCYLLA",
+      "card_name": "Reptilianne Scylla",
+      "kind": "battle",
+      "archetype": "REPTILIANNE",
+      "path": "src_custom/battle_effects/reptilianne_scylla.c",
+      "effect_text": "If destroys 0 ATK by battle: SS that monster in Defense. If this card destroys a monster with 0 ATK by battle, you can Special Summon that monster from the Graveyard to your side of the field in face-up Defense Position. The effect(s) of that monster is negated.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CYBER_BARRIER_DRAGON",
+      "clone_path": "src_custom/battle_effects/cyber_barrier_dragon.c",
+      "clone_score": 0.25
+    },
+    {
+      "card_const": "THE_WHITE_STONE_OF_ANCIENTS",
+      "card_name": "The White Stone of Ancients",
+      "kind": "turn",
+      "archetype": "THE_WHITE_STONE_OF",
+      "path": "src_custom/turn_effects/the_white_stone_of_ancients.c",
+      "effect_text": "End Phase: SS Blue-Eyes. Banish: add Blue-Eyes. Once per turn, during the End Phase, if this card is in the GY because it was sent there this turn: You can Special Summon 1 Blue-Eyes monster from your Deck. You can banish this card from your GY, then target 1 Blue-Eyes monster in your GY; add it to your hand. You can only use this effect of The White Stone of Ancients once per turn.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SINISTER_SERPENT",
+      "clone_path": "src_custom/turn_effects/sinister_serpent.c",
+      "clone_score": 0.33
+    }
+  ]
+}

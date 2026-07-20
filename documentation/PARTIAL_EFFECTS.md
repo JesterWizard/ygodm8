@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 21:28 UTC  
-**Remaining partials:** `861`
+**Last updated:** 2026-07-20 21:30 UTC  
+**Remaining partials:** `870`
 
 ## Counts by kind
 
@@ -18,10 +18,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 | `spell` | 185 |
 | `trap` | 115 |
 | `activated` | 452 |
-| `permanent` | 105 |
+| `permanent` | 114 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **861** |
+| **total** | **870** |
 
 ## spell (185)
 
@@ -3313,7 +3313,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (105)
+## permanent (114)
 
 ### `AMAZONESS_TIGER`
 - path: `src_custom/permanent_effects/amazoness_tiger.c`
@@ -3327,6 +3327,16 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ARCANA_FORCE_0_THE_FOOL`
 - path: `src_custom/permanent_effects/arcana_force_0_the_fool.c`
 - L48: battle indestructible + targeting immunity need battle/target hooks.
+
+### `ARCANA_FORCE_EX_THE_DARK_RULER`
+- path: `src_custom/permanent_effects/arcana_force_ex_the_dark_ruler.c`
+- L94: Heads second attack FALSE; Tails wipe only when other cards exist.
+- L115: second attack + forced DEF at EP need battle hooks.
+
+### `ARCANA_FORCE_EX_THE_LIGHT_RULER`
+- path: `src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c`
+- L100: Tails negate FALSE; Heads only when GY→hand legal.
+- L125: Tails Quick negate + battle add need chain/battle hooks.
 
 ### `ARCANA_FORCE_I_THE_MAGICIAN`
 - path: `src_custom/permanent_effects/arcana_force_i_the_magician.c`
@@ -3392,9 +3402,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/cyber_kirin.c`
 - L8: ATK-position spell/trap negate, battle-draw, and OPT tribute damage zero need continuous/battle/tribute hooks not wired for permanents.
 
+### `DARK_MAGICIAN_OF_DESTRUCTION`
+- path: `src_custom/permanent_effects/dark_magician_of_destruction.c`
+- L131: deck-first add; DM preferred by scan order, no picker.
+
 ### `DARKLORD_NURSE_REFICULE`
 - path: `src_custom/permanent_effects/darklord_nurse_reficule.c`
 - L8: LP gain→damage redirect needs LP-change hook.
+
+### `DEEP_EYES_WHITE_DRAGON`
+- path: `src_custom/permanent_effects/deep_eyes_white_dragon.c`
+- L98: Blue-Eyes destroy hand-SS + burn need GY/destroy hooks; on-summon ATK only.
+- L121: first Dragon in GY stand-in for target picker.
 
 ### `DESPAIR_FROM_THE_DARK`
 - path: `src_custom/permanent_effects/despair_from_the_dark.c`
@@ -3424,6 +3443,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DESTINY_HERO_DREAD_SERVANT`
 - path: `src_custom/permanent_effects/destiny_hero_dread_servant.c`
 - L8: Clock Tower counters + battle-destroy S/T need NS/battle hooks.
+
+### `DESTINY_HERO_DREADMASTER`
+- path: `src_custom/permanent_effects/destiny_hero_dreadmaster.c`
+- L185: Clock Tower Prison gate + battle protection skipped; on-summon stand-in.
+- L216: D-HERO indestructible + no battle damage this turn need continuous hooks.
+
+### `DRAGON_MASTER_MAGIA`
+- path: `src_custom/permanent_effects/dragon_master_magia.c`
+- L8: Quick negate-by-card-type needs chain/OPT hooks.
 
 ### `DRAGON_SPIRIT_OF_WHITE`
 - path: `src_custom/permanent_effects/dragon_spirit_of_white.c`
@@ -3553,6 +3581,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/gladiator_beast_essedarii.c`
 - L8: Contact Fusion has no permanent ignition path.
 
+### `GLADIATOR_BEAST_GAIODIAZ`
+- path: `src_custom/permanent_effects/gladiator_beast_gaiodiaz.c`
+- L8: battle DEF burn + GB tag-out need battle-end/destroy hooks.
+
 ### `GLADIATOR_BEAST_OCTAVIUS`
 - path: `src_custom/permanent_effects/gladiator_beast_octavius.c`
 - L139: GB-tag SS + battle-end tag-out need summon/battle-end hooks.
@@ -3640,6 +3672,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `LIGHT_SERPENT`
 - path: `src_custom/permanent_effects/light_serpent.c`
 - L31: hand send only — !gGraveyardSendWasFromField is the hand/deck stand-in.
+
+### `MAGICIAN_OF_DARK_ILLUSION`
+- path: `src_custom/permanent_effects/magician_of_dark_illusion.c`
+- L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
 ### `MAGICIANS_ROD`
 - path: `src_custom/permanent_effects/magicians_rod.c`
@@ -3732,6 +3768,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON`
 - path: `src_custom/permanent_effects/timeaeus_the_united_magical_dragon.c`
 - L121: unaffected-after-SS + battle ATK boost need continuous/battle hooks.
+
+### `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES`
+- path: `src_custom/permanent_effects/vennominaga_the_deity_of_poisonous_snakes.c`
+- L54: S/T + monster immunity + 3-counter win need continuous/battle hooks.
 
 ### `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES`
 - path: `src_custom/permanent_effects/vennominon_the_king_of_poisonous_snakes.c`

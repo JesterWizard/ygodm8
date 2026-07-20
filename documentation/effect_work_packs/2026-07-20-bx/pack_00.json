@@ -1,0 +1,81 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "NEO_SPACIAN_GRAND_MOLE",
+      "card_name": "Neo-Spacian Grand Mole",
+      "kind": "battle",
+      "archetype": "NEO_SPACIAN",
+      "path": "src_custom/battle_effects/neo_spacian_grand_mole.c",
+      "effect_text": "Battle: bounce both to hand. At the start of the Damage Step, if this card battles an opponent's monster: You can return both the opponent's monster and this card to the hand.",
+      "tags": [
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HARPIE_LADY_3",
+      "clone_path": "src_custom/battle_effects/harpie_lady_3.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "LIGHTNING_WARRIOR",
+      "card_name": "Lightning Warrior",
+      "kind": "battle",
+      "archetype": "LIGHTNING",
+      "path": "src_custom/battle_effects/lightning_warrior.c",
+      "effect_text": "If destroys by battle: 300 damage per card in opp hand. 1 Tuner + 1 or more non-Tuner monsters If this card destroys an opponent's monster by battle and sends it to the Graveyard: Inflict 300 damage to your opponent for each card in your opponent's hand.",
+      "tags": [
+        "burn",
+        "gy",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 300,
+      "clone_const": "HARPIE_LADY_3",
+      "clone_path": "src_custom/battle_effects/harpie_lady_3.c",
+      "clone_score": 0.25
+    },
+    {
+      "card_const": "NEO_SPACIAN_GLOW_MOSS",
+      "card_name": "Neo-Spacian Glow Moss",
+      "kind": "battle",
+      "archetype": "NEO_SPACIAN",
+      "path": "src_custom/battle_effects/neo_spacian_glow_moss.c",
+      "effect_text": "Opp draw; apply by card type. If this card attacks or is attacked: Your opponent draws 1 card and shows it, then, based on its type apply this effect. Monster: End the Battle Phase of this turn. Spell: If this card is attacking, you can change it to a direct attack instead. Trap: Change this card to Defense Position.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HARPIE_LADY_3",
+      "clone_path": "src_custom/battle_effects/harpie_lady_3.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "NEO_SPACIAN_TWINKLE_MOSS",
+      "card_name": "Neo-Spacian Twinkle Moss",
+      "kind": "battle",
+      "archetype": "NEO_SPACIAN",
+      "path": "src_custom/battle_effects/neo_spacian_twinkle_moss.c",
+      "effect_text": "NEX only; draw; apply by type. This card's name is also treated as Neo-Spacian Glow Moss. This card cannot be Special Summoned except with NEX. When this card attacks or is attacked, draw 1 card. Reveal that card, and based on its type apply the proper effect: Monster: End the Battle Phase. Spell: You can change this card's attack to a direct attack. Trap: This monster is changed to Defense Position.",
+      "tags": [
+        "draw",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "CYBER_BARRIER_DRAGON",
+      "clone_path": "src_custom/battle_effects/cyber_barrier_dragon.c",
+      "clone_score": 0.33
+    }
+  ]
+}

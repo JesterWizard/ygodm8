@@ -2,84 +2,131 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static const char sDarkMagicianName[] APPEND_RODATA = "Dark Magician";
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static const u16 sDmMentionSupport[] APPEND_RODATA = {
+  DARK_MAGICIAN,
+  DARK_MAGICIAN_GIRL,
+  DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT,
+  THE_DARK_MAGICIANS,
+  MAGICIANS_ROD,
+  DARK_MAGIC_CURTAIN,
+  THOUSAND_KNIVES,
+  SAGES_STONE,
+  DEDICATION_THROUGH_LIGHT_AND_DARKNESS,
+  DARK_MAGIC_ATTACK,
+  DARK_MAGIC_VEIL,
+  DARK_MAGICAL_CIRCLE,
+  BOND_BETWEEN_TEACHER_AND_STUDENT,
+  DARK_BURNING_ATTACK,
+  DARK_BURNING_MAGIC,
+  ILLUSION_MAGIC,
+  MAGICIAN_NAVIGATION,
+  SECRETS_OF_DARK_MAGIC,
+  ETERNAL_SOUL,
+  DARK_MAGIC_RITUAL,
+  DARK_MAGIC_INHERITANCE,
+};
+
+static struct DuelCard *SelfZone(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  return gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ACTIVE_DUELIST;
+  if (turnRow == INACTIVE_DUELIST_MONSTER_ROW)
+    return INACTIVE_DUELIST;
+  return ACTIVE_DUELIST;
 }
 
-static void CancelTargeting(void)
+static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
-  PlayMusic(SFX_CANCEL);
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u8 MentionsDarkMagician(u16 cardId)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  u8 i;
+
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  if (cardId == DARK_MAGICIAN)
+    return TRUE;
+
+  for (i = 0; i < ARRAY_COUNT(sDmMentionSupport); i++) {
+    if (cardId == sDmMentionSupport[i])
+      return TRUE;
+  }
+
+  return Duel_CardNameContains(cardId, sDarkMagicianName);
+}
+
+static u16 FindDarkMagicianMentionInDeck(u8 turnDuelist)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (MentionsDarkMagician(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
 }
 
 unsigned char ShouldActivateDARK_MAGICIAN_OF_DESTRUCTION(void)
 {
   struct DuelCard *zone;
+  u8 duelist;
 
   if (gActiveEffect.cardId != DARK_MAGICIAN_OF_DESTRUCTION)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != DARK_MAGICIAN_OF_DESTRUCTION)
     return FALSE;
 
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
       && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
     return FALSE;
 
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
+  zone = SelfZone();
+  if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
-  return TRUE;
+  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
+  if (FirstEmptyZoneInRow(gTurnHands[duelist]) < 0)
+    return FALSE;
+
+  return FindDarkMagicianMentionInDeck(duelist) != CARD_NONE;
 }
 
 void ActivateDARK_MAGICIAN_OF_DESTRUCTION(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  u8 duelist;
+  struct DuelCard *zone;
+  u16 cardId;
+
+  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
 
   Duel_ShowEffectTextTyped(DARK_MAGICIAN_OF_DESTRUCTION, 8);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  cardId = FindDarkMagicianMentionInDeck(duelist);
+  if (cardId != CARD_NONE)
+    Duel_AddDeckCardToHand(duelist, cardId, TRUE);
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  zone = SelfZone();
+  if (zone != NULL)
+    zone->unk4 = 1;
+  /* ponytail: deck-first add; DM preferred by scan order, no picker. */
 }

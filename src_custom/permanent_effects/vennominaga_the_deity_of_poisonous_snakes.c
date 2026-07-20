@@ -3,83 +3,71 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
-#include "summon_tribute.h"
+#include "expanded_graveyard.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+#define VENNOMINAGA_ATK_PER_REPTILE 500
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 CountReptileInGraveyard(u8 fixedDuelist)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  u8 count = 0;
+  u8 i;
+  u8 gyCount = GraveyardExpand_GetCount(fixedDuelist);
+
+  for (i = 0; i < gyCount; i++) {
+    if (Duel_CardHasMonsterType(GraveyardExpand_GetCardAt(fixedDuelist, i), TYPE_REPTILE))
+      count++;
+  }
+
+  return count;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u16 VennominagaCurrentAtk(struct DuelCard *zone)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u8 fixedDuelist = GetDuelistForZone(zone);
+  u32 baseAtk;
+
+  if (fixedDuelist == 0xFF)
+    return gCardData_NEW[zone->id].atk;
+
+  baseAtk = gCardData_NEW[zone->id].atk;
+  return Duel_StatFromCount(
+      CountReptileInGraveyard(fixedDuelist),
+      VENNOMINAGA_ATK_PER_REPTILE,
+      baseAtk);
 }
 
-static void CancelTargeting(void)
+u8 VennominagaTheDeityOfPoisonousSnakes_ApplyDynamicZoneStats(struct DuelCard *zone)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u16 atk;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  if (zone == NULL || zone->id != VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES)
+    return FALSE;
+
+  atk = VennominagaCurrentAtk(zone);
+  SetCardInfo(zone->id);
+  Duel_WriteCardInfoStats(zone->id, atk, gCardData_NEW[zone->id].def);
+  return TRUE;
 }
 
 unsigned char ShouldActivateVENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES(void)
 {
-  struct DuelCard *zone;
-
-  if (gActiveEffect.cardId != VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES)
-    return FALSE;
-
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
-      && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
-    return FALSE;
-
-  /* TODO: add field-has-target check */
-  return TRUE;
+  /* ponytail: S/T + monster immunity + 3-counter win need continuous/battle hooks. */
+  (void)gActiveEffect;
+  return FALSE;
 }
 
 void ActivateVENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
-
-  Duel_ShowEffectTextTyped(VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES, 8);
-
-  if (IsDuelOver() == TRUE)
-    return;
-
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
-
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
 }
+
+#if !defined(__GNUC__)
+#error Vennominaga stat hook self-check requires GCC
+#elif __GNUC__
+void VennominagaTheDeityOfPoisonousSnakes_SelfCheck(void)
+{
+  struct DuelCard zone;
+
+  zone.id = VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES;
+  VennominagaTheDeityOfPoisonousSnakes_ApplyDynamicZoneStats(&zone);
+}
+#endif

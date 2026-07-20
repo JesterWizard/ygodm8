@@ -1,0 +1,74 @@
+{
+  "worker": 1,
+  "count": 3,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ARCANA_FORCE_EX_THE_DARK_RULER",
+      "card_name": "Arcana Force EX - The Dark Ruler",
+      "kind": "permanent",
+      "archetype": "ARCANA_FORCE_EX_THE",
+      "path": "src_custom/permanent_effects/arcana_force_ex_the_dark_ruler.c",
+      "effect_text": "Tribute 3. Coin: wipe field or your cards. Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 monsters you control to the Graveyard, and cannot be Special Summoned by other ways. When this card is Special Summoned: Toss a coin and gain the appropriate effect. Heads: This card can make a second attack during each Battle Phase, but if it does so using this effect, change it to Defense Position at the end of the Battle Phase. Its battle position cannot be changed ",
+      "tags": [
+        "destroy",
+        "gy",
+        "hand",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EVIL_DRAGON_ANANTA",
+      "clone_path": "src_custom/permanent_effects/evil_dragon_ananta.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "DARK_MAGICIAN_OF_DESTRUCTION",
+      "card_name": "Dark Magician of Destruction",
+      "kind": "permanent",
+      "archetype": "DARK_MAGICIAN_OF",
+      "path": "src_custom/permanent_effects/dark_magician_of_destruction.c",
+      "effect_text": "Fusion/alt SS after Spell. Name=Dark Magician. If SS: add DM or card mentioning it. Dark Magician + 1 LIGHT or DARK monster Must be either Fusion Summoned, or Special Summoned (from your Extra Deck) during the turn a Spell Card or effect is activated, by banishing 1 Level 6 or higher DARK Spellcaster monster you control as material. You can only Special Summon Dark Magician of Destruction once per turn this way, no matter which method you use. This card's name becomes Dark Magician while on the ",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "search",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_MAGICIAN_OF_CHAOS",
+      "clone_path": "src_custom/permanent_effects/dark_magician_of_chaos.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "ARCANA_FORCE_EX_THE_LIGHT_RULER",
+      "card_name": "Arcana Force EX - The Light Ruler",
+      "kind": "permanent",
+      "archetype": "ARCANA_FORCE_EX_THE",
+      "path": "src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c",
+      "effect_text": "Tribute 3. Coin: protect or negate via send. Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 monsters you control to the Graveyard, and cannot be Special Summoned by other ways. When this card is Special Summoned: Toss a coin and gain the appropriate effect. Heads: When this card destroys an opponent's monster by battle and sends it to the Graveyard: You can target 1 card in your Graveyard; add that target to your hand. Tails: During either player's turn, wh",
+      "tags": [
+        "destroy",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "st",
+        "target1",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EL_SHADDOLL_GRYSTA",
+      "clone_path": "src_custom/permanent_effects/el_shaddoll_grysta.c",
+      "clone_score": 0.78
+    }
+  ]
+}

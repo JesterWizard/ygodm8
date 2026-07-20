@@ -2,84 +2,127 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
+#include "expanded_graveyard.h"
+#include "six_card_hand.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static struct DuelCard *SelfZone(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  return gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ACTIVE_DUELIST;
+  if (turnRow == INACTIVE_DUELIST_MONSTER_ROW)
+    return INACTIVE_DUELIST;
+  return ACTIVE_DUELIST;
 }
 
-static void CancelTargeting(void)
+static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
-  PlayMusic(SFX_CANCEL);
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u8 CanAddFirstGraveyardCardToHand(u8 turnDuelist)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return FALSE;
+
+  if (!GraveyardExpand_IsEnabled())
+    return gDuel.duelistbattleState[fixedDuelist].graveyard != CARD_NONE;
+
+  return GraveyardExpand_GetCount(fixedDuelist) > 0;
+}
+
+static u8 AddFirstGraveyardCardToHand(u8 turnDuelist)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  s8 handZone;
+  u16 cardId;
+  struct DuelCard *handSlot;
+
+  handZone = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
+  if (handZone < 0)
+    return FALSE;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    cardId = gDuel.duelistbattleState[fixedDuelist].graveyard;
+    if (cardId == CARD_NONE)
+      return FALSE;
+    gDuel.duelistbattleState[fixedDuelist].graveyard = CARD_NONE;
+  } else {
+    if (GraveyardExpand_GetCount(fixedDuelist) == 0)
+      return FALSE;
+
+    cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, 0);
+    GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  }
+
+  handSlot = SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)handZone);
+  handSlot->id = cardId;
+  handSlot->isFaceUp = FALSE;
+  handSlot->isLocked = FALSE;
+  handSlot->isDefending = FALSE;
+  handSlot->unkTwo = 0;
+  handSlot->unkThree = 0;
+  handSlot->unk4 = 0;
+  handSlot->willChangeSides = FALSE;
+  ResetPermStage(handSlot);
+  ResetTempStage(handSlot);
+  return TRUE;
 }
 
 unsigned char ShouldActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void)
 {
   struct DuelCard *zone;
+  u8 duelist;
 
   if (gActiveEffect.cardId != ARCANA_FORCE_EX_THE_LIGHT_RULER)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != ARCANA_FORCE_EX_THE_LIGHT_RULER)
     return FALSE;
 
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
       && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
     return FALSE;
 
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
+  zone = SelfZone();
+  if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
-  return TRUE;
+  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
+  /* ponytail: Tails negate FALSE; Heads only when GY→hand legal. */
+  return CanAddFirstGraveyardCardToHand(duelist);
 }
 
 void ActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  u8 duelist;
+  struct DuelCard *zone;
+  u8 heads;
+
+  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
 
   Duel_ShowEffectTextTyped(ARCANA_FORCE_EX_THE_LIGHT_RULER, 8);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  zone = SelfZone();
+  if (zone == NULL)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  heads = RandRangeU8(0, 1) == 1;
+  zone->unk4 = 1;
 
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  if (heads)
+    AddFirstGraveyardCardToHand(duelist);
+  /* ponytail: Tails Quick negate + battle add need chain/battle hooks. */
+
+  UpdateDuelGfxExceptField();
 }
