@@ -2,84 +2,58 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
+#include "graveyard_effects.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
-
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 CanAddBlueEyesFromDeck(u8 turnDuelist)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  if (Duel_FindDeckCardIndex(turnDuelist, BLUE_EYES_WHITE_DRAGON) < 0)
+    return FALSE;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return FirstEmptyZoneInRow(gTurnHands[turnDuelist]) >= 0;
 }
 
 unsigned char ShouldActivateTHE_WHITE_STONE_OF_LEGEND(void)
 {
-  struct DuelCard *zone;
+  u8 turnDuelist;
+
+  if (gDeferGraveyardDrawBattleResolve)
+    return FALSE;
 
   if (gActiveEffect.cardId != THE_WHITE_STONE_OF_LEGEND)
     return FALSE;
 
-  if (GetPendingTributeSummonCardId() != THE_WHITE_STONE_OF_LEGEND)
+  if (gActiveEffect.turnRow != 6 && gActiveEffect.turnRow != 7)
     return FALSE;
 
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
-      && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
+  if (gActiveEffect.turnRow == 7) {
+    if (gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard != THE_WHITE_STONE_OF_LEGEND)
+      return FALSE;
+    turnDuelist = INACTIVE_DUELIST;
+  } else {
+    if (gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard != THE_WHITE_STONE_OF_LEGEND)
+      return FALSE;
+    turnDuelist = ACTIVE_DUELIST;
+  }
 
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
-    return FALSE;
-
-  /* TODO: add field-has-target check */
-  return TRUE;
+  return CanAddBlueEyesFromDeck(turnDuelist);
 }
 
 void ActivateTHE_WHITE_STONE_OF_LEGEND(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  u8 turnDuelist;
+  u8 hideEffectText;
 
-  Duel_ShowEffectTextTyped(THE_WHITE_STONE_OF_LEGEND, 8);
-
-  if (IsDuelOver() == TRUE)
-    return;
-
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
-
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
+  if (gActiveEffect.turnRow == 7)
+    turnDuelist = INACTIVE_DUELIST;
   else
-    Duel_ResolvePickZoneForAi();
+    turnDuelist = ACTIVE_DUELIST;
+
+  hideEffectText = gHideEffectText;
+  gHideEffectText = FALSE;
+  Duel_ShowEffectTextTyped(THE_WHITE_STONE_OF_LEGEND, 8);
+  gHideEffectText = hideEffectText;
+
+  GetGraveCardAndClearGrave(turnDuelist);
+  if (CanAddBlueEyesFromDeck(turnDuelist))
+    Duel_AddDeckCardToHand(turnDuelist, BLUE_EYES_WHITE_DRAGON, TRUE);
 }

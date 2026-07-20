@@ -1,0 +1,77 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "IPIRIA",
+      "card_name": "Ipiria",
+      "kind": "permanent",
+      "archetype": "IPIRIA",
+      "path": "src_custom/permanent_effects/ipiria.c",
+      "effect_text": "If Summoned: draw 1. Once per turn. If this card is Summoned: Draw 1 card. You can only use this effect of Ipiria once per turn.",
+      "tags": [
+        "draw"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_SUNRISE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_sunrise.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "ARCANA_FORCE_VIII_THE_STRENGTH",
+      "card_name": "Arcana Force VIII - The Strength",
+      "kind": "permanent",
+      "archetype": "ARCANA_FORCE",
+      "path": "src_custom/permanent_effects/arcana_force_viii_the_strength.c",
+      "effect_text": "Coin: steal opp monster or lose yours. When Summoned: toss a coin. Heads: take control of 1 opp monster. Tails: opp takes control of 1 of yours (except this).",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_SUNRISE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_sunrise.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "KNIGHT_OF_PENTACLES",
+      "card_name": "Knight of Pentacles",
+      "kind": "permanent",
+      "archetype": "KNIGHT",
+      "path": "src_custom/permanent_effects/knight_of_pentacles.c",
+      "effect_text": "Coin: battle immune or fragile. When Summoned, toss a coin. Heads: cannot be destroyed by battle. Tails: cannot attack; if attacked by an opp monster, destroy this card.",
+      "tags": [
+        "destroy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_SUNRISE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_sunrise.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "CYBER_KIRIN",
+      "card_name": "Cyber Kirin",
+      "kind": "permanent",
+      "archetype": "CYBER",
+      "path": "src_custom/permanent_effects/cyber_kirin.c",
+      "effect_text": "While in Attack Position: negate Spell/Trap targeting this card. When destroyed by battle: draw 1. You can Tribute this card to make any effect damage you take this turn 0.",
+      "tags": [
+        "st",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_SUNRISE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_sunrise.c",
+      "clone_score": 0.4
+    }
+  ]
+}

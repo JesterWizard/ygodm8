@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 21:09 UTC  
-**Remaining partials:** `783`
+**Last updated:** 2026-07-20 21:12 UTC  
+**Remaining partials:** `790`
 
 ## Counts by kind
 
@@ -18,10 +18,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 | `spell` | 185 |
 | `trap` | 115 |
 | `activated` | 452 |
-| `permanent` | 27 |
+| `permanent` | 34 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **783** |
+| **total** | **790** |
 
 ## spell (185)
 
@@ -3313,7 +3313,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (27)
+## permanent (34)
 
 ### `AMAZONESS_TIGER`
 - path: `src_custom/permanent_effects/amazoness_tiger.c`
@@ -3336,6 +3336,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/breaker_the_magical_warrior.c`
 - L15: hand normal summon copies isFaceUp=0; attack-position monsters still count
 - L40: placement hook is hand normal/tribute summon only — special summons use duel_helpers
+
+### `CANNONBALL_SPEAR_SHELLFISH`
+- path: `src_custom/permanent_effects/cannonball_spear_shellfish.c`
+- L8: spell-immunity while Umi is face-up needs Duel_IsCardActivationBlocked / targeting gate for this zone; no self-activation hook exists.
+
+### `CYBER_KIRIN`
+- path: `src_custom/permanent_effects/cyber_kirin.c`
+- L8: ATK-position spell/trap negate, battle-draw, and OPT tribute damage zero need continuous/battle/tribute hooks not wired for permanents.
 
 ### `ELEMENTAL_HERO_CAPTAIN_GOLD`
 - path: `src_custom/permanent_effects/elemental_hero_captain_gold.c`
@@ -3375,6 +3383,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/great_maju_garzett.c`
 - L48: ram_map byte packing can leave u16 fields at odd EWRAM addresses;
 
+### `HERO_KID`
+- path: `src_custom/permanent_effects/hero_kid.c`
+- L76: true trigger is Special Summon; on-summon stand-in covers SS path.
+
+### `KNIGHT_OF_PENTACLES`
+- path: `src_custom/permanent_effects/knight_of_pentacles.c`
+- L72: Tails "destroy when attacked" needs battle-step hook; unk4 tails = no attack only.
+
 ### `MAJU_GARZETT`
 - path: `src_custom/permanent_effects/maju_garzett.c`
 - L48: ram_map byte packing can leave u16 fields at odd EWRAM addresses;
@@ -3383,6 +3399,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/mobius_the_frost_monarch.c`
 - L175: up-to-2 targeting uses zone->unk4 as phase flag. 0 = not started, 1+ = at least one target destroyed (re-entered targeting). Upgrade path: bitfield on zone if unk4 is needed for other purposes.
 
+### `NEO_SPACIAN_FLARE_SCARAB`
+- path: `src_custom/permanent_effects/neo_spacian_flare_scarab.c`
+- L58: continuous +400 ATK per opp Spell/Trap — ApplyDynamicZoneStats only.
+
 ### `PETEN_THE_DARK_CLOWN`
 - path: `src_custom/permanent_effects/peten_the_dark_clown.c`
 - L73: hand takes priority when both are available; deck is the fallback
@@ -3390,6 +3410,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `RAVIEL_LORD_OF_PHANTASMS`
 - path: `src_custom/permanent_effects/raviel_lord_of_phantasms.c`
 - L137: triggers on any monster placement (Normal + Special). Card text says "Normal Summons" only — needs opts.markSpecialSummon check.
+
+### `REPTILIANNE_GARDNA`
+- path: `src_custom/permanent_effects/reptilianne_gardna.c`
+- L8: destroyed→search Reptilianne needs destroy-to-GY permanent hook.
 
 ### `SHATIEL`
 - path: `src_custom/permanent_effects/shatiel.c`
@@ -3425,6 +3449,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `THE_WICKED_DREADROOT`
 - path: `src_custom/permanent_effects/the_wicked_dreadroot.c`
 - L30: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.atk/def that the stat pipeline already computed for zone.
+
+### `WULF_LIGHTSWORN_BEAST`
+- path: `src_custom/permanent_effects/wulf_lightsworn_beast.c`
+- L8: milled-from-Deck Special Summon needs mill/deck-send hook.
 
 ### `ZERIEL`
 - path: `src_custom/permanent_effects/zeriel.c`

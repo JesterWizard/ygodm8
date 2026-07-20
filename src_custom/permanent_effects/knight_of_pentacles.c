@@ -2,43 +2,38 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
+void TryActivatingPermanentEffects(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+#define KNIGHT_OF_PENTACLES_COIN_HEADS 1
+#define KNIGHT_OF_PENTACLES_COIN_TAILS 2
+
+static struct DuelCard *SelfZone(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  return gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+
+  if (zone == NULL || zone->id != KNIGHT_OF_PENTACLES)
+    return FALSE;
+
+  return zone->unk4 == KNIGHT_OF_PENTACLES_COIN_HEADS;
 }
 
-static void CancelTargeting(void)
+u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  if (zone == NULL || zone->id != KNIGHT_OF_PENTACLES)
+    return TRUE;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  if (zone->unk4 == KNIGHT_OF_PENTACLES_COIN_TAILS)
+    return FALSE;
+
+  return TRUE;
 }
 
 unsigned char ShouldActivateKNIGHT_OF_PENTACLES(void)
@@ -46,9 +41,6 @@ unsigned char ShouldActivateKNIGHT_OF_PENTACLES(void)
   struct DuelCard *zone;
 
   if (gActiveEffect.cardId != KNIGHT_OF_PENTACLES)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != KNIGHT_OF_PENTACLES)
     return FALSE;
 
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
@@ -59,27 +51,36 @@ unsigned char ShouldActivateKNIGHT_OF_PENTACLES(void)
   if (zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
   return TRUE;
 }
 
 void ActivateKNIGHT_OF_PENTACLES(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  struct DuelCard *zone;
+  u8 heads;
 
   Duel_ShowEffectTextTyped(KNIGHT_OF_PENTACLES, 8);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  zone = SelfZone();
+  if (zone == NULL)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  heads = RandRangeU8(0, 1) == 1;
+  zone->unk4 = heads ? KNIGHT_OF_PENTACLES_COIN_HEADS : KNIGHT_OF_PENTACLES_COIN_TAILS;
+  /* ponytail: Tails "destroy when attacked" needs battle-step hook; unk4 tails = no attack only. */
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void KnightOfPentacles_SelfCheck(void)
+{
+  struct DuelCard zone;
+
+  zone.id = KNIGHT_OF_PENTACLES;
+  zone.unk4 = KNIGHT_OF_PENTACLES_COIN_TAILS;
+  if (KnightOfPentacles_CanAttackMonsterZone(&zone) != FALSE)
+    while (1)
+      ;
+}
+#endif

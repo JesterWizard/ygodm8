@@ -1,0 +1,82 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "THE_WHITE_STONE_OF_LEGEND",
+      "card_name": "The White Stone of Legend",
+      "kind": "permanent",
+      "archetype": "THE_WHITE_STONE_OF",
+      "path": "src_custom/permanent_effects/the_white_stone_of_legend.c",
+      "effect_text": "If sent to GY: add Blue-Eyes White Dragon. If this card is sent to the GY: Add 1 Blue-Eyes White Dragon from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_SUNRISE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_sunrise.c",
+      "clone_score": 0.43
+    },
+    {
+      "card_const": "HERO_KID",
+      "card_name": "Hero Kid",
+      "kind": "permanent",
+      "archetype": "HERO",
+      "path": "src_custom/permanent_effects/hero_kid.c",
+      "effect_text": "On Special Summon: SS any number of Hero Kid from your Deck. When this card is Special Summoned: You can Special Summon any number of Hero Kid(s) from your Deck.",
+      "tags": [
+        "deck",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "FENRIR",
+      "clone_path": "src_custom/permanent_effects/fenrir.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "WULF_LIGHTSWORN_BEAST",
+      "card_name": "Wulf, Lightsworn Beast",
+      "kind": "permanent",
+      "archetype": "WULF",
+      "path": "src_custom/permanent_effects/wulf_lightsworn_beast.c",
+      "effect_text": "If milled from Deck: SS this. Cannot be Normal Summoned/Set. Must be Special Summoned by a card effect. If this card is sent from your Deck to the GY: Special Summon it.",
+      "tags": [
+        "deck",
+        "gy",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_shining_phoenix_enforcer.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "REPTILIANNE_VIPER",
+      "card_name": "Reptilianne Viper",
+      "kind": "permanent",
+      "archetype": "REPTILIANNE",
+      "path": "src_custom/permanent_effects/reptilianne_viper.c",
+      "effect_text": "On NS: take control of 1 face-up opp monster with 0 ATK. When this card is Normal Summoned, you can select and take control of 1 face-up monster with 0 ATK your opponent controls.",
+      "tags": [
+        "faceup",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_KNOSPE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_knospe.c",
+      "clone_score": 0.4
+    }
+  ]
+}

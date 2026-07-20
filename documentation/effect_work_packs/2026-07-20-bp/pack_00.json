@@ -1,0 +1,81 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "NEO_SPACIAN_FLARE_SCARAB",
+      "card_name": "Neo-Spacian Flare Scarab",
+      "kind": "permanent",
+      "archetype": "NEO_SPACIAN",
+      "path": "src_custom/permanent_effects/neo_spacian_flare_scarab.c",
+      "effect_text": "+400 ATK per opp Spell/Trap. Gains 400 ATK for each Spell/Trap your opponent controls.",
+      "tags": [
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_SUNRISE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_sunrise.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "CANNONBALL_SPEAR_SHELLFISH",
+      "card_name": "Cannonball Spear Shellfish",
+      "kind": "permanent",
+      "archetype": "CANNONBALL",
+      "path": "src_custom/permanent_effects/cannonball_spear_shellfish.c",
+      "effect_text": "While Umi is face-up, this card is unaffected by any Spell Cards. While Umi is face-up on the field, this card is unaffected by any Spell Cards.",
+      "tags": [
+        "faceup"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_SUNRISE",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_sunrise.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "ARMAGEDDON_KNIGHT",
+      "card_name": "Armageddon Knight",
+      "kind": "permanent",
+      "archetype": "ARMAGEDDON",
+      "path": "src_custom/permanent_effects/armageddon_knight.c",
+      "effect_text": "When this card is Summoned: You can send 1 DARK monster from your Deck to the GY. When this card is Summoned: You can send 1 DARK monster from your Deck to the GY.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DES_FERAL_IMP",
+      "clone_path": "src_custom/permanent_effects/des_feral_imp.c",
+      "clone_score": 0.43
+    },
+    {
+      "card_const": "REPTILIANNE_GARDNA",
+      "card_name": "Reptilianne Gardna",
+      "kind": "permanent",
+      "archetype": "REPTILIANNE",
+      "path": "src_custom/permanent_effects/reptilianne_gardna.c",
+      "effect_text": "If destroyed: add 1 Reptilianne from Deck to hand. When this card you control is destroyed and sent to the Graveyard, add 1 Reptilianne monster from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DES_FERAL_IMP",
+      "clone_path": "src_custom/permanent_effects/des_feral_imp.c",
+      "clone_score": 0.5
+    }
+  ]
+}

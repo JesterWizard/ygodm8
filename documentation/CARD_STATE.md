@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack BO: final 5 activated stubs (start of BO–BT; activated queue exhausted)
+**Last worked on:** 2026-07-20 — Effect pack BP: 12 permanent monsters (BO–BT; Composer 2.5 Fast)
 
-**Outcome:** make OK. Activated stubs **5 → 0**. Total stubs **109 → 104**. Partials **778 → 783**.
+**Outcome:** make OK. Stubs **104 → 92** (permanent **81**). Partials **3**.
 
-**Open / next:** Remaining packs BP–BT will use `--kind permanent` (93 left). Composer 2.5 Fast.
+**Open / next:** BQ–BT permanent packs remaining.

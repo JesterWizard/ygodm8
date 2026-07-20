@@ -2,84 +2,74 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+#define NEO_SPACIAN_FLARE_SCARAB_ATK_PER_ST 400
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 OpponentBackrowForZone(struct DuelCard *zone)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  u8 fixedRow;
+  u8 col;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return 0xFF;
+
+  return fixedRow == PLAYER_MONSTER_ROW ? OPPONENT_BACKROW : PLAYER_BACKROW;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 CountOpponentSpellTraps(struct DuelCard *zone)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u8 backrow = OpponentBackrowForZone(zone);
+  u8 col;
+  u8 count = 0;
+
+  if (backrow == 0xFF)
+    return 0;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *slot = gFixedZones[backrow][col];
+
+    if (slot == NULL || slot->id == CARD_NONE)
+      continue;
+    if (GetTypeGroup(slot->id) == TYPE_GROUP_MONSTER)
+      continue;
+
+    count++;
+  }
+
+  return count;
 }
 
-static void CancelTargeting(void)
+u8 NeoSpacianFlareScarab_ApplyDynamicZoneStats(struct DuelCard *zone)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u16 baseAtk;
+  u32 atk;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  if (zone == NULL || zone->id != NEO_SPACIAN_FLARE_SCARAB)
+    return FALSE;
+
+  baseAtk = gCardData_NEW[zone->id].atk;
+  atk = (u32)baseAtk + (u32)CountOpponentSpellTraps(zone) * NEO_SPACIAN_FLARE_SCARAB_ATK_PER_ST;
+  Duel_WriteCardInfoStats(zone->id, Duel_ClampStat(atk), gCardData_NEW[zone->id].def);
+  return TRUE;
 }
 
 unsigned char ShouldActivateNEO_SPACIAN_FLARE_SCARAB(void)
 {
-  struct DuelCard *zone;
-
-  if (gActiveEffect.cardId != NEO_SPACIAN_FLARE_SCARAB)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != NEO_SPACIAN_FLARE_SCARAB)
-    return FALSE;
-
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
-      && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
-    return FALSE;
-
-  /* TODO: add field-has-target check */
-  return TRUE;
+  /* ponytail: continuous +400 ATK per opp Spell/Trap — ApplyDynamicZoneStats only. */
+  (void)gActiveEffect;
+  return FALSE;
 }
 
 void ActivateNEO_SPACIAN_FLARE_SCARAB(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
-
-  Duel_ShowEffectTextTyped(NEO_SPACIAN_FLARE_SCARAB, 8);
-
-  if (IsDuelOver() == TRUE)
-    return;
-
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
-
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void NeoSpacianFlareScarab_SelfCheck(void)
+{
+  struct DuelCard zone;
+
+  zone.id = NEO_SPACIAN_FLARE_SCARAB;
+  NeoSpacianFlareScarab_ApplyDynamicZoneStats(&zone);
+}
+#endif

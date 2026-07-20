@@ -105,6 +105,9 @@ struct DuelCard *HamonLordOfStrikingThunder_GetForcedAttackTarget(u8 defenderDue
 u8 HamonLordOfStrikingThunder_CanAttackMonsterZone(struct DuelCard *zone);
 u8 UriaLordOfSearingFlames_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmuletDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 NeoSpacianFlareScarab_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol);
+u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone);
 void TryRavielOnOpponentMonsterPlacement(struct DuelCard *zone);
 void TryAmuletDragonOnMonsterPlacement(struct DuelCard *zone);
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
@@ -1173,6 +1176,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { THE_WICKED_AVATAR, TheWickedAvatar_ApplyDynamicZoneStats },
   { URIA_LORD_OF_SEARING_FLAMES, UriaLordOfSearingFlames_ApplyDynamicZoneStats },
   { AMULET_DRAGON, AmuletDragon_ApplyDynamicZoneStats },
+  { NEO_SPACIAN_FLARE_SCARAB, NeoSpacianFlareScarab_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
@@ -1200,6 +1204,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   ElementalHeroPoisonRose_CanAttackMonsterZone,
   SphereMode_CanAttackMonsterZone,
   HamonLordOfStrikingThunder_CanAttackMonsterZone,
+  KnightOfPentacles_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)
@@ -1391,6 +1396,7 @@ void Duel_ApplyBattleDestroyProtection(void)
 
   if ((sActionData.flags & 1)
       && !ElementalHeroTempestProtectsBattleZone(sActionData.playerMonsterRow, sActionData.unkA)
+      && !KnightOfPentacles_ProtectsBattleZone(sActionData.playerMonsterRow, sActionData.unkA)
       && !CanMonsterBeDestroyedByBattle(
           sActionData.playerCardId, DUEL_PLAYER,
           sActionData.playerCardAtkOrLifePointsMod,
@@ -1400,6 +1406,7 @@ void Duel_ApplyBattleDestroyProtection(void)
 
   if ((sActionData.flags & 2)
       && !ElementalHeroTempestProtectsBattleZone(sActionData.opponentMonsterRow, sActionData.unk16)
+      && !KnightOfPentacles_ProtectsBattleZone(sActionData.opponentMonsterRow, sActionData.unk16)
       && !CanMonsterBeDestroyedByBattle(
           sActionData.opponentCardId, DUEL_OPPONENT,
           sActionData.opponentCardAtkOrLifePointsMod,
