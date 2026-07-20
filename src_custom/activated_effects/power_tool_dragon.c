@@ -4,62 +4,85 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsEquipSpell(u16 cardId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_SPELL)
+    return FALSE;
+
+  return GetSpellType(cardId) == SPELL_TYPE_EQUIP;
 }
 
-static void CancelTargeting(void)
+static u16 FindDeckEquipSpell(void)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsEquipSpell(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
 }
 
 unsigned char CanActivatePOWER_TOOL_DRAGON(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != POWER_TOOL_DRAGON)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != POWER_TOOL_DRAGON)
+    return FALSE;
+
+  /* ponytail: reveal-3 opp-picks + equip destruction replace need reveal/destroy
+   * hooks. Ceiling: OPT add first Equip Spell from Deck. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
+    return FALSE;
+
+  return FindDeckEquipSpell() != CARD_NONE;
 }
 
 void ActivatePOWER_TOOL_DRAGONEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u16 equipId;
+
   Duel_ShowEffectTextTyped(POWER_TOOL_DRAGON, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  equipId = FindDeckEquipSpell();
+  if (equipId == CARD_NONE)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, equipId, TRUE) != DUEL_ACTION_OK)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

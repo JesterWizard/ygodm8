@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:58 UTC  
-**Remaining partials:** `544`
+**Last updated:** 2026-07-20 19:00 UTC  
+**Remaining partials:** `553`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 213 |
+| `activated` | 222 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **544** |
+| **total** | **553** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (213)
+## activated (222)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1492,6 +1492,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AROMAGE_JASMINE`
 - path: `src_custom/activated_effects/aromage_jasmine.c`
 - L20: extra Plant Normal Summon while LP higher + draw-on-LP-gain need permanent/LP hooks. Ceiling: OPT draw 1 via usage; upgrade: LP-gain gate + extra Normal Summon overlay when your LP exceed opponent's.
+
+### `AROMAGE_LAUREL`
+- path: `src_custom/activated_effects/aromage_laurel.c`
+- L66: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks. Ceiling: OPT add 1 Plant from Deck; upgrade: full Aroma branches.
 
 ### `AROMAGE_ROSEMARY`
 - path: `src_custom/activated_effects/aromage_rosemary.c`
@@ -1570,6 +1574,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `COLOSSAL_FIGHTER`
 - path: `src_custom/activated_effects/colossal_fighter.c`
 - L119: +100 ATK per Warrior in any GY needs stat overlay; battle-destroy trigger deferred. Ceiling: OPT SS 1 Warrior from either GY once via usage.
+
+### `CORAL_DRAGON`
+- path: `src_custom/activated_effects/coral_dragon.c`
+- L114: GY draw when Synchro Summoned card sent from field needs GY hook. Ceiling: OPT discard 1 → destroy 1 opp card.
 
 ### `CRIMSON_BLADER`
 - path: `src_custom/activated_effects/crimson_blader.c`
@@ -1774,6 +1782,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEAST_SAGITTARII`
 - path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
 - L110: end-of-Battle-Phase + battled gate + discard-GB draw 2 on GB-SS need battle/summon hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
+
+### `GODDESS_BOW`
+- path: `src_custom/activated_effects/goddess_bow.c`
+- L12: Hermos fusion + equip + battle-phase negate/second attack need fusion/equip/chain hooks. Ceiling: not ignition-activatable here.
 
 ### `GOLDEN_HOMUNCULUS`
 - path: `src_custom/activated_effects/golden_homunculus.c`
@@ -2010,6 +2022,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_boomboxen.c`
 - L12: double attack in ATK + DEF negate-attack need battle/position hooks. Ceiling: not ignition-activatable here.
 
+### `MORPHTRONIC_CAMERAN`
+- path: `src_custom/activated_effects/morphtronic_cameran.c`
+- L128: DEF cannot-be-targeted continuous + battle-destroy trigger need battle/continuous hooks. Ceiling: ATK OPT SS Lv4 Morphtronic from hand/GY.
+
 ### `MORPHTRONIC_CLOCKEN`
 - path: `src_custom/activated_effects/morphtronic_clocken.c`
 - L26: +500 ATK per Morph Counter in ATK Position needs stat overlay hook. Ceiling: DEF OPT place unk4 counter, else tribute self → burn 1000*(unk4 or 1).
@@ -2042,6 +2058,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/naelshaddoll_ariel.c`
 - L72: FLIP SS banished Shaddoll + sent-by-effect branch need flip/RFP hooks. Ceiling: OPT banish up to 3 cards from either GY.
 
+### `NATURIA_BEAST`
+- path: `src_custom/activated_effects/naturia_beast.c`
+- L12: Quick Effect spell negate + mill 2 need chain/negation hooks. Ceiling: not ignition-activatable here; upgrade: either-turn interrupt.
+
+### `NECROFACE`
+- path: `src_custom/activated_effects/necroface.c`
+- L86: Normal Summon shuffle + banish-mill branches need summon/banish hooks. Ceiling: OPT shuffle all banished into Decks + tempStage per card.
+- L107: tempStage unit is ~500 ATK, not printed +100; upgrade: exact overlay.
+
 ### `NEO_SPACE_CONNECTOR`
 - path: `src_custom/activated_effects/neo_space_connector.c`
 - L61: on-Normal-Summon trigger + tribute-bounce second effect need summon/tribute hooks. Ceiling: OPT SS Neo-Spacian or Neos from Deck DEF.
@@ -2057,6 +2082,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `OJAMA_KING`
 - path: `src_custom/activated_effects/ojama_king.c`
 - L54: PickZone for up to 3 empty zones + continuous lock gate. Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
+
+### `POWER_TOOL_DRAGON`
+- path: `src_custom/activated_effects/power_tool_dragon.c`
+- L55: reveal-3 opp-picks + equip destruction replace need reveal/destroy hooks. Ceiling: OPT add first Equip Spell from Deck.
 
 ### `PROTECTOR_OF_THE_SANCTUARY`
 - path: `src_custom/activated_effects/protector_of_the_sanctuary.c`
@@ -2135,6 +2164,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/silent_swordsman_lv7.c`
 - L12: continuous negate all Spell effects needs field-wide spell gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-negate hook.
 
+### `SIMORGH_BIRD_OF_ANCESTRY`
+- path: `src_custom/activated_effects/simorgh_bird_of_ancestry.c`
+- L110: WIND tribute-reduce continuous + hand-as-Normal Monster need summon/permanent hooks. Ceiling: OPT return up to 2 opp cards to hand.
+
 ### `SKILLED_DARK_MAGICIAN`
 - path: `src_custom/activated_effects/skilled_dark_magician.c`
 - L80: Spell Counters on Spell activation need spell-resolve hook. Ceiling: ignition when unk4>=3 (never rises alone); upgrade: on Spell resolve → if face-up SKILLED_DARK_MAGICIAN then zone->unk4++ (cap 3).
@@ -2175,6 +2208,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/tethys_goddess_of_light.c`
 - L50: opening hand is seeded before duel gfx; skip like Solemn Wishes.
 - L54: unk18 != 0 means battle/damage resolution is active.
+
+### `THE_AGENT_OF_ENTROPY_URANUS`
+- path: `src_custom/activated_effects/the_agent_of_entropy_uranus.c`
+- L117: tempStage stores milled Level, not a true level change hook.
 
 ### `THE_AGENT_OF_MYSTERU_EARTH`
 - path: `src_custom/activated_effects/the_agent_of_mysteru_earth.c`

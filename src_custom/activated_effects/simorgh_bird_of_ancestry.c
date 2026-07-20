@@ -4,62 +4,136 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
+void CheckWinConditionExodia(unsigned char);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  handSlot->id = cardId;
+  handSlot->isFaceUp = FALSE;
+  handSlot->isLocked = FALSE;
+  handSlot->isDefending = FALSE;
+  handSlot->unkTwo = 0;
+  handSlot->unkThree = 0;
+  handSlot->unk4 = 0;
+  handSlot->willChangeSides = FALSE;
+  ResetPermStage(handSlot);
+  ResetTempStage(handSlot);
+}
+
+static u8 OppHandHasRoom(void)
+{
+  return NumEmptyZonesInRow(gTurnHands[INACTIVE_DUELIST]) > 0;
+}
+
+static u8 BounceOppZoneToHand(struct DuelCard *zone)
+{
+  u8 typeGroup;
+
+  if (zone == NULL || zone->id == CARD_NONE || !OppHandHasRoom())
+    return FALSE;
+
+  typeGroup = GetTypeGroup(zone->id);
+  if (typeGroup == TYPE_GROUP_MONSTER)
+    return Duel_ReturnMonsterZoneToOwnerHand(zone, FALSE) == DUEL_ACTION_OK;
+
+  if (typeGroup == TYPE_GROUP_SPELL || typeGroup == TYPE_GROUP_TRAP) {
+    s8 empty;
+    u16 cardId;
+
+    empty = FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]);
+    if (empty < 0)
+      return FALSE;
+
+    cardId = zone->id;
+    ClearZone(zone);
+    InitHandSlotFromCard(gTurnHands[INACTIVE_DUELIST][empty], cardId);
+    return TRUE;
+  }
+
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 BounceOneOppCard(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone == NULL || zone->id == CARD_NONE)
+        continue;
+
+      if (BounceOppZoneToHand(zone))
+        return TRUE;
+    }
+  }
+
+  return FALSE;
 }
 
-static void CancelTargeting(void)
+static u8 CanBounceOppCard(void)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u8 row;
+  u8 col;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  if (!OppHandHasRoom())
+    return FALSE;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL && zone->id != CARD_NONE)
+        return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateSIMORGH_BIRD_OF_ANCESTRY(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != SIMORGH_BIRD_OF_ANCESTRY)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != SIMORGH_BIRD_OF_ANCESTRY)
+    return FALSE;
+
+  /* ponytail: WIND tribute-reduce continuous + hand-as-Normal Monster need
+   * summon/permanent hooks. Ceiling: OPT return up to 2 opp cards to hand. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return CanBounceOppCard();
 }
 
 void ActivateSIMORGH_BIRD_OF_ANCESTRYEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 bounced = 0;
+
   Duel_ShowEffectTextTyped(SIMORGH_BIRD_OF_ANCESTRY, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  while (bounced < 2 && BounceOneOppCard())
+    bounced++;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (bounced == 0)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

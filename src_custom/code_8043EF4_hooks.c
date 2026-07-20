@@ -253,6 +253,11 @@ u8 TryActivateGravekeepersWatcherFromHand(u8);
 u8 TrySpecialSummonReptilianneVaskiiFromHand(u8);
 u8 TrySpecialSummonMontageDragonFromHand(u8);
 u8 TrySpecialSummonArcanaForceXixTheSunFromHand(u8);
+u8 TrySpecialSummonAromageLaurelFromHand(u8);
+u8 TrySpecialSummonTestTigerFromHand(u8);
+u8 TrySpecialSummonOceanDragonLordNeoDaedalusFromHand(u8);
+u8 TrySpecialSummonTheAgentOfEntropyUranusFromHand(u8);
+u8 TrySpecialSummonLightrayDaedalusFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -269,7 +274,8 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == HAMON_LORD_OF_STRIKING_THUNDER
       || cardId == URIA_LORD_OF_SEARING_FLAMES
       || cardId == RAVIEL_LORD_OF_PHANTASMS
-      || cardId == MONTAGE_DRAGON || cardId == ARCANA_FORCE_XIX_THE_SUN;
+      || cardId == MONTAGE_DRAGON || cardId == ARCANA_FORCE_XIX_THE_SUN
+      || cardId == OCEAN_DRAGON_LORD_NEO_DAEDALUS || cardId == LIGHTRAY_DAEDALUS;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -558,6 +564,31 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == ARCANA_FORCE_XIX_THE_SUN
           && TrySpecialSummonArcanaForceXixTheSunFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == AROMAGE_LAUREL
+          && TrySpecialSummonAromageLaurelFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == TEST_TIGER
+          && TrySpecialSummonTestTigerFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == OCEAN_DRAGON_LORD_NEO_DAEDALUS
+          && TrySpecialSummonOceanDragonLordNeoDaedalusFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == THE_AGENT_OF_ENTROPY_URANUS
+          && TrySpecialSummonTheAgentOfEntropyUranusFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == LIGHTRAY_DAEDALUS
+          && TrySpecialSummonLightrayDaedalusFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
