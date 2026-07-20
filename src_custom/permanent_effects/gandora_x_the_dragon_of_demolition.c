@@ -3,52 +3,103 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
-#include "summon_tribute.h"
+#include "god_card.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
+void RefreshFieldMonsterStatOverlays(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
+void TryActivatingPermanentEffects(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+extern const CardData gCardData_NEW[];
+
+static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ACTIVE_DUELIST;
+  if (turnRow == INACTIVE_DUELIST_MONSTER_ROW)
+    return INACTIVE_DUELIST;
+  return ACTIVE_DUELIST;
+}
+
+static u8 TurnDuelistForFixedRow(u8 fixedRow)
+{
+  u8 fixedOwner;
+
+  if (fixedRow == PLAYER_MONSTER_ROW || fixedRow == PLAYER_BACKROW)
+    fixedOwner = DUEL_PLAYER;
+  else
+    fixedOwner = DUEL_OPPONENT;
+
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedOwner])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
+}
+
+static u8 FieldHasOtherMonster(struct DuelCard *self)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = &gDuel.board[row][col];
+
+      if (zone == self || zone->id == CARD_NONE)
+        continue;
+
+      if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER)
+        return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u16 DestroyAllOtherMonstersAndGetHighestOriginalAtk(struct DuelCard *protectedZone)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u8 row;
+  u8 col;
+  u16 highestAtk = 0;
+  u8 destroyed = FALSE;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    u8 graveyardDuelist = TurnDuelistForFixedRow(row);
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = &gDuel.board[row][col];
+      u16 originalAtk;
+
+      if (zone == protectedZone || zone->id == CARD_NONE || IsGodCard(zone->id))
+        continue;
+
+      if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+        continue;
+
+      originalAtk = gCardData_NEW[zone->id].atk;
+      if (originalAtk > highestAtk)
+        highestAtk = originalAtk;
+
+      if (Duel_DestroyZone(zone, graveyardDuelist, FALSE) == DUEL_ACTION_DUEL_OVER)
+        return highestAtk;
+
+      destroyed = TRUE;
+    }
+  }
+
+  if (destroyed) {
+    NotifyDynamicEquipFieldChanged();
+    UpdateDuelGfxExceptField();
+  }
+
+  return highestAtk;
 }
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
-}
-
-unsigned char ShouldActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION(void)
+static u8 IsOnSummonTrigger(void)
 {
   struct DuelCard *zone;
 
   if (gActiveEffect.cardId != GANDORA_X_THE_DRAGON_OF_DEMOLITION)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != GANDORA_X_THE_DRAGON_OF_DEMOLITION)
     return FALSE;
 
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
@@ -56,30 +107,52 @@ unsigned char ShouldActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION(void)
     return FALSE;
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
+  if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
-  return TRUE;
+  return FieldHasOtherMonster(zone);
+}
+
+unsigned char ShouldActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION(void)
+{
+  /* ponytail: End Phase half LP needs EP hook; on-summon wipe only here. */
+  return IsOnSummonTrigger();
 }
 
 void ActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  struct DuelCard *self;
+  u16 burn;
+  s8 stages;
+
+  self = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
   Duel_ShowEffectTextTyped(GANDORA_X_THE_DRAGON_OF_DEMOLITION, 8);
+  if (self == NULL || IsDuelOver() == TRUE)
+    return;
 
+  burn = DestroyAllOtherMonstersAndGetHighestOriginalAtk(self);
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  if (burn > 0) {
+    if (Duel_ChangeLp(DuelistForMonsterTurnRow(gActiveEffect.turnRow) == ACTIVE_DUELIST
+            ? INACTIVE_DUELIST
+            : ACTIVE_DUELIST,
+        -(s32)burn, TRUE)
+        == DUEL_ACTION_DUEL_OVER)
+      return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+    /* ponytail: set ATK = damage via tempStage (~500/unit). */
+    stages = (s8)((burn + 499) / 500);
+    if (stages > 126)
+      stages = 126;
+    self->tempStage = stages;
+    RefreshFieldMonsterStatOverlays();
+  }
 
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  self->unk4 = 1;
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

@@ -2,53 +2,152 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+extern const CardData gCardData_NEW[];
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static const char sArcanaForceName[] APPEND_RODATA = "Arcana Force";
+static const char sCoinNameNeedle[] APPEND_RODATA = "Coin";
+
+static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ACTIVE_DUELIST;
+  if (turnRow == INACTIVE_DUELIST_MONSTER_ROW)
+    return INACTIVE_DUELIST;
+  return ACTIVE_DUELIST;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void CancelTargeting(void)
+static u8 IsArcanaForceMonster(u16 cardId)
 {
-  PlayMusic(SFX_CANCEL);
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sArcanaForceName);
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u8 IsKnownCoinTossCard(u16 cardId)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  switch (cardId) {
+  case CUP_OF_ACE:
+  case ACE_OF_SWORD:
+  case SECOND_COIN_TOSS:
+  case ARCANA_SPREAD:
+  case ARCANA_READING:
+  case TIME_WIZARD:
+  case FAIRY_BOX:
+  case BLOWBACK_DRAGON:
+  case LIGHT_BARRIER:
+    return TRUE;
+  default:
+    return FALSE;
+  }
+}
+
+static u8 IsCoinTossCard(u16 cardId)
+{
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  if (IsArcanaForceMonster(cardId))
+    return TRUE;
+
+  if (Duel_CardNameContains(cardId, sCoinNameNeedle))
+    return TRUE;
+
+  return IsKnownCoinTossCard(cardId);
+}
+
+static u8 IsArcanaForceLevel10(u16 cardId)
+{
+  if (!IsArcanaForceMonster(cardId))
+    return FALSE;
+
+  return gCardData_NEW[cardId].level == 10;
+}
+
+static u16 FindArcanaForceLevel10InDeck(u8 turnDuelist)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsArcanaForceLevel10(cardId) && !Duel_CardCannotBeSpecialSummoned(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
+}
+
+static u16 FindCoinTossCardInDeck(u8 turnDuelist)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsCoinTossCard(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
+}
+
+static u16 FindAnyArcanaForceInDeck(u8 turnDuelist)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsArcanaForceMonster(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
+}
+
+static u8 CanResolveCoinEffect(u8 turnDuelist)
+{
+  u8 monsterRow = turnDuelist == ACTIVE_DUELIST
+      ? ACTIVE_DUELIST_MONSTER_ROW
+      : INACTIVE_DUELIST_MONSTER_ROW;
+
+  if (FindArcanaForceLevel10InDeck(turnDuelist) != CARD_NONE
+      && FirstEmptyZoneInRow(gTurnZones[monsterRow]) >= 0)
+    return TRUE;
+
+  if (FindCoinTossCardInDeck(turnDuelist) != CARD_NONE
+      && FirstEmptyZoneInRow(gTurnHands[turnDuelist]) >= 0)
+    return TRUE;
+
+  return FindAnyArcanaForceInDeck(turnDuelist) != CARD_NONE
+      && FirstEmptyZoneInRow(gTurnHands[turnDuelist]) >= 0;
 }
 
 unsigned char ShouldActivateARCANA_FORCE_THE_CHAOS_RULER(void)
 {
   struct DuelCard *zone;
+  u8 duelist;
 
   if (gActiveEffect.cardId != ARCANA_FORCE_THE_CHAOS_RULER)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != ARCANA_FORCE_THE_CHAOS_RULER)
     return FALSE;
 
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
@@ -56,30 +155,45 @@ unsigned char ShouldActivateARCANA_FORCE_THE_CHAOS_RULER(void)
     return FALSE;
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
+  if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
-  return TRUE;
+  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
+  /* ponytail: true trigger is Special Summon; on-summon coin stand-in covers SS path. */
+  return CanResolveCoinEffect(duelist);
 }
 
 void ActivateARCANA_FORCE_THE_CHAOS_RULER(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  u8 duelist;
+  struct DuelCard *zone;
+  u16 cardId;
+  struct DuelSummonOpts opts;
+  u8 heads;
+
+  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
 
   Duel_ShowEffectTextTyped(ARCANA_FORCE_THE_CHAOS_RULER, 8);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  heads = RandRangeU8(0, 1) == 1;
+  if (heads) {
+    cardId = FindArcanaForceLevel10InDeck(duelist);
+    if (cardId != CARD_NONE) {
+      opts = Duel_DefaultSpecialSummonOpts(TRUE);
+      Duel_SpecialSummonFromDeck(duelist, cardId, opts);
+    }
+  } else {
+    cardId = FindCoinTossCardInDeck(duelist);
+    if (cardId == CARD_NONE)
+      cardId = FindAnyArcanaForceInDeck(duelist);
+    if (cardId != CARD_NONE && FirstEmptyZoneInRow(gTurnHands[duelist]) >= 0)
+      Duel_AddDeckCardToHand(duelist, cardId, TRUE);
+  }
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+  if (zone != NULL)
+    zone->unk4 = 1;
+  /* ponytail: Light Barrier opp-activation lock needs continuous field hook. */
 }
