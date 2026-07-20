@@ -25,6 +25,7 @@
 #include "the_supremacy_sun.h"
 #include "light_end_dragon.h"
 #include "yubel.h"
+#include "effect_system.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -192,6 +193,11 @@ static void TryActivatingTurnEffect__Hook(void) {
 
   ResetCardEffectTextData();
   SetCardEffectTextType(9);
+
+  if (EffectDispatch_TryActivate(gActiveEffect.cardId, EFFECT_KIND_TURN)
+      == EFFECT_DISPATCH_HANDLED)
+    return;
+
   override = GetTurnEffectOverride(gActiveEffect.cardId);
   if (override != NULL) {
     if (override->matchesRow == NULL || override->matchesRow() == TRUE) {
@@ -206,6 +212,13 @@ static void TryActivatingTurnEffect__Hook(void) {
 
 static unsigned char ShouldActivateTurnEffect__Hook(void) {
   const TurnEffectOverride *override;
+  u8 should;
+
+  should = EffectDispatch_QueryShouldActivate(gActiveEffect.cardId, EFFECT_KIND_TURN);
+  if (should == EFFECT_SHOULD_YES)
+    return TRUE;
+  if (should == EFFECT_SHOULD_NO)
+    return FALSE;
 
   override = GetTurnEffectOverride(gActiveEffect.cardId);
   if (override != NULL) {

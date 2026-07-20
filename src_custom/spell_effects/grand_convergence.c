@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_ops.h"
 #include "spell_effects.h"
 
 #define GRAND_CONVERGENCE_DAMAGE 300
@@ -30,18 +31,18 @@ static void GRAND_CONVERGENCE_ResolveBody(void)
   if (IsDuelOver() == TRUE || !CanActivateGRAND_CONVERGENCE())
     return;
 
-  if (Duel_ChangeLp(INACTIVE_DUELIST, -GRAND_CONVERGENCE_DAMAGE, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Op_ChangeLp(INACTIVE_DUELIST, -GRAND_CONVERGENCE_DAMAGE, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  if (Duel_DestroyAllMonstersMatching(ACTIVE_DUELIST_MONSTER_ROW, NULL, FALSE)
+  if (Op_DestroyAllMonstersInRow(ACTIVE_DUELIST_MONSTER_ROW, NULL, FALSE)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  if (Duel_DestroyAllMonstersMatching(INACTIVE_DUELIST_MONSTER_ROW, NULL, FALSE)
+  if (Op_DestroyAllMonstersInRow(INACTIVE_DUELIST_MONSTER_ROW, NULL, FALSE)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
+  Op_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
 }
 
 APPEND_TEXT void EffectGRAND_CONVERGENCE(void)

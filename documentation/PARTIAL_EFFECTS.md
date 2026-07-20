@@ -3,12 +3,13 @@
 Auto-generated living list of effect files with `ponytail:` ceilings (implemented, but missing hooks / engine pieces).
 Find follow-up work here — stubs live in `STUB_EFFECTS.md`.
 Rows vanish when all `ponytail:` comments are removed from the file.
+Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.md). Engine migration: [`effect-data-system.md`](effect-data-system.md).
 
 ```bash
-python3 tools/stub_effect_queue.py --write-list   # stubs + partials
+python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-20 21:35 UTC  
+**Last updated:** 2026-07-20 21:51 UTC  
 **Remaining partials:** `874`
 
 ## Counts by kind

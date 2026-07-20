@@ -5,6 +5,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_ops.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
 
@@ -113,11 +114,11 @@ static void DBurstOnTarget(u8 fixedRow, u8 fixedCol)
   if (zone == NULL)
     return;
 
-  Duel_DestroyZone(zone, WhoseTurn() == DUEL_PLAYER ? DUEL_PLAYER : DUEL_OPPONENT, FALSE);
+  Op_DestroyZone(zone, WhoseTurn() == DUEL_PLAYER ? DUEL_PLAYER : DUEL_OPPONENT, FALSE);
   if (IsDuelOver() == TRUE)
     return;
 
-  if (Duel_DrawCards(ACTIVE_DUELIST, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
+  if (Op_Draw(ACTIVE_DUELIST, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
   if (ControlsDestinyHero())

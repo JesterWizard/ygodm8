@@ -72,7 +72,7 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .card_in_hand_2 = ANCIENT_LEAF,
     .card_in_hand_3 = DESTINY_HERO_DIAMOND_DUDE,
     .card_in_hand_4 = DESTINY_DRAW,
-    .card_in_hand_5 = CARD_NONE,
+    .card_in_hand_5 = ONE_DAY_OF_PEACE,
     .opponent_deck_card_id = EATGABOON,
     .player_deck_card_id = CARD_NONE,
     .player_extra_deck_card_id = CARD_NONE,

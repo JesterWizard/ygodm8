@@ -24,6 +24,7 @@
 #include "the_wicked_eraser.h"
 #include "the_wicked_avatar.h"
 #include "imperial_order.h"
+#include "effect_system.h"
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
 #include "level_limit_area_b.h"
@@ -1059,6 +1060,10 @@ static void TryActivatingPermanentEffect__Hook(void) {
       return;
   }
 
+  if (EffectDispatch_TryActivate(gActiveEffect.cardId, EFFECT_KIND_PERMANENT)
+      == EFFECT_DISPATCH_HANDLED)
+    return;
+
   override = GetPermanentEffectOverride(gActiveEffect.cardId);
 
   if (override != NULL) {
@@ -1076,6 +1081,7 @@ static void TryActivatingPermanentEffect__Hook(void) {
 
 static unsigned char ShouldActivatePermanentEffect__Hook(void) {
   const PermanentEffectOverride *override;
+  u8 should;
 
   if (gActiveEffect.cardId == CARD_NONE)
     return FALSE;
@@ -1094,10 +1100,16 @@ static unsigned char ShouldActivatePermanentEffect__Hook(void) {
     return FALSE;
   }
 
-  override = GetPermanentEffectOverride(gActiveEffect.cardId);
-
   if (gActiveEffect.cardId == JAM_BREEDING_MACHINE || gActiveEffect.cardId == TOLL)
     return FALSE;
+
+  should = EffectDispatch_QueryShouldActivate(gActiveEffect.cardId, EFFECT_KIND_PERMANENT);
+  if (should == EFFECT_SHOULD_YES)
+    return TRUE;
+  if (should == EFFECT_SHOULD_NO)
+    return FALSE;
+
+  override = GetPermanentEffectOverride(gActiveEffect.cardId);
 
   if (override != NULL)
     return override->shouldActivate();

@@ -84,6 +84,7 @@ ygodm8.gba  ← LynJump patches applied post-link
 |------------|------------|
 | Add a custom card | `.agents/skills/add-custom-card/SKILL.md` → `tools/card_data_manifest.json` |
 | Add a card effect | `.agents/skills/card-effect-hook-placement/SKILL.md` → `src_custom/*_effects/` |
+| Effect data system / PARTIAL ceilings | `documentation/effect-data-system.md` → `PARTIAL_EFFECTS_TAXONOMY.md` |
 | Replace a vanilla function | `.agents/skills/vanilla-function-replacements/SKILL.md` → `src_custom/*_hooks.c` + `LynJump.event` |
 | Allocate RAM / save fields | `documentation/ram-map.md` → `asm/ram_map.s` |
 | Change duel stat display | `src_custom/card_hooks.c` (`ApplyFieldZoneStatsToCardInfo`, `SetFinalStat__Replacement`) |

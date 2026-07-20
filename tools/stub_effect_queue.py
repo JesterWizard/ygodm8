@@ -1316,9 +1316,11 @@ def write_partials_list(out_path: Path | None = None) -> Path:
         "(implemented, but missing hooks / engine pieces).",
         "Find follow-up work here — stubs live in `STUB_EFFECTS.md`.",
         "Rows vanish when all `ponytail:` comments are removed from the file.",
+        "Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.md). "
+        "Engine migration: [`effect-data-system.md`](effect-data-system.md).",
         "",
         "```bash",
-        "python3 tools/stub_effect_queue.py --write-list   # stubs + partials",
+        "python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy",
         "```",
         "",
         f"**Last updated:** {stamp}  ",
@@ -1355,13 +1357,206 @@ def write_partials_list(out_path: Path | None = None) -> Path:
     return out_path
 
 
+# Primary missing surface for a ponytail note (first match wins).
+_TAXONOMY_RULES: list[tuple[str, re.Pattern[str]]] = [
+    (
+        "event.OnBattleDestroy",
+        re.compile(
+            r"battle.?destroy|battle.?damage|Damage Step|damage.?calc|post-damage|"
+            r"battle_effects|after damage|end of Damage",
+            re.I,
+        ),
+    ),
+    (
+        "event.OnDamageCalc",
+        re.compile(r"damage calculation|during damage|skyscraper|battle atk boost", re.I),
+    ),
+    (
+        "event.OnDestroy",
+        re.compile(
+            r"destroy.?hook|destroy.?reason|OnDynamicEquip|leave.?field|after-destroy|"
+            r"destroy/GY|when this card is destroyed|field/destroy",
+            re.I,
+        ),
+    ),
+    (
+        "event.OnSummon",
+        re.compile(
+            r"summon.?hook|summon.?listener|after Normal Summon|Special Summon listener|"
+            r"on.?summon|Normal Summon/Set",
+            re.I,
+        ),
+    ),
+    (
+        "event.OnStandby",
+        re.compile(
+            r"\bOPT\b|once.?per.?turn|turn_effect Standby|cleared mid-duel|"
+            r"EOT|Standby →|usedThisTurn|never cleared",
+            re.I,
+        ),
+    ),
+    (
+        "event.GyIgnition",
+        re.compile(
+            r"GY ignition|graveyard activation|GY activate|from your GY|"
+            r"gy-activate|GY.?banish",
+            re.I,
+        ),
+    ),
+    (
+        "chain.Negate",
+        re.compile(r"negate|chain hook|chain/negation|Quick Effect|once per Chain", re.I),
+    ),
+    (
+        "gate.Tribute",
+        re.compile(
+            r"tribute|cannot.?Set|Normal Summon.*gate|summon.?gate|Set gate|"
+            r"tribute-free|tribute.?bypass|summoning conditions",
+            re.I,
+        ),
+    ),
+    (
+        "stat.Continuous",
+        re.compile(
+            r"field-stat|dynamic.?zone.?stats|stat overlay|continuous face-up|"
+            r"\+\d+ ATK|\+\d+ DEF|ApplyDynamicZoneStats",
+            re.I,
+        ),
+    ),
+    (
+        "equip.Register",
+        re.compile(r"GetSpellType EQUIP|IsActiveDynamicEquip|dynamic_equip", re.I),
+    ),
+    (
+        "ui.Choice",
+        re.compile(
+            r"choice UI|unlabeled|DeckMenu|multi-select|multi-pick|PickZone|"
+            r"no player choice|effect-text choice",
+            re.I,
+        ),
+    ),
+    (
+        "op.Search",
+        re.compile(
+            r"\bsearch\b|add .* Deck|DrawCards|mill|send.*Deck|from your Deck",
+            re.I,
+        ),
+    ),
+    (
+        "op.BanishTimed",
+        re.compile(r"\bbanish\b|until the|until your|next Standby|removed from play", re.I),
+    ),
+]
+
+
+def classify_ponytail_note(note: str) -> str:
+    """Return primary taxonomy tag for one ponytail note string."""
+    body = note
+    if ": " in note[:12]:
+        # Strip leading L123: prefix when present
+        body = note.split(": ", 1)[-1]
+    for tag, pat in _TAXONOMY_RULES:
+        if pat.search(body):
+            return tag
+    return "other"
+
+
+def write_partials_taxonomy(out_path: Path | None = None) -> Path:
+    """Tag each ponytail ceiling by primary missing engine surface."""
+    from datetime import datetime, timezone
+
+    if out_path is None:
+        out_path = ROOT / "documentation" / "PARTIAL_EFFECTS_TAXONOMY.md"
+
+    rows = collect_ponytail_partials()
+    tag_counts: Counter[str] = Counter()
+    tagged: list[tuple[str, str, str, str]] = []  # tag, kind, card, note
+
+    for r in rows:
+        for note in r["notes"]:
+            tag = classify_ponytail_note(note)
+            tag_counts[tag] += 1
+            tagged.append((tag, r["kind"], r["card_const"], note.replace("|", "\\|")))
+
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    known_tags = [t for t, _ in _TAXONOMY_RULES] + ["other"]
+
+    lines = [
+        "# Partial Effects Taxonomy",
+        "",
+        "Auto-generated companion to [`PARTIAL_EFFECTS.md`](PARTIAL_EFFECTS.md).",
+        "Each `ponytail:` ceiling is tagged with its **primary missing engine surface** "
+        "so Phase work in [`effect-data-system.md`](effect-data-system.md) can target "
+        "events/ops that unblock many cards at once.",
+        "",
+        "```bash",
+        "python3 tools/stub_effect_queue.py --write-list",
+        "```",
+        "",
+        f"**Last updated:** {stamp}  ",
+        f"**Ceiling lines tagged:** `{len(tagged)}`  ",
+        f"**Partial files:** `{len(rows)}`",
+        "",
+        "## Counts by missing surface",
+        "",
+        "| Tag | Count | Suggested phase |",
+        "|-----|------:|-----------------|",
+    ]
+
+    phase_hint = {
+        "event.OnStandby": "3 (OPT / turn flags)",
+        "event.OnSummon": "3",
+        "event.OnDestroy": "3",
+        "event.OnBattleDestroy": "3",
+        "event.OnDamageCalc": "3",
+        "event.GyIgnition": "3",
+        "op.Search": "1",
+        "op.BanishTimed": "1–3",
+        "ui.Choice": "2",
+        "gate.Tribute": "2–3",
+        "stat.Continuous": "1–3",
+        "equip.Register": "1 (lists)",
+        "chain.Negate": "later / chain",
+        "other": "triage",
+    }
+    for tag in sorted(tag_counts.keys(), key=lambda t: (-tag_counts[t], t)):
+        lines.append(
+            f"| `{tag}` | {tag_counts[tag]} | {phase_hint.get(tag, '—')} |"
+        )
+    lines.append(f"| **total** | **{len(tagged)}** | |")
+    lines.append("")
+    lines.append(
+        "Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** "
+        "plus destroy/summon/battle listeners (Phase 3), not per-card rewrites."
+    )
+    lines.append("")
+
+    for tag in known_tags:
+        group = [t for t in tagged if t[0] == tag]
+        if not group:
+            continue
+        lines.append(f"## `{tag}` ({len(group)})")
+        lines.append("")
+        for _tag, kind, card, note in group:
+            lines.append(f"- `{card}` ({kind}): {note}")
+        lines.append("")
+
+    out_path.write_text("\n".join(lines).rstrip() + "\n")
+    print(
+        f"Wrote {out_path.relative_to(ROOT)} ({len(tagged)} ceilings, {len(tag_counts)} tags)",
+        file=sys.stderr,
+    )
+    return out_path
+
+
 def write_backlogs() -> None:
-    """Refresh both living lists (stubs + partials)."""
+    """Refresh living lists (stubs + partials + taxonomy)."""
     meta = load_manifest()
     files = scan_effects(meta)
     assign_clones(files)
     write_stub_list([f for f in files if f.is_stub], meta)
     write_partials_list()
+    write_partials_taxonomy()
 
 
 def filtered_stubs(args: argparse.Namespace) -> tuple[dict[str, CardMeta], list[EffectFile]]:
@@ -1438,7 +1633,7 @@ def main() -> int:
     parser.add_argument(
         "--write-list",
         action="store_true",
-        help="Write STUB_EFFECTS.md + PARTIAL_EFFECTS.md (living backlogs)",
+        help="Write STUB_EFFECTS.md + PARTIAL_EFFECTS.md + PARTIAL_EFFECTS_TAXONOMY.md",
     )
     parser.add_argument("--self-check", action="store_true", help="Run assert-based smoke check")
     args = parser.parse_args()

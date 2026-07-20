@@ -9,6 +9,7 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "duel_helpers.h"
+#include "effect_system.h"
 #include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
 #include "blast_held_by_a_tribute.h"
@@ -178,6 +179,15 @@ void ActivateTrapEffect__Replacement(u16 lp)
       }
       return;
     }
+  }
+
+  /* Zone card id (trapCardId is the vanilla trap-effect enum, not CARD_*). */
+  {
+    struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
+    u16 trapCardId = (zone != NULL) ? zone->id : CARD_NONE;
+
+    if (EffectDispatch_TryActivate(trapCardId, EFFECT_KIND_TRAP) == EFFECT_DISPATCH_HANDLED)
+      return;
   }
 
   if (gTrapEffectData.trapCardId == TRAP_MAGIC_JAMMER) {

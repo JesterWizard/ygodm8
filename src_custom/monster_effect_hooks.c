@@ -3,6 +3,7 @@
 #include "card_passives.h"
 #include "configs/runtime.h"
 #include "duel_helpers.h"
+#include "effect_system.h"
 #include "synchro_duel.h"
 #include "xyz_duel.h"
 #include "constants/monster_effects.h"
@@ -1410,6 +1411,10 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   ResetCardEffectTextData();
   SetCardEffectTextType(2);
   SetCardInfo(gMonEffect.id);
+
+  if (EffectDispatch_TryActivate(gMonEffect.id, EFFECT_KIND_ACTIVATED)
+      == EFFECT_DISPATCH_HANDLED)
+    return;
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_THE_GRAND_JUPITER
       || zone->id == THE_GRAND_JUPITER) {

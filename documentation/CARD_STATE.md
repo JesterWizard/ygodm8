@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Fix memory-report EWRAM align false positives
+**Last worked on:** 2026-07-20 — Effect data system Phase 1 (`Op_*` registry + pilots)
 
-**Outcome:** `make` OK; `make memory-report` OK. Simulator now applies EWRAM `& ~3` like `_kernel_malloc_ewram`.
+**Outcome:** `make` OK. Ops: Draw, Mill, DestroyZone, DestroyAllMonstersRow, ChangeLp, SearchDeckById + `EffectOp_Run`. Pilots migrated: One Day of Peace, D-Burst, Grand Convergence.
 
-**Open / next:** Partial ceilings in PARTIAL_EFFECTS.md; no more STUB_EFFECTS batches unless new stubs appear.
+**Open / next:** Phase 2 condition + selector registries.

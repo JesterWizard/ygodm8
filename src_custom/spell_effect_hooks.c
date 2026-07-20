@@ -12,6 +12,7 @@
 #include "jar_robber.h"
 #include "spirit_of_the_pot_of_greed.h"
 #include "duel_helpers.h"
+#include "effect_system.h"
 #include "world_suppression.h"
 #include "kishido_spirit.h"
 #include "ring_of_destruction.h"
@@ -198,6 +199,9 @@ static void ActivateSpellEffect__Body(void)
     gSpellEffects[gCardInfo.spellEffect]();
     return;
   }
+
+  if (EffectDispatch_TryActivate(gSpellEffectData.id, EFFECT_KIND_SPELL) == EFFECT_DISPATCH_HANDLED)
+    return;
 
   switch (gSpellEffectData.id) {
 #include "generated/spell_effect_dispatch_cases.inc"
