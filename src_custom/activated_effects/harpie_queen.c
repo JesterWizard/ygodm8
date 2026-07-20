@@ -3,63 +3,55 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
-
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
-
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
-
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
-}
+#include "six_card_hand.h"
 
 unsigned char CanActivateHARPIE_QUEEN(void)
 {
   if (gMonEffect.id != HARPIE_QUEEN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  /* Printed discard is hand — use FromHand path.
+   * ponytail: name becomes Harpie Lady on field/GY needs name override hook. */
+  return FALSE;
 }
 
 void ActivateHARPIE_QUEENEffect(void)
 {
   Duel_ShowEffectTextTyped(HARPIE_QUEEN, 2);
+}
+
+u8 CanActivateHARPIE_QUEENFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
+    return FALSE;
+
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != HARPIE_QUEEN)
+    return FALSE;
+
+  return Duel_FindDeckCardIndex(ACTIVE_DUELIST, HARPIES_HUNTING_GROUND) >= 0;
+}
+
+u8 TryActivateHARPIE_QUEENFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+
+  if (!CanActivateHARPIE_QUEENFromHand(handZone))
+    return FALSE;
+
+  Duel_ShowEffectTextTyped(HARPIE_QUEEN, 2);
 
   if (IsDuelOver() == TRUE)
-    return;
+    return TRUE;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (Duel_DestroyZone(SixCardHand_ZoneAtHandRow(handRow, handZone), ACTIVE_DUELIST, FALSE)
+      == DUEL_ACTION_DUEL_OVER)
+    return TRUE;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (IsDuelOver() == TRUE)
+    return TRUE;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  Duel_AddDeckCardToHand(ACTIVE_DUELIST, HARPIES_HUNTING_GROUND, TRUE);
+  return TRUE;
 }

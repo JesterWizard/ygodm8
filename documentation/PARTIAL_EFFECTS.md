@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 17:55 UTC  
-**Remaining partials:** `391`
+**Last updated:** 2026-07-20 18:03 UTC  
+**Remaining partials:** `400`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 60 |
+| `activated` | 69 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **391** |
+| **total** | **400** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (60)
+## activated (69)
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1427,6 +1427,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L58: no multi-select GY UI — banish every Spell in both GYs (min.1 gate above).
 - L254: on-summon text after field draw so Amulet Dragon is visible (fusion uses updateGfx=FALSE).
 
+### `ANCIENT_GEAR_SOLDIER`
+- path: `src_custom/activated_effects/ancient_gear_soldier.c`
+- L12: attack → opp cannot activate S/T until end of Damage Step needs battle lock hook. Ceiling: not ignition-activatable here; upgrade: battle phase Spell/Trap activation gate while this card is attacking.
+
 ### `ARCHLORD_KRISTYA`
 - path: `src_custom/activated_effects/archlord_kristya.c`
 - L322: engine treats level 5+ with no tribute as special-like (Cyber Dragon, etc.).
@@ -1435,6 +1439,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/athena.c`
 - L71: attack-position summons keep isFaceUp=0 until end-of-turn flip.
 - L363: drop field-target cursor before GY deck menu — PickZone state + trunk view was crashing when the menu opened on confirm.
+
+### `ATLANTEAN_ATTACK_SQUAD`
+- path: `src_custom/activated_effects/atlantean_attack_squad.c`
+- L12: continuous +800 ATK while controlling other Fish/SS/Aqua needs permanent overlay. Ceiling: not ignition-activatable here; upgrade: permanent ATK bonus check.
 
 ### `BARRIER_STATUE_OF_THE_STORMWINDS`
 - path: `src_custom/activated_effects/barrier_statue_of_the_stormwinds.c`
@@ -1447,6 +1455,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `BOOT_UP_SOLDIER_DREAD_DYNAMO`
 - path: `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c`
 - L39: continuous +2000 while Gadget on field needs permanent overlay. Ceiling: OPT apply +4 stages (~2000) if Gadget present.
+
+### `CELESTIA_LIGHTSWORN_ANGEL`
+- path: `src_custom/activated_effects/celestia_lightsworn_angel.c`
+- L89: Tribute Summon (by Lightsworn) trigger needs summon hook. Ceiling: once via usage — mill 4 then auto-destroy up to 2 opp cards (no player target pick; upgrade: PickZone for up to 2).
 
 ### `CHAINSAW_INSECT`
 - path: `src_custom/activated_effects/chainsaw_insect.c`
@@ -1473,6 +1485,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/dark_dust_spirit.c`
 - L22: hand normal/tribute summon copies isFaceUp=0; attack-position still counts
 - L63: GBA "face-up" = isFaceUp bit; attack-position keeps isFaceUp=0 until flip
+
+### `DEEP_SEA_DIVA`
+- path: `src_custom/activated_effects/deep_sea_diva.c`
+- L58: Normal Summon trigger needs summon hook. Ceiling: once via usage while face-up if Lv≤3 Sea Serpent in Deck.
 
 ### `DESTINY_HERO_MALICIOUS`
 - path: `src_custom/activated_effects/destiny_hero_malicious.c`
@@ -1540,6 +1556,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gravekeepers_guard.c`
 - L85: FLIP trigger needs flip hook.
 
+### `GRAVEKEEPERS_HERATIC`
+- path: `src_custom/activated_effects/gravekeepers_heratic.c`
+- L12: continuous unaffected-while-Necrovalley needs permanent protection gate. Ceiling: not ignition-activatable here; upgrade: permanent effect while Duel_IsBackrowCardOnField(NECROVALLEY).
+
 ### `GRAVEKEEPERS_SPEAR_SOLDIER`
 - path: `src_custom/activated_effects/gravekeepers_spear_soldier.c`
 - L12: piercing battle damage needs battle damage gate. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
@@ -1556,6 +1576,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/green_gadget.c`
 - L60: NS/SS trigger needs summon hook. Ceiling: once via usage.
 
+### `HARPIE_QUEEN`
+- path: `src_custom/activated_effects/harpie_queen.c`
+- L14: * ponytail: name becomes Harpie Lady on field/GY needs name override hook. */
+
 ### `HELIOS_THE_PRIMORDIAL_SUN`
 - path: `src_custom/activated_effects/helios_the_primordial_sun.c`
 - L41: continuous ATK/DEF = banished×100 needs permanent overlay. Ceiling: OPT stages ≈ (banished×100)/500.
@@ -1564,6 +1588,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/hourglass_of_life.c`
 - L11: updateGfx=FALSE — sub_8041CCC refreshes field after popup dismisses.
 
+### `JAIN_LIGHTSWORN_PALADIN`
+- path: `src_custom/activated_effects/jain_lightsworn_paladin.c`
+- L12: Damage Step +300 ATK and End Phase mill 2 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: permanent/battle + EP mill.
+
 ### `JOWLS_OF_DARK_DEMISE`
 - path: `src_custom/activated_effects/jowls_of_dark_demise.c`
 - L70: Jowls direct-attack flag; cleared when zone resets
@@ -1571,6 +1599,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `KAIBAMAN`
 - path: `src_custom/activated_effects/kaibaman.c`
 - L96: tribute-replacement in same zone; not a marked special summon (unk4 stays 0)
+
+### `LEKUNGA`
+- path: `src_custom/activated_effects/lekunga.c`
+- L12: no Lekunga Token card id — MOON_TOKEN stand-in. Ceiling: wrong Type/Attribute/stats (Fairy/LIGHT 0/0 vs Plant/WATER 700/700); upgrade: add LEKUNGA_TOKEN card data + art, then swap this define.
 
 ### `LEVIA_DRAGON_DAEDALUS`
 - path: `src_custom/activated_effects/levia_dragon_daedalus.c`
@@ -1587,6 +1619,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MAN_THRO_TRO`
 - path: `src_custom/activated_effects/man_thro_tro.c`
 - L21: Ojama Trio monster form is the only token-like field unit today
+
+### `MEZUKI`
+- path: `src_custom/activated_effects/mezuki.c`
+- L169: GY ignition needs GY-menu wire. Ceiling: allow when Mezuki + another Zombie in expanded GY (callable if gMonEffect set to Mezuki).
 
 ### `MIRAGE_DRAGON`
 - path: `src_custom/activated_effects/mirage_dragon.c`

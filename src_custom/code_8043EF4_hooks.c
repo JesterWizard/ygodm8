@@ -232,6 +232,8 @@ u8 TryActivateElementalHeroCaptainGoldFromHand(u8);
 u8 TryActivateHecatriceFromHand(u8);
 u8 TryActivateGRAVEKEEPERS_COMMANDANTFromHand(u8);
 u8 TryActivateWARRIOR_OF_ATLANTISFromHand(u8);
+u8 TryActivateHARPIE_QUEENFromHand(u8);
+u8 TrySpecialSummonAncientGearFromHand(u8);
 u8 TrySpecialSummonTheTrickyFromHand(u8);
 u8 TrySpecialSummonHamonLordOfStrikingThunderFromHand(u8);
 u8 TrySpecialSummonUriaLordOfSearingFlamesFromHand(u8);
@@ -437,7 +439,17 @@ void sub_80441D0__Replacement(void)
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
-        } else if (handCardId == THE_TRICKY
+      } else if (handCardId == HARPIE_QUEEN
+          && TryActivateHARPIE_QUEENFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ANCIENT_GEAR
+          && TrySpecialSummonAncientGearFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == THE_TRICKY
           && TrySpecialSummonTheTrickyFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();

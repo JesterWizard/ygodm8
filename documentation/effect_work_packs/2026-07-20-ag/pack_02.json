@@ -1,0 +1,80 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ANCIENT_GEAR_SOLDIER",
+      "card_name": "Ancient Gear Soldier",
+      "kind": "activated",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/activated_effects/ancient_gear_soldier.c",
+      "effect_text": "If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step. If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step.",
+      "tags": [
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TORNADO_BIRD",
+      "clone_path": "src_custom/activated_effects/tornado_bird.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "ANCIENT_GEAR",
+      "card_name": "Ancient Gear",
+      "kind": "activated",
+      "archetype": "ANCIENT",
+      "path": "src_custom/activated_effects/ancient_gear.c",
+      "effect_text": "If you control an Ancient Gear, you can Special Summon this card (from your hand) in face-up Attack Position. If you control an Ancient Gear, you can Special Summon this card (from your hand) in face-up Attack Position.",
+      "tags": [
+        "faceup",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GREAT_TORNADO",
+      "clone_path": "src_custom/activated_effects/elemental_hero_great_tornado.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "GRAVEKEEPERS_CANNONHOLDER",
+      "card_name": "Gravekeeper's Cannonholder",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_cannonholder.c",
+      "effect_text": "You can Tribute 1 \"Gravekeeper's\" monster, except \"Gravekeeper's Cannonholder\"; inflict 700 damage to your opponent. You can Tribute 1 Gravekeeper's monster, except Gravekeeper's Cannonholder; inflict 700 damage to your opponent.",
+      "tags": [
+        "burn",
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 700,
+      "clone_const": "GRAVEKEEPERS_SPEAR_SOLDIER",
+      "clone_path": "src_custom/activated_effects/gravekeepers_spear_soldier.c",
+      "clone_score": 0.85
+    },
+    {
+      "card_const": "LEKUNGA",
+      "card_name": "Lekunga",
+      "kind": "activated",
+      "archetype": "LEKUNGA",
+      "path": "src_custom/activated_effects/lekunga.c",
+      "effect_text": "Banish 2 WATER from GY; SS a Lekunga Token (Plant/WATER/Lv2/700/700) in ATK position. You can banish 2 WATER monsters from your Graveyard; Special Summon 1 Lekunga Token (Plant-Type/WATER/Level 2/ATK 700/DEF 700) in Attack Position.",
+      "tags": [
+        "gy",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NECROID_SHAMAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_necroid_shaman.c",
+      "clone_score": 0.5
+    }
+  ]
+}

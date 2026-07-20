@@ -1,0 +1,79 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "JAIN_LIGHTSWORN_PALADIN",
+      "card_name": "Jain, Lightsworn Paladin",
+      "kind": "activated",
+      "archetype": "JAIN",
+      "path": "src_custom/activated_effects/jain_lightsworn_paladin.c",
+      "effect_text": "Piercing; mill 2 at End Phase. If this card attacks an opponent's monster, it gains 300 ATK during the Damage Step only. Once per turn, during your End Phase: Send the top 2 cards of your Deck to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NEOS_ALIUS",
+      "clone_path": "src_custom/activated_effects/elemental_hero_neos_alius.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "GRAVEKEEPERS_HERATIC",
+      "card_name": "Gravekeeper's Heretic",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_heratic.c",
+      "effect_text": "This card on the field is unaffected by all other card effects, as long as \"Necrovalley\" is also on the field. This card on the field is unaffected by all other card effects, as long as Necrovalley is also on the field.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_BOA",
+      "clone_path": "src_custom/activated_effects/venom_boa.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "ATLANTEAN_ATTACK_SQUAD",
+      "card_name": "Atlantean Attack Squad",
+      "kind": "activated",
+      "archetype": "ATLANTEAN",
+      "path": "src_custom/activated_effects/atlantean_attack_squad.c",
+      "effect_text": "This card gains 800 ATK while you control a face-up Fish, Sea Serpent, or Aqua-Type monster other than this card. This card gains 800 ATK while you control a face-up Fish, Sea Serpent, or Aqua-Type monster other than this card.",
+      "tags": [
+        "faceup",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COPYCAT",
+      "clone_path": "src_custom/activated_effects/copycat.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "HARPIE_QUEEN",
+      "card_name": "Harpie Queen",
+      "kind": "activated",
+      "archetype": "HARPIE",
+      "path": "src_custom/activated_effects/harpie_queen.c",
+      "effect_text": "Name Lady. Discard this; add Harpies' Hunting Ground from Deck. This card's name becomes Harpie Lady while on the field or in the GY. You can discard this card to the GY; add 1 Harpies' Hunting Ground from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MASK_OF_DARKNESS",
+      "clone_path": "src_custom/activated_effects/mask_of_darkness.c",
+      "clone_score": 0.33
+    }
+  ]
+}
