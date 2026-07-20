@@ -1,0 +1,94 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "EVIL_HERO_VICIOUS_CLAWS",
+      "card_name": "Evil HERO Vicious Claws",
+      "kind": "activated",
+      "archetype": "EVIL_HERO",
+      "path": "src_custom/activated_effects/evil_hero_vicious_claws.c",
+      "effect_text": "SS from hand; HERO +300. GY: SS when destroyed; maybe destroy 1. You can target 1 HERO monster on the field; Special Summon this card from your hand in Defense Position, and if you do, that monster gains 300 ATK. You can only use this effect of Evil HERO Vicious Claws once per turn. If a monster(s) you control is destroyed by battle or card effect, while this card is in your GY: You can Special Summon this card, then if you have a monster that mentions Dark Fusion in your GY, you can destroy 1 c",
+      "tags": [
+        "destroy",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HERALD_OF_ULIMATENESS",
+      "clone_path": "src_custom/activated_effects/herald_of_ulimateness.c",
+      "clone_score": 0.71
+    },
+    {
+      "card_const": "BLUE_EYES_SPIRIT_DRAGON",
+      "card_name": "Blue-Eyes Spirit Dragon",
+      "kind": "activated",
+      "archetype": "BLUE_EYES",
+      "path": "src_custom/activated_effects/blue_eyes_spirit_dragon.c",
+      "effect_text": "1 Tuner + 1+ non-Tuner LIGHT monsters (except Tokens). Cannot be destroyed by battle. Once 1 Tuner + 1 or more non-Tuner Blue-Eyes monsters Neither player can Special Summon 2 or more monsters at the same time. Once per turn, during either player's turn, when an effect of a card in the Graveyard is activated: You can negate the activation. During either player's turn: You can Tribute this Synchro Summoned card; Special Summon 1 LIGHT Dragon-Type Synchro Monster from your Extra Deck in Defense Po",
+      "tags": [
+        "deck",
+        "destroy",
+        "gy",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BLUE_EYES_TYRANT_DRAGON",
+      "clone_path": "src_custom/activated_effects/blue_eyes_tyrant_dragon.c",
+      "clone_score": 0.85
+    },
+    {
+      "card_const": "BLACK_WINGED_DRAGON",
+      "card_name": "Black-Winged Dragon",
+      "kind": "activated",
+      "archetype": "BLACK",
+      "path": "src_custom/activated_effects/black_winged_dragon.c",
+      "effect_text": "1 Tuner + 1+ non-Tuner monsters\r\nIf you would take damage from a card effect, place 1 Black Feather Counter on this card 1 Tuner + 1+ non-Tuner monsters If you would take damage from a card effect, place 1 Black Feather Counter on this card instead. This card loses 700 ATK for each Black Feather Counter on it. Once per turn: You can remove all Black Feather Counters on this card, then target 1 face-up monster your opponent controls; that target loses 700 ATK for each Black Feather Counter you re",
+      "tags": [
+        "burn",
+        "faceup",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COPYCAT",
+      "clone_path": "src_custom/activated_effects/copycat.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "LIGHTRAY_GEARFRIED",
+      "card_name": "Lightray Gearfried",
+      "kind": "activated",
+      "archetype": "LIGHTRAY",
+      "path": "src_custom/activated_effects/lightray_gearfried.c",
+      "effect_text": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by having 5 or more LIGHT monsters with differe Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by having 5 or more LIGHT monsters with different names in your Graveyard, and cannot be Special Summoned by other ways. Once per turn, during either player's turn, when a Spell/Trap Card is activated: You can banish 1 Warrior-Type monster from your Graveyard; negate the activation, and if you do, destroy",
+      "tags": [
+        "destroy",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HERALD_OF_ULTIMATENESS",
+      "clone_path": "src_custom/activated_effects/herald_of_ultimateness.c",
+      "clone_score": 0.75
+    }
+  ]
+}

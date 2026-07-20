@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack BI: 12 activated monsters (start of BI–BN 6-batch)
+**Last worked on:** 2026-07-20 — Effect pack BJ: 12 activated monsters (BI–BN 6-batch)
 
-**Outcome:** make OK. Stubs **181 → 169**. Partials **706 → 718**.
+**Outcome:** make OK. Stubs **169 → 157**. Partials **718 → 730**.
 
-**Open / next:** BJ–BN remaining in this 6-batch run.
+**Open / next:** BK–BN remaining in this 6-batch run.

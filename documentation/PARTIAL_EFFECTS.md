@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 20:18 UTC  
-**Remaining partials:** `718`
+**Last updated:** 2026-07-20 20:24 UTC  
+**Remaining partials:** `730`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 387 |
+| `activated` | 399 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **718** |
+| **total** | **730** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (387)
+## activated (399)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1701,6 +1701,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/black_rose_dragon.c`
 - L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
 
+### `BLACK_WINGED_DRAGON`
+- path: `src_custom/activated_effects/black_winged_dragon.c`
+- L52: −700 ≈ −2 tempStage (~−1000); counter/damage-redirect FALSE.
+- L95: damage redirect + Black Feather Counters + burn need damage hooks. Ceiling: OPT −2 tempStage on 1 face-up opp monster.
+
 ### `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c`
 - L55: cannot-attack-this-turn needs attack-gate; mark unk4.
@@ -1709,6 +1714,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `BLUE_EYES_SOLID_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_solid_dragon.c`
 - L49: summon Quick shuffle→SS BEWD + per-effect usage need hooks.
+
+### `BLUE_EYES_SPIRIT_DRAGON`
+- path: `src_custom/activated_effects/blue_eyes_spirit_dragon.c`
+- L65: OPT GY negate + Extra Synchro + EP destroy need chain/Extra hooks. Ceiling: OPT tribute self → SS LIGHT Dragon from Deck in DEF.
 
 ### `BLUE_EYES_TYRANT_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_tyrant_dragon.c`
@@ -1987,6 +1996,12 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/elemental_hero_gaia.c`
 - L49: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.
 
+### `ELEMENTAL_HERO_GLOW_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_glow_neos.c`
+- L47: cannot-attack mark via unk4.
+- L50: direct-attack mark via unk4.
+- L115: Contact Fusion + EP Extra return FALSE. Ceiling: OPT destroy 1 face-up opp + type-branch marks.
+
 ### `ELEMENTAL_HERO_GRAND_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_grand_neos.c`
 - L95: Contact fusion + End Phase Extra Deck shuffle need fusion/EP hooks. Ceiling: OPT bounce 1 opponent monster to hand.
@@ -2083,6 +2098,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L16: on-SS draw when Dark Fusion Fusion up needs summon hook. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
 - L39: HERO-only SS lock + once-per-turn not tracked without turn hook.
 
+### `EVIL_HERO_VICIOUS_CLAWS`
+- path: `src_custom/activated_effects/evil_hero_vicious_claws.c`
+- L46: GY destroy-revive + Dark Fusion destroy branch need GY/destroy hooks. Ceiling: FromHand target HERO → SS DEF +300 ATK stand-in.
+- L96: +300 ≈ +1 tempStage (~500).
+
 ### `EVOLZAR_DOLKKA`
 - path: `src_custom/activated_effects/evolzar_dolkka.c`
 - L12: quick Xyz detach + negate monster effect need chain/Xyz hooks. Ceiling: not field-ignition here.
@@ -2139,6 +2159,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gladiator_beast_bestiari.c`
 - L192: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy 1 opp S/T, else tag-out shuffle→SS.
 
+### `GLADIATOR_BEAST_DAREIOS`
+- path: `src_custom/activated_effects/gladiator_beast_dareios.c`
+- L179: Link Summon trigger + BP protect + Link Material lock FALSE. Ceiling: OPT SS Lv≤4 GB from hand/GY, or any GB from Deck if opp has monster.
+
 ### `GLADIATOR_BEAST_DARIUS`
 - path: `src_custom/activated_effects/gladiator_beast_darius.c`
 - L175: GB-tag SS revive trigger + leave-field shuffle + end-BP tag need summon/leave/battle hooks. Ceiling: OPT SS GB from GY negated, else tag-out.
@@ -2189,6 +2213,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gladiator_beast_nerokius.c`
 - L135: Extra Deck return + battle protection need ED/battle hooks.
 - L158: battle indestruct + opp chain block + end-of-BP gate need battle hooks. Ceiling: OPT tag-out → SS 2 different GB from Deck.
+
+### `GLADIATOR_BEAST_NOXIOUS`
+- path: `src_custom/activated_effects/gladiator_beast_noxious.c`
+- L130: hand attack-redirect SS + battled tag gate need battle hooks. Ceiling: OPT mill 1 GB from Deck, else tag-out.
 
 ### `GLADIATOR_BEAST_SAGITTARII`
 - path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
@@ -2309,6 +2337,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/harpie_dancer.c`
 - L77: granted NS after bounce — clear block like Necrovalley Throne.
 - L125: name becomes Harpie Lady on field/GY needs continuous rename hook.
+
+### `HARPIE_HARPIST`
+- path: `src_custom/activated_effects/harpie_harpist.c`
+- L124: NS trigger + GY End Phase search FALSE as separate triggers. Ceiling: OPT bounce own WB + opp face-up, else OPT add Harpie from Deck.
 
 ### `HARPIE_ORACLE`
 - path: `src_custom/activated_effects/harpie_oracle.c`
@@ -2435,6 +2467,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/life_stream_dragon.c`
 - L28: Synchro LP=4000 trigger + no effect damage + Equip-banish destruction-replace need synchro/LP/battle hooks. Ceiling: OPT set LP to 4000 via usage.
 
+### `LIGHTRAY_GEARFRIED`
+- path: `src_custom/activated_effects/lightray_gearfried.c`
+- L194: Quick negate S/T activation needs chain hooks. Ceiling: OPT banish Warrior GY → destroy 1 S/T.
+
 ### `LIGHTSWORN_DRAGONLING`
 - path: `src_custom/activated_effects/lightsworn_dragonling.c`
 - L134: hand SS when Lightsworn in GY uses FromHand path. Ceiling: field OPT send 1 other Lightsworn from Deck to GY.
@@ -2537,6 +2573,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MINERVA_THE_ATHENIAN_LIGHTSWORN`
 - path: `src_custom/activated_effects/minerva_the_athenian_lightsworn.c`
 - L184: anti-banish continuous + Synchro material count need continuous/synchro hooks. Ceiling: OPT mill LS different Types (up to field LS count), or banish ≤4 LS GY → mill.
+
+### `MINERVA_THE_EXHALTED_LIGHTSWORN`
+- path: `src_custom/activated_effects/minerva_the_exhalted_lightsworn.c`
+- L69: Xyz detach + destroy-on-death FALSE. Ceiling: OPT mill 3 → draw = Lightsworn among milled.
 
 ### `MIRAGE_DRAGON`
 - path: `src_custom/activated_effects/mirage_dragon.c`
@@ -2674,6 +2714,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/poseidra_the_atlantean_dragon.c`
 - L284: hand SS uses FromHand path. Ceiling: GY ignition like Malicious.
 
+### `POWER_TOOL_BRAVER_DRAGON`
+- path: `src_custom/activated_effects/power_tool_braver_dragon.c`
+- L99: SS equip Equip Spells from Deck/GY hard; send-equip negate FALSE. Ceiling: OPT change battle position of 1 monster.
+
 ### `POWER_TOOL_DRAGON`
 - path: `src_custom/activated_effects/power_tool_dragon.c`
 - L55: reveal-3 opp-picks + equip destruction replace need reveal/destroy hooks. Ceiling: OPT add first Equip Spell from Deck.
@@ -2805,6 +2849,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `SILENT_SWORDSMAN_LV7`
 - path: `src_custom/activated_effects/silent_swordsman_lv7.c`
 - L12: continuous negate all Spell effects needs field-wide spell gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-negate hook.
+
+### `SILENT_SWORDSMAN_ZERO`
+- path: `src_custom/activated_effects/silent_swordsman_zero.c`
+- L23: Standby Level + Sarcophagus negate need phase/chain hooks. Ceiling: OPT +1 Level mark (unkTwo) + +1 tempStage ATK stand-in.
 
 ### `SIMORGH_BIRD_OF_ANCESTRY`
 - path: `src_custom/activated_effects/simorgh_bird_of_ancestry.c`
@@ -2950,6 +2998,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TROOP_DRAGON`
 - path: `src_custom/activated_effects/troop_dragon.c`
 - L21: battle-destroy→GY trigger. Ceiling: once via usage.
+
+### `TUALATIN`
+- path: `src_custom/activated_effects/tualatin.c`
+- L108: FromHand battle-wipe SS + Summon Attribute lock FALSE. Ceiling: OPT destroy all face-up monsters of first opp monster's Attribute.
 
 ### `TUNINGWARE`
 - path: `src_custom/activated_effects/tuningware.c`

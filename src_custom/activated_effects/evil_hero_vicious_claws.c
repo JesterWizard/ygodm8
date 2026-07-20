@@ -1,65 +1,108 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void RefreshFieldMonsterStatOverlays(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static const char sHeroName[] APPEND_RODATA = "HERO";
+
+static u8 IsHeroMonster(u16 cardId)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sHeroName);
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static struct DuelCard *FindHeroOnField(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  u8 row;
+  u8 col;
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+      if (zone != NULL && IsHeroMonster(zone->id))
+        return zone;
+    }
+  }
+
+  return NULL;
 }
 
 unsigned char CanActivateEVIL_HERO_VICIOUS_CLAWS(void)
 {
   if (gMonEffect.id != EVIL_HERO_VICIOUS_CLAWS)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  /* ponytail: GY destroy-revive + Dark Fusion destroy branch need GY/destroy hooks.
+   * Ceiling: FromHand target HERO → SS DEF +300 ATK stand-in. */
+  return FALSE;
 }
 
 void ActivateEVIL_HERO_VICIOUS_CLAWSEffect(void)
 {
   Duel_ShowEffectTextTyped(EVIL_HERO_VICIOUS_CLAWS, 2);
+}
+
+u8 CanSpecialSummonEvilHeroViciousClawsFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
+    return FALSE;
+
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != EVIL_HERO_VICIOUS_CLAWS)
+    return FALSE;
+
+  if (FindHeroOnField() == NULL)
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  return FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) >= 0;
+}
+
+u8 TrySpecialSummonEvilHeroViciousClawsFromHand(u8 handZone)
+{
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  struct DuelCard *hero;
+
+  if (!CanSpecialSummonEvilHeroViciousClawsFromHand(handZone))
+    return FALSE;
+
+  Duel_ShowEffectTextTyped(EVIL_HERO_VICIOUS_CLAWS, 2);
 
   if (IsDuelOver() == TRUE)
-    return;
+    return TRUE;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  hero = FindHeroOnField();
+  if (hero == NULL)
+    return FALSE;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+  if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
+    return FALSE;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  /* ponytail: +300 ≈ +1 tempStage (~500). */
+  if (hero->tempStage < 127)
+    hero->tempStage = (s8)(hero->tempStage + 1);
+
+  RefreshFieldMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
+  return TRUE;
 }
+
+#if !defined(__GNUC__)
+u8 CanSpecialSummonEvilHeroViciousClawsFromHand(u8 handZone);
+u8 TrySpecialSummonEvilHeroViciousClawsFromHand(u8 handZone);
+#endif
