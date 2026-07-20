@@ -1,65 +1,61 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 HandHasTheCreator(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  u8 i;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (gTurnHands[ACTIVE_DUELIST][i] != NULL
+        && gTurnHands[ACTIVE_DUELIST][i]->id == THE_CREATOR)
+      return TRUE;
+  }
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
   return FALSE;
 }
 
 unsigned char CanActivateTHE_CREATOR_INCARNATE(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != THE_CREATOR_INCARNATE)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != THE_CREATOR_INCARNATE)
+    return FALSE;
+
+  if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  return HandHasTheCreator()
+      && (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) + 1 > 0);
 }
 
 void ActivateTHE_CREATOR_INCARNATEEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  struct DuelSummonOpts opts;
+
   Duel_ShowEffectTextTyped(THE_CREATOR_INCARNATE, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  ClearZone(self);
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (ArchlordKristya_IsSpecialSummonLocked()
+      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  Duel_SpecialSummonFromHand(ACTIVE_DUELIST, THE_CREATOR, NULL, opts);
+  UpdateDuelGfxExceptField();
 }

@@ -1,65 +1,58 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
+void RefreshFieldMonsterStatOverlays(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsFishSeaAqua(u16 cardId)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return Duel_CardHasMonsterType(cardId, TYPE_FISH)
+      || Duel_CardHasMonsterType(cardId, TYPE_SEA_SERPENT)
+      || Duel_CardHasMonsterType(cardId, TYPE_AQUA);
 }
 
 unsigned char CanActivateSPINED_GILLMAN(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != SPINED_GILLMAN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != SPINED_GILLMAN)
+    return FALSE;
+
+  /* ponytail: continuous +400 ATK needs permanent overlay.
+   * Ceiling: OPT +1 stage (~500) to each Fish/SS/Aqua you control. */
+  return CanUseMonsterEffect(zone);
 }
 
 void ActivateSPINED_GILLMANEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 col;
+  u8 row = gMonEffect.row;
+
   Duel_ShowEffectTextTyped(SPINED_GILLMAN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[row][col];
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+    if (zone != NULL && IsFishSeaAqua(zone->id))
+      IncrementPermStage(zone);
+  }
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  RefreshFieldMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
 }

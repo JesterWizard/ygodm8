@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 17:34 UTC  
-**Remaining partials:** `364`
+**Last updated:** 2026-07-20 17:48 UTC  
+**Remaining partials:** `370`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 33 |
+| `activated` | 39 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **364** |
+| **total** | **370** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (33)
+## activated (39)
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1500,6 +1500,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/golden_homunculus.c`
 - L47: continuous +300 ATK/DEF per banished needs permanent stat overlay. Ceiling: OPT refresh sets perm stages ≈ banished*300/500.
 
+### `GRANMARG_THE_ROCK_MONARCH`
+- path: `src_custom/activated_effects/granmarg_the_rock_monarch.c`
+- L105: Tribute Summon trigger. Ceiling: once via usage if Set target.
+
 ### `GRAVEKEEPERS_CURSE`
 - path: `src_custom/activated_effects/gravekeepers_curse.c`
 - L20: printed is If Summoned trigger. Ceiling: allow once via usage when manually activated / summon-dispatch calls Activate.
@@ -1520,6 +1524,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/levia_dragon_daedalus.c`
 - L124: walk gDuel.board directly; gFixedZones column order differs on opponent rows, so row/col checks against gMonEffect can skip the wrong slot.
 
+### `MAGNA_DRAGO`
+- path: `src_custom/activated_effects/magna_drago.c`
+- L21: battle-damage trigger needs battle hook. Ceiling: OPT +1 stage (~500; printed +200) stand-in.
+
 ### `MAN_THRO_TRO`
 - path: `src_custom/activated_effects/man_thro_tro.c`
 - L21: Ojama Trio monster form is the only token-like field unit today
@@ -1528,6 +1536,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/mirage_dragon.c`
 - L12: opp cannot activate Traps in Battle Phase needs trap-activation gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
+### `MOLTEN_ZOMBIE`
+- path: `src_custom/activated_effects/molten_zombie.c`
+- L18: printed trigger is SS from GY. Ceiling: once via usage when Activate runs (summon-dispatch or manual).
+
 ### `OJAMA_KING`
 - path: `src_custom/activated_effects/ojama_king.c`
 - L54: PickZone for up to 3 empty zones + continuous lock gate. Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
@@ -1535,6 +1547,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `PROTECTOR_OF_THE_SANCTUARY`
 - path: `src_custom/activated_effects/protector_of_the_sanctuary.c`
 - L12: opp cannot draw except Draw Phase needs draw-gate LynJump. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `RINYAN_LIGHTSWORN_ROGUE`
+- path: `src_custom/activated_effects/rinyan_lightsworn_rogue.c`
+- L41: FLIP trigger needs flip hook. Ceiling: once via usage if LS in GY.
+
+### `SPINED_GILLMAN`
+- path: `src_custom/activated_effects/spined_gillman.c`
+- L32: continuous +400 ATK needs permanent overlay. Ceiling: OPT +1 stage (~500) to each Fish/SS/Aqua you control.
 
 ### `TETHYS_GODDESS_OF_LIGHT`
 - path: `src_custom/activated_effects/tethys_goddess_of_light.c`
@@ -1558,6 +1578,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/the_winged_dragon_of_ra_sphere_mode.c`
 - L57: hand permanent-effect scan is skipped when turn_off_visual_scanner is on (gHideEffectText), so use Blue Eyes Shining-style post-board-scan auto-summon.
 - L159: in-place tribute replacement; Duel_SpecialSummon* needs an empty zone
+
+### `TORNADO_BIRD`
+- path: `src_custom/activated_effects/tornado_bird.c`
+- L85: FLIP trigger needs flip hook. Ceiling: once via usage.
 
 ## permanent (27)
 

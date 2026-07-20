@@ -1,0 +1,86 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GRANMARG_THE_ROCK_MONARCH",
+      "card_name": "Granmarg the Rock Monarch",
+      "kind": "activated",
+      "archetype": "GRANMARG",
+      "path": "src_custom/activated_effects/granmarg_the_rock_monarch.c",
+      "effect_text": "If Tribute Summoned, destroy 1 Set card on the field. If this card is Tribute Summoned: Target 1 Set card on the field; destroy that target.",
+      "tags": [
+        "destroy",
+        "target1",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CYBER_JAR",
+      "clone_path": "src_custom/activated_effects/cyber_jar.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "THE_CREATOR_INCARNATE",
+      "card_name": "The Creator Incarnate",
+      "kind": "activated",
+      "archetype": "THE",
+      "path": "src_custom/activated_effects/the_creator_incarnate.c",
+      "effect_text": "You can Tribute this card; Special Summon 1 The Creator from your hand. You can Tribute this card; Special Summon 1 The Creator from your hand.",
+      "tags": [
+        "hand",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "THE_WINGED_DRAGON_OF_RA_SPHERE_MODE",
+      "clone_path": "src_custom/activated_effects/the_winged_dragon_of_ra_sphere_mode.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "LONEFIRE_BLOSSOM",
+      "card_name": "Lonefire Blossom",
+      "kind": "activated",
+      "archetype": "LONEFIRE",
+      "path": "src_custom/activated_effects/lonefire_blossom.c",
+      "effect_text": "OPT: Tribute 1 Plant; SS 1 Plant from Deck. Once per turn: You can Tribute 1 face-up Plant monster; Special Summon 1 Plant monster from your Deck.",
+      "tags": [
+        "deck",
+        "faceup",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GREAT_TORNADO",
+      "clone_path": "src_custom/activated_effects/elemental_hero_great_tornado.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "CHRYSALIS_MOLE",
+      "card_name": "Chrysalis Mole",
+      "kind": "activated",
+      "archetype": "CHRYSALIS",
+      "path": "src_custom/activated_effects/chrysalis_mole.c",
+      "effect_text": "Tribute; SS Grand Mole. You can Tribute this card while Neo Space is on the field to Special Summon 1 Neo-Spacian Grand Mole from your hand or Deck.",
+      "tags": [
+        "deck",
+        "hand",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ARCHLORD_KRISTYA",
+      "clone_path": "src_custom/activated_effects/archlord_kristya.c",
+      "clone_score": 0.4
+    }
+  ]
+}

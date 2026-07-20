@@ -1,0 +1,78 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MOLTEN_ZOMBIE",
+      "card_name": "Molten Zombie",
+      "kind": "activated",
+      "archetype": "MOLTEN",
+      "path": "src_custom/activated_effects/molten_zombie.c",
+      "effect_text": "When this card is Special Summoned from the Graveyard: Draw 1 card. When this card is Special Summoned from the Graveyard: Draw 1 card.",
+      "tags": [
+        "draw",
+        "gy",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_NECROID_SHAMAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_necroid_shaman.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "SPINED_GILLMAN",
+      "card_name": "Spined Gillman",
+      "kind": "activated",
+      "archetype": "SPINED",
+      "path": "src_custom/activated_effects/spined_gillman.c",
+      "effect_text": "All Fish, Sea Serpent, and Aqua-Type monsters you control gain 400 ATK. All Fish, Sea Serpent, and Aqua-Type monsters you control gain 400 ATK.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "TORNADO_BIRD",
+      "card_name": "Tornado Bird",
+      "kind": "activated",
+      "archetype": "TORNADO",
+      "path": "src_custom/activated_effects/tornado_bird.c",
+      "effect_text": "FLIP: Return 2 Spell or Trap Cards on the field to their owners' hands. FLIP: Return 2 Spell or Trap Cards on the field to their owners' hands.",
+      "tags": [
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SERPENT",
+      "clone_path": "src_custom/activated_effects/venom_serpent.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "CHRYSALIS_DOLPHIN",
+      "card_name": "Chrysalis Dolphin",
+      "kind": "activated",
+      "archetype": "CHRYSALIS",
+      "path": "src_custom/activated_effects/chrysalis_dolphin.c",
+      "effect_text": "Tribute; SS Aqua Dolphin. By Tributing this card while Neo Space is on the field, Special Summon 1 Neo-Spacian Aqua Dolphin from your hand or Deck.",
+      "tags": [
+        "deck",
+        "hand",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ARCHLORD_KRISTYA",
+      "clone_path": "src_custom/activated_effects/archlord_kristya.c",
+      "clone_score": 0.4
+    }
+  ]
+}
