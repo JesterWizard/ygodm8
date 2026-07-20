@@ -1,0 +1,88 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SOUL_ABSORBING_BONE_TOWER",
+      "card_name": "Soul-Absorbing Bone Tower",
+      "kind": "activated",
+      "archetype": "SOUL",
+      "path": "src_custom/activated_effects/soul_absorbing_bone_tower.c",
+      "effect_text": "If you control another Zombie-Type monster, your opponent cannot target this card for attacks. Each time a Zombie-Type m If you control another Zombie-Type monster, your opponent cannot target this card for attacks. Each time a Zombie-Type monster(s) is Special Summoned: Send the top 2 cards of your opponent's Deck to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_TRAINEE",
+      "clone_path": "src_custom/activated_effects/amazoness_trainee.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_LAQUARI",
+      "card_name": "Gladiator Beast Laquari",
+      "kind": "activated",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/activated_effects/gladiator_beast_laquari.c",
+      "effect_text": "ATK 2100 on tag-SS; tag out after. If this card was Special Summoned by the effect of a Gladiator Beast monster, its original ATK becomes 2100. At the end of the Battle Phase, if this card attacked or was attacked: You can shuffle it into the Deck; Special Summon 1 Gladiator Beast monster from your Deck, except Gladiator Beast Laquari.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_WILDEDGE",
+      "clone_path": "src_custom/activated_effects/elemental_hero_wildedge.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "HERALD_OF_PERFECTION",
+      "card_name": "Herald of Perfection",
+      "kind": "activated",
+      "archetype": "HERALD_OF",
+      "path": "src_custom/activated_effects/herald_of_perfection.c",
+      "effect_text": "Send Fairy from hand; negate opp Spell/Trap/monster and destroy. You can Ritual Summon this card with Dawn of the Herald. During either player's turn, when your opponent activates a Spell Card, Trap Card, or monster effect: You can send 1 Fairy-Type monster from your hand to the Graveyard; negate the activation, and if you do, destroy it.",
+      "tags": [
+        "destroy",
+        "gy",
+        "hand",
+        "monster",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "THE_SUPPRESSION_PLUTO",
+      "clone_path": "src_custom/activated_effects/the_suppression_pluto.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "VICTORIA",
+      "card_name": "Victoria",
+      "kind": "activated",
+      "archetype": "VICTORIA",
+      "path": "src_custom/activated_effects/victoria.c",
+      "effect_text": "Once per turn: You can target 1 Dragon-Type monster in your opponent's Graveyard; Special Summon that target to your sid Once per turn: You can target 1 Dragon-Type monster in your opponent's Graveyard; Special Summon that target to your side of the field. Your opponent cannot target face-up Fairy-Type monsters for attacks, except this one.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GAIA",
+      "clone_path": "src_custom/activated_effects/elemental_hero_gaia.c",
+      "clone_score": 0.67
+    }
+  ]
+}

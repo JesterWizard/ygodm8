@@ -1,0 +1,91 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "TURBO_BOOSTER",
+      "card_name": "Turbo Booster",
+      "kind": "activated",
+      "archetype": "TURBO",
+      "path": "src_custom/activated_effects/turbo_booster.c",
+      "effect_text": "If you have Normal Summoned a monster this turn, you can Special Summon this card from your hand. You can Tribute this c If you have Normal Summoned a monster this turn, you can Special Summon this card from your hand. You can Tribute this card to destroy 1 monster your opponent controls that battled one of your monsters this turn.",
+      "tags": [
+        "destroy",
+        "hand",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TURBO_CANNON",
+      "clone_path": "src_custom/activated_effects/turbo_cannon.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "GREEN_BABOON_DEFENDER_OF_THE_FOREST",
+      "card_name": "Green Baboon, Defender of the Forest",
+      "kind": "activated",
+      "archetype": "GREEN",
+      "path": "src_custom/activated_effects/green_baboon_defender_of_the_forest.c",
+      "effect_text": "If this card is in your hand or Graveyard when a face-up Beast-Type monster you control is destroyed and sent to the Gra If this card is in your hand or Graveyard when a face-up Beast-Type monster you control is destroyed and sent to the Graveyard (except during the Damage Step): You can pay 1000 Life Points; Special Summon this card.",
+      "tags": [
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GREAT_TORNADO",
+      "clone_path": "src_custom/activated_effects/elemental_hero_great_tornado.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "FELIS_LIGHTSWORN_ARCHER",
+      "card_name": "Felis, Lightsworn Archer",
+      "kind": "activated",
+      "archetype": "FELIS",
+      "path": "src_custom/activated_effects/felis_lightsworn_archer.c",
+      "effect_text": "SS from mill; Tribute destroy+mill. Cannot be Normal Summoned/Set. Must be Special Summoned by a card effect. If this card is sent from your Deck to the GY by a monster effect: Special Summon it. You can Tribute this card, then target 1 monster your opponent controls; destroy that target, then send the top 3 cards of your Deck to the GY.",
+      "tags": [
+        "deck",
+        "destroy",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SUBSTITOAD",
+      "clone_path": "src_custom/activated_effects/substitoad.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "CRIMSON_BLADER",
+      "card_name": "Crimson Blader",
+      "kind": "activated",
+      "archetype": "CRIMSON",
+      "path": "src_custom/activated_effects/crimson_blader.c",
+      "effect_text": "1 Tuner + 1 or more non-Tuner monsters\nIf this card destroys an opponent's monster by battle and sends it to the Graveya 1 Tuner + 1 or more non-Tuner monsters If this card destroys an opponent's monster by battle and sends it to the Graveyard: Your opponent cannot Normal or Special Summon Level 5 or higher monsters during their next turn.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_MAGICIAN_THE_DRAGON_KNIGHT",
+      "clone_path": "src_custom/activated_effects/dark_magician_the_dragon_knight.c",
+      "clone_score": 0.5
+    }
+  ]
+}

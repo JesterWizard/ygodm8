@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:40 UTC  
-**Remaining partials:** `473`
+**Last updated:** 2026-07-20 18:42 UTC  
+**Remaining partials:** `485`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 142 |
+| `activated` | 154 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **473** |
+| **total** | **485** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (142)
+## activated (154)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1452,6 +1452,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/ancient_gear_cannon.c`
 - L47: Battle Phase Trap lock not applied; upgrade: trap-activation gate.
 
+### `ANCIENT_GEAR_GOLEM`
+- path: `src_custom/activated_effects/ancient_gear_golem.c`
+- L12: attack → opp cannot activate S/T until Damage Step + piercing need battle/attack hooks. Ceiling: not ignition-activatable here; upgrade: battle Spell/Trap lock while attacking + DEF-pierce damage step.
+
 ### `ANCIENT_GEAR_SOLDIER`
 - path: `src_custom/activated_effects/ancient_gear_soldier.c`
 - L12: attack → opp cannot activate S/T until end of Damage Step needs battle lock hook. Ceiling: not ignition-activatable here; upgrade: battle phase Spell/Trap activation gate while this card is attacking.
@@ -1467,6 +1471,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AROMAGE_CANANGA`
 - path: `src_custom/activated_effects/aromage_cananga.c`
 - L126: continuous -500 ATK/DEF + LP-gain trigger need permanent/LP hooks. Ceiling: OPT bounce 1 opp Spell/Trap if hand room; upgrade: LP-gain gate + continuous stat overlay when your LP is higher.
+
+### `AROMAGE_JASMINE`
+- path: `src_custom/activated_effects/aromage_jasmine.c`
+- L20: extra Plant Normal Summon while LP higher + draw-on-LP-gain need permanent/LP hooks. Ceiling: OPT draw 1 via usage; upgrade: LP-gain gate + extra Normal Summon overlay when your LP exceed opponent's.
 
 ### `ATHENA`
 - path: `src_custom/activated_effects/athena.c`
@@ -1516,6 +1524,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `CHIMERATECH_FORTRESS_DRAGON`
 - path: `src_custom/activated_effects/chimeratech_fortress_dragon.c`
 - L12: original ATK = 1000 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not field-ignition activatable here.
+
+### `CRIMSON_BLADER`
+- path: `src_custom/activated_effects/crimson_blader.c`
+- L12: battle destroy → opp cannot NS/SS Lv5+ next turn needs battle destroy + summon-lock hooks. Ceiling: not ignition-activatable here.
 
 ### `CYBER_LASER_DRAGON`
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
@@ -1630,6 +1642,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/evolzar_dolkka.c`
 - L12: quick Xyz detach + negate monster effect need chain/Xyz hooks. Ceiling: not field-ignition here.
 
+### `FELIS_LIGHTSWORN_ARCHER`
+- path: `src_custom/activated_effects/felis_lightsworn_archer.c`
+- L101: SS when sent from Deck to GY by monster effect needs mill/SS hook. Ceiling: ignition tribute self → destroy 1 opponent monster → mill 3.
+
 ### `FLAME_RULER`
 - path: `src_custom/activated_effects/flame_ruler.c`
 - L12: treat as 2 Tributes for FIRE Tribute Summon needs tribute-cost LynJump. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
@@ -1645,6 +1661,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GAGAGIGO_THE_RISEN`
 - path: `src_custom/activated_effects/gagagigo_the_risen.c`
 - L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `GLADIATOR_BEAST_HOPLOMUS`
+- path: `src_custom/activated_effects/gladiator_beast_hoplomus.c`
+- L110: end-of-Battle-Phase + attacked/was-attacked gate + DEF 2400 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
+
+### `GLADIATOR_BEAST_LAQUARI`
+- path: `src_custom/activated_effects/gladiator_beast_laquari.c`
+- L110: end-of-Battle-Phase + attacked/was-attacked gate + ATK 2100 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
 
 ### `GOLDEN_HOMUNCULUS`
 - path: `src_custom/activated_effects/golden_homunculus.c`
@@ -1694,6 +1718,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gravekeepers_vassal.c`
 - L12: battle damage as effect damage needs battle-damage type gate. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
 
+### `GREEN_BABOON_DEFENDER_OF_THE_FOREST`
+- path: `src_custom/activated_effects/green_baboon_defender_of_the_forest.c`
+- L81: hand/GY SS when your face-up Beast is destroyed needs destroy trigger hook. Ceiling: GY ignition like Malicious — pay 1000 LP then SS; hand path uses FromHand wire.
+
 ### `GREEN_GADGET`
 - path: `src_custom/activated_effects/green_gadget.c`
 - L60: NS/SS trigger needs summon hook. Ceiling: once via usage.
@@ -1714,6 +1742,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `HELIOS_THE_PRIMORDIAL_SUN`
 - path: `src_custom/activated_effects/helios_the_primordial_sun.c`
 - L41: continuous ATK/DEF = banished×100 needs permanent overlay. Ceiling: OPT stages ≈ (banished×100)/500.
+
+### `HERALD_OF_PERFECTION`
+- path: `src_custom/activated_effects/herald_of_perfection.c`
+- L12: quick negate by sending Fairy from hand needs chain/negation hooks. Ceiling: not field-ignition activatable here; upgrade: either-turn chain interrupt → discard Fairy → negate + destroy activated card.
 
 ### `HOURGLASS_OF_LIFE`
 - path: `src_custom/activated_effects/hourglass_of_life.c`
@@ -1756,6 +1788,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/lumina_twilightsworn_shaman.c`
 - L226: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
 - L314: EP mill 3 on other LS effect needs End Phase / LS trigger hook.
+
+### `LYLA_TWILIGHTSWORN_ENCHANTRESS`
+- path: `src_custom/activated_effects/lyla_twilightsworn_enchantress.c`
+- L205: quick effect on Spell/Trap activation + mill 3 when other LS activates need chain/mill hooks. Ceiling: OPT banish LS from hand/GY then destroy 1 face-up Spell/Trap.
 
 ### `MAGICAL_PLANT_MANDRAGOLA`
 - path: `src_custom/activated_effects/magical_plant_mandragola.c`
@@ -1877,6 +1913,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/silent_swordsman_lv7.c`
 - L12: continuous negate all Spell effects needs field-wide spell gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-negate hook.
 
+### `SOUL_ABSORBING_BONE_TOWER`
+- path: `src_custom/activated_effects/soul_absorbing_bone_tower.c`
+- L12: attack redirect while another Zombie present + mill 2 on Zombie SS need continuous/SS hooks. Ceiling: not ignition-activatable here.
+
 ### `SPELL_STRIKER`
 - path: `src_custom/activated_effects/spell_striker.c`
 - L82: direct attack + no self battle damage need battle/attack hooks. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
@@ -1952,6 +1992,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/tuningware.c`
 - L12: Synchro level-2 treatment + draw-on-material need synchro hooks. Ceiling: not ignition-activatable here; upgrade: synchro summon gate.
 
+### `TURBO_BOOSTER`
+- path: `src_custom/activated_effects/turbo_booster.c`
+- L101: destroy only monsters that battled your monsters this turn needs battle-tracking hook. Ceiling: OPT tribute self then destroy 1 opponent monster; SS-from-hand uses FromHand path.
+- L138: no Normal Summon-this-turn flag in engine; allow hand SS anytime. Upgrade: gate on turn flag once duel state tracks Normal Summons.
+
 ### `TURBO_ROCKET`
 - path: `src_custom/activated_effects/turbo_rocket.c`
 - L12: battle destruction immunity + post-damage burn need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle damage / destroy gate.
@@ -1979,6 +2024,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `VENOM_SNAKE`
 - path: `src_custom/activated_effects/venom_snake.c`
 - L87: cannot-attack-this-turn needs attack gate on unk4.
+
+### `VICTORIA`
+- path: `src_custom/activated_effects/victoria.c`
+- L177: continuous attack redirect for other face-up Fairies needs attack-target hook. Ceiling: OPT SS 1 Dragon from opponent's GY.
 
 ### `VISION_HERO_ADORATION`
 - path: `src_custom/activated_effects/vision_hero_adoration.c`

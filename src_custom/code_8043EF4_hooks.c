@@ -245,6 +245,8 @@ u8 TrySpecialSummonTheTrickyFromHand(u8);
 u8 TrySpecialSummonHamonLordOfStrikingThunderFromHand(u8);
 u8 TrySpecialSummonUriaLordOfSearingFlamesFromHand(u8);
 u8 TrySpecialSummonRavielLordOfPhantasmsFromHand(u8);
+u8 TrySpecialSummonTurboBoosterFromHand(u8);
+u8 TrySpecialSummonGreenBaboonFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -509,6 +511,16 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == RAVIEL_LORD_OF_PHANTASMS
           && TrySpecialSummonRavielLordOfPhantasmsFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == TURBO_BOOSTER
+          && TrySpecialSummonTurboBoosterFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GREEN_BABOON_DEFENDER_OF_THE_FOREST
+          && TrySpecialSummonGreenBaboonFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
