@@ -7,34 +7,29 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 17:02 UTC  
-**Remaining stubs:** `607`
+**Last updated:** 2026-07-20 17:08 UTC  
+**Remaining stubs:** `595`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `trap` | 42 |
+| `trap` | 30 |
 | `activated` | 461 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **607** |
+| **total** | **595** |
 
-## trap (42)
+## trap (30)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
 | `AMAZONESS_HALL` | `AMAZONESS` | — | `SOUL_LEVY` | `src_custom/trap_effects/amazoness_hall.c` |
 | `AMAZONESS_HOT_SPRING` | `AMAZONESS` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/amazoness_hot_spring.c` |
 | `AMAZONESS_ONSLAUGHT` | `AMAZONESS` | — | `ALL_OUT_ATTACKS` | `src_custom/trap_effects/amazoness_onslaught.c` |
-| `AMAZONESS_SHAMANISM` | `AMAZONESS` | — | `A_HERO_EMERGES` | `src_custom/trap_effects/amazoness_shamanism.c` |
-| `AMAZONESS_WILLPOWER` | `AMAZONESS` | — | `SOUL_LEVY` | `src_custom/trap_effects/amazoness_willpower.c` |
 | `ANCIENT_GEAR_DUEL` | `ANCIENT_GEAR` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/ancient_gear_duel.c` |
 | `APPARATION` | `APPARATION` | — | `ALL_OUT_ATTACKS` | `src_custom/trap_effects/apparation.c` |
-| `ATTACK_AND_RECEIVE` | `ATTACK` | — | `COFFIN_SELLER` | `src_custom/trap_effects/attack_and_receive.c` |
-| `ATTACK_GUIDANCE_ARMOR` | `ATTACK` | — | `ATTACK_REFLECTOR_UNIT` | `src_custom/trap_effects/attack_guidance_armor.c` |
-| `BATTLE_MANIA` | `BATTLE` | — | `LEVEL_LIMIT_AREA_A` | `src_custom/trap_effects/battle_mania.c` |
 | `BLESSED_WINDS` | `BLESSED` | — | `SOUL_LEVY` | `src_custom/trap_effects/blessed_winds.c` |
 | `BREAK_THE_DESTINY` | `BREAK` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/break_the_destiny.c` |
 | `CHAIN_MATERIAL` | `CHAIN` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/chain_material.c` |
@@ -44,14 +39,10 @@ python3 tools/stub_effect_queue.py --write-list
 | `DRIED_WINDS` | `DRIED` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/dried_winds.c` |
 | `ETERNAL_SOUL` | `ETERNAL` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/eternal_soul.c` |
 | `FAVOURITE_CONTACT` | `FAVOURITE` | — | `SOUL_LEVY` | `src_custom/trap_effects/favourite_contact.c` |
-| `FORGOTTEN_TEMPLE_OF_THE_DEEP` | `FORGOTTEN` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/forgotten_temple_of_the_deep.c` |
-| `FOSSIL_EXCAVATION` | `FOSSIL` | — | `SOUL_LEVY` | `src_custom/trap_effects/fossil_excavation.c` |
 | `GLADIATOR_NAUMACHIA` | `GLADIATOR` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/gladiator_naumachia.c` |
-| `GLORIOUS_ILLUSION` | `GLORIOUS` | — | `SOUL_LEVY` | `src_custom/trap_effects/glorious_illusion.c` |
 | `GRAVEKEEPERS_TRAP` | `GRAVEKEEPERS` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/gravekeepers_trap.c` |
 | `HARPIES_FEATHER_STORM` | `HARPIES_FEATHER` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/harpies_feather_storm.c` |
 | `HARPIE_LADY_ELEGANCE` | `HARPIE_LADY` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/harpie_lady_elegance.c` |
-| `IMPERIAL_TOMBS_OF_NECROVALLEY` | `IMPERIAL` | — | `IMPERIAL_ORDER` | `src_custom/trap_effects/imperial_tombs_of_necrovalley.c` |
 | `INFINITE_IMPERMANENCE` | `INFINITE` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/infinite_impermanence.c` |
 | `MAGICAL_ARM_SHIELD` | `MAGICAL` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/magical_arm_shield.c` |
 | `MAGICAL_HATS` | `MAGICAL` | — | `ALL_OUT_ATTACKS` | `src_custom/trap_effects/magical_hats.c` |
@@ -59,12 +50,9 @@ python3 tools/stub_effect_queue.py --write-list
 | `MAGICIANS_COMBINATION` | `MAGICIANS` | — | `MAGICIANS_CIRCLE` | `src_custom/trap_effects/magicians_combination.c` |
 | `MORPHTRONIC_IMPACT_RETURN` | `MORPHTRONIC` | — | `SOUL_LEVY` | `src_custom/trap_effects/morphtronic_impact_return.c` |
 | `NECROVALLEY_TEMPLE` | `NECROVALLEY` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/necrovalley_temple.c` |
-| `NEEDLE_WALL` | `NEEDLE` | — | `AMBUSH_FANGS` | `src_custom/trap_effects/needle_wall.c` |
 | `NEXT` | `NEXT` | — | `SOUL_LEVY` | `src_custom/trap_effects/next.c` |
-| `RED_REBOOT` | `RED` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/red_reboot.c` |
 | `SHADDOLL_CORE` | `SHADDOLL` | — | `SOUL_LEVY` | `src_custom/trap_effects/shaddoll_core.c` |
 | `SHADDOLL_SCHISM` | `SHADDOLL` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/shaddoll_schism.c` |
-| `SIXTH_SENSE` | `SIXTH` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/sixth_sense.c` |
 | `TWILIGHT_CLOTH` | `TWILIGHT` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/twilight_cloth.c` |
 | `TYRANT_WING` | `TYRANT` | — | `AMBUSH_FANGS` | `src_custom/trap_effects/tyrant_wing.c` |
 

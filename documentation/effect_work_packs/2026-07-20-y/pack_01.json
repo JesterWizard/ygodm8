@@ -1,0 +1,85 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GLORIOUS_ILLUSION",
+      "card_name": "Glorious Illusion",
+      "kind": "trap",
+      "archetype": "GLORIOUS",
+      "path": "src_custom/trap_effects/glorious_illusion.c",
+      "effect_text": "Revive Lightsworn; mill 2; leave kill. Activate this card by targeting 1 Lightsworn monster in your Graveyard; Special Summon that target in face-up Attack Position. During each of your End Phases: Send the top 2 cards of your Deck to the Graveyard. When this card leaves the field, destroy that monster. When that monster leaves the field, destroy this card.",
+      "tags": [
+        "deck",
+        "destroy",
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SOUL_LEVY",
+      "clone_path": "src_custom/trap_effects/soul_levy.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "ATTACK_AND_RECEIVE",
+      "card_name": "Attack and Receive",
+      "kind": "trap",
+      "archetype": "ATTACK",
+      "path": "src_custom/trap_effects/attack_and_receive.c",
+      "effect_text": "You can only activate this card when you take damage to your Life Points. Inflict 700 points of damage to your opponent' You can only activate this card when you take damage to your Life Points. Inflict 700 points of damage to your opponent's Life Points. Also, inflict 300 points of damage to your opponent's Life Points for each Attack and Receive card in your Graveyard.",
+      "tags": [
+        "burn",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 700,
+      "clone_const": "COFFIN_SELLER",
+      "clone_path": "src_custom/trap_effects/coffin_seller.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "FORGOTTEN_TEMPLE_OF_THE_DEEP",
+      "card_name": "Forgotten Temple of the Deep",
+      "kind": "trap",
+      "archetype": "FORGOTTEN",
+      "path": "src_custom/trap_effects/forgotten_temple_of_the_deep.c",
+      "effect_text": "While this card is on the field, this card's name becomes \"Umi\". Once per turn: You can target 1 Level 4 or lower Fish,  While this card is on the field, this card's name becomes Umi. Once per turn: You can target 1 Level 4 or lower Fish, Sea Serpent or Aqua-Type monster you control; banish that target. During your End Phase: Special Summon the monster(s) banished by this effect.",
+      "tags": [
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EMBODIMENT_OF_APOPHIS",
+      "clone_path": "src_custom/trap_effects/embodiment_of_apophis.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "ATTACK_GUIDANCE_ARMOR",
+      "card_name": "Attack Guidance Armor",
+      "kind": "trap",
+      "archetype": "ATTACK",
+      "path": "src_custom/trap_effects/attack_guidance_armor.c",
+      "effect_text": "When a monster declares an attack: Activate 1 of these effects;\r\n* Destroy the attacking monster.\r\n* Target 1 monster on When a monster declares an attack: Activate 1 of these effects; Destroy the attacking monster. Target 1 monster on either field, except the attacking monster; change the attack target to it and perform damage calculation. You can only activate 1 Attack Guidance Armor per turn.",
+      "tags": [
+        "destroy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ATTACK_REFLECTOR_UNIT",
+      "clone_path": "src_custom/trap_effects/attack_reflector_unit.c",
+      "clone_score": 0.6
+    }
+  ]
+}

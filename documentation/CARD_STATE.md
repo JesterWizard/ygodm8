@@ -1,15 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack X: 12 traps
+**Last worked on:** 2026-07-20 — Effect pack Y: 12 traps
 
 **Files touched:**
 - `documentation/STUB_EFFECTS.md`
 - `documentation/PARTIAL_EFFECTS.md`
-- `documentation/effect_work_packs/2026-07-20-x/`
-- Pack X: `lightsworn_aegis.c`, `all_out_attacks.c`, `half_counter.c`, `numinous_healer.c`, `spark_blaster.c`, `dark_renewal.c`, `trap_trick.c`, `twilight_eraser.c`, `macro_cosmos.c`, `d_time.c`, `damage_equals_reptile.c`, `exchange_of_the_spirit.c`
+- `documentation/effect_work_packs/2026-07-20-y/`
+- Pack Y: `amazoness_shamanism.c`, `sixth_sense.c`, `battle_mania.c`, `red_reboot.c`, `glorious_illusion.c`, `attack_and_receive.c`, `forgotten_temple_of_the_deep.c`, `attack_guidance_armor.c`, `imperial_tombs_of_necrovalley.c`, `needle_wall.c`, `amazoness_willpower.c`, `fossil_excavation.c`
 
-**Outcome:** make OK. Stubs **619 → 607**. Partials **302 → 314**.
+**Outcome:** make OK. Stubs **607 → 595**. Partials **314 → 325**.
 
 **Open / next:**
-- implement next pack (~42 trap stubs left)
+- implement next pack (~30 trap stubs left; total stubs **595**)
 - trapEffect / turn-start wiring still mostly `ponytail:`

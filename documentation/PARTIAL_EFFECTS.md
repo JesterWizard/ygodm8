@@ -8,20 +8,20 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 17:02 UTC  
-**Remaining partials:** `314`
+**Last updated:** 2026-07-20 17:08 UTC  
+**Remaining partials:** `325`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 185 |
-| `trap` | 74 |
+| `trap` | 85 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **314** |
+| **total** | **325** |
 
 ## spell (185)
 
@@ -922,7 +922,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/wetlands.c`
 - L87: +1200 ATK for Aqua/WATER/Level≤2 needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up WETLANDS and TYPE_AQUA + ATTRIBUTE_WATER + level≤2 then ATK += 1200.
 
-## trap (74)
+## trap (85)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -941,6 +941,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/all_out_attacks.c`
 - L11: when monster(s) SS while face-up → change to ATK and must attack that turn. Ceiling: face-up continuous only; upgrade: SS hook → isDefending=FALSE + forced-attack flag. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - L22: TryActivateALL_OUT_ATTACKSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `AMAZONESS_WILLPOWER`
+- path: `src_custom/trap_effects/amazoness_willpower.c`
+- L62: must-attack + mutual destroy-on-leave need battle/leave hooks.
 
 ### `AMBUSH_FANGS`
 - path: `src_custom/trap_effects/ambush_fangs.c`
@@ -964,10 +968,22 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/arcana_call.c`
 - L81: until EP, selected AF uses banished AF's coin effect — needs End Phase clear + Arcana effect dispatch override. Ceiling: marks field monster; GY Arcana banished.
 
+### `ATTACK_AND_RECEIVE`
+- path: `src_custom/trap_effects/attack_and_receive.c`
+- L48: activate when you take damage. Ceiling: burn 700 + 300×GY copies.
+
+### `ATTACK_GUIDANCE_ARMOR`
+- path: `src_custom/trap_effects/attack_guidance_armor.c`
+- L15: attack-declare choice Destroy OR redirect target. Ceiling: destroy declared attacker (origin) when Effect runs.
+
 ### `BACKFIRE`
 - path: `src_custom/trap_effects/backfire.c`
 - L11: FIRE monster destroyed → 500 to opp needs destroy hook. Ceiling: face-up continuous only; upgrade: OnDestroy FIRE face-up owned → Duel_ChangeLp(opp, -500). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - L22: TryActivateBACKFIREOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `BATTLE_MANIA`
+- path: `src_custom/trap_effects/battle_mania.c`
+- L16: activate only opp Standby. Ceiling: when Effect runs, flip opp monsters to ATK; forced-attack / cannot-change-position need battle gates.
 
 ### `BOTTOMLESS_SHIFTING_SAND`
 - path: `src_custom/trap_effects/bottomless_shifting_sand.c`
@@ -1028,6 +1044,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/fairy_box.c`
 - L96: age both fixed backrows so a trap set last turn is live when the other duelist attacks
 
+### `FORGOTTEN_TEMPLE_OF_THE_DEEP`
+- path: `src_custom/trap_effects/forgotten_temple_of_the_deep.c`
+- L34: name-becomes-Umi + End Phase return need field-name/turn hooks. Ceiling: once on activate, banish one Lv4- Fish/SS/Aqua you control.
+- L56: TryActivateFORGOTTEN_TEMPLE_OF_THE_DEEPOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `FOSSIL_EXCAVATION`
+- path: `src_custom/trap_effects/fossil_excavation.c`
+- L78: negate SS effects + mutual destroy-on-leave need leave hooks.
+
 ### `GIFT_CARD`
 - path: `src_custom/trap_effects/gift_card.c`
 - L20: TryActivateGIFT_CARDOnOpponentTurnStart must be called from turn_effect_hooks (opp turn start). Ceiling: body ready, not wired; upgrade: add call next to Jar of Greed turn-start activations.
@@ -1044,6 +1069,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEASTS_VALOR`
 - path: `src_custom/trap_effects/gladiator_beasts_valor.c`
 - L32: opp can only attack GB monsters needs attack-target gate. Ceiling: face-up continuous only.
+
+### `GLORIOUS_ILLUSION`
+- path: `src_custom/trap_effects/glorious_illusion.c`
+- L70: End Phase mill 2 + mutual destroy-on-leave need turn/leave hooks.
 
 ### `GRAVITY_BIND`
 - path: `src_custom/trap_effects/gravity_bind.c`
@@ -1069,6 +1098,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ICARUS_ATTACK`
 - path: `src_custom/trap_effects/icarus_attack.c`
 - L51: needs trapEffect wire + PickZone for 2 targets.
+
+### `IMPERIAL_TOMBS_OF_NECROVALLEY`
+- path: `src_custom/trap_effects/imperial_tombs_of_necrovalley.c`
+- L41: negate need Spell/Trap/monster chain gate + once-per-turn flag. Ceiling: if Gravekeeper + Necrovalley present, destroy origin card.
 
 ### `LIGHT_OF_DESTRUCTION`
 - path: `src_custom/trap_effects/light_of_destruction.c`
@@ -1131,6 +1164,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/morphtronic_monitron.c`
 - L14: when Morphtronic Summoned → optional to Defense needs summon hook. Ceiling: face-up continuous only.
 
+### `NEEDLE_WALL`
+- path: `src_custom/trap_effects/needle_wall.c`
+- L44: TryActivateNEEDLE_WALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired. Standby re-roll not looped.
+
 ### `NUMINOUS_HEALER`
 - path: `src_custom/trap_effects/numinous_healer.c`
 - L48: activate when you take damage. Ceiling: when Effect runs, heal 1000 + 500×GY copies; upgrade: LP-damage trigger wire.
@@ -1146,6 +1183,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `RAIGEKI_BREAK`
 - path: `src_custom/trap_effects/raigeki_break.c`
 - L74: needs trapEffect ID + CheckTrapActivationConditions / Effect dispatch + player PickZone for field target. Ceiling: Effect body only.
+
+### `RED_REBOOT`
+- path: `src_custom/trap_effects/red_reboot.c`
+- L30: hand-activate by paying half LP + full Trap negate need gates. Ceiling: Set origin Trap face-down + optional Deck Set 1 Trap for opp; opp Trap lock this turn not wired.
 
 ### `REVERSAL_OF_FATE`
 - path: `src_custom/trap_effects/reversal_of_fate.c`
@@ -1167,6 +1208,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `SERPENT_SUPPRESSION`
 - path: `src_custom/trap_effects/serpent_suppression.c`
 - L14: opp 0-ATK Attack Position cannot be destroyed by battle with Reptilianne needs battle-destroy gate. Ceiling: face-up continuous only.
+
+### `SIXTH_SENSE`
+- path: `src_custom/trap_effects/sixth_sense.c`
+- L43: no declare-2-numbers UI — fixed guess 2+5. Ceiling: AI/player always declare 2 and 5; upgrade: D-Pad number picker.
 
 ### `SNAKE_DEITYS_COMMAND`
 - path: `src_custom/trap_effects/snake_deitys_command.c`
