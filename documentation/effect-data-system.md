@@ -114,18 +114,31 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 | Phase 0 header | [`effect_system.h`](../include/effect_system.h) | Kinds + result codes |
 | Phase 1 ops | `Op_*` / `EffectOp_Run` in [`effect_ops.h`](../include/effect_ops.h) / [`effect_ops.c`](../src_custom/effect_system/effect_ops.c) | Draw, mill, destroy, LP, search-by-id |
 | Phase 1 pilots | `one_day_of_peace.c`, `d_burst.c`, `grand_convergence.c` | Compose via `Op_*` |
+| Phase 2 conditions | [`effect_conditions.h`](../include/effect_conditions.h) / [`effect_conditions.c`](../src_custom/effect_system/effect_conditions.c) | Opp S/T, face-up spell, opp monster, … |
+| Phase 2 selectors | [`effect_selectors.h`](../include/effect_selectors.h) / [`effect_selectors.c`](../src_custom/effect_system/effect_selectors.c) | First/exists on field; AI first-match |
+| Phase 2 pilots | `d_burst.c`, `dragon_spirit_of_white.c` | Shared PickZone validators |
+| Phase 3 events | [`effect_events.h`](../include/effect_events.h) / [`effect_events.c`](../src_custom/effect_system/effect_events.c) | Subscribe/Emit + OPT |
+| Phase 3 emit sites | `duel_helpers.c`, `battle_damage_hooks.c`, `turn_effect_hooks.c` | Summon / destroy / battle-destroy / turn boundary |
+| Phase 3 OPT pilots | `amazoness_call.c`, `d_burst.c` | `EffectOpt_*` cleared on turn boundary |
+| Phase 4 scripts | [`effect_scripts.h`](../include/effect_scripts.h) / [`effect_scripts.c`](../src_custom/effect_system/effect_scripts.c) | Ordered op steps + metadata |
+| Phase 4 pilots | One Day of Peace, Pot of Greed, Grand Convergence | Routed via `EffectDispatch` → `EffectScript_Run` |
+| Phase 5 AI meta | `EffectMeta_GetCategory` + `AiMod_EffectSemantics` in [`ai_modifiers.c`](../src_custom/ai_decision/ai_modifiers.c) | Semantic activate nudges; legacy spellEffect fallback |
 | Planned 2B generator | `tools/generate_effect_scripts.py` | Phase 4b only |
 
 ## TODO
 
 - [x] Phase 0: dispatcher + legacy fallback wired beside spell/trap/monster/permanent/turn hooks
 - [x] Phase 1: `Op_*` registry wrapping existing `Duel_*` helpers; 1–3 composition pilots
-- [ ] Phase 2: condition + selector registries
-- [ ] Phase 3: event bus; replace notify chain incrementally; generic OPT Standby clear
-- [ ] Phase 4: C-table effect scripts for a handful of simple cards
+- [x] Phase 2: condition + selector registries
+- [x] Phase 3: event bus; replace notify chain incrementally; generic OPT Standby clear
+- [x] Phase 4: C-table effect scripts for a handful of simple cards
 - [ ] Phase 4b: JSON manifest → codegen (after opcode/event freeze)
-- [ ] Phase 5: AI metadata consumption with legacy fallback
+- [x] Phase 5: AI metadata consumption with legacy fallback
 - [ ] Keep taxonomy regenerated whenever `--write-list` runs
+- [ ] Migrate remaining `*UsedThisTurn` APPEND_DATA flags to `EffectOpt_*`
+- [ ] Emit `ON_DAMAGE_CALC` from damage-calc Apply sites; subscribe continuous triggers to events instead of `Duel_Check*AfterFieldChange`
+- [ ] Grow script table; add condition/selector step ops for targeting cards
+- [ ] Expand legacy `spellEffect` → meta map as more vanilla effects matter to AI
 
 ## Limitations & Bugs
 

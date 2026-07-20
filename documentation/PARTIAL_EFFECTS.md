@@ -9,7 +9,7 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-20 21:51 UTC  
+**Last updated:** 2026-07-20 22:03 UTC  
 **Remaining partials:** `874`
 
 ## Counts by kind
@@ -33,9 +33,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AMAZONESS_CALL`
 - path: `src_custom/spell_effects/amazoness_call.c`
-- L24: OPT bit never cleared mid-duel without turn_effect reset hook. Ceiling: blocks 2nd Amazoness Call only until soft-reset / new duel BSS; upgrade: turn_effect Standby → sAmazonessCallUsedThisTurn = 0.
-- L96: no dedicated hand/GY choice UI — A = add to hand, B = send to GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L281: GY banish → target 1 Amazoness you control; that monster can attack all opponent monsters once each, also other monsters cannot attack needs GY ignition + battle multi-attack hooks outside this file. Ceiling: on-field deck search only; upgrade: GY activate → banish AMAZONESS_CALL → PickZone Duel_IsAmazonessCard → mark zone for multi-attack
+- L94: no dedicated hand/GY choice UI — A = add to hand, B = send to GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L279: GY banish → target 1 Amazoness you control; that monster can attack all opponent monsters once each, also other monsters cannot attack needs GY ignition + battle multi-attack hooks outside this file. Ceiling: on-field deck search only; upgrade: GY activate → banish AMAZONESS_CALL → PickZone Duel_IsAmazonessCard → mark zone for multi-attack
 
 ### `AMAZONESS_FIGHTING_SPIRIT`
 - path: `src_custom/spell_effects/amazoness_fighting_spirit.c`
@@ -239,7 +238,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `D_BURST`
 - path: `src_custom/spell_effects/d_burst.c`
-- L184: GY ignition second attack needs battle End Damage Step hook.
+- L134: GY ignition second attack needs battle End Damage Step hook.
 
 ### `D_FORCE`
 - path: `src_custom/spell_effects/d_force.c`
@@ -698,7 +697,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ONE_DAY_OF_PEACE`
 - path: `src_custom/spell_effects/one_day_of_peace.c`
-- L24: neither player takes damage until end of opponent's next turn needs an LP/damage gate outside this file (no damage-immunity helper). Ceiling: both draw only; upgrade: turn_effect / ChangeLp hook → skip damage while One Day of Peace lock is active through opponent's next End Phase.
+- L25: neither player takes damage until end of opponent's next turn needs an LP/damage gate outside this file (no damage-immunity helper). Ceiling: both draw only; upgrade: turn_effect / ChangeLp hook → skip damage while One Day of Peace lock is active through opponent's next End Phase.
 
 ### `OVER_DESTINY`
 - path: `src_custom/spell_effects/over_destiny.c`
@@ -3456,7 +3455,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DRAGON_SPIRIT_OF_WHITE`
 - path: `src_custom/permanent_effects/dragon_spirit_of_white.c`
-- L98: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks.
+- L59: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks.
 
 ### `EL_SHADDOLL_ANOYATYLLIS`
 - path: `src_custom/permanent_effects/el_shaddoll_anoyatyllis.c`

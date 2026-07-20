@@ -45,6 +45,7 @@ Decision flow:
 | Destroy face-up | When a winning face-up attack is competitive (and trap probing is not pending), only those attacks are considered |
 | Summon quality | Prefer stronger monsters for the preferred monster zone |
 | Wasteful lines | Down-rank discards when summoning or removing a face-up monster is clearly available |
+| Effect semantics | Activate spell/trap/monster lines: boost by `EffectMeta_GetCategory` (draw/search when hand low, destroy when opp has monsters, burn when behind LP). Script table first; sparse `spellEffect` legacy fallback; unknown cards unchanged |
 
 All duelists share the same tactical rules. There is no per-duelist personality tuning in the runtime path.
 
@@ -60,6 +61,7 @@ All duelists share the same tactical rules. There is no per-duelist personality 
 | Board placement | [`src_custom/board_placement.c`](src_custom/board_placement.c), [`include/board_placement.h`](include/board_placement.h) | Leftmost empty zone on screen (fixed-row scan) |
 | Player set placement | `sub_80442AC__Replacement`, `sub_80449D8__Replacement` in [`src_custom/code_8043EF4_hooks.c`](src_custom/code_8043EF4_hooks.c) | Human player spell/trap sets snap to leftmost backrow slot |
 | Action decode | [`src_custom/ai_decision/ai_action_decode.c`](src_custom/ai_decision/ai_action_decode.c) | Maps action indices to categories, zones, and card ids |
+| Effect metadata | `EffectMeta_GetCategory` in [`effect_scripts.c`](../src_custom/effect_system/effect_scripts.c) | Script meta + legacy spellEffect fallback for AI |
 | Duel memory | `gAiDuelMemory` in [`asm/ram_map.s`](asm/ram_map.s), [`src_custom/ai_decision/ai_memory.c`](src_custom/ai_decision/ai_memory.c) | Repeat avoidance, flip memory, attack order |
 | Execute hook | `sub_800E0D4__Replacement` in [`src_custom/ai_tribute_hooks.c`](src_custom/ai_tribute_hooks.c) | Tempo delay + memory record |
 | Duel reset | `InitDuelDeck__Replacement` in [`src_custom/duel_util_hooks.c`](src_custom/duel_util_hooks.c) | Clears memory at duel start |

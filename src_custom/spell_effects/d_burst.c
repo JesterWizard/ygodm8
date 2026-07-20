@@ -5,15 +5,16 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_conditions.h"
+#include "effect_events.h"
 #include "effect_ops.h"
+#include "effect_selectors.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
 
 static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
-
-static u8 sDBurstUsedThisTurn APPEND_DATA = {0};
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -29,38 +30,6 @@ static u8 IsDestinyHeroMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sDestinyHeroName);
-}
-
-static u8 ActiveBackrowFixedRow(void)
-{
-  return WhoseTurn() == DUEL_PLAYER ? PLAYER_BACKROW : OPPONENT_BACKROW;
-}
-
-static u8 IsFaceUpSpellTarget(u8 fixedRow, u8 fixedCol)
-{
-  struct DuelCard *zone;
-
-  if (fixedRow != ActiveBackrowFixedRow())
-    return FALSE;
-
-  zone = gFixedZones[fixedRow][fixedCol];
-  if (zone == NULL || zone->id == CARD_NONE || !zone->isFaceUp)
-    return FALSE;
-
-  return GetTypeGroup(zone->id) == TYPE_GROUP_SPELL;
-}
-
-static u8 HasFaceUpSpell(void)
-{
-  u8 col;
-  u8 row = ActiveBackrowFixedRow();
-
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsFaceUpSpellTarget(row, col))
-      return TRUE;
-  }
-
-  return FALSE;
 }
 
 static u8 ControlsDestinyHero(void)
@@ -124,7 +93,7 @@ static void DBurstOnTarget(u8 fixedRow, u8 fixedCol)
   if (ControlsDestinyHero())
     TrySsDestinyHero();
 
-  sDBurstUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(D_BURST);
   UpdateDuelGfxExceptField();
 }
 
@@ -133,33 +102,12 @@ static void DBurstCancel(void)
   Duel_ClearPickZone();
 }
 
-static u8 DBurstValidate(u8 fixedRow, u8 fixedCol)
-{
-  return IsFaceUpSpellTarget(fixedRow, fixedCol);
-}
-
-static u8 DBurstAiPick(u8 *outRow, u8 *outCol)
-{
-  u8 col;
-  u8 row = ActiveBackrowFixedRow();
-
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (!IsFaceUpSpellTarget(row, col))
-      continue;
-    *outRow = row;
-    *outCol = col;
-    return TRUE;
-  }
-
-  return FALSE;
-}
-
 u8 CanActivateD_BURST(void)
 {
-  if (sDBurstUsedThisTurn)
+  if (EffectOpt_IsUsed(D_BURST))
     return FALSE;
 
-  return HasFaceUpSpell();
+  return EffectSel_ExistsByCond(EFFECT_COND_ACTIVE_FACE_UP_SPELL);
 }
 
 static void D_BURST_ResolveBody(void)
@@ -176,7 +124,8 @@ static void D_BURST_ResolveBody(void)
 
   gDuelCursor.destY = gSpellEffectData.row1;
   gDuelCursor.destX = gSpellEffectData.col1;
-  Duel_SetupPickZone(DBurstValidate, DBurstOnTarget, DBurstCancel, DBurstAiPick);
+  Duel_SetupPickZone(EffectCond_ActiveFaceUpSpell, DBurstOnTarget, DBurstCancel,
+                     EffectSel_AiPickFirst);
   if (WhoseTurn() == DUEL_PLAYER)
     Duel_EnterPickZoneTargeting();
   else

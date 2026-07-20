@@ -7,8 +7,8 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 21:51 UTC  
-**Ceiling lines tagged:** `1169`  
+**Last updated:** 2026-07-20 22:03 UTC  
+**Ceiling lines tagged:** `1168`  
 **Partial files:** `874`
 
 ## Counts by missing surface
@@ -16,7 +16,7 @@ python3 tools/stub_effect_queue.py --write-list
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
 | `other` | 357 | triage |
-| `event.OnStandby` | 292 | 3 (OPT / turn flags) |
+| `event.OnStandby` | 291 | 3 (OPT / turn flags) |
 | `event.OnBattleDestroy` | 99 | 3 |
 | `event.OnSummon` | 74 | 3 |
 | `ui.Choice` | 58 | 2 |
@@ -29,7 +29,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `equip.Register` | 22 | 1 (lists) |
 | `event.GyIgnition` | 20 | 3 |
 | `event.OnDamageCalc` | 4 | 3 |
-| **total** | **1169** | |
+| **total** | **1168** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -48,7 +48,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `CHICKEN_GAME` (spell): L154: lowest-LP player takes no damage needs an LP/damage gate outside this file (no damage-immunity helper keyed to field spell). Ceiling: continuous face-up + OPT pay/draw/destroy/opp-gain only; upgrade: ChangeLp / battle-damage hook → if face-up CHICKEN_GAME and target has strictly lower LP (or tied-lowest), skip damage.
 - `CLOCK_TOWER_PRISON` (spell): L26: 4+ counters → no battle damage needs a battle-damage gate outside this file. Ceiling: continuous only; upgrade: battle LP calc → if face-up CLOCK_TOWER_PRISON with unk4 >= 4 then battle damage to controller = 0.
 - `CONTINUOUS_DESTRUCTION_PUNCH` (spell): L14: post-damage-calc "DEF > ATK → destroy attacker" needs a battle_effects hook (clone des_kangaroo.c MarkPendingAttackerDestroy) outside this file. Ceiling: continuous face-up only; upgrade: after damage calc, if face-up CONTINUOUS_DESTRUCTION_PUNCH on defender's controller, defender is DEF position, and defender DEF > attacker ATK, destroy attacker (damage normal).
-- `D_BURST` (spell): L184: GY ignition second attack needs battle End Damage Step hook.
+- `D_BURST` (spell): L134: GY ignition second attack needs battle End Damage Step hook.
 - `EN_WAVE` (spell): L16: OPT "E-HERO used as Fusion material → GY/banish (not Damage Step): SS 1 Neo-Spacian or ELEMENTAL_HERO_NEOS from Deck" needs a fusion-material send listener outside this file. Ceiling: continuous face-up only; upgrade: after Fusion material leave → if face-up EN_WAVE and OPT clear, DeckMenu Neo-Spacian / NEOS → Duel_SpecialSummonFromDeck.
 - `EN_WAVE` (spell): L22: OPT "Neo-Spacian or ELEMENTAL_HERO_NEOS shuffled from field/GY into Deck/Extra Deck (not Damage Step): SS 1 Elemental HERO from GY" needs a shuffle-into-deck listener + GY pick outside this file. Ceiling: continuous face-up only; upgrade: on shuffle → if face-up EN_WAVE and OPT clear, PickZone/DeckMenu E-HERO in GY → Duel_SpecialSummonFromGrave.
 - `FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS` (spell): L309: when opponent declares an attack → OPT SS 1 Gladiator Beast from Deck (cannot be destroyed by battle) needs an attack-declaration hook outside this file. Ceiling: face-up field + search ignition only; upgrade: on attack declare → if face-up FLAVIAN and !OPT2 then Duel_SpecialSummonFromDeck(GB) + battle-destroy protect flag.
@@ -256,7 +256,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DOGMA` (permanent): L77: true trigger is opp next Standby after 3-tribute SS; on-summon halve LP once.
 - `DESTINY_HERO_DRAWHAND` (permanent): L98: HERO-effect SS gate not checked; on-summon mutual draw stand-in.
 - `DESTINY_HERO_DREADMASTER` (permanent): L185: Clock Tower Prison gate + battle protection skipped; on-summon stand-in.
-- `DRAGON_SPIRIT_OF_WHITE` (permanent): L98: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks.
+- `DRAGON_SPIRIT_OF_WHITE` (permanent): L59: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks.
 - `EVIL_HERO_INFERNO_WING_BACKFIRE` (permanent): L128: true trigger is Special Summon; on-summon stand-in covers SS path.
 - `EVIL_HERO_MALICIOUS_EDGE` (permanent): L8: piercing + 1-tribute summon gate need battle/summon hooks.
 - `GANDORA_X_THE_DRAGON_OF_DEMOLITION` (permanent): L118: End Phase half LP needs EP hook; on-summon wipe only here.
@@ -267,9 +267,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (292)
+## `event.OnStandby` (291)
 
-- `AMAZONESS_CALL` (spell): L24: OPT bit never cleared mid-duel without turn_effect reset hook. Ceiling: blocks 2nd Amazoness Call only until soft-reset / new duel BSS; upgrade: turn_effect Standby → sAmazonessCallUsedThisTurn = 0.
 - `AMAZONESS_SECRET_ARTS` (spell): L15: OPT / GY ignition (banish → Extra Deck material) need hooks outside this file. Ceiling: field Fusion only once per BSS; upgrade: turn_effect reset + GY ignition → mark Amazoness Extra material flag.
 - `ANCIENT_GEAR_ADVANCE` (spell): L149: OPT Tribute 1 → draw + tribute-free NS for AGG / Lv5+ that mention it, and cannot-Set this turn need ignition + Normal Summon / Set gates outside this file. Ceiling: activate search only.
 - `ARCANA_SPREAD` (spell): L29: OPT bit never cleared mid-duel without turn_effect reset hook. Ceiling: blocks 2nd Arcana Spread only until soft-reset / new duel BSS; upgrade: turn_effect Standby → sArcanaSpreadUsedThisTurn = 0.
@@ -564,7 +563,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 
 ## `event.GyIgnition` (20)
 
-- `AMAZONESS_CALL` (spell): L281: GY banish → target 1 Amazoness you control; that monster can attack all opponent monsters once each, also other monsters cannot attack needs GY ignition + battle multi-attack hooks outside this file. Ceiling: on-field deck search only; upgrade: GY activate → banish AMAZONESS_CALL → PickZone Duel_IsAmazonessCard → mark zone for multi-attack
+- `AMAZONESS_CALL` (spell): L279: GY banish → target 1 Amazoness you control; that monster can attack all opponent monsters once each, also other monsters cannot attack needs GY ignition + battle multi-attack hooks outside this file. Ceiling: on-field deck search only; upgrade: GY activate → banish AMAZONESS_CALL → PickZone Duel_IsAmazonessCard → mark zone for multi-attack
 - `ANCIENT_GEAR_FACTORY` (spell): L203: "Normal Summon the revealed monster this turn without Tributing" needs a turn-scoped tribute-bypass (clone Necroshade) outside this file. Ceiling: reveal + GY banish only; upgrade: mark revealId + consume on NS.
 - `ARCANA_READING` (spell): L270: GY banish → Normal Summon 1 Arcana Force needs a GY ignition hook outside this spell file (no in-file graveyard activation path). Ceiling: activation coin effect only; upgrade: GY ignition → banish ARCANA_READING then Duel_NormalSummonFromHand Arcana Force.
 - `CONTACT_GATE` (spell): L336: ED Fusion-only lock + GY ignition (banish this → SS banished Neo) need hooks outside this file. Ceiling: field SS path only.
@@ -756,7 +755,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 
 ## `ui.Choice` (58)
 
-- `AMAZONESS_CALL` (spell): L96: no dedicated hand/GY choice UI — A = add to hand, B = send to GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- `AMAZONESS_CALL` (spell): L94: no dedicated hand/GY choice UI — A = add to hand, B = send to GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - `ANCIENT_GEAR_FACTORY` (spell): L195: no multi-select GY UI — auto-pick an exact Level-sum mask. Ceiling: no player choice among valid GY sets; upgrade: DeckMenu multi-pick until sum == 2× revealed Level.
 - `ARCANA_READING` (spell): L108: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - `ARCANA_SPREAD` (spell): L173: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
@@ -945,7 +944,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `NEUTRON_BLAST` (spell): L89: 2nd/3rd Battle Phase attacks need an attack-completion unlock outside this file (isLocked after attack; clone Cyber Twin / Tryce TryUnlock*ForSecondAttack wired in code_8043EF4 / ai_attack / draining_shield / call_of_the_haunted). Ceiling: mark unkThree only; upgrade: TryUnlockNeutronBlastForExtraAttack + turn-scoped remaining-attack counter
 - `NEX` (spell): L155: duel Extra Deck browser/SS missing (Trunk ExtraDeck_* is deck-builder only). Ceiling: spawn Lv4 Neo form by id when not in Main Deck; upgrade: Extra Deck pick + SS.
 - `OBLITERATE_BLAZE` (spell): L131: granted effects (pay half LP → destroy S/T + equip 5 Forbidden One as +2000 Equip; piercing) need activated monster hooks / equip system outside this file. Ceiling: marks target unk4=1 only; upgrade: copy Obliterate effects onto marked Exodia monster.
-- `ONE_DAY_OF_PEACE` (spell): L24: neither player takes damage until end of opponent's next turn needs an LP/damage gate outside this file (no damage-immunity helper). Ceiling: both draw only; upgrade: turn_effect / ChangeLp hook → skip damage while One Day of Peace lock is active through opponent's next End Phase.
+- `ONE_DAY_OF_PEACE` (spell): L25: neither player takes damage until end of opponent's next turn needs an LP/damage gate outside this file (no damage-immunity helper). Ceiling: both draw only; upgrade: turn_effect / ChangeLp hook → skip damage while One Day of Peace lock is active through opponent's next End Phase.
 - `OVER_DESTINY` (spell): L326: End Phase destroy of the SS'd monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS). Ceiling: SS only; upgrade: turn_effect_hooks End Phase → destroy marked zone.
 - `PANDEMONIUM` (spell): L94: skip Archfiend Standby LP maintenance costs needs a Standby / maintenance-cost gate outside this file. Ceiling: face-up field only; upgrade: Archfiend maintenance pay → if face-up PANDEMONIUM on field then skip LP cost for that Archfiend.
 - `PARALLEL_WORLD_FUSION` (spell): L109: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.

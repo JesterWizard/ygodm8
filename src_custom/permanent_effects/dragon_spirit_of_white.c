@@ -3,43 +3,19 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_conditions.h"
+#include "effect_selectors.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-
-static u8 IsOppSpellTrapTarget(u8 fixedRow, u8 fixedCol)
-{
-  struct DuelCard *zone;
-
-  if (fixedRow != OPPONENT_BACKROW)
-    return FALSE;
-
-  zone = gFixedZones[fixedRow][fixedCol];
-  if (zone == NULL || zone->id == CARD_NONE)
-    return FALSE;
-
-  return GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER;
-}
-
-static u8 FieldHasOppSpellTrap(void)
-{
-  u8 col;
-
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsOppSpellTrapTarget(OPPONENT_BACKROW, col))
-      return TRUE;
-  }
-
-  return FALSE;
-}
 
 static void ResolveBanishTarget(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
   struct DuelCard *self = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  if (!IsOppSpellTrapTarget(fixedRow, fixedCol) || zone == NULL)
+  if (!EffectCond_OppBackrowSpellTrap(fixedRow, fixedCol) || zone == NULL)
     return;
 
   if (Duel_BanishZone(zone, FALSE) == DUEL_ACTION_DUEL_OVER)
@@ -65,21 +41,6 @@ static void CancelTargeting(void)
     self->unk4 = 1;
 }
 
-static u8 AiPickBanishTarget(u8 *outRow, u8 *outCol)
-{
-  u8 col;
-
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsOppSpellTrapTarget(OPPONENT_BACKROW, col)) {
-      *outRow = OPPONENT_BACKROW;
-      *outCol = col;
-      return TRUE;
-    }
-  }
-
-  return FALSE;
-}
-
 unsigned char ShouldActivateDRAGON_SPIRIT_OF_WHITE(void)
 {
   struct DuelCard *zone;
@@ -96,7 +57,7 @@ unsigned char ShouldActivateDRAGON_SPIRIT_OF_WHITE(void)
     return FALSE;
 
   /* ponytail: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks. */
-  return FieldHasOppSpellTrap();
+  return EffectSel_ExistsByCond(EFFECT_COND_OPP_BACKROW_SPELL_TRAP);
 }
 
 void ActivateDRAGON_SPIRIT_OF_WHITE(void)
@@ -109,8 +70,8 @@ void ActivateDRAGON_SPIRIT_OF_WHITE(void)
   gDuelCursor.destY = gActiveEffect.turnRow;
   gDuelCursor.destX = gActiveEffect.col;
 
-  Duel_SetupPickZone(IsOppSpellTrapTarget, ResolveBanishTarget, CancelTargeting,
-                     AiPickBanishTarget);
+  Duel_SetupPickZone(EffectCond_OppBackrowSpellTrap, ResolveBanishTarget, CancelTargeting,
+                     EffectSel_AiPickFirst);
 
   if (WhoseTurn() == DUEL_PLAYER && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
     Duel_EnterPickZoneTargeting();

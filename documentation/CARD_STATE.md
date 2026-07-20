@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect data system Phase 1 (`Op_*` registry + pilots)
+**Last worked on:** 2026-07-20 — Effect data system Phase 5 (AI effect metadata)
 
-**Outcome:** `make` OK. Ops: Draw, Mill, DestroyZone, DestroyAllMonstersRow, ChangeLp, SearchDeckById + `EffectOp_Run`. Pilots migrated: One Day of Peace, D-Burst, Grand Convergence.
+**Outcome:** `make` OK. `EffectMeta_GetCategory` + `AiMod_EffectSemantics` (draw/search/destroy/burn nudges under smarter AI). Legacy `spellEffect` fallback for Raigeki/Dark Hole/burns/Pot.
 
-**Open / next:** Phase 2 condition + selector registries.
+**Open / next:** Grow script table / legacy map; Phase 4b JSON later; more OPT migrations.

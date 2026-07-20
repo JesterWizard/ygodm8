@@ -205,16 +205,6 @@ static void ActivateSpellEffect__Body(void)
 
   switch (gSpellEffectData.id) {
 #include "generated/spell_effect_dispatch_cases.inc"
-    case POT_OF_GREED:
-      TryDrawingCard(WhoseTurn());
-      TryDrawingCard(WhoseTurn());
-      ClearZoneAndSendMonToGraveyard(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-      TrySpiritOfThePotOfGreedAfterPotOfGreed();
-      if (!gHideEffectText) {
-        gCardEffectTextData.cardId = POT_OF_GREED;
-        ActivateCardEffectText();
-      }
-      return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();
       if (GetSpellType(gSpellEffectData.id) == SPELL_TYPE_EQUIP

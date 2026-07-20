@@ -6,6 +6,7 @@
 #include "configs/runtime.h"
 #include "duel.h"
 #include "duel_helpers.h"
+#include "effect_scripts.h"
 
 static void AiMod_ApplyDelta(u32 *priority, s32 delta) {
   if (*priority == 0 || *priority == AI_PRIORITY_DISABLE)
@@ -576,6 +577,61 @@ static void AiMod_WastefulLine(
   AiMod_ApplyDelta(priority, delta);
 }
 
+/* Phase 5: nudge activate lines by effect semantics (script meta / legacy tags). */
+static void AiMod_EffectSemantics(
+    struct AiDecisionContext *ctx, const struct AiDecodedAction *decoded, u32 *priority) {
+  u8 meta;
+  s32 delta = 0;
+  u8 handCount;
+  u8 oppMonsters;
+
+  if (decoded->category != AI_CATEGORY_ACTIVATE_SPELL &&
+      decoded->category != AI_CATEGORY_ACTIVATE_TRAP &&
+      decoded->category != AI_CATEGORY_MONSTER_EFFECT)
+    return;
+
+  if (decoded->primaryCardId == CARD_NONE)
+    return;
+
+  meta = EffectMeta_GetCategory(decoded->primaryCardId);
+  if (meta == EFFECT_META_NONE)
+    return; /* no script and no legacy tag — leave vanilla priority */
+
+  handCount = Duel_CountCardsInHand(gTurnHands[ACTIVE_DUELIST]);
+  oppMonsters = Duel_CountMonstersOnTurnRow(INACTIVE_DUELIST_MONSTER_ROW);
+
+  switch (meta) {
+  case EFFECT_META_DRAW:
+  case EFFECT_META_SEARCH:
+    if (handCount <= 2)
+      delta += (s32)AI_MOD_DELTA_MIN;
+    else if (handCount <= 4)
+      delta += (s32)(AI_MOD_DELTA_MIN / 2);
+    break;
+
+  case EFFECT_META_DESTROY:
+    if (oppMonsters >= 2)
+      delta += (s32)AI_MOD_DELTA_MIN;
+    else if (oppMonsters == 1)
+      delta += (s32)(AI_MOD_DELTA_MIN / 2);
+    else
+      delta -= (s32)(AI_MOD_DELTA_MIN / 2); /* wipe with empty opp field is wasteful */
+    break;
+
+  case EFFECT_META_BURN:
+    if (ctx->lifePointDelta < 0)
+      delta += (s32)AI_MOD_DELTA_MIN;
+    else if (ctx->lifePointDelta > 2000)
+      delta -= (s32)(AI_MOD_DELTA_MIN / 4);
+    break;
+
+  default:
+    break;
+  }
+
+  AiMod_ApplyDelta(priority, delta);
+}
+
 void AiApplyModifiers(struct AiDecisionContext *ctx) {
   u16 i;
 
@@ -596,5 +652,6 @@ void AiApplyModifiers(struct AiDecisionContext *ctx) {
     AiMod_TributeBoard(ctx, &decoded, priority);
     AiMod_OpponentHandRead(ctx, &decoded, priority);
     AiMod_WastefulLine(ctx, &decoded, priority);
+    AiMod_EffectSemantics(ctx, &decoded, priority);
   }
 }

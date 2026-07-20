@@ -2,10 +2,9 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "effect_ops.h"
+#include "effect_scripts.h"
+#include "effect_system.h"
 #include "spell_effects.h"
-
-#define GRAND_CONVERGENCE_DAMAGE 300
 
 static u8 FixedDuelistYouControl(void)
 {
@@ -22,38 +21,11 @@ u8 CanActivateGRAND_CONVERGENCE(void)
   return ControlsMacroCosmos();
 }
 
-static void GRAND_CONVERGENCE_ResolveBody(void)
-{
-  struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
-
-  Duel_ShowEffectText(GRAND_CONVERGENCE);
-
-  if (IsDuelOver() == TRUE || !CanActivateGRAND_CONVERGENCE())
-    return;
-
-  if (Op_ChangeLp(INACTIVE_DUELIST, -GRAND_CONVERGENCE_DAMAGE, FALSE) == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  if (Op_DestroyAllMonstersInRow(ACTIVE_DUELIST_MONSTER_ROW, NULL, FALSE)
-      == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  if (Op_DestroyAllMonstersInRow(INACTIVE_DUELIST_MONSTER_ROW, NULL, FALSE)
-      == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  Op_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
-}
-
+/* Body lives in effect_scripts.c (Phase 4 C table). */
 APPEND_TEXT void EffectGRAND_CONVERGENCE(void)
 {
-  if (!CanActivateGRAND_CONVERGENCE()) {
-    if (!gHideEffectText)
-      PlayMusic(SFX_FORBIDDEN);
-    return;
-  }
+  const struct EffectScript *script = EffectScript_Find(GRAND_CONVERGENCE, EFFECT_KIND_SPELL);
 
-  if (Duel_TryResolveSpellThroughTraps(GRAND_CONVERGENCE, GRAND_CONVERGENCE_ResolveBody)
-      == DUEL_ACTION_BLOCKED)
-    return;
+  if (script != NULL)
+    EffectScript_Run(script);
 }

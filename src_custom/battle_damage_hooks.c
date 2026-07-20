@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "card_passives.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "card.h"
 #include "elemental_hero_flash.h"
 #include "familiar_knight.h"
@@ -256,6 +257,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       MarkGiantRatBattleDestruction(DUEL_PLAYER, zone->id);
       MarkElementalHeroCoreDestroyedFromField(zone);
       MarkTheSupremacySunDestroyedFromField(zone);
+      EffectEvent_EmitSimple(EFFECT_EVENT_ON_BATTLE_DESTROY, zone->id, zone);
+      EffectEvent_EmitSimple(EFFECT_EVENT_ON_LEAVE_FIELD, zone->id, zone);
       ClearZoneAndSendMonToGraveyard2(zone, 0);
     }
   }
@@ -272,10 +275,14 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       MarkGiantRatBattleDestruction(DUEL_OPPONENT, zone->id);
       MarkElementalHeroCoreDestroyedFromField(zone);
       MarkTheSupremacySunDestroyedFromField(zone);
+      EffectEvent_EmitSimple(EFFECT_EVENT_ON_BATTLE_DESTROY, zone->id, zone);
+      EffectEvent_EmitSimple(EFFECT_EVENT_ON_LEAVE_FIELD, zone->id, zone);
       ClearZoneAndSendMonToGraveyard2(zone, 1);
     }
   }
 
+  /* ponytail: damage-calc ATK boosts still need per-card Apply* hooks; emit
+   * EFFECT_EVENT_ON_DAMAGE_CALC from those sites when migrating. */
   MarkVampireBabyBattleDestruction(
       sActionData.playerCardId, sActionData.opponentCardId, sActionData.flags);
   if (sActionData.flags & 4)

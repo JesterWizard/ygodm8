@@ -5,6 +5,7 @@
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "duel_status.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "mask_of_restrict.h"
 #include "mini_card.h"
@@ -367,6 +368,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   if (turnDuelist == ACTIVE_DUELIST)
     CourtOfJustice_RefreshHandUnlocks();
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_SUMMON, monsterId, summonZone);
   return DUEL_ACTION_OK;
 }
 
@@ -551,8 +553,14 @@ enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx)
 
 enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelist, u8 updateGfx)
 {
+  u16 cardId;
+
   if (zone == NULL || zone->id == CARD_NONE)
     return DUEL_ACTION_NO_TARGET;
+
+  cardId = zone->id;
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_DESTROY, cardId, zone);
+  EffectEvent_EmitSimple(EFFECT_EVENT_ON_LEAVE_FIELD, cardId, zone);
 
   MarkElementalHeroCoreDestroyedFromField(zone);
   MarkTheSupremacySunDestroyedFromField(zone);

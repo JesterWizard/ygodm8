@@ -1,31 +1,39 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "effect_scripts.h"
 #include "effect_system.h"
-
-/*
- * Phase 0: empty conversion table. Every card falls through to legacy handlers.
- * Phase 1+ will look up C effect tables here before returning HANDLED.
- */
 
 u8 EffectDispatch_TryActivate(u16 cardId, u8 kind)
 {
-  (void)kind;
+  const struct EffectScript *script;
 
   if (cardId == CARD_NONE)
     return EFFECT_DISPATCH_LEGACY;
 
-  /* ponytail: Phase 0 has no converted cards. Upgrade: table lookup → run script. */
+  script = EffectScript_Find(cardId, kind);
+  if (script == NULL)
+    return EFFECT_DISPATCH_LEGACY;
+
+  if (EffectScript_Run(script))
+    return EFFECT_DISPATCH_HANDLED;
+
   return EFFECT_DISPATCH_LEGACY;
 }
 
 u8 EffectDispatch_QueryShouldActivate(u16 cardId, u8 kind)
 {
-  (void)kind;
+  const struct EffectScript *script;
 
   if (cardId == CARD_NONE)
     return EFFECT_SHOULD_NO;
 
-  /* ponytail: Phase 0 has no converted cards. Upgrade: table shouldActivate bit. */
-  return EFFECT_SHOULD_LEGACY;
+  script = EffectScript_Find(cardId, kind);
+  if (script == NULL)
+    return EFFECT_SHOULD_LEGACY;
+
+  if (script->canActivate != NULL && !script->canActivate())
+    return EFFECT_SHOULD_NO;
+
+  return EFFECT_SHOULD_YES;
 }

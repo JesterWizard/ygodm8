@@ -4,6 +4,7 @@
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
@@ -21,10 +22,7 @@ static const u8 sAmazonessCallPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-/* ponytail: OPT bit never cleared mid-duel without turn_effect reset hook.
- * Ceiling: blocks 2nd Amazoness Call only until soft-reset / new duel BSS;
- * upgrade: turn_effect Standby → sAmazonessCallUsedThisTurn = 0. */
-static u8 sAmazonessCallUsedThisTurn APPEND_DATA = {0};
+/* OPT via EffectOpt_* — cleared on turn boundary (Phase 3 EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -78,7 +76,7 @@ static u8 HandHasRoom(void)
 
 static u8 CanActivateAmazonessCall(void)
 {
-  if (sAmazonessCallUsedThisTurn)
+  if (EffectOpt_IsUsed(AMAZONESS_CALL))
     return FALSE;
 
   return FindFirstMatchingDeckIndex(ACTIVE_DUELIST) >= 0;
@@ -271,7 +269,7 @@ static void AMAZONESS_CALL_ResolveBody(void)
       return;
   }
 
-  sAmazonessCallUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(AMAZONESS_CALL);
 
   if (spellZone != NULL && spellZone->id == AMAZONESS_CALL)
     Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);

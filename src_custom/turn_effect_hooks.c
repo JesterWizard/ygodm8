@@ -26,6 +26,7 @@
 #include "light_end_dragon.h"
 #include "yubel.h"
 #include "effect_system.h"
+#include "effect_events.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -321,6 +322,7 @@ LYN_REPLACE_CHECK(TryActivatingTurnEffects);
 void TryActivatingTurnEffects__Replacement(void) {
   gActiveEffect.turn = WhoseTurn();
   gShieldAndSwordActive = FALSE;
+  EffectEvent_OnTurnBoundary();
   ResetTheGrandJupiterEndPhaseFlags();
   Yubel_ClearTurnState();
   ClearCostDown();
