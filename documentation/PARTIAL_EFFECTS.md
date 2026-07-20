@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 20:01 UTC  
-**Remaining partials:** `694`
+**Last updated:** 2026-07-20 20:10 UTC  
+**Remaining partials:** `706`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 363 |
+| `activated` | 375 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **694** |
+| **total** | **706** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (363)
+## activated (375)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1431,10 +1431,24 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
 - L16: Amazoness-Tiger name + GY ATK boost need continuous hooks. Ceiling: SS from hand only; upgrade: on Amazoness summon trigger.
 
+### `AMAZONESS_EMPRESS`
+- path: `src_custom/activated_effects/amazoness_empress.c`
+- L51: protect/pierce + leave-field SS Queen need permanent/leave hooks. Ceiling: OPT add Amazoness Queen (or Amazoness) from Deck to hand.
+- L76: leave-field SS → Deck search stand-in (safer than Extra SS).
+
 ### `AMAZONESS_PET_LIGER`
 - path: `src_custom/activated_effects/amazoness_pet_liger.c`
 - L55: -800 ≈ -2 tempStage (~-1000); battle-after / cannot-attack Amazoness FALSE.
 - L98: once-per-battle +500 / cannot-attack Amazoness need battle hooks. Ceiling: OPT −2 tempStage on 1 face-up opp monster.
+
+### `AMAZONESS_PET_LIGER_KING`
+- path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
+- L141: cannot-attack-this-turn needs attack-gate; mark unk4.
+- L190: attack redirect FALSE. Ceiling: OPT destroy Amazoness → SS Warrior GY.
+
+### `AMAZONESS_PRINCESS`
+- path: `src_custom/activated_effects/amazoness_princess.c`
+- L63: name=Queen + attack-send→SS need name/battle hooks. Ceiling: OPT add 1 Amazoness Spell/Trap from Deck.
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1477,6 +1491,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANCIENT_GEAR_CANNON`
 - path: `src_custom/activated_effects/ancient_gear_cannon.c`
 - L47: Battle Phase Trap lock not applied; upgrade: trap-activation gate.
+
+### `ANCIENT_GEAR_DRAGON`
+- path: `src_custom/activated_effects/ancient_gear_dragon.c`
+- L121: Quick negate + tribute-less NS need negate/summon hooks. Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY.
 
 ### `ANCIENT_GEAR_ENGINEER`
 - path: `src_custom/activated_effects/ancient_gear_engineer.c`
@@ -1590,6 +1608,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/aromage_rosemary.c`
 - L125: LP-higher Plant attack → opp monster effects locked + LP-gain gate need permanent/LP hooks. Ceiling: OPT change 1 face-up battle position.
 
+### `AROMALILITH_MAGNOLIA`
+- path: `src_custom/activated_effects/aromalilith_magnolia.c`
+- L100: Plant protect + LP-gain ATK need permanent/LP hooks. Ceiling: OPT pay 2000 → banish up to Humid/Dried/Blessed Winds count.
+- L135: no multi-select UI — auto-banish up to winds count (opp rows first).
+
 ### `AROMALILITH_ROSALINA`
 - path: `src_custom/activated_effects/aromalilith_rosalina.c`
 - L106: discard quick LP + Plant-only SS lock need chain/SS hooks. Ceiling: OPT SS 1 non-Tuner Aroma from Deck in DEF.
@@ -1669,6 +1692,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/black_rose_dragon.c`
 - L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
 
+### `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON`
+- path: `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c`
+- L55: cannot-attack-this-turn needs attack-gate; mark unk4.
+- L98: protect + up-to-3-if-Alt-material need fusion/material hooks. Ceiling: OPT destroy 1 opp card; mark self unk4 cannot-attack.
+
 ### `BLUE_EYES_SOLID_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_solid_dragon.c`
 - L49: summon Quick shuffle→SS BEWD + per-effect usage need hooks.
@@ -1737,6 +1765,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/cross_keeper.c`
 - L145: GY draw-on-E-HERO-Fusion need Fusion/GY hooks. Ceiling: send self → SS Elemental HERO or Neo-Spacian from hand/GY.
 
+### `CURIOUS_THE_LIGHTSWORN_DOMINION`
+- path: `src_custom/activated_effects/curious_the_lightsworn_dominion.c`
+- L33: Link Summon mill + leave-field GY add + mill-cascade need summon/ leave-field hooks. Ceiling: OPT mill 1 from Deck.
+
 ### `CYBER_ELTANIN`
 - path: `src_custom/activated_effects/cyber_eltanin.c`
 - L122: continuous ATK/DEF = banished×500 needs permanent overlay hook. Ceiling: not field-ignition activatable; use FromHand banish path.
@@ -1788,6 +1820,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
 - path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
 - L12: name becomes Dark Magician + S/T protection need permanent/name hooks. Ceiling: not ignition-activatable here; upgrade: permanent overlay.
+
+### `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS`
+- path: `src_custom/activated_effects/dark_magician_the_magician_of_black_chaos.c`
+- L33: name=DM + destroy-revive/Set need name/destroy hooks. Ceiling: not field-ignition; FromHand if Shining Sarcophagus.
 
 ### `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC`
 - path: `src_custom/activated_effects/dark_magician_the_magician_of_black_magic.c`
@@ -1999,6 +2035,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L57: second Standby Phase GY return needs turn/Standby hook; unk4=2 marks extra attack stand-in. Ceiling: banish self → target Fiend unk4=2.
 - L110: Main Phase 1 gate + second Standby GY return need phase/Standby hooks. Ceiling: OPT banish self → mark 1 Fiend unk4 for extra attack stand-in.
 
+### `EVIL_HERO_INFERNAL_RIDER`
+- path: `src_custom/activated_effects/evil_hero_infernal_rider.c`
+- L228: on-summon + HERO lock need summon/SS gates. Ceiling: OPT add Dark Fusion Deck/GY, else OPT banish self+4 GY → Set Super Poly.
+
 ### `EVIL_HERO_MALICIOUS_BANE`
 - path: `src_custom/activated_effects/evil_hero_malicious_bane.c`
 - L75: destruction immunity + HERO-only attack gate need destroy/attack hooks. Ceiling: OPT destroy opp monsters with ATK≤self, +tempStage, mark unk4.
@@ -2044,6 +2084,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GAGAGIGO_THE_RISEN`
 - path: `src_custom/activated_effects/gagagigo_the_risen.c`
 - L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `GANDORA_G_THE_DRAGON_OF_DESTRUCTION`
+- path: `src_custom/activated_effects/gandora_g_the_dragon_of_destruction.c`
+- L125: destroy+banish → Duel_BanishZone (no GY).
+- L151: +300 ATK/banished needs permanent/banish count hook. Ceiling: OPT pay half LP → banish all other field → SS Lv≤7 Sarc mention.
 
 ### `GANDORA_X_THE_DRAGON_OF_DESTRUCTION`
 - path: `src_custom/activated_effects/gandora_x_the_dragon_of_destruction.c`
@@ -2748,6 +2793,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/tatsunoko.c`
 - L12: hand-as-Synchro-material and unaffected-by-monster-effects need synchro/summon continuous hooks. Ceiling: not field-ignition here.
 
+### `TEST_BEAR`
+- path: `src_custom/activated_effects/test_bear.c`
+- L237: Deck/ED-summoned GB gate for hand SS relaxed to any face-up GB. Ceiling: OPT tribute self + shuffle 1 GB → SS up to 2 GB from Deck.
+- L287: printed needs GB SS from Deck/ED; stand-in = any face-up GB.
+
 ### `TEST_PANTHER`
 - path: `src_custom/activated_effects/test_panther.c`
 - L199: Link Summon trigger for search needs summon hook. Ceiling: OPT search GB from Deck, else bounce GB → SS different GB.
@@ -2827,6 +2877,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TIMEAUS_THE_UNITED_DRAGON`
 - path: `src_custom/activated_effects/timeaus_the_united_dragon.c`
 - L147: Main Phase Fusion Summon needs fusion UI hook. Ceiling: SS from hand via send cost uses FromHand path.
+
+### `TOHUSHADDOLL_GRYSTA`
+- path: `src_custom/activated_effects/tohushaddoll_grysta.c`
+- L22: FLIP copy + GY Fusion-by-banish need flip/GY hooks. Ceiling: OPT add Shaddoll Fusion from Deck.
 
 ### `TORNADO_BIRD`
 - path: `src_custom/activated_effects/tornado_bird.c`

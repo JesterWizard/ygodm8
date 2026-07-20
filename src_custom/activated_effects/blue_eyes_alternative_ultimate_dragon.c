@@ -2,28 +2,63 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "god_card.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsOppFieldCard(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone;
+
+  if (fixedRow != OPPONENT_MONSTER_ROW && fixedRow != OPPONENT_BACKROW)
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  if (zone == NULL || zone->id == CARD_NONE || IsGodCard(zone->id))
+    return FALSE;
+
+  return TRUE;
+}
+
+static u8 FieldHasOppCard(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsOppFieldCard(row, col))
+        return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static void ResolveDestroyTarget(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (!IsOppFieldCard(fixedRow, fixedCol) || zone == NULL || self == NULL)
+    return;
+
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  NotifyDynamicEquipFieldChanged();
+
+  /* ponytail: cannot-attack-this-turn needs attack-gate; mark unk4. */
+  self->unk4 |= 0x80;
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 static void CancelTargeting(void)
@@ -33,17 +68,39 @@ static void CancelTargeting(void)
 
 static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsOppFieldCard(row, col)) {
+        *outRow = row;
+        *outCol = col;
+        return TRUE;
+      }
+    }
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON)
+    return FALSE;
+
+  /* ponytail: protect + up-to-3-if-Alt-material need fusion/material hooks.
+   * Ceiling: OPT destroy 1 opp card; mark self unk4 cannot-attack. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return FieldHasOppCard();
 }
 
 void ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect(void)
@@ -56,7 +113,7 @@ void ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect(void)
   gDuelCursor.destY = gMonEffect.row;
   gDuelCursor.destX = gMonEffect.zone;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  Duel_SetupPickZone(IsOppFieldCard, ResolveDestroyTarget, CancelTargeting, AiPickTarget);
 
   if (WhoseTurn() == DUEL_PLAYER)
     Duel_EnterPickZoneTargeting();

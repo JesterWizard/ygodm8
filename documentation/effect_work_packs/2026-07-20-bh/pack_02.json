@@ -1,0 +1,93 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "TEST_BEAR",
+      "card_name": "Test Bear",
+      "kind": "activated",
+      "archetype": "TEST",
+      "path": "src_custom/activated_effects/test_bear.c",
+      "effect_text": "Hand SS with GB; bounce for Deck SS. If you control a Gladiator Beast monster Special Summoned from the Deck/Extra Deck, you can Special Summon this card (from your hand). You can only Special Summon Test Bear once per turn this way. You can Tribute this card, then shuffle 1 Gladiator Beast monster from your hand or face-up field into the Deck/Extra Deck; Special Summon up to 2 Gladiator Beast monsters from your Deck. (This is treated as a Special Summon by a Gladiator Beast monster's effect.) Y",
+      "tags": [
+        "deck",
+        "faceup",
+        "hand",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TEST_TIGER",
+      "clone_path": "src_custom/activated_effects/test_tiger.c",
+      "clone_score": 0.64
+    },
+    {
+      "card_const": "AMAZONESS_PET_LIGER_KING",
+      "card_name": "Amazoness Pet Liger King",
+      "kind": "activated",
+      "archetype": "AMAZONESS_PET",
+      "path": "src_custom/activated_effects/amazoness_pet_liger_king.c",
+      "effect_text": "1 Level 5 or higher \"Amazoness\" monster + 1 \"Amazoness\" monster\r\nYour opponent's monsters cannot attack any monsters, ex 1 Level 5 or higher Amazoness monster + 1 Amazoness monster Your opponent's monsters cannot attack any monsters, except this one. You can target 1 Amazoness card you control and 1 Amazoness Warrior monster in your GY; destroy that card on the field, and if you do, Special Summon that other monster from the GY. This card cannot attack the turn this effect is activated. You can ",
+      "tags": [
+        "destroy",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AZURE_EYES_SILVER_DRAGON",
+      "clone_path": "src_custom/activated_effects/azure_eyes_silver_dragon.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "AMAZONESS_EMPRESS",
+      "card_name": "Amazoness Empress",
+      "kind": "activated",
+      "archetype": "AMAZONESS",
+      "path": "src_custom/activated_effects/amazoness_empress.c",
+      "effect_text": "\"Amazoness Queen\" + 1 \"Amazoness\" monster\r\nOther \"Amazoness\" cards you control cannot be destroyed by battle or card eff Amazoness Queen + 1 Amazoness monster Other Amazoness cards you control cannot be destroyed by battle or card effects. If your Amazoness monster attacks a Defense Position monster, inflict piercing battle damage to your opponent. If this face-up Fusion Summoned card is destroyed by battle, or leaves the field because of an opponent's card effect while its owner controls it: Yo",
+      "tags": [
+        "burn",
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_TRAINEE",
+      "clone_path": "src_custom/activated_effects/amazoness_trainee.c",
+      "clone_score": 0.72
+    },
+    {
+      "card_const": "EVIL_HERO_INFERNAL_RIDER",
+      "card_name": "Evil HERO Infernal Rider",
+      "kind": "activated",
+      "archetype": "EVIL_HERO_INFERNAL",
+      "path": "src_custom/activated_effects/evil_hero_infernal_rider.c",
+      "effect_text": "On summon: add Dark Fusion. Banish 5 GY: Set Super Poly; HERO lock. If this card is Normal or Special Summoned: You can add 1 Dark Fusion from your Deck or GY to your hand. You can banish this card and 4 other monsters from your GY; Set 1 Super Polymerization from your Deck, also you cannot Special Summon (except HERO monsters), but you can Fusion Summon monsters that must be Special Summoned with Dark Fusion, using other cards' effects. These effects last until the end of your opponent's turn. ",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_FORTRESS_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_fortress_dragon.c",
+      "clone_score": 0.6
+    }
+  ]
+}

@@ -7,51 +7,43 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 20:01 UTC  
-**Remaining stubs:** `193`
+**Last updated:** 2026-07-20 20:10 UTC  
+**Remaining stubs:** `181`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `activated` | 89 |
+| `activated` | 77 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **193** |
+| **total** | **181** |
 
-## activated (89)
+## activated (77)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
 | `AMAZONESS_AUGUSTA` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_augusta.c` |
-| `AMAZONESS_EMPRESS` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_empress.c` |
-| `AMAZONESS_PRINCESS` | `AMAZONESS` | — | `AMAZONESS_TRAINEE` | `src_custom/activated_effects/amazoness_princess.c` |
 | `AMAZONESS_SPIRITUALIST` | `AMAZONESS` | — | `AMAZONESS_WAR_CHIEF` | `src_custom/activated_effects/amazoness_spiritualist.c` |
-| `AMAZONESS_PET_LIGER_KING` | `AMAZONESS_PET` | — | `AZURE_EYES_SILVER_DRAGON` | `src_custom/activated_effects/amazoness_pet_liger_king.c` |
 | `ANCIENT_FAIRY_DRAGON` | `ANCIENT` | — | `HERALD_OF_ULIMATENESS` | `src_custom/activated_effects/ancient_fairy_dragon.c` |
 | `ANCIENT_GEAR_COMMANDER` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_BEAST` | `src_custom/activated_effects/ancient_gear_commander.c` |
 | `ANCIENT_GEAR_DARK_GOLEM` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_BEAST` | `src_custom/activated_effects/ancient_gear_dark_golem.c` |
-| `ANCIENT_GEAR_DRAGON` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_BEAST` | `src_custom/activated_effects/ancient_gear_dragon.c` |
 | `ANCIENT_GEAR_FRAME` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_BEAST` | `src_custom/activated_effects/ancient_gear_frame.c` |
 | `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_BEAST` | `src_custom/activated_effects/ancient_gear_golem_ultimate_pound.c` |
 | `ANCIENT_GEAR_MEGATON_GOLEM` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_BEAST` | `src_custom/activated_effects/ancient_gear_megaton_golem.c` |
 | `ANCIENT_GEAR_TANKER` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_BEAST` | `src_custom/activated_effects/ancient_gear_tanker.c` |
 | `ANCIENT_GEAR_GADJILTRON_DRAGON` | `ANCIENT_GEAR_GADJILTRON` | — | `ANCIENT_GEAR_GOLEM` | `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c` |
-| `AROMALILITH_MAGNOLIA` | `AROMALILITH` | — | `AMAZONESS_PET_LIGER` | `src_custom/activated_effects/aromalilith_magnolia.c` |
 | `BLACK_WINGED_DRAGON` | `BLACK` | — | `COPYCAT` | `src_custom/activated_effects/black_winged_dragon.c` |
 | `BLUE_EYES_JET_DRAGON` | `BLUE_EYES` | — | `BLUE_EYES_TYRANT_DRAGON` | `src_custom/activated_effects/blue_eyes_jet_dragon.c` |
 | `BLUE_EYES_SPIRIT_DRAGON` | `BLUE_EYES` | — | `BLUE_EYES_TYRANT_DRAGON` | `src_custom/activated_effects/blue_eyes_spirit_dragon.c` |
 | `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON` | `BLUE_EYES` | — | `BLUE_EYES_TYRANT_DRAGON` | `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c` |
-| `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` | `BLUE_EYES_ALTERNATIVE` | — | `AMAZONESS_SAGE` | `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c` |
 | `CELESTIAL_KNIGHTLORD_PARSHATH` | `CELESTIAL` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/celestial_knightlord_parshath.c` |
 | `CRIMSON_DRAGON` | `CRIMSON` | — | `CRIMSON_BLADER` | `src_custom/activated_effects/crimson_dragon.c` |
-| `CURIOUS_THE_LIGHTSWORN_DOMINION` | `CURIOUS` | — | `GRAVEKEEPERS_AMBUSHER` | `src_custom/activated_effects/curious_the_lightsworn_dominion.c` |
 | `CYBER_DRAGON_INFINITY` | `CYBER` | — | `CYBER_PHOENIX` | `src_custom/activated_effects/cyber_dragon_infinity.c` |
 | `CYBER_SLASH_HARPY_LADY` | `CYBER_SLASH` | — | `SHADDOLL_HOUND` | `src_custom/activated_effects/cyber_slash_harpy_lady.c` |
 | `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` | `DARK_MAGICIAN_GIRL_THE` | — | `ELEMENTAL_HERO_MAGMA_NEOS` | `src_custom/activated_effects/dark_magician_girl_the_magicians_apprentice.c` |
 | `DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE` | `DARK_MAGICIAN_GIRL_THE` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/dark_magician_girl_the_magician_s_apprentice.c` |
-| `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` | `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK` | — | `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC` | `src_custom/activated_effects/dark_magician_the_magician_of_black_chaos.c` |
 | `DESTINY_END_DRAGOON` | `DESTINY` | — | `ARMORY_ARM` | `src_custom/activated_effects/destiny_end_dragoon.c` |
 | `DESTINY_HERO_DARK_ANGEL` | `DESTINY_HERO` | — | `DESTINY_HERO_DOMINANCE` | `src_custom/activated_effects/destiny_hero_dark_angel.c` |
 | `DESTINY_HERO_DESTROY_DOGMA` | `DESTINY_HERO` | — | `DESTINY_HERO_DECIDER` | `src_custom/activated_effects/destiny_hero_destroy_dogma.c` |
@@ -67,9 +59,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `ENLIGHTENMENT_DRAGON` | `ENLIGHTENMENT` | — | `CHIMERATECH_FORTRESS_DRAGON` | `src_custom/activated_effects/enlightenment_dragon.c` |
 | `EVIL_HERO_DEAD_END_PRISON` | `EVIL_HERO` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/evil_hero_dead_end_prison.c` |
 | `EVIL_HERO_VICIOUS_CLAWS` | `EVIL_HERO` | — | `HERALD_OF_ULIMATENESS` | `src_custom/activated_effects/evil_hero_vicious_claws.c` |
-| `EVIL_HERO_INFERNAL_RIDER` | `EVIL_HERO_INFERNAL` | — | `CHIMERATECH_FORTRESS_DRAGON` | `src_custom/activated_effects/evil_hero_infernal_rider.c` |
 | `GAMECIAL_THE_SEA_TURTLE_KAIJU` | `GAMECIAL` | — | `TURBO_SYNCHRON` | `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c` |
-| `GANDORA_G_THE_DRAGON_OF_DESTRUCTION` | `GANDORA` | — | `HERALD_OF_ULIMATENESS` | `src_custom/activated_effects/gandora_g_the_dragon_of_destruction.c` |
 | `GATE_GUARDIANS_COMBINED` | `GATE` | — | `HERALD_OF_ULIMATENESS` | `src_custom/activated_effects/gate_guardians_combined.c` |
 | `GLADIATOR_BEAST_CLAUDIUS` | `GLADIATOR_BEAST` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/gladiator_beast_claudius.c` |
 | `GLADIATOR_BEAST_DAREIOS` | `GLADIATOR_BEAST` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/gladiator_beast_dareios.c` |
@@ -102,14 +92,12 @@ python3 tools/stub_effect_queue.py --write-list
 | `REPTILIANNE_ECHIDNA` | `REPTILIANNE` | — | `REPTILIANNE_VASKII` | `src_custom/activated_effects/reptilianne_echidna.c` |
 | `SILENT_SWORDSMAN` | `SILENT` | — | `ELEMENTAL_HERO_MAGMA_NEOS` | `src_custom/activated_effects/silent_swordsman.c` |
 | `SILENT_SWORDSMAN_ZERO` | `SILENT_SWORDSMAN` | — | `AMAZONESS_PET_LIGER` | `src_custom/activated_effects/silent_swordsman_zero.c` |
-| `TEST_BEAR` | `TEST` | — | `TEST_TIGER` | `src_custom/activated_effects/test_bear.c` |
 | `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO` | `THE` | — | `SHADDOLL_HOUND` | `src_custom/activated_effects/the_executor_of_the_underworld_pluto.c` |
 | `THE_LEGENDARY_EXODIA_INCARNATE` | `THE` | — | `THE_SUPPRESSION_PLUTO` | `src_custom/activated_effects/the_legendary_exodia_incarnate.c` |
 | `THE_AGENT_OF_LIFE_NEPTUNE` | `THE_AGENT_OF` | — | `THE_AGENT_OF_ENTROPY_URANUS` | `src_custom/activated_effects/the_agent_of_life_neptune.c` |
 | `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `TIMAEUS` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/timaeus_the_knight_of_destiny.c` |
 | `TIME_THIEF_REDOER` | `TIME` | — | `TIME_MAGIC_HAMMER` | `src_custom/activated_effects/time_thief_redoer.c` |
 | `TOADALLY_AWESOME` | `TOADALLY` | — | `HERALD_OF_ULTIMATENESS` | `src_custom/activated_effects/toadally_awesome.c` |
-| `TOHUSHADDOLL_GRYSTA` | `TOHUSHADDOLL` | — | `BLUE_EYES_TYRANT_DRAGON` | `src_custom/activated_effects/tohushaddoll_grysta.c` |
 | `TUALATIN` | `TUALATIN` | — | `HERALD_OF_ULIMATENESS` | `src_custom/activated_effects/tualatin.c` |
 | `ULTIMATE_CONDUCTOR_TYRANNO` | `ULTIMATE` | — | `DESTINY_HERO_DECIDER` | `src_custom/activated_effects/ultimate_conductor_tyranno.c` |
 | `VISION_HERO_INCREASE` | `VISION_HERO` | — | `CHIMERATECH_MEGAFLEET_DRAGON` | `src_custom/activated_effects/vision_hero_increase.c` |

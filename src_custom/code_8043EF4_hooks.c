@@ -298,6 +298,9 @@ u8 TrySpecialSummonVisionHeroFarisFromHand(u8);
 u8 TrySpecialSummonApprenticeIllusionMagicianFromHand(u8);
 u8 TrySpecialSummonAncientGearStatueFromHand(u8);
 u8 TrySpecialSummonDarkMagicianTheMagicianOfBlackMagicFromHand(u8);
+u8 TrySpecialSummonDarkMagicianTheMagicianOfBlackChaosFromHand(u8);
+u8 TrySpecialSummonGandoraGTheDragonOfDestructionFromHand(u8);
+u8 TrySpecialSummonTestBearFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -834,6 +837,21 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC
           && TrySpecialSummonDarkMagicianTheMagicianOfBlackMagicFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS
+          && TrySpecialSummonDarkMagicianTheMagicianOfBlackChaosFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GANDORA_G_THE_DRAGON_OF_DESTRUCTION
+          && TrySpecialSummonGandoraGTheDragonOfDestructionFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == TEST_BEAR
+          && TrySpecialSummonTestBearFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
