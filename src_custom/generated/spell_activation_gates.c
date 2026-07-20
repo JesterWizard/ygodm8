@@ -21,6 +21,7 @@ extern u8 CanActivateAutonomousActionUnit(void);
 extern u8 CanActivateA_HERO_LIVES(void);
 extern u8 CanActivateA_WINGBEAT_OF_GIANT_DRAGON(void);
 extern u8 CanActivateBookOfLife(void);
+extern u8 CanActivateCHAIN_STRIKE(void);
 extern u8 CanActivateChaosGreed(void);
 extern u8 CanActivateCHARGE_OF_THE_LIGHT_BRIGADE(void);
 extern u8 CanActivateCOCOON_REBIRTH(void);
@@ -57,6 +58,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { A_HERO_LIVES, CanActivateA_HERO_LIVES, TRUE },
   { A_WINGBEAT_OF_GIANT_DRAGON, CanActivateA_WINGBEAT_OF_GIANT_DRAGON, TRUE },
   { BOOK_OF_LIFE, CanActivateBookOfLife, TRUE },
+  { CHAIN_STRIKE, CanActivateCHAIN_STRIKE, TRUE },
   { CHAOS_GREED, CanActivateChaosGreed, TRUE },
   { CHARGE_OF_THE_LIGHT_BRIGADE, CanActivateCHARGE_OF_THE_LIGHT_BRIGADE, TRUE },
   { COCOON_REBIRTH, CanActivateCOCOON_REBIRTH, TRUE },

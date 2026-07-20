@@ -7,22 +7,22 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 14:31 UTC  
-**Remaining stubs:** `871`
+**Last updated:** 2026-07-20 14:43 UTC  
+**Remaining stubs:** `859`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 197 |
+| `spell` | 185 |
 | `trap` | 109 |
 | `activated` | 461 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **871** |
+| **total** | **859** |
 
-## spell (197)
+## spell (185)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
@@ -44,7 +44,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `ANCIENT_GEAR_WORKSHOP` | `ANCIENT_GEAR` | — | `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | `src_custom/spell_effects/ancient_gear_workshop.c` |
 | `ANTE` | `ANTE` | — | `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | `src_custom/spell_effects/ante.c` |
 | `AQUA_JET` | `AQUA` | — | `H_HEATED_HEART` | `src_custom/spell_effects/aqua_jet.c` |
-| `ARCANA_READING` | `ARCANA` | search | `MIRACLE_FUSION` | `src_custom/spell_effects/arcana_reading.c` |
 | `ARCANA_SPREAD` | `ARCANA` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/arcana_spread.c` |
 | `ARCANE_BARRIER` | `ARCANE` | — | `BACKUP_SQUAD` | `src_custom/spell_effects/arcane_barrier.c` |
 | `AROMA_BLEND` | `AROMA` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/aroma_blend.c` |
@@ -58,7 +57,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `BURDEN_OF_THE_MIGHTY` | `BURDEN` | — | `UNITED_WE_STAND` | `src_custom/spell_effects/burden_of_the_mighty.c` |
 | `CALL_OF_THE_MUMMY` | `CALL_OF_THE` | — | `POLYMERIZATION` | `src_custom/spell_effects/call_of_the_mummy.c` |
 | `CELESTIAL_SWORD_EATOS` | `CELESTIAL` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/celestial_sword_eatos.c` |
-| `CHAIN_STRIKE` | `CHAIN` | burn | `CHAIN_ENERGY` | `src_custom/spell_effects/chain_strike.c` |
 | `CHAIN_SUMMONING` | `CHAIN` | — | `CHAIN_ENERGY` | `src_custom/spell_effects/chain_summoning.c` |
 | `CHAOS_FORM` | `CHAOS` | — | `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | `src_custom/spell_effects/chaos_form.c` |
 | `CHICKEN_GAME` | `CHICKEN` | — | `CARD_DESTRUCTION` | `src_custom/spell_effects/chicken_game.c` |
@@ -108,7 +106,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `FUSION_DESTINY` | `FUSION` | — | `POLYMERIZATION` | `src_custom/spell_effects/fusion_destiny.c` |
 | `FUSION_GATE` | `FUSION` | — | `POLYMERIZATION` | `src_custom/spell_effects/fusion_gate.c` |
 | `GADGET_BOX` | `GADGET` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/gadget_box.c` |
-| `GEARTOWN` | `GEARTOWN` | tribute_summon | `GUARDIAN_TREASURE` | `src_custom/spell_effects/geartown.c` |
 | `GENERATION_NEXT` | `GENERATION` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/generation_next.c` |
 | `GLADIATOR_BEAST_BATTLE_HALBERD` | `GLADIATOR_BEAST` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/gladiator_beast_battle_halberd.c` |
 | `GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD` | `GLADIATOR_BEASTS_BATTLE` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/gladiator_beasts_battle_archfiend_shield.c` |
@@ -123,7 +120,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `HARPIE_LADY_PHOENIX_FORMATION` | `HARPIE_LADY` | — | `DARK_MAGIC_CURTAIN` | `src_custom/spell_effects/harpie_lady_phoenix_formation.c` |
 | `HERO_FLASH` | `HERO` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/hero_flash.c` |
 | `HIDDEN_TEMPLES_OF_NECROVALLEY` | `HIDDEN` | — | `ANCIENT_RULES` | `src_custom/spell_effects/hidden_temples_of_necrovalley.c` |
-| `HYSTERIC_SIGN` | `HYSTERIC` | search | `E_EMERGENCY_CALL` | `src_custom/spell_effects/hysteric_sign.c` |
 | `ILLUSION_MAGIC` | `ILLUSION` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/illusion_magic.c` |
 | `INFECTED_MAIL` | `INFECTED` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/infected_mail.c` |
 | `INFERNO_FIRE_BLAST` | `INFERNO` | — | `H_HEATED_HEART` | `src_custom/spell_effects/inferno_fire_blast.c` |
@@ -132,10 +128,9 @@ python3 tools/stub_effect_queue.py --write-list
 | `INSTANT_FUSION` | `INSTANT` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/instant_fusion.c` |
 | `INSTANT_NEO_SPACE` | `INSTANT` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/instant_neo_space.c` |
 | `LEMURIA_THE_FORGOTTEN_CITY` | `LEMURIA` | — | — | `src_custom/spell_effects/lemuria_the_forgotten_city.c` |
-| `LEV_SHADDOLL_FUSION` | `LEV` | tribute_summon | `TRIBUTE_DOLL` | `src_custom/spell_effects/lev_shaddoll_fusion.c` |
 | `LEVEL_TUNING` | `LEVEL` | — | `LEVEL_LIMIT_AREA_B` | `src_custom/spell_effects/level_tuning.c` |
 | `LIGHT_BARRIER` | `LIGHT` | — | `KAISER_COLOSSEUM` | `src_custom/spell_effects/light_barrier.c` |
-| `LIGHT_FORCE` | `LIGHT` | — | `FUTURE_FUSION` | `src_custom/spell_effects/light_force.c` |
+| `LIGHT_FORCE` | `LIGHT` | — | `ARCANA_READING` | `src_custom/spell_effects/light_force.c` |
 | `LIGHTNING_STORM` | `LIGHTNING` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/lightning_storm.c` |
 | `LIGHTSWORN_SABRE` | `LIGHTSWORN` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/lightsworn_sabre.c` |
 | `LIGHTSWORN_SANCTUARY` | `LIGHTSWORN` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/lightsworn_sanctuary.c` |
@@ -157,8 +152,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `MORPHTRONIC_REPAIR_UNIT` | `MORPHTRONIC` | — | `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | `src_custom/spell_effects/morphtronic_repair_unit.c` |
 | `MYSTIC_MINE` | `MYSTIC` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/mystic_mine.c` |
 | `MYSTIK_WOK` | `MYSTIK` | — | `DARK_ROOM_OF_NIGHTMARE` | `src_custom/spell_effects/mystik_wok.c` |
-| `NECROVALLEY` | `NECROVALLEY` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/necrovalley.c` |
-| `NECROVALLEY_THRONE` | `NECROVALLEY` | search | `POLYMERIZATION` | `src_custom/spell_effects/necrovalley_throne.c` |
+| `NECROVALLEY` | `NECROVALLEY` | — | `NECROVALLEY_THRONE` | `src_custom/spell_effects/necrovalley.c` |
 | `NEO_SPACE` | `NEO` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/neo_space.c` |
 | `NEPHE_SHADDOLL_FUSION` | `NEPHE` | — | `POLYMERIZATION` | `src_custom/spell_effects/nephe_shaddoll_fusion.c` |
 | `NEUTRON_BLAST` | `NEUTRON` | — | `H_HEATED_HEART` | `src_custom/spell_effects/neutron_blast.c` |
@@ -171,9 +165,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `PAINFUL_CHOICE` | `PAINFUL` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/painful_choice.c` |
 | `PANDEMONIUM` | `PANDEMONIUM` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/pandemonium.c` |
 | `PARALLEL_WORLD_FUSION` | `PARALLEL` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/parallel_world_fusion.c` |
-| `PENTACLE_OF_ACE` | `PENTACLE` | — | — | `src_custom/spell_effects/pentacle_of_ace.c` |
-| `POT_OF_AVARICE` | `POT_OF` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/pot_of_avarice.c` |
-| `POT_OF_EXTRAVAGANCE` | `POT_OF` | draw_n | `BACKUP_SQUAD` | `src_custom/spell_effects/pot_of_extravagance.c` |
+| `POT_OF_AVARICE` | `POT_OF` | — | `POT_OF_EXTRAVAGANCE` | `src_custom/spell_effects/pot_of_avarice.c` |
 | `POWER_FILTER` | `POWER` | — | `COURT_OF_JUSTICE` | `src_custom/spell_effects/power_filter.c` |
 | `PSEUDO_SPACE` | `PSEUDO` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/pseudo_space.c` |
 | `REALM_OF_LIGHT` | `REALM` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/realm_of_light.c` |
@@ -184,7 +176,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `RETURN_OF_THE_DRAGON_LORDS` | `RETURN` | — | `ANCIENT_RULES` | `src_custom/spell_effects/return_of_the_dragon_lords.c` |
 | `ROYAL_TRIBUTE` | `ROYAL` | — | — | `src_custom/spell_effects/royal_tribute.c` |
 | `SALVAGE` | `SALVAGE` | — | `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | `src_custom/spell_effects/salvage.c` |
-| `SCAPEGOAT` | `SCAPEGOAT` | tribute_summon | `TRIBUTE_DOLL` | `src_custom/spell_effects/scapegoat.c` |
 | `SECOND_COIN_TOSS` | `SECOND` | — | — | `src_custom/spell_effects/second_coin_toss.c` |
 | `SECRET_VILLAGE_OF_THE_SPELLCASTERS` | `SECRET` | — | `KAISER_COLOSSEUM` | `src_custom/spell_effects/secret_village_of_the_spellcasters.c` |
 | `SECRETS_OF_DARK_MAGIC` | `SECRETS` | — | `POLYMERIZATION` | `src_custom/spell_effects/secrets_of_dark_magic.c` |
@@ -199,7 +190,6 @@ python3 tools/stub_effect_queue.py --write-list
 | `SOUL_SERVANT` | `SOUL` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/soul_servant.c` |
 | `SPELL_CHRONICLE` | `SPELL` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/spell_chronicle.c` |
 | `SPELL_GEAR` | `SPELL` | — | `ANCIENT_RULES` | `src_custom/spell_effects/spell_gear.c` |
-| `SUIT_OF_SWORD_X` | `SUIT` | — | `BLOCK_ATTACK` | `src_custom/spell_effects/suit_of_sword_x.c` |
 | `SUPREME_KINGS_CASTLE` | `SUPREME` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/supreme_kings_castle.c` |
 | `SURFACE` | `SURFACE` | — | `H_HEATED_HEART` | `src_custom/spell_effects/surface.c` |
 | `THAT_GRASS_LOOKS_GREENER` | `THAT` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/that_grass_looks_greener.c` |
@@ -209,9 +199,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `THE_FANG_OF_CRITIAS` | `THE` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/the_fang_of_critias.c` |
 | `THE_GAZE_OF_TIMAEUS` | `THE` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/the_gaze_of_timaeus.c` |
 | `THE_LAW_OF_THE_NORMAL` | `THE` | — | `THE_FORCEFUL_SENTRY` | `src_custom/spell_effects/the_law_of_the_normal.c` |
-| `THE_SACRED_WATERS_IN_THE_SKY` | `THE` | search | `THE_MELODY_OF_AWAKENING_DRAGON` | `src_custom/spell_effects/the_sacred_waters_in_the_sky.c` |
 | `THE_SHALLOW_GRAVE` | `THE` | — | `THE_FLUTE_OF_SUMMONING_DRAGON` | `src_custom/spell_effects/the_shallow_grave.c` |
-| `TOON_WORLD` | `TOON` | — | — | `src_custom/spell_effects/toon_world.c` |
 | `TRIANGLE_ECSTASY_SPARK` | `TRIANGLE` | — | `TRIANGLE_POWER` | `src_custom/spell_effects/triangle_ecstasy_spark.c` |
 | `TWLIGHT_TWIN_DRAGONS` | `TWLIGHT` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/twlight_twin_dragons.c` |
 | `ULTRA_POLYMERIZATION` | `ULTRA` | — | `MIRACLE_FUSION` | `src_custom/spell_effects/ultra_polymerization.c` |

@@ -1,0 +1,78 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "CHAIN_STRIKE",
+      "card_name": "Chain Strike",
+      "kind": "spell",
+      "archetype": "CHAIN",
+      "path": "src_custom/spell_effects/chain_strike.c",
+      "effect_text": "Activate only as Chain Link 2 or higher; inflict 400 damage to your opponent times the Chain Link number of this card. Y Activate only as Chain Link 2 or higher; inflict 400 damage to your opponent times the Chain Link number of this card. You cannot activate this card if multiple cards/effects with the same name are in that Chain.",
+      "tags": [
+        "burn"
+      ],
+      "pattern": "burn",
+      "draw_count": null,
+      "burn_damage": 400,
+      "clone_const": "CHAIN_ENERGY",
+      "clone_path": "src_custom/spell_effects/chain_energy.c",
+      "clone_score": 1.75
+    },
+    {
+      "card_const": "POT_OF_EXTRAVAGANCE",
+      "card_name": "Pot of Extravagance",
+      "kind": "spell",
+      "archetype": "POT_OF",
+      "path": "src_custom/spell_effects/pot_of_extravagance.c",
+      "effect_text": "At the start of your Main Phase 1: Banish 3 or 6 random face-down cards from your Extra Deck, face-down; draw 1 card for At the start of your Main Phase 1: Banish 3 or 6 random face-down cards from your Extra Deck, face-down; draw 1 card for every 3 cards banished. For the rest of this turn after this card resolves, you cannot draw any cards by card effects.",
+      "tags": [
+        "deck",
+        "draw"
+      ],
+      "pattern": "draw_n",
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "BACKUP_SQUAD",
+      "clone_path": "src_custom/spell_effects/backup_squad.c",
+      "clone_score": 0.73
+    },
+    {
+      "card_const": "LEV_SHADDOLL_FUSION",
+      "card_name": "Lev Shaddoll Fusion",
+      "kind": "spell",
+      "archetype": "LEV",
+      "path": "src_custom/spell_effects/lev_shaddoll_fusion.c",
+      "effect_text": "Send Fusion from Extra. Tribute Fusion; SS Shaddoll Fusion ATK 0. OPT. When this card is activated: Send 1 Fusion Monster from your Extra Deck to the GY. You can Tribute 1 Fusion Monster; Special Summon 1 Shaddoll Fusion Monster with a different Attribute from your Extra Deck (this is treated as a Fusion Summon), but change its ATK to 0. You can only use each effect of Lev Shaddoll Fusion once per turn, also you cannot Special Summon from the Extra Deck the turn you activate either of this card'",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": "tribute_summon",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TRIBUTE_DOLL",
+      "clone_path": "src_custom/spell_effects/tribute_doll.c",
+      "clone_score": 0.73
+    },
+    {
+      "card_const": "PENTACLE_OF_ACE",
+      "card_name": "Pentacle of Ace",
+      "kind": "spell",
+      "archetype": "PENTACLE",
+      "path": "src_custom/spell_effects/pentacle_of_ace.c",
+      "effect_text": "Coin: draw+heal you or opp. Toss a coin. Heads: draw 1 and gain 500 LP. Tails: opponent draws 1 and gains 500 LP.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": null,
+      "clone_path": null,
+      "clone_score": 0.0
+    }
+  ]
+}
