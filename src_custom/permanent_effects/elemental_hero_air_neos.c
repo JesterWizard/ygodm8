@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 
 static u16 AirNeosLpGapBonus(u8 controller)
 {

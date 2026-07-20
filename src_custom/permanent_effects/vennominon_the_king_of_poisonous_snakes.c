@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 #include "expanded_graveyard.h"
 
 #define VENNOMINON_ATK_PER_REPTILE 500
