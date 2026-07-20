@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:13 UTC  
-**Remaining partials:** `601`
+**Last updated:** 2026-07-20 19:17 UTC  
+**Remaining partials:** `613`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 270 |
+| `activated` | 282 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **601** |
+| **total** | **613** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (270)
+## activated (282)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1426,6 +1426,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/alector_sovereign_of_birds.c`
 - L85: until end of turn clear needs EOT unk4 reset hook.
 - L141: hand SS when opp has 2+ same Attribute uses FromHand path.
+
+### `AMAZONESS_BABY_TIGER`
+- path: `src_custom/activated_effects/amazoness_baby_tiger.c`
+- L16: Amazoness-Tiger name + GY ATK boost need continuous hooks. Ceiling: SS from hand only; upgrade: on Amazoness summon trigger.
 
 ### `AMAZONESS_QUEEN`
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1439,6 +1443,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/amazoness_scouts.c`
 - L22: either-player quick timing not wired; allow once via usage on your turn only. Ceiling: tribute self only; upgrade: Amazoness protection flags on face-up Amazoness monsters until EOT.
 - L46: face-up Amazoness cannot be targeted/destroyed by effects this turn — no protection flag hook yet.
+
+### `AMAZONESS_SPY`
+- path: `src_custom/activated_effects/amazoness_spy.c`
+- L34: battle destroy → return Amazoness from GY needs battle hook. Ceiling: SS from hand only; upgrade: reveal + battle recycle.
 
 ### `AMAZONESS_TRAINEE`
 - path: `src_custom/activated_effects/amazoness_trainee.c`
@@ -1477,6 +1485,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/ancient_gear_soldier.c`
 - L12: attack → opp cannot activate S/T until end of Damage Step needs battle lock hook. Ceiling: not ignition-activatable here; upgrade: battle phase Spell/Trap activation gate while this card is attacking.
 
+### `ANCIENT_SACRED_WYVERN`
+- path: `src_custom/activated_effects/ancient_sacred_wyvern.c`
+- L31: continuous LP→ATK + battle-reborn need permanent/battle hooks. Ceiling: OPT refresh tempStage from LP difference/500.
+
+### `ARCANA_FORCE_V_THE_HIEROPHANT`
+- path: `src_custom/activated_effects/arcana_force_v_the_hierophant.c`
+- L86: on-Summon coin + discard summon-lock need summon/FromHand paths. Ceiling: OPT coin → SS 1 Arcana Force from Deck.
+- L153: discard only; opp cannot respond to Arcana Summons needs turn flag hook.
+
 ### `ARCANA_FORCE_XIX_THE_SUN`
 - path: `src_custom/activated_effects/arcana_force_xix_the_sun.c`
 - L81: on-Summon coin (Heads Set coin Spell / Tails wipe S/T) need summon hook. Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours.
@@ -1497,6 +1514,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ARCHLORD_KRISTYA`
 - path: `src_custom/activated_effects/archlord_kristya.c`
 - L322: engine treats level 5+ with no tribute as special-like (Cyber Dragon, etc.).
+
+### `ARMED_DRAGON_LV5`
+- path: `src_custom/activated_effects/armed_dragon_lv5.c`
+- L135: EP send self → SS LV7 needs End Phase hook. Ceiling: OPT discard 1 hand monster → destroy 1 opp monster ATK≤.
 
 ### `ARMITYLE_THE_CHAOS_PHANTASM`
 - path: `src_custom/activated_effects/armityle_the_chaos_phantasm.c`
@@ -1525,6 +1546,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AROMAGE_ROSEMARY`
 - path: `src_custom/activated_effects/aromage_rosemary.c`
 - L125: LP-higher Plant attack → opp monster effects locked + LP-gain gate need permanent/LP hooks. Ceiling: OPT change 1 face-up battle position.
+
+### `AROMALILITH_ROSALINA`
+- path: `src_custom/activated_effects/aromalilith_rosalina.c`
+- L106: discard quick LP + Plant-only SS lock need chain/SS hooks. Ceiling: OPT SS 1 non-Tuner Aroma from Deck in DEF.
 
 ### `AROMASERAPHY_ROSEMARY`
 - path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
@@ -1616,6 +1641,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `CHIMERATECH_MEGAFLEET_DRAGON`
 - path: `src_custom/activated_effects/chimeratech_megafleet_dragon.c`
 - L12: original ATK = 1200 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not ignition-activatable here.
+
+### `CHIMERATECH_RAMPAGE_DRAGON`
+- path: `src_custom/activated_effects/chimeratech_rampage_dragon.c`
+- L86: on-Fusion destroy + multi-attack need fusion/battle hooks. Ceiling: OPT destroy up to 2 S/T on field.
 
 ### `CLEAR_VICE_DRAGON`
 - path: `src_custom/activated_effects/clear_vice_dragon.c`
@@ -1710,6 +1739,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/destiny_hero_dasher.c`
 - L49: battle DEF change + draw-phase GY SS need battle/draw hooks. Ceiling: OPT tribute 1 other → +2 tempStage (~1000 ATK until End Phase).
 
+### `DESTINY_HERO_DENIER`
+- path: `src_custom/activated_effects/destiny_hero_denier.c`
+- L189: GY SS when other D-HERO present needs GY/once-per-duel hooks. Ceiling: OPT put 1 D-HERO from Deck/GY/banished on top of Deck.
+
 ### `DESTINY_HERO_DIAMOND_DUDE`
 - path: `src_custom/activated_effects/destiny_hero_diamond_dude.c`
 - L57: next-turn GY Normal Spell activation needs Main Phase hook.
@@ -1717,6 +1750,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DESTINY_HERO_DISK_COMMANDER`
 - path: `src_custom/activated_effects/destiny_hero_disk_commander.c`
 - L20: SS-from-GY trigger + once per duel. Ceiling: OPT draw 2 stand-in when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE.
+
+### `DESTINY_HERO_DRILLDARK`
+- path: `src_custom/activated_effects/destiny_hero_drilldark.c`
+- L64: on-Summon trigger + piercing need summon/battle hooks. Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK.
 
 ### `DESTINY_HERO_MALICIOUS`
 - path: `src_custom/activated_effects/destiny_hero_malicious.c`
@@ -2068,6 +2105,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/lightsworn_dragonling.c`
 - L134: hand SS when Lightsworn in GY uses FromHand path. Ceiling: field OPT send 1 other Lightsworn from Deck to GY.
 
+### `LORD_OF_THE_RED`
+- path: `src_custom/activated_effects/lord_of_the_red.c`
+- L115: either-turn chain on activation + S/T branch need chain hooks. Ceiling: OPT destroy 1 monster on the field.
+
 ### `LUMINA_LIGHTSWORN_SUMMONER`
 - path: `src_custom/activated_effects/lumina_lightsworn_summoner.c`
 - L236: End Phase mill 3 needs EP phase hook.
@@ -2096,6 +2137,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MAGICAL_SCIENTIST`
 - path: `src_custom/activated_effects/magical_scientist.c`
 - L215: no direct attack + End Phase Extra Deck return need battle/EP hooks. Ceiling: pay 1000 → SS Lv≤6 Fusion from Extra/recipe list.
+
+### `MAGICIANS_ROBE`
+- path: `src_custom/activated_effects/magicians_robe.c`
+- L56: opp-turn quick + GY SS banish-on-leave need phase/GY hooks. Ceiling: discard S/T from hand → SS DM from Deck via FromHand path.
+- L76: opponent's turn gate not wired.
 
 ### `MAGNA_DRAGO`
 - path: `src_custom/activated_effects/magna_drago.c`
@@ -2440,6 +2486,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TIME_MAGIC_HAMMER`
 - path: `src_custom/activated_effects/time_magic_hammer.c`
 - L12: Hermos equip + battle-step dice banish need summon/equip/battle hooks. Ceiling: not field-ignition activatable here.
+
+### `TIMEAUS_THE_UNITED_DRAGON`
+- path: `src_custom/activated_effects/timeaus_the_united_dragon.c`
+- L147: Main Phase Fusion Summon needs fusion UI hook. Ceiling: SS from hand via send cost uses FromHand path.
 
 ### `TORNADO_BIRD`
 - path: `src_custom/activated_effects/tornado_bird.c`

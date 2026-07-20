@@ -1,0 +1,89 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "DESTINY_HERO_DRILLDARK",
+      "card_name": "Destiny HERO - Drilldark",
+      "kind": "activated",
+      "archetype": "DESTINY_HERO",
+      "path": "src_custom/activated_effects/destiny_hero_drilldark.c",
+      "effect_text": "If this card is Normal or Special Summoned: You can Special Summon 1 Destiny HERO monster from your hand with ATK less If this card is Normal or Special Summoned: You can Special Summon 1 Destiny HERO monster from your hand with ATK less than or equal to this card's ATK on the field. You can only use this effect of Destiny HERO - Drilldark once per turn. If this card attacks a Defense Position monster, inflict piercing battle damage to your opponent.",
+      "tags": [
+        "burn",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TURBO_SYNCHRON",
+      "clone_path": "src_custom/activated_effects/turbo_synchron.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "AMAZONESS_SPY",
+      "card_name": "Amazoness Spy",
+      "kind": "activated",
+      "archetype": "AMAZONESS",
+      "path": "src_custom/activated_effects/amazoness_spy.c",
+      "effect_text": "You can reveal 1 other \"Amazoness\" monster in your hand; Special Summon this card from your hand. You can only use this  You can reveal 1 other Amazoness monster in your hand; Special Summon this card from your hand. You can only use this effect of Amazoness Spy once per turn. When this card is destroyed by battle and sent to the GY: You can target 1 Amazoness monster in your GY, except Amazoness Spy; return it to the hand, or shuffle it into the Deck.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_TRAINEE",
+      "clone_path": "src_custom/activated_effects/amazoness_trainee.c",
+      "clone_score": 0.78
+    },
+    {
+      "card_const": "AROMALILITH_ROSALINA",
+      "card_name": "Aromalilith Rosalina",
+      "kind": "activated",
+      "archetype": "AROMALILITH",
+      "path": "src_custom/activated_effects/aromalilith_rosalina.c",
+      "effect_text": "Discard: gain half ATK LP. If Summoned: SS non-Tuner Aroma from Deck (Plant SS only). (Quick Effect): You can discard this card, then target 1 Aroma monster you control; gain LP equal to half its ATK. If this card is Normal or Special Summoned: You can Special Summon 1 non-Tuner Aroma monster from your Deck, also you cannot Special Summon for the rest of this turn, except Plant monsters. You can only use each effect of Aromalilith Rosalina once per turn.",
+      "tags": [
+        "deck",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AZURE_EYES_SILVER_DRAGON",
+      "clone_path": "src_custom/activated_effects/azure_eyes_silver_dragon.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "LORD_OF_THE_RED",
+      "card_name": "Lord of the Red",
+      "kind": "activated",
+      "archetype": "LORD",
+      "path": "src_custom/activated_effects/lord_of_the_red.c",
+      "effect_text": "Once per turn, when a card/effect activates: destroy 1 monster or 1 S/T on the field. You can Ritual Summon this card with Red-Eyes Transmigration. Once per turn, during either player's turn, when a card or effect is activated, except Lord of the Red: You can target 1 monster on the field; destroy it. Once per turn, during either player's turn, when a card or effect is activated, except Lord of the Red: You can target 1 Spell/Trap Card on the field; destroy it.",
+      "tags": [
+        "destroy",
+        "monster",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_ENGINEER",
+      "clone_path": "src_custom/activated_effects/ancient_gear_engineer.c",
+      "clone_score": 0.6
+    }
+  ]
+}

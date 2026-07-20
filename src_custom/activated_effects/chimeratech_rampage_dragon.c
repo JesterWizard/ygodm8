@@ -4,62 +4,109 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsSpellTrapZone(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  u8 typeGroup;
+
+  if (fixedRow != OPPONENT_BACKROW && fixedRow != PLAYER_BACKROW)
+    return FALSE;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  typeGroup = GetTypeGroup(zone->id);
+  return typeGroup == TYPE_GROUP_SPELL || typeGroup == TYPE_GROUP_TRAP;
+}
+
+static u8 FieldHasSpellTrap(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsSpellTrapZone(row, col))
+        return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 GraveyardDuelistForBackrow(u8 fixedRow)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (fixedRow == OPPONENT_BACKROW || fixedRow == OPPONENT_MONSTER_ROW)
+    return INACTIVE_DUELIST;
+
+  return ACTIVE_DUELIST;
 }
 
-static void CancelTargeting(void)
+static void DestroyUpToTwoSpellTraps(void)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u8 destroyed = 0;
+  u8 row;
+  u8 col;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW && destroyed < 2; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW && destroyed < 2; col++) {
+      struct DuelCard *zone;
+
+      if (!IsSpellTrapZone(row, col))
+        continue;
+
+      zone = gFixedZones[row][col];
+      if (zone == NULL)
+        continue;
+
+      if (Duel_DestroyZone(zone, GraveyardDuelistForBackrow(row), FALSE)
+          == DUEL_ACTION_DUEL_OVER)
+        return;
+
+      destroyed++;
+    }
+  }
 }
 
 unsigned char CanActivateCHIMERATECH_RAMPAGE_DRAGON(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != CHIMERATECH_RAMPAGE_DRAGON)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != CHIMERATECH_RAMPAGE_DRAGON)
+    return FALSE;
+
+  /* ponytail: on-Fusion destroy + multi-attack need fusion/battle hooks.
+   * Ceiling: OPT destroy up to 2 S/T on field. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return FieldHasSpellTrap();
 }
 
 void ActivateCHIMERATECH_RAMPAGE_DRAGONEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
   Duel_ShowEffectTextTyped(CHIMERATECH_RAMPAGE_DRAGON, 2);
 
+  if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  DestroyUpToTwoSpellTraps();
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
-
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

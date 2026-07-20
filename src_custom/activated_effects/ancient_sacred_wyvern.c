@@ -4,62 +4,64 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void RefreshFieldMonsterStatOverlays(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return DUEL_OPPONENT;
 }
 
 unsigned char CanActivateANCIENT_SACRED_WYVERN(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != ANCIENT_SACRED_WYVERN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != ANCIENT_SACRED_WYVERN)
+    return FALSE;
+
+  /* ponytail: continuous LP→ATK + battle-reborn need permanent/battle hooks.
+   * Ceiling: OPT refresh tempStage from LP difference/500. */
+  return CanUseMonsterEffect(zone);
 }
 
 void ActivateANCIENT_SACRED_WYVERNEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 me;
+  u8 opp;
+  s32 diff;
+  s32 stages;
+
   Duel_ShowEffectTextTyped(ANCIENT_SACRED_WYVERN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  me = FixedDuelistForActive();
+  opp = me == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  diff = (s32)gDuelLifePoints[me] - (s32)gDuelLifePoints[opp];
+  stages = diff / 500;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (stages > 126)
+    stages = 126;
+  else if (stages < -126)
+    stages = -126;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  self->tempStage = (s8)stages;
+
+  MarkMonsterEffectUsed(self);
+  RefreshFieldMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

@@ -1,0 +1,88 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "TIMEAUS_THE_UNITED_DRAGON",
+      "card_name": "Timaeus the United Dragon",
+      "kind": "activated",
+      "archetype": "TIMEAUS",
+      "path": "src_custom/activated_effects/timeaus_the_united_dragon.c",
+      "effect_text": "Send mat to SS. Main: Fusion with Spellcaster. You can send 1 Spellcaster monster, or 1 Spell/Trap that mentions Dark Magician, from your hand or face-up field to the GY; Special Summon this card from your hand. During your Main Phase: You can Fusion Summon 1 Fusion Monster from your Extra Deck, using monsters from your hand or field as material, including a Spellcaster monster. You can only use each effect of Timaeus the United Dragon once per turn.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_BEAST",
+      "clone_path": "src_custom/activated_effects/ancient_gear_beast.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "ANCIENT_SACRED_WYVERN",
+      "card_name": "Ancient Sacred Wyvern",
+      "kind": "activated",
+      "archetype": "ANCIENT",
+      "path": "src_custom/activated_effects/ancient_sacred_wyvern.c",
+      "effect_text": "1 LIGHT Tuner + 1 or more non-Tuner monsters\nWhile your LP is higher than your opponent's, this card gains ATK equal to  1 LIGHT Tuner + 1 or more non-Tuner monsters While your LP is higher than your opponent's, this card gains ATK equal to the difference. While your LP is lower than your opponent's, this card loses ATK equal to the difference. When this card is destroyed by battle and sent to the Graveyard: You can pay 1000 LP; Special Summon this card.",
+      "tags": [
+        "gy",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR",
+      "clone_path": "src_custom/activated_effects/ancient_gear.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "MAGICIANS_ROBE",
+      "card_name": "Magician's Robe",
+      "kind": "activated",
+      "archetype": "MAGICIANS",
+      "path": "src_custom/activated_effects/magicians_robe.c",
+      "effect_text": "Opp turn: discard S/T; SS DM from Deck. GY: SS self, banish later. During your opponent's turn (Quick Effect): You can discard 1 Spell/Trap; Special Summon 1 Dark Magician from your Deck. During your opponent's turn, if you activate a Spell/Trap Card or effect while this card is in your GY (except during the Damage Step): You can Special Summon this card, but banish it when it leaves the field. You can only use each effect of Magician's Robe once per turn.",
+      "tags": [
+        "deck",
+        "gy",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_FORTRESS_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_fortress_dragon.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "DESTINY_HERO_DENIER",
+      "card_name": "Destiny HERO - Denier",
+      "kind": "activated",
+      "archetype": "DESTINY_HERO",
+      "path": "src_custom/activated_effects/destiny_hero_denier.c",
+      "effect_text": "Destiny HERO - Denier If this card is Normal or Special Summoned: You can take 1 of your Destiny HERO monsters from your Deck, GY, or that is banished, and place it on top of your Deck. You can only use this effect of Destiny HERO - Denier once per turn. If you have a Destiny HERO monster on your field or in your GY, other than Destiny HERO - Denier: You can Special Summon this card from your GY. You can only use this effect of Destiny HERO - Denier once per Duel.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.8
+    }
+  ]
+}

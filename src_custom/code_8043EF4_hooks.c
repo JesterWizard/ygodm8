@@ -241,6 +241,8 @@ u8 TryActivateHARPIE_QUEENFromHand(u8);
 u8 TryActivateCHARM_OF_SHABTIFromHand(u8);
 u8 TryActivateDESTINY_HERO_BLADE_MASTERFromHand(u8);
 u8 TrySpecialSummonAncientGearFromHand(u8);
+u8 TrySpecialSummonAmazonessBabyTigerFromHand(u8);
+u8 TrySpecialSummonAmazonessSpyFromHand(u8);
 u8 TrySpecialSummonTheTrickyFromHand(u8);
 u8 TrySpecialSummonHamonLordOfStrikingThunderFromHand(u8);
 u8 TrySpecialSummonUriaLordOfSearingFlamesFromHand(u8);
@@ -249,12 +251,16 @@ u8 TrySpecialSummonTurboBoosterFromHand(u8);
 u8 TrySpecialSummonGreenBaboonFromHand(u8);
 u8 TrySpecialSummonBeastMachineKingBarbarosUrFromHand(u8);
 u8 TryActivateEvilHeroAdustedGoldFromHand(u8);
+u8 TryActivateMagiciansRobeFromHand(u8);
 u8 TryActivateGravekeepersWatcherFromHand(u8);
 u8 TrySpecialSummonReptilianneVaskiiFromHand(u8);
 u8 TrySpecialSummonMontageDragonFromHand(u8);
 u8 TrySpecialSummonArcanaForceXixTheSunFromHand(u8);
+u8 TryActivateArcanaForceVTheHierophantFromHand(u8);
 u8 TrySpecialSummonAromageLaurelFromHand(u8);
+u8 TryActivateAromalilithRosalinaFromHand(u8);
 u8 TrySpecialSummonTestTigerFromHand(u8);
+u8 TrySpecialSummonTimeausTheUnitedDragonFromHand(u8);
 u8 TrySpecialSummonOceanDragonLordNeoDaedalusFromHand(u8);
 u8 TrySpecialSummonTheAgentOfEntropyUranusFromHand(u8);
 u8 TrySpecialSummonLightrayDaedalusFromHand(u8);
@@ -503,8 +509,23 @@ void sub_80441D0__Replacement(void)
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
+      } else if (handCardId == MAGICIANS_ROBE
+          && TryActivateMagiciansRobeFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
       } else if (handCardId == ANCIENT_GEAR
           && TrySpecialSummonAncientGearFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == AMAZONESS_BABY_TIGER
+          && TrySpecialSummonAmazonessBabyTigerFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == AMAZONESS_SPY
+          && TrySpecialSummonAmazonessSpyFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
@@ -583,13 +604,28 @@ void sub_80441D0__Replacement(void)
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
+      } else if (handCardId == ARCANA_FORCE_V_THE_HIEROPHANT
+          && TryActivateArcanaForceVTheHierophantFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
       } else if (handCardId == AROMAGE_LAUREL
           && TrySpecialSummonAromageLaurelFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
+      } else if (handCardId == AROMALILITH_ROSALINA
+          && TryActivateAromalilithRosalinaFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
       } else if (handCardId == TEST_TIGER
           && TrySpecialSummonTestTigerFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == TIMEAUS_THE_UNITED_DRAGON
+          && TrySpecialSummonTimeausTheUnitedDragonFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
