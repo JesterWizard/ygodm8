@@ -1,0 +1,83 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ATTACK_PHEROMONES",
+      "card_name": "Attack Pheromones",
+      "kind": "spell",
+      "archetype": "ATTACK",
+      "path": "src_custom/spell_effects/attack_pheromones.c",
+      "effect_text": "If a monster you control attacks a Defense Position monster, change that monster to face-up Attack If a monster you control attacks a Defense Position monster, change that monster to face-up Attack Position at the end of the Damage Step if your attacking monster is Reptile-Type.",
+      "tags": [
+        "faceup",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BURDEN_OF_THE_MIGHTY",
+      "clone_path": "src_custom/spell_effects/burden_of_the_mighty.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "ANCIENT_GEAR_FIST",
+      "card_name": "Ancient Gear Fist",
+      "kind": "spell",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/spell_effects/ancient_gear_fist.c",
+      "effect_text": "Equip only to an Ancient Gear monster. At the end of the Damage Step, if the equipped monster battled a monster and is Equip only to an Ancient Gear monster. At the end of the Damage Step, if the equipped monster battled a monster and is still on the field: Destroy the monster it battled.",
+      "tags": [
+        "destroy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_WORKSHOP",
+      "clone_path": "src_custom/spell_effects/ancient_gear_workshop.c",
+      "clone_score": 0.85
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_BATTLE_HALBERD",
+      "card_name": "Gladiator Beast's Battle Halberd",
+      "kind": "spell",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/spell_effects/gladiator_beast_battle_halberd.c",
+      "effect_text": "On attack pop S/T; recycle on tag. Equip only to a Gladiator Beast monster. When it attacks, destroy 1 Spell or Trap Card at the end of the Damage Step. When the equipped monster is returned from your side of the field to the Deck and this card is sent to the Graveyard, return this card to your hand.",
+      "tags": [
+        "deck",
+        "destroy",
+        "gy",
+        "hand",
+        "monster",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_FUSION",
+      "clone_path": "src_custom/spell_effects/dark_fusion.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "MAGICIANS_RIGHT_HAND",
+      "card_name": "Magician's Right Hand",
+      "kind": "spell",
+      "archetype": "MAGICIANS",
+      "path": "src_custom/spell_effects/magicians_right_hand.c",
+      "effect_text": "Negate the effect of your opponent's first Spell Card or effect that resolves each turn while you control a Spellcaster Negate the effect of your opponent's first Spell Card or effect that resolves each turn while you control a Spellcaster monster, and if you do, or if it did not have an effect, destroy that card.",
+      "tags": [
+        "destroy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SWAMP",
+      "clone_path": "src_custom/spell_effects/venom_swamp.c",
+      "clone_score": 0.67
+    }
+  ]
+}

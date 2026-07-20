@@ -1,0 +1,82 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "FACTORY_OF_ONE_HUNDRED_MACHINES",
+      "card_name": "Factory of 100 Machines",
+      "kind": "spell",
+      "archetype": "FACTORY",
+      "path": "src_custom/spell_effects/factory_of_one_hundred_machines.c",
+      "effect_text": "Remove from play all Morphtronic monsters from your Graveyard. Target face-up Machine-Type monster you control gains 2 Remove from play all Morphtronic monsters from your Graveyard. Target face-up Machine-Type monster you control gains 200 ATK for each card removed, until the End Phase.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BURDEN_OF_THE_MIGHTY",
+      "clone_path": "src_custom/spell_effects/burden_of_the_mighty.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "GLADIATOR_BEASTS_BATTLE_MANICA",
+      "card_name": "Gladiator Beast's Battle Manica",
+      "kind": "spell",
+      "archetype": "GLADIATOR_BEASTS_BATTLE",
+      "path": "src_custom/spell_effects/gladiator_beasts_battle_manica.c",
+      "effect_text": "Battle immune equip; recycle. Equip only to a Gladiator Beast monster. It cannot be destroyed by battle (Damage calculation is applied normally). When the equipped monster is returned from your side of the field to the Deck and this card is sent to the Graveyard, return this card to your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_FUSION",
+      "clone_path": "src_custom/spell_effects/dark_fusion.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "DOUBLE_SPELL",
+      "card_name": "Double Spell",
+      "kind": "spell",
+      "archetype": "DOUBLE",
+      "path": "src_custom/spell_effects/double_spell.c",
+      "effect_text": "Discard 1 Spell, then target 1 Spell in opponent GY and use its effect. Discard 1 Spell Card, then target 1 Spell Card in your opponent's Graveyard; place that target in the appropriate Zone on your side of the field, and as this card's effect resolution, follow its card text as if you had used it yourself.",
+      "tags": [
+        "gy",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DOUBLE_CYCLONE",
+      "clone_path": "src_custom/spell_effects/double_cyclone.c",
+      "clone_score": 0.35
+    },
+    {
+      "card_const": "MASK_OF_DISPEL",
+      "card_name": "Mask of Dispel",
+      "kind": "spell",
+      "archetype": "MASK_OF",
+      "path": "src_custom/spell_effects/mask_of_dispel.c",
+      "effect_text": "Select 1 face-up Spell Card on the field. The controller of the Spell Card takes 500 points of damage during each of you Select 1 face-up Spell Card on the field. The controller of the Spell Card takes 500 points of damage during each of your Standby Phases. When the selected card is removed from the field, destroy this card.",
+      "tags": [
+        "destroy",
+        "faceup"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SWAMP",
+      "clone_path": "src_custom/spell_effects/venom_swamp.c",
+      "clone_score": 0.67
+    }
+  ]
+}

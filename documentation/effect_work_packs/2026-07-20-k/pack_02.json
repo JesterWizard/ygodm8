@@ -1,0 +1,84 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "PAINFUL_CHOICE",
+      "card_name": "Painful Choice",
+      "kind": "spell",
+      "archetype": "PAINFUL",
+      "path": "src_custom/spell_effects/painful_choice.c",
+      "effect_text": "Select 5 cards from your Deck and show them to your opponent. Your opponent selects 1 card among them. Add t Select 5 cards from your Deck and show them to your opponent. Your opponent selects 1 card among them. Add that card to your hand and discard the remaining cards to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_FUSION",
+      "clone_path": "src_custom/spell_effects/dark_fusion.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "INFECTED_MAIL",
+      "card_name": "Infected Mail",
+      "kind": "spell",
+      "archetype": "INFECTED",
+      "path": "src_custom/spell_effects/infected_mail.c",
+      "effect_text": "Once per turn: You can target 1 Level 4 or lower monster you control; it can attack your opponent directly this turn. Se Once per turn: You can target 1 Level 4 or lower monster you control; it can attack your opponent directly this turn. Send it to the Graveyard at the end of the Battle Phase.",
+      "tags": [
+        "gy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DRAGONS_MIRROR",
+      "clone_path": "src_custom/spell_effects/dragons_mirror.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "AMAZONESS_HEIRLOOM",
+      "card_name": "Amazoness Heirloom",
+      "kind": "spell",
+      "archetype": "AMAZONESS",
+      "path": "src_custom/spell_effects/amazoness_heirloom.c",
+      "effect_text": "Equip only to an \"Amazoness\" monster. Once per turn, that monster cannot be destroyed by battle. After damage calculatio Equip only to an Amazoness monster. Once per turn, that monster cannot be destroyed by battle. After damage calculation, if the equipped monster attacks a monster: Destroy the attacked monster.",
+      "tags": [
+        "destroy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_FIGHTING_SPIRIT",
+      "clone_path": "src_custom/spell_effects/amazoness_fighting_spirit.c",
+      "clone_score": 0.85
+    },
+    {
+      "card_const": "DE_SYNCHRO",
+      "card_name": "De-Synchro",
+      "kind": "spell",
+      "archetype": "DE",
+      "path": "src_custom/spell_effects/de_synchro.c",
+      "effect_text": "Target 1 Synchro Monster on the field; return that target to the Extra Deck, then, if all of the monsters that were used Target 1 Synchro Monster on the field; return that target to the Extra Deck, then, if all of the monsters that were used for the Synchro Summon of that monster are in your GY, you can Special Summon all of them.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DRAGONS_MIRROR",
+      "clone_path": "src_custom/spell_effects/dragons_mirror.c",
+      "clone_score": 0.6
+    }
+  ]
+}

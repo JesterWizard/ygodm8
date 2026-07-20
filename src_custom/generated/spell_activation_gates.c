@@ -17,9 +17,11 @@ struct SpellActivationGateEntry {
 };
 
 extern u8 CanActivateACE_OF_SWORD(void);
+extern u8 CanActivateAMAZONESS_HEIRLOOM(void);
 extern u8 CanActivateAMAZONESS_SPELLCASTER(void);
 extern u8 CanActivateANCIENT_GEAR_DRILL(void);
 extern u8 CanActivateANCIENT_GEAR_EXPLOSIVE(void);
+extern u8 CanActivateANCIENT_GEAR_FIST(void);
 extern u8 CanActivateANCIENT_GEAR_TANK(void);
 extern u8 CanActivateAQUA_JET(void);
 extern u8 CanActivateAutonomousActionUnit(void);
@@ -38,26 +40,37 @@ extern u8 CanActivateDARK_BURNING_MAGIC(void);
 extern u8 CanActivateDedicationThroughLightAndDarkness(void);
 extern u8 CanActivateDelinquentDuo(void);
 extern u8 CanActivateDESTINY_DRAW(void);
+extern u8 CanActivateDE_SYNCHRO(void);
 extern u8 CanActivateDIMENSION_FUSION(void);
 extern u8 CanActivateDOUBLE_CYCLONE(void);
+extern u8 CanActivateDOUBLE_SPELL(void);
+extern u8 CanActivateDRAGON_SHRINE(void);
 extern u8 CanActivateEEmergencyCall(void);
+extern u8 CanActivateFACTORY_OF_ONE_HUNDRED_MACHINES(void);
 extern u8 CanActivateFinalCountdown(void);
 extern u8 CanActivateFORBIDDEN_CHALICE(void);
 extern u8 CanActivateFORBIDDEN_DRESS(void);
 extern u8 CanActivateFORBIDDEN_LANCE(void);
 extern u8 CanActivateFutureFusion(void);
+extern u8 CanActivateGLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD(void);
 extern u8 CanActivateGLADIATOR_BEASTS_BATTLE_GLADIUS(void);
+extern u8 CanActivateGLADIATOR_BEASTS_BATTLE_MANICA(void);
+extern u8 CanActivateGLADIATOR_BEAST_BATTLE_HALBERD(void);
 extern u8 CanActivateGRAND_CONVERGENCE(void);
 extern u8 CanActivateGROUND_COLLAPSE(void);
 extern u8 CanActivateGuardianTreasure(void);
 extern u8 CanActivateILLUSION_MAGIC(void);
+extern u8 CanActivateINFERNO_FIRE_BLAST(void);
 extern u8 CanActivateINSECT_IMITATION(void);
 extern u8 CanActivateKnightsTitle(void);
 extern u8 CanActivateLEVEL_TUNING(void);
 extern u8 CanActivateLIGHTSWORN_SABRE(void);
 extern u8 CanActivateMAGICAL_DIMENSION(void);
+extern u8 CanActivateMARCH_OF_THE_DARK_BRIGADE(void);
+extern u8 CanActivateMASK_OF_DISPEL(void);
 extern u8 CanActivateMETAMORPHOSIS(void);
 extern u8 CanActivateMeteorOfDestruction(void);
+extern u8 CanActivateMOLTING_ESCAPE(void);
 extern u8 CanActivateMONSTER_GATE(void);
 extern u8 CanActivateMonsterReborn(void);
 extern u8 CanActivateMORAY_OF_GREED(void);
@@ -65,8 +78,11 @@ extern u8 CanActivateMORPHTRONIC_ACCELERATOR(void);
 extern u8 CanActivateMORPHTRONIC_CORD(void);
 extern u8 CanActivateMORPHTRONIC_RUSTY_ENGINE(void);
 extern u8 CanActivateMYSTIK_WOK(void);
+extern u8 CanActivateNEUTRON_BLAST(void);
 extern u8 CanActivateNEX(void);
 extern u8 CanActivateOIL(void);
+extern u8 CanActivateOVER_DESTINY(void);
+extern u8 CanActivatePAINFUL_CHOICE(void);
 extern u8 CanActivatePHOTON_GENERATOR_UNIT(void);
 extern u8 CanActivatePrematureBurial(void);
 extern u8 CanActivateREPTILANNE_RAGE(void);
@@ -83,13 +99,17 @@ extern u8 CanActivateTheForcefulSentry(void);
 extern u8 CanActivateTHE_SHALLOW_GRAVE(void);
 extern u8 CanActivateTradeIn(void);
 extern u8 CanActivateTWISTER(void);
+extern u8 CanActivateUNSTABLE_EVOLUTION(void);
+extern u8 CanActivateVENOM_SHOT(void);
 extern u8 CanActivateVIPERS_REBIRTH(void);
 
 static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute__((section(".text"))) = {
   { ACE_OF_SWORD, CanActivateACE_OF_SWORD, TRUE },
+  { AMAZONESS_HEIRLOOM, CanActivateAMAZONESS_HEIRLOOM, TRUE },
   { AMAZONESS_SPELLCASTER, CanActivateAMAZONESS_SPELLCASTER, TRUE },
   { ANCIENT_GEAR_DRILL, CanActivateANCIENT_GEAR_DRILL, TRUE },
   { ANCIENT_GEAR_EXPLOSIVE, CanActivateANCIENT_GEAR_EXPLOSIVE, TRUE },
+  { ANCIENT_GEAR_FIST, CanActivateANCIENT_GEAR_FIST, TRUE },
   { ANCIENT_GEAR_TANK, CanActivateANCIENT_GEAR_TANK, TRUE },
   { AQUA_JET, CanActivateAQUA_JET, TRUE },
   { AUTONOMOUS_ACTION_UNIT, CanActivateAutonomousActionUnit, TRUE },
@@ -108,26 +128,37 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { DEDICATION_THROUGH_LIGHT_AND_DARKNESS, CanActivateDedicationThroughLightAndDarkness, TRUE },
   { DELINQUENT_DUO, CanActivateDelinquentDuo, TRUE },
   { DESTINY_DRAW, CanActivateDESTINY_DRAW, TRUE },
+  { DE_SYNCHRO, CanActivateDE_SYNCHRO, TRUE },
   { DIMENSION_FUSION, CanActivateDIMENSION_FUSION, TRUE },
   { DOUBLE_CYCLONE, CanActivateDOUBLE_CYCLONE, TRUE },
+  { DOUBLE_SPELL, CanActivateDOUBLE_SPELL, TRUE },
+  { DRAGON_SHRINE, CanActivateDRAGON_SHRINE, TRUE },
   { E_EMERGENCY_CALL, CanActivateEEmergencyCall, TRUE },
+  { FACTORY_OF_ONE_HUNDRED_MACHINES, CanActivateFACTORY_OF_ONE_HUNDRED_MACHINES, TRUE },
   { FINAL_COUNTDOWN, CanActivateFinalCountdown, TRUE },
   { FORBIDDEN_CHALICE, CanActivateFORBIDDEN_CHALICE, TRUE },
   { FORBIDDEN_DRESS, CanActivateFORBIDDEN_DRESS, TRUE },
   { FORBIDDEN_LANCE, CanActivateFORBIDDEN_LANCE, TRUE },
   { FUTURE_FUSION, CanActivateFutureFusion, TRUE },
+  { GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD, CanActivateGLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD, TRUE },
   { GLADIATOR_BEASTS_BATTLE_GLADIUS, CanActivateGLADIATOR_BEASTS_BATTLE_GLADIUS, TRUE },
+  { GLADIATOR_BEASTS_BATTLE_MANICA, CanActivateGLADIATOR_BEASTS_BATTLE_MANICA, TRUE },
+  { GLADIATOR_BEAST_BATTLE_HALBERD, CanActivateGLADIATOR_BEAST_BATTLE_HALBERD, TRUE },
   { GRAND_CONVERGENCE, CanActivateGRAND_CONVERGENCE, TRUE },
   { GROUND_COLLAPSE, CanActivateGROUND_COLLAPSE, TRUE },
   { GUARDIAN_TREASURE, CanActivateGuardianTreasure, FALSE },
   { ILLUSION_MAGIC, CanActivateILLUSION_MAGIC, TRUE },
+  { INFERNO_FIRE_BLAST, CanActivateINFERNO_FIRE_BLAST, TRUE },
   { INSECT_IMITATION, CanActivateINSECT_IMITATION, TRUE },
   { KNIGHTS_TITLE, CanActivateKnightsTitle, TRUE },
   { LEVEL_TUNING, CanActivateLEVEL_TUNING, TRUE },
   { LIGHTSWORN_SABRE, CanActivateLIGHTSWORN_SABRE, TRUE },
   { MAGICAL_DIMENSION, CanActivateMAGICAL_DIMENSION, TRUE },
+  { MARCH_OF_THE_DARK_BRIGADE, CanActivateMARCH_OF_THE_DARK_BRIGADE, TRUE },
+  { MASK_OF_DISPEL, CanActivateMASK_OF_DISPEL, TRUE },
   { METAMORPHOSIS, CanActivateMETAMORPHOSIS, TRUE },
   { METEOR_OF_DESTRUCTION, CanActivateMeteorOfDestruction, TRUE },
+  { MOLTING_ESCAPE, CanActivateMOLTING_ESCAPE, TRUE },
   { MONSTER_GATE, CanActivateMONSTER_GATE, TRUE },
   { MONSTER_REBORN, CanActivateMonsterReborn, TRUE },
   { MORAY_OF_GREED, CanActivateMORAY_OF_GREED, TRUE },
@@ -135,8 +166,11 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { MORPHTRONIC_CORD, CanActivateMORPHTRONIC_CORD, TRUE },
   { MORPHTRONIC_RUSTY_ENGINE, CanActivateMORPHTRONIC_RUSTY_ENGINE, TRUE },
   { MYSTIK_WOK, CanActivateMYSTIK_WOK, TRUE },
+  { NEUTRON_BLAST, CanActivateNEUTRON_BLAST, TRUE },
   { NEX, CanActivateNEX, TRUE },
   { OIL, CanActivateOIL, TRUE },
+  { OVER_DESTINY, CanActivateOVER_DESTINY, TRUE },
+  { PAINFUL_CHOICE, CanActivatePAINFUL_CHOICE, TRUE },
   { PHOTON_GENERATOR_UNIT, CanActivatePHOTON_GENERATOR_UNIT, TRUE },
   { PREMATURE_BURIAL, CanActivatePrematureBurial, TRUE },
   { REPTILANNE_RAGE, CanActivateREPTILANNE_RAGE, TRUE },
@@ -153,6 +187,8 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { THE_SHALLOW_GRAVE, CanActivateTHE_SHALLOW_GRAVE, TRUE },
   { TRADE_IN, CanActivateTradeIn, TRUE },
   { TWISTER, CanActivateTWISTER, TRUE },
+  { UNSTABLE_EVOLUTION, CanActivateUNSTABLE_EVOLUTION, TRUE },
+  { VENOM_SHOT, CanActivateVENOM_SHOT, TRUE },
   { VIPERS_REBIRTH, CanActivateVIPERS_REBIRTH, TRUE },
 };
 

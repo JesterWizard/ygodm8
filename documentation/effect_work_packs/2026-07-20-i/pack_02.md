@@ -1,0 +1,23 @@
+# Effect work pack 02 (4 cards)
+
+Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher — serialize those. Do not leave TODO bodies. One make at the end of the whole batch.
+
+## SECRET_VILLAGE_OF_THE_SPELLCASTERS (spell)
+- file: `src_custom/spell_effects/secret_village_of_the_spellcasters.c`
+- clone: `src_custom/spell_effects/amazoness_fighting_spirit.c` (AMAZONESS_FIGHTING_SPIRIT)
+- text: If only you control a Spellcaster monster, your opponent cannot activate Spell Cards. If you control no Spellcaster mons If only you control a Spellcaster monster, your opponent cannot activate Spell Cards. If you control no Spellcaster monsters, you cannot activate Spell Cards.
+
+## GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD (spell)
+- file: `src_custom/spell_effects/gladiator_beasts_battle_archfiend_shield.c`
+- clone: `src_custom/spell_effects/dark_fusion.c` (DARK_FUSION)
+- text: Destruction substitute; recycle. Equip only to a Gladiator Beast monster. If the equipped monster would be destroyed, destroy this card instead. When this card is sent to your Graveyard because the equipped monster you controlled was shuffled into your Deck: Return this card to your hand.
+
+## REALM_OF_LIGHT (spell)
+- file: `src_custom/spell_effects/realm_of_light.c`
+- clone: `src_custom/spell_effects/dragons_mirror.c` (DRAGONS_MIRROR)
+- text: Shine boosts LS; spend to protect. Each time a card(s) is sent from your Deck to the Graveyard, place 1 Shine Counter on this card. All Lightsworn monsters gain 100 ATK for each Shine Counter on this card. If this card would be destroyed by a card effect, remove 2 Shine Counters from this card instead.
+
+## OVER_DESTINY (spell)
+- file: `src_custom/spell_effects/over_destiny.c`
+- clone: `src_custom/spell_effects/dragons_mirror.c` (DRAGONS_MIRROR)
+- text: Target 1 Destiny HERO monster in your GY; Special Summon 1 Destiny HERO monster from your Deck whose Level i Target 1 Destiny HERO monster in your GY; Special Summon 1 Destiny HERO monster from your Deck whose Level is less than or equal to half of that target's Level, but destroy it during the End Phase of this turn.

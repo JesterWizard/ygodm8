@@ -1,0 +1,80 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MAGICIANS_LEFT_HAND",
+      "card_name": "Magician's Left Hand",
+      "kind": "spell",
+      "archetype": "MAGICIANS",
+      "path": "src_custom/spell_effects/magicians_left_hand.c",
+      "effect_text": "Negate the effect of your opponent's first Trap Card or effect that resolves each turn while you control a Spellcaster m Negate the effect of your opponent's first Trap Card or effect that resolves each turn while you control a Spellcaster monster, and if you do, destroy that card.",
+      "tags": [
+        "destroy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "VENOM_SWAMP",
+      "clone_path": "src_custom/spell_effects/venom_swamp.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "UNSTABLE_EVOLUTION",
+      "card_name": "Unstable Evolution",
+      "kind": "spell",
+      "archetype": "UNSTABLE",
+      "path": "src_custom/spell_effects/unstable_evolution.c",
+      "effect_text": "While your LP is lower than your opponent's, the equipped monster's original ATK becomes 2400. While your LP is higher,  While your LP is lower than your opponent's, the equipped monster's original ATK becomes 2400. While your LP is higher, the equipped monster's original ATK becomes 1000.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_FIGHTING_SPIRIT",
+      "clone_path": "src_custom/spell_effects/amazoness_fighting_spirit.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "DARK_CALLING",
+      "card_name": "Dark Calling",
+      "kind": "spell",
+      "archetype": "DARK",
+      "path": "src_custom/spell_effects/dark_calling.c",
+      "effect_text": "FS with Dark Fusion materials banished from hand/GY. Treated as Dark Fusion. Fusion Summon 1 Fusion Monster from your Extra Deck, that must be Special Summoned with Dark Fusion, by banishing the Fusion Materials listed on it from your hand and/or GY. (This is treated as a Fusion Summon with Dark Fusion.)",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_FUSION",
+      "clone_path": "src_custom/spell_effects/dark_fusion.c",
+      "clone_score": 0.95
+    },
+    {
+      "card_const": "NEUTRON_BLAST",
+      "card_name": "Neutron Blast",
+      "kind": "spell",
+      "archetype": "NEUTRON",
+      "path": "src_custom/spell_effects/neutron_blast.c",
+      "effect_text": "BEUD attacks 2nd/3rd; opp cannot activate cards/effects when it attacks. Target 1 Fusion Summoned Blue-Eyes Ultimate Dragon you control; this turn, it can make a second and third attack during each Battle Phase, also when it attacks, your opponent's cards and effects cannot be activated until the end of the Damage Step.",
+      "tags": [
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "H_HEATED_HEART",
+      "clone_path": "src_custom/spell_effects/h_heated_heart.c",
+      "clone_score": 0.25
+    }
+  ]
+}

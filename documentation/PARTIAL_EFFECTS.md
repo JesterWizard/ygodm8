@@ -8,30 +8,41 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 15:18 UTC  
-**Remaining partials:** `130`
+**Last updated:** 2026-07-20 15:29 UTC  
+**Remaining partials:** `166`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 66 |
+| `spell` | 102 |
 | `trap` | 9 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **130** |
+| **total** | **166** |
 
-## spell (66)
+## spell (102)
 
 ### `AMAZONESS_FIGHTING_SPIRIT`
 - path: `src_custom/spell_effects/amazoness_fighting_spirit.c`
 - L14: Amazoness vs higher-ATK +1000 during damage calculation only needs a battle_effects damage-calc hook (like skyscraper.c) outside this file. Ceiling: face-up continuous only; upgrade: ApplyAmazonessFightingSpiritBattleAtkBoost → if face-up AMAZONESS_FIGHTING_SPIRIT on controller's field, attacker passes Duel_IsAmazonessCard, and defender ATK > attacker ATK, then attacker ATK += 1000.
 
+### `AMAZONESS_HEIRLOOM`
+- path: `src_custom/spell_effects/amazoness_heirloom.c`
+- L54: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add AMAZONESS_HEIRLOOM to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
+- L59: once-per-turn battle-destroy protection needs CanMonsterBeDestroyedByBattle / Duel_ApplyBattleDestroyProtection to check DynamicEquipTargetsMonsterWithSpell (zone, AMAZONESS_HEIRLOOM) + OPT bit. Ceiling: equip-only; upgrade: battle-protect flag cleared EOT / after one save.
+- L64: after damage calc, if equipped attacks a monster → destroy defender needs a battle_effects post-damage hook outside this file. Ceiling: equip-only; upgrade: after damage calc → if DynamicEquipTargetsMonsterWithSpell(attacker, AMAZONESS_HEIRLOOM) then Duel_DestroyZone(defender).
+
 ### `ANCIENT_GEAR_DRILL`
 - path: `src_custom/spell_effects/ancient_gear_drill.c`
 - L196: no per-card same-turn activation lock. Ceiling: Set Spell can still be activated this turn. Upgrade: turn-scoped cardId/zone lock checked at Spell activation.
+
+### `ANCIENT_GEAR_FIST`
+- path: `src_custom/spell_effects/ancient_gear_fist.c`
+- L63: end of Damage Step destroy the monster it battled (if equipped still on field) needs a battle_effects Damage Step end hook outside this file. Ceiling: equip-only works; destroy trigger not wired from this file. Upgrade: end-of-Damage-Step → if DynamicEquipTargetsMonsterWithSpell (attacker/defender, ANCIENT_GEAR_FIST) and equip still face-up, then
+- L70: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add ANCIENT_GEAR_FIST to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as H_HEATED_HEART.
 
 ### `ANCIENT_GEAR_TANK`
 - path: `src_custom/spell_effects/ancient_gear_tank.c`
@@ -43,6 +54,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/arcana_reading.c`
 - L108: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L270: GY banish → Normal Summon 1 Arcana Force needs a GY ignition hook outside this spell file (no in-file graveyard activation path). Ceiling: activation coin effect only; upgrade: GY ignition → banish ARCANA_READING then Duel_NormalSummonFromHand Arcana Force.
+
+### `ATTACK_PHEROMONES`
+- path: `src_custom/spell_effects/attack_pheromones.c`
+- L14: Reptile attacks DEF → flip to face-up ATK at end of Damage Step needs a battle_effects / Damage Step end hook outside this file. Ceiling: face-up continuous only; upgrade: end-of-Damage-Step → if face-up ATTACK_PHEROMONES on controller's field, attacker is Reptile (Duel_CardHasMonsterType TYPE_REPTILE), and defender was Defense Position,
 
 ### `BACKUP_SQUAD`
 - path: `src_custom/spell_effects/backup_squad.c`
@@ -85,6 +100,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/contact.c`
 - L37: only the five Chrysalis in-trunk pairs are mapped.
 
+### `CONTINUOUS_DESTRUCTION_PUNCH`
+- path: `src_custom/spell_effects/continuous_destruction_punch.c`
+- L14: post-damage-calc "DEF > ATK → destroy attacker" needs a battle_effects hook (clone des_kangaroo.c MarkPendingAttackerDestroy) outside this file. Ceiling: continuous face-up only; upgrade: after damage calc, if face-up CONTINUOUS_DESTRUCTION_PUNCH on defender's controller, defender is DEF position, and defender DEF > attacker ATK, destroy attacker (damage normal).
+
 ### `CONVERT_CONTACT`
 - path: `src_custom/spell_effects/convert_contact.c`
 - L191: cancel on deck pick auto-sends first Neo-Spacian (activation committed).
@@ -92,6 +111,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `COURT_OF_JUSTICE`
 - path: `src_custom/spell_effects/court_of_justice.c`
 - L33: attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp.
+
+### `DARK_CALLING`
+- path: `src_custom/spell_effects/dark_calling.c`
+- L159: "treated as a Fusion Summon with Dark Fusion" name/interaction checks (cards that look for Dark Fusion) need a summon-tag outside this file. Ceiling: Fiend Fusion via hand/GY banish only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
 
 ### `DARK_FUSION`
 - path: `src_custom/spell_effects/dark_fusion.c`
@@ -107,19 +130,41 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/dark_magic_veil.c`
 - L109: no dedicated hand/GY choice UI — A = hand, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
+### `DE_SYNCHRO`
+- path: `src_custom/spell_effects/de_synchro.c`
+- L81: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field + best-effort ExtraDeck_AddCard when enable_extra_deck; upgrade: per-duelist mid-duel Extra Deck return for the Synchro's controller.
+- L101: Synchro Summon materials are not recorded at summon time, so "if all materials are in your GY, SS all of them" cannot run. Ceiling: return-to-Extra-Deck only; upgrade: store material cardIds on the Synchro zone at SynchroDuel_Execute, then if each is in GY, SS from GY.
+
 ### `DEDICATION_THROUGH_LIGHT_AND_DARKNESS`
 - path: `src_custom/spell_effects/dedication_through_light_and_darkness.c`
 - L127: special-face-up sets unk4=2 and blocks DMoC's on-summon effect
+
+### `DIFFERENT_DIMENSION_CAPSULE`
+- path: `src_custom/spell_effects/different_dimension_capsule.c`
+- L174: no RemovedFromPlay_RemoveAt — shift RFP after returning the capsule card. Ceiling: local mutate; upgrade: RemovedFromPlay_RemoveAt helper.
+- L225: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
+- L274: RFP disabled — cannot banish from Deck. Ceiling: activation text only; upgrade: enable removed_from_play.
+- L297: 2nd Standby destroy+add needs turn_effect_hooks call to TryApplyDifferentDimensionCapsuleStandby (clone Future Fusion wiring). Ceiling: banished card stored + continuous face-up only until wired; upgrade: turn_effect_hooks Standby → TryApplyDifferentDimensionCapsuleStandby.
 
 ### `DIMENSION_FUSION`
 - path: `src_custom/spell_effects/dimension_fusion.c`
 - L88: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS. Ceiling: local mutate of gRemovedFromPlay; upgrade: add RemoveAt to removed_from_play.c.
 - L147: RFP zone is id-list only (no face/position memory). Ceiling: SS face-up ATK via Duel_SpecialSummonMonsterId; upgrade: store zone state on banish + restore on return.
 
+### `DOUBLE_SPELL`
+- path: `src_custom/spell_effects/double_spell.c`
+- L230: nested ActivateSpellEffect re-runs trap responses / field-spell specials; equips that need pre-set row2/col2 targets may fail. Ceiling: place + best-effort activate; upgrade: shared "resolve spell as if activated" helper that skips chain traps and supplies targeting for EQUIP/Field.
+
 ### `DRAGON_RAVINE`
 - path: `src_custom/spell_effects/dragon_ravine.c`
 - L187: no dedicated choice UI — A = add Dragunity, B = send Dragon to GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L405: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up OPT re-activation may need card_hooks GetSpellType + DRAGON_RAVINE listed. Ceiling: first-activation OPT works; upgrade: add to NORMAL spell-type list.
+
+### `DRAGON_SHRINE`
+- path: `src_custom/spell_effects/dragon_shrine.c`
+- L165: no dedicated choice UI — A = send 1 more, B = stop. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
+- L209: cancel on first pick auto-sends first Dragon (activation committed).
+- L246: once-per-turn activation not tracked after this normal spell leaves the field (no shared turn-flag RAM editable from this file alone). Ceiling: multiple Dragon Shrine per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
 
 ### `DYNAMIC_EQUIP`
 - path: `src_custom/spell_effects/dynamic_equip.c`
@@ -128,6 +173,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `EL_SHADDOLL_FUSION`
 - path: `src_custom/spell_effects/el_shaddoll_fusion.c`
 - L98: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple El Shaddoll Fusion per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
+
+### `FACTORY_OF_ONE_HUNDRED_MACHINES`
+- path: `src_custom/spell_effects/factory_of_one_hundred_machines.c`
+- L148: stage unit is 500 ATK — applied +500×banished, not printed +200×. Ceiling: no fractional temp stages; upgrade: exact-ATK overlay cleared at End Phase (tempStage already clears EOT).
 
 ### `FIELD_BARRIER`
 - path: `src_custom/spell_effects/field_barrier.c`
@@ -148,6 +197,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L75: stage unit is 500 ATK — applied -1000, not printed -800. Ceiling: no fractional temp stages; upgrade: exact-ATK overlay (Riryoku-style delta) cleared at End Phase.
 - L85: "unaffected by other Spells/Traps this turn" needs a per-zone immunity flag checked from Duel_ZoneIsImmuneToSpellEffects / trap targeting (IsImmuneToSpellEffectsOnField is card-id permanent only). Ceiling: -ATK via tempStage (clears EOT) only; upgrade: mark zone → treat as immune until ResetTempStages / End Phase, then clear.
 
+### `FUSION_GATE`
+- path: `src_custom/spell_effects/fusion_gate.c`
+- L282: real text lets the turn player use either player's Fusion Gate. Ceiling: only the controller's face-up gate via this spell activation path; upgrade: turn-player Main Phase check for any face-up FUSION_GATE then run ResolveFusionGateIgnition for ACTIVE_DUELIST.
+- L286: not in GetSpellType NORMAL override — face-up re-activation may need card_hooks GetSpellType + FUSION_GATE listed (same as DRAGON_RAVINE).
+
 ### `FUTURE_FUSION`
 - path: `src_custom/spell_effects/future_fusion.c`
 - L165: hand test copies of the fusion result are not valid materials.
@@ -157,15 +211,38 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L87: -1 Tribute for Ancient Gear Normal Summons needs a summon_tribute hook outside this file (no in-file tribute-count dispatch). Ceiling: field face-up only; upgrade: LynJump tribute-count → if face-up GEARTOWN and Duel_CardNameContains(id, "Ancient Gear") then required-1.
 - L91: destroy→GY SS 1 Ancient Gear from hand/Deck/GY needs a destroy/ send-to-GY listener outside this file. Ceiling: no trigger from spell file alone; upgrade: destroy-hook → if destroyed id==GEARTOWN then SS matching Ancient Gear.
 
+### `GLADIATOR_BEAST_BATTLE_HALBERD`
+- path: `src_custom/spell_effects/gladiator_beast_battle_halberd.c`
+- L63: when equipped attacks → destroy 1 S/T at end of Damage Step needs a battle_effects Damage Step end hook + S/T PickZone outside this file. Ceiling: equip-only works; destroy trigger not wired from this file. Upgrade: end-of-Damage-Step after equipped attacked → if DynamicEquipTargetsMonsterWithSpell(..., GLADIATOR_BEAST_BATTLE_HALBERD)
+- L70: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip only; upgrade: on GB return-to-deck → if linked GLADIATOR_BEAST_BATTLE_HALBERD hits GY then GY→hand.
+- L75: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add GLADIATOR_BEAST_BATTLE_HALBERD to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as H_HEATED_HEART.
+
+### `GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD`
+- path: `src_custom/spell_effects/gladiator_beasts_battle_archfiend_shield.c`
+- L63: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as H_HEATED_HEART.
+- L69: "if equipped would be destroyed, destroy this instead" needs a destroy-substitute gate outside this file (no in-file Duel_DestroyZone redirect). Ceiling: equip link only; upgrade: Duel_DestroyZone → if DynamicEquipTargetsMonsterWithSpell(zone, ARCHFIEND_SHIELD) then destroy the equip spell instead.
+- L75: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip only; upgrade: on GB return-to-deck → if linked ARCHFIEND_SHIELD hits GY then add it from GY to hand.
+
 ### `GLADIATOR_BEASTS_BATTLE_GLADIUS`
 - path: `src_custom/spell_effects/gladiator_beasts_battle_gladius.c`
 - L60: stage unit is 500 ATK — applied +500, not printed +300. Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART after listing GLADIATOR_BEASTS_BATTLE_GLADIUS in IsActiveDynamicEquipSpellZone.
 - L72: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add GLADIATOR_BEASTS_BATTLE_GLADIUS to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as H_HEATED_HEART.
 - L78: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip +ATK only; upgrade: on GB return-to-deck → if linked GLADIATOR_BEASTS_BATTLE_GLADIUS hits GY then Duel_AddDeckCardToHand / GY→hand.
 
+### `GLADIATOR_BEASTS_BATTLE_MANICA`
+- path: `src_custom/spell_effects/gladiator_beasts_battle_manica.c`
+- L63: battle destroy immunity needs CanMonsterBeDestroyedByBattle / battle_damage hook checking DynamicEquipTargetsMonsterWithSpell( GLADIATOR_BEASTS_BATTLE_MANICA). Ceiling: equip registers only; upgrade: wire into Duel_ApplyBattleDestroyProtection like Spirit Reaper / Tempest.
+- L68: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add GLADIATOR_BEASTS_BATTLE_MANICA to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as H_HEATED_HEART.
+- L74: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip register only; upgrade: on GB return-to-deck → if linked GLADIATOR_BEASTS_BATTLE_MANICA hits GY then Duel_AddDeckCardToHand / GY→hand.
+
 ### `GROUND_COLLAPSE`
 - path: `src_custom/spell_effects/ground_collapse.c`
 - L86: continuous zone lock needs FirstEmptyZoneInRow / PlaceMonster / summon-set validators outside this file (empty isLocked is ignored). Ceiling: face-up continuous + marks/stash only; upgrade: LynJump FirstEmptyZoneInRow (+ AI/player summon cursors) → skip isLocked empty MMZ while face-up GROUND_COLLAPSE; clear marks when it leaves the field.
+
+### `HARPIES_HUNTING_GROUND`
+- path: `src_custom/spell_effects/harpies_hunting_ground.c`
+- L88: +200 ATK/DEF for all Winged Beast monsters needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up HARPIES_HUNTING_GROUND and TYPE_WINGED_BEAST then ATK/DEF += 200.
+- L93: on Normal/Special Summon of Harpie Lady / Harpie Lady Sisters (name-treated), summoner destroys 1 S/T — needs a summon-listener outside this file. Ceiling: no trigger from spell file alone; upgrade: after-summon hook → if face-up HARPIES_HUNTING_GROUND and summoned id is HARPIE_LADY / HARPIE_LADY_1/2/3 / HARPIE_LADY_SISTERS (or name "Harpie Lady") then
 
 ### `HYSTERIC_SIGN`
 - path: `src_custom/spell_effects/hysteric_sign.c`
@@ -177,9 +254,25 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L136: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L322: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple Illusion Magic per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
 
+### `INFECTED_MAIL`
+- path: `src_custom/spell_effects/infected_mail.c`
+- L65: direct-attack grant needs a Can*AttackDirectly hook in code_8043EF4_hooks / ai_attack_hooks (Ice Edge / Jowls pattern). Ceiling: marks zone->unkTwo only; upgrade: CanInfectedMailMonsterAttackDirectly → zone->unkTwo && controller has face-up INFECTED_MAIL.
+- L71: "Send it to the Graveyard at the end of the Battle Phase" needs an end-of-BP hook outside this file. Ceiling: mark only; upgrade: BP-end → if zone still marked, Duel_DestroyZone to controller GY.
+- L159: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up OPT re-activation may need card_hooks GetSpellType + INFECTED_MAIL listed. Ceiling: first-activation OPT works; upgrade: add to NORMAL spell-type list.
+
+### `INFERNO_FIRE_BLAST`
+- path: `src_custom/spell_effects/inferno_fire_blast.c`
+- L90: "cannot attack the turn you activate this" — isLocked is honored by AI attack selection / some mini_card paths, not a dedicated CannotAttack hook. Ceiling: best-effort lock on the targeted Red-Eyes; upgrade: turn-scoped attack-restriction flag cleared EOT (clone NightmareWheel / Mask of the Accursed).
+
 ### `INFERNO_TEMPEST`
 - path: `src_custom/spell_effects/inferno_tempest.c`
 - L105: activation gate "took ≥3000 Battle Damage from 1 attack" needs a battle-damage listener / flag outside this file (no mid-battle OPT hook editable here). Ceiling: resolve banish whenever activated from hand/backrow; upgrade: battle_damage_hooks → set flag on ≥3000 damage then gate CanActivate.
+
+### `INSTANT_NEO_SPACE`
+- path: `src_custom/spell_effects/instant_neo_space.c`
+- L86: "does not shuffle into Extra Deck during End Phase" needs an End Phase Contact-return suppress flag outside this file (Neos Contact return hooks live in permanent/turn effects). Ceiling: equip link only; upgrade: if DynamicEquipTargetsMonsterWithSpell (INSTANT_NEO_SPACE) then skip End Phase Extra Deck shuffle for that zone.
+- L92: leave-field → SS 1 ELEMENTAL_HERO_NEOS from hand/Deck/GY needs a destroy/leave hook outside this file (OnDynamicEquipZoneAboutToClear). Ceiling: equip-only works; revive not wired from this file. Upgrade: leave-hook → Duel_SpecialSummonFromHand/Deck/Grave(ELEMENTAL_HERO_NEOS).
+- L97: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add INSTANT_NEO_SPACE to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
 
 ### `KNIGHTS_TITLE`
 - path: `src_custom/spell_effects/knights_title.c`
@@ -199,6 +292,23 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L72: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add LIGHTSWORN_SABRE to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
 - L77: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path → if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and RegisterDynamicEquip again.
 
+### `MAGICIANS_LEFT_HAND`
+- path: `src_custom/spell_effects/magicians_left_hand.c`
+- L14: negate opponent's first Trap Card/effect each turn (while you control a Spellcaster) then destroy needs a trap-resolve gate + per-turn "first trap used" flag outside this file (no in-file trap negate dispatch; no turn-scoped counter on DuelCard/field). Ceiling: face-up continuous only; upgrade: trap-activate/resolve hook → if
+
+### `MAGICIANS_RIGHT_HAND`
+- path: `src_custom/spell_effects/magicians_right_hand.c`
+- L14: negate opponent's first Spell Card/effect each turn (while you control a Spellcaster) then destroy needs a spell-resolve gate + per-turn "first spell used" flag outside this file (no in-file spell negate dispatch; no turn-scoped counter on DuelCard/field). Ceiling: face-up continuous only; upgrade: spell-activate/resolve hook → if
+
+### `MARCH_OF_THE_DARK_BRIGADE`
+- path: `src_custom/spell_effects/march_of_the_dark_brigade.c`
+- L265: once-per-turn activation not tracked (no BSS turn flag editable from this spell file alone). Ceiling: can activate multiple Marches per turn; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
+
+### `MASK_OF_DISPEL`
+- path: `src_custom/spell_effects/mask_of_dispel.c`
+- L91: Standby Phase 500 burn to the selected Spell's controller needs a turn_effect_hooks Standby path outside this file (clone TryApplyNightmareWheelStandbyDamage). Ceiling: continuous face-up + target stash only; upgrade: Standby → if face-up MASK_OF_DISPEL with unk4 target still present then Duel_ChangeLp(controller, -MASK_OF_DISPEL_STANDBY_DAMAGE).
+- L98: self-destroy when selected Spell leaves the field needs a destroy/leave-field listener outside this file. Ceiling: target stash only; upgrade: OnZoneClear → if id matches stashed MASK_OF_DISPEL target then Duel_DestroyZone(mask).
+
 ### `MASK_OF_THE_ACCURSED`
 - path: `src_custom/spell_effects/mask_of_the_accursed.c`
 - L25: attack lock + Standby 500 burn need hooks outside this file. Ceiling: equip registers only (like Raregold Armor without force-target). Upgrade: wire DynamicEquipTargetsMonsterWithSpell(MASK_OF_THE_ACCURSED) into duel_attack_restrictions.c (CannotAttack) and turn_effect_hooks.c (Duel_ChangeLp controller, -MASK_OF_THE_ACCURSED_STANDBY_DAMAGE) — clone
@@ -206,6 +316,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `METAMORPHOSIS`
 - path: `src_custom/spell_effects/metamorphosis.c`
 - L85: Extra Deck Special Summon (Fusion of matching Level) needs a duel-time Extra Deck browser + SS path. Trunk ExtraDeck_* APIs are deck-builder only and must not be used mid-duel. Ceiling: tribute-only; upgrade: ExtraDeck duel pick filtered by COLOR_FUSION + level == tributeLevel, then Duel_SpecialSummonMonsterId.
+
+### `MIRACLE_CONTACT`
+- path: `src_custom/spell_effects/miracle_contact.c`
+- L16: * ponytail: not in gFusionRecipes — local table only. Ceiling: misses newer Neos
+
+### `MOLTING_ESCAPE`
+- path: `src_custom/spell_effects/molting_escape.c`
+- L62: OPT battle-protect + +300 ATK when applied needs a battle_effects / CanMonsterBeDestroyedByBattle / damage-step hook outside this file (like Spirit Reaper / Kishido via Duel_ApplyBattleDestroyProtection). Ceiling: Reptile equip register only; upgrade: if DynamicEquipTargetsMonsterWithSpell (zone, MOLTING_ESCAPE) and effectUsedThisTurn clear, skip battle destroy once,
+- L69: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add MOLTING_ESCAPE to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
 
 ### `MORPHTRONIC_CORD`
 - path: `src_custom/spell_effects/morphtronic_cord.c`
@@ -225,6 +344,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L128: no dedicated choice UI — A = add Gravekeeper's, B = Normal Summon. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L281: no once-per-turn tracker without file BSS / shared OPT flags. Ceiling: can activate multiple Throne copies per turn; upgrade: duel-state OPT bit.
 
+### `NEUTRON_BLAST`
+- path: `src_custom/spell_effects/neutron_blast.c`
+- L89: 2nd/3rd Battle Phase attacks need an attack-completion unlock outside this file (isLocked after attack; clone Cyber Twin / Tryce TryUnlock*ForSecondAttack wired in code_8043EF4 / ai_attack / draining_shield / call_of_the_haunted). Ceiling: mark unkThree only; upgrade: TryUnlockNeutronBlastForExtraAttack + turn-scoped remaining-attack counter
+- L97: "opponent's cards and effects cannot be activated until end of Damage Step" when it attacks needs a battle-activation gate outside this file. Ceiling: no activation lock from this file; upgrade: attack-declare / damage-step flag while marked BEUD is attacker → block CanActivateSpell / Trap / monster effects for INACTIVE_DUELIST until Damage Step end.
+
 ### `NEX`
 - path: `src_custom/spell_effects/nex.c`
 - L155: duel Extra Deck browser/SS missing (Trunk ExtraDeck_* is deck-builder only). Ceiling: spawn Lv4 Neo form by id when not in Main Deck; upgrade: Extra Deck pick + SS.
@@ -236,6 +360,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ONE_DAY_OF_PEACE`
 - path: `src_custom/spell_effects/one_day_of_peace.c`
 - L24: neither player takes damage until end of opponent's next turn needs an LP/damage gate outside this file (no damage-immunity helper). Ceiling: both draw only; upgrade: turn_effect / ChangeLp hook → skip damage while One Day of Peace lock is active through opponent's next End Phase.
+
+### `OVER_DESTINY`
+- path: `src_custom/spell_effects/over_destiny.c`
+- L326: End Phase destroy of the SS'd monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS). Ceiling: SS only; upgrade: turn_effect_hooks End Phase → destroy marked zone.
+
+### `PAINFUL_CHOICE`
+- path: `src_custom/spell_effects/painful_choice.c`
+- L153: no committed multi-pick UI — pick 5 in a loop (snake_rain style). Cancel mid-loop auto-fills remaining in deck order.
 
 ### `POISON_OF_THE_OLD_MAN`
 - path: `src_custom/spell_effects/poison_of_the_old_man.c`
@@ -253,6 +385,16 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `POWER_FILTER`
 - path: `src_custom/spell_effects/power_filter.c`
 - L14: SS lock for monsters with ATK ≤1000 needs a CanSpecialSummon / PlaceMonster gate outside this file (no in-file summon dispatch). Ceiling: continuous face-up only; upgrade: LynJump Duel_CardCannotBeSpecialSummoned (or PlaceMonsterFromId) → if face-up POWER_FILTER on field and printed ATK ≤1000 then block.
+
+### `PSEUDO_SPACE`
+- path: `src_custom/spell_effects/pseudo_space.c`
+- L241: name-become + replace effects until End Phase need copy-host / turn_effect hooks outside this file (no per-zone name/effect RAM here). Ceiling: OPT banish Field Spell from GY only; upgrade: store banished id → treat zone as that Field Spell until End Phase clear.
+- L262: name-become + replace effects until End Phase — same ceiling as legacy-GY path above.
+- L297: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up OPT re-activation may need card_hooks GetSpellType + PSEUDO_SPACE listed. Ceiling: first-activation OPT works; upgrade: add to NORMAL spell-type list.
+
+### `REALM_OF_LIGHT`
+- path: `src_custom/spell_effects/realm_of_light.c`
+- L14: Shine Counters on mill / +100 ATK per counter on Lightsworn / remove 2 counters instead of destroy need mill + destroy-gate + counter storage outside this file (DuelCard has no shine-counter field; no in-file Deck→GY or destroy dispatch). Ceiling: continuous face-up only; upgrade: mill hook → if face-up REALM_OF_LIGHT controller's Deck→GY then ++counters;
 
 ### `REPTILANNE_RAGE`
 - path: `src_custom/spell_effects/reptilanne_rage.c`
@@ -275,9 +417,27 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L74: LockMonsterCardsInRow also blocks Normal Set of monsters. Ceiling: cannot allow Set while blocking Summon without a menu hook that distinguishes Set vs Summon; upgrade: Set path unlocks hand briefly.
 - L77: token tribute-lock is only via isLocked — not all tribute paths honor it, and Tokens can still be used for non-Tribute costs. Ceiling: best-effort lockMonster; upgrade: tribute validator excludes SCAPEGOAT_TOKEN_ID / token flag.
 
+### `SECOND_COIN_TOSS`
+- path: `src_custom/spell_effects/second_coin_toss.c`
+- L14: redo coin toss (OPT) needs a shared coin-flip hook wrapping RandRangeU8(0,1) / multi-coin callers (cup_of_ace, suit_of_sword_x, etc.). Ceiling: continuous face-up only; upgrade: after coin resolve, if face-up SECOND_COIN_TOSS on controller's field and effectUsedThisTurn clear, offer redo (player confirm / AI heuristic), re-roll all flips, then mark OPT.
+
+### `SECRET_VILLAGE_OF_THE_SPELLCASTERS`
+- path: `src_custom/spell_effects/secret_village_of_the_spellcasters.c`
+- L14: Spell activation lock based on Spellcaster control needs a Duel_IsCardActivationBlocked / CanActivateSpell gate outside this file (no in-file spell-activate dispatch). Ceiling: continuous face-up only; upgrade: if face-up SECRET_VILLAGE_OF_THE_SPELLCASTERS on field → count Spellcasters you control vs opponent; if only you control any Spellcaster
+
+### `SHARD_OF_GREED`
+- path: `src_custom/spell_effects/shard_of_greed.c`
+- L61: Greed Counters on normal Draw Phase draw need a draw-phase hook outside this file (no in-file normal-draw dispatch). Ceiling: continuous face-up + ignition when unk4>=2 (never rises alone); upgrade: Draw Phase normal-draw listener → if face-up SHARD_OF_GREED then zone->unk4++ (cap optional).
+- L66: not in GetSpellType NORMAL override — face-up re-activation may need card_hooks GetSpellType + SHARD_OF_GREED listed (same as BACKUP_SQUAD / CALL_OF_THE_MUMMY).
+
 ### `SILVERS_CRY`
 - path: `src_custom/spell_effects/silvers_cry.c`
 - L167: no once-per-turn tracker without file BSS / shared OPT flags. Ceiling: can activate multiple Silver's Cry per turn; upgrade: duel-state OPT bit.
+
+### `SKYSCRAPER_2_HERO_CITY`
+- path: `src_custom/spell_effects/skyscraper_2_hero_city.c`
+- L244: no "destroyed by battle" GY filter — no destroy-reason memory on expanded GY cards. Ceiling: any Elemental HERO in GY is legal; upgrade: stamp battle-destroy on GY push / zone→GY, then filter IsElementalHeroMonster && wasDestroyedByBattle.
+- L303: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up OPT re-activation may need card_hooks GetSpellType + SKYSCRAPER_2_HERO_CITY listed. Ceiling: first-activation OPT works; upgrade: add to NORMAL list.
 
 ### `SNAKE_RAIN`
 - path: `src_custom/spell_effects/snake_rain.c`
@@ -305,6 +465,16 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L65: stage unit is 500 ATK — Sisters (1950) become 2450 or 2950, not exact printed 2700. Ceiling: nearest-stage temp boost until EOT; upgrade: exact-ATK overlay (like riryoku) forced to 2700 until End Phase clear.
 - L69: opponent cannot activate Trap Cards / negate opp Trap effects until EOT needs a trap-activation / trap-resolve gate outside this file. Ceiling: Sisters ATK approx only; upgrade: turn flag → block CanActivateTrap / trap effect resolve for INACTIVE_DUELIST until End Phase.
 
+### `UNSTABLE_EVOLUTION`
+- path: `src_custom/spell_effects/unstable_evolution.c`
+- L97: ApplyDynamicEquipStages / RemoveDynamicEquipStages only track positive IncrementPermStage equips (TRYCE is the sole negative special case, outside this file). Ceiling: ATK cut applied once; unequip does not restore the cut. Upgrade: list UNSTABLE_EVOLUTION in RemoveDynamicEquipStages like TRYCE (Decrement on apply / Increment on remove), or exact original-ATK
+- L117: LP-conditional original ATK (2400 if lower / 1000 if higher) needs continuous refresh while equipped when LP changes, plus exact original-ATK overlay (stage unit is 500). Ceiling: one-shot nearest-stage adjust at equip from printed original; equal LP leaves ATK unchanged. Upgrade: card_info / RecalculateDynamicEquips → if DynamicEquipTargetsMonster
+- L124: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting. Ceiling: add UNSTABLE_EVOLUTION to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
+
+### `VENOM_SHOT`
+- path: `src_custom/spell_effects/venom_shot.c`
+- L259: Venom Counters need per-monster counter storage + End Phase ATK drain (see venom_swamp.c). Ceiling: send Reptile + target only; upgrade: place VENOM_SHOT_COUNTERS on zone, apply -500 ATK per counter / destroy at 0.
+
 ### `VENOM_SWAMP`
 - path: `src_custom/spell_effects/venom_swamp.c`
 - L14: End Phase Venom Counters / -500 ATK per counter / destroy at 0 ATK need an End Phase turn_effect hook + per-monster counter storage outside this file (DuelCard has no venom-counter field; no in-file End Phase dispatch). Ceiling: continuous face-up only; upgrade: turn_effect End Phase → if face-up VENOM_SWAMP then place 1 counter on each face-up non-Venom monster, apply
@@ -312,6 +482,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `VIPERS_REBIRTH`
 - path: `src_custom/spell_effects/vipers_rebirth.c`
 - L221: End Phase destroy of the SS'd monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS). Ceiling: SS only; upgrade: turn_effect_hooks End Phase → destroy marked zone.
+
+### `WATERHAZARD`
+- path: `src_custom/spell_effects/waterhazard.c`
+- L104: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up OPT re-activation may need card_hooks GetSpellType + WATERHAZARD listed. Ceiling: first-activation OPT works; upgrade: add to NORMAL spell-type list.
 
 ### `WETLANDS`
 - path: `src_custom/spell_effects/wetlands.c`
