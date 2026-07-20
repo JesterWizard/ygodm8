@@ -1,0 +1,81 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ARCANA_FORCE_VII_THE_CHARIOT",
+      "card_name": "Arcana Force VII - The Chariot",
+      "kind": "permanent",
+      "archetype": "ARCANA_FORCE",
+      "path": "src_custom/permanent_effects/arcana_force_vii_the_chariot.c",
+      "effect_text": "Coin: revive after battle or give to opp. When this card is Summoned, toss a coin: Heads: If this card destroys an opponent's monster by battle, you can Special Summon that monster to your side of the field. Tails: Your opponent gains control of this card.",
+      "tags": [
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ARCANA_FORCE_VI_THE_LOVERS",
+      "clone_path": "src_custom/permanent_effects/arcana_force_vi_the_lovers.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "ARCANA_FORCE_I_THE_MAGICIAN",
+      "card_name": "Arcana Force I - The Magician",
+      "kind": "permanent",
+      "archetype": "ARCANA_FORCE",
+      "path": "src_custom/permanent_effects/arcana_force_i_the_magician.c",
+      "effect_text": "Coin: Spells targeting this +/- 500 ATK. When this card is Summoned, toss a coin: Heads: When a Spell Card is activated, this card's ATK becomes double its original ATK until the End Phase of that turn. Tails: When a Spell Card is activated, your opponent gains 500 Life Points.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "REPTILIANNE_VIPER",
+      "clone_path": "src_custom/permanent_effects/reptilianne_viper.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "EVIL_HERO_INFERNAL_PRODIGY",
+      "card_name": "Evil HERO Infernal Prodigy",
+      "kind": "permanent",
+      "archetype": "EVIL_HERO_INFERNAL",
+      "path": "src_custom/permanent_effects/evil_hero_infernal_prodigy.c",
+      "effect_text": "SS from hand if empty field. If Tributed for HERO: draw 1 at End Phase. If you control no monsters, you can Special Summon this card (from your hand) in Attack Position. Once per turn, during the End Phase, if this card was Tributed this turn to Tribute Summon a HERO monster: Draw 1 card.",
+      "tags": [
+        "draw",
+        "hand",
+        "monster",
+        "ssummon",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_THE_SHINING",
+      "clone_path": "src_custom/permanent_effects/elemental_hero_the_shining.c",
+      "clone_score": 0.43
+    },
+    {
+      "card_const": "GAROTH_LIGHTSWORN_WARRIOR",
+      "card_name": "Garoth, Lightsworn Warrior",
+      "kind": "permanent",
+      "archetype": "GAROTH",
+      "path": "src_custom/permanent_effects/garoth_lightsworn_warrior.c",
+      "effect_text": "On Lightsworn mill: mill 2; draw. Each time a card(s) is sent from your Deck to the GY by the effect of a Lightsworn monster you control, except Garoth, Lightsworn Warrior: Send the top 2 cards of your Deck to the GY, then draw 1 card for each Lightsworn monster sent to the GY by this effect.",
+      "tags": [
+        "deck",
+        "draw",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "SHIRE_LIGHTSWORN_SPIRIT",
+      "clone_path": "src_custom/permanent_effects/shire_lightsworn_spirit.c",
+      "clone_score": 0.5
+    }
+  ]
+}

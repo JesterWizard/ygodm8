@@ -2,43 +2,24 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
-
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static struct DuelCard *SelfZone(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  return gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ACTIVE_DUELIST;
+  if (turnRow == INACTIVE_DUELIST_MONSTER_ROW)
+    return INACTIVE_DUELIST;
+  return ACTIVE_DUELIST;
 }
 
-static void CancelTargeting(void)
+static u8 OpponentDuelist(u8 duelist)
 {
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return duelist == ACTIVE_DUELIST ? INACTIVE_DUELIST : ACTIVE_DUELIST;
 }
 
 unsigned char ShouldActivateARCANA_FORCE_I_THE_MAGICIAN(void)
@@ -48,38 +29,42 @@ unsigned char ShouldActivateARCANA_FORCE_I_THE_MAGICIAN(void)
   if (gActiveEffect.cardId != ARCANA_FORCE_I_THE_MAGICIAN)
     return FALSE;
 
-  if (GetPendingTributeSummonCardId() != ARCANA_FORCE_I_THE_MAGICIAN)
-    return FALSE;
-
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
       && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
     return FALSE;
 
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
+  zone = SelfZone();
+  if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
   return TRUE;
 }
 
 void ActivateARCANA_FORCE_I_THE_MAGICIAN(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  struct DuelCard *zone;
+  u8 duelist;
+  u8 heads;
 
   Duel_ShowEffectTextTyped(ARCANA_FORCE_I_THE_MAGICIAN, 8);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  zone = SelfZone();
+  if (zone == NULL)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
+  heads = RandRangeU8(0, 1) == 1;
+  zone->unk4 = 1;
 
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  if (heads) {
+    IncrementTempStage(zone);
+    RefreshFieldMonsterStatOverlays();
+    /* ponytail: +1 tempStage (~500 ATK) on-summon; spell-trigger double ATK not wired. */
+    return;
+  }
+
+  Duel_ChangeLp(OpponentDuelist(duelist), 500, TRUE);
+  /* ponytail: tails LP heal on spell activation not wired; on-summon +500 opp LP only. */
 }

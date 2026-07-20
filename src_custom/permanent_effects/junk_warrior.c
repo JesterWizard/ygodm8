@@ -2,43 +2,39 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
-
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static struct DuelCard *SelfZone(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  return gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u32 SumLevelTwoOrLowerAtkOnRow(u8 turnRow)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u32 sum = 0;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[turnRow][col];
+
+    if (zone->id == CARD_NONE || GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+      continue;
+
+    SetCardInfo(zone->id);
+    if (gCardInfo.level == 0 || gCardInfo.level > 2)
+      continue;
+
+    sum += Duel_GetZoneFinalAtk(zone);
+  }
+
+  return sum;
 }
 
-static void CancelTargeting(void)
+static void ApplyAtkBonusViaTempStage(struct DuelCard *zone, u32 bonusAtk)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u8 stages = (u8)(bonusAtk / 500);
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  while (stages--)
+    IncrementTempStage(zone);
 }
 
 unsigned char ShouldActivateJUNK_WARRIOR(void)
@@ -48,38 +44,33 @@ unsigned char ShouldActivateJUNK_WARRIOR(void)
   if (gActiveEffect.cardId != JUNK_WARRIOR)
     return FALSE;
 
-  if (GetPendingTributeSummonCardId() != JUNK_WARRIOR)
-    return FALSE;
-
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
       && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
     return FALSE;
 
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
+  zone = SelfZone();
+  if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
   return TRUE;
 }
 
 void ActivateJUNK_WARRIOR(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  struct DuelCard *zone;
+  u32 bonusAtk;
 
   Duel_ShowEffectTextTyped(JUNK_WARRIOR, 8);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  zone = SelfZone();
+  if (zone == NULL)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  bonusAtk = SumLevelTwoOrLowerAtkOnRow(gActiveEffect.turnRow);
+  ApplyAtkBonusViaTempStage(zone, bonusAtk);
+  zone->unk4 = 1;
+  RefreshFieldMonsterStatOverlays();
+  /* ponytail: tempStage (~500/stage) on-summon only; no continuous recompute. */
 }

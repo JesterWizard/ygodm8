@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 21:15 UTC  
-**Remaining partials:** `802`
+**Last updated:** 2026-07-20 21:18 UTC  
+**Remaining partials:** `813`
 
 ## Counts by kind
 
@@ -18,10 +18,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 | `spell` | 185 |
 | `trap` | 115 |
 | `activated` | 452 |
-| `permanent` | 46 |
+| `permanent` | 57 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **802** |
+| **total** | **813** |
 
 ## spell (185)
 
@@ -3313,7 +3313,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (46)
+## permanent (57)
 
 ### `AMAZONESS_TIGER`
 - path: `src_custom/permanent_effects/amazoness_tiger.c`
@@ -3324,6 +3324,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L23: AI candidate sim runs real effect code but restores duel state; do not queue burns that survive into the chosen action.
 - L72: skip nested UpdateDuelGfxExceptField; caller just refreshed field.
 
+### `ARCANA_FORCE_I_THE_MAGICIAN`
+- path: `src_custom/permanent_effects/arcana_force_i_the_magician.c`
+- L64: +1 tempStage (~500 ATK) on-summon; spell-trigger double ATK not wired.
+- L69: tails LP heal on spell activation not wired; on-summon +500 opp LP only.
+
 ### `ARCANA_FORCE_IV_THE_EMPEROR`
 - path: `src_custom/permanent_effects/arcana_force_iv_the_emperor.c`
 - L86: ±500 ATK uses tempStage (~500/stage); only your Arcana Force on field.
@@ -3331,6 +3336,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ARCANA_FORCE_VI_THE_LOVERS`
 - path: `src_custom/permanent_effects/arcana_force_vi_the_lovers.c`
 - L48: tribute engine not wired — unk4 marks double-tribute / no-tribute only.
+
+### `ARCANA_FORCE_VII_THE_CHARIOT`
+- path: `src_custom/permanent_effects/arcana_force_vii_the_chariot.c`
+- L125: battle SS destroyed monster needs battle-end hook; unk4=1 only.
+- L130: tails control switch is immediate; heads steal not wired.
+
+### `ARCANA_FORCE_XXI_THE_WORLD`
+- path: `src_custom/permanent_effects/arcana_force_xxi_the_world.c`
+- L48: skip-turn / opp GY-to-hand need turn hooks; unk4 marks coin only.
 
 ### `AURKUS_LIGHTSWORN_DRUID`
 - path: `src_custom/permanent_effects/aurkus_lightsworn_druid.c`
@@ -3391,6 +3405,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/elemental_hero_the_shining.c`
 - L22: no banished-zone storage yet — +300 ATK per banished E-HERO and return up to 2 banished E-HEROes to hand deferred until banish zone exists.
 
+### `EVIL_HERO_INFERNAL_PRODIGY`
+- path: `src_custom/permanent_effects/evil_hero_infernal_prodigy.c`
+- L8: empty-field hand SS is FromHand activated; End-Phase tribute draw needs turn hook.
+
 ### `EVIL_HERO_MALICIOUS_EDGE`
 - path: `src_custom/permanent_effects/evil_hero_malicious_edge.c`
 - L8: piercing + 1-tribute summon gate need battle/summon hooks.
@@ -3403,13 +3421,29 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/permanent_effects/fire_princess.c`
 - L37: normal hand summon copies isFaceUp=0; attack-position monsters still count
 
+### `GAROTH_LIGHTSWORN_WARRIOR`
+- path: `src_custom/permanent_effects/garoth_lightsworn_warrior.c`
+- L113: true trigger is other LS mills; on-summon mill 2 + draw LS is stand-in.
+
 ### `GLADIATOR_BEAST_ESSEDARII`
 - path: `src_custom/permanent_effects/gladiator_beast_essedarii.c`
 - L8: Contact Fusion has no permanent ignition path.
 
+### `GLADIATOR_BEAST_SECUTOR`
+- path: `src_custom/permanent_effects/gladiator_beast_secutor.c`
+- L8: battle-end tag SS 2 GB from Deck needs battle-end hook.
+
 ### `GLADIATOR_BEAST_TORAX`
 - path: `src_custom/permanent_effects/gladiator_beast_torax.c`
 - L8: GB tag-out draw after battle needs battle-end hook.
+
+### `GLADIATOR_BEAST_TYGERIUS`
+- path: `src_custom/permanent_effects/gladiator_beast_tygerius.c`
+- L110: GB tag-out + optional discard gate not wired; on-summon search stand-in.
+
+### `GOYO_GUARDIAN`
+- path: `src_custom/permanent_effects/goyo_guardian.c`
+- L8: battle-destroy SS to your DEF needs battle-end hook.
 
 ### `GRANADORA`
 - path: `src_custom/permanent_effects/granadora.c`
@@ -3426,6 +3460,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `JENIS_LIGHTSWORN_MENDER`
 - path: `src_custom/permanent_effects/jenis_lightsworn_mender.c`
 - L8: End Phase heal/burn after LS mill needs turn_effect hook.
+
+### `JUNK_WARRIOR`
+- path: `src_custom/permanent_effects/junk_warrior.c`
+- L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 
 ### `KNIGHT_OF_PENTACLES`
 - path: `src_custom/permanent_effects/knight_of_pentacles.c`
@@ -3458,6 +3496,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `REPTILIANNE_GARDNA`
 - path: `src_custom/permanent_effects/reptilianne_gardna.c`
 - L8: destroyed→search Reptilianne needs destroy-to-GY permanent hook.
+
+### `REPTILIANNE_NAGA`
+- path: `src_custom/permanent_effects/reptilianne_naga.c`
+- L8: battle immunity, ATK-to-0, and EP flip need battle/turn hooks.
 
 ### `SHATIEL`
 - path: `src_custom/permanent_effects/shatiel.c`
@@ -3501,6 +3543,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `WULF_LIGHTSWORN_BEAST`
 - path: `src_custom/permanent_effects/wulf_lightsworn_beast.c`
 - L8: milled-from-Deck Special Summon needs mill/deck-send hook.
+
+### `YOWIE`
+- path: `src_custom/permanent_effects/yowie.c`
+- L51: opp skip Draw Phase needs turn hook; unk4 marks alone-summon only.
 
 ### `ZERIEL`
 - path: `src_custom/permanent_effects/zeriel.c`

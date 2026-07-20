@@ -7,30 +7,27 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 21:15 UTC  
-**Remaining stubs:** `80`
+**Last updated:** 2026-07-20 21:18 UTC  
+**Remaining stubs:** `68`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `permanent` | 69 |
+| `permanent` | 57 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **80** |
+| **total** | **68** |
 
-## permanent (69)
+## permanent (57)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
 | `ARCANA_FORCE_0_THE_FOOL` | `ARCANA_FORCE` | — | `ELEMENTAL_HERO_SUNRISE` | `src_custom/permanent_effects/arcana_force_0_the_fool.c` |
-| `ARCANA_FORCE_III_THE_EMPRESS` | `ARCANA_FORCE` | — | `ELEMENTAL_HERO_THE_SHINING` | `src_custom/permanent_effects/arcana_force_iii_the_empress.c` |
-| `ARCANA_FORCE_I_THE_MAGICIAN` | `ARCANA_FORCE` | — | `REPTILIANNE_VIPER` | `src_custom/permanent_effects/arcana_force_i_the_magician.c` |
+| `ARCANA_FORCE_III_THE_EMPRESS` | `ARCANA_FORCE` | — | `ARCANA_FORCE_VII_THE_CHARIOT` | `src_custom/permanent_effects/arcana_force_iii_the_empress.c` |
 | `ARCANA_FORCE_THE_CHAOS_RULER` | `ARCANA_FORCE` | — | `REPTILIANNE_GARDNA` | `src_custom/permanent_effects/arcana_force_the_chaos_ruler.c` |
-| `ARCANA_FORCE_VII_THE_CHARIOT` | `ARCANA_FORCE` | — | `ARCANA_FORCE_VI_THE_LOVERS` | `src_custom/permanent_effects/arcana_force_vii_the_chariot.c` |
 | `ARCANA_FORCE_XIV_TEMPERANCE` | `ARCANA_FORCE` | — | `ARCANA_FORCE_VI_THE_LOVERS` | `src_custom/permanent_effects/arcana_force_xiv_temperance.c` |
-| `ARCANA_FORCE_XVIII_THE_MOON` | `ARCANA_FORCE` | — | `ARCANA_FORCE_VI_THE_LOVERS` | `src_custom/permanent_effects/arcana_force_xviii_the_moon.c` |
-| `ARCANA_FORCE_XXI_THE_WORLD` | `ARCANA_FORCE` | — | `ARCANA_FORCE_VI_THE_LOVERS` | `src_custom/permanent_effects/arcana_force_xxi_the_world.c` |
+| `ARCANA_FORCE_XVIII_THE_MOON` | `ARCANA_FORCE` | — | `ARCANA_FORCE_VII_THE_CHARIOT` | `src_custom/permanent_effects/arcana_force_xviii_the_moon.c` |
 | `ARCANA_FORCE_EX_THE_DARK_RULER` | `ARCANA_FORCE_EX_THE` | — | `RAVIEL_LORD_OF_PHANTASMS` | `src_custom/permanent_effects/arcana_force_ex_the_dark_ruler.c` |
 | `ARCANA_FORCE_EX_THE_LIGHT_RULER` | `ARCANA_FORCE_EX_THE` | — | `DARK_MAGICIAN_OF_CHAOS` | `src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c` |
 | `DARK_MAGICIAN_OF_DESTRUCTION` | `DARK_MAGICIAN_OF` | — | `DARK_MAGICIAN_OF_CHAOS` | `src_custom/permanent_effects/dark_magician_of_destruction.c` |
@@ -52,46 +49,37 @@ python3 tools/stub_effect_queue.py --write-list
 | `EL_SHADDOLL_SHEKHINAGA` | `EL_SHADDOLL` | — | `DARK_MAGICIAN_OF_CHAOS` | `src_custom/permanent_effects/el_shaddoll_shekhinaga.c` |
 | `EL_SHADDOLL_WINDA` | `EL_SHADDOLL` | — | `DARK_MAGICIAN_OF_CHAOS` | `src_custom/permanent_effects/el_shaddoll_winda.c` |
 | `EVIL_DRAGON_ANANTA` | `EVIL` | — | `RAVIEL_LORD_OF_PHANTASMS` | `src_custom/permanent_effects/evil_dragon_ananta.c` |
-| `EVIL_HERO_DARK_GAIA` | `EVIL_HERO` | — | `FENRIR` | `src_custom/permanent_effects/evil_hero_dark_gaia.c` |
+| `EVIL_HERO_DARK_GAIA` | `EVIL_HERO` | — | `ARCANA_FORCE_VII_THE_CHARIOT` | `src_custom/permanent_effects/evil_hero_dark_gaia.c` |
 | `EVIL_HERO_WILD_CYCLONE` | `EVIL_HERO` | — | `CAIUS_THE_SHADOW_MONARCH` | `src_custom/permanent_effects/evil_hero_wild_cyclone.c` |
-| `EVIL_HERO_INFERNAL_PRODIGY` | `EVIL_HERO_INFERNAL` | — | `ELEMENTAL_HERO_THE_SHINING` | `src_custom/permanent_effects/evil_hero_infernal_prodigy.c` |
-| `EVIL_HERO_INFERNAL_SNIPER` | `EVIL_HERO_INFERNAL` | — | `YAMATA_DRAGON` | `src_custom/permanent_effects/evil_hero_infernal_sniper.c` |
+| `EVIL_HERO_INFERNAL_SNIPER` | `EVIL_HERO_INFERNAL` | — | `EVIL_HERO_INFERNAL_PRODIGY` | `src_custom/permanent_effects/evil_hero_infernal_sniper.c` |
 | `EVIL_HERO_INFERNO_WING` | `EVIL_HERO_INFERNO` | — | `ELEMENTAL_HERO_SHINING_FLARE_WINGMAN` | `src_custom/permanent_effects/evil_hero_inferno_wing.c` |
 | `EVIL_HERO_INFERNO_WING_BACKFIRE` | `EVIL_HERO_INFERNO` | — | `ELEMENTAL_HERO_SHINING_FLARE_WINGMAN` | `src_custom/permanent_effects/evil_hero_inferno_wing_backfire.c` |
 | `EVIL_HERO_MALICIOUS_FIEND` | `EVIL_HERO_MALICIOUS` | — | `EVIL_HERO_MALICIOUS_EDGE` | `src_custom/permanent_effects/evil_hero_malicious_fiend.c` |
 | `GANDORA_X_THE_DRAGON_OF_DEMOLITION` | `GANDORA_X_THE_DRAGON_OF` | — | `CAIUS_THE_SHADOW_MONARCH` | `src_custom/permanent_effects/gandora_x_the_dragon_of_demolition.c` |
 | `GARONITH_LIGHTSWORN_DRAGON` | `GARONITH` | — | `JENIS_LIGHTSWORN_MENDER` | `src_custom/permanent_effects/garonith_lightsworn_dragon.c` |
-| `GAROTH_LIGHTSWORN_WARRIOR` | `GAROTH` | — | `SHIRE_LIGHTSWORN_SPIRIT` | `src_custom/permanent_effects/garoth_lightsworn_warrior.c` |
-| `GLADIATOR_BEAST_ALEXANDER` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_TORAX` | `src_custom/permanent_effects/gladiator_beast_alexander.c` |
-| `GLADIATOR_BEAST_DIMACARI` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_TORAX` | `src_custom/permanent_effects/gladiator_beast_dimacari.c` |
-| `GLADIATOR_BEAST_GAIODIAZ` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_TORAX` | `src_custom/permanent_effects/gladiator_beast_gaiodiaz.c` |
-| `GLADIATOR_BEAST_OCTAVIUS` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_TORAX` | `src_custom/permanent_effects/gladiator_beast_octavius.c` |
-| `GLADIATOR_BEAST_RETIARI` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_TORAX` | `src_custom/permanent_effects/gladiator_beast_retiari.c` |
-| `GLADIATOR_BEAST_SAMNITE` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_TORAX` | `src_custom/permanent_effects/gladiator_beast_samnite.c` |
-| `GLADIATOR_BEAST_SECUTOR` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_TORAX` | `src_custom/permanent_effects/gladiator_beast_secutor.c` |
-| `GLADIATOR_BEAST_SPARTACUS` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_TORAX` | `src_custom/permanent_effects/gladiator_beast_spartacus.c` |
-| `GLADIATOR_BEAST_TYGERIUS` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_TORAX` | `src_custom/permanent_effects/gladiator_beast_tygerius.c` |
-| `GOYO_GUARDIAN` | `GOYO` | — | `ELEMENTAL_HERO_ESCURIDAO` | `src_custom/permanent_effects/goyo_guardian.c` |
+| `GLADIATOR_BEAST_ALEXANDER` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_SECUTOR` | `src_custom/permanent_effects/gladiator_beast_alexander.c` |
+| `GLADIATOR_BEAST_DIMACARI` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_SECUTOR` | `src_custom/permanent_effects/gladiator_beast_dimacari.c` |
+| `GLADIATOR_BEAST_GAIODIAZ` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_SECUTOR` | `src_custom/permanent_effects/gladiator_beast_gaiodiaz.c` |
+| `GLADIATOR_BEAST_OCTAVIUS` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_SECUTOR` | `src_custom/permanent_effects/gladiator_beast_octavius.c` |
+| `GLADIATOR_BEAST_RETIARI` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_SECUTOR` | `src_custom/permanent_effects/gladiator_beast_retiari.c` |
+| `GLADIATOR_BEAST_SAMNITE` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_SECUTOR` | `src_custom/permanent_effects/gladiator_beast_samnite.c` |
+| `GLADIATOR_BEAST_SPARTACUS` | `GLADIATOR_BEAST` | — | `GLADIATOR_BEAST_SECUTOR` | `src_custom/permanent_effects/gladiator_beast_spartacus.c` |
 | `GRINDER_GOLEM` | `GRINDER` | — | `DARK_MAGICIAN_OF_CHAOS` | `src_custom/permanent_effects/grinder_golem.c` |
 | `HARPIE_PERFUMER` | `HARPIE` | — | `REPTILIANNE_GARDNA` | `src_custom/permanent_effects/harpie_perfumer.c` |
 | `HARPIES_PET_PHANTASMAL_DRAGON` | `HARPIES_PET` | — | `REPTILIANNE_VIPER` | `src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c` |
 | `HORUS_THE_BLACK_FLAME_DRAGON_LV4` | `HORUS_THE_BLACK_FLAME_DRAGON` | — | `DARK_MAGICIAN_OF_CHAOS` | `src_custom/permanent_effects/horus_the_black_flame_dragon_lv4.c` |
 | `HORUS_THE_BLACK_FLAME_DRAGON_LV6` | `HORUS_THE_BLACK_FLAME_DRAGON` | — | `DARK_MAGICIAN_OF_CHAOS` | `src_custom/permanent_effects/horus_the_black_flame_dragon_lv6.c` |
-| `JUNK_WARRIOR` | `JUNK` | — | `REPTILIANNE_VIPER` | `src_custom/permanent_effects/junk_warrior.c` |
 | `LEGENDARY_MAJU_GARZETT` | `LEGENDARY` | — | `ELEMENTAL_HERO_SHINING_FLARE_WINGMAN` | `src_custom/permanent_effects/legendary_maju_garzett.c` |
 | `LIGHT_AND_DARKNESS_DRAGON` | `LIGHT` | — | `DARK_MAGICIAN_OF_CHAOS` | `src_custom/permanent_effects/light_and_darkness_dragon.c` |
 | `MAGICIAN_OF_DARK_ILLUSION` | `MAGICIAN` | — | `DARK_MAGICIAN_OF_CHAOS` | `src_custom/permanent_effects/magician_of_dark_illusion.c` |
 | `MAGICIANS_ROD` | `MAGICIANS` | — | `REPTILIANNE_GARDNA` | `src_custom/permanent_effects/magicians_rod.c` |
 | `OSHALEON` | `OSHALEON` | — | `REPTILIANNE_GARDNA` | `src_custom/permanent_effects/oshaleon.c` |
-| `REPTILIANNE_HYDRA` | `REPTILIANNE` | — | `REPTILIANNE_VIPER` | `src_custom/permanent_effects/reptilianne_hydra.c` |
-| `REPTILIANNE_NAGA` | `REPTILIANNE` | — | `REPTILIANNE_VIPER` | `src_custom/permanent_effects/reptilianne_naga.c` |
-| `REPTILIANNE_SERVANT` | `REPTILIANNE` | — | `REPTILIANNE_VIPER` | `src_custom/permanent_effects/reptilianne_servant.c` |
+| `REPTILIANNE_SERVANT` | `REPTILIANNE` | — | `REPTILIANNE_NAGA` | `src_custom/permanent_effects/reptilianne_servant.c` |
 | `THE_DARK_MAGICIANS` | `THE_DARK` | — | `ELEMENTAL_HERO_THE_SHINING` | `src_custom/permanent_effects/the_dark_magicians.c` |
 | `THUNDER_DRAGON_COLOSSUS` | `THUNDER_DRAGON` | — | `ELEMENTAL_HERO_THE_SHINING` | `src_custom/permanent_effects/thunder_dragon_colossus.c` |
 | `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` | `TIMEAEUS` | — | `RAVIEL_LORD_OF_PHANTASMS` | `src_custom/permanent_effects/timeaeus_the_united_magical_dragon.c` |
 | `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES` | `VENNOMINAGA` | — | `ELEMENTAL_HERO_SHINING_FLARE_WINGMAN` | `src_custom/permanent_effects/vennominaga_the_deity_of_poisonous_snakes.c` |
 | `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES` | `VENNOMINON` | — | `ELEMENTAL_HERO_ESCURIDAO` | `src_custom/permanent_effects/vennominon_the_king_of_poisonous_snakes.c` |
-| `YOWIE` | `YOWIE` | — | `FENRIR` | `src_custom/permanent_effects/yowie.c` |
 
 ## battle (8)
 

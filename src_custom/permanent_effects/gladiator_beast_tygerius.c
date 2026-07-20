@@ -2,53 +2,76 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
-#include "summon_tribute.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void SetCursorToCardDest(void);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static const char sGladiatorBeastName[] APPEND_RODATA = "Gladiator Beast";
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ACTIVE_DUELIST;
+  if (turnRow == INACTIVE_DUELIST_MONSTER_ROW)
+    return INACTIVE_DUELIST;
+  return ACTIVE_DUELIST;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsGladiatorBeastCard(u16 cardId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sGladiatorBeastName);
 }
 
-static void CancelTargeting(void)
+static u8 IsGladiatorBeastHandCard(u16 cardId)
 {
-  PlayMusic(SFX_CANCEL);
+  return IsGladiatorBeastCard(cardId);
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static u16 FindGladiatorBeastMonsterInDeck(u8 turnDuelist)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsGladiatorBeastCard(cardId) && GetTypeGroup(cardId) == TYPE_GROUP_MONSTER)
+      return cardId;
+  }
+
+  return CARD_NONE;
+}
+
+static u8 HandHasGladiatorBeast(u8 turnDuelist)
+{
+  struct DuelCard **handRow = gTurnHands[turnDuelist];
+  u8 maxSlots = MAX_ZONES_IN_ROW;
+  u8 i;
+
+  for (i = 0; i < maxSlots; i++) {
+    if (IsGladiatorBeastCard(handRow[i]->id))
+      return TRUE;
+  }
+
   return FALSE;
 }
 
 unsigned char ShouldActivateGLADIATOR_BEAST_TYGERIUS(void)
 {
   struct DuelCard *zone;
+  u8 duelist;
 
   if (gActiveEffect.cardId != GLADIATOR_BEAST_TYGERIUS)
-    return FALSE;
-
-  if (GetPendingTributeSummonCardId() != GLADIATOR_BEAST_TYGERIUS)
     return FALSE;
 
   if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
@@ -56,30 +79,33 @@ unsigned char ShouldActivateGLADIATOR_BEAST_TYGERIUS(void)
     return FALSE;
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
+  if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* TODO: add field-has-target check */
-  return TRUE;
+  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
+  return FindGladiatorBeastMonsterInDeck(duelist) != CARD_NONE;
 }
 
 void ActivateGLADIATOR_BEAST_TYGERIUS(void)
 {
-  u8 originRow = gActiveEffect.turnRow;
-  u8 originCol = gActiveEffect.col;
+  u8 duelist;
+  struct DuelCard *zone;
+  u16 searchId;
+
+  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
 
   Duel_ShowEffectTextTyped(GLADIATOR_BEAST_TYGERIUS, 8);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
+  if (HandHasGladiatorBeast(duelist))
+    Duel_DiscardFromHand(duelist, 1, IsGladiatorBeastHandCard, TRUE);
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  searchId = FindGladiatorBeastMonsterInDeck(duelist);
+  if (searchId != CARD_NONE)
+    Duel_AddDeckCardToHand(duelist, searchId, TRUE);
 
-  if (WhoseTurn() == DUEL_PLAYER && originRow == ACTIVE_DUELIST_MONSTER_ROW)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+  zone->unk4 = 1;
+  /* ponytail: GB tag-out + optional discard gate not wired; on-summon search stand-in. */
 }
