@@ -3,63 +3,52 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
-
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
-
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
-}
 
 unsigned char CanActivateGRAVEKEEPERS_WATCHER(void)
 {
   if (gMonEffect.id != GRAVEKEEPERS_WATCHER)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  /* ponytail: either-turn chain negate when opp discards needs chain/negation
+   * hooks. Ceiling: not field-ignition; discard-from-hand path below. */
+  return FALSE;
 }
 
 void ActivateGRAVEKEEPERS_WATCHEREffect(void)
 {
   Duel_ShowEffectTextTyped(GRAVEKEEPERS_WATCHER, 2);
+}
+
+u8 CanActivateGravekeepersWatcherFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
+    return FALSE;
+
+  return SixCardHand_ZoneAtHandRow(handRow, handZone)->id == GRAVEKEEPERS_WATCHER;
+}
+
+u8 TryActivateGravekeepersWatcherFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+
+  if (!CanActivateGravekeepersWatcherFromHand(handZone))
+    return FALSE;
+
+  Duel_ShowEffectTextTyped(GRAVEKEEPERS_WATCHER, 2);
 
   if (IsDuelOver() == TRUE)
-    return;
+    return TRUE;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  /* ponytail: negate activation + destroy activated card not wired. */
+  if (Duel_DestroyZone(SixCardHand_ZoneAtHandRow(handRow, handZone), ACTIVE_DUELIST, FALSE)
+      == DUEL_ACTION_DUEL_OVER)
+    return TRUE;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  UpdateDuelGfxExceptField();
+  return TRUE;
 }

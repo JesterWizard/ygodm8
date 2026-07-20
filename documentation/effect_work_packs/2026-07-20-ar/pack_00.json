@@ -1,0 +1,82 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MORPHTRONIC_MAGNEN",
+      "card_name": "Morphtronic Magnen",
+      "kind": "activated",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/activated_effects/morphtronic_magnen.c",
+      "effect_text": "- While in Attack Position: If your opponent controls a face-up monster, this card can only select their highest ATK mon - While in Attack Position: If your opponent controls a face-up monster, this card can only select their highest ATK monster as an attack target. - While in Defense Position: Your opponent cannot select another monster as an attack target.",
+      "tags": [
+        "faceup",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MORPHTRONIC_BOOMBOXEN",
+      "clone_path": "src_custom/activated_effects/morphtronic_boomboxen.c",
+      "clone_score": 1.02
+    },
+    {
+      "card_const": "ARCANITE_MAGICIAN",
+      "card_name": "Arcanite Magician",
+      "kind": "activated",
+      "archetype": "ARCANITE",
+      "path": "src_custom/activated_effects/arcanite_magician.c",
+      "effect_text": "Synchro: 2 Spell Counters. +1000 ATK each. Remove 1 Spell Counter; destroy 1 opp. card. 1 Tuner + 1+ non-Tuner Spellcaster monsters If this card is Synchro Summoned: Place 2 Spell Counters on it. This card gains 1000 ATK for each Spell Counter on it. You can remove 1 Spell Counter from your field, then target 1 card your opponent controls; destroy that target.",
+      "tags": [
+        "destroy",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_SAGE",
+      "clone_path": "src_custom/activated_effects/amazoness_sage.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "DARKLORD_DESIRE",
+      "card_name": "Darklord Desire",
+      "kind": "activated",
+      "archetype": "DARKLORD",
+      "path": "src_custom/activated_effects/darklord_desire.c",
+      "effect_text": "Cannot be Special Summoned. You can Tribute Summon this card by Tributing 1 Fairy-Type monster. Once per turn: You can t Cannot be Special Summoned. You can Tribute Summon this card by Tributing 1 Fairy-Type monster. Once per turn: You can target 1 monster your opponent controls; this card loses exactly 1000 ATK, and if it does, send that target to the Graveyard.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon",
+        "target1",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CRIMSON_BLADER",
+      "clone_path": "src_custom/activated_effects/crimson_blader.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "FORMULA_SYNCHRON",
+      "card_name": "Formula Synchron",
+      "kind": "activated",
+      "archetype": "FORMULA",
+      "path": "src_custom/activated_effects/formula_synchron.c",
+      "effect_text": "1 Tuner + 1 non-Tuner monster\nWhen this card is Synchro Summoned: You can draw 1 card. Once per Chain, during your oppon 1 Tuner + 1 non-Tuner monster When this card is Synchro Summoned: You can draw 1 card. Once per Chain, during your opponent's Main Phase, you can (Quick Effect): Immediately after this effect resolves, Synchro Summon using this card you control.",
+      "tags": [
+        "draw",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "T_G_HYPER_LIBRARIAN",
+      "clone_path": "src_custom/activated_effects/t_g_hyper_librarian.c",
+      "clone_score": 0.5
+    }
+  ]
+}

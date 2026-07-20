@@ -2,28 +2,93 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "god_card.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
+void CheckWinConditionExodia(unsigned char);
+
+static u8 IsFaceUpOppCardTarget(struct DuelCard *zone)
+{
+  u8 typeGroup;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (IsGodCard(zone->id))
+    return FALSE;
+
+  typeGroup = GetTypeGroup(zone->id);
+  if (typeGroup == TYPE_GROUP_MONSTER) {
+    if (IsCardFaceUp(zone))
+      return TRUE;
+
+    return zone->isDefending == FALSE;
+  }
+
+  return typeGroup == TYPE_GROUP_SPELL || typeGroup == TYPE_GROUP_TRAP;
+}
 
 static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (fixedRow != OPPONENT_MONSTER_ROW && fixedRow != OPPONENT_BACKROW)
+    return FALSE;
+
+  return IsFaceUpOppCardTarget(gFixedZones[fixedRow][fixedCol]);
+}
+
+static u8 FieldHasTarget(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsValidTarget(row, col))
+        return TRUE;
+    }
+  }
+
   return FALSE;
+}
+
+static u8 TurnDuelistOwningFixedRow(u8 fixedRow)
+{
+  u8 fixedOwner;
+
+  if (fixedRow == PLAYER_MONSTER_ROW || fixedRow == PLAYER_BACKROW)
+    fixedOwner = DUEL_PLAYER;
+  else
+    fixedOwner = DUEL_OPPONENT;
+
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedOwner])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
 }
 
 static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (!IsValidTarget(fixedRow, fixedCol) || zone == NULL)
+    return;
+
+  if (Duel_DestroyZone(zone, TurnDuelistOwningFixedRow(fixedRow), FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  NotifyDynamicEquipFieldChanged();
+
+  if (self != NULL)
+    MarkMonsterEffectUsed(self);
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 static void CancelTargeting(void)
@@ -33,17 +98,59 @@ static void CancelTargeting(void)
 
 static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  u8 row;
+  u8 col;
+  s8 bestCol = -1;
+  u16 bestAtk = 0;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone;
+      u16 atk;
+
+      if (!IsValidTarget(row, col))
+        continue;
+
+      zone = gFixedZones[row][col];
+      if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER) {
+        *outRow = row;
+        *outCol = col;
+        return TRUE;
+      }
+
+      atk = Duel_GetZoneFinalAtk(zone);
+      if (bestCol < 0 || atk > bestAtk) {
+        bestCol = (s8)col;
+        bestAtk = atk;
+        *outRow = row;
+      }
+    }
+  }
+
+  if (bestCol < 0)
+    return FALSE;
+
+  *outCol = (u8)bestCol;
+  return TRUE;
 }
 
 unsigned char CanActivateAROMASERAPHY_ROSEMARY(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != AROMASERAPHY_ROSEMARY)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != AROMASERAPHY_ROSEMARY)
+    return FALSE;
+
+  /* ponytail: LP-higher Plant +500 ATK/DEF + LP-gain negate need permanent/LP
+   * hooks. Ceiling: OPT destroy 1 face-up opp card. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return FieldHasTarget();
 }
 
 void ActivateAROMASERAPHY_ROSEMARYEffect(void)

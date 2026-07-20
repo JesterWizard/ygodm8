@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:50 UTC  
-**Remaining partials:** `508`
+**Last updated:** 2026-07-20 18:52 UTC  
+**Remaining partials:** `520`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 177 |
+| `activated` | 189 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **508** |
+| **total** | **520** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (177)
+## activated (189)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1448,6 +1448,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/an_owl_of_luck.c`
 - L74: FLIP trigger needs flip hook. Ceiling: once via usage if Field Spell in Deck.
 
+### `ANCIENT_GEAR_BEAST`
+- path: `src_custom/activated_effects/ancient_gear_beast.c`
+- L12: attack → opp cannot activate S/T until Damage Step + negate destroyed-in-battle monster effects need battle hooks. Ceiling: not ignition here.
+
 ### `ANCIENT_GEAR_CANNON`
 - path: `src_custom/activated_effects/ancient_gear_cannon.c`
 - L47: Battle Phase Trap lock not applied; upgrade: trap-activation gate.
@@ -1459,6 +1463,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANCIENT_GEAR_SOLDIER`
 - path: `src_custom/activated_effects/ancient_gear_soldier.c`
 - L12: attack → opp cannot activate S/T until end of Damage Step needs battle lock hook. Ceiling: not ignition-activatable here; upgrade: battle phase Spell/Trap activation gate while this card is attacking.
+
+### `ARCANITE_MAGICIAN`
+- path: `src_custom/activated_effects/arcanite_magician.c`
+- L158: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. Ceiling: OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card.
 
 ### `ARCHLORD_KRISTYA`
 - path: `src_custom/activated_effects/archlord_kristya.c`
@@ -1483,6 +1491,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AROMAGE_ROSEMARY`
 - path: `src_custom/activated_effects/aromage_rosemary.c`
 - L125: LP-higher Plant attack → opp monster effects locked + LP-gain gate need permanent/LP hooks. Ceiling: OPT change 1 face-up battle position.
+
+### `AROMASERAPHY_ROSEMARY`
+- path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
+- L148: LP-higher Plant +500 ATK/DEF + LP-gain negate need permanent/LP hooks. Ceiling: OPT destroy 1 face-up opp card.
 
 ### `ATHENA`
 - path: `src_custom/activated_effects/athena.c`
@@ -1592,6 +1604,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/dark_strike_fighter.c`
 - L127: Main Phase 1 gate not wired; allow once via usage any main phase.
 
+### `DARKLORD_DESIRE`
+- path: `src_custom/activated_effects/darklord_desire.c`
+- L56: -2 tempStage (~1000 ATK, not exact); until EP clear needs EOT hook.
+- L116: Fairy-only Tribute Summon + cannot SS need summon hooks. Ceiling: OPT -1000 ATK (tempStage) → send 1 opp monster to GY.
+
 ### `DECOY_DRAGON`
 - path: `src_custom/activated_effects/decoy_dragon.c`
 - L181: attack-target redirect needs battle targeting hook. Ceiling: OPT SS Lv7+ Dragon from GY once via usage when legal.
@@ -1620,6 +1637,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `EHREN_LIGHTSWORN_MONK`
 - path: `src_custom/activated_effects/ehren_lightsworn_monk.c`
 - L12: battle shuffle + End Phase mill 3 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: battle + EP mill.
+
+### `ELDER_ENTITY_NORDEN`
+- path: `src_custom/activated_effects/elder_entity_norden.c`
+- L73: banish-when-leaves needs leave-field hook; unk4 marks negated.
+- L124: SS-trigger timing + banish-when-leaves need summon/leave hooks. Ceiling: OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark.
 
 ### `ELEMENTAL_HERO_BLAZEMAN`
 - path: `src_custom/activated_effects/elemental_hero_blazeman.c`
@@ -1688,6 +1710,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/fog_king.c`
 - L12: tribute-flex Normal Summon, ATK = tributed ATK, and global tribute lock need summon/tribute continuous hooks. Ceiling: not field-ignition here.
 
+### `FORMULA_SYNCHRON`
+- path: `src_custom/activated_effects/formula_synchron.c`
+- L32: Synchro Summon draw trigger + opp-Main-Phase quick Synchro need synchro/chain hooks. Ceiling: OPT draw 1 via usage when deck remains.
+
 ### `FUSILIER_DRAGON_THE_DUAL_MODE_BEAST`
 - path: `src_custom/activated_effects/fusilier_dragon_the_dual_mode_beast.c`
 - L12: NS without tribute + halved ATK/DEF needs summon tribute gate. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
@@ -1695,6 +1721,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GAGAGIGO_THE_RISEN`
 - path: `src_custom/activated_effects/gagagigo_the_risen.c`
 - L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `GLADIATOR_BEAST_BESTIARI`
+- path: `src_custom/activated_effects/gladiator_beast_bestiari.c`
+- L192: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy 1 opp S/T, else tag-out shuffle→SS.
 
 ### `GLADIATOR_BEAST_HOPLOMUS`
 - path: `src_custom/activated_effects/gladiator_beast_hoplomus.c`
@@ -1769,6 +1799,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gravekeepers_visionary.c`
 - L49: +200 ATK per GK in GY + destroy-replace need stat/destroy hooks. Ceiling: OPT discard 1 GK monster from hand once via usage (save stand-in).
 
+### `GRAVEKEEPERS_WATCHER`
+- path: `src_custom/activated_effects/gravekeepers_watcher.c`
+- L15: either-turn chain negate when opp discards needs chain/negation hooks. Ceiling: not field-ignition; discard-from-hand path below.
+- L47: negate activation + destroy activated card not wired.
+
 ### `GREAT_POSEIDON_BEETLE`
 - path: `src_custom/activated_effects/great_poseidon_beetle.c`
 - L12: re-attack same target after surviving battle needs battle re-attack hook. Ceiling: not ignition-activatable here.
@@ -1810,6 +1845,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/jain_lightsworn_paladin.c`
 - L12: Damage Step +300 ATK and End Phase mill 2 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: permanent/battle + EP mill.
 
+### `JAIN_TWILIGHTSWORN_GENERAL`
+- path: `src_custom/activated_effects/jain_twilightsworn_general.c`
+- L151: until end of turn clear needs EOT tempStage reset hook.
+- L229: other-Lightsworn-activated mill 2 needs chain/EP hook. Ceiling: OPT banish 1 Lightsworn from hand/GY → weaken 1 face-up monster.
+
 ### `JOWLS_OF_DARK_DEMISE`
 - path: `src_custom/activated_effects/jowls_of_dark_demise.c`
 - L70: Jowls direct-attack flag; cleared when zone resets
@@ -1843,6 +1883,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/leviair_the_sea_dragon.c`
 - L62: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
 - L107: no Xyz detach cost; OPT SS banished Lv≤4 stand-in when RFP enabled. Ceiling: materials not checked; upgrade: overlay detach before SS.
+
+### `LIFE_STREAM_DRAGON`
+- path: `src_custom/activated_effects/life_stream_dragon.c`
+- L28: Synchro LP=4000 trigger + no effect damage + Equip-banish destruction-replace need synchro/LP/battle hooks. Ceiling: OPT set LP to 4000 via usage.
 
 ### `LUMINA_LIGHTSWORN_SUMMONER`
 - path: `src_custom/activated_effects/lumina_lightsworn_summoner.c`
@@ -1909,6 +1953,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_boomboxen.c`
 - L12: double attack in ATK + DEF negate-attack need battle/position hooks. Ceiling: not ignition-activatable here.
 
+### `MORPHTRONIC_MAGNEN`
+- path: `src_custom/activated_effects/morphtronic_magnen.c`
+- L12: ATK-position highest-ATK-only attack target + DEF-position redirect-attack need battle/position hooks. Ceiling: not ignition here.
+
 ### `MORPHTRONIC_RADION`
 - path: `src_custom/activated_effects/morphtronic_radion.c`
 - L12: position-based Morphtronic ATK/DEF boost needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position gate.
@@ -1944,6 +1992,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `REPTILIANNE_MEDUSA`
 - path: `src_custom/activated_effects/reptilianne_medusa.c`
 - L76: cannot change battle position needs position-change gate.
+
+### `REPTILIANNE_VASKII`
+- path: `src_custom/activated_effects/reptilianne_vaskii.c`
+- L191: only-SS-by-tribute + unique-on-field need summon/field hooks. Ceiling: OPT destroy 1 face-up opp monster.
+- L233: multi-zone tribute picker not wired; auto-tribute first two 0 ATK.
 
 ### `RESCUE_CAT`
 - path: `src_custom/activated_effects/rescue_cat.c`

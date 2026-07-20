@@ -4,62 +4,52 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return DUEL_OPPONENT;
 }
 
 unsigned char CanActivateLIFE_STREAM_DRAGON(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != LIFE_STREAM_DRAGON)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != LIFE_STREAM_DRAGON)
+    return FALSE;
+
+  /* ponytail: Synchro LP=4000 trigger + no effect damage + Equip-banish
+   * destruction-replace need synchro/LP/battle hooks. Ceiling: OPT set LP to
+   * 4000 via usage. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return TRUE;
 }
 
 void ActivateLIFE_STREAM_DRAGONEffect(void)
 {
+  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 fixedDuelist = FixedDuelistForActive();
+  s32 delta;
+
   Duel_ShowEffectTextTyped(LIFE_STREAM_DRAGON, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (zone == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  delta = 4000 - (s32)gDuelLifePoints[fixedDuelist];
+  if (delta != 0
+      && Duel_ChangeLp(ACTIVE_DUELIST, delta, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(zone);
+  UpdateDuelGfxExceptField();
 }

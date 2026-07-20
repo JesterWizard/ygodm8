@@ -249,6 +249,8 @@ u8 TrySpecialSummonTurboBoosterFromHand(u8);
 u8 TrySpecialSummonGreenBaboonFromHand(u8);
 u8 TrySpecialSummonBeastMachineKingBarbarosUrFromHand(u8);
 u8 TryActivateEvilHeroAdustedGoldFromHand(u8);
+u8 TryActivateGravekeepersWatcherFromHand(u8);
+u8 TrySpecialSummonReptilianneVaskiiFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -533,6 +535,16 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == BEAST_MACHINE_KING_BARBAROS_UR
           && TrySpecialSummonBeastMachineKingBarbarosUrFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GRAVEKEEPERS_WATCHER
+          && TryActivateGravekeepersWatcherFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == REPTILIANNE_VASKII
+          && TrySpecialSummonReptilianneVaskiiFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

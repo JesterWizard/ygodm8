@@ -1,0 +1,87 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "REPTILIANNE_VASKII",
+      "card_name": "Reptilianne Vaskii",
+      "kind": "activated",
+      "archetype": "REPTILIANNE",
+      "path": "src_custom/activated_effects/reptilianne_vaskii.c",
+      "effect_text": "SS by Tributing 2 with 0 ATK. OPT: destroy 1 face-up opp. This card cannot be Normal Summoned or Set. This card cannot be Special Summoned except by Tributing 2 face-up monsters with 0 ATK from anywhere on the field. Once per turn, you can select and destroy 1 face-up monster your opponent controls. There can only be 1 face-up Reptilianne Vaskii on the field.",
+      "tags": [
+        "destroy",
+        "faceup",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GREAT_TORNADO",
+      "clone_path": "src_custom/activated_effects/elemental_hero_great_tornado.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "ELDER_ENTITY_NORDEN",
+      "card_name": "Elder Entity Norden",
+      "kind": "activated",
+      "archetype": "ELDER",
+      "path": "src_custom/activated_effects/elder_entity_norden.c",
+      "effect_text": "1 Synchro or Xyz Monster + 1 Synchro or Xyz Monster\nWhen this card is Special Summoned: You can target 1 Level 4 or lowe 1 Synchro or Xyz Monster + 1 Synchro or Xyz Monster When this card is Special Summoned: You can target 1 Level 4 or lower monster in your Graveyard; Special Summon it, but its effects are negated, also banish it when this card leaves the field.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CRIMSON_BLADER",
+      "clone_path": "src_custom/activated_effects/crimson_blader.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "AROMASERAPHY_ROSEMARY",
+      "card_name": "Aromaseraphy Rosemary",
+      "kind": "activated",
+      "archetype": "AROMASERAPHY",
+      "path": "src_custom/activated_effects/aromaseraphy_rosemary.c",
+      "effect_text": "If LP higher: Plants +500. Once/turn if gain LP: negate 1 opp. face-up card. 1 Tuner + 1 or more non-Tuner monsters While your LP is higher than your opponent's, all Plant-Type monsters you control gain 500 ATK and DEF. Once per turn, if you gain LP: Target 1 face-up card your opponent controls; that face-up card has its effects negated until the end of this turn.",
+      "tags": [
+        "faceup",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COPYCAT",
+      "clone_path": "src_custom/activated_effects/copycat.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "JAIN_TWILIGHTSWORN_GENERAL",
+      "card_name": "Jain, Twilightsworn General",
+      "kind": "activated",
+      "archetype": "JAIN",
+      "path": "src_custom/activated_effects/jain_twilightsworn_general.c",
+      "effect_text": "Banish Lightsworn; weaken; mill trigger. Once per turn: You can banish 1 Lightsworn monster from your hand or GY, then target 1 face-up monster on the field; it loses ATK and DEF equal to the banished monster's Level x 300, until the end of this turn. Once per turn, if your other Lightsworn monster's effect is activated: Send the top 2 cards of your Deck to the GY.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "JAIN_LIGHTSWORN_PALADIN",
+      "clone_path": "src_custom/activated_effects/jain_lightsworn_paladin.c",
+      "clone_score": 0.78
+    }
+  ]
+}
