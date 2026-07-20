@@ -1,7 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack BA: 12 activated monsters
+**Last worked on:** 2026-07-20 — Effect pack BB: 12 activated monsters (end of AW–BB 6-batch)
 
-**Outcome:** make OK. Stubs **277 → 265**. Partials **613 → 622**.
+**Outcome:** make OK. Stubs **265 → 253**. Partials **622 → 634**.
 
-**Open / next:** BB (final pack of this 6-batch run).
+**Open / next:**
+- next activated pack would be BC (`--kind activated`; ~169 left)
+- many continuous/quick/battle effects still `ponytail:`

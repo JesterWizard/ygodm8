@@ -2,64 +2,146 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "god_card.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
+void CheckWinConditionExodia(unsigned char);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static u8 TurnDuelistForFixedRow(u8 fixedRow)
+{
+  u8 fixedOwner;
+
+  if (fixedRow == PLAYER_MONSTER_ROW || fixedRow == PLAYER_BACKROW)
+    fixedOwner = DUEL_PLAYER;
+  else
+    fixedOwner = DUEL_OPPONENT;
+
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedOwner])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
+}
+
+static struct DuelCard *JudgmentZone(void)
+{
+  return gTurnZones[gMonEffect.row][gMonEffect.zone];
+}
+
+static u8 FieldHasOtherCard(struct DuelCard *self)
+{
+  u8 row;
+  u8 col;
+
+  for (row = 0; row < 4; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = &gDuel.board[row][col];
+
+      if (zone == self || zone->id == CARD_NONE || IsGodCard(zone->id))
+        continue;
+
+      return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u16 HalfLpCost(void)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  u8 me = FixedDuelistForActive();
+
+  return gDuelLifePoints[me] / 2;
 }
 
-static void CancelTargeting(void)
+static void DestroyAllOtherFieldCards(struct DuelCard *protectedZone)
 {
-  PlayMusic(SFX_CANCEL);
-}
+  u8 row;
+  u8 col;
+  u8 destroyed = FALSE;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  for (row = 0; row < 4; row++) {
+    u8 graveyardDuelist = TurnDuelistForFixedRow(row);
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = &gDuel.board[row][col];
+
+      if (zone == protectedZone || zone->id == CARD_NONE || IsGodCard(zone->id))
+        continue;
+
+      if (Duel_DestroyZone(zone, graveyardDuelist, FALSE) == DUEL_ACTION_DUEL_OVER)
+        return;
+
+      destroyed = TRUE;
+    }
+  }
+
+  if (destroyed) {
+    NotifyDynamicEquipFieldChanged();
+    UpdateDuelGfxExceptField();
+  }
 }
 
 unsigned char CanActivateJUDGMENT_THE_DRAGON_OF_HEAVEN(void)
 {
+  struct DuelCard *zone;
+  u16 cost;
+
   if (gMonEffect.id != JUDGMENT_THE_DRAGON_OF_HEAVEN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = JudgmentZone();
+  if (zone == NULL || zone->id != JUDGMENT_THE_DRAGON_OF_HEAVEN)
+    return FALSE;
+
+  /* ponytail: 4+ GY Tuners gate + Dragon-only SS lock + End Phase mill 4 need
+   * GY/phase hooks. Ceiling: pay half LP → destroy all other field cards. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  cost = HalfLpCost();
+  if (cost == 0)
+    return FALSE;
+
+  return FieldHasOtherCard(zone);
 }
 
 void ActivateJUDGMENT_THE_DRAGON_OF_HEAVENEffect(void)
 {
+  struct DuelCard *self = JudgmentZone();
+  u16 cost;
+
   Duel_ShowEffectTextTyped(JUDGMENT_THE_DRAGON_OF_HEAVEN, 2);
+
+  if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  cost = HalfLpCost();
+  if (cost == 0)
+    return;
+
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -(s32)cost, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
   if (IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  DestroyAllOtherFieldCards(self);
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (self != NULL)
+    MarkMonsterEffectUsed(self);
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

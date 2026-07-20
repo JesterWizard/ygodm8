@@ -4,62 +4,46 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
-
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
-}
+#define VACUUMEN_BURN 500
 
 unsigned char CanActivateMORPHTRONIC_VACUUMEN(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != MORPHTRONIC_VACUUMEN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != MORPHTRONIC_VACUUMEN)
+    return FALSE;
+
+  /* ponytail: send Equip → burn + DEF equip-take-control need equip hooks.
+   * Ceiling: ATK Position OPT burn 500. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return zone->isDefending == FALSE;
 }
 
 void ActivateMORPHTRONIC_VACUUMENEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
   Duel_ShowEffectTextTyped(MORPHTRONIC_VACUUMEN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE || self->isDefending != FALSE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (Duel_ChangeLp(INACTIVE_DUELIST, -VACUUMEN_BURN, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

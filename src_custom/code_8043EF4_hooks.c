@@ -279,6 +279,7 @@ u8 TryActivateHonestFromHand(u8);
 u8 TryActivateArcanaForceXvTheFiendFromHand(u8);
 u8 TrySpecialSummonMasterHyperionFromHand(u8);
 u8 TryActivateDestinyHeroDynatagFromHand(u8);
+u8 TrySpecialSummonDestinyHeroPlasmaFromHand(u8);
 u8 TrySpecialSummonEvilHeroToxicBubbleFromHand(u8);
 u8 TrySpecialSummonGuardianEatosFromHand(u8);
 u8 TrySpecialSummonDarknessNeosphereFromHand(u8);
@@ -721,6 +722,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == DESTINY_HERO_DYNATAG
           && TryActivateDestinyHeroDynatagFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DESTINY_HERO_PLASMA
+          && TrySpecialSummonDestinyHeroPlasmaFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

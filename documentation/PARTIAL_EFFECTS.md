@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:21 UTC  
-**Remaining partials:** `622`
+**Last updated:** 2026-07-20 19:23 UTC  
+**Remaining partials:** `634`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 291 |
+| `activated` | 303 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **622** |
+| **total** | **634** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (291)
+## activated (303)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1472,6 +1472,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANCIENT_GEAR_ENGINEER`
 - path: `src_custom/activated_effects/ancient_gear_engineer.c`
 - L12: trap negate + attack lock + end-of-Damage-Step destroy need battle/trap hooks. Ceiling: not field-ignition activatable here.
+
+### `ANCIENT_GEAR_GADJILTRON_CHIMERA`
+- path: `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c`
+- L12: Green/Red/Yellow Gadget tribute branches (+300 ATK, direct burn, battle burn) need summon/tribute hooks. Ceiling: not ignition-activatable.
 
 ### `ANCIENT_GEAR_GOLEM`
 - path: `src_custom/activated_effects/ancient_gear_golem.c`
@@ -1551,6 +1555,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/aromalilith_rosalina.c`
 - L106: discard quick LP + Plant-only SS lock need chain/SS hooks. Ceiling: OPT SS 1 non-Tuner Aroma from Deck in DEF.
 
+### `AROMASERAPHY_JASMINE`
+- path: `src_custom/activated_effects/aromaseraphy_jasmine.c`
+- L179: LP-higher battle protect + Link-point tribute + LP-gain search need Link/LP hooks. Ceiling: tribute 1 you control → SS Plant from Deck.
+
 ### `AROMASERAPHY_ROSEMARY`
 - path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
 - L148: LP-higher Plant +500 ATK/DEF + LP-gain negate need permanent/LP hooks. Ceiling: OPT destroy 1 face-up opp card.
@@ -1613,6 +1621,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `BLACK_ROSE_DRAGON`
 - path: `src_custom/activated_effects/black_rose_dragon.c`
 - L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
+
+### `BLUE_EYES_SOLID_DRAGON`
+- path: `src_custom/activated_effects/blue_eyes_solid_dragon.c`
+- L49: summon Quick shuffle→SS BEWD + per-effect usage need hooks.
 
 ### `BOOT_UP_SOLDIER_DREAD_DYNAMO`
 - path: `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c`
@@ -1773,9 +1785,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L15: Damage Step no-battle-damage + GY banish ATK boost use FromHand path. Ceiling: not field-ignition activatable here.
 - L54: no battle damage from that battle not wired; both players 1000.
 
+### `DESTINY_HERO_DYSTOPIA`
+- path: `src_custom/activated_effects/destiny_hero_dystopia.c`
+- L203: on-SS burn + Quick destroy-if-ATK-changed need summon/ATK hooks. Ceiling: OPT pick Lv≤4 D-HERO in GY → burn its ATK.
+
 ### `DESTINY_HERO_MALICIOUS`
 - path: `src_custom/activated_effects/destiny_hero_malicious.c`
 - L43: GY ignition needs GY-menu wire. Ceiling: allow when Malicious in GY + another in Deck (callable if gMonEffect set to Malicious).
+
+### `DESTINY_HERO_PLASMA`
+- path: `src_custom/activated_effects/destiny_hero_plasma.c`
+- L95: equip/absorb + half-ATK boost + continuous opp negate need equip hooks. Ceiling: destroy 1 opp monster.
 
 ### `EHREN_LIGHTSWORN_MONK`
 - path: `src_custom/activated_effects/ehren_lightsworn_monk.c`
@@ -1802,6 +1822,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ELEMENTAL_HERO_BRAVE_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_brave_neos.c`
 - L67: +100 ATK per Neo-Spacian/HERO in GY + battle-destroy search gate need stat/battle hooks. Ceiling: OPT add 1 Neos/HERO Spell/Trap from Deck.
+
+### `ELEMENTAL_HERO_DARK_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_dark_neos.c`
+- L50: contact Fusion + End Phase Extra shuffle need fusion/phase hooks.
 
 ### `ELEMENTAL_HERO_GAIA`
 - path: `src_custom/activated_effects/elemental_hero_gaia.c`
@@ -1830,6 +1854,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ELEMENTAL_HERO_OCEAN`
 - path: `src_custom/activated_effects/elemental_hero_ocean.c`
 - L81: skip stale GY Ocean while the activator is still on field
+
+### `ELEMENTAL_HERO_STORM_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_storm_neos.c`
+- L86: contact Fusion + End Phase Extra shuffle + field shuffle need fusion/phase hooks. Ceiling: OPT destroy all S/T on field.
 
 ### `ELEMENTAL_HERO_STRATOS`
 - path: `src_custom/activated_effects/elemental_hero_stratos.c`
@@ -1899,6 +1927,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEAST_BESTIARI`
 - path: `src_custom/activated_effects/gladiator_beast_bestiari.c`
 - L192: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy 1 opp S/T, else tag-out shuffle→SS.
+
+### `GLADIATOR_BEAST_DRAGASES`
+- path: `src_custom/activated_effects/gladiator_beast_dragases.c`
+- L157: battle indestruct + opp chain block + end-of-BP battled gate need battle hooks. Ceiling: OPT GB tag-out → SS 2 different from Deck.
 
 ### `GLADIATOR_BEAST_EQUESTE`
 - path: `src_custom/activated_effects/gladiator_beast_equeste.c`
@@ -2090,6 +2122,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/jowls_of_dark_demise.c`
 - L70: Jowls direct-attack flag; cleared when zone resets
 
+### `JUDGMENT_THE_DRAGON_OF_HEAVEN`
+- path: `src_custom/activated_effects/judgment_the_dragon_of_heaven.c`
+- L107: 4+ GY Tuners gate + Dragon-only SS lock + End Phase mill 4 need GY/phase hooks. Ceiling: pay half LP → destroy all other field cards.
+
 ### `JUNK_SYNCHRON`
 - path: `src_custom/activated_effects/junk_synchron.c`
 - L123: Normal Summon trigger needs summon hook. Ceiling: once via usage if GY Lv≤2.
@@ -2254,6 +2290,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_magnen.c`
 - L12: ATK-position highest-ATK-only attack target + DEF-position redirect-attack need battle/position hooks. Ceiling: not ignition here.
 
+### `MORPHTRONIC_MAGNEN_BAR`
+- path: `src_custom/activated_effects/morphtronic_magnen_bar.c`
+- L55: exactly-2-other ATK gate + DEF cannot-attack need battle hooks. Ceiling: ATK Position OPT refresh tempStage from other ATK/500.
+
 ### `MORPHTRONIC_RADION`
 - path: `src_custom/activated_effects/morphtronic_radion.c`
 - L12: position-based Morphtronic ATK/DEF boost needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position gate.
@@ -2265,6 +2305,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MORPHTRONIC_SLINGEN`
 - path: `src_custom/activated_effects/morphtronic_slingen.c`
 - L160: DEF destroy-other-Morphtronic substitute needs destroy redirect hook. Ceiling: ATK OPT tribute 1 other Morphtronic → destroy 1 field card.
+
+### `MORPHTRONIC_VACUUMEN`
+- path: `src_custom/activated_effects/morphtronic_vacuumen.c`
+- L24: send Equip → burn + DEF equip-take-control need equip hooks. Ceiling: ATK Position OPT burn 500.
 
 ### `MORPHTRONIC_VIDEON`
 - path: `src_custom/activated_effects/morphtronic_videon.c`
@@ -2324,6 +2368,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `POWER_TOOL_DRAGON`
 - path: `src_custom/activated_effects/power_tool_dragon.c`
 - L55: reveal-3 opp-picks + equip destruction replace need reveal/destroy hooks. Ceiling: OPT add first Equip Spell from Deck.
+
+### `PREDAPLANT_VERTE_ANACONDA`
+- path: `src_custom/activated_effects/predaplant_verte_anaconda.c`
+- L129: DARK attribute mark + Poly/Fusion copy SS need attribute/fusion hooks. Ceiling: pay 2000 LP → destroy 1 field card.
 
 ### `PROTECTOR_OF_THE_SANCTUARY`
 - path: `src_custom/activated_effects/protector_of_the_sanctuary.c`
