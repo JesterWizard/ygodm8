@@ -1,0 +1,90 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE",
+      "card_name": "Dark Magician Girl the Magician's Apprentice",
+      "kind": "activated",
+      "archetype": "DARK_MAGICIAN_GIRL_THE",
+      "path": "src_custom/activated_effects/dark_magician_girl_the_magician_s_apprentice.c",
+      "effect_text": "Discard 1 to SS; name becomes DMG. If Summoned: add Shining Sarcophagus. +300 ATK/mention in GY. You can Special Summon this card (from your hand) by discarding 1 card, and if you do, this card's name becomes Dark Magician Girl. You can only Special Summon Dark Magician Girl the Magician's Apprentice once per turn this way. If this card is Normal or Special Summoned: You can add 1 Shining Sarcophagus from your Deck to your hand. You can only use this effect of Dark Magician Girl the Magician's A",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "search",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.57
+    },
+    {
+      "card_const": "BLUE_EYES_ULTIMATE_SPIRIT_DRAGON",
+      "card_name": "Blue-Eyes Ultimate Spirit Dragon",
+      "kind": "activated",
+      "archetype": "BLUE_EYES",
+      "path": "src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c",
+      "effect_text": "1 Tuner + 1+ non-Tuner LIGHT Dragons. Opponent cannot banish from your GY. Once each per turn: when a 2+ Tuners + 1 non-Tuner Blue-Eyes monster Your opponent cannot banish cards from your GY. You can only use each of the following effects of Blue-Eyes Ultimate Spirit Dragon once per turn. When a card or effect is activated on the field (Quick Effect): You can negate the activation, and if you do, this card gains 1000 ATK until the end of this turn. If this card is destroyed by battle or card eff",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BLUE_EYES_TYRANT_DRAGON",
+      "clone_path": "src_custom/activated_effects/blue_eyes_tyrant_dragon.c",
+      "clone_score": 0.85
+    },
+    {
+      "card_const": "GRAVEKEEPERS_SUPERNATURALIST",
+      "card_name": "Gravekeeper's Supernaturalist",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_supernaturalist.c",
+      "effect_text": "2 \"Gravekeeper's\" monsters\r\nGains ATK/DEF equal to the combined original Levels of the materials used for its Fusion Sum 2 Gravekeeper's monsters Gains ATK/DEF equal to the combined original Levels of the materials used for its Fusion Summon x 100. While Necrovalley is on the field, this card, and any card in your Field Zone, cannot be destroyed by card effects. During your Main Phase: You can activate this effect; during the End Phase of this turn, add 1 Gravekeeper's monster or 1 Necrovalley c",
+      "tags": [
+        "deck",
+        "hand",
+        "monster",
+        "search"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_SPIRITUALIST",
+      "clone_path": "src_custom/activated_effects/gravekeepers_spiritualist.c",
+      "clone_score": 0.95
+    },
+    {
+      "card_const": "ANCIENT_GEAR_DARK_GOLEM",
+      "card_name": "Ancient Gear Dark Golem",
+      "kind": "activated",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/activated_effects/ancient_gear_dark_golem.c",
+      "effect_text": "This card's name becomes Ancient Gear Golem while on the field or in the GY. If this card is Normal or Special Summone This card's name becomes Ancient Gear Golem while on the field or in the GY. If this card is Normal or Special Summoned: You can add up to 2 cards (Ancient Gear cards and/or Geartown) from your Deck to your hand, except Ancient Gear Dark Golem, then discard 1 card, also you cannot Set cards for the rest of this turn. You can only use this effect of Ancient Gear Dark Golem once p",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "search",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_BEAST",
+      "clone_path": "src_custom/activated_effects/ancient_gear_beast.c",
+      "clone_score": 0.72
+    }
+  ]
+}

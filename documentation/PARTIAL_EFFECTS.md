@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 20:24 UTC  
-**Remaining partials:** `730`
+**Last updated:** 2026-07-20 20:33 UTC  
+**Remaining partials:** `742`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 399 |
+| `activated` | 411 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **730** |
+| **total** | **742** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (399)
+## activated (411)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1496,6 +1496,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/ancient_gear_cannon.c`
 - L47: Battle Phase Trap lock not applied; upgrade: trap-activation gate.
 
+### `ANCIENT_GEAR_DARK_GOLEM`
+- path: `src_custom/activated_effects/ancient_gear_dark_golem.c`
+- L60: name=AG Golem + cannot-Set lock FALSE. Ceiling: OPT add up to 2 Ancient Gear/Geartown from Deck then discard 1.
+
 ### `ANCIENT_GEAR_DRAGON`
 - path: `src_custom/activated_effects/ancient_gear_dragon.c`
 - L121: Quick negate + tribute-less NS need negate/summon hooks. Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY.
@@ -1529,6 +1533,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/ancient_gear_statue.c`
 - L111: ignore summoning conditions partial via CannotBeSS check. Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck.
 - L189: once-per-turn FromHand not tracked without turn flag.
+
+### `ANCIENT_GEAR_TANKER`
+- path: `src_custom/activated_effects/ancient_gear_tanker.c`
+- L190: AG pierce mark for rest of turn FALSE.
+- L234: pierce mark AG monsters FALSE. Ceiling: OPT SS AG from hand (GY if opp has monster), else OPT destroy your face-up. Separate OPTs share one MarkMonsterEffectUsed.
 
 ### `ANCIENT_SACRED_WYVERN`
 - path: `src_custom/activated_effects/ancient_sacred_wyvern.c`
@@ -1723,6 +1732,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/blue_eyes_tyrant_dragon.c`
 - L94: multi-attack + Trap immunity + battle-end Set need battle/permanent hooks. Ceiling: OPT Set 1 Trap from GY to backrow.
 
+### `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON`
+- path: `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c`
+- L23: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. Ceiling: OPT +2 tempStage (~+1000) as negate stand-in.
+
 ### `BOOT_UP_SOLDIER_DREAD_DYNAMO`
 - path: `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c`
 - L39: continuous +2000 while Gadget on field needs permanent overlay. Ceiling: OPT apply +4 stages (~2000) if Gadget present.
@@ -1838,6 +1851,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DARK_HORUS`
 - path: `src_custom/activated_effects/dark_horus.c`
 - L99: after opp Main Phase Spell resolve trigger needs spell hook. Ceiling: OPT SS 1 Lv4 DARK from GY while face-up.
+
+### `DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE`
+- path: `src_custom/activated_effects/dark_magician_girl_the_magician_s_apprentice.c`
+- L61: name=DMG + GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
+- L129: name becomes Dark Magician Girl FALSE (no name-override hook).
 
 ### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
 - path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
@@ -1958,6 +1976,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L89: on-NS/SS mill + tribute SS Fairy need summon/tribute hooks. Ceiling: OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in).
 - L110: Level bump until EOT needs level-override hook; unkTwo stores milled Level.
 
+### `EBON_ILLUSION_MAGICIAN`
+- path: `src_custom/activated_effects/ebon_illusion_magician.c`
+- L78: Xyz detach cost + attack-banish FALSE. Ceiling: OPT SS Spellcaster Normal from hand/Deck (detach stand-in).
+
 ### `EHREN_LIGHTSWORN_MONK`
 - path: `src_custom/activated_effects/ehren_lightsworn_monk.c`
 - L12: battle shuffle + End Phase mill 3 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: battle + EP mill.
@@ -2052,6 +2074,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/elemental_hero_terra_firma.c`
 - L41: fixed POV — only reveal the player's own monster row
 - L69: attack-position summons stay isFaceUp=0 until end-of-turn flip
+
+### `ENLIGHTENMENT_DRAGON`
+- path: `src_custom/activated_effects/enlightenment_dragon.c`
+- L138: Extra Summon conditions + destroy-add banished FALSE. Ceiling: OPT pay 2000 → banish all other field+both GYs, else OPT mill 4. Separate OPTs share one MarkMonsterEffectUsed.
 
 ### `ENRAGED_BATTLE_OX`
 - path: `src_custom/activated_effects/enraged_battle_ox.c`
@@ -2222,6 +2248,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
 - L110: end-of-Battle-Phase + battled gate + discard-GB draw 2 on GB-SS need battle/summon hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
 
+### `GLADIATOR_BEAST_TAMER_EDITOR`
+- path: `src_custom/activated_effects/gladiator_beast_tamer_editor.c`
+- L70: Extra Deck Fusion SS + immunity + BP tag FALSE. Ceiling: OPT SS Lv≥5 GB from Deck (Extra stand-in).
+
 ### `GLADIATOR_BEAST_VESPASIUS`
 - path: `src_custom/activated_effects/gladiator_beast_vespasius.c`
 - L121: FromHand battle SS + continuous +500 while GB-SS'd + end-BP battled gate need battle/summon hooks. Ceiling: OPT tag-out shuffle→SS.
@@ -2294,6 +2324,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GRAVEKEEPERS_SPY`
 - path: `src_custom/activated_effects/gravekeepers_spy.c`
 - L58: FLIP trigger needs flip hook.
+
+### `GRAVEKEEPERS_SUPERNATURALIST`
+- path: `src_custom/activated_effects/gravekeepers_supernaturalist.c`
+- L57: material ATK gain + Necrovalley destroy protect + EP schedule FALSE. Ceiling: OPT add Gravekeeper or Necrovalley from Deck now (EP add stand-in).
 
 ### `GRAVEKEEPERS_VASSAL`
 - path: `src_custom/activated_effects/gravekeepers_vassal.c`
@@ -2546,6 +2580,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/master_of_chaos.c`
 - L204: Fusion SS trigger + destroyed GY Spell add need summon/destroy hooks. Ceiling: OPT SS LIGHT/DARK from GY, else tribute LIGHT+DARK → banish.
 
+### `MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING`
+- path: `src_custom/activated_effects/master_peace_the_true_dracoslaying_king.c`
+- L54: Quick Effect destroy→banish stand-in via Duel_BanishZone.
+- L111: Tribute Continuous S/T + unaffected-by-type FALSE. Ceiling: OPT banish 1 other field card (Quick destroy stand-in).
+
 ### `MAXX_C`
 - path: `src_custom/activated_effects/maxx_c.c`
 - L55: draw-on-opponent-Special-Summon this turn not wired; upgrade: SS hook + simple turn flag when one exists.
@@ -2681,6 +2720,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L54: until end of turn clear needs EOT unk4 reset hook.
 - L110: FLIP Shaddoll unaffected + sent-by-effect branches need flip/send hooks. Ceiling: OPT negate 1 face-up Effect Monster (unk4).
 
+### `NEO_BLUE_EYES_ULTIMATE_DRAGON`
+- path: `src_custom/activated_effects/neo_blue_eyes_ultimate_dragon.c`
+- L79: Damage Step / Fusion-Summon / protect-negate FALSE. Ceiling: OPT send BE Fusion-ish from Deck → unk4 extra-attack mark. (printed up-to-twice; OPT usage flag is the stand-in).
+- L105: real multi-attack needs battle hook; unk4=2 extra-attack stand-in.
+
 ### `NEO_SPACE_CONNECTOR`
 - path: `src_custom/activated_effects/neo_space_connector.c`
 - L61: on-Normal-Summon trigger + tribute-bounce second effect need summon/tribute hooks. Ceiling: OPT SS Neo-Spacian or Neos from Deck DEF.
@@ -2696,6 +2740,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `NEOS_WISEMAN`
 - path: `src_custom/activated_effects/neos_wiseman.c`
 - L39: battle burn/heal + effect-destroy immunity FALSE. Ceiling: FromHand send Neos+Yubel → SS only.
+
+### `NITRO_WARRIOR`
+- path: `src_custom/activated_effects/nitro_warrior.c`
+- L96: Spell ATK gain + battle-after destroy trigger FALSE. Ceiling: OPT change 1 face-up DEF opp monster to ATK (battle-after stand-in).
 
 ### `NUMBER_39_UTOPIA`
 - path: `src_custom/activated_effects/number_39_utopia.c`
@@ -2763,6 +2811,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `REESHADDOLL_WENDIKURUHU`
 - path: `src_custom/activated_effects/reeshaddoll_wendikuruhu.c`
 - L73: Quick face-up→face-down follow-up + GY Shaddoll add need flip/send hooks. Ceiling: OPT flip all face-down monsters face-up DEF.
+
+### `REPTILIANNE_ECHIDNA`
+- path: `src_custom/activated_effects/reptilianne_echidna.c`
+- L230: Link Summon trigger + Extra Deck lock FALSE. Ceiling: OPT set 1 opp face-up ATK to 0, else OPT add Reptiles up to 0-ATK count. Separate OPT flags share one MarkMonsterEffectUsed.
 
 ### `REPTILIANNE_LAMIA`
 - path: `src_custom/activated_effects/reptilianne_lamia.c`

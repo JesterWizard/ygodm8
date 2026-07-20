@@ -1,0 +1,92 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING",
+      "card_name": "Master Peace, the True Dracoslaying King",
+      "kind": "activated",
+      "archetype": "MASTER",
+      "path": "src_custom/activated_effects/master_peace_the_true_dracoslaying_king.c",
+      "effect_text": "To Tribute Summon this card face-up, you can Tribute Continuous Spell/Trap Card(s) you control, as well as monsters. Una To Tribute Summon this card face-up, you can Tribute Continuous Spell/Trap Card(s) you control, as well as monsters. Unaffected by the effects of cards with the same card type (Monster, Spell, and/or Trap) as the original card type of the cards Tributed for its Tribute Summon. Once per turn, during either player's turn, if you control this Tribute Summoned monster: You can ban",
+      "tags": [
+        "destroy",
+        "faceup",
+        "gy",
+        "monster",
+        "st",
+        "target1",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CYBER_PHOENIX",
+      "clone_path": "src_custom/activated_effects/cyber_phoenix.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "NITRO_WARRIOR",
+      "card_name": "Nitro Warrior",
+      "kind": "activated",
+      "archetype": "NITRO",
+      "path": "src_custom/activated_effects/nitro_warrior.c",
+      "effect_text": "Nitro Synchron + 1 or more non-Tuner monsters\nOnce during each of your turns, if you activate a Spell Card, this card  Nitro Synchron + 1 or more non-Tuner monsters Once during each of your turns, if you activate a Spell Card, this card gains 1000 ATK during the next attack this turn involving this card, during damage calculation only. If this attacking card destroys an opponent's monster by battle, after damage calculation: You can target 1 face-up Defense Position monster your opponent control",
+      "tags": [
+        "faceup",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COPYCAT",
+      "clone_path": "src_custom/activated_effects/copycat.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "ANCIENT_GEAR_TANKER",
+      "card_name": "Ancient Gear Tanker",
+      "kind": "activated",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/activated_effects/ancient_gear_tanker.c",
+      "effect_text": "If this card is Normal or Special Summoned: You can Special Summon 1 Ancient Gear monster from your hand, except Anci If this card is Normal or Special Summoned: You can Special Summon 1 Ancient Gear monster from your hand, except Ancient Gear Tanker, ignoring its Summoning conditions, or, if your opponent controls a monster, you can Special Summon from your GY instead. You can target 1 face-up card you control; destroy it, also for the rest of this turn, all monsters you control that are Ancien",
+      "tags": [
+        "destroy",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_BEAST",
+      "clone_path": "src_custom/activated_effects/ancient_gear_beast.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "ENLIGHTENMENT_DRAGON",
+      "card_name": "Enlightenment Dragon",
+      "kind": "activated",
+      "archetype": "ENLIGHTENMENT",
+      "path": "src_custom/activated_effects/enlightenment_dragon.c",
+      "effect_text": "Pay 2000; banish field+GYs; mill 4. Judgment Dragon + Punishment Dragon Must be Special Summoned (from your Extra Deck) by banishing the above monsters, 1 each from your field and GY. Once per turn (Quick Effect): You can pay 2000 LP; banish all other cards on the field and in the GYs. Once per turn, during your End Phase: Send the top 4 cards of your Deck to the GY. If this card in its owner's possession is destroyed by an opponent's card: You can add 2 of your banished monsters to your hand (1",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_FORTRESS_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_fortress_dragon.c",
+      "clone_score": 0.6
+    }
+  ]
+}

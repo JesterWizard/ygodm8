@@ -1,65 +1,125 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
+#include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsSpellcasterNormal(u16 cardId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  if (!Duel_CardHasMonsterType(cardId, TYPE_SPELLCASTER))
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.color == COLOR_NORMAL;
 }
 
-static void CancelTargeting(void)
+static s8 FindSpellcasterNormalHandZone(void)
 {
-  PlayMusic(SFX_CANCEL);
+  u8 i;
+  u8 max = IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW;
+
+  for (i = 0; i < max; i++) {
+    struct DuelCard *slot = SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], i);
+
+    if (slot != NULL && IsSpellcasterNormal(slot->id)
+        && !Duel_CardCannotBeSpecialSummoned(slot->id))
+      return (s8)i;
+  }
+
+  return -1;
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u16 FindSpellcasterNormalInDeck(void)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsSpellcasterNormal(cardId) && !Duel_CardCannotBeSpecialSummoned(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
 }
 
 unsigned char CanActivateEBON_ILLUSION_MAGICIAN(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != EBON_ILLUSION_MAGICIAN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != EBON_ILLUSION_MAGICIAN)
+    return FALSE;
+
+  /* ponytail: Xyz detach cost + attack-banish FALSE.
+   * Ceiling: OPT SS Spellcaster Normal from hand/Deck (detach stand-in). */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return FALSE;
+
+  if (FindSpellcasterNormalHandZone() >= 0)
+    return TRUE;
+
+  return FindSpellcasterNormalInDeck() != CARD_NONE;
 }
 
 void ActivateEBON_ILLUSION_MAGICIANEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  s8 handZone;
+  u16 deckId;
+
   Duel_ShowEffectTextTyped(EBON_ILLUSION_MAGICIAN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  handZone = FindSpellcasterNormalHandZone();
+  if (handZone >= 0) {
+    if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, (u8)handZone, opts) != DUEL_ACTION_OK)
+      return;
+  } else {
+    deckId = FindSpellcasterNormalInDeck();
+    if (deckId == CARD_NONE)
+      return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+    if (Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, deckId, opts) != DUEL_ACTION_OK)
+      return;
+  }
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

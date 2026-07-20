@@ -1,65 +1,112 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static const char sBlueEyesName[] APPEND_RODATA = "Blue-Eyes";
+
+static u8 FixedDuelistForActive(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsBlueEyesFusionMonster(u16 cardId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  if (gCardInfo.color != FUSION_CARD)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sBlueEyesName);
 }
 
-static void CancelTargeting(void)
+static u16 FindBlueEyesFusionInDeck(void)
 {
-  PlayMusic(SFX_CANCEL);
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsBlueEyesFusionMonster(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
 }
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
+static u8 SendBlueEyesFusionFromDeck(u16 cardId)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  s16 deckIndex;
+
+  deckIndex = Duel_FindDeckCardIndex(ACTIVE_DUELIST, cardId);
+  if (deckIndex < 0)
+    return FALSE;
+
+  if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
+    return FALSE;
+
+  Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
+  GraveyardExpand_PushTurn(ACTIVE_DUELIST, cardId);
+  return TRUE;
 }
 
 unsigned char CanActivateNEO_BLUE_EYES_ULTIMATE_DRAGON(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != NEO_BLUE_EYES_ULTIMATE_DRAGON)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != NEO_BLUE_EYES_ULTIMATE_DRAGON)
+    return FALSE;
+
+  /* ponytail: Damage Step / Fusion-Summon / protect-negate FALSE.
+   * Ceiling: OPT send BE Fusion-ish from Deck → unk4 extra-attack mark.
+   * (printed up-to-twice; OPT usage flag is the stand-in). */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return FindBlueEyesFusionInDeck() != CARD_NONE;
 }
 
 void ActivateNEO_BLUE_EYES_ULTIMATE_DRAGONEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u16 sendId;
+
   Duel_ShowEffectTextTyped(NEO_BLUE_EYES_ULTIMATE_DRAGON, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  sendId = FindBlueEyesFusionInDeck();
+  if (sendId == CARD_NONE)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (!SendBlueEyesFusionFromDeck(sendId))
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  /* ponytail: real multi-attack needs battle hook; unk4=2 extra-attack stand-in. */
+  self->unk4 = 2;
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

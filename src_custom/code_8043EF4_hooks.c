@@ -308,6 +308,7 @@ u8 TrySpecialSummonNeosWisemanFromHand(u8);
 u8 TrySpecialSummonEvilHeroDeadEndPrisonFromHand(u8);
 u8 TrySpecialSummonEvilHeroViciousClawsFromHand(u8);
 u8 TrySpecialSummonLightrayGearfriedFromHand(u8);
+u8 TrySpecialSummonDarkMagicianGirlTheMagiciansApprenticeFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -897,6 +898,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == LIGHTRAY_GEARFRIED
           && TrySpecialSummonLightrayGearfriedFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE
+          && TrySpecialSummonDarkMagicianGirlTheMagiciansApprenticeFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
