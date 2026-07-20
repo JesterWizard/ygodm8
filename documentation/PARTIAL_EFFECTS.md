@@ -8,22 +8,36 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 15:09 UTC  
-**Remaining partials:** `111`
+**Last updated:** 2026-07-20 15:18 UTC  
+**Remaining partials:** `130`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 47 |
+| `spell` | 66 |
 | `trap` | 9 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **111** |
+| **total** | **130** |
 
-## spell (47)
+## spell (66)
+
+### `AMAZONESS_FIGHTING_SPIRIT`
+- path: `src_custom/spell_effects/amazoness_fighting_spirit.c`
+- L14: Amazoness vs higher-ATK +1000 during damage calculation only needs a battle_effects damage-calc hook (like skyscraper.c) outside this file. Ceiling: face-up continuous only; upgrade: ApplyAmazonessFightingSpiritBattleAtkBoost → if face-up AMAZONESS_FIGHTING_SPIRIT on controller's field, attacker passes Duel_IsAmazonessCard, and defender ATK > attacker ATK, then attacker ATK += 1000.
+
+### `ANCIENT_GEAR_DRILL`
+- path: `src_custom/spell_effects/ancient_gear_drill.c`
+- L196: no per-card same-turn activation lock. Ceiling: Set Spell can still be activated this turn. Upgrade: turn-scoped cardId/zone lock checked at Spell activation.
+
+### `ANCIENT_GEAR_TANK`
+- path: `src_custom/spell_effects/ancient_gear_tank.c`
+- L61: stage unit is 500 ATK — applied +500, not printed +600. Ceiling: no fractional stages; upgrade: exact-ATK overlay like BIG_BANG_SHOT after listing ANCIENT_GEAR_TANK in IsActiveDynamicEquipSpellZone.
+- L73: destroy→GY burn 600 to opponent needs a field/destroy hook outside this file (OnDynamicEquipZoneAboutToClear / GY send). Ceiling: equip-only works; destroy-burn not wired from this file. Upgrade: destroy-hook → Duel_ChangeLp(INACTIVE_DUELIST, -ANCIENT_GEAR_TANK_DESTROY_BURN).
+- L79: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add ANCIENT_GEAR_TANK to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
 
 ### `ARCANA_READING`
 - path: `src_custom/spell_effects/arcana_reading.c`
@@ -62,6 +76,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/cocoon_rebirth.c`
 - L60: only the five Chrysalis in-trunk pairs are mapped.
 
+### `COLD_WAVE`
+- path: `src_custom/spell_effects/cold_wave.c`
+- L16: "activate only at start of Main Phase 1" needs a phase/action counter outside this file (no Main Phase 1-start gate API). Ceiling: activable any time like a normal spell; upgrade: CanActivate → require MP1 + no prior play/set/summon this turn.
+- L21: block play/Set of Spell/Trap until next turn needs a shared lock hooked into Duel_IsCardActivationBlocked / set-from-hand (like Wicked Avatar SpellTrap lock). Ceiling: show text + send to GY only; upgrade: arm a Cold Wave turn flag in Duel_IsCardActivationBlocked for TYPE_SPELL/TRAP and Set paths until activator's next Standby, then clear.
+
 ### `CONTACT`
 - path: `src_custom/spell_effects/contact.c`
 - L37: only the five Chrysalis in-trunk pairs are mapped.
@@ -73,6 +92,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `COURT_OF_JUSTICE`
 - path: `src_custom/spell_effects/court_of_justice.c`
 - L33: attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp.
+
+### `DARK_FUSION`
+- path: `src_custom/spell_effects/dark_fusion.c`
+- L94: "opponent cannot target the Fusion this turn" needs a turn-scoped targeting-protect flag on the summoned zone (no in-file targeting gate). Ceiling: Fiend Fusion via Poly materials only; upgrade: mark result zone + spell/trap/monster target validators skip it until turn end.
+- L124: targeting protect this turn — same ceiling as player path.
 
 ### `DARK_MAGIC_INHERITANCE`
 - path: `src_custom/spell_effects/dark_magic_inheritance.c`
@@ -101,6 +125,29 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/dynamic_equip.c`
 - L34: gTurnZones uses mirrored columns on opponent rows
 
+### `EL_SHADDOLL_FUSION`
+- path: `src_custom/spell_effects/el_shaddoll_fusion.c`
+- L98: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple El Shaddoll Fusion per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
+
+### `FIELD_BARRIER`
+- path: `src_custom/spell_effects/field_barrier.c`
+- L43: Field Spell destroy protection + block new Field Spell activation need destroy-gate and Field Spell activation hooks outside this file (no in-file destroy/activate dispatch). Ceiling: continuous face-up + 1-copy control check only; upgrade: LynJump Duel_DestroyZone / Field Spell activate → if face-up FIELD_BARRIER then skip Field Spell destroy and refuse new
+
+### `FORBIDDEN_CHALICE`
+- path: `src_custom/spell_effects/forbidden_chalice.c`
+- L78: stage unit is 500 ATK — applied +500 until EOT, not printed +400. Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART.
+- L81: no per-monster effect-negate flag until EOT (Skill Drain is field-wide only). Ceiling: ATK boost only; upgrade: turn_effect / zone negate bit cleared at ResetTempStagesForFieldCards.
+
+### `FORBIDDEN_DRESS`
+- path: `src_custom/spell_effects/forbidden_dress.c`
+- L75: stage unit is 500 ATK — applied -500, not printed -600. Ceiling: no fractional stages; upgrade: exact-ATK overlay like ApplyHeatedHeartAtkBonusToCardInfo for -600.
+- L84: "cannot be targeted or destroyed by other card effects" this turn needs targeting/destroy immunity flags or a turn_effect clear outside this file (no per-zone protection bit editable here). Ceiling: ATK loss only; upgrade: flag zone until EOT → Duel_SpellMayTargetMonsterZone / Duel_DestroyZone skip when flagged.
+
+### `FORBIDDEN_LANCE`
+- path: `src_custom/spell_effects/forbidden_lance.c`
+- L75: stage unit is 500 ATK — applied -1000, not printed -800. Ceiling: no fractional temp stages; upgrade: exact-ATK overlay (Riryoku-style delta) cleared at End Phase.
+- L85: "unaffected by other Spells/Traps this turn" needs a per-zone immunity flag checked from Duel_ZoneIsImmuneToSpellEffects / trap targeting (IsImmuneToSpellEffectsOnField is card-id permanent only). Ceiling: -ATK via tempStage (clears EOT) only; upgrade: mark zone → treat as immune until ResetTempStages / End Phase, then clear.
+
 ### `FUTURE_FUSION`
 - path: `src_custom/spell_effects/future_fusion.c`
 - L165: hand test copies of the fusion result are not valid materials.
@@ -109,6 +156,16 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/geartown.c`
 - L87: -1 Tribute for Ancient Gear Normal Summons needs a summon_tribute hook outside this file (no in-file tribute-count dispatch). Ceiling: field face-up only; upgrade: LynJump tribute-count → if face-up GEARTOWN and Duel_CardNameContains(id, "Ancient Gear") then required-1.
 - L91: destroy→GY SS 1 Ancient Gear from hand/Deck/GY needs a destroy/ send-to-GY listener outside this file. Ceiling: no trigger from spell file alone; upgrade: destroy-hook → if destroyed id==GEARTOWN then SS matching Ancient Gear.
+
+### `GLADIATOR_BEASTS_BATTLE_GLADIUS`
+- path: `src_custom/spell_effects/gladiator_beasts_battle_gladius.c`
+- L60: stage unit is 500 ATK — applied +500, not printed +300. Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART after listing GLADIATOR_BEASTS_BATTLE_GLADIUS in IsActiveDynamicEquipSpellZone.
+- L72: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add GLADIATOR_BEASTS_BATTLE_GLADIUS to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as H_HEATED_HEART.
+- L78: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip +ATK only; upgrade: on GB return-to-deck → if linked GLADIATOR_BEASTS_BATTLE_GLADIUS hits GY then Duel_AddDeckCardToHand / GY→hand.
+
+### `GROUND_COLLAPSE`
+- path: `src_custom/spell_effects/ground_collapse.c`
+- L86: continuous zone lock needs FirstEmptyZoneInRow / PlaceMonster / summon-set validators outside this file (empty isLocked is ignored). Ceiling: face-up continuous + marks/stash only; upgrade: LynJump FirstEmptyZoneInRow (+ AI/player summon cursors) → skip isLocked empty MMZ while face-up GROUND_COLLAPSE; clear marks when it leaves the field.
 
 ### `HYSTERIC_SIGN`
 - path: `src_custom/spell_effects/hysteric_sign.c`
@@ -119,6 +176,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/illusion_magic.c`
 - L136: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L322: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple Illusion Magic per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
+
+### `INFERNO_TEMPEST`
+- path: `src_custom/spell_effects/inferno_tempest.c`
+- L105: activation gate "took ≥3000 Battle Damage from 1 attack" needs a battle-damage listener / flag outside this file (no mid-battle OPT hook editable here). Ceiling: resolve banish whenever activated from hand/backrow; upgrade: battle_damage_hooks → set flag on ≥3000 damage then gate CanActivate.
 
 ### `KNIGHTS_TITLE`
 - path: `src_custom/spell_effects/knights_title.c`
@@ -168,6 +229,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/nex.c`
 - L155: duel Extra Deck browser/SS missing (Trunk ExtraDeck_* is deck-builder only). Ceiling: spawn Lv4 Neo form by id when not in Main Deck; upgrade: Extra Deck pick + SS.
 
+### `OIL`
+- path: `src_custom/spell_effects/oil.c`
+- L232: once-per-turn activation not tracked (no BSS turn flag editable from this spell file alone). Ceiling: can activate multiple Oils per turn; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
+
 ### `ONE_DAY_OF_PEACE`
 - path: `src_custom/spell_effects/one_day_of_peace.c`
 - L24: neither player takes damage until end of opponent's next turn needs an LP/damage gate outside this file (no damage-immunity helper). Ceiling: both draw only; upgrade: turn_effect / ChangeLp hook → skip damage while One Day of Peace lock is active through opponent's next End Phase.
@@ -189,9 +254,20 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/power_filter.c`
 - L14: SS lock for monsters with ATK ≤1000 needs a CanSpecialSummon / PlaceMonster gate outside this file (no in-file summon dispatch). Ceiling: continuous face-up only; upgrade: LynJump Duel_CardCannotBeSpecialSummoned (or PlaceMonsterFromId) → if face-up POWER_FILTER on field and printed ATK ≤1000 then block.
 
+### `REPTILANNE_RAGE`
+- path: `src_custom/spell_effects/reptilanne_rage.c`
+- L58: stage unit is 500 ATK — applied +1000, not printed +800. Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART after listing REPTILANNE_RAGE in IsActiveDynamicEquipSpellZone.
+- L69: "becomes Reptile-Type" needs a temp-type overlay outside this file (DuelCard has no type field; type lives in ROM via SetCardInfo). Ceiling: equip-only-to-Reptile (already TYPE_REPTILE); upgrade: type overlay → treat equipped target as TYPE_REPTILE while link is active.
+- L74: destroy→GY target opp face-up monster -800 ATK needs a field/ destroy hook outside this file (OnDynamicEquipZoneAboutToClear / GY send). Ceiling: equip-only works; GY trigger not wired from this file. Upgrade: destroy-hook → PickZone opp face-up monster → apply -800 ATK overlay (or -2 stages).
+- L80: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add REPTILANNE_RAGE to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
+
 ### `REPTILIANNE_SPAWN`
 - path: `src_custom/spell_effects/reptilianne_spawn.c`
 - L13: no Reptilianne Token card id in trunk — MOON_TOKEN is Lv1/0/0 stand-in. Ceiling: wrong Type/Attribute (Fairy/LIGHT vs Reptile/EARTH); upgrade: add REPTILIANNE_TOKEN card data + art, then swap this define.
+
+### `RETURN_OF_THE_DRAGON_LORDS`
+- path: `src_custom/spell_effects/return_of_the_dragon_lords.c`
+- L191: GY protect ("banish this instead of destroy Dragon you control") needs a battle/destroy redirect hook checking this card in GY. Ceiling: SS only; upgrade: destroy-protection → if Dragon would be destroyed and RETURN_OF_THE_DRAGON_LORDS in GY, banish it instead.
 
 ### `SCAPEGOAT`
 - path: `src_custom/spell_effects/scapegoat.c`
@@ -219,6 +295,19 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/the_sacred_waters_in_the_sky.c`
 - L252: no dedicated choice UI — A = activate Sanctuary, B = search mention. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L535: battle-destruction protection ("banish this from GY instead") needs a battle/destroy redirect hook. Ceiling: activate + LP gain only; upgrade: battle_damage / destroy-protection hook checking GY Sacred Waters.
+
+### `THE_SHALLOW_GRAVE`
+- path: `src_custom/spell_effects/the_shallow_grave.c`
+- L155: no DUEL_SUMMON_SPECIAL_FACE_DOWN_DEF — NORMAL_SET for face-down DEF, then mark unk4=2 as Special Summon. Ceiling: SS-locks that only gate SummonModeIsSpecial still apply via SpecialSummonMonsterId's Kristya check; CannotBeSpecialSummoned checked here. Upgrade: add face-down SS mode.
+
+### `TRIANGLE_ECSTASY_SPARK`
+- path: `src_custom/spell_effects/triangle_ecstasy_spark.c`
+- L65: stage unit is 500 ATK — Sisters (1950) become 2450 or 2950, not exact printed 2700. Ceiling: nearest-stage temp boost until EOT; upgrade: exact-ATK overlay (like riryoku) forced to 2700 until End Phase clear.
+- L69: opponent cannot activate Trap Cards / negate opp Trap effects until EOT needs a trap-activation / trap-resolve gate outside this file. Ceiling: Sisters ATK approx only; upgrade: turn flag → block CanActivateTrap / trap effect resolve for INACTIVE_DUELIST until End Phase.
+
+### `VENOM_SWAMP`
+- path: `src_custom/spell_effects/venom_swamp.c`
+- L14: End Phase Venom Counters / -500 ATK per counter / destroy at 0 ATK need an End Phase turn_effect hook + per-monster counter storage outside this file (DuelCard has no venom-counter field; no in-file End Phase dispatch). Ceiling: continuous face-up only; upgrade: turn_effect End Phase → if face-up VENOM_SWAMP then place 1 counter on each face-up non-Venom monster, apply
 
 ### `VIPERS_REBIRTH`
 - path: `src_custom/spell_effects/vipers_rebirth.c`

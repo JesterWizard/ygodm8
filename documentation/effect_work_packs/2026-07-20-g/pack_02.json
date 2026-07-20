@@ -1,0 +1,85 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SURFACE",
+      "card_name": "Surface",
+      "kind": "spell",
+      "archetype": "SURFACE",
+      "path": "src_custom/spell_effects/surface.c",
+      "effect_text": "Target 1 Level 3 or lower Fish, Sea Serpent, or Aqua monster in your GY; Special Summon it in face-up Defense Position. Target 1 Level 3 or lower Fish, Sea Serpent, or Aqua monster in your GY; Special Summon it in face-up Defense Position.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "H_HEATED_HEART",
+      "clone_path": "src_custom/spell_effects/h_heated_heart.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "AMAZONESS_FIGHTING_SPIRIT",
+      "card_name": "Amazoness Fighting Spirit",
+      "kind": "spell",
+      "archetype": "AMAZONESS",
+      "path": "src_custom/spell_effects/amazoness_fighting_spirit.c",
+      "effect_text": "If an \"Amazoness\" monster attacks a monster with higher ATK, the attacking monster gains 1000 ATK during damage calculat If an Amazoness monster attacks a monster with higher ATK, the attacking monster gains 1000 ATK during damage calculation only.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "KAISER_COLOSSEUM",
+      "clone_path": "src_custom/spell_effects/kaiser_colosseum.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "RETURN_OF_THE_DRAGON_LORDS",
+      "card_name": "Return of the Dragon Lords",
+      "kind": "spell",
+      "archetype": "RETURN",
+      "path": "src_custom/spell_effects/return_of_the_dragon_lords.c",
+      "effect_text": "SS Lv7/8 Dragon from GY. GY: banish instead of destroy Dragon. Target 1 Level 7 or 8 Dragon monster in your GY; Special Summon it. If a Dragon monster(s) you control would be destroyed by battle or card effect, you can banish this card from your GY instead.",
+      "tags": [
+        "destroy",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_RULES",
+      "clone_path": "src_custom/spell_effects/ancient_rules.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "DARK_FUSION",
+      "card_name": "Dark Fusion",
+      "kind": "spell",
+      "archetype": "DARK",
+      "path": "src_custom/spell_effects/dark_fusion.c",
+      "effect_text": "Fusion Summon 1 Fiend Fusion using hand/field materials. Opponent cannot target it this turn. Fusion Summon 1 Fiend Fusion Monster from your Extra Deck, using monsters from your hand or field as Fusion Material. Your opponent cannot target it with card effects this turn.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "POLYMERIZATION",
+      "clone_path": "src_custom/spell_effects/polymerization.c",
+      "clone_score": 1.0
+    }
+  ]
+}

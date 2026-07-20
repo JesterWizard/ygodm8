@@ -17,6 +17,10 @@ struct SpellActivationGateEntry {
 };
 
 extern u8 CanActivateACE_OF_SWORD(void);
+extern u8 CanActivateAMAZONESS_SPELLCASTER(void);
+extern u8 CanActivateANCIENT_GEAR_DRILL(void);
+extern u8 CanActivateANCIENT_GEAR_EXPLOSIVE(void);
+extern u8 CanActivateANCIENT_GEAR_TANK(void);
 extern u8 CanActivateAQUA_JET(void);
 extern u8 CanActivateAutonomousActionUnit(void);
 extern u8 CanActivateA_HERO_LIVES(void);
@@ -38,8 +42,13 @@ extern u8 CanActivateDIMENSION_FUSION(void);
 extern u8 CanActivateDOUBLE_CYCLONE(void);
 extern u8 CanActivateEEmergencyCall(void);
 extern u8 CanActivateFinalCountdown(void);
+extern u8 CanActivateFORBIDDEN_CHALICE(void);
+extern u8 CanActivateFORBIDDEN_DRESS(void);
+extern u8 CanActivateFORBIDDEN_LANCE(void);
 extern u8 CanActivateFutureFusion(void);
+extern u8 CanActivateGLADIATOR_BEASTS_BATTLE_GLADIUS(void);
 extern u8 CanActivateGRAND_CONVERGENCE(void);
+extern u8 CanActivateGROUND_COLLAPSE(void);
 extern u8 CanActivateGuardianTreasure(void);
 extern u8 CanActivateILLUSION_MAGIC(void);
 extern u8 CanActivateINSECT_IMITATION(void);
@@ -57,8 +66,10 @@ extern u8 CanActivateMORPHTRONIC_CORD(void);
 extern u8 CanActivateMORPHTRONIC_RUSTY_ENGINE(void);
 extern u8 CanActivateMYSTIK_WOK(void);
 extern u8 CanActivateNEX(void);
+extern u8 CanActivateOIL(void);
 extern u8 CanActivatePHOTON_GENERATOR_UNIT(void);
 extern u8 CanActivatePrematureBurial(void);
+extern u8 CanActivateREPTILANNE_RAGE(void);
 extern u8 CanActivateREPTILIANNE_POISON(void);
 extern u8 CanActivateREPTILIANNE_SPAWN(void);
 extern u8 CanActivateROYAL_TRIBUTE(void);
@@ -69,12 +80,17 @@ extern u8 CanActivateSUMMONERS_ART(void);
 extern u8 CanActivateTHAT_GRASS_LOOKS_GREENER(void);
 extern u8 CanActivateTheFluteOfSummoningDragon(void);
 extern u8 CanActivateTheForcefulSentry(void);
+extern u8 CanActivateTHE_SHALLOW_GRAVE(void);
 extern u8 CanActivateTradeIn(void);
 extern u8 CanActivateTWISTER(void);
 extern u8 CanActivateVIPERS_REBIRTH(void);
 
 static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute__((section(".text"))) = {
   { ACE_OF_SWORD, CanActivateACE_OF_SWORD, TRUE },
+  { AMAZONESS_SPELLCASTER, CanActivateAMAZONESS_SPELLCASTER, TRUE },
+  { ANCIENT_GEAR_DRILL, CanActivateANCIENT_GEAR_DRILL, TRUE },
+  { ANCIENT_GEAR_EXPLOSIVE, CanActivateANCIENT_GEAR_EXPLOSIVE, TRUE },
+  { ANCIENT_GEAR_TANK, CanActivateANCIENT_GEAR_TANK, TRUE },
   { AQUA_JET, CanActivateAQUA_JET, TRUE },
   { AUTONOMOUS_ACTION_UNIT, CanActivateAutonomousActionUnit, TRUE },
   { A_HERO_LIVES, CanActivateA_HERO_LIVES, TRUE },
@@ -96,8 +112,13 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { DOUBLE_CYCLONE, CanActivateDOUBLE_CYCLONE, TRUE },
   { E_EMERGENCY_CALL, CanActivateEEmergencyCall, TRUE },
   { FINAL_COUNTDOWN, CanActivateFinalCountdown, TRUE },
+  { FORBIDDEN_CHALICE, CanActivateFORBIDDEN_CHALICE, TRUE },
+  { FORBIDDEN_DRESS, CanActivateFORBIDDEN_DRESS, TRUE },
+  { FORBIDDEN_LANCE, CanActivateFORBIDDEN_LANCE, TRUE },
   { FUTURE_FUSION, CanActivateFutureFusion, TRUE },
+  { GLADIATOR_BEASTS_BATTLE_GLADIUS, CanActivateGLADIATOR_BEASTS_BATTLE_GLADIUS, TRUE },
   { GRAND_CONVERGENCE, CanActivateGRAND_CONVERGENCE, TRUE },
+  { GROUND_COLLAPSE, CanActivateGROUND_COLLAPSE, TRUE },
   { GUARDIAN_TREASURE, CanActivateGuardianTreasure, FALSE },
   { ILLUSION_MAGIC, CanActivateILLUSION_MAGIC, TRUE },
   { INSECT_IMITATION, CanActivateINSECT_IMITATION, TRUE },
@@ -115,8 +136,10 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { MORPHTRONIC_RUSTY_ENGINE, CanActivateMORPHTRONIC_RUSTY_ENGINE, TRUE },
   { MYSTIK_WOK, CanActivateMYSTIK_WOK, TRUE },
   { NEX, CanActivateNEX, TRUE },
+  { OIL, CanActivateOIL, TRUE },
   { PHOTON_GENERATOR_UNIT, CanActivatePHOTON_GENERATOR_UNIT, TRUE },
   { PREMATURE_BURIAL, CanActivatePrematureBurial, TRUE },
+  { REPTILANNE_RAGE, CanActivateREPTILANNE_RAGE, TRUE },
   { REPTILIANNE_POISON, CanActivateREPTILIANNE_POISON, TRUE },
   { REPTILIANNE_SPAWN, CanActivateREPTILIANNE_SPAWN, TRUE },
   { ROYAL_TRIBUTE, CanActivateROYAL_TRIBUTE, TRUE },
@@ -127,6 +150,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { THAT_GRASS_LOOKS_GREENER, CanActivateTHAT_GRASS_LOOKS_GREENER, TRUE },
   { THE_FLUTE_OF_SUMMONING_DRAGON, CanActivateTheFluteOfSummoningDragon, TRUE },
   { THE_FORCEFUL_SENTRY, CanActivateTheForcefulSentry, TRUE },
+  { THE_SHALLOW_GRAVE, CanActivateTHE_SHALLOW_GRAVE, TRUE },
   { TRADE_IN, CanActivateTradeIn, TRUE },
   { TWISTER, CanActivateTWISTER, TRUE },
   { VIPERS_REBIRTH, CanActivateVIPERS_REBIRTH, TRUE },

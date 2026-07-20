@@ -1,0 +1,81 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "GLADIATOR_BEASTS_BATTLE_GLADIUS",
+      "card_name": "Gladiator Beast's Battle Gladius",
+      "kind": "spell",
+      "archetype": "GLADIATOR_BEASTS_BATTLE",
+      "path": "src_custom/spell_effects/gladiator_beasts_battle_gladius.c",
+      "effect_text": "+300 ATK equip; recycle on tag. Equip only to a Gladiator Beast monster. It gains 300 ATK. When the equipped monster is returned from your side of the field to the Deck and this card is sent to the Graveyard, return this card to your hand.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "COLD_WAVE",
+      "card_name": "Cold Wave",
+      "kind": "spell",
+      "archetype": "COLD",
+      "path": "src_custom/spell_effects/cold_wave.c",
+      "effect_text": "No Spell/Trap activations until your next Standby Phase. Activate only at start of Main Phase 1. This card can only be activated at the start of Main Phase 1. Until your next turn, you and your opponent cannot play or Set any Spell or Trap Cards.",
+      "tags": [
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MAGE_POWER",
+      "clone_path": "src_custom/spell_effects/mage_power.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "GRAVEKEEPERS_STELE",
+      "card_name": "Gravekeeper's Stele",
+      "kind": "spell",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/spell_effects/gravekeepers_stele.c",
+      "effect_text": "Target 2 \"Gravekeeper's\" monsters in your GY; add those targets to your hand. This effect cannot be negated by the effec Target 2 Gravekeeper's monsters in your GY; add those targets to your hand. This effect cannot be negated by the effect of Necrovalley.",
+      "tags": [
+        "gy",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE",
+      "clone_path": "src_custom/spell_effects/twin_swords_of_flashing_light_tryce.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "FORBIDDEN_LANCE",
+      "card_name": "Forbidden Lance",
+      "kind": "spell",
+      "archetype": "FORBIDDEN",
+      "path": "src_custom/spell_effects/forbidden_lance.c",
+      "effect_text": "Target 1 face-up monster on the field; until the end of this turn, that target loses 800 ATK, but is unaffected by the e Target 1 face-up monster on the field; until the end of this turn, that target loses 800 ATK, but is unaffected by the effects of other Spells/Traps.",
+      "tags": [
+        "faceup",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "H_HEATED_HEART",
+      "clone_path": "src_custom/spell_effects/h_heated_heart.c",
+      "clone_score": 0.75
+    }
+  ]
+}

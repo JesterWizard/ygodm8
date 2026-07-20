@@ -1,23 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack F: 12 spells
+**Last worked on:** 2026-07-20 — Effect packs G+H: 24 spells
 
 **Files touched:**
 - `documentation/STUB_EFFECTS.md`
 - `documentation/PARTIAL_EFFECTS.md`
-- `documentation/effect_work_packs/2026-07-20-f/`
-- `src_custom/spell_effects/one_day_of_peace.c`
-- `src_custom/spell_effects/vipers_rebirth.c`
-- `src_custom/spell_effects/the_a_forces.c`
-- `src_custom/spell_effects/that_grass_looks_greener.c`
-- `src_custom/spell_effects/morphtronic_accelerator.c`
-- `src_custom/spell_effects/dark_burning_magic.c`
-- `src_custom/spell_effects/reptilianne_spawn.c`
-- `src_custom/spell_effects/lightsworn_sabre.c`
-- `src_custom/spell_effects/grand_convergence.c`
-- `src_custom/spell_effects/illusion_magic.c`
-- `src_custom/spell_effects/reptilianne_poison.c`
-- `src_custom/spell_effects/call_of_the_mummy.c`
+- `documentation/effect_work_packs/2026-07-20-g/`
+- `documentation/effect_work_packs/2026-07-20-h/`
+- Pack G: `ground_collapse.c`, `reptilanne_rage.c`, `triangle_ecstasy_spark.c`, `ancient_gear_tank.c`, `gladiator_beasts_battle_gladius.c`, `cold_wave.c`, `gravekeepers_stele.c`, `forbidden_lance.c`, `surface.c`, `amazoness_fighting_spirit.c`, `return_of_the_dragon_lords.c`, `dark_fusion.c`
+- Pack H: `forbidden_chalice.c`, `the_shallow_grave.c`, `oil.c`, `inferno_tempest.c`, `el_shaddoll_fusion.c`, `venom_swamp.c`, `field_barrier.c`, `forbidden_dress.c`, `dragons_mirror.c`, `ancient_gear_explosive.c`, `ancient_gear_drill.c`, `amazoness_spellcaster.c`
 
 **Outcome:** make OK; stubs+partials refreshed
 

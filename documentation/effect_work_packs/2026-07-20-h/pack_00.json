@@ -1,0 +1,81 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "FORBIDDEN_CHALICE",
+      "card_name": "Forbidden Chalice",
+      "kind": "spell",
+      "archetype": "FORBIDDEN",
+      "path": "src_custom/spell_effects/forbidden_chalice.c",
+      "effect_text": "Target 1 face-up monster on the field; until the end of this turn, that target gains 400 ATK, but its effects are negate Target 1 face-up monster on the field; until the end of this turn, that target gains 400 ATK, but its effects are negated.",
+      "tags": [
+        "faceup",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "H_HEATED_HEART",
+      "clone_path": "src_custom/spell_effects/h_heated_heart.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "THE_SHALLOW_GRAVE",
+      "card_name": "The Shallow Grave",
+      "kind": "spell",
+      "archetype": "THE",
+      "path": "src_custom/spell_effects/the_shallow_grave.c",
+      "effect_text": "Each player targets 1 monster in their own GY; each player Special Summons the target from their GY in face-down Defense Each player targets 1 monster in their own GY; each player Special Summons the target from their GY in face-down Defense Position.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "THE_A_FORCES",
+      "clone_path": "src_custom/spell_effects/the_a_forces.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "OIL",
+      "card_name": "Oil",
+      "kind": "spell",
+      "archetype": "OIL",
+      "path": "src_custom/spell_effects/oil.c",
+      "effect_text": "Target up to 2 Level 4 or lower FIRE monsters with different names in your GY; add them to your hand. You can only activ Target up to 2 Level 4 or lower FIRE monsters with different names in your GY; add them to your hand. You can only activate 1 Oil per turn.",
+      "tags": [
+        "gy",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE",
+      "clone_path": "src_custom/spell_effects/twin_swords_of_flashing_light_tryce.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "INFERNO_TEMPEST",
+      "card_name": "Inferno Tempest",
+      "kind": "spell",
+      "archetype": "INFERNO",
+      "path": "src_custom/spell_effects/inferno_tempest.c",
+      "effect_text": "When you take 3000 or more Battle Damage from 1 attack, you can activate this card. Remove all monsters in each player's When you take 3000 or more Battle Damage from 1 attack, you can activate this card. Remove all monsters in each player's Deck and Graveyard from play.",
+      "tags": [
+        "deck",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MIRACLE_FUSION",
+      "clone_path": "src_custom/spell_effects/miracle_fusion.c",
+      "clone_score": 0.67
+    }
+  ]
+}

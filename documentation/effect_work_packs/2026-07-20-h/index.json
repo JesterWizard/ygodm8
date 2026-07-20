@@ -5,20 +5,20 @@
   "packs": [
     {
       "worker": 0,
-      "json": "documentation/effect_work_packs/2026-07-20/pack_00.json",
-      "md": "documentation/effect_work_packs/2026-07-20/pack_00.md",
+      "json": "documentation/effect_work_packs/2026-07-20-h/pack_00.json",
+      "md": "documentation/effect_work_packs/2026-07-20-h/pack_00.md",
       "count": 4
     },
     {
       "worker": 1,
-      "json": "documentation/effect_work_packs/2026-07-20/pack_01.json",
-      "md": "documentation/effect_work_packs/2026-07-20/pack_01.md",
+      "json": "documentation/effect_work_packs/2026-07-20-h/pack_01.json",
+      "md": "documentation/effect_work_packs/2026-07-20-h/pack_01.md",
       "count": 4
     },
     {
       "worker": 2,
-      "json": "documentation/effect_work_packs/2026-07-20/pack_02.json",
-      "md": "documentation/effect_work_packs/2026-07-20/pack_02.md",
+      "json": "documentation/effect_work_packs/2026-07-20-h/pack_02.json",
+      "md": "documentation/effect_work_packs/2026-07-20-h/pack_02.md",
       "count": 4
     }
   ]
