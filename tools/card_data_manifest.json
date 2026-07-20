@@ -19773,7 +19773,8 @@
         "pages": "When an opponent's monster declares an attack: Your opponent chooses 1 random card from your hand, then if it is a monster that can be Special Summoned, Special Summon it. Otherwise, send it to the Graveyard."
       },
       "effect_texts": {
-        "popup_1": "When an opponent's monster declares an attack: Your opponent chooses 1 random card from your hand, then if it is a monster that can be Special Summoned, Special Summon it. Otherwise, send it to the Graveyard."
+        "popup_1": "When your opponent attacks: They pick a random card from your hand. If it's a Special Summonable monster, Special Summon it, otherwise send it to the Graveyard."
+   
       }
     },
     {
@@ -19795,7 +19796,7 @@
         "pages": "If you control no face-up monsters: Pay half your LP; Special Summon 1 Level 4 or lower Elemental HERO monster from your Deck."
       },
       "effect_texts": {
-        "popup_1": "If you control no face-up monsters: Pay half your LP; Special Summon 1 Level 4 or lower Elemental HERO monster from yo"
+        "popup_1": "If you control no face-up monsters: Pay half your LP; Special Summon 1 Level 4 or lower Elemental HERO monster from your Deck."
       }
     },
     {

@@ -1,16 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Popup text auto-pagination
+**Last worked on:** 2026-07-20 — Implemented A Hero Lives spell effect
 
 **Files touched:**
-- `tools/add_card_art.py`
-- `tools/add_custom_card.py`
-- `tools/card_data_manifest.json` (A_HERO_EMERGES popup)
-- `tests/host/test_cards_manifest.py`
-- docs/skill notes for activation text
+- `src_custom/spell_effects/a_hero_lives.c`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
 
-**Outcome:** make OK. `wrap_activation_page` spills past 4×27 onto later `#1` pages; A Hero Emerges full popup restored.
+**Outcome:** make OK. Pay half LP; SS Level 4- Elemental HERO from Deck if no face-up monsters. Activation gate + deck picker wired.
 
 **Open / next:**
-- Playtest A Hero Emerges multi-page popup
-- Playtest overlap stacking and discard popup line break
+- Playtest A Hero Lives with face-down monsters and Spell Economics
