@@ -1,0 +1,73 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "DEMISE_KING_OF_ARMAGEDDON",
+      "card_name": "Demise, King of Armageddon",
+      "kind": "activated",
+      "archetype": "DEMISE",
+      "path": "src_custom/activated_effects/demise_king_of_armageddon.c",
+      "effect_text": "You can Ritual Summon this card with End of the World. You can pay 2000 LP; destroy all other cards on the field.",
+      "tags": [
+        "destroy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_TEMPEST",
+      "clone_path": "src_custom/activated_effects/elemental_hero_tempest.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "VENOM_SERPENT",
+      "card_name": "Venom Serpent",
+      "kind": "activated",
+      "archetype": "VENOM",
+      "path": "src_custom/activated_effects/venom_serpent.c",
+      "effect_text": "OPT: place 1 Venom Counter on opp monster. Once per turn, you can place 1 Venom Counter on 1 monster your opponent controls.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHT_END_DRAGON",
+      "clone_path": "src_custom/activated_effects/light_end_dragon.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "GRAVEKEEPERS_CURSE",
+      "card_name": "Gravekeeper's Curse",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_curse.c",
+      "effect_text": "If this card is Summoned: Inflict 500 damage to your opponent. If this card is Summoned: Inflict 500 damage to your opponent.",
+      "tags": [
+        "burn"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 500,
+      "clone_const": "DICE_JAR",
+      "clone_path": "src_custom/activated_effects/dice_jar.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "MIRAGE_DRAGON",
+      "card_name": "Mirage Dragon",
+      "kind": "activated",
+      "archetype": "MIRAGE",
+      "path": "src_custom/activated_effects/mirage_dragon.c",
+      "effect_text": "Your opponent cannot activate Trap Cards during the Battle Phase. Your opponent cannot activate Trap Cards during the Battle Phase.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_OCEAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_ocean.c",
+      "clone_score": 0.5
+    }
+  ]
+}

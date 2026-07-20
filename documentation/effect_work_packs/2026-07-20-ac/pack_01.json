@@ -1,0 +1,73 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "NEO_SPACIAN_AIR_HUMMINGBIRD",
+      "card_name": "Neo-Spacian Air Hummingbird",
+      "kind": "activated",
+      "archetype": "NEO_SPACIAN",
+      "path": "src_custom/activated_effects/neo_spacian_air_hummingbird.c",
+      "effect_text": "Gain 500 LP per opp hand card. Once per turn: You can gain 500 LP for each card in your opponent's hand.",
+      "tags": [
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DES_KOALA",
+      "clone_path": "src_custom/activated_effects/des_koala.c",
+      "clone_score": 0.33
+    },
+    {
+      "card_const": "BOOT_UP_SOLDIER_DREAD_DYNAMO",
+      "card_name": "Boot-Up Soldier - Dread Dynamo",
+      "kind": "activated",
+      "archetype": "BOOT",
+      "path": "src_custom/activated_effects/boot_up_soldier_dread_dynamo.c",
+      "effect_text": "While you control a Gadget monster, this card gains 2000 ATK. While you control a Gadget monster, this card gains 2000 ATK.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHT_END_DRAGON",
+      "clone_path": "src_custom/activated_effects/light_end_dragon.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "AMAZONESS_QUEEN",
+      "card_name": "Amazoness Queen",
+      "kind": "activated",
+      "archetype": "AMAZONESS",
+      "path": "src_custom/activated_effects/amazoness_queen.c",
+      "effect_text": "\"Amazoness\" monsters you control cannot be destroyed by battle. Amazoness monsters you control cannot be destroyed by battle.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_OCEAN",
+      "clone_path": "src_custom/activated_effects/elemental_hero_ocean.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "OJAMA_KING",
+      "card_name": "Ojama King",
+      "kind": "activated",
+      "archetype": "OJAMA",
+      "path": "src_custom/activated_effects/ojama_king.c",
+      "effect_text": "Ojama Green + Ojama Yellow + Ojama Black Select up to 3 of your opponent's Monster Card Zones. The selected zones cannot be used.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHT_END_DRAGON",
+      "clone_path": "src_custom/activated_effects/light_end_dragon.c",
+      "clone_score": 0.5
+    }
+  ]
+}

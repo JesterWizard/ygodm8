@@ -4,62 +4,67 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 OpponentMonsterRow(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  if (gMonEffect.row == PLAYER_MONSTER_ROW)
+    return OPPONENT_MONSTER_ROW;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return PLAYER_MONSTER_ROW;
 }
 
 unsigned char CanActivateOJAMA_KING(void)
 {
+  struct DuelCard *zone;
+  u8 col;
+  u8 row;
+
   if (gMonEffect.id != OJAMA_KING)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != OJAMA_KING)
+    return FALSE;
+
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  row = OpponentMonsterRow();
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (gFixedZones[row][col] != NULL && gFixedZones[row][col]->id == CARD_NONE)
+      return TRUE;
+  }
+
+  return FALSE;
 }
 
 void ActivateOJAMA_KINGEffect(void)
 {
+  struct DuelCard *king = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 row = OpponentMonsterRow();
+  u8 col;
+  u8 locked = 0;
+
   Duel_ShowEffectTextTyped(OJAMA_KING, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (king == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  /* ponytail: PickZone for up to 3 empty zones + continuous lock gate.
+   * Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by
+   * FirstEmptyZoneInRow today — same as Ground Collapse). */
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  for (col = 0; col < MAX_ZONES_IN_ROW && locked < 3; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+    if (zone == NULL || zone->id != CARD_NONE)
+      continue;
+    zone->isLocked = TRUE;
+    king->unk4 |= (u8)(1u << (col & 7));
+    locked++;
+  }
+
+  MarkMonsterEffectUsed(king);
+  UpdateDuelGfxExceptField();
 }

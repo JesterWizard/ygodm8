@@ -3,63 +3,59 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "removed_from_play.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
+void RefreshFieldMonsterStatOverlays(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 FixedDuelistForMonEffect(void)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
+  if (gMonEffect.row == PLAYER_MONSTER_ROW)
+    return DUEL_PLAYER;
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+  return DUEL_OPPONENT;
 }
 
 unsigned char CanActivateGOLDEN_HOMUNCULUS(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != GOLDEN_HOMUNCULUS)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != GOLDEN_HOMUNCULUS)
+    return FALSE;
+
+  /* Allow one refresh while unused this turn (stand-in for continuous overlay). */
+  return CanUseMonsterEffect(zone);
 }
 
 void ActivateGOLDEN_HOMUNCULUSEffect(void)
 {
+  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 fixedDuelist = FixedDuelistForMonEffect();
+  u8 banished = 0;
+  u8 stages;
+  u8 i;
+
   Duel_ShowEffectTextTyped(GOLDEN_HOMUNCULUS, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (zone == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  /* ponytail: continuous +300 ATK/DEF per banished needs permanent stat overlay.
+   * Ceiling: OPT refresh sets perm stages ≈ banished*300/500. */
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  if (RemovedFromPlay_IsEnabled())
+    banished = RemovedFromPlay_GetCount(fixedDuelist);
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  stages = (u8)((banished * 300) / 500);
+  if (stages > 10)
+    stages = 10;
+
+  SetPermStage(zone, stages);
+  MarkMonsterEffectUsed(zone);
+  RefreshFieldMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
 }

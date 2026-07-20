@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 17:26 UTC  
-**Remaining partials:** `355`
+**Last updated:** 2026-07-20 17:34 UTC  
+**Remaining partials:** `364`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 24 |
+| `activated` | 33 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **355** |
+| **total** | **364** |
 
 ## spell (185)
 
@@ -1416,7 +1416,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (24)
+## activated (33)
+
+### `AMAZONESS_QUEEN`
+- path: `src_custom/activated_effects/amazoness_queen.c`
+- L12: Amazoness cannot be destroyed by battle needs battle-destroy protection. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
 ### `AMULET_DRAGON`
 - path: `src_custom/activated_effects/amulet_dragon.c`
@@ -1431,6 +1435,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/athena.c`
 - L71: attack-position summons keep isFaceUp=0 until end-of-turn flip.
 - L363: drop field-target cursor before GY deck menu — PickZone state + trunk view was crashing when the menu opened on confirm.
+
+### `BARRIER_STATUE_OF_THE_STORMWINDS`
+- path: `src_custom/activated_effects/barrier_statue_of_the_stormwinds.c`
+- L12: no SS except WIND needs Special Summon lock gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `BOOT_UP_SOLDIER_DREAD_DYNAMO`
+- path: `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c`
+- L39: continuous +2000 while Gadget on field needs permanent overlay. Ceiling: OPT apply +4 stages (~2000) if Gadget present.
 
 ### `CYBER_LASER_DRAGON`
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
@@ -1480,6 +1492,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L41: fixed POV — only reveal the player's own monster row
 - L69: attack-position summons stay isFaceUp=0 until end-of-turn flip
 
+### `GAGAGIGO_THE_RISEN`
+- path: `src_custom/activated_effects/gagagigo_the_risen.c`
+- L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `GOLDEN_HOMUNCULUS`
+- path: `src_custom/activated_effects/golden_homunculus.c`
+- L47: continuous +300 ATK/DEF per banished needs permanent stat overlay. Ceiling: OPT refresh sets perm stages ≈ banished*300/500.
+
+### `GRAVEKEEPERS_CURSE`
+- path: `src_custom/activated_effects/gravekeepers_curse.c`
+- L20: printed is If Summoned trigger. Ceiling: allow once via usage when manually activated / summon-dispatch calls Activate.
+
 ### `HOURGLASS_OF_LIFE`
 - path: `src_custom/activated_effects/hourglass_of_life.c`
 - L11: updateGfx=FALSE — sub_8041CCC refreshes field after popup dismisses.
@@ -1499,6 +1523,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MAN_THRO_TRO`
 - path: `src_custom/activated_effects/man_thro_tro.c`
 - L21: Ojama Trio monster form is the only token-like field unit today
+
+### `MIRAGE_DRAGON`
+- path: `src_custom/activated_effects/mirage_dragon.c`
+- L12: opp cannot activate Traps in Battle Phase needs trap-activation gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
+
+### `OJAMA_KING`
+- path: `src_custom/activated_effects/ojama_king.c`
+- L54: PickZone for up to 3 empty zones + continuous lock gate. Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
+
+### `PROTECTOR_OF_THE_SANCTUARY`
+- path: `src_custom/activated_effects/protector_of_the_sanctuary.c`
+- L12: opp cannot draw except Draw Phase needs draw-gate LynJump. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
 ### `TETHYS_GODDESS_OF_LIGHT`
 - path: `src_custom/activated_effects/tethys_goddess_of_light.c`
