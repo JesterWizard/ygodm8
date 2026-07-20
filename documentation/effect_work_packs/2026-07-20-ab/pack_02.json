@@ -1,0 +1,49 @@
+{
+  "worker": 2,
+  "count": 2,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ANCIENT_GEAR_DUEL",
+      "card_name": "Ancient Gear Duel",
+      "kind": "trap",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/trap_effects/ancient_gear_duel.c",
+      "effect_text": "Ancient Gear Golem, and monsters that mention it, in your Monster Zone are unaffected by your opponent's activated mon Ancient Gear Golem, and monsters that mention it, in your Monster Zone are unaffected by your opponent's activated monster effects. If your opponent controls a monster: You can Fusion Summon 1 Fusion Monster that mentions Ancient Gear Golem from your Extra Deck, by banishing monsters from your field or GY as material, including Ancient Gear Golem you control, and if you do, it c",
+      "tags": [
+        "deck",
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHT_SPIRAL",
+      "clone_path": "src_custom/trap_effects/light_spiral.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "GRAVEKEEPERS_TRAP",
+      "card_name": "Gravekeeper's Trap",
+      "kind": "trap",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/trap_effects/gravekeepers_trap.c",
+      "effect_text": "While \"Exchange of the Spirit\" is in your GY, your opponent cannot activate the effects of cards in the GY, or Special S While Exchange of the Spirit is in your GY, your opponent cannot activate the effects of cards in the GY, or Special Summon monsters from the GY. You can only use each of the following effects of Gravekeeper's Trap once per turn. During the Main Phase: You can discard 1 card; add 1 Gravekeeper's or EARTH Fairy monster from your Deck to your hand. During your opponent's Draw Ph",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "search",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHTSWORN_JUDGEMENT",
+      "clone_path": "src_custom/trap_effects/lightsworn_judgement.c",
+      "clone_score": 0.71
+    }
+  ]
+}

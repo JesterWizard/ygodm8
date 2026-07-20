@@ -7,30 +7,18 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 17:22 UTC  
-**Remaining stubs:** `571`
+**Last updated:** 2026-07-20 17:26 UTC  
+**Remaining stubs:** `565`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `trap` | 6 |
 | `activated` | 461 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **571** |
-
-## trap (6)
-
-| `card_const` | archetype | pattern | clone | path |
-|--------------|-----------|---------|-------|------|
-| `AMAZONESS_HALL` | `AMAZONESS` | — | `GLADIATOR_NAUMACHIA` | `src_custom/trap_effects/amazoness_hall.c` |
-| `AMAZONESS_ONSLAUGHT` | `AMAZONESS` | — | `GLADIATOR_NAUMACHIA` | `src_custom/trap_effects/amazoness_onslaught.c` |
-| `ANCIENT_GEAR_DUEL` | `ANCIENT_GEAR` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/ancient_gear_duel.c` |
-| `D_TACTICS` | `D` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/d_tactics.c` |
-| `GRAVEKEEPERS_TRAP` | `GRAVEKEEPERS` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/gravekeepers_trap.c` |
-| `HARPIE_LADY_ELEGANCE` | `HARPIE_LADY` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/harpie_lady_elegance.c` |
+| **total** | **565** |
 
 ## activated (461)
 

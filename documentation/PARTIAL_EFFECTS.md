@@ -8,20 +8,20 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 17:22 UTC  
-**Remaining partials:** `349`
+**Last updated:** 2026-07-20 17:26 UTC  
+**Remaining partials:** `355`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 185 |
-| `trap` | 109 |
+| `trap` | 115 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **349** |
+| **total** | **355** |
 
 ## spell (185)
 
@@ -922,7 +922,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/wetlands.c`
 - L87: +1200 ATK for Aqua/WATER/Level≤2 needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up WETLANDS and TYPE_AQUA + ATTRIBUTE_WATER + level≤2 then ATK += 1200.
 
-## trap (109)
+## trap (115)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -942,9 +942,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L11: when monster(s) SS while face-up → change to ATK and must attack that turn. Ceiling: face-up continuous only; upgrade: SS hook → isDefending=FALSE + forced-attack flag. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - L22: TryActivateALL_OUT_ATTACKSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
+### `AMAZONESS_HALL`
+- path: `src_custom/trap_effects/amazoness_hall.c`
+- L72: TryActivateAMAZONESS_HALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
 ### `AMAZONESS_HOT_SPRING`
 - path: `src_custom/trap_effects/amazoness_hot_spring.c`
 - L77: TryActivateAMAZONESS_HOT_SPRINGOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `AMAZONESS_ONSLAUGHT`
+- path: `src_custom/trap_effects/amazoness_onslaught.c`
+- L20: Battle Phase OPT SS + after-damage banish + leave GY search need battle/leave hooks. Ceiling: SS 1 Amazoness from hand +1 stage (~500 ATK).
+- L60: TryActivateAMAZONESS_ONSLAUGHTOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `AMAZONESS_WILLPOWER`
 - path: `src_custom/trap_effects/amazoness_willpower.c`
@@ -953,6 +962,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AMBUSH_FANGS`
 - path: `src_custom/trap_effects/ambush_fangs.c`
 - L17: printed trigger is face-up Venom targeted for attack. Ceiling: when Effect runs, place Venom Counter on origin attacker + self-destroy (negate/end BP not wired); upgrade: attack-target hook on Venom + NegateAttack + end Battle Phase.
+
+### `ANCIENT_GEAR_DUEL`
+- path: `src_custom/trap_effects/ancient_gear_duel.c`
+- L45: unaffected by opp monster effects + Extra Deck Fusion + 3 attacks need protection/fusion/battle hooks. Ceiling: mark AG Golem/mentioners (unk4); if opp has monster + we control Golem, banish Golem + 1 AG from GY and SS Ultimate Ancient Gear Golem stand-in from Deck/hand.
+- L110: TryActivateANCIENT_GEAR_DUELOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `ANGELS_TEAR`
 - path: `src_custom/trap_effects/angels_tear.c`
@@ -1013,6 +1027,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `CROSS_DIMENSONAL_DUEL`
 - path: `src_custom/trap_effects/cross_dimensonal_duel.c`
 - L27: next Standby return at double ATK + GY protect Golem need turn/destroy hooks. Ceiling: banish 1 Ancient Gear you control.
+
+### `D_TACTICS`
+- path: `src_custom/trap_effects/d_tactics.c`
+- L58: Standby HERO +400 + destroy-Set D-HERO Spell need turn/destroy hooks. Ceiling: +1 stage on HERO monsters; if Lv8+ D-HERO present, banish 1 opp card (field then GY then hand).
+- L103: TryActivateD_TACTICSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `D_TIME`
 - path: `src_custom/trap_effects/d_time.c`
@@ -1123,6 +1142,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/glorious_illusion.c`
 - L70: End Phase mill 2 + mutual destroy-on-leave need turn/leave hooks.
 
+### `GRAVEKEEPERS_TRAP`
+- path: `src_custom/trap_effects/gravekeepers_trap.c`
+- L83: Exchange lock GY effects/SS + opp Draw Phase look + discard cost need GY/draw gates. Ceiling: if Exchange in GY mark unk4 lock; discard 1 → search Gravekeeper's / EARTH Fairy.
+- L118: TryActivateGRAVEKEEPERS_TRAPOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
 ### `GRAVITY_BIND`
 - path: `src_custom/trap_effects/gravity_bind.c`
 - L64: face-down GB still blocks the declare; AI sim restore keeps it face-down every trial
@@ -1131,6 +1155,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/half_counter.c`
 - L20: damage calculation when your monster attacked needs battle hook. Ceiling: when Effect runs, boost defender by ~half attacker original ATK via stages; upgrade: damage-calc targeting wire.
 - L39: 1 stage ~= 500 ATK.
+
+### `HARPIE_LADY_ELEGANCE`
+- path: `src_custom/trap_effects/harpie_lady_elegance.c`
+- L47: * ponytail: WIND-only SS lock this turn + destroy-search Harpie Spell need hooks. */
 
 ### `HARPIES_FEATHER_STORM`
 - path: `src_custom/trap_effects/harpies_feather_storm.c`
