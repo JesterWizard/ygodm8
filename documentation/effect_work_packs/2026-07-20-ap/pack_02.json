@@ -1,0 +1,88 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "ARMED_DRAGON_LV7",
+      "card_name": "Armed Dragon LV7",
+      "kind": "activated",
+      "archetype": "ARMED_DRAGON",
+      "path": "src_custom/activated_effects/armed_dragon_lv7.c",
+      "effect_text": "Cannot be Normal Summoned/Set. Must be Special Summoned by Armed Dragon LV5. You can send 1 monster from your hand to  Cannot be Normal Summoned/Set. Must be Special Summoned by Armed Dragon LV5. You can send 1 monster from your hand to the GY; destroy all monsters your opponent controls with ATK less than or equal to that sent monster's ATK.",
+      "tags": [
+        "destroy",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ARMED_DRAGON_LV10",
+      "clone_path": "src_custom/activated_effects/armed_dragon_lv10.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "TREEBORN_FROG",
+      "card_name": "Treeborn Frog",
+      "kind": "activated",
+      "archetype": "TREEBORN",
+      "path": "src_custom/activated_effects/treeborn_frog.c",
+      "effect_text": "Once per turn, during your Standby Phase, if this card is in your Graveyard and you do not control \"Treeborn Frog\": You  Once per turn, during your Standby Phase, if this card is in your Graveyard and you do not control Treeborn Frog: You can Special Summon this card. You must control no Spell/Trap Cards to activate and to resolve this effect.",
+      "tags": [
+        "gy",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_FORTRESS_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_fortress_dragon.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_SAGITTARII",
+      "card_name": "Gladiator Beast Sagittarii",
+      "kind": "activated",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/activated_effects/gladiator_beast_sagittarii.c",
+      "effect_text": "Discard; destroy S/T; tag out. If this card is Special Summoned by the effect of a Gladiator Beast monster: You can discard 1 Gladiator Beast card; draw 2 cards. At the end of the Battle Phase, if this card battled: You can shuffle this card into the Deck; Special Summon 1 Gladiator Beast monster from your Deck, except Gladiator Beast Sagittarii.",
+      "tags": [
+        "deck",
+        "destroy",
+        "draw",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": 2,
+      "burn_damage": null,
+      "clone_const": "GLADIATOR_BEAST_HOPLOMUS",
+      "clone_path": "src_custom/activated_effects/gladiator_beast_hoplomus.c",
+      "clone_score": 0.52
+    },
+    {
+      "card_const": "GRAVEKEEPERS_VISIONARY",
+      "card_name": "Gravekeeper's Visionary",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_visionary.c",
+      "effect_text": "You can Tribute Summon this card by Tributing 1 Gravekeeper's monster. This card gains 200 ATK for each Gravekeeper's You can Tribute Summon this card by Tributing 1 Gravekeeper's monster. This card gains 200 ATK for each Gravekeeper's monster in your Graveyard. If this face-up card would be destroyed, you can discard 1 Gravekeeper's monster instead.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_DESCENDANT",
+      "clone_path": "src_custom/activated_effects/gravekeepers_descendant.c",
+      "clone_score": 0.68
+    }
+  ]
+}

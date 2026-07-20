@@ -1,16 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack AO: 12 activated monsters
+**Last worked on:** 2026-07-20 — Effect pack AP: 12 activated monsters
 
 **Files touched:**
 - `documentation/STUB_EFFECTS.md`
 - `documentation/PARTIAL_EFFECTS.md`
-- `documentation/effect_work_packs/2026-07-20-ao/`
-- `src_custom/code_8043EF4_hooks.c` (Turbo Booster / Green Baboon FromHand)
-- Pack AO: `aromage_jasmine.c`, `ancient_gear_golem.c`, `gladiator_beast_hoplomus.c`, `lyla_twilightsworn_enchantress.c`, `turbo_booster.c`, `green_baboon_defender_of_the_forest.c`, `felis_lightsworn_archer.c`, `crimson_blader.c`, `soul_absorbing_bone_tower.c`, `gladiator_beast_laquari.c`, `herald_of_perfection.c`, `victoria.c`
+- `documentation/effect_work_packs/2026-07-20-ap/`
+- Pack AP: `skilled_dark_magician.c`, `shaddoll_hedgehog.c`, `morphtronic_boomboxen.c`, `great_poseidon_beetle.c`, `beast_king_barbaros.c`, `chimeratech_megafleet_dragon.c`, `colossal_fighter.c`, `majestic_mech_goryu.c`, `armed_dragon_lv7.c`, `treeborn_frog.c`, `gladiator_beast_sagittarii.c`, `gravekeepers_visionary.c`
 
-**Outcome:** make OK. Stubs **421 → 409**. Partials **473 → 485**.
+**Outcome:** make OK. Stubs **409 → 397**. Partials **485 → 496**.
 
 **Open / next:**
-- continue activated pack cycle (`--kind activated`; ~305 left) — next pack AP
-- GB tag-out / continuous / battle still mostly `ponytail:`
+- continue activated pack cycle (`--kind activated`; ~293 left) — next pack AQ
+- continuous/battle still mostly `ponytail:`

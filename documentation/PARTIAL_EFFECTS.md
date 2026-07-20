@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:42 UTC  
-**Remaining partials:** `485`
+**Last updated:** 2026-07-20 18:46 UTC  
+**Remaining partials:** `496`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 154 |
+| `activated` | 165 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **485** |
+| **total** | **496** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (154)
+## activated (165)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1497,6 +1497,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/bazoo_the_soul_eater.c`
 - L98: +1 tempStage per banished (~500 ATK each, not exact +300); until opp EP clear needs EP tempStage reset hook.
 
+### `BEAST_KING_BARBAROS`
+- path: `src_custom/activated_effects/beast_king_barbaros.c`
+- L64: no-tribute 1900 ATK + tribute-3 summon gate need summon hooks. Ceiling: once via usage destroy all opp cards (tribute-3 stand-in).
+
 ### `BIRDFACE`
 - path: `src_custom/activated_effects/birdface.c`
 - L20: battle-destroy→GY trigger. Ceiling: once via usage if Harpie Lady in Deck and hand space.
@@ -1524,6 +1528,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `CHIMERATECH_FORTRESS_DRAGON`
 - path: `src_custom/activated_effects/chimeratech_fortress_dragon.c`
 - L12: original ATK = 1000 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not field-ignition activatable here.
+
+### `CHIMERATECH_MEGAFLEET_DRAGON`
+- path: `src_custom/activated_effects/chimeratech_megafleet_dragon.c`
+- L12: original ATK = 1200 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not ignition-activatable here.
+
+### `COLOSSAL_FIGHTER`
+- path: `src_custom/activated_effects/colossal_fighter.c`
+- L119: +100 ATK per Warrior in any GY needs stat overlay; battle-destroy trigger deferred. Ceiling: OPT SS 1 Warrior from either GY once via usage.
 
 ### `CRIMSON_BLADER`
 - path: `src_custom/activated_effects/crimson_blader.c`
@@ -1670,6 +1682,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gladiator_beast_laquari.c`
 - L110: end-of-Battle-Phase + attacked/was-attacked gate + ATK 2100 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
 
+### `GLADIATOR_BEAST_SAGITTARII`
+- path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
+- L110: end-of-Battle-Phase + battled gate + discard-GB draw 2 on GB-SS need battle/summon hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
+
 ### `GOLDEN_HOMUNCULUS`
 - path: `src_custom/activated_effects/golden_homunculus.c`
 - L47: continuous +300 ATK/DEF per banished needs permanent stat overlay. Ceiling: OPT refresh sets perm stages ≈ banished*300/500.
@@ -1717,6 +1733,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GRAVEKEEPERS_VASSAL`
 - path: `src_custom/activated_effects/gravekeepers_vassal.c`
 - L12: battle damage as effect damage needs battle-damage type gate. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
+
+### `GRAVEKEEPERS_VISIONARY`
+- path: `src_custom/activated_effects/gravekeepers_visionary.c`
+- L49: +200 ATK per GK in GY + destroy-replace need stat/destroy hooks. Ceiling: OPT discard 1 GK monster from hand once via usage (save stand-in).
+
+### `GREAT_POSEIDON_BEETLE`
+- path: `src_custom/activated_effects/great_poseidon_beetle.c`
+- L12: re-attack same target after surviving battle needs battle re-attack hook. Ceiling: not ignition-activatable here.
 
 ### `GREEN_BABOON_DEFENDER_OF_THE_FOREST`
 - path: `src_custom/activated_effects/green_baboon_defender_of_the_forest.c`
@@ -1801,6 +1825,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/magna_drago.c`
 - L21: battle-damage trigger needs battle hook. Ceiling: OPT +1 stage (~500; printed +200) stand-in.
 
+### `MAJESTIC_MECH_GORYU`
+- path: `src_custom/activated_effects/majestic_mech_goryu.c`
+- L12: 1-tribute EP self-send + piercing battle damage need summon/battle hooks. Ceiling: not ignition-activatable here.
+
 ### `MAN_THRO_TRO`
 - path: `src_custom/activated_effects/man_thro_tro.c`
 - L21: Ojama Trio monster form is the only token-like field unit today
@@ -1836,6 +1864,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MORPHTRONIC_BOARDEN`
 - path: `src_custom/activated_effects/morphtronic_boarden.c`
 - L12: Morphtronic direct attack / battle indestructible continuous need attack and battle hooks. Ceiling: not field-ignition activatable here.
+
+### `MORPHTRONIC_BOOMBOXEN`
+- path: `src_custom/activated_effects/morphtronic_boomboxen.c`
+- L12: double attack in ATK + DEF negate-attack need battle/position hooks. Ceiling: not ignition-activatable here.
 
 ### `MORPHTRONIC_RADION`
 - path: `src_custom/activated_effects/morphtronic_radion.c`
@@ -1901,6 +1933,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/shaddoll_dragon.c`
 - L183: FLIP vs GY-sent exclusivity + trigger hooks deferred. Ceiling: bounce 1 opp card OR destroy 1 opp Spell/Trap once via usage.
 
+### `SHADDOLL_HEDGEHOG`
+- path: `src_custom/activated_effects/shaddoll_hedgehog.c`
+- L112: FLIP S/T vs GY-sent monster exclusivity + trigger hooks deferred. Ceiling: OPT search 1 Shaddoll S/T or monster from Deck once via usage.
+
 ### `SHADDOLL_SQUAMATA`
 - path: `src_custom/activated_effects/shaddoll_squamata.c`
 - L154: FLIP destroy vs GY-sent mill exclusivity + trigger hooks deferred. Ceiling: destroy 1 opp monster OR mill 1 Shaddoll from Deck once via usage.
@@ -1912,6 +1948,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `SILENT_SWORDSMAN_LV7`
 - path: `src_custom/activated_effects/silent_swordsman_lv7.c`
 - L12: continuous negate all Spell effects needs field-wide spell gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-negate hook.
+
+### `SKILLED_DARK_MAGICIAN`
+- path: `src_custom/activated_effects/skilled_dark_magician.c`
+- L80: Spell Counters on Spell activation need spell-resolve hook. Ceiling: ignition when unk4>=3 (never rises alone); upgrade: on Spell resolve → if face-up SKILLED_DARK_MAGICIAN then zone->unk4++ (cap 3).
 
 ### `SOUL_ABSORBING_BONE_TOWER`
 - path: `src_custom/activated_effects/soul_absorbing_bone_tower.c`
@@ -1979,6 +2019,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TORNADO_BIRD`
 - path: `src_custom/activated_effects/tornado_bird.c`
 - L85: FLIP trigger needs flip hook. Ceiling: once via usage.
+
+### `TREEBORN_FROG`
+- path: `src_custom/activated_effects/treeborn_frog.c`
+- L95: Standby Phase GY trigger needs phase hook + GY-menu wire. Ceiling: GY ignition when no S/T, no Treeborn on field, empty monster zone (Malicious pattern).
 
 ### `TRISHULA_DRAGON_OF_THE_ICE_BARRIER`
 - path: `src_custom/activated_effects/trishula_dragon_of_the_ice_barrier.c`

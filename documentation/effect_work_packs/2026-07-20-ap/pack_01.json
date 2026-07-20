@@ -1,0 +1,85 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "BEAST_KING_BARBAROS",
+      "card_name": "Beast King Barbaros",
+      "kind": "activated",
+      "archetype": "BEAST",
+      "path": "src_custom/activated_effects/beast_king_barbaros.c",
+      "effect_text": "You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to  You can Normal Summon/Set this card without Tributing, but its original ATK becomes 1900. You can Tribute 3 monsters to Tribute Summon (but not Set) this card. If Summoned this way: Destroy all cards your opponent controls.",
+      "tags": [
+        "destroy",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRANMARG_THE_ROCK_MONARCH",
+      "clone_path": "src_custom/activated_effects/granmarg_the_rock_monarch.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "card_name": "Chimeratech Megafleet Dragon",
+      "kind": "activated",
+      "archetype": "CHIMERATECH",
+      "path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "effect_text": "1 Cyber Dragon monster + 1+ monsters in the Extra Monster Zone Cannot be used as Fusion Material. Must first be Special Summoned (from your Extra Deck) by sending the above cards from either field to the GY. (You do not use Polymerization.) The original ATK of this card becomes 1200 x the number of Fusion Materials used for its Special Summon.",
+      "tags": [
+        "deck",
+        "gy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_FORTRESS_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_fortress_dragon.c",
+      "clone_score": 0.95
+    },
+    {
+      "card_const": "COLOSSAL_FIGHTER",
+      "card_name": "Colossal Fighter",
+      "kind": "activated",
+      "archetype": "COLOSSAL",
+      "path": "src_custom/activated_effects/colossal_fighter.c",
+      "effect_text": "+100 ATK per Warrior in any GY. If destroyed by battle: SS 1 Warrior from either GY. 1 Tuner + 1 or more non-Tuner monsters This card gains 100 ATK for every Warrior-Type monster in any Graveyard. When this card is destroyed by battle and sent to the Graveyard: You can target 1 Warrior-Type monster in either Graveyard; Special Summon that target.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CRIMSON_BLADER",
+      "clone_path": "src_custom/activated_effects/crimson_blader.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "MAJESTIC_MECH_GORYU",
+      "card_name": "Majestic Mech - Goryu",
+      "kind": "activated",
+      "archetype": "MAJESTIC",
+      "path": "src_custom/activated_effects/majestic_mech_goryu.c",
+      "effect_text": "You can Tribute Summon (but not Set) this card with 1 Tribute. If Summoned this way, during the End Phase: Send it to th You can Tribute Summon (but not Set) this card with 1 Tribute. If Summoned this way, during the End Phase: Send it to the Graveyard. If this card attacks a Defense Position monster, inflict piercing battle damage to your opponent.",
+      "tags": [
+        "burn",
+        "gy",
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_STRIKE_FIGHTER",
+      "clone_path": "src_custom/activated_effects/dark_strike_fighter.c",
+      "clone_score": 0.5
+    }
+  ]
+}
