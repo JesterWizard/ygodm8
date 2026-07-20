@@ -1,0 +1,86 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MONTAGE_DRAGON",
+      "card_name": "Montage Dragon",
+      "kind": "activated",
+      "archetype": "MONTAGE",
+      "path": "src_custom/activated_effects/montage_dragon.c",
+      "effect_text": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 other monsters from your hand to t Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 other monsters from your hand to the Graveyard, and cannot be Special Summoned by other ways. This card's ATK becomes the combined original Levels of the sent monsters x 300.",
+      "tags": [
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_FORTRESS_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_fortress_dragon.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "MORPHTRONIC_LANTRON",
+      "card_name": "Morphtronic Lantron",
+      "kind": "activated",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/activated_effects/morphtronic_lantron.c",
+      "effect_text": "- While in Attack Position: Any effect damage you would take from an opponent's card effect is inflicted to your opponen - While in Attack Position: Any effect damage you would take from an opponent's card effect is inflicted to your opponent instead. - While in Defense Position: When this card is destroyed by battle and sent to the Graveyard, you take no Battle Damage this turn.",
+      "tags": [
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MORPHTRONIC_DATATRON",
+      "clone_path": "src_custom/activated_effects/morphtronic_datatron.c",
+      "clone_score": 0.55
+    },
+    {
+      "card_const": "GRAVEKEEPERS_HEADMAN",
+      "card_name": "Gravekeeper's Headman",
+      "kind": "activated",
+      "archetype": "GRAVEKEEPERS",
+      "path": "src_custom/activated_effects/gravekeepers_headman.c",
+      "effect_text": "If this card is Summoned: You can target 1 Level 4 \"Gravekeeper's\" monster in your GY; Special Summon it in Attack Posit If this card is Summoned: You can target 1 Level 4 Gravekeeper's monster in your GY; Special Summon it in Attack Position or face-down Defense Position. You can only use this effect of Gravekeeper's Headman once per turn. This effect is unaffected by Necrovalley.",
+      "tags": [
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CRIMSON_BLADER",
+      "clone_path": "src_custom/activated_effects/crimson_blader.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "NEO_SPACE_CONNECTOR",
+      "card_name": "Neo Space Connector",
+      "kind": "activated",
+      "archetype": "NEO",
+      "path": "src_custom/activated_effects/neo_space_connector.c",
+      "effect_text": "NS: SS Neo/Neos; Tribute: GY SS. When this card is Normal Summoned: You can Special Summon 1 Neo-Spacian monster or 1 Elemental HERO Neos from your hand or Deck in Defense Position. You can Tribute this card, then target 1 Neo-Spacian monster or 1 Elemental HERO Neos in your GY; Special Summon it in Defense Position. You can only use each effect of Neo Space Connector once per turn.",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "target1",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "clone_path": "src_custom/activated_effects/chimeratech_megafleet_dragon.c",
+      "clone_score": 0.5
+    }
+  ]
+}

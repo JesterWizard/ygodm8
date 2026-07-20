@@ -251,6 +251,8 @@ u8 TrySpecialSummonBeastMachineKingBarbarosUrFromHand(u8);
 u8 TryActivateEvilHeroAdustedGoldFromHand(u8);
 u8 TryActivateGravekeepersWatcherFromHand(u8);
 u8 TrySpecialSummonReptilianneVaskiiFromHand(u8);
+u8 TrySpecialSummonMontageDragonFromHand(u8);
+u8 TrySpecialSummonArcanaForceXixTheSunFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -266,7 +268,8 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == YUBEL_TERROR_INCARNATE || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE
       || cardId == HAMON_LORD_OF_STRIKING_THUNDER
       || cardId == URIA_LORD_OF_SEARING_FLAMES
-      || cardId == RAVIEL_LORD_OF_PHANTASMS;
+      || cardId == RAVIEL_LORD_OF_PHANTASMS
+      || cardId == MONTAGE_DRAGON || cardId == ARCANA_FORCE_XIX_THE_SUN;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -545,6 +548,16 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == REPTILIANNE_VASKII
           && TrySpecialSummonReptilianneVaskiiFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == MONTAGE_DRAGON
+          && TrySpecialSummonMontageDragonFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ARCANA_FORCE_XIX_THE_SUN
+          && TrySpecialSummonArcanaForceXixTheSunFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

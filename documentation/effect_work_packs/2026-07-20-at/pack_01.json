@@ -1,0 +1,85 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "DARK_HORUS",
+      "card_name": "Dark Horus",
+      "kind": "activated",
+      "archetype": "DARK",
+      "path": "src_custom/activated_effects/dark_horus.c",
+      "effect_text": "Once per turn, after resolving a Spell Card that was activated during your opponent's Main Phase: You can target 1 Level Once per turn, after resolving a Spell Card that was activated during your opponent's Main Phase: You can target 1 Level 4 DARK monster in your Graveyard; Special Summon that target. This card must be face-up on the field to activate and to resolve this effect.",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GAIA",
+      "clone_path": "src_custom/activated_effects/elemental_hero_gaia.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "MAGICAL_MARIONETTE",
+      "card_name": "Magical Marionette",
+      "kind": "activated",
+      "archetype": "MAGICAL",
+      "path": "src_custom/activated_effects/magical_marionette.c",
+      "effect_text": "Each time a Spell Card is activated, place 1 Spell Counter on this card when that Spell Card resolves. This card gains 2 Each time a Spell Card is activated, place 1 Spell Counter on this card when that Spell Card resolves. This card gains 200 ATK for each Spell Counter on it. You can remove 2 Spell Counters from this card, then target 1 monster on the field; destroy that target.",
+      "tags": [
+        "destroy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_SAGE",
+      "clone_path": "src_custom/activated_effects/amazoness_sage.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "MAGICAL_SCIENTIST",
+      "card_name": "Magical Scientist",
+      "kind": "activated",
+      "archetype": "MAGICAL",
+      "path": "src_custom/activated_effects/magical_scientist.c",
+      "effect_text": "Pay 1000 Life Points to Special Summon 1 level 6 or lower Fusion Monster from your Extra Deck in face-up Attack or Defen Pay 1000 Life Points to Special Summon 1 level 6 or lower Fusion Monster from your Extra Deck in face-up Attack or Defense Position. That Fusion Monster cannot attack your opponent's Life Points directly, and is returned to your Extra Deck at the end of the turn.",
+      "tags": [
+        "deck",
+        "faceup",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GREAT_TORNADO",
+      "clone_path": "src_custom/activated_effects/elemental_hero_great_tornado.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "MORPHTRONIC_CLOCKEN",
+      "card_name": "Morphtronic Clocken",
+      "kind": "activated",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/activated_effects/morphtronic_clocken.c",
+      "effect_text": "- While in Attack Position: This card gains 500 ATK for each Morph Counter on it. - While in Defense Position: Once per  - While in Attack Position: This card gains 500 ATK for each Morph Counter on it. - While in Defense Position: Once per turn, you can place 1 Morph Counter on this card. You can Tribute this card to inflict 1000 damage to your opponent for each Morph Counter on it.",
+      "tags": [
+        "burn",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 1000,
+      "clone_const": "MORPHTRONIC_DATATRON",
+      "clone_path": "src_custom/activated_effects/morphtronic_datatron.c",
+      "clone_score": 1.1
+    }
+  ]
+}

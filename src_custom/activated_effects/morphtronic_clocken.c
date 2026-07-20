@@ -1,65 +1,71 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
+void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
-}
-
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
-}
+#define MORPHTRONIC_CLOCKEN_BURN_PER 1000
 
 unsigned char CanActivateMORPHTRONIC_CLOCKEN(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != MORPHTRONIC_CLOCKEN)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != MORPHTRONIC_CLOCKEN)
+    return FALSE;
+
+  /* ponytail: +500 ATK per Morph Counter in ATK Position needs stat overlay hook.
+   * Ceiling: DEF OPT place unk4 counter, else tribute self → burn 1000*(unk4 or 1). */
+  if (zone->isDefending) {
+    if (!CanUseMonsterEffect(zone))
+      return FALSE;
+    return TRUE;
+  }
+
+  return TRUE;
 }
 
 void ActivateMORPHTRONIC_CLOCKENEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 counters;
+
   Duel_ShowEffectTextTyped(MORPHTRONIC_CLOCKEN, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  if (self->isDefending && CanUseMonsterEffect(self)) {
+    self->unk4++;
+    MarkMonsterEffectUsed(self);
+    UpdateDuelGfxExceptField();
+    CheckWinConditionExodia(WhoseTurn());
+    if (IsDuelOver() != TRUE)
+      TryActivatingPermanentEffects();
+    return;
+  }
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  counters = self->unk4;
+  if (counters == 0)
+    counters = 1;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  ClearZone(self);
+
+  if (Duel_ChangeLp(INACTIVE_DUELIST, -(s32)(MORPHTRONIC_CLOCKEN_BURN_PER * counters), TRUE)
+      == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

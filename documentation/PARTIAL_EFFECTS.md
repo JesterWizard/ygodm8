@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:55 UTC  
-**Remaining partials:** `532`
+**Last updated:** 2026-07-20 18:58 UTC  
+**Remaining partials:** `544`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 201 |
+| `activated` | 213 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **532** |
+| **total** | **544** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (201)
+## activated (213)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1463,6 +1463,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANCIENT_GEAR_SOLDIER`
 - path: `src_custom/activated_effects/ancient_gear_soldier.c`
 - L12: attack → opp cannot activate S/T until end of Damage Step needs battle lock hook. Ceiling: not ignition-activatable here; upgrade: battle phase Spell/Trap activation gate while this card is attacking.
+
+### `ARCANA_FORCE_XIX_THE_SUN`
+- path: `src_custom/activated_effects/arcana_force_xix_the_sun.c`
+- L81: on-Summon coin (Heads Set coin Spell / Tails wipe S/T) need summon hook. Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours.
+- L121: requires coin-toss card on field — skipped; SS anytime when legal.
 
 ### `ARCANITE_MAGICIAN`
 - path: `src_custom/activated_effects/arcanite_magician.c`
@@ -1599,6 +1604,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/dark_dust_spirit.c`
 - L22: hand normal/tribute summon copies isFaceUp=0; attack-position still counts
 - L63: GBA "face-up" = isFaceUp bit; attack-position keeps isFaceUp=0 until flip
+
+### `DARK_HORUS`
+- path: `src_custom/activated_effects/dark_horus.c`
+- L99: after opp Main Phase Spell resolve trigger needs spell hook. Ceiling: OPT SS 1 Lv4 DARK from GY while face-up.
 
 ### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
 - path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
@@ -1746,6 +1755,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gladiator_beast_bestiari.c`
 - L192: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy 1 opp S/T, else tag-out shuffle→SS.
 
+### `GLADIATOR_BEAST_EQUESTE`
+- path: `src_custom/activated_effects/gladiator_beast_equeste.c`
+- L158: on-GB-tag SS add trigger + end-of-BP battled gate need summon/battle hooks. Ceiling: OPT add 1 GB from GY to hand, else tag-out shuffle→SS.
+
 ### `GLADIATOR_BEAST_HOPLOMUS`
 - path: `src_custom/activated_effects/gladiator_beast_hoplomus.c`
 - L110: end-of-Battle-Phase + attacked/was-attacked gate + DEF 2400 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
@@ -1785,6 +1798,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GRAVEKEEPERS_GUARD`
 - path: `src_custom/activated_effects/gravekeepers_guard.c`
 - L85: FLIP trigger needs flip hook.
+
+### `GRAVEKEEPERS_HEADMAN`
+- path: `src_custom/activated_effects/gravekeepers_headman.c`
+- L95: on-Summon trigger + ATK/face-down DEF choice need summon hook. Ceiling: OPT SS 1 Lv4 Gravekeeper's from GY in ATK.
 
 ### `GRAVEKEEPERS_HERATIC`
 - path: `src_custom/activated_effects/gravekeepers_heratic.c`
@@ -1929,9 +1946,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/lyla_twilightsworn_enchantress.c`
 - L205: quick effect on Spell/Trap activation + mill 3 when other LS activates need chain/mill hooks. Ceiling: OPT banish LS from hand/GY then destroy 1 face-up Spell/Trap.
 
+### `MAGICAL_MARIONETTE`
+- path: `src_custom/activated_effects/magical_marionette.c`
+- L117: Spell Counter on Spell resolve + +200 ATK/counter need spell/stat hooks. Ceiling: OPT remove 2 unk4 counters → destroy 1 monster.
+
 ### `MAGICAL_PLANT_MANDRAGOLA`
 - path: `src_custom/activated_effects/magical_plant_mandragola.c`
 - L12: FLIP place Spell Counters needs flip + counter storage. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
+
+### `MAGICAL_SCIENTIST`
+- path: `src_custom/activated_effects/magical_scientist.c`
+- L215: no direct attack + End Phase Extra Deck return need battle/EP hooks. Ceiling: pay 1000 → SS Lv≤6 Fusion from Extra/recipe list.
 
 ### `MAGNA_DRAGO`
 - path: `src_custom/activated_effects/magna_drago.c`
@@ -1973,6 +1998,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/molten_zombie.c`
 - L18: printed trigger is SS from GY. Ceiling: once via usage when Activate runs (summon-dispatch or manual).
 
+### `MONTAGE_DRAGON`
+- path: `src_custom/activated_effects/montage_dragon.c`
+- L39: ATK = combined sent Levels x 300 needs summon-stat overlay hook. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
+
 ### `MORPHTRONIC_BOARDEN`
 - path: `src_custom/activated_effects/morphtronic_boarden.c`
 - L12: Morphtronic direct attack / battle indestructible continuous need attack and battle hooks. Ceiling: not field-ignition activatable here.
@@ -1980,6 +2009,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MORPHTRONIC_BOOMBOXEN`
 - path: `src_custom/activated_effects/morphtronic_boomboxen.c`
 - L12: double attack in ATK + DEF negate-attack need battle/position hooks. Ceiling: not ignition-activatable here.
+
+### `MORPHTRONIC_CLOCKEN`
+- path: `src_custom/activated_effects/morphtronic_clocken.c`
+- L26: +500 ATK per Morph Counter in ATK Position needs stat overlay hook. Ceiling: DEF OPT place unk4 counter, else tribute self → burn 1000*(unk4 or 1).
+
+### `MORPHTRONIC_LANTRON`
+- path: `src_custom/activated_effects/morphtronic_lantron.c`
+- L12: ATK redirect effect damage + DEF no battle damage when destroyed need damage-redirect and battle-destroy hooks. Ceiling: not ignition here.
 
 ### `MORPHTRONIC_MAGNEN`
 - path: `src_custom/activated_effects/morphtronic_magnen.c`
@@ -1993,6 +2030,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_scopen.c`
 - L58: DEF Position → treat as Level 4 + EP destroy on ATK-mode SS need position/EP hooks. Ceiling: ATK Position OPT SS 1 Lv4 Morphtronic from hand.
 
+### `MORPHTRONIC_SLINGEN`
+- path: `src_custom/activated_effects/morphtronic_slingen.c`
+- L160: DEF destroy-other-Morphtronic substitute needs destroy redirect hook. Ceiling: ATK OPT tribute 1 other Morphtronic → destroy 1 field card.
+
 ### `MORPHTRONIC_VIDEON`
 - path: `src_custom/activated_effects/morphtronic_videon.c`
 - L12: position-based ATK/DEF per Equip needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position/equip gate.
@@ -2000,6 +2041,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `NAELSHADDOLL_ARIEL`
 - path: `src_custom/activated_effects/naelshaddoll_ariel.c`
 - L72: FLIP SS banished Shaddoll + sent-by-effect branch need flip/RFP hooks. Ceiling: OPT banish up to 3 cards from either GY.
+
+### `NEO_SPACE_CONNECTOR`
+- path: `src_custom/activated_effects/neo_space_connector.c`
+- L61: on-Normal-Summon trigger + tribute-bounce second effect need summon/tribute hooks. Ceiling: OPT SS Neo-Spacian or Neos from Deck DEF.
 
 ### `NEO_SPACIAN_DARK_PANTHER`
 - path: `src_custom/activated_effects/neo_spacian_dark_panther.c`
@@ -2081,6 +2126,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `SILENT_MAGICIAN_LV8`
 - path: `src_custom/activated_effects/silent_magician_lv8.c`
 - L12: continuous immunity to opponent Spell effects needs spell-target gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-immune hook.
+
+### `SILENT_SWORDSMAN_LV5`
+- path: `src_custom/activated_effects/silent_swordsman_lv5.c`
+- L70: unaffected by opp Spell effects + Standby-after-direct-damage gate need spell/phase hooks. Ceiling: OPT send self → SS LV7 from hand/Deck.
 
 ### `SILENT_SWORDSMAN_LV7`
 - path: `src_custom/activated_effects/silent_swordsman_lv7.c`
