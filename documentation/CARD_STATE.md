@@ -1,15 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack U: 12 traps
+**Last worked on:** 2026-07-20 — Effect pack V: 12 traps
 
 **Files touched:**
 - `documentation/STUB_EFFECTS.md`
 - `documentation/PARTIAL_EFFECTS.md`
-- `documentation/effect_work_packs/2026-07-20-u/`
-- Pack U: `des_counterblow.c`, `snake_deitys_command.c`, `backfire.c`, `rise_of_the_snake_deity.c`, `venom_burn.c`, `lightsworn_judgement.c`, `gladiator_beasts_medusa_shield.c`, `aegis_of_the_ocean_dragon_lord.c`, `doppelganger.c`, `lightsworn_barrier.c`, `tour_of_doom.c`, `anti_spell_fragrance.c`
+- `documentation/effect_work_packs/2026-07-20-v/`
+- Pack V: `urgent_tuning.c`, `damage_polarizer.c`, `hunting_instinct.c`, `arcana_call.c`, `hysteric_party.c`, `rite_of_spirit.c`, `morphtronic_mixup.c`, `prophecy.c`, `humid_winds.c`, `soul_levy.c`, `morphtronic_bind.c`, `magicians_circle.c`
 
-**Outcome:** make OK. Stubs **655 → 643**. Partials **266 → 278**. Trap bodies + continuous activate; dispatcher/`trapEffect` mostly `ponytail:`.
+**Outcome:** make OK. Stubs **643 → 631**. Partials **278 → 290**.
 
 **Open / next:**
-- implement next pack (more traps, or wire trapEffect + turn-start hooks)
-- Spell stubs still 0
+- implement next pack (~66 trap stubs left)
+- trapEffect / turn-start wiring still mostly `ponytail:`

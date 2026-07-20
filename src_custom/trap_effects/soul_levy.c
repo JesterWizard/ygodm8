@@ -3,11 +3,17 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static void ActivateSOUL_LEVYZone(struct DuelCard *zone)
+{
+  if (Duel_ActivateContinuousTrapPreamble(zone, SOUL_LEVY) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-/* TODO: implement trap effect for SOUL_LEVY */
+  /* ponytail: only control 1 + each opp SS → mill top 3 opp Deck need unique-
+   * continuous + summon hook. Ceiling: face-up continuous only; upgrade:
+   * after opp Special Summon → send top 3 of opp Deck to GY. */
+}
+
+void TryActivateSOUL_LEVYOnOpponentTurnStart(void)
+{
+  Duel_TryActivateBackrowTrapOnTurnStart(SOUL_LEVY, ActivateSOUL_LEVYZone);
+}

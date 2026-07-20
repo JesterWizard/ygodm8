@@ -1,13 +1,23 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
 
-/* TODO: implement trap effect for DAMAGE_POLARIZER */
+APPEND_TEXT void EffectDAMAGE_POLARIZER(void)
+{
+  Duel_ShowTrapResponseText(DAMAGE_POLARIZER, gTrapEffectData.originCardId);
+
+  /* ponytail: negate effect-damage activation needs damage-effect chain gate.
+   * Ceiling: both players draw 1 when Effect runs; upgrade: trapEffect on
+   * effect-damage activate → cancel damage + draw. */
+
+  Duel_DrawCards(INACTIVE_DUELIST, 1, FALSE);
+  Duel_DrawCards(ACTIVE_DUELIST, 1, TRUE);
+
+  Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
+                   INACTIVE_DUELIST, FALSE);
+  UpdateDuelGfxExceptField();
+}

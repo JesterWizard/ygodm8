@@ -8,20 +8,20 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 16:45 UTC  
-**Remaining partials:** `278`
+**Last updated:** 2026-07-20 16:51 UTC  
+**Remaining partials:** `290`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 185 |
-| `trap` | 38 |
+| `trap` | 50 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **278** |
+| **total** | **290** |
 
 ## spell (185)
 
@@ -922,7 +922,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/wetlands.c`
 - L87: +1200 ATK for Aqua/WATER/Level≤2 needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up WETLANDS and TYPE_AQUA + ATTRIBUTE_WATER + level≤2 then ATK += 1200.
 
-## trap (38)
+## trap (50)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -946,6 +946,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L11: both players must Set Spells before activate (next turn) needs spell-activation gate. Ceiling: face-up continuous only; upgrade: spell activate validator requires prior Set + turn delay. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - L22: TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
+### `ARCANA_CALL`
+- path: `src_custom/trap_effects/arcana_call.c`
+- L81: until EP, selected AF uses banished AF's coin effect — needs End Phase clear + Arcana effect dispatch override. Ceiling: marks field monster; GY Arcana banished.
+
 ### `BACKFIRE`
 - path: `src_custom/trap_effects/backfire.c`
 - L11: FIRE monster destroyed → 500 to opp needs destroy hook. Ceiling: face-up continuous only; upgrade: OnDestroy FIRE face-up owned → Duel_ChangeLp(opp, -500). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
@@ -954,6 +958,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `BOTTOMLESS_SHIFTING_SAND`
 - path: `src_custom/trap_effects/bottomless_shifting_sand.c`
 - L10: GBA hand cap is 5; TCG rule uses 4 — scale self-destruct threshold down
+
+### `DAMAGE_POLARIZER`
+- path: `src_custom/trap_effects/damage_polarizer.c`
+- L13: negate effect-damage activation needs damage-effect chain gate. Ceiling: both players draw 1 when Effect runs; upgrade: trapEffect on effect-damage activate → cancel damage + draw.
 
 ### `DES_COUNTERBLOW`
 - path: `src_custom/trap_effects/des_counterblow.c`
@@ -999,6 +1007,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/gravity_bind.c`
 - L64: face-down GB still blocks the declare; AI sim restore keeps it face-down every trial
 
+### `HUMID_WINDS`
+- path: `src_custom/trap_effects/humid_winds.c`
+- L103: each effect OPT as face-up ignition needs Main Phase hooks + turn reset. Ceiling: one search+heal path on activate flip.
+
+### `HUNTING_INSTINCT`
+- path: `src_custom/trap_effects/hunting_instinct.c`
+- L27: printed trigger is opp Special Summon. Ceiling: when Effect runs, SS Dinosaur from hand; upgrade: SS-to-opp-field trigger wire.
+
+### `HYSTERIC_PARTY`
+- path: `src_custom/trap_effects/hysteric_party.c`
+- L72: when this face-up leaves → destroy those SS'd Harpie Lady needs leave-field hook. Ceiling: continuous face-up + GY Harpie Lady SS; OPT trapEffect wire.
+
 ### `ICARUS_ATTACK`
 - path: `src_custom/trap_effects/icarus_attack.c`
 - L51: needs trapEffect wire + PickZone for 2 targets.
@@ -1023,6 +1043,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/magic_cylinder.c`
 - L22: Normal Trap must leave the backrow to prevent AI re-trigger loop
 
+### `MAGICIANS_CIRCLE`
+- path: `src_custom/trap_effects/magicians_circle.c`
+- L55: printed trigger is Spellcaster attack declare. Ceiling: when Effect runs, each player Deck SS Spellcaster ≤2000 ATK; upgrade: attack declare hook when attacker is Spellcaster.
+
 ### `METAVERSE`
 - path: `src_custom/trap_effects/metaverse.c`
 - L122: choose activate Field vs add to hand — always add to hand. Ceiling: no Field Zone activate path; upgrade: A/B choice → set gDuel.field.
@@ -1032,9 +1056,21 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/mirror_force.c`
 - L21: destroy self after monsters so AI sim doesn't re-trigger
 
+### `MORPHTRONIC_BIND`
+- path: `src_custom/trap_effects/morphtronic_bind.c`
+- L13: while face-up Morphtronic controlled, opp Lv≥4 cannot attack or change battle position needs attack/position gates. Ceiling: face-up continuous only.
+
+### `MORPHTRONIC_MIXUP`
+- path: `src_custom/trap_effects/morphtronic_mixup.c`
+- L75: PickZone for 2 targets + opp choice UI; trapEffect wire.
+
 ### `MORPHTRONIC_MONITRON`
 - path: `src_custom/trap_effects/morphtronic_monitron.c`
 - L14: when Morphtronic Summoned → optional to Defense needs summon hook. Ceiling: face-up continuous only.
+
+### `PROPHECY`
+- path: `src_custom/trap_effects/prophecy.c`
+- L68: player predict UI (bigger/smaller) + trapEffect wire. Ceiling: random opp hand card; AI random guess / player always higher.
 
 ### `RAIGEKI_BREAK`
 - path: `src_custom/trap_effects/raigeki_break.c`
@@ -1048,6 +1084,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `RISE_OF_THE_SNAKE_DEITY`
 - path: `src_custom/trap_effects/rise_of_the_snake_deity.c`
 - L16: printed trigger is Vennominon destroyed except by battle. Ceiling: when Effect runs, SS Vennominaga from hand/Deck; upgrade: destroy hook gates activation to non-battle Vennominon leave.
+
+### `RITE_OF_SPIRIT`
+- path: `src_custom/trap_effects/rite_of_spirit.c`
+- L61: unaffected by Necrovalley — already no Necrovalley gate here. PickZone for GY target + trapEffect wire.
 
 ### `SERPENT_SUPPRESSION`
 - path: `src_custom/trap_effects/serpent_suppression.c`
@@ -1065,6 +1105,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/solemn_wishes.c`
 - L89: InitBoard fills hands via TryDrawingCard before duel gfx; skip until past opening hand.
 
+### `SOUL_LEVY`
+- path: `src_custom/trap_effects/soul_levy.c`
+- L11: only control 1 + each opp SS → mill top 3 opp Deck need unique- continuous + summon hook. Ceiling: face-up continuous only; upgrade: after opp Special Summon → send top 3 of opp Deck to GY.
+
 ### `THUMBS_DOWN`
 - path: `src_custom/trap_effects/thumbs_down.c`
 - L31: destroy by battle/effect → controller takes 500 each needs destroy hook. Ceiling: face-up continuous only.
@@ -1078,6 +1122,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/trojan_gladiator_beast.c`
 - L50: summoned to controller's field not opponent — need cross-field SS. Ceiling: SS to own field then draw; upgrade: SS to ACTIVE monster row.
 - L59: needs trapEffect ID + dispatcher wire.
+
+### `URGENT_TUNING`
+- path: `src_custom/trap_effects/urgent_tuning.c`
+- L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
 ### `VANQUISHING_LIGHT`
 - path: `src_custom/trap_effects/vanquishing_light.c`

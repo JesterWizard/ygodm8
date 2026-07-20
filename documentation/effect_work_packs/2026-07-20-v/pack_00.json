@@ -1,0 +1,76 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "URGENT_TUNING",
+      "card_name": "Urgent Tuning",
+      "kind": "trap",
+      "archetype": "URGENT",
+      "path": "src_custom/trap_effects/urgent_tuning.c",
+      "effect_text": "During the Battle Phase: Immediately after this effect resolves, Synchro Summon 1 Synchro Monster using monsters you con During the Battle Phase: Immediately after this effect resolves, Synchro Summon 1 Synchro Monster using monsters you control.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GIFT_OF_THE_MYSTICAL_ELF",
+      "clone_path": "src_custom/trap_effects/gift_of_the_mystical_elf.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "DAMAGE_POLARIZER",
+      "card_name": "Damage Polarizer",
+      "kind": "trap",
+      "archetype": "DAMAGE",
+      "path": "src_custom/trap_effects/damage_polarizer.c",
+      "effect_text": "Activate only when an effect that inflicts damage is activated. Negate its activation and effect, and each player draws  Activate only when an effect that inflicts damage is activated. Negate its activation and effect, and each player draws 1 card.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": null,
+      "clone_path": null,
+      "clone_score": 0.0
+    },
+    {
+      "card_const": "HUNTING_INSTINCT",
+      "card_name": "Hunting Instinct",
+      "kind": "trap",
+      "archetype": "HUNTING",
+      "path": "src_custom/trap_effects/hunting_instinct.c",
+      "effect_text": "When a monster(s) is Special Summoned to your opponent's field (except during the Damage Step): Special Summon 1 Dinosau When a monster(s) is Special Summoned to your opponent's field (except during the Damage Step): Special Summon 1 Dinosaur monster from your hand.",
+      "tags": [
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "EMBODIMENT_OF_APOPHIS",
+      "clone_path": "src_custom/trap_effects/embodiment_of_apophis.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "ARCANA_CALL",
+      "card_name": "Arcana Call",
+      "kind": "trap",
+      "archetype": "ARCANA",
+      "path": "src_custom/trap_effects/arcana_call.c",
+      "effect_text": "Revive Arcana Force; apply coin effect. Select 1 Arcana Force monster you control. Remove from play 1 Arcana Force monster from either player's Graveyard. Until the End Phase, the selected monster's effect becomes the removed monster's effect for the same coin toss result.",
+      "tags": [
+        "gy",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COFFIN_SELLER",
+      "clone_path": "src_custom/trap_effects/coffin_seller.c",
+      "clone_score": 0.67
+    }
+  ]
+}
