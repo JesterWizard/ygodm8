@@ -65,6 +65,7 @@ void ResolveNeedleBurrowerBattleEffect(void);
 void ResolveHyperHammerheadBattleEffect(void);
 void ResolveDDWarriorBattleEffect(void);
 void ResolveDesKangarooBattleEffect(void);
+void ResolveContinuousDestructionPunchBattleEffect(void);
 void ResolveAbsorbingKidFromTheSkyBattleEffect(void);
 void ResolveCoffinSellerBattleEffect(void);
 void ResolveYubelAttackedReflectEffect(void);
@@ -225,6 +226,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveHyperHammerheadBattleEffect();
   ResolveDDWarriorBattleEffect();
   ResolveDesKangarooBattleEffect();
+  ResolveContinuousDestructionPunchBattleEffect();
   ResolveAbsorbingKidFromTheSkyBattleEffect();
   ResolveCoffinSellerBattleEffect();
   sub_8022080();

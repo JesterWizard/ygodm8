@@ -10,12 +10,7 @@ static void CONTINUOUS_DESTRUCTION_PUNCH_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(CONTINUOUS_DESTRUCTION_PUNCH);
-
-  /* ponytail: post-damage-calc "DEF > ATK → destroy attacker" needs a
-   * battle_effects hook (clone des_kangaroo.c MarkPendingAttackerDestroy) outside
-   * this file. Ceiling: continuous face-up only; upgrade: after damage calc, if
-   * face-up CONTINUOUS_DESTRUCTION_PUNCH on defender's controller, defender is
-   * DEF position, and defender DEF > attacker ATK, destroy attacker (damage normal). */
+  /* Battle: ApplyContinuousDestructionPunchBattleEffect (DEF > ATK → destroy attacker). */
 }
 
 APPEND_TEXT void EffectCONTINUOUS_DESTRUCTION_PUNCH(void)

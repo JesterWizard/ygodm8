@@ -153,6 +153,166 @@
         { "op": "HEAL_THROUGH_TRAPS", "s0": 5000, "a2": true },
         { "op": "END" }
       ]
+    },
+    {
+      "cardId": "DARK_HOLE",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_MONSTERS_ROW", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a2": false },
+        { "op": "DESTROY_ALL_MONSTERS_ROW", "a0": "ACTIVE_DUELIST_MONSTER_ROW", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "RAIGEKI",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "DESTROY_INACTIVE_MONSTERS_THROUGH_TRAPS" },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "FUSION_SAGE",
+      "kind": "SPELL",
+      "meta": "SEARCH",
+      "canActivate": "CanActivateFusionSage",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "SEARCH_DECK_BY_ID", "a0": "ACTIVE_DUELIST", "s0": "POLYMERIZATION", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "WARRIOR_ELIMINATION",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_MONSTERS_OF_TYPE", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "TYPE_WARRIOR", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "ETERNAL_REST",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_MONSTERS_OF_TYPE", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "TYPE_ZOMBIE", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "STAIN_STORM",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_MONSTERS_OF_TYPE", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "TYPE_MACHINE", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "ERADICATING_AEROSOL",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_MONSTERS_OF_TYPE", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "TYPE_INSECT", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "BREATH_OF_LIGHT",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_MONSTERS_OF_TYPE", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "TYPE_ROCK", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "ETERNAL_DROUGHT",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "comment": "Vanilla ROM compares TYPE_FISH (card.h enum 13), not Plant",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_MONSTERS_OF_TYPE", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "EFFECT_TYPE_FISH_VANILLA", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "LAST_DAY_OF_WITCH",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_MONSTERS_OF_TYPE", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "TYPE_SPELLCASTER", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "EXILE_OF_THE_WICKED",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_MONSTERS_OF_TYPE", "a0": "INACTIVE_DUELIST_MONSTER_ROW", "a1": "TYPE_FIEND", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "HARPIES_FEATHER_DUSTER",
+      "kind": "SPELL",
+      "meta": "DESTROY",
+      "steps": [
+        { "op": "SHOW_TEXT" },
+        { "op": "DESTROY_ALL_IN_TURN_ROW", "a0": "INACTIVE_DUELIST_BACKROW", "a1": "INACTIVE_DUELIST", "a2": false },
+        { "op": "DESTROY_ACTIVATING_SPELL", "a0": "ACTIVE_DUELIST", "a2": true },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "GOBLIN_THIEF",
+      "kind": "SPELL",
+      "meta": "BURN",
+      "steps": [
+        { "op": "STEAL_LP_THROUGH_TRAPS", "s0": 500 },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "UPSTART_GOBLIN",
+      "kind": "SPELL",
+      "meta": "DRAW",
+      "steps": [
+        { "op": "UPSTART_THROUGH_TRAPS", "s0": 1000 },
+        { "op": "END" }
+      ]
+    },
+    {
+      "cardId": "RAIN_OF_MERCY",
+      "kind": "SPELL",
+      "meta": "HEAL",
+      "steps": [
+        { "op": "BOTH_PLAYERS_HEAL_THROUGH_TRAPS", "s0": 1000 },
+        { "op": "END" }
+      ]
     }
   ]
 }

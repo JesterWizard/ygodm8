@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "effect_events.h"
+#include "amazoness_fighting_spirit.h"
 #include "elemental_hero_inferno.h"
 #include "skyscraper.h"
 
@@ -37,6 +38,7 @@ static void EffectEvent_OnDamageCalcHandler(const struct EffectEvent *ev)
 
   ApplyElementalHeroInfernoBattleAtkBoost();
   ApplySkyscraperBattleAtkBoost();
+  ApplyAmazonessFightingSpiritBattleAtkBoost();
 }
 
 void EffectEvent_EnsureInit(void)

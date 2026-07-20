@@ -10,12 +10,7 @@ static void AMAZONESS_FIGHTING_SPIRIT_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(AMAZONESS_FIGHTING_SPIRIT);
-
-  /* ponytail: Amazoness vs higher-ATK +1000 during damage calculation only needs a
-   * battle_effects damage-calc hook (like skyscraper.c) outside this file.
-   * Ceiling: face-up continuous only; upgrade: ApplyAmazonessFightingSpiritBattleAtkBoost
-   * → if face-up AMAZONESS_FIGHTING_SPIRIT on controller's field, attacker passes
-   * Duel_IsAmazonessCard, and defender ATK > attacker ATK, then attacker ATK += 1000. */
+  /* Battle ATK boost: ApplyAmazonessFightingSpiritBattleAtkBoost via ON_DAMAGE_CALC. */
 }
 
 APPEND_TEXT void EffectAMAZONESS_FIGHTING_SPIRIT(void)

@@ -46,6 +46,7 @@
 #include "sasuke_samurai_3.h"
 #include "d_d_warrior.h"
 #include "des_kangaroo.h"
+#include "continuous_destruction_punch.h"
 #include "big_bang_shot.h"
 #include "h_heated_heart.h"
 #include "cyber_end_dragon.h"
@@ -240,6 +241,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyLesserFiendBattleEffect();
   ApplyDarkMagicianOfChaosBattleEffect();
   ApplyDesKangarooBattleEffect();
+  ApplyContinuousDestructionPunchBattleEffect();
 
   Duel_RemapMutualDestroyBattleAnim(playerGraveyardDestroy, opponentGraveyardDestroy);
 

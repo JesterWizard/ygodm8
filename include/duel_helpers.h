@@ -56,6 +56,8 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
 void Duel_DestroyMaskedMonstersInFixedRow(u8 fixedRow, u8 colMask, u8 graveyardDuelist, u8 updateGfx);
 enum DuelActionResult Duel_DestroyAllMonstersMatching(u8 turnRow, MonsterZonePredicate pred,
                                                        u8 updateGfx);
+enum DuelActionResult Duel_DestroyAllMonstersOfType(u8 turnRow, u8 monsterType, u8 updateGfx);
+enum DuelActionResult Duel_DestroyAllInTurnRow(u8 turnRow, u8 graveyardDuelist, u8 updateGfx);
 
 enum DuelActionResult Duel_DiscardFromHand(u8 duelist, u8 count, HandCardPredicate pred,
                                            u8 updateGfx);
@@ -153,6 +155,10 @@ enum DuelActionResult Duel_ResolveHealSpell(u16 spellId, s32 heal, u8 destroySpe
 /* Trap gate + burn/heal body without ROM-backed callback statics (APPEND_DATA). */
 enum DuelActionResult Duel_TryResolveBurnSpellThroughTraps(u16 spellId, s32 damage);
 enum DuelActionResult Duel_TryResolveHealSpellThroughTraps(u16 spellId, s32 heal);
+enum DuelActionResult Duel_TryResolveStealLpThroughTraps(u16 spellId, s32 amount);
+enum DuelActionResult Duel_TryResolveUpstartThroughTraps(u16 spellId, s32 opponentHeal);
+enum DuelActionResult Duel_TryResolveBothPlayersHealThroughTraps(u16 spellId, s32 heal);
+enum DuelActionResult Duel_TryResolveDestroyInactiveMonstersThroughTraps(u16 spellId);
 void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId);
 
 void Duel_ResetDestroyMaskState(u8 *destroyMask, u8 *fixedMonsterRow);

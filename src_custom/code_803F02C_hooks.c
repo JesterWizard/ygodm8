@@ -86,6 +86,7 @@
 #include "red_dragon_archfiend.h"
 #include "reptilianne_scylla.h"
 #include "des_kangaroo.h"
+#include "continuous_destruction_punch.h"
 #include "absorbing_kid_from_the_sky.h"
 #include "airknight_parshath.h"
 #include "sasuke_samurai_3.h"
@@ -517,6 +518,7 @@ void InitBoard__Replacement(void) {
   ClearRedDragonArchfiendPending();
   ClearReptilianneScyllaPending();
   ClearDesKangarooPending();
+  ClearContinuousDestructionPunchPending();
   ClearAbsorbingKidFromTheSkyPending();
   ClearCoffinSellerPending();
   Yubel_ClearBattlePending();

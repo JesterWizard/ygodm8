@@ -632,6 +632,59 @@ enum DuelActionResult Duel_DestroyAllMonstersMatching(u8 turnRow, MonsterZonePre
   return result;
 }
 
+enum DuelActionResult Duel_DestroyAllMonstersOfType(u8 turnRow, u8 monsterType, u8 updateGfx)
+{
+  u8 col;
+  u8 graveyardDuelist;
+  enum DuelActionResult result = DUEL_ACTION_NO_TARGET;
+
+  if (turnRow != INACTIVE_DUELIST_MONSTER_ROW && turnRow != ACTIVE_DUELIST_MONSTER_ROW)
+    return DUEL_ACTION_INVALID;
+
+  graveyardDuelist = (turnRow == ACTIVE_DUELIST_MONSTER_ROW) ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[turnRow][col];
+
+    if (zone->id == CARD_NONE || IsGodCard(zone->id))
+      continue;
+
+    if (!Duel_CardHasMonsterType(zone->id, monsterType))
+      continue;
+
+    ClearZoneAndSendMonToGraveyard(zone, graveyardDuelist);
+    result = DUEL_ACTION_OK;
+
+    if (IsDuelOver() == TRUE)
+      return DUEL_ACTION_DUEL_OVER;
+  }
+
+  MaybeUpdateGfx(updateGfx);
+  return result;
+}
+
+enum DuelActionResult Duel_DestroyAllInTurnRow(u8 turnRow, u8 graveyardDuelist, u8 updateGfx)
+{
+  u8 col;
+  enum DuelActionResult result = DUEL_ACTION_NO_TARGET;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[turnRow][col];
+
+    if (zone->id == CARD_NONE || IsGodCard(zone->id))
+      continue;
+
+    ClearZoneAndSendMonToGraveyard(zone, graveyardDuelist);
+    result = DUEL_ACTION_OK;
+
+    if (IsDuelOver() == TRUE)
+      return DUEL_ACTION_DUEL_OVER;
+  }
+
+  MaybeUpdateGfx(updateGfx);
+  return result;
+}
+
 static s8 PickRandomHandZone(struct DuelCard **handRow)
 {
   u8 i;
@@ -1885,6 +1938,114 @@ enum DuelActionResult Duel_TryResolveHealSpellThroughTraps(u16 spellId, s32 heal
   }
 
   return Duel_ResolveHealSpell(spellId, heal, TRUE);
+}
+
+enum DuelActionResult Duel_TryResolveStealLpThroughTraps(u16 spellId, s32 amount)
+{
+  enum DuelActionResult result;
+
+  if (GetTypeGroup(spellId) == TYPE_GROUP_SPELL) {
+    SetupSpellTrapOrigin();
+
+    if (!Duel_IsOriginActivationProtectedFromNegation()
+        && IsTrapTriggered() == TRUE && !gHideEffectText) {
+      ActivateTrapEffect((u16)amount);
+      return DUEL_ACTION_BLOCKED;
+    }
+  }
+
+  result = Duel_ChangeLp(INACTIVE_DUELIST, -amount, FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER)
+    return result;
+
+  result = Duel_ChangeLp(ACTIVE_DUELIST, amount, FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER)
+    return result;
+
+  Duel_ShowEffectText(spellId);
+  return Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST,
+                          TRUE);
+}
+
+enum DuelActionResult Duel_TryResolveUpstartThroughTraps(u16 spellId, s32 opponentHeal)
+{
+  enum DuelActionResult result;
+
+  if (GetTypeGroup(spellId) == TYPE_GROUP_SPELL) {
+    SetupSpellTrapOrigin();
+
+    if (!Duel_IsOriginActivationProtectedFromNegation()
+        && IsTrapTriggered() == TRUE && !gHideEffectText) {
+      ActivateTrapEffect((u16)opponentHeal);
+      return DUEL_ACTION_BLOCKED;
+    }
+  }
+
+  result = Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST,
+                            FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER)
+    return result;
+
+  result = Duel_DrawCards(ACTIVE_DUELIST, 1, FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER)
+    return result;
+
+  result = Duel_ChangeLp(INACTIVE_DUELIST, opponentHeal, TRUE);
+  if (result == DUEL_ACTION_DUEL_OVER)
+    return result;
+
+  Duel_ShowEffectText(spellId);
+  return DUEL_ACTION_OK;
+}
+
+enum DuelActionResult Duel_TryResolveBothPlayersHealThroughTraps(u16 spellId, s32 heal)
+{
+  enum DuelActionResult result;
+
+  if (GetTypeGroup(spellId) == TYPE_GROUP_SPELL) {
+    SetupSpellTrapOrigin();
+
+    if (!Duel_IsOriginActivationProtectedFromNegation()
+        && IsTrapTriggered() == TRUE && !gHideEffectText) {
+      ActivateTrapEffect((u16)heal);
+      return DUEL_ACTION_BLOCKED;
+    }
+  }
+
+  result = Duel_ChangeLp(ACTIVE_DUELIST, heal, FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER)
+    return result;
+
+  result = Duel_ChangeLp(INACTIVE_DUELIST, heal, FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER)
+    return result;
+
+  Duel_ShowEffectText(spellId);
+  return Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST,
+                          TRUE);
+}
+
+enum DuelActionResult Duel_TryResolveDestroyInactiveMonstersThroughTraps(u16 spellId)
+{
+  enum DuelActionResult result;
+
+  if (GetTypeGroup(spellId) == TYPE_GROUP_SPELL) {
+    SetupSpellTrapOrigin();
+
+    if (!Duel_IsOriginActivationProtectedFromNegation()
+        && IsTrapTriggered() == TRUE && !gHideEffectText) {
+      ActivateTrapEffect(0);
+      return DUEL_ACTION_BLOCKED;
+    }
+  }
+
+  result = Duel_DestroyAllMonstersMatching(INACTIVE_DUELIST_MONSTER_ROW, NULL, FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER || IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+
+  Duel_ShowEffectText(spellId);
+  return Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST,
+                          TRUE);
 }
 
 void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId)

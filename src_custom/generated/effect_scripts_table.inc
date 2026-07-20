@@ -6,6 +6,7 @@ u8 CanActivateGRAND_CONVERGENCE(void);
 u8 CanActivateAncientLeaf(void);
 void ResolveDarkRoomEffect(void);
 u8 CanActivateMeteorOfDestruction(void);
+u8 CanActivateFusionSage(void);
 
 static const struct EffectScriptStep sONE_DAY_OF_PEACESteps[] __attribute__((section(".text"))) = {
   { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
@@ -91,6 +92,104 @@ static const struct EffectScriptStep sSOUL_OF_THE_PURESteps[] __attribute__((sec
 
 static const struct EffectScriptStep sDIAN_KETO_THE_CURE_MASTERSteps[] __attribute__((section(".text"))) = {
   { EFFECT_SCRIPT_HEAL_THROUGH_TRAPS, 0, 0, TRUE, 5000 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sDARK_HOLESteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_ROW, INACTIVE_DUELIST_MONSTER_ROW, 0, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_ROW, ACTIVE_DUELIST_MONSTER_ROW, 0, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sRAIGEKISteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_DESTROY_INACTIVE_MONSTERS_THROUGH_TRAPS, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sFUSION_SAGESteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_SEARCH_DECK_BY_ID, ACTIVE_DUELIST, 0, FALSE, POLYMERIZATION },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sWARRIOR_ELIMINATIONSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE, INACTIVE_DUELIST_MONSTER_ROW, TYPE_WARRIOR, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sETERNAL_RESTSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE, INACTIVE_DUELIST_MONSTER_ROW, TYPE_ZOMBIE, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sSTAIN_STORMSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE, INACTIVE_DUELIST_MONSTER_ROW, TYPE_MACHINE, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sERADICATING_AEROSOLSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE, INACTIVE_DUELIST_MONSTER_ROW, TYPE_INSECT, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sBREATH_OF_LIGHTSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE, INACTIVE_DUELIST_MONSTER_ROW, TYPE_ROCK, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sETERNAL_DROUGHTSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE, INACTIVE_DUELIST_MONSTER_ROW, EFFECT_TYPE_FISH_VANILLA, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sLAST_DAY_OF_WITCHSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE, INACTIVE_DUELIST_MONSTER_ROW, TYPE_SPELLCASTER, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sEXILE_OF_THE_WICKEDSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE, INACTIVE_DUELIST_MONSTER_ROW, TYPE_FIEND, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sHARPIES_FEATHER_DUSTERSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_SHOW_TEXT, 0, 0, 0, 0 },
+  { EFFECT_SCRIPT_DESTROY_ALL_IN_TURN_ROW, INACTIVE_DUELIST_BACKROW, INACTIVE_DUELIST, FALSE, 0 },
+  { EFFECT_SCRIPT_DESTROY_ACTIVATING_SPELL, ACTIVE_DUELIST, 0, TRUE, 0 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sGOBLIN_THIEFSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_STEAL_LP_THROUGH_TRAPS, 0, 0, 0, 500 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sUPSTART_GOBLINSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_UPSTART_THROUGH_TRAPS, 0, 0, 0, 1000 },
+  { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
+};
+
+static const struct EffectScriptStep sRAIN_OF_MERCYSteps[] __attribute__((section(".text"))) = {
+  { EFFECT_SCRIPT_BOTH_PLAYERS_HEAL_THROUGH_TRAPS, 0, 0, 0, 1000 },
   { EFFECT_SCRIPT_END, 0, 0, 0, 0 },
 };
 
@@ -226,6 +325,141 @@ static const struct EffectScript sEffectScripts[] __attribute__((section(".text"
     EFFECT_KIND_SPELL,
     ARRAY_COUNT(sDIAN_KETO_THE_CURE_MASTERSteps),
     sDIAN_KETO_THE_CURE_MASTERSteps,
+    { EFFECT_META_HEAL, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    DARK_HOLE,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sDARK_HOLESteps),
+    sDARK_HOLESteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    RAIGEKI,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sRAIGEKISteps),
+    sRAIGEKISteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    FUSION_SAGE,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sFUSION_SAGESteps),
+    sFUSION_SAGESteps,
+    { EFFECT_META_SEARCH, 0, 0 },
+    CanActivateFusionSage,
+    NULL,
+  },
+  {
+    WARRIOR_ELIMINATION,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sWARRIOR_ELIMINATIONSteps),
+    sWARRIOR_ELIMINATIONSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    ETERNAL_REST,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sETERNAL_RESTSteps),
+    sETERNAL_RESTSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    STAIN_STORM,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sSTAIN_STORMSteps),
+    sSTAIN_STORMSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    ERADICATING_AEROSOL,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sERADICATING_AEROSOLSteps),
+    sERADICATING_AEROSOLSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    BREATH_OF_LIGHT,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sBREATH_OF_LIGHTSteps),
+    sBREATH_OF_LIGHTSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    ETERNAL_DROUGHT,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sETERNAL_DROUGHTSteps),
+    sETERNAL_DROUGHTSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    LAST_DAY_OF_WITCH,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sLAST_DAY_OF_WITCHSteps),
+    sLAST_DAY_OF_WITCHSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    EXILE_OF_THE_WICKED,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sEXILE_OF_THE_WICKEDSteps),
+    sEXILE_OF_THE_WICKEDSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    HARPIES_FEATHER_DUSTER,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sHARPIES_FEATHER_DUSTERSteps),
+    sHARPIES_FEATHER_DUSTERSteps,
+    { EFFECT_META_DESTROY, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    GOBLIN_THIEF,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sGOBLIN_THIEFSteps),
+    sGOBLIN_THIEFSteps,
+    { EFFECT_META_BURN, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    UPSTART_GOBLIN,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sUPSTART_GOBLINSteps),
+    sUPSTART_GOBLINSteps,
+    { EFFECT_META_DRAW, 0, 0 },
+    NULL,
+    NULL,
+  },
+  {
+    RAIN_OF_MERCY,
+    EFFECT_KIND_SPELL,
+    ARRAY_COUNT(sRAIN_OF_MERCYSteps),
+    sRAIN_OF_MERCYSteps,
     { EFFECT_META_HEAL, 0, 0 },
     NULL,
     NULL,

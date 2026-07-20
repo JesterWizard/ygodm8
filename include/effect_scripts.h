@@ -24,8 +24,26 @@ enum EffectScriptStepOp {
   /* s0 = burn damage (positive). Own-trap path via Duel_TryResolveBurnSpellThroughTraps. */
   EFFECT_SCRIPT_BURN_THROUGH_TRAPS,
   /* s0 = heal amount (positive). Own-trap path via Duel_TryResolveHealSpellThroughTraps. */
-  EFFECT_SCRIPT_HEAL_THROUGH_TRAPS
+  EFFECT_SCRIPT_HEAL_THROUGH_TRAPS,
+  /* Raigeki-style: trap gate, wipe inactive monster row, text, destroy self. */
+  EFFECT_SCRIPT_DESTROY_INACTIVE_MONSTERS_THROUGH_TRAPS,
+  /* a0 = duelist, s0 = cardId symbol, a2 = updateGfx. */
+  EFFECT_SCRIPT_SEARCH_DECK_BY_ID,
+  /* a0 = turnRow, a1 = monster type, a2 = updateGfx. */
+  EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE,
+  /* a0 = turnRow, a1 = graveyardDuelist, a2 = updateGfx. */
+  EFFECT_SCRIPT_DESTROY_ALL_IN_TURN_ROW,
+  /* s0 = amount. Opp loses / you gain LP (Goblin Thief). */
+  EFFECT_SCRIPT_STEAL_LP_THROUGH_TRAPS,
+  /* s0 = opponent heal. Draw 1 + give opp LP (Upstart Goblin). */
+  EFFECT_SCRIPT_UPSTART_THROUGH_TRAPS,
+  /* s0 = heal both duelists (Rain of Mercy). */
+  EFFECT_SCRIPT_BOTH_PLAYERS_HEAL_THROUGH_TRAPS
 };
+
+/* card.h enum ordinals remapped by card_enums.h for FISH/REPTILE — use for wipes. */
+#define EFFECT_TYPE_FISH_VANILLA 13
+
 
 /* Metadata categories for Phase 5 AI (stable tags; sparse for now). */
 enum EffectMetaCategory {

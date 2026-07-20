@@ -1,0 +1,13 @@
+#ifndef CONTINUOUS_DESTRUCTION_PUNCH_H
+#define CONTINUOUS_DESTRUCTION_PUNCH_H
+
+#define CONTINUOUS_DESTRUCTION_PUNCH_PENDING_NONE 0xFF
+
+extern u8 gPendingContinuousDestructionPunchAttackerRow;
+extern u8 gPendingContinuousDestructionPunchAttackerCol;
+
+void ApplyContinuousDestructionPunchBattleEffect(void);
+void ResolveContinuousDestructionPunchBattleEffect(void);
+void ClearContinuousDestructionPunchPending(void);
+
+#endif /* CONTINUOUS_DESTRUCTION_PUNCH_H */

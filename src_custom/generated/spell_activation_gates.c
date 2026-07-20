@@ -64,6 +64,7 @@ extern u8 CanActivateFinalCountdown(void);
 extern u8 CanActivateFORBIDDEN_CHALICE(void);
 extern u8 CanActivateFORBIDDEN_DRESS(void);
 extern u8 CanActivateFORBIDDEN_LANCE(void);
+extern u8 CanActivateFusionSage(void);
 extern u8 CanActivateFutureFusion(void);
 extern u8 CanActivateGLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD(void);
 extern u8 CanActivateGLADIATOR_BEASTS_BATTLE_GLADIUS(void);
@@ -174,6 +175,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { FORBIDDEN_CHALICE, CanActivateFORBIDDEN_CHALICE, TRUE },
   { FORBIDDEN_DRESS, CanActivateFORBIDDEN_DRESS, TRUE },
   { FORBIDDEN_LANCE, CanActivateFORBIDDEN_LANCE, TRUE },
+  { FUSION_SAGE, CanActivateFusionSage, TRUE },
   { FUTURE_FUSION, CanActivateFutureFusion, TRUE },
   { GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD, CanActivateGLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD, TRUE },
   { GLADIATOR_BEASTS_BATTLE_GLADIUS, CanActivateGLADIATOR_BEASTS_BATTLE_GLADIUS, TRUE },

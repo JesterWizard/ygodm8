@@ -167,6 +167,47 @@ static enum DuelActionResult RunStep(const struct EffectScript *script,
       return DUEL_ACTION_BLOCKED;
     return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : result;
 
+  case EFFECT_SCRIPT_DESTROY_INACTIVE_MONSTERS_THROUGH_TRAPS:
+    result = Duel_TryResolveDestroyInactiveMonstersThroughTraps(script->cardId);
+    if (result == DUEL_ACTION_BLOCKED)
+      return DUEL_ACTION_BLOCKED;
+    return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : result;
+
+  case EFFECT_SCRIPT_SEARCH_DECK_BY_ID:
+    if (step->s0 <= 0)
+      return DUEL_ACTION_INVALID;
+    return Op_SearchDeckById(step->a0, (u16)step->s0, step->a2);
+
+  case EFFECT_SCRIPT_DESTROY_ALL_MONSTERS_OF_TYPE:
+    return Duel_DestroyAllMonstersOfType(step->a0, step->a1, step->a2);
+
+  case EFFECT_SCRIPT_DESTROY_ALL_IN_TURN_ROW:
+    return Duel_DestroyAllInTurnRow(step->a0, step->a1, step->a2);
+
+  case EFFECT_SCRIPT_STEAL_LP_THROUGH_TRAPS:
+    if (step->s0 <= 0)
+      return DUEL_ACTION_INVALID;
+    result = Duel_TryResolveStealLpThroughTraps(script->cardId, step->s0);
+    if (result == DUEL_ACTION_BLOCKED)
+      return DUEL_ACTION_BLOCKED;
+    return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : result;
+
+  case EFFECT_SCRIPT_UPSTART_THROUGH_TRAPS:
+    if (step->s0 <= 0)
+      return DUEL_ACTION_INVALID;
+    result = Duel_TryResolveUpstartThroughTraps(script->cardId, step->s0);
+    if (result == DUEL_ACTION_BLOCKED)
+      return DUEL_ACTION_BLOCKED;
+    return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : result;
+
+  case EFFECT_SCRIPT_BOTH_PLAYERS_HEAL_THROUGH_TRAPS:
+    if (step->s0 <= 0)
+      return DUEL_ACTION_INVALID;
+    result = Duel_TryResolveBothPlayersHealThroughTraps(script->cardId, step->s0);
+    if (result == DUEL_ACTION_BLOCKED)
+      return DUEL_ACTION_BLOCKED;
+    return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : result;
+
   default:
     return DUEL_ACTION_INVALID;
   }

@@ -128,27 +128,19 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 | Damage-calc event | `EFFECT_EVENT_ON_DAMAGE_CALC` → Skyscraper + Inferno ATK boosts | Emit from `RefreshPendingBattleActionStatsFromZones` |
 | Burn scripts | `EFFECT_SCRIPT_BURN_THROUGH_TRAPS` | Sparks…Tremendous Fire, Meteor |
 | Heal scripts | `EFFECT_SCRIPT_HEAL_THROUGH_TRAPS` | Mooyan Curry…Dian Keto |
+| Destroy/search scripts | Dark Hole, Raigeki, Fusion Sage, type-wipes, Feather Duster | |
+| LP scripts | Goblin Thief / Upstart / Rain of Mercy through-traps ops | |
+| Damage-calc / battle | Skyscraper, Inferno, Amazoness Fighting Spirit; Continuous Destruction Punch | |
+
+## Working agreement
+
+- Prefer **≥10 script/effect items per pass** for effect-data work — avoid drip 1–3 card sessions unless debugging.
 
 ## TODO
 
-- [x] Phase 0: dispatcher + legacy fallback wired beside spell/trap/monster/permanent/turn hooks
-- [x] Phase 1: `Op_*` registry wrapping existing `Duel_*` helpers; 1–3 composition pilots
-- [x] Phase 2: condition + selector registries
-- [x] Phase 3: event bus; replace notify chain incrementally; generic OPT Standby clear
-- [x] Phase 4: C-table effect scripts for a handful of simple cards
-- [x] Phase 4b: JSON manifest → codegen (after opcode/event freeze)
-- [x] Phase 5: AI metadata consumption with legacy fallback
-- [x] Keep taxonomy regenerated whenever `--write-list` runs
-- [x] Migrate remaining `*UsedThisTurn` APPEND_DATA flags to `EffectOpt_*`
-- [x] Emit `ON_DAMAGE_CALC` from damage-calc Apply sites; subscribe continuous triggers to events instead of `Duel_Check*AfterFieldChange`
-- [x] Grow script table; add condition/selector step ops for targeting cards
-- [x] Expand legacy `spellEffect` → meta map as more vanilla effects matter to AI
-- [x] Thin redundant `Duel_Check*AfterFieldChange` call sites that already emit field/summon/leave events
-- [x] Grow more scripts in the JSON manifest; migrate burn/heal LynJump spells carefully (own trap LP path)
-- [x] Subscribe damage-calc continuous ATK boosts to `ON_DAMAGE_CALC` instead of only Apply* chains
-- [x] Heal LynJump spells (Mooyan Curry family) via a heal-through-traps step
-- [ ] More damage-calc subscribers beyond Skyscraper / Inferno
-- [ ] More JSON scripts (draw/search/simple destroy)
+- [x] Phase 0–5 and prior follow-ups (see history above)
+- [x] Large type-wipe / LP / Punch batch (30 scripts)
+- [ ] Next ≥10 pack: Heavy Storm / Final Destiny / Crush Card / more battle_effects
 
 ## Limitations & Bugs
 
@@ -157,3 +149,4 @@ Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (
 - Burn/heal script args must not stash in `APPEND_DATA` (ROM) — use `Duel_TryResolveBurn/HealSpellThroughTraps` helpers.
 - Metadata for AI is useless until categories are stable and populated; do not block Phases 0–3 on AI work.
 - Report gaps (missing taxonomy tags, wrong Phase ROI) against this doc or the taxonomy file.
+- Further damage-calc subscribers (Supreme King's Castle OPT send, piercing, etc.) remain card-specific battle_effects work.
