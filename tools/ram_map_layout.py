@@ -203,12 +203,21 @@ def simulate_bump(
     space_bottom: int,
     space_top: int,
     constants: dict[str, int],
+    *,
+    align: int = 1,
 ) -> tuple[list[Region], int]:
+    """Simulate downward bump allocation.
+
+    EWRAM macros apply ``& ~3`` after every subtract (align=4). IWRAM does not.
+    """
     cursor = space_bottom
     regions: list[Region] = []
+    align_mask = ~(align - 1) if align > 1 else None
     for alloc in allocs:
         size = resolve_size(alloc.size_token, constants)
         cursor -= size
+        if align_mask is not None:
+            cursor &= align_mask
         regions.append(Region(alloc.name, cursor, cursor + size, alloc.size_token))
     return regions, cursor
 
@@ -296,10 +305,14 @@ def validate_region(
     space_bottom: int,
     space_top: int,
     constants: dict[str, int],
+    *,
+    align: int = 1,
 ) -> list[str]:
     errors: list[str] = []
     try:
-        regions, used_top = simulate_bump(allocs, space_bottom, space_top, constants)
+        regions, used_top = simulate_bump(
+            allocs, space_bottom, space_top, constants, align=align
+        )
     except ValueError as exc:
         return [str(exc)]
 
@@ -333,6 +346,7 @@ def validate_card_growth(allocs: list[Allocation], total_cards: int, custom_star
                 ewram_bottom,
                 ewram_top,
                 constants,
+                align=4,
             )
         )
         errors.extend(
@@ -393,7 +407,9 @@ def validate_ram_map_layout() -> list[str]:
     errors.extend(validate_qty_cluster_integrity(ewram_allocs))
     errors.extend(validate_card_count_regions_before_qty(ewram_allocs))
     try:
-        ewram_regions, _ = simulate_bump(ewram_allocs, 0x02040000, 0x02025840, constants)
+        ewram_regions, _ = simulate_bump(
+            ewram_allocs, 0x02040000, 0x02025840, constants, align=4
+        )
         iwram_regions, _ = simulate_bump(iwram_allocs, 0x03007E00, 0x03001678, constants)
     except ValueError as exc:
         errors.append(str(exc))
@@ -403,7 +419,9 @@ def validate_ram_map_layout() -> list[str]:
         errors.extend(validate_allocation_alignment(ewram_regions, "EWRAM"))
         errors.extend(validate_allocation_alignment(iwram_regions, "IWRAM"))
     errors.extend(
-        validate_region("EWRAM", ewram_allocs, 0x02040000, 0x02025840, constants)
+        validate_region(
+            "EWRAM", ewram_allocs, 0x02040000, 0x02025840, constants, align=4
+        )
     )
     errors.extend(
         validate_region("IWRAM", iwram_allocs, 0x03007E00, 0x03001678, constants)

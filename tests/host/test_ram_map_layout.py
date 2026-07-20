@@ -65,6 +65,20 @@ class RamMapLayoutTests(unittest.TestCase):
         errors = validate_allocation_alignment(regions, "IWRAM")
         self.assertEqual(errors, [])
 
+    def test_ewram_align4_keeps_u16_even_without_pad(self):
+        """_kernel_malloc_ewram applies & ~3; simulator must match."""
+        constants = load_size_constants()
+        allocs = [
+            Allocation("leading_byte", "1", 1),
+            Allocation("u16_no_pad", "2", 2),
+        ]
+        regions, _ = simulate_bump(
+            allocs, 0x02040000, 0x02025840, constants, align=4
+        )
+        errors = validate_allocation_alignment(regions, "EWRAM")
+        self.assertEqual(errors, [])
+        self.assertEqual(regions[1].start % 4, 0)
+
     def test_repo_has_no_misaligned_u16_allocations(self):
         errors = validate_ram_map_layout()
         alignment_errors = [error for error in errors if "2-byte aligned" in error]
