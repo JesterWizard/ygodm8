@@ -1,0 +1,88 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "BLACK_ROSE_DRAGON",
+      "card_name": "Black Rose Dragon",
+      "kind": "activated",
+      "archetype": "BLACK",
+      "path": "src_custom/activated_effects/black_rose_dragon.c",
+      "effect_text": "1 Tuner + 1+ non-Tuner monsters. If Synchro Summoned: destroy all cards on the field. You can 1 Tuner + 1+ non-Tuner monsters When this card is Synchro Summoned: You can destroy all cards on the field. Once per turn: You can banish 1 Plant monster from your GY, then target 1 Defense Position monster your opponent controls; change that target to face-up Attack Position, and if you do, its ATK becomes 0 until the end of this turn.",
+      "tags": [
+        "destroy",
+        "faceup",
+        "gy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "CYBER_PHOENIX",
+      "clone_path": "src_custom/activated_effects/cyber_phoenix.c",
+      "clone_score": 0.62
+    },
+    {
+      "card_const": "RAINBOW_DARK_DRAGON",
+      "card_name": "Rainbow Dark Dragon",
+      "kind": "activated",
+      "archetype": "RAINBOW",
+      "path": "src_custom/activated_effects/rainbow_dark_dragon.c",
+      "effect_text": "(This card is always treated as an Ultimate Crystal card.)\r\nCannot be Normal Summoned/Set. Must be Special Summoned (f (This card is always treated as an Ultimate Crystal card.) Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by banishing 7 DARK monsters with different names from your GY. You can banish all other DARK monsters from your field and GY; this card gains 500 ATK for each card banished this way.",
+      "tags": [
+        "gy",
+        "hand",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "HERALD_OF_ULIMATENESS",
+      "clone_path": "src_custom/activated_effects/herald_of_ulimateness.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "ANCIENT_GEAR_ENGINEER",
+      "card_name": "Ancient Gear Engineer",
+      "kind": "activated",
+      "archetype": "ANCIENT_GEAR",
+      "path": "src_custom/activated_effects/ancient_gear_engineer.c",
+      "effect_text": "Negate any Trap effects that target this card, and if you do, destroy that Trap Card. If this card attacks, your opponen Negate any Trap effects that target this card, and if you do, destroy that Trap Card. If this card attacks, your opponent cannot activate any Spell/Trap Cards until the end of the Damage Step. At the end of the Damage Step, if this card attacked: Target 1 Spell/Trap Card your opponent controls; destroy that target.",
+      "tags": [
+        "destroy",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_SOLDIER",
+      "clone_path": "src_custom/activated_effects/ancient_gear_soldier.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "EL_SHADDOLL_WENDIGO",
+      "card_name": "El Shaddoll Wendigo",
+      "kind": "activated",
+      "archetype": "EL_SHADDOLL",
+      "path": "src_custom/activated_effects/el_shaddoll_wendigo.c",
+      "effect_text": "Protect monster from battle vs opp SS. GY: add Shaddoll S/T. 1 Shaddoll monster + 1 WIND monster Must first be Fusion Summoned. (Quick Effect): You can target 1 monster you control; this turn, it cannot be destroyed by battle with an opponent's Special Summoned monster. You can only use this effect of El Shaddoll Wendigo once per turn. If this card is sent to the GY: You can target 1 Shaddoll Spell/Trap in your GY; add it to your hand.",
+      "tags": [
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ANCIENT_GEAR_BEAST",
+      "clone_path": "src_custom/activated_effects/ancient_gear_beast.c",
+      "clone_score": 0.57
+    }
+  ]
+}

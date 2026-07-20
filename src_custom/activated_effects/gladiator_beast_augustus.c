@@ -1,65 +1,88 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static const char sGladiatorBeastName[] APPEND_RODATA = "Gladiator Beast";
+
+static u8 IsGladiatorBeastMonster(u16 cardId)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
-  return FALSE;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sGladiatorBeastName);
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static s8 FindGladiatorBeastHandZone(u16 excludeId)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
-}
+  u8 col;
 
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    u16 cardId = gTurnHands[ACTIVE_DUELIST][col]->id;
 
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
-  return FALSE;
+    if (IsGladiatorBeastMonster(cardId) && cardId != excludeId)
+      return (s8)col;
+  }
+
+  return -1;
 }
 
 unsigned char CanActivateGLADIATOR_BEAST_AUGUSTUS(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != GLADIATOR_BEAST_AUGUSTUS)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != GLADIATOR_BEAST_AUGUSTUS)
+    return FALSE;
+
+  /* ponytail: GB-SS trigger + end-of-BP tag-out need summon/battle hooks.
+   * Ceiling: OPT SS 1 other GB from hand in DEF. */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return FALSE;
+
+  return FindGladiatorBeastHandZone(GLADIATOR_BEAST_AUGUSTUS) >= 0;
 }
 
 void ActivateGLADIATOR_BEAST_AUGUSTUSEffect(void)
 {
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  struct DuelSummonOpts opts;
+  s8 handZone;
+
   Duel_ShowEffectTextTyped(GLADIATOR_BEAST_AUGUSTUS, 2);
 
-  if (IsDuelOver() == TRUE)
+  if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
+  handZone = FindGladiatorBeastHandZone(GLADIATOR_BEAST_AUGUSTUS);
+  if (handZone < 0 || ArchlordKristya_IsSpecialSummonLocked()
+      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return;
 
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+  if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
+    return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

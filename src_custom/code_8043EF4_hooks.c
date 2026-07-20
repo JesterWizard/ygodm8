@@ -264,6 +264,10 @@ u8 TrySpecialSummonHeliosDuoMegistusFromHand(u8);
 u8 TrySpecialSummonOrichalcosShunorosFromHand(u8);
 u8 TryActivateWeissLightswornArchfiendFromHand(u8);
 u8 TrySpecialSummonAlectorSovereignOfBirdsFromHand(u8);
+u8 TrySpecialSummonRainbowDarkDragonFromHand(u8);
+u8 TrySpecialSummonLightswornDragonlingFromHand(u8);
+u8 TryActivateAshBlossomFromHand(u8);
+u8 TrySpecialSummonPoseidraFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -283,7 +287,8 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == MONTAGE_DRAGON || cardId == ARCANA_FORCE_XIX_THE_SUN
       || cardId == OCEAN_DRAGON_LORD_NEO_DAEDALUS || cardId == LIGHTRAY_DAEDALUS
       || cardId == HOLACTIE_THE_CREATOR_OF_LIGHT || cardId == CYBER_ELTANIN
-      || cardId == HELIOS_DUO_MEGISTUS;
+      || cardId == HELIOS_DUO_MEGISTUS || cardId == RAINBOW_DARK_DRAGON
+      || cardId == POSEIDRA_THE_ATLANTEAN_DRAGON;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -627,6 +632,26 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == ALECTOR_SOVEREIGN_OF_BIRDS
           && TrySpecialSummonAlectorSovereignOfBirdsFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == RAINBOW_DARK_DRAGON
+          && TrySpecialSummonRainbowDarkDragonFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == LIGHTSWORN_DRAGONLING
+          && TrySpecialSummonLightswornDragonlingFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ASH_BLOSSOM_AND_JOYOUS_SPRING
+          && TryActivateAshBlossomFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == POSEIDRA_THE_ATLANTEAN_DRAGON
+          && TrySpecialSummonPoseidraFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

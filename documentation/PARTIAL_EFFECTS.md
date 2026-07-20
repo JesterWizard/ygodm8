@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:07 UTC  
-**Remaining partials:** `577`
+**Last updated:** 2026-07-20 19:10 UTC  
+**Remaining partials:** `589`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 246 |
+| `activated` | 258 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **577** |
+| **total** | **589** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (246)
+## activated (258)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1460,6 +1460,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANCIENT_GEAR_CANNON`
 - path: `src_custom/activated_effects/ancient_gear_cannon.c`
 - L47: Battle Phase Trap lock not applied; upgrade: trap-activation gate.
+
+### `ANCIENT_GEAR_ENGINEER`
+- path: `src_custom/activated_effects/ancient_gear_engineer.c`
+- L12: trap negate + attack lock + end-of-Damage-Step destroy need battle/trap hooks. Ceiling: not field-ignition activatable here.
 
 ### `ANCIENT_GEAR_GOLEM`
 - path: `src_custom/activated_effects/ancient_gear_golem.c`
@@ -1514,6 +1518,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
 - L148: LP-higher Plant +500 ATK/DEF + LP-gain negate need permanent/LP hooks. Ceiling: OPT destroy 1 face-up opp card.
 
+### `ASH_BLOSSOM_AND_JOYOUS_SPRING`
+- path: `src_custom/activated_effects/ash_blossom_and_joyous_spring.c`
+- L50: chain negate for add/SS/mill from Deck not wired; upgrade: chain interrupt hook when one exists.
+
 ### `ATHENA`
 - path: `src_custom/activated_effects/athena.c`
 - L71: attack-position summons keep isFaceUp=0 until end-of-turn flip.
@@ -1526,6 +1534,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ATLANTEAN_DRAGOONS`
 - path: `src_custom/activated_effects/atlantean_dragoons.c`
 - L101: Lv3- Sea Serpent direct attack + sent-for-WATER-effect search need continuous/send hooks. Ceiling: OPT add 1 Sea Serpent except self from Deck.
+
+### `ATLANTEAN_MARKSMAN`
+- path: `src_custom/activated_effects/atlantean_marksman.c`
+- L75: battle-damage trigger + sent-for-WATER destroy Set S/T need battle/send hooks. Ceiling: OPT SS Lv≤4 Atlantean Sea Serpent from Deck.
 
 ### `BABYCERASAURUS`
 - path: `src_custom/activated_effects/babycerasaurus.c`
@@ -1551,6 +1563,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `BIRDFACE`
 - path: `src_custom/activated_effects/birdface.c`
 - L20: battle-destroy→GY trigger. Ceiling: once via usage if Harpie Lady in Deck and hand space.
+
+### `BLACK_ROSE_DRAGON`
+- path: `src_custom/activated_effects/black_rose_dragon.c`
+- L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
 
 ### `BOOT_UP_SOLDIER_DREAD_DYNAMO`
 - path: `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c`
@@ -1689,6 +1705,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/ehren_lightsworn_monk.c`
 - L12: battle shuffle + End Phase mill 3 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: battle + EP mill.
 
+### `EL_SHADDOLL_WENDIGO`
+- path: `src_custom/activated_effects/el_shaddoll_wendigo.c`
+- L45: until end of turn clear + vs Special Summoned only need battle hooks. Ceiling: mark unk4 on own monster as battle-destroy stand-in.
+- L87: quick battle protection + GY add Shaddoll S/T need chain/send hooks. Ceiling: OPT mark 1 own monster unk4.
+
 ### `ELDER_ENTITY_NORDEN`
 - path: `src_custom/activated_effects/elder_entity_norden.c`
 - L73: banish-when-leaves needs leave-field hook; unk4 marks negated.
@@ -1786,6 +1807,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/gagagigo_the_risen.c`
 - L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
+### `GLADIATOR_BEAST_AUGUSTUS`
+- path: `src_custom/activated_effects/gladiator_beast_augustus.c`
+- L48: GB-SS trigger + end-of-BP tag-out need summon/battle hooks. Ceiling: OPT SS 1 other GB from hand in DEF.
+
 ### `GLADIATOR_BEAST_BESTIARI`
 - path: `src_custom/activated_effects/gladiator_beast_bestiari.c`
 - L192: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy 1 opp S/T, else tag-out shuffle→SS.
@@ -1793,6 +1818,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEAST_EQUESTE`
 - path: `src_custom/activated_effects/gladiator_beast_equeste.c`
 - L158: on-GB-tag SS add trigger + end-of-BP battled gate need summon/battle hooks. Ceiling: OPT add 1 GB from GY to hand, else tag-out shuffle→SS.
+
+### `GLADIATOR_BEAST_HERAKLINOS`
+- path: `src_custom/activated_effects/gladiator_beast_heraklinos.c`
+- L148: either-turn chain negate needs chain hook. Ceiling: OPT discard 1 → destroy 1 opponent card.
 
 ### `GLADIATOR_BEAST_HOPLOMUS`
 - path: `src_custom/activated_effects/gladiator_beast_hoplomus.c`
@@ -1938,6 +1967,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/holactie_the_creator_of_light.c`
 - L64: SS-this-card-wins-Duel needs win-on-summon hook; no duel_helpers win API. Ceiling: not field-ignition activatable; use FromHand tribute path.
 
+### `HORUS_THE_BLACK_FLAME_DRAGON_LV8`
+- path: `src_custom/activated_effects/horus_the_black_flame_dragon_lv8.c`
+- L12: either-turn Spell negate needs chain hook. Ceiling: not field- ignition activatable here.
+
 ### `HOURGLASS_OF_LIFE`
 - path: `src_custom/activated_effects/hourglass_of_life.c`
 - L11: updateGfx=FALSE — sub_8041CCC refreshes field after popup dismisses.
@@ -1996,6 +2029,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `LIFE_STREAM_DRAGON`
 - path: `src_custom/activated_effects/life_stream_dragon.c`
 - L28: Synchro LP=4000 trigger + no effect damage + Equip-banish destruction-replace need synchro/LP/battle hooks. Ceiling: OPT set LP to 4000 via usage.
+
+### `LIGHTSWORN_DRAGONLING`
+- path: `src_custom/activated_effects/lightsworn_dragonling.c`
+- L134: hand SS when Lightsworn in GY uses FromHand path. Ceiling: field OPT send 1 other Lightsworn from Deck to GY.
 
 ### `LUMINA_LIGHTSWORN_SUMMONER`
 - path: `src_custom/activated_effects/lumina_lightsworn_summoner.c`
@@ -2152,6 +2189,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L40: battle-trigger SS + Lv4 Normal indestructible need trigger/permanent hooks. Ceiling: OPT +2 tempStage per opp monster (~1000 ATK each).
 - L85: SS only when your Normal Monster destroyed by battle needs battle hook. Ceiling: hand SS anytime when zone open.
 
+### `POSEIDRA_THE_ATLANTEAN_DRAGON`
+- path: `src_custom/activated_effects/poseidra_the_atlantean_dragon.c`
+- L284: hand SS uses FromHand path. Ceiling: GY ignition like Malicious.
+
 ### `POWER_TOOL_DRAGON`
 - path: `src_custom/activated_effects/power_tool_dragon.c`
 - L55: reveal-3 opp-picks + equip destruction replace need reveal/destroy hooks. Ceiling: OPT add first Equip Spell from Deck.
@@ -2168,6 +2209,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/raiden_hand_of_the_lightsworn.c`
 - L59: End Phase mill 2 needs EP hook. Ceiling: Main Phase OPT mill 2.
 - L82: +1 tempStage (~500 ATK, not exact +200); until opp EP clear needs hook.
+
+### `RAINBOW_DARK_DRAGON`
+- path: `src_custom/activated_effects/rainbow_dark_dragon.c`
+- L265: hand SS by banishing 7 different DARK uses FromHand path. Ceiling: OPT banish other DARK you control/from GY → +500 ATK each (tempStage).
 
 ### `REESHADDOLL_WENDI`
 - path: `src_custom/activated_effects/reeshaddoll_wendi.c`
@@ -2431,6 +2476,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `X_SABER_AIRBELLUM`
 - path: `src_custom/activated_effects/x_saber_airbellum.c`
 - L12: direct-attack battle-damage trigger needs battle hook. Ceiling: not ignition-activatable here; upgrade: battle end discard.
+
+### `YAMORIMORI`
+- path: `src_custom/activated_effects/yamorimori.c`
+- L124: GY ignition needs GY-menu wire. Ceiling: banish self from GY + own Reptile + opp face-up present → destroy opp face-up monster.
 
 ### `ZERADIAS_HERALD_OF_HEAVEN`
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
