@@ -1,15 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack Y: 12 traps
+**Last worked on:** 2026-07-20 — Effect pack Z: 12 traps
 
 **Files touched:**
 - `documentation/STUB_EFFECTS.md`
 - `documentation/PARTIAL_EFFECTS.md`
-- `documentation/effect_work_packs/2026-07-20-y/`
-- Pack Y: `amazoness_shamanism.c`, `sixth_sense.c`, `battle_mania.c`, `red_reboot.c`, `glorious_illusion.c`, `attack_and_receive.c`, `forgotten_temple_of_the_deep.c`, `attack_guidance_armor.c`, `imperial_tombs_of_necrovalley.c`, `needle_wall.c`, `amazoness_willpower.c`, `fossil_excavation.c`
+- `documentation/effect_work_packs/2026-07-20-z/`
+- Pack Z: `magical_arm_shield.c`, `blessed_winds.c`, `twilight_cloth.c`, `magicians_combination.c`, `magician_navigation.c`, `tyrant_wing.c`, `infinite_impermanence.c`, `amazoness_hot_spring.c`, `harpies_feather_storm.c`, `shaddoll_schism.c`, `shaddoll_core.c`, `dark_supremacy.c`
 
-**Outcome:** make OK. Stubs **607 → 595**. Partials **314 → 325**.
+**Outcome:** make OK. Stubs **595 → 583**. Partials **325 → 337** (expected after `--write-list`).
 
 **Open / next:**
-- implement next pack (~30 trap stubs left; total stubs **595**)
+- implement next pack (~18 trap stubs left; total stubs **583**)
 - trapEffect / turn-start wiring still mostly `ponytail:`

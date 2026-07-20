@@ -7,54 +7,42 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 17:08 UTC  
-**Remaining stubs:** `595`
+**Last updated:** 2026-07-20 17:15 UTC  
+**Remaining stubs:** `583`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `trap` | 30 |
+| `trap` | 18 |
 | `activated` | 461 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **595** |
+| **total** | **583** |
 
-## trap (30)
+## trap (18)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
 | `AMAZONESS_HALL` | `AMAZONESS` | — | `SOUL_LEVY` | `src_custom/trap_effects/amazoness_hall.c` |
-| `AMAZONESS_HOT_SPRING` | `AMAZONESS` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/amazoness_hot_spring.c` |
 | `AMAZONESS_ONSLAUGHT` | `AMAZONESS` | — | `ALL_OUT_ATTACKS` | `src_custom/trap_effects/amazoness_onslaught.c` |
 | `ANCIENT_GEAR_DUEL` | `ANCIENT_GEAR` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/ancient_gear_duel.c` |
 | `APPARATION` | `APPARATION` | — | `ALL_OUT_ATTACKS` | `src_custom/trap_effects/apparation.c` |
-| `BLESSED_WINDS` | `BLESSED` | — | `SOUL_LEVY` | `src_custom/trap_effects/blessed_winds.c` |
 | `BREAK_THE_DESTINY` | `BREAK` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/break_the_destiny.c` |
 | `CHAIN_MATERIAL` | `CHAIN` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/chain_material.c` |
 | `CROSS_DIMENSONAL_DUEL` | `CROSS` | — | `SCRAP_IRON_SCARECROW` | `src_custom/trap_effects/cross_dimensonal_duel.c` |
 | `D_TACTICS` | `D` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/d_tactics.c` |
-| `DARK_SUPREMACY` | `DARK` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/dark_supremacy.c` |
 | `DRIED_WINDS` | `DRIED` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/dried_winds.c` |
 | `ETERNAL_SOUL` | `ETERNAL` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/eternal_soul.c` |
 | `FAVOURITE_CONTACT` | `FAVOURITE` | — | `SOUL_LEVY` | `src_custom/trap_effects/favourite_contact.c` |
 | `GLADIATOR_NAUMACHIA` | `GLADIATOR` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/gladiator_naumachia.c` |
 | `GRAVEKEEPERS_TRAP` | `GRAVEKEEPERS` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/gravekeepers_trap.c` |
-| `HARPIES_FEATHER_STORM` | `HARPIES_FEATHER` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/harpies_feather_storm.c` |
 | `HARPIE_LADY_ELEGANCE` | `HARPIE_LADY` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/harpie_lady_elegance.c` |
-| `INFINITE_IMPERMANENCE` | `INFINITE` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/infinite_impermanence.c` |
-| `MAGICAL_ARM_SHIELD` | `MAGICAL` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/magical_arm_shield.c` |
-| `MAGICAL_HATS` | `MAGICAL` | — | `ALL_OUT_ATTACKS` | `src_custom/trap_effects/magical_hats.c` |
-| `MAGICIAN_NAVIGATION` | `MAGICIAN` | — | `SOUL_LEVY` | `src_custom/trap_effects/magician_navigation.c` |
-| `MAGICIANS_COMBINATION` | `MAGICIANS` | — | `MAGICIANS_CIRCLE` | `src_custom/trap_effects/magicians_combination.c` |
+| `MAGICAL_HATS` | `MAGICAL` | — | `MAGICAL_ARM_SHIELD` | `src_custom/trap_effects/magical_hats.c` |
 | `MORPHTRONIC_IMPACT_RETURN` | `MORPHTRONIC` | — | `SOUL_LEVY` | `src_custom/trap_effects/morphtronic_impact_return.c` |
 | `NECROVALLEY_TEMPLE` | `NECROVALLEY` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/necrovalley_temple.c` |
 | `NEXT` | `NEXT` | — | `SOUL_LEVY` | `src_custom/trap_effects/next.c` |
-| `SHADDOLL_CORE` | `SHADDOLL` | — | `SOUL_LEVY` | `src_custom/trap_effects/shaddoll_core.c` |
-| `SHADDOLL_SCHISM` | `SHADDOLL` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/shaddoll_schism.c` |
-| `TWILIGHT_CLOTH` | `TWILIGHT` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/twilight_cloth.c` |
-| `TYRANT_WING` | `TYRANT` | — | `AMBUSH_FANGS` | `src_custom/trap_effects/tyrant_wing.c` |
 
 ## activated (461)
 

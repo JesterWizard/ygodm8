@@ -1,0 +1,90 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MAGICIAN_NAVIGATION",
+      "card_name": "Magician Navigation",
+      "kind": "trap",
+      "archetype": "MAGICIAN",
+      "path": "src_custom/trap_effects/magician_navigation.c",
+      "effect_text": "SS Dark Magician from hand, then Lv7- DARK Spellcaster from Deck. Special Summon 1 Dark Magician from your hand, then Special Summon 1 Level 7 or lower DARK Spellcaster monster from your Deck. If you control Dark Magician, except the turn this card was sent to the GY: You can banish this card from your GY, then target 1 face-up Spell/Trap your opponent controls; negate its effects until the end of this turn.",
+      "tags": [
+        "deck",
+        "faceup",
+        "gy",
+        "hand",
+        "monster",
+        "ssummon",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SOUL_LEVY",
+      "clone_path": "src_custom/trap_effects/soul_levy.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "TYRANT_WING",
+      "card_name": "Tyrant Wing",
+      "kind": "trap",
+      "archetype": "TYRANT",
+      "path": "src_custom/trap_effects/tyrant_wing.c",
+      "effect_text": "Target 1 Dragon monster on the field; equip this card to it. It gains 400 ATK/DEF, also it can make up to 2 attacks on m Target 1 Dragon monster on the field; equip this card to it. It gains 400 ATK/DEF, also it can make up to 2 attacks on monsters during each Battle Phase. Once per turn, during the End Phase, if the monster equipped with this card by this effect attacked an opponent's monster this turn: Destroy this card.",
+      "tags": [
+        "destroy",
+        "monster",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMBUSH_FANGS",
+      "clone_path": "src_custom/trap_effects/ambush_fangs.c",
+      "clone_score": 0.33
+    },
+    {
+      "card_const": "INFINITE_IMPERMANENCE",
+      "card_name": "Infinite Impermanence",
+      "kind": "trap",
+      "archetype": "INFINITE",
+      "path": "src_custom/trap_effects/infinite_impermanence.c",
+      "effect_text": "Target 1 face-up monster your opponent controls; negate its effects (until the end of this turn), then, if this card was Target 1 face-up monster your opponent controls; negate its effects (until the end of this turn), then, if this card was Set before activation and is on the field at resolution, for the rest of this turn all other Spell/Trap effects in this column are negated. If you control no cards, you can activate this card from your hand.",
+      "tags": [
+        "faceup",
+        "hand",
+        "monster",
+        "st",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MORPHTRONIC_BIND",
+      "clone_path": "src_custom/trap_effects/morphtronic_bind.c",
+      "clone_score": 0.4
+    },
+    {
+      "card_const": "AMAZONESS_HOT_SPRING",
+      "card_name": "Amazoness Hot Spring",
+      "kind": "trap",
+      "archetype": "AMAZONESS",
+      "path": "src_custom/trap_effects/amazoness_hot_spring.c",
+      "effect_text": "When this card is activated: You can take 1 \"Amazoness\" monster from your Deck, and either add it to your hand or (if it When this card is activated: You can take 1 Amazoness monster from your Deck, and either add it to your hand or (if it is a Pendulum Monster) place it in your Pendulum Zone. When you take battle damage while you control an Amazoness Monster Card: You can gain LP equal to the damage you took. You can only use this effect of Amazoness Hot Spring once per turn.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHTSWORN_JUDGEMENT",
+      "clone_path": "src_custom/trap_effects/lightsworn_judgement.c",
+      "clone_score": 0.6
+    }
+  ]
+}

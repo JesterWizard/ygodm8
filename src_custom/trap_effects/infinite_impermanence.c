@@ -1,13 +1,35 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
 
-/* TODO: implement trap effect for INFINITE_IMPERMANENCE */
+APPEND_TEXT void EffectINFINITE_IMPERMANENCE(void)
+{
+  u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  u8 col;
+  struct DuelCard *target = NULL;
+
+  Duel_ShowTrapResponseText(INFINITE_IMPERMANENCE, gTrapEffectData.originCardId);
+
+  /* ponytail: hand-activate if empty field + column S/T negate need gates.
+   * Ceiling: mark 1 face-up opp monster (unk4) as effect-negated stand-in. */
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id != CARD_NONE) {
+      target = zone;
+      break;
+    }
+  }
+
+  if (target != NULL)
+    target->unk4 |= 0x80; /* effect-negated mark */
+
+  Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
+                   INACTIVE_DUELIST, FALSE);
+  UpdateDuelGfxExceptField();
+}

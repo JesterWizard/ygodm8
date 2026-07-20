@@ -8,20 +8,20 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 17:08 UTC  
-**Remaining partials:** `325`
+**Last updated:** 2026-07-20 17:15 UTC  
+**Remaining partials:** `337`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 185 |
-| `trap` | 85 |
+| `trap` | 97 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **325** |
+| **total** | **337** |
 
 ## spell (185)
 
@@ -922,7 +922,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/wetlands.c`
 - L87: +1200 ATK for Aqua/WATER/Level≤2 needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up WETLANDS and TYPE_AQUA + ATTRIBUTE_WATER + level≤2 then ATK += 1200.
 
-## trap (85)
+## trap (97)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -941,6 +941,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/all_out_attacks.c`
 - L11: when monster(s) SS while face-up → change to ATK and must attack that turn. Ceiling: face-up continuous only; upgrade: SS hook → isDefending=FALSE + forced-attack flag. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - L22: TryActivateALL_OUT_ATTACKSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `AMAZONESS_HOT_SPRING`
+- path: `src_custom/trap_effects/amazoness_hot_spring.c`
+- L77: TryActivateAMAZONESS_HOT_SPRINGOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `AMAZONESS_WILLPOWER`
 - path: `src_custom/trap_effects/amazoness_willpower.c`
@@ -985,6 +989,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/battle_mania.c`
 - L16: activate only opp Standby. Ceiling: when Effect runs, flip opp monsters to ATK; forced-attack / cannot-change-position need battle gates.
 
+### `BLESSED_WINDS`
+- path: `src_custom/trap_effects/blessed_winds.c`
+- L51: 3 OPT modes + once-per-turn flag need ignition menu. Ceiling on activate: prefer pay 1000 → SS Aroma from GY; else send Plant → +500 LP; else shuffle Plant from GY → +500 LP.
+- L103: TryActivateBLESSED_WINDSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
 ### `BOTTOMLESS_SHIFTING_SAND`
 - path: `src_custom/trap_effects/bottomless_shifting_sand.c`
 - L10: GBA hand cap is 5; TCG rule uses 4 — scale self-destruct threshold down
@@ -1008,6 +1017,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DARK_RENEWAL`
 - path: `src_custom/trap_effects/dark_renewal.c`
 - L52: on opp NS/SS. Ceiling: send origin + your Spellcaster → GY, then SS DARK Spellcaster from Deck/GY; upgrade: summon trigger wire.
+
+### `DARK_SUPREMACY`
+- path: `src_custom/trap_effects/dark_supremacy.c`
+- L38: "Spells that mention Dark Fusion" not scanned by text.
+- L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
 
 ### `DES_COUNTERBLOW`
 - path: `src_custom/trap_effects/des_counterblow.c`
@@ -1083,6 +1097,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L20: damage calculation when your monster attacked needs battle hook. Ceiling: when Effect runs, boost defender by ~half attacker original ATK via stages; upgrade: damage-calc targeting wire.
 - L39: 1 stage ~= 500 ATK.
 
+### `HARPIES_FEATHER_STORM`
+- path: `src_custom/trap_effects/harpies_feather_storm.c`
+- L107: opp monster-effect negate this turn + hand activate need gates. Ceiling: if WIND Winged Beast, mark continuous lock via unk4 on this resolve; if Harpie present, also try add Feather Duster (destroy-search stand-in when gate missing).
+
 ### `HUMID_WINDS`
 - path: `src_custom/trap_effects/humid_winds.c`
 - L103: each effect OPT as face-up ignition needs Main Phase hooks + turn reset. Ceiling: one search+heal path on activate flip.
@@ -1102,6 +1120,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `IMPERIAL_TOMBS_OF_NECROVALLEY`
 - path: `src_custom/trap_effects/imperial_tombs_of_necrovalley.c`
 - L41: negate need Spell/Trap/monster chain gate + once-per-turn flag. Ceiling: if Gravekeeper + Necrovalley present, destroy origin card.
+
+### `INFINITE_IMPERMANENCE`
+- path: `src_custom/trap_effects/infinite_impermanence.c`
+- L17: hand-activate if empty field + column S/T negate need gates. Ceiling: mark 1 face-up opp monster (unk4) as effect-negated stand-in.
 
 ### `LIGHT_OF_DESTRUCTION`
 - path: `src_custom/trap_effects/light_of_destruction.c`
@@ -1131,9 +1153,23 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/magic_cylinder.c`
 - L22: Normal Trap must leave the backrow to prevent AI re-trigger loop
 
+### `MAGICAL_ARM_SHIELD`
+- path: `src_custom/trap_effects/magical_arm_shield.c`
+- L23: attack declare + redirect damage calc need battle hooks. Ceiling: take control of 1 face-up opp monster except origin attacker (Change of Heart style move to our monster row).
+
+### `MAGICIAN_NAVIGATION`
+- path: `src_custom/trap_effects/magician_navigation.c`
+- L58: GY banish negate S/T needs GY ignition + face-up S/T target. Ceiling: SS Dark Magician from hand, then Deck SS Lv7− DARK Spellcaster.
+
 ### `MAGICIANS_CIRCLE`
 - path: `src_custom/trap_effects/magicians_circle.c`
 - L55: printed trigger is Spellcaster attack declare. Ceiling: when Effect runs, each player Deck SS Spellcaster ≤2000 ATK; upgrade: attack declare hook when attacker is Spellcaster.
+
+### `MAGICIANS_COMBINATION`
+- path: `src_custom/trap_effects/magicians_combination.c`
+- L39: once-per-turn on any activation + negate need chain gate. Ceiling: Tribute 1 DM/DMG → SS the other from hand/GY.
+- L74: GY destroy-1 when this leaves S/T zone needs leave hook.
+- L83: TryActivateMAGICIANS_COMBINATIONOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `METAVERSE`
 - path: `src_custom/trap_effects/metaverse.c`
@@ -1209,6 +1245,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/serpent_suppression.c`
 - L14: opp 0-ATK Attack Position cannot be destroyed by battle with Reptilianne needs battle-destroy gate. Ceiling: face-up continuous only.
 
+### `SHADDOLL_CORE`
+- path: `src_custom/trap_effects/shaddoll_core.c`
+- L45: true trap-monster (still a Trap) + Attribute fusion substitute need Embodiment-style link. Ceiling: place SHADDOLL_CORE on monster row and keep trap face-up continuous; GY add Shaddoll S/T stand-in on activate.
+
+### `SHADDOLL_SCHISM`
+- path: `src_custom/trap_effects/shaddoll_schism.c`
+- L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
+- L83: TryActivateSHADDOLL_SCHISMOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
 ### `SIXTH_SENSE`
 - path: `src_custom/trap_effects/sixth_sense.c`
 - L43: no declare-2-numbers UI — fixed guess 2+5. Ceiling: AI/player always declare 2 and 5; upgrade: D-Pad number picker.
@@ -1266,9 +1311,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L50: summoned to controller's field not opponent — need cross-field SS. Ceiling: SS to own field then draw; upgrade: SS to ACTIVE monster row.
 - L59: needs trapEffect ID + dispatcher wire.
 
+### `TWILIGHT_CLOTH`
+- path: `src_custom/trap_effects/twilight_cloth.c`
+- L56: exact +200 ATK/DEF per banished until End Phase needs temp overlay. Ceiling: +1 perm stage (~500) per banished (capped).
+- L70: Deck→GY Lightsworn protection mode needs mill-sent trigger.
+
 ### `TWILIGHT_ERASER`
 - path: `src_custom/trap_effects/twilight_eraser.c`
 - L110: PickZone for 2 field targets + mill→SS Lightsworn from hand.
+
+### `TYRANT_WING`
+- path: `src_custom/trap_effects/tyrant_wing.c`
+- L58: second attack on monsters + End Phase self-destroy after attack need battle/turn hooks. Ceiling: Dragon equip + ~500 ATK stage.
 
 ### `URGENT_TUNING`
 - path: `src_custom/trap_effects/urgent_tuning.c`
