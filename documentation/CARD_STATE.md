@@ -1,15 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Effect pack V: 12 traps
+**Last worked on:** 2026-07-20 — Effect pack W: 12 traps
 
 **Files touched:**
 - `documentation/STUB_EFFECTS.md`
 - `documentation/PARTIAL_EFFECTS.md`
-- `documentation/effect_work_packs/2026-07-20-v/`
-- Pack V: `urgent_tuning.c`, `damage_polarizer.c`, `hunting_instinct.c`, `arcana_call.c`, `hysteric_party.c`, `rite_of_spirit.c`, `morphtronic_mixup.c`, `prophecy.c`, `humid_winds.c`, `soul_levy.c`, `morphtronic_bind.c`, `magicians_circle.c`
+- `documentation/effect_work_packs/2026-07-20-w/`
+- Pack W: `solemn_judgment.c`, `trap_dustshoot.c`, `destined_rivals.c`, `meteorain.c`, `ambush_fangs.c`, `tornado_wall.c`, `dramatic_rescue.c`, `appropriate.c`, `damage_reptile.c`, `scrap_iron_scarecrow.c`, `morphtronic_forcefield.c`, `queens_pawn.c`
 
-**Outcome:** make OK. Stubs **643 → 631**. Partials **278 → 290**.
+**Outcome:** make OK. Stubs **631 → 619**. Partials **290 → 302**.
 
 **Open / next:**
-- implement next pack (~66 trap stubs left)
+- implement next pack (~54 trap stubs left)
 - trapEffect / turn-start wiring still mostly `ponytail:`

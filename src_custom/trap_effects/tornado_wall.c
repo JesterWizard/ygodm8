@@ -3,11 +3,21 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static void ActivateTORNADO_WALLZone(struct DuelCard *zone)
+{
+  if (Duel_ActivateContinuousTrapPreamble(zone, TORNADO_WALL) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-/* TODO: implement trap effect for TORNADO_WALL */
+  /* ponytail: activate only while Umi on field; no battle damage while Umi face-up;
+   * destroy when Umi leaves. Ceiling: face-up continuous only; upgrade:
+   * Umi field check on activate + battle-damage gate + Umi leave destroy.
+   * Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file. */
+}
+
+void TryActivateTORNADO_WALLOnOpponentTurnStart(void)
+{
+  Duel_TryActivateBackrowTrapOnTurnStart(TORNADO_WALL, ActivateTORNADO_WALLZone);
+}
+
+/* ponytail: TryActivateTORNADO_WALLOnOpponentTurnStart must be called from
+ * turn_effect_hooks. Ceiling: body ready, not wired. */

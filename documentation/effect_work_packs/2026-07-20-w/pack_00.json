@@ -1,0 +1,81 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SOLEMN_JUDGMENT",
+      "card_name": "Solemn Judgment",
+      "kind": "trap",
+      "archetype": "SOLEMN",
+      "path": "src_custom/trap_effects/solemn_judgment.c",
+      "effect_text": "When a monster(s) would be Summoned, OR a Spell/Trap Card is activated: Pay half your LP; negate the Summon or activatio When a monster(s) would be Summoned, OR a Spell/Trap Card is activated: Pay half your LP; negate the Summon or activation, and if you do, destroy that card.",
+      "tags": [
+        "destroy",
+        "monster",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SOLEMN_WISHES",
+      "clone_path": "src_custom/trap_effects/solemn_wishes.c",
+      "clone_score": 0.35
+    },
+    {
+      "card_const": "TRAP_DUSTSHOOT",
+      "card_name": "Trap Dustshoot",
+      "kind": "trap",
+      "archetype": "TRAP",
+      "path": "src_custom/trap_effects/trap_dustshoot.c",
+      "effect_text": "Activate only if your opponent has 4 or more cards in their hand. Look at your opponent's hand, select 1 Monster Card in Activate only if your opponent has 4 or more cards in their hand. Look at your opponent's hand, select 1 Monster Card in it, and return that card to its owner's Deck.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "LIGHTSWORN_JUDGEMENT",
+      "clone_path": "src_custom/trap_effects/lightsworn_judgement.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "DESTINED_RIVALS",
+      "card_name": "Destined Rivals",
+      "kind": "trap",
+      "archetype": "DESTINED",
+      "path": "src_custom/trap_effects/destined_rivals.c",
+      "effect_text": "If you control Blue-Eyes or Dark Magician: negate all opp face-up monster effects. If you control Blue-Eyes White Dragon or Dark Magician: Negate the effects of all face-up monsters your opponent currently controls, until the end of this turn. You can only activate 1 Destined Rivals per turn.",
+      "tags": [
+        "faceup",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MORPHTRONIC_BIND",
+      "clone_path": "src_custom/trap_effects/morphtronic_bind.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "METEORAIN",
+      "card_name": "Meteorain",
+      "kind": "trap",
+      "archetype": "METEORAIN",
+      "path": "src_custom/trap_effects/meteorain.c",
+      "effect_text": "This turn, attacks on Defense monsters with higher ATK than their DEF inflict piercing damage. During this turn, when your monsters attack with an ATK that is higher than the DEF of your opponent's Defense Position monster, inflict the difference as Battle Damage to your opponent's Life Points.",
+      "tags": [
+        "burn",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DRAGON_S_RAGE",
+      "clone_path": "src_custom/trap_effects/dragon_s_rage.c",
+      "clone_score": 1.0
+    }
+  ]
+}

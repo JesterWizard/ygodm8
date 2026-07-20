@@ -8,20 +8,20 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 16:51 UTC  
-**Remaining partials:** `290`
+**Last updated:** 2026-07-20 16:55 UTC  
+**Remaining partials:** `302`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 185 |
-| `trap` | 50 |
+| `trap` | 62 |
 | `activated` | 24 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **290** |
+| **total** | **302** |
 
 ## spell (185)
 
@@ -922,7 +922,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/spell_effects/wetlands.c`
 - L87: +1200 ATK for Aqua/WATER/Level≤2 needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up WETLANDS and TYPE_AQUA + ATTRIBUTE_WATER + level≤2 then ATK += 1200.
 
-## trap (50)
+## trap (62)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -937,6 +937,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/aegis_of_the_ocean_dragon_lord.c`
 - L37: battle/effect destroy protect until EP + trapEffect wire. Ceiling: marks unk4 on matching monsters; upgrade: destroy gates skip marked until End Phase clear + trap dispatcher.
 
+### `AMBUSH_FANGS`
+- path: `src_custom/trap_effects/ambush_fangs.c`
+- L17: printed trigger is face-up Venom targeted for attack. Ceiling: when Effect runs, place Venom Counter on origin attacker + self-destroy (negate/end BP not wired); upgrade: attack-target hook on Venom + NegateAttack + end Battle Phase.
+
 ### `ANGELS_TEAR`
 - path: `src_custom/trap_effects/angels_tear.c`
 - L342: need 4 banish targets plus 1 summon target.
@@ -945,6 +949,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/anti_spell_fragrance.c`
 - L11: both players must Set Spells before activate (next turn) needs spell-activation gate. Ceiling: face-up continuous only; upgrade: spell activate validator requires prior Set + turn delay. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - L22: TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `APPROPRIATE`
+- path: `src_custom/trap_effects/appropriate.c`
+- L11: activate when opp draws outside Draw Phase; then each such draw → you draw 2. Ceiling: face-up continuous only; upgrade: non-Draw-Phase draw hook → Duel_DrawCards(controller, 2). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
+- L22: TryActivateAPPROPRIATEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `ARCANA_CALL`
 - path: `src_custom/trap_effects/arcana_call.c`
@@ -963,10 +972,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/damage_polarizer.c`
 - L13: negate effect-damage activation needs damage-effect chain gate. Ceiling: both players draw 1 when Effect runs; upgrade: trapEffect on effect-damage activate → cancel damage + draw.
 
+### `DAMAGE_REPTILE`
+- path: `src_custom/trap_effects/damage_reptile.c`
+- L49: OPT when take battle damage involving Reptile. Ceiling: when Effect runs, SS Reptile from Deck with ATK ≤ a stand-in damage amount (origin ATK if monster); upgrade: battle-damage hook stores damage.
+
 ### `DES_COUNTERBLOW`
 - path: `src_custom/trap_effects/des_counterblow.c`
 - L11: destroy monster that inflicts direct battle damage needs battle LP hook. Ceiling: face-up continuous only; upgrade: after direct battle damage → Duel_DestroyZone(attacker). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - L22: TryActivateDES_COUNTERBLOWOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `DESTINED_RIVALS`
+- path: `src_custom/trap_effects/destined_rivals.c`
+- L53: effectExhausted until EP + OPT turn reset need End Phase / turn_effect clear. Ceiling: marks opp face-up monsters exhausted.
 
 ### `DOPPELGANGER`
 - path: `src_custom/trap_effects/doppelganger.c`
@@ -977,6 +994,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/dragon_s_rage.c`
 - L11: Dragon piercing needs battle damage calc hook outside this file. Ceiling: face-up continuous only; upgrade: if face-up DRAGON_S_RAGE and attacker TYPE_DRAGON vs Defense Position → piercing.
 - L21: wire TryActivate into turn_effect_hooks.
+
+### `DRAMATIC_RESCUE`
+- path: `src_custom/trap_effects/dramatic_rescue.c`
+- L41: printed trigger is card targeting an Amazoness. Ceiling: bounce origin-row monster if Amazoness + SS other from hand; upgrade: target-chain hook when target passes Duel_IsAmazonessCard.
 
 ### `DUST_TORNADO`
 - path: `src_custom/trap_effects/dust_tornado.c`
@@ -1052,6 +1073,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L122: choose activate Field vs add to hand — always add to hand. Ceiling: no Field Zone activate path; upgrade: A/B choice → set gDuel.field.
 - L132: needs trapEffect ID + dispatcher wire.
 
+### `METEORAIN`
+- path: `src_custom/trap_effects/meteorain.c`
+- L23: this turn your monsters inflict piercing needs battle damage calc hook + End Phase leave. Ceiling: face-up continuous mark; upgrade: battle ATK>DEF vs Defense → piercing while METEORAIN face-up this turn.
+
 ### `MIRROR_FORCE`
 - path: `src_custom/trap_effects/mirror_force.c`
 - L21: destroy self after monsters so AI sim doesn't re-trigger
@@ -1059,6 +1084,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MORPHTRONIC_BIND`
 - path: `src_custom/trap_effects/morphtronic_bind.c`
 - L13: while face-up Morphtronic controlled, opp Lv≥4 cannot attack or change battle position needs attack/position gates. Ceiling: face-up continuous only.
+
+### `MORPHTRONIC_FORCEFIELD`
+- path: `src_custom/trap_effects/morphtronic_forcefield.c`
+- L81: negate ST that would destroy face-up Morphtronic needs destroy- targeting chain gate. Ceiling: destroy origin ST if present + search Morphtronic; upgrade: full negate + trapEffect.
 
 ### `MORPHTRONIC_MIXUP`
 - path: `src_custom/trap_effects/morphtronic_mixup.c`
@@ -1071,6 +1100,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `PROPHECY`
 - path: `src_custom/trap_effects/prophecy.c`
 - L68: player predict UI (bigger/smaller) + trapEffect wire. Ceiling: random opp hand card; AI random guess / player always higher.
+
+### `QUEENS_PAWN`
+- path: `src_custom/trap_effects/queens_pawn.c`
+- L50: activate when Amazoness destroys by battle. Ceiling: when Effect runs, Deck SS Lv≤4 Amazoness; upgrade: battle-destroy hook when attacker passes Duel_IsAmazonessCard.
 
 ### `RAIGEKI_BREAK`
 - path: `src_custom/trap_effects/raigeki_break.c`
@@ -1089,6 +1122,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/rite_of_spirit.c`
 - L61: unaffected by Necrovalley — already no Necrovalley gate here. PickZone for GY target + trapEffect wire.
 
+### `SCRAP_IRON_SCARECROW`
+- path: `src_custom/trap_effects/scrap_iron_scarecrow.c`
+- L16: negate attack needs attack-declare hook (Negate Attack path). Ceiling: Set face-down again instead of GY; upgrade: NegateAttack + trapEffect wire.
+
 ### `SERPENT_SUPPRESSION`
 - path: `src_custom/trap_effects/serpent_suppression.c`
 - L14: opp 0-ATK Attack Position cannot be destroyed by battle with Reptilianne needs battle-destroy gate. Ceiling: face-up continuous only.
@@ -1100,6 +1137,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `SNAKE_WHISTLE`
 - path: `src_custom/trap_effects/snake_whistle.c`
 - L55: needs Reptile-destroyed trigger + trapEffect wire.
+
+### `SOLEMN_JUDGMENT`
+- path: `src_custom/trap_effects/solemn_judgment.c`
+- L39: full Summon/ST negate needs summon/activation chain gates (like Magic Jammer / Solemn). Ceiling: pay half LP + destroy origin; upgrade: trapEffect counter → cancel resolve.
 
 ### `SOLEMN_WISHES`
 - path: `src_custom/trap_effects/solemn_wishes.c`
@@ -1113,10 +1154,19 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/thumbs_down.c`
 - L31: destroy by battle/effect → controller takes 500 each needs destroy hook. Ceiling: face-up continuous only.
 
+### `TORNADO_WALL`
+- path: `src_custom/trap_effects/tornado_wall.c`
+- L11: activate only while Umi on field; no battle damage while Umi face-up; destroy when Umi leaves. Ceiling: face-up continuous only; upgrade: Umi field check on activate + battle-damage gate + Umi leave destroy. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
+- L22: TryActivateTORNADO_WALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
 ### `TOUR_OF_DOOM`
 - path: `src_custom/trap_effects/tour_of_doom.c`
 - L11: opp Standby coin → Heads: opp cannot NS/Flip until EP; Tails: you cannot next turn. Ceiling: face-up continuous only; upgrade: Standby turn_effect → RandRange coin + summoningBlocked flags. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - L22: TryActivateTOUR_OF_DOOMOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+
+### `TRAP_DUSTSHOOT`
+- path: `src_custom/trap_effects/trap_dustshoot.c`
+- L67: look at full hand + choose monster UI; trapEffect wire. Ceiling: auto first monster in opp hand → Deck shuffle.
 
 ### `TROJAN_GLADIATOR_BEAST`
 - path: `src_custom/trap_effects/trojan_gladiator_beast.c`

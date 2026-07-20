@@ -7,21 +7,21 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 16:51 UTC  
-**Remaining stubs:** `631`
+**Last updated:** 2026-07-20 16:55 UTC  
+**Remaining stubs:** `619`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `trap` | 66 |
+| `trap` | 54 |
 | `activated` | 461 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **631** |
+| **total** | **619** |
 
-## trap (66)
+## trap (54)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
@@ -31,25 +31,20 @@ python3 tools/stub_effect_queue.py --write-list
 | `AMAZONESS_ONSLAUGHT` | `AMAZONESS` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/amazoness_onslaught.c` |
 | `AMAZONESS_SHAMANISM` | `AMAZONESS` | — | `A_HERO_EMERGES` | `src_custom/trap_effects/amazoness_shamanism.c` |
 | `AMAZONESS_WILLPOWER` | `AMAZONESS` | — | `SOUL_LEVY` | `src_custom/trap_effects/amazoness_willpower.c` |
-| `AMBUSH_FANGS` | `AMBUSH` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/ambush_fangs.c` |
 | `ANCIENT_GEAR_DUEL` | `ANCIENT_GEAR` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/ancient_gear_duel.c` |
 | `APPARATION` | `APPARATION` | — | `SOUL_LEVY` | `src_custom/trap_effects/apparation.c` |
-| `APPROPRIATE` | `APPROPRIATE` | — | `JAR_OF_GREED` | `src_custom/trap_effects/appropriate.c` |
 | `ATTACK_AND_RECEIVE` | `ATTACK` | — | `COFFIN_SELLER` | `src_custom/trap_effects/attack_and_receive.c` |
 | `ATTACK_GUIDANCE_ARMOR` | `ATTACK` | — | `ATTACK_REFLECTOR_UNIT` | `src_custom/trap_effects/attack_guidance_armor.c` |
 | `BATTLE_MANIA` | `BATTLE` | — | `LEVEL_LIMIT_AREA_A` | `src_custom/trap_effects/battle_mania.c` |
 | `BLESSED_WINDS` | `BLESSED` | — | `SOUL_LEVY` | `src_custom/trap_effects/blessed_winds.c` |
 | `BREAK_THE_DESTINY` | `BREAK` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/break_the_destiny.c` |
 | `CHAIN_MATERIAL` | `CHAIN` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/chain_material.c` |
-| `CROSS_DIMENSONAL_DUEL` | `CROSS` | — | `COFFIN_SELLER` | `src_custom/trap_effects/cross_dimensonal_duel.c` |
+| `CROSS_DIMENSONAL_DUEL` | `CROSS` | — | `SCRAP_IRON_SCARECROW` | `src_custom/trap_effects/cross_dimensonal_duel.c` |
 | `D_TACTICS` | `D` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/d_tactics.c` |
 | `D_TIME` | `D` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/d_time.c` |
 | `DAMAGE_EQUALS_REPTILE` | `DAMAGE` | — | `SOUL_LEVY` | `src_custom/trap_effects/damage_equals_reptile.c` |
-| `DAMAGE_REPTILE` | `DAMAGE` | — | `SOUL_LEVY` | `src_custom/trap_effects/damage_reptile.c` |
 | `DARK_RENEWAL` | `DARK` | — | `SOUL_LEVY` | `src_custom/trap_effects/dark_renewal.c` |
 | `DARK_SUPREMACY` | `DARK` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/dark_supremacy.c` |
-| `DESTINED_RIVALS` | `DESTINED` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/destined_rivals.c` |
-| `DRAMATIC_RESCUE` | `DRAMATIC` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/dramatic_rescue.c` |
 | `DRIED_WINDS` | `DRIED` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/dried_winds.c` |
 | `ETERNAL_SOUL` | `ETERNAL` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/eternal_soul.c` |
 | `EXCHANGE_OF_THE_SPIRIT` | `EXCHANGE` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/exchange_of_the_spirit.c` |
@@ -70,27 +65,20 @@ python3 tools/stub_effect_queue.py --write-list
 | `MAGICAL_HATS` | `MAGICAL` | — | `SOUL_LEVY` | `src_custom/trap_effects/magical_hats.c` |
 | `MAGICIAN_NAVIGATION` | `MAGICIAN` | — | `SOUL_LEVY` | `src_custom/trap_effects/magician_navigation.c` |
 | `MAGICIANS_COMBINATION` | `MAGICIANS` | — | `MAGICIANS_CIRCLE` | `src_custom/trap_effects/magicians_combination.c` |
-| `METEORAIN` | `METEORAIN` | — | `DRAGON_S_RAGE` | `src_custom/trap_effects/meteorain.c` |
-| `MORPHTRONIC_FORCEFIELD` | `MORPHTRONIC` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/morphtronic_forcefield.c` |
 | `MORPHTRONIC_IMPACT_RETURN` | `MORPHTRONIC` | — | `SOUL_LEVY` | `src_custom/trap_effects/morphtronic_impact_return.c` |
 | `NECROVALLEY_TEMPLE` | `NECROVALLEY` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/necrovalley_temple.c` |
-| `NEEDLE_WALL` | `NEEDLE` | — | `BOTTOMLESS_SHIFTING_SAND` | `src_custom/trap_effects/needle_wall.c` |
+| `NEEDLE_WALL` | `NEEDLE` | — | `AMBUSH_FANGS` | `src_custom/trap_effects/needle_wall.c` |
 | `NEXT` | `NEXT` | — | `SOUL_LEVY` | `src_custom/trap_effects/next.c` |
 | `NUMINOUS_HEALER` | `NUMINOUS` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/numinous_healer.c` |
-| `QUEENS_PAWN` | `QUEENS` | — | `SOUL_LEVY` | `src_custom/trap_effects/queens_pawn.c` |
 | `RED_REBOOT` | `RED` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/red_reboot.c` |
-| `SCRAP_IRON_SCARECROW` | `SCRAP` | — | `COFFIN_SELLER` | `src_custom/trap_effects/scrap_iron_scarecrow.c` |
 | `SHADDOLL_CORE` | `SHADDOLL` | — | `SOUL_LEVY` | `src_custom/trap_effects/shaddoll_core.c` |
 | `SHADDOLL_SCHISM` | `SHADDOLL` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/shaddoll_schism.c` |
 | `SIXTH_SENSE` | `SIXTH` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/sixth_sense.c` |
-| `SOLEMN_JUDGMENT` | `SOLEMN` | — | `SOLEMN_WISHES` | `src_custom/trap_effects/solemn_judgment.c` |
 | `SPARK_BLASTER` | `SPARK` | — | `MORPHTRONIC_BIND` | `src_custom/trap_effects/spark_blaster.c` |
-| `TORNADO_WALL` | `TORNADO` | — | `ROYAL_DECREE` | `src_custom/trap_effects/tornado_wall.c` |
-| `TRAP_DUSTSHOOT` | `TRAP` | — | `LIGHTSWORN_JUDGEMENT` | `src_custom/trap_effects/trap_dustshoot.c` |
 | `TRAP_TRICK` | `TRAP` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/trap_trick.c` |
 | `TWILIGHT_CLOTH` | `TWILIGHT` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/twilight_cloth.c` |
 | `TWILIGHT_ERASER` | `TWILIGHT` | — | `SOUL_LEVY` | `src_custom/trap_effects/twilight_eraser.c` |
-| `TYRANT_WING` | `TYRANT` | — | `BOTTOMLESS_SHIFTING_SAND` | `src_custom/trap_effects/tyrant_wing.c` |
+| `TYRANT_WING` | `TYRANT` | — | `AMBUSH_FANGS` | `src_custom/trap_effects/tyrant_wing.c` |
 
 ## activated (461)
 

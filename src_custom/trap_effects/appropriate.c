@@ -3,11 +3,21 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static void ActivateAPPROPRIATEZone(struct DuelCard *zone)
+{
+  if (Duel_ActivateContinuousTrapPreamble(zone, APPROPRIATE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-/* TODO: implement trap effect for APPROPRIATE */
+  /* ponytail: activate when opp draws outside Draw Phase; then each such draw → you draw 2.
+   * Ceiling: face-up continuous only; upgrade: non-Draw-Phase draw hook →
+   * Duel_DrawCards(controller, 2).
+   * Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file. */
+}
+
+void TryActivateAPPROPRIATEOnOpponentTurnStart(void)
+{
+  Duel_TryActivateBackrowTrapOnTurnStart(APPROPRIATE, ActivateAPPROPRIATEZone);
+}
+
+/* ponytail: TryActivateAPPROPRIATEOnOpponentTurnStart must be called from
+ * turn_effect_hooks. Ceiling: body ready, not wired. */
