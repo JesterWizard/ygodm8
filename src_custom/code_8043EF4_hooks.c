@@ -234,6 +234,8 @@ u8 TryActivateGRAVEKEEPERS_COMMANDANTFromHand(u8);
 u8 TryActivateZERADIAS_HERALD_OF_HEAVENFromHand(u8);
 u8 TrySpecialSummonSpellStrikerFromHand(u8);
 u8 TrySpecialSummonDarkGrepherFromHand(u8);
+u8 TryActivateMAXX_CFromHand(u8);
+u8 TrySpecialSummonArmedDragonLv10FromHand(u8);
 u8 TryActivateWARRIOR_OF_ATLANTISFromHand(u8);
 u8 TryActivateHARPIE_QUEENFromHand(u8);
 u8 TryActivateCHARM_OF_SHABTIFromHand(u8);
@@ -254,6 +256,7 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
       || cardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
       || cardId == DARK_ARMED_DRAGON
+      || cardId == ARMED_DRAGON_LV10
       || cardId == YUBEL_TERROR_INCARNATE || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE
       || cardId == HAMON_LORD_OF_STRIKING_THUNDER
       || cardId == URIA_LORD_OF_SEARING_FLAMES
@@ -476,6 +479,16 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == DARK_GREPHER
           && TrySpecialSummonDarkGrepherFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == MAXX_C
+          && TryActivateMAXX_CFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ARMED_DRAGON_LV10
+          && TrySpecialSummonArmedDragonLv10FromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

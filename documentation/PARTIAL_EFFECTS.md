@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:28 UTC  
-**Remaining partials:** `462`
+**Last updated:** 2026-07-20 18:40 UTC  
+**Remaining partials:** `473`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 131 |
+| `activated` | 142 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **462** |
+| **total** | **473** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (131)
+## activated (142)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1497,6 +1497,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c`
 - L39: continuous +2000 while Gadget on field needs permanent overlay. Ceiling: OPT apply +4 stages (~2000) if Gadget present.
 
+### `BRIONAC_DRAGON_OF_THE_ICE_BARRIER`
+- path: `src_custom/activated_effects/brionac_dragon_of_the_ice_barrier.c`
+- L232: N-discard path auto-bounces N cards; upgrade: sequential PickZone.
+
 ### `CELESTIA_LIGHTSWORN_ANGEL`
 - path: `src_custom/activated_effects/celestia_lightsworn_angel.c`
 - L89: Tribute Summon (by Lightsworn) trigger needs summon hook. Ceiling: once via usage — mill 4 then auto-destroy up to 2 opp cards (no player target pick; upgrade: PickZone for up to 2).
@@ -1551,6 +1555,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/dark_strike_fighter.c`
 - L127: Main Phase 1 gate not wired; allow once via usage any main phase.
 
+### `DECOY_DRAGON`
+- path: `src_custom/activated_effects/decoy_dragon.c`
+- L181: attack-target redirect needs battle targeting hook. Ceiling: OPT SS Lv7+ Dragon from GY once via usage when legal.
+
 ### `DEEP_SEA_DIVA`
 - path: `src_custom/activated_effects/deep_sea_diva.c`
 - L58: Normal Summon trigger needs summon hook. Ceiling: once via usage while face-up if Lv≤3 Sea Serpent in Deck.
@@ -1559,6 +1567,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/destiny_hero_blade_master.c`
 - L58: +2 tempStage (~1000 ATK, not exact +800); until EP clear needs EP tempStage reset hook.
 - L89: opponent Battle Phase gate not wired; allow when face-up D-HERO on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook.
+
+### `DESTINY_HERO_DIAMOND_DUDE`
+- path: `src_custom/activated_effects/destiny_hero_diamond_dude.c`
+- L57: next-turn GY Normal Spell activation needs Main Phase hook.
 
 ### `DESTINY_HERO_DISK_COMMANDER`
 - path: `src_custom/activated_effects/destiny_hero_disk_commander.c`
@@ -1614,9 +1626,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/evil_hero_sinister_necrom.c`
 - L103: GY ignition needs GY-menu wire. Ceiling: allow when Sinister Necrom in GY + Evil HERO in hand or Deck (callable if gMonEffect set).
 
+### `EVOLZAR_DOLKKA`
+- path: `src_custom/activated_effects/evolzar_dolkka.c`
+- L12: quick Xyz detach + negate monster effect need chain/Xyz hooks. Ceiling: not field-ignition here.
+
 ### `FLAME_RULER`
 - path: `src_custom/activated_effects/flame_ruler.c`
 - L12: treat as 2 Tributes for FIRE Tribute Summon needs tribute-cost LynJump. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
+
+### `FOG_KING`
+- path: `src_custom/activated_effects/fog_king.c`
+- L12: tribute-flex Normal Summon, ATK = tributed ATK, and global tribute lock need summon/tribute continuous hooks. Ceiling: not field-ignition here.
 
 ### `FUSILIER_DRAGON_THE_DUAL_MODE_BEAST`
 - path: `src_custom/activated_effects/fusilier_dragon_the_dual_mode_beast.c`
@@ -1633,6 +1653,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GRANMARG_THE_ROCK_MONARCH`
 - path: `src_custom/activated_effects/granmarg_the_rock_monarch.c`
 - L105: Tribute Summon trigger. Ceiling: once via usage if Set target.
+
+### `GRAVEKEEPERS_CHIEF`
+- path: `src_custom/activated_effects/gravekeepers_chief.c`
+- L186: Tribute Summon trigger, once-only control, and Necrovalley GY immunity need summon/continuous hooks. Ceiling: OPT SS GK from GY.
 
 ### `GRAVEKEEPERS_CURSE`
 - path: `src_custom/activated_effects/gravekeepers_curse.c`
@@ -1728,6 +1752,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/lumina_lightsworn_summoner.c`
 - L236: End Phase mill 3 needs EP phase hook.
 
+### `LUMINA_TWILIGHTSWORN_SHAMAN`
+- path: `src_custom/activated_effects/lumina_twilightsworn_shaman.c`
+- L226: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
+- L314: EP mill 3 on other LS effect needs End Phase / LS trigger hook.
+
 ### `MAGICAL_PLANT_MANDRAGOLA`
 - path: `src_custom/activated_effects/magical_plant_mandragola.c`
 - L12: FLIP place Spell Counters needs flip + counter storage. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
@@ -1747,6 +1776,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MARSHMALLON`
 - path: `src_custom/activated_effects/marshmallon.c`
 - L12: battle destruction immunity + flip-attack burn need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle damage / destroy gate.
+
+### `MAXX_C`
+- path: `src_custom/activated_effects/maxx_c.c`
+- L55: draw-on-opponent-Special-Summon this turn not wired; upgrade: SS hook + simple turn flag when one exists.
 
 ### `MEZUKI`
 - path: `src_custom/activated_effects/mezuki.c`
@@ -1832,6 +1865,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/shaddoll_dragon.c`
 - L183: FLIP vs GY-sent exclusivity + trigger hooks deferred. Ceiling: bounce 1 opp card OR destroy 1 opp Spell/Trap once via usage.
 
+### `SHADDOLL_SQUAMATA`
+- path: `src_custom/activated_effects/shaddoll_squamata.c`
+- L154: FLIP destroy vs GY-sent mill exclusivity + trigger hooks deferred. Ceiling: destroy 1 opp monster OR mill 1 Shaddoll from Deck once via usage.
+
 ### `SILENT_MAGICIAN_LV8`
 - path: `src_custom/activated_effects/silent_magician_lv8.c`
 - L12: continuous immunity to opponent Spell effects needs spell-target gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-immune hook.
@@ -1855,6 +1892,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `T_G_HYPER_LIBRARIAN`
 - path: `src_custom/activated_effects/t_g_hyper_librarian.c`
 - L12: Synchro Summon draw trigger needs synchro hook. Ceiling: not ignition-activatable here; upgrade: synchro summon gate.
+
+### `TATSUNOKO`
+- path: `src_custom/activated_effects/tatsunoko.c`
+- L12: hand-as-Synchro-material and unaffected-by-monster-effects need synchro/summon continuous hooks. Ceiling: not field-ignition here.
 
 ### `TETHYS_GODDESS_OF_LIGHT`
 - path: `src_custom/activated_effects/tethys_goddess_of_light.c`
@@ -1946,6 +1987,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `WARM_WORM`
 - path: `src_custom/activated_effects/warm_worm.c`
 - L18: printed trigger is when destroyed. Ceiling: once via usage.
+
+### `WHITE_HORNED_DRAGON`
+- path: `src_custom/activated_effects/white_horned_dragon.c`
+- L79: on-Normal/Special Summon trigger needs summon hook. Ceiling: OPT banish up to 5 opp GY Spells + tempStage once via usage.
+- L101: +1 tempStage per banished (~500 ATK each, not exact +300).
 
 ### `X_SABER_AIRBELLUM`
 - path: `src_custom/activated_effects/x_saber_airbellum.c`
