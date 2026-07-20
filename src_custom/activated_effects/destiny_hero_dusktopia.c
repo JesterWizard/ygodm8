@@ -2,28 +2,55 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "god_card.h"
 #include "monster_effect_usage.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(void);
 
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
+static u8 IsProtectedMonsterTarget(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target validation */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+
+  if (zone == NULL || zone->id == CARD_NONE || GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return !IsGodCard(zone->id);
+}
+
+static u8 FieldHasMonster(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsProtectedMonsterTarget(row, col))
+        return TRUE;
+    }
+  }
+
   return FALSE;
 }
 
 static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
-  /* TODO: implement target resolution */
-  (void)fixedRow;
-  (void)fixedCol;
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (!IsProtectedMonsterTarget(fixedRow, fixedCol) || zone == NULL || self == NULL)
+    return;
+
+  /* ponytail: Fusion on Summon + no battle damage need fusion/battle hooks.
+   * Ceiling: OPT mark target unk4 cannot destroy until EP clear hook. */
+  zone->unk4 |= 0x80;
+
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 static void CancelTargeting(void)
@@ -33,17 +60,37 @@ static void CancelTargeting(void)
 
 static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 {
-  /* TODO: implement AI target selection */
-  (void)outRow;
-  (void)outCol;
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsProtectedMonsterTarget(row, col)) {
+        *outRow = row;
+        *outCol = col;
+        return TRUE;
+      }
+    }
+  }
+
   return FALSE;
 }
 
 unsigned char CanActivateDESTINY_HERO_DUSKTOPIA(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != DESTINY_HERO_DUSKTOPIA)
     return FALSE;
-  return TRUE; /* TODO: add additional activation conditions */
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != DESTINY_HERO_DUSKTOPIA)
+    return FALSE;
+
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return FieldHasMonster();
 }
 
 void ActivateDESTINY_HERO_DUSKTOPIAEffect(void)
@@ -55,8 +102,7 @@ void ActivateDESTINY_HERO_DUSKTOPIAEffect(void)
 
   gDuelCursor.destY = gMonEffect.row;
   gDuelCursor.destX = gMonEffect.zone;
-
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+  Duel_SetupPickZone(IsProtectedMonsterTarget, ResolveTarget, CancelTargeting, AiPickTarget);
 
   if (WhoseTurn() == DUEL_PLAYER)
     Duel_EnterPickZoneTargeting();

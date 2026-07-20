@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 19:17 UTC  
-**Remaining partials:** `613`
+**Last updated:** 2026-07-20 19:21 UTC  
+**Remaining partials:** `622`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 282 |
+| `activated` | 291 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **613** |
+| **total** | **622** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (282)
+## activated (291)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1622,6 +1622,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/brionac_dragon_of_the_ice_barrier.c`
 - L232: N-discard path auto-bounces N cards; upgrade: sequential PickZone.
 
+### `CASTEL_THE_SKY_BLASTER_MUSKETEER`
+- path: `src_custom/activated_effects/castel_the_sky_blaster_musketeer.c`
+- L138: detach/material + face-down branch need overlay engine. Ceiling: OPT return 1 face-up monster to the Deck.
+
 ### `CELESTIA_LIGHTSWORN_ANGEL`
 - path: `src_custom/activated_effects/celestia_lightsworn_angel.c`
 - L89: Tribute Summon (by Lightsworn) trigger needs summon hook. Ceiling: once via usage — mill 4 then auto-destroy up to 2 opp cards (no player target pick; upgrade: PickZone for up to 2).
@@ -1718,6 +1722,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L56: -2 tempStage (~1000 ATK, not exact); until EP clear needs EOT hook.
 - L116: Fairy-only Tribute Summon + cannot SS need summon hooks. Ceiling: OPT -1000 ATK (tempStage) → send 1 opp monster to GY.
 
+### `DARKNESS_NEOSPHERE`
+- path: `src_custom/activated_effects/darkness_neosphere.c`
+- L87: battle indestruct + trap bounce + attack-declare gate need battle/ phase hooks. Ceiling: not field-ignition activatable; SS uses FromHand path.
+- L113: opp attack declare gate not wired; require 1 field + 1 hand Fiend.
+
 ### `DECOY_DRAGON`
 - path: `src_custom/activated_effects/decoy_dragon.c`
 - L181: attack-target redirect needs battle targeting hook. Ceiling: OPT SS Lv7+ Dragon from GY once via usage when legal.
@@ -1754,6 +1763,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DESTINY_HERO_DRILLDARK`
 - path: `src_custom/activated_effects/destiny_hero_drilldark.c`
 - L64: on-Summon trigger + piercing need summon/battle hooks. Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK.
+
+### `DESTINY_HERO_DUSKTOPIA`
+- path: `src_custom/activated_effects/destiny_hero_dusktopia.c`
+- L45: Fusion on Summon + no battle damage need fusion/battle hooks. Ceiling: OPT mark target unk4 cannot destroy until EP clear hook.
+
+### `DESTINY_HERO_DYNATAG`
+- path: `src_custom/activated_effects/destiny_hero_dynatag.c`
+- L15: Damage Step no-battle-damage + GY banish ATK boost use FromHand path. Ceiling: not field-ignition activatable here.
+- L54: no battle damage from that battle not wired; both players 1000.
 
 ### `DESTINY_HERO_MALICIOUS`
 - path: `src_custom/activated_effects/destiny_hero_malicious.c`
@@ -1805,6 +1823,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/elemental_hero_lady_heat.c`
 - L45: CanActivate runs before the menu flips a face-down activator
 
+### `ELEMENTAL_HERO_MAGMA_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_magma_neos.c`
+- L42: continuous 400/field + EP shuffle/bounce field need permanent/EP hooks. Ceiling: OPT refresh tempStage from field card count.
+
 ### `ELEMENTAL_HERO_OCEAN`
 - path: `src_custom/activated_effects/elemental_hero_ocean.c`
 - L81: skip stale GY Ocean while the activator is still on field
@@ -1836,6 +1858,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `EVIL_HERO_SINISTER_NECROM`
 - path: `src_custom/activated_effects/evil_hero_sinister_necrom.c`
 - L103: GY ignition needs GY-menu wire. Ceiling: allow when Sinister Necrom in GY + Evil HERO in hand or Deck (callable if gMonEffect set).
+
+### `EVIL_HERO_TOXIC_BUBBLE`
+- path: `src_custom/activated_effects/evil_hero_toxic_bubble.c`
+- L16: on-SS draw when Dark Fusion Fusion up needs summon hook. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
+- L39: HERO-only SS lock + once-per-turn not tracked without turn hook.
 
 ### `EVOLZAR_DOLKKA`
 - path: `src_custom/activated_effects/evolzar_dolkka.c`
@@ -2030,6 +2057,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/herald_of_ulimateness.c`
 - L12: quick negate by sending Fairy from hand needs chain/negation hooks. Ceiling: not field-ignition activatable here; upgrade: either-turn chain interrupt → discard Fairy → negate + destroy activated card.
 
+### `HERALD_OF_ULTIMATENESS`
+- path: `src_custom/activated_effects/herald_of_ultimateness.c`
+- L12: quick negate by sending Fairy from hand needs chain/negation hooks. Ceiling: not field-ignition activatable here; upgrade: either-turn chain interrupt → discard Fairy → negate + destroy activated card.
+
 ### `HOLACTIE_THE_CREATOR_OF_LIGHT`
 - path: `src_custom/activated_effects/holactie_the_creator_of_light.c`
 - L64: SS-this-card-wins-Duel needs win-on-summon hook; no duel_helpers win API. Ceiling: not field-ignition activatable; use FromHand tribute path.
@@ -2174,6 +2205,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `MICHAEL_THE_ARCH_LIGHTSWORN`
 - path: `src_custom/activated_effects/michael_the_arch_lightsworn.c`
 - L137: destroy→shuffle Lightsworn + End Phase mill 3 need destroy/EP hooks. Ceiling: pay 1000 LP → banish 1 field card.
+
+### `MILLENNIUM_EYES_RESTRICT`
+- path: `src_custom/activated_effects/millennium_eyes_restrict.c`
+- L88: chain equip/absorb opp Effect Monster needs chain/control hooks. Ceiling: OPT destroy 1 opp monster.
 
 ### `MINERVA_LIGHTSWORN_MAIDEN`
 - path: `src_custom/activated_effects/minerva_lightsworn_maiden.c`
@@ -2478,6 +2513,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `THESTALOS_THE_FIRESTORM_MONARCH`
 - path: `src_custom/activated_effects/thestalos_the_firestorm_monarch.c`
 - L55: Tribute Summon trigger needs summon hook. Ceiling: once via usage if opp hand.
+
+### `THUNDER_DRAGON_TITAN`
+- path: `src_custom/activated_effects/thunder_dragon_titan.c`
+- L102: Thunder hand-effect trigger + GY-banish instead of destroy need chain/continuous hooks. Ceiling: OPT destroy 1 card on the field.
 
 ### `THUNDER_END_DRAGON`
 - path: `src_custom/activated_effects/thunder_end_dragon.c`

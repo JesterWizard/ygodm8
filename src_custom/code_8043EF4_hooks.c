@@ -277,6 +277,11 @@ u8 TrySpecialSummonPoseidraFromHand(u8);
 u8 TrySpecialSummonPunishmentDragonFromHand(u8);
 u8 TryActivateHonestFromHand(u8);
 u8 TryActivateArcanaForceXvTheFiendFromHand(u8);
+u8 TrySpecialSummonMasterHyperionFromHand(u8);
+u8 TryActivateDestinyHeroDynatagFromHand(u8);
+u8 TrySpecialSummonEvilHeroToxicBubbleFromHand(u8);
+u8 TrySpecialSummonGuardianEatosFromHand(u8);
+u8 TrySpecialSummonDarknessNeosphereFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -706,6 +711,31 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == ARCANA_FORCE_XV_THE_FIEND
           && TryActivateArcanaForceXvTheFiendFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == MASTER_HYPERION
+          && TrySpecialSummonMasterHyperionFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DESTINY_HERO_DYNATAG
+          && TryActivateDestinyHeroDynatagFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == EVIL_HERO_TOXIC_BUBBLE
+          && TrySpecialSummonEvilHeroToxicBubbleFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GUARDIAN_EATOS
+          && TrySpecialSummonGuardianEatosFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DARKNESS_NEOSPHERE
+          && TrySpecialSummonDarknessNeosphereFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
