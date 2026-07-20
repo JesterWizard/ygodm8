@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 21:05 UTC  
-**Remaining partials:** `778`
+**Last updated:** 2026-07-20 21:09 UTC  
+**Remaining partials:** `783`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 447 |
+| `activated` | 452 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **778** |
+| **total** | **783** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (447)
+## activated (452)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1781,6 +1781,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/celestia_lightsworn_angel.c`
 - L89: Tribute Summon (by Lightsworn) trigger needs summon hook. Ceiling: once via usage — mill 4 then auto-destroy up to 2 opp cards (no player target pick; upgrade: PickZone for up to 2).
 
+### `CELESTIAL_KNIGHTLORD_PARSHATH`
+- path: `src_custom/activated_effects/celestial_knightlord_parshath.c`
+- L104: Link material + GY banish Fairy → SS Fairy need send/banish hooks. Ceiling: OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field.
+
 ### `CHAINSAW_INSECT`
 - path: `src_custom/activated_effects/chainsaw_insect.c`
 - L12: opp draws after Damage Step needs battle end hook. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
@@ -2036,6 +2040,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DESTINY_HERO_PLASMA`
 - path: `src_custom/activated_effects/destiny_hero_plasma.c`
 - L95: equip/absorb + half-ATK boost + continuous opp negate need equip hooks. Ceiling: destroy 1 opp monster.
+
+### `DIVINE_SERPENT_GEH`
+- path: `src_custom/activated_effects/divine_serpent_geh.c`
+- L31: destroy gate + untargetable + battle negate need destroy/battle hooks. Ceiling: field ignition FALSE; FromHand pay half LP → SS only.
 
 ### `DIVINER_OF_THE_HERALD`
 - path: `src_custom/activated_effects/diviner_of_the_herald.c`
@@ -2448,6 +2456,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GREEN_GADGET`
 - path: `src_custom/activated_effects/green_gadget.c`
 - L60: NS/SS trigger needs summon hook. Ceiling: once via usage.
+
+### `GUARDIAN_DREADSCYTHE`
+- path: `src_custom/activated_effects/guardian_dreadscythe.c`
+- L170: summon lock + GY revive loop need summon/leave hooks. Ceiling: OPT equip/add Reaper Scythe from Deck.
 
 ### `GUNGNIR_DRAGON_OF_THE_ICE_BARRIER`
 - path: `src_custom/activated_effects/gungnir_dragon_of_the_ice_barrier.c`
@@ -3013,6 +3025,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/silent_magician_lv8.c`
 - L12: continuous immunity to opponent Spell effects needs spell-target gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-immune hook.
 
+### `SILENT_SWORDSMAN`
+- path: `src_custom/activated_effects/silent_swordsman.c`
+- L113: Standby +500 + Quick Spell negate need phase/chain hooks. Ceiling: OPT +1 tempStage (~500 ATK), else OPT destroy 1 Spell.
+
 ### `SILENT_SWORDSMAN_LV3`
 - path: `src_custom/activated_effects/silent_swordsman_lv3.c`
 - L70: spell negate continuous + summon/flip turn gate need hooks. Ceiling: Standby OPT send self → SS LV5 from hand/Deck.
@@ -3230,6 +3246,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ULTIMATE_ANCIENT_GEAR_GOLEM`
 - path: `src_custom/activated_effects/ultimate_ancient_gear_golem.c`
 - L51: piercing + attack S/T lock + on-destroy SS need battle/destroy hooks. Ceiling: OPT SS Ancient Gear Golem from GY.
+
+### `ULTIMATE_CONDUCTOR_TYRANNO`
+- path: `src_custom/activated_effects/ultimate_conductor_tyranno.c`
+- L194: multi-attack + DEF burn/send need battle hooks. Ceiling: OPT destroy 1 of your monsters → flip all opp face-up monsters face-down DEF.
 
 ### `ULTIMATE_OBEDIENT_FIEND`
 - path: `src_custom/activated_effects/ultimate_obedient_fiend.c`

@@ -1,0 +1,47 @@
+{
+  "worker": 1,
+  "count": 2,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SILENT_SWORDSMAN",
+      "card_name": "Silent Swordsman",
+      "kind": "activated",
+      "archetype": "SILENT",
+      "path": "src_custom/activated_effects/silent_swordsman.c",
+      "effect_text": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 Warrior-Type monster, and cannot Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 Warrior-Type monster, and cannot be Special Summoned by other ways. Once per turn, during the Standby Phase: This card gains 500 ATK. Once per turn, during either player's turn, when a Spell Card is activated: You can negate the activation. If this card is destroyed by battle, or if this ca",
+      "tags": [
+        "deck",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "TIMAEUS_THE_KNIGHT_OF_DESTINY",
+      "clone_path": "src_custom/activated_effects/timaeus_the_knight_of_destiny.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "DIVINE_SERPENT_GEH",
+      "card_name": "Divine Serpent Geh",
+      "kind": "activated",
+      "archetype": "DIVINE",
+      "path": "src_custom/activated_effects/divine_serpent_geh.c",
+      "effect_text": "Cannot be Normal Summoned. When a monster you control is destroyed: Pay half LP; Special Summon this card. Cannot be Normal Summoned/Set. Must be Special Summoned by its own effect. If a monster(s) you control is destroyed by an opponent's attack or card effect: You can pay half your LP; Special Summon this card from your hand. Cannot be targeted by card effects. If this card attacks an opponent's monster, during the Damage Step only, negate the effects of that monster while it is face-up on the",
+      "tags": [
+        "faceup",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_GREAT_TORNADO",
+      "clone_path": "src_custom/activated_effects/elemental_hero_great_tornado.c",
+      "clone_score": 0.6
+    }
+  ]
+}

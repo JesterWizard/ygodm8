@@ -322,6 +322,10 @@ u8 TrySpecialSummonTheAgentOfLifeNeptuneFromHand(u8);
 u8 TrySpecialSummonDestinyHeroDestroyDogmaFromHand(u8);
 u8 TrySpecialSummonBlueEyesJetDragonFromHand(u8);
 u8 TrySpecialSummonMorphtronicSmartfonFromHand(u8);
+u8 TrySpecialSummonUltimateConductorTyrannoFromHand(u8);
+u8 TrySpecialSummonSilentSwordsmanFromHand(u8);
+u8 TrySpecialSummonDivineSerpentGehFromHand(u8);
+u8 TrySpecialSummonGuardianDreadscytheFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -351,7 +355,11 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == MORPHTRONIC_SCANNEN
       || cardId == THE_LEGENDARY_EXODIA_INCARNATE
       || cardId == DESTINY_HERO_DESTROY_DOGMA
-      || cardId == MORPHTRONIC_SMARTFON;
+      || cardId == MORPHTRONIC_SMARTFON
+      || cardId == ULTIMATE_CONDUCTOR_TYRANNO
+      || cardId == SILENT_SWORDSMAN
+      || cardId == DIVINE_SERPENT_GEH
+      || cardId == GUARDIAN_DREADSCYTHE;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -985,6 +993,26 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == MORPHTRONIC_SMARTFON
           && TrySpecialSummonMorphtronicSmartfonFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ULTIMATE_CONDUCTOR_TYRANNO
+          && TrySpecialSummonUltimateConductorTyrannoFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == SILENT_SWORDSMAN
+          && TrySpecialSummonSilentSwordsmanFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DIVINE_SERPENT_GEH
+          && TrySpecialSummonDivineSerpentGehFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GUARDIAN_DREADSCYTHE
+          && TrySpecialSummonGuardianDreadscytheFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

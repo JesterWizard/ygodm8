@@ -7,28 +7,17 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 21:05 UTC  
-**Remaining stubs:** `109`
+**Last updated:** 2026-07-20 21:09 UTC  
+**Remaining stubs:** `104`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `activated` | 5 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **109** |
-
-## activated (5)
-
-| `card_const` | archetype | pattern | clone | path |
-|--------------|-----------|---------|-------|------|
-| `CELESTIAL_KNIGHTLORD_PARSHATH` | `CELESTIAL` | — | `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `src_custom/activated_effects/celestial_knightlord_parshath.c` |
-| `DIVINE_SERPENT_GEH` | `DIVINE` | — | `ELEMENTAL_HERO_GREAT_TORNADO` | `src_custom/activated_effects/divine_serpent_geh.c` |
-| `GUARDIAN_DREADSCYTHE` | `GUARDIAN` | — | `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `src_custom/activated_effects/guardian_dreadscythe.c` |
-| `SILENT_SWORDSMAN` | `SILENT` | — | `TIMAEUS_THE_KNIGHT_OF_DESTINY` | `src_custom/activated_effects/silent_swordsman.c` |
-| `ULTIMATE_CONDUCTOR_TYRANNO` | `ULTIMATE` | — | `DESTINY_HERO_DECIDER` | `src_custom/activated_effects/ultimate_conductor_tyranno.c` |
+| **total** | **104** |
 
 ## permanent (93)
 
