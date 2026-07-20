@@ -1,0 +1,80 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Traps: only edit listed trap .c. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "REVERSAL_OF_FATE",
+      "card_name": "Reversal of Fate",
+      "kind": "trap",
+      "archetype": "REVERSAL",
+      "path": "src_custom/trap_effects/reversal_of_fate.c",
+      "effect_text": "Flip Arcana Force coin result. Select 1 Arcana Force monster you control. That monster's effect is now treated as the opposite coin toss result.",
+      "tags": [
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GIFT_OF_THE_MYSTICAL_ELF",
+      "clone_path": "src_custom/trap_effects/gift_of_the_mystical_elf.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "TROJAN_GLADIATOR_BEAST",
+      "card_name": "Trojan Gladiator Beast",
+      "kind": "trap",
+      "archetype": "TROJAN",
+      "path": "src_custom/trap_effects/trojan_gladiator_beast.c",
+      "effect_text": "Give opp a GB from hand; draw 1. Special Summon 1 Gladiator Beast monster from your hand to your opponent's side of the field. Then, draw 1 card.",
+      "tags": [
+        "draw",
+        "hand",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": 1,
+      "burn_damage": null,
+      "clone_const": "EMBODIMENT_OF_APOPHIS",
+      "clone_path": "src_custom/trap_effects/embodiment_of_apophis.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "DRAGON_S_RAGE",
+      "card_name": "Dragon's Rage",
+      "kind": "trap",
+      "archetype": "DRAGON",
+      "path": "src_custom/trap_effects/dragon_s_rage.c",
+      "effect_text": "Your Dragon monsters inflict piercing battle damage. Dragon-Type monsters you control inflict piercing Battle Damage when they attack a Defense Position monster.",
+      "tags": [
+        "burn",
+        "monster"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COFFIN_SELLER",
+      "clone_path": "src_custom/trap_effects/coffin_seller.c",
+      "clone_score": 0.67
+    },
+    {
+      "card_const": "LIGHT_OF_DESTRUCTION",
+      "card_name": "Light of Destruction",
+      "kind": "trap",
+      "archetype": "LIGHT",
+      "path": "src_custom/trap_effects/light_of_destruction.c",
+      "effect_text": "Opp mill: mill their top 3. When an opponent's card effect sends a card(s) from their Deck to the Graveyard, send the top 3 cards of their Deck to the Graveyard.",
+      "tags": [
+        "deck",
+        "gy"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "COFFIN_SELLER",
+      "clone_path": "src_custom/trap_effects/coffin_seller.c",
+      "clone_score": 0.25
+    }
+  ]
+}

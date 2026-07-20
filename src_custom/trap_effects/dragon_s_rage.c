@@ -3,11 +3,19 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static void ActivateDRAGON_S_RAGEZone(struct DuelCard *zone)
+{
+  if (Duel_ActivateContinuousTrapPreamble(zone, DRAGON_S_RAGE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-/* TODO: implement trap effect for DRAGON_S_RAGE */
+  /* ponytail: Dragon piercing needs battle damage calc hook outside this file.
+   * Ceiling: face-up continuous only; upgrade: if face-up DRAGON_S_RAGE and
+   * attacker TYPE_DRAGON vs Defense Position → piercing. */
+}
+
+void TryActivateDRAGON_S_RAGEOnOpponentTurnStart(void)
+{
+  Duel_TryActivateBackrowTrapOnTurnStart(DRAGON_S_RAGE, ActivateDRAGON_S_RAGEZone);
+}
+
+/* ponytail: wire TryActivate into turn_effect_hooks. */

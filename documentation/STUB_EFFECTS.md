@@ -7,156 +7,114 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 16:08 UTC  
-**Remaining stubs:** `691`
+**Last updated:** 2026-07-20 16:30 UTC  
+**Remaining stubs:** `655`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 17 |
-| `trap` | 109 |
+| `trap` | 90 |
 | `activated` | 461 |
 | `permanent` | 93 |
 | `battle` | 8 |
 | `turn` | 3 |
-| **total** | **691** |
+| **total** | **655** |
 
-## spell (17)
-
-| `card_const` | archetype | pattern | clone | path |
-|--------------|-----------|---------|-------|------|
-| `AMAZONESS_SECRET_ARTS` | `AMAZONESS` | — | `DARK_CALLING` | `src_custom/spell_effects/amazoness_secret_arts.c` |
-| `ANCIENT_GEAR_ADVANCE` | `ANCIENT_GEAR` | — | `ANCIENT_GEAR_CASTLE` | `src_custom/spell_effects/ancient_gear_advance.c` |
-| `BERSERKER_SOUL` | `BERSERKER` | — | `DARK_CALLING` | `src_custom/spell_effects/berserker_soul.c` |
-| `CONTACT_GATE` | `CONTACT` | — | `DARK_CALLING` | `src_custom/spell_effects/contact_gate.c` |
-| `D_BURST` | `D` | — | `LIGHTSWORN_SANCTUARY` | `src_custom/spell_effects/d_burst.c` |
-| `D_FORCE` | `D` | — | `DARK_CALLING` | `src_custom/spell_effects/d_force.c` |
-| `DARK_CITY_AT_MIDNIGHT` | `DARK` | — | `DARK_CALLING` | `src_custom/spell_effects/dark_city_at_midnight.c` |
-| `DARK_MAGICAL_CIRCLE` | `DARK` | — | `DARK_CALLING` | `src_custom/spell_effects/dark_magical_circle.c` |
-| `DARK_MAGICIAN_CIRCLE` | `DARK_MAGICIAN` | — | `DARK_CALLING` | `src_custom/spell_effects/dark_magician_circle.c` |
-| `DOUBLE_TOOL_C_AND_D` | `DOUBLE` | — | `AMAZONESS_FIGHTING_SPIRIT` | `src_custom/spell_effects/double_tool_c_and_d.c` |
-| `EN_ENGAGE_NEO_SPACE` | `EN` | — | `DARK_CALLING` | `src_custom/spell_effects/en_engage_neo_space.c` |
-| `GADGET_BOX` | `GADGET` | — | `DARK_CALLING` | `src_custom/spell_effects/gadget_box.c` |
-| `HARPIE_LADY_PHOENIX_FORMATION` | `HARPIE_LADY` | — | `DARK_MAGIC_CURTAIN` | `src_custom/spell_effects/harpie_lady_phoenix_formation.c` |
-| `MORPHTRONIC_CONVERTER` | `MORPHTRONIC` | — | `DARK_CALLING` | `src_custom/spell_effects/morphtronic_converter.c` |
-| `OBLITERATE_BLAZE` | `OBLITERATE` | — | `DARK_FUSION` | `src_custom/spell_effects/obliterate_blaze.c` |
-| `SHINING_SARCOPHAGUS` | `SHINING` | — | `DARK_CALLING` | `src_custom/spell_effects/shining_sarcophagus.c` |
-| `SPELL_CHRONICLE` | `SPELL` | — | `DARK_CALLING` | `src_custom/spell_effects/spell_chronicle.c` |
-
-## trap (109)
+## trap (90)
 
 | `card_const` | archetype | pattern | clone | path |
 |--------------|-----------|---------|-------|------|
-| `ACE_OF_WAND` | `ACE_OF` | — | `GIFT_OF_THE_MYSTICAL_ELF` | `src_custom/trap_effects/ace_of_wand.c` |
 | `AEGIS_OF_THE_OCEAN_DRAGON_LORD` | `AEGIS` | — | `LEVEL_LIMIT_AREA_A` | `src_custom/trap_effects/aegis_of_the_ocean_dragon_lord.c` |
 | `ALL_OUT_ATTACKS` | `ALL` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/all_out_attacks.c` |
-| `AMAZONESS_HALL` | `AMAZONESS` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/amazoness_hall.c` |
-| `AMAZONESS_HOT_SPRING` | `AMAZONESS` | — | `GIFT_OF_THE_MYSTICAL_ELF` | `src_custom/trap_effects/amazoness_hot_spring.c` |
+| `AMAZONESS_HALL` | `AMAZONESS` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/amazoness_hall.c` |
+| `AMAZONESS_HOT_SPRING` | `AMAZONESS` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/amazoness_hot_spring.c` |
 | `AMAZONESS_ONSLAUGHT` | `AMAZONESS` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/amazoness_onslaught.c` |
 | `AMAZONESS_SHAMANISM` | `AMAZONESS` | — | `A_HERO_EMERGES` | `src_custom/trap_effects/amazoness_shamanism.c` |
 | `AMAZONESS_WILLPOWER` | `AMAZONESS` | — | `A_HERO_EMERGES` | `src_custom/trap_effects/amazoness_willpower.c` |
-| `AMBUSH_FANGS` | `AMBUSH` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/ambush_fangs.c` |
-| `ANCIENT_GEAR_DUEL` | `ANCIENT_GEAR` | — | `COFFIN_SELLER` | `src_custom/trap_effects/ancient_gear_duel.c` |
+| `AMBUSH_FANGS` | `AMBUSH` | — | `MORPHTRONIC_MONITRON` | `src_custom/trap_effects/ambush_fangs.c` |
+| `ANCIENT_GEAR_DUEL` | `ANCIENT_GEAR` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/ancient_gear_duel.c` |
 | `ANTI_SPELL_FRAGRANCE` | `ANTI` | — | — | `src_custom/trap_effects/anti_spell_fragrance.c` |
 | `APPARATION` | `APPARATION` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/apparation.c` |
 | `APPROPRIATE` | `APPROPRIATE` | — | `JAR_OF_GREED` | `src_custom/trap_effects/appropriate.c` |
 | `ARCANA_CALL` | `ARCANA` | — | `COFFIN_SELLER` | `src_custom/trap_effects/arcana_call.c` |
 | `ATTACK_AND_RECEIVE` | `ATTACK` | — | `COFFIN_SELLER` | `src_custom/trap_effects/attack_and_receive.c` |
-| `ATTACK_GUIDANCE_ARMOR` | `ATTACK` | — | `BOTTOMLESS_SHIFTING_SAND` | `src_custom/trap_effects/attack_guidance_armor.c` |
-| `ATTACK_REFLECTOR_UNIT` | `ATTACK` | — | `MASK_OF_RESTRICT` | `src_custom/trap_effects/attack_reflector_unit.c` |
+| `ATTACK_GUIDANCE_ARMOR` | `ATTACK` | — | `ATTACK_REFLECTOR_UNIT` | `src_custom/trap_effects/attack_guidance_armor.c` |
 | `BACKFIRE` | `BACKFIRE` | — | `COFFIN_SELLER` | `src_custom/trap_effects/backfire.c` |
 | `BATTLE_MANIA` | `BATTLE` | — | `LEVEL_LIMIT_AREA_A` | `src_custom/trap_effects/battle_mania.c` |
-| `BLESSED_WINDS` | `BLESSED` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/blessed_winds.c` |
-| `BREAK_THE_DESTINY` | `BREAK` | — | `COFFIN_SELLER` | `src_custom/trap_effects/break_the_destiny.c` |
-| `CHAIN_MATERIAL` | `CHAIN` | — | `COFFIN_SELLER` | `src_custom/trap_effects/chain_material.c` |
+| `BLESSED_WINDS` | `BLESSED` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/blessed_winds.c` |
+| `BREAK_THE_DESTINY` | `BREAK` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/break_the_destiny.c` |
+| `CHAIN_MATERIAL` | `CHAIN` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/chain_material.c` |
 | `CROSS_DIMENSONAL_DUEL` | `CROSS` | — | `COFFIN_SELLER` | `src_custom/trap_effects/cross_dimensonal_duel.c` |
-| `D_TACTICS` | `D` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/d_tactics.c` |
-| `D_TIME` | `D` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/d_time.c` |
+| `D_TACTICS` | `D` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/d_tactics.c` |
+| `D_TIME` | `D` | — | `MORPHTRONIC_MONITRON` | `src_custom/trap_effects/d_time.c` |
 | `DAMAGE_EQUALS_REPTILE` | `DAMAGE` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/damage_equals_reptile.c` |
 | `DAMAGE_POLARIZER` | `DAMAGE` | — | — | `src_custom/trap_effects/damage_polarizer.c` |
 | `DAMAGE_REPTILE` | `DAMAGE` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/damage_reptile.c` |
-| `DARK_RENEWAL` | `DARK` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/dark_renewal.c` |
-| `DARK_SUPREMACY` | `DARK` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/dark_supremacy.c` |
+| `DARK_RENEWAL` | `DARK` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/dark_renewal.c` |
+| `DARK_SUPREMACY` | `DARK` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/dark_supremacy.c` |
 | `DES_COUNTERBLOW` | `DES` | — | `BOTTOMLESS_SHIFTING_SAND` | `src_custom/trap_effects/des_counterblow.c` |
-| `DESTINED_RIVALS` | `DESTINED` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/destined_rivals.c` |
-| `DOPPELGANGER` | `DOPPELGANGER` | — | `COFFIN_SELLER` | `src_custom/trap_effects/doppelganger.c` |
-| `DRAGON_S_RAGE` | `DRAGON` | — | `COFFIN_SELLER` | `src_custom/trap_effects/dragon_s_rage.c` |
+| `DESTINED_RIVALS` | `DESTINED` | — | `MORPHTRONIC_MONITRON` | `src_custom/trap_effects/destined_rivals.c` |
+| `DOPPELGANGER` | `DOPPELGANGER` | — | `DRAGON_S_RAGE` | `src_custom/trap_effects/doppelganger.c` |
 | `DRAMATIC_RESCUE` | `DRAMATIC` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/dramatic_rescue.c` |
-| `DRIED_WINDS` | `DRIED` | — | `ROYAL_DECREE` | `src_custom/trap_effects/dried_winds.c` |
-| `ETERNAL_SOUL` | `ETERNAL` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/eternal_soul.c` |
-| `EXCHANGE_OF_THE_SPIRIT` | `EXCHANGE` | — | `COFFIN_SELLER` | `src_custom/trap_effects/exchange_of_the_spirit.c` |
-| `FAVOURITE_CONTACT` | `FAVOURITE` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/favourite_contact.c` |
+| `DRIED_WINDS` | `DRIED` | — | `MORPHTRONIC_MONITRON` | `src_custom/trap_effects/dried_winds.c` |
+| `ETERNAL_SOUL` | `ETERNAL` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/eternal_soul.c` |
+| `EXCHANGE_OF_THE_SPIRIT` | `EXCHANGE` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/exchange_of_the_spirit.c` |
+| `FAVOURITE_CONTACT` | `FAVOURITE` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/favourite_contact.c` |
 | `FORGOTTEN_TEMPLE_OF_THE_DEEP` | `FORGOTTEN` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/forgotten_temple_of_the_deep.c` |
 | `FOSSIL_EXCAVATION` | `FOSSIL` | — | `A_HERO_EMERGES` | `src_custom/trap_effects/fossil_excavation.c` |
-| `GIFT_CARD` | `GIFT` | — | `GIFT_OF_THE_MYSTICAL_ELF` | `src_custom/trap_effects/gift_card.c` |
-| `GLADIATOR_NAUMACHIA` | `GLADIATOR` | — | `COFFIN_SELLER` | `src_custom/trap_effects/gladiator_naumachia.c` |
-| `GLADIATOR_BEAST_WAR_CHARIOT` | `GLADIATOR_BEAST` | — | `ROYAL_DECREE` | `src_custom/trap_effects/gladiator_beast_war_chariot.c` |
-| `GLADIATOR_BEASTS_MEDUSA_SHIELD` | `GLADIATOR_BEASTS` | — | `COFFIN_SELLER` | `src_custom/trap_effects/gladiator_beasts_medusa_shield.c` |
-| `GLADIATOR_BEASTS_VALOR` | `GLADIATOR_BEASTS` | — | `GIFT_OF_THE_MYSTICAL_ELF` | `src_custom/trap_effects/gladiator_beasts_valor.c` |
-| `GLORIOUS_ILLUSION` | `GLORIOUS` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/glorious_illusion.c` |
-| `GRAVEKEEPERS_TRAP` | `GRAVEKEEPERS` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/gravekeepers_trap.c` |
+| `GLADIATOR_NAUMACHIA` | `GLADIATOR` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/gladiator_naumachia.c` |
+| `GLADIATOR_BEASTS_MEDUSA_SHIELD` | `GLADIATOR_BEASTS` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/gladiator_beasts_medusa_shield.c` |
+| `GLORIOUS_ILLUSION` | `GLORIOUS` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/glorious_illusion.c` |
+| `GRAVEKEEPERS_TRAP` | `GRAVEKEEPERS` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/gravekeepers_trap.c` |
 | `HALF_COUNTER` | `HALF` | — | `GIFT_OF_THE_MYSTICAL_ELF` | `src_custom/trap_effects/half_counter.c` |
-| `HARPIES_FEATHER_STORM` | `HARPIES_FEATHER` | — | `COFFIN_SELLER` | `src_custom/trap_effects/harpies_feather_storm.c` |
-| `HARPIE_LADY_ELEGANCE` | `HARPIE_LADY` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/harpie_lady_elegance.c` |
-| `HUMID_WINDS` | `HUMID` | — | `GIFT_OF_THE_MYSTICAL_ELF` | `src_custom/trap_effects/humid_winds.c` |
+| `HARPIES_FEATHER_STORM` | `HARPIES_FEATHER` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/harpies_feather_storm.c` |
+| `HARPIE_LADY_ELEGANCE` | `HARPIE_LADY` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/harpie_lady_elegance.c` |
+| `HUMID_WINDS` | `HUMID` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/humid_winds.c` |
 | `HUNTING_INSTINCT` | `HUNTING` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/hunting_instinct.c` |
 | `HYSTERIC_PARTY` | `HYSTERIC` | — | `A_HERO_EMERGES` | `src_custom/trap_effects/hysteric_party.c` |
-| `ICARUS_ATTACK` | `ICARUS` | — | `BLAST_HELD_BY_A_TRIBUTE` | `src_custom/trap_effects/icarus_attack.c` |
 | `IMPERIAL_TOMBS_OF_NECROVALLEY` | `IMPERIAL` | — | `IMPERIAL_ORDER` | `src_custom/trap_effects/imperial_tombs_of_necrovalley.c` |
-| `INFINITE_IMPERMANENCE` | `INFINITE` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/infinite_impermanence.c` |
-| `LIGHT_OF_DESTRUCTION` | `LIGHT` | — | `COFFIN_SELLER` | `src_custom/trap_effects/light_of_destruction.c` |
-| `LIGHT_SPIRAL` | `LIGHT` | — | `COFFIN_SELLER` | `src_custom/trap_effects/light_spiral.c` |
-| `LIGHTSWORN_AEGIS` | `LIGHTSWORN` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/lightsworn_aegis.c` |
-| `LIGHTSWORN_BARRIER` | `LIGHTSWORN` | — | `COFFIN_SELLER` | `src_custom/trap_effects/lightsworn_barrier.c` |
-| `LIGHTSWORN_JUDGEMENT` | `LIGHTSWORN` | — | `COFFIN_SELLER` | `src_custom/trap_effects/lightsworn_judgement.c` |
-| `MACRO_COSMOS` | `MACRO` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/macro_cosmos.c` |
-| `MAGICAL_ARM_SHIELD` | `MAGICAL` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/magical_arm_shield.c` |
+| `INFINITE_IMPERMANENCE` | `INFINITE` | — | `MORPHTRONIC_MONITRON` | `src_custom/trap_effects/infinite_impermanence.c` |
+| `LIGHTSWORN_AEGIS` | `LIGHTSWORN` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/lightsworn_aegis.c` |
+| `LIGHTSWORN_BARRIER` | `LIGHTSWORN` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/lightsworn_barrier.c` |
+| `LIGHTSWORN_JUDGEMENT` | `LIGHTSWORN` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/lightsworn_judgement.c` |
+| `MACRO_COSMOS` | `MACRO` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/macro_cosmos.c` |
+| `MAGICAL_ARM_SHIELD` | `MAGICAL` | — | `MORPHTRONIC_MONITRON` | `src_custom/trap_effects/magical_arm_shield.c` |
 | `MAGICAL_HATS` | `MAGICAL` | — | `A_HERO_EMERGES` | `src_custom/trap_effects/magical_hats.c` |
-| `MAGICIAN_NAVIGATION` | `MAGICIAN` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/magician_navigation.c` |
+| `MAGICIAN_NAVIGATION` | `MAGICIAN` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/magician_navigation.c` |
 | `MAGICIANS_CIRCLE` | `MAGICIANS` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/magicians_circle.c` |
 | `MAGICIANS_COMBINATION` | `MAGICIANS` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/magicians_combination.c` |
-| `METAVERSE` | `METAVERSE` | — | `SKULL_INVITATION` | `src_custom/trap_effects/metaverse.c` |
-| `METEORAIN` | `METEORAIN` | — | `COFFIN_SELLER` | `src_custom/trap_effects/meteorain.c` |
-| `MORPHTRONIC_BIND` | `MORPHTRONIC` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/morphtronic_bind.c` |
-| `MORPHTRONIC_FORCEFIELD` | `MORPHTRONIC` | — | `ROYAL_DECREE` | `src_custom/trap_effects/morphtronic_forcefield.c` |
-| `MORPHTRONIC_IMPACT_RETURN` | `MORPHTRONIC` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/morphtronic_impact_return.c` |
+| `METEORAIN` | `METEORAIN` | — | `DRAGON_S_RAGE` | `src_custom/trap_effects/meteorain.c` |
+| `MORPHTRONIC_BIND` | `MORPHTRONIC` | — | `MORPHTRONIC_MONITRON` | `src_custom/trap_effects/morphtronic_bind.c` |
+| `MORPHTRONIC_FORCEFIELD` | `MORPHTRONIC` | — | `MORPHTRONIC_MONITRON` | `src_custom/trap_effects/morphtronic_forcefield.c` |
+| `MORPHTRONIC_IMPACT_RETURN` | `MORPHTRONIC` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/morphtronic_impact_return.c` |
 | `MORPHTRONIC_MIXUP` | `MORPHTRONIC` | — | `ROYAL_DECREE` | `src_custom/trap_effects/morphtronic_mixup.c` |
-| `MORPHTRONIC_MONITRON` | `MORPHTRONIC` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/morphtronic_monitron.c` |
-| `NECROVALLEY_TEMPLE` | `NECROVALLEY` | — | `COFFIN_SELLER` | `src_custom/trap_effects/necrovalley_temple.c` |
+| `NECROVALLEY_TEMPLE` | `NECROVALLEY` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/necrovalley_temple.c` |
 | `NEEDLE_WALL` | `NEEDLE` | — | `BOTTOMLESS_SHIFTING_SAND` | `src_custom/trap_effects/needle_wall.c` |
-| `NEXT` | `NEXT` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/next.c` |
-| `NUMINOUS_HEALER` | `NUMINOUS` | — | `COFFIN_SELLER` | `src_custom/trap_effects/numinous_healer.c` |
-| `OFFERING_TO_THE_SNAKE_DEITY` | `OFFERING` | — | `ROYAL_DECREE` | `src_custom/trap_effects/offering_to_the_snake_deity.c` |
+| `NEXT` | `NEXT` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/next.c` |
+| `NUMINOUS_HEALER` | `NUMINOUS` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/numinous_healer.c` |
 | `PROPHECY` | `PROPHECY` | — | `SKULL_INVITATION` | `src_custom/trap_effects/prophecy.c` |
-| `QUEENS_PAWN` | `QUEENS` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/queens_pawn.c` |
-| `RAIGEKI_BREAK` | `RAIGEKI` | — | `BOTTOMLESS_SHIFTING_SAND` | `src_custom/trap_effects/raigeki_break.c` |
-| `RED_REBOOT` | `RED` | — | `SKULL_INVITATION` | `src_custom/trap_effects/red_reboot.c` |
-| `REVERSAL_OF_FATE` | `REVERSAL` | — | `GIFT_OF_THE_MYSTICAL_ELF` | `src_custom/trap_effects/reversal_of_fate.c` |
+| `QUEENS_PAWN` | `QUEENS` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/queens_pawn.c` |
+| `RED_REBOOT` | `RED` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/red_reboot.c` |
 | `RISE_OF_THE_SNAKE_DEITY` | `RISE` | — | `LEVEL_LIMIT_AREA_A` | `src_custom/trap_effects/rise_of_the_snake_deity.c` |
 | `RITE_OF_SPIRIT` | `RITE` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/rite_of_spirit.c` |
 | `SCRAP_IRON_SCARECROW` | `SCRAP` | — | `COFFIN_SELLER` | `src_custom/trap_effects/scrap_iron_scarecrow.c` |
-| `SERPENT_SUPPRESSION` | `SERPENT` | — | `LEVEL_LIMIT_AREA_A` | `src_custom/trap_effects/serpent_suppression.c` |
 | `SHADDOLL_CORE` | `SHADDOLL` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/shaddoll_core.c` |
-| `SHADDOLL_SCHISM` | `SHADDOLL` | — | `COFFIN_SELLER` | `src_custom/trap_effects/shaddoll_schism.c` |
-| `SIXTH_SENSE` | `SIXTH` | — | `COFFIN_SELLER` | `src_custom/trap_effects/sixth_sense.c` |
-| `SNAKE_DEITYS_COMMAND` | `SNAKE` | — | `BOTTOMLESS_SHIFTING_SAND` | `src_custom/trap_effects/snake_deitys_command.c` |
-| `SNAKE_WHISTLE` | `SNAKE` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/snake_whistle.c` |
+| `SHADDOLL_SCHISM` | `SHADDOLL` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/shaddoll_schism.c` |
+| `SIXTH_SENSE` | `SIXTH` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/sixth_sense.c` |
+| `SNAKE_DEITYS_COMMAND` | `SNAKE` | — | `SNAKE_WHISTLE` | `src_custom/trap_effects/snake_deitys_command.c` |
 | `SOLEMN_JUDGMENT` | `SOLEMN` | — | `SOLEMN_WISHES` | `src_custom/trap_effects/solemn_judgment.c` |
-| `SOUL_LEVY` | `SOUL` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/soul_levy.c` |
-| `SPARK_BLASTER` | `SPARK` | — | `ROYAL_DECREE` | `src_custom/trap_effects/spark_blaster.c` |
-| `THUMBS_DOWN` | `THUMBS` | — | — | `src_custom/trap_effects/thumbs_down.c` |
+| `SOUL_LEVY` | `SOUL` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/soul_levy.c` |
+| `SPARK_BLASTER` | `SPARK` | — | `MORPHTRONIC_MONITRON` | `src_custom/trap_effects/spark_blaster.c` |
 | `TORNADO_WALL` | `TORNADO` | — | `ROYAL_DECREE` | `src_custom/trap_effects/tornado_wall.c` |
 | `TOUR_OF_DOOM` | `TOUR` | — | — | `src_custom/trap_effects/tour_of_doom.c` |
-| `TRAP_DUSTSHOOT` | `TRAP` | — | `GIFT_OF_THE_MYSTICAL_ELF` | `src_custom/trap_effects/trap_dustshoot.c` |
-| `TRAP_TRICK` | `TRAP` | — | — | `src_custom/trap_effects/trap_trick.c` |
-| `TROJAN_GLADIATOR_BEAST` | `TROJAN` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/trojan_gladiator_beast.c` |
-| `TWILIGHT_CLOTH` | `TWILIGHT` | — | `RIVALRY_OF_WARLORDS` | `src_custom/trap_effects/twilight_cloth.c` |
-| `TWILIGHT_ERASER` | `TWILIGHT` | — | `EMBODIMENT_OF_APOPHIS` | `src_custom/trap_effects/twilight_eraser.c` |
+| `TRAP_DUSTSHOOT` | `TRAP` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/trap_dustshoot.c` |
+| `TRAP_TRICK` | `TRAP` | — | `LIGHT_OF_DESTRUCTION` | `src_custom/trap_effects/trap_trick.c` |
+| `TWILIGHT_CLOTH` | `TWILIGHT` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/twilight_cloth.c` |
+| `TWILIGHT_ERASER` | `TWILIGHT` | — | `LIGHT_SPIRAL` | `src_custom/trap_effects/twilight_eraser.c` |
 | `TYRANT_WING` | `TYRANT` | — | `BOTTOMLESS_SHIFTING_SAND` | `src_custom/trap_effects/tyrant_wing.c` |
 | `URGENT_TUNING` | `URGENT` | — | `GIFT_OF_THE_MYSTICAL_ELF` | `src_custom/trap_effects/urgent_tuning.c` |
-| `VANQUISHING_LIGHT` | `VANQUISHING` | — | `BLAST_HELD_BY_A_TRIBUTE` | `src_custom/trap_effects/vanquishing_light.c` |
-| `VENOM_BURN` | `VENOM` | — | `COFFIN_SELLER` | `src_custom/trap_effects/venom_burn.c` |
+| `VENOM_BURN` | `VENOM` | — | `DRAGON_S_RAGE` | `src_custom/trap_effects/venom_burn.c` |
 
 ## activated (461)
 

@@ -3,11 +3,16 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
-void UpdateDuelGfxExceptField(void);
-void TryActivatingPermanentEffects(void);
-void CheckWinConditionExodia(unsigned char);
+static void ActivateLIGHT_SPIRALZone(struct DuelCard *zone)
+{
+  if (Duel_ActivateContinuousTrapPreamble(zone, LIGHT_SPIRAL) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-/* TODO: implement trap effect for LIGHT_SPIRAL */
+  /* ponytail: Lightsworn mill → banish opp top Deck needs mill hook.
+   * Ceiling: face-up continuous only. */
+}
+
+void TryActivateLIGHT_SPIRALOnOpponentTurnStart(void)
+{
+  Duel_TryActivateBackrowTrapOnTurnStart(LIGHT_SPIRAL, ActivateLIGHT_SPIRALZone);
+}

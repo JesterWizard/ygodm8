@@ -1,0 +1,79 @@
+{
+  "worker": 1,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Traps: only edit listed trap .c. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "DARK_CITY_AT_MIDNIGHT",
+      "card_name": "Dark City at Midnight",
+      "kind": "spell",
+      "archetype": "DARK",
+      "path": "src_custom/spell_effects/dark_city_at_midnight.c",
+      "effect_text": "Each time you Special Summon a Level 8+ Destiny HERO: Warrior monsters you control gain 300 ATK. Each time you Special Summon a Level 8 or higher Destiny HERO monster(s): All Warrior monsters you currently control gain 300 ATK. You can only use each of the following effects of Dark City at Midnight once per turn. During your Main Phase, if this card was activated this turn: You can add 1 Destiny HERO monster, or 1 card that mentions a Destiny HERO monster's card name, from your Deck to your hand",
+      "tags": [
+        "deck",
+        "hand",
+        "monster",
+        "search",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DARK_CALLING",
+      "clone_path": "src_custom/spell_effects/dark_calling.c",
+      "clone_score": 1.02
+    },
+    {
+      "card_const": "GIFT_CARD",
+      "card_name": "Gift Card",
+      "kind": "trap",
+      "archetype": "GIFT",
+      "path": "src_custom/trap_effects/gift_card.c",
+      "effect_text": "Your opponent gains 3000 Life Points. Your opponent gains 3000 Life Points.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GIFT_OF_THE_MYSTICAL_ELF",
+      "clone_path": "src_custom/trap_effects/gift_of_the_mystical_elf.c",
+      "clone_score": 0.35
+    },
+    {
+      "card_const": "RAIGEKI_BREAK",
+      "card_name": "Raigeki Break",
+      "kind": "trap",
+      "archetype": "RAIGEKI",
+      "path": "src_custom/trap_effects/raigeki_break.c",
+      "effect_text": "Discard 1 card then target 1 card on the field; destroy it. Discard 1 card, then target 1 card on the field; destroy it.",
+      "tags": [
+        "destroy",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BOTTOMLESS_SHIFTING_SAND",
+      "clone_path": "src_custom/trap_effects/bottomless_shifting_sand.c",
+      "clone_score": 0.5
+    },
+    {
+      "card_const": "METAVERSE",
+      "card_name": "Metaverse",
+      "kind": "trap",
+      "archetype": "METAVERSE",
+      "path": "src_custom/trap_effects/metaverse.c",
+      "effect_text": "Take 1 Field Spell from Deck; activate it or add to hand. Take 1 Field Spell from your Deck, and either activate it or add it to your hand.",
+      "tags": [
+        "deck",
+        "hand"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "SKULL_INVITATION",
+      "clone_path": "src_custom/trap_effects/skull_invitation.c",
+      "clone_score": 0.25
+    }
+  ]
+}
