@@ -18,6 +18,7 @@ struct SpellActivationGateEntry {
 
 extern u8 CanActivateAutonomousActionUnit(void);
 extern u8 CanActivateA_HERO_LIVES(void);
+extern u8 CanActivateA_WINGBEAT_OF_GIANT_DRAGON(void);
 extern u8 CanActivateBookOfLife(void);
 extern u8 CanActivateChaosGreed(void);
 extern u8 CanActivateConfiscation(void);
@@ -38,6 +39,7 @@ extern u8 CanActivateTradeIn(void);
 static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute__((section(".text"))) = {
   { AUTONOMOUS_ACTION_UNIT, CanActivateAutonomousActionUnit, TRUE },
   { A_HERO_LIVES, CanActivateA_HERO_LIVES, TRUE },
+  { A_WINGBEAT_OF_GIANT_DRAGON, CanActivateA_WINGBEAT_OF_GIANT_DRAGON, TRUE },
   { BOOK_OF_LIFE, CanActivateBookOfLife, TRUE },
   { CHAOS_GREED, CanActivateChaosGreed, TRUE },
   { CONFISCATION, CanActivateConfiscation, TRUE },

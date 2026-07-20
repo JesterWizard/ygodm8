@@ -6,5 +6,6 @@
 extern const struct TimedDuelLayout sTimedDuelLayout_01;
 extern const struct TimedDuelLayout sTimedDuelLayout_02;
 extern const struct TimedDuelLayout sTimedDuelLayout_03;
+extern const struct TimedDuelLayout sTimedDuelLayout_04;
 
 #endif // GUARD_DEBUG_MENU_TIMED_DUEL_LAYOUTS_H

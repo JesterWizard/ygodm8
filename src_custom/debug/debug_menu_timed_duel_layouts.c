@@ -78,3 +78,33 @@ const struct TimedDuelLayout sTimedDuelLayout_03 APPEND_RODATA = {
   0,
   DARK_MAGICIAN_OF_CHAOS,
 };
+
+/* A Wingbeat of Giant Dragon: bounce BEWD, wipe opponent's filled backrow. */
+const struct TimedDuelLayout sTimedDuelLayout_04 APPEND_RODATA = {
+  {
+    {
+      TD_SET(MYSTICAL_SPACE_TYPHOON),
+      TD_SET(MYSTICAL_SPACE_TYPHOON),
+      TD_SET(MIRROR_FORCE),
+      TD_SET(NEGATE_ATTACK),
+      TD_SET(SWORDS_OF_REVEALING_LIGHT),
+    },
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_ATK(BLUE_EYES_WHITE_DRAGON), TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+  },
+  {
+    { TD_FACEUP(A_WINGBEAT_OF_GIANT_DRAGON), TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+  },
+  {
+    { CARD_NONE },
+    { CARD_NONE },
+  },
+  8000,
+  8000,
+  FIELD_NONE,
+  180,
+  0,
+  BLUE_EYES_SHINING_DRAGON,
+};
