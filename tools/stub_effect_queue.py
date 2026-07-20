@@ -9,11 +9,19 @@ Usage:
   python3 tools/stub_effect_queue.py --limit 20
   python3 tools/stub_effect_queue.py --pattern draw_n
   python3 tools/stub_effect_queue.py --archetype GRAVEKEEPERS
-  python3 tools/stub_effect_queue.py --fill draw_n SHARD_OF_GREED --draw-count 2
+
+  # Multi-card work packs (preferred long-term workflow):
+  python3 tools/stub_effect_queue.py --work-pack 12 --kind spell
+  python3 tools/stub_effect_queue.py --work-pack 24 --workers 3 --kind spell
+  python3 tools/stub_effect_queue.py --work-pack 10 --archetype GRAVEKEEPERS
+
+  # Template batch fill (spells only; review after):
+  python3 tools/stub_effect_queue.py --fill-all --pattern burn --dry-run
+  python3 tools/stub_effect_queue.py --fill-all --pattern draw_n --limit 6
+
+  # Single fill:
   python3 tools/stub_effect_queue.py --fill burn OOKAZI --damage 800 --dry-run
-  python3 tools/stub_effect_queue.py --fill destroy_zone TWISTER --target faceup_st
-  python3 tools/stub_effect_queue.py --fill search FUSION_SAGE --add-card POLYMERIZATION
-  python3 tools/stub_effect_queue.py --fill tribute_summon TRIBUTE_DOLL --summon-level 7
+  python3 tools/stub_effect_queue.py --write-list
   python3 tools/stub_effect_queue.py --self-check
 """
 
@@ -355,10 +363,21 @@ def sort_stubs(stubs: list[EffectFile]) -> list[EffectFile]:
 
     def key(s: EffectFile) -> tuple:
         has_pattern = 0 if s.suggested_pattern else 1
-        # Larger archetype batches first
         size = -arch_sizes[s.archetype]
         pattern = s.suggested_pattern or "zzz"
         return (has_pattern, size, s.archetype, pattern, s.effect_kind, s.card_const)
+
+    return sorted(stubs, key=key)
+
+
+def sort_stubs_easy_first(stubs: list[EffectFile], meta: dict[str, CardMeta]) -> list[EffectFile]:
+    """Prefer short text + high clone score — better for multi-card batches."""
+
+    def key(s: EffectFile) -> tuple:
+        text_len = len((meta.get(s.card_const).effect_text if meta.get(s.card_const) else "") or "")
+        has_pattern = 0 if s.suggested_pattern else 1
+        # Shorter text first; stronger clone next; fillable patterns before hard clones.
+        return (has_pattern, text_len, -s.clone_score, s.effect_kind, s.card_const)
 
     return sorted(stubs, key=key)
 
@@ -892,46 +911,252 @@ APPEND_TEXT void Effect{card_const}(void)
 '''
 
 
-def fill_template(args: argparse.Namespace) -> int:
-    card_const = args.card_const.upper()
+def render_fill(
+    pattern: str,
+    card_const: str,
+    *,
+    draw_count: int | None = None,
+    damage: int | None = None,
+    target: str | None = None,
+    add_card: str | None = None,
+    summon_level: int | None = None,
+    meta: dict[str, CardMeta] | None = None,
+) -> str:
+    if pattern == "draw_n":
+        count = draw_count
+        if count is None:
+            card = (meta or {}).get(card_const)
+            _, inferred, _ = fingerprint_text(card.effect_text if card else "")
+            count = inferred or 2
+        return template_draw_n(card_const, count)
+    if pattern == "burn":
+        dmg = damage
+        if dmg is None:
+            card = (meta or {}).get(card_const)
+            _, _, inferred = fingerprint_text(card.effect_text if card else "")
+            dmg = inferred or 500
+        return template_burn(card_const, dmg)
+    if pattern == "destroy_zone":
+        return template_destroy_zone(card_const, target or "faceup_st")
+    if pattern == "search":
+        return template_search(card_const, add_card.upper() if add_card else None)
+    if pattern == "tribute_summon":
+        return template_tribute_summon(card_const, summon_level or 7)
+    raise ValueError(f"unknown pattern {pattern}")
+
+
+def fill_one(
+    pattern: str,
+    card_const: str,
+    *,
+    dry_run: bool = False,
+    draw_count: int | None = None,
+    damage: int | None = None,
+    target: str | None = None,
+    add_card: str | None = None,
+    summon_level: int | None = None,
+    meta: dict[str, CardMeta] | None = None,
+) -> int:
+    card_const = card_const.upper()
     path = ROOT / "src_custom" / "spell_effects" / f"{card_const.lower()}.c"
     if not path.is_file():
         print(f"error: missing spell stub {path.relative_to(ROOT)}", file=sys.stderr)
         return 1
 
-    pattern = args.fill
-    if pattern == "draw_n":
-        count = args.draw_count
-        if count is None:
-            meta = load_manifest().get(card_const)
-            tags, inferred, _ = fingerprint_text(meta.effect_text if meta else "")
-            count = inferred or 2
-            _ = tags
-        body = template_draw_n(card_const, count)
-    elif pattern == "burn":
-        damage = args.damage
-        if damage is None:
-            meta = load_manifest().get(card_const)
-            _, _, inferred = fingerprint_text(meta.effect_text if meta else "")
-            damage = inferred or 500
-        body = template_burn(card_const, damage)
-    elif pattern == "destroy_zone":
-        body = template_destroy_zone(card_const, args.target or "faceup_st")
-    elif pattern == "search":
-        body = template_search(card_const, args.add_card.upper() if args.add_card else None)
-    elif pattern == "tribute_summon":
-        body = template_tribute_summon(card_const, args.summon_level or 7)
-    else:
-        print(f"error: unknown pattern {pattern}", file=sys.stderr)
-        return 1
-
-    if args.dry_run:
+    body = render_fill(
+        pattern,
+        card_const,
+        draw_count=draw_count,
+        damage=damage,
+        target=target,
+        add_card=add_card,
+        summon_level=summon_level,
+        meta=meta,
+    )
+    if dry_run:
         print(body)
         return 0
 
     path.write_text(body)
     print(f"Wrote {path.relative_to(ROOT)} ({pattern})")
-    print("Next: tighten predicates if needed, then make test-cards-link")
+    return 0
+
+
+def fill_template(args: argparse.Namespace) -> int:
+    meta = load_manifest()
+    rc = fill_one(
+        args.fill,
+        args.card_const,
+        dry_run=args.dry_run,
+        draw_count=args.draw_count,
+        damage=args.damage,
+        target=args.target,
+        add_card=args.add_card,
+        summon_level=args.summon_level,
+        meta=meta,
+    )
+    if rc == 0 and not args.dry_run:
+        print("Next: tighten predicates if needed, then make test-cards-link")
+    return rc
+
+
+def fill_all(args: argparse.Namespace) -> int:
+    """Apply templates to every matching fillable spell stub."""
+    meta = load_manifest()
+    files = scan_effects(meta)
+    stubs = [
+        f
+        for f in files
+        if f.is_stub and f.effect_kind == "spell" and f.suggested_pattern
+    ]
+    if args.pattern:
+        stubs = [s for s in stubs if s.suggested_pattern == args.pattern]
+    if args.archetype:
+        prefix = args.archetype.upper()
+        stubs = [s for s in stubs if s.archetype == prefix or s.card_const.startswith(prefix)]
+    stubs = sort_stubs(stubs)
+    if args.limit:
+        stubs = stubs[: args.limit]
+
+    if not stubs:
+        print("No fillable stubs matched.", file=sys.stderr)
+        return 1
+
+    wrote = 0
+    for stub in stubs:
+        pattern = stub.suggested_pattern
+        assert pattern is not None
+        target = args.target
+        if pattern == "destroy_zone" and not target:
+            if "faceup" in stub.text_tags and "st" in stub.text_tags:
+                target = "faceup_st"
+            elif "st" in stub.text_tags:
+                target = "backrow"
+            else:
+                target = "opp_monster"
+
+        if args.dry_run:
+            print(
+                f"would fill {stub.card_const} as {pattern}"
+                + (f" target={target}" if pattern == "destroy_zone" else "")
+                + (f" draw={stub.draw_count}" if pattern == "draw_n" else "")
+                + (f" dmg={stub.burn_damage}" if pattern == "burn" else "")
+            )
+            wrote += 1
+            continue
+
+        rc = fill_one(
+            pattern,
+            stub.card_const,
+            dry_run=False,
+            draw_count=stub.draw_count,
+            damage=stub.burn_damage,
+            target=target,
+            summon_level=args.summon_level,
+            meta=meta,
+        )
+        if rc != 0:
+            return rc
+        wrote += 1
+
+    print(f"{'Would fill' if args.dry_run else 'Filled'} {wrote} stubs"
+          f"{' (dry-run)' if args.dry_run else ''}")
+    if not args.dry_run:
+        print("Review predicates, then: make test-cards-link")
+    return 0
+
+
+def stub_to_pack_entry(stub: EffectFile, meta: dict[str, CardMeta]) -> dict:
+    card = meta.get(stub.card_const)
+    return {
+        "card_const": stub.card_const,
+        "card_name": card.card_name if card else stub.card_const,
+        "kind": stub.effect_kind,
+        "archetype": stub.archetype,
+        "path": str(stub.path.relative_to(ROOT)),
+        "effect_text": (card.effect_text if card else "")[:500],
+        "tags": sorted(stub.text_tags),
+        "pattern": stub.suggested_pattern,
+        "draw_count": stub.draw_count,
+        "burn_damage": stub.burn_damage,
+        "clone_const": stub.clone_const,
+        "clone_path": stub.clone_path,
+        "clone_score": stub.clone_score,
+    }
+
+
+def write_work_pack(
+    stubs: list[EffectFile], meta: dict[str, CardMeta], out_dir: Path, workers: int
+) -> int:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    entries = [stub_to_pack_entry(s, meta) for s in stubs]
+    workers = max(1, workers)
+
+    chunks: list[list[dict]] = [[] for _ in range(workers)]
+    for i, entry in enumerate(entries):
+        chunks[i % workers].append(entry)
+
+    instruction = (
+        "Implement EVERY card in this pack. Clone from clone_path; match effect_text. "
+        "Use duel_helpers.h. Spells: only edit the listed .c file. "
+        "Activated/permanent may need monster_effects.h / dispatcher — serialize those. "
+        "Do not leave TODO bodies. One make at the end of the whole batch."
+    )
+    manifest: dict = {
+        "total": len(entries),
+        "workers": workers,
+        "instruction": instruction,
+        "packs": [],
+    }
+
+    for w, chunk in enumerate(chunks):
+        if not chunk:
+            continue
+        pack_path = out_dir / f"pack_{w:02d}.json"
+        md_path = out_dir / f"pack_{w:02d}.md"
+        pack_body = {
+            "worker": w,
+            "count": len(chunk),
+            "instruction": instruction,
+            "cards": chunk,
+        }
+        pack_path.write_text(json.dumps(pack_body, indent=2) + "\n")
+
+        lines = [
+            f"# Effect work pack {w:02d} ({len(chunk)} cards)",
+            "",
+            instruction,
+            "",
+        ]
+        for card in chunk:
+            lines.append(f"## {card['card_const']} ({card['kind']})")
+            lines.append(f"- file: `{card['path']}`")
+            if card.get("clone_path"):
+                lines.append(f"- clone: `{card['clone_path']}` ({card.get('clone_const')})")
+            if card.get("pattern"):
+                lines.append(
+                    f"- optional template: `--fill {card['pattern']} {card['card_const']}`"
+                )
+            lines.append(f"- text: {card.get('effect_text') or '(no text)'}")
+            lines.append("")
+        md_path.write_text("\n".join(lines))
+        manifest["packs"].append(
+            {
+                "worker": w,
+                "json": str(pack_path.relative_to(ROOT)),
+                "md": str(md_path.relative_to(ROOT)),
+                "count": len(chunk),
+            }
+        )
+
+    index_path = out_dir / "index.json"
+    index_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    print(
+        f"Wrote work pack: {index_path.relative_to(ROOT)} "
+        f"({len(entries)} cards, {workers} workers)"
+    )
+    for p in manifest["packs"]:
+        print(f"  worker {p['worker']}: {p['count']} cards → {p['md']}")
     return 0
 
 
@@ -958,36 +1183,72 @@ def self_check() -> int:
     return 0
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Stub effect queue + pattern codegen")
-    parser.add_argument("--limit", type=int, default=None, help="Max rows to print")
-    parser.add_argument("--pattern", choices=FILL_PATTERNS, help="Filter queue by suggested pattern")
-    parser.add_argument("--archetype", help="Filter by archetype prefix (e.g. GRAVEKEEPERS)")
-    parser.add_argument("--kind", choices=[k for k, _ in EFFECT_DIRS], help="Filter effect kind")
-    parser.add_argument("--json", action="store_true", help="Emit JSON instead of table")
-    parser.add_argument("--fill", choices=FILL_PATTERNS, help="Overwrite spell stub with template")
-    parser.add_argument("card_const", nargs="?", help="CARD_CONST for --fill")
-    parser.add_argument("--draw-count", type=int, help="draw_n: cards to draw")
-    parser.add_argument("--damage", type=int, help="burn: LP damage")
-    parser.add_argument(
-        "--target",
-        choices=("opp_monster", "any_monster", "backrow", "faceup_st"),
-        help="destroy_zone target filter",
-    )
-    parser.add_argument("--add-card", help="search: exact CARD_CONST to add (else predicate stub)")
-    parser.add_argument("--summon-level", type=int, help="tribute_summon: hand monster level")
-    parser.add_argument("--dry-run", action="store_true", help="With --fill, print only")
-    parser.add_argument("--self-check", action="store_true", help="Run assert-based smoke check")
-    args = parser.parse_args()
+def write_stub_list(
+    stubs: list[EffectFile],
+    meta: dict[str, CardMeta],
+    out_path: Path | None = None,
+) -> Path:
+    """Write living backlog of every stubbed effect. Rows vanish when TODOs are gone."""
+    from datetime import datetime, timezone
 
-    if args.self_check:
-        return self_check()
+    if out_path is None:
+        out_path = ROOT / "documentation" / "STUB_EFFECTS.md"
 
-    if args.fill:
-        if not args.card_const:
-            parser.error("--fill requires CARD_CONST")
-        return fill_template(args)
+    stubs = sorted(stubs, key=lambda s: (s.effect_kind, s.archetype, s.card_const))
+    by_kind = Counter(s.effect_kind for s in stubs)
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
+    lines = [
+        "# Stub Effects Backlog",
+        "",
+        "Auto-generated living list of effect files that still contain `TODO` stubs.",
+        "Entries disappear when the effect body is implemented (re-run `--write-list`).",
+        "",
+        "```bash",
+        "python3 tools/stub_effect_queue.py --write-list",
+        "```",
+        "",
+        f"**Last updated:** {stamp}  ",
+        f"**Remaining stubs:** `{len(stubs)}`",
+        "",
+        "## Counts by kind",
+        "",
+        "| Kind | Count |",
+        "|------|------:|",
+    ]
+    for kind, _ in EFFECT_DIRS:
+        if by_kind.get(kind):
+            lines.append(f"| `{kind}` | {by_kind[kind]} |")
+    lines.append(f"| **total** | **{len(stubs)}** |")
+    lines.append("")
+
+    for kind, _ in EFFECT_DIRS:
+        kind_stubs = [s for s in stubs if s.effect_kind == kind]
+        if not kind_stubs:
+            continue
+        lines.append(f"## {kind} ({len(kind_stubs)})")
+        lines.append("")
+        lines.append("| `card_const` | archetype | pattern | clone | path |")
+        lines.append("|--------------|-----------|---------|-------|------|")
+        for s in kind_stubs:
+            name = meta.get(s.card_const).card_name if meta.get(s.card_const) else ""
+            pattern = s.suggested_pattern or ""
+            clone = s.clone_const or ""
+            rel = str(s.path.relative_to(ROOT))
+            # title attribute via name in first column tooltip-ish: keep const primary
+            _ = name
+            lines.append(
+                f"| `{s.card_const}` | `{s.archetype}` | {pattern or '—'} | "
+                f"{('`' + clone + '`') if clone else '—'} | `{rel}` |"
+            )
+        lines.append("")
+
+    out_path.write_text("\n".join(lines).rstrip() + "\n")
+    print(f"Wrote {out_path.relative_to(ROOT)} ({len(stubs)} stubs)", file=sys.stderr)
+    return out_path
+
+
+def filtered_stubs(args: argparse.Namespace) -> tuple[dict[str, CardMeta], list[EffectFile]]:
     meta = load_manifest()
     files = scan_effects(meta)
     assign_clones(files)
@@ -1000,38 +1261,143 @@ def main() -> int:
         stubs = [s for s in stubs if s.archetype == prefix or s.card_const.startswith(prefix)]
     if args.kind:
         stubs = [s for s in stubs if s.effect_kind == args.kind]
+    if getattr(args, "fillable_only", False):
+        stubs = [s for s in stubs if s.suggested_pattern]
 
-    stubs = sort_stubs(stubs)
+    return meta, sort_stubs(stubs)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Stub effect queue + pattern codegen + batch packs"
+    )
+    parser.add_argument("--limit", type=int, default=None, help="Max rows / fill-all size")
+    parser.add_argument("--pattern", choices=FILL_PATTERNS, help="Filter by suggested pattern")
+    parser.add_argument("--archetype", help="Filter by archetype prefix (e.g. GRAVEKEEPERS)")
+    parser.add_argument("--kind", choices=[k for k, _ in EFFECT_DIRS], help="Filter effect kind")
+    parser.add_argument(
+        "--fillable-only", action="store_true", help="Only stubs with a fill template"
+    )
+    parser.add_argument("--json", action="store_true", help="Emit JSON instead of table")
+    parser.add_argument("--fill", choices=FILL_PATTERNS, help="Overwrite one spell stub")
+    parser.add_argument(
+        "--fill-all",
+        action="store_true",
+        help="Fill all matching fillable spell stubs (use with --pattern/--limit)",
+    )
+    parser.add_argument(
+        "--work-pack",
+        type=int,
+        metavar="N",
+        help="Write a multi-card work pack of N stubs for batch/parallel implement",
+    )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="Split --work-pack across N worker files (default 1)",
+    )
+    parser.add_argument(
+        "--by-archetype",
+        action="store_true",
+        help="With --work-pack, sort by archetype batches instead of easy-first",
+    )
+    parser.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="Output dir for --work-pack (default documentation/effect_work_packs/YYYY-MM-DD)",
+    )
+    parser.add_argument("card_const", nargs="?", help="CARD_CONST for --fill")
+    parser.add_argument("--draw-count", type=int, help="draw_n: cards to draw")
+    parser.add_argument("--damage", type=int, help="burn: LP damage")
+    parser.add_argument(
+        "--target",
+        choices=("opp_monster", "any_monster", "backrow", "faceup_st"),
+        help="destroy_zone target filter",
+    )
+    parser.add_argument("--add-card", help="search: exact CARD_CONST to add")
+    parser.add_argument("--summon-level", type=int, help="tribute_summon: hand monster level")
+    parser.add_argument("--dry-run", action="store_true", help="With --fill/--fill-all, print only")
+    parser.add_argument(
+        "--write-list",
+        action="store_true",
+        help="Write documentation/STUB_EFFECTS.md (all remaining stubs; shrinks as implemented)",
+    )
+    parser.add_argument("--self-check", action="store_true", help="Run assert-based smoke check")
+    args = parser.parse_args()
+
+    if args.self_check:
+        return self_check()
+
+    if args.fill and args.fill_all:
+        parser.error("use only one of --fill / --fill-all")
+
+    if args.write_list and not (args.fill or args.fill_all or args.work_pack is not None):
+        meta = load_manifest()
+        files = scan_effects(meta)
+        assign_clones(files)
+        stubs = [f for f in files if f.is_stub]
+        write_stub_list(stubs, meta)
+        return 0
+
+    if args.fill:
+        if not args.card_const:
+            parser.error("--fill requires CARD_CONST")
+        rc = fill_template(args)
+        if rc == 0 and args.write_list:
+            meta = load_manifest()
+            files = scan_effects(meta)
+            assign_clones(files)
+            write_stub_list([f for f in files if f.is_stub], meta)
+        return rc
+
+    if args.fill_all:
+        rc = fill_all(args)
+        if rc == 0 and not args.dry_run:
+            meta = load_manifest()
+            files = scan_effects(meta)
+            assign_clones(files)
+            write_stub_list([f for f in files if f.is_stub], meta)
+        return rc
+
+    if args.work_pack is not None:
+        if args.work_pack < 1:
+            parser.error("--work-pack N requires N >= 1")
+        meta, stubs = filtered_stubs(args)
+        # Work packs default to easy-first so batches finish; --by-archetype keeps old sort.
+        if not getattr(args, "by_archetype", False):
+            stubs = sort_stubs_easy_first(stubs, meta)
+        stubs = stubs[: args.work_pack]
+        if not stubs:
+            print("No stubs matched for work pack.", file=sys.stderr)
+            return 1
+        from datetime import date
+
+        out_dir = args.out
+        if out_dir is None:
+            out_dir = ROOT / "documentation" / "effect_work_packs" / date.today().isoformat()
+        elif not out_dir.is_absolute():
+            out_dir = ROOT / out_dir
+        return write_work_pack(stubs, meta, out_dir, args.workers)
+
+    meta, stubs = filtered_stubs(args)
 
     if args.json:
-        payload = []
-        for s in stubs[: args.limit] if args.limit else stubs:
-            payload.append(
-                {
-                    "card_const": s.card_const,
-                    "kind": s.effect_kind,
-                    "archetype": s.archetype,
-                    "pattern": s.suggested_pattern,
-                    "tags": sorted(s.text_tags),
-                    "draw_count": s.draw_count,
-                    "burn_damage": s.burn_damage,
-                    "clone": s.clone_const,
-                    "clone_path": s.clone_path,
-                    "clone_score": s.clone_score,
-                    "path": str(s.path.relative_to(ROOT)),
-                }
-            )
+        payload = [stub_to_pack_entry(s, meta) for s in (stubs[: args.limit] if args.limit else stubs)]
         json.dump(payload, sys.stdout, indent=2)
         print()
         return 0
 
     print_queue(stubs, args.limit)
-    # Summary of fillable patterns
     by_pat = Counter(s.suggested_pattern for s in stubs if s.suggested_pattern)
     if by_pat:
         print("\n# fillable pattern counts:")
         for pat, n in by_pat.most_common():
             print(f"  {pat}: {n}")
+    print("\n# batch next:")
+    print("  python3 tools/stub_effect_queue.py --work-pack 12 --kind spell --workers 3")
+    print("  python3 tools/stub_effect_queue.py --fill-all --pattern burn --dry-run")
     return 0
 
 

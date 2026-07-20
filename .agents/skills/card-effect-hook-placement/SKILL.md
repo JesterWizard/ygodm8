@@ -40,11 +40,17 @@ Use this skill when creating or moving a card-specific effect.
 
 ## Fast Path (with tools)
 
-**Batch stub backlog: `python3 tools/stub_effect_queue.py`**
-Lists TODO effect stubs sorted by archetype + effect-text fingerprint, with a suggested clone source. Filter with `--pattern draw_n|burn|destroy_zone|search|tribute_summon`, `--archetype PREFIX`, `--kind spell`. Fill a spell stub from a template: `python3 tools/stub_effect_queue.py --fill burn CARD --damage 500` (also `draw_n`, `destroy_zone`, `search`, `tribute_summon`).
+**Default = batch, not one card.** Read **batch-implement-effects** when clearing stubs.
 
-**Fastest wire: `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>`**
-This creates the hook `.c` file, wires the dispatcher, and updates `card_effect_tally.md` in one command.
+```bash
+python3 tools/stub_effect_queue.py --work-pack 12 --kind spell --workers 3
+python3 tools/stub_effect_queue.py --fill-all --pattern burn --dry-run
+```
+
+**Queue / fill one:** `python3 tools/stub_effect_queue.py` lists TODO stubs (archetype + fingerprint + clone). `--fill PATTERN CARD` writes a spell template.
+
+**Wire one file:** `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>`
+Creates the hook `.c`, wires the dispatcher, updates `card_effect_tally.md`.
 
 For cursor targeting effects, use `Duel_PickZone` (no header file, no cursor constant, no `code_8043EF4_hooks.c` edit):
 1. `Duel_SetupPickZone(validator, resolver, canceller, aiPicker)` — registers 4 callbacks

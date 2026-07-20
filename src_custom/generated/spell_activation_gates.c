@@ -16,14 +16,18 @@ struct SpellActivationGateEntry {
   u8 playForbiddenSfx;
 };
 
+extern u8 CanActivateACE_OF_SWORD(void);
 extern u8 CanActivateAutonomousActionUnit(void);
 extern u8 CanActivateA_HERO_LIVES(void);
 extern u8 CanActivateA_WINGBEAT_OF_GIANT_DRAGON(void);
 extern u8 CanActivateBookOfLife(void);
 extern u8 CanActivateChaosGreed(void);
+extern u8 CanActivateCHARGE_OF_THE_LIGHT_BRIGADE(void);
 extern u8 CanActivateConfiscation(void);
 extern u8 CanActivateDedicationThroughLightAndDarkness(void);
 extern u8 CanActivateDelinquentDuo(void);
+extern u8 CanActivateDESTINY_DRAW(void);
+extern u8 CanActivateDOUBLE_CYCLONE(void);
 extern u8 CanActivateEEmergencyCall(void);
 extern u8 CanActivateFinalCountdown(void);
 extern u8 CanActivateFutureFusion(void);
@@ -31,20 +35,27 @@ extern u8 CanActivateGuardianTreasure(void);
 extern u8 CanActivateKnightsTitle(void);
 extern u8 CanActivateMeteorOfDestruction(void);
 extern u8 CanActivateMonsterReborn(void);
+extern u8 CanActivateMORAY_OF_GREED(void);
 extern u8 CanActivatePrematureBurial(void);
+extern u8 CanActivateSUMMONERS_ART(void);
 extern u8 CanActivateTheFluteOfSummoningDragon(void);
 extern u8 CanActivateTheForcefulSentry(void);
 extern u8 CanActivateTradeIn(void);
+extern u8 CanActivateTWISTER(void);
 
 static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute__((section(".text"))) = {
+  { ACE_OF_SWORD, CanActivateACE_OF_SWORD, TRUE },
   { AUTONOMOUS_ACTION_UNIT, CanActivateAutonomousActionUnit, TRUE },
   { A_HERO_LIVES, CanActivateA_HERO_LIVES, TRUE },
   { A_WINGBEAT_OF_GIANT_DRAGON, CanActivateA_WINGBEAT_OF_GIANT_DRAGON, TRUE },
   { BOOK_OF_LIFE, CanActivateBookOfLife, TRUE },
   { CHAOS_GREED, CanActivateChaosGreed, TRUE },
+  { CHARGE_OF_THE_LIGHT_BRIGADE, CanActivateCHARGE_OF_THE_LIGHT_BRIGADE, TRUE },
   { CONFISCATION, CanActivateConfiscation, TRUE },
   { DEDICATION_THROUGH_LIGHT_AND_DARKNESS, CanActivateDedicationThroughLightAndDarkness, TRUE },
   { DELINQUENT_DUO, CanActivateDelinquentDuo, TRUE },
+  { DESTINY_DRAW, CanActivateDESTINY_DRAW, TRUE },
+  { DOUBLE_CYCLONE, CanActivateDOUBLE_CYCLONE, TRUE },
   { E_EMERGENCY_CALL, CanActivateEEmergencyCall, TRUE },
   { FINAL_COUNTDOWN, CanActivateFinalCountdown, TRUE },
   { FUTURE_FUSION, CanActivateFutureFusion, TRUE },
@@ -52,10 +63,13 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { KNIGHTS_TITLE, CanActivateKnightsTitle, TRUE },
   { METEOR_OF_DESTRUCTION, CanActivateMeteorOfDestruction, TRUE },
   { MONSTER_REBORN, CanActivateMonsterReborn, TRUE },
+  { MORAY_OF_GREED, CanActivateMORAY_OF_GREED, TRUE },
   { PREMATURE_BURIAL, CanActivatePrematureBurial, TRUE },
+  { SUMMONERS_ART, CanActivateSUMMONERS_ART, TRUE },
   { THE_FLUTE_OF_SUMMONING_DRAGON, CanActivateTheFluteOfSummoningDragon, TRUE },
   { THE_FORCEFUL_SENTRY, CanActivateTheForcefulSentry, TRUE },
   { TRADE_IN, CanActivateTradeIn, TRUE },
+  { TWISTER, CanActivateTWISTER, TRUE },
 };
 
 u8 TryRejectSpellActivationGate(u16 cardId)

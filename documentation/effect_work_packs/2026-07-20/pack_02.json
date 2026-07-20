@@ -1,0 +1,85 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "SUMMONERS_ART",
+      "card_name": "Summoner's Art",
+      "kind": "spell",
+      "archetype": "SUMMONERS",
+      "path": "src_custom/spell_effects/summoners_art.c",
+      "effect_text": "Add 1 Level 5 or higher Normal Monster from your Deck to your hand. Add 1 Level 5 or higher Normal Monster from your Deck to your hand.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster",
+        "search"
+      ],
+      "pattern": "search",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "POLYMERIZATION",
+      "clone_path": "src_custom/spell_effects/polymerization.c",
+      "clone_score": 0.75
+    },
+    {
+      "card_const": "ACE_OF_SWORD",
+      "card_name": "Ace of Sword",
+      "kind": "spell",
+      "archetype": "ACE_OF",
+      "path": "src_custom/spell_effects/ace_of_sword.c",
+      "effect_text": "Coin: burn or take selected ATK. Select 1 face-up monster; toss a coin. Heads: inflict damage equal to its ATK. Tails: you take damage equal to its ATK.",
+      "tags": [
+        "burn",
+        "faceup",
+        "monster"
+      ],
+      "pattern": "burn",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "H_HEATED_HEART",
+      "clone_path": "src_custom/spell_effects/h_heated_heart.c",
+      "clone_score": 1.15
+    },
+    {
+      "card_const": "TWISTER",
+      "card_name": "Twister",
+      "kind": "spell",
+      "archetype": "TWISTER",
+      "path": "src_custom/spell_effects/twister.c",
+      "effect_text": "Pay 500 LP, then target 1 face-up Spell/Trap on the field; destroy that target. Pay 500 LP, then target 1 face-up Spell/Trap on the field; destroy that target.",
+      "tags": [
+        "destroy",
+        "faceup",
+        "st",
+        "target1"
+      ],
+      "pattern": "destroy_zone",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "BLOCK_ATTACK",
+      "clone_path": "src_custom/spell_effects/block_attack.c",
+      "clone_score": 0.65
+    },
+    {
+      "card_const": "DOUBLE_CYCLONE",
+      "card_name": "Double Cyclone",
+      "kind": "spell",
+      "archetype": "DOUBLE",
+      "path": "src_custom/spell_effects/double_cyclone.c",
+      "effect_text": "Target 1 Spell/Trap you control and 1 Spell/Trap your opponent controls; destroy them. Target 1 Spell/Trap you control and 1 Spell/Trap your opponent controls; destroy them.",
+      "tags": [
+        "destroy",
+        "st",
+        "target1"
+      ],
+      "pattern": "destroy_zone",
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "DOUBLE_SUMMON",
+      "clone_path": "src_custom/spell_effects/double_summon.c",
+      "clone_score": 1.08
+    }
+  ]
+}
