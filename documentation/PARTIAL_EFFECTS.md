@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 18:26 UTC  
-**Remaining partials:** `454`
+**Last updated:** 2026-07-20 18:28 UTC  
+**Remaining partials:** `462`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 123 |
+| `activated` | 131 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **454** |
+| **total** | **462** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (123)
+## activated (131)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1429,6 +1429,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `AMAZONESS_SAGE`
 - path: `src_custom/activated_effects/amazoness_sage.c`
 - L98: end-of-Damage-Step-after-attack trigger needs battle hook. Ceiling: once via usage if opp Spell/Trap on field; upgrade: damage-step gate.
+
+### `AMAZONESS_SCOUTS`
+- path: `src_custom/activated_effects/amazoness_scouts.c`
+- L22: either-player quick timing not wired; allow once via usage on your turn only. Ceiling: tribute self only; upgrade: Amazoness protection flags on face-up Amazoness monsters until EOT.
+- L46: face-up Amazoness cannot be targeted/destroyed by effects this turn — no protection flag hook yet.
 
 ### `AMAZONESS_TRAINEE`
 - path: `src_custom/activated_effects/amazoness_trainee.c`
@@ -1504,9 +1509,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/charm_of_shabti.c`
 - L43: battle protection for Gravekeeper's monsters not applied. Ceiling: discard only; upgrade: battle-destroy immunity gate until EP.
 
+### `CHIMERATECH_FORTRESS_DRAGON`
+- path: `src_custom/activated_effects/chimeratech_fortress_dragon.c`
+- L12: original ATK = 1000 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not field-ignition activatable here.
+
 ### `CYBER_LASER_DRAGON`
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
 - L17: targets face-up monsters on opponent's side with ATK >= 2400 or DEF >= 2400. Upgrade path: scan backrow S/T cards if the card text ever changes.
+
+### `CYBER_PHOENIX`
+- path: `src_custom/activated_effects/cyber_phoenix.c`
+- L12: Attack Position S/T negate + destroy-by-battle draw need continuous and battle hooks. Ceiling: not field-ignition activatable here.
 
 ### `CYBERNETIC_MAGICIAN`
 - path: `src_custom/activated_effects/cybernetic_magician.c`
@@ -1533,6 +1546,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
 - path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
 - L12: name becomes Dark Magician + S/T protection need permanent/name hooks. Ceiling: not ignition-activatable here; upgrade: permanent overlay.
+
+### `DARK_STRIKE_FIGHTER`
+- path: `src_custom/activated_effects/dark_strike_fighter.c`
+- L127: Main Phase 1 gate not wired; allow once via usage any main phase.
 
 ### `DEEP_SEA_DIVA`
 - path: `src_custom/activated_effects/deep_sea_diva.c`
@@ -1747,6 +1764,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/molten_zombie.c`
 - L18: printed trigger is SS from GY. Ceiling: once via usage when Activate runs (summon-dispatch or manual).
 
+### `MORPHTRONIC_BOARDEN`
+- path: `src_custom/activated_effects/morphtronic_boarden.c`
+- L12: Morphtronic direct attack / battle indestructible continuous need attack and battle hooks. Ceiling: not field-ignition activatable here.
+
 ### `MORPHTRONIC_RADION`
 - path: `src_custom/activated_effects/morphtronic_radion.c`
 - L12: position-based Morphtronic ATK/DEF boost needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position gate.
@@ -1758,6 +1779,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `NEO_SPACIAN_DARK_PANTHER`
 - path: `src_custom/activated_effects/neo_spacian_dark_panther.c`
 - L12: copy opp monster name/effects needs engine name/effect overlay. Ceiling: not ignition-activatable here; upgrade: permanent/name/effect copy.
+
+### `NUMBER_39_UTOPIA`
+- path: `src_custom/activated_effects/number_39_utopia.c`
+- L12: attack negate via detach + no-material self-destroy need battle hook and XYZ material system. Ceiling: not field-ignition activatable.
 
 ### `OJAMA_KING`
 - path: `src_custom/activated_effects/ojama_king.c`
@@ -1897,6 +1922,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `TYRANT_BURST_DRAGON`
 - path: `src_custom/activated_effects/tyrant_burst_dragon.c`
 - L12: multi-attack + equip-to-monster need battle/equip continuous hooks. Ceiling: not ignition-activatable here; upgrade: permanent battle/equip gate.
+
+### `ULTIMATE_OBEDIENT_FIEND`
+- path: `src_custom/activated_effects/ultimate_obedient_fiend.c`
+- L12: solo-field + empty-hand attack restriction needs attack gate hook. Ceiling: not field-ignition activatable here.
+
+### `ULTIMATE_TYRANNO`
+- path: `src_custom/activated_effects/ultimate_tyranno.c`
+- L12: multi-attack + Tyranno-only battle phase gate need battle hooks. Ceiling: not field-ignition activatable here.
 
 ### `VENOM_BOA`
 - path: `src_custom/activated_effects/venom_boa.c`

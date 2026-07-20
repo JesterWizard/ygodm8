@@ -1,0 +1,25 @@
+{
+  "total": 12,
+  "workers": 3,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "packs": [
+    {
+      "worker": 0,
+      "json": "documentation/effect_work_packs/2026-07-20-am/pack_00.json",
+      "md": "documentation/effect_work_packs/2026-07-20-am/pack_00.md",
+      "count": 4
+    },
+    {
+      "worker": 1,
+      "json": "documentation/effect_work_packs/2026-07-20-am/pack_01.json",
+      "md": "documentation/effect_work_packs/2026-07-20-am/pack_01.md",
+      "count": 4
+    },
+    {
+      "worker": 2,
+      "json": "documentation/effect_work_packs/2026-07-20-am/pack_02.json",
+      "md": "documentation/effect_work_packs/2026-07-20-am/pack_02.md",
+      "count": 4
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "worker": 2,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "MORPHTRONIC_BOARDEN",
+      "card_name": "Morphtronic Boarden",
+      "kind": "activated",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/activated_effects/morphtronic_boarden.c",
+      "effect_text": "- While in Attack Position: Morphtronic monsters you control can attack your opponent directly.\n- While in Defense Pos - While in Attack Position: Morphtronic monsters you control can attack your opponent directly. - While in Defense Position: Other Morphtronic monsters you control cannot be destroyed by battle.",
+      "tags": [],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AROMAGE_CANANGA",
+      "clone_path": "src_custom/activated_effects/aromage_cananga.c",
+      "clone_score": 1.0
+    },
+    {
+      "card_const": "AMAZONESS_SCOUTS",
+      "card_name": "Amazoness Scouts",
+      "kind": "activated",
+      "archetype": "AMAZONESS",
+      "path": "src_custom/activated_effects/amazoness_scouts.c",
+      "effect_text": "During either player's turn: You can Tribute this card; this turn, face-up \"Amazoness\" monsters you currently control ca During either player's turn: You can Tribute this card; this turn, face-up Amazoness monsters you currently control cannot be targeted by monster effects, and cannot be destroyed by card effects.",
+      "tags": [
+        "faceup",
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_SAGE",
+      "clone_path": "src_custom/activated_effects/amazoness_sage.c",
+      "clone_score": 0.55
+    },
+    {
+      "card_const": "MORPHTRONIC_DATATRON",
+      "card_name": "Morphtronic Datatron",
+      "kind": "activated",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/activated_effects/morphtronic_datatron.c",
+      "effect_text": "- While in Attack Position: Once per turn, you can Tribute 1 monster to inflict 600 damage to your opponent. - While in  - While in Attack Position: Once per turn, you can Tribute 1 monster to inflict 600 damage to your opponent. - While in Defense Position: Once per turn, you can inflict 300 damage to your opponent.",
+      "tags": [
+        "burn",
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": 600,
+      "clone_const": "GRAVEKEEPERS_CANNONHOLDER",
+      "clone_path": "src_custom/activated_effects/gravekeepers_cannonholder.c",
+      "clone_score": 0.6
+    },
+    {
+      "card_const": "DARK_STRIKE_FIGHTER",
+      "card_name": "Dark Strike Fighter",
+      "kind": "activated",
+      "archetype": "DARK",
+      "path": "src_custom/activated_effects/dark_strike_fighter.c",
+      "effect_text": "Main Phase 1: Tribute 1; burn equal to its Level x 200. Once per turn. 1 Tuner + 1 or more non-Tuner monsters During your Main Phase 1: You can Tribute 1 monster; inflict damage to your opponent equal to the Tributed monster's Level on the field x 200. You can only use this effect of Dark Strike Fighter once per turn.",
+      "tags": [
+        "burn",
+        "monster",
+        "tribute"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GRAVEKEEPERS_CANNONHOLDER",
+      "clone_path": "src_custom/activated_effects/gravekeepers_cannonholder.c",
+      "clone_score": 0.6
+    }
+  ]
+}
