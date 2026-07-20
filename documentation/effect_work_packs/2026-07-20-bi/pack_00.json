@@ -1,0 +1,91 @@
+{
+  "worker": 0,
+  "count": 4,
+  "instruction": "Implement EVERY card in this pack. Clone from clone_path; match effect_text. Use duel_helpers.h. Spells: only edit the listed .c file. Activated/permanent may need monster_effects.h / dispatcher \u2014 serialize those. Do not leave TODO bodies. One make at the end of the whole batch.",
+  "cards": [
+    {
+      "card_const": "AMAZONESS_SPIRITUALIST",
+      "card_name": "Amazoness Spiritualist",
+      "kind": "activated",
+      "archetype": "AMAZONESS",
+      "path": "src_custom/activated_effects/amazoness_spiritualist.c",
+      "effect_text": "If this card is in your hand or GY: You can target 1 \"Amazoness\" card you control, except \"Amazoness Spiritualist\"; retu If this card is in your hand or GY: You can target 1 Amazoness card you control, except Amazoness Spiritualist; return it to the hand, and if you do, Special Summon this card, also you cannot Special Summon monsters from the Extra Deck for the rest of this turn, except Amazoness monsters. If this card is Special Summoned: You can add 1 Polymerization from your Deck to your han",
+      "tags": [
+        "deck",
+        "gy",
+        "hand",
+        "search",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "AMAZONESS_WAR_CHIEF",
+      "clone_path": "src_custom/activated_effects/amazoness_war_chief.c",
+      "clone_score": 0.64
+    },
+    {
+      "card_const": "MORPHTRONIC_EARFON",
+      "card_name": "Morphtronic Earfon",
+      "kind": "activated",
+      "archetype": "MORPHTRONIC",
+      "path": "src_custom/activated_effects/morphtronic_earfon.c",
+      "effect_text": "1 Tuner + 1+ non-Tuner monsters\r\nWhile this card is an Equip Card, the equipped monster can make up to 2 attacks on mons 1 Tuner + 1+ non-Tuner monsters While this card is an Equip Card, the equipped monster can make up to 2 attacks on monsters during each Battle Phase. You can only use each of the following effects of Morphtronic Earfon once per turn. If this card is Special Summoned: You can target 1 face-up monster on the field; treat it as a Tuner until the end of this turn. You can target 1",
+      "tags": [
+        "faceup",
+        "gy",
+        "monster",
+        "ssummon",
+        "target1"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "MORPHTRONIC_BOOMBOXEN",
+      "clone_path": "src_custom/activated_effects/morphtronic_boomboxen.c",
+      "clone_score": 0.68
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_SPIRIT_OF_NEOS",
+      "card_name": "Elemental HERO Spirit of Neos",
+      "kind": "activated",
+      "archetype": "ELEMENTAL_HERO",
+      "path": "src_custom/activated_effects/elemental_hero_spirit_of_neos.c",
+      "effect_text": "Hand SS on attack; search; swap. When an opponent's monster declares an attack: You can Special Summon this card from your hand in Defense Position, and if you do, it cannot be destroyed by battle. If this card is Special Summoned: You can add from your Deck to your hand 1 Polymerization or 1 Spell/Trap that mentions an Elemental HERO monster's card name. During your Main Phase: You can shuffle this card into the Deck, and if you do, Special Summon 1 Elemental HERO Normal Monster from your Deck.",
+      "tags": [
+        "deck",
+        "hand",
+        "monster",
+        "ssummon",
+        "st"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "ELEMENTAL_HERO_MAGMA_NEOS",
+      "clone_path": "src_custom/activated_effects/elemental_hero_magma_neos.c",
+      "clone_score": 0.85
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_DOMITIANUS",
+      "card_name": "Gladiator Beast Domitianus",
+      "kind": "activated",
+      "archetype": "GLADIATOR_BEAST",
+      "path": "src_custom/activated_effects/gladiator_beast_domitianus.c",
+      "effect_text": "Multi-attack Fusion; tag after battle. Gladiator Beast Vespasius + 2 Gladiator Beast monsters Must first be Special Summoned (from your Extra Deck) by shuffling the above cards you control into the Deck. (You do not use Polymerization.) Once per turn, when your opponent activates a monster effect (Quick Effect): You can negate the activation, and if you do, destroy it. You choose the attack targets for your opponent's attacks. At the end of the Battle Phase, if this card battled: You can return ",
+      "tags": [
+        "deck",
+        "destroy",
+        "monster",
+        "ssummon"
+      ],
+      "pattern": null,
+      "draw_count": null,
+      "burn_damage": null,
+      "clone_const": "GLADIATOR_BEAST_BESTIARI",
+      "clone_path": "src_custom/activated_effects/gladiator_beast_bestiari.c",
+      "clone_score": 0.95
+    }
+  ]
+}

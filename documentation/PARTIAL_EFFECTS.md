@@ -8,8 +8,8 @@ Rows vanish when all `ponytail:` comments are removed from the file.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ```
 
-**Last updated:** 2026-07-20 20:10 UTC  
-**Remaining partials:** `706`
+**Last updated:** 2026-07-20 20:18 UTC  
+**Remaining partials:** `718`
 
 ## Counts by kind
 
@@ -17,11 +17,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 |------|------:|
 | `spell` | 185 |
 | `trap` | 115 |
-| `activated` | 375 |
+| `activated` | 387 |
 | `permanent` | 27 |
 | `battle` | 3 |
 | `turn` | 1 |
-| **total** | **706** |
+| **total** | **718** |
 
 ## spell (185)
 
@@ -1416,7 +1416,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (375)
+## activated (387)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -1463,6 +1463,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - L22: either-player quick timing not wired; allow once via usage on your turn only. Ceiling: tribute self only; upgrade: Amazoness protection flags on face-up Amazoness monsters until EOT.
 - L46: face-up Amazoness cannot be targeted/destroyed by effects this turn — no protection flag hook yet.
 
+### `AMAZONESS_SPIRITUALIST`
+- path: `src_custom/activated_effects/amazoness_spiritualist.c`
+- L104: hand/GY bounce→SS + ED lock need GY/ED hooks. Ceiling: field OPT add Polymerization from Deck.
+
 ### `AMAZONESS_SPY`
 - path: `src_custom/activated_effects/amazoness_spy.c`
 - L34: battle destroy → return Amazoness from GY needs battle hook. Ceiling: SS from hand only; upgrade: reveal + battle recycle.
@@ -1507,6 +1511,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `ANCIENT_GEAR_GOLEM`
 - path: `src_custom/activated_effects/ancient_gear_golem.c`
 - L12: attack → opp cannot activate S/T until Damage Step + piercing need battle/attack hooks. Ceiling: not ignition-activatable here; upgrade: battle Spell/Trap lock while attacking + DEF-pierce damage step.
+
+### `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND`
+- path: `src_custom/activated_effects/ancient_gear_golem_ultimate_pound.c`
+- L58: piercing/multi-attack + destroy-trigger Poly FALSE. Ceiling: OPT discard Machine → unk4 extra-attack, else OPT add Poly.
+- L85: real multi-attack needs battle hook; unk4=2 extra-attack stand-in.
 
 ### `ANCIENT_GEAR_KNIGHT`
 - path: `src_custom/activated_effects/ancient_gear_knight.c`
@@ -1786,6 +1795,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
 - L196: Quick on S/T activation + Synchro/name hooks missing. Ceiling: OPT bounce 1 opp card or your Harpie to hand.
 
+### `CYBER_SLASH_HARPY_LADY`
+- path: `src_custom/activated_effects/cyber_slash_harpy_lady.c`
+- L196: Quick on S/T activation + Synchro/name hooks missing. Ceiling: OPT bounce 1 opp card or your Harpie to hand.
+
 ### `CYBER_VALLEY`
 - path: `src_custom/activated_effects/cyber_valley.c`
 - L107: end Battle Phase needs phase hook; draw 1 is attack-target stand-in.
@@ -1994,6 +2007,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/elemental_hero_magma_neos.c`
 - L42: continuous 400/field + EP shuffle/bounce field need permanent/EP hooks. Ceiling: OPT refresh tempStage from field card count.
 
+### `ELEMENTAL_HERO_NEBULA_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_nebula_neos.c`
+- L115: Extra SS trigger + EP banish field FALSE. Ceiling: OPT draw = opp card count, then mark 1 face-up negated.
+
 ### `ELEMENTAL_HERO_OCEAN`
 - path: `src_custom/activated_effects/elemental_hero_ocean.c`
 - L81: skip stale GY Ocean while the activator is still on field
@@ -2002,6 +2019,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/elemental_hero_shining_neos_wingman.c`
 - L150: GY ATK gain + effect destroy immunity + battle burn need permanent/ battle hooks. Ceiling: OPT destroy opp cards up to different Attributes.
 - L177: multi-target picker not wired; auto-destroy highest-value opp cards.
+
+### `ELEMENTAL_HERO_SPIRIT_OF_NEOS`
+- path: `src_custom/activated_effects/elemental_hero_spirit_of_neos.c`
+- L154: attack-hand SS FALSE. Ceiling: OPT search Poly/E-HERO S/T, else OPT shuffle self → SS Normal E-HERO from Deck.
 
 ### `ELEMENTAL_HERO_STORM_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_storm_neos.c`
@@ -2029,6 +2050,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `EVIL_HERO_DARKEST_KNIGHT`
 - path: `src_custom/activated_effects/evil_hero_darkest_knight.c`
 - L90: opp ATK loss by materials + double attack need fusion/battle hooks. Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in).
+
+### `EVIL_HERO_DEAD_END_PRISON`
+- path: `src_custom/activated_effects/evil_hero_dead_end_prison.c`
+- L109: Dark Fusion Fusion gate + Fusion-substitute name marker FALSE. Ceiling: OPT mill 1 HERO from Deck.
+- L151: Dark Fusion Fusion markers missing; any Fusion Monster stand-in.
 
 ### `EVIL_HERO_INFERNAL_GAINER`
 - path: `src_custom/activated_effects/evil_hero_infernal_gainer.c`
@@ -2116,6 +2142,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `GLADIATOR_BEAST_DARIUS`
 - path: `src_custom/activated_effects/gladiator_beast_darius.c`
 - L175: GB-tag SS revive trigger + leave-field shuffle + end-BP tag need summon/leave/battle hooks. Ceiling: OPT SS GB from GY negated, else tag-out.
+
+### `GLADIATOR_BEAST_DOMITIANUS`
+- path: `src_custom/activated_effects/gladiator_beast_domitianus.c`
+- L133: Quick negate/destroy + attack-redirect FALSE; end-BP battled gate missing. Ceiling: OPT tag-out → SS 1–2 GB from Deck.
 
 ### `GLADIATOR_BEAST_DRAGASES`
 - path: `src_custom/activated_effects/gladiator_beast_dragases.c`
@@ -2338,6 +2368,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/hourglass_of_life.c`
 - L11: updateGfx=FALSE — sub_8041CCC refreshes field after popup dismisses.
 
+### `ILLUSION_OF_CHAOS`
+- path: `src_custom/activated_effects/illusion_of_chaos.c`
+- L135: field bounce→SS DM negate FALSE. Ceiling: FromHand search only.
+
 ### `JAIN_LIGHTSWORN_PALADIN`
 - path: `src_custom/activated_effects/jain_lightsworn_paladin.c`
 - L12: Damage Step +300 ATK and End Phase mill 2 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: permanent/battle + EP mill.
@@ -2425,6 +2459,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `LYLA_TWILIGHTSWORN_ENCHANTRESS`
 - path: `src_custom/activated_effects/lyla_twilightsworn_enchantress.c`
 - L205: quick effect on Spell/Trap activation + mill 3 when other LS activates need chain/mill hooks. Ceiling: OPT banish LS from hand/GY then destroy 1 face-up Spell/Trap.
+
+### `MA_AT`
+- path: `src_custom/activated_effects/ma_at.c`
+- L102: name-3 declare UI missing; add any excavated as stand-in.
+- L134: name-3 excavate UI hard. Ceiling: OPT reveal top 3, add any, mill rest.
 
 ### `MAGICAL_MARIONETTE`
 - path: `src_custom/activated_effects/magical_marionette.c`
@@ -2535,6 +2574,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/morphtronic_clocken.c`
 - L26: +500 ATK per Morph Counter in ATK Position needs stat overlay hook. Ceiling: DEF OPT place unk4 counter, else tribute self → burn 1000*(unk4 or 1).
 
+### `MORPHTRONIC_EARFON`
+- path: `src_custom/activated_effects/morphtronic_earfon.c`
+- L48: real Tuner flag / Equip double-attack need Synchro/equip hooks. Ceiling: OPT PickZone mark unk4 as Tuner stand-in.
+- L95: on-SS Tuner mark + Equip 2-attacks FALSE. Ceiling: OPT PickZone treat face-up as Tuner (unk4).
+
 ### `MORPHTRONIC_LANTRON`
 - path: `src_custom/activated_effects/morphtronic_lantron.c`
 - L12: ATK redirect effect damage + DEF no battle damage when destroyed need damage-redirect and battle-destroy hooks. Ceiling: not ignition here.
@@ -2609,6 +2653,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 - path: `src_custom/activated_effects/neo_spacian_marine_dolphin.c`
 - L79: treated-as Aqua Dolphin name + NEX-only SS need continuous/summon hooks.
 
+### `NEOS_WISEMAN`
+- path: `src_custom/activated_effects/neos_wiseman.c`
+- L39: battle burn/heal + effect-destroy immunity FALSE. Ceiling: FromHand send Neos+Yubel → SS only.
+
 ### `NUMBER_39_UTOPIA`
 - path: `src_custom/activated_effects/number_39_utopia.c`
 - L12: attack negate via detach + no-material self-destroy need battle hook and XYZ material system. Ceiling: not field-ignition activatable.
@@ -2633,6 +2681,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials
 ### `PREDAPLANT_VERTE_ANACONDA`
 - path: `src_custom/activated_effects/predaplant_verte_anaconda.c`
 - L129: DARK attribute mark + Poly/Fusion copy SS need attribute/fusion hooks. Ceiling: pay 2000 LP → destroy 1 field card.
+
+### `PROTECTOR_OF_THE_AGENTS_MOON`
+- path: `src_custom/activated_effects/protector_of_the_agents_moon.c`
+- L252: dual PickZone needs scratch; auto first Fairy tribute.
+- L305: Link Summon trigger gate missing. Ceiling: OPT mill/add Sanctuary path, else OPT tribute Fairy → destroy 1 opp.
 
 ### `PROTECTOR_OF_THE_SANCTUARY`
 - path: `src_custom/activated_effects/protector_of_the_sanctuary.c`

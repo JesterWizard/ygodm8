@@ -301,6 +301,11 @@ u8 TrySpecialSummonDarkMagicianTheMagicianOfBlackMagicFromHand(u8);
 u8 TrySpecialSummonDarkMagicianTheMagicianOfBlackChaosFromHand(u8);
 u8 TrySpecialSummonGandoraGTheDragonOfDestructionFromHand(u8);
 u8 TrySpecialSummonTestBearFromHand(u8);
+u8 TrySpecialSummonAmazonessSpiritualistFromHand(u8);
+u8 TryActivateIllusionOfChaosFromHand(u8);
+u8 TrySpecialSummonMaAtFromHand(u8);
+u8 TrySpecialSummonNeosWisemanFromHand(u8);
+u8 TrySpecialSummonEvilHeroDeadEndPrisonFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -323,7 +328,9 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == HELIOS_DUO_MEGISTUS || cardId == HELIOS_TRICE_MEGISTUS
       || cardId == RAINBOW_DARK_DRAGON
       || cardId == POSEIDRA_THE_ATLANTEAN_DRAGON || cardId == PUNISHMENT_DRAGON
-      || cardId == MAZERA_DEVILLE;
+      || cardId == MAZERA_DEVILLE
+      || cardId == MA_AT || cardId == NEOS_WISEMAN
+      || cardId == EVIL_HERO_DEAD_END_PRISON;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -852,6 +859,31 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == TEST_BEAR
           && TrySpecialSummonTestBearFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == AMAZONESS_SPIRITUALIST
+          && TrySpecialSummonAmazonessSpiritualistFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ILLUSION_OF_CHAOS
+          && TryActivateIllusionOfChaosFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == MA_AT
+          && TrySpecialSummonMaAtFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == NEOS_WISEMAN
+          && TrySpecialSummonNeosWisemanFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == EVIL_HERO_DEAD_END_PRISON
+          && TrySpecialSummonEvilHeroDeadEndPrisonFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

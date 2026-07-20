@@ -1043,6 +1043,26 @@ unsigned char CanActivateMonsterEffect(void) {
     canActivate = CanActivateAMAZONESS_EMPRESS();
   else if (gMonEffect.id == EVIL_HERO_INFERNAL_RIDER)
     canActivate = CanActivateEVIL_HERO_INFERNAL_RIDER();
+  else if (gMonEffect.id == AMAZONESS_SPIRITUALIST)
+    canActivate = CanActivateAMAZONESS_SPIRITUALIST();
+  else if (gMonEffect.id == MORPHTRONIC_EARFON)
+    canActivate = CanActivateMORPHTRONIC_EARFON();
+  else if (gMonEffect.id == ELEMENTAL_HERO_SPIRIT_OF_NEOS)
+    canActivate = CanActivateELEMENTAL_HERO_SPIRIT_OF_NEOS();
+  else if (gMonEffect.id == GLADIATOR_BEAST_DOMITIANUS)
+    canActivate = CanActivateGLADIATOR_BEAST_DOMITIANUS();
+  else if (gMonEffect.id == ANCIENT_GEAR_GOLEM_ULTIMATE_POUND)
+    canActivate = CanActivateANCIENT_GEAR_GOLEM_ULTIMATE_POUND();
+  else if (gMonEffect.id == ELEMENTAL_HERO_NEBULA_NEOS)
+    canActivate = CanActivateELEMENTAL_HERO_NEBULA_NEOS();
+  else if (gMonEffect.id == MA_AT)
+    canActivate = CanActivateMA_AT();
+  else if (gMonEffect.id == PROTECTOR_OF_THE_AGENTS_MOON)
+    canActivate = CanActivatePROTECTOR_OF_THE_AGENTS_MOON();
+  else if (gMonEffect.id == CYBER_SLASH_HARPY_LADY)
+    canActivate = CanActivateCYBER_SLASH_HARPY_LADY();
+  else if (gMonEffect.id == EVIL_HERO_DEAD_END_PRISON)
+    canActivate = CanActivateEVIL_HERO_DEAD_END_PRISON();
   else if (zone->id == THE_GRAND_JUPITER)
     canActivate = CanActivateTheGrandJupiter();
   else {
@@ -2019,6 +2039,16 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == AMAZONESS_PET_LIGER_KING
           || zone->id == AMAZONESS_EMPRESS
           || zone->id == EVIL_HERO_INFERNAL_RIDER
+          || zone->id == AMAZONESS_SPIRITUALIST
+          || zone->id == MORPHTRONIC_EARFON
+          || zone->id == ELEMENTAL_HERO_SPIRIT_OF_NEOS
+          || zone->id == GLADIATOR_BEAST_DOMITIANUS
+          || zone->id == ANCIENT_GEAR_GOLEM_ULTIMATE_POUND
+          || zone->id == ELEMENTAL_HERO_NEBULA_NEOS
+          || zone->id == MA_AT
+          || zone->id == PROTECTOR_OF_THE_AGENTS_MOON
+          || zone->id == CYBER_SLASH_HARPY_LADY
+          || zone->id == EVIL_HERO_DEAD_END_PRISON
           || effectCardId != zone->id
           || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
         gMonEffect.id = effectCardId;
@@ -2030,7 +2060,7 @@ void MonsterActionMenu__Replacement(void) {
         }
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
-        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != AMAZONESS_ARCHER && gMonEffect.id != ELEMENTAL_HERO_NEOS_ALIUS && gMonEffect.id != JUNK_SYNCHRON && gMonEffect.id != EL_SHADDOLL_MESHAHRAIL && gMonEffect.id != EVIL_HERO_DARKEST_KNIGHT && gMonEffect.id != AROMAGE_MARJORAM && gMonEffect.id != GLADIATOR_BEAST_NEROKIUS && gMonEffect.id != GLADIATOR_BEAST_ANDABATA && gMonEffect.id != TEST_PANTHER && gMonEffect.id != MINERVA_THE_ATHENIAN_LIGHTSWORN && gMonEffect.id != ARMED_NEOS && gMonEffect.id != CURIOUS_THE_LIGHTSWORN_DOMINION && gMonEffect.id != ANCIENT_GEAR_DRAGON && gMonEffect.id != AROMALILITH_MAGNOLIA && gMonEffect.id != GANDORA_G_THE_DRAGON_OF_DESTRUCTION && gMonEffect.id != AMAZONESS_PRINCESS && gMonEffect.id != TOHUSHADDOLL_GRYSTA && gMonEffect.id != TEST_BEAR && gMonEffect.id != AMAZONESS_PET_LIGER_KING && gMonEffect.id != AMAZONESS_EMPRESS && gMonEffect.id != EVIL_HERO_INFERNAL_RIDER) || !CanActivateMonsterEffect()) {
+        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != AMAZONESS_ARCHER && gMonEffect.id != ELEMENTAL_HERO_NEOS_ALIUS && gMonEffect.id != JUNK_SYNCHRON && gMonEffect.id != EL_SHADDOLL_MESHAHRAIL && gMonEffect.id != EVIL_HERO_DARKEST_KNIGHT && gMonEffect.id != AROMAGE_MARJORAM && gMonEffect.id != GLADIATOR_BEAST_NEROKIUS && gMonEffect.id != GLADIATOR_BEAST_ANDABATA && gMonEffect.id != TEST_PANTHER && gMonEffect.id != MINERVA_THE_ATHENIAN_LIGHTSWORN && gMonEffect.id != ARMED_NEOS && gMonEffect.id != CURIOUS_THE_LIGHTSWORN_DOMINION && gMonEffect.id != ANCIENT_GEAR_DRAGON && gMonEffect.id != AROMALILITH_MAGNOLIA && gMonEffect.id != GANDORA_G_THE_DRAGON_OF_DESTRUCTION && gMonEffect.id != AMAZONESS_PRINCESS && gMonEffect.id != TOHUSHADDOLL_GRYSTA && gMonEffect.id != TEST_BEAR && gMonEffect.id != AMAZONESS_PET_LIGER_KING && gMonEffect.id != AMAZONESS_EMPRESS && gMonEffect.id != EVIL_HERO_INFERNAL_RIDER && gMonEffect.id != AMAZONESS_SPIRITUALIST && gMonEffect.id != MORPHTRONIC_EARFON && gMonEffect.id != ELEMENTAL_HERO_SPIRIT_OF_NEOS && gMonEffect.id != GLADIATOR_BEAST_DOMITIANUS && gMonEffect.id != ANCIENT_GEAR_GOLEM_ULTIMATE_POUND && gMonEffect.id != ELEMENTAL_HERO_NEBULA_NEOS && gMonEffect.id != MA_AT && gMonEffect.id != PROTECTOR_OF_THE_AGENTS_MOON && gMonEffect.id != CYBER_SLASH_HARPY_LADY && gMonEffect.id != EVIL_HERO_DEAD_END_PRISON) || !CanActivateMonsterEffect()) {
 FAILED:
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();
