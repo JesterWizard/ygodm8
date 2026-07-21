@@ -17,6 +17,7 @@
 #include "mirror_force.h"
 #include "a_hero_emerges.h"
 #include "triangle_ecstasy_spark.h"
+#include "ancient_gear_cannon.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -167,7 +168,8 @@ void ActivateTrapEffect__Replacement(u16 lp)
     return;
   }
 
-  if (TriangleEcstasySpark_BlocksOppTrap()) {
+  if (TriangleEcstasySpark_BlocksOppTrap()
+      || AncientGearCannon_BlocksOppTrap()) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {

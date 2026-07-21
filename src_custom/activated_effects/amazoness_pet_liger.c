@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "amazoness_pet_liger.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "god_card.h"
@@ -9,6 +10,9 @@ void RefreshFieldMonsterStatOverlays(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+#define AMAZONESS_PET_LIGER_BASE_ATK 2500
+#define AMAZONESS_PET_LIGER_ATK_PER_OTHER 500
 
 static u8 IsFaceUpOppMonster(struct DuelCard *zone)
 {
@@ -44,6 +48,45 @@ static u8 FieldHasTarget(void)
   return FALSE;
 }
 
+static u8 CountOtherAmazonessOnFixedRow(u8 fixedRow, const struct DuelCard *self)
+{
+  u8 col;
+  u8 count = 0;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+    if (zone == NULL || zone == self || zone->id == CARD_NONE)
+      continue;
+    if (Duel_IsAmazonessCard(zone->id))
+      count++;
+  }
+
+  return count;
+}
+
+u8 AmazonessPetLiger_ApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+  u8 others;
+
+  if (zone == NULL || zone->id != AMAZONESS_PET_LIGER)
+    return FALSE;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return FALSE;
+
+  others = CountOtherAmazonessOnFixedRow(fixedRow, zone);
+  SetCardInfo(zone->id);
+  Duel_WriteCardInfoStats(
+      zone->id,
+      Duel_StatFromCount(others, AMAZONESS_PET_LIGER_ATK_PER_OTHER,
+                         AMAZONESS_PET_LIGER_BASE_ATK),
+      gCardInfo.def);
+  return TRUE;
+}
+
 static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
@@ -56,12 +99,11 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (zone->tempStage > -126)
     zone->tempStage = (s8)(zone->tempStage - 2);
 
-  /* Lock own Amazoness for rest of turn (cannot attack). */
   {
-    u8 col;
+    u8 c;
 
-    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-      struct DuelCard *own = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+    for (c = 0; c < MAX_ZONES_IN_ROW; c++) {
+      struct DuelCard *own = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][c];
 
       if (own != NULL && own->id != CARD_NONE && Duel_IsAmazonessCard(own->id))
         own->isLocked = TRUE;
@@ -87,7 +129,7 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 
   *outRow = INACTIVE_DUELIST_MONSTER_ROW;
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsValidTarget(INACTIVE_DUELIST_MONSTER_ROW, col)) {
+    if (IsValidTarget(*outRow, col)) {
       *outCol = col;
       return TRUE;
     }
@@ -108,7 +150,7 @@ unsigned char CanActivateAMAZONESS_PET_LIGER(void)
     return FALSE;
 
   /* OPT stand-in for after-damage −800 + Amazoness attack lock.
-   * ponytail: damage-calc +500 ATK not wired. */
+   * ATK via AmazonessPetLiger_ApplyDynamicZoneStats. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

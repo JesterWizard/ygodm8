@@ -60,6 +60,7 @@
 #include "amazoness_spy.h"
 #include "amazoness_trainee.h"
 #include "el_shaddoll_apkallone.h"
+#include "el_shaddoll_wendigo.h"
 #include "el_shaddoll_construct.h"
 #include "goyo_guardian.h"
 #include "ancient_gear_fist.h"
@@ -273,6 +274,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (AromaJar_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (ElShaddollWendigo_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -293,6 +296,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (ElShaddollApkallone_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (AromaJar_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (ElShaddollWendigo_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }

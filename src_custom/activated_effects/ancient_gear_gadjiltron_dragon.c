@@ -104,8 +104,9 @@ unsigned char CanActivateANCIENT_GEAR_GADJILTRON_DRAGON(void)
     return FALSE;
 
   /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
-   * ponytail: pierce/burn/draw FALSE.
-   * Ceiling: OPT destroy 1 DEF opp (pierce stand-in) OR OPT burn 700. */
+   * Pierce via ApplyAncientGearGolemPiercingBattleEffect.
+   * ponytail: burn/draw FALSE.
+   * Ceiling: OPT destroy 1 DEF opp OR OPT burn 700. */
   return CanUseMonsterEffect(zone);
 }
 

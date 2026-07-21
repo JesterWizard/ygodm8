@@ -76,6 +76,10 @@
 #include "power_filter.h"
 #include "return_of_the_dragon_lords.h"
 #include "shining_sarcophagus.h"
+#include "el_shaddoll_winda.h"
+#include "el_shaddoll_anoyatyllis.h"
+#include "ancient_gear_cannon.h"
+#include "amazoness_scouts.h"
 #include "uria_lord_of_searing_flames.h"
 #include "raviel_lord_of_phantasms.h"
 #include "expanded_graveyard.h"
@@ -115,6 +119,7 @@ u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 MajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 TheTyrantNeptune_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 AmazonessPetLiger_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ThebanNightmare_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 TheAgentOfForceMars_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 UnstoppableExodiaIncarnate_ApplyStat(struct DuelCard *zone);
@@ -390,8 +395,13 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
     return DUEL_ACTION_BLOCKED;
 
   if (SummonModeIsSpecial(opts.mode)
+      && ElShaddollWinda_IsSpecialSummonLockedFor(turnDuelist))
+    return DUEL_ACTION_BLOCKED;
+
+  if (SummonModeIsSpecial(opts.mode)
       && !HarpiesFeatherRest_CanSpecialSummonCard(monsterId))
     return DUEL_ACTION_BLOCKED;
+
 
   if (!KaiserColosseum_AllowsMonsterPlacement(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist))))
     return DUEL_ACTION_BLOCKED;
@@ -435,6 +445,8 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   if (turnDuelist == ACTIVE_DUELIST)
     CourtOfJustice_RefreshHandUnlocks();
   EffectEvent_EmitSimple(EFFECT_EVENT_ON_SUMMON, monsterId, summonZone);
+  if (SummonModeIsSpecial(opts.mode))
+    ElShaddollWinda_OnSpecialSummon(turnDuelist);
   return DUEL_ACTION_OK;
 }
 
@@ -647,7 +659,9 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
       || ForbiddenDress_IsDestroyImmune(zone)
       || GladiatorBeastsBattleArchfiendShield_PreventsDestruction(zone)
       || ReturnOfTheDragonLords_TryProtectDragon(zone)
-      || ShiningSarcophagus_PreventsDestroy(zone))
+      || ShiningSarcophagus_PreventsDestroy(zone)
+      || ElShaddollWinda_PreventsDestroy(zone)
+      || AmazonessScouts_PreventsDestroy(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;
@@ -1547,6 +1561,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { GYAKU_GIRE_PANDA, GyakuGirePanda_ApplyDynamicZoneStats },
   { SERAPHIM_BLASTER, SeraphimBlaster_ApplyDynamicZoneStats },
   { AMAZONESS_TIGER, AmazonessTiger_ApplyDynamicZoneStats },
+  { AMAZONESS_PET_LIGER, AmazonessPetLiger_ApplyDynamicZoneStats },
   { THEBAN_NIGHTMARE, ThebanNightmare_ApplyDynamicZoneStats },
   { THE_AGENT_OF_FORCE_MARS, TheAgentOfForceMars_ApplyDynamicZoneStats },
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, UnstoppableExodiaIncarnate_ApplyStat },
@@ -2714,6 +2729,9 @@ enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCar
   if (ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;
 
+  if (ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon())
+    return DUEL_ACTION_BLOCKED;
+
   if (FirstEmptyZoneInRow(gTurnZones[MonsterRowForDuelist(duelist)]) < 0)
     return DUEL_ACTION_NO_ZONE;
 
@@ -2755,6 +2773,9 @@ enum DuelActionResult Duel_SpecialSummonFromHandZone(u8 duelist, s8 handZone,
   if (ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;
 
+  if (ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon())
+    return DUEL_ACTION_BLOCKED;
+
   if (handZone < 0
       || handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return DUEL_ACTION_INVALID;
@@ -2783,6 +2804,9 @@ enum DuelActionResult Duel_SpecialSummonFromGrave(u8 duelist, u16 cardId, struct
   u16 revivedId;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
+    return DUEL_ACTION_BLOCKED;
+
+  if (ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon())
     return DUEL_ACTION_BLOCKED;
 
   if (Necrovalley_BlocksGraveyardMove()
@@ -3057,7 +3081,8 @@ u8 Duel_ZoneIsImmuneToSpellEffects(struct DuelCard *zone)
 u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone)
 {
   return !Duel_ZoneIsImmuneToSpellEffects(zone)
-      && !ForbiddenDress_IsTargetImmune(zone);
+      && !ForbiddenDress_IsTargetImmune(zone)
+      && !AmazonessScouts_IsTargetImmune(zone);
 }
 
 u8 Duel_IsAnyTrapActivationBlocked(void)
@@ -3100,6 +3125,8 @@ u8 Duel_IsCardActivationBlocked(u16 cardId)
     if (IsRoyalDecreeNegatingTrap(cardId))
       return TRUE;
     if (IsSorcererOfDarkMagicTrapLockActive())
+      return TRUE;
+    if (AncientGearCannon_BlocksOppTrap())
       return TRUE;
     return FALSE;
   }

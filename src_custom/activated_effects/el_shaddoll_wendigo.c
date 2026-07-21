@@ -2,11 +2,35 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "el_shaddoll_wendigo.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+u8 ElShaddollWendigo_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  return zone != NULL
+      && (zone->unk4 & EL_SHADDOLL_WENDIGO_BATTLE_PROTECT_MARK) != 0;
+}
+
+void ElShaddollWendigo_ClearTurnMarks(void)
+{
+  u8 fixed;
+  u8 col;
+
+  for (fixed = DUEL_PLAYER; fixed <= DUEL_OPPONENT; fixed++) {
+    u8 row = Duel_FixedMonsterRowForDuelist(fixed);
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL)
+        zone->unk4 &= (u8)~EL_SHADDOLL_WENDIGO_BATTLE_PROTECT_MARK;
+    }
+  }
+}
 
 static u8 IsOwnFaceUpMonster(u8 fixedRow, u8 fixedCol)
 {
@@ -42,9 +66,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsOwnFaceUpMonster(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* ponytail: until end of turn clear + vs Special Summoned only need battle
-   * hooks. Ceiling: mark unk4 on own monster as battle-destroy stand-in. */
-  zone->unk4 |= 0x40;
+  zone->unk4 |= EL_SHADDOLL_WENDIGO_BATTLE_PROTECT_MARK;
 
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
@@ -84,8 +106,8 @@ unsigned char CanActivateEL_SHADDOLL_WENDIGO(void)
   if (zone == NULL || zone->id != EL_SHADDOLL_WENDIGO)
     return FALSE;
 
-  /* ponytail: quick battle protection + GY add Shaddoll S/T need chain/send
-   * hooks. Ceiling: OPT mark 1 own monster unk4. */
+  /* Battle protect via ElShaddollWendigo_PreventsBattleDestroy.
+   * ponytail: GY add Shaddoll S/T on send not wired. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -101,6 +123,7 @@ void ActivateEL_SHADDOLL_WENDIGOEffect(void)
 
   gDuelCursor.destY = gMonEffect.row;
   gDuelCursor.destX = gMonEffect.zone;
+
   Duel_SetupPickZone(IsOwnFaceUpMonster, ResolveTarget, CancelTargeting, AiPickTarget);
 
   if (WhoseTurn() == DUEL_PLAYER)

@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 23:25 UTC  
-**Remaining partials:** `555`
+**Last updated:** 2026-07-21 23:36 UTC  
+**Remaining partials:** `549`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 5 |
 | `trap` | 10 |
-| `activated` | 439 |
-| `permanent` | 101 |
-| **total** | **555** |
+| `activated` | 435 |
+| `permanent` | 99 |
+| **total** | **549** |
 
 ## spell (5)
 
@@ -91,15 +91,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (439)
+## activated (435)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
 - L16: Amazoness-Tiger name + GY ATK boost need continuous hooks. Ceiling: SS from hand only; upgrade: on Amazoness summon trigger.
-
-### `AMAZONESS_PET_LIGER`
-- path: `src_custom/activated_effects/amazoness_pet_liger.c`
-- L111: * ponytail: damage-calc +500 ATK not wired. */
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -108,11 +104,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `AMAZONESS_PRINCESS`
 - path: `src_custom/activated_effects/amazoness_princess.c`
 - L63: name=Queen + attack-send→SS need name/battle hooks. Ceiling: OPT add 1 Amazoness Spell/Trap from Deck.
-
-### `AMAZONESS_SCOUTS`
-- path: `src_custom/activated_effects/amazoness_scouts.c`
-- L22: either-player quick timing not wired; allow once via usage on your turn only. Ceiling: tribute self only; upgrade: Amazoness protection flags on face-up Amazoness monsters until EOT.
-- L46: face-up Amazoness cannot be targeted/destroyed by effects this turn — no protection flag hook yet.
 
 ### `AMAZONESS_SPIRITUALIST`
 - path: `src_custom/activated_effects/amazoness_spiritualist.c`
@@ -132,10 +123,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/ancient_gear_beast.c`
 - L13: * ponytail: negate destroyed-in-battle monster effects need battle hook. */
 
-### `ANCIENT_GEAR_CANNON`
-- path: `src_custom/activated_effects/ancient_gear_cannon.c`
-- L47: Battle Phase Trap lock not applied; upgrade: trap-activation gate.
-
 ### `ANCIENT_GEAR_COMMANDER`
 - path: `src_custom/activated_effects/ancient_gear_commander.c`
 - L202: NS stand-in → SS AG; GY banish SS Golem FALSE. Ceiling: OPT send AG Golem hand/field/Deck → SS AG hand/Deck.
@@ -152,17 +139,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/ancient_gear_engineer.c`
 - L13: * ponytail: trap negate + end-of-Damage-Step destroy need battle/trap hooks. */
 
-### `ANCIENT_GEAR_FRAME`
-- path: `src_custom/activated_effects/ancient_gear_frame.c`
-- L69: * ponytail: leave-field SS FALSE.
-
 ### `ANCIENT_GEAR_GADJILTRON_CHIMERA`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c`
 - L12: Green/Red/Yellow Gadget tribute branches (+300 ATK, direct burn, battle burn) need summon/tribute hooks. Ceiling: not ignition-activatable.
 
 ### `ANCIENT_GEAR_GADJILTRON_DRAGON`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c`
-- L107: * ponytail: pierce/burn/draw FALSE.
+- L108: * ponytail: burn/draw FALSE.
 
 ### `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND`
 - path: `src_custom/activated_effects/ancient_gear_golem_ultimate_pound.c`
@@ -683,8 +666,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EL_SHADDOLL_WENDIGO`
 - path: `src_custom/activated_effects/el_shaddoll_wendigo.c`
-- L45: until end of turn clear + vs Special Summoned only need battle hooks. Ceiling: mark unk4 on own monster as battle-destroy stand-in.
-- L87: quick battle protection + GY add Shaddoll S/T need chain/send hooks. Ceiling: OPT mark 1 own monster unk4.
+- L110: * ponytail: GY add Shaddoll S/T on send not wired. */
 
 ### `ELDER_ENTITY_NORDEN`
 - path: `src_custom/activated_effects/elder_entity_norden.c`
@@ -1932,7 +1914,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (101)
+## permanent (99)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -2042,10 +2024,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/dragon_spirit_of_white.c`
 - L59: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks.
 
-### `EL_SHADDOLL_ANOYATYLLIS`
-- path: `src_custom/permanent_effects/el_shaddoll_anoyatyllis.c`
-- L126: SS-from-hand/GY via S/T lock needs continuous summon gate.
-
 ### `EL_SHADDOLL_GRYSTA`
 - path: `src_custom/permanent_effects/el_shaddoll_grysta.c`
 - L126: negate opp Special Summon + send Shaddoll from hand need SS chain hook.
@@ -2053,10 +2031,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `EL_SHADDOLL_SHEKHINAGA`
 - path: `src_custom/permanent_effects/el_shaddoll_shekhinaga.c`
 - L126: negate SS monster effect + send Shaddoll need effect-chain hook.
-
-### `EL_SHADDOLL_WINDA`
-- path: `src_custom/permanent_effects/el_shaddoll_winda.c`
-- L126: opp destroy immunity + SS-once lock need continuous hooks.
 
 ### `ELEMENTAL_HERO_CAPTAIN_GOLD`
 - path: `src_custom/permanent_effects/elemental_hero_captain_gold.c`

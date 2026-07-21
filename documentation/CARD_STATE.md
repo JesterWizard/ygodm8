@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — PARTIAL Round 7 Batches 1–6
+**Last worked on:** 2026-07-21 — PARTIAL Round 8 Batches 1–6
 
-**Outcome:** Partials **679→580**. Shared wires: Amazoness Queen/Empress battle protect, linked-revive leave (Glorious Illusion / Willpower / Fossil), Necrovalley Temple −500 overlay, Feather Storm monster-effect gate, Medusa Shield destroy protect, Arcana Force 0 Heads battle protect, Tyrant Wing second attack + EP destroy. Rest: activate-path / unlabeled-choice / stand-in ceiling clears on traps+spells. `make` OK each batch.
+**Outcome:** Partials **580→549**. Shared wires: Queen/Arcana/EP/Umi/Sarcophagus; battle protect + Chariot/Amazoness/Aroma Jar; Contact EP + pierce + flip search; AG attack S/T lock + Golem pierce; Goyo/Construct/Double Dude; Winda destroy+SS-once, Anoyatyllis hand/GY SS lock, Scouts Amazoness protect, Cannon BP trap lock, Pet Liger ATK overlay, Frame leave-field SS. `make` OK each batch.
 
-**Open / next:** Round 8 when ready. Remaining traps are mostly Extra/Pendulum/negate/Synchro hard ceilings; activated backlog still large (~450). Masked HERO still absent.
+**Open / next:** Round 9 when ready. Wendigo GY-add / Gadjiltron burn-draw still residual. Masked HERO still absent.

@@ -34,6 +34,11 @@
 #include "meteorain.h"
 #include "harpies_feather_storm.h"
 #include "alector_sovereign_of_birds.h"
+#include "el_shaddoll_winda.h"
+#include "amazoness_scouts.h"
+#include "ancient_gear_cannon.h"
+#include "el_shaddoll_wendigo.h"
+#include "ancient_gear_frame.h"
 #include "spell_effects.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
@@ -77,6 +82,7 @@ void EffectEvent_EnsureInit(void)
   TheWhiteStoneOfAncients_EnsureInit();
   AmazonessEmpress_EnsureInit();
   DestinyHeroDoubleDude_EnsureInit();
+  AncientGearFrame_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 
@@ -208,6 +214,10 @@ void EffectEvent_OnTurnBoundary(void)
   GenerationNext_ClearOnTurnBoundary();
   LevelTuning_ClearAtTurnBoundary();
   LightForce_ClearTurnState();
+  ElShaddollWinda_ClearTurnState();
+  AmazonessScouts_ClearTurnState();
+  AncientGearCannon_ClearTurnState();
+  ElShaddollWendigo_ClearTurnMarks();
   DestinedRivals_ClearExhaustedOnTurnBoundary();
   Meteorain_ClearOnTurnBoundary();
   HarpiesFeatherStorm_ClearAtTurnBoundary();

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "el_shaddoll_winda.h"
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
 #include "six_card_hand.h"
@@ -9,6 +10,61 @@
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+/* Bit0 = ACTIVE already SS'd this turn while Winda up; bit1 = INACTIVE. */
+static u8 sWindaSsUsed APPEND_DATA = {0};
+
+static u8 FaceUpWindaOnField(void)
+{
+  u8 fixed;
+  u8 col;
+
+  for (fixed = DUEL_PLAYER; fixed <= DUEL_OPPONENT; fixed++) {
+    u8 row = Duel_FixedMonsterRowForDuelist(fixed);
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL && zone->isFaceUp && zone->id == EL_SHADDOLL_WINDA)
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+u8 ElShaddollWinda_PreventsDestroy(const struct DuelCard *zone)
+{
+  /* Opponent's card effects — effect-destroy path only (not battle). */
+  return zone != NULL && zone->id == EL_SHADDOLL_WINDA && zone->isFaceUp;
+}
+
+u8 ElShaddollWinda_IsSpecialSummonLockedFor(u8 turnDuelist)
+{
+  u8 bit;
+
+  if (!FaceUpWindaOnField())
+    return FALSE;
+
+  bit = (turnDuelist == ACTIVE_DUELIST) ? 1 : 2;
+  return (sWindaSsUsed & bit) != 0;
+}
+
+void ElShaddollWinda_OnSpecialSummon(u8 turnDuelist)
+{
+  if (!FaceUpWindaOnField())
+    return;
+
+  if (turnDuelist == ACTIVE_DUELIST)
+    sWindaSsUsed |= 1;
+  else
+    sWindaSsUsed |= 2;
+}
+
+void ElShaddollWinda_ClearTurnState(void)
+{
+  sWindaSsUsed = 0;
+}
 
 static const char sShaddollName[] APPEND_RODATA = "Shaddoll";
 
@@ -123,7 +179,7 @@ static u8 IsWindaGraveyardTrigger(void)
 
 unsigned char ShouldActivateEL_SHADDOLL_WINDA(void)
 {
-  /* ponytail: opp destroy immunity + SS-once lock need continuous hooks. */
+  /* Destroy immunity + SS-once lock live via ElShaddollWinda_*. */
   return IsWindaGraveyardTrigger();
 }
 

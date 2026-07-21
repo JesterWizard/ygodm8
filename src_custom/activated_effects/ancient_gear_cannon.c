@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ancient_gear_cannon.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
@@ -9,6 +10,23 @@ void CheckWinConditionExodia(void);
 void TryActivatingPermanentEffects(void);
 
 #define ANCIENT_GEAR_CANNON_DAMAGE 500
+
+static u8 sCannonTrapLock APPEND_DATA = {FALSE};
+
+void AncientGearCannon_ArmBattlePhaseTrapLock(void)
+{
+  sCannonTrapLock = TRUE;
+}
+
+u8 AncientGearCannon_BlocksOppTrap(void)
+{
+  return sCannonTrapLock;
+}
+
+void AncientGearCannon_ClearTurnState(void)
+{
+  sCannonTrapLock = FALSE;
+}
 
 unsigned char CanActivateANCIENT_GEAR_CANNON(void)
 {
@@ -44,7 +62,7 @@ void ActivateANCIENT_GEAR_CANNONEffect(void)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: Battle Phase Trap lock not applied; upgrade: trap-activation gate. */
+  AncientGearCannon_ArmBattlePhaseTrapLock();
 
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia();

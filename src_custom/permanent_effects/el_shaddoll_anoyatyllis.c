@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "el_shaddoll_anoyatyllis.h"
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
 #include "six_card_hand.h"
@@ -11,6 +12,38 @@ void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
 static const char sShaddollName[] APPEND_RODATA = "Shaddoll";
+
+static u8 FaceUpAnoyatyllisOnField(void)
+{
+  u8 fixed;
+  u8 col;
+
+  for (fixed = DUEL_PLAYER; fixed <= DUEL_OPPONENT; fixed++) {
+    u8 row = Duel_FixedMonsterRowForDuelist(fixed);
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL && zone->isFaceUp && zone->id == EL_SHADDOLL_ANOYATYLLIS)
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+u8 ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon(void)
+{
+  if (!FaceUpAnoyatyllisOnField())
+    return FALSE;
+
+  /* Monster ignition uses gMonEffect — allow those SS from hand/GY.
+   * Spell/Trap (and other non-mon) paths are blocked. */
+  if (gMonEffect.id != CARD_NONE)
+    return FALSE;
+
+  return TRUE;
+}
 
 static u8 TurnDuelistFromGraveyardRow(u8 turnRow)
 {
@@ -123,7 +156,7 @@ static u8 IsAnoyatyllisGraveyardTrigger(void)
 
 unsigned char ShouldActivateEL_SHADDOLL_ANOYATYLLIS(void)
 {
-  /* ponytail: SS-from-hand/GY via S/T lock needs continuous summon gate. */
+  /* Hand/GY SS lock via ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon. */
   return IsAnoyatyllisGraveyardTrigger();
 }
 
