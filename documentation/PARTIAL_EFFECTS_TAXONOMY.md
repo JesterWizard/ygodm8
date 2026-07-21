@@ -7,37 +7,34 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 23:45 UTC  
-**Ceiling lines tagged:** `1145`  
-**Partial files:** `862`
+**Last updated:** 2026-07-21 19:19 UTC  
+**Ceiling lines tagged:** `1135`  
+**Partial files:** `857`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
 | `other` | 350 | triage |
-| `event.OnStandby` | 279 | 3 (OPT / turn flags) |
-| `event.OnBattleDestroy` | 97 | 3 |
+| `event.OnStandby` | 278 | 3 (OPT / turn flags) |
+| `event.OnBattleDestroy` | 94 | 3 |
 | `event.OnSummon` | 74 | 3 |
-| `ui.Choice` | 58 | 2 |
+| `ui.Choice` | 57 | 2 |
 | `chain.Negate` | 54 | later / chain |
 | `gate.Tribute` | 46 | 2–3 |
-| `event.OnDestroy` | 45 | 3 |
+| `event.OnDestroy` | 43 | 3 |
 | `op.Search` | 38 | 1 |
-| `stat.Continuous` | 34 | 1–3 |
+| `stat.Continuous` | 33 | 1–3 |
 | `op.BanishTimed` | 24 | 1–3 |
-| `equip.Register` | 22 | 1 (lists) |
-| `event.GyIgnition` | 20 | 3 |
+| `equip.Register` | 21 | 1 (lists) |
+| `event.GyIgnition` | 19 | 3 |
 | `event.OnDamageCalc` | 4 | 3 |
-| **total** | **1145** | |
+| **total** | **1135** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (97)
+## `event.OnBattleDestroy` (94)
 
-- `ALLURING_MIRROR_SPLIT` (spell): L9: battle-destroy of Harpie Lady / Sisters → SS different-name Harpie from Deck needs a battle-destroy listener + OPT bit outside this file. Ceiling: continuous face-up only; upgrade: after battle destroy → if face-up ALLURING_MIRROR_SPLIT and destroyed is Harpie Lady / Sisters then Deck SS Harpie with original name != destroyed.
-- `AMAZONESS_HEIRLOOM` (spell): L59: once-per-turn battle-destroy protection needs CanMonsterBeDestroyedByBattle / Duel_ApplyBattleDestroyProtection to check DynamicEquipTargetsMonsterWithSpell (zone, AMAZONESS_HEIRLOOM) + OPT bit. Ceiling: equip-only; upgrade: battle-protect flag cleared EOT / after one save.
-- `AMAZONESS_HEIRLOOM` (spell): L64: after damage calc, if equipped attacks a monster → destroy defender needs a battle_effects post-damage hook outside this file. Ceiling: equip-only; upgrade: after damage calc → if DynamicEquipTargetsMonsterWithSpell(attacker, AMAZONESS_HEIRLOOM) then Duel_DestroyZone(defender).
 - `ANCIENT_GEAR_FIST` (spell): L63: end of Damage Step destroy the monster it battled (if equipped still on field) needs a battle_effects Damage Step end hook outside this file. Ceiling: equip-only works; destroy trigger not wired from this file. Upgrade: end-of-Damage-Step → if DynamicEquipTargetsMonsterWithSpell (attacker/defender, ANCIENT_GEAR_FIST) and equip still face-up, then
 - `AROMA_GARDEN` (spell): L112: "If a face-up Aroma you control is destroyed by battle or card effect and sent to the GY: Gain 1000 LP" needs a destroy→GY hook outside this file. Ceiling: OPT LP/+500 only; upgrade: on ClearZoneAndSendMonTo- Graveyard / battle destroy, if controller has face-up AROMA_GARDEN and destroyed card IsAromaMonster, Duel_ChangeLp(+1000).
 - `AROMA_GARDENING` (spell): L16: OPT "NS/SS Aroma → +1000 LP" needs a summon hook outside this file (no in-file Normal/Special Summon dispatch). Ceiling: continuous face-up only; upgrade: after NS/SS (not Damage Step), if face-up AROMA_GARDENING and OPT bit clear and summoned monster name contains "Aroma", Duel_ChangeLp(+1000) and mark OPT.
@@ -140,10 +137,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ELEMENTAL_HERO_CAPTAIN_GOLD` (permanent): L68: with Skyscraper active, prefer normal summon as a 2100 beater
 - `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` (permanent): L121: unaffected-after-SS + battle ATK boost need continuous/battle hooks.
 
-## `event.OnDestroy` (45)
+## `event.OnDestroy` (43)
 
-- `ALLURING_MIRROR_SPLIT` (spell): L15: when this card is destroyed by a Harpie effect or opponent's effect → SS 1 Harpie from GY needs a destroy-reason hook outside this file. Ceiling: no floating on leave; upgrade: ClearZoneAndSendMonToGraveyard / destroy path → if id was ALLURING_MIRROR_SPLIT and reason matches, PickZone GY Harpie → Duel_SpecialSummonFromGrave.
-- `AMAZONESS_VILLAGE` (spell): L94: once-per-turn when an Amazoness is destroyed by battle/effect and sent to GY → SS 1 Amazoness from Deck with Level ≤ that GY monster needs a destroy/GY listener + OPT bit outside this file. Ceiling: continuous face-up only; upgrade: after-destroy hook → if face-up AMAZONESS_VILLAGE and Duel_IsAmazonessCard(destroyed) then PickZone deck SS filtered by level.
 - `ANCIENT_GEAR_TANK` (spell): L73: destroy→GY burn 600 to opponent needs a field/destroy hook outside this file (OnDynamicEquipZoneAboutToClear / GY send). Ceiling: equip-only works; destroy-burn not wired from this file. Upgrade: destroy-hook → Duel_ChangeLp(INACTIVE_DUELIST, -ANCIENT_GEAR_TANK_DESTROY_BURN).
 - `ARCANE_BARRIER` (spell): L173: Spell Counters when a face-up Spellcaster is destroyed need a destroy / leave-field hook outside this file (no in-file destroy dispatch). Ceiling: continuous face-up + ignition when unk4>0 (never rises alone); upgrade: on face-up Spellcaster destroy → if face-up ARCANE_BARRIER then zone->unk4++ (cap ARCANE_BARRIER_MAX_COUNTERS).
 - `CELESTIAL_SWORD_EATOS` (spell): L60: send-from-field-to-GY → target Guardian Eatos for +500 ATK per banished monster needs a leave-field / destroy hook outside this file (OnDynamicEquipZoneAboutToClear). Ceiling: equip +500 only; upgrade: leave- hook → PickZone GUARDIAN_EATOS then ApplyDynamicEquipStages / IncrementTempStage × banished count (CELESTIAL_SWORD_EATOS_GY_ATK_PER_BANISH_STAGES).
@@ -265,9 +260,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (279)
+## `event.OnStandby` (278)
 
-- `AMAZONESS_SECRET_ARTS` (spell): L16: OPT / GY ignition (banish → Extra Deck material) need hooks outside this file. Ceiling: field Fusion only once per BSS; upgrade: turn_effect reset + GY ignition → mark Amazoness Extra material flag.
 - `ANCIENT_GEAR_ADVANCE` (spell): L149: OPT Tribute 1 → draw + tribute-free NS for AGG / Lv5+ that mention it, and cannot-Set this turn need ignition + Normal Summon / Set gates outside this file. Ceiling: activate search only.
 - `ARCANA_SPREAD` (spell): L446: GY banish → add 1 coin-toss card from GY to hand needs a GY ignition path outside this spell file (no in-file graveyard activation). Ceiling: on-field coin SS only; upgrade: GY activate → banish ARCANA_SPREAD then DeckMenu pick IsCoinTossCard from GY → add to hand (OPT shared).
 - `AROMA_GARDEN` (spell): L79: printed "until end of opponent's next turn (even if this card leaves)" needs a multi-turn temp-stage / overlay tracker outside this file. Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages / EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on zones and skip ResetTempStages until that turn's End Phase.
@@ -547,9 +541,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DRAGON_MASTER_MAGIA` (permanent): L8: Quick negate-by-card-type needs chain/OPT hooks.
 - `THE_DARK_MAGICIANS` (permanent): L154: OPT draw on S/T activation needs chain/OPT hooks.
 
-## `event.GyIgnition` (20)
+## `event.GyIgnition` (19)
 
-- `AMAZONESS_CALL` (spell): L279: GY banish → target 1 Amazoness you control; that monster can attack all opponent monsters once each, also other monsters cannot attack needs GY ignition + battle multi-attack hooks outside this file. Ceiling: on-field deck search only; upgrade: GY activate → banish AMAZONESS_CALL → PickZone Duel_IsAmazonessCard → mark zone for multi-attack
 - `ANCIENT_GEAR_FACTORY` (spell): L203: "Normal Summon the revealed monster this turn without Tributing" needs a turn-scoped tribute-bypass (clone Necroshade) outside this file. Ceiling: reveal + GY banish only; upgrade: mark revealId + consume on NS.
 - `ARCANA_READING` (spell): L270: GY banish → Normal Summon 1 Arcana Force needs a GY ignition hook outside this spell file (no in-file graveyard activation path). Ceiling: activation coin effect only; upgrade: GY ignition → banish ARCANA_READING then Duel_NormalSummonFromHand Arcana Force.
 - `CONTACT_GATE` (spell): L337: ED Fusion-only lock + GY ignition (banish this → SS banished Neo) need hooks outside this file. Ceiling: field SS path only.
@@ -676,9 +669,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `LEGENDARY_MAJU_GARZETT` (permanent): L8: ATK = tributed originals needs hand-tribute SS stat capture; FromHand only.
 - `MAGICIANS_ROD` (permanent): L138: GY tribute Spellcaster → add this needs opp-turn quick hook.
 
-## `stat.Continuous` (34)
+## `stat.Continuous` (33)
 
-- `AMAZONESS_VILLAGE` (spell): L89: +200 ATK for Amazoness monsters needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up AMAZONESS_VILLAGE and Duel_IsAmazonessCard(zone) then ATK += 200.
 - `ANCIENT_GEAR_CASTLE` (spell): L8: +300 ATK for Ancient Gear monsters needs a continuous field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers registered monster ids; 1 stage ~= 500 ATK so printed +300 is not exact). Ceiling: continuous face-up only; upgrade: LynJump/stat overlay → if face-up ANCIENT_GEAR_CASTLE and Duel_CardNameContains(id, "Ancient Gear")
 - `BACKUP_SQUAD` (spell): L14: continuous face-up only — damage≥1000 draw listener needs a battle/LP-change hook outside this file (no in-file damage dispatch).
 - `BIG_EVOLUTION_PILL` (spell): L122: destroy on controller's opponent's 3rd End Phase needs a turn_effect End Phase hook outside this file (no in-file End Phase dispatch). Ceiling: continuous face-up only (unk4 stays 0); upgrade: turn_effect_hooks opponent End Phase → if face-up BIG_EVOLUTION_PILL then unk4++; if unk4 >= BIG_EVOLUTION_PILL_OPPONENT_END_PHASES destroy it.
@@ -713,9 +705,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `NEO_SPACIAN_FLARE_SCARAB` (permanent): L58: continuous +400 ATK per opp Spell/Trap — ApplyDynamicZoneStats only.
 - `SHIRE_LIGHTSWORN_SPIRIT` (permanent): L89: End Phase mill 2 needs turn_effect hook — ApplyDynamicZoneStats only.
 
-## `equip.Register` (22)
+## `equip.Register` (21)
 
-- `AMAZONESS_HEIRLOOM` (spell): L54: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add AMAZONESS_HEIRLOOM to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
 - `ANCIENT_GEAR_FIST` (spell): L70: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add ANCIENT_GEAR_FIST to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as H_HEATED_HEART.
 - `ANCIENT_GEAR_TANK` (spell): L61: stage unit is 500 ATK — applied +500, not printed +600. Ceiling: no fractional stages; upgrade: exact-ATK overlay like BIG_BANG_SHOT after listing ANCIENT_GEAR_TANK in IsActiveDynamicEquipSpellZone.
 - `ANCIENT_GEAR_TANK` (spell): L79: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add ANCIENT_GEAR_TANK to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
@@ -738,9 +729,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `REPTILANNE_RAGE` (spell): L80: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add REPTILANNE_RAGE to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
 - `UNSTABLE_EVOLUTION` (spell): L124: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting. Ceiling: add UNSTABLE_EVOLUTION to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
 
-## `ui.Choice` (58)
+## `ui.Choice` (57)
 
-- `AMAZONESS_CALL` (spell): L94: no dedicated hand/GY choice UI — A = add to hand, B = send to GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - `ANCIENT_GEAR_FACTORY` (spell): L195: no multi-select GY UI — auto-pick an exact Level-sum mask. Ceiling: no player choice among valid GY sets; upgrade: DeckMenu multi-pick until sum == 2× revealed Level.
 - `ARCANA_READING` (spell): L108: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - `ARCANA_SPREAD` (spell): L171: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.

@@ -527,6 +527,16 @@ _kernel_malloc_ewram gPendingDesKangarooAttackerCol, 1
 @ Continuous Destruction Punch pending attacker destroy (same shape as Des Kangaroo).
 _kernel_malloc_ewram gPendingContinuousDestructionPunchAttackerRow, 1
 _kernel_malloc_ewram gPendingContinuousDestructionPunchAttackerCol, 1
+@ Amazoness Heirloom pending defender destroy after damage calc.
+_kernel_malloc_ewram gPendingAmazonessHeirloomDefenderRow, 1
+_kernel_malloc_ewram gPendingAmazonessHeirloomDefenderCol, 1
+@ Amazoness Call GY multi-attack (Wildedge-shaped).
+_kernel_malloc_ewram gAmazonessCallMultiAttackActive, 1
+_kernel_malloc_ewram gAmazonessCallMultiAttackAnchorRow, 1
+_kernel_malloc_ewram gAmazonessCallMultiAttackAnchorCol, 1
+_kernel_malloc_ewram gAmazonessCallMultiAttackedMask, 1
+@ Amazoness Secret Arts GY: Extra Deck Amazoness material once this turn.
+_kernel_malloc_ewram gAmazonessSecretArtsExtraMaterial, 1
 @ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Absorbing Kid from the Sky, else 0xFF.
 _kernel_malloc_ewram gPendingAbsorbingKidFromTheSkyDuelist, 1
 @ Level of the monster Absorbing Kid destroyed in battle (heal = level * 300 at resolve).

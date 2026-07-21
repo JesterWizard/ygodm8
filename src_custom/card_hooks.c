@@ -5,6 +5,7 @@
 #include "copycat.h"
 #include "cost_down.h"
 #include "a_legendary_ocean.h"
+#include "amazoness_village.h"
 #include "divine_sanctuary.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -460,7 +461,8 @@ int GetSpellType__Replacement(u16 cardId) {
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND
       || cardId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE || cardId == RAREGOLD_ARMOR
-      || cardId == BIG_BANG_SHOT || cardId == H_HEATED_HEART)
+      || cardId == BIG_BANG_SHOT || cardId == H_HEATED_HEART
+      || cardId == AMAZONESS_HEIRLOOM)
     return SPELL_TYPE_EQUIP;
 
   if (gCardInfo.spellEffect >= SPELL_EFFECT_FOREST
@@ -599,6 +601,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyElementalHeroGaiaStatMod(zone);
   ApplyHarpieLady1WindAtkBoost(zone);
   ApplyLegendaryOceanFieldStatBoostForZone(zone);
+  ApplyAmazonessVillageFieldStatBoostForZone(zone);
   ApplyDivineSanctuaryFieldStatPenaltyForZone(zone);
   ApplyTheTripperMercuryOpponentAtkDrain(zone);
   ApplyTheGrandJupiterEquipAtkBonus(zone);

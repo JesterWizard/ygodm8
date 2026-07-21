@@ -455,6 +455,7 @@ u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone)
     case RAREGOLD_ARMOR:
     case BIG_BANG_SHOT:
     case H_HEATED_HEART:
+    case AMAZONESS_HEIRLOOM:
     case AUTONOMOUS_ACTION_UNIT:
     case PREMATURE_BURIAL:
       return zone->isFaceUp == TRUE && zone->isLocked == TRUE

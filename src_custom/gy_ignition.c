@@ -1,5 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
+#include "amazoness_call.h"
+#include "amazoness_secret_arts.h"
 #include "constants/card_ids.h"
 #include "expanded_graveyard.h"
 #include "gy_ignition.h"
@@ -17,6 +19,12 @@ static const struct GyIgnitionEntry sGyIgnitionTable[] APPEND_RODATA = {
   { THE_WHITE_STONE_OF_ANCIENTS,
     CanActivateTheWhiteStoneOfAncientsGy,
     ActivateTheWhiteStoneOfAncientsGy },
+  { AMAZONESS_CALL,
+    CanActivateAmazonessCallGy,
+    ActivateAmazonessCallGy },
+  { AMAZONESS_SECRET_ARTS,
+    CanActivateAmazonessSecretArtsGy,
+    ActivateAmazonessSecretArtsGy },
 };
 
 u8 GyIgnition_TryAt(u8 fixedDuelist, u16 cardId)

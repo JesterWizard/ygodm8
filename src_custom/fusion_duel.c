@@ -14,6 +14,7 @@
 #include "chimeratech_overdragon.h"
 #include "expanded_graveyard.h"
 #include "cybernetic_fusion_support.h"
+#include "amazoness_secret_arts.h"
 #include "fusion_duel.h"
 #include "player_decks.h"
 #include "power_bond.h"
@@ -105,7 +106,7 @@ u8 FusionDuel_CollectHandAndFieldSources(struct FusionMaterialSource *out, u8 ma
       AddSource(out, &count, maxOut, zone, FUSION_GY_INDEX_NONE, zone->id);
   }
 
-  return count;
+  return AmazonessSecretArts_AppendExtraDeckSources(out, count, maxOut);
 }
 
 u8 FusionDuel_CollectFieldAndGraveyardSources(struct FusionMaterialSource *out, u8 maxOut)
@@ -811,6 +812,8 @@ static void PayPolymerizationMaterials(const struct FusionMaterialSource *select
   for (i = 0; i < selectedCount; i++) {
     if (selected[i].zone != NULL)
       ClearZoneAndSendMonToGraveyard(selected[i].zone, ACTIVE_DUELIST);
+    else if (AmazonessSecretArts_IsExtraDeckSource(&selected[i]))
+      AmazonessSecretArts_PayExtraDeckSource(&selected[i]);
   }
 }
 

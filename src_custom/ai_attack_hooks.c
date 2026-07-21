@@ -21,6 +21,7 @@
 #include "chimeratech_overdragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_wildedge.h"
+#include "amazoness_call.h"
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -225,6 +226,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockChimeratechOverdragonForNextAttack(attacker);
   TryUnlockBlackLusterSoldierEnvoyForSecondAttack(attacker);
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, NULL);
+  TryUnlockAmazonessCallForNextAttack(attacker, NULL);
 }
 
 static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender) {
@@ -284,6 +286,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockChimeratechOverdragonForNextAttack(attacker);
   TryUnlockBlackLusterSoldierEnvoyForSecondAttack(attacker);
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, defender);
+  TryUnlockAmazonessCallForNextAttack(attacker, defender);
 }
 
 LYN_REPLACE_CHECK(sub_800E50C);

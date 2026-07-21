@@ -51,20 +51,6 @@ static void EquipAmazonessHeirloom(struct DuelCard *spellZone, struct DuelCard *
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
 
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add AMAZONESS_HEIRLOOM to card_hooks GetSpellType EQUIP list and
-   * dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART. */
-
-  /* ponytail: once-per-turn battle-destroy protection needs CanMonsterBeDestroyedByBattle
-   * / Duel_ApplyBattleDestroyProtection to check DynamicEquipTargetsMonsterWithSpell
-   * (zone, AMAZONESS_HEIRLOOM) + OPT bit. Ceiling: equip-only; upgrade: battle-protect
-   * flag cleared EOT / after one save. */
-
-  /* ponytail: after damage calc, if equipped attacks a monster → destroy defender
-   * needs a battle_effects post-damage hook outside this file. Ceiling: equip-only;
-   * upgrade: after damage calc → if DynamicEquipTargetsMonsterWithSpell(attacker,
-   * AMAZONESS_HEIRLOOM) then Duel_DestroyZone(defender). */
 }
 
 static void ResolveAmazonessHeirloomTarget(u8 fixedRow, u8 fixedCol)

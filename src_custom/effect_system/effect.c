@@ -5,6 +5,9 @@
 #include "duel.h"
 #include "effect.h"
 #include "effect_scripts.h"
+#include "alluring_mirror_split.h"
+#include "amazoness_call.h"
+#include "amazoness_village.h"
 #include "amazoness_fighting_spirit.h"
 #include "elemental_hero_inferno.h"
 #include "skyscraper.h"
@@ -22,6 +25,13 @@ static enum DuelActionResult Op_DamageCalcAtkBoosts(struct EffectCtx *ctx)
   return DUEL_ACTION_OK;
 }
 
+static enum DuelActionResult Op_ClearAmazonessCallMultiAttack(struct EffectCtx *ctx)
+{
+  (void)ctx;
+  ClearAmazonessCallMultiAttackState();
+  return DUEL_ACTION_OK;
+}
+
 static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
   {
       CARD_NONE,
@@ -34,6 +44,66 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_DamageCalcAtkBoosts,
+  },
+  {
+      ALLURING_MIRROR_SPLIT,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_BATTLE_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_OPT,
+      Cond_AlluringMirrorSplitBattleDestroy,
+      NULL,
+      NULL,
+      Op_AlluringMirrorSplitBattleDestroy,
+  },
+  {
+      ALLURING_MIRROR_SPLIT,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_OPT,
+      Cond_AlluringMirrorSplitFloat,
+      NULL,
+      NULL,
+      Op_AlluringMirrorSplitFloat,
+  },
+  {
+      AMAZONESS_VILLAGE,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_BATTLE_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_OPT,
+      Cond_AmazonessVillageDestroySs,
+      NULL,
+      NULL,
+      Op_AmazonessVillageDestroySs,
+  },
+  {
+      AMAZONESS_VILLAGE,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_OPT,
+      Cond_AmazonessVillageDestroySs,
+      NULL,
+      NULL,
+      Op_AmazonessVillageDestroySs,
+  },
+  {
+      CARD_NONE,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_CONTINUOUS,
+      EFFECT_EVENT_ON_TURN_STANDBY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      NULL,
+      NULL,
+      NULL,
+      Op_ClearAmazonessCallMultiAttack,
   },
 };
 

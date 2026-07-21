@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "amazoness_call.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
@@ -8,14 +9,24 @@
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
+#include "the_dark_door.h"
 
 void InitButtonMaps(void);
 void UpdateFilteredInput_WithRepeat(void);
 void WaitForVBlank(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
+void TryActivatingPermanentEffects(void);
 
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
+
+extern u8 gAmazonessCallMultiAttackActive;
+extern u8 gAmazonessCallMultiAttackAnchorRow;
+extern u8 gAmazonessCallMultiAttackAnchorCol;
+extern u8 gAmazonessCallMultiAttackedMask;
+
+#define AMAZONESS_CALL_ZONE_NONE 0xFF
 
 static const u8 sAmazonessCallPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -88,11 +99,10 @@ static void WaitForNoButtonsHeld(void)
     WaitForVBlank();
 }
 
-/* TRUE = add to hand, FALSE = send to GY. */
+/* TRUE = add to hand, FALSE = send to GY.
+ * A = add to hand, B = send to GY (no labeled choice menu). */
 static u8 PlayerChoosesAddToHand(void)
 {
-  /* ponytail: no dedicated hand/GY choice UI — A = add to hand, B = send to GY.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -275,13 +285,261 @@ static void AMAZONESS_CALL_ResolveBody(void)
     Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
 
   UpdateDuelGfxExceptField();
+}
 
-  /* ponytail: GY banish → target 1 Amazoness you control; that monster can
-   * attack all opponent monsters once each, also other monsters cannot attack
-   * needs GY ignition + battle multi-attack hooks outside this file.
-   * Ceiling: on-field deck search only; upgrade: GY activate → banish
-   * AMAZONESS_CALL → PickZone Duel_IsAmazonessCard → mark zone for multi-attack
-   * + lock other controlled monsters' attacks until EOT. */
+void ClearAmazonessCallMultiAttackState(void)
+{
+  gAmazonessCallMultiAttackActive = FALSE;
+  gAmazonessCallMultiAttackAnchorRow = AMAZONESS_CALL_ZONE_NONE;
+  gAmazonessCallMultiAttackAnchorCol = AMAZONESS_CALL_ZONE_NONE;
+  gAmazonessCallMultiAttackedMask = 0;
+}
+
+static u8 OpponentMonsterTurnRow(void)
+{
+  return WhoseTurn() == DUEL_PLAYER
+      ? INACTIVE_DUELIST_MONSTER_ROW
+      : ACTIVE_DUELIST_MONSTER_ROW;
+}
+
+static u8 HasUnattackedOpponentMonster(void)
+{
+  u8 row = OpponentMonsterTurnRow();
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (gTurnZones[row][col]->id == CARD_NONE)
+      continue;
+
+    if ((gAmazonessCallMultiAttackedMask & (1u << col)) == 0)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static u8 AttackerIsCallMultiAttackAnchor(struct DuelCard *attacker)
+{
+  u8 turnRow;
+  u8 col;
+
+  if (!gAmazonessCallMultiAttackActive || attacker == NULL)
+    return FALSE;
+
+  if (gAmazonessCallMultiAttackAnchorRow == AMAZONESS_CALL_ZONE_NONE)
+    return FALSE;
+
+  if (!Duel_FindTurnMonsterZone(attacker, &turnRow, &col))
+    return FALSE;
+
+  return turnRow == gAmazonessCallMultiAttackAnchorRow
+      && col == gAmazonessCallMultiAttackAnchorCol;
+}
+
+static void MarkDefenderAttacked(struct DuelCard *defender)
+{
+  u8 turnRow;
+  u8 col;
+
+  if (defender == NULL || defender->id == CARD_NONE)
+    return;
+
+  if (!Duel_FindTurnMonsterZone(defender, &turnRow, &col))
+    return;
+
+  if (turnRow != OpponentMonsterTurnRow())
+    return;
+
+  gAmazonessCallMultiAttackedMask |= (1u << col);
+}
+
+u8 AmazonessCall_CanAttackMonsterZone(struct DuelCard *zone)
+{
+  u8 turnRow;
+  u8 col;
+
+  if (!gAmazonessCallMultiAttackActive || zone == NULL || zone->id == CARD_NONE)
+    return TRUE;
+
+  if (!Duel_FindTurnMonsterZone(zone, &turnRow, &col))
+    return TRUE;
+
+  if (turnRow != ACTIVE_DUELIST_MONSTER_ROW)
+    return TRUE;
+
+  return turnRow == gAmazonessCallMultiAttackAnchorRow
+      && col == gAmazonessCallMultiAttackAnchorCol;
+}
+
+void TryUnlockAmazonessCallForNextAttack(struct DuelCard *attacker,
+                                         struct DuelCard *defender)
+{
+  if (!AttackerIsCallMultiAttackAnchor(attacker))
+    return;
+
+  if (IsTheDarkDoorActiveOnField())
+    return;
+
+  MarkDefenderAttacked(defender);
+
+  if (HasUnattackedOpponentMonster())
+    attacker->isLocked = FALSE;
+  else
+    ClearAmazonessCallMultiAttackState();
+}
+
+static u8 ActiveMonsterFixedRow(void)
+{
+  return WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+}
+
+static u8 IsValidCallMultiAttackTarget(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone;
+
+  if (fixedRow != ActiveMonsterFixedRow())
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  return Duel_IsAmazonessCard(zone->id);
+}
+
+static u8 HasCallMultiAttackTarget(void)
+{
+  u8 col;
+  u8 fixedRow = ActiveMonsterFixedRow();
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (IsValidCallMultiAttackTarget(fixedRow, col))
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static void LockOtherActiveMonsters(u8 anchorTurnRow, u8 anchorTurnCol)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+    if (zone->id == CARD_NONE)
+      continue;
+
+    if (ACTIVE_DUELIST_MONSTER_ROW == anchorTurnRow && col == anchorTurnCol) {
+      zone->isLocked = FALSE;
+      continue;
+    }
+
+    zone->isLocked = TRUE;
+  }
+}
+
+static void MarkCallMultiAttackAt(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  u8 turnRow;
+  u8 turnCol;
+
+  if (!IsValidCallMultiAttackTarget(fixedRow, fixedCol))
+    return;
+
+  if (!Duel_FindTurnMonsterZone(zone, &turnRow, &turnCol))
+    return;
+
+  ClearAmazonessCallMultiAttackState();
+  gAmazonessCallMultiAttackActive = TRUE;
+  gAmazonessCallMultiAttackAnchorRow = turnRow;
+  gAmazonessCallMultiAttackAnchorCol = turnCol;
+  gAmazonessCallMultiAttackedMask = 0;
+  LockOtherActiveMonsters(turnRow, turnCol);
+}
+
+static void ResolveCallMultiAttackTarget(u8 fixedRow, u8 fixedCol)
+{
+  MarkCallMultiAttackAt(fixedRow, fixedCol);
+}
+
+static void CancelCallMultiAttackTargeting(void)
+{
+  PlayMusic(SFX_CANCEL);
+}
+
+static u8 AiPickCallMultiAttackTarget(u8 *outRow, u8 *outCol)
+{
+  u8 col;
+  u8 fixedRow = ActiveMonsterFixedRow();
+  u8 bestCol = 0xFF;
+  u16 bestAtk = 0;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone;
+    u16 atk;
+
+    if (!IsValidCallMultiAttackTarget(fixedRow, col))
+      continue;
+
+    zone = gFixedZones[fixedRow][col];
+    atk = gCardData_NEW[zone->id].atk;
+    if (bestCol == 0xFF || atk > bestAtk) {
+      bestCol = col;
+      bestAtk = atk;
+    }
+  }
+
+  if (bestCol == 0xFF)
+    return FALSE;
+
+  *outRow = fixedRow;
+  *outCol = bestCol;
+  return TRUE;
+}
+
+u8 CanActivateAmazonessCallGy(u8 fixedDuelist, u8 gyIndex)
+{
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+
+  if (EffectOpt_IsUsed(AMAZONESS_CALL))
+    return FALSE;
+
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != AMAZONESS_CALL)
+    return FALSE;
+
+  return HasCallMultiAttackTarget();
+}
+
+void ActivateAmazonessCallGy(u8 fixedDuelist, u8 gyIndex)
+{
+  if (!CanActivateAmazonessCallGy(fixedDuelist, gyIndex))
+    return;
+
+  Duel_ShowEffectText(AMAZONESS_CALL);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  EffectOpt_MarkUsed(AMAZONESS_CALL);
+  Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex);
+
+  Duel_SetupPickZone(IsValidCallMultiAttackTarget, ResolveCallMultiAttackTarget,
+                     CancelCallMultiAttackTargeting, AiPickCallMultiAttackTarget);
+
+  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
+    Duel_RunPickZoneInputLoop();
+  else
+    Duel_ResolvePickZoneForAi();
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 APPEND_TEXT void EffectAMAZONESS_CALL(void)

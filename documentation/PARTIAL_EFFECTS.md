@@ -9,45 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-20 23:45 UTC  
-**Remaining partials:** `862`
+**Last updated:** 2026-07-21 19:19 UTC  
+**Remaining partials:** `857`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 181 |
+| `spell` | 176 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **862** |
+| **total** | **857** |
 
-## spell (181)
-
-### `ALLURING_MIRROR_SPLIT`
-- path: `src_custom/spell_effects/alluring_mirror_split.c`
-- L9: battle-destroy of Harpie Lady / Sisters → SS different-name Harpie from Deck needs a battle-destroy listener + OPT bit outside this file. Ceiling: continuous face-up only; upgrade: after battle destroy → if face-up ALLURING_MIRROR_SPLIT and destroyed is Harpie Lady / Sisters then Deck SS Harpie with original name != destroyed.
-- L15: when this card is destroyed by a Harpie effect or opponent's effect → SS 1 Harpie from GY needs a destroy-reason hook outside this file. Ceiling: no floating on leave; upgrade: ClearZoneAndSendMonToGraveyard / destroy path → if id was ALLURING_MIRROR_SPLIT and reason matches, PickZone GY Harpie → Duel_SpecialSummonFromGrave.
-
-### `AMAZONESS_CALL`
-- path: `src_custom/spell_effects/amazoness_call.c`
-- L94: no dedicated hand/GY choice UI — A = add to hand, B = send to GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L279: GY banish → target 1 Amazoness you control; that monster can attack all opponent monsters once each, also other monsters cannot attack needs GY ignition + battle multi-attack hooks outside this file. Ceiling: on-field deck search only; upgrade: GY activate → banish AMAZONESS_CALL → PickZone Duel_IsAmazonessCard → mark zone for multi-attack
-
-### `AMAZONESS_HEIRLOOM`
-- path: `src_custom/spell_effects/amazoness_heirloom.c`
-- L54: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone instead of vanilla equip targeting; link cleanup may not treat this as active equip. Ceiling: add AMAZONESS_HEIRLOOM to card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART.
-- L59: once-per-turn battle-destroy protection needs CanMonsterBeDestroyedByBattle / Duel_ApplyBattleDestroyProtection to check DynamicEquipTargetsMonsterWithSpell (zone, AMAZONESS_HEIRLOOM) + OPT bit. Ceiling: equip-only; upgrade: battle-protect flag cleared EOT / after one save.
-- L64: after damage calc, if equipped attacks a monster → destroy defender needs a battle_effects post-damage hook outside this file. Ceiling: equip-only; upgrade: after damage calc → if DynamicEquipTargetsMonsterWithSpell(attacker, AMAZONESS_HEIRLOOM) then Duel_DestroyZone(defender).
-
-### `AMAZONESS_SECRET_ARTS`
-- path: `src_custom/spell_effects/amazoness_secret_arts.c`
-- L16: OPT / GY ignition (banish → Extra Deck material) need hooks outside this file. Ceiling: field Fusion only once per BSS; upgrade: turn_effect reset + GY ignition → mark Amazoness Extra material flag.
-
-### `AMAZONESS_VILLAGE`
-- path: `src_custom/spell_effects/amazoness_village.c`
-- L89: +200 ATK for Amazoness monsters needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up AMAZONESS_VILLAGE and Duel_IsAmazonessCard(zone) then ATK += 200.
-- L94: once-per-turn when an Amazoness is destroyed by battle/effect and sent to GY → SS 1 Amazoness from Deck with Level ≤ that GY monster needs a destroy/GY listener + OPT bit outside this file. Ceiling: continuous face-up only; upgrade: after-destroy hook → if face-up AMAZONESS_VILLAGE and Duel_IsAmazonessCard(destroyed) then PickZone deck SS filtered by level.
+## spell (176)
 
 ### `ANCIENT_GEAR_ADVANCE`
 - path: `src_custom/spell_effects/ancient_gear_advance.c`

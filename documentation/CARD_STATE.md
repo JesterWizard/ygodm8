@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — White Stone GY ignition (turn=0)
+**Last worked on:** 2026-07-21 — Pack leftovers: Mirror float + Secret Arts GY
 
-**Outcome:** Last turn partial cleared. Banish White Stone from GY → add Blue-Eyes from GY to hand via own-GY viewer A + `GyIgnition` table + `EffectOpt`. End Phase SS unchanged. Partials 863→862; **battle=0, turn=0**.
+**Outcome:** Mirror Split `ON_DESTROY` float → SS Harpie from GY (opp effect or Harpie source). Secret Arts GyIgnition → Extra Deck Amazoness material flag for Poly. Partials **859→857**.
 
-**Open / next:** Drop Malicious / Mezuki / Treeborn onto `sGyIgnitionTable`; playtest White Stone GY path.
+**Open / next:** Top-down Ancient Gear Advance / Castle / …

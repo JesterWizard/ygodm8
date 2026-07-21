@@ -23,6 +23,7 @@
 #include "chimeratech_overdragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_wildedge.h"
+#include "amazoness_call.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "ghost_knight_of_jackal.h"
@@ -68,6 +69,7 @@ void ResolveHyperHammerheadBattleEffect(void);
 void ResolveDDWarriorBattleEffect(void);
 void ResolveDesKangarooBattleEffect(void);
 void ResolveContinuousDestructionPunchBattleEffect(void);
+void ResolveAmazonessHeirloomBattleEffect(void);
 void ResolveAbsorbingKidFromTheSkyBattleEffect(void);
 void ResolveCoffinSellerBattleEffect(void);
 void ResolveYubelAttackedReflectEffect(void);
@@ -417,6 +419,10 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
       attacker,
       isDirect ? NULL
                : gTurnZones[sAttackResume.defenderRow][sAttackResume.defenderCol]);
+  TryUnlockAmazonessCallForNextAttack(
+      attacker,
+      isDirect ? NULL
+               : gTurnZones[sAttackResume.defenderRow][sAttackResume.defenderCol]);
   sub_801BC00();
   UpdateAllDuelGfx();
   ResolveTheUnhappyMaidenBattleEffect();
@@ -438,6 +444,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   ResolveDDWarriorBattleEffect();
   ResolveDesKangarooBattleEffect();
   ResolveContinuousDestructionPunchBattleEffect();
+  ResolveAmazonessHeirloomBattleEffect();
   ResolveAbsorbingKidFromTheSkyBattleEffect();
   ResolveCoffinSellerBattleEffect();
   sub_8022080();

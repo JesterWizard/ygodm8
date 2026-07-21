@@ -80,6 +80,7 @@
 #include "reptilianne_scylla.h"
 #include "des_kangaroo.h"
 #include "continuous_destruction_punch.h"
+#include "amazoness_heirloom.h"
 #include "d_d_warrior.h"
 #include "absorbing_kid_from_the_sky.h"
 #include "airknight_parshath.h"
@@ -110,6 +111,7 @@
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
 #include "elemental_hero_wildedge.h"
+#include "amazoness_call.h"
 #include "elemental_hero_necroshade.h"
 #include "amazoness_archer.h"
 #include "sasuke_samurai.h"
@@ -1769,6 +1771,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockElementalHeroWildedgeForNextAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
+      TryUnlockAmazonessCallForNextAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       gDuelCursor.state = 0;
       sub_801BC00();
       UpdateAllDuelGfx();
@@ -1799,6 +1803,7 @@ void sub_8044570__Replacement(void)
       ResolveDDWarriorBattleEffect();
       ResolveDesKangarooBattleEffect();
       ResolveContinuousDestructionPunchBattleEffect();
+      ResolveAmazonessHeirloomBattleEffect();
       ResolveAbsorbingKidFromTheSkyBattleEffect();
       ResolveCoffinSellerBattleEffect();
       sub_8022080();
@@ -1917,6 +1922,9 @@ void TryAttackWithMonster__Replacement(void)
       TryUnlockElementalHeroWildedgeForNextAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockAmazonessCallForNextAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gDuelCursor.state = 0;
       SetCursorToCardDest();
       sub_801BC00();
@@ -1948,6 +1956,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveDDWarriorBattleEffect();
       ResolveDesKangarooBattleEffect();
       ResolveContinuousDestructionPunchBattleEffect();
+      ResolveAmazonessHeirloomBattleEffect();
       ResolveAbsorbingKidFromTheSkyBattleEffect();
       ResolveCoffinSellerBattleEffect();
       sub_8022080();

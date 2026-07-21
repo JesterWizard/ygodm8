@@ -47,6 +47,7 @@
 #include "d_d_warrior.h"
 #include "des_kangaroo.h"
 #include "continuous_destruction_punch.h"
+#include "amazoness_heirloom.h"
 #include "big_bang_shot.h"
 #include "h_heated_heart.h"
 #include "cyber_end_dragon.h"
@@ -221,6 +222,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyShinatoKingOfAHigherPlaneBattleEffect();
   ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyKaiserGliderBattleProtection();
+  ApplyAmazonessHeirloomBattleProtection();
   Duel_ApplyBattleDestroyProtection();
   playerGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_PLAYER) != 0;
   opponentGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) != 0;
@@ -242,6 +244,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyDarkMagicianOfChaosBattleEffect();
   ApplyDesKangarooBattleEffect();
   ApplyContinuousDestructionPunchBattleEffect();
+  ApplyAmazonessHeirloomBattleEffect();
 
   Duel_RemapMutualDestroyBattleAnim(playerGraveyardDestroy, opponentGraveyardDestroy);
 

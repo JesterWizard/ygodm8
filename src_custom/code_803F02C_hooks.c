@@ -45,6 +45,7 @@
 #include "card.h"
 #include "chimeratech_overdragon.h"
 #include "cybernetic_fusion_support.h"
+#include "amazoness_secret_arts.h"
 #include "power_bond.h"
 #include "imperial_order.h"
 #include "dynamic_equip.h"
@@ -71,6 +72,9 @@
 #include "elemental_hero_ice_edge.h"
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_wildedge.h"
+#include "amazoness_call.h"
+#include "continuous_destruction_punch.h"
+#include "amazoness_heirloom.h"
 #include "elemental_hero_necroshade.h"
 #include "elemental_hero_neos_alius.h"
 #include "lesser_fiend.h"
@@ -86,7 +90,6 @@
 #include "red_dragon_archfiend.h"
 #include "reptilianne_scylla.h"
 #include "des_kangaroo.h"
-#include "continuous_destruction_punch.h"
 #include "absorbing_kid_from_the_sky.h"
 #include "airknight_parshath.h"
 #include "sasuke_samurai_3.h"
@@ -494,6 +497,7 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroSunriseDestroyPending();
   ClearElementalHeroBlazemanTurnState();
   ClearCyberneticFusionSupport();
+  AmazonessSecretArts_ClearExtraMaterial();
   PowerBond_ClearState();
   ClearTheBigSaturnPending();
   ClearTheWickedEraserPending();
@@ -519,6 +523,8 @@ void InitBoard__Replacement(void) {
   ClearReptilianneScyllaPending();
   ClearDesKangarooPending();
   ClearContinuousDestructionPunchPending();
+  ClearAmazonessHeirloomPending();
+  ClearAmazonessCallMultiAttackState();
   ClearAbsorbingKidFromTheSkyPending();
   ClearCoffinSellerPending();
   Yubel_ClearBattlePending();
@@ -955,11 +961,13 @@ void UnlockCardsInRow__Replacement(unsigned char turnRow)
 
   if (turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
     ClearElementalHeroWildedgeState();
+    ClearAmazonessCallMultiAttackState();
     ClearChimeratechOverdragonAttacksUsed();
     ClearElementalHeroSunriseOptFlags();
     ClearElementalHeroIceEdgeDirectAttackFlags();
     ClearElementalHeroBlazemanTurnState();
     ClearCyberneticFusionSupport();
+    AmazonessSecretArts_ClearExtraMaterial();
   }
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
