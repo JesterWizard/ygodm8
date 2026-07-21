@@ -113,7 +113,11 @@
 #include "elemental_hero_wildedge.h"
 #include "amazoness_call.h"
 #include "elemental_hero_necroshade.h"
+#include "ancient_gear_advance.h"
 #include "ancient_gear_castle.h"
+#include "ancient_gear_drill.h"
+#include "ancient_gear_factory.h"
+#include "aroma_gardening.h"
 #include "effect_events.h"
 #include "amazoness_archer.h"
 #include "sasuke_samurai.h"
@@ -418,6 +422,8 @@ static void TryPlaceSelectedCardOnField_Local(void)
         TryActivatingPermanentEffects();
         ElementalHeroNecroshade_TryConsumeOnNormalSummon(placedCardId);
         AncientGearCastle_TryConsumeOnNormalSummon(placedCardId);
+        AncientGearAdvance_TryConsumeOnNormalSummon(placedCardId);
+        AncientGearFactory_TryConsumeOnNormalSummon(placedCardId);
         if (placedCardId == GetPendingTributeSummonCardId()) {
           ResetNumTributes();
           ClearPendingTributeSummonCardId();
@@ -1113,6 +1119,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
     return;
   }
 
+  if (AncientGearDrill_BlocksSpellActivation(zone)) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
   if (IsMysticalSpaceTyphoonCard(id)) {
     if (!FieldHasMysticalSpaceTyphoonTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
       PlayMusic(SFX_FORBIDDEN);
@@ -1552,6 +1566,14 @@ void sub_80449D8__Replacement(void)
     return;
   }
 
+  if (GetTypeGroup(gSelectedCard.id) == TYPE_GROUP_MONSTER
+      && gSelectedCard.isDefending
+      && AncientGearAdvance_CannotSetThisTurn()) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
+
   if (gRuntimeConfig.enable_smarter_ai == TRUE) {
     u8 preferredCol;
 
@@ -1738,6 +1760,7 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryArmElementalHeroSunriseOnAttackDeclared(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
+      ApplyAromaGardeningAttackDeclare();
       TryShowBlackTyrannoDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       TryShowDrillagoDirectAttackText(
@@ -1895,6 +1918,7 @@ void TryAttackWithMonster__Replacement(void)
       TryArmElementalHeroSunriseOnAttackDeclared(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      ApplyAromaGardeningAttackDeclare();
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyMirrorWallToPendingAction();

@@ -6,8 +6,6 @@
 #include "duel_helpers.h"
 #include "spell_effects.h"
 
-/* 1 stage ~= 500 ATK. Printed +600; nearest stage unit is +500 (1 stage). */
-#define ANCIENT_GEAR_TANK_ATK_STAGES 1
 #define ANCIENT_GEAR_TANK_DESTROY_BURN 600
 
 static const char sAncientGearName[] APPEND_RODATA = "Ancient Gear";
@@ -65,6 +63,20 @@ u8 Cond_AncientGearTankOnDestroy(struct EffectCtx *ctx)
   return ctx->event->cardId == ANCIENT_GEAR_TANK;
 }
 
+void ApplyAncientGearTankAtkBonusToCardInfo(const struct DuelCard *zone)
+{
+  u32 atk;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  if (!DynamicEquipTargetsMonsterWithSpell(zone, ANCIENT_GEAR_TANK))
+    return;
+
+  atk = (u32)gCardInfo.atk + (u32)ANCIENT_GEAR_TANK_ATK_BONUS;
+  gCardInfo.atk = Duel_ClampStat(atk);
+}
+
 enum DuelActionResult Op_AncientGearTankOnDestroy(struct EffectCtx *ctx)
 {
   u8 controller;
@@ -87,12 +99,7 @@ enum DuelActionResult Op_AncientGearTankOnDestroy(struct EffectCtx *ctx)
 
 static void EquipAncientGearTank(struct DuelCard *spellZone, struct DuelCard *target)
 {
-  /* ponytail: stage unit is 500 ATK — applied +500, not printed +600.
-   * Ceiling: no fractional stages; upgrade: exact-ATK overlay like BIG_BANG_SHOT. */
-
-  ApplyDynamicEquipStages(target, ANCIENT_GEAR_TANK_ATK_STAGES);
-  if (!RegisterDynamicEquip(spellZone, target, ANCIENT_GEAR_TANK,
-                            ANCIENT_GEAR_TANK_ATK_STAGES))
+  if (!RegisterDynamicEquip(spellZone, target, ANCIENT_GEAR_TANK, 0))
     return;
 
   Duel_ActivateContinuousZone(spellZone);

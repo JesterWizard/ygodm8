@@ -10,13 +10,6 @@ static void ATTACK_PHEROMONES_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(ATTACK_PHEROMONES);
-
-  /* ponytail: Reptile attacks DEF → flip to face-up ATK at end of Damage Step
-   * needs a battle_effects / Damage Step end hook outside this file.
-   * Ceiling: face-up continuous only; upgrade: end-of-Damage-Step → if face-up
-   * ATTACK_PHEROMONES on controller's field, attacker is Reptile
-   * (Duel_CardHasMonsterType TYPE_REPTILE), and defender was Defense Position,
-   * then set defender isDefending=FALSE and isFaceUp=TRUE. */
 }
 
 APPEND_TEXT void EffectATTACK_PHEROMONES(void)

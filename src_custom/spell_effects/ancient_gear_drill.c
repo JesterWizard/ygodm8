@@ -1,10 +1,16 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ancient_gear_drill.h"
 #include "constants/card_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
+
+static u8 sDrillLockActive APPEND_DATA = {0};
+static u16 sDrillLockedCardId APPEND_DATA = {0};
+static u8 sDrillLockedFixedRow APPEND_DATA = {0};
+static u8 sDrillLockedFixedCol APPEND_DATA = {0};
 
 void UpdateDuelGfxExceptField(void);
 
@@ -74,6 +80,28 @@ static s16 FindFirstSpellDeckIndex(u8 turnDuelist)
 static u8 HasEmptyBackrow(void)
 {
   return FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_BACKROW]) >= 0;
+}
+
+void AncientGearDrill_OnTurnBoundary(void)
+{
+  sDrillLockActive = FALSE;
+  sDrillLockedCardId = CARD_NONE;
+  sDrillLockedFixedRow = 0;
+  sDrillLockedFixedCol = 0;
+}
+
+u8 AncientGearDrill_BlocksSpellActivation(struct DuelCard *zone)
+{
+  u8 row;
+  u8 col;
+
+  if (!sDrillLockActive || zone == NULL || zone->id != sDrillLockedCardId)
+    return FALSE;
+
+  if (!Duel_FindFixedZone(zone, &row, &col))
+    return FALSE;
+
+  return row == sDrillLockedFixedRow && col == sDrillLockedFixedCol;
 }
 
 u8 CanActivateANCIENT_GEAR_DRILL(void)
@@ -193,9 +221,10 @@ static u8 SetSpellFromDeckAtIndex(u8 turnDuelist, u8 deckIndex)
   Duel_ShuffleDeckFromDrawn(turnDuelist);
   InitSetBackrowSlot(gTurnZones[ACTIVE_DUELIST_BACKROW][backCol], cardId);
 
-  /* ponytail: no per-card same-turn activation lock.
-   * Ceiling: Set Spell can still be activated this turn.
-   * Upgrade: turn-scoped cardId/zone lock checked at Spell activation. */
+  sDrillLockActive = TRUE;
+  sDrillLockedCardId = cardId;
+  sDrillLockedFixedRow = WhoseTurn() == DUEL_PLAYER ? PLAYER_BACKROW : OPPONENT_BACKROW;
+  sDrillLockedFixedCol = (u8)backCol;
   return TRUE;
 }
 

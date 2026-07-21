@@ -2,6 +2,8 @@
 #include "common-chax.h"
 #include "amazoness_call.h"
 #include "amazoness_secret_arts.h"
+#include "arcana_reading.h"
+#include "arcana_spread.h"
 #include "constants/card_ids.h"
 #include "expanded_graveyard.h"
 #include "gy_ignition.h"
@@ -25,6 +27,12 @@ static const struct GyIgnitionEntry sGyIgnitionTable[] APPEND_RODATA = {
   { AMAZONESS_SECRET_ARTS,
     CanActivateAmazonessSecretArtsGy,
     ActivateAmazonessSecretArtsGy },
+  { ARCANA_READING,
+    CanActivateArcanaReadingGy,
+    ActivateArcanaReadingGy },
+  { ARCANA_SPREAD,
+    CanActivateArcanaSpreadGy,
+    ActivateArcanaSpreadGy },
 };
 
 u8 GyIgnition_TryAt(u8 fixedDuelist, u16 cardId)

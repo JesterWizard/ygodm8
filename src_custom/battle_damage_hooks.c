@@ -49,6 +49,7 @@
 #include "continuous_destruction_punch.h"
 #include "amazoness_heirloom.h"
 #include "ancient_gear_fist.h"
+#include "attack_pheromones.h"
 #include "big_bang_shot.h"
 #include "h_heated_heart.h"
 #include "cyber_end_dragon.h"
@@ -247,6 +248,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyContinuousDestructionPunchBattleEffect();
   ApplyAmazonessHeirloomBattleEffect();
   ApplyAncientGearFistBattleEffect();
+  ApplyAttackPheromonesBattleEffect();
 
   Duel_RemapMutualDestroyBattleAnim(playerGraveyardDestroy, opponentGraveyardDestroy);
 

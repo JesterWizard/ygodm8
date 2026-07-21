@@ -1,11 +1,14 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ancient_gear_factory.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "exchange_hand_selection.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
+
+static u16 sAncientGearFactoryRevealId APPEND_DATA = {0};
 
 #define ANCIENT_GEAR_FACTORY_MAX_GY 15
 
@@ -41,6 +44,45 @@ static u8 IsRevealableAncientGear(u16 cardId)
     return FALSE;
 
   return MonsterLevel(cardId) >= 5;
+}
+
+static int LookupRequiredTributes(u8 level)
+{
+  if (level <= 4)
+    return 0;
+  if (level <= 6)
+    return 1;
+  if (level <= 8)
+    return 2;
+  return 3;
+}
+
+static int BaseRequiredTributesForCard(u16 cardId)
+{
+  SetCardInfo(cardId);
+  return LookupRequiredTributes(gCardInfo.level);
+}
+
+void AncientGearFactory_OnTurnBoundary(void)
+{
+  sAncientGearFactoryRevealId = CARD_NONE;
+}
+
+u8 AncientGearFactory_CanNormalSummonWithoutTribute(u16 cardId)
+{
+  if (sAncientGearFactoryRevealId == CARD_NONE || cardId != sAncientGearFactoryRevealId)
+    return FALSE;
+
+  return BaseRequiredTributesForCard(cardId) > 0;
+}
+
+u8 AncientGearFactory_TryConsumeOnNormalSummon(u16 cardId)
+{
+  if (!AncientGearFactory_CanNormalSummonWithoutTribute(cardId))
+    return FALSE;
+
+  sAncientGearFactoryRevealId = CARD_NONE;
+  return TRUE;
 }
 
 static u8 CollectGyAncientGearCandidates(u8 fixedDuelist, u8 *outGyIndex, u8 *outLevels,
@@ -199,10 +241,7 @@ static void ANCIENT_GEAR_FACTORY_ResolveBody(void)
     return;
 
   BanishGyMask(fixedDuelist, gyIndex, candCount, mask);
-
-  /* ponytail: "Normal Summon the revealed monster this turn without Tributing"
-   * needs a turn-scoped tribute-bypass (clone Necroshade) outside this file.
-   * Ceiling: reveal + GY banish only; upgrade: mark revealId + consume on NS. */
+  sAncientGearFactoryRevealId = revealId;
 
   if (spellZone != NULL && spellZone->id == ANCIENT_GEAR_FACTORY)
     Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);

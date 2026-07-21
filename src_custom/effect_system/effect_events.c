@@ -1,5 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ancient_gear_advance.h"
+#include "ancient_gear_drill.h"
+#include "ancient_gear_factory.h"
 #include "constants/card_ids.h"
 #include "duel.h"
 #include "duel_helpers.h"
@@ -149,6 +152,9 @@ void EffectEvent_OnTurnBoundary(void)
   struct EffectEvent ev;
 
   EffectOpt_ClearAll();
+  AncientGearAdvance_OnTurnBoundary();
+  AncientGearDrill_OnTurnBoundary();
+  AncientGearFactory_OnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_reading.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
@@ -12,6 +13,8 @@ void InitButtonMaps(void);
 void UpdateFilteredInput_WithRepeat(void);
 void WaitForVBlank(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
+void TryActivatingPermanentEffects(void);
 
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
@@ -61,6 +64,37 @@ static u8 IsCoinTossCardExceptArcanaReading(u16 cardId)
     return TRUE;
 
   return IsKnownCoinTossCard(cardId);
+}
+
+static u8 IsArcanaForceMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sArcanaForceArchetypeName);
+}
+
+static u8 HandHasArcanaForceMonster(u8 turnDuelist)
+{
+  u8 i;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (IsArcanaForceMonster(gTurnHands[turnDuelist][i]->id))
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static u8 CanNormalSummonArcanaForce(u8 turnDuelist)
+{
+  u8 monsterRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                                : INACTIVE_DUELIST_MONSTER_ROW;
+
+  if (FirstEmptyZoneInRow(gTurnZones[monsterRow]) < 0)
+    return FALSE;
+
+  return HandHasArcanaForceMonster(turnDuelist);
 }
 
 static u8 AnyDeckCard(u16 cardId)
@@ -266,11 +300,52 @@ static void ARCANA_READING_ResolveBody(void)
     return;
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
+}
 
-  /* ponytail: GY banish → Normal Summon 1 Arcana Force needs a GY ignition
-   * hook outside this spell file (no in-file graveyard activation path).
-   * Ceiling: activation coin effect only; upgrade: GY ignition → banish
-   * ARCANA_READING then Duel_NormalSummonFromHand Arcana Force. */
+u8 CanActivateArcanaReadingGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != ARCANA_READING)
+    return FALSE;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  return CanNormalSummonArcanaForce(turnDuelist);
+}
+
+void ActivateArcanaReadingGy(u8 fixedDuelist, u8 gyIndex)
+{
+  struct DuelSummonOpts opts = Duel_DefaultNormalSummonOpts(TRUE);
+  u8 turnDuelist;
+  u8 savedBlocked;
+
+  if (!CanActivateArcanaReadingGy(fixedDuelist, gyIndex))
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+
+  Duel_ShowEffectText(ARCANA_READING);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex);
+
+  savedBlocked = gTurnDuelistBattleState[turnDuelist]->summoningBlocked;
+  gTurnDuelistBattleState[turnDuelist]->summoningBlocked = 0;
+  if (Duel_NormalSummonFromHand(turnDuelist, CARD_NONE, IsArcanaForceMonster, opts)
+      != DUEL_ACTION_OK)
+    gTurnDuelistBattleState[turnDuelist]->summoningBlocked = savedBlocked;
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 APPEND_TEXT void EffectARCANA_READING(void)

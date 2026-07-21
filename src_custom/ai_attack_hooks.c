@@ -22,6 +22,7 @@
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_wildedge.h"
 #include "amazoness_call.h"
+#include "aroma_gardening.h"
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -200,6 +201,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryActivateEmbodimentOfApophisOnAttack();
   MarkMonsterDeclaredAttackThisTurn(attacker);
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, NULL);
+  ApplyAromaGardeningAttackDeclare();
   TryShowBlackTyrannoDirectAttackText(attacker->id);
   TryShowDrillagoDirectAttackText(attacker->id);
   TryShowThunderNyanNyanDirectAttackText(attacker->id);
@@ -254,6 +256,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryActivateEmbodimentOfApophisOnAttack();
   MarkMonsterDeclaredAttackThisTurn(attacker);
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, defender);
+  ApplyAromaGardeningAttackDeclare();
 
   if (WhoseTurn() == DUEL_PLAYER) {
     playerCol = AiFixedColForZone(attacker, PLAYER_MONSTER_ROW);

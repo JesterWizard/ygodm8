@@ -7,6 +7,7 @@
 #include "a_legendary_ocean.h"
 #include "amazoness_village.h"
 #include "ancient_gear_castle.h"
+#include "ancient_gear_tank.h"
 #include "divine_sanctuary.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -617,6 +618,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyPowerBondAtkBonusToCardInfo(zone);
   ApplyBigBangShotAtkBonusToCardInfo(zone);
   ApplyHeatedHeartAtkBonusToCardInfo(zone);
+  ApplyAncientGearTankAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
   ApplyGreatTornadoStatHalving(zone);
   ApplyTheWickedDreadrootStatHalving(zone);
@@ -737,6 +739,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyPowerBondAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyBigBangShotAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyHeatedHeartAtkBonusToCardInfo(gSetFinalStatZone);
+    ApplyAncientGearTankAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);
     ApplyGreatTornadoStatHalving(gSetFinalStatZone);
     ApplyTheWickedDreadrootStatHalving(gSetFinalStatZone);

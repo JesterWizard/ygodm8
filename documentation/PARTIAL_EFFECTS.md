@@ -9,47 +9,32 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 19:41 UTC  
-**Remaining partials:** `851`
+**Last updated:** 2026-07-21 19:51 UTC  
+**Remaining partials:** `846`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 170 |
+| `spell` | 165 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **851** |
+| **total** | **846** |
 
-## spell (170)
-
-### `ANCIENT_GEAR_ADVANCE`
-- path: `src_custom/spell_effects/ancient_gear_advance.c`
-- L149: OPT Tribute 1 → draw + tribute-free NS for AGG / Lv5+ that mention it, and cannot-Set this turn need ignition + Normal Summon / Set gates outside this file. Ceiling: activate search only.
-
-### `ANCIENT_GEAR_DRILL`
-- path: `src_custom/spell_effects/ancient_gear_drill.c`
-- L196: no per-card same-turn activation lock. Ceiling: Set Spell can still be activated this turn. Upgrade: turn-scoped cardId/zone lock checked at Spell activation.
+## spell (165)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
-- L195: no multi-select GY UI — auto-pick an exact Level-sum mask. Ceiling: no player choice among valid GY sets; upgrade: DeckMenu multi-pick until sum == 2× revealed Level.
-- L203: "Normal Summon the revealed monster this turn without Tributing" needs a turn-scoped tribute-bypass (clone Necroshade) outside this file. Ceiling: reveal + GY banish only; upgrade: mark revealId + consume on NS.
-
-### `ANCIENT_GEAR_TANK`
-- path: `src_custom/spell_effects/ancient_gear_tank.c`
-- L90: stage unit is 500 ATK — applied +500, not printed +600. Ceiling: no fractional stages; upgrade: exact-ATK overlay like BIG_BANG_SHOT.
+- L237: no multi-select GY UI — auto-pick an exact Level-sum mask. Ceiling: no player choice among valid GY sets; upgrade: DeckMenu multi-pick until sum == 2× revealed Level.
 
 ### `ARCANA_READING`
 - path: `src_custom/spell_effects/arcana_reading.c`
-- L108: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L270: GY banish → Normal Summon 1 Arcana Force needs a GY ignition hook outside this spell file (no in-file graveyard activation path). Ceiling: activation coin effect only; upgrade: GY ignition → banish ARCANA_READING then Duel_NormalSummonFromHand Arcana Force.
+- L142: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 
 ### `ARCANA_SPREAD`
 - path: `src_custom/spell_effects/arcana_spread.c`
-- L171: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L446: GY banish → add 1 coin-toss card from GY to hand needs a GY ignition path outside this spell file (no in-file graveyard activation). Ceiling: on-field coin SS only; upgrade: GY activate → banish ARCANA_SPREAD then DeckMenu pick IsCoinTossCard from GY → add to hand (OPT shared).
+- L232: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 
 ### `AROMA_BLEND`
 - path: `src_custom/spell_effects/aroma_blend.c`
@@ -59,14 +44,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `AROMA_GARDEN`
 - path: `src_custom/spell_effects/aroma_garden.c`
 - L90: printed "until end of opponent's next turn (even if this card leaves)" needs a multi-turn temp-stage / overlay tracker outside this file. Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages / EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on zones and skip ResetTempStages until that turn's End Phase.
-
-### `AROMA_GARDENING`
-- path: `src_custom/spell_effects/aroma_gardening.c`
-- L65: OPT "opp attack declare while LP lower → SS Aroma from Deck" needs an attack-declare hook + deck pick outside this file. Ceiling: summon LP wired; upgrade: on opp attack declare, if controller LP < opp LP and OPT clear and empty monster zone, PickZone/DeckMenu Aroma monster → Duel_SpecialSummonFromDeck.
-
-### `ATTACK_PHEROMONES`
-- path: `src_custom/spell_effects/attack_pheromones.c`
-- L14: Reptile attacks DEF → flip to face-up ATK at end of Damage Step needs a battle_effects / Damage Step end hook outside this file. Ceiling: face-up continuous only; upgrade: end-of-Damage-Step → if face-up ATTACK_PHEROMONES on controller's field, attacker is Reptile (Duel_CardHasMonsterType TYPE_REPTILE), and defender was Defense Position,
 
 ### `BACKUP_SQUAD`
 - path: `src_custom/spell_effects/backup_squad.c`

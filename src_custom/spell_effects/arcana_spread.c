@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_spread.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "effect_events.h"
@@ -7,6 +8,7 @@
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "six_card_hand.h"
 #include "spell_effects.h"
 
 #define ARCANA_SPREAD_MAX_LEVEL 4
@@ -15,6 +17,8 @@ void InitButtonMaps(void);
 void UpdateFilteredInput_WithRepeat(void);
 void WaitForVBlank(void);
 void UpdateDuelGfxExceptField(void);
+void CheckWinConditionExodia(unsigned char);
+void TryActivatingPermanentEffects(void);
 
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
@@ -138,6 +142,63 @@ static s8 FindFirstMatchingGyIndex(u8 fixedDuelist, u8 (*pred)(u16))
   }
 
   return -1;
+}
+
+static s8 FindFirstMatchingGyIndexExcept(u8 fixedDuelist, u8 excludeIndex, u8 (*pred)(u16))
+{
+  u8 gyCount;
+  u8 i;
+
+  if (!GraveyardExpand_IsEnabled())
+    return -1;
+
+  gyCount = GraveyardExpand_GetCount(fixedDuelist);
+  for (i = 0; i < gyCount; i++) {
+    if (i == excludeIndex)
+      continue;
+    if (pred(GraveyardExpand_GetCardAt(fixedDuelist, i)))
+      return (s8)i;
+  }
+
+  return -1;
+}
+
+static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
+{
+  handSlot->id = cardId;
+  handSlot->isFaceUp = FALSE;
+  handSlot->isLocked = FALSE;
+  handSlot->isDefending = FALSE;
+  handSlot->unkTwo = 0;
+  handSlot->unkThree = 0;
+  handSlot->unk4 = 0;
+  handSlot->willChangeSides = FALSE;
+  ResetPermStage(handSlot);
+  ResetTempStage(handSlot);
+}
+
+static u8 AddGyCardToHand(u8 turnDuelist, s8 gyIndex)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  s8 handZone;
+  u16 cardId;
+
+  if (gyIndex < 0)
+    return FALSE;
+
+  handZone = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
+  if (handZone < 0)
+    return FALSE;
+
+  cardId = GraveyardExpand_GetCardAt(fixedDuelist, (u8)gyIndex);
+  if (!IsCoinTossCard(cardId))
+    return FALSE;
+
+  cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, (u8)gyIndex);
+  GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)handZone),
+                       cardId);
+  return TRUE;
 }
 
 static u8 CanActivateArcanaSpread(void)
@@ -442,11 +503,60 @@ static void ARCANA_SPREAD_ResolveBody(void)
 
   EffectOpt_MarkUsed(ARCANA_SPREAD);
   UpdateDuelGfxExceptField();
+}
 
-  /* ponytail: GY banish → add 1 coin-toss card from GY to hand needs a GY
-   * ignition path outside this spell file (no in-file graveyard activation).
-   * Ceiling: on-field coin SS only; upgrade: GY activate → banish ARCANA_SPREAD
-   * then DeckMenu pick IsCoinTossCard from GY → add to hand (OPT shared). */
+u8 CanActivateArcanaSpreadGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+
+  if (EffectOpt_IsUsed(ARCANA_SPREAD))
+    return FALSE;
+
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != ARCANA_SPREAD)
+    return FALSE;
+
+  if (FindFirstMatchingGyIndexExcept(fixedDuelist, gyIndex, IsCoinTossCard) < 0)
+    return FALSE;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  return FirstEmptyZoneInRow(gTurnHands[turnDuelist]) >= 0;
+}
+
+void ActivateArcanaSpreadGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist;
+  s8 pickIndex;
+
+  if (!CanActivateArcanaSpreadGy(fixedDuelist, gyIndex))
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+
+  Duel_ShowEffectText(ARCANA_SPREAD);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  EffectOpt_MarkUsed(ARCANA_SPREAD);
+  Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex);
+
+  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
+    pickIndex = PickMatchingGyIndex(fixedDuelist, IsCoinTossCard);
+  else
+    pickIndex = FindFirstMatchingGyIndex(fixedDuelist, IsCoinTossCard);
+
+  if (pickIndex >= 0)
+    AddGyCardToHand(turnDuelist, pickIndex);
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 APPEND_TEXT void EffectARCANA_SPREAD(void)

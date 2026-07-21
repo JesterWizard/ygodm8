@@ -8,7 +8,9 @@
 #include "divine_sanctuary.h"
 #include "debug_ruleset.h"
 #include "elemental_hero_necroshade.h"
+#include "ancient_gear_advance.h"
 #include "ancient_gear_castle.h"
+#include "ancient_gear_factory.h"
 #include "geartown.h"
 #include "tribute.h"
 #include "summon_tribute.h"
@@ -98,6 +100,12 @@ static int GetBaseRequiredTributes(u16 cardId)
   if (ElementalHeroNecroshade_CanNormalSummonWithoutTribute(cardId))
     return 0;
 
+  if (AncientGearAdvance_CanNormalSummonWithoutTribute(cardId))
+    return 0;
+
+  if (AncientGearFactory_CanNormalSummonWithoutTribute(cardId))
+    return 0;
+
   /* Can Tribute Summon by Tributing 1 monster (printed Level 10 would need 3). */
   if (cardId == THE_TYRANT_NEPTUNE)
     return 1;
@@ -139,6 +147,12 @@ int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
     return 0;
 
   if (ElementalHeroNecroshade_CanNormalSummonWithoutTributeForHandSlot(handSlot, cardId))
+    return 0;
+
+  if (AncientGearAdvance_CanNormalSummonWithoutTribute(cardId))
+    return 0;
+
+  if (AncientGearFactory_CanNormalSummonWithoutTribute(cardId))
     return 0;
 
   if (cardId == THE_TYRANT_NEPTUNE)

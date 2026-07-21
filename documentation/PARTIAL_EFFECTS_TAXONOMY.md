@@ -7,17 +7,17 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 19:41 UTC  
-**Ceiling lines tagged:** `1091`  
-**Partial files:** `851`
+**Last updated:** 2026-07-21 19:51 UTC  
+**Ceiling lines tagged:** `1083`  
+**Partial files:** `846`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 348 | triage |
-| `event.OnStandby` | 266 | 3 (OPT / turn flags) |
-| `event.OnBattleDestroy` | 91 | 3 |
+| `other` | 346 | triage |
+| `event.OnStandby` | 263 | 3 (OPT / turn flags) |
+| `event.OnBattleDestroy` | 90 | 3 |
 | `event.OnSummon` | 73 | 3 |
 | `ui.Choice` | 57 | 2 |
 | `chain.Negate` | 54 | later / chain |
@@ -26,16 +26,15 @@ python3 tools/stub_effect_queue.py --write-list
 | `op.Search` | 38 | 1 |
 | `stat.Continuous` | 32 | 1–3 |
 | `op.BanishTimed` | 24 | 1–3 |
-| `event.GyIgnition` | 19 | 3 |
+| `event.GyIgnition` | 17 | 3 |
 | `equip.Register` | 4 | 1 (lists) |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **1091** | |
+| **total** | **1083** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (91)
+## `event.OnBattleDestroy` (90)
 
-- `ATTACK_PHEROMONES` (spell): L14: Reptile attacks DEF → flip to face-up ATK at end of Damage Step needs a battle_effects / Damage Step end hook outside this file. Ceiling: face-up continuous only; upgrade: end-of-Damage-Step → if face-up ATTACK_PHEROMONES on controller's field, attacker is Reptile (Duel_CardHasMonsterType TYPE_REPTILE), and defender was Defense Position,
 - `BERSERKER_SOUL` (spell): L75: printed trigger is direct-attack damage ≤1500 — no battle-damage hook in-file. Ceiling: activatable as Normal Spell when hand+deck available; upgrade: battle_effects after direct dmg ≤1500 → allow activation.
 - `BUBBLE_BLASTER` (spell): L62: battle-destroy this instead + battle damage 0 needs CanMonsterBeDestroyedByBattle / Duel_ApplyBattleDestroyProtection + damage step hook outside this file. Ceiling: Bubbleman equip + ATK only; upgrade: if DynamicEquipTargetsMonsterWithSpell(zone, BUBBLE_BLASTER) would be battle- destroyed → destroy BUBBLE_BLASTER instead and set battle damage to 0.
 - `CHICKEN_GAME` (spell): L154: lowest-LP player takes no damage needs an LP/damage gate outside this file (no damage-immunity helper keyed to field spell). Ceiling: continuous face-up + OPT pay/draw/destroy/opp-gain only; upgrade: ChangeLp / battle-damage hook → if face-up CHICKEN_GAME and target has strictly lower LP (or tied-lowest), skip damage.
@@ -250,12 +249,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (266)
+## `event.OnStandby` (263)
 
-- `ANCIENT_GEAR_ADVANCE` (spell): L149: OPT Tribute 1 → draw + tribute-free NS for AGG / Lv5+ that mention it, and cannot-Set this turn need ignition + Normal Summon / Set gates outside this file. Ceiling: activate search only.
-- `ARCANA_SPREAD` (spell): L446: GY banish → add 1 coin-toss card from GY to hand needs a GY ignition path outside this spell file (no in-file graveyard activation). Ceiling: on-field coin SS only; upgrade: GY activate → banish ARCANA_SPREAD then DeckMenu pick IsCoinTossCard from GY → add to hand (OPT shared).
 - `AROMA_GARDEN` (spell): L90: printed "until end of opponent's next turn (even if this card leaves)" needs a multi-turn temp-stage / overlay tracker outside this file. Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages / EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on zones and skip ResetTempStages until that turn's End Phase.
-- `AROMA_GARDENING` (spell): L65: OPT "opp attack declare while LP lower → SS Aroma from Deck" needs an attack-declare hook + deck pick outside this file. Ceiling: summon LP wired; upgrade: on opp attack declare, if controller LP < opp LP and OPT clear and empty monster zone, PickZone/DeckMenu Aroma monster → Duel_SpecialSummonFromDeck.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L149: once-per-turn not tracked after this normal spell leaves the field (no shared turn-flag RAM editable from this file alone). Ceiling: multiple Bond per turn; upgrade: duel-state OPT bit.
 - `CLOCK_TOWER_PRISON` (spell): L10: Opp Standby Clock Counter placement needs a turn_effect Standby hook outside this file (no in-file Standby dispatch). Ceiling: continuous face-up + unk4 counter slot (never rises alone); upgrade: opp Standby → if face-up CLOCK_TOWER_PRISON then unk4++ (cap CLOCK_TOWER_PRISON_MAX_COUNTERS).
 - `COURT_OF_JUSTICE` (spell): L33: attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp.
@@ -519,10 +515,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DRAGON_MASTER_MAGIA` (permanent): L8: Quick negate-by-card-type needs chain/OPT hooks.
 - `THE_DARK_MAGICIANS` (permanent): L154: OPT draw on S/T activation needs chain/OPT hooks.
 
-## `event.GyIgnition` (19)
+## `event.GyIgnition` (17)
 
-- `ANCIENT_GEAR_FACTORY` (spell): L203: "Normal Summon the revealed monster this turn without Tributing" needs a turn-scoped tribute-bypass (clone Necroshade) outside this file. Ceiling: reveal + GY banish only; upgrade: mark revealId + consume on NS.
-- `ARCANA_READING` (spell): L270: GY banish → Normal Summon 1 Arcana Force needs a GY ignition hook outside this spell file (no in-file graveyard activation path). Ceiling: activation coin effect only; upgrade: GY ignition → banish ARCANA_READING then Duel_NormalSummonFromHand Arcana Force.
 - `CONTACT_GATE` (spell): L337: ED Fusion-only lock + GY ignition (banish this → SS banished Neo) need hooks outside this file. Ceiling: field SS path only.
 - `EN_SHUFFLE` (spell): L308: GY ignition (banish this; shuffle E-HERO+Neo OR Neos from GY → Deck, draw 1) needs a GY-activate spell path outside this file. Ceiling: on-field shuffle+SS only; upgrade: GY activate → banish EN_SHUFFLE → return pair/Neos → Duel_DrawCards(1).
 - `EVIL_ASSAULT` (spell): L338: GY ignition "except the turn sent; banish this; add Dark Fusion from GY" needs a GY-activate spell path outside this file. Ceiling: on-field effect only; upgrade: GY activate → banish EVIL_ASSAULT → recover DARK_FUSION from GY to hand.
@@ -689,9 +683,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 
 ## `ui.Choice` (57)
 
-- `ANCIENT_GEAR_FACTORY` (spell): L195: no multi-select GY UI — auto-pick an exact Level-sum mask. Ceiling: no player choice among valid GY sets; upgrade: DeckMenu multi-pick until sum == 2× revealed Level.
-- `ARCANA_READING` (spell): L108: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- `ARCANA_SPREAD` (spell): L171: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
+- `ANCIENT_GEAR_FACTORY` (spell): L237: no multi-select GY UI — auto-pick an exact Level-sum mask. Ceiling: no player choice among valid GY sets; upgrade: DeckMenu multi-pick until sum == 2× revealed Level.
+- `ARCANA_READING` (spell): L142: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
+- `ARCANA_SPREAD` (spell): L232: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L170: no dedicated choice UI — A = SS Dark Magician, B = SS Dark Magician Girl. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - `CHICKEN_GAME` (spell): L34: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - `DARK_CONTACT` (spell): L271: no dedicated choice UI — A = Dark Fusion FS, B = search. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
@@ -815,10 +809,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (348)
+## `other` (346)
 
-- `ANCIENT_GEAR_DRILL` (spell): L196: no per-card same-turn activation lock. Ceiling: Set Spell can still be activated this turn. Upgrade: turn-scoped cardId/zone lock checked at Spell activation.
-- `ANCIENT_GEAR_TANK` (spell): L90: stage unit is 500 ATK — applied +500, not printed +600. Ceiling: no fractional stages; upgrade: exact-ATK overlay like BIG_BANG_SHOT.
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BIG_BANG_SHOT` (spell): L76: 3 copies max per side — reuse slot 0 if all busy
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L26: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
