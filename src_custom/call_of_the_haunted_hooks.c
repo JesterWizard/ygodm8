@@ -1,4 +1,5 @@
 #include "global.h"
+#include "ancient_gear_attack_lock.h"
 #include "common-chax.h"
 #include "aroma_jar.h"
 #include "flip_deck_search.h"

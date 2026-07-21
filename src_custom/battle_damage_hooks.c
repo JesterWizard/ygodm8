@@ -55,6 +55,7 @@
 #include "amazoness_heirloom.h"
 #include "amazoness_queen.h"
 #include "amazoness_empress.h"
+#include "ancient_gear_golem.h"
 #include "amazoness_sage.h"
 #include "amazoness_spy.h"
 #include "amazoness_trainee.h"
@@ -298,6 +299,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
   ApplySpearDragonBattleEffect();
   ApplyAmazonessEmpressPiercingBattleEffect();
+  ApplyAncientGearGolemPiercingBattleEffect();
   ApplyMadSwordBeastBattleEffect();
   ApplyDarkDriceratopsBattleEffect();
   ApplyMefistTheInfernalGeneralPiercingBattleEffect();

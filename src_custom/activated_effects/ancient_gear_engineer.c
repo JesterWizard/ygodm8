@@ -9,8 +9,8 @@ unsigned char CanActivateANCIENT_GEAR_ENGINEER(void)
   if (gMonEffect.id != ANCIENT_GEAR_ENGINEER)
     return FALSE;
 
-  /* ponytail: trap negate + attack lock + end-of-Damage-Step destroy need
-   * battle/trap hooks. Ceiling: not field-ignition activatable here. */
+  /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
+   * ponytail: trap negate + end-of-Damage-Step destroy need battle/trap hooks. */
   return FALSE;
 }
 

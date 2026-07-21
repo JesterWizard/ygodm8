@@ -1,4 +1,5 @@
 #include "global.h"
+#include "ancient_gear_attack_lock.h"
 #include "common-chax.h"
 #include "board_placement.h"
 #include "configs/runtime.h"
@@ -1798,7 +1799,10 @@ void sub_8044570__Replacement(void)
       gDuelCursor.state = 0;
       return;
     }
-    if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked() || IsTrapTriggered() != 1) {
+    if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked()
+        || AncientGear_AttackerBlocksOppSpellTrap(
+               gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+        || IsTrapTriggered() != 1) {
       if (!TryPayAttackFieldCosts()) {
         PlayMusic(SFX_FORBIDDEN);
         gDuelCursor.state = 0;
@@ -1983,7 +1987,10 @@ void TryAttackWithMonster__Replacement(void)
       gDuelCursor.state = 0;
       return;
     }
-    if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked() || IsTrapTriggered() != 1) {
+    if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked()
+        || AncientGear_AttackerBlocksOppSpellTrap(
+               gFixedZones[gDuelCursor.destY][gDuelCursor.destX])
+        || IsTrapTriggered() != 1) {
       if (!TryPayAttackFieldCosts()) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();

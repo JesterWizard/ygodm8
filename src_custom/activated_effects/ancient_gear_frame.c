@@ -65,7 +65,8 @@ unsigned char CanActivateANCIENT_GEAR_FRAME(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_FRAME)
     return FALSE;
 
-  /* ponytail: attack S/T lock + leave-field SS FALSE.
+  /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
+   * ponytail: leave-field SS FALSE.
    * Ceiling: OPT discard 1 → add AG Golem or S/T mentioning Golem from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

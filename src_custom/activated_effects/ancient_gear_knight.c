@@ -9,8 +9,8 @@ unsigned char CanActivateANCIENT_GEAR_KNIGHT(void)
   if (gMonEffect.id != ANCIENT_GEAR_KNIGHT)
     return FALSE;
 
-  /* ponytail: Gemini Normal Monster treatment + attack S/T lock need summon/battle
-   * hooks. Ceiling: not ignition-activatable here. */
+  /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
+   * ponytail: Gemini Normal Monster treatment need summon hook. */
   return FALSE;
 }
 

@@ -7,19 +7,19 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 23:19 UTC  
-**Ceiling lines tagged:** `664`  
-**Partial files:** `560`
+**Last updated:** 2026-07-21 23:21 UTC  
+**Ceiling lines tagged:** `662`  
+**Partial files:** `558`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `event.OnStandby` | 203 | 3 (OPT / turn flags) |
+| `event.OnStandby` | 202 | 3 (OPT / turn flags) |
 | `other` | 194 | triage |
-| `event.OnBattleDestroy` | 58 | 3 |
-| `event.OnSummon` | 57 | 3 |
-| `chain.Negate` | 33 | later / chain |
+| `event.OnSummon` | 58 | 3 |
+| `event.OnBattleDestroy` | 55 | 3 |
+| `chain.Negate` | 34 | later / chain |
 | `gate.Tribute` | 32 | 2–3 |
 | `event.OnDestroy` | 20 | 3 |
 | `op.Search` | 18 | 1 |
@@ -28,17 +28,14 @@ python3 tools/stub_effect_queue.py --write-list
 | `event.GyIgnition` | 11 | 3 |
 | `ui.Choice` | 10 | 2 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **664** | |
+| **total** | **662** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (58)
+## `event.OnBattleDestroy` (55)
 
 - `AMAZONESS_HOT_SPRING` (trap): L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
 - `AMAZONESS_PET_LIGER` (activated): L111: * ponytail: damage-calc +500 ATK not wired. */
-- `ANCIENT_GEAR_BEAST` (activated): L12: attack → opp cannot activate S/T until Damage Step + negate destroyed-in-battle monster effects need battle hooks. Ceiling: not ignition here.
-- `ANCIENT_GEAR_GOLEM` (activated): L12: attack → opp cannot activate S/T until Damage Step + piercing need battle/attack hooks. Ceiling: not ignition-activatable here; upgrade: battle Spell/Trap lock while attacking + DEF-pierce damage step.
-- `ANCIENT_GEAR_SOLDIER` (activated): L12: attack → opp cannot activate S/T until end of Damage Step needs battle lock hook. Ceiling: not ignition-activatable here; upgrade: battle phase Spell/Trap activation gate while this card is attacking.
 - `ARMED_NEOS` (activated): L116: battle-destroy gain Extra tribute SS need battle/Extra hooks. Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY.
 - `ARMORY_ARM` (activated): L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
 - `ATLANTEAN_MARKSMAN` (activated): L75: battle-damage trigger + sent-for-WATER destroy Set S/T need battle/send hooks. Ceiling: OPT SS Lv≤4 Atlantean Sea Serpent from Deck.
@@ -101,7 +98,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 ## `event.OnDestroy` (20)
 
 - `SPELL_CHRONICLE` (spell): L151: Chronicle Counters on opp Spell resolve / remove 2 → opp chooses banished add / leave-field burn need continuous hooks outside this file. Ceiling: activate discard+banish 5 only; unk4 counter slot unused.
-- `ANCIENT_GEAR_FRAME` (activated): L68: attack S/T lock + leave-field SS FALSE. Ceiling: OPT discard 1 → add AG Golem or S/T mentioning Golem from Deck.
+- `ANCIENT_GEAR_FRAME` (activated): L69: * ponytail: leave-field SS FALSE.
 - `ANCIENT_GEAR_MEGATON_GOLEM` (activated): L123: multi-attack + leave-field SS FALSE. Ceiling: OPT SS AG Golem from hand/GY.
 - `BABYCERASAURUS` (activated): L59: destroyed-by-effect→GY trigger needs destroy hook. Ceiling: once via usage if Lv≤4 Dino in Deck and open MMZ.
 - `CURIOUS_THE_LIGHTSWORN_DOMINION` (activated): L33: Link Summon mill + leave-field GY add + mill-cascade need summon/ leave-field hooks. Ceiling: OPT mill 1 from Deck.
@@ -121,11 +118,12 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLADIATOR_BEAST_GAIODIAZ` (permanent): L8: battle DEF burn + GB tag-out need battle-end/destroy hooks.
 - `GLADIATOR_BEAST_SAMNITE` (permanent): L8: battle search + GB tag-out need battle-end/destroy hooks.
 
-## `event.OnSummon` (57)
+## `event.OnSummon` (58)
 
 - `SHADDOLL_SCHISM` (trap): L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
 - `AMULET_DRAGON` (activated): L254: on-summon text after field draw so Amulet Dragon is visible (fusion uses updateGfx=FALSE).
 - `ANCIENT_GEAR_DRAGON` (activated): L121: Quick negate + tribute-less NS need negate/summon hooks. Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY.
+- `ANCIENT_GEAR_KNIGHT` (activated): L13: * ponytail: Gemini Normal Monster treatment need summon hook. */
 - `ARCANA_FORCE_V_THE_HIEROPHANT` (activated): L86: on-Summon coin + discard summon-lock need summon/FromHand paths. Ceiling: OPT coin → SS 1 Arcana Force from Deck.
 - `ARCANA_FORCE_XII_THE_HANGMAN` (activated): L139: on-Summon coin should fire at summon; OPT stand-in here. Ceiling: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF.
 - `ARCANA_FORCE_XIX_THE_SUN` (activated): L81: on-Summon coin (Heads Set coin Spell / Tails wipe S/T) need summon hook. Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours.
@@ -181,7 +179,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (203)
+## `event.OnStandby` (202)
 
 - `DARK_SUPREMACY` (trap): L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
 - `AMAZONESS_PET_LIGER_KING` (activated): L191: attack redirect FALSE. Ceiling: OPT destroy Amazoness → SS Warrior GY.
@@ -191,7 +189,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ANCIENT_FAIRY_DRAGON` (activated): L196: true BP skip needs phase lock; unk4 stand-in. Ceiling: OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field.
 - `ANCIENT_GEAR_COMMANDER` (activated): L202: NS stand-in → SS AG; GY banish SS Golem FALSE. Ceiling: OPT send AG Golem hand/field/Deck → SS AG hand/Deck.
 - `ANCIENT_GEAR_DARK_GOLEM` (activated): L60: name=AG Golem + cannot-Set lock FALSE. Ceiling: OPT add up to 2 Ancient Gear/Geartown from Deck then discard 1.
-- `ANCIENT_GEAR_GADJILTRON_DRAGON` (activated): L106: pierce/burn/draw + attack S/T lock FALSE (lock elsewhere). Ceiling: OPT destroy 1 DEF opp (pierce stand-in) OR OPT burn 700.
 - `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` (activated): L58: piercing/multi-attack + destroy-trigger Poly FALSE. Ceiling: OPT discard Machine → unk4 extra-attack, else OPT add Poly.
 - `ANCIENT_GEAR_STATUE` (activated): L111: ignore summoning conditions partial via CannotBeSS check. Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck.
 - `ANCIENT_GEAR_STATUE` (activated): L189: once-per-turn FromHand not tracked without turn flag.
@@ -401,9 +398,10 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `YAMORIMORI` (activated): L124: GY ignition needs GY-menu wire. Ceiling: banish self from GY + own Reptile + opp face-up present → destroy opp face-up monster.
 - `THUNDER_DRAGON_COLOSSUS` (permanent): L8: opp search lock + battle/effect destroy→GY-banish need continuous/battle hooks.
 
-## `chain.Negate` (33)
+## `chain.Negate` (34)
 
-- `ANCIENT_GEAR_ENGINEER` (activated): L12: trap negate + attack lock + end-of-Damage-Step destroy need battle/trap hooks. Ceiling: not field-ignition activatable here.
+- `ANCIENT_GEAR_BEAST` (activated): L13: * ponytail: negate destroyed-in-battle monster effects need battle hook. */
+- `ANCIENT_GEAR_ENGINEER` (activated): L13: * ponytail: trap negate + end-of-Damage-Step destroy need battle/trap hooks. */
 - `ARCANA_KNIGHT_JOKER` (activated): L12: discard matching type to negate activation needs chain/response hooks. Ceiling: not ignition-activatable here.
 - `ASH_BLOSSOM_AND_JOYOUS_SPRING` (activated): L50: chain negate for add/SS/mill from Deck not wired; upgrade: chain interrupt hook when one exists.
 - `CYBER_DRAGON_INFINITY` (activated): L61: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
@@ -552,8 +550,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `AMAZONESS_SCOUTS` (activated): L46: face-up Amazoness cannot be targeted/destroyed by effects this turn — no protection flag hook yet.
 - `ANCIENT_FAIRY_DRAGON` (activated): L135: cannot conduct Battle Phase — unk4 lock stand-in.
 - `ANCIENT_GEAR_CANNON` (activated): L47: Battle Phase Trap lock not applied; upgrade: trap-activation gate.
+- `ANCIENT_GEAR_GADJILTRON_DRAGON` (activated): L107: * ponytail: pierce/burn/draw FALSE.
 - `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` (activated): L85: real multi-attack needs battle hook; unk4=2 extra-attack stand-in.
-- `ANCIENT_GEAR_KNIGHT` (activated): L12: Gemini Normal Monster treatment + attack S/T lock need summon/battle hooks. Ceiling: not ignition-activatable here.
 - `ANCIENT_GEAR_TANKER` (activated): L190: AG pierce mark for rest of turn FALSE.
 - `ANDRO_SPHINX` (activated): L32: battle burn half ATK + GY SS ban need battle/GY hooks. Ceiling: not field-ignition; FromHand pay 500 + Pyramid → SS.
 - `ARCANA_FORCE_V_THE_HIEROPHANT` (activated): L153: discard only; opp cannot respond to Arcana Summons needs turn flag hook.

@@ -9,9 +9,8 @@ unsigned char CanActivateANCIENT_GEAR_BEAST(void)
   if (gMonEffect.id != ANCIENT_GEAR_BEAST)
     return FALSE;
 
-  /* ponytail: attack → opp cannot activate S/T until Damage Step + negate
-   * destroyed-in-battle monster effects need battle hooks. Ceiling: not
-   * ignition here. */
+  /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
+   * ponytail: negate destroyed-in-battle monster effects need battle hook. */
   return FALSE;
 }
 

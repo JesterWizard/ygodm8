@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 23:19 UTC  
-**Remaining partials:** `560`
+**Last updated:** 2026-07-21 23:21 UTC  
+**Remaining partials:** `558`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 5 |
 | `trap` | 10 |
-| `activated` | 441 |
+| `activated` | 439 |
 | `permanent` | 104 |
-| **total** | **560** |
+| **total** | **558** |
 
 ## spell (5)
 
@@ -91,7 +91,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (441)
+## activated (439)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -130,7 +130,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ANCIENT_GEAR_BEAST`
 - path: `src_custom/activated_effects/ancient_gear_beast.c`
-- L12: attack → opp cannot activate S/T until Damage Step + negate destroyed-in-battle monster effects need battle hooks. Ceiling: not ignition here.
+- L13: * ponytail: negate destroyed-in-battle monster effects need battle hook. */
 
 ### `ANCIENT_GEAR_CANNON`
 - path: `src_custom/activated_effects/ancient_gear_cannon.c`
@@ -150,11 +150,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ANCIENT_GEAR_ENGINEER`
 - path: `src_custom/activated_effects/ancient_gear_engineer.c`
-- L12: trap negate + attack lock + end-of-Damage-Step destroy need battle/trap hooks. Ceiling: not field-ignition activatable here.
+- L13: * ponytail: trap negate + end-of-Damage-Step destroy need battle/trap hooks. */
 
 ### `ANCIENT_GEAR_FRAME`
 - path: `src_custom/activated_effects/ancient_gear_frame.c`
-- L68: attack S/T lock + leave-field SS FALSE. Ceiling: OPT discard 1 → add AG Golem or S/T mentioning Golem from Deck.
+- L69: * ponytail: leave-field SS FALSE.
 
 ### `ANCIENT_GEAR_GADJILTRON_CHIMERA`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c`
@@ -162,11 +162,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ANCIENT_GEAR_GADJILTRON_DRAGON`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c`
-- L106: pierce/burn/draw + attack S/T lock FALSE (lock elsewhere). Ceiling: OPT destroy 1 DEF opp (pierce stand-in) OR OPT burn 700.
-
-### `ANCIENT_GEAR_GOLEM`
-- path: `src_custom/activated_effects/ancient_gear_golem.c`
-- L12: attack → opp cannot activate S/T until Damage Step + piercing need battle/attack hooks. Ceiling: not ignition-activatable here; upgrade: battle Spell/Trap lock while attacking + DEF-pierce damage step.
+- L107: * ponytail: pierce/burn/draw FALSE.
 
 ### `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND`
 - path: `src_custom/activated_effects/ancient_gear_golem_ultimate_pound.c`
@@ -175,15 +171,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ANCIENT_GEAR_KNIGHT`
 - path: `src_custom/activated_effects/ancient_gear_knight.c`
-- L12: Gemini Normal Monster treatment + attack S/T lock need summon/battle hooks. Ceiling: not ignition-activatable here.
+- L13: * ponytail: Gemini Normal Monster treatment need summon hook. */
 
 ### `ANCIENT_GEAR_MEGATON_GOLEM`
 - path: `src_custom/activated_effects/ancient_gear_megaton_golem.c`
 - L123: multi-attack + leave-field SS FALSE. Ceiling: OPT SS AG Golem from hand/GY.
-
-### `ANCIENT_GEAR_SOLDIER`
-- path: `src_custom/activated_effects/ancient_gear_soldier.c`
-- L12: attack → opp cannot activate S/T until end of Damage Step needs battle lock hook. Ceiling: not ignition-activatable here; upgrade: battle phase Spell/Trap activation gate while this card is attacking.
 
 ### `ANCIENT_GEAR_STATUE`
 - path: `src_custom/activated_effects/ancient_gear_statue.c`

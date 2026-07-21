@@ -1,4 +1,5 @@
 #include "global.h"
+#include "ancient_gear_attack_lock.h"
 #include "common-chax.h"
 #include "aroma_jar.h"
 #include "flip_deck_search.h"
@@ -141,7 +142,8 @@ static u8 AiTryActivateTrapOnAttack(struct DuelCard *attacker, struct DuelCard *
     return TRUE;
   }
 
-  if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked())
+  if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked()
+      || AncientGear_AttackerBlocksOppSpellTrap(attacker))
     return FALSE;
 
   if (IsTrapTriggered() != TRUE)
