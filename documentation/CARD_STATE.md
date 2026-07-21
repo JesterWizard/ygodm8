@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round6 Batch6 (round complete)
+**Last worked on:** 2026-07-21 — More debug archetype decks
 
-**Outcome:** Final activate-path trap ceiling clears. Partials **690→679**. Round6 done.
+**Outcome:** Added Morphtronic, Cyber Dragon, Ancient Gear, Venom, Shaddoll, Aroma, Fairy (Splendid Venus boss) debug Deck Presets. `make` OK.
 
-**Open / next:** Round 7 when ready.
+**Open / next:** Round 7 when ready; Masked HERO still absent.
