@@ -2,12 +2,38 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "forbidden_chalice.h"
+#include "riryoku.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
 
-/* 1 stage ~= 500 ATK. Printed +400; nearest temp-stage unit is +500 until EOT. */
-#define FORBIDDEN_CHALICE_ATK_STAGES 1
+static u8 sForbiddenChaliceNegated[MAX_DUEL_BOARD_CELLS] APPEND_DATA = {0};
+
+static u16 GetForbiddenChaliceBoardIndex(const struct DuelCard *zone)
+{
+  const struct DuelCard *base = &gDuel.board[0][0];
+
+  if (zone < base || zone >= base + MAX_DUEL_BOARD_CELLS)
+    return MAX_DUEL_BOARD_CELLS;
+
+  return (u16)(zone - base);
+}
+
+u8 ForbiddenChalice_IsNegated(const struct DuelCard *zone)
+{
+  u16 index = GetForbiddenChaliceBoardIndex(zone);
+
+  return index < MAX_DUEL_BOARD_CELLS && sForbiddenChaliceNegated[index];
+}
+
+void ForbiddenChalice_ClearOnTurnBoundary(void)
+{
+  u8 i;
+
+  for (i = 0; i < MAX_DUEL_BOARD_CELLS; i++)
+    sForbiddenChaliceNegated[i] = FALSE;
+}
 
 /* Attack-position summons keep isFaceUp=0 until end-of-turn flip. */
 static u8 MonsterIsFaceUp(struct DuelCard *zone)
@@ -70,17 +96,11 @@ static void DestroyForbiddenChaliceSpellZone(void)
 
 static void ApplyForbiddenChaliceBoost(struct DuelCard *zone)
 {
-  u8 i;
+  u16 index = GetForbiddenChaliceBoardIndex(zone);
 
-  for (i = 0; i < FORBIDDEN_CHALICE_ATK_STAGES; i++)
-    IncrementTempStage(zone);
-
-  /* ponytail: stage unit is 500 ATK — applied +500 until EOT, not printed +400.
-   * Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART. */
-
-  /* ponytail: no per-monster effect-negate flag until EOT (Skill Drain is field-wide
-   * only). Ceiling: ATK boost only; upgrade: turn_effect / zone negate bit cleared
-   * at ResetTempStagesForFieldCards. */
+  AddRiryokuAtkDelta(zone, FORBIDDEN_CHALICE_ATK_BOOST);
+  if (index < MAX_DUEL_BOARD_CELLS)
+    sForbiddenChaliceNegated[index] = TRUE;
 
   Duel_NotifyMonsterZoneChanged(zone);
   Duel_RefreshMonsterStatOverlays();
@@ -157,7 +177,7 @@ APPEND_TEXT void EffectFORBIDDEN_CHALICE(void)
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void ForbiddenChalice_SelfCheck(void)
 {
-  if (FORBIDDEN_CHALICE_ATK_STAGES != 1)
+  if (FORBIDDEN_CHALICE_ATK_BOOST != 400)
     while (1)
       ;
 }

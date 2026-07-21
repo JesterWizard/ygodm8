@@ -7,6 +7,13 @@
 #include "duel_helpers.h"
 #include "en_engage_neo_space.h"
 #include "evil_assault.h"
+#include "field_barrier.h"
+#include "forbidden_dress.h"
+#include "forbidden_lance.h"
+#include "flavian_colosseum_of_the_gladiator_beasts.h"
+#include "fusion_deployment.h"
+#include "fusion_destiny.h"
+#include "gadget_box.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
 #include "d_force.h"
 #include "duel_status.h"
@@ -322,8 +329,18 @@ u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
 u8 Duel_BlocksExtraDeckSpecialSummon(u16 cardId)
 {
   if (ContactGate_BlocksExtraDeckSpecialSummon(cardId)
-      || EvilAssault_BlocksExtraDeckSpecialSummon(cardId))
+      || EvilAssault_BlocksExtraDeckSpecialSummon(cardId)
+      || FusionDestiny_BlocksSpecialSummon(cardId)
+      || GadgetBox_BlocksExtraDeckSpecialSummon(WhoseTurn(), cardId))
     return TRUE;
+
+  if (FusionDeployment_IsLocked()) {
+    if (cardId == CARD_NONE)
+      return TRUE;
+    SetCardInfo(cardId);
+    if (gCardInfo.color != FUSION_CARD)
+      return TRUE;
+  }
 
   if (!EN_ENGAGE_NEO_SPACE_IsLocked() || cardId == CARD_NONE)
     return FALSE;
@@ -583,7 +600,9 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
     return DUEL_ACTION_NO_TARGET;
 
   if (DForce_PreventsPlasmaEffectDestruction(zone)
-      || ColosseumCage_TryPreventDestroyByCardEffect(zone))
+      || ColosseumCage_TryPreventDestroyByCardEffect(zone)
+      || FieldBarrier_PreventsFieldSpellDestroy(zone)
+      || ForbiddenDress_IsDestroyImmune(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;
@@ -1679,22 +1698,30 @@ void Duel_ApplyBattleDestroyProtection(void)
   if ((sActionData.flags & 1)
       && !ElementalHeroTempestProtectsBattleZone(sActionData.playerMonsterRow, sActionData.unkA)
       && !KnightOfPentacles_ProtectsBattleZone(sActionData.playerMonsterRow, sActionData.unkA)
+      && !Flavian_PreventsBattleDestroy(
+          gFixedZones[sActionData.playerMonsterRow][sActionData.unkA])
       && !CanMonsterBeDestroyedByBattle(
           sActionData.playerCardId, DUEL_PLAYER,
           sActionData.playerCardAtkOrLifePointsMod,
           sActionData.opponentCardAtkOrLifePointsMod)) {
     sActionData.flags &= ~1;
   }
+  Flavian_ClearBattleDestroyProtection(
+      gFixedZones[sActionData.playerMonsterRow][sActionData.unkA]);
 
   if ((sActionData.flags & 2)
       && !ElementalHeroTempestProtectsBattleZone(sActionData.opponentMonsterRow, sActionData.unk16)
       && !KnightOfPentacles_ProtectsBattleZone(sActionData.opponentMonsterRow, sActionData.unk16)
+      && !Flavian_PreventsBattleDestroy(
+          gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16])
       && !CanMonsterBeDestroyedByBattle(
           sActionData.opponentCardId, DUEL_OPPONENT,
           sActionData.opponentCardAtkOrLifePointsMod,
           sActionData.playerCardAtkOrLifePointsMod)) {
     sActionData.flags &= ~2;
   }
+  Flavian_ClearBattleDestroyProtection(
+      gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16]);
 }
 
 void Duel_RemapMutualDestroyBattleAnim(u8 playerDestroy, u8 opponentDestroy)
@@ -2846,12 +2873,14 @@ u8 Duel_ZoneIsImmuneToSpellEffects(struct DuelCard *zone)
   if (!Duel_FindTurnMonsterZone(zone, &turnRow, &col))
     return FALSE;
 
-  return IsImmuneToSpellEffectsOnField(zone->id, turnRow);
+  return IsImmuneToSpellEffectsOnField(zone->id, turnRow)
+      || ForbiddenLance_IsImmuneToSpellTrapEffects(zone);
 }
 
 u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone)
 {
-  return !Duel_ZoneIsImmuneToSpellEffects(zone);
+  return !Duel_ZoneIsImmuneToSpellEffects(zone)
+      && !ForbiddenDress_IsTargetImmune(zone);
 }
 
 u8 Duel_IsAnyTrapActivationBlocked(void)

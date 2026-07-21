@@ -2,14 +2,54 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "riryoku.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
 
-/* 1 stage ~= 500 ATK. Printed -600; nearest stage unit is -500. */
-#define FORBIDDEN_DRESS_ATK_LOSS_STAGES 1
+#define FORBIDDEN_DRESS_ATK_LOSS 600
 
 /* Attack-position summons keep isFaceUp=0 until end-of-turn flip. */
+static u8 sForbiddenDressProtection[MAX_DUEL_BOARD_CELLS] APPEND_DATA = {0};
+
+static u16 GetForbiddenDressProtectionIndex(const struct DuelCard *zone)
+{
+  const struct DuelCard *base = &gDuel.board[0][0];
+
+  if (zone < base || zone >= base + MAX_DUEL_BOARD_CELLS)
+    return MAX_DUEL_BOARD_CELLS;
+
+  return (u16)(zone - base);
+}
+
+static void MarkForbiddenDressProtection(const struct DuelCard *zone)
+{
+  u16 index = GetForbiddenDressProtectionIndex(zone);
+
+  if (index < MAX_DUEL_BOARD_CELLS)
+    sForbiddenDressProtection[index] = TRUE;
+}
+
+u8 ForbiddenDress_IsTargetImmune(const struct DuelCard *zone)
+{
+  u16 index = GetForbiddenDressProtectionIndex(zone);
+
+  return index < MAX_DUEL_BOARD_CELLS && sForbiddenDressProtection[index];
+}
+
+u8 ForbiddenDress_IsDestroyImmune(const struct DuelCard *zone)
+{
+  return ForbiddenDress_IsTargetImmune(zone);
+}
+
+void ForbiddenDress_ClearOnTurnBoundary(void)
+{
+  u8 i;
+
+  for (i = 0; i < MAX_DUEL_BOARD_CELLS; i++)
+    sForbiddenDressProtection[i] = FALSE;
+}
+
 static u8 MonsterIsFaceUp(struct DuelCard *zone)
 {
   if (zone == NULL || zone->id == CARD_NONE)
@@ -70,22 +110,11 @@ static void DestroyForbiddenDressSpellZone(void)
 
 static void ApplyForbiddenDressAtkLoss(struct DuelCard *zone)
 {
-  u8 i;
-
-  /* ponytail: stage unit is 500 ATK — applied -500, not printed -600.
-   * Ceiling: no fractional stages; upgrade: exact-ATK overlay like
-   * ApplyHeatedHeartAtkBonusToCardInfo for -600. */
-  for (i = 0; i < FORBIDDEN_DRESS_ATK_LOSS_STAGES; i++)
-    DecrementTempStage(zone);
+  AddRiryokuAtkDelta(zone, -FORBIDDEN_DRESS_ATK_LOSS);
+  MarkForbiddenDressProtection(zone);
 
   Duel_NotifyMonsterZoneChanged(zone);
   Duel_RefreshMonsterStatOverlays();
-
-  /* ponytail: "cannot be targeted or destroyed by other card effects" this turn
-   * needs targeting/destroy immunity flags or a turn_effect clear outside this
-   * file (no per-zone protection bit editable here). Ceiling: ATK loss only;
-   * upgrade: flag zone until EOT → Duel_SpellMayTargetMonsterZone /
-   * Duel_DestroyZone skip when flagged. */
 }
 
 static void ResolveForbiddenDressTarget(u8 fixedRow, u8 fixedCol)
@@ -169,7 +198,7 @@ APPEND_TEXT void EffectFORBIDDEN_DRESS(void)
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void ForbiddenDress_SelfCheck(void)
 {
-  if (FORBIDDEN_DRESS_ATK_LOSS_STAGES != 1)
+  if (FORBIDDEN_DRESS_ATK_LOSS != 600)
     while (1)
       ;
 }

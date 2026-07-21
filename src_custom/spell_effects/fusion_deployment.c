@@ -9,6 +9,7 @@
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "fusion_deployment.h"
 #include "fusion_recipes.h"
 #include "player_decks.h"
 #include "spell_effects.h"
@@ -16,6 +17,22 @@
 void UpdateDuelGfxExceptField(void);
 
 /* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
+static u8 sFusionDeploymentFusionOnlyLock APPEND_DATA = {0};
+
+u8 FusionDeployment_IsLocked(void)
+{
+  return sFusionDeploymentFusionOnlyLock;
+}
+
+void FusionDeployment_MarkLocked(void)
+{
+  sFusionDeploymentFusionOnlyLock = TRUE;
+}
+
+void FusionDeployment_ClearOnTurnBoundary(void)
+{
+  sFusionDeploymentFusionOnlyLock = FALSE;
+}
 
 static const u8 sFusionDeploymentPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -337,6 +354,7 @@ static void FUSION_DEPLOYMENT_ResolveBody(void)
   struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
   u16 fusionId;
   u16 materialId;
+  enum DuelActionResult summonResult;
 
   Duel_ShowEffectText(FUSION_DEPLOYMENT);
 
@@ -359,13 +377,11 @@ static void FUSION_DEPLOYMENT_ResolveBody(void)
 
   EffectOpt_MarkUsed(FUSION_DEPLOYMENT);
 
-  if (SpecialSummonMaterialFromHandOrDeck(materialId) == DUEL_ACTION_DUEL_OVER)
+  summonResult = SpecialSummonMaterialFromHandOrDeck(materialId);
+  if (summonResult != DUEL_ACTION_OK)
     return;
 
-  /* ponytail: "cannot Special Summon from Extra Deck except Fusion Monsters
-   * this turn" needs a summon-lock flag outside this file (no in-file Extra
-   * Deck summon gate). Ceiling: SS material only; upgrade: turn flag → Extra
-   * Deck SS gate allows only FUSION_CARD results while set. */
+  FusionDeployment_MarkLocked();
 
   UpdateDuelGfxExceptField();
 }

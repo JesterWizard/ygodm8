@@ -9,6 +9,7 @@
 #include "duel_helpers.h"
 #include "elemental_hero_absolute_zero.h"
 #include "fusion_duel.h"
+#include "fusion_gate.h"
 #include "player_decks.h"
 #include "spell_effects.h"
 
@@ -200,7 +201,7 @@ static u8 CanFusionGateIgnition(void)
   return ExtraDeckAllowsFeasible(feasibleIndices, feasibleCount);
 }
 
-static void ResolveFusionGateIgnition(void)
+void ResolveFusionGateIgnition(void)
 {
   struct FusionMaterialSource sources[FUSION_MAX_SOURCES];
   u8 sourceCount;
@@ -251,6 +252,11 @@ static void ResolveFusionGateIgnition(void)
     ExecuteFusionGateFusion(recipe, sources, sourceCount, FALSE);
 }
 
+u8 FusionGate_TurnPlayerHasFaceUpGate(void)
+{
+  return Duel_FindBackrowCardOnField(FUSION_GATE, TRUE) != NULL;
+}
+
 static void FUSION_GATE_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -278,11 +284,6 @@ static void FUSION_GATE_ResolveBody(void)
     ResolveFusionGateIgnition();
   else
     Duel_ShowEffectText(FUSION_GATE);
-
-  /* ponytail: real text lets the turn player use either player's Fusion Gate.
-   * Ceiling: only the controller's face-up gate via this spell activation path;
-   * upgrade: turn-player Main Phase check for any face-up FUSION_GATE then run
-   * ResolveFusionGateIgnition for ACTIVE_DUELIST. */
 }
 
 APPEND_TEXT void EffectFUSION_GATE(void)

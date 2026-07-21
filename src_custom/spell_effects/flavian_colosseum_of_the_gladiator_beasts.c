@@ -6,7 +6,9 @@
 #include "custom_field_spell.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
+#include "flavian_colosseum_of_the_gladiator_beasts.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
 
@@ -14,12 +16,15 @@ void SetDuelFieldGfx(u8 field);
 void UpdateDuelGfxExceptField(void);
 
 static const char sGladiatorBeastName[] APPEND_RODATA = "Gladiator Beast";
-static const char sGladiatorName[] APPEND_RODATA = "Gladiator";
 
 static const u8 sFlavianPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
+
+static u8 sFlavianDeckSummonMask APPEND_DATA = 0;
+static struct DuelCard *sFlavianBattleProtectedZone APPEND_DATA = NULL;
+static u16 sFlavianBattleProtectedId APPEND_DATA = CARD_NONE;
 
 static u8 AnyHandCard(u16 cardId)
 {
@@ -32,6 +37,11 @@ static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static u8 TurnBackrowForDuelist(u8 turnDuelist)
+{
+  return turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_BACKROW : INACTIVE_DUELIST_BACKROW;
 }
 
 static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
@@ -123,6 +133,25 @@ static u8 IsGladiatorBeastMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sGladiatorBeastName);
+}
+
+static u8 IsGladiatorBeastSpellTrap(u16 cardId)
+{
+  u8 typeGroup;
+
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  typeGroup = GetTypeGroup(cardId);
+  if (typeGroup != TYPE_GROUP_SPELL && typeGroup != TYPE_GROUP_TRAP)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sGladiatorBeastName);
+}
+
+static struct DuelCard *FindFaceUpFlavian(u8 fixedDuelist)
+{
+  return Duel_FindBackrowCard(fixedDuelist, FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS, TRUE);
 }
 
 static s16 FindFirstMatchingDeckIndex(u8 turnDuelist, u8 (*pred)(u16))
@@ -252,6 +281,135 @@ static u8 AddDeckCardAtIndexToHand(u8 turnDuelist, u8 deckIndex)
   return TRUE;
 }
 
+static u8 SetDeckCardAtIndex(u8 turnDuelist, u8 deckIndex, u8 (*pred)(u16))
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  s8 backCol;
+  u16 cardId;
+  struct DuelCard *slot;
+
+  if (deckIndex < gDuelDecks[fixedDuelist].cardsDrawn
+      || deckIndex >= NumCardsInDeck(fixedDuelist))
+    return FALSE;
+
+  backCol = FirstEmptyZoneInRow(gTurnZones[TurnBackrowForDuelist(turnDuelist)]);
+  if (backCol < 0)
+    return FALSE;
+
+  cardId = gDuelDecks[fixedDuelist].cards[deckIndex];
+  if (!pred(cardId))
+    return FALSE;
+
+  if (Duel_RemoveDeckCardAt(turnDuelist, deckIndex, FALSE) != DUEL_ACTION_OK)
+    return FALSE;
+
+  Duel_ShuffleDeckFromDrawn(turnDuelist);
+  slot = gTurnZones[TurnBackrowForDuelist(turnDuelist)][backCol];
+  InitHandSlotFromCard(slot, cardId);
+  return TRUE;
+}
+
+void Flavian_MarkSpecialSummonFromDeck(u8 controllerFixedDuelist)
+{
+  if (controllerFixedDuelist == DUEL_PLAYER || controllerFixedDuelist == DUEL_OPPONENT)
+    sFlavianDeckSummonMask |= (1 << controllerFixedDuelist);
+}
+
+u8 Flavian_HasSpecialSummonedFromDeck(u8 controllerFixedDuelist)
+{
+  if (controllerFixedDuelist != DUEL_PLAYER && controllerFixedDuelist != DUEL_OPPONENT)
+    return FALSE;
+
+  return sFlavianDeckSummonMask & (1 << controllerFixedDuelist);
+}
+
+u8 Flavian_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  return zone != NULL && zone == sFlavianBattleProtectedZone && zone->id == sFlavianBattleProtectedId;
+}
+
+void Flavian_ClearBattleDestroyProtection(const struct DuelCard *zone)
+{
+  if (zone == sFlavianBattleProtectedZone) {
+    sFlavianBattleProtectedZone = NULL;
+    sFlavianBattleProtectedId = CARD_NONE;
+  }
+}
+
+static u8 CanApplyFlavianAttackDeclare(u8 controllerFixedDuelist)
+{
+  u8 turnDuelist;
+
+  if (FindFaceUpFlavian(controllerFixedDuelist) == NULL || EffectOpt_IsUsed(FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS))
+    return FALSE;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(controllerFixedDuelist);
+  if (FirstEmptyZoneInRow(gTurnZones[Duel_TurnMonsterRowForDuelist(turnDuelist)]) < 0)
+    return FALSE;
+
+  return FindFirstMatchingDeckIndex(turnDuelist, IsGladiatorBeastMonster) >= 0;
+}
+
+void Flavian_OnAttackDeclare(void)
+{
+  u8 attackerFixed = WhoseTurn();
+  u8 controllerFixed = attackerFixed == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  u8 turnDuelist;
+  u8 deckIndex;
+  u8 monsterCol;
+  u16 cardId;
+  enum DuelActionResult result;
+
+  if (!CanApplyFlavianAttackDeclare(controllerFixed))
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(controllerFixed);
+  deckIndex = PickMatchingDeckIndex(turnDuelist, IsGladiatorBeastMonster);
+  if (deckIndex == 0xFF)
+    return;
+
+  cardId = gDuelDecks[controllerFixed].cards[deckIndex];
+  monsterCol = FirstEmptyZoneInRow(gTurnZones[Duel_TurnMonsterRowForDuelist(turnDuelist)]);
+  if (monsterCol >= MAX_ZONES_IN_ROW)
+    return;
+
+  Duel_ShowEffectText(FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS);
+  result = Duel_SpecialSummonFromDeck(turnDuelist, cardId, Duel_DefaultSpecialSummonOpts(TRUE));
+  if (result != DUEL_ACTION_OK && result != DUEL_ACTION_DUEL_OVER)
+    return;
+
+  sFlavianBattleProtectedZone = gTurnZones[Duel_TurnMonsterRowForDuelist(turnDuelist)][monsterCol];
+  sFlavianBattleProtectedId = cardId;
+  Flavian_MarkSpecialSummonFromDeck(controllerFixed);
+  EffectOpt_MarkUsed(FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS);
+}
+
+void TryApplyFlavianEndPhase(void)
+{
+  u8 controllerFixed = FixedDuelistForTurnDuelist(INACTIVE_DUELIST);
+  u8 turnDuelist;
+  u8 deckIndex;
+
+  if (!Flavian_HasSpecialSummonedFromDeck(controllerFixed))
+    return;
+
+  sFlavianDeckSummonMask &= ~(1 << controllerFixed);
+  if (FindFaceUpFlavian(controllerFixed) == NULL)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(controllerFixed);
+  if (FirstEmptyZoneInRow(gTurnZones[TurnBackrowForDuelist(turnDuelist)]) < 0)
+    return;
+  if (FindFirstMatchingDeckIndex(turnDuelist, IsGladiatorBeastSpellTrap) < 0)
+    return;
+
+  /* ponytail: the existing deck picker only presents a choice to the turn player;
+   * an off-turn Flavian controller automatically Sets the first valid card. */
+  deckIndex = PickMatchingDeckIndex(turnDuelist, IsGladiatorBeastSpellTrap);
+  if (deckIndex != 0xFF)
+    SetDeckCardAtIndex(turnDuelist, deckIndex, IsGladiatorBeastSpellTrap);
+}
+
 static void ResolveFlavianSearch(struct DuelCard *zone)
 {
   u8 deckIndex;
@@ -305,19 +463,6 @@ static void FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS_ResolveBody(void)
     ResolveFlavianSearch(zone);
   else
     Duel_ShowEffectText(FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS);
-
-  /* ponytail: when opponent declares an attack → OPT SS 1 Gladiator Beast from
-   * Deck (cannot be destroyed by battle) needs an attack-declaration hook
-   * outside this file. Ceiling: face-up field + search ignition only; upgrade:
-   * on attack declare → if face-up FLAVIAN and !OPT2 then
-   * Duel_SpecialSummonFromDeck(GB) + battle-destroy protect flag. */
-
-  /* ponytail: End Phase Set 1 Gladiator Trap from Deck if a GB was SS from Deck
-   * this turn needs End Phase + summon-from-Deck tracking outside this file.
-   * Ceiling: no End Phase Set; upgrade: turn_effect End Phase → if face-up
-   * FLAVIAN && ssFromDeckFlag && !OPT3 then DeckMenu Set trap with name
-   * containing "Gladiator" and TYPE_GROUP_TRAP. */
-(void)sGladiatorName;
 }
 
 APPEND_TEXT void EffectFLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS(void)

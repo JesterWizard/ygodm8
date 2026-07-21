@@ -13,6 +13,7 @@
 #include "spirit_of_the_pot_of_greed.h"
 #include "duel_helpers.h"
 #include "effect_system.h"
+#include "field_barrier.h"
 #include "world_suppression.h"
 #include "kishido_spirit.h"
 #include "ring_of_destruction.h"
@@ -109,6 +110,8 @@ static u8 TryResolveSpellActivationThroughTraps(u16 spellId)
 LYN_REPLACE_CHECK(ActivateSpellEffect);
 static void ActivateSpellEffect__Body(void)
 {
+  struct DuelCard *zone;
+
   if (gSpellEffectData.row1 == ACTIVE_DUELIST_HAND) {
     if (!TryPayChainEnergyCost())
       return;
@@ -120,6 +123,15 @@ static void ActivateSpellEffect__Body(void)
   SetupSpellTrapOrigin();
 
   if (Duel_IsCardActivationBlocked(gSpellEffectData.id)) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
+
+  zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+  if (zone != NULL && !zone->isLocked
+      && FieldBarrier_IsFieldSpellCard(gSpellEffectData.id)
+      && FieldBarrier_BlocksNewFieldSpellActivation(WhoseTurn())) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;

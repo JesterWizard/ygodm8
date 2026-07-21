@@ -17,6 +17,11 @@
 #include "effect_events.h"
 #include "effect.h"
 #include "evil_assault.h"
+#include "forbidden_chalice.h"
+#include "forbidden_dress.h"
+#include "forbidden_lance.h"
+#include "fusion_deployment.h"
+#include "fusion_destiny.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -171,6 +176,11 @@ void EffectEvent_OnTurnBoundary(void)
   DarkFusion_ClearOnTurnBoundary();
   EN_ENGAGE_NEO_SPACE_ClearOnTurnBoundary();
   EvilAssault_OnTurnBoundary();
+  ForbiddenChalice_ClearOnTurnBoundary();
+  ForbiddenDress_ClearOnTurnBoundary();
+  ForbiddenLance_ClearOnTurnBoundary();
+  FusionDeployment_ClearOnTurnBoundary();
+  FusionDestiny_ClearDarkHeroSpecialSummonLock();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

@@ -30,6 +30,8 @@
 #include "effect_system.h"
 #include "effect_events.h"
 #include "big_evolution_pill.h"
+#include "flavian_colosseum_of_the_gladiator_beasts.h"
+#include "fusion_destiny.h"
 #include "red_dragon_archfiend.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
@@ -376,6 +378,12 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyCyberneticZoneEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyFlavianEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyFusionDestinyEndPhase();
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();

@@ -11,6 +11,7 @@
 #include "elemental_hero_absolute_zero.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
+#include "fusion_destiny.h"
 #include "player_decks.h"
 #include "spell_effects.h"
 
@@ -19,7 +20,15 @@ void UpdateDuelGfxExceptField(void);
 
 /* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
+#define FUSION_DESTINY_BOARD_CELLS 20
+#define FUSION_DESTINY_DESTROY_STAMP_TURNS 2
+
+static u8 sFusionDestinyDestroyStamps[FUSION_DESTINY_BOARD_CELLS] APPEND_DATA = {0};
+static u16 sFusionDestinyStampedCardIds[FUSION_DESTINY_BOARD_CELLS] APPEND_DATA = {0};
+static u8 sFusionDestinyDarkHeroSpecialSummonLock APPEND_DATA = {0};
+
 static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
+static const char sHeroName[] APPEND_RODATA = "HERO";
 
 /* Local recipes that list a Destiny HERO as material.
  * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
@@ -41,6 +50,97 @@ static u8 IsDestinyHeroMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sDestinyHeroName);
+}
+
+static u8 IsDarkHeroMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.attribute == ATTRIBUTE_SHADOW && Duel_CardNameContains(cardId, sHeroName);
+}
+
+static s8 FusionDestinyBoardCellIndex(const struct DuelCard *zone)
+{
+  const struct DuelCard *base = &gDuel.board[0][0];
+
+  if (zone == NULL || zone < base || zone >= base + FUSION_DESTINY_BOARD_CELLS)
+    return -1;
+
+  return (s8)(zone - base);
+}
+
+void FusionDestiny_StampSummonedZone(struct DuelCard *zone)
+{
+  s8 cell = FusionDestinyBoardCellIndex(zone);
+
+  if (cell < 0 || zone->id == CARD_NONE)
+    return;
+
+  sFusionDestinyDestroyStamps[cell] = FUSION_DESTINY_DESTROY_STAMP_TURNS;
+  sFusionDestinyStampedCardIds[cell] = zone->id;
+}
+
+void FusionDestiny_ClearStampedZone(const struct DuelCard *zone)
+{
+  s8 cell = FusionDestinyBoardCellIndex(zone);
+
+  if (cell < 0)
+    return;
+
+  sFusionDestinyDestroyStamps[cell] = 0;
+  sFusionDestinyStampedCardIds[cell] = CARD_NONE;
+}
+
+void FusionDestiny_MarkDarkHeroSpecialSummonLock(void)
+{
+  sFusionDestinyDarkHeroSpecialSummonLock = TRUE;
+}
+
+void FusionDestiny_ClearDarkHeroSpecialSummonLock(void)
+{
+  sFusionDestinyDarkHeroSpecialSummonLock = FALSE;
+}
+
+u8 FusionDestiny_BlocksSpecialSummon(u16 cardId)
+{
+  return sFusionDestinyDarkHeroSpecialSummonLock && !IsDarkHeroMonster(cardId);
+}
+
+void TryApplyFusionDestinyEndPhase(void)
+{
+  u8 i;
+
+  for (i = 0; i < FUSION_DESTINY_BOARD_CELLS; i++) {
+    struct DuelCard *zone;
+    u8 fixedRow;
+    u8 fixedCol;
+
+    if (sFusionDestinyDestroyStamps[i] == 0)
+      continue;
+
+    zone = &gDuel.board[0][0] + i;
+    if (zone->id != sFusionDestinyStampedCardIds[i]) {
+      sFusionDestinyDestroyStamps[i] = 0;
+      sFusionDestinyStampedCardIds[i] = CARD_NONE;
+      continue;
+    }
+
+    sFusionDestinyDestroyStamps[i]--;
+    if (sFusionDestinyDestroyStamps[i] != 0)
+      continue;
+
+    sFusionDestinyStampedCardIds[i] = CARD_NONE;
+    if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &fixedCol))
+      continue;
+
+    Duel_DestroyZone(zone,
+                     Duel_TurnDuelistForFixedDuelist(Duel_FixedDuelistForMonsterRow(fixedRow)),
+                     TRUE);
+    if (IsDuelOver() == TRUE)
+      return;
+  }
 }
 
 static u8 RecipeListsDestinyHero(const struct FusionRecipe *recipe)
@@ -339,16 +439,9 @@ static void ExecuteFusionDestiny(const struct FusionRecipe *recipe,
   FusionDuel_SpecialSummonResult(recipe->result, selectedCount);
   ElementalHeroAbsoluteZero_EndSuppressLeave();
 
+  FusionDestiny_StampSummonedZone(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][emptyZone]);
+  FusionDestiny_MarkDarkHeroSpecialSummonLock();
   EffectOpt_MarkUsed(FUSION_DESTINY);
-
-  /* ponytail: destroy summoned Fusion during End Phase of next turn needs a
-   * turn_effect hook + 2-turn stamp outside this file. Ceiling: Fusion Summon
-   * only; upgrade: mark result zone / BSS turn counter → End Phase destroy. */
-
-  /* ponytail: "cannot Special Summon except DARK HERO" this turn needs a summon
-   * lock flag outside this file (ATTRIBUTE_SHADOW + name contains HERO).
-   * Ceiling: no SS lock; upgrade: turn flag → SpecialSummon gate allows only
-   * DARK HERO while set. */
 
   UpdateDuelGfxExceptField();
 }
@@ -441,6 +534,12 @@ void FUSION_DESTINY_SelfCheck(void)
     while (1)
       ;
   if (IsDestinyHeroMonster(BLUE_EYES_WHITE_DRAGON))
+    while (1)
+      ;
+  if (!IsDarkHeroMonster(DESTINY_HERO_PLASMA))
+    while (1)
+      ;
+  if (IsDarkHeroMonster(BLUE_EYES_WHITE_DRAGON))
     while (1)
       ;
 }

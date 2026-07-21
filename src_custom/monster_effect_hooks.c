@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "forbidden_chalice.h"
 #include "card_passives.h"
 #include "configs/runtime.h"
 #include "duel_helpers.h"
@@ -1002,6 +1003,9 @@ unsigned char CanActivateMonsterEffect(void) {
   unsigned char canActivate;
 
   if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (ForbiddenChalice_IsNegated(zone))
     return FALSE;
 
   neptuneSavedId = Duel_BeginCopiedEffectIdentity(zone);

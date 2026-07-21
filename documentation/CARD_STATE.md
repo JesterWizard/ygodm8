@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round1 complete (6×10 PARTIAL batches)
+**Last worked on:** 2026-07-21 — Round2 Batch1 (10 spells CCTO)
 
-**Outcome:** Batches 1–6 committed on `master` (Advance → Factory of 100 Machines pack). Partials **851→829** this round (Batch3 start was ~840 after Batch2). Shared surfaces: CCTO, GyIgnition, EffectOpt, `Duel_BlocksExtraDeckSpecialSummon`.
+**Outcome:** Field Barrier → Gadget Box exports + parent wires. Partials **829→824**.
 
-**Open / next:** Round2 — continue 6×10 from next PARTIAL spell (Field Barrier+). Reply “continue” to start.
+**Open / next:** Round2 Batches 2–6 (Generation Next onward).

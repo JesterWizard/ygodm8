@@ -120,6 +120,8 @@
 #include "ancient_gear_drill.h"
 #include "ancient_gear_factory.h"
 #include "aroma_gardening.h"
+#include "field_barrier.h"
+#include "flavian_colosseum_of_the_gladiator_beasts.h"
 #include "big_evolution_pill.h"
 #include "chain_summoning.h"
 #include "effect_events.h"
@@ -1347,6 +1349,15 @@ void HandlePlayerBackrowAction__Replacement(void) {
     return;
   }
 
+  if (!zone->isLocked && FieldBarrier_IsFieldSpellCard(id)
+      && FieldBarrier_BlocksNewFieldSpellActivation(WhoseTurn())) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
   if (TryRejectSpellActivationGate(id))
     return;
 
@@ -1767,6 +1778,7 @@ void sub_8044570__Replacement(void)
       TryArmElementalHeroSunriseOnAttackDeclared(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       ApplyAromaGardeningAttackDeclare();
+      Flavian_OnAttackDeclare();
       TryShowBlackTyrannoDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       TryShowDrillagoDirectAttackText(
@@ -1939,6 +1951,7 @@ void TryAttackWithMonster__Replacement(void)
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       ApplyAromaGardeningAttackDeclare();
+      Flavian_OnAttackDeclare();
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyMirrorWallToPendingAction();

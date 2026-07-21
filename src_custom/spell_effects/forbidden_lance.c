@@ -2,14 +2,49 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "riryoku.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
 
-/* 1 stage ~= 500 ATK. Printed -800; nearest stage unit is -1000 (2 stages). */
-#define FORBIDDEN_LANCE_ATK_LOSS_STAGES 2
+#define FORBIDDEN_LANCE_ATK_LOSS 800
 
 /* Attack-position summons keep isFaceUp=0 until end-of-turn flip. */
+static u8 sForbiddenLanceSpellTrapImmunity[MAX_DUEL_BOARD_CELLS] APPEND_DATA = {0};
+
+static u16 GetForbiddenLanceImmunityIndex(const struct DuelCard *zone)
+{
+  const struct DuelCard *base = &gDuel.board[0][0];
+
+  if (zone < base || zone >= base + MAX_DUEL_BOARD_CELLS)
+    return MAX_DUEL_BOARD_CELLS;
+
+  return (u16)(zone - base);
+}
+
+static void MarkForbiddenLanceSpellTrapImmunity(const struct DuelCard *zone)
+{
+  u16 index = GetForbiddenLanceImmunityIndex(zone);
+
+  if (index < MAX_DUEL_BOARD_CELLS)
+    sForbiddenLanceSpellTrapImmunity[index] = TRUE;
+}
+
+u8 ForbiddenLance_IsImmuneToSpellTrapEffects(const struct DuelCard *zone)
+{
+  u16 index = GetForbiddenLanceImmunityIndex(zone);
+
+  return index < MAX_DUEL_BOARD_CELLS && sForbiddenLanceSpellTrapImmunity[index];
+}
+
+void ForbiddenLance_ClearOnTurnBoundary(void)
+{
+  u8 i;
+
+  for (i = 0; i < MAX_DUEL_BOARD_CELLS; i++)
+    sForbiddenLanceSpellTrapImmunity[i] = FALSE;
+}
+
 static u8 MonsterIsFaceUp(struct DuelCard *zone)
 {
   if (zone == NULL || zone->id == CARD_NONE)
@@ -70,23 +105,11 @@ static void DestroyForbiddenLanceSpellZone(void)
 
 static void ApplyForbiddenLanceAtkLoss(struct DuelCard *zone)
 {
-  u8 i;
-
-  /* ponytail: stage unit is 500 ATK — applied -1000, not printed -800.
-   * Ceiling: no fractional temp stages; upgrade: exact-ATK overlay (Riryoku-style
-   * delta) cleared at End Phase. */
-
-  for (i = 0; i < FORBIDDEN_LANCE_ATK_LOSS_STAGES; i++)
-    DecrementTempStage(zone);
+  AddRiryokuAtkDelta(zone, -FORBIDDEN_LANCE_ATK_LOSS);
+  MarkForbiddenLanceSpellTrapImmunity(zone);
 
   Duel_NotifyMonsterZoneChanged(zone);
   Duel_RefreshMonsterStatOverlays();
-
-  /* ponytail: "unaffected by other Spells/Traps this turn" needs a per-zone
-   * immunity flag checked from Duel_ZoneIsImmuneToSpellEffects / trap targeting
-   * (IsImmuneToSpellEffectsOnField is card-id permanent only). Ceiling: -ATK via
-   * tempStage (clears EOT) only; upgrade: mark zone → treat as immune until
-   * ResetTempStages / End Phase, then clear. */
 }
 
 static void ResolveForbiddenLanceTarget(u8 fixedRow, u8 fixedCol)
@@ -170,7 +193,7 @@ APPEND_TEXT void EffectFORBIDDEN_LANCE(void)
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void ForbiddenLance_SelfCheck(void)
 {
-  if (FORBIDDEN_LANCE_ATK_LOSS_STAGES != 2)
+  if (FORBIDDEN_LANCE_ATK_LOSS != 800)
     while (1)
       ;
 }
