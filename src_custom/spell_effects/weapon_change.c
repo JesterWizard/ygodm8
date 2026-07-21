@@ -5,16 +5,30 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "mini_card.h"
-#include "riryoku.h"
 #include "spell_effects.h"
-
-#define WEAPON_CHANGE_LP_COST 700
+#include "weapon_change.h"
 
 void UpdateDuelGfxExceptField(void);
+
+#define WEAPON_CHANGE_LP_COST 700
+#define WEAPON_CHANGE_BOARD_CELLS 20
+
+static u8 sWeaponChangeSwapCells[WEAPON_CHANGE_BOARD_CELLS] APPEND_DATA = {0};
+static u8 sWeaponChangeClearOnEndedFixed APPEND_DATA = {0xFF};
 
 static u8 ActiveMonsterFixedRow(void)
 {
   return WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+}
+
+static u16 GetDuelBoardCellIndex(const struct DuelCard *zone)
+{
+  const struct DuelCard *base = &gDuel.board[0][0];
+
+  if (zone < base || zone >= base + WEAPON_CHANGE_BOARD_CELLS)
+    return 0xFFFF;
+
+  return (u16)(zone - base);
 }
 
 static u8 IsWarriorOrMachine(u16 cardId)
@@ -75,43 +89,58 @@ static u8 CanActivateWeaponChangeIgnition(struct DuelCard *zone)
   return HasWeaponChangeTarget();
 }
 
-static void GetZoneFinalAtkDef(struct DuelCard *zone, u16 *outAtk, u16 *outDef)
+void ApplyWeaponChangeAtkDefSwapToCardInfo(const struct DuelCard *zone)
 {
-  if (zone == NULL || zone->id == CARD_NONE) {
-    *outAtk = 0;
-    *outDef = 0;
-    return;
-  }
+  u16 cell;
+  u16 atk;
 
-  gStatMod.card = zone->id;
-  gStatMod.field = gDuel.field;
-  gStatMod.stage = GetFinalStage(zone);
-  gSetFinalStatZone = zone;
-  SetFinalStat(&gStatMod);
-  *outAtk = gCardInfo.atk;
-  *outDef = gCardInfo.def;
-  gSetFinalStatZone = NULL;
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  cell = GetDuelBoardCellIndex(zone);
+  if (cell >= WEAPON_CHANGE_BOARD_CELLS || !sWeaponChangeSwapCells[cell])
+    return;
+
+  atk = gCardInfo.atk;
+  gCardInfo.atk = gCardInfo.def;
+  gCardInfo.def = atk;
+}
+
+void TryClearWeaponChangeOnOpponentEndPhase(u8 endedFixedDuelist)
+{
+  u8 i;
+
+  if (sWeaponChangeClearOnEndedFixed == 0xFF)
+    return;
+  if (endedFixedDuelist != sWeaponChangeClearOnEndedFixed)
+    return;
+
+  for (i = 0; i < WEAPON_CHANGE_BOARD_CELLS; i++)
+    sWeaponChangeSwapCells[i] = FALSE;
+  sWeaponChangeClearOnEndedFixed = 0xFF;
+  Duel_RefreshMonsterStatOverlays();
+}
+
+static void MarkWeaponChangeSwap(struct DuelCard *zone)
+{
+  u16 cell;
+
+  if (zone == NULL)
+    return;
+
+  cell = GetDuelBoardCellIndex(zone);
+  if (cell >= WEAPON_CHANGE_BOARD_CELLS)
+    return;
+
+  sWeaponChangeSwapCells[cell] = TRUE;
+  /* Until end of opponent's next turn → clear when that opponent's EP finishes. */
+  sWeaponChangeClearOnEndedFixed =
+      WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
 }
 
 static void ApplyAtkDefSwap(struct DuelCard *zone)
 {
-  u16 atk;
-  u16 def;
-  s16 delta;
-
-  GetZoneFinalAtkDef(zone, &atk, &def);
-  delta = (s16)((s32)def - (s32)atk);
-  if (delta != 0)
-    AddRiryokuAtkDelta(zone, delta);
-
-  /* ponytail: Riryoku only adjusts ATK — DEF does not become the old ATK from
-   * this file alone. Ceiling: ATK becomes current DEF; DEF unchanged.
-   * Upgrade: ShieldAndSword-style per-zone swap flag in SetFinalStat that swaps
-   * both stats until end of opponent's next turn. */
-  /* ponytail: duration is "until end of opponent's next turn" but Riryoku
-   * deltas clear every End Phase (ClearAllRiryokuAtkDeltas). Ceiling: lasts
-   * until next EOT clear; upgrade: turn_effect_hooks 2-End-Phase counter. */
-
+  MarkWeaponChangeSwap(zone);
   RefreshFieldMonsterStatOverlays();
 }
 
@@ -186,11 +215,36 @@ static void ResolveWeaponChangeIgnition(struct DuelCard *zone)
   Duel_EnterPickZoneTargeting();
 }
 
+void TryApplyWeaponChangeStandby(void)
+{
+  u8 col;
+  struct DuelCard *zone;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    zone = gTurnZones[ACTIVE_DUELIST_BACKROW][col];
+    if (zone == NULL || zone->id != WEAPON_CHANGE || zone->isFaceUp == FALSE)
+      continue;
+
+    zone->effectUsedThisTurn = FALSE;
+    if (!CanActivateWeaponChangeIgnition(zone))
+      continue;
+
+    gSpellEffectData.row1 = ACTIVE_DUELIST_BACKROW;
+    gSpellEffectData.col1 = col;
+    ResolveWeaponChangeIgnition(zone);
+    if (IsDuelOver() == TRUE)
+      return;
+  }
+}
+
 static void WEAPON_CHANGE_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
-  /* Re-activation of face-up continuous (OPT ignition; printed = Standby). */
+  /* Re-activation of face-up continuous (OPT; Standby also via TryApply*). */
   if (zone != NULL && zone->isLocked) {
     if (!CanActivateWeaponChangeIgnition(zone)) {
       if (!gHideEffectText)
@@ -204,11 +258,6 @@ static void WEAPON_CHANGE_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(WEAPON_CHANGE);
-
-  /* ponytail: printed "once during each of your Standby Phases" needs a
-   * turn_effect_hooks Standby gate outside this file. Ceiling: face-up OPT
-   * ignition any phase (Main-style re-activate); upgrade: Standby-only
-   * CanActivate + auto-prompt, or GetSpellType NORMAL list like CALL_OF_THE_MUMMY. */
 }
 
 APPEND_TEXT void EffectWEAPON_CHANGE(void)

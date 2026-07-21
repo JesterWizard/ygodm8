@@ -9,6 +9,7 @@
 #include "embodiment_of_apophis.h"
 #include "ojama_trio.h"
 #include "solemn_wishes.h"
+#include "appropriate.h"
 #include "drop_off.h"
 #include "shard_of_greed.h"
 #include "tethys_goddess_of_light.h"
@@ -355,6 +356,7 @@ void TryDrawingCard__Replacement(unsigned turn) {
       gDuel.hands[turn_u8][i].id = cardDrawn;
       TryApplySolemnWishesOnDraw(turn_u8, cardDrawn, i);
       TryApplyTethysGoddessOfLightOnDraw(turn_u8, cardDrawn, i);
+      TryApplyAppropriateOnDraw(turn_u8);
       if (gDrawPhaseNormalDrawActive) {
         TryApplyDropOffOnDrawPhaseDraw(turn_u8, i);
         ShardOfGreed_OnNormalDraw(turn_u8);
@@ -380,6 +382,7 @@ void TryDrawingCard__Replacement(unsigned turn) {
         gHandExtraSlots[turn_u8][i].id = cardDrawn;
         TryApplySolemnWishesOnDraw(turn_u8, cardDrawn, handSlot);
         TryApplyTethysGoddessOfLightOnDraw(turn_u8, cardDrawn, handSlot);
+        TryApplyAppropriateOnDraw(turn_u8);
         if (gDrawPhaseNormalDrawActive) {
           TryApplyDropOffOnDrawPhaseDraw(turn_u8, handSlot);
           ShardOfGreed_OnNormalDraw(turn_u8);

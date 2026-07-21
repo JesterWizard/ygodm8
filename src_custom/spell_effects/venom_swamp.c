@@ -3,6 +3,84 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
+#include "venom_swamp.h"
+
+void UpdateDuelGfxExceptField(void);
+void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone);
+
+static const char sVenomName[] APPEND_RODATA = "Venom";
+
+static u8 IsVenomMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sVenomName);
+}
+
+static u8 FieldHasFaceUpVenomSwamp(void)
+{
+  return Duel_FindBackrowCard(DUEL_PLAYER, VENOM_SWAMP, TRUE) != NULL
+      || Duel_FindBackrowCard(DUEL_OPPONENT, VENOM_SWAMP, TRUE) != NULL;
+}
+
+static u8 MonsterIsFaceUp(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  if (IsCardFaceUp(zone))
+    return TRUE;
+
+  return zone->isDefending == FALSE;
+}
+
+void TryApplyVenomSwampEndPhase(void)
+{
+  u8 row;
+  u8 col;
+  struct DuelCard *zone;
+
+  if (!FieldHasFaceUpVenomSwamp())
+    return;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  /* Place 1 Venom Counter stand-in (−1 stage ≈ −500 ATK) on each face-up non-Venom. */
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      zone = gFixedZones[row][col];
+      if (!MonsterIsFaceUp(zone) || IsVenomMonster(zone->id))
+        continue;
+
+      DecrementPermStage(zone);
+    }
+  }
+
+  Duel_RefreshMonsterStatOverlays();
+
+  /* Destroy monsters whose ATK hit 0 after the drain. */
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      zone = gFixedZones[row][col];
+      if (!MonsterIsFaceUp(zone) || IsVenomMonster(zone->id))
+        continue;
+
+      ApplyFieldZoneStatsToCardInfo(zone);
+      if (gCardInfo.atk == 0) {
+        u8 gy = row == PLAYER_MONSTER_ROW ? DUEL_PLAYER : DUEL_OPPONENT;
+
+        Duel_DestroyZone(zone, gy, FALSE);
+        if (IsDuelOver() == TRUE)
+          return;
+      }
+    }
+  }
+}
 
 static void VENOM_SWAMP_ResolveBody(void)
 {
@@ -10,13 +88,6 @@ static void VENOM_SWAMP_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(VENOM_SWAMP);
-
-  /* ponytail: End Phase Venom Counters / -500 ATK per counter / destroy at 0 ATK
-   * need an End Phase turn_effect hook + per-monster counter storage outside this
-   * file (DuelCard has no venom-counter field; no in-file End Phase dispatch).
-   * Ceiling: continuous face-up only; upgrade: turn_effect End Phase → if face-up
-   * VENOM_SWAMP then place 1 counter on each face-up non-Venom monster, apply
-   * ATK -= 500 * counters (stat overlay or stages), destroy when ATK hits 0. */
 }
 
 APPEND_TEXT void EffectVENOM_SWAMP(void)

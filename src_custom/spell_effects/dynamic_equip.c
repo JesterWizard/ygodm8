@@ -328,7 +328,7 @@ static u8 RecalculateDynamicEquip(struct DynamicEquipLink *link)
 
   if (link->spellId == BIG_BANG_SHOT || link->spellId == RAREGOLD_ARMOR
       || link->spellId == H_HEATED_HEART || link->spellId == AUTONOMOUS_ACTION_UNIT
-      || link->spellId == PREMATURE_BURIAL)
+      || link->spellId == PREMATURE_BURIAL || link->spellId == UNSTABLE_EVOLUTION)
     return FALSE;
 
   spellZone = GetZoneFromFixedCoords(link->spellFixedRow, link->spellFixedCol);
@@ -409,7 +409,7 @@ s8 GetDynamicEquipStageDelta(const struct DuelCard *zone)
       continue;
 
     if (link->spellId == BIG_BANG_SHOT || link->spellId == RAREGOLD_ARMOR
-        || link->spellId == H_HEATED_HEART)
+        || link->spellId == H_HEATED_HEART || link->spellId == UNSTABLE_EVOLUTION)
       continue;
 
     if (link->targetFixedRow != row || link->targetFixedCol != col)

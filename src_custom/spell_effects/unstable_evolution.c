@@ -4,6 +4,7 @@
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
+#include "unstable_evolution.h"
 
 #define UNSTABLE_EVOLUTION_ATK_LOW_LP 2400
 #define UNSTABLE_EVOLUTION_ATK_HIGH_LP 1000
@@ -13,16 +14,14 @@ static u8 ActiveMonsterFixedRow(void)
   return WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
 }
 
-static u16 ControllerLifePoints(void)
+static u16 ControllerLifePoints(u8 fixedDuelist)
 {
-  return WhoseTurn() == DUEL_PLAYER ? gDuelLifePoints[DUEL_PLAYER]
-                                    : gDuelLifePoints[DUEL_OPPONENT];
+  return gDuelLifePoints[fixedDuelist];
 }
 
-static u16 OpponentLifePoints(void)
+static u16 OpponentLifePoints(u8 fixedDuelist)
 {
-  return WhoseTurn() == DUEL_PLAYER ? gDuelLifePoints[DUEL_OPPONENT]
-                                    : gDuelLifePoints[DUEL_PLAYER];
+  return gDuelLifePoints[fixedDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER];
 }
 
 static u8 IsValidUnstableEvolutionTarget(u8 fixedRow, u8 fixedCol)
@@ -54,68 +53,49 @@ u8 CanActivateUNSTABLE_EVOLUTION(void)
   return HasUnstableEvolutionTarget();
 }
 
-static u16 DesiredOriginalAtk(void)
+static u16 DesiredOriginalAtk(u8 controllerFixed)
 {
-  u16 myLp = ControllerLifePoints();
-  u16 oppLp = OpponentLifePoints();
+  u16 myLp = ControllerLifePoints(controllerFixed);
+  u16 oppLp = OpponentLifePoints(controllerFixed);
 
   if (myLp < oppLp)
     return UNSTABLE_EVOLUTION_ATK_LOW_LP;
   if (myLp > oppLp)
     return UNSTABLE_EVOLUTION_ATK_HIGH_LP;
-  return 0xFFFF; /* equal LP — neither clause; leave ATK alone */
+  return 0xFFFF; /* equal LP — leave printed ATK */
 }
 
-static s8 StagesToReachOriginalAtk(u16 cardId, u16 targetAtk)
+void ApplyUnstableEvolutionAtkToCardInfo(const struct DuelCard *zone)
 {
-  s32 needed;
+  u8 controller;
+  u16 desired;
 
-  if (targetAtk == 0xFFFF)
-    return 0;
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
 
-  SetCardInfo(cardId);
-  needed = (s32)targetAtk - (s32)gCardInfo.atk;
+  if (!DynamicEquipTargetsMonsterWithSpell(zone, UNSTABLE_EVOLUTION))
+    return;
 
-  /* 1 stage ~= 500 ATK; nearest stage (same rounding as Triangle Ecstasy Spark). */
-  if (needed >= 0)
-    return (s8)((needed + 250) / 500);
-  return (s8)((needed - 250) / 500);
+  controller = GetDuelistForZone(zone);
+  if (controller != DUEL_PLAYER && controller != DUEL_OPPONENT)
+    return;
+
+  desired = DesiredOriginalAtk(controller);
+  if (desired == 0xFFFF)
+    return;
+
+  gCardInfo.atk = desired;
 }
 
 static void EquipUnstableEvolution(struct DuelCard *spellZone, struct DuelCard *target)
 {
-  u16 desired = DesiredOriginalAtk();
-  s8 stages = StagesToReachOriginalAtk(target->id, desired);
-  u8 applied = 0;
-
-  if (stages > 0) {
-    applied = (u8)stages;
-    ApplyDynamicEquipStages(target, applied);
-  } else if (stages < 0) {
-    s8 left = stages;
-
-    /* Bit7 marks ATK-cut path so Remove restores via IncrementPermStage. */
-    applied = (u8)((-stages) | 0x80);
-    while (left < 0) {
-      DecrementPermStage(target);
-      left++;
-    }
-  }
-
-  if (!RegisterDynamicEquip(spellZone, target, UNSTABLE_EVOLUTION, applied))
+  if (!RegisterDynamicEquip(spellZone, target, UNSTABLE_EVOLUTION, 0))
     return;
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
   Duel_NotifyMonsterZoneChanged(target);
   Duel_RefreshMonsterStatOverlays();
-
-  /* ponytail: LP-conditional original ATK (2400 if lower / 1000 if higher) needs
-   * continuous refresh while equipped when LP changes, plus exact original-ATK
-   * overlay (stage unit is 500). Ceiling: one-shot nearest-stage adjust at equip
-   * from printed original; equal LP leaves ATK unchanged.
-   * Upgrade: card_info / RecalculateDynamicEquips → if DynamicEquipTargetsMonster
-   * WithSpell(UNSTABLE_EVOLUTION) force original ATK from controller vs opp LP. */
 }
 
 static void ResolveUnstableEvolutionTarget(u8 fixedRow, u8 fixedCol)

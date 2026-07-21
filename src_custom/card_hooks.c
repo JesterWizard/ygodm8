@@ -29,6 +29,8 @@
 #include "neo_space.h"
 #include "the_a_forces.h"
 #include "triangle_ecstasy_spark.h"
+#include "unstable_evolution.h"
+#include "weapon_change.h"
 #include "wetlands.h"
 #include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
@@ -663,6 +665,8 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyHarpiesHuntingGroundStatBonusToCardInfo(zone);
   ApplyLightswornSabreAtkBonusToCardInfo(zone);
   ApplyCyberneticZoneAtkBonusToCardInfo(zone);
+  ApplyUnstableEvolutionAtkToCardInfo(zone);
+  ApplyWeaponChangeAtkDefSwapToCardInfo(zone);
   ApplyMorphtronicEngineAtkBonusToCardInfo(zone);
   ApplyMorphtronicMapAtkBonusToCardInfo(zone);
   ApplyMoltingEscapeAtkBonusToCardInfo(zone);
@@ -804,6 +808,8 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyHarpiesHuntingGroundStatBonusToCardInfo(gSetFinalStatZone);
     ApplyLightswornSabreAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyCyberneticZoneAtkBonusToCardInfo(gSetFinalStatZone);
+    ApplyUnstableEvolutionAtkToCardInfo(gSetFinalStatZone);
+    ApplyWeaponChangeAtkDefSwapToCardInfo(gSetFinalStatZone);
     ApplyMorphtronicEngineAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMorphtronicMapAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMoltingEscapeAtkBonusToCardInfo(gSetFinalStatZone);

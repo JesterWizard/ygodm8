@@ -27,6 +27,7 @@
 #include "second_coin_toss.h"
 #include "spell_gear.h"
 #include "supreme_kings_castle.h"
+#include "tornado_wall.h"
 #include "triangle_ecstasy_spark.h"
 #include "spell_effects.h"
 
@@ -55,6 +56,7 @@ static void EffectEvent_OnFieldChangeHandler(const struct EffectEvent *ev)
 
   Duel_CheckRivalryOfWarlordsAfterFieldChange();
   Duel_CheckRingOfDestructionAfterFieldChange();
+  TornadoWall_CheckAfterFieldChange();
 }
 
 void EffectEvent_EnsureInit(void)

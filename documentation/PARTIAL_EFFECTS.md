@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:20 UTC  
-**Remaining partials:** `756`
+**Last updated:** 2026-07-21 22:27 UTC  
+**Remaining partials:** `746`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 76 |
-| `trap` | 114 |
+| `spell` | 72 |
+| `trap` | 108 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **756** |
+| **total** | **746** |
 
-## spell (76)
+## spell (72)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -334,25 +334,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-### `UNSTABLE_EVOLUTION`
-- path: `src_custom/spell_effects/unstable_evolution.c`
-- L113: LP-conditional original ATK (2400 if lower / 1000 if higher) needs continuous refresh while equipped when LP changes, plus exact original-ATK overlay (stage unit is 500). Ceiling: one-shot nearest-stage adjust at equip from printed original; equal LP leaves ATK unchanged. Upgrade: card_info / RecalculateDynamicEquips → if DynamicEquipTargetsMonster
-
-### `VENOM_SHOT`
-- path: `src_custom/spell_effects/venom_shot.c`
-- L259: Venom Counters need per-monster counter storage + End Phase ATK drain (see venom_swamp.c). Ceiling: send Reptile + target only; upgrade: place VENOM_SHOT_COUNTERS on zone, apply -500 ATK per counter / destroy at 0.
-
-### `VENOM_SWAMP`
-- path: `src_custom/spell_effects/venom_swamp.c`
-- L14: End Phase Venom Counters / -500 ATK per counter / destroy at 0 ATK need an End Phase turn_effect hook + per-monster counter storage outside this file (DuelCard has no venom-counter field; no in-file End Phase dispatch). Ceiling: continuous face-up only; upgrade: turn_effect End Phase → if face-up VENOM_SWAMP then place 1 counter on each face-up non-Venom monster, apply
-
-### `WEAPON_CHANGE`
-- path: `src_custom/spell_effects/weapon_change.c`
-- L107: Riryoku only adjusts ATK — DEF does not become the old ATK from this file alone. Ceiling: ATK becomes current DEF; DEF unchanged. Upgrade: ShieldAndSword-style per-zone swap flag in SetFinalStat that swaps both stats until end of opponent's next turn.
-- L111: duration is "until end of opponent's next turn" but Riryoku deltas clear every End Phase (ClearAllRiryokuAtkDeltas). Ceiling: lasts until next EOT clear; upgrade: turn_effect_hooks 2-End-Phase counter.
-- L208: printed "once during each of your Standby Phases" needs a turn_effect_hooks Standby gate outside this file. Ceiling: face-up OPT ignition any phase (Main-style re-activate); upgrade: Standby-only CanActivate + auto-prompt, or GetSpellType NORMAL list like CALL_OF_THE_MUMMY.
-
-## trap (114)
+## trap (108)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -399,17 +381,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/angels_tear.c`
 - L342: need 4 banish targets plus 1 summon target.
 
-### `ANTI_SPELL_FRAGRANCE`
-- path: `src_custom/trap_effects/anti_spell_fragrance.c`
-- L11: both players must Set Spells before activate (next turn) needs spell-activation gate. Ceiling: face-up continuous only; upgrade: spell activate validator requires prior Set + turn delay. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-
 ### `APPARATION`
 - path: `src_custom/trap_effects/apparation.c`
 - L37: printed trigger is HERO destroy. Ceiling: if origin was a HERO monster OR we control a HERO, allow Deck SS.
-
-### `APPROPRIATE`
-- path: `src_custom/trap_effects/appropriate.c`
-- L11: activate when opp draws outside Draw Phase; then each such draw → you draw 2. Ceiling: face-up continuous only; upgrade: non-Draw-Phase draw hook → Duel_DrawCards(controller, 2). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 
 ### `ARCANA_CALL`
 - path: `src_custom/trap_effects/arcana_call.c`
@@ -422,10 +396,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ATTACK_GUIDANCE_ARMOR`
 - path: `src_custom/trap_effects/attack_guidance_armor.c`
 - L15: attack-declare choice Destroy OR redirect target. Ceiling: destroy declared attacker (origin) when Effect runs.
-
-### `BACKFIRE`
-- path: `src_custom/trap_effects/backfire.c`
-- L11: FIRE monster destroyed → 500 to opp needs destroy hook. Ceiling: face-up continuous only; upgrade: OnDestroy FIRE face-up owned → Duel_ChangeLp(opp, -500). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 
 ### `BATTLE_MANIA`
 - path: `src_custom/trap_effects/battle_mania.c`
@@ -685,10 +655,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/necrovalley_temple.c`
 - L90: -500 ATK/DEF while GK+Necrovalley need stat overlay; destroy-Set Necrovalley S/T from Deck need destroy hook. Ceiling: if GK present, try place Necrovalley from hand/GY; mark opp monsters -1 stage.
 
-### `NEEDLE_WALL`
-- path: `src_custom/trap_effects/needle_wall.c`
-- L44: Needle Wall Standby Phase re-roll not looped.
-
 ### `NEXT`
 - path: `src_custom/trap_effects/next.c`
 - L42: negate effects + Extra Deck lock (Fusion only) need gates. Ceiling: SS distinct Neo-Spacians / Neos from hand then GY in DEF.
@@ -773,14 +739,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `THUMBS_DOWN`
 - path: `src_custom/trap_effects/thumbs_down.c`
 - L31: destroy by battle/effect → controller takes 500 each needs destroy hook. Ceiling: face-up continuous only.
-
-### `TORNADO_WALL`
-- path: `src_custom/trap_effects/tornado_wall.c`
-- L11: activate only while Umi on field; no battle damage while Umi face-up; destroy when Umi leaves. Ceiling: face-up continuous only; upgrade: Umi field check on activate + battle-damage gate + Umi leave destroy. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-
-### `TOUR_OF_DOOM`
-- path: `src_custom/trap_effects/tour_of_doom.c`
-- L11: opp Standby coin → Heads: opp cannot NS/Flip until EP; Tails: you cannot next turn. Ceiling: face-up continuous only; upgrade: Standby turn_effect → RandRange coin + summoningBlocked flags. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 
 ### `TRAP_DUSTSHOOT`
 - path: `src_custom/trap_effects/trap_dustshoot.c`

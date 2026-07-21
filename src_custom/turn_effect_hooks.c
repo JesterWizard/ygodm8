@@ -15,6 +15,10 @@
 #include "bottomless_shifting_sand.h"
 #include "continuous_trap_turn_start.h"
 #include "dark_dust_spirit.h"
+#include "needle_wall.h"
+#include "tour_of_doom.h"
+#include "venom_swamp.h"
+#include "weapon_change.h"
 #include "nightmare_wheel.h"
 #include "mirror_wall.h"
 #include "cyber_barrier_dragon.h"
@@ -359,6 +363,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   /* Previous turn's End Phase just finished; WhoseTurn is the new turn player. */
   endedFixedDuelist = WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
   BigEvolutionPill_OnOpponentEndPhase(endedFixedDuelist);
+  TryClearWeaponChangeOnOpponentEndPhase(endedFixedDuelist);
   TryClearGravekeepersInscriptionEndPhase();
   EffectEvent_OnTurnBoundary();
   TheWhiteStoneOfAncients_AgeSentFlags();
@@ -393,6 +398,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   }
   TryApplyCyberneticZoneStandby();
   TryApplyDifferentDimensionCapsuleStandby();
+  TryApplyWeaponChangeStandby();
+  TryApplyNeedleWallStandby();
+  TryApplyTourOfDoomStandby();
   TryBottomlessShiftingSandTurnStart();
   ContinuousTraps_TryActivateOnOpponentTurnStart();
   if (IsDuelOver() == 1)
@@ -416,6 +424,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyCyberneticZoneEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyVenomSwampEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyFlavianEndPhase();

@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "needle_wall.h"
 
 void UpdateDuelGfxExceptField(void);
 
@@ -12,8 +13,6 @@ static void NeedleWallRollDestroy(void)
   u8 roll;
   u8 attempts = 0;
 
-  /* Zones 1-5 from controller's right = col 4..0 when facing player.
-   * ponytail: Standby-only timing needs turn hook; run once on activate. */
   do {
     roll = RandRangeU8(1, 6);
     attempts++;
@@ -41,4 +40,21 @@ void TryActivateNEEDLE_WALLOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(NEEDLE_WALL, ActivateNEEDLE_WALLZone);
 }
 
-/* ponytail: Needle Wall Standby Phase re-roll not looped. */
+void TryApplyNeedleWallStandby(void)
+{
+  u8 col;
+  struct DuelCard *zone;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    zone = gTurnZones[ACTIVE_DUELIST_BACKROW][col];
+    if (zone == NULL || zone->id != NEEDLE_WALL || zone->isFaceUp == FALSE)
+      continue;
+
+    NeedleWallRollDestroy();
+    if (IsDuelOver() == TRUE)
+      return;
+  }
+}

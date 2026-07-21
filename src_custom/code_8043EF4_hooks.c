@@ -123,6 +123,7 @@
 #include "ancient_gear_castle.h"
 #include "ancient_gear_drill.h"
 #include "ancient_gear_factory.h"
+#include "anti_spell_fragrance.h"
 #include "aroma_gardening.h"
 #include "field_barrier.h"
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
@@ -1364,6 +1365,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   if (TryRejectSpellActivationGate(id))
     return;
+
+  if (AntiSpellFragrance_BlocksSpellActivation(zone)) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
 
   if (id == VALHALLA_HALL_OF_THE_FALLEN && zone->isLocked
       && !CanActivateValhallaHallOfTheFallenIgnition(zone)) {

@@ -14,6 +14,7 @@
 #include "arcane_barrier.h"
 #include "aroma_garden.h"
 #include "aroma_gardening.h"
+#include "backfire.h"
 #include "celestial_sword_eatos.h"
 #include "clock_tower_prison.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
@@ -193,6 +194,30 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_AromaGardenOnDestroy,
+  },
+  {
+      BACKFIRE,
+      EFFECT_KIND_TRAP,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_BackfireOnDestroy,
+      NULL,
+      NULL,
+      Op_BackfireOnDestroy,
+  },
+  {
+      BACKFIRE,
+      EFFECT_KIND_TRAP,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_BATTLE_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_BackfireOnDestroy,
+      NULL,
+      NULL,
+      Op_BackfireOnDestroy,
   },
   {
       CLOCK_TOWER_PRISON,

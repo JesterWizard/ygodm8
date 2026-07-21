@@ -256,11 +256,14 @@ static void ResolveVenomShotOppTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidVenomShotOppTarget(fixedRow, fixedCol))
     return;
 
-  /* ponytail: Venom Counters need per-monster counter storage + End Phase ATK
-   * drain (see venom_swamp.c). Ceiling: send Reptile + target only; upgrade:
-   * place VENOM_SHOT_COUNTERS on zone, apply -500 ATK per counter / destroy at 0. */
-  (void)zone;
-  (void)VENOM_SHOT_COUNTERS;
+  /* 2 Venom Counters ≈ −2 stages (~−1000 ATK); EP destroy-at-0 via Venom Swamp. */
+  {
+    u8 i;
+
+    for (i = 0; i < VENOM_SHOT_COUNTERS; i++)
+      DecrementPermStage(zone);
+  }
+  Duel_RefreshMonsterStatOverlays();
 
   DestroyVenomShotSpellZone();
 }
