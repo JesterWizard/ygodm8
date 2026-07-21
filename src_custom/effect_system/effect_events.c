@@ -25,6 +25,8 @@
 #include "hidden_temples_of_necrovalley.h"
 #include "parallel_world_fusion.h"
 #include "second_coin_toss.h"
+#include "spell_gear.h"
+#include "supreme_kings_castle.h"
 #include "spell_effects.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
@@ -185,6 +187,8 @@ void EffectEvent_OnTurnBoundary(void)
   ForbiddenDress_ClearOnTurnBoundary();
   ForbiddenLance_ClearOnTurnBoundary();
   SecondCoinToss_ClearOnTurnBoundary();
+  SpellGear_OnTurnBoundary();
+  SupremeKingsCastle_ClearOnTurnBoundary();
   ParallelWorldFusion_ClearOnTurnBoundary();
   FusionDeployment_ClearOnTurnBoundary();
   FusionDestiny_ClearDarkHeroSpecialSummonLock();

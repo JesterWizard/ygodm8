@@ -10,6 +10,7 @@
 #include "evil_assault.h"
 #include "expanded_graveyard.h"
 #include "gy_ignition.h"
+#include "soul_servant.h"
 
 u8 CanActivateTheWhiteStoneOfAncientsGy(u8 fixedDuelist, u8 gyIndex);
 void ActivateTheWhiteStoneOfAncientsGy(u8 fixedDuelist, u8 gyIndex);
@@ -45,6 +46,9 @@ static const struct GyIgnitionEntry sGyIgnitionTable[] APPEND_RODATA = {
   { EVIL_ASSAULT,
     CanActivateEvilAssaultGy,
     ActivateEvilAssaultGy },
+  { SOUL_SERVANT,
+    CanActivateSoulServantGy,
+    ActivateSoulServantGy },
 };
 
 u8 GyIgnition_TryAt(u8 fixedDuelist, u16 cardId)

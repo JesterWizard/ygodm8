@@ -24,6 +24,7 @@
 #include "delayed_effects.h"
 #include "court_of_justice.h"
 #include "valhalla_hall_of_the_fallen.h"
+#include "spell_gear.h"
 #include "duel_attack_restrictions.h"
 #include "thousand_energy.h"
 #include "triangle_power.h"
@@ -711,7 +712,10 @@ LYN_REPLACE_CHECK(UnblockTurnSummoning);
 void UnblockTurnSummoning__Replacement(unsigned char currPlayer) {
   if (gDuelType == DUEL_TYPE_LINK)
     BeginDuelBoardTurn();
-  gTurnDuelistBattleState[currPlayer]->summoningBlocked = 0;
+  if (SpellGear_BlocksNormalSummon(currPlayer))
+    gTurnDuelistBattleState[currPlayer]->summoningBlocked = 1;
+  else
+    gTurnDuelistBattleState[currPlayer]->summoningBlocked = 0;
   gDoubleSummonExtraSummonPending = FALSE;
   gDoubleSummonExtraSummonUsed = FALSE;
   DebugRuleset_ResetTurnAttack();

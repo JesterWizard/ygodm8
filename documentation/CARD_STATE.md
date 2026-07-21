@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round3 Batch3
+**Last worked on:** 2026-07-21 — Round3 Batch4
 
-**Outcome:** Scapegoat→Snake Rain pack: Secret Village spell gate, Shard Draw Phase counters, Second Coin Flip (+Cup of Ace), Shining Sarcophagus destroy protect, Shaddoll/Silvers EffectOpt. Honest UI/token ceilings kept. Partials **789→785**.
+**Outcome:** Solar→Gaze pack: The A Forces ATK overlay, Spell Gear NS lock, Soul Servant GY ignition, Supreme Kings Castle battle ATK, Gaze End Phase banish. Honest UI/name ceilings kept. Partials **785→784**. Fixed infected_mail APPEND_DATA link.
 
-**Open / next:** Round3 Batches 4–6.
+**Open / next:** Round3 Batches 5–6.

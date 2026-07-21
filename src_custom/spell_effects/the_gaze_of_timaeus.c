@@ -13,6 +13,7 @@
 #include "fusion_duel.h"
 #include "player_decks.h"
 #include "spell_effects.h"
+#include "the_gaze_of_timaeus.h"
 
 void ClearZone(struct DuelCard *zone);
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyard);
@@ -20,6 +21,11 @@ void UpdateDuelGfxExceptField(void);
 u8 ExtraDeck_TryRemoveCard(u16 cardId);
 
 /* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
+
+static u8 sGazeStampRow APPEND_DATA = {0xFF};
+static u8 sGazeStampCol APPEND_DATA = {0xFF};
+static u16 sGazeStampId APPEND_DATA = {CARD_NONE};
+static u8 sGazeStampTurnsLeft APPEND_DATA = {0};
 
 static const u8 sGazePickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -386,11 +392,65 @@ static void ExecuteGazeFusion(const struct FusionMaterialSource *source, u16 res
 
   EffectOpt_MarkUsed(THE_GAZE_OF_TIMAEUS);
 
-  /* ponytail: End Phase banish of the Fusion during the next turn needs a
-   * turn_effect queue outside this file. Ceiling: Fusion SS + shuffle only;
-   * upgrade: mark summoned zone + turn_effect End Phase (controller's next
-   * End Phase) → Duel_BanishZone. "Treated as Eye of Timaeus" name checks
-   * also need a summon-tag outside this file. */
+  {
+    u8 col;
+    u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL && zone->id == resultId) {
+        TheGazeOfTimaeus_StampSummonedZone(zone);
+        break;
+      }
+    }
+  }
+  /* ponytail: "Treated as Eye of Timaeus" name checks need a summon-tag outside
+   * this file. */
+}
+
+void TheGazeOfTimaeus_StampSummonedZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &fixedCol))
+    return;
+
+  sGazeStampRow = fixedRow;
+  sGazeStampCol = fixedCol;
+  sGazeStampId = zone->id;
+  /* Banish during controller's next End Phase (skip this turn's EP). */
+  sGazeStampTurnsLeft = 2;
+}
+
+void TryApplyTheGazeOfTimaeusEndPhase(void)
+{
+  struct DuelCard *zone;
+
+  if (sGazeStampTurnsLeft == 0)
+    return;
+
+  sGazeStampTurnsLeft--;
+  if (sGazeStampTurnsLeft > 0)
+    return;
+
+  if (sGazeStampRow > PLAYER_MONSTER_ROW || sGazeStampCol >= MAX_ZONES_IN_ROW) {
+    sGazeStampRow = 0xFF;
+    sGazeStampCol = 0xFF;
+    sGazeStampId = CARD_NONE;
+    return;
+  }
+
+  zone = gFixedZones[sGazeStampRow][sGazeStampCol];
+  if (zone != NULL && zone->id == sGazeStampId && zone->id != CARD_NONE)
+    Duel_BanishZone(zone, TRUE);
+
+  sGazeStampRow = 0xFF;
+  sGazeStampCol = 0xFF;
+  sGazeStampId = CARD_NONE;
 }
 
 static void RunGazeOfTimaeusFlow(void)

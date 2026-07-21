@@ -8,8 +8,8 @@
 
 #define INFECTED_MAIL_MAX_LEVEL 4
 
-static struct DuelCard *sInfectedMailDirectAttackTarget;
-static u16 sInfectedMailDirectAttackTargetId;
+static struct DuelCard *sInfectedMailDirectAttackTarget APPEND_DATA = {NULL};
+static u16 sInfectedMailDirectAttackTargetId APPEND_DATA = {0};
 
 static u8 ActiveMonsterFixedRow(void)
 {

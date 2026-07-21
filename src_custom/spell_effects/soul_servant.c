@@ -6,6 +6,7 @@
 #include "duel_helpers.h"
 #include "exchange_hand_selection.h"
 #include "expanded_graveyard.h"
+#include "soul_servant.h"
 #include "spell_effects.h"
 
 void ClearZone(struct DuelCard *zone);
@@ -24,6 +25,7 @@ enum SoulServantSource {
 };
 
 static const char sDarkMagicianName[] APPEND_RODATA = "Dark Magician";
+static const char sPalladiumName[] APPEND_RODATA = "Palladium";
 
 /* ponytail: no card-description text search — approximate "lists DM/DMG" via
  * name contains "Dark Magician" plus a known support ID list.
@@ -481,15 +483,115 @@ static void SOUL_SERVANT_ResolveBody(void)
   if (!ok)
     return;
 
-  /* ponytail: GY ignition "banish this; draw for distinct Palladium/DM/DMG
-   * on field+GYs" needs a GY-activate spell path outside this file.
-   * Ceiling: on-field stack-to-Deck only; upgrade: GY activate → banish
-   * SOUL_SERVANT → Duel_DrawCards(count distinct Palladium/DM/DMG names). */
+  /* GY ignition: CanActivateSoulServantGy / ActivateSoulServantGy via gy_ignition. */
 
   if (spellZone != NULL && spellZone->id == SOUL_SERVANT)
     Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
   else
     UpdateDuelGfxExceptField();
+}
+
+static u8 NameIsPalladiumOrDmOrDmg(u16 cardId)
+{
+  if (cardId == CARD_NONE)
+    return FALSE;
+  if (cardId == DARK_MAGICIAN || cardId == DARK_MAGICIAN_GIRL)
+    return TRUE;
+  if (Duel_CardNameContains(cardId, sDarkMagicianName))
+    return TRUE;
+  return Duel_CardNameContains(cardId, sPalladiumName);
+}
+
+static u8 CountDistinctPalladiumDmDmg(void)
+{
+  u16 seen[16];
+  u8 seenCount = 0;
+  u8 fixed;
+  u8 col;
+  u8 i;
+
+  for (fixed = DUEL_PLAYER; fixed <= DUEL_OPPONENT; fixed++) {
+    u8 row = Duel_FixedMonsterRowForDuelist(fixed);
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+      u16 id;
+      u8 j;
+      u8 already = FALSE;
+
+      if (zone == NULL || zone->id == CARD_NONE || !zone->isFaceUp)
+        continue;
+      id = zone->id;
+      if (!NameIsPalladiumOrDmOrDmg(id))
+        continue;
+      for (j = 0; j < seenCount; j++) {
+        if (seen[j] == id) {
+          already = TRUE;
+          break;
+        }
+      }
+      if (!already && seenCount < ARRAY_COUNT(seen)) {
+        seen[seenCount] = id;
+        seenCount++;
+      }
+    }
+
+    if (GraveyardExpand_IsEnabled()) {
+      for (i = 0; i < GraveyardExpand_GetCount(fixed); i++) {
+        u16 id = GraveyardExpand_GetCardAt(fixed, i);
+        u8 j;
+        u8 already = FALSE;
+
+        if (!NameIsPalladiumOrDmOrDmg(id))
+          continue;
+        for (j = 0; j < seenCount; j++) {
+          if (seen[j] == id) {
+            already = TRUE;
+            break;
+          }
+        }
+        if (!already && seenCount < ARRAY_COUNT(seen)) {
+          seen[seenCount] = id;
+          seenCount++;
+        }
+      }
+    }
+  }
+
+  return seenCount;
+}
+
+u8 CanActivateSoulServantGy(u8 fixedDuelist, u8 gyIndex)
+{
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != SOUL_SERVANT)
+    return FALSE;
+  return CountDistinctPalladiumDmDmg() > 0;
+}
+
+void ActivateSoulServantGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 drawCount;
+  u8 turnDuelist;
+
+  if (!CanActivateSoulServantGy(fixedDuelist, gyIndex))
+    return;
+
+  drawCount = CountDistinctPalladiumDmDmg();
+  Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex);
+  Duel_ShowEffectText(SOUL_SERVANT);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  turnDuelist =
+      gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+          ? ACTIVE_DUELIST
+          : INACTIVE_DUELIST;
+  Duel_DrawCards(turnDuelist, drawCount, TRUE);
+  UpdateDuelGfxExceptField();
 }
 
 APPEND_TEXT void EffectSOUL_SERVANT(void)

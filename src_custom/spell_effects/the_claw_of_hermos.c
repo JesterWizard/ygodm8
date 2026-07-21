@@ -38,8 +38,6 @@ static const u8 sHermosPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-/* ponytail: OPT needs turn-scoped flag cleared outside this file.
- * Ceiling: multiple Claw per turn until soft-reset; upgrade: Standby clear. */
 /* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 static u16 sHermosChosenFusion APPEND_DATA = {0};
 static u8 sHermosRequiredType APPEND_DATA = {0};

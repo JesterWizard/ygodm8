@@ -5,6 +5,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
+#include "spell_gear.h"
 
 #define SPELL_GEAR_SEND_COUNT 3
 
@@ -16,6 +17,8 @@ static const char sAncientGearGolemName[] APPEND_RODATA = "Ancient Gear Golem";
 static u8 sSpellGearPickCount APPEND_DATA = {0};
 static u8 sSpellGearPickRows[SPELL_GEAR_SEND_COUNT] APPEND_DATA = {0};
 static u8 sSpellGearPickCols[SPELL_GEAR_SEND_COUNT] APPEND_DATA = {0};
+static u8 sSpellGearNsLockPlayer APPEND_DATA = {0};
+static u8 sSpellGearNsLockOpponent APPEND_DATA = {0};
 
 static u8 ActiveMonsterFixedRow(void)
 {
@@ -187,9 +190,42 @@ static void FinishSpellGear(void)
 
   DestroySpellGearSpellZone();
 
-  /* ponytail: "cannot Normal Summon/Set until end of your next turn" needs a
-   * multi-turn NS lock outside this file. Ceiling: field send + AGG SS + cleanup
-   * only; upgrade: turn_effect flag blocking Normal Summon/Set for 2 turns. */
+  SpellGear_ArmNormalSummonLock(
+      gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER]
+          ? DUEL_PLAYER
+          : DUEL_OPPONENT);
+  gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked = 1;
+}
+
+void SpellGear_ArmNormalSummonLock(u8 fixedDuelist)
+{
+  /* 2 = rest of this turn + next turn (until end of your next turn). */
+  if (fixedDuelist == DUEL_PLAYER)
+    sSpellGearNsLockPlayer = 2;
+  else if (fixedDuelist == DUEL_OPPONENT)
+    sSpellGearNsLockOpponent = 2;
+}
+
+u8 SpellGear_BlocksNormalSummon(u8 turnDuelist)
+{
+  u8 fixed;
+
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    fixed = DUEL_PLAYER;
+  else
+    fixed = DUEL_OPPONENT;
+
+  if (fixed == DUEL_PLAYER)
+    return sSpellGearNsLockPlayer > 0;
+  return sSpellGearNsLockOpponent > 0;
+}
+
+void SpellGear_OnTurnBoundary(void)
+{
+  if (sSpellGearNsLockPlayer > 0)
+    sSpellGearNsLockPlayer--;
+  if (sSpellGearNsLockOpponent > 0)
+    sSpellGearNsLockOpponent--;
 }
 
 static void CancelSpellGearTargeting(void)

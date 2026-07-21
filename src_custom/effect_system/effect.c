@@ -25,6 +25,7 @@
 #include "harpies_hunting_ground.h"
 #include "pandemonium.h"
 #include "skyscraper.h"
+#include "supreme_kings_castle.h"
 
 /* Generated ACTIVATE Effects mirroring EffectScript table. */
 #include "../generated/effect_registry.inc"
@@ -35,6 +36,7 @@ static enum DuelActionResult Op_DamageCalcAtkBoosts(struct EffectCtx *ctx)
   (void)ctx;
   ApplyElementalHeroInfernoBattleAtkBoost();
   ApplySkyscraperBattleAtkBoost();
+  ApplySupremeKingsCastleBattleAtkBoost();
   ApplyAmazonessFightingSpiritBattleAtkBoost();
   return DUEL_ACTION_OK;
 }

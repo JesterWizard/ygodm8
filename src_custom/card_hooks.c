@@ -26,6 +26,7 @@
 #include "lemuria_the_forgotten_city.h"
 #include "mirror_wall.h"
 #include "neo_space.h"
+#include "the_a_forces.h"
 #include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_sunrise.h"
@@ -655,6 +656,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyLightswornSabreAtkBonusToCardInfo(zone);
   ApplyMorphtronicMapAtkBonusToCardInfo(zone);
   Necrovalley_ApplyGravekeeperStatBonusToCardInfo(zone);
+  ApplyTheAForcesAtkBoostToCardInfo(zone);
   ApplyNeoSpaceAtkBoostForZone(zone);
   LevelTuning_ApplyLevelToCardInfo(zone);
   gSetFinalStatZone = NULL;
