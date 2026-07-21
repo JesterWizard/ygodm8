@@ -123,8 +123,6 @@ static void NECROVALLEY_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(NECROVALLEY);
 
-  /* ponytail: GY Type-Attribute change still needs SetCardInfo-in-GY gates.
-   * Ceiling: banish/move blocked via Necrovalley_Blocks*; upgrade: GY type/attr mutate → negate. */
 }
 
 APPEND_TEXT void EffectNECROVALLEY(void)

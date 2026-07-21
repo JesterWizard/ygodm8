@@ -10,11 +10,6 @@ void UpdateDuelGfxExceptField(void);
 static struct DuelCard *sLevelTuningTarget APPEND_DATA = NULL;
 static u16 sLevelTuningTargetId APPEND_DATA = CARD_NONE;
 
-/* ponytail: the marked target can feed the card-info UI through
- * LevelTuning_ApplyLevelToCardInfo, but the duel engine has no dynamic Level
- * query for tribute, Ritual, or Synchro rules. Ceiling: display-only -1 Level;
- * upgrade: route all level consumers through this zone overlay. */
-
 /* Attack-position summons keep isFaceUp=0 until end-of-turn flip. */
 static u8 MonsterIsFaceUp(struct DuelCard *zone)
 {

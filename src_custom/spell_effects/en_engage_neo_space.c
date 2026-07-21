@@ -327,7 +327,6 @@ static void EN_ENGAGE_NEO_SPACE_ResolveBody(void)
       struct DuelCard *z = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
 
       if (z != NULL && z->id == ELEMENTAL_HERO_NEOS) {
-        /* ponytail: 1 stage ~= 500 ATK so +2 ≈ +1000. */
         IncrementPermStage(z);
         IncrementPermStage(z);
         break;

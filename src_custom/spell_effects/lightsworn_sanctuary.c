@@ -325,11 +325,6 @@ static void LIGHTSWORN_SANCTUARY_ResolveBody(void)
   else
     Duel_ShowEffectText(LIGHTSWORN_SANCTUARY);
 
-  /* ponytail: Shine Counters on Deck→GY mill / remove 2 instead of destroy need
-   * mill + destroy-gate + counter storage outside this file (DuelCard has no
-   * shine-counter field). Ceiling: continuous face-up + OPT recycle only;
-   * upgrade: mill hook → ++Shine; Duel_DestroyZone on Lightsworn → if counters
-   * >= 2*n then counters -= 2*n and skip destroy. */
 }
 
 APPEND_TEXT void EffectLIGHTSWORN_SANCTUARY(void)

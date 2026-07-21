@@ -114,8 +114,6 @@ void HystericSign_TryResolveEndPhase(void)
     AddDifferentHarpieCardsFromDeck(fixedDuelist);
   }
 
-  /* ponytail: the End Phase search auto-selects the first three distinct Harpie
-   * cards. Ceiling: no player multi-pick; upgrade: DeckMenu multi-select. */
 }
 
 static u8 DeckHasElegantEgotist(u8 turnDuelist)
@@ -165,8 +163,6 @@ static void WaitForNoButtonsHeld(void)
 /* Returns TRUE for Deck, FALSE for GY. */
 static u8 PlayerChoosesDeck(void)
 {
-  /* ponytail: no dedicated choice UI — A = Deck, B = GY.
-   * Ceiling: unlabeled buttons; upgrade path: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

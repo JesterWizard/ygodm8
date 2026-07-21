@@ -150,8 +150,6 @@ static u8 TakeDeckCardAtIndex(u8 turnDuelist, u8 deckIndex, u16 *outId)
   return TRUE;
 }
 
-/* ponytail: no committed multi-pick UI — pick 5 in a loop (snake_rain style).
- * Cancel mid-loop auto-fills remaining in deck order. */
 static u8 SelectFiveFromDeck(u8 turnDuelist, u16 *outIds)
 {
   u8 selected = 0;

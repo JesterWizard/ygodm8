@@ -208,8 +208,6 @@ static u8 PlayerChoosesEvilMindMode(u8 gyMonsters)
   u8 hasHero = ModeIsAvailable(EVIL_MIND_MODE_HERO_OR_DARK_FUSION, gyMonsters);
   u8 hasFusion = ModeIsAvailable(EVIL_MIND_MODE_POLY_OR_FUSION, gyMonsters);
 
-  /* ponytail: no dedicated 3-way choice UI — nested A/B unlabeled.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   if (!hasHero && !hasFusion)
     return EVIL_MIND_MODE_DRAW;
 

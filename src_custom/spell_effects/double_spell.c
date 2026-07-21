@@ -227,10 +227,6 @@ static void PlaceAndActivateCopiedSpell(u16 cardId)
   ClearZoneAndSendMonToGraveyard(spellZone, ACTIVE_DUELIST);
   InitBackrowSlotFromCard(gTurnZones[row][col], cardId);
 
-  /* ponytail: nested ActivateSpellEffect re-runs trap responses / field-spell
-   * specials; equips that need pre-set row2/col2 targets may fail. Ceiling:
-   * place + best-effort activate; upgrade: shared "resolve spell as if activated"
-   * helper that skips chain traps and supplies targeting for EQUIP/Field. */
   savedId = gSpellEffectData.id;
   savedRow = gSpellEffectData.row1;
   savedCol = gSpellEffectData.col1;

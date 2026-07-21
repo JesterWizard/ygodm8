@@ -134,8 +134,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = Deck, FALSE = GY. */
 static u8 PlayerChoosesDeck(void)
 {
-  /* ponytail: no dedicated Deck/GY choice UI — A = Deck, B = GY.
-   * Ceiling: unlabeled buttons; upgrade path: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

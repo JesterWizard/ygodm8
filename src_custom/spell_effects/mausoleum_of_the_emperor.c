@@ -109,8 +109,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = face-up Attack Normal Summon; FALSE = Set. */
 static u8 PlayerChoosesNormalSummonFaceUp(void)
 {
-  /* ponytail: no dedicated Summon/Set UI — A = Summon, B = Set.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -221,10 +219,6 @@ static void ResolveMausoleumIgnition(struct DuelCard *zone)
   if (relockHand)
     LockMonsterCardsInRow(ACTIVE_DUELIST_HAND);
 
-  /* ponytail: SpecialSummonFromHandZone still hits ArchlordKristya SS lock and
-   * is not a true engine Normal Summon path. Ceiling: no-tribute placement +
-   * summoningBlocked; upgrade: dedicated NormalSummonWithoutTribute helper that
-   * skips GetNumRequiredTributes pay while using vanilla NS hooks. */
 }
 
 static void MAUSOLEUM_OF_THE_EMPEROR_ResolveBody(void)

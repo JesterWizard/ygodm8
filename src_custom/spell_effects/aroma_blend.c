@@ -288,16 +288,6 @@ static void AROMA_BLEND_ResolveBody(void)
 
   DestroyAromaBlendSpellZone();
 
-  /* ponytail: GY effect (banish this → Fusion Summon Plant Fusion by banishing
-   * materials from hand/field, and GY Plants if LP higher) needs a GY-activate
-   * path + Plant Fusion recipe filter outside this file.
-   * Ceiling: discard + place Humid/Dried/Blessed Winds face-up only; upgrade:
-   * GY activate AROMA_BLEND → banish self → FusionDuel Plant Fusion pay
-   * banish hand/field (+ GY Plants if gDuelLifePoints[self] > opp). */
-
-  /* ponytail: placed Winds are face-up/locked but their continuous trap effects
-   * are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call
-   * each Winds activate body after place, or wire trap dispatcher. */
 }
 
 APPEND_TEXT void EffectAROMA_BLEND(void)

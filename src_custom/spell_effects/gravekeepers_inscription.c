@@ -30,8 +30,6 @@ static void WaitForNoButtonsHeld(void)
 /* Returns INSCRIPTION_MODE_*. */
 static u8 PlayerChoosesInscriptionMode(void)
 {
-  /* ponytail: no dedicated 3-way choice UI — A / B / START.
-   * Ceiling: unlabeled buttons; upgrade path: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -108,11 +106,6 @@ static void GRAVEKEEPERS_INSCRIPTION_ResolveBody(void)
 
   if (IsDuelOver() == TRUE)
     return;
-
-  /* ponytail: "activate only at start of Main Phase 1" needs a phase/action
-   * counter outside this file (no Main Phase 1-start gate API). Ceiling: activable
-   * any time like a normal spell; upgrade: CanActivate → require MP1 + no prior
-   * play/set/summon this turn. */
 
   if (WhoseTurn() == DUEL_PLAYER)
     mode = PlayerChoosesInscriptionMode();

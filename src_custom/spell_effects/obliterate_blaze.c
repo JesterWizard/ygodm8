@@ -128,10 +128,6 @@ static void OBLITERATE_BLAZE_ResolveBody(void)
   else
     Duel_ResolvePickZoneForAi();
 
-  /* ponytail: granted effects (pay half LP → destroy S/T + equip 5 Forbidden One
-   * as +2000 Equip; piercing) need activated monster hooks / equip system outside
-   * this file. Ceiling: marks target unk4=1 only; upgrade: copy Obliterate effects
-   * onto marked Exodia monster. */
 }
 
 APPEND_TEXT void EffectOBLITERATE_BLAZE(void)

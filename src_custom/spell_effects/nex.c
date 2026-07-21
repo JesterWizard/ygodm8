@@ -152,8 +152,6 @@ static void FinishNex(u8 fixedRow, u8 fixedCol)
     return;
   }
 
-  /* ponytail: duel Extra Deck browser/SS missing (Trunk ExtraDeck_* is deck-builder only).
-   * Ceiling: spawn Lv4 Neo form by id when not in Main Deck; upgrade: Extra Deck pick + SS. */
   Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, lv4Form, opts);
 }
 

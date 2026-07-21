@@ -127,8 +127,6 @@ static void WaitForNoButtonsHeld(void)
 /* Returns TRUE for deck search, FALSE for Normal Summon. */
 static u8 PlayerChoosesDeckSearch(void)
 {
-  /* ponytail: no dedicated choice UI — A = add Gravekeeper's, B = Normal Summon.
-   * Ceiling: unlabeled buttons; upgrade path: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

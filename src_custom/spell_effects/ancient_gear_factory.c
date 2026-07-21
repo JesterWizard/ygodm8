@@ -234,9 +234,6 @@ static void ANCIENT_GEAR_FACTORY_ResolveBody(void)
   need = (u8)(MonsterLevel(revealId) * 2);
   candCount = CollectGyAncientGearCandidates(fixedDuelist, gyIndex, levels,
                                              ANCIENT_GEAR_FACTORY_MAX_GY);
-  /* ponytail: no multi-select GY UI — auto-pick an exact Level-sum mask.
-   * Ceiling: no player choice among valid GY sets; upgrade: DeckMenu multi-pick
-   * until sum == 2× revealed Level. */
   if (!FindExactLevelMask(need, candCount, levels, &mask))
     return;
 

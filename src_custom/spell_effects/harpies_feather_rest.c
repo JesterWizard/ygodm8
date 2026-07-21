@@ -149,8 +149,6 @@ static void ShuffleHarpieLadyFromGraveToDeck(u8 turnDuelist)
   u8 found;
   u8 i;
 
-  /* ponytail: no multi-select GY UI — return 3 most recent Harpie Lady /
-   * Harpie Lady Sisters. Ceiling: no targeting; upgrade: DeckMenu multi-pick. */
   found = CollectRecentHarpieLadyGyIndices(fixedDuelist, indices);
   if (found < HARPIES_FEATHER_REST_RETURN_COUNT)
     return;

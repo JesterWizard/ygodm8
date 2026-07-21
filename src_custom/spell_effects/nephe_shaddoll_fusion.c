@@ -131,8 +131,6 @@ static u8 PlayerChoosesAttribute(void)
 {
   u8 idx = 0;
 
-  /* ponytail: no attribute-name UI — A confirms, B cycles list.
-   * Ceiling: unlabeled; upgrade: effect-text attribute menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

@@ -206,8 +206,6 @@ static void ResolveCapsuleAfterStandby(struct DuelCard *spellZone)
   if (cardId == CARD_NONE)
     return;
 
-  /* ponytail: RFP has no face-down flag — card is face-up in banished list.
-   * Ceiling: banished as normal RFP id; upgrade: face-down RFP bit. */
   AddBanishedCardToHand(ACTIVE_DUELIST, cardId);
   UpdateDuelGfxExceptField();
 }
@@ -254,8 +252,6 @@ static void DIFFERENT_DIMENSION_CAPSULE_ResolveBody(void)
     return;
 
   if (!RemovedFromPlay_IsEnabled()) {
-    /* ponytail: RFP disabled — cannot banish from Deck.
-     * Ceiling: activation text only; upgrade: enable removed_from_play. */
     return;
   }
 

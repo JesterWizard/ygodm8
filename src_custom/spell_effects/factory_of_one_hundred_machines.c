@@ -145,9 +145,6 @@ static void ApplyFactoryAtkBoost(struct DuelCard *zone, u8 banished)
   u8 i;
   u8 stages;
 
-  /* ponytail: stage unit is 500 ATK — applied +500×banished, not printed +200×.
-   * Ceiling: no fractional temp stages; upgrade: exact-ATK overlay cleared at
-   * End Phase (tempStage already clears EOT). */
   stages = banished * FACTORY_ATK_STAGES_PER_BANISH;
   for (i = 0; i < stages; i++)
     IncrementTempStage(zone);

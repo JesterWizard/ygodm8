@@ -10,8 +10,6 @@
 #include "gadget_box.h"
 #include "spell_effects.h"
 
-/* ponytail: no dedicated Gadget Box Token card id — reuse MOON_TOKEN like other
- * token spells. Ceiling: wrong printed name/stats; upgrade: real token card. */
 #define GADGET_BOX_TOKEN_ID MOON_TOKEN
 
 #define GADGET_BOX_BOARD_CELLS 20

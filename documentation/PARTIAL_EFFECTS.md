@@ -9,138 +9,41 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:54 UTC  
-**Remaining partials:** `624`
+**Last updated:** 2026-07-21 22:55 UTC  
+**Remaining partials:** `601`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 50 |
+| `spell` | 27 |
 | `trap` | 10 |
 | `activated` | 451 |
 | `permanent` | 113 |
-| **total** | **624** |
+| **total** | **601** |
 
-## spell (50)
-
-### `ANCIENT_GEAR_FACTORY`
-- path: `src_custom/spell_effects/ancient_gear_factory.c`
-- L237: no multi-select GY UI — auto-pick an exact Level-sum mask. Ceiling: no player choice among valid GY sets; upgrade: DeckMenu multi-pick until sum == 2× revealed Level.
-
-### `AROMA_BLEND`
-- path: `src_custom/spell_effects/aroma_blend.c`
-- L291: GY effect (banish this → Fusion Summon Plant Fusion by banishing materials from hand/field, and GY Plants if LP higher) needs a GY-activate path + Plant Fusion recipe filter outside this file. Ceiling: discard + place Humid/Dried/Blessed Winds face-up only; upgrade: GY activate AROMA_BLEND → banish self → FusionDuel Plant Fusion pay
-- L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
-
-### `DARK_MAGIC_INHERITANCE`
-- path: `src_custom/spell_effects/dark_magic_inheritance.c`
-- L17: no card-description text search — approximate DM/DMG support S/T via name contains "Dark Magician"/"Dark Magic" plus a known support ID list. Ceiling: misses text-only mentions (e.g. cards that only list DM in effect text). Upgrade: description-string helper or generated support bitmask.
+## spell (27)
 
 ### `DE_SYNCHRO`
 - path: `src_custom/spell_effects/de_synchro.c`
 - L81: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field + best-effort ExtraDeck_AddCard when enable_extra_deck; upgrade: per-duelist mid-duel Extra Deck return for the Synchro's controller.
 - L101: Synchro Summon materials are not recorded at summon time, so "if all materials are in your GY, SS all of them" cannot run. Ceiling: return-to-Extra-Deck only; upgrade: store material cardIds on the Synchro zone at SynchroDuel_Execute, then if each is in GY, SS from GY.
 
-### `DIFFERENT_DIMENSION_CAPSULE`
-- path: `src_custom/spell_effects/different_dimension_capsule.c`
-- L209: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
-- L257: RFP disabled — cannot banish from Deck. Ceiling: activation text only; upgrade: enable removed_from_play.
-
 ### `DIMENSION_FUSION`
 - path: `src_custom/spell_effects/dimension_fusion.c`
 - L130: RFP zone is id-list only (no face/position memory). Ceiling: SS face-up ATK via Duel_SpecialSummonMonsterId; upgrade: store zone state on banish + restore on return.
-
-### `DOUBLE_SPELL`
-- path: `src_custom/spell_effects/double_spell.c`
-- L230: nested ActivateSpellEffect re-runs trap responses / field-spell specials; equips that need pre-set row2/col2 targets may fail. Ceiling: place + best-effort activate; upgrade: shared "resolve spell as if activated" helper that skips chain traps and supplies targeting for EQUIP/Field.
-
-### `EN_ENGAGE_NEO_SPACE`
-- path: `src_custom/spell_effects/en_engage_neo_space.c`
-- L330: 1 stage ~= 500 ATK so +2 ≈ +1000.
 
 ### `END_OF_THE_WORLD`
 - path: `src_custom/spell_effects/end_of_the_world.c`
 - L16: Ruin, Queen of Oblivion is not in the trunk — only Demise is Ritual- Summonable via this card. Ceiling: Demise only; upgrade: add Ruin card + ID.
 
-### `EVIL_MIND`
-- path: `src_custom/spell_effects/evil_mind.c`
-- L211: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-
-### `FACTORY_OF_ONE_HUNDRED_MACHINES`
-- path: `src_custom/spell_effects/factory_of_one_hundred_machines.c`
-- L148: stage unit is 500 ATK — applied +500×banished, not printed +200×. Ceiling: no fractional temp stages; upgrade: exact-ATK overlay cleared at End Phase (tempStage already clears EOT).
-
 ### `FUSION_DESTINY`
 - path: `src_custom/spell_effects/fusion_destiny.c`
 - L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 
-### `GADGET_BOX`
-- path: `src_custom/spell_effects/gadget_box.c`
-- L13: no dedicated Gadget Box Token card id — reuse MOON_TOKEN like other token spells. Ceiling: wrong printed name/stats; upgrade: real token card.
-
-### `GRAVEKEEPERS_INSCRIPTION`
-- path: `src_custom/spell_effects/gravekeepers_inscription.c`
-- L33: no dedicated 3-way choice UI — A / B / START. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L112: "activate only at start of Main Phase 1" needs a phase/action counter outside this file (no Main Phase 1-start gate API). Ceiling: activable any time like a normal spell; upgrade: CanActivate → require MP1 + no prior play/set/summon this turn.
-
-### `HARPIES_FEATHER_REST`
-- path: `src_custom/spell_effects/harpies_feather_rest.c`
-- L152: no multi-select GY UI — return 3 most recent Harpie Lady / Harpie Lady Sisters. Ceiling: no targeting; upgrade: DeckMenu multi-pick.
-
-### `HYSTERIC_SIGN`
-- path: `src_custom/spell_effects/hysteric_sign.c`
-- L117: the End Phase search auto-selects the first three distinct Harpie cards. Ceiling: no player multi-pick; upgrade: DeckMenu multi-select.
-- L168: no dedicated choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-
-### `ILLUSION_MAGIC`
-- path: `src_custom/spell_effects/illusion_magic.c`
-- L137: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-
 ### `LEMURIA_THE_FORGOTTEN_CITY`
 - path: `src_custom/spell_effects/lemuria_the_forgotten_city.c`
 - L191: no per-zone Level overlay API — levels come from SetCardInfo / Legendary Ocean adjusters only. Ceiling: OPT marks used + shows text; Levels unchanged. Upgrade: turn-scoped level bonus on each controlled WATER (= waterCount) cleared at End Phase (card_hooks GetLegendaryOcean-style).
-
-### `LEVEL_TUNING`
-- path: `src_custom/spell_effects/level_tuning.c`
-- L13: the marked target can feed the card-info UI through LevelTuning_ApplyLevelToCardInfo, but the duel engine has no dynamic Level query for tribute, Ritual, or Synchro rules. Ceiling: display-only -1 Level; upgrade: route all level consumers through this zone overlay.
-
-### `LIGHTSWORN_SANCTUARY`
-- path: `src_custom/spell_effects/lightsworn_sanctuary.c`
-- L328: Shine Counters on Deck→GY mill / remove 2 instead of destroy need mill + destroy-gate + counter storage outside this file (DuelCard has no shine-counter field). Ceiling: continuous face-up + OPT recycle only; upgrade: mill hook → ++Shine; Duel_DestroyZone on Lightsworn → if counters >= 2*n then counters -= 2*n and skip destroy.
-
-### `MAUSOLEUM_OF_THE_EMPEROR`
-- path: `src_custom/spell_effects/mausoleum_of_the_emperor.c`
-- L112: no dedicated Summon/Set UI — A = Summon, B = Set. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L224: SpecialSummonFromHandZone still hits ArchlordKristya SS lock and is not a true engine Normal Summon path. Ceiling: no-tribute placement + summoningBlocked; upgrade: dedicated NormalSummonWithoutTribute helper that skips GetNumRequiredTributes pay while using vanilla NS hooks.
-
-### `MIRACLE_CONTACT`
-- path: `src_custom/spell_effects/miracle_contact.c`
-- L34: Cosmo Neos needs three Neo-Spacians with different Attributes, which the concrete FusionRecipe matcher cannot express. Ceiling: Cosmo Neos is not selectable. Upgrade: a predicate-based Contact Fusion material selector.
-
-### `NECROVALLEY`
-- path: `src_custom/spell_effects/necrovalley.c`
-- L126: GY Type-Attribute change still needs SetCardInfo-in-GY gates. Ceiling: banish/move blocked via Necrovalley_Blocks*; upgrade: GY type/attr mutate → negate.
-
-### `NECROVALLEY_THRONE`
-- path: `src_custom/spell_effects/necrovalley_throne.c`
-- L130: no dedicated choice UI — A = add Gravekeeper's, B = Normal Summon. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-
-### `NEPHE_SHADDOLL_FUSION`
-- path: `src_custom/spell_effects/nephe_shaddoll_fusion.c`
-- L134: no attribute-name UI — A confirms, B cycles list. Ceiling: unlabeled; upgrade: effect-text attribute menu.
-
-### `NEX`
-- path: `src_custom/spell_effects/nex.c`
-- L155: duel Extra Deck browser/SS missing (Trunk ExtraDeck_* is deck-builder only). Ceiling: spawn Lv4 Neo form by id when not in Main Deck; upgrade: Extra Deck pick + SS.
-
-### `OBLITERATE_BLAZE`
-- path: `src_custom/spell_effects/obliterate_blaze.c`
-- L131: granted effects (pay half LP → destroy S/T + equip 5 Forbidden One as +2000 Equip; piercing) need activated monster hooks / equip system outside this file. Ceiling: marks target unk4=1 only; upgrade: copy Obliterate effects onto marked Exodia monster.
-
-### `PAINFUL_CHOICE`
-- path: `src_custom/spell_effects/painful_choice.c`
-- L153: no committed multi-pick UI — pick 5 in a loop (snake_rain style). Cancel mid-loop auto-fills remaining in deck order.
 
 ### `POT_OF_AVARICE`
 - path: `src_custom/spell_effects/pot_of_avarice.c`

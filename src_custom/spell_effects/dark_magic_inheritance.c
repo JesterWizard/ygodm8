@@ -14,10 +14,6 @@ void UpdateDuelGfxExceptField(void);
 static const char sDarkMagicianName[] APPEND_RODATA = "Dark Magician";
 static const char sDarkMagicName[] APPEND_RODATA = "Dark Magic";
 
-/* ponytail: no card-description text search — approximate DM/DMG support S/T via
- * name contains "Dark Magician"/"Dark Magic" plus a known support ID list.
- * Ceiling: misses text-only mentions (e.g. cards that only list DM in effect text).
- * Upgrade: description-string helper or generated support bitmask. */
 static const u16 sDarkMagicianSupportST[] APPEND_RODATA = {
   DARK_MAGIC_CURTAIN,
   THOUSAND_KNIVES,

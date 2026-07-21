@@ -31,10 +31,6 @@ static const struct FusionRecipe sMiracleContactRecipes[] APPEND_RODATA = {
     NEO_SPACIAN_GLOW_MOSS, 0 },
 };
 
-/* ponytail: Cosmo Neos needs three Neo-Spacians with different Attributes, which
- * the concrete FusionRecipe matcher cannot express. Ceiling: Cosmo Neos is not
- * selectable. Upgrade: a predicate-based Contact Fusion material selector. */
-
 static const u8 sMiracleContactPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_SELECT_CARD,
