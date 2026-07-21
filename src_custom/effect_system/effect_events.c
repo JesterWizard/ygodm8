@@ -3,6 +3,7 @@
 #include "ancient_gear_advance.h"
 #include "ancient_gear_drill.h"
 #include "ancient_gear_factory.h"
+#include "berserker_soul.h"
 #include "constants/card_ids.h"
 #include "duel.h"
 #include "duel_helpers.h"
@@ -155,6 +156,7 @@ void EffectEvent_OnTurnBoundary(void)
   AncientGearAdvance_OnTurnBoundary();
   AncientGearDrill_OnTurnBoundary();
   AncientGearFactory_OnTurnBoundary();
+  BerserkerSoul_OnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

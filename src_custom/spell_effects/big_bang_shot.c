@@ -73,7 +73,7 @@ u8 BigBangShot_ClaimEquipSlot(struct DuelCard *targetZone, struct DuelCard *spel
     }
   }
 
-  /* ponytail: 3 copies max per side — reuse slot 0 if all busy */
+  /* All three per-side slots busy — overwrite oldest (slot 0). */
   gBigBangShotTargetCol[base] = encoded;
   return TRUE;
 }

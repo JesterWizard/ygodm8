@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "big_bang_shot.h"
+#include "celestial_sword_eatos.h"
 #include "constants/card_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
@@ -533,6 +534,9 @@ void NotifyDynamicEquipFieldChanged(void)
 void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
 {
   struct DynamicEquipLink *link;
+
+  if (zone != NULL && zone->id == CELESTIAL_SWORD_EATOS)
+    ApplyCelestialSwordEatosOnLeave(zone);
 
   link = FindDynamicEquipForSpellZone(zone);
   if (link != NULL) {

@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 19:51 UTC  
-**Remaining partials:** `846`
+**Last updated:** 2026-07-21 19:57 UTC  
+**Remaining partials:** `840`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 165 |
+| `spell` | 159 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **846** |
+| **total** | **840** |
 
-## spell (165)
+## spell (159)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -45,50 +45,22 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/aroma_garden.c`
 - L90: printed "until end of opponent's next turn (even if this card leaves)" needs a multi-turn temp-stage / overlay tracker outside this file. Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages / EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on zones and skip ResetTempStages until that turn's End Phase.
 
-### `BACKUP_SQUAD`
-- path: `src_custom/spell_effects/backup_squad.c`
-- L14: continuous face-up only — damage≥1000 draw listener needs a battle/LP-change hook outside this file (no in-file damage dispatch).
-
-### `BERSERKER_SOUL`
-- path: `src_custom/spell_effects/berserker_soul.c`
-- L75: printed trigger is direct-attack damage ≤1500 — no battle-damage hook in-file. Ceiling: activatable as Normal Spell when hand+deck available; upgrade: battle_effects after direct dmg ≤1500 → allow activation.
-
-### `BIG_BANG_SHOT`
-- path: `src_custom/spell_effects/big_bang_shot.c`
-- L76: 3 copies max per side — reuse slot 0 if all busy
-
-### `BIG_EVOLUTION_PILL`
-- path: `src_custom/spell_effects/big_evolution_pill.c`
-- L122: destroy on controller's opponent's 3rd End Phase needs a turn_effect End Phase hook outside this file (no in-file End Phase dispatch). Ceiling: continuous face-up only (unk4 stays 0); upgrade: turn_effect_hooks opponent End Phase → if face-up BIG_EVOLUTION_PILL then unk4++; if unk4 >= BIG_EVOLUTION_PILL_OPPONENT_END_PHASES destroy it.
-- L127: Normal Summon Level 5+ Dinosaur without Tributing needs a GetNumRequiredTributes gate outside this file (clone Necroshade in tribute_hooks.c). Ceiling: continuous face-up only; upgrade: if face-up BIG_EVOLUTION_PILL for summoner and card is TYPE_DINOSAUR Level >= 5 then return 0 tributes.
-
 ### `BOND_BETWEEN_TEACHER_AND_STUDENT`
 - path: `src_custom/spell_effects/bond_between_teacher_and_student.c`
-- L26: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
-- L149: once-per-turn not tracked after this normal spell leaves the field (no shared turn-flag RAM editable from this file alone). Ceiling: multiple Bond per turn; upgrade: duel-state OPT bit.
-- L170: no dedicated choice UI — A = SS Dark Magician, B = SS Dark Magician Girl. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
+- L172: no dedicated choice UI — A = SS Dark Magician, B = SS Dark Magician Girl. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `BOOK_OF_LIFE`
 - path: `src_custom/spell_effects/book_of_life.c`
-- L61: single-card GY model — banish removes opponent's top graveyard card
-
-### `BUBBLE_BLASTER`
-- path: `src_custom/spell_effects/bubble_blaster.c`
-- L51: stage unit is 500 ATK — applied +1000, not printed +800. Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART after listing BUBBLE_BLASTER in IsActiveDynamicEquipSpellZone.
-- L62: battle-destroy this instead + battle damage 0 needs CanMonsterBeDestroyedByBattle / Duel_ApplyBattleDestroyProtection + damage step hook outside this file. Ceiling: Bubbleman equip + ATK only; upgrade: if DynamicEquipTargetsMonsterWithSpell(zone, BUBBLE_BLASTER) would be battle- destroyed → destroy BUBBLE_BLASTER instead and set battle damage to 0.
-
-### `BURDEN_OF_THE_MIGHTY`
-- path: `src_custom/spell_effects/burden_of_the_mighty.c`
-- L14: continuous -100 ATK × Level on each face-up opponent monster needs a field-stat / continuous ATK overlay outside this file (no in-file hook into Duel_TryApplyDynamicZoneStats or Refresh overlays). Ceiling: face-up continuous only; upgrade: stat overlay → if face-up BURDEN_OF_THE_MIGHTY then each face-up opp monster ATK -= 100 * level.
+- L159: single-card GY model — banish removes opponent's top graveyard card.
 
 ### `CELESTIAL_SWORD_EATOS`
 - path: `src_custom/spell_effects/celestial_sword_eatos.c`
-- L56: always treated as a Noble Arms card needs a name/archetype tag outside this file. Ceiling: equip +ATK only; upgrade: treat-as / name contains "Noble Arms" for Noble Arms support.
-- L60: send-from-field-to-GY → target Guardian Eatos for +500 ATK per banished monster needs a leave-field / destroy hook outside this file (OnDynamicEquipZoneAboutToClear). Ceiling: equip +500 only; upgrade: leave- hook → PickZone GUARDIAN_EATOS then ApplyDynamicEquipStages / IncrementTempStage × banished count (CELESTIAL_SWORD_EATOS_GY_ATK_PER_BANISH_STAGES).
+- L179: always treated as a Noble Arms card needs a name/archetype tag outside this file. Ceiling: equip +ATK only; upgrade: treat-as / name contains "Noble Arms" for Noble Arms support.
 
 ### `CHAIN_STRIKE`
 - path: `src_custom/spell_effects/chain_strike.c`
-- L17: no Chain Link / chain-depth API in this engine (grep ChainLink empty). Ceiling: always unactivatable; upgrade: require link >= 2, burn 400 * link, and forbid activation when multiple copies of this card are already on the chain.
+- L40: no Chain Link / chain-depth API in this engine — parent wires ChainStrike_CanActivateForChain(link, sameNameOnChain) at activation.
 
 ### `CHAIN_SUMMONING`
 - path: `src_custom/spell_effects/chain_summoning.c`
@@ -240,7 +212,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DYNAMIC_EQUIP`
 - path: `src_custom/spell_effects/dynamic_equip.c`
-- L34: gTurnZones uses mirrored columns on opponent rows
+- L35: gTurnZones uses mirrored columns on opponent rows
 
 ### `EL_SHADDOLL_FUSION`
 - path: `src_custom/spell_effects/el_shaddoll_fusion.c`

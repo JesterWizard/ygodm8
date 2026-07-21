@@ -8,6 +8,8 @@
 #include "amazoness_village.h"
 #include "ancient_gear_castle.h"
 #include "ancient_gear_tank.h"
+#include "bubble_blaster.h"
+#include "burden_of_the_mighty.h"
 #include "divine_sanctuary.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -619,6 +621,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyBigBangShotAtkBonusToCardInfo(zone);
   ApplyHeatedHeartAtkBonusToCardInfo(zone);
   ApplyAncientGearTankAtkBonusToCardInfo(zone);
+  ApplyBubbleBlasterAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
   ApplyGreatTornadoStatHalving(zone);
   ApplyTheWickedDreadrootStatHalving(zone);
@@ -630,6 +633,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyLegendaryOceanFieldStatBoostForZone(zone);
   ApplyAmazonessVillageFieldStatBoostForZone(zone);
   ApplyAncientGearCastleAtkBoostForZone(zone);
+  ApplyBurdenOfTheMightyStatForZone(zone);
   ApplyDivineSanctuaryFieldStatPenaltyForZone(zone);
   ApplyTheTripperMercuryOpponentAtkDrain(zone);
   ApplyTheGrandJupiterEquipAtkBonus(zone);
@@ -740,6 +744,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyBigBangShotAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyHeatedHeartAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyAncientGearTankAtkBonusToCardInfo(gSetFinalStatZone);
+    ApplyBubbleBlasterAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);
     ApplyGreatTornadoStatHalving(gSetFinalStatZone);
     ApplyTheWickedDreadrootStatHalving(gSetFinalStatZone);
@@ -750,6 +755,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyLegendaryOceanFieldStatBoostForZone(gSetFinalStatZone);
     ApplyAmazonessVillageFieldStatBoostForZone(gSetFinalStatZone);
     ApplyAncientGearCastleAtkBoostForZone(gSetFinalStatZone);
+    ApplyBurdenOfTheMightyStatForZone(gSetFinalStatZone);
     ApplyTheTripperMercuryOpponentAtkDrain(gSetFinalStatZone);
     ApplyTheGrandJupiterEquipAtkBonus(gSetFinalStatZone);
     ApplyTheDespairUranusAtkBoost(gSetFinalStatZone);

@@ -15,6 +15,7 @@
 #include "ancient_gear_advance.h"
 #include "ancient_gear_castle.h"
 #include "ancient_gear_factory.h"
+#include "big_evolution_pill.h"
 #include "summon_animations.h"
 #include "constants/card_ids.h"
 #include "tribute.h"
@@ -169,6 +170,7 @@ void sub_800E0D4__Replacement(void)
     AncientGearCastle_TryConsumeOnNormalSummon(GetPendingTributeSummonCardId());
     AncientGearAdvance_TryConsumeOnNormalSummon(GetPendingTributeSummonCardId());
     AncientGearFactory_TryConsumeOnNormalSummon(GetPendingTributeSummonCardId());
+    BigEvolutionPill_TryConsumeOnNormalSummon(GetPendingTributeSummonCardId());
   }
   if (gAiResimulateAfterCallOfTheHaunted) {
     CallOfTheHauntedUnlockAiAttackerAfterTrap();

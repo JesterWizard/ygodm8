@@ -1,9 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
+#include "berserker_soul.h"
 #include "constants/card_ids.h"
-#include "effect_events.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
 
@@ -13,7 +14,7 @@ void UpdateDuelGfxExceptField(void);
 #define BERSERKER_SOUL_DAMAGE 500
 #define BERSERKER_SOUL_MAX_REPEATS 8
 
-/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
+static u8 sBerserkerSoulDirectDamageFlag APPEND_DATA = {0};
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -52,10 +53,28 @@ static void PlaceCardOnDeckTop(u8 fixedDuelist, u16 cardId)
   gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
 }
 
+void BerserkerSoul_OnDirectDamage(s32 dmg)
+{
+  if (dmg > 0 && dmg <= BERSERKER_SOUL_DIRECT_DAMAGE_MAX)
+    sBerserkerSoulDirectDamageFlag = TRUE;
+}
+
+u8 BerserkerSoul_CanActivateFromBattleFlag(void)
+{
+  return sBerserkerSoulDirectDamageFlag;
+}
+
+void BerserkerSoul_OnTurnBoundary(void)
+{
+  sBerserkerSoulDirectDamageFlag = FALSE;
+}
+
 u8 CanActivateBERSERKER_SOUL(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
 
+  if (!BerserkerSoul_CanActivateFromBattleFlag())
+    return FALSE;
   if (EffectOpt_IsUsed(BERSERKER_SOUL))
     return FALSE;
   if (!HandHasAnyCard())
@@ -72,9 +91,6 @@ static void BERSERKER_SOUL_ResolveBody(void)
   u8 repeats;
   u16 cardId;
 
-  /* ponytail: printed trigger is direct-attack damage ≤1500 — no battle-damage
-   * hook in-file. Ceiling: activatable as Normal Spell when hand+deck available;
-   * upgrade: battle_effects after direct dmg ≤1500 → allow activation. */
   if (!CanActivateBERSERKER_SOUL()) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
@@ -113,3 +129,12 @@ APPEND_TEXT void EffectBERSERKER_SOUL(void)
   if (Duel_TryResolveSpellThroughTraps(BERSERKER_SOUL, BERSERKER_SOUL_ResolveBody) == DUEL_ACTION_BLOCKED)
     return;
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void BERSERKER_SOUL_SelfCheck(void)
+{
+  if (BERSERKER_SOUL_DIRECT_DAMAGE_MAX != 1500)
+    while (1)
+      ;
+}
+#endif

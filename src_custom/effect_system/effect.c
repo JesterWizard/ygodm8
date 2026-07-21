@@ -14,6 +14,7 @@
 #include "arcane_barrier.h"
 #include "aroma_garden.h"
 #include "aroma_gardening.h"
+#include "celestial_sword_eatos.h"
 #include "elemental_hero_inferno.h"
 #include "geartown.h"
 #include "skyscraper.h"
@@ -182,6 +183,18 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_AromaGardeningOnSummon,
+  },
+  {
+      CELESTIAL_SWORD_EATOS,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_LEAVE_FIELD,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_CelestialSwordEatosOnLeave,
+      NULL,
+      NULL,
+      Op_CelestialSwordEatosOnLeave,
   },
   {
       CARD_NONE,

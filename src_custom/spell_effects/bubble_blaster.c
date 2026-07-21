@@ -1,13 +1,12 @@
 #include "global.h"
 #include "common-chax.h"
+#include "bubble_blaster.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
+#include "mini_card.h"
 #include "spell_effects.h"
-
-/* 1 stage ~= 500 ATK. Printed +800; nearest stage unit is +1000 (2 stages). */
-#define BUBBLE_BLASTER_ATK_STAGES 2
 
 static u8 ActiveMonsterFixedRow(void)
 {
@@ -46,24 +45,28 @@ u8 CanActivateBUBBLE_BLASTER(void)
   return HasBubbleBlasterTarget();
 }
 
+void ApplyBubbleBlasterAtkBonusToCardInfo(const struct DuelCard *zone)
+{
+  u32 atk;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  if (!DynamicEquipTargetsMonsterWithSpell(zone, BUBBLE_BLASTER))
+    return;
+
+  atk = (u32)gCardInfo.atk + (u32)BUBBLE_BLASTER_ATK_BOOST;
+  gCardInfo.atk = Duel_ClampStat(atk);
+}
+
 static void EquipBubbleBlaster(struct DuelCard *spellZone, struct DuelCard *target)
 {
-  /* ponytail: stage unit is 500 ATK — applied +1000, not printed +800.
-   * Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART
-   * after listing BUBBLE_BLASTER in IsActiveDynamicEquipSpellZone. */
-
-  ApplyDynamicEquipStages(target, BUBBLE_BLASTER_ATK_STAGES);
-  if (!RegisterDynamicEquip(spellZone, target, BUBBLE_BLASTER, BUBBLE_BLASTER_ATK_STAGES))
+  if (!RegisterDynamicEquip(spellZone, target, BUBBLE_BLASTER, 0))
     return;
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: battle-destroy this instead + battle damage 0 needs
-   * CanMonsterBeDestroyedByBattle / Duel_ApplyBattleDestroyProtection + damage
-   * step hook outside this file. Ceiling: Bubbleman equip + ATK only; upgrade:
-   * if DynamicEquipTargetsMonsterWithSpell(zone, BUBBLE_BLASTER) would be battle-
-   * destroyed → destroy BUBBLE_BLASTER instead and set battle damage to 0. */
+  RefreshFieldMonsterStatOverlays();
 }
 
 static void ResolveBubbleBlasterTarget(u8 fixedRow, u8 fixedCol)
@@ -141,7 +144,7 @@ void BUBBLE_BLASTER_SelfCheck(void)
   if (ELEMENTAL_HERO_BUBBLEMAN == CARD_NONE)
     while (1)
       ;
-  if (BUBBLE_BLASTER_ATK_STAGES != 2)
+  if (BUBBLE_BLASTER_ATK_BOOST != 800)
     while (1)
       ;
 }

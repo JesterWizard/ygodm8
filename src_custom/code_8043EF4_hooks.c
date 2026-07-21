@@ -118,6 +118,7 @@
 #include "ancient_gear_drill.h"
 #include "ancient_gear_factory.h"
 #include "aroma_gardening.h"
+#include "big_evolution_pill.h"
 #include "effect_events.h"
 #include "amazoness_archer.h"
 #include "sasuke_samurai.h"
@@ -424,6 +425,7 @@ static void TryPlaceSelectedCardOnField_Local(void)
         AncientGearCastle_TryConsumeOnNormalSummon(placedCardId);
         AncientGearAdvance_TryConsumeOnNormalSummon(placedCardId);
         AncientGearFactory_TryConsumeOnNormalSummon(placedCardId);
+        BigEvolutionPill_TryConsumeOnNormalSummon(placedCardId);
         if (placedCardId == GetPendingTributeSummonCardId()) {
           ResetNumTributes();
           ClearPendingTributeSummonCardId();

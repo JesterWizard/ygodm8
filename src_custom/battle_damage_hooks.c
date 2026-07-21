@@ -50,6 +50,9 @@
 #include "amazoness_heirloom.h"
 #include "ancient_gear_fist.h"
 #include "attack_pheromones.h"
+#include "backup_squad.h"
+#include "berserker_soul.h"
+#include "bubble_blaster.h"
 #include "big_bang_shot.h"
 #include "h_heated_heart.h"
 #include "cyber_end_dragon.h"
@@ -225,6 +228,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyKaiserGliderBattleProtection();
   ApplyAmazonessHeirloomBattleProtection();
+  ApplyBubbleBlasterBattleProtection();
   Duel_ApplyBattleDestroyProtection();
   playerGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_PLAYER) != 0;
   opponentGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) != 0;
@@ -249,6 +253,24 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyAmazonessHeirloomBattleEffect();
   ApplyAncientGearFistBattleEffect();
   ApplyAttackPheromonesBattleEffect();
+
+  {
+    s32 playerDmg =
+        (s32)gUnk2023EA0.unk0[0].initialLifePoints - (s32)gDuelLifePoints[DUEL_PLAYER];
+    s32 opponentDmg =
+        (s32)gUnk2023EA0.unk0[1].initialLifePoints - (s32)gDuelLifePoints[DUEL_OPPONENT];
+
+    if (playerDmg > 0) {
+      ApplyBackupSquadAfterDamage(playerDmg, DUEL_PLAYER);
+      if (sActionData.playerCardId == CARD_NONE)
+        BerserkerSoul_OnDirectDamage(playerDmg);
+    }
+    if (opponentDmg > 0) {
+      ApplyBackupSquadAfterDamage(opponentDmg, DUEL_OPPONENT);
+      if (sActionData.opponentCardId == CARD_NONE)
+        BerserkerSoul_OnDirectDamage(opponentDmg);
+    }
+  }
 
   Duel_RemapMutualDestroyBattleAnim(playerGraveyardDestroy, opponentGraveyardDestroy);
 

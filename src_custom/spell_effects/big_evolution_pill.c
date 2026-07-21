@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "big_evolution_pill.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
@@ -8,13 +9,44 @@
 #include "dynamic_equip.h"
 #include "spell_effects.h"
 
-#define BIG_EVOLUTION_PILL_OPPONENT_END_PHASES 3
-
 void UpdateDuelGfxExceptField(void);
 
 static u8 ActiveMonsterFixedRow(void)
 {
   return WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+}
+
+static u8 FixedDuelistForActive(void)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
+}
+
+static int LookupRequiredTributes(u8 level)
+{
+  if (level <= 4)
+    return 0;
+  if (level <= 6)
+    return 1;
+  if (level <= 8)
+    return 2;
+  return 3;
+}
+
+static int BaseRequiredTributesForCard(u16 cardId)
+{
+  SetCardInfo(cardId);
+  return LookupRequiredTributes(gCardInfo.level);
 }
 
 static u8 IsDinosaurMonster(u16 cardId)
@@ -23,6 +55,15 @@ static u8 IsDinosaurMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardHasMonsterType(cardId, TYPE_DINOSAUR);
+}
+
+static u8 QualifiesForPillTributeFreeSummon(u16 cardId)
+{
+  if (!IsDinosaurMonster(cardId))
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.level >= 5;
 }
 
 static u8 IsValidDinosaurTribute(u8 fixedRow, u8 fixedCol)
@@ -55,6 +96,67 @@ static u8 HasDinosaurTribute(void)
 u8 CanActivateBIG_EVOLUTION_PILL(void)
 {
   return HasDinosaurTribute();
+}
+
+u8 BigEvolutionPill_CanNormalSummonWithoutTribute(u16 cardId)
+{
+  if (!QualifiesForPillTributeFreeSummon(cardId))
+    return FALSE;
+
+  if (Duel_FindBackrowCard(FixedDuelistForActive(), BIG_EVOLUTION_PILL, TRUE) == NULL)
+    return FALSE;
+
+  return BaseRequiredTributesForCard(cardId) > 0;
+}
+
+u8 BigEvolutionPill_TryConsumeOnNormalSummon(u16 cardId)
+{
+  return BigEvolutionPill_CanNormalSummonWithoutTribute(cardId);
+}
+
+static void TickBigEvolutionPillForController(u8 controllerFixed, u8 endedFixedDuelist)
+{
+  u8 backrow;
+  u8 col;
+  u8 turnDuelist;
+  struct DuelCard *zone;
+
+  if (endedFixedDuelist == controllerFixed)
+    return;
+
+  backrow = controllerFixed == DUEL_PLAYER ? PLAYER_BACKROW : OPPONENT_BACKROW;
+  turnDuelist = TurnDuelistForFixed(controllerFixed);
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    zone = gFixedZones[backrow][col];
+    if (zone == NULL || zone->id != BIG_EVOLUTION_PILL || !zone->isFaceUp)
+      continue;
+
+    zone->unk4++;
+    if (zone->unk4 < BIG_EVOLUTION_PILL_OPPONENT_END_PHASES)
+      continue;
+
+    Duel_ShowEffectText(BIG_EVOLUTION_PILL);
+    if (IsDuelOver() == TRUE)
+      return;
+
+    Duel_DestroyZone(zone, turnDuelist, TRUE);
+  }
+}
+
+void BigEvolutionPill_OnOpponentEndPhase(u8 endedFixedDuelist)
+{
+  if (endedFixedDuelist != DUEL_PLAYER && endedFixedDuelist != DUEL_OPPONENT)
+    return;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  TickBigEvolutionPillForController(DUEL_PLAYER, endedFixedDuelist);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  TickBigEvolutionPillForController(DUEL_OPPONENT, endedFixedDuelist);
 }
 
 static void DestroyBigEvolutionPillSpellZone(void)
@@ -116,19 +218,7 @@ static void FinishBigEvolutionPill(u8 fixedRow, u8 fixedCol)
   }
 
   Duel_ActivateContinuousZone(spellZone);
-  /* unk4 = opponent End Phases elapsed (for turn_effect destroy when wired). */
   spellZone->unk4 = 0;
-
-  /* ponytail: destroy on controller's opponent's 3rd End Phase needs a turn_effect
-   * End Phase hook outside this file (no in-file End Phase dispatch).
-   * Ceiling: continuous face-up only (unk4 stays 0); upgrade: turn_effect_hooks
-   * opponent End Phase → if face-up BIG_EVOLUTION_PILL then unk4++; if
-   * unk4 >= BIG_EVOLUTION_PILL_OPPONENT_END_PHASES destroy it. */
-  /* ponytail: Normal Summon Level 5+ Dinosaur without Tributing needs a
-   * GetNumRequiredTributes gate outside this file (clone Necroshade in
-   * tribute_hooks.c). Ceiling: continuous face-up only; upgrade: if face-up
-   * BIG_EVOLUTION_PILL for summoner and card is TYPE_DINOSAUR Level >= 5 then
-   * return 0 tributes. */
 }
 
 static void ResolveDinosaurTribute(u8 fixedRow, u8 fixedCol)

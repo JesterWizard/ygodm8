@@ -27,6 +27,7 @@
 #include "yubel.h"
 #include "effect_system.h"
 #include "effect_events.h"
+#include "big_evolution_pill.h"
 #include "red_dragon_archfiend.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
@@ -322,8 +323,13 @@ static void CheckBoardForTurnEffects__Hook(u8 animateScanner) {
 
 LYN_REPLACE_CHECK(TryActivatingTurnEffects);
 void TryActivatingTurnEffects__Replacement(void) {
+  u8 endedFixedDuelist;
+
   gActiveEffect.turn = WhoseTurn();
   gShieldAndSwordActive = FALSE;
+  /* Previous turn's End Phase just finished; WhoseTurn is the new turn player. */
+  endedFixedDuelist = WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  BigEvolutionPill_OnOpponentEndPhase(endedFixedDuelist);
   EffectEvent_OnTurnBoundary();
   TheWhiteStoneOfAncients_AgeSentFlags();
   ClearRedDragonArchfiendAttackDeclaredMask();

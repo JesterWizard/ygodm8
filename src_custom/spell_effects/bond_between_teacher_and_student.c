@@ -1,10 +1,12 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "bond_between_teacher_and_student.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
 
@@ -146,9 +148,9 @@ static u8 CanSummonDarkMagicianGirlBranch(void)
 
 u8 CanActivateBOND_BETWEEN_TEACHER_AND_STUDENT(void)
 {
-  /* ponytail: once-per-turn not tracked after this normal spell leaves the field
-   * (no shared turn-flag RAM editable from this file alone).
-   * Ceiling: multiple Bond per turn; upgrade: duel-state OPT bit. */
+  if (EffectOpt_IsUsed(BOND_BETWEEN_TEACHER_AND_STUDENT))
+    return FALSE;
+
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
@@ -433,6 +435,7 @@ static void BOND_BETWEEN_TEACHER_AND_STUDENT_ResolveBody(void)
     return;
 
   TryOptionalSetBondSpell();
+  EffectOpt_MarkUsed(BOND_BETWEEN_TEACHER_AND_STUDENT);
   UpdateDuelGfxExceptField();
 }
 
