@@ -29,7 +29,9 @@
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_gaia.h"
 #include "harpie_lady_1.h"
+#include "harpies_hunting_ground.h"
 #include "effect_events.h"
+#include "spell_effects.h"
 #include "the_tripper_mercury.h"
 #include "the_wicked_dreadroot.h"
 #include "the_grand_jupiter.h"
@@ -581,6 +583,8 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyOjamaTrioCardInfoOverridesForStatMod(&statMod);
 
   if (Duel_TryApplyDynamicZoneStats(zone)) {
+    ApplyGladiatorBeastsBattleGladiusAtkCorrection(zone);
+    ApplyHarpiesHuntingGroundStatBonusToCardInfo(zone);
     ApplyGreatTornadoStatHalving(zone);
     ApplyTheWickedDreadrootStatHalving(zone);
     ApplyElementalHeroSunriseAtkBoost(zone);
@@ -642,6 +646,8 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyTheTripperMercuryOpponentAtkDrain(zone);
   ApplyTheGrandJupiterEquipAtkBonus(zone);
   ApplyTheDespairUranusAtkBoost(zone);
+  ApplyGladiatorBeastsBattleGladiusAtkCorrection(zone);
+  ApplyHarpiesHuntingGroundStatBonusToCardInfo(zone);
   gSetFinalStatZone = NULL;
 }
 
@@ -766,6 +772,8 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyTheTripperMercuryOpponentAtkDrain(gSetFinalStatZone);
     ApplyTheGrandJupiterEquipAtkBonus(gSetFinalStatZone);
     ApplyTheDespairUranusAtkBoost(gSetFinalStatZone);
+    ApplyGladiatorBeastsBattleGladiusAtkCorrection(gSetFinalStatZone);
+    ApplyHarpiesHuntingGroundStatBonusToCardInfo(gSetFinalStatZone);
   }
 
   gSetFinalStatZone = NULL;

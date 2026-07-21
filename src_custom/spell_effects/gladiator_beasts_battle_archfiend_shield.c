@@ -52,6 +52,17 @@ u8 CanActivateGLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD(void)
   return HasArchfiendShieldTarget();
 }
 
+u8 GladiatorBeastsBattleArchfiendShield_PreventsDestruction(const struct DuelCard *target)
+{
+  return DynamicEquipTargetsMonsterWithSpell(target, GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD);
+}
+
+u8 GladiatorBeastsBattleArchfiendShield_RecyclesWhenTargetReturnsToDeck(
+    const struct DuelCard *target)
+{
+  return GladiatorBeastsBattleArchfiendShield_PreventsDestruction(target);
+}
+
 static void EquipArchfiendShield(struct DuelCard *spellZone, struct DuelCard *target)
 {
   if (!RegisterDynamicEquip(spellZone, target, GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD, 0))
@@ -59,17 +70,6 @@ static void EquipArchfiendShield(struct DuelCard *spellZone, struct DuelCard *ta
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: "if equipped would be destroyed, destroy this instead" needs a
-   * destroy-substitute gate outside this file (no in-file Duel_DestroyZone
-   * redirect). Ceiling: equip link only; upgrade: Duel_DestroyZone → if
-   * DynamicEquipTargetsMonsterWithSpell(zone, ARCHFIEND_SHIELD) then destroy
-   * the equip spell instead. */
-
-  /* ponytail: recycle-to-hand when equipped monster returns to Deck (tag-out)
-   * and this card is sent to GY needs a return-to-deck / equip-send hook outside
-   * this file. Ceiling: equip only; upgrade: on GB return-to-deck → if linked
-   * ARCHFIEND_SHIELD hits GY then add it from GY to hand. */
 }
 
 static void ResolveArchfiendShieldTarget(u8 fixedRow, u8 fixedCol)

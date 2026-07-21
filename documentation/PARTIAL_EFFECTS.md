@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 20:41 UTC  
-**Remaining partials:** `824`
+**Last updated:** 2026-07-21 20:47 UTC  
+**Remaining partials:** `817`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 143 |
+| `spell` | 136 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **824** |
+| **total** | **817** |
 
-## spell (143)
+## spell (136)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -211,53 +211,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GENERATION_NEXT`
 - path: `src_custom/spell_effects/generation_next.c`
-- L29: OPT / same-name lock need turn-scoped flags outside this file. Ceiling: multiple Generation Next / same-name activate allowed; upgrade: BSS turn bit + last-chosen cardId lock checked at activation.
-- L172: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L198: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-
-### `GLADIATOR_BEAST_BATTLE_HALBERD`
-- path: `src_custom/spell_effects/gladiator_beast_battle_halberd.c`
-- L63: when equipped attacks → destroy 1 S/T at end of Damage Step needs a battle_effects Damage Step end hook + S/T PickZone outside this file. Ceiling: equip-only works; destroy trigger not wired from this file. Upgrade: end-of-Damage-Step after equipped attacked → if DynamicEquipTargetsMonsterWithSpell(..., GLADIATOR_BEAST_BATTLE_HALBERD)
-- L70: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip only; upgrade: on GB return-to-deck → if linked GLADIATOR_BEAST_BATTLE_HALBERD hits GY then GY→hand.
-
-### `GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD`
-- path: `src_custom/spell_effects/gladiator_beasts_battle_archfiend_shield.c`
-- L63: "if equipped would be destroyed, destroy this instead" needs a destroy-substitute gate outside this file (no in-file Duel_DestroyZone redirect). Ceiling: equip link only; upgrade: Duel_DestroyZone → if DynamicEquipTargetsMonsterWithSpell(zone, ARCHFIEND_SHIELD) then destroy the equip spell instead.
-- L69: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip only; upgrade: on GB return-to-deck → if linked ARCHFIEND_SHIELD hits GY then add it from GY to hand.
-
-### `GLADIATOR_BEASTS_BATTLE_GLADIUS`
-- path: `src_custom/spell_effects/gladiator_beasts_battle_gladius.c`
-- L60: stage unit is 500 ATK — applied +500, not printed +300. Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART after listing GLADIATOR_BEASTS_BATTLE_GLADIUS in IsActiveDynamicEquipSpellZone.
-- L72: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip +ATK only; upgrade: on GB return-to-deck → if linked GLADIATOR_BEASTS_BATTLE_GLADIUS hits GY then Duel_AddDeckCardToHand / GY→hand.
-
-### `GLADIATOR_BEASTS_BATTLE_MANICA`
-- path: `src_custom/spell_effects/gladiator_beasts_battle_manica.c`
-- L63: battle destroy immunity needs CanMonsterBeDestroyedByBattle / battle_damage hook checking DynamicEquipTargetsMonsterWithSpell( GLADIATOR_BEASTS_BATTLE_MANICA). Ceiling: equip registers only; upgrade: wire into Duel_ApplyBattleDestroyProtection like Spirit Reaper / Tempest.
-- L68: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip register only; upgrade: on GB return-to-deck → if linked GLADIATOR_BEASTS_BATTLE_MANICA hits GY then Duel_AddDeckCardToHand / GY→hand.
+- L185: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L211: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `GRAVEKEEPERS_INSCRIPTION`
 - path: `src_custom/spell_effects/gravekeepers_inscription.c`
 - L33: no dedicated 3-way choice UI — A / B / START. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L97: "activate only at start of Main Phase 1" needs a phase/action counter outside this file (no Main Phase 1-start gate API). Ceiling: activable any time like a normal spell; upgrade: CanActivate → require MP1 + no prior play/set/summon this turn.
-- L110: chosen lock until end of opponent's turn needs gates outside this file. Ceiling: mode stored in APPEND_DATA only (no enforcement alone); upgrade: Duel_IsCardActivationBlocked / banish / SS-from-GY hooks → if GravekeepersInscription_GetActiveMode() matches, block that path; End Phase → TryClearGravekeepersInscriptionEndPhase.
-
-### `GROUND_COLLAPSE`
-- path: `src_custom/spell_effects/ground_collapse.c`
-- L86: continuous zone lock needs FirstEmptyZoneInRow / PlaceMonster / summon-set validators outside this file (empty isLocked is ignored). Ceiling: face-up continuous + marks/stash only; upgrade: LynJump FirstEmptyZoneInRow (+ AI/player summon cursors) → skip isLocked empty MMZ while face-up GROUND_COLLAPSE; clear marks when it leaves the field.
-
-### `HARPIE_LADY_PHOENIX_FORMATION`
-- path: `src_custom/spell_effects/harpie_lady_phoenix_formation.c`
-- L104: cannot SS from Main/Extra Deck + cannot conduct Battle Phase this turn need summon/phase gates outside this file. Ceiling: destroy+burn only.
+- L112: "activate only at start of Main Phase 1" needs a phase/action counter outside this file (no Main Phase 1-start gate API). Ceiling: activable any time like a normal spell; upgrade: CanActivate → require MP1 + no prior play/set/summon this turn.
 
 ### `HARPIES_FEATHER_REST`
 - path: `src_custom/spell_effects/harpies_feather_rest.c`
-- L141: no multi-select GY UI — return 3 most recent Harpie Lady / Harpie Lady Sisters. Ceiling: no targeting; upgrade: DeckMenu multi-pick.
-- L186: "cannot Special Summon except WIND for the rest of this turn" needs a Special Summon lock hook outside this file (ArchlordKristya-style attribute gate). Ceiling: no SS lock after resolve; upgrade: turn flag → Duel_SpecialSummon* reject non-ATTRIBUTE_WIND until End Phase clear.
-
-### `HARPIES_HUNTING_GROUND`
-- path: `src_custom/spell_effects/harpies_hunting_ground.c`
-- L88: +200 ATK/DEF for all Winged Beast monsters needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up HARPIES_HUNTING_GROUND and TYPE_WINGED_BEAST then ATK/DEF += 200.
-- L93: on Normal/Special Summon of Harpie Lady / Harpie Lady Sisters (name-treated), summoner destroys 1 S/T — needs a summon-listener outside this file. Ceiling: no trigger from spell file alone; upgrade: after-summon hook → if face-up HARPIES_HUNTING_GROUND and summoned id is HARPIE_LADY / HARPIE_LADY_1/2/3 / HARPIE_LADY_SISTERS (or name "Harpie Lady") then
+- L152: no multi-select GY UI — return 3 most recent Harpie Lady / Harpie Lady Sisters. Ceiling: no targeting; upgrade: DeckMenu multi-pick.
 
 ### `HERO_FLASH`
 - path: `src_custom/spell_effects/hero_flash.c`

@@ -33,6 +33,7 @@
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
 #include "fusion_destiny.h"
 #include "red_dragon_archfiend.h"
+#include "spell_effects.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -334,6 +335,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   /* Previous turn's End Phase just finished; WhoseTurn is the new turn player. */
   endedFixedDuelist = WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
   BigEvolutionPill_OnOpponentEndPhase(endedFixedDuelist);
+  TryClearGravekeepersInscriptionEndPhase();
   EffectEvent_OnTurnBoundary();
   TheWhiteStoneOfAncients_AgeSentFlags();
   ClearRedDragonArchfiendAttackDeclaredMask();

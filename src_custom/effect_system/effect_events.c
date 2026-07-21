@@ -22,6 +22,7 @@
 #include "forbidden_lance.h"
 #include "fusion_deployment.h"
 #include "fusion_destiny.h"
+#include "spell_effects.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -181,6 +182,7 @@ void EffectEvent_OnTurnBoundary(void)
   ForbiddenLance_ClearOnTurnBoundary();
   FusionDeployment_ClearOnTurnBoundary();
   FusionDestiny_ClearDarkHeroSpecialSummonLock();
+  GenerationNext_ClearOnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

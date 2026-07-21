@@ -52,6 +52,16 @@ u8 CanActivateGLADIATOR_BEASTS_BATTLE_MANICA(void)
   return HasManicaTarget();
 }
 
+u8 GladiatorBeastsBattleManica_PreventsBattleDestruction(const struct DuelCard *zone)
+{
+  return DynamicEquipTargetsMonsterWithSpell(zone, GLADIATOR_BEASTS_BATTLE_MANICA);
+}
+
+u8 GladiatorBeastsBattleManica_RecyclesWhenTargetReturnsToDeck(const struct DuelCard *zone)
+{
+  return DynamicEquipTargetsMonsterWithSpell(zone, GLADIATOR_BEASTS_BATTLE_MANICA);
+}
+
 static void EquipManica(struct DuelCard *spellZone, struct DuelCard *target)
 {
   if (!RegisterDynamicEquip(spellZone, target, GLADIATOR_BEASTS_BATTLE_MANICA, 0))
@@ -59,16 +69,6 @@ static void EquipManica(struct DuelCard *spellZone, struct DuelCard *target)
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: battle destroy immunity needs CanMonsterBeDestroyedByBattle /
-   * battle_damage hook checking DynamicEquipTargetsMonsterWithSpell(
-   * GLADIATOR_BEASTS_BATTLE_MANICA). Ceiling: equip registers only; upgrade:
-   * wire into Duel_ApplyBattleDestroyProtection like Spirit Reaper / Tempest. */
-
-  /* ponytail: recycle-to-hand when equipped monster returns to Deck (tag-out) and
-   * this card is sent to GY needs a return-to-deck / equip-send hook outside this
-   * file. Ceiling: equip register only; upgrade: on GB return-to-deck → if linked
-   * GLADIATOR_BEASTS_BATTLE_MANICA hits GY then Duel_AddDeckCardToHand / GY→hand. */
 }
 
 static void ResolveManicaTarget(u8 fixedRow, u8 fixedCol)

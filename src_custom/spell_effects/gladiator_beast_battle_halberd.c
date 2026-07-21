@@ -52,6 +52,16 @@ u8 CanActivateGLADIATOR_BEAST_BATTLE_HALBERD(void)
   return HasHalberdTarget();
 }
 
+u8 GladiatorBeastBattleHalberd_IsEquippedTo(const struct DuelCard *target)
+{
+  return DynamicEquipTargetsMonsterWithSpell(target, GLADIATOR_BEAST_BATTLE_HALBERD);
+}
+
+u8 GladiatorBeastBattleHalberd_RecyclesWhenTargetReturnsToDeck(const struct DuelCard *target)
+{
+  return GladiatorBeastBattleHalberd_IsEquippedTo(target);
+}
+
 static void EquipHalberd(struct DuelCard *spellZone, struct DuelCard *target)
 {
   if (!RegisterDynamicEquip(spellZone, target, GLADIATOR_BEAST_BATTLE_HALBERD, 0))
@@ -59,19 +69,6 @@ static void EquipHalberd(struct DuelCard *spellZone, struct DuelCard *target)
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: when equipped attacks → destroy 1 S/T at end of Damage Step needs
-   * a battle_effects Damage Step end hook + S/T PickZone outside this file.
-   * Ceiling: equip-only works; destroy trigger not wired from this file.
-   * Upgrade: end-of-Damage-Step after equipped attacked → if
-   * DynamicEquipTargetsMonsterWithSpell(..., GLADIATOR_BEAST_BATTLE_HALBERD)
-   * then PickZone destroy 1 Spell/Trap. */
-
-  /* ponytail: recycle-to-hand when equipped monster returns to Deck (tag-out)
-   * and this card is sent to GY needs a return-to-deck / equip-send hook
-   * outside this file. Ceiling: equip only; upgrade: on GB return-to-deck → if
-   * linked GLADIATOR_BEAST_BATTLE_HALBERD hits GY then GY→hand. */
-
 }
 
 static void ResolveHalberdTarget(u8 fixedRow, u8 fixedCol)

@@ -71,6 +71,21 @@ u8 GravekeepersInscription_GetActiveMode(void)
   return sInscriptionMode;
 }
 
+u8 GravekeepersInscription_BlocksGraveyardEffects(void)
+{
+  return GravekeepersInscription_GetActiveMode() == INSCRIPTION_MODE_NO_GY_EFFECTS;
+}
+
+u8 GravekeepersInscription_BlocksGraveyardBanish(void)
+{
+  return GravekeepersInscription_GetActiveMode() == INSCRIPTION_MODE_NO_GY_BANISH;
+}
+
+u8 GravekeepersInscription_BlocksSpecialSummonFromGraveyard(void)
+{
+  return GravekeepersInscription_GetActiveMode() == INSCRIPTION_MODE_NO_SS_FROM_GY;
+}
+
 /* Wire from turn_effect_hooks End Phase (clear after opponent's turn). */
 void TryClearGravekeepersInscriptionEndPhase(void)
 {
@@ -106,12 +121,6 @@ static void GRAVEKEEPERS_INSCRIPTION_ResolveBody(void)
 
   sInscriptionMode = mode;
   sInscriptionTurnsLeft = INSCRIPTION_DURATION_TURNS;
-
-  /* ponytail: chosen lock until end of opponent's turn needs gates outside this
-   * file. Ceiling: mode stored in APPEND_DATA only (no enforcement alone);
-   * upgrade: Duel_IsCardActivationBlocked / banish / SS-from-GY hooks → if
-   * GravekeepersInscription_GetActiveMode() matches, block that path; End Phase →
-   * TryClearGravekeepersInscriptionEndPhase. */
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
 }

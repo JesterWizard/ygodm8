@@ -26,10 +26,23 @@ static const u8 sGenerationNextPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-/* ponytail: OPT / same-name lock need turn-scoped flags outside this file.
- * Ceiling: multiple Generation Next / same-name activate allowed; upgrade:
- * BSS turn bit + last-chosen cardId lock checked at activation. */
 /* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
+static u16 sGenerationNextLockedCardId APPEND_DATA = {CARD_NONE};
+
+u8 GenerationNext_BlocksCardActivation(u16 cardId)
+{
+  return cardId != CARD_NONE && cardId == sGenerationNextLockedCardId;
+}
+
+void GenerationNext_ClearOnTurnBoundary(void)
+{
+  sGenerationNextLockedCardId = CARD_NONE;
+}
+
+static void LockGenerationNextCardActivation(u16 cardId)
+{
+  sGenerationNextLockedCardId = cardId;
+}
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -364,6 +377,7 @@ static enum DuelActionResult ResolveFromDeck(u8 deckIndex, u8 addToHand)
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
   u16 cardId;
   struct DuelSummonOpts opts;
+  enum DuelActionResult result;
 
   if (deckIndex < gDuelDecks[fixedDuelist].cardsDrawn
       || deckIndex >= NumCardsInDeck(fixedDuelist))
@@ -378,11 +392,15 @@ static enum DuelActionResult ResolveFromDeck(u8 deckIndex, u8 addToHand)
   if (addToHand) {
     if (!AddCardIdToHand(cardId))
       return DUEL_ACTION_NO_ZONE;
+    LockGenerationNextCardActivation(cardId);
     return DUEL_ACTION_OK;
   }
 
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
-  return Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
+  result = Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
+  if (result == DUEL_ACTION_OK)
+    LockGenerationNextCardActivation(cardId);
+  return result;
 }
 
 static enum DuelActionResult ResolveFromGy(u8 gyIndex, u8 addToHand)
@@ -390,6 +408,7 @@ static enum DuelActionResult ResolveFromGy(u8 gyIndex, u8 addToHand)
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
   u16 cardId;
   struct DuelSummonOpts opts;
+  enum DuelActionResult result;
 
   cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, gyIndex);
   GraveyardExpand_SyncLegacyTop(fixedDuelist);
@@ -399,11 +418,15 @@ static enum DuelActionResult ResolveFromGy(u8 gyIndex, u8 addToHand)
   if (addToHand) {
     if (!AddCardIdToHand(cardId))
       return DUEL_ACTION_NO_ZONE;
+    LockGenerationNextCardActivation(cardId);
     return DUEL_ACTION_OK;
   }
 
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
-  return Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
+  result = Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
+  if (result == DUEL_ACTION_OK)
+    LockGenerationNextCardActivation(cardId);
+  return result;
 }
 
 static void GENERATION_NEXT_ResolveBody(void)

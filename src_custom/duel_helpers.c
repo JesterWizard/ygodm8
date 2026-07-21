@@ -70,6 +70,9 @@
 #include "expanded_graveyard.h"
 #include "fusion_recipes.h"
 #include "removed_from_play.h"
+#include "harpie_lady_phoenix_formation.h"
+#include "harpies_feather_rest.h"
+#include "spell_effects.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -331,7 +334,8 @@ u8 Duel_BlocksExtraDeckSpecialSummon(u16 cardId)
   if (ContactGate_BlocksExtraDeckSpecialSummon(cardId)
       || EvilAssault_BlocksExtraDeckSpecialSummon(cardId)
       || FusionDestiny_BlocksSpecialSummon(cardId)
-      || GadgetBox_BlocksExtraDeckSpecialSummon(WhoseTurn(), cardId))
+      || GadgetBox_BlocksExtraDeckSpecialSummon(WhoseTurn(), cardId)
+      || HarpieLadyPhoenixFormation_CannotSpecialSummonFromMainOrExtraDeck())
     return TRUE;
 
   if (FusionDeployment_IsLocked()) {
@@ -365,6 +369,10 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
     return DUEL_ACTION_BLOCKED;
 
   if (SummonModeIsSpecial(opts.mode) && ArchlordKristya_IsSpecialSummonLocked())
+    return DUEL_ACTION_BLOCKED;
+
+  if (SummonModeIsSpecial(opts.mode)
+      && !HarpiesFeatherRest_CanSpecialSummonCard(monsterId))
     return DUEL_ACTION_BLOCKED;
 
   if (!KaiserColosseum_AllowsMonsterPlacement(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist))))
@@ -602,7 +610,8 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
   if (DForce_PreventsPlasmaEffectDestruction(zone)
       || ColosseumCage_TryPreventDestroyByCardEffect(zone)
       || FieldBarrier_PreventsFieldSpellDestroy(zone)
-      || ForbiddenDress_IsDestroyImmune(zone))
+      || ForbiddenDress_IsDestroyImmune(zone)
+      || GladiatorBeastsBattleArchfiendShield_PreventsDestruction(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;
@@ -2646,6 +2655,9 @@ enum DuelActionResult Duel_SpecialSummonFromDeck(u8 duelist, u16 cardId, struct 
   if (ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;
 
+  if (HarpieLadyPhoenixFormation_CannotSpecialSummonFromMainOrExtraDeck())
+    return DUEL_ACTION_BLOCKED;
+
   if (cardId == CARD_NONE)
     return DUEL_ACTION_INVALID;
 
@@ -2898,6 +2910,9 @@ u8 Duel_IsCardActivationBlocked(u16 cardId)
 
   if (cardId == CARD_NONE || cardId >= NUM_TOTAL_CARDS)
     return FALSE;
+
+  if (GenerationNext_BlocksCardActivation(cardId))
+    return TRUE;
 
   typeGroup = GetTypeGroup(cardId);
   if (typeGroup == TYPE_GROUP_SPELL || typeGroup == TYPE_GROUP_RITUAL) {

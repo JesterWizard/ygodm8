@@ -4,9 +4,21 @@
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
+#include "effect.h"
+#include "harpies_hunting_ground.h"
 #include "spell_effects.h"
 
 void SetDuelFieldGfx(u8 field);
+void UpdateDuelGfxExceptField(void);
+
+static u8 sHarpiesHuntingGroundSummonController APPEND_DATA = {0xFF};
+
+static u8 IsHarpieLadyOrSisters(u16 cardId)
+{
+  return cardId == HARPIE_LADY || cardId == HARPIE_LADY_1 || cardId == HARPIE_LADY_2
+      || cardId == HARPIE_LADY_3 || cardId == HARPIE_LADY_SISTERS
+      || cardId == CYBER_SLASH_HARPIE_LADY;
+}
 
 static u8 IsVanillaTerrainFieldSpell(u16 cardId)
 {
@@ -73,6 +85,116 @@ static void DestroyOtherFieldSpellsOnBoard(struct DuelCard *activatingZone)
   ResetActiveFieldTerrain();
 }
 
+void ApplyHarpiesHuntingGroundStatBonusToCardInfo(const struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE || !Duel_CardHasMonsterType(zone->id, TYPE_WINGED_BEAST))
+    return;
+  if (Duel_FindBackrowCardOnField(HARPIES_HUNTING_GROUND, TRUE) == NULL)
+    return;
+
+  gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + HARPIES_HUNTING_GROUND_STAT_BONUS);
+  gCardInfo.def = Duel_ClampStat((u32)gCardInfo.def + HARPIES_HUNTING_GROUND_STAT_BONUS);
+}
+
+static u8 IsHarpiesHuntingGroundDestroyTarget(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone;
+
+  if ((fixedRow != OPPONENT_BACKROW && fixedRow != PLAYER_BACKROW)
+      || fixedCol >= MAX_ZONES_IN_ROW)
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  return zone != NULL && zone->id != CARD_NONE && !Duel_ZoneIsImmuneToSpellEffects(zone);
+}
+
+static u8 HasHarpiesHuntingGroundDestroyTarget(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsHarpiesHuntingGroundDestroyTarget(row, col))
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+static void ResolveHarpiesHuntingGroundDestroyTarget(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+
+  Duel_ClearPickZone();
+  if (!IsHarpiesHuntingGroundDestroyTarget(fixedRow, fixedCol))
+    return;
+
+  Duel_DestroyZone(zone, GetTurnDuelistForFixedRow(fixedRow), FALSE);
+  UpdateDuelGfxExceptField();
+}
+
+static u8 AiPickHarpiesHuntingGroundDestroyTarget(u8 *outRow, u8 *outCol)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (!IsHarpiesHuntingGroundDestroyTarget(row, col))
+        continue;
+
+      *outRow = row;
+      *outCol = col;
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+u8 Cond_HarpiesHuntingGroundOnHarpieSummon(struct EffectCtx *ctx)
+{
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+  if (ctx->event->controller > DUEL_OPPONENT || !IsHarpieLadyOrSisters(ctx->event->cardId))
+    return FALSE;
+  if (Duel_FindBackrowCardOnField(HARPIES_HUNTING_GROUND, TRUE) == NULL)
+    return FALSE;
+
+  return HasHarpiesHuntingGroundDestroyTarget();
+}
+
+enum DuelActionResult Op_HarpiesHuntingGroundOnHarpieSummon(struct EffectCtx *ctx)
+{
+  struct DuelCard *huntingGround;
+  u8 row;
+  u8 col;
+
+  if (!Cond_HarpiesHuntingGroundOnHarpieSummon(ctx))
+    return DUEL_ACTION_NO_TARGET;
+
+  huntingGround = Duel_FindBackrowCardOnField(HARPIES_HUNTING_GROUND, TRUE);
+  if (huntingGround == NULL || !Duel_FindFixedZone(huntingGround, &row, &col))
+    return DUEL_ACTION_NO_TARGET;
+
+  sHarpiesHuntingGroundSummonController = ctx->event->controller;
+  Duel_ShowEffectText(HARPIES_HUNTING_GROUND);
+  gDuelCursor.destY = row;
+  gDuelCursor.destX = col;
+  Duel_SetupPickZone(IsHarpiesHuntingGroundDestroyTarget,
+                     ResolveHarpiesHuntingGroundDestroyTarget,
+                     Duel_ClearPickZone,
+                     AiPickHarpiesHuntingGroundDestroyTarget);
+  if (sHarpiesHuntingGroundSummonController == DUEL_PLAYER)
+    Duel_EnterPickZoneTargeting();
+  else
+    Duel_ResolvePickZoneForAi();
+
+  return DUEL_ACTION_OK;
+}
+
 static void HARPIES_HUNTING_GROUND_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -84,18 +206,6 @@ static void HARPIES_HUNTING_GROUND_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(HARPIES_HUNTING_GROUND);
-
-  /* ponytail: +200 ATK/DEF for all Winged Beast monsters needs a field-stat
-   * applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster
-   * ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade:
-   * LynJump/stat overlay → if face-up HARPIES_HUNTING_GROUND and
-   * TYPE_WINGED_BEAST then ATK/DEF += 200. */
-  /* ponytail: on Normal/Special Summon of Harpie Lady / Harpie Lady Sisters
-   * (name-treated), summoner destroys 1 S/T — needs a summon-listener outside
-   * this file. Ceiling: no trigger from spell file alone; upgrade: after-summon
-   * hook → if face-up HARPIES_HUNTING_GROUND and summoned id is HARPIE_LADY /
-   * HARPIE_LADY_1/2/3 / HARPIE_LADY_SISTERS (or name "Harpie Lady") then
-   * PickZone destroy 1 Spell/Trap. */
 }
 
 APPEND_TEXT void EffectHARPIES_HUNTING_GROUND(void)
@@ -113,6 +223,9 @@ void HARPIES_HUNTING_GROUND_SelfCheck(void)
     while (1)
       ;
   if (Duel_CardHasMonsterType(DARK_MAGICIAN, TYPE_WINGED_BEAST))
+    while (1)
+      ;
+  if (!IsHarpieLadyOrSisters(HARPIE_LADY_1))
     while (1)
       ;
 }

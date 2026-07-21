@@ -22,6 +22,7 @@
 #include "dark_magician_circle.h"
 #include "elemental_hero_inferno.h"
 #include "geartown.h"
+#include "harpies_hunting_ground.h"
 #include "skyscraper.h"
 
 /* Generated ACTIVATE Effects mirroring EffectScript table. */
@@ -248,6 +249,18 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_DarkCityOnDestroy,
+  },
+  {
+      HARPIES_HUNTING_GROUND,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_HarpiesHuntingGroundOnHarpieSummon,
+      NULL,
+      NULL,
+      Op_HarpiesHuntingGroundOnHarpieSummon,
   },
   {
       COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS,

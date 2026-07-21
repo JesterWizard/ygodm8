@@ -101,6 +101,17 @@ static u8 CanActivateHarpiesFeatherRest(void)
   return CountHarpieLadyOrSistersInGy(fixedDuelist) >= HARPIES_FEATHER_REST_RETURN_COUNT;
 }
 
+u8 HarpiesFeatherRest_CanSpecialSummonCard(u16 cardId)
+{
+  if (cardId == CARD_NONE)
+    return FALSE;
+  if (!EffectOpt_IsUsed(HARPIES_FEATHER_REST))
+    return TRUE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.attribute == ATTRIBUTE_WIND;
+}
+
 static void ReturnCardToDeck(u8 turnDuelist, u16 cardId)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
@@ -183,11 +194,6 @@ static void HARPIES_FEATHER_REST_ResolveBody(void)
   if (spellZone != NULL && spellZone->id == HARPIES_FEATHER_REST)
     Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
 
-  /* ponytail: "cannot Special Summon except WIND for the rest of this turn"
-   * needs a Special Summon lock hook outside this file (ArchlordKristya-style
-   * attribute gate). Ceiling: no SS lock after resolve; upgrade: turn flag →
-   * Duel_SpecialSummon* reject non-ATTRIBUTE_WIND until End Phase clear. */
-
   UpdateDuelGfxExceptField();
 }
 
@@ -217,6 +223,9 @@ void HARPIES_FEATHER_REST_SelfCheck(void)
     while (1)
       ;
   if (!IsHarpieMonster(HARPIE_LADY_SISTERS))
+    while (1)
+      ;
+  if (HarpiesFeatherRest_CanSpecialSummonCard(CARD_NONE))
     while (1)
       ;
 }

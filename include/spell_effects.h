@@ -65,6 +65,31 @@ extern void EffectKunaiWithChain(void);
 extern void EffectBrightCastle(void);
 extern void EffectCrushCard(void);
 extern void EffectShadowSpell(void);
+extern void ApplyGladiatorBeastsBattleGladiusAtkCorrection(const struct DuelCard *zone);
+extern u8 GladiatorBeastsBattleGladius_RecyclesWhenTargetReturnsToDeck(
+    const struct DuelCard *zone);
+extern u8 GladiatorBeastsBattleManica_PreventsBattleDestruction(
+    const struct DuelCard *zone);
+extern u8 GladiatorBeastsBattleManica_RecyclesWhenTargetReturnsToDeck(
+    const struct DuelCard *zone);
+extern u8 GenerationNext_BlocksCardActivation(u16 cardId);
+extern void GenerationNext_ClearOnTurnBoundary(void);
+extern u8 GladiatorBeastBattleHalberd_IsEquippedTo(const struct DuelCard *zone);
+extern u8 GladiatorBeastBattleHalberd_RecyclesWhenTargetReturnsToDeck(
+    const struct DuelCard *zone);
+extern u8 GladiatorBeastsBattleArchfiendShield_PreventsDestruction(
+    const struct DuelCard *zone);
+extern u8 GladiatorBeastsBattleArchfiendShield_RecyclesWhenTargetReturnsToDeck(
+    const struct DuelCard *zone);
+extern u8 GravekeepersInscription_GetActiveMode(void);
+extern u8 GravekeepersInscription_BlocksGraveyardEffects(void);
+extern u8 GravekeepersInscription_BlocksGraveyardBanish(void);
+extern u8 GravekeepersInscription_BlocksSpecialSummonFromGraveyard(void);
+extern void TryClearGravekeepersInscriptionEndPhase(void);
+extern u8 CanActivateILLUSION_MAGIC(void);
+extern u8 CanInfectedMailMonsterAttackDirectly(const struct DuelCard *zone);
+extern void InfectedMail_SendTargetToGraveyardAtBattlePhaseEnd(void);
+extern u8 CanActivateINFERNO_FIRE_BLAST(void);
 extern void LeftoverRitualFromSacredCards_804B9D0(void);
 extern void LeftoverRitualFromSacredCards_804BA58(void);
 extern void LeftoverRitualFromSacredCards_804BAE0(void);

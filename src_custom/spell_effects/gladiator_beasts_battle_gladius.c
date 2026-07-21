@@ -7,6 +7,10 @@
 
 /* 1 stage ~= 500 ATK. Printed +300; nearest stage unit is +500. */
 #define GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_STAGES 1
+#define GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_STAGE_BONUS 500
+#define GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_BONUS 300
+#define GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_CORRECTION \
+  (GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_STAGE_BONUS - GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_BONUS)
 
 static const char sGladiatorBeastArchetypeName[] APPEND_RODATA = "Gladiator Beast";
 
@@ -55,12 +59,24 @@ u8 CanActivateGLADIATOR_BEASTS_BATTLE_GLADIUS(void)
   return HasGladiusTarget();
 }
 
+void ApplyGladiatorBeastsBattleGladiusAtkCorrection(const struct DuelCard *zone)
+{
+  if (!DynamicEquipTargetsMonsterWithSpell(zone, GLADIATOR_BEASTS_BATTLE_GLADIUS))
+    return;
+
+  if (gCardInfo.atk < GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_CORRECTION)
+    gCardInfo.atk = 0;
+  else
+    gCardInfo.atk -= GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_CORRECTION;
+}
+
+u8 GladiatorBeastsBattleGladius_RecyclesWhenTargetReturnsToDeck(const struct DuelCard *zone)
+{
+  return DynamicEquipTargetsMonsterWithSpell(zone, GLADIATOR_BEASTS_BATTLE_GLADIUS);
+}
+
 static void EquipGladius(struct DuelCard *spellZone, struct DuelCard *target)
 {
-  /* ponytail: stage unit is 500 ATK — applied +500, not printed +300.
-   * Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART
-   * after listing GLADIATOR_BEASTS_BATTLE_GLADIUS in IsActiveDynamicEquipSpellZone. */
-
   ApplyDynamicEquipStages(target, GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_STAGES);
   if (!RegisterDynamicEquip(spellZone, target, GLADIATOR_BEASTS_BATTLE_GLADIUS,
                             GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_STAGES))
@@ -68,11 +84,6 @@ static void EquipGladius(struct DuelCard *spellZone, struct DuelCard *target)
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: recycle-to-hand when equipped monster returns to Deck (tag-out) and
-   * this card is sent to GY needs a return-to-deck / equip-send hook outside this
-   * file. Ceiling: equip +ATK only; upgrade: on GB return-to-deck → if linked
-   * GLADIATOR_BEASTS_BATTLE_GLADIUS hits GY then Duel_AddDeckCardToHand / GY→hand. */
 }
 
 static void ResolveGladiusTarget(u8 fixedRow, u8 fixedCol)
@@ -152,6 +163,11 @@ void GladiatorBeastsBattleGladius_SelfCheck(void)
     while (1)
       ;
   if (IsGladiatorBeastMonster(BLUE_EYES_WHITE_DRAGON))
+    while (1)
+      ;
+  if (GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_STAGE_BONUS
+          - GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_CORRECTION
+      != GLADIATOR_BEASTS_BATTLE_GLADIUS_ATK_BONUS)
     while (1)
       ;
 }

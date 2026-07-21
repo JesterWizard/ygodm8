@@ -59,35 +59,38 @@ u8 CanActivateGROUND_COLLAPSE(void)
   return HasTwoEmptyMainMonsterZones();
 }
 
+u8 GroundCollapse_IsMainMonsterZoneLocked(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *spellZone;
+  u8 firstPick;
+  u8 secondPick;
+
+  if ((fixedRow != PLAYER_MONSTER_ROW && fixedRow != OPPONENT_MONSTER_ROW)
+      || fixedCol >= MAX_ZONES_IN_ROW)
+    return FALSE;
+
+  spellZone = Duel_FindBackrowCardOnField(GROUND_COLLAPSE, TRUE);
+  if (spellZone == NULL)
+    return FALSE;
+
+  firstPick = spellZone->unk4;
+  secondPick = (u8)spellZone->permStage;
+  return (((firstPick >> 4) & 3) == fixedRow && (firstPick & 0xF) == fixedCol)
+      || (((secondPick >> 4) & 3) == fixedRow && (secondPick & 0xF) == fixedCol);
+}
+
 static void FinishGroundCollapse(u8 row2, u8 col2)
 {
   struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
-  struct DuelCard *zone1;
-  struct DuelCard *zone2;
 
   if (spellZone == NULL || spellZone->id != GROUND_COLLAPSE)
     return;
 
-  zone1 = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
-  zone2 = gFixedZones[row2][col2];
-
-  /* Best-effort mark: empty-zone isLocked is not honored by FirstEmptyZoneInRow. */
-  if (zone1 != NULL && zone1->id == CARD_NONE)
-    zone1->isLocked = TRUE;
-  if (zone2 != NULL && zone2->id == CARD_NONE)
-    zone2->isLocked = TRUE;
-
-  /* Stash selected cols on the continuous spell for a future lock hook. */
+  /* Parent summon/placement hooks query these selected main monster zones. */
   spellZone->unk4 = (u8)(((gSpellEffectData.row2 & 3) << 4) | (gSpellEffectData.col2 & 0xF));
   spellZone->permStage = (s8)(((row2 & 3) << 4) | (col2 & 0xF));
 
   Duel_ActivateContinuousZone(spellZone);
-
-  /* ponytail: continuous zone lock needs FirstEmptyZoneInRow / PlaceMonster /
-   * summon-set validators outside this file (empty isLocked is ignored).
-   * Ceiling: face-up continuous + marks/stash only; upgrade: LynJump
-   * FirstEmptyZoneInRow (+ AI/player summon cursors) → skip isLocked empty
-   * MMZ while face-up GROUND_COLLAPSE; clear marks when it leaves the field. */
 }
 
 static void CancelGroundCollapseTargeting(void)

@@ -4,6 +4,7 @@
 #include "effect_events.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "harpie_lady_phoenix_formation.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -55,6 +56,16 @@ u8 CanActivateHARPIE_LADY_PHOENIX_FORMATION(void)
   return FALSE;
 }
 
+u8 HarpieLadyPhoenixFormation_CannotSpecialSummonFromMainOrExtraDeck(void)
+{
+  return EffectOpt_IsUsed(HARPIE_LADY_PHOENIX_FORMATION);
+}
+
+u8 HarpieLadyPhoenixFormation_CannotConductBattlePhase(void)
+{
+  return EffectOpt_IsUsed(HARPIE_LADY_PHOENIX_FORMATION);
+}
+
 static void HARPIE_LADY_PHOENIX_FORMATION_ResolveBody(void)
 {
   u8 maxTargets = CountHarpieLadyOrSisters();
@@ -100,9 +111,6 @@ static void HARPIE_LADY_PHOENIX_FORMATION_ResolveBody(void)
 
   EffectOpt_MarkUsed(HARPIE_LADY_PHOENIX_FORMATION);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: cannot SS from Main/Extra Deck + cannot conduct Battle Phase this
-   * turn need summon/phase gates outside this file. Ceiling: destroy+burn only. */
 }
 
 APPEND_TEXT void EffectHARPIE_LADY_PHOENIX_FORMATION(void)
