@@ -55,7 +55,7 @@ u8 NeoSpacianFlareScarab_ApplyDynamicZoneStats(struct DuelCard *zone)
 
 unsigned char ShouldActivateNEO_SPACIAN_FLARE_SCARAB(void)
 {
-  /* ponytail: continuous +400 ATK per opp Spell/Trap — ApplyDynamicZoneStats only. */
+  /* Continuous ATK via NeoSpacianFlareScarab_ApplyDynamicZoneStats. */
   (void)gActiveEffect;
   return FALSE;
 }

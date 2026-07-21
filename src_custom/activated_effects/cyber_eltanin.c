@@ -7,7 +7,9 @@
 #include "expanded_graveyard.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
+#include "removed_from_play.h"
 #include "six_card_hand.h"
+#include "cyber_eltanin.h"
 
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
@@ -114,13 +116,43 @@ static void SendOtherFaceUpMonstersToGy(struct DuelCard *self)
   NotifyDynamicEquipFieldChanged();
 }
 
+static u8 CountBanishedLightMachines(void)
+{
+  u8 total = 0;
+  u8 d;
+  u8 i;
+
+  if (!RemovedFromPlay_IsEnabled())
+    return 0;
+
+  for (d = 0; d < 2; d++) {
+    for (i = 0; i < RemovedFromPlay_GetCount(d); i++) {
+      if (IsLightMachine(RemovedFromPlay_GetCardAt(d, i)))
+        total++;
+    }
+  }
+  return total;
+}
+
+u8 CyberEltanin_ApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  u16 stat;
+
+  if (zone == NULL || zone->id != CYBER_ELTANIN)
+    return FALSE;
+
+  stat = Duel_StatFromCount(CountBanishedLightMachines(), 500, 0);
+  Duel_WriteCardInfoStats(zone->id, stat, stat);
+  return TRUE;
+}
+
 unsigned char CanActivateCYBER_ELTANIN(void)
 {
   if (gMonEffect.id != CYBER_ELTANIN)
     return FALSE;
 
-  /* ponytail: continuous ATK/DEF = banished×500 needs permanent overlay hook.
-   * Ceiling: not field-ignition activatable; use FromHand banish path. */
+  /* Continuous ATK/DEF via CyberEltanin_ApplyDynamicZoneStats;
+   * FromHand banish+SS path below. */
   return FALSE;
 }
 
@@ -149,8 +181,6 @@ u8 TrySpecialSummonCyberEltaninFromHand(u8 handZone)
 {
   struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
   struct DuelCard *self;
-  u8 banished = 0;
-  u8 stages;
 
   if (!CanSpecialSummonCyberEltaninFromHand(handZone))
     return FALSE;
@@ -160,8 +190,12 @@ u8 TrySpecialSummonCyberEltaninFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  if (!BanishAllLightMachinesFromFieldAndGy(&banished) || IsDuelOver() == TRUE)
-    return FALSE;
+  {
+    u8 banished = 0;
+
+    if (!BanishAllLightMachinesFromFieldAndGy(&banished) || IsDuelOver() == TRUE)
+      return FALSE;
+  }
 
   if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
     return FALSE;
@@ -180,15 +214,8 @@ u8 TrySpecialSummonCyberEltaninFromHand(u8 handZone)
     }
   }
 
-  stages = banished;
-  if (stages > 20)
-    stages = 20;
-
-  if (self != NULL) {
-    /* ponytail: permStage unit is ~500 ATK/DEF each, not exact banished×500 overlay. */
-    SetPermStage(self, stages);
+  if (self != NULL)
     SendOtherFaceUpMonstersToGy(self);
-  }
 
   RefreshFieldMonsterStatOverlays();
   UpdateDuelGfxExceptField();

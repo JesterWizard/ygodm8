@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 23:36 UTC  
-**Remaining partials:** `549`
+**Last updated:** 2026-07-21 23:48 UTC  
+**Remaining partials:** `533`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 5 |
 | `trap` | 10 |
-| `activated` | 435 |
-| `permanent` | 99 |
-| **total** | **549** |
+| `activated` | 420 |
+| `permanent` | 98 |
+| **total** | **533** |
 
 ## spell (5)
 
@@ -91,7 +91,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (435)
+## activated (420)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -287,10 +287,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L71: attack-position summons keep isFaceUp=0 until end-of-turn flip.
 - L363: drop field-target cursor before GY deck menu — PickZone state + trunk view was crashing when the menu opened on confirm.
 
-### `ATLANTEAN_ATTACK_SQUAD`
-- path: `src_custom/activated_effects/atlantean_attack_squad.c`
-- L12: continuous +800 ATK while controlling other Fish/SS/Aqua needs permanent overlay. Ceiling: not ignition-activatable here; upgrade: permanent ATK bonus check.
-
 ### `ATLANTEAN_DRAGOONS`
 - path: `src_custom/activated_effects/atlantean_dragoons.c`
 - L101: Lv3- Sea Serpent direct attack + sent-for-WATER-effect search need continuous/send hooks. Ceiling: OPT add 1 Sea Serpent except self from Deck.
@@ -329,10 +325,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L139: no battle damage to opp when this card battles needs battle hook. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
 - L165: multi-zone banish picker not wired; require both types reachable.
 
-### `BIRDFACE`
-- path: `src_custom/activated_effects/birdface.c`
-- L20: battle-destroy→GY trigger. Ceiling: once via usage if Harpie Lady in Deck and hand space.
-
 ### `BLACK_ROSE_DRAGON`
 - path: `src_custom/activated_effects/black_rose_dragon.c`
 - L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
@@ -367,10 +359,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c`
 - L23: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. Ceiling: OPT +2 tempStage (~+1000) as negate stand-in.
 
-### `BOOT_UP_SOLDIER_DREAD_DYNAMO`
-- path: `src_custom/activated_effects/boot_up_soldier_dread_dynamo.c`
-- L39: continuous +2000 while Gadget on field needs permanent overlay. Ceiling: OPT apply +4 stages (~2000) if Gadget present.
-
 ### `BRIONAC_DRAGON_OF_THE_ICE_BARRIER`
 - path: `src_custom/activated_effects/brionac_dragon_of_the_ice_barrier.c`
 - L232: N-discard path auto-bounces N cards; upgrade: sequential PickZone.
@@ -394,10 +382,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CHAOS_ANCIENT_GEAR_GIANT`
 - path: `src_custom/activated_effects/chaos_ancient_gear_giant.c`
 - L12: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock + multi-attack + piercing need fusion/battle hooks. Ceiling: not ignition-activatable here.
-
-### `CHARM_OF_SHABTI`
-- path: `src_custom/activated_effects/charm_of_shabti.c`
-- L43: battle protection for Gravekeeper's monsters not applied. Ceiling: discard only; upgrade: battle-destroy immunity gate until EP.
 
 ### `CHIMERATECH_FORTRESS_DRAGON`
 - path: `src_custom/activated_effects/chimeratech_fortress_dragon.c`
@@ -445,11 +429,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L34: ATK summons keep isFaceUp=0 until EOT flip.
 - L61: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
 - L109: Xyz attach materials + negate FALSE. Ceiling: OPT ClearZone 1 face-up ATK monster (absorb) + tempStage self.
-
-### `CYBER_ELTANIN`
-- path: `src_custom/activated_effects/cyber_eltanin.c`
-- L122: continuous ATK/DEF = banished×500 needs permanent overlay hook. Ceiling: not field-ignition activatable; use FromHand banish path.
-- L188: permStage unit is ~500 ATK/DEF each, not exact banished×500 overlay.
 
 ### `CYBER_LASER_DRAGON`
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
@@ -762,10 +741,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/enlightenment_dragon.c`
 - L138: Extra Summon conditions + destroy-add banished FALSE. Ceiling: OPT pay 2000 → banish all other field+both GYs, else OPT mill 4. Separate OPTs share one MarkMonsterEffectUsed.
 
-### `ENRAGED_BATTLE_OX`
-- path: `src_custom/activated_effects/enraged_battle_ox.c`
-- L12: piercing battle damage needs battle damage gate. Ceiling: not ignition-activatable here; upgrade: permanent/battle overlay.
-
 ### `EVIL_HERO_ADUSTED_GOLD`
 - path: `src_custom/activated_effects/evil_hero_adusted_gold.c`
 - L63: cannot attack without Fusion Monster needs attack gate hook. Ceiling: not field-ignition activatable; discard search uses FromHand path.
@@ -955,10 +930,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/goddess_bow.c`
 - L12: Hermos fusion + equip + battle-phase negate/second attack need fusion/equip/chain hooks. Ceiling: not ignition-activatable here.
 
-### `GOLDEN_HOMUNCULUS`
-- path: `src_custom/activated_effects/golden_homunculus.c`
-- L47: continuous +300 ATK/DEF per banished needs permanent stat overlay. Ceiling: OPT refresh sets perm stages ≈ banished*300/500.
-
 ### `GORZ_THE_EMISSARY_OF_DARKNESS`
 - path: `src_custom/activated_effects/gorz_the_emissary_of_darkness.c`
 - L34: damage-gate + Token FALSE. Ceiling: FromHand empty-field SS.
@@ -1016,10 +987,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GRAVEKEEPERS_SHAMAN`
 - path: `src_custom/activated_effects/gravekeepers_shaman.c`
 - L12: DEF per GK in GY + GY effect negate + Necrovalley Field Spell lock need permanent hooks. Ceiling: not ignition-activatable here.
-
-### `GRAVEKEEPERS_SPEAR_SOLDIER`
-- path: `src_custom/activated_effects/gravekeepers_spear_soldier.c`
-- L12: piercing battle damage needs battle damage gate. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
 
 ### `GRAVEKEEPERS_SPIRITUALIST`
 - path: `src_custom/activated_effects/gravekeepers_spiritualist.c`
@@ -1096,10 +1063,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/helios_duo_megistus.c`
 - L58: battle-destroy End Phase SS Megistus needs battle/EP hooks. Ceiling: OPT refresh stages from banished-monster count.
 - L146: permStage unit is ~500 ATK/DEF each, not exact banished×200 overlay.
-
-### `HELIOS_THE_PRIMORDIAL_SUN`
-- path: `src_custom/activated_effects/helios_the_primordial_sun.c`
-- L41: continuous ATK/DEF = banished×100 needs permanent overlay. Ceiling: OPT stages ≈ (banished×100)/500.
 
 ### `HELIOS_TRICE_MEGISTUS`
 - path: `src_custom/activated_effects/helios_trice_megistus.c`
@@ -1287,10 +1250,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MANJU_OF_THE_TEN_THOUSAND_HANDS`
 - path: `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c`
 - L113: Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage if Ritual Monster or Ritual Spell in Deck and hand space.
-
-### `MARSHMALLON`
-- path: `src_custom/activated_effects/marshmallon.c`
-- L12: battle destruction immunity + flip-attack burn need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle damage / destroy gate.
 
 ### `MASTER_OF_CHAOS`
 - path: `src_custom/activated_effects/master_of_chaos.c`
@@ -1666,17 +1625,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/spell_striker.c`
 - L82: direct attack + no self battle damage need battle/attack hooks. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
 
-### `SPINED_GILLMAN`
-- path: `src_custom/activated_effects/spined_gillman.c`
-- L32: continuous +400 ATK needs permanent overlay. Ceiling: OPT +1 stage (~500) to each Fish/SS/Aqua you control.
-
 ### `STARDUST_DRAGON`
 - path: `src_custom/activated_effects/stardust_dragon.c`
 - L12: Quick Effect tribute-negate-destroy + End Phase GY SS need chain and EP hooks. Ceiling: not ignition-activatable here.
-
-### `SUBSTITOAD`
-- path: `src_custom/activated_effects/substitoad.c`
-- L103: Frog battle protection not applied; upgrade: battle-destroy immunity.
 
 ### `T_G_HYPER_LIBRARIAN`
 - path: `src_custom/activated_effects/t_g_hyper_librarian.c`
@@ -1733,10 +1684,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/the_blazing_mars.c`
 - L48: no multi-select GY banish + hand/GY activation path yet — banish 3 other monsters to Special Summon deferred until expanded GY targeting exists.
 - L63: no Main Phase 1 gate yet — field burn is activatable in any main phase.
-
-### `THE_CALCULATOR`
-- path: `src_custom/activated_effects/the_calculator.c`
-- L40: continuous ATK = levels×300 needs permanent overlay. Ceiling: OPT refresh perm stages ≈ (levels×300)/500.
 
 ### `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO`
 - path: `src_custom/activated_effects/the_executor_of_the_underworld_pluto.c`
@@ -1811,10 +1758,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/trishula_dragon_of_the_ice_barrier.c`
 - L114: Synchro Summon trigger needs synchro hook. Ceiling: once via usage banish random opp hand + 1 field + 1 GY when available.
 
-### `TROOP_DRAGON`
-- path: `src_custom/activated_effects/troop_dragon.c`
-- L21: battle-destroy→GY trigger. Ceiling: once via usage.
-
 ### `TUALATIN`
 - path: `src_custom/activated_effects/tualatin.c`
 - L108: FromHand battle-wipe SS + Summon Attribute lock FALSE. Ceiling: OPT destroy all face-up monsters of first opp monster's Attribute.
@@ -1827,10 +1770,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/turbo_booster.c`
 - L101: destroy only monsters that battled your monsters this turn needs battle-tracking hook. Ceiling: OPT tribute self then destroy 1 opponent monster; SS-from-hand uses FromHand path.
 - L138: no Normal Summon-this-turn flag in engine; allow hand SS anytime. Upgrade: gate on turn flag once duel state tracks Normal Summons.
-
-### `TURBO_ROCKET`
-- path: `src_custom/activated_effects/turbo_rocket.c`
-- L12: battle destruction immunity + post-damage burn need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle damage / destroy gate.
 
 ### `TURBO_SYNCHRON`
 - path: `src_custom/activated_effects/turbo_synchron.c`
@@ -1914,7 +1853,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (99)
+## permanent (98)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -2227,10 +2166,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MOBIUS_THE_FROST_MONARCH`
 - path: `src_custom/permanent_effects/mobius_the_frost_monarch.c`
 - L175: up-to-2 targeting uses zone->unk4 as phase flag. 0 = not started, 1+ = at least one target destroyed (re-entered targeting). Upgrade path: bitfield on zone if unk4 is needed for other purposes.
-
-### `NEO_SPACIAN_FLARE_SCARAB`
-- path: `src_custom/permanent_effects/neo_spacian_flare_scarab.c`
-- L58: continuous +400 ATK per opp Spell/Trap — ApplyDynamicZoneStats only.
 
 ### `OSHALEON`
 - path: `src_custom/permanent_effects/oshaleon.c`

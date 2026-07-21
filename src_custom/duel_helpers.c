@@ -120,6 +120,12 @@ u8 MajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 TheTyrantNeptune_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessPetLiger_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 AtlanteanAttackSquad_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 BootUpSoldierDreadDynamo_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 CyberEltanin_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 GoldenHomunculus_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 HeliosThePrimordialSun_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 TheCalculator_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ThebanNightmare_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 TheAgentOfForceMars_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 UnstoppableExodiaIncarnate_ApplyStat(struct DuelCard *zone);
@@ -1562,6 +1568,12 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { SERAPHIM_BLASTER, SeraphimBlaster_ApplyDynamicZoneStats },
   { AMAZONESS_TIGER, AmazonessTiger_ApplyDynamicZoneStats },
   { AMAZONESS_PET_LIGER, AmazonessPetLiger_ApplyDynamicZoneStats },
+  { ATLANTEAN_ATTACK_SQUAD, AtlanteanAttackSquad_ApplyDynamicZoneStats },
+  { BOOT_UP_SOLDIER_DREAD_DYNAMO, BootUpSoldierDreadDynamo_ApplyDynamicZoneStats },
+  { CYBER_ELTANIN, CyberEltanin_ApplyDynamicZoneStats },
+  { GOLDEN_HOMUNCULUS, GoldenHomunculus_ApplyDynamicZoneStats },
+  { HELIOS_THE_PRIMORDIAL_SUN, HeliosThePrimordialSun_ApplyDynamicZoneStats },
+  { THE_CALCULATOR, TheCalculator_ApplyDynamicZoneStats },
   { THEBAN_NIGHTMARE, ThebanNightmare_ApplyDynamicZoneStats },
   { THE_AGENT_OF_FORCE_MARS, TheAgentOfForceMars_ApplyDynamicZoneStats },
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, UnstoppableExodiaIncarnate_ApplyStat },
@@ -1743,7 +1755,9 @@ u8 CanMonsterBeDestroyedByBattle(u16 cardId, u8 duelist, u16 battleAtk, u16 oppo
       || cardId == ELEMENTAL_HERO_PHOENIX_ENFORCER
       || cardId == ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER
       || cardId == YUBEL || cardId == YUBEL_TERROR_INCARNATE
-      || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE)
+      || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE
+      || cardId == MARSHMALLON
+      || cardId == TURBO_ROCKET)
     return FALSE;
 
   return TRUE;
@@ -3407,6 +3421,10 @@ void DuelHelpers_SelfCheck(void)
   if (CanMonsterBeDestroyedByBattle(ELEMENTAL_HERO_PHOENIX_ENFORCER, DUEL_PLAYER, 2000, 2000) != FALSE)
     __builtin_trap();
   if (CanMonsterBeDestroyedByBattle(ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER, DUEL_PLAYER, 2000, 2000) != FALSE)
+    __builtin_trap();
+  if (CanMonsterBeDestroyedByBattle(MARSHMALLON, DUEL_PLAYER, 2000, 2000) != FALSE)
+    __builtin_trap();
+  if (CanMonsterBeDestroyedByBattle(TURBO_ROCKET, DUEL_PLAYER, 2000, 2000) != FALSE)
     __builtin_trap();
   if (CanMonsterBeDestroyedByBattle(KAISER_GLIDER, DUEL_PLAYER, 1500, 1500) != TRUE)
     __builtin_trap();

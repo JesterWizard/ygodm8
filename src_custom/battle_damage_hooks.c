@@ -59,6 +59,7 @@
 #include "amazoness_sage.h"
 #include "amazoness_spy.h"
 #include "amazoness_trainee.h"
+#include "charm_of_shabti.h"
 #include "el_shaddoll_apkallone.h"
 #include "el_shaddoll_wendigo.h"
 #include "el_shaddoll_construct.h"
@@ -67,6 +68,7 @@
 #include "double_tool_c_and_d.h"
 #include "dragon_s_rage.h"
 #include "meteorain.h"
+#include "marshmallon.h"
 #include "attack_pheromones.h"
 #include "backup_squad.h"
 #include "berserker_soul.h"
@@ -92,6 +94,9 @@
 #include "constants/card_ids.h"
 #include "spell_effects.h"
 #include "serpent_suppression.h"
+#include "simple_piercers.h"
+#include "substitoad.h"
+#include "turbo_rocket.h"
 #include "yubel.h"
 #include "custom_field_spell.h"
 #include "constants/custom_field_spells.h"
@@ -276,6 +281,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (ElShaddollWendigo_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (Substitoad_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (CharmOfShabti_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -299,6 +308,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (ElShaddollWendigo_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (Substitoad_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (CharmOfShabti_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }
   playerGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_PLAYER) != 0;
@@ -310,6 +323,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyAncientGearGolemPiercingBattleEffect();
   ApplyMadSwordBeastBattleEffect();
   ApplyDarkDriceratopsBattleEffect();
+  ApplySimplePiercersBattleEffect();
   ApplyMefistTheInfernalGeneralPiercingBattleEffect();
   ApplyAirknightParshathPiercingBattleEffect();
   ApplyCyberEndDragonPiercingBattleEffect();
@@ -330,6 +344,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyDoubleToolCAndDBattleEffect();
   ApplyAttackPheromonesBattleEffect();
   ApplyAmazonessTraineeBattleEffect();
+  ApplyMarshmallonBattleEffect();
+  ApplyTurboRocketBattleEffect();
 
   {
     s32 playerDmg =

@@ -3,10 +3,11 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "monster_effect_usage.h"
+#include "spined_gillman.h"
 
-void UpdateDuelGfxExceptField(void);
-void RefreshFieldMonsterStatOverlays(void);
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+#define SPINED_GILLMAN_ATK_BONUS 400
 
 static u8 IsFishSeaAqua(u16 cardId)
 {
@@ -18,41 +19,48 @@ static u8 IsFishSeaAqua(u16 cardId)
       || Duel_CardHasMonsterType(cardId, TYPE_AQUA);
 }
 
+static u8 ControllerHasFaceUpGillman(u8 controller)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(controller);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == SPINED_GILLMAN)
+      return TRUE;
+  }
+  return FALSE;
+}
+
+void ApplySpinedGillmanAtkBoostToCardInfo(const struct DuelCard *zone)
+{
+  u8 controller;
+
+  if (zone == NULL || zone->id == CARD_NONE || !zone->isFaceUp)
+    return;
+  if (!IsFishSeaAqua(zone->id))
+    return;
+
+  controller = GetDuelistForZone((struct DuelCard *)zone);
+  if (controller > DUEL_OPPONENT)
+    return;
+  if (!ControllerHasFaceUpGillman(controller))
+    return;
+
+  gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + SPINED_GILLMAN_ATK_BONUS);
+}
+
 unsigned char CanActivateSPINED_GILLMAN(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != SPINED_GILLMAN)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != SPINED_GILLMAN)
-    return FALSE;
-
-  /* ponytail: continuous +400 ATK needs permanent overlay.
-   * Ceiling: OPT +1 stage (~500) to each Fish/SS/Aqua you control. */
-  return CanUseMonsterEffect(zone);
+  /* Continuous +400 via ApplySpinedGillmanAtkBoostToCardInfo. */
+  return FALSE;
 }
 
 void ActivateSPINED_GILLMANEffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u8 col;
-  u8 row = gMonEffect.row;
-
   Duel_ShowEffectTextTyped(SPINED_GILLMAN, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[row][col];
-
-    if (zone != NULL && IsFishSeaAqua(zone->id))
-      IncrementPermStage(zone);
-  }
-
-  MarkMonsterEffectUsed(self);
-  RefreshFieldMonsterStatOverlays();
-  UpdateDuelGfxExceptField();
 }

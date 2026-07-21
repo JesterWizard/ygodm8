@@ -33,6 +33,7 @@
 #include "unstable_evolution.h"
 #include "weapon_change.h"
 #include "wetlands.h"
+#include "spined_gillman.h"
 #include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_sunrise.h"
@@ -676,6 +677,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyTheAForcesAtkBoostToCardInfo(zone);
   ApplyTriangleEcstasySparkAtkToCardInfo(zone);
   ApplyWetlandsAtkBoostToCardInfo(zone);
+  ApplySpinedGillmanAtkBoostToCardInfo(zone);
   ApplyNeoSpaceAtkBoostForZone(zone);
   LevelTuning_ApplyLevelToCardInfo(zone);
   gSetFinalStatZone = NULL;
@@ -818,6 +820,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     Necrovalley_ApplyGravekeeperStatBonusToCardInfo(gSetFinalStatZone);
     ApplyNecrovalleyTempleOppStatPenaltyToCardInfo(gSetFinalStatZone);
     ApplyNeoSpaceAtkBoostForZone(gSetFinalStatZone);
+    ApplySpinedGillmanAtkBoostToCardInfo(gSetFinalStatZone);
     LevelTuning_ApplyLevelToCardInfo(gSetFinalStatZone);
     Duel_EndFaceUpBackrowCache();
   }

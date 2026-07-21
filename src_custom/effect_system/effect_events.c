@@ -39,7 +39,10 @@
 #include "ancient_gear_cannon.h"
 #include "el_shaddoll_wendigo.h"
 #include "ancient_gear_frame.h"
+#include "birdface.h"
+#include "charm_of_shabti.h"
 #include "spell_effects.h"
+#include "troop_dragon.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -83,6 +86,8 @@ void EffectEvent_EnsureInit(void)
   AmazonessEmpress_EnsureInit();
   DestinyHeroDoubleDude_EnsureInit();
   AncientGearFrame_EnsureInit();
+  Birdface_EnsureInit();
+  TroopDragon_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 
@@ -218,6 +223,7 @@ void EffectEvent_OnTurnBoundary(void)
   AmazonessScouts_ClearTurnState();
   AncientGearCannon_ClearTurnState();
   ElShaddollWendigo_ClearTurnMarks();
+  CharmOfShabti_ClearOnTurnBoundary();
   DestinedRivals_ClearExhaustedOnTurnBoundary();
   Meteorain_ClearOnTurnBoundary();
   HarpiesFeatherStorm_ClearAtTurnBoundary();

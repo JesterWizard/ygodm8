@@ -2,11 +2,10 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "monster_effect_usage.h"
+#include "helios_the_primordial_sun.h"
 #include "removed_from_play.h"
 
-void UpdateDuelGfxExceptField(void);
-void RefreshFieldMonsterStatOverlays(void);
+#define HELIOS_STAT_PER_BANISHED_MONSTER 100
 
 static u8 CountBanishedMonsters(void)
 {
@@ -23,44 +22,31 @@ static u8 CountBanishedMonsters(void)
         total++;
     }
   }
-
   return total;
+}
+
+u8 HeliosThePrimordialSun_ApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  u16 stat;
+
+  if (zone == NULL || zone->id != HELIOS_THE_PRIMORDIAL_SUN)
+    return FALSE;
+
+  stat = Duel_StatFromCount(CountBanishedMonsters(), HELIOS_STAT_PER_BANISHED_MONSTER, 0);
+  Duel_WriteCardInfoStats(zone->id, stat, stat);
+  return TRUE;
 }
 
 unsigned char CanActivateHELIOS_THE_PRIMORDIAL_SUN(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != HELIOS_THE_PRIMORDIAL_SUN)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != HELIOS_THE_PRIMORDIAL_SUN)
-    return FALSE;
-
-  /* ponytail: continuous ATK/DEF = banished×100 needs permanent overlay.
-   * Ceiling: OPT stages ≈ (banished×100)/500. */
-  return CanUseMonsterEffect(zone);
+  /* Continuous ATK/DEF via HeliosThePrimordialSun_ApplyDynamicZoneStats. */
+  return FALSE;
 }
 
 void ActivateHELIOS_THE_PRIMORDIAL_SUNEffect(void)
 {
-  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u8 banished;
-  u8 stages;
-
   Duel_ShowEffectTextTyped(HELIOS_THE_PRIMORDIAL_SUN, 2);
-
-  if (zone == NULL || IsDuelOver() == TRUE)
-    return;
-
-  banished = CountBanishedMonsters();
-  stages = (u8)((banished * 100) / 500);
-  if (stages > 20)
-    stages = 20;
-
-  SetPermStage(zone, stages);
-  MarkMonsterEffectUsed(zone);
-  RefreshFieldMonsterStatOverlays();
-  UpdateDuelGfxExceptField();
 }

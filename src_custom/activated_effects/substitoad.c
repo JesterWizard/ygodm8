@@ -4,12 +4,47 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "substitoad.h"
+
+u8 GetDuelistForZone(struct DuelCard *zone);
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(void);
 void TryActivatingPermanentEffects(void);
 
 static const char sFrogArchetypeName[] APPEND_RODATA = "Frog";
+
+static u8 ControllerHasFaceUpSubstitoad(u8 controller)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(controller);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == SUBSTITOAD)
+      return TRUE;
+  }
+  return FALSE;
+}
+
+u8 Substitoad_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  u8 controller;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+  if (!Duel_CardNameContains(zone->id, sFrogArchetypeName))
+    return FALSE;
+  if (zone->id == FROG_THE_JAM)
+    return FALSE;
+
+  controller = GetDuelistForZone((struct DuelCard *)zone);
+  if (controller > DUEL_OPPONENT)
+    return FALSE;
+
+  return ControllerHasFaceUpSubstitoad(controller);
+}
 
 static u8 FixedDuelistForActive(void)
 {
@@ -100,7 +135,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, frogId, opts) != DUEL_ACTION_OK)
     return;
 
-  /* ponytail: Frog battle protection not applied; upgrade: battle-destroy immunity. */
+  /* Frog battle protect via Substitoad_PreventsBattleDestroy. */
 
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia();

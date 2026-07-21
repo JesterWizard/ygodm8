@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — PARTIAL Round 8 Batches 1–6
+**Last worked on:** 2026-07-22 — PARTIAL Round 9 Batches 1–2
 
-**Outcome:** Partials **580→549**. Shared wires: Queen/Arcana/EP/Umi/Sarcophagus; battle protect + Chariot/Amazoness/Aroma Jar; Contact EP + pierce + flip search; AG attack S/T lock + Golem pierce; Goyo/Construct/Double Dude; Winda destroy+SS-once, Anoyatyllis hand/GY SS lock, Scouts Amazoness protect, Cannon BP trap lock, Pet Liger ATK overlay, Frame leave-field SS. `make` OK each batch.
+**Outcome:** Partials **549→533**. B1: pierce list, Marshmallon/Turbo Rocket protect+burn, Birdface/Troop Dragon BD triggers, Substitoad Frog protect, Charm Shabti turn flag, Atlantean +800. B2: Boot-Up/Calculator/Homunculus/Helios/Eltanin/Flare Scarab overlays + Spined Gillman field +400. `make` OK.
 
-**Open / next:** Round 9 when ready. Wendigo GY-add / Gadjiltron burn-draw still residual. Masked HERO still absent.
+**Open / next:** Round 9 Batches 3–6. Wendigo GY-add / Gadjiltron tribute burn-draw residual. Masked HERO still absent.
