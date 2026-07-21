@@ -61,6 +61,7 @@ _kernel_malloc_flash gDebugAiBothSidesMode,     0x1
 _kernel_malloc_flash gMenuCursorId,             0x1
 _kernel_malloc_flash gDebugRuleset,             0x1
 _kernel_malloc_flash gDebugDeckSwapBackup,      PLAYER_DECK_CARD_BYTES
+_kernel_malloc_flash gDebugDeckSwapExtraBackup, EXTRA_DECK_CARD_BYTES
 _kernel_malloc_flash gDebugDeckSwapBackupValid, 0x1
 _kernel_malloc_flash gDebugSaveAnywhereData,     0xC
 _kernel_malloc_flash gTimedDuelCompletionFlags, 0x10

@@ -46,5 +46,7 @@ void PlayerDecks_RestoreAfterVanillaSaveBuffer(void);
 void PlayerDecks_ReadDeck1(u16 *dest);
 void PlayerDecks_WriteDeck1(const u16 *src);
 void PlayerDecks_ReplaceDeck1(const u16 *src);
+void PlayerDecks_ReadDeck1Extra(u16 *dest);
+void PlayerDecks_ReplaceDeck1Extra(const u16 *src);
 
 #endif

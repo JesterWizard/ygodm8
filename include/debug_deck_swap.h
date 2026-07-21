@@ -7,12 +7,13 @@
 #define DEBUG_DECK_SWAP_SAVE_MAGIC 0xD6
 
 extern u16 gDebugDeckSwapBackup[40];
+extern u16 gDebugDeckSwapExtraBackup[15];
 extern u8 gDebugDeckSwapActivePreset;
 extern u8 gDebugDeckSwapBackupValid;
 
 u8 DebugDeckSwap_GetActivePreset(void);
 u8 DebugDeckSwap_HasBackup(void);
-void DebugDeckSwap_ApplyPreset(u8 presetIndex, const u16 *presetCards);
+void DebugDeckSwap_ApplyPreset(u8 presetIndex, const u16 *presetCards, const u16 *presetExtra);
 void DebugDeckSwap_RefreshDeck1IfActive(void);
 void DebugDeckSwap_RestoreOriginal(void);
 void DebugDeckSwap_Reset(void);

@@ -271,6 +271,8 @@ _kernel_malloc_ewram gDuelIconCache, 0x78
 
 @ Debug deck preset swap: original deck 1 backup in EWRAM (40 x u16) while a preset is active.
 _kernel_malloc_ewram_array gDebugDeckSwapBackup, PLAYER_DECK_CARD_BYTES
+@ Original Extra Deck 1 backup (15 x u16) paired with gDebugDeckSwapBackup.
+_kernel_malloc_ewram_array gDebugDeckSwapExtraBackup, EXTRA_DECK_CARD_BYTES
 _kernel_malloc_ewram gDebugDeckSwapActivePreset, 1
 @ TRUE when gDebugDeckSwapBackup holds the saved original deck (also mirrored to flash on save).
 _kernel_malloc_ewram gDebugDeckSwapBackupValid, 1

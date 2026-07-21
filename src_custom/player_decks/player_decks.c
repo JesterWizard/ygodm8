@@ -403,3 +403,20 @@ void PlayerDecks_ReplaceDeck1(const u16 *src) {
   InitDeckData();
   SyncDeck1ToSaveBuffer();
 }
+
+void PlayerDecks_ReadDeck1Extra(u16 *dest) {
+  u8 i;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    dest[i] = gPlayerDeck1ExtraDeck[i];
+}
+
+void PlayerDecks_ReplaceDeck1Extra(const u16 *src) {
+  u8 i;
+
+  if (PlayerDecks_IsEnabled() == TRUE)
+    gActiveDeckIndex = PLAYER_DECK_INDEX_MIN;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    gPlayerDeck1ExtraDeck[i] = (src != NULL) ? src[i] : CARD_NONE;
+}

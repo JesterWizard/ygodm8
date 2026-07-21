@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round5 Batch6 (round complete)
+**Last worked on:** 2026-07-21 — Debug deck presets Extra Deck split
 
-**Outcome:** Unstable Evolution exact ATK; Weapon Change swap/Standby; Venom Swamp/Shot; Needle Wall Standby; Appropriate OnDraw; Backfire destroy; Tour of Doom; Tornado Wall; Anti-Spell Fragrance. Partials **756→746**.
+**Outcome:** Fusion/Synchro/Xyz/Link moved out of main 40 into Extra Deck (15) for archetype debug presets; apply/restore/refresh backs up Extra Deck too. `make` OK.
 
-**Open / next:** Round 6 — continue PARTIAL clear (Ultra Poly GY still open; trap/spell backlog).
+**Open / next:** Round 6 — continue PARTIAL clear; Masked HERO cards still absent.
