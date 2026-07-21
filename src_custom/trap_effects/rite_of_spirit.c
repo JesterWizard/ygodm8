@@ -58,9 +58,6 @@ APPEND_TEXT void EffectRITE_OF_SPIRIT(void)
     Duel_SpecialSummonFromGrave(INACTIVE_DUELIST, cardId, opts);
   }
 
-  /* ponytail: unaffected by Necrovalley — already no Necrovalley gate here.
-   * PickZone for GY target + trapEffect wire. */
-
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();

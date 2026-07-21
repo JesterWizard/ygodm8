@@ -53,8 +53,7 @@ APPEND_TEXT void EffectTWILIGHT_CLOTH(void)
       banished++;
     }
     if (banished > 0) {
-      /* ponytail: exact +200 ATK/DEF per banished until End Phase needs temp
-       * overlay. Ceiling: +1 perm stage (~500) per banished (capped). */
+      /* +1 perm stage (~500) per banished (capped); printed +200/EOT not staged. */
       u8 stages = banished;
 
       if (stages > 4)
@@ -66,6 +65,4 @@ APPEND_TEXT void EffectTWILIGHT_CLOTH(void)
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: Deck→GY Lightsworn protection mode needs mill-sent trigger. */
 }

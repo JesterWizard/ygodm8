@@ -27,6 +27,7 @@
 #include "lemuria_the_forgotten_city.h"
 #include "mirror_wall.h"
 #include "neo_space.h"
+#include "necrovalley_temple.h"
 #include "the_a_forces.h"
 #include "triangle_ecstasy_spark.h"
 #include "unstable_evolution.h"
@@ -671,6 +672,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyMorphtronicMapAtkBonusToCardInfo(zone);
   ApplyMoltingEscapeAtkBonusToCardInfo(zone);
   Necrovalley_ApplyGravekeeperStatBonusToCardInfo(zone);
+  ApplyNecrovalleyTempleOppStatPenaltyToCardInfo(zone);
   ApplyTheAForcesAtkBoostToCardInfo(zone);
   ApplyTriangleEcstasySparkAtkToCardInfo(zone);
   ApplyWetlandsAtkBoostToCardInfo(zone);
@@ -814,6 +816,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyMorphtronicMapAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMoltingEscapeAtkBonusToCardInfo(gSetFinalStatZone);
     Necrovalley_ApplyGravekeeperStatBonusToCardInfo(gSetFinalStatZone);
+    ApplyNecrovalleyTempleOppStatPenaltyToCardInfo(gSetFinalStatZone);
     ApplyNeoSpaceAtkBoostForZone(gSetFinalStatZone);
     LevelTuning_ApplyLevelToCardInfo(gSetFinalStatZone);
     Duel_EndFaceUpBackrowCache();

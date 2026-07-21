@@ -5,6 +5,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "linked_revive_trap.h"
 
 void UpdateDuelGfxExceptField(void);
 
@@ -20,16 +21,18 @@ APPEND_TEXT void EffectAMAZONESS_WILLPOWER(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(INACTIVE_DUELIST);
   struct DuelCard *trapZone;
+  struct DuelCard *monster;
   struct DuelSummonOpts opts;
   u16 cardId = CARD_NONE;
   u8 i;
+  s8 monsterCol;
 
   Duel_ShowTrapResponseText(AMAZONESS_WILLPOWER, gTrapEffectData.originCardId);
 
   trapZone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
 
-  if (ArchlordKristya_IsSpecialSummonLocked()
-      || FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) < 0) {
+  monsterCol = FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]);
+  if (ArchlordKristya_IsSpecialSummonLocked() || monsterCol < 0) {
     if (trapZone != NULL)
       Duel_DestroyZone(trapZone, INACTIVE_DUELIST, FALSE);
     return;
@@ -51,13 +54,14 @@ APPEND_TEXT void EffectAMAZONESS_WILLPOWER(void)
     if (Duel_SpecialSummonFromGrave(INACTIVE_DUELIST, cardId, opts) == DUEL_ACTION_OK
         && trapZone != NULL) {
       Duel_ActivateContinuousZone(trapZone);
-      trapZone->unk4 = 1;
+      LinkedReviveTrap_Link(trapZone, (u8)monsterCol);
+      monster = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][monsterCol];
+      if (monster != NULL)
+        monster->unk4 |= 1; /* must-attack / cannot-change-position mark */
     }
   } else if (trapZone != NULL) {
     Duel_DestroyZone(trapZone, INACTIVE_DUELIST, FALSE);
   }
 
   UpdateDuelGfxExceptField();
-
-  /* ponytail: must-attack + mutual destroy-on-leave need battle/leave hooks. */
 }

@@ -18,6 +18,7 @@
 #include "needle_wall.h"
 #include "tour_of_doom.h"
 #include "venom_swamp.h"
+#include "glorious_illusion.h"
 #include "weapon_change.h"
 #include "nightmare_wheel.h"
 #include "mirror_wall.h"
@@ -427,6 +428,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyVenomSwampEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyGloriousIllusionEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyFlavianEndPhase();

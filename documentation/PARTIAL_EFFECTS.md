@@ -9,18 +9,18 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:41 UTC  
-**Remaining partials:** `679`
+**Last updated:** 2026-07-21 22:48 UTC  
+**Remaining partials:** `669`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 72 |
-| `trap` | 41 |
-| `activated` | 452 |
+| `trap` | 32 |
+| `activated` | 451 |
 | `permanent` | 114 |
-| **total** | **679** |
+| **total** | **669** |
 
 ## spell (72)
 
@@ -334,7 +334,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (41)
+## trap (32)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -351,10 +351,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `AMAZONESS_HOT_SPRING`
 - path: `src_custom/trap_effects/amazoness_hot_spring.c`
 - L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
-
-### `AMAZONESS_WILLPOWER`
-- path: `src_custom/trap_effects/amazoness_willpower.c`
-- L62: must-attack + mutual destroy-on-leave need battle/leave hooks.
 
 ### `ANCIENT_GEAR_DUEL`
 - path: `src_custom/trap_effects/ancient_gear_duel.c`
@@ -373,18 +369,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/favourite_contact.c`
 - L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API. Ceiling: return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
 
-### `FOSSIL_EXCAVATION`
-- path: `src_custom/trap_effects/fossil_excavation.c`
-- L78: negate SS effects + mutual destroy-on-leave need leave hooks.
-
 ### `GLADIATOR_BEASTS_MEDUSA_SHIELD`
 - path: `src_custom/trap_effects/gladiator_beasts_medusa_shield.c`
 - L46: cannot be destroyed by card effects / OPT negate opp monster / if sent GY this turn Set GB Trap from Deck need destroy/negate/GY hooks. Ceiling: continuous face-up + marks only.
 - L55: needs trapEffect ID + dispatcher wire + PickZone.
-
-### `GLORIOUS_ILLUSION`
-- path: `src_custom/trap_effects/glorious_illusion.c`
-- L70: End Phase mill 2 + mutual destroy-on-leave need turn/leave hooks.
 
 ### `HARPIE_LADY_ELEGANCE`
 - path: `src_custom/trap_effects/harpie_lady_elegance.c`
@@ -403,30 +391,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L39: once-per-turn on any activation + negate need chain gate. Ceiling: Tribute 1 DM/DMG → SS the other from hand/GY.
 - L74: GY destroy-1 when this leaves S/T zone needs leave hook.
 
-### `METAVERSE`
-- path: `src_custom/trap_effects/metaverse.c`
-- L122: choose activate Field vs add to hand — always add to hand. Ceiling: no Field Zone activate path; upgrade: A/B choice → set gDuel.field.
-- L132: needs trapEffect ID + dispatcher wire.
-
-### `MORPHTRONIC_IMPACT_RETURN`
-- path: `src_custom/trap_effects/morphtronic_impact_return.c`
-- L61: * ponytail: naive append as undrawn only if cardsDrawn==deckSize was wrong;
-
 ### `MORPHTRONIC_MIXUP`
 - path: `src_custom/trap_effects/morphtronic_mixup.c`
 - L75: PickZone for 2 targets + opp choice UI; trapEffect wire.
 
-### `NECROVALLEY_TEMPLE`
-- path: `src_custom/trap_effects/necrovalley_temple.c`
-- L90: -500 ATK/DEF while GK+Necrovalley need stat overlay; destroy-Set Necrovalley S/T from Deck need destroy hook. Ceiling: if GK present, try place Necrovalley from hand/GY; mark opp monsters -1 stage.
-
 ### `NEXT`
 - path: `src_custom/trap_effects/next.c`
 - L42: negate effects + Extra Deck lock (Fusion only) need gates. Ceiling: SS distinct Neo-Spacians / Neos from hand then GY in DEF.
-
-### `PROPHECY`
-- path: `src_custom/trap_effects/prophecy.c`
-- L68: player predict UI (bigger/smaller) + trapEffect wire. Ceiling: random opp hand card; AI random guess / player always higher.
 
 ### `RAIGEKI_BREAK`
 - path: `src_custom/trap_effects/raigeki_break.c`
@@ -440,10 +411,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/reversal_of_fate.c`
 - L43: Arcana Force coin result stored in unk4/effect flags — flip bit0. Ceiling: toggles unk4 bit0; upgrade: real coin-result invert hook.
 - L52: needs trapEffect ID + dispatcher wire + PickZone.
-
-### `RITE_OF_SPIRIT`
-- path: `src_custom/trap_effects/rite_of_spirit.c`
-- L61: unaffected by Necrovalley — already no Necrovalley gate here. PickZone for GY target + trapEffect wire.
 
 ### `SHADDOLL_CORE`
 - path: `src_custom/trap_effects/shaddoll_core.c`
@@ -484,11 +451,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L50: summoned to controller's field not opponent — need cross-field SS. Ceiling: SS to own field then draw; upgrade: SS to ACTIVE monster row.
 - L59: needs trapEffect ID + dispatcher wire.
 
-### `TWILIGHT_CLOTH`
-- path: `src_custom/trap_effects/twilight_cloth.c`
-- L56: exact +200 ATK/DEF per banished until End Phase needs temp overlay. Ceiling: +1 perm stage (~500) per banished (capped).
-- L70: Deck→GY Lightsworn protection mode needs mill-sent trigger.
-
 ### `TWILIGHT_ERASER`
 - path: `src_custom/trap_effects/twilight_eraser.c`
 - L110: PickZone for 2 field targets + mill→SS Lightsworn from hand.
@@ -509,7 +471,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/venom_burn.c`
 - L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
-## activated (452)
+## activated (451)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -530,8 +492,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AMAZONESS_EMPRESS`
 - path: `src_custom/activated_effects/amazoness_empress.c`
-- L51: protect/pierce + leave-field SS Queen need permanent/leave hooks. Ceiling: OPT add Amazoness Queen (or Amazoness) from Deck to hand.
-- L76: leave-field SS → Deck search stand-in (safer than Extra SS).
+- L77: leave-field SS → Deck search stand-in (safer than Extra SS).
 
 ### `AMAZONESS_PET_LIGER`
 - path: `src_custom/activated_effects/amazoness_pet_liger.c`
@@ -546,10 +507,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `AMAZONESS_PRINCESS`
 - path: `src_custom/activated_effects/amazoness_princess.c`
 - L63: name=Queen + attack-send→SS need name/battle hooks. Ceiling: OPT add 1 Amazoness Spell/Trap from Deck.
-
-### `AMAZONESS_QUEEN`
-- path: `src_custom/activated_effects/amazoness_queen.c`
-- L12: Amazoness cannot be destroyed by battle needs battle-destroy protection. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
 ### `AMAZONESS_SAGE`
 - path: `src_custom/activated_effects/amazoness_sage.c`

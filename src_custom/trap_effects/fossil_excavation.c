@@ -6,6 +6,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "linked_revive_trap.h"
 
 void UpdateDuelGfxExceptField(void);
 
@@ -36,16 +37,18 @@ APPEND_TEXT void EffectFOSSIL_EXCAVATION(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(INACTIVE_DUELIST);
   struct DuelCard *trapZone;
+  struct DuelCard *monster;
   struct DuelSummonOpts opts;
   u16 cardId = CARD_NONE;
   u8 i;
+  s8 monsterCol;
 
   Duel_ShowTrapResponseText(FOSSIL_EXCAVATION, gTrapEffectData.originCardId);
 
   trapZone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
 
-  if (ArchlordKristya_IsSpecialSummonLocked()
-      || FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) < 0
+  monsterCol = FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]);
+  if (ArchlordKristya_IsSpecialSummonLocked() || monsterCol < 0
       || Duel_DiscardFromHand(INACTIVE_DUELIST, 1, AnyHandCard, TRUE) != DUEL_ACTION_OK) {
     if (trapZone != NULL)
       Duel_DestroyZone(trapZone, INACTIVE_DUELIST, FALSE);
@@ -66,14 +69,14 @@ APPEND_TEXT void EffectFOSSIL_EXCAVATION(void)
     if (Duel_SpecialSummonFromGrave(INACTIVE_DUELIST, cardId, opts) == DUEL_ACTION_OK
         && trapZone != NULL) {
       Duel_ActivateContinuousZone(trapZone);
-      trapZone->unk4 = 1;
-      /* effects negated: mark summoned via zone scan — ponytail leave destroy */
+      LinkedReviveTrap_Link(trapZone, (u8)monsterCol);
+      monster = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][monsterCol];
+      if (monster != NULL)
+        monster->unk4 |= 2; /* effects-negated stand-in mark */
     }
   } else if (trapZone != NULL) {
     Duel_DestroyZone(trapZone, INACTIVE_DUELIST, FALSE);
   }
 
   UpdateDuelGfxExceptField();
-
-  /* ponytail: negate SS effects + mutual destroy-on-leave need leave hooks. */
 }

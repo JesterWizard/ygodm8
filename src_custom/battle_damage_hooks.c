@@ -50,6 +50,7 @@
 #include "des_counterblow.h"
 #include "continuous_destruction_punch.h"
 #include "amazoness_heirloom.h"
+#include "amazoness_queen.h"
 #include "ancient_gear_fist.h"
 #include "double_tool_c_and_d.h"
 #include "dragon_s_rage.h"
@@ -251,6 +252,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (SerpentSuppression_PreventsBattleDestruction(zone, attacker)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (AmazonessQueen_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -263,6 +266,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (GladiatorBeastsBattleManica_PreventsBattleDestruction(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (SerpentSuppression_PreventsBattleDestruction(zone, attacker)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (AmazonessQueen_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }

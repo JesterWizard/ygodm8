@@ -48,7 +48,8 @@ unsigned char CanActivateAMAZONESS_EMPRESS(void)
   if (zone == NULL || zone->id != AMAZONESS_EMPRESS)
     return FALSE;
 
-  /* ponytail: protect/pierce + leave-field SS Queen need permanent/leave hooks.
+  /* Battle protect for other Amazoness is live via AmazonessQueen_PreventsBattleDestroy.
+   * ponytail: pierce + leave-field SS Queen need permanent/leave hooks.
    * Ceiling: OPT add Amazoness Queen (or Amazoness) from Deck to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

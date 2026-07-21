@@ -64,7 +64,4 @@ APPEND_TEXT void EffectPROPHECY(void)
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: player predict UI (bigger/smaller) + trapEffect wire.
-   * Ceiling: random opp hand card; AI random guess / player always higher. */
 }

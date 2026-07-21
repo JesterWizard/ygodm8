@@ -32,6 +32,7 @@
 #include "soul_levy.h"
 #include "supreme_kings_castle.h"
 #include "thumbs_down.h"
+#include "linked_revive_trap.h"
 
 /* Generated ACTIVATE Effects mirroring EffectScript table. */
 #include "../generated/effect_registry.inc"
@@ -402,6 +403,18 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_CelestialSwordEatosOnLeave,
+  },
+  {
+      CARD_NONE,
+      EFFECT_KIND_TRAP,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_LEAVE_FIELD,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_LinkedReviveTrapOnLeave,
+      NULL,
+      NULL,
+      Op_LinkedReviveTrapOnLeave,
   },
   {
       CARD_NONE,

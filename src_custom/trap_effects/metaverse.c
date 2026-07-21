@@ -119,15 +119,28 @@ APPEND_TEXT void EffectMETAVERSE(void)
     return;
   }
 
-  /* ponytail: choose activate Field vs add to hand — always add to hand.
-   * Ceiling: no Field Zone activate path; upgrade: A/B choice → set gDuel.field. */
-  empty = FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]);
-  if (empty >= 0)
-    InitHandSlotFromCard(gTurnHands[INACTIVE_DUELIST][empty], cardId);
+  /* Prefer place as face-up Field on empty backrow; else add to hand. */
+  empty = FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_BACKROW]);
+  if (empty >= 0 && !Duel_IsBackrowCardOnField(cardId, TRUE)) {
+    struct DuelCard *slot = gTurnZones[INACTIVE_DUELIST_BACKROW][empty];
+
+    slot->id = cardId;
+    slot->isFaceUp = TRUE;
+    slot->isLocked = FALSE;
+    slot->isDefending = FALSE;
+    slot->unkTwo = 0;
+    slot->unkThree = 0;
+    slot->unk4 = 0;
+    slot->willChangeSides = FALSE;
+    ResetPermStage(slot);
+    ResetTempStage(slot);
+  } else {
+    empty = FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]);
+    if (empty >= 0)
+      InitHandSlotFromCard(gTurnHands[INACTIVE_DUELIST][empty], cardId);
+  }
 
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: needs trapEffect ID + dispatcher wire. */
 }

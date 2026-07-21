@@ -57,11 +57,8 @@ APPEND_TEXT void EffectMORPHTRONIC_IMPACT_RETURN(void)
     ClearZone(gTurnHands[INACTIVE_DUELIST][handCol]);
     if (deckSize < 40) {
       gDuelDecks[fixedDuelist].cards[deckSize] = cardId;
-      /* cardsDrawn unchanged — card sits as undrawn if we prepend carefully.
-       * ponytail: naive append as undrawn only if cardsDrawn==deckSize was wrong;
-       * place before drawn cursor by shifting. */
+      /* Insert at cardsDrawn so the card remains undrawn. */
       if (gDuelDecks[fixedDuelist].cardsDrawn > 0) {
-        /* Insert at cardsDrawn position so it remains in deck. */
         u8 pos = gDuelDecks[fixedDuelist].cardsDrawn;
         u8 k;
 
