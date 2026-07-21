@@ -10,17 +10,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
 **Last updated:** 2026-07-21 22:41 UTC  
-**Remaining partials:** `703`
+**Remaining partials:** `690`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 72 |
-| `trap` | 65 |
+| `trap` | 52 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **703** |
+| **total** | **690** |
 
 ## spell (72)
 
@@ -334,7 +334,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (65)
+## trap (52)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -344,10 +344,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/ace_of_wand.c`
 - L33: needs destroy-by-effect trigger wire + trapEffect ID.
 
-### `AEGIS_OF_THE_OCEAN_DRAGON_LORD`
-- path: `src_custom/trap_effects/aegis_of_the_ocean_dragon_lord.c`
-- L37: battle/effect destroy protect until EP + trapEffect wire. Ceiling: marks unk4 on matching monsters; upgrade: destroy gates skip marked until End Phase clear + trap dispatcher.
-
 ### `AMAZONESS_HALL`
 - path: `src_custom/trap_effects/amazoness_hall.c`
 - L43: * ponytail: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
@@ -355,10 +351,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `AMAZONESS_HOT_SPRING`
 - path: `src_custom/trap_effects/amazoness_hot_spring.c`
 - L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
-
-### `AMAZONESS_ONSLAUGHT`
-- path: `src_custom/trap_effects/amazoness_onslaught.c`
-- L20: Battle Phase OPT SS + after-damage banish + leave GY search need battle/leave hooks. Ceiling: SS 1 Amazoness from hand +1 stage (~500 ATK).
 
 ### `AMAZONESS_WILLPOWER`
 - path: `src_custom/trap_effects/amazoness_willpower.c`
@@ -372,18 +364,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/angels_tear.c`
 - L342: need 4 banish targets plus 1 summon target.
 
-### `ARCANA_CALL`
-- path: `src_custom/trap_effects/arcana_call.c`
-- L81: until EP, selected AF uses banished AF's coin effect — needs End Phase clear + Arcana effect dispatch override. Ceiling: marks field monster; GY Arcana banished.
-
-### `BLESSED_WINDS`
-- path: `src_custom/trap_effects/blessed_winds.c`
-- L51: 3 OPT modes + once-per-turn flag need ignition menu. Ceiling on activate: prefer pay 1000 → SS Aroma from GY; else send Plant → +500 LP; else shuffle Plant from GY → +500 LP.
-
-### `BREAK_THE_DESTINY`
-- path: `src_custom/trap_effects/break_the_destiny.c`
-- L34: skip opp next Main Phase 1 + GY search Destiny-mention S/T need phase/GY hooks. Ceiling: destroy 1 Lv8+ Destiny HERO / Destiny End Dragoon.
-
 ### `CHAIN_MATERIAL`
 - path: `src_custom/trap_effects/chain_material.c`
 - L15: Fusion material from Deck/hand/field/GY + cannot attack + End Phase destroy Fusion need fusion/battle/turn hooks. Ceiling: face-up continuous mark (unk4) that Fusion may banish materials broadly.
@@ -392,22 +372,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/cross_dimensonal_duel.c`
 - L27: next Standby return at double ATK + GY protect Golem need turn/destroy hooks. Ceiling: banish 1 Ancient Gear you control.
 
-### `D_TACTICS`
-- path: `src_custom/trap_effects/d_tactics.c`
-- L58: Standby HERO +400 + destroy-Set D-HERO Spell need turn/destroy hooks. Ceiling: +1 stage on HERO monsters; if Lv8+ D-HERO present, banish 1 opp card (field then GY then hand).
-
 ### `DARK_SUPREMACY`
 - path: `src_custom/trap_effects/dark_supremacy.c`
 - L38: "Spells that mention Dark Fusion" not scanned by text.
 - L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
-
-### `DRIED_WINDS`
-- path: `src_custom/trap_effects/dried_winds.c`
-- L47: LP-gain destroy + OPT flags need LP-gain hook. Ceiling: if Aroma + LP≥opp+3000, pay difference and destroy opp face-up monsters while remaining budget covers printed ATK.
-
-### `ETERNAL_SOUL`
-- path: `src_custom/trap_effects/eternal_soul.c`
-- L75: DM unaffected by opp + destroy all on leave need protection / leave hooks. Ceiling: OPT stand-in — SS Dark Magician from hand/GY, else search Dark Magic Attack / Thousand Knives.
 
 ### `EXCHANGE_OF_THE_SPIRIT`
 - path: `src_custom/trap_effects/exchange_of_the_spirit.c`
@@ -416,10 +384,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `FAVOURITE_CONTACT`
 - path: `src_custom/trap_effects/favourite_contact.c`
 - L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API. Ceiling: return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
-
-### `FORGOTTEN_TEMPLE_OF_THE_DEEP`
-- path: `src_custom/trap_effects/forgotten_temple_of_the_deep.c`
-- L34: name-becomes-Umi + End Phase return need field-name/turn hooks. Ceiling: once on activate, banish one Lv4- Fish/SS/Aqua you control.
 
 ### `FOSSIL_EXCAVATION`
 - path: `src_custom/trap_effects/fossil_excavation.c`
@@ -430,17 +394,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L46: cannot be destroyed by card effects / OPT negate opp monster / if sent GY this turn Set GB Trap from Deck need destroy/negate/GY hooks. Ceiling: continuous face-up + marks only.
 - L55: needs trapEffect ID + dispatcher wire + PickZone.
 
-### `GLADIATOR_NAUMACHIA`
-- path: `src_custom/trap_effects/gladiator_naumachia.c`
-- L44: forced attack + destroy-search GB from Deck need battle/destroy hooks. Ceiling: if GB on field, mark opp must-attack; shuffle 1 GB from hand/GY and boost 1 GB by +1 stage (~original DEF stand-in).
-
 ### `GLORIOUS_ILLUSION`
 - path: `src_custom/trap_effects/glorious_illusion.c`
 - L70: End Phase mill 2 + mutual destroy-on-leave need turn/leave hooks.
-
-### `GRAVEKEEPERS_TRAP`
-- path: `src_custom/trap_effects/gravekeepers_trap.c`
-- L83: Exchange lock GY effects/SS + opp Draw Phase look + discard cost need GY/draw gates. Ceiling: if Exchange in GY mark unk4 lock; discard 1 → search Gravekeeper's / EARTH Fairy.
 
 ### `HARPIE_LADY_ELEGANCE`
 - path: `src_custom/trap_effects/harpie_lady_elegance.c`
@@ -450,17 +406,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/harpies_feather_storm.c`
 - L107: opp monster-effect negate this turn + hand activate need gates. Ceiling: if WIND Winged Beast, mark continuous lock via unk4 on this resolve; if Harpie present, also try add Feather Duster (destroy-search stand-in when gate missing).
 
-### `HYSTERIC_PARTY`
-- path: `src_custom/trap_effects/hysteric_party.c`
-- L72: when this face-up leaves → destroy those SS'd Harpie Lady needs leave-field hook. Ceiling: continuous face-up + GY Harpie Lady SS; OPT trapEffect wire.
-
 ### `ICARUS_ATTACK`
 - path: `src_custom/trap_effects/icarus_attack.c`
 - L51: needs trapEffect wire + PickZone for 2 targets.
-
-### `IMPERIAL_TOMBS_OF_NECROVALLEY`
-- path: `src_custom/trap_effects/imperial_tombs_of_necrovalley.c`
-- L41: negate need Spell/Trap/monster chain gate + once-per-turn flag. Ceiling: if Gravekeeper + Necrovalley present, destroy origin card.
 
 ### `INFINITE_IMPERMANENCE`
 - path: `src_custom/trap_effects/infinite_impermanence.c`

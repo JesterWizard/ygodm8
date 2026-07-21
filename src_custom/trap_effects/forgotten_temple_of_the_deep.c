@@ -31,9 +31,6 @@ static void ActivateFORGOTTEN_TEMPLE_OF_THE_DEEPZone(struct DuelCard *zone)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: name-becomes-Umi + End Phase return need field-name/turn hooks.
-   * Ceiling: once on activate, banish one Lv4- Fish/SS/Aqua you control. */
-
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *m = gFixedZones[row][col];
 

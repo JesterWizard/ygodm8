@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round6 Batch4
+**Last worked on:** 2026-07-21 — Round6 Batch5
 
-**Outcome:** Cleared Battle Mania through War Chariot “when Effect runs” ceilings. Partials **715→703**.
+**Outcome:** Activate-path continuous trap ceiling clears (Aegis→Imperial Tombs + Blessed Winds). Partials **703→690**.
 
-**Open / next:** Round6 Batches 5–6.
+**Open / next:** Round6 Batch6 then notify.

@@ -33,8 +33,4 @@ APPEND_TEXT void EffectAEGIS_OF_THE_OCEAN_DRAGON_LORD(void)
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: battle/effect destroy protect until EP + trapEffect wire.
-   * Ceiling: marks unk4 on matching monsters; upgrade: destroy gates skip
-   * marked until End Phase clear + trap dispatcher. */
 }

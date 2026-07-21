@@ -41,10 +41,6 @@ static void ActivateGLADIATOR_NAUMACHIAZone(struct DuelCard *zone)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: forced attack + destroy-search GB from Deck need battle/destroy
-   * hooks. Ceiling: if GB on field, mark opp must-attack; shuffle 1 GB from
-   * hand/GY and boost 1 GB by +1 stage (~original DEF stand-in). */
-
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *m = gFixedZones[row][col];
 

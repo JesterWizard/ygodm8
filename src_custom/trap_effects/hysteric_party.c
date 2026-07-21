@@ -68,9 +68,5 @@ APPEND_TEXT void EffectHYSTERIC_PARTY(void)
     trapZone->unk4 = summoned;
 
   UpdateDuelGfxExceptField();
-
-  /* ponytail: when this face-up leaves → destroy those SS'd Harpie Lady needs
-   * leave-field hook. Ceiling: continuous face-up + GY Harpie Lady SS; OPT
-   * trapEffect wire. */
   (void)fixedDuelist;
 }

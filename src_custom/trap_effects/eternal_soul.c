@@ -72,10 +72,6 @@ static void ActivateETERNAL_SOULZone(struct DuelCard *zone)
   if (Duel_ActivateContinuousTrapPreamble(zone, ETERNAL_SOUL) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: DM unaffected by opp + destroy all on leave need protection /
-   * leave hooks. Ceiling: OPT stand-in — SS Dark Magician from hand/GY, else
-   * search Dark Magic Attack / Thousand Knives. */
-
   zone->unk4 = 1; /* protection mark for DMs */
 
   if (!ArchlordKristya_IsSpecialSummonLocked()

@@ -44,10 +44,6 @@ static void ActivateDRIED_WINDSZone(struct DuelCard *zone)
   if (Duel_ActivateContinuousTrapPreamble(zone, DRIED_WINDS) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: LP-gain destroy + OPT flags need LP-gain hook.
-   * Ceiling: if Aroma + LP≥opp+3000, pay difference and destroy opp face-up
-   * monsters while remaining budget covers printed ATK. */
-
   if (ControlsAroma() && myLp >= oppLp + 3000) {
     u16 pay = myLp - oppLp;
     u16 budget;

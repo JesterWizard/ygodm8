@@ -17,9 +17,6 @@ static void ActivateAMAZONESS_ONSLAUGHTZone(struct DuelCard *zone)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: Battle Phase OPT SS + after-damage banish + leave GY search need
-   * battle/leave hooks. Ceiling: SS 1 Amazoness from hand +1 stage (~500 ATK). */
-
   if (ArchlordKristya_IsSpecialSummonLocked()
       || FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) < 0)
     return;

@@ -38,9 +38,6 @@ APPEND_TEXT void EffectIMPERIAL_TOMBS_OF_NECROVALLEY(void)
 
   Duel_ShowTrapResponseText(IMPERIAL_TOMBS_OF_NECROVALLEY, gTrapEffectData.originCardId);
 
-  /* ponytail: negate need Spell/Trap/monster chain gate + once-per-turn flag.
-   * Ceiling: if Gravekeeper + Necrovalley present, destroy origin card. */
-
   if (FieldHasGravekeepers() && FieldHasNecrovalley()) {
     origin = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
     if (origin != NULL)

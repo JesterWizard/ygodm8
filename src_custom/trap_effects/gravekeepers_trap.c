@@ -80,10 +80,6 @@ static void ActivateGRAVEKEEPERS_TRAPZone(struct DuelCard *zone)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: Exchange lock GY effects/SS + opp Draw Phase look + discard cost
-   * need GY/draw gates. Ceiling: if Exchange in GY mark unk4 lock; discard 1
-   * → search Gravekeeper's / EARTH Fairy. */
-
   if (ExchangeOfSpiritInGy())
     zone->unk4 = 1; /* GY lock mark */
 

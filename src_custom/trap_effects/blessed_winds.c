@@ -48,10 +48,6 @@ static void ActivateBLESSED_WINDSZone(struct DuelCard *zone)
   if (Duel_ActivateContinuousTrapPreamble(zone, BLESSED_WINDS) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: 3 OPT modes + once-per-turn flag need ignition menu.
-   * Ceiling on activate: prefer pay 1000 → SS Aroma from GY; else send Plant
-   * → +500 LP; else shuffle Plant from GY → +500 LP. */
-
   myLp = gDuelLifePoints[fixedDuelist];
   if (myLp > 1000 && !ArchlordKristya_IsSpecialSummonLocked()
       && FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) >= 0

@@ -55,10 +55,6 @@ static void ActivateD_TACTICSZone(struct DuelCard *zone)
   if (Duel_ActivateContinuousTrapPreamble(zone, D_TACTICS) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: Standby HERO +400 + destroy-Set D-HERO Spell need turn/destroy
-   * hooks. Ceiling: +1 stage on HERO monsters; if Lv8+ D-HERO present, banish
-   * 1 opp card (field then GY then hand). */
-
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *m = gFixedZones[row][col];
 

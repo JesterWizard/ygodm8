@@ -31,9 +31,6 @@ APPEND_TEXT void EffectBREAK_THE_DESTINY(void)
 
   Duel_ShowTrapResponseText(BREAK_THE_DESTINY, gTrapEffectData.originCardId);
 
-  /* ponytail: skip opp next Main Phase 1 + GY search Destiny-mention S/T need
-   * phase/GY hooks. Ceiling: destroy 1 Lv8+ Destiny HERO / Destiny End Dragoon. */
-
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];
 

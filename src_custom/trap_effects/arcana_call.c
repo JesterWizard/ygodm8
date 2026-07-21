@@ -77,10 +77,6 @@ APPEND_TEXT void EffectARCANA_CALL(void)
   if (fieldAf != NULL && banishedId != CARD_NONE) {
     /* Mark copied identity until EP. */
     fieldAf->unk4 = (u8)(banishedId & 0xFF);
-
-    /* ponytail: until EP, selected AF uses banished AF's coin effect — needs
-     * End Phase clear + Arcana effect dispatch override. Ceiling: marks field
-     * monster; GY Arcana banished. */
   }
 
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
