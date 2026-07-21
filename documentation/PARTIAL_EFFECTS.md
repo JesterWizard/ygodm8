@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 20:52 UTC  
-**Remaining partials:** `809`
+**Last updated:** 2026-07-21 21:05 UTC  
+**Remaining partials:** `796`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 128 |
+| `spell` | 115 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **809** |
+| **total** | **796** |
 
-## spell (128)
+## spell (115)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -167,7 +167,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DYNAMIC_EQUIP`
 - path: `src_custom/spell_effects/dynamic_equip.c`
-- L35: gTurnZones uses mirrored columns on opponent rows
+- L36: gTurnZones uses mirrored columns on opponent rows
 
 ### `EN_ENGAGE_NEO_SPACE`
 - path: `src_custom/spell_effects/en_engage_neo_space.c`
@@ -232,67 +232,30 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/illusion_magic.c`
 - L137: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 
-### `KNIGHTS_TITLE`
-- path: `src_custom/spell_effects/knights_title.c`
-- L109: special-face-up sets unk4=2 and blocks DMK's on-summon effect
-
 ### `LEMURIA_THE_FORGOTTEN_CITY`
 - path: `src_custom/spell_effects/lemuria_the_forgotten_city.c`
-- L134: no per-zone Level overlay API — levels come from SetCardInfo / Legendary Ocean adjusters only. Ceiling: OPT marks used + shows text; Levels unchanged. Upgrade: turn-scoped level bonus on each controlled WATER (= waterCount) cleared at End Phase (card_hooks GetLegendaryOcean-style).
-- L176: +200 ATK/DEF for all WATER monsters needs a field-stat applier outside this file (clone ApplyLegendaryOceanFieldStatBoostForZone). Ceiling: face-up field + FIELD_UMI only; upgrade: LynJump/stat overlay → if face-up LEMURIA and ATTRIBUTE_WATER then ATK/DEF += 200.
-
-### `LEV_SHADDOLL_FUSION`
-- path: `src_custom/spell_effects/lev_shaddoll_fusion.c`
-- L14: Extra Deck heavy — on-activate send 1 Fusion from Extra to GY, and ignition (Tribute Fusion / SS Shaddoll Fusion different Attr ATK 0 / OPT / no Extra SS that turn) all need a duel-time Extra Deck browser + SS path. Trunk ExtraDeck_* APIs are deck-builder only. Ceiling: continuous face-up text only; upgrade: Extra Deck pick/send + tribute+SS ignition with OPT flag.
+- L191: no per-zone Level overlay API — levels come from SetCardInfo / Legendary Ocean adjusters only. Ceiling: OPT marks used + shows text; Levels unchanged. Upgrade: turn-scoped level bonus on each controlled WATER (= waterCount) cleared at End Phase (card_hooks GetLegendaryOcean-style).
 
 ### `LEVEL_TUNING`
 - path: `src_custom/spell_effects/level_tuning.c`
-- L50: no TempLevel / zone level-mod field (DuelCard has only tempStage; level lives in ROM card data via SetCardInfo). Cannot apply -1 Level here. End Phase restore also needs a turn hook outside this file. Ceiling: printed Level unchanged; upgrade: TempLevel overlay + turn_effect_hooks End Phase clear that restores marked zones.
+- L13: the marked target can feed the card-info UI through LevelTuning_ApplyLevelToCardInfo, but the duel engine has no dynamic Level query for tribute, Ritual, or Synchro rules. Ceiling: display-only -1 Level; upgrade: route all level consumers through this zone overlay.
 
 ### `LIGHT_BARRIER`
 - path: `src_custom/spell_effects/light_barrier.c`
-- L8: Standby coin (Tails → negate until next Standby), Arcana Force summon choose-without-coin, and battle-destroy LP gain need turn_effect / summon / battle_effects hooks outside this file. Ceiling: continuous face-up only (Arcana Reading already checks face-up LIGHT_BARRIER for choose-Heads path); upgrade:
-
-### `LIGHT_FORCE`
-- path: `src_custom/spell_effects/light_force.c`
-- L283: "cannot Special Summon except Arcana Force for the rest of this turn" needs a CanSpecialSummon / Duel_CardCannotBeSpecialSummoned gate outside this file. Ceiling: discard+search OPT only; upgrade: turn flag → if set and card is not Arcana Force then block SS.
-- L308: Standby coin (if LIGHT_BARRIER not in Field Zone; Tails → negate until next Standby) needs turn_effect_hooks outside this file. Ceiling: continuous face-up only; upgrade: Standby → if face-up LIGHT_FORCE and no face-up LIGHT_BARRIER then toss coin; Tails set negated flag.
-- L313: Fairy monsters +300 ATK/DEF needs a field-stat applier outside this file (stage steps are 500). Ceiling: face-up continuous only; upgrade: LynJump/stat overlay → if face-up LIGHT_FORCE && !negated && TYPE_FAIRY then ATK/DEF += LIGHT_FORCE_FAIRY_STAT_BONUS.
+- L12: EffectEvent battle-destroy payloads expose the destroyed monster, not its attacker. Ceiling: LP gain needs a battle parent that supplies both zones to LightBarrier_GetArcanaForceBattleDestroyLp; upgrade: add attacker data to the event payload.
 
 ### `LIGHTNING_STORM`
 - path: `src_custom/spell_effects/lightning_storm.c`
-- L118: once-per-turn not tracked after this normal spell leaves the field (no shared turn-flag RAM editable from this file alone). Ceiling: multiple Lightning Storm per turn; upgrade: duel-state OPT bit.
-- L133: no dedicated choice UI — A = monsters, B = Spells/Traps. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L132: no dedicated choice UI — A = monsters, B = Spells/Traps. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `LIGHTSWORN_SABRE`
 - path: `src_custom/spell_effects/lightsworn_sabre.c`
-- L60: stage unit is 500 ATK — applied +500, not printed +700. Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART (ApplyHeatedHeartAtkBonusToCardInfo) after listing LIGHTSWORN_SABRE in IsActiveDynamicEquipSpellZone.
-- L71: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path → if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and RegisterDynamicEquip again.
+- L31: this exact +200 overlay must be called by both card-info stat pipelines in card_hooks.c. Ceiling: displayed and battle ATK stay +500 until those parent wire points invoke this export.
+- L84: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path → if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and RegisterDynamicEquip again.
 
 ### `LIGHTSWORN_SANCTUARY`
 - path: `src_custom/spell_effects/lightsworn_sanctuary.c`
-- L323: Shine Counters on Deck→GY mill / remove 2 instead of destroy need mill + destroy-gate + counter storage outside this file (DuelCard has no shine-counter field). Ceiling: continuous face-up + OPT recycle only; upgrade: mill hook → ++Shine; Duel_DestroyZone on Lightsworn → if counters >= 2*n then counters -= 2*n and skip destroy.
-
-### `MAGICIANS_LEFT_HAND`
-- path: `src_custom/spell_effects/magicians_left_hand.c`
-- L14: negate opponent's first Trap Card/effect each turn (while you control a Spellcaster) then destroy needs a trap-resolve gate + per-turn "first trap used" flag outside this file (no in-file trap negate dispatch; no turn-scoped counter on DuelCard/field). Ceiling: face-up continuous only; upgrade: trap-activate/resolve hook → if
-
-### `MAGICIANS_RIGHT_HAND`
-- path: `src_custom/spell_effects/magicians_right_hand.c`
-- L14: negate opponent's first Spell Card/effect each turn (while you control a Spellcaster) then destroy needs a spell-resolve gate + per-turn "first spell used" flag outside this file (no in-file spell negate dispatch; no turn-scoped counter on DuelCard/field). Ceiling: face-up continuous only; upgrade: spell-activate/resolve hook → if
-
-### `MARCH_OF_THE_DARK_BRIGADE`
-- path: `src_custom/spell_effects/march_of_the_dark_brigade.c`
-- L265: once-per-turn activation not tracked (no BSS turn flag editable from this spell file alone). Ceiling: can activate multiple Marches per turn; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
-
-### `MASK_OF_DISPEL`
-- path: `src_custom/spell_effects/mask_of_dispel.c`
-- L91: Standby Phase 500 burn to the selected Spell's controller needs a turn_effect_hooks Standby path outside this file (clone TryApplyNightmareWheelStandbyDamage). Ceiling: continuous face-up + target stash only; upgrade: Standby → if face-up MASK_OF_DISPEL with unk4 target still present then Duel_ChangeLp(controller, -MASK_OF_DISPEL_STANDBY_DAMAGE).
-- L98: self-destroy when selected Spell leaves the field needs a destroy/leave-field listener outside this file. Ceiling: target stash only; upgrade: OnZoneClear → if id matches stashed MASK_OF_DISPEL target then Duel_DestroyZone(mask).
-
-### `MASK_OF_THE_ACCURSED`
-- path: `src_custom/spell_effects/mask_of_the_accursed.c`
-- L25: attack lock + Standby 500 burn need hooks outside this file. Ceiling: equip registers only (like Raregold Armor without force-target). Upgrade: wire DynamicEquipTargetsMonsterWithSpell(MASK_OF_THE_ACCURSED) into duel_attack_restrictions.c (CannotAttack) and turn_effect_hooks.c (Duel_ChangeLp controller, -MASK_OF_THE_ACCURSED_STANDBY_DAMAGE) — clone
+- L328: Shine Counters on Deck→GY mill / remove 2 instead of destroy need mill + destroy-gate + counter storage outside this file (DuelCard has no shine-counter field). Ceiling: continuous face-up + OPT recycle only; upgrade: mill hook → ++Shine; Duel_DestroyZone on Lightsworn → if counters >= 2*n then counters -= 2*n and skip destroy.
 
 ### `MAUSOLEUM_OF_THE_EMPEROR`
 - path: `src_custom/spell_effects/mausoleum_of_the_emperor.c`
@@ -301,51 +264,27 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `METAMORPHOSIS`
 - path: `src_custom/spell_effects/metamorphosis.c`
-- L85: Extra Deck Special Summon (Fusion of matching Level) needs a duel-time Extra Deck browser + SS path. Trunk ExtraDeck_* APIs are deck-builder only and must not be used mid-duel. Ceiling: tribute-only; upgrade: ExtraDeck duel pick filtered by COLOR_FUSION + level == tributeLevel, then Duel_SpecialSummonMonsterId.
+- L91: without the runtime Extra Deck, use registered Fusion results as a stand-in. Ceiling: permits a result not physically in an Extra Deck.
 
 ### `MIRACLE_CONTACT`
 - path: `src_custom/spell_effects/miracle_contact.c`
-- L16: * ponytail: not in gFusionRecipes — local table only. Ceiling: misses newer Neos
-
-### `MIRAGE_OF_NIGHTMARE`
-- path: `src_custom/spell_effects/mirage_of_nightmare.c`
-- L106: opponent-Standby draw / next-Standby discard need turn_effect_hooks call to TryApplyMirageOfNightmareStandby (clone Nightmare Wheel wiring). Ceiling: continuous face-up + unk4 pending-discard store only until wired; upgrade: turn_effect_hooks Standby → TryApplyMirageOfNightmareStandby.
+- L34: Cosmo Neos needs three Neo-Spacians with different Attributes, which the concrete FusionRecipe matcher cannot express. Ceiling: Cosmo Neos is not selectable. Upgrade: a predicate-based Contact Fusion material selector.
 
 ### `MOLTING_ESCAPE`
 - path: `src_custom/spell_effects/molting_escape.c`
-- L62: OPT battle-protect + +300 ATK when applied needs a battle_effects / CanMonsterBeDestroyedByBattle / damage-step hook outside this file (like Spirit Reaper / Kishido via Duel_ApplyBattleDestroyProtection). Ceiling: Reptile equip register only; upgrade: if DynamicEquipTargetsMonsterWithSpell (zone, MOLTING_ESCAPE) and effectUsedThisTurn clear, skip battle destroy once,
-
-### `MORALE_BOOST`
-- path: `src_custom/spell_effects/morale_boost.c`
-- L17: equip-on / equip-off LP swing needs field/equip hooks outside this file (RegisterDynamicEquip / OnDynamicEquipZoneAboutToClear / vanilla equip attach-detach). Ceiling: continuous face-up only; upgrade: when any Equip Spell equips → Duel_ChangeLp(controller, +MORALE_BOOST_LP_GAIN); when any Equip Spell leaves field → Duel_ChangeLp(controller, -MORALE_BOOST_DAMAGE).
-
-### `MORPHTRONIC_CORD`
-- path: `src_custom/spell_effects/morphtronic_cord.c`
-- L57: battle-position-change → destroy 1 S/T needs an external position-change hook (monster_action_menu / battle-position paths). Ceiling: equip-only works; destroy trigger not wired from this file. Upgrade: LynJump position-change → if DynamicEquipTargetsMonsterWithSpell (zone, MORPHTRONIC_CORD) then PickZone destroy one S/T.
+- L95: one stage is +500 rather than the printed +300. Ceiling: the protected monster gains +500 ATK. Upgrade: exact +300 ATK overlay.
 
 ### `MORPHTRONIC_ENGINE`
 - path: `src_custom/spell_effects/morphtronic_engine.c`
 - L88: stage unit is 500 ATK — nearest-stage double, not exact original×2 when ATK is not a multiple of 500. Ceiling: stage-approx only; upgrade: exact-ATK overlay while equipped (clone Power Bond / Big Bang Shot).
-- L105: 2nd Standby destroy + burn original ATK needs turn_effect_hooks call to TryApplyMorphtronicEngineStandby (clone Capsule / Future Fusion wiring). Ceiling: equip + stage ATK only until wired; upgrade: Standby → TryApplyMorphtronicEngineStandby.
 
 ### `MORPHTRONIC_MAP`
 - path: `src_custom/spell_effects/morphtronic_map.c`
-- L107: Morph Counter on battle-position change needs a position-change hook outside this file (no in-file Flip/ChangeBattlePosition dispatch). Ceiling: face-up field + unk4 counter slot (never rises alone); upgrade: after battle position change → if face-up MORPHTRONIC_MAP then zone->unk4++.
-- L112: +300 ATK per Morph Counter for Morphtronic monsters needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up MORPHTRONIC_MAP and IsMorphtronicMonster(id) then ATK += 300 * zone->unk4
-- L119: destroy→GY → optional SS Morphtronic from GY needs a destroy hook + PickZone/GY menu outside this file. Ceiling: field face-up only; upgrade: on ClearZoneAndSendMonToGraveyard of face-up MORPHTRONIC_MAP → PickZone Morphtronic in GY → Duel_SpecialSummonFromGrave.
+- L148: destroy→GY → optional SS Morphtronic from GY needs a destroy hook + PickZone/GY menu outside this file. Ceiling: field face-up only; upgrade: on ClearZoneAndSendMonToGraveyard of face-up MORPHTRONIC_MAP → PickZone Morphtronic in GY → Duel_SpecialSummonFromGrave.
 
 ### `MORPHTRONIC_REPAIR_UNIT`
 - path: `src_custom/spell_effects/morphtronic_repair_unit.c`
-- L203: cannot change Battle Position — lockMonster / isLocked is the nearest in-file flag (also blocks attack in some validators). Ceiling: battle-position change may still be allowed; upgrade: position-change gate → if DynamicEquipTargetsMonsterWithSpell(zone, MORPHTRONIC_REPAIR_UNIT) then forbid manual position change.
-
-### `MORPHTRONIC_RUSTY_ENGINE`
-- path: `src_custom/spell_effects/morphtronic_rusty_engine.c`
-- L87: destroy-burn (orig ATK to both players) needs a field/destroy hook outside this file (e.g. battle_damage / OnDynamicEquipZoneAboutToClear).
-
-### `MYSTIC_MINE`
-- path: `src_custom/spell_effects/mystic_mine.c`
-- L173: fewer-monsters lock (no monster effects / no attacks) needs CanActivateMonsterEffect + CanDeclareAttack gates outside this file. Ceiling: face-up field + MysticMine_GetLockedFixedDuelist helper only; upgrade: attack/monster-effect gates → if locked duelist matches controller then block.
-- L179: End Phase same-count destroy needs turn_effect_hooks call to TryApplyMysticMineEndPhase. Ceiling: face-up field only until wired; upgrade: End Phase → TryApplyMysticMineEndPhase.
+- L208: Parent battle-position paths have no shared interception point. Ceiling: the exported predicate is not consulted, so the equipped monster may still change position. Upgrade: add a common position-change gate and call MorphtronicRepairUnit_PreventsBattlePositionChange(zone).
 
 ### `MYSTIK_WOK`
 - path: `src_custom/spell_effects/mystik_wok.c`
@@ -353,13 +292,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `NECROVALLEY`
 - path: `src_custom/spell_effects/necrovalley.c`
-- L89: +500 ATK/DEF for Gravekeeper's needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up NECROVALLEY and name contains "Gravekeeper" then ATK/DEF += 500.
-- L94: GY cannot be banished / moved / Type-Attribute-changed needs GY-move + banish + SetCardInfo-in-GY gates outside this file. Ceiling: continuous face-up only; upgrade: Duel_BanishGraveyard* / GY-to-elsewhere / GY Type-Attribute change → if face-up NECROVALLEY then negate.
+- L116: GY cannot be banished / moved / Type-Attribute-changed needs GY-move + banish + SetCardInfo-in-GY gates outside this file. Ceiling: continuous face-up only; upgrade: Duel_BanishGraveyard* / GY-to-elsewhere / GY Type-Attribute change → if face-up NECROVALLEY then negate.
 
 ### `NECROVALLEY_THRONE`
 - path: `src_custom/spell_effects/necrovalley_throne.c`
-- L128: no dedicated choice UI — A = add Gravekeeper's, B = Normal Summon. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L281: no once-per-turn tracker without file BSS / shared OPT flags. Ceiling: can activate multiple Throne copies per turn; upgrade: duel-state OPT bit.
+- L130: no dedicated choice UI — A = add Gravekeeper's, B = Normal Summon. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 
 ### `NEO_SPACE`
 - path: `src_custom/spell_effects/neo_space.c`

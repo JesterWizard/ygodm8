@@ -102,10 +102,6 @@ static void EquipMorphtronicEngine(struct DuelCard *spellZone, struct DuelCard *
   NotifyDynamicEquipFieldChanged();
   Duel_NotifyMonsterZoneChanged(target);
   Duel_RefreshMonsterStatOverlays();
-/* ponytail: 2nd Standby destroy + burn original ATK needs turn_effect_hooks call to
-   * TryApplyMorphtronicEngineStandby (clone Capsule / Future Fusion wiring).
-   * Ceiling: equip + stage ATK only until wired; upgrade: Standby →
-   * TryApplyMorphtronicEngineStandby. */
 }
 
 static void ResolveMorphtronicEngineTarget(u8 fixedRow, u8 fixedCol)
@@ -191,7 +187,6 @@ static void ResolveMorphtronicEngineStandby(struct DuelCard *spellZone)
     Duel_ChangeLp(ACTIVE_DUELIST, -(s32)burn, TRUE);
 }
 
-/* Wire from turn_effect_hooks Standby (clone TryApplyDifferentDimensionCapsuleStandby). */
 void TryApplyMorphtronicEngineStandby(void)
 {
   u8 i;

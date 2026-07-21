@@ -6,7 +6,34 @@
 #include "duel_helpers.h"
 #include "spell_effects.h"
 
+#define NECROVALLEY_GRAVEKEEPER_STAT_BONUS 500
+
 void SetDuelFieldGfx(u8 field);
+
+static const char sGravekeeperArchetypeName[] APPEND_RODATA = "Gravekeeper";
+
+u8 Necrovalley_IsActive(void)
+{
+  return Duel_IsBackrowCardOnField(NECROVALLEY, TRUE);
+}
+
+u8 Necrovalley_IsGravekeeperMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sGravekeeperArchetypeName);
+}
+
+void Necrovalley_ApplyGravekeeperStatBonusToCardInfo(const struct DuelCard *zone)
+{
+  if (zone == NULL || !Necrovalley_IsActive()
+      || !Necrovalley_IsGravekeeperMonster(zone->id))
+    return;
+
+  gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + NECROVALLEY_GRAVEKEEPER_STAT_BONUS);
+  gCardInfo.def = Duel_ClampStat((u32)gCardInfo.def + NECROVALLEY_GRAVEKEEPER_STAT_BONUS);
+}
 
 static u8 IsVanillaTerrainFieldSpell(u16 cardId)
 {
@@ -86,11 +113,6 @@ static void NECROVALLEY_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(NECROVALLEY);
 
-  /* ponytail: +500 ATK/DEF for Gravekeeper's needs a field-stat applier
-   * outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids
-   * registered in duel_helpers.c). Ceiling: face-up field only; upgrade:
-   * LynJump/stat overlay → if face-up NECROVALLEY and name contains
-   * "Gravekeeper" then ATK/DEF += 500. */
   /* ponytail: GY cannot be banished / moved / Type-Attribute-changed needs
    * GY-move + banish + SetCardInfo-in-GY gates outside this file. Ceiling:
    * continuous face-up only; upgrade: Duel_BanishGraveyard* / GY-to-elsewhere

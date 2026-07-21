@@ -4,6 +4,7 @@
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
@@ -111,9 +112,10 @@ static u8 CanNormalSummonGravekeeper(void)
   return HandHasGravekeeper(ACTIVE_DUELIST);
 }
 
-static u8 CanActivateNecrovalleyThrone(void)
+u8 CanActivateNECROVALLEY_THRONE(void)
 {
-  return CanSearchGravekeeper() || CanNormalSummonGravekeeper();
+  return !EffectOpt_IsUsed(NECROVALLEY_THRONE)
+         && (CanSearchGravekeeper() || CanNormalSummonGravekeeper());
 }
 
 static void WaitForNoButtonsHeld(void)
@@ -275,11 +277,8 @@ static void NECROVALLEY_THRONE_ResolveBody(void)
 
   Duel_ShowEffectText(NECROVALLEY_THRONE);
 
-  if (IsDuelOver() == TRUE || !CanActivateNecrovalleyThrone())
+  if (IsDuelOver() == TRUE || !CanActivateNECROVALLEY_THRONE())
     return;
-
-  /* ponytail: no once-per-turn tracker without file BSS / shared OPT flags.
-   * Ceiling: can activate multiple Throne copies per turn; upgrade: duel-state OPT bit. */
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
 
@@ -309,12 +308,13 @@ static void NECROVALLEY_THRONE_ResolveBody(void)
 
 APPEND_TEXT void EffectNECROVALLEY_THRONE(void)
 {
-  if (!CanActivateNecrovalleyThrone()) {
+  if (!CanActivateNECROVALLEY_THRONE()) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
   }
 
+  EffectOpt_MarkUsed(NECROVALLEY_THRONE);
   if (Duel_TryResolveSpellThroughTraps(NECROVALLEY_THRONE, NECROVALLEY_THRONE_ResolveBody)
       == DUEL_ACTION_BLOCKED)
     return;

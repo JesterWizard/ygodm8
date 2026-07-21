@@ -53,6 +53,24 @@ u8 CanActivateMORPHTRONIC_RUSTY_ENGINE(void)
   return HasRustyEngineTarget();
 }
 
+void MorphtronicRustyEngine_InflictDestroyBurn(const struct DuelCard *target)
+{
+  u16 originalAtk;
+
+  if (!DynamicEquipTargetsMonsterWithSpell(target, MORPHTRONIC_RUSTY_ENGINE))
+    return;
+
+  SetCardInfo(target->id);
+  originalAtk = gCardInfo.atk;
+  if (originalAtk == 0)
+    return;
+
+  if (Duel_ChangeLp(DUEL_PLAYER, -(s32)originalAtk, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_ChangeLp(DUEL_OPPONENT, -(s32)originalAtk, TRUE);
+}
+
 static void DestroyRustyEngineSpellZone(void)
 {
   struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -84,8 +102,8 @@ static void ResolveRustyEngineTarget(u8 fixedRow, u8 fixedCol)
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
 
-  /* ponytail: destroy-burn (orig ATK to both players) needs a field/destroy hook
-   * outside this file (e.g. battle_damage / OnDynamicEquipZoneAboutToClear). */
+  /* Parent wire: before clearing a MORPHTRONIC_RUSTY_ENGINE dynamic-equip
+   * spell link, call MorphtronicRustyEngine_InflictDestroyBurn(targetZone). */
 }
 
 static void CancelRustyEngineTargeting(void)

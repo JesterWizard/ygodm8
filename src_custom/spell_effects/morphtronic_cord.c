@@ -47,6 +47,11 @@ static u8 HasMorphtronicCordTarget(void)
   return FALSE;
 }
 
+u8 MorphtronicCord_ShouldDestroySpellTrapOnPositionChange(const struct DuelCard *zone)
+{
+  return DynamicEquipTargetsMonsterWithSpell(zone, MORPHTRONIC_CORD);
+}
+
 static void EquipMorphtronicCord(struct DuelCard *spellZone, struct DuelCard *target)
 {
   if (!RegisterDynamicEquip(spellZone, target, MORPHTRONIC_CORD, 0))
@@ -54,11 +59,6 @@ static void EquipMorphtronicCord(struct DuelCard *spellZone, struct DuelCard *ta
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-  /* ponytail: battle-position-change → destroy 1 S/T needs an external
-   * position-change hook (monster_action_menu / battle-position paths).
-   * Ceiling: equip-only works; destroy trigger not wired from this file.
-   * Upgrade: LynJump position-change → if DynamicEquipTargetsMonsterWithSpell
-   * (zone, MORPHTRONIC_CORD) then PickZone destroy one S/T. */
 }
 
 static void ResolveMorphtronicCordTarget(u8 fixedRow, u8 fixedCol)

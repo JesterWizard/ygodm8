@@ -101,6 +101,7 @@ extern u8 CanActivateMORPHTRONIC_CORD(void);
 extern u8 CanActivateMORPHTRONIC_ENGINE(void);
 extern u8 CanActivateMORPHTRONIC_RUSTY_ENGINE(void);
 extern u8 CanActivateMYSTIK_WOK(void);
+extern u8 CanActivateNECROVALLEY_THRONE(void);
 extern u8 CanActivateNEUTRON_BLAST(void);
 extern u8 CanActivateNEX(void);
 extern u8 CanActivateOIL(void);
@@ -216,6 +217,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { MORPHTRONIC_ENGINE, CanActivateMORPHTRONIC_ENGINE, TRUE },
   { MORPHTRONIC_RUSTY_ENGINE, CanActivateMORPHTRONIC_RUSTY_ENGINE, TRUE },
   { MYSTIK_WOK, CanActivateMYSTIK_WOK, TRUE },
+  { NECROVALLEY_THRONE, CanActivateNECROVALLEY_THRONE, TRUE },
   { NEUTRON_BLAST, CanActivateNEUTRON_BLAST, TRUE },
   { NEX, CanActivateNEX, TRUE },
   { OIL, CanActivateOIL, TRUE },

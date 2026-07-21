@@ -23,6 +23,7 @@
 #include "power_bond.h"
 #include "big_bang_shot.h"
 #include "h_heated_heart.h"
+#include "lemuria_the_forgotten_city.h"
 #include "mirror_wall.h"
 #include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
@@ -638,7 +639,9 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyElementalHeroGaiaStatMod(zone);
   ApplyHarpieLady1WindAtkBoost(zone);
   ApplyLegendaryOceanFieldStatBoostForZone(zone);
+  ApplyLemuriaFieldStatBoostForZone(zone);
   ApplyAmazonessVillageFieldStatBoostForZone(zone);
+  ApplyLightForceFairyStatBoostForZone(zone);
   ApplyAncientGearCastleAtkBoostForZone(zone);
   ApplyBurdenOfTheMightyStatForZone(zone);
   ApplyColosseumCageStatForZone(zone);
@@ -648,6 +651,10 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyTheDespairUranusAtkBoost(zone);
   ApplyGladiatorBeastsBattleGladiusAtkCorrection(zone);
   ApplyHarpiesHuntingGroundStatBonusToCardInfo(zone);
+  ApplyLightswornSabreAtkBonusToCardInfo(zone);
+  ApplyMorphtronicMapAtkBonusToCardInfo(zone);
+  Necrovalley_ApplyGravekeeperStatBonusToCardInfo(zone);
+  LevelTuning_ApplyLevelToCardInfo(zone);
   gSetFinalStatZone = NULL;
 }
 
@@ -763,7 +770,9 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyShatielFairyStatBoost(gSetFinalStatZone);
     ApplyElementalHeroGaiaStatMod(gSetFinalStatZone);
     ApplyLegendaryOceanFieldStatBoostForZone(gSetFinalStatZone);
+    ApplyLemuriaFieldStatBoostForZone(gSetFinalStatZone);
     ApplyAmazonessVillageFieldStatBoostForZone(gSetFinalStatZone);
+    ApplyLightForceFairyStatBoostForZone(gSetFinalStatZone);
     ApplyAncientGearCastleAtkBoostForZone(gSetFinalStatZone);
     ApplyBurdenOfTheMightyStatForZone(gSetFinalStatZone);
     ApplyColosseumCageStatForZone(gSetFinalStatZone);
@@ -774,6 +783,10 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyTheDespairUranusAtkBoost(gSetFinalStatZone);
     ApplyGladiatorBeastsBattleGladiusAtkCorrection(gSetFinalStatZone);
     ApplyHarpiesHuntingGroundStatBonusToCardInfo(gSetFinalStatZone);
+    ApplyLightswornSabreAtkBonusToCardInfo(gSetFinalStatZone);
+    ApplyMorphtronicMapAtkBonusToCardInfo(gSetFinalStatZone);
+    Necrovalley_ApplyGravekeeperStatBonusToCardInfo(gSetFinalStatZone);
+    LevelTuning_ApplyLevelToCardInfo(gSetFinalStatZone);
   }
 
   gSetFinalStatZone = NULL;

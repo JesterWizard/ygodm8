@@ -193,6 +193,11 @@ static u8 CanActivateMorphtronicRepairUnit(void)
   return HandHasMorphtronic();
 }
 
+u8 MorphtronicRepairUnit_PreventsBattlePositionChange(const struct DuelCard *zone)
+{
+  return DynamicEquipTargetsMonsterWithSpell(zone, MORPHTRONIC_REPAIR_UNIT);
+}
+
 static void EquipRepairUnit(struct DuelCard *spellZone, struct DuelCard *target)
 {
   if (!RegisterDynamicEquip(spellZone, target, MORPHTRONIC_REPAIR_UNIT, 0))
@@ -200,12 +205,10 @@ static void EquipRepairUnit(struct DuelCard *spellZone, struct DuelCard *target)
 
   Duel_ActivateContinuousZone(spellZone);
 
-  /* ponytail: cannot change Battle Position — lockMonster / isLocked is the
-   * nearest in-file flag (also blocks attack in some validators). Ceiling:
-   * battle-position change may still be allowed; upgrade: position-change gate
-   * → if DynamicEquipTargetsMonsterWithSpell(zone, MORPHTRONIC_REPAIR_UNIT)
-   * then forbid manual position change. */
-  target->isLocked = TRUE;
+  /* ponytail: Parent battle-position paths have no shared interception point.
+   * Ceiling: the exported predicate is not consulted, so the equipped monster
+   * may still change position. Upgrade: add a common position-change gate and
+   * call MorphtronicRepairUnit_PreventsBattlePositionChange(zone). */
 
   NotifyDynamicEquipFieldChanged();
   Duel_NotifyMonsterZoneChanged(target);

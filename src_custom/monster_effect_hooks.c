@@ -21,6 +21,7 @@
 #include "level_limit_area_b.h"
 #include "level_limit_area_a.h"
 #include "vengeful_bog_spirit.h"
+#include "spell_effects.h"
 #include "sasuke_samurai_2.h"
 #include "man_thro_tro.h"
 #include "breaker_the_magical_warrior.h"
@@ -1003,6 +1004,10 @@ unsigned char CanActivateMonsterEffect(void) {
   unsigned char canActivate;
 
   if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (MysticMine_LocksFixedDuelist(
+          Duel_FixedDuelistForMonsterRow(gMonEffect.row)))
     return FALSE;
 
   if (ForbiddenChalice_IsNegated(zone))

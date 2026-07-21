@@ -6,6 +6,7 @@
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "imperial_order.h"
+#include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
 
@@ -145,6 +146,7 @@ static void DiscardDynamicEquipLink(struct DynamicEquipLink *link)
   struct DuelCard *spellZone = GetZoneFromFixedCoords(link->spellFixedRow, link->spellFixedCol);
   u16 spellId = link->spellId;
 
+  MoraleBoost_OnEquipSpellSentFromField();
   RemoveDynamicEquipStages(link);
   ClearDynamicEquipLink(link);
 
@@ -263,6 +265,7 @@ u8 RegisterDynamicEquip(struct DuelCard *spellZone, struct DuelCard *targetZone,
   link->targetFixedCol = targetCol;
   link->spellId = spellId;
   link->appliedStages = stages;
+  MoraleBoost_OnEquipSpellEquipped();
   return TRUE;
 }
 
@@ -549,6 +552,7 @@ void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
     if (banishEquippedMonster || destroyEquippedMonster)
       targetZone = GetZoneFromFixedCoords(link->targetFixedRow, link->targetFixedCol);
 
+    MoraleBoost_OnEquipSpellSentFromField();
     RemoveDynamicEquipStages(link);
     ClearDynamicEquipLink(link);
 
@@ -561,6 +565,7 @@ void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
 
   link = FindDynamicEquipForTargetZone(zone);
   if (link != NULL) {
+    MorphtronicRustyEngine_InflictDestroyBurn(zone);
     DiscardDynamicEquipLink(link);
     return;
   }

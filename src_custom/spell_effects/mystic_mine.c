@@ -134,7 +134,13 @@ u8 MysticMine_GetLockedFixedDuelist(void)
   return 0xFF;
 }
 
-/* Wire from turn_effect_hooks End Phase. */
+u8 MysticMine_LocksFixedDuelist(u8 fixedDuelist)
+{
+  return fixedDuelist == DUEL_PLAYER || fixedDuelist == DUEL_OPPONENT
+      ? MysticMine_GetLockedFixedDuelist() == fixedDuelist
+      : FALSE;
+}
+
 void TryApplyMysticMineEndPhase(void)
 {
   struct DuelCard *zone;
@@ -170,15 +176,9 @@ static void MYSTIC_MINE_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(MYSTIC_MINE);
 
-  /* ponytail: fewer-monsters lock (no monster effects / no attacks) needs
-   * CanActivateMonsterEffect + CanDeclareAttack gates outside this file.
-   * Ceiling: face-up field + MysticMine_GetLockedFixedDuelist helper only;
-   * upgrade: attack/monster-effect gates → if locked duelist matches controller
-   * then block. */
-
-  /* ponytail: End Phase same-count destroy needs turn_effect_hooks call to
-   * TryApplyMysticMineEndPhase. Ceiling: face-up field only until wired;
-   * upgrade: End Phase → TryApplyMysticMineEndPhase. */
+  /* Parent wires: reject monster effects and attacks for
+   * MysticMine_LocksFixedDuelist(fixedDuelist), then call
+   * TryApplyMysticMineEndPhase() from the End Phase sequence. */
 }
 
 APPEND_TEXT void EffectMYSTIC_MINE(void)

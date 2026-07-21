@@ -89,6 +89,47 @@ static u8 IsMorphtronicMonster(u16 cardId)
   return Duel_CardNameContains(cardId, sMorphtronicName);
 }
 
+static u8 IsActiveMorphtronicMap(const struct DuelCard *zone)
+{
+  return zone != NULL && zone->id == MORPHTRONIC_MAP && zone->isFaceUp == TRUE;
+}
+
+void MorphtronicMap_OnBattlePositionChanged(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (IsActiveMorphtronicMap(zone) && zone->unk4 < 0xFF)
+        zone->unk4++;
+    }
+  }
+}
+
+void ApplyMorphtronicMapAtkBonusToCardInfo(const struct DuelCard *zone)
+{
+  u8 row;
+  u8 col;
+  u32 bonus = 0;
+
+  if (zone == NULL || !IsMorphtronicMonster(zone->id))
+    return;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      const struct DuelCard *mapZone = gFixedZones[row][col];
+
+      if (IsActiveMorphtronicMap(mapZone))
+        bonus += (u32)mapZone->unk4 * MORPHTRONIC_MAP_ATK_PER_COUNTER;
+    }
+  }
+
+  gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + bonus);
+}
+
 static void MORPHTRONIC_MAP_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -104,25 +145,10 @@ static void MORPHTRONIC_MAP_ResolveBody(void)
 
   Duel_ShowEffectText(MORPHTRONIC_MAP);
 
-  /* ponytail: Morph Counter on battle-position change needs a position-change
-   * hook outside this file (no in-file Flip/ChangeBattlePosition dispatch).
-   * Ceiling: face-up field + unk4 counter slot (never rises alone); upgrade:
-   * after battle position change → if face-up MORPHTRONIC_MAP then zone->unk4++. */
-
-  /* ponytail: +300 ATK per Morph Counter for Morphtronic monsters needs a
-   * field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only
-   * covers monster ids registered in duel_helpers.c).
-   * Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up
-   * MORPHTRONIC_MAP and IsMorphtronicMonster(id) then ATK += 300 * zone->unk4
-   * (stage-approx: (300*n + 250)/500 if forced through IncrementTempStage). */
-
   /* ponytail: destroy→GY → optional SS Morphtronic from GY needs a destroy hook
    * + PickZone/GY menu outside this file. Ceiling: field face-up only; upgrade:
    * on ClearZoneAndSendMonToGraveyard of face-up MORPHTRONIC_MAP → PickZone
    * Morphtronic in GY → Duel_SpecialSummonFromGrave. */
-
-  (void)MORPHTRONIC_MAP_ATK_PER_COUNTER;
-  (void)IsMorphtronicMonster;
 }
 
 APPEND_TEXT void EffectMORPHTRONIC_MAP(void)

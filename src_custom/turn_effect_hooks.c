@@ -346,6 +346,8 @@ static void CheckBoardForTurnEffects__Hook(u8 animateScanner) {
 LYN_REPLACE_CHECK(TryActivatingTurnEffects);
 void TryActivatingTurnEffects__Replacement(void) {
   u8 endedFixedDuelist;
+  u8 standbyFixedDuelist;
+  u8 coinHeads;
 
   gActiveEffect.turn = WhoseTurn();
   gShieldAndSwordActive = FALSE;
@@ -372,7 +374,18 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyBurningLandStandbyDamage();
   TryApplyDarkSnakeSyndromeStandbyDamage();
   TryApplyNightmareWheelStandbyDamage();
+  TryApplyMaskOfDispelStandbyDamage();
+  TryApplyMaskOfTheAccursedStandbyDamage();
+  TryApplyMirageOfNightmareStandby();
   TryApplyFutureFusionStandby();
+  TryApplyMorphtronicEngineStandby();
+  standbyFixedDuelist = WhoseTurn();
+  if (LightBarrier_IsActiveForDuelist(standbyFixedDuelist)
+      || LightForce_IsActiveForDuelist(standbyFixedDuelist)) {
+    coinHeads = RandRangeU8(0, 1) == 1;
+    LightBarrier_ResolveStandbyCoin(standbyFixedDuelist, coinHeads);
+    LightForce_ResolveStandbyCoin(standbyFixedDuelist, coinHeads);
+  }
   TryApplyCyberneticZoneStandby();
   TryApplyDifferentDimensionCapsuleStandby();
   TryBottomlessShiftingSandTurnStart();
@@ -406,6 +419,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   HystericSign_TryResolveEndPhase();
+  TryApplyMysticMineEndPhase();
+  if (IsDuelOver() == 1)
+    return;
   DestroyInstantFusionMonstersAtEndPhase();
   if (IsDuelOver() == 1)
     return;
