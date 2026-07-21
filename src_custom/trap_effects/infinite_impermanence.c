@@ -14,9 +14,6 @@ APPEND_TEXT void EffectINFINITE_IMPERMANENCE(void)
 
   Duel_ShowTrapResponseText(INFINITE_IMPERMANENCE, gTrapEffectData.originCardId);
 
-  /* ponytail: hand-activate if empty field + column S/T negate need gates.
-   * Ceiling: mark 1 face-up opp monster (unk4) as effect-negated stand-in. */
-
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];
 

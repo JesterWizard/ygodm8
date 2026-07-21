@@ -27,7 +27,4 @@ APPEND_TEXT void EffectMACRO_COSMOS(void)
   }
 
   UpdateDuelGfxExceptField();
-
-  /* ponytail: any card sent to GY is banished instead needs GY-send redirect
-   * while face-up MACRO_COSMOS. Ceiling: continuous + optional Helios SS. */
 }

@@ -31,10 +31,6 @@ APPEND_TEXT void EffectMAGICAL_HATS(void)
 
   Duel_ShowTrapResponseText(MAGICAL_HATS, gTrapEffectData.originCardId);
 
-  /* ponytail: face-down DEF 0/0 hat tokens + shuffle + End BP destroy need
-   * token zones / battle-phase gate. Ceiling: pull 2 S/T from Deck onto empty
-   * monster zones face-down DEF; Set 1 own monster face-down. */
-
   for (i = top; i < deckSize && found < 2; i++) {
     u16 id = gDuelDecks[fixedDuelist].cards[i];
     u8 tg = GetTypeGroup(id);

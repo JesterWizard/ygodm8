@@ -10,17 +10,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
 **Last updated:** 2026-07-21 22:41 UTC  
-**Remaining partials:** `690`
+**Remaining partials:** `679`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 72 |
-| `trap` | 52 |
+| `trap` | 41 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **690** |
+| **total** | **679** |
 
 ## spell (72)
 
@@ -334,7 +334,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (52)
+## trap (41)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -364,22 +364,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/angels_tear.c`
 - L342: need 4 banish targets plus 1 summon target.
 
-### `CHAIN_MATERIAL`
-- path: `src_custom/trap_effects/chain_material.c`
-- L15: Fusion material from Deck/hand/field/GY + cannot attack + End Phase destroy Fusion need fusion/battle/turn hooks. Ceiling: face-up continuous mark (unk4) that Fusion may banish materials broadly.
-
-### `CROSS_DIMENSONAL_DUEL`
-- path: `src_custom/trap_effects/cross_dimensonal_duel.c`
-- L27: next Standby return at double ATK + GY protect Golem need turn/destroy hooks. Ceiling: banish 1 Ancient Gear you control.
-
 ### `DARK_SUPREMACY`
 - path: `src_custom/trap_effects/dark_supremacy.c`
 - L38: "Spells that mention Dark Fusion" not scanned by text.
 - L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
-
-### `EXCHANGE_OF_THE_SPIRIT`
-- path: `src_custom/trap_effects/exchange_of_the_spirit.c`
-- L32: full Deck↔GY swap is heavy — approximate by pushing all GY to deck bottom and rebuilding GY from current undrawn deck top chunk. Ceiling: incomplete swap if GY expand / deck sizes mismatch; upgrade: proper dual-buffer swap of entire Deck and GY stacks.
 
 ### `FAVOURITE_CONTACT`
 - path: `src_custom/trap_effects/favourite_contact.c`
@@ -410,34 +398,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/icarus_attack.c`
 - L51: needs trapEffect wire + PickZone for 2 targets.
 
-### `INFINITE_IMPERMANENCE`
-- path: `src_custom/trap_effects/infinite_impermanence.c`
-- L17: hand-activate if empty field + column S/T negate need gates. Ceiling: mark 1 face-up opp monster (unk4) as effect-negated stand-in.
-
-### `LIGHTSWORN_AEGIS`
-- path: `src_custom/trap_effects/lightsworn_aegis.c`
-- L63: until EP negate + mill-from-Deck Set this card + OPT need End Phase clear / mill hook / turn reset. Ceiling: exhausts up to LS-count opp face-ups.
-
-### `LIGHTSWORN_JUDGEMENT`
-- path: `src_custom/trap_effects/lightsworn_judgement.c`
-- L45: if sent Deck→GY by Lightsworn effect → add Judgment Dragon needs mill/GY hook. Ceiling: places on Deck top only; upgrade: on LS mill of this card → search JUDGMENT_DRAGON to hand.
-
-### `MACRO_COSMOS`
-- path: `src_custom/trap_effects/macro_cosmos.c`
-- L31: any card sent to GY is banished instead needs GY-send redirect while face-up MACRO_COSMOS. Ceiling: continuous + optional Helios SS.
-
-### `MAGICAL_ARM_SHIELD`
-- path: `src_custom/trap_effects/magical_arm_shield.c`
-- L23: attack declare + redirect damage calc need battle hooks. Ceiling: take control of 1 face-up opp monster except origin attacker (Change of Heart style move to our monster row).
-
-### `MAGICAL_HATS`
-- path: `src_custom/trap_effects/magical_hats.c`
-- L34: face-down DEF 0/0 hat tokens + shuffle + End BP destroy need token zones / battle-phase gate. Ceiling: pull 2 S/T from Deck onto empty monster zones face-down DEF; Set 1 own monster face-down.
-
-### `MAGICIAN_NAVIGATION`
-- path: `src_custom/trap_effects/magician_navigation.c`
-- L58: GY banish negate S/T needs GY ignition + face-up S/T target. Ceiling: SS Dark Magician from hand, then Deck SS Lv7− DARK Spellcaster.
-
 ### `MAGICIANS_COMBINATION`
 - path: `src_custom/trap_effects/magicians_combination.c`
 - L39: once-per-turn on any activation + negate need chain gate. Ceiling: Tribute 1 DM/DMG → SS the other from hand/GY.
@@ -448,13 +408,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L122: choose activate Field vs add to hand — always add to hand. Ceiling: no Field Zone activate path; upgrade: A/B choice → set gDuel.field.
 - L132: needs trapEffect ID + dispatcher wire.
 
-### `MORPHTRONIC_FORCEFIELD`
-- path: `src_custom/trap_effects/morphtronic_forcefield.c`
-- L81: negate ST that would destroy face-up Morphtronic needs destroy- targeting chain gate. Ceiling: destroy origin ST if present + search Morphtronic; upgrade: full negate + trapEffect.
-
 ### `MORPHTRONIC_IMPACT_RETURN`
 - path: `src_custom/trap_effects/morphtronic_impact_return.c`
-- L38: GY banish SS Morphtronic need GY ignition. Ceiling: shuffle 1 Morphtronic from hand into Deck, shuffle up to 2 opp S/T into Deck.
+- L61: * ponytail: naive append as undrawn only if cardsDrawn==deckSize was wrong;
 
 ### `MORPHTRONIC_MIXUP`
 - path: `src_custom/trap_effects/morphtronic_mixup.c`

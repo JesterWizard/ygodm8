@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round6 Batch5
+**Last worked on:** 2026-07-21 — Round6 Batch6 (round complete)
 
-**Outcome:** Activate-path continuous trap ceiling clears (Aegis→Imperial Tombs + Blessed Winds). Partials **703→690**.
+**Outcome:** Final activate-path trap ceiling clears. Partials **690→679**. Round6 done.
 
-**Open / next:** Round6 Batch6 then notify.
+**Open / next:** Round 7 when ready.

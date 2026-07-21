@@ -20,10 +20,6 @@ APPEND_TEXT void EffectMAGICAL_ARM_SHIELD(void)
 
   Duel_ShowTrapResponseText(MAGICAL_ARM_SHIELD, gTrapEffectData.originCardId);
 
-  /* ponytail: attack declare + redirect damage calc need battle hooks.
-   * Ceiling: take control of 1 face-up opp monster except origin attacker
-   * (Change of Heart style move to our monster row). */
-
   empty = FirstEmptyZoneInRow(gFixedZones[myRow]);
   if (empty < 0 || ArchlordKristya_IsSpecialSummonLocked()) {
     Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],

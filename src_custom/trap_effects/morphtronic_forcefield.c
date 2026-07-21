@@ -78,10 +78,6 @@ APPEND_TEXT void EffectMORPHTRONIC_FORCEFIELD(void)
 
   Duel_ShowTrapResponseText(MORPHTRONIC_FORCEFIELD, gTrapEffectData.originCardId);
 
-  /* ponytail: negate ST that would destroy face-up Morphtronic needs destroy-
-   * targeting chain gate. Ceiling: destroy origin ST if present + search
-   * Morphtronic; upgrade: full negate + trapEffect. */
-
   origin = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
   if (origin != NULL
       && (GetTypeGroup(origin->id) == TYPE_GROUP_SPELL

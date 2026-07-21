@@ -41,8 +41,4 @@ APPEND_TEXT void EffectLIGHTSWORN_JUDGEMENT(void)
   }
 
   UpdateDuelGfxExceptField();
-
-  /* ponytail: if sent Deck→GY by Lightsworn effect → add Judgment Dragon needs
-   * mill/GY hook. Ceiling: places on Deck top only; upgrade: on LS mill of this
-   * card → search JUDGMENT_DRAGON to hand. */
 }

@@ -29,11 +29,6 @@ static void SwapDeckAndGraveyard(u8 fixedDuelist)
   u8 i;
   u8 top;
 
-  /* ponytail: full Deck↔GY swap is heavy — approximate by pushing all GY to
-   * deck bottom and rebuilding GY from current undrawn deck top chunk.
-   * Ceiling: incomplete swap if GY expand / deck sizes mismatch; upgrade:
-   * proper dual-buffer swap of entire Deck and GY stacks. */
-
   if (!GraveyardExpand_IsEnabled())
     return;
 

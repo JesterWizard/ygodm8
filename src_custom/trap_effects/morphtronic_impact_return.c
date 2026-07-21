@@ -35,9 +35,6 @@ APPEND_TEXT void EffectMORPHTRONIC_IMPACT_RETURN(void)
 
   Duel_ShowTrapResponseText(MORPHTRONIC_IMPACT_RETURN, gTrapEffectData.originCardId);
 
-  /* ponytail: GY banish SS Morphtronic need GY ignition. Ceiling: shuffle 1
-   * Morphtronic from hand into Deck, shuffle up to 2 opp S/T into Deck. */
-
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (gTurnHands[INACTIVE_DUELIST][i] != NULL
         && IsMorphtronic(gTurnHands[INACTIVE_DUELIST][i]->id)) {

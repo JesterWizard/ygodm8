@@ -59,7 +59,4 @@ APPEND_TEXT void EffectLIGHTSWORN_AEGIS(void)
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: until EP negate + mill-from-Deck Set this card + OPT need End Phase
-   * clear / mill hook / turn reset. Ceiling: exhausts up to LS-count opp face-ups. */
 }

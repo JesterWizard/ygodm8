@@ -55,9 +55,6 @@ APPEND_TEXT void EffectMAGICIAN_NAVIGATION(void)
 
   Duel_ShowTrapResponseText(MAGICIAN_NAVIGATION, gTrapEffectData.originCardId);
 
-  /* ponytail: GY banish negate S/T needs GY ignition + face-up S/T target.
-   * Ceiling: SS Dark Magician from hand, then Deck SS Lv7− DARK Spellcaster. */
-
   if (!ArchlordKristya_IsSpecialSummonLocked()) {
     opts = Duel_DefaultSpecialSummonOpts(TRUE);
     Duel_SpecialSummonFromHand(INACTIVE_DUELIST, DARK_MAGICIAN, NULL, opts);

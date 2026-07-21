@@ -24,9 +24,6 @@ APPEND_TEXT void EffectCROSS_DIMENSONAL_DUEL(void)
 
   Duel_ShowTrapResponseText(CROSS_DIMENSONAL_DUEL, gTrapEffectData.originCardId);
 
-  /* ponytail: next Standby return at double ATK + GY protect Golem need
-   * turn/destroy hooks. Ceiling: banish 1 Ancient Gear you control. */
-
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];
 
