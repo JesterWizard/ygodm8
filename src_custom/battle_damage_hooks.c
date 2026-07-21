@@ -60,6 +60,8 @@
 #include "amazoness_spy.h"
 #include "amazoness_trainee.h"
 #include "el_shaddoll_apkallone.h"
+#include "el_shaddoll_construct.h"
+#include "goyo_guardian.h"
 #include "ancient_gear_fist.h"
 #include "double_tool_c_and_d.h"
 #include "dragon_s_rage.h"
@@ -245,6 +247,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     }
   }
 
+  ApplyElShaddollConstructBattleEffect();
   ApplyShinatoKingOfAHigherPlaneBattleEffect();
   ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyKaiserGliderBattleProtection();
@@ -435,6 +438,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyElementalHeroCoreBattleEffect();
   ApplyElementalHeroIceEdgeBattleEffect();
   ApplyGhostKnightOfJackalBattleEffect();
+  ApplyGoyoGuardianBattleEffect();
   ApplyArcanaForceViiChariotBattleEffect();
   ApplyAmazonessSpyBattleEffect();
   ApplyAmazonessSageBattleEffect();

@@ -67,6 +67,7 @@
 #include "familiar_knight.h"
 #include "vampire_baby.h"
 #include "ghost_knight_of_jackal.h"
+#include "goyo_guardian.h"
 #include "arcana_force_vii_the_chariot.h"
 #include "amazoness_spy.h"
 #include "amazoness_trainee.h"
@@ -491,6 +492,7 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroFlashBattleDestroyPending();
   ClearVampireBabyPending();
   ClearGhostKnightOfJackalPending();
+  ClearGoyoGuardianPending();
   ClearArcanaForceViiChariotPending();
   ClearAmazonessSpyPending();
   ClearAmazonessTraineePending();

@@ -36,6 +36,7 @@
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "ghost_knight_of_jackal.h"
+#include "goyo_guardian.h"
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -459,6 +460,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   ResolveTheUnhappyMaidenBattleEffect();
   ResolveVampireBabyBattleEffect();
   ResolveGhostKnightOfJackalBattleEffect();
+  ResolveGoyoGuardianBattleEffect();
   ResolveArcanaForceViiChariotBattleEffect();
   ResolveAmazonessSpyBattleEffect();
   ResolveAmazonessTraineeBattleEffect();

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "el_shaddoll_construct.h"
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
 #include "six_card_hand.h"
@@ -9,6 +10,63 @@
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+#define FLAG_GRAVEYARD_PLAYER 1
+#define FLAG_GRAVEYARD_OPPONENT 2
+#define SPECIAL_SUMMON_MARK 2
+
+struct ElShaddollConstructActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct ElShaddollConstructActionData sActionData;
+
+static u8 ZoneIsSpecialSummonMarked(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+
+  return zone != NULL && zone->id != CARD_NONE && zone->unk4 == SPECIAL_SUMMON_MARK;
+}
+
+void ApplyElShaddollConstructBattleEffect(void)
+{
+  /* Start of Damage Step: destroy battling Special Summoned monster. */
+  if (gHideEffectText)
+    return;
+
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 3
+      && sActionData.id != 5)
+    return;
+
+  if (sActionData.playerCardId == EL_SHADDOLL_CONSTRUCT
+      && ZoneIsSpecialSummonMarked(sActionData.opponentMonsterRow, sActionData.unk16)) {
+    sActionData.flags |= FLAG_GRAVEYARD_OPPONENT;
+    return;
+  }
+
+  if (sActionData.opponentCardId == EL_SHADDOLL_CONSTRUCT
+      && ZoneIsSpecialSummonMarked(sActionData.playerMonsterRow, sActionData.unkA)) {
+    sActionData.flags |= FLAG_GRAVEYARD_PLAYER;
+  }
+}
 
 static const char sShaddollName[] APPEND_RODATA = "Shaddoll";
 
@@ -191,7 +249,7 @@ static u8 IsConstructGraveyardTrigger(void)
 
 unsigned char ShouldActivateEL_SHADDOLL_CONSTRUCT(void)
 {
-  /* ponytail: battle vs SS monster destroy needs Damage Step hook. */
+  /* Battle vs SS destroy live via ApplyElShaddollConstructBattleEffect. */
   if (IsConstructOnSummonTrigger())
     return TRUE;
 

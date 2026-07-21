@@ -379,6 +379,11 @@ _kernel_malloc_ewram gGhostKnightOfJackalPendingGraveyardDuelist, 1
 _kernel_malloc_ewram gArcanaForceViiChariotPendingController, 1
 @ Fixed duelist whose GY holds Chariot's battle-destroyed monster.
 _kernel_malloc_ewram gArcanaForceViiChariotPendingGraveyardDuelist, 1
+@ Goyo Guardian battle-steal controller / GY owner, else 0xFF.
+_kernel_malloc_ewram gGoyoGuardianPendingController, 1
+_kernel_malloc_ewram gGoyoGuardianPendingGraveyardDuelist, 1
+@ Destiny HERO Double Dude battle-destroy pending bits (1=player, 2=opp).
+_kernel_malloc_ewram gDoubleDudeBattleDestroyedPending, 1
 @ Amazoness Spy battle-destroy recycle controller, else 0xFF.
 _kernel_malloc_ewram gAmazonessSpyPendingController, 1
 @ Amazoness Trainee: defender returned to deck bottom (row/col), else 0xFF row.

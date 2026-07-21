@@ -57,6 +57,7 @@
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "ghost_knight_of_jackal.h"
+#include "goyo_guardian.h"
 #include "arcana_force_vii_the_chariot.h"
 #include "amazoness_spy.h"
 #include "amazoness_trainee.h"
@@ -1890,6 +1891,7 @@ void sub_8044570__Replacement(void)
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
       ResolveGhostKnightOfJackalBattleEffect();
+      ResolveGoyoGuardianBattleEffect();
       ResolveArcanaForceViiChariotBattleEffect();
       ResolveAmazonessSpyBattleEffect();
       ResolveAmazonessTraineeBattleEffect();
@@ -2079,6 +2081,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
       ResolveGhostKnightOfJackalBattleEffect();
+      ResolveGoyoGuardianBattleEffect();
       ResolveArcanaForceViiChariotBattleEffect();
       ResolveAmazonessSpyBattleEffect();
       ResolveAmazonessTraineeBattleEffect();

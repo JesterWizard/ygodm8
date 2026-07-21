@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 23:21 UTC  
-**Remaining partials:** `558`
+**Last updated:** 2026-07-21 23:25 UTC  
+**Remaining partials:** `555`
 
 ## Counts by kind
 
@@ -19,8 +19,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 | `spell` | 5 |
 | `trap` | 10 |
 | `activated` | 439 |
-| `permanent` | 104 |
-| **total** | **558** |
+| `permanent` | 101 |
+| **total** | **555** |
 
 ## spell (5)
 
@@ -1932,7 +1932,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (104)
+## permanent (101)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -2020,10 +2020,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/destiny_hero_doom_overlord.c`
 - L327: banish-until-Standby = permanent banish; DARK HERO SS lock not wired.
 
-### `DESTINY_HERO_DOUBLE_DUDE`
-- path: `src_custom/permanent_effects/destiny_hero_double_dude.c`
-- L24: * ponytail: destroyed Standby 2 Tokens need turn/token hooks. */
-
 ### `DESTINY_HERO_DRAWHAND`
 - path: `src_custom/permanent_effects/destiny_hero_drawhand.c`
 - L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
@@ -2049,10 +2045,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `EL_SHADDOLL_ANOYATYLLIS`
 - path: `src_custom/permanent_effects/el_shaddoll_anoyatyllis.c`
 - L126: SS-from-hand/GY via S/T lock needs continuous summon gate.
-
-### `EL_SHADDOLL_CONSTRUCT`
-- path: `src_custom/permanent_effects/el_shaddoll_construct.c`
-- L194: battle vs SS monster destroy needs Damage Step hook.
 
 ### `EL_SHADDOLL_GRYSTA`
 - path: `src_custom/permanent_effects/el_shaddoll_grysta.c`
@@ -2189,10 +2181,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GLADIATOR_BEAST_TYGERIUS`
 - path: `src_custom/permanent_effects/gladiator_beast_tygerius.c`
 - L110: GB tag-out + optional discard gate not wired; on-summon search stand-in.
-
-### `GOYO_GUARDIAN`
-- path: `src_custom/permanent_effects/goyo_guardian.c`
-- L8: battle-destroy SS to your DEF needs battle-end hook.
 
 ### `GRANADORA`
 - path: `src_custom/permanent_effects/granadora.c`

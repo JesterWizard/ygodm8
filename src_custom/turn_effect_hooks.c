@@ -24,6 +24,7 @@
 #include "aurkus_lightsworn_druid.h"
 #include "aroma_jar.h"
 #include "contact_fusion_end_phase.h"
+#include "destiny_hero_double_dude.h"
 #include "weapon_change.h"
 #include "nightmare_wheel.h"
 #include "mirror_wall.h"
@@ -201,6 +202,7 @@ static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".
   { DARK_DUST_SPIRIT, MatchActiveDuelistMonsterRow, ShouldActivateDarkDustSpiritTurnEffect, ActivateDarkDustSpiritTurnEffect },
   { DARKLORD_MARIE, MatchActiveDuelistGraveyard, NULL, ActivateDarklordMarieTurnEffect },
   { DESTINY_HERO_FEAR_MONGER, MatchActiveDuelistGraveyard, ShouldActivateDestinyHeroFearMongerTurnEffect, ActivateDestinyHeroFearMongerTurnEffect },
+  { DESTINY_HERO_DOUBLE_DUDE, MatchActiveDuelistGraveyard, ShouldActivateDestinyHeroDoubleDudeTurnEffect, ActivateDestinyHeroDoubleDudeTurnEffect },
   { ARMED_DRAGON_LV3, MatchActiveDuelistMonsterRow, ShouldActivateArmedDragonLv3TurnEffect, ActivateArmedDragonLv3TurnEffect },
   { THE_WHITE_STONE_OF_ANCIENTS, MatchActiveDuelistGraveyard, ShouldActivateTheWhiteStoneOfAncientsTurnEffect, ActivateTheWhiteStoneOfAncientsTurnEffect },
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, MatchActiveDuelistMonsterRow, ShouldActivateUnstoppableExodiaIncarnateTurnEffect, ActivateUnstoppableExodiaIncarnateTurnEffect },

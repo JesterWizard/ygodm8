@@ -7,18 +7,18 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 23:21 UTC  
-**Ceiling lines tagged:** `662`  
-**Partial files:** `558`
+**Last updated:** 2026-07-21 23:25 UTC  
+**Ceiling lines tagged:** `659`  
+**Partial files:** `555`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
 | `event.OnStandby` | 202 | 3 (OPT / turn flags) |
-| `other` | 194 | triage |
+| `other` | 193 | triage |
 | `event.OnSummon` | 58 | 3 |
-| `event.OnBattleDestroy` | 55 | 3 |
+| `event.OnBattleDestroy` | 53 | 3 |
 | `chain.Negate` | 34 | later / chain |
 | `gate.Tribute` | 32 | 2–3 |
 | `event.OnDestroy` | 20 | 3 |
@@ -28,11 +28,11 @@ python3 tools/stub_effect_queue.py --write-list
 | `event.GyIgnition` | 11 | 3 |
 | `ui.Choice` | 10 | 2 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **662** | |
+| **total** | **659** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (55)
+## `event.OnBattleDestroy` (53)
 
 - `AMAZONESS_HOT_SPRING` (trap): L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
 - `AMAZONESS_PET_LIGER` (activated): L111: * ponytail: damage-calc +500 ATK not wired. */
@@ -83,11 +83,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `X_SABER_AIRBELLUM` (activated): L12: direct-attack battle-damage trigger needs battle hook. Ceiling: not ignition-activatable here; upgrade: battle end discard.
 - `DESTINY_HERO_DREAD_SERVANT` (permanent): L8: Clock Tower counters + battle-destroy S/T need NS/battle hooks.
 - `DESTINY_HERO_DREADMASTER` (permanent): L216: D-HERO indestructible + no battle damage this turn need continuous hooks.
-- `EL_SHADDOLL_CONSTRUCT` (permanent): L194: battle vs SS monster destroy needs Damage Step hook.
 - `EVIL_HERO_INFERNO_WING` (permanent): L8: piercing + battle-destroy burn need Damage Step / battle hooks.
 - `EVIL_HERO_INFERNO_WING_BACKFIRE` (permanent): L149: HERO battle-destroy 2100 burn needs battle-end hook.
 - `EVIL_HERO_WILD_CYCLONE` (permanent): L8: attack S/T lock + battle-damage destroy face-down S/T need battle/chain hooks.
-- `GOYO_GUARDIAN` (permanent): L8: battle-destroy SS to your DEF needs battle-end hook.
 - `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES` (permanent): L54: battle destroy → banish Reptile + SS self needs battle/GY hook.
 
 ## `event.OnDamageCalc` (2)
@@ -536,7 +534,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (194)
+## `other` (193)
 
 - `FUSION_DESTINY` (spell): L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 - `SCAPEGOAT` (spell): L74: LockMonsterCardsInRow also blocks Normal Set of monsters. Ceiling: cannot allow Set while blocking Summon without a menu hook that distinguishes Set vs Summon; upgrade: Set path unlocks hand briefly.
@@ -685,7 +683,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DEEP_EYES_WHITE_DRAGON` (permanent): L121: first Dragon in GY stand-in for target picker.
 - `DESPAIR_FROM_THE_DARK` (permanent): L47: opp hand/Deck send by card effect not tracked — GY-top SS only.
 - `DESTINY_HERO_DEFENDER` (permanent): L8: opp Standby draw while face-up DEF needs turn_effect hook.
-- `DESTINY_HERO_DOUBLE_DUDE` (permanent): L24: * ponytail: destroyed Standby 2 Tokens need turn/token hooks. */
 - `EL_SHADDOLL_WINDA` (permanent): L126: opp destroy immunity + SS-once lock need continuous hooks.
 - `ELEMENTAL_HERO_ELECTRUM` (permanent): L67: no removed-from-play zone yet — shuffle banished/exiled monsters back into each owner's deck once Duel_BanishZone (or equivalent) exists.
 - `ELEMENTAL_HERO_SUNRISE` (permanent): L105: GetTypeGroup/SetCardInfo would clobber gCardInfo.atk already computed.

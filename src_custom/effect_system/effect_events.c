@@ -44,6 +44,7 @@ extern u8 gEffectOptUsedCount;
 void DestinyHeroFearMonger_EnsureInit(void);
 void TheWhiteStoneOfAncients_EnsureInit(void);
 void AmazonessEmpress_EnsureInit(void);
+void DestinyHeroDoubleDude_EnsureInit(void);
 
 static u8 sEffectEventsInited APPEND_DATA = {0};
 
@@ -75,6 +76,7 @@ void EffectEvent_EnsureInit(void)
   DestinyHeroFearMonger_EnsureInit();
   TheWhiteStoneOfAncients_EnsureInit();
   AmazonessEmpress_EnsureInit();
+  DestinyHeroDoubleDude_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 
