@@ -2724,6 +2724,10 @@ enum DuelActionResult Duel_SpecialSummonFromGrave(u8 duelist, u16 cardId, struct
   if (ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;
 
+  if (Necrovalley_BlocksGraveyardMove()
+      || GravekeepersInscription_BlocksSpecialSummonFromGraveyard())
+    return DUEL_ACTION_BLOCKED;
+
   if (FirstEmptyZoneInRow(gTurnZones[MonsterRowForDuelist(duelist)]) < 0)
     return DUEL_ACTION_NO_ZONE;
 
@@ -2911,6 +2915,10 @@ u16 Duel_BanishGraveyardAtFixed(u8 fixedDuelist, u8 index)
   u16 cardId;
 
   if (fixedDuelist > DUEL_OPPONENT)
+    return CARD_NONE;
+
+  if (Necrovalley_BlocksGraveyardBanish()
+      || GravekeepersInscription_BlocksGraveyardBanish())
     return CARD_NONE;
 
   cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, index);

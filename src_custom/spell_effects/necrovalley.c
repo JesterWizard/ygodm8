@@ -35,6 +35,16 @@ void Necrovalley_ApplyGravekeeperStatBonusToCardInfo(const struct DuelCard *zone
   gCardInfo.def = Duel_ClampStat((u32)gCardInfo.def + NECROVALLEY_GRAVEKEEPER_STAT_BONUS);
 }
 
+u8 Necrovalley_BlocksGraveyardBanish(void)
+{
+  return Necrovalley_IsActive();
+}
+
+u8 Necrovalley_BlocksGraveyardMove(void)
+{
+  return Necrovalley_IsActive();
+}
+
 static u8 IsVanillaTerrainFieldSpell(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_SPELL)
@@ -113,10 +123,8 @@ static void NECROVALLEY_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(NECROVALLEY);
 
-  /* ponytail: GY cannot be banished / moved / Type-Attribute-changed needs
-   * GY-move + banish + SetCardInfo-in-GY gates outside this file. Ceiling:
-   * continuous face-up only; upgrade: Duel_BanishGraveyard* / GY-to-elsewhere
-   * / GY Type-Attribute change → if face-up NECROVALLEY then negate. */
+  /* ponytail: GY Type-Attribute change still needs SetCardInfo-in-GY gates.
+   * Ceiling: banish/move blocked via Necrovalley_Blocks*; upgrade: GY type/attr mutate → negate. */
 }
 
 APPEND_TEXT void EffectNECROVALLEY(void)

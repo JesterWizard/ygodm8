@@ -398,11 +398,37 @@ static void EquipNephe(struct DuelCard *spellZone, struct DuelCard *target, u8 a
   spellZone->unk4 = attribute;
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
+}
 
-  /* ponytail: declared Attribute is stored in unk4 only — fusion/material checks
-   * still use printed SetCardInfo attribute. Ceiling: equip + OPT fusion works;
-   * Attribute change cosmetic. Upgrade: MaterialMatches / SourceQualifies reads
-   * DynamicEquipTargetsMonsterWithSpell attribute override from unk4. */
+u8 NepheShaddollFusion_GetDeclaredAttribute(const struct DuelCard *monster)
+{
+  u8 i;
+
+  if (monster == NULL || monster->id == CARD_NONE)
+    return 0;
+  if (!DynamicEquipTargetsMonsterWithSpell(monster, NEPHE_SHADDOLL_FUSION))
+    return 0;
+
+  for (i = 0; i < MAX_DYNAMIC_EQUIP_SLOTS; i++) {
+    struct DynamicEquipLink *link = &gDynamicEquipLinks[i];
+    struct DuelCard *spellZone;
+    struct DuelCard *targetZone;
+
+    if (!link->active || link->spellId != NEPHE_SHADDOLL_FUSION)
+      continue;
+
+    spellZone = gFixedZones[link->spellFixedRow][link->spellFixedCol];
+    targetZone = gFixedZones[link->targetFixedRow][link->targetFixedCol];
+    if (targetZone != monster)
+      continue;
+    if (!IsActiveDynamicEquipSpellZone(spellZone))
+      continue;
+    if (spellZone->unk4 == 0)
+      return 0;
+    return (u8)spellZone->unk4;
+  }
+
+  return 0;
 }
 
 static void ResolveNepheEquipTarget(u8 fixedRow, u8 fixedCol)

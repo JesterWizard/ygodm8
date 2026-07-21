@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 21:41 UTC  
-**Remaining partials:** `765`
+**Last updated:** 2026-07-21 22:13 UTC  
+**Remaining partials:** `764`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 84 |
+| `spell` | 83 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **765** |
+| **total** | **764** |
 
-## spell (84)
+## spell (83)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -216,7 +216,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `NECROVALLEY`
 - path: `src_custom/spell_effects/necrovalley.c`
-- L116: GY cannot be banished / moved / Type-Attribute-changed needs GY-move + banish + SetCardInfo-in-GY gates outside this file. Ceiling: continuous face-up only; upgrade: Duel_BanishGraveyard* / GY-to-elsewhere / GY Type-Attribute change → if face-up NECROVALLEY then negate.
+- L126: GY Type-Attribute change still needs SetCardInfo-in-GY gates. Ceiling: banish/move blocked via Necrovalley_Blocks*; upgrade: GY type/attr mutate → negate.
 
 ### `NECROVALLEY_THRONE`
 - path: `src_custom/spell_effects/necrovalley_throne.c`
@@ -225,7 +225,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `NEPHE_SHADDOLL_FUSION`
 - path: `src_custom/spell_effects/nephe_shaddoll_fusion.c`
 - L134: no attribute-name UI — A confirms, B cycles list. Ceiling: unlabeled; upgrade: effect-text attribute menu.
-- L402: declared Attribute is stored in unk4 only — fusion/material checks still use printed SetCardInfo attribute. Ceiling: equip + OPT fusion works; Attribute change cosmetic. Upgrade: MaterialMatches / SourceQualifies reads DynamicEquipTargetsMonsterWithSpell attribute override from unk4.
 
 ### `NEX`
 - path: `src_custom/spell_effects/nex.c`
@@ -238,10 +237,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `PAINFUL_CHOICE`
 - path: `src_custom/spell_effects/painful_choice.c`
 - L153: no committed multi-pick UI — pick 5 in a loop (snake_rain style). Cancel mid-loop auto-fills remaining in deck order.
-
-### `PARALLEL_WORLD_FUSION`
-- path: `src_custom/spell_effects/parallel_world_fusion.c`
-- L112: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
 
 ### `POISON_OF_THE_OLD_MAN`
 - path: `src_custom/spell_effects/poison_of_the_old_man.c`

@@ -15,8 +15,6 @@
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyard);
 void UpdateDuelGfxExceptField(void);
 
-extern u16 gRemovedFromPlay[2][REMOVED_FROM_PLAY_CAPACITY];
-
 static u8 sParallelWorldFusionSpecialSummonLock APPEND_DATA = {FALSE};
 
 static u8 TurnDuelistToFixed(u8 turnDuelist)
@@ -109,24 +107,9 @@ static u8 FilterFeasibleByExtraDeck(u8 *feasibleIndices, u8 feasibleCount)
   return filteredCount;
 }
 
-/* ponytail: no RemovedFromPlay_RemoveAt — shift RFP array in place.
- * Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {
-  u8 count;
-  u8 i;
-
-  if (fixedDuelist > DUEL_OPPONENT)
-    return;
-
-  count = RemovedFromPlay_GetCount(fixedDuelist);
-  if (index >= count)
-    return;
-
-  for (i = index + 1; i < count; i++)
-    gRemovedFromPlay[fixedDuelist][i - 1] = gRemovedFromPlay[fixedDuelist][i];
-
-  gRemovedFromPlay[fixedDuelist][count - 1] = CARD_NONE;
+  RemovedFromPlay_RemoveAt(fixedDuelist, index);
 }
 
 static void ReturnCardToDeck(u8 turnDuelist, u16 cardId)

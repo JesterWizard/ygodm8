@@ -18,6 +18,8 @@
 #include "fusion_duel.h"
 #include "player_decks.h"
 #include "power_bond.h"
+#include "spell_effects.h"
+#include "fusion_recipes.h"
 
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
 void UpdateDuelGfxExceptField(void);
@@ -73,6 +75,14 @@ static u8 MaterialMatches(u16 need, u16 have, struct DuelCard *zone)
 
   if (zone == NULL)
     effective = have;
+
+  if ((need & ~FUSION_RECIPE_ATTRIBUTE_VALUE_MASK) == FUSION_RECIPE_ATTRIBUTE_BASE) {
+    u8 declared = NepheShaddollFusion_GetDeclaredAttribute(zone);
+    u8 want = (u8)(need & FUSION_RECIPE_ATTRIBUTE_VALUE_MASK);
+
+    if (declared != 0)
+      return declared == want;
+  }
 
   return FusionRecipe_MaterialMatches(need, effective);
 }
@@ -212,9 +222,14 @@ static u8 SourceQualifiesAsFusionMaterial(const struct FusionRecipe *recipe,
 static u8 SourceAttribute(const struct FusionMaterialSource *source)
 {
   u16 cardId;
+  u8 declared;
 
   if (source == NULL)
     return 0;
+
+  declared = NepheShaddollFusion_GetDeclaredAttribute(source->zone);
+  if (declared != 0)
+    return declared;
 
   cardId = source->cardId;
   if (source->zone != NULL)

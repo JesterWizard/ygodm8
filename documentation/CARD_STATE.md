@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Codify face-up backrow cache for future overlays
+**Last worked on:** 2026-07-21 — Round5 Batch1
 
-**Outcome:** Always-on rule `stat-overlay-perf.mdc`; skill + effect-data-system updated; host tests guard hand-scanned backrows in ApplyFieldZoneStats appliers.
+**Outcome:** Mystik→Avarice: Parallel World RFP RemoveAt, Necrovalley GY banish/SS gates, Nephe Attribute override in fusion. Partials **765→764**.
 
-**Open / next:** Round5 PARTIAL — new continuous overlays must use FindBackrow*.
+**Open / next:** Round5 Batches 2–6.
