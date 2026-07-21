@@ -30,6 +30,7 @@
 #include "ring_of_destruction.h"
 #include "amazoness_tiger.h"
 #include "amazoness_call.h"
+#include "gladiator_beasts_valor.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
 #include "tribute.h"
@@ -1591,6 +1592,7 @@ typedef u8 (*DuelAttackZoneCheckFn)(struct DuelCard *zone);
 static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".text"))) = {
   AmazonessTiger_CanAttackMonsterZone,
   AmazonessCall_CanAttackMonsterZone,
+  GladiatorBeastsValor_CanAttackMonsterZone,
   HarpiesPetBabyDragon_CanAttackMonsterZone,
   ElementalHeroKnospe_CanAttackMonsterZone,
   ElementalHeroPoisonRose_CanAttackMonsterZone,

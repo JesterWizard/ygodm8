@@ -127,6 +127,7 @@
 #include "aroma_gardening.h"
 #include "field_barrier.h"
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
+#include "lightsworn_barrier.h"
 #include "big_evolution_pill.h"
 #include "chain_summoning.h"
 #include "effect_events.h"
@@ -1804,6 +1805,8 @@ void sub_8044570__Replacement(void)
       TryArmElementalHeroSunriseOnAttackDeclared(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       ApplyAromaGardeningAttackDeclare();
+      LightswornBarrier_OnAttackDeclare(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       Flavian_OnAttackDeclare();
       TryShowBlackTyrannoDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
@@ -1979,6 +1982,9 @@ void TryAttackWithMonster__Replacement(void)
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       ApplyAromaGardeningAttackDeclare();
+      LightswornBarrier_OnAttackDeclare(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       Flavian_OnAttackDeclare();
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();

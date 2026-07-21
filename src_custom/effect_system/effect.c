@@ -25,6 +25,7 @@
 #include "elemental_hero_inferno.h"
 #include "geartown.h"
 #include "morphtronic_map.h"
+#include "morphtronic_monitron.h"
 #include "harpies_hunting_ground.h"
 #include "pandemonium.h"
 #include "skyscraper.h"
@@ -101,6 +102,18 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_AllOutAttacksOnSummon,
+  },
+  {
+      MORPHTRONIC_MONITRON,
+      EFFECT_KIND_TRAP,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_MorphtronicMonitronOnSummon,
+      NULL,
+      NULL,
+      Op_MorphtronicMonitronOnSummon,
   },
   {
       AMAZONESS_VILLAGE,

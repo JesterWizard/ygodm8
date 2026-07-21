@@ -1,13 +1,12 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
-#include "effect_events.h"
 #include "constants/music_ids.h"
+#include "destined_rivals.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 
 void UpdateDuelGfxExceptField(void);
-
-/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 ControlsBlueEyesOrDarkMagician(void)
 {
@@ -24,6 +23,21 @@ static u8 ControlsBlueEyesOrDarkMagician(void)
   }
 
   return FALSE;
+}
+
+void DestinedRivals_ClearExhaustedOnTurnBoundary(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL)
+        zone->effectExhausted = FALSE;
+    }
+  }
 }
 
 APPEND_TEXT void EffectDESTINED_RIVALS(void)
@@ -50,7 +64,4 @@ APPEND_TEXT void EffectDESTINED_RIVALS(void)
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: effectExhausted until EP + OPT turn reset need End Phase /
-   * turn_effect clear. Ceiling: marks opp face-up monsters exhausted. */
 }

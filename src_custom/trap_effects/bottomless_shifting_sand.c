@@ -7,7 +7,6 @@
 
 void UpdateDuelGfxExceptField(void);
 
-/* ponytail: GBA hand cap is 5; TCG rule uses 4 — scale self-destruct threshold down */
 #define BOTTOMLESS_SHIFTING_SAND_HAND_LIMIT 3
 
 static u8 IsEligibleFaceUpMonster(struct DuelCard *zone)

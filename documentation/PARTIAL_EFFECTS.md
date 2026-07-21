@@ -9,18 +9,18 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:36 UTC  
-**Remaining partials:** `736`
+**Last updated:** 2026-07-21 22:39 UTC  
+**Remaining partials:** `726`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 72 |
-| `trap` | 98 |
+| `trap` | 88 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **736** |
+| **total** | **726** |
 
 ## spell (72)
 
@@ -334,7 +334,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (98)
+## trap (88)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -365,10 +365,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/amazoness_willpower.c`
 - L62: must-attack + mutual destroy-on-leave need battle/leave hooks.
 
-### `AMBUSH_FANGS`
-- path: `src_custom/trap_effects/ambush_fangs.c`
-- L17: printed trigger is face-up Venom targeted for attack. Ceiling: when Effect runs, place Venom Counter on origin attacker + self-destroy (negate/end BP not wired); upgrade: attack-target hook on Venom + NegateAttack + end Battle Phase.
-
 ### `ANCIENT_GEAR_DUEL`
 - path: `src_custom/trap_effects/ancient_gear_duel.c`
 - L45: unaffected by opp monster effects + Extra Deck Fusion + 3 attacks need protection/fusion/battle hooks. Ceiling: mark AG Golem/mentioners (unk4); if opp has monster + we control Golem, banish Golem + 1 AG from GY and SS Ultimate Ancient Gear Golem stand-in from Deck/hand.
@@ -376,10 +372,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ANGELS_TEAR`
 - path: `src_custom/trap_effects/angels_tear.c`
 - L342: need 4 banish targets plus 1 summon target.
-
-### `APPARATION`
-- path: `src_custom/trap_effects/apparation.c`
-- L37: printed trigger is HERO destroy. Ceiling: if origin was a HERO monster OR we control a HERO, allow Deck SS.
 
 ### `ARCANA_CALL`
 - path: `src_custom/trap_effects/arcana_call.c`
@@ -389,10 +381,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/attack_and_receive.c`
 - L48: activate when you take damage. Ceiling: burn 700 + 300×GY copies.
 
-### `ATTACK_GUIDANCE_ARMOR`
-- path: `src_custom/trap_effects/attack_guidance_armor.c`
-- L15: attack-declare choice Destroy OR redirect target. Ceiling: destroy declared attacker (origin) when Effect runs.
-
 ### `BATTLE_MANIA`
 - path: `src_custom/trap_effects/battle_mania.c`
 - L16: activate only opp Standby. Ceiling: when Effect runs, flip opp monsters to ATK; forced-attack / cannot-change-position need battle gates.
@@ -400,10 +388,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `BLESSED_WINDS`
 - path: `src_custom/trap_effects/blessed_winds.c`
 - L51: 3 OPT modes + once-per-turn flag need ignition menu. Ceiling on activate: prefer pay 1000 → SS Aroma from GY; else send Plant → +500 LP; else shuffle Plant from GY → +500 LP.
-
-### `BOTTOMLESS_SHIFTING_SAND`
-- path: `src_custom/trap_effects/bottomless_shifting_sand.c`
-- L10: GBA hand cap is 5; TCG rule uses 4 — scale self-destruct threshold down
 
 ### `BREAK_THE_DESTINY`
 - path: `src_custom/trap_effects/break_the_destiny.c`
@@ -446,10 +430,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L38: "Spells that mention Dark Fusion" not scanned by text.
 - L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
 
-### `DESTINED_RIVALS`
-- path: `src_custom/trap_effects/destined_rivals.c`
-- L54: effectExhausted until EP + OPT turn reset need End Phase / turn_effect clear. Ceiling: marks opp face-up monsters exhausted.
-
 ### `DRAMATIC_RESCUE`
 - path: `src_custom/trap_effects/dramatic_rescue.c`
 - L41: printed trigger is card targeting an Amazoness. Ceiling: bounce origin-row monster if Amazoness + SS other from hand; upgrade: target-chain hook when target passes Duel_IsAmazonessCard.
@@ -469,10 +449,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `EXCHANGE_OF_THE_SPIRIT`
 - path: `src_custom/trap_effects/exchange_of_the_spirit.c`
 - L32: full Deck↔GY swap is heavy — approximate by pushing all GY to deck bottom and rebuilding GY from current undrawn deck top chunk. Ceiling: incomplete swap if GY expand / deck sizes mismatch; upgrade: proper dual-buffer swap of entire Deck and GY stacks.
-
-### `FAIRY_BOX`
-- path: `src_custom/trap_effects/fairy_box.c`
-- L96: age both fixed backrows so a trap set last turn is live when the other duelist attacks
 
 ### `FAVOURITE_CONTACT`
 - path: `src_custom/trap_effects/favourite_contact.c`
@@ -494,10 +470,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/gladiator_beasts_medusa_shield.c`
 - L46: cannot be destroyed by card effects / OPT negate opp monster / if sent GY this turn Set GB Trap from Deck need destroy/negate/GY hooks. Ceiling: continuous face-up + marks only.
 - L55: needs trapEffect ID + dispatcher wire + PickZone.
-
-### `GLADIATOR_BEASTS_VALOR`
-- path: `src_custom/trap_effects/gladiator_beasts_valor.c`
-- L32: opp can only attack GB monsters needs attack-target gate. Ceiling: face-up continuous only.
 
 ### `GLADIATOR_NAUMACHIA`
 - path: `src_custom/trap_effects/gladiator_naumachia.c`
@@ -551,10 +523,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `LIGHTSWORN_AEGIS`
 - path: `src_custom/trap_effects/lightsworn_aegis.c`
 - L63: until EP negate + mill-from-Deck Set this card + OPT need End Phase clear / mill hook / turn reset. Ceiling: exhausts up to LS-count opp face-ups.
-
-### `LIGHTSWORN_BARRIER`
-- path: `src_custom/trap_effects/lightsworn_barrier.c`
-- L13: LS targeted for attack → mill top 2 → negate attack needs attack- declaration hook. Ceiling: face-up continuous only; upgrade: on attack target if Duel_CardNameContains(defender, Lightsworn) → mill 2 + NegateAttack.
 
 ### `LIGHTSWORN_JUDGEMENT`
 - path: `src_custom/trap_effects/lightsworn_judgement.c`
@@ -614,10 +582,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/morphtronic_mixup.c`
 - L75: PickZone for 2 targets + opp choice UI; trapEffect wire.
 
-### `MORPHTRONIC_MONITRON`
-- path: `src_custom/trap_effects/morphtronic_monitron.c`
-- L14: when Morphtronic Summoned → optional to Defense needs summon hook. Ceiling: face-up continuous only.
-
 ### `NECROVALLEY_TEMPLE`
 - path: `src_custom/trap_effects/necrovalley_temple.c`
 - L90: -500 ATK/DEF while GK+Necrovalley need stat overlay; destroy-Set Necrovalley S/T from Deck need destroy hook. Ceiling: if GK present, try place Necrovalley from hand/GY; mark opp monsters -1 stage.
@@ -662,10 +626,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `SCRAP_IRON_SCARECROW`
 - path: `src_custom/trap_effects/scrap_iron_scarecrow.c`
 - L16: negate attack needs attack-declare hook (Negate Attack path). Ceiling: Set face-down again instead of GY; upgrade: NegateAttack + trapEffect wire.
-
-### `SERPENT_SUPPRESSION`
-- path: `src_custom/trap_effects/serpent_suppression.c`
-- L14: opp 0-ATK Attack Position cannot be destroyed by battle with Reptilianne needs battle-destroy gate. Ceiling: face-up continuous only.
 
 ### `SHADDOLL_CORE`
 - path: `src_custom/trap_effects/shaddoll_core.c`

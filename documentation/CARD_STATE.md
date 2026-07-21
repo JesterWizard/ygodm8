@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round6 Batch1
+**Last worked on:** 2026-07-21 — Round6 Batch2
 
-**Outcome:** Gravity Bind face-up-only; Dragon's Rage pierce; Des Counterblow; Doppelganger; All-Out Attacks; Soul Levy; Morphtronic Bind; Light Spiral/Destruction mill; Thumbs Down. Partials **746→736**.
+**Outcome:** Fairy Box/Bottomless/Attack Guidance ceilings; Destined Rivals EP clear; Apparation; GB Valor gate; Monitron; Serpent Suppression; Lightsworn Barrier; Ambush Fangs. Partials **736→726** (verify).
 
-**Open / next:** Round6 Batches 2–6.
+**Open / next:** Round6 Batches 3–6.

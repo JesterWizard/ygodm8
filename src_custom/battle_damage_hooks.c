@@ -76,6 +76,7 @@
 #include "hamon_lord_of_striking_thunder.h"
 #include "constants/card_ids.h"
 #include "spell_effects.h"
+#include "serpent_suppression.h"
 #include "yubel.h"
 #include "custom_field_spell.h"
 #include "constants/custom_field_spells.h"
@@ -240,21 +241,27 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   Duel_ApplyBattleDestroyProtection();
   if (sActionData.flags & FLAG_GRAVEYARD_PLAYER) {
     struct DuelCard *zone = gFixedZones[sActionData.playerMonsterRow][sActionData.unkA];
+    struct DuelCard *attacker = gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16];
 
     if (MoltingEscape_PreventsBattleDestruction(zone)) {
       MoltingEscape_ApplyBattleProtection(zone);
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (GladiatorBeastsBattleManica_PreventsBattleDestruction(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (SerpentSuppression_PreventsBattleDestruction(zone, attacker)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
     struct DuelCard *zone = gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16];
+    struct DuelCard *attacker = gFixedZones[sActionData.playerMonsterRow][sActionData.unkA];
 
     if (MoltingEscape_PreventsBattleDestruction(zone)) {
       MoltingEscape_ApplyBattleProtection(zone);
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (GladiatorBeastsBattleManica_PreventsBattleDestruction(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (SerpentSuppression_PreventsBattleDestruction(zone, attacker)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }

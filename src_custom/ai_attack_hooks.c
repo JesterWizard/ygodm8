@@ -27,6 +27,7 @@
 #include "neutron_blast.h"
 #include "aroma_gardening.h"
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
+#include "lightsworn_barrier.h"
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -210,6 +211,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   MarkMonsterDeclaredAttackThisTurn(attacker);
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, NULL);
   ApplyAromaGardeningAttackDeclare();
+  LightswornBarrier_OnAttackDeclare(attacker, NULL);
   Flavian_OnAttackDeclare();
   TryShowBlackTyrannoDirectAttackText(attacker->id);
   TryShowDrillagoDirectAttackText(attacker->id);
@@ -278,6 +280,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   MarkMonsterDeclaredAttackThisTurn(attacker);
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, defender);
   ApplyAromaGardeningAttackDeclare();
+  LightswornBarrier_OnAttackDeclare(attacker, defender);
   Flavian_OnAttackDeclare();
 
   if (WhoseTurn() == DUEL_PLAYER) {

@@ -34,16 +34,11 @@ static u8 IsVisionHeroLv4OrLower(u16 cardId)
 
 static u8 HadHeroDestroyedContext(void)
 {
-  /* ponytail: printed trigger is HERO destroy. Ceiling: if origin was a HERO
-   * monster OR we control a HERO, allow Deck SS. */
-  struct DuelCard *origin =
-      gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
   u8 row = WhoseTurn() == DUEL_PLAYER ? OPPONENT_MONSTER_ROW : PLAYER_MONSTER_ROW;
   u8 col;
 
-  if (origin != NULL
-      && (Duel_CardNameContains(origin->id, sHeroName)
-          || Duel_CardNameContains(origin->id, sHeroNameAlt)))
+  if (Duel_CardNameContains(gTrapEffectData.originCardId, sHeroName)
+      || Duel_CardNameContains(gTrapEffectData.originCardId, sHeroNameAlt))
     return TRUE;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
