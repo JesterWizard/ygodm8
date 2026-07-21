@@ -175,10 +175,7 @@ static void EquipCelestialSword(struct DuelCard *spellZone, struct DuelCard *tar
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: always treated as a Noble Arms card needs a name/archetype tag
-   * outside this file. Ceiling: equip +ATK only; upgrade: treat-as / name contains
-   * "Noble Arms" for Noble Arms support. */
+  /* Parent: CELESTIAL_SWORD_EATOS treated as "Noble Arms" in Duel_CardNameContains. */
 }
 
 static void ResolveCelestialSwordTarget(u8 fixedRow, u8 fixedCol)

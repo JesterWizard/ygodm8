@@ -29,6 +29,7 @@
 #include "yubel.h"
 #include "effect_system.h"
 #include "effect_events.h"
+#include "aroma_garden.h"
 #include "big_evolution_pill.h"
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
 #include "fusion_destiny.h"
@@ -438,6 +439,8 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();
+  AromaGarden_ReapplyTempBoostAfterReset();
+  AromaGarden_OnEndPhase();
   ClearAllRiryokuAtkDeltas();
   ClearLightEndDragonDefStages();
   TheSupremacySun_AgeStandbyFlags();

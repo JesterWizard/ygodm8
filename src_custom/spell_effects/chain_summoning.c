@@ -24,8 +24,7 @@ u8 ChainSummoning_CanActivateForChain(u8 linkCount, u8 sameNameOnChain)
 
 void ChainSummoning_GrantExtraNormalSummons(void)
 {
-  /* ponytail: parent wires TryUnlockAfterNormalSummon in code_803F02C_hooks so
-   * LockMonsterCardsInRow unlocks for each of the 2 extra NS beyond base. */
+  /* Parent: ChainSummoning_TryUnlockAfterNormalSummon in code_8043EF4_hooks. */
   sChainSummoningExtraPending = CHAIN_SUMMONING_EXTRA_NORMAL_SUMMONS;
 
   if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
@@ -58,9 +57,9 @@ void ChainSummoning_ResetTurnState(void)
 
 u8 CanActivateCHAIN_SUMMONING(void)
 {
-  /* ponytail: no Chain Link / chain-depth API in this engine — parent wires
-   * ChainSummoning_CanActivateForChain(link, sameNameOnChain) at activation. */
-  return FALSE;
+  /* ponytail: no Chain Link / chain-depth API — assume min Link 3. Ceiling:
+   * always legal at Link≥3 floor; upgrade: real chain counter. */
+  return ChainSummoning_CanActivateForChain(CHAIN_SUMMONING_MIN_LINK, FALSE);
 }
 
 static void CHAIN_SUMMONING_ResolveBody(void)

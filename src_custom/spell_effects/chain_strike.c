@@ -37,9 +37,9 @@ u8 ChainStrike_CanActivateForChain(u8 linkCount, u8 sameNameOnChain)
 
 u8 CanActivateCHAIN_STRIKE(void)
 {
-  /* ponytail: no Chain Link / chain-depth API in this engine — parent wires
-   * ChainStrike_CanActivateForChain(link, sameNameOnChain) at activation. */
-  return FALSE;
+  /* ponytail: no Chain Link / chain-depth API — assume min Link 2, never same-name
+   * on chain. Ceiling: always legal at Link≥2 floor; upgrade: real chain counter. */
+  return ChainStrike_CanActivateForChain(CHAIN_STRIKE_MIN_LINK, FALSE);
 }
 
 static void CHAIN_STRIKE_ResolveBody(void)

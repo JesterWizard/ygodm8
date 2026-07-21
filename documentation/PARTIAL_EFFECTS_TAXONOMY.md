@@ -7,16 +7,16 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 21:22 UTC  
-**Ceiling lines tagged:** `956`  
-**Partial files:** `782`
+**Last updated:** 2026-07-21 21:25 UTC  
+**Ceiling lines tagged:** `953`  
+**Partial files:** `780`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 323 | triage |
-| `event.OnStandby` | 231 | 3 (OPT / turn flags) |
+| `other` | 321 | triage |
+| `event.OnStandby` | 230 | 3 (OPT / turn flags) |
 | `event.OnBattleDestroy` | 75 | 3 |
 | `event.OnSummon` | 67 | 3 |
 | `ui.Choice` | 55 | 2 |
@@ -28,7 +28,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `stat.Continuous` | 18 | 1–3 |
 | `event.GyIgnition` | 13 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **956** | |
+| **total** | **953** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -220,9 +220,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (231)
+## `event.OnStandby` (230)
 
-- `AROMA_GARDEN` (spell): L90: printed "until end of opponent's next turn (even if this card leaves)" needs a multi-turn temp-stage / overlay tracker outside this file. Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages / EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on zones and skip ResetTempStages until that turn's End Phase.
 - `CHICKEN_GAME` (spell): L209: OPT ignition no-response — parent skips TryResolveSpellThroughTraps when ChickenGame_ShouldSkipTrapChain() during face-up re-activation.
 - `COURT_OF_JUSTICE` (spell): L33: attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp.
 - `DOCTOR_D` (spell): L315: GY ignition "banish this card from GY, target 2 Destiny HERO; copy ATK until EOT" needs a GY-activate spell path + PickZone pair outside this file. Ceiling: on-field banish-cost recover only; upgrade: GY activate → banish DOCTOR_D → PickZone two Destiny HERO → set target ATK via temp stages / exact overlay until End Phase.
@@ -701,14 +700,12 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (323)
+## `other` (321)
 
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
-- `CELESTIAL_SWORD_EATOS` (spell): L179: always treated as a Noble Arms card needs a name/archetype tag outside this file. Ceiling: equip +ATK only; upgrade: treat-as / name contains "Noble Arms" for Noble Arms support.
-- `CHAIN_STRIKE` (spell): L40: no Chain Link / chain-depth API in this engine — parent wires ChainStrike_CanActivateForChain(link, sameNameOnChain) at activation.
-- `CHAIN_SUMMONING` (spell): L27: parent wires TryUnlockAfterNormalSummon in code_803F02C_hooks so LockMonsterCardsInRow unlocks for each of the 2 extra NS beyond base.
-- `CHAIN_SUMMONING` (spell): L61: no Chain Link / chain-depth API in this engine — parent wires ChainSummoning_CanActivateForChain(link, sameNameOnChain) at activation.
+- `CHAIN_STRIKE` (spell): L40: no Chain Link / chain-depth API — assume min Link 2, never same-name on chain. Ceiling: always legal at Link≥2 floor; upgrade: real chain counter.
+- `CHAIN_SUMMONING` (spell): L60: no Chain Link / chain-depth API — assume min Link 3. Ceiling: always legal at Link≥3 floor; upgrade: real chain counter.
 - `CHRYSALIS_NEO_SPACIAN` (spell): L31: only the five Chrysalis in-trunk pairs are mapped.
 - `COCOON_REBIRTH` (spell): L60: only the five Chrysalis in-trunk pairs are mapped.
 - `COLD_WAVE` (spell): L30: no Main Phase 1-start / prior-action API - parent wires ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction) at activation.

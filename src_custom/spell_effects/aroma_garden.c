@@ -12,6 +12,11 @@
 
 static const char sAromaArchetypeName[] APPEND_RODATA = "Aroma";
 
+/* Mask of fixed monster cols that keep +1 temp stage until opp next EP. */
+static u8 sAromaGardenBoostMaskPlayer APPEND_DATA = {0};
+static u8 sAromaGardenBoostMaskOpponent APPEND_DATA = {0};
+static u8 sAromaGardenBoostTurnsLeft APPEND_DATA = {0};
+static u8 sAromaGardenBoostController APPEND_DATA = {0xFF};
 static u8 IsAromaMonster(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
@@ -52,10 +57,30 @@ static u8 CanActivateAromaGardenIgnition(struct DuelCard *zone)
   return ControlsAromaMonster();
 }
 
+static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
+{
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
 static void BoostOwnMonstersTempStages(void)
 {
   u8 i;
   u8 s;
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
+  u8 *mask;
+
+  if (fixedDuelist == DUEL_PLAYER)
+    mask = &sAromaGardenBoostMaskPlayer;
+  else
+    mask = &sAromaGardenBoostMaskOpponent;
+
+  *mask = 0;
+  sAromaGardenBoostController = fixedDuelist;
+  /* Clear on End Phase of opponent's next turn: this EP + opp EP = 2. */
+  sAromaGardenBoostTurnsLeft = 2;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i];
@@ -68,6 +93,7 @@ static void BoostOwnMonstersTempStages(void)
     for (s = 0; s < AROMA_GARDEN_STAT_STAGES; s++)
       IncrementTempStage(zone);
 
+    *mask |= (u8)(1 << i);
     Duel_NotifyMonsterZoneChanged(zone);
   }
 
@@ -87,14 +113,55 @@ static void ResolveAromaGardenIgnition(struct DuelCard *zone)
   if (Duel_ChangeLp(ACTIVE_DUELIST, AROMA_GARDEN_LP_GAIN, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: printed "until end of opponent's next turn (even if this card
-   * leaves)" needs a multi-turn temp-stage / overlay tracker outside this file.
-   * Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages /
-   * EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on
-   * zones and skip ResetTempStages until that turn's End Phase. */
   BoostOwnMonstersTempStages();
-
   zone->effectUsedThisTurn = TRUE;
+}
+
+void AromaGarden_ReapplyTempBoostAfterReset(void)
+{
+  u8 col;
+  u8 row;
+  u8 *mask;
+
+  if (sAromaGardenBoostTurnsLeft == 0)
+    return;
+
+  if (sAromaGardenBoostController == DUEL_PLAYER) {
+    mask = &sAromaGardenBoostMaskPlayer;
+    row = PLAYER_MONSTER_ROW;
+  } else if (sAromaGardenBoostController == DUEL_OPPONENT) {
+    mask = &sAromaGardenBoostMaskOpponent;
+    row = OPPONENT_MONSTER_ROW;
+  } else {
+    return;
+  }
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone;
+
+    if (!(*mask & (1 << col)))
+      continue;
+
+    zone = gFixedZones[row][col];
+    if (zone == NULL || zone->id == CARD_NONE)
+      continue;
+
+    IncrementTempStage(zone);
+  }
+}
+
+void AromaGarden_OnEndPhase(void)
+{
+  if (sAromaGardenBoostTurnsLeft == 0)
+    return;
+
+  sAromaGardenBoostTurnsLeft--;
+  if (sAromaGardenBoostTurnsLeft > 0)
+    return;
+
+  sAromaGardenBoostMaskPlayer = 0;
+  sAromaGardenBoostMaskOpponent = 0;
+  sAromaGardenBoostController = 0xFF;
 }
 
 u8 Cond_AromaGardenOnDestroy(struct EffectCtx *ctx)

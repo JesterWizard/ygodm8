@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 21:22 UTC  
-**Remaining partials:** `782`
+**Last updated:** 2026-07-21 21:25 UTC  
+**Remaining partials:** `780`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 101 |
+| `spell` | 99 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **782** |
+| **total** | **780** |
 
-## spell (101)
+## spell (99)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -41,10 +41,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L291: GY effect (banish this → Fusion Summon Plant Fusion by banishing materials from hand/field, and GY Plants if LP higher) needs a GY-activate path + Plant Fusion recipe filter outside this file. Ceiling: discard + place Humid/Dried/Blessed Winds face-up only; upgrade: GY activate AROMA_BLEND → banish self → FusionDuel Plant Fusion pay
 - L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 
-### `AROMA_GARDEN`
-- path: `src_custom/spell_effects/aroma_garden.c`
-- L90: printed "until end of opponent's next turn (even if this card leaves)" needs a multi-turn temp-stage / overlay tracker outside this file. Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages / EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on zones and skip ResetTempStages until that turn's End Phase.
-
 ### `BOND_BETWEEN_TEACHER_AND_STUDENT`
 - path: `src_custom/spell_effects/bond_between_teacher_and_student.c`
 - L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
@@ -54,18 +50,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/book_of_life.c`
 - L159: single-card GY model — banish removes opponent's top graveyard card.
 
-### `CELESTIAL_SWORD_EATOS`
-- path: `src_custom/spell_effects/celestial_sword_eatos.c`
-- L179: always treated as a Noble Arms card needs a name/archetype tag outside this file. Ceiling: equip +ATK only; upgrade: treat-as / name contains "Noble Arms" for Noble Arms support.
-
 ### `CHAIN_STRIKE`
 - path: `src_custom/spell_effects/chain_strike.c`
-- L40: no Chain Link / chain-depth API in this engine — parent wires ChainStrike_CanActivateForChain(link, sameNameOnChain) at activation.
+- L40: no Chain Link / chain-depth API — assume min Link 2, never same-name on chain. Ceiling: always legal at Link≥2 floor; upgrade: real chain counter.
 
 ### `CHAIN_SUMMONING`
 - path: `src_custom/spell_effects/chain_summoning.c`
-- L27: parent wires TryUnlockAfterNormalSummon in code_803F02C_hooks so LockMonsterCardsInRow unlocks for each of the 2 extra NS beyond base.
-- L61: no Chain Link / chain-depth API in this engine — parent wires ChainSummoning_CanActivateForChain(link, sameNameOnChain) at activation.
+- L60: no Chain Link / chain-depth API — assume min Link 3. Ceiling: always legal at Link≥3 floor; upgrade: real chain counter.
 
 ### `CHARGE_OF_THE_LIGHT_BRIGADE`
 - path: `src_custom/spell_effects/charge_of_the_light_brigade.c`

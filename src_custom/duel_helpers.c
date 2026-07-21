@@ -1166,6 +1166,14 @@ u8 Duel_CardNameContains(u16 cardId, const char *needle)
   if (needleLen == 0)
     return FALSE;
 
+  /* Celestial Sword Eatos is always treated as a Noble Arms card. */
+  if (cardId == CELESTIAL_SWORD_EATOS && needleLen == 10
+      && needle[0] == 'N' && needle[1] == 'o' && needle[2] == 'b'
+      && needle[3] == 'l' && needle[4] == 'e' && needle[5] == ' '
+      && needle[6] == 'A' && needle[7] == 'r' && needle[8] == 'm'
+      && needle[9] == 's')
+    return TRUE;
+
   SetCardInfo(cardId);
   name = gCardInfo.name;
   if (name == NULL)
