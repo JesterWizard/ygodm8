@@ -8,11 +8,16 @@
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
 #include "synchro_duel.h"
+#include "vipers_rebirth.h"
 
 static const u8 sVipersRebirthPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
+
+static u8 sVipersStampRow APPEND_DATA = {0xFF};
+static u8 sVipersStampCol APPEND_DATA = {0xFF};
+static u16 sVipersStampId APPEND_DATA = {CARD_NONE};
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -218,11 +223,56 @@ static void VIPERS_REBIRTH_ResolveBody(void)
       return;
   }
 
-  /* ponytail: End Phase destroy of the SS'd monster needs a turn_effect hook
-   * outside this file (no in-file End Phase destroy queue without BSS).
-   * Ceiling: SS only; upgrade: turn_effect_hooks End Phase → destroy marked zone. */
+  {
+    u8 col;
+    u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL && zone->id != CARD_NONE && IsEligibleVipersTarget(zone->id)) {
+        VipersRebirth_StampSummonedZone(zone);
+        break;
+      }
+    }
+  }
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
+}
+
+void VipersRebirth_StampSummonedZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &fixedCol))
+    return;
+
+  sVipersStampRow = fixedRow;
+  sVipersStampCol = fixedCol;
+  sVipersStampId = zone->id;
+}
+
+void TryApplyVipersRebirthEndPhase(void)
+{
+  struct DuelCard *zone;
+
+  if (sVipersStampRow > PLAYER_MONSTER_ROW || sVipersStampCol >= MAX_ZONES_IN_ROW) {
+    sVipersStampRow = 0xFF;
+    sVipersStampCol = 0xFF;
+    sVipersStampId = CARD_NONE;
+    return;
+  }
+
+  zone = gFixedZones[sVipersStampRow][sVipersStampCol];
+  if (zone != NULL && zone->id == sVipersStampId && zone->id != CARD_NONE)
+    Duel_DestroyZone(zone, Duel_FixedDuelistForMonsterRow(sVipersStampRow), TRUE);
+
+  sVipersStampRow = 0xFF;
+  sVipersStampCol = 0xFF;
+  sVipersStampId = CARD_NONE;
 }
 
 APPEND_TEXT void EffectVIPERS_REBIRTH(void)

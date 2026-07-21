@@ -5,6 +5,7 @@
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
+#include "wetlands.h"
 
 void SetDuelFieldGfx(u8 field);
 
@@ -83,12 +84,24 @@ static void WETLANDS_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(WETLANDS);
+}
 
-  /* ponytail: +1200 ATK for Aqua/WATER/Level≤2 needs a field-stat applier
-   * outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids
-   * registered in duel_helpers.c).
-   * Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up
-   * WETLANDS and TYPE_AQUA + ATTRIBUTE_WATER + level≤2 then ATK += 1200. */
+void ApplyWetlandsAtkBoostToCardInfo(const struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE || !zone->isFaceUp)
+    return;
+  if (Duel_FindBackrowCard(DUEL_PLAYER, WETLANDS, TRUE) == NULL
+      && Duel_FindBackrowCard(DUEL_OPPONENT, WETLANDS, TRUE) == NULL)
+    return;
+  if (!Duel_CardHasMonsterType(zone->id, TYPE_AQUA))
+    return;
+  if (gCardInfo.attribute != ATTRIBUTE_WATER || gCardInfo.level == 0
+      || gCardInfo.level > 2)
+    return;
+  if (gCardInfo.atk == 0xFFFF)
+    return;
+
+  gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + 1200);
 }
 
 APPEND_TEXT void EffectWETLANDS(void)

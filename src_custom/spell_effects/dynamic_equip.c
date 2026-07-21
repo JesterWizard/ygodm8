@@ -187,7 +187,8 @@ void ApplyDynamicEquipStages(struct DuelCard *targetZone, u8 stages)
 void RemoveDynamicEquipStages(struct DynamicEquipLink *link)
 {
   struct DuelCard *targetZone;
-  u8 stages = link->appliedStages;
+  u8 stages;
+  u8 restoreByIncrement;
 
   if (link->spellId == BIG_BANG_SHOT) {
     BigBangShot_ClearEquipBonus(link);
@@ -199,8 +200,12 @@ void RemoveDynamicEquipStages(struct DynamicEquipLink *link)
   if (targetZone == NULL || link->appliedStages == 0)
     return;
 
+  restoreByIncrement = (link->spellId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE)
+      || (link->spellId == UNSTABLE_EVOLUTION && (link->appliedStages & 0x80));
+  stages = link->appliedStages & 0x7F;
+
   while (stages--) {
-    if (link->spellId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE)
+    if (restoreByIncrement)
       IncrementPermStage(targetZone);
     else
       DecrementPermStage(targetZone);

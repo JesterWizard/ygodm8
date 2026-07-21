@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round3 Batch4
+**Last worked on:** 2026-07-21 — Round3 Batches 5–6
 
-**Outcome:** Solar→Gaze pack: The A Forces ATK overlay, Spell Gear NS lock, Soul Servant GY ignition, Supreme Kings Castle battle ATK, Gaze End Phase banish. Honest UI/name ceilings kept. Partials **785→784**. Fixed infected_mail APPEND_DATA link.
+**Outcome:** Triangle Ecstasy opp-trap lock; Unstable Evolution unequip restore; Vipers Rebirth EP destroy; Wetlands ATK overlay. Honest ceilings kept on Sacred Waters / Shallow Grave / Twlight / Ultra Poly / Venom / Weapon Change / remaining traps. Partials **784→782**.
 
-**Open / next:** Round3 Batches 5–6.
+**Open / next:** Round4 (continue PARTIAL clear from remaining spells/traps).

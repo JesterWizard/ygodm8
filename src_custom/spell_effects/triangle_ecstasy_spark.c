@@ -4,9 +4,11 @@
 #include "duel_helpers.h"
 #include "mini_card.h"
 #include "spell_effects.h"
+#include "triangle_ecstasy_spark.h"
 
 #define TRIANGLE_ECSTASY_SPARK_ATK 2700
 
+static u8 sTriangleEcstasyOppTrapLock APPEND_DATA = {FALSE};
 static u8 IsHarpieLadySisters(u16 cardId)
 {
   return cardId == HARPIE_LADY_SISTERS;
@@ -62,14 +64,26 @@ static void TRIANGLE_ECSTASY_SPARK_ResolveBody(void)
   Duel_ShowEffectText(TRIANGLE_ECSTASY_SPARK);
   RefreshFieldMonsterStatOverlays();
 
+  TriangleEcstasySpark_ArmOppTrapLock();
+
   /* ponytail: stage unit is 500 ATK — Sisters (1950) become 2450 or 2950, not
    * exact printed 2700. Ceiling: nearest-stage temp boost until EOT; upgrade:
    * exact-ATK overlay (like riryoku) forced to 2700 until End Phase clear. */
+}
 
-  /* ponytail: opponent cannot activate Trap Cards / negate opp Trap effects
-   * until EOT needs a trap-activation / trap-resolve gate outside this file.
-   * Ceiling: Sisters ATK approx only; upgrade: turn flag → block
-   * CanActivateTrap / trap effect resolve for INACTIVE_DUELIST until End Phase. */
+void TriangleEcstasySpark_ArmOppTrapLock(void)
+{
+  sTriangleEcstasyOppTrapLock = TRUE;
+}
+
+u8 TriangleEcstasySpark_BlocksOppTrap(void)
+{
+  return sTriangleEcstasyOppTrapLock;
+}
+
+void TriangleEcstasySpark_ClearOnTurnBoundary(void)
+{
+  sTriangleEcstasyOppTrapLock = FALSE;
 }
 
 APPEND_TEXT void EffectTRIANGLE_ECSTASY_SPARK(void)

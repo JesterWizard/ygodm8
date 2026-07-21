@@ -36,6 +36,7 @@
 #include "instant_fusion.h"
 #include "over_destiny.h"
 #include "the_gaze_of_timaeus.h"
+#include "vipers_rebirth.h"
 #include "red_dragon_archfiend.h"
 #include "spell_effects.h"
 
@@ -424,6 +425,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyTheGazeOfTimaeusEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyVipersRebirthEndPhase();
   if (IsDuelOver() == 1)
     return;
   HystericSign_TryResolveEndPhase();

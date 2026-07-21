@@ -94,12 +94,8 @@ static void EquipUnstableEvolution(struct DuelCard *spellZone, struct DuelCard *
   } else if (stages < 0) {
     s8 left = stages;
 
-    /* ponytail: ApplyDynamicEquipStages / RemoveDynamicEquipStages only track
-     * positive IncrementPermStage equips (TRYCE is the sole negative special
-     * case, outside this file). Ceiling: ATK cut applied once; unequip does not
-     * restore the cut. Upgrade: list UNSTABLE_EVOLUTION in RemoveDynamicEquipStages
-     * like TRYCE (Decrement on apply / Increment on remove), or exact original-ATK
-     * overlay refreshed from LP. */
+    /* Bit7 marks ATK-cut path so Remove restores via IncrementPermStage. */
+    applied = (u8)((-stages) | 0x80);
     while (left < 0) {
       DecrementPermStage(target);
       left++;

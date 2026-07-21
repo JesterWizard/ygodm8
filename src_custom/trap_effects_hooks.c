@@ -16,6 +16,7 @@
 #include "blast_held_by_a_tribute.h"
 #include "mirror_force.h"
 #include "a_hero_emerges.h"
+#include "triangle_ecstasy_spark.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -157,6 +158,16 @@ void ActivateTrapEffect__Replacement(u16 lp)
 
   respondingZone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
   if (respondingZone != NULL && Duel_IsCardActivationBlocked(respondingZone->id)) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
+      SaveDrainingShieldAttackResume();
+      TryResumeInterruptedAttackAfterDrainingShield();
+    }
+    return;
+  }
+
+  if (TriangleEcstasySpark_BlocksOppTrap()) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
