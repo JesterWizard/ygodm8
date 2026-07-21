@@ -46,10 +46,6 @@ APPEND_TEXT void EffectDAMAGE_REPTILE(void)
 
   Duel_ShowTrapResponseText(DAMAGE_REPTILE, gTrapEffectData.originCardId);
 
-  /* ponytail: OPT when take battle damage involving Reptile. Ceiling: when
-   * Effect runs, SS Reptile from Deck with ATK ≤ a stand-in damage amount
-   * (origin ATK if monster); upgrade: battle-damage hook stores damage. */
-
   if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
     SetCardInfo(gTrapEffectData.originCardId);
     maxAtk = gCardInfo.atk;

@@ -10,10 +10,6 @@ APPEND_TEXT void EffectDAMAGE_POLARIZER(void)
 {
   Duel_ShowTrapResponseText(DAMAGE_POLARIZER, gTrapEffectData.originCardId);
 
-  /* ponytail: negate effect-damage activation needs damage-effect chain gate.
-   * Ceiling: both players draw 1 when Effect runs; upgrade: trapEffect on
-   * effect-damage activate → cancel damage + draw. */
-
   Duel_DrawCards(INACTIVE_DUELIST, 1, FALSE);
   Duel_DrawCards(ACTIVE_DUELIST, 1, TRUE);
 

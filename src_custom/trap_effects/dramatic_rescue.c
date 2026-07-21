@@ -38,10 +38,6 @@ APPEND_TEXT void EffectDRAMATIC_RESCUE(void)
 
   Duel_ShowTrapResponseText(DRAMATIC_RESCUE, gTrapEffectData.originCardId);
 
-  /* ponytail: printed trigger is card targeting an Amazoness.
-   * Ceiling: bounce origin-row monster if Amazoness + SS other from hand;
-   * upgrade: target-chain hook when target passes Duel_IsAmazonessCard. */
-
   targeted = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
   if (targeted != NULL && Duel_IsAmazonessCard(targeted->id)) {
     returnedId = targeted->id;

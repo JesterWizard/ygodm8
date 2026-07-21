@@ -13,9 +13,6 @@ APPEND_TEXT void EffectBATTLE_MANIA(void)
 
   Duel_ShowTrapResponseText(BATTLE_MANIA, gTrapEffectData.originCardId);
 
-  /* ponytail: activate only opp Standby. Ceiling: when Effect runs, flip opp
-   * monsters to ATK; forced-attack / cannot-change-position need battle gates. */
-
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];
 

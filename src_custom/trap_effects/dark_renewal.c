@@ -49,9 +49,6 @@ APPEND_TEXT void EffectDARK_RENEWAL(void)
 
   Duel_ShowTrapResponseText(DARK_RENEWAL, gTrapEffectData.originCardId);
 
-  /* ponytail: on opp NS/SS. Ceiling: send origin + your Spellcaster → GY, then
-   * SS DARK Spellcaster from Deck/GY; upgrade: summon trigger wire. */
-
   oppSummoned = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {

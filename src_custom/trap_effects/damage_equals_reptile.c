@@ -67,6 +67,4 @@ APPEND_TEXT void EffectDAMAGE_EQUALS_REPTILE(void)
     Duel_ActivateContinuousZone(zone);
 
   UpdateDuelGfxExceptField();
-
-  /* ponytail: battle-damage involving Reptile trigger + OPT. */
 }

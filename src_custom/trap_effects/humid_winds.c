@@ -99,9 +99,6 @@ static void ActivateHUMID_WINDSZone(struct DuelCard *zone)
     Duel_ChangeLp(INACTIVE_DUELIST, 500, TRUE);
 
   UpdateDuelGfxExceptField();
-
-  /* ponytail: each effect OPT as face-up ignition needs Main Phase hooks +
-   * turn reset. Ceiling: one search+heal path on activate flip. */
 }
 
 void TryActivateHUMID_WINDSOnOpponentTurnStart(void)

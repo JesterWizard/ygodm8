@@ -47,10 +47,6 @@ APPEND_TEXT void EffectQUEENS_PAWN(void)
 
   Duel_ShowTrapResponseText(QUEENS_PAWN, gTrapEffectData.originCardId);
 
-  /* ponytail: activate when Amazoness destroys by battle. Ceiling: when Effect
-   * runs, Deck SS Lv≤4 Amazoness; upgrade: battle-destroy hook when attacker
-   * passes Duel_IsAmazonessCard. */
-
   if (!ArchlordKristya_IsSpecialSummonLocked()
       && FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) >= 0) {
     cardId = FindLv4OrLowerAmazoness(INACTIVE_DUELIST);

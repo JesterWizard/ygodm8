@@ -58,10 +58,6 @@ APPEND_TEXT void EffectD_TIME(void)
 
   Duel_ShowTrapResponseText(D_TIME, gTrapEffectData.originCardId);
 
-  /* ponytail: when face-up E-HERO leaves field. Ceiling: when Effect runs,
-   * search Destiny HERO Lv ≤ origin level (or 4); upgrade: leave-field hook
-   * when Duel_IsElementalHeroCard. */
-
   if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
     SetCardInfo(gTrapEffectData.originCardId);
     if (gCardInfo.level > 0)

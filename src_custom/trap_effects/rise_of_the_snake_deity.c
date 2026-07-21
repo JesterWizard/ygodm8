@@ -13,10 +13,6 @@ APPEND_TEXT void EffectRISE_OF_THE_SNAKE_DEITY(void)
 
   Duel_ShowTrapResponseText(RISE_OF_THE_SNAKE_DEITY, gTrapEffectData.originCardId);
 
-  /* ponytail: printed trigger is Vennominon destroyed except by battle.
-   * Ceiling: when Effect runs, SS Vennominaga from hand/Deck; upgrade: destroy
-   * hook gates activation to non-battle Vennominon leave. */
-
   if (ArchlordKristya_IsSpecialSummonLocked()
       || FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) < 0) {
     Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],

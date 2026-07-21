@@ -52,10 +52,6 @@ APPEND_TEXT void EffectMAGICIANS_CIRCLE(void)
 
   Duel_ShowTrapResponseText(MAGICIANS_CIRCLE, gTrapEffectData.originCardId);
 
-  /* ponytail: printed trigger is Spellcaster attack declare. Ceiling: when
-   * Effect runs, each player Deck SS Spellcaster ≤2000 ATK; upgrade: attack
-   * declare hook when attacker is Spellcaster. */
-
   if (!ArchlordKristya_IsSpecialSummonLocked()) {
     opts = Duel_DefaultSpecialSummonOpts(FALSE);
     myId = FindDeckSpellcaster(INACTIVE_DUELIST);

@@ -29,8 +29,6 @@ APPEND_TEXT void EffectGLADIATOR_BEAST_WAR_CHARIOT(void)
   Duel_ShowTrapResponseText(GLADIATOR_BEAST_WAR_CHARIOT, gTrapEffectData.originCardId);
 
   if (ControlsFaceUpGladiatorBeast()) {
-    /* ponytail: negate Effect Monster activation + destroy needs negation hook.
-     * Ceiling: destroys origin monster if present; upgrade: full negate. */
     if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
       struct DuelCard *origin =
           gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];

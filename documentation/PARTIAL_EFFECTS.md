@@ -9,18 +9,18 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:40 UTC  
-**Remaining partials:** `715`
+**Last updated:** 2026-07-21 22:41 UTC  
+**Remaining partials:** `703`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 72 |
-| `trap` | 77 |
+| `trap` | 65 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **715** |
+| **total** | **703** |
 
 ## spell (72)
 
@@ -334,12 +334,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (77)
+## trap (65)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
 - L26: Extra Deck / Ritual need proper summon; treat as unsummonable from hand
-- L62: Normal Trap must leave the backrow to prevent AI re-trigger loop
 
 ### `ACE_OF_WAND`
 - path: `src_custom/trap_effects/ace_of_wand.c`
@@ -377,10 +376,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/arcana_call.c`
 - L81: until EP, selected AF uses banished AF's coin effect — needs End Phase clear + Arcana effect dispatch override. Ceiling: marks field monster; GY Arcana banished.
 
-### `BATTLE_MANIA`
-- path: `src_custom/trap_effects/battle_mania.c`
-- L16: activate only opp Standby. Ceiling: when Effect runs, flip opp monsters to ATK; forced-attack / cannot-change-position need battle gates.
-
 ### `BLESSED_WINDS`
 - path: `src_custom/trap_effects/blessed_winds.c`
 - L51: 3 OPT modes + once-per-turn flag need ignition menu. Ceiling on activate: prefer pay 1000 → SS Aroma from GY; else send Plant → +500 LP; else shuffle Plant from GY → +500 LP.
@@ -401,34 +396,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/d_tactics.c`
 - L58: Standby HERO +400 + destroy-Set D-HERO Spell need turn/destroy hooks. Ceiling: +1 stage on HERO monsters; if Lv8+ D-HERO present, banish 1 opp card (field then GY then hand).
 
-### `D_TIME`
-- path: `src_custom/trap_effects/d_time.c`
-- L61: when face-up E-HERO leaves field. Ceiling: when Effect runs, search Destiny HERO Lv ≤ origin level (or 4); upgrade: leave-field hook when Duel_IsElementalHeroCard.
-
-### `DAMAGE_EQUALS_REPTILE`
-- path: `src_custom/trap_effects/damage_equals_reptile.c`
-- L71: battle-damage involving Reptile trigger + OPT.
-
-### `DAMAGE_POLARIZER`
-- path: `src_custom/trap_effects/damage_polarizer.c`
-- L13: negate effect-damage activation needs damage-effect chain gate. Ceiling: both players draw 1 when Effect runs; upgrade: trapEffect on effect-damage activate → cancel damage + draw.
-
-### `DAMAGE_REPTILE`
-- path: `src_custom/trap_effects/damage_reptile.c`
-- L49: OPT when take battle damage involving Reptile. Ceiling: when Effect runs, SS Reptile from Deck with ATK ≤ a stand-in damage amount (origin ATK if monster); upgrade: battle-damage hook stores damage.
-
-### `DARK_RENEWAL`
-- path: `src_custom/trap_effects/dark_renewal.c`
-- L52: on opp NS/SS. Ceiling: send origin + your Spellcaster → GY, then SS DARK Spellcaster from Deck/GY; upgrade: summon trigger wire.
-
 ### `DARK_SUPREMACY`
 - path: `src_custom/trap_effects/dark_supremacy.c`
 - L38: "Spells that mention Dark Fusion" not scanned by text.
 - L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
-
-### `DRAMATIC_RESCUE`
-- path: `src_custom/trap_effects/dramatic_rescue.c`
-- L41: printed trigger is card targeting an Amazoness. Ceiling: bounce origin-row monster if Amazoness + SS other from hand; upgrade: target-chain hook when target passes Duel_IsAmazonessCard.
 
 ### `DRIED_WINDS`
 - path: `src_custom/trap_effects/dried_winds.c`
@@ -454,10 +425,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/fossil_excavation.c`
 - L78: negate SS effects + mutual destroy-on-leave need leave hooks.
 
-### `GLADIATOR_BEAST_WAR_CHARIOT`
-- path: `src_custom/trap_effects/gladiator_beast_war_chariot.c`
-- L32: negate Effect Monster activation + destroy needs negation hook. Ceiling: destroys origin monster if present; upgrade: full negate.
-
 ### `GLADIATOR_BEASTS_MEDUSA_SHIELD`
 - path: `src_custom/trap_effects/gladiator_beasts_medusa_shield.c`
 - L46: cannot be destroyed by card effects / OPT negate opp monster / if sent GY this turn Set GB Trap from Deck need destroy/negate/GY hooks. Ceiling: continuous face-up + marks only.
@@ -482,10 +449,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `HARPIES_FEATHER_STORM`
 - path: `src_custom/trap_effects/harpies_feather_storm.c`
 - L107: opp monster-effect negate this turn + hand activate need gates. Ceiling: if WIND Winged Beast, mark continuous lock via unk4 on this resolve; if Harpie present, also try add Feather Duster (destroy-search stand-in when gate missing).
-
-### `HUMID_WINDS`
-- path: `src_custom/trap_effects/humid_winds.c`
-- L103: each effect OPT as face-up ignition needs Main Phase hooks + turn reset. Ceiling: one search+heal path on activate flip.
 
 ### `HYSTERIC_PARTY`
 - path: `src_custom/trap_effects/hysteric_party.c`
@@ -527,10 +490,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/magician_navigation.c`
 - L58: GY banish negate S/T needs GY ignition + face-up S/T target. Ceiling: SS Dark Magician from hand, then Deck SS Lv7− DARK Spellcaster.
 
-### `MAGICIANS_CIRCLE`
-- path: `src_custom/trap_effects/magicians_circle.c`
-- L55: printed trigger is Spellcaster attack declare. Ceiling: when Effect runs, each player Deck SS Spellcaster ≤2000 ATK; upgrade: attack declare hook when attacker is Spellcaster.
-
 ### `MAGICIANS_COMBINATION`
 - path: `src_custom/trap_effects/magicians_combination.c`
 - L39: once-per-turn on any activation + negate need chain gate. Ceiling: Tribute 1 DM/DMG → SS the other from hand/GY.
@@ -565,10 +524,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/prophecy.c`
 - L68: player predict UI (bigger/smaller) + trapEffect wire. Ceiling: random opp hand card; AI random guess / player always higher.
 
-### `QUEENS_PAWN`
-- path: `src_custom/trap_effects/queens_pawn.c`
-- L50: activate when Amazoness destroys by battle. Ceiling: when Effect runs, Deck SS Lv≤4 Amazoness; upgrade: battle-destroy hook when attacker passes Duel_IsAmazonessCard.
-
 ### `RAIGEKI_BREAK`
 - path: `src_custom/trap_effects/raigeki_break.c`
 - L74: needs trapEffect ID + CheckTrapActivationConditions / Effect dispatch + player PickZone for field target. Ceiling: Effect body only.
@@ -581,10 +536,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/reversal_of_fate.c`
 - L43: Arcana Force coin result stored in unk4/effect flags — flip bit0. Ceiling: toggles unk4 bit0; upgrade: real coin-result invert hook.
 - L52: needs trapEffect ID + dispatcher wire + PickZone.
-
-### `RISE_OF_THE_SNAKE_DEITY`
-- path: `src_custom/trap_effects/rise_of_the_snake_deity.c`
-- L16: printed trigger is Vennominon destroyed except by battle. Ceiling: when Effect runs, SS Vennominaga from hand/Deck; upgrade: destroy hook gates activation to non-battle Vennominon leave.
 
 ### `RITE_OF_SPIRIT`
 - path: `src_custom/trap_effects/rite_of_spirit.c`

@@ -59,7 +59,6 @@ APPEND_TEXT void EffectAHeroEmerges(void)
     }
   }
 
-  /* ponytail: Normal Trap must leave the backrow to prevent AI re-trigger loop */
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
 }
