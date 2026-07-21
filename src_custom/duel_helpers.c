@@ -598,10 +598,18 @@ enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx)
   u8 fixedDuelist = TurnDuelistToFixed(duelist);
 
   for (i = 0; i < count; i++) {
+    u16 cardId;
+
     if (gDuelDecks[fixedDuelist].cardsDrawn >= NumCardsInDeck(fixedDuelist)) {
       DeclareLoser(fixedDuelist);
       return DUEL_ACTION_DUEL_OVER;
     }
+
+    cardId = gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn];
+    if (GraveyardExpand_IsEnabled())
+      GraveyardExpand_PushTurn(duelist, cardId);
+    else
+      gTurnDuelistBattleState[duelist]->graveyard = cardId;
 
     gDuelDecks[fixedDuelist].cardsDrawn++;
 

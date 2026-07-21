@@ -238,9 +238,6 @@ static void TWLIGHT_TWIN_DRAGONS_ResolveBody(void)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: mill helper advances deck top only (no expanded-GY push), matching
-   * charge_of_the_light_brigade. Ceiling: milled cards may not appear in GY UI. */
-
   /* ponytail: Deck-to-GY by Lightsworn → add Punishment Dragon from GY + banish
    * top 4 needs a mill/send-from-deck hook outside this file.
    * Ceiling: on-activate JD recycle + mill only; upgrade: if TWLIGHT_TWIN_DRAGONS

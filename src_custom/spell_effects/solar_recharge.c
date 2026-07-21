@@ -76,8 +76,6 @@ static void SOLAR_RECHARGE_ResolveBody(void)
   if (Duel_DrawCards(ACTIVE_DUELIST, SOLAR_RECHARGE_DRAW_COUNT, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: mill helper advances deck top only (no expanded-GY push), matching
-   * charge_of_the_light_brigade. Ceiling: milled cards may not appear in GY UI. */
   if (Duel_MillTopDeckCards(ACTIVE_DUELIST, SOLAR_RECHARGE_MILL_COUNT, TRUE)
       == DUEL_ACTION_DUEL_OVER)
     return;

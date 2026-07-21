@@ -28,6 +28,7 @@
 #include "mirror_wall.h"
 #include "neo_space.h"
 #include "the_a_forces.h"
+#include "triangle_ecstasy_spark.h"
 #include "wetlands.h"
 #include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
@@ -667,6 +668,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyMoltingEscapeAtkBonusToCardInfo(zone);
   Necrovalley_ApplyGravekeeperStatBonusToCardInfo(zone);
   ApplyTheAForcesAtkBoostToCardInfo(zone);
+  ApplyTriangleEcstasySparkAtkToCardInfo(zone);
   ApplyWetlandsAtkBoostToCardInfo(zone);
   ApplyNeoSpaceAtkBoostForZone(zone);
   LevelTuning_ApplyLevelToCardInfo(zone);

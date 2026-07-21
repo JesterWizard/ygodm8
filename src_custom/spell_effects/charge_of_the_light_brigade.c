@@ -146,7 +146,8 @@ enum DuelActionResult ChargeOfTheLightBrigade_MillDeckToGy(u8 turnDuelist, u8 co
 
     if (GraveyardExpand_IsEnabled())
       GraveyardExpand_PushTurn(turnDuelist, cardId);
-    /* ponytail: legacy single-card GY — milled cards vanish from deck only. */
+    else
+      gTurnDuelistBattleState[turnDuelist]->graveyard = cardId;
 
     gDuelDecks[fixedDuelist].cardsDrawn++;
 

@@ -7,39 +7,36 @@
 #include "triangle_ecstasy_spark.h"
 
 #define TRIANGLE_ECSTASY_SPARK_ATK 2700
+#define TRIANGLE_ECSTASY_BOARD_CELLS 20
 
 static u8 sTriangleEcstasyOppTrapLock APPEND_DATA = {FALSE};
+static u8 sTriangleSistersBoostCells[TRIANGLE_ECSTASY_BOARD_CELLS] APPEND_DATA = {0};
+
 static u8 IsHarpieLadySisters(u16 cardId)
 {
   return cardId == HARPIE_LADY_SISTERS;
 }
 
-static void ApplySistersAtkBecomes2700(struct DuelCard *zone)
+static u16 GetDuelBoardCellIndex(const struct DuelCard *zone)
 {
-  u16 currentAtk;
-  s32 needed;
-  s8 delta;
+  const struct DuelCard *base = &gDuel.board[0][0];
+
+  if (zone < base || zone >= base + TRIANGLE_ECSTASY_BOARD_CELLS)
+    return 0xFFFF;
+
+  return (u16)(zone - base);
+}
+
+static void MarkSistersExactAtk(struct DuelCard *zone)
+{
+  u16 cell;
 
   if (zone == NULL || !IsHarpieLadySisters(zone->id))
     return;
 
-  currentAtk = Duel_GetZoneFinalAtk(zone);
-  needed = (s32)TRIANGLE_ECSTASY_SPARK_ATK - (s32)currentAtk;
-
-  /* Round to nearest 500-ATK stage (temp stages clear at EOT). */
-  if (needed >= 0)
-    delta = (s8)((needed + 250) / 500);
-  else
-    delta = (s8)((needed - 250) / 500);
-
-  while (delta > 0) {
-    IncrementTempStage(zone);
-    delta--;
-  }
-  while (delta < 0) {
-    DecrementTempStage(zone);
-    delta++;
-  }
+  cell = GetDuelBoardCellIndex(zone);
+  if (cell < TRIANGLE_ECSTASY_BOARD_CELLS)
+    sTriangleSistersBoostCells[cell] = TRUE;
 }
 
 static void BoostAllHarpieLadySisters(void)
@@ -49,8 +46,22 @@ static void BoostAllHarpieLadySisters(void)
 
   for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
     for (col = 0; col < MAX_ZONES_IN_ROW; col++)
-      ApplySistersAtkBecomes2700(gFixedZones[row][col]);
+      MarkSistersExactAtk(gFixedZones[row][col]);
   }
+}
+
+void ApplyTriangleEcstasySparkAtkToCardInfo(const struct DuelCard *zone)
+{
+  u16 cell;
+
+  if (zone == NULL || !IsHarpieLadySisters(zone->id))
+    return;
+
+  cell = GetDuelBoardCellIndex(zone);
+  if (cell >= TRIANGLE_ECSTASY_BOARD_CELLS || !sTriangleSistersBoostCells[cell])
+    return;
+
+  gCardInfo.atk = TRIANGLE_ECSTASY_SPARK_ATK;
 }
 
 static void TRIANGLE_ECSTASY_SPARK_ResolveBody(void)
@@ -62,13 +73,9 @@ static void TRIANGLE_ECSTASY_SPARK_ResolveBody(void)
   BoostAllHarpieLadySisters();
 
   Duel_ShowEffectText(TRIANGLE_ECSTASY_SPARK);
-  RefreshFieldMonsterStatOverlays();
+  Duel_RefreshMonsterStatOverlays();
 
   TriangleEcstasySpark_ArmOppTrapLock();
-
-  /* ponytail: stage unit is 500 ATK — Sisters (1950) become 2450 or 2950, not
-   * exact printed 2700. Ceiling: nearest-stage temp boost until EOT; upgrade:
-   * exact-ATK overlay (like riryoku) forced to 2700 until End Phase clear. */
 }
 
 void TriangleEcstasySpark_ArmOppTrapLock(void)
@@ -83,7 +90,11 @@ u8 TriangleEcstasySpark_BlocksOppTrap(void)
 
 void TriangleEcstasySpark_ClearOnTurnBoundary(void)
 {
+  u8 i;
+
   sTriangleEcstasyOppTrapLock = FALSE;
+  for (i = 0; i < TRIANGLE_ECSTASY_BOARD_CELLS; i++)
+    sTriangleSistersBoostCells[i] = FALSE;
 }
 
 APPEND_TEXT void EffectTRIANGLE_ECSTASY_SPARK(void)
@@ -101,9 +112,6 @@ void TRIANGLE_ECSTASY_SPARK_SelfCheck(void)
     while (1)
       ;
   if (IsHarpieLadySisters(HARPIE_LADY))
-    while (1)
-      ;
-  if (TRIANGLE_ECSTASY_SPARK_ATK != 2700)
     while (1)
       ;
 }

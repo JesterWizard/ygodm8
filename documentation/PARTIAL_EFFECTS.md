@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:15 UTC  
-**Remaining partials:** `762`
+**Last updated:** 2026-07-21 22:17 UTC  
+**Remaining partials:** `759`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 81 |
+| `spell` | 78 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **762** |
+| **total** | **759** |
 
-## spell (81)
+## spell (78)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -57,10 +57,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CHAIN_SUMMONING`
 - path: `src_custom/spell_effects/chain_summoning.c`
 - L60: no Chain Link / chain-depth API — assume min Link 3. Ceiling: always legal at Link≥3 floor; upgrade: real chain counter.
-
-### `CHARGE_OF_THE_LIGHT_BRIGADE`
-- path: `src_custom/spell_effects/charge_of_the_light_brigade.c`
-- L149: legacy single-card GY — milled cards vanish from deck only.
 
 ### `CHICKEN_GAME`
 - path: `src_custom/spell_effects/chicken_game.c`
@@ -292,10 +288,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/snake_rain.c`
 - L179: no committed multi-pick UI — cancel mid-loop auto-fills remaining reptiles in deck order. Ceiling: player cannot abort partial selection.
 
-### `SOLAR_RECHARGE`
-- path: `src_custom/spell_effects/solar_recharge.c`
-- L79: mill helper advances deck top only (no expanded-GY push), matching charge_of_the_light_brigade. Ceiling: milled cards may not appear in GY UI.
-
 ### `SOUL_SERVANT`
 - path: `src_custom/spell_effects/soul_servant.c`
 - L30: no card-description text search — approximate "lists DM/DMG" via name contains "Dark Magician" plus a known support ID list. Ceiling: misses text-only mentions. Upgrade: description-string helper.
@@ -343,14 +335,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/the_shallow_grave.c`
 - L155: no DUEL_SUMMON_SPECIAL_FACE_DOWN_DEF — NORMAL_SET for face-down DEF, then mark unk4=2 as Special Summon. Ceiling: SS-locks that only gate SummonModeIsSpecial still apply via SpecialSummonMonsterId's Kristya check; CannotBeSpecialSummoned checked here. Upgrade: add face-down SS mode.
 
-### `TRIANGLE_ECSTASY_SPARK`
-- path: `src_custom/spell_effects/triangle_ecstasy_spark.c`
-- L69: stage unit is 500 ATK — Sisters (1950) become 2450 or 2950, not exact printed 2700. Ceiling: nearest-stage temp boost until EOT; upgrade: exact-ATK overlay (like riryoku) forced to 2700 until End Phase clear.
-
 ### `TWLIGHT_TWIN_DRAGONS`
 - path: `src_custom/spell_effects/twlight_twin_dragons.c`
-- L241: mill helper advances deck top only (no expanded-GY push), matching charge_of_the_light_brigade. Ceiling: milled cards may not appear in GY UI.
-- L244: Deck-to-GY by Lightsworn → add Punishment Dragon from GY + banish top 4 needs a mill/send-from-deck hook outside this file. Ceiling: on-activate JD recycle + mill only; upgrade: if TWLIGHT_TWIN_DRAGONS sent Deck→GY by Lightsworn effect → PickZone PD in GY → hand, then banish top 4.
+- L241: Deck-to-GY by Lightsworn → add Punishment Dragon from GY + banish top 4 needs a mill/send-from-deck hook outside this file. Ceiling: on-activate JD recycle + mill only; upgrade: if TWLIGHT_TWIN_DRAGONS sent Deck→GY by Lightsworn effect → PickZone PD in GY → hand, then banish top 4.
 
 ### `ULTRA_POLYMERIZATION`
 - path: `src_custom/spell_effects/ultra_polymerization.c`
