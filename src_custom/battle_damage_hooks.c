@@ -49,6 +49,7 @@
 #include "continuous_destruction_punch.h"
 #include "amazoness_heirloom.h"
 #include "ancient_gear_fist.h"
+#include "double_tool_c_and_d.h"
 #include "attack_pheromones.h"
 #include "backup_squad.h"
 #include "berserker_soul.h"
@@ -254,6 +255,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyContinuousDestructionPunchBattleEffect();
   ApplyAmazonessHeirloomBattleEffect();
   ApplyAncientGearFistBattleEffect();
+  ApplyDoubleToolCAndDBattleEffect();
   ApplyAttackPheromonesBattleEffect();
 
   {

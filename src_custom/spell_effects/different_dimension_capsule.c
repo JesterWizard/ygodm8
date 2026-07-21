@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
+#include "different_dimension_capsule.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
 #include "removed_from_play.h"
@@ -228,7 +229,6 @@ static void ResolveCapsuleAfterStandby(struct DuelCard *spellZone)
   UpdateDuelGfxExceptField();
 }
 
-/* Wire from turn_effect_hooks Standby (clone TryApplyFutureFusionStandby). */
 void TryApplyDifferentDimensionCapsuleStandby(void)
 {
   u8 i;
@@ -293,11 +293,6 @@ static void DIFFERENT_DIMENSION_CAPSULE_ResolveBody(void)
   spellZone->unk4 = 1;
 
   UpdateDuelGfxExceptField();
-
-  /* ponytail: 2nd Standby destroy+add needs turn_effect_hooks call to
-   * TryApplyDifferentDimensionCapsuleStandby (clone Future Fusion wiring).
-   * Ceiling: banished card stored + continuous face-up only until wired;
-   * upgrade: turn_effect_hooks Standby → TryApplyDifferentDimensionCapsuleStandby. */
 }
 
 APPEND_TEXT void EffectDIFFERENT_DIMENSION_CAPSULE(void)

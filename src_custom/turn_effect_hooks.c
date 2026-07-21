@@ -20,6 +20,7 @@
 #include "ectoplasmer.h"
 #include "future_fusion.h"
 #include "cybernetic_zone.h"
+#include "different_dimension_capsule.h"
 #include "power_bond.h"
 #include "the_big_saturn.h"
 #include "the_grand_jupiter.h"
@@ -352,6 +353,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyNightmareWheelStandbyDamage();
   TryApplyFutureFusionStandby();
   TryApplyCyberneticZoneStandby();
+  TryApplyDifferentDimensionCapsuleStandby();
   TryBottomlessShiftingSandTurnStart();
   if (IsDuelOver() == 1)
     return;

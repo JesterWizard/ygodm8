@@ -18,6 +18,8 @@
 #include "clock_tower_prison.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
 #include "dark_city_at_midnight.h"
+#include "dark_magical_circle.h"
+#include "dark_magician_circle.h"
 #include "elemental_hero_inferno.h"
 #include "geartown.h"
 #include "skyscraper.h"
@@ -210,6 +212,30 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_DarkCityOnSummon,
+  },
+  {
+      DARK_MAGICAL_CIRCLE,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_DarkMagicalCircleOnDarkMagicianSummon,
+      NULL,
+      NULL,
+      Op_DarkMagicalCircleOnDarkMagicianSummon,
+  },
+  {
+      DARK_MAGICIAN_CIRCLE,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_DarkMagicianCircleOnDarkMagicianSummon,
+      NULL,
+      NULL,
+      Op_DarkMagicianCircleOnDarkMagicianSummon,
   },
   {
       DARK_CITY_AT_MIDNIGHT,

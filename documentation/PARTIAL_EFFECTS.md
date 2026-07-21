@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 20:20 UTC  
-**Remaining partials:** `834`
+**Last updated:** 2026-07-21 20:27 UTC  
+**Remaining partials:** `832`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 153 |
+| `spell` | 151 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **834** |
+| **total** | **832** |
 
-## spell (153)
+## spell (151)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -123,14 +123,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/dark_magic_veil.c`
 - L110: no dedicated hand/GY choice UI — A = hand, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
-### `DARK_MAGICAL_CIRCLE`
-- path: `src_custom/spell_effects/dark_magical_circle.c`
-- L189: If DM NS/SS → target opp card banish needs summon trigger + PickZone outside this file. Ceiling: activate look/add only; upgrade: on DM summon → PickZone opp field → Duel_BanishZone. OPT flags need turn_effect reset.
-
-### `DARK_MAGICIAN_CIRCLE`
-- path: `src_custom/spell_effects/dark_magician_circle.c`
-- L189: If DM NS/SS → target opp card banish needs summon trigger + PickZone outside this file. Ceiling: activate look/add only; upgrade: on DM summon → PickZone opp field → Duel_BanishZone. OPT flags need turn_effect reset.
-
 ### `DE_SYNCHRO`
 - path: `src_custom/spell_effects/de_synchro.c`
 - L81: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field + best-effort ExtraDeck_AddCard when enable_extra_deck; upgrade: per-duelist mid-duel Extra Deck return for the Synchro's controller.
@@ -142,10 +134,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DIFFERENT_DIMENSION_CAPSULE`
 - path: `src_custom/spell_effects/different_dimension_capsule.c`
-- L174: no RemovedFromPlay_RemoveAt — shift RFP after returning the capsule card. Ceiling: local mutate; upgrade: RemovedFromPlay_RemoveAt helper.
-- L225: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
+- L175: no RemovedFromPlay_RemoveAt — shift RFP after returning the capsule card. Ceiling: local mutate; upgrade: RemovedFromPlay_RemoveAt helper.
+- L226: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
 - L274: RFP disabled — cannot banish from Deck. Ceiling: activation text only; upgrade: enable removed_from_play.
-- L297: 2nd Standby destroy+add needs turn_effect_hooks call to TryApplyDifferentDimensionCapsuleStandby (clone Future Fusion wiring). Ceiling: banished card stored + continuous face-up only until wired; upgrade: turn_effect_hooks Standby → TryApplyDifferentDimensionCapsuleStandby.
 
 ### `DIMENSION_FUSION`
 - path: `src_custom/spell_effects/dimension_fusion.c`
@@ -163,7 +154,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DOUBLE_TOOL_C_AND_D`
 - path: `src_custom/spell_effects/double_tool_c_and_d.c`
-- L78: printed +1000 only on your turn + battle negate/redirect/destroy need turn/battle hooks. Ceiling: equip link only (no ATK yet); upgrade: apply +2 stages on controller's turn via Duel_ResolveEquipStatBoost or overlay.
+- L123: attack-target negate/redirect need attacker-context selection hook. Ceiling: ATK overlay + battle destroy wired; upgrade: call ShouldNegate / GetAttackRedirectTarget from attack-declare / target-pick path.
 
 ### `DRAGON_RAVINE`
 - path: `src_custom/spell_effects/dragon_ravine.c`

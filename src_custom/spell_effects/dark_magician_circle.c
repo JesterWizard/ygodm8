@@ -5,6 +5,8 @@
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
@@ -42,6 +44,8 @@ static const u8 sDmcPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
+
+static u8 sDarkMagicianCircleTriggerOwner APPEND_DATA = {0xFF};
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -92,6 +96,135 @@ static u8 IsDmcLookTarget(u16 cardId)
     return FALSE;
 
   return MentionsDarkMagician(cardId);
+}
+
+static u8 IsDarkMagicianCircleOpponentRow(u8 fixedRow)
+{
+  if (sDarkMagicianCircleTriggerOwner == DUEL_PLAYER)
+    return fixedRow == OPPONENT_MONSTER_ROW || fixedRow == OPPONENT_BACKROW;
+
+  if (sDarkMagicianCircleTriggerOwner == DUEL_OPPONENT)
+    return fixedRow == PLAYER_MONSTER_ROW || fixedRow == PLAYER_BACKROW;
+
+  return FALSE;
+}
+
+static u8 IsDarkMagicianCircleBanishTarget(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone;
+
+  if (!IsDarkMagicianCircleOpponentRow(fixedRow))
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  if (zone == NULL || zone->id == CARD_NONE || Duel_ZoneIsImmuneToSpellEffects(zone))
+    return FALSE;
+
+  return !Duel_IsFixedMonsterRow(fixedRow) || Duel_SpellMayTargetMonsterZone(zone);
+}
+
+static u8 HasDarkMagicianCircleBanishTarget(u8 fixedDuelist)
+{
+  u8 rows[2];
+  u8 rowIndex;
+  u8 col;
+
+  if (fixedDuelist == DUEL_PLAYER) {
+    rows[0] = OPPONENT_MONSTER_ROW;
+    rows[1] = OPPONENT_BACKROW;
+  } else if (fixedDuelist == DUEL_OPPONENT) {
+    rows[0] = PLAYER_MONSTER_ROW;
+    rows[1] = PLAYER_BACKROW;
+  } else {
+    return FALSE;
+  }
+
+  sDarkMagicianCircleTriggerOwner = fixedDuelist;
+  for (rowIndex = 0; rowIndex < ARRAY_COUNT(rows); rowIndex++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsDarkMagicianCircleBanishTarget(rows[rowIndex], col))
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+static void ResolveDarkMagicianCircleBanishTarget(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+
+  Duel_ClearPickZone();
+  if (!IsDarkMagicianCircleBanishTarget(fixedRow, fixedCol) || zone == NULL)
+    return;
+
+  Duel_BanishZone(zone, TRUE);
+  UpdateDuelGfxExceptField();
+}
+
+static u8 AiPickDarkMagicianCircleBanishTarget(u8 *outRow, u8 *outCol)
+{
+  u8 row;
+  u8 col;
+
+  for (row = 0; row < 4; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsDarkMagicianCircleBanishTarget(row, col)) {
+        *outRow = row;
+        *outCol = col;
+        return TRUE;
+      }
+    }
+  }
+
+  return FALSE;
+}
+
+u8 Cond_DarkMagicianCircleOnDarkMagicianSummon(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+
+  ev = ctx->event;
+  if (ev->cardId != DARK_MAGICIAN || ev->controller > DUEL_OPPONENT)
+    return FALSE;
+  if (EffectOpt_IsUsed(DARK_MAGICIAN_CIRCLE))
+    return FALSE;
+
+  if (Duel_FindBackrowCard(ev->controller, DARK_MAGICIAN_CIRCLE, TRUE) == NULL)
+    return FALSE;
+
+  return HasDarkMagicianCircleBanishTarget(ev->controller);
+}
+
+enum DuelActionResult Op_DarkMagicianCircleOnDarkMagicianSummon(struct EffectCtx *ctx)
+{
+  struct DuelCard *circle;
+  u8 row;
+  u8 col;
+
+  if (!Cond_DarkMagicianCircleOnDarkMagicianSummon(ctx))
+    return DUEL_ACTION_NO_TARGET;
+
+  circle = Duel_FindBackrowCard(ctx->event->controller, DARK_MAGICIAN_CIRCLE, TRUE);
+  if (circle == NULL || !Duel_FindFixedZone(circle, &row, &col))
+    return DUEL_ACTION_NO_TARGET;
+
+  /* EffectOpt is cleared by EffectEvent_OnTurnBoundary. */
+  EffectOpt_MarkUsed(DARK_MAGICIAN_CIRCLE);
+  sDarkMagicianCircleTriggerOwner = ctx->event->controller;
+  gDuelCursor.destY = row;
+  gDuelCursor.destX = col;
+  Duel_SetupPickZone(IsDarkMagicianCircleBanishTarget, ResolveDarkMagicianCircleBanishTarget,
+                     Duel_ClearPickZone, AiPickDarkMagicianCircleBanishTarget);
+  if (ctx->event->controller == DUEL_PLAYER)
+    Duel_EnterPickZoneTargeting();
+  else
+    Duel_ResolvePickZoneForAi();
+
+  return DUEL_ACTION_OK;
 }
 
 static void PlaceCardOnDeckTop(u8 fixedDuelist, u16 cardId)
@@ -185,10 +318,6 @@ static void DARK_MAGICIAN_CIRCLE_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(DARK_MAGICIAN_CIRCLE);
   ResolveDarkMagicalCircleLook(DARK_MAGICIAN_CIRCLE);
-
-  /* ponytail: If DM NS/SS → target opp card banish needs summon trigger + PickZone
-   * outside this file. Ceiling: activate look/add only; upgrade: on DM summon →
-   * PickZone opp field → Duel_BanishZone. OPT flags need turn_effect reset. */
 }
 
 APPEND_TEXT void EffectDARK_MAGICIAN_CIRCLE(void)

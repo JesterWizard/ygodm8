@@ -1,0 +1,6 @@
+#ifndef GUARD_DIFFERENT_DIMENSION_CAPSULE_H
+#define GUARD_DIFFERENT_DIMENSION_CAPSULE_H
+
+void TryApplyDifferentDimensionCapsuleStandby(void);
+
+#endif // GUARD_DIFFERENT_DIMENSION_CAPSULE_H

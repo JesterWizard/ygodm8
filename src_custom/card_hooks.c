@@ -12,6 +12,7 @@
 #include "burden_of_the_mighty.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
 #include "d_force.h"
+#include "double_tool_c_and_d.h"
 #include "divine_sanctuary.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -761,6 +762,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyBurdenOfTheMightyStatForZone(gSetFinalStatZone);
     ApplyColosseumCageStatForZone(gSetFinalStatZone);
     ApplyDForcePlasmaAtkBonusToCardInfo(gSetFinalStatZone);
+    ApplyDoubleToolCAndDAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyTheTripperMercuryOpponentAtkDrain(gSetFinalStatZone);
     ApplyTheGrandJupiterEquipAtkBonus(gSetFinalStatZone);
     ApplyTheDespairUranusAtkBoost(gSetFinalStatZone);

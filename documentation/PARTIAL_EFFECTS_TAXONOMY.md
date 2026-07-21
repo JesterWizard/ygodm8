@@ -7,20 +7,20 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 20:20 UTC  
-**Ceiling lines tagged:** `1056`  
-**Partial files:** `834`
+**Last updated:** 2026-07-21 20:27 UTC  
+**Ceiling lines tagged:** `1053`  
+**Partial files:** `832`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
 | `other` | 341 | triage |
-| `event.OnStandby` | 260 | 3 (OPT / turn flags) |
-| `event.OnBattleDestroy` | 85 | 3 |
+| `event.OnStandby` | 257 | 3 (OPT / turn flags) |
+| `event.OnBattleDestroy` | 86 | 3 |
 | `event.OnSummon` | 72 | 3 |
 | `ui.Choice` | 57 | 2 |
-| `chain.Negate` | 54 | later / chain |
+| `chain.Negate` | 53 | later / chain |
 | `gate.Tribute` | 43 | 2–3 |
 | `op.Search` | 38 | 1 |
 | `event.OnDestroy` | 36 | 3 |
@@ -29,12 +29,13 @@ python3 tools/stub_effect_queue.py --write-list
 | `event.GyIgnition` | 16 | 3 |
 | `equip.Register` | 3 | 1 (lists) |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **1056** | |
+| **total** | **1053** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (85)
+## `event.OnBattleDestroy` (86)
 
+- `DOUBLE_TOOL_C_AND_D` (spell): L123: attack-target negate/redirect need attacker-context selection hook. Ceiling: ATK overlay + battle destroy wired; upgrade: call ShouldNegate / GetAttackRedirectTarget from attack-declare / target-pick path.
 - `EN_WAVE` (spell): L11: OPT "E-HERO used as Fusion material → GY/banish (not Damage Step): SS 1 Neo-Spacian or ELEMENTAL_HERO_NEOS from Deck" needs a fusion-material send listener outside this file. Ceiling: continuous face-up only; upgrade: after Fusion material leave → if face-up EN_WAVE and OPT clear, DeckMenu Neo-Spacian / NEOS → Duel_SpecialSummonFromDeck.
 - `EN_WAVE` (spell): L17: OPT "Neo-Spacian or ELEMENTAL_HERO_NEOS shuffled from field/GY into Deck/Extra Deck (not Damage Step): SS 1 Elemental HERO from GY" needs a shuffle-into-deck listener + GY pick outside this file. Ceiling: continuous face-up only; upgrade: on shuffle → if face-up EN_WAVE and OPT clear, PickZone/DeckMenu E-HERO in GY → Duel_SpecialSummonFromGrave.
 - `FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS` (spell): L309: when opponent declares an attack → OPT SS 1 Gladiator Beast from Deck (cannot be destroyed by battle) needs an attack-declaration hook outside this file. Ceiling: face-up field + search ignition only; upgrade: on attack declare → if face-up FLAVIAN and !OPT2 then Duel_SpecialSummonFromDeck(GB) + battle-destroy protect flag.
@@ -240,14 +241,11 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (260)
+## `event.OnStandby` (257)
 
 - `AROMA_GARDEN` (spell): L90: printed "until end of opponent's next turn (even if this card leaves)" needs a multi-turn temp-stage / overlay tracker outside this file. Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages / EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on zones and skip ResetTempStages until that turn's End Phase.
 - `CHICKEN_GAME` (spell): L209: OPT ignition no-response — parent skips TryResolveSpellThroughTraps when ChickenGame_ShouldSkipTrapChain() during face-up re-activation.
 - `COURT_OF_JUSTICE` (spell): L33: attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp.
-- `DARK_MAGICAL_CIRCLE` (spell): L189: If DM NS/SS → target opp card banish needs summon trigger + PickZone outside this file. Ceiling: activate look/add only; upgrade: on DM summon → PickZone opp field → Duel_BanishZone. OPT flags need turn_effect reset.
-- `DARK_MAGICIAN_CIRCLE` (spell): L189: If DM NS/SS → target opp card banish needs summon trigger + PickZone outside this file. Ceiling: activate look/add only; upgrade: on DM summon → PickZone opp field → Duel_BanishZone. OPT flags need turn_effect reset.
-- `DIFFERENT_DIMENSION_CAPSULE` (spell): L297: 2nd Standby destroy+add needs turn_effect_hooks call to TryApplyDifferentDimensionCapsuleStandby (clone Future Fusion wiring). Ceiling: banished card stored + continuous face-up only until wired; upgrade: turn_effect_hooks Standby → TryApplyDifferentDimensionCapsuleStandby.
 - `DOCTOR_D` (spell): L315: GY ignition "banish this card from GY, target 2 Destiny HERO; copy ATK until EOT" needs a GY-activate spell path + PickZone pair outside this file. Ceiling: on-field banish-cost recover only; upgrade: GY activate → banish DOCTOR_D → PickZone two Destiny HERO → set target ATK via temp stages / exact overlay until End Phase.
 - `DRAGON_SHRINE` (spell): L246: once-per-turn activation not tracked after this normal spell leaves the field (no shared turn-flag RAM editable from this file alone). Ceiling: multiple Dragon Shrine per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
 - `EL_SHADDOLL_FUSION` (spell): L98: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple El Shaddoll Fusion per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
@@ -522,9 +520,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `YAMORIMORI` (activated): L124: GY ignition needs GY-menu wire. Ceiling: banish self from GY + own Reptile + opp face-up present → destroy opp face-up monster.
 - `THUNDER_DRAGON_COLOSSUS` (permanent): L8: opp search lock + battle/effect destroy→GY-banish need continuous/battle hooks.
 
-## `chain.Negate` (54)
+## `chain.Negate` (53)
 
-- `DOUBLE_TOOL_C_AND_D` (spell): L78: printed +1000 only on your turn + battle negate/redirect/destroy need turn/battle hooks. Ceiling: equip link only (no ATK yet); upgrade: apply +2 stages on controller's turn via Duel_ResolveEquipStatBoost or overlay.
 - `INSTANT_CONTACT` (spell): L290: without Neos, effects negated + End Phase return to Extra need negate + turn_effect hooks outside this file. Ceiling: SS + attack-lock only when Neos absent; upgrade: mark zone / turn_effect End Phase → ExtraDeck return + effect-negate while marked.
 - `LIGHT_FORCE` (spell): L313: Fairy monsters +300 ATK/DEF needs a field-stat applier outside this file (stage steps are 500). Ceiling: face-up continuous only; upgrade: LynJump/stat overlay → if face-up LIGHT_FORCE && !negated && TYPE_FAIRY then ATK/DEF += LIGHT_FORCE_FAIRY_STAT_BONUS.
 - `MAGICIANS_LEFT_HAND` (spell): L14: negate opponent's first Trap Card/effect each turn (while you control a Spellcaster) then destroy needs a trap-resolve gate + per-turn "first trap used" flag outside this file (no in-file trap negate dispatch; no turn-scoped counter on DuelCard/field). Ceiling: face-up continuous only; upgrade: trap-activate/resolve hook → if
@@ -805,8 +802,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DARK_CONTACT` (spell): L430: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
 - `DE_SYNCHRO` (spell): L81: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field + best-effort ExtraDeck_AddCard when enable_extra_deck; upgrade: per-duelist mid-duel Extra Deck return for the Synchro's controller.
 - `DE_SYNCHRO` (spell): L101: Synchro Summon materials are not recorded at summon time, so "if all materials are in your GY, SS all of them" cannot run. Ceiling: return-to-Extra-Deck only; upgrade: store material cardIds on the Synchro zone at SynchroDuel_Execute, then if each is in GY, SS from GY.
-- `DIFFERENT_DIMENSION_CAPSULE` (spell): L174: no RemovedFromPlay_RemoveAt — shift RFP after returning the capsule card. Ceiling: local mutate; upgrade: RemovedFromPlay_RemoveAt helper.
-- `DIFFERENT_DIMENSION_CAPSULE` (spell): L225: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
+- `DIFFERENT_DIMENSION_CAPSULE` (spell): L175: no RemovedFromPlay_RemoveAt — shift RFP after returning the capsule card. Ceiling: local mutate; upgrade: RemovedFromPlay_RemoveAt helper.
+- `DIFFERENT_DIMENSION_CAPSULE` (spell): L226: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
 - `DIMENSION_FUSION` (spell): L88: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS. Ceiling: local mutate of gRemovedFromPlay; upgrade: add RemoveAt to removed_from_play.c.
 - `DOUBLE_SPELL` (spell): L230: nested ActivateSpellEffect re-runs trap responses / field-spell specials; equips that need pre-set row2/col2 targets may fail. Ceiling: place + best-effort activate; upgrade: shared "resolve spell as if activated" helper that skips chain traps and supplies targeting for EQUIP/Field.
 - `DRAGON_SHRINE` (spell): L209: cancel on first pick auto-sends first Dragon (activation committed).
