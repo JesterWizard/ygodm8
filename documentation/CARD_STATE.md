@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round5 Batch3
+**Last worked on:** 2026-07-21 — Round5 Batch4
 
-**Outcome:** Mill helper GY push; Triangle Ecstasy exact 2700 ATK. Partials **762→759**.
+**Outcome:** Dragon Relic name-treats; Ultra Poly no-response. Partials **759→757**.
 
-**Open / next:** Round5 Batches 4–6.
+**Open / next:** Round5 Batches 5–6.

@@ -405,8 +405,6 @@ static void ExecuteGazeFusion(const struct FusionMaterialSource *source, u16 res
       }
     }
   }
-  /* ponytail: "Treated as Eye of Timaeus" name checks need a summon-tag outside
-   * this file. */
 }
 
 void TheGazeOfTimaeus_StampSummonedZone(struct DuelCard *zone)

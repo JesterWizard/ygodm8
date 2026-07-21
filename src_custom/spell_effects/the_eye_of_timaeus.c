@@ -253,10 +253,6 @@ static void ExecuteEyeOfTimaeus(struct DuelCard *materialZone, const struct Fusi
   UpdateDuelGfxExceptField();
 
   EffectOpt_MarkUsed(THE_EYE_OF_TIMAEUS);
-
-  /* ponytail: "also always treated as Legendary Dragon Timaeus" name-treat needs
-   * a name-alias outside this file. Ceiling: fusion via listed DM material only;
-   * upgrade: Duel_GetEffectiveCardId / name-contains Legendary Dragon Timaeus. */
 }
 
 static void ResolveEyeOfTimaeusTarget(u8 fixedRow, u8 fixedCol)

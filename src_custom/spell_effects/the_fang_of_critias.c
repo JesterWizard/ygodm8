@@ -354,10 +354,6 @@ static void THE_FANG_OF_CRITIAS_ResolveBody(void)
     ResolveFromHand();
   else
     BeginFieldTrapPick();
-
-  /* ponytail: "always treated as Legendary Dragon Critias" name/tag needs a
-   * treat-as outside this file. Ceiling: activation + trap-send + Extra Deck SS
-   * only; upgrade: name-contains / archetype tag = Legendary Dragon Critias. */
 }
 
 APPEND_TEXT void EffectTHE_FANG_OF_CRITIAS(void)

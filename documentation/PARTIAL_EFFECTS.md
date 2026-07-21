@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:17 UTC  
-**Remaining partials:** `759`
+**Last updated:** 2026-07-21 22:18 UTC  
+**Remaining partials:** `757`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 78 |
+| `spell` | 76 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **759** |
+| **total** | **757** |
 
-## spell (78)
+## spell (76)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -313,18 +313,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L192: no dedicated field/hand choice UI — A = field, B = hand. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - L353: Set reveal has no dedicated flip UI — send face-down as-is. Ceiling: no reveal animation; upgrade: brief face-up before GY send.
 
-### `THE_EYE_OF_TIMAEUS`
-- path: `src_custom/spell_effects/the_eye_of_timaeus.c`
-- L257: "also always treated as Legendary Dragon Timaeus" name-treat needs a name-alias outside this file. Ceiling: fusion via listed DM material only; upgrade: Duel_GetEffectiveCardId / name-contains Legendary Dragon Timaeus.
-
 ### `THE_FANG_OF_CRITIAS`
 - path: `src_custom/spell_effects/the_fang_of_critias.c`
 - L153: no dedicated hand/field choice UI — A = hand, B = field. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L358: "always treated as Legendary Dragon Critias" name/tag needs a treat-as outside this file. Ceiling: activation + trap-send + Extra Deck SS only; upgrade: name-contains / archetype tag = Legendary Dragon Critias.
-
-### `THE_GAZE_OF_TIMAEUS`
-- path: `src_custom/spell_effects/the_gaze_of_timaeus.c`
-- L408: "Treated as Eye of Timaeus" name checks need a summon-tag outside this file.
 
 ### `THE_SACRED_WATERS_IN_THE_SKY`
 - path: `src_custom/spell_effects/the_sacred_waters_in_the_sky.c`
@@ -341,8 +332,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ULTRA_POLYMERIZATION`
 - path: `src_custom/spell_effects/ultra_polymerization.c`
-- L172: "neither player can activate cards/effects in response" needs a response-lock flag outside this file (trap/chain gate). Ceiling: LP pay + field-only 2-material Fusion; upgrade: set no-response flag around Duel_TryResolveSpellThroughTrapsEx / activation.
-- L177: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
+- L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
 ### `UNSTABLE_EVOLUTION`
 - path: `src_custom/spell_effects/unstable_evolution.c`

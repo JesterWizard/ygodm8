@@ -169,11 +169,6 @@ static void RunPlayerUltraPolymerizationFlow(void)
 
   FusionDuel_ExecutePolymerization(recipe, sources, sourceCount, ULTRA_POLYMERIZATION, FALSE);
 
-  /* ponytail: "neither player can activate cards/effects in response" needs a
-   * response-lock flag outside this file (trap/chain gate). Ceiling: LP pay +
-   * field-only 2-material Fusion; upgrade: set no-response flag around
-   * Duel_TryResolveSpellThroughTrapsEx / activation. */
-
   /* ponytail: GY ignition "banish this card, target 1 Fusion Summoned by this
    * card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY
    * activation + material-memory outside this file.
@@ -232,10 +227,8 @@ APPEND_TEXT void EffectULTRA_POLYMERIZATION(void)
     return;
   }
 
-  if (Duel_TryResolveSpellThroughTrapsEx(ULTRA_POLYMERIZATION, ULTRA_POLYMERIZATION_LP_COST,
-                                         ULTRA_POLYMERIZATION_ResolveBody)
-      == DUEL_ACTION_BLOCKED)
-    return;
+  /* Printed: neither player can activate cards/effects in response. */
+  ULTRA_POLYMERIZATION_ResolveBody();
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

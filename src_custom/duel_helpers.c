@@ -1184,6 +1184,46 @@ u8 Duel_CardNameContains(u16 cardId, const char *needle)
       && needle[9] == 's')
     return TRUE;
 
+  /* Legendary Dragon name-treats for the three Dragon Relics. */
+  if (needleLen == 16
+      && needle[0] == 'L' && needle[1] == 'e' && needle[2] == 'g'
+      && needle[3] == 'e' && needle[4] == 'n' && needle[5] == 'd'
+      && needle[6] == 'a' && needle[7] == 'r' && needle[8] == 'y'
+      && needle[9] == ' ' && needle[10] == 'D' && needle[11] == 'r'
+      && needle[12] == 'a' && needle[13] == 'g' && needle[14] == 'o'
+      && needle[15] == 'n') {
+    if (cardId == THE_EYE_OF_TIMAEUS || cardId == THE_FANG_OF_CRITIAS
+        || cardId == THE_CLAW_OF_HERMOS || cardId == THE_GAZE_OF_TIMAEUS)
+      return TRUE;
+  }
+
+  if (cardId == THE_EYE_OF_TIMAEUS || cardId == THE_GAZE_OF_TIMAEUS) {
+    if (needleLen == 7 && needle[0] == 'T' && needle[1] == 'i'
+        && needle[2] == 'm' && needle[3] == 'a' && needle[4] == 'e'
+        && needle[5] == 'u' && needle[6] == 's')
+      return TRUE;
+  }
+
+  if (cardId == THE_FANG_OF_CRITIAS && needleLen == 7
+      && needle[0] == 'C' && needle[1] == 'r' && needle[2] == 'i'
+      && needle[3] == 't' && needle[4] == 'i' && needle[5] == 'a'
+      && needle[6] == 's')
+    return TRUE;
+
+  if (cardId == THE_CLAW_OF_HERMOS && needleLen == 6
+      && needle[0] == 'H' && needle[1] == 'e' && needle[2] == 'r'
+      && needle[3] == 'm' && needle[4] == 'o' && needle[5] == 's')
+    return TRUE;
+
+  /* Gaze is also treated as Eye of Timaeus. */
+  if (cardId == THE_GAZE_OF_TIMAEUS && needleLen == 16
+      && needle[0] == 'E' && needle[1] == 'y' && needle[2] == 'e'
+      && needle[3] == ' ' && needle[4] == 'o' && needle[5] == 'f'
+      && needle[6] == ' ' && needle[7] == 'T' && needle[8] == 'i'
+      && needle[9] == 'm' && needle[10] == 'a' && needle[11] == 'e'
+      && needle[12] == 'u' && needle[13] == 's')
+    return TRUE;
+
   SetCardInfo(cardId);
   name = gCardInfo.name;
   if (name == NULL)
