@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "effect_events.h"
+#include "en_shuffle.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
@@ -53,6 +54,45 @@ static u8 IsElementalHeroOrNeoSpacian(u16 cardId)
     return TRUE;
 
   return IsNeoSpacianMonster(cardId);
+}
+
+static u8 FindEnShuffleGyReturnIds(u8 fixedDuelist, u16 *firstOut, u16 *secondOut)
+{
+  u8 i;
+  u8 j;
+
+  if (!GraveyardExpand_IsEnabled() || fixedDuelist > DUEL_OPPONENT)
+    return FALSE;
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    u16 cardId = GraveyardExpand_GetCardAt(fixedDuelist, i);
+
+    if (cardId == ELEMENTAL_HERO_NEOS) {
+      *firstOut = cardId;
+      *secondOut = CARD_NONE;
+      return TRUE;
+    }
+  }
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    u16 heroId = GraveyardExpand_GetCardAt(fixedDuelist, i);
+
+    if (!Duel_IsElementalHeroCard(heroId))
+      continue;
+
+    for (j = 0; j < GraveyardExpand_GetCount(fixedDuelist); j++) {
+      u16 neoId = GraveyardExpand_GetCardAt(fixedDuelist, j);
+
+      if (!IsNeoSpacianMonster(neoId))
+        continue;
+
+      *firstOut = heroId;
+      *secondOut = neoId;
+      return TRUE;
+    }
+  }
+
+  return FALSE;
 }
 
 static u8 IsValidEnShuffleFieldTarget(u8 fixedRow, u8 fixedCol)
@@ -121,10 +161,8 @@ static u8 CanActivateEnShuffle(void)
   return DeckHasDifferentNameSummon(CARD_NONE);
 }
 
-static void ReturnCardToDeck(u8 turnDuelist, u16 cardId)
+static void ReturnCardToDeck(u8 fixedDuelist, u16 cardId)
 {
-  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
-
   if (cardId == CARD_NONE)
     return;
 
@@ -132,6 +170,24 @@ static void ReturnCardToDeck(u8 turnDuelist, u16 cardId)
     gDuelDecks[fixedDuelist].cardsDrawn--;
 
   gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
+}
+
+static u8 ReturnGyCardToDeck(u8 fixedDuelist, u16 cardId)
+{
+  u8 i;
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (GraveyardExpand_GetCardAt(fixedDuelist, i) != cardId)
+      continue;
+
+    if (GraveyardExpand_RemoveAtFixed(fixedDuelist, i) == CARD_NONE)
+      return FALSE;
+
+    ReturnCardToDeck(fixedDuelist, cardId);
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 static u8 LoadSummonDeckMenu(u16 excludeId, u8 *deckIndexOut)
@@ -231,7 +287,7 @@ static void FinishEnShuffle(u8 fixedRow, u8 fixedCol)
 
   shuffledId = target->id;
   ClearZone(target);
-  ReturnCardToDeck(ACTIVE_DUELIST, shuffledId);
+  ReturnCardToDeck(FixedDuelistForTurnDuelist(ACTIVE_DUELIST), shuffledId);
   Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
   NotifyDynamicEquipFieldChanged();
   EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
@@ -305,10 +361,52 @@ static void EN_SHUFFLE_ResolveBody(void)
   else
     Duel_ResolvePickZoneForAi();
 
-  /* ponytail: GY ignition (banish this; shuffle E-HERO+Neo OR Neos from GY →
-   * Deck, draw 1) needs a GY-activate spell path outside this file.
-   * Ceiling: on-field shuffle+SS only; upgrade: GY activate → banish EN_SHUFFLE
-   * → return pair/Neos → Duel_DrawCards(1). */
+}
+
+u8 CanActivateEnShuffleGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u16 firstId;
+  u16 secondId;
+
+  if (!GraveyardExpand_IsEnabled() || fixedDuelist > DUEL_OPPONENT)
+    return FALSE;
+  if (EffectOpt_IsUsed(EN_SHUFFLE))
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != EN_SHUFFLE)
+    return FALSE;
+
+  return FindEnShuffleGyReturnIds(fixedDuelist, &firstId, &secondId);
+}
+
+void ActivateEnShuffleGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u16 firstId;
+  u16 secondId;
+  u8 turnDuelist;
+
+  if (!CanActivateEnShuffleGy(fixedDuelist, gyIndex))
+    return;
+  if (!FindEnShuffleGyReturnIds(fixedDuelist, &firstId, &secondId))
+    return;
+
+  Duel_ShowEffectText(EN_SHUFFLE);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex) != EN_SHUFFLE)
+    return;
+  if (!ReturnGyCardToDeck(fixedDuelist, firstId))
+    return;
+  if (secondId != CARD_NONE && !ReturnGyCardToDeck(fixedDuelist, secondId))
+    return;
+
+  GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  Duel_ShuffleDeckFromDrawn(Duel_TurnDuelistForFixedDuelist(fixedDuelist));
+  EffectOpt_MarkUsed(EN_SHUFFLE);
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  Duel_DrawCards(turnDuelist, 1, TRUE);
 }
 
 APPEND_TEXT void EffectEN_SHUFFLE(void)

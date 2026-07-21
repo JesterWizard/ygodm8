@@ -240,7 +240,9 @@ static void ExecuteEyeOfTimaeus(struct DuelCard *materialZone, const struct Fusi
   if (materialZone == NULL || recipe == NULL)
     return;
 
-  if (gRuntimeConfig.enable_extra_deck && !ExtraDeck_TryRemoveCard(recipe->result))
+  if (gRuntimeConfig.enable_extra_deck
+      && (Duel_BlocksExtraDeckSpecialSummon(recipe->result)
+          || !ExtraDeck_TryRemoveCard(recipe->result)))
     return;
 
   ElementalHeroAbsoluteZero_BeginSuppressLeave();

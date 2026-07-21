@@ -2,8 +2,11 @@
 #include "common-chax.h"
 #include "card_passives.h"
 #include "constants/card_ids.h"
+#include "contact_gate.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
+#include "en_engage_neo_space.h"
+#include "evil_assault.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
 #include "d_force.h"
 #include "duel_status.h"
@@ -58,6 +61,7 @@
 #include "uria_lord_of_searing_flames.h"
 #include "raviel_lord_of_phantasms.h"
 #include "expanded_graveyard.h"
+#include "fusion_recipes.h"
 #include "removed_from_play.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
@@ -313,6 +317,22 @@ u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
       || cardId == HAMON_LORD_OF_STRIKING_THUNDER
       || cardId == URIA_LORD_OF_SEARING_FLAMES
       || cardId == RAVIEL_LORD_OF_PHANTASMS;
+}
+
+u8 Duel_BlocksExtraDeckSpecialSummon(u16 cardId)
+{
+  if (ContactGate_BlocksExtraDeckSpecialSummon(cardId)
+      || EvilAssault_BlocksExtraDeckSpecialSummon(cardId))
+    return TRUE;
+
+  if (!EN_ENGAGE_NEO_SPACE_IsLocked() || cardId == CARD_NONE)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  if (gCardInfo.color == FUSION_CARD)
+    return FALSE;
+
+  return FusionRecipe_FindByResult(cardId) == NULL;
 }
 
 static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, struct DuelSummonOpts opts)

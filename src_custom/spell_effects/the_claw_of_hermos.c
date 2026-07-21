@@ -289,7 +289,9 @@ static void FinishHermosSummon(void)
 {
   struct DuelSummonOpts opts;
 
-  if (gRuntimeConfig.enable_extra_deck && !ExtraDeck_TryRemoveCard(sHermosChosenFusion)) {
+  if (gRuntimeConfig.enable_extra_deck
+      && (Duel_BlocksExtraDeckSpecialSummon(sHermosChosenFusion)
+          || !ExtraDeck_TryRemoveCard(sHermosChosenFusion))) {
     DestroyClawSpellZone();
     return;
   }

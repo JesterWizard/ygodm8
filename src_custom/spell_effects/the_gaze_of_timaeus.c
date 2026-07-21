@@ -373,7 +373,8 @@ static void ExecuteGazeFusion(const struct FusionMaterialSource *source, u16 res
   if (source == NULL || resultId == CARD_NONE || !FusionMentionsMaterial(resultId, source->cardId))
     return;
 
-  if (gRuntimeConfig.enable_extra_deck && !ExtraDeck_TryRemoveCard(resultId))
+  if (gRuntimeConfig.enable_extra_deck
+      && (Duel_BlocksExtraDeckSpecialSummon(resultId) || !ExtraDeck_TryRemoveCard(resultId)))
     return;
 
   ElementalHeroAbsoluteZero_BeginSuppressLeave();

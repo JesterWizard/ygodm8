@@ -248,7 +248,8 @@ void ActivateMAGICAL_SCIENTISTEffect(void)
   if (chosenId == CARD_NONE || !IsMagicalScientistFusionTarget(chosenId))
     return;
 
-  if (gRuntimeConfig.enable_extra_deck && !ExtraDeck_TryRemoveCard(chosenId))
+  if (gRuntimeConfig.enable_extra_deck
+      && (Duel_BlocksExtraDeckSpecialSummon(chosenId) || !ExtraDeck_TryRemoveCard(chosenId)))
     return;
 
   opts = Duel_DefaultSpecialSummonOpts(TRUE);

@@ -13,8 +13,10 @@
 #include "duel.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "en_engage_neo_space.h"
 #include "effect_events.h"
 #include "effect.h"
+#include "evil_assault.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -167,6 +169,8 @@ void EffectEvent_OnTurnBoundary(void)
   ContactGate_OnTurnBoundary();
   DarkContact_ClearOnTurnBoundary();
   DarkFusion_ClearOnTurnBoundary();
+  EN_ENGAGE_NEO_SPACE_ClearOnTurnBoundary();
+  EvilAssault_OnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

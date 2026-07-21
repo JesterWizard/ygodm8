@@ -5,11 +5,23 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
+#include "el_shaddoll_fusion.h"
 #include "fusion_duel.h"
 #include "player_decks.h"
 #include "spell_effects.h"
 
 static const char sShaddollArchetypeName[] APPEND_RODATA = "Shaddoll";
+
+u8 ElShaddollFusion_IsOptUsed(void)
+{
+  return EffectOpt_IsUsed(EL_SHADDOLL_FUSION);
+}
+
+void ElShaddollFusion_MarkOptUsed(void)
+{
+  EffectOpt_MarkUsed(EL_SHADDOLL_FUSION);
+}
 
 static u8 RecipeIsShaddollFusion(const struct FusionRecipe *recipe)
 {
@@ -23,7 +35,7 @@ static u8 RecipeIsShaddollFusion(const struct FusionRecipe *recipe)
   return Duel_CardNameContains(recipe->result, sShaddollArchetypeName);
 }
 
-static void RunPlayerElShaddollFusionFlow(void)
+static u8 RunPlayerElShaddollFusionFlow(void)
 {
   struct FusionMaterialSource sources[FUSION_MAX_SOURCES];
   u8 sourceCount;
@@ -35,7 +47,7 @@ static void RunPlayerElShaddollFusionFlow(void)
   if (sourceCount < 2) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
-    return;
+    return FALSE;
   }
 
   feasibleCount = FusionDuel_BuildFeasibleRecipeIndices(sources, sourceCount, feasibleIndices,
@@ -44,7 +56,7 @@ static void RunPlayerElShaddollFusionFlow(void)
   if (feasibleCount == 0) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
-    return;
+    return FALSE;
   }
 
   if (gRuntimeConfig.enable_extra_deck) {
@@ -80,24 +92,30 @@ static void RunPlayerElShaddollFusionFlow(void)
     if (filteredCount == 0) {
       if (!gHideEffectText)
         PlayMusic(SFX_FORBIDDEN);
-      return;
+      return FALSE;
     }
   }
 
   Duel_ShowEffectText(EL_SHADDOLL_FUSION);
   if (IsDuelOver() == TRUE)
-    return;
+    return FALSE;
 
   recipe = FusionDuel_PlayerConfirmFusionPick(feasibleIndices, feasibleCount);
-  if (recipe != NULL)
-    FusionDuel_ExecutePolymerization(recipe, sources, sourceCount, EL_SHADDOLL_FUSION, FALSE);
+  if (recipe == NULL)
+    return FALSE;
+
+  ElShaddollFusion_MarkOptUsed();
+  FusionDuel_ExecutePolymerization(recipe, sources, sourceCount, EL_SHADDOLL_FUSION, FALSE);
+  return TRUE;
 }
 
 APPEND_TEXT void EffectEL_SHADDOLL_FUSION(void)
 {
-  /* ponytail: once-per-turn activation not tracked (no BSS turn flag editable
-   * from this file alone). Ceiling: multiple El Shaddoll Fusion per turn possible;
-   * upgrade: shared OPT RAM bit / effect_usage once_per_turn. */
+  if (ElShaddollFusion_IsOptUsed()) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
 
   if (WhoseTurn() != DUEL_PLAYER) {
     struct FusionMaterialSource sources[FUSION_MAX_SOURCES];
@@ -118,6 +136,7 @@ APPEND_TEXT void EffectEL_SHADDOLL_FUSION(void)
       return;
     }
 
+    ElShaddollFusion_MarkOptUsed();
     FusionDuel_ExecutePolymerization(&gFusionRecipes[bestIdx], sources, sourceCount,
                                      EL_SHADDOLL_FUSION, TRUE);
     return;

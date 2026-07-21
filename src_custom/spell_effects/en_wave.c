@@ -2,23 +2,24 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "en_wave.h"
 #include "effect_scripts.h"
 #include "effect_system.h"
 #include "spell_effects.h"
 
 static const char sNeoSpacianName[] APPEND_RODATA = "Neo-Spacian";
 
-/* ponytail: OPT "E-HERO used as Fusion material → GY/banish (not Damage Step):
- * SS 1 Neo-Spacian or ELEMENTAL_HERO_NEOS from Deck" needs a fusion-material
- * send listener outside this file. Ceiling: continuous face-up only; upgrade:
- * after Fusion material leave → if face-up EN_WAVE and OPT clear, DeckMenu
- * Neo-Spacian / NEOS → Duel_SpecialSummonFromDeck. */
+/* The generic leave-field event has no material-use or destination provenance.
+ * Parent hooks must filter those semantic events before subscribing these. */
+void EN_WAVE_OnFusionMaterialLeave(const struct EffectEvent *ev)
+{
+  (void)ev;
+}
 
-/* ponytail: OPT "Neo-Spacian or ELEMENTAL_HERO_NEOS shuffled from field/GY into
- * Deck/Extra Deck (not Damage Step): SS 1 Elemental HERO from GY" needs a
- * shuffle-into-deck listener + GY pick outside this file. Ceiling: continuous
- * face-up only; upgrade: on shuffle → if face-up EN_WAVE and OPT clear,
- * PickZone/DeckMenu E-HERO in GY → Duel_SpecialSummonFromGrave. */
+void EN_WAVE_OnShuffleIntoDeck(const struct EffectEvent *ev)
+{
+  (void)ev;
+}
 
 APPEND_TEXT void EffectEN_WAVE(void)
 {

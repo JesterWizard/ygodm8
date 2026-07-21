@@ -5,6 +5,7 @@
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "evil_assault.h"
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
@@ -18,11 +19,16 @@ extern u16 gNewButtons;
 extern u16 gPressedButtons;
 
 static const char sEvilHeroArchetypeName[] APPEND_RODATA = "Evil HERO";
+static const char sHeroArchetypeName[] APPEND_RODATA = "HERO";
 
 static const u8 sEvilAssaultPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
+
+static u8 sEvilAssaultExtraDeckHeroOnlyLock APPEND_DATA = {0};
+static u8 sEvilAssaultSentToGyThisTurn APPEND_DATA = {0};
+static u8 sEvilAssaultGyUsedThisTurn APPEND_DATA = {0};
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -66,6 +72,14 @@ static u8 IsEvilHeroLevel4OrLower(u16 cardId)
 
   SetCardInfo(cardId);
   return gCardInfo.level <= 4;
+}
+
+static u8 IsHeroMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sHeroArchetypeName);
 }
 
 static u8 HandHasDiscardCost(void)
@@ -267,6 +281,91 @@ static enum DuelActionResult SpecialSummonDeckCardAtIndex(u8 deckIndex)
   return Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
 }
 
+static s8 FindDarkFusionGyIndex(u8 fixedDuelist)
+{
+  u8 i;
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (GraveyardExpand_GetCardAt(fixedDuelist, i) == DARK_FUSION)
+      return (s8)i;
+  }
+
+  return -1;
+}
+
+u8 EvilAssault_BlocksExtraDeckSpecialSummon(u16 cardId)
+{
+  return sEvilAssaultExtraDeckHeroOnlyLock && !IsHeroMonster(cardId);
+}
+
+void EvilAssault_OnTurnBoundary(void)
+{
+  sEvilAssaultExtraDeckHeroOnlyLock = FALSE;
+  sEvilAssaultSentToGyThisTurn = FALSE;
+  sEvilAssaultGyUsedThisTurn = FALSE;
+}
+
+void EvilAssault_NotifySentToGraveyard(void)
+{
+  sEvilAssaultSentToGyThisTurn = TRUE;
+}
+
+u8 CanActivateEvilAssaultGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist;
+
+  if (!GraveyardExpand_IsEnabled() || fixedDuelist > DUEL_OPPONENT)
+    return FALSE;
+  if (sEvilAssaultSentToGyThisTurn || sEvilAssaultGyUsedThisTurn)
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist)
+      || GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != EVIL_ASSAULT)
+    return FALSE;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return FALSE;
+
+  return FindDarkFusionGyIndex(fixedDuelist) >= 0;
+}
+
+void ActivateEvilAssaultGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist;
+  s8 darkFusionIndex;
+  s8 handZone;
+  u16 cardId;
+
+  if (!CanActivateEvilAssaultGy(fixedDuelist, gyIndex))
+    return;
+
+  Duel_ShowEffectText(EVIL_ASSAULT);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex) != EVIL_ASSAULT)
+    return;
+
+  darkFusionIndex = FindDarkFusionGyIndex(fixedDuelist);
+  if (darkFusionIndex < 0)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  handZone = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
+  if (handZone < 0)
+    return;
+
+  cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, (u8)darkFusionIndex);
+  if (cardId != DARK_FUSION)
+    return;
+
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)handZone), cardId);
+  GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  GraveyardExpand_RefreshDisplay();
+  sEvilAssaultGyUsedThisTurn = TRUE;
+  UpdateDuelGfxExceptField();
+}
+
 static void DestroyEvilAssaultSpellZone(void)
 {
   struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -331,14 +430,8 @@ static void EVIL_ASSAULT_ResolveBody(void)
       return;
   }
 
-  /* ponytail: "cannot Special Summon from Extra Deck except HERO monsters this
-   * turn" needs a summon-lock flag outside this file. Ceiling: discard+search/SS
-   * only; upgrade: turn flag → Extra Deck SS gate allows only HERO name results. */
-
-  /* ponytail: GY ignition "except the turn sent; banish this; add Dark Fusion
-   * from GY" needs a GY-activate spell path outside this file.
-   * Ceiling: on-field effect only; upgrade: GY activate → banish EVIL_ASSAULT
-   * → recover DARK_FUSION from GY to hand. */
+  sEvilAssaultExtraDeckHeroOnlyLock = TRUE;
+  EvilAssault_NotifySentToGraveyard();
 
   DestroyEvilAssaultSpellZone();
 }
@@ -370,6 +463,9 @@ void EVIL_ASSAULT_SelfCheck(void)
     while (1)
       ;
   if (IsEvilHeroMonster(ELEMENTAL_HERO_AVIAN))
+    while (1)
+      ;
+  if (!IsHeroMonster(ELEMENTAL_HERO_AVIAN))
     while (1)
       ;
 }

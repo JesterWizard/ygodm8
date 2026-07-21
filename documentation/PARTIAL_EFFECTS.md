@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 20:27 UTC  
-**Remaining partials:** `832`
+**Last updated:** 2026-07-21 20:31 UTC  
+**Remaining partials:** `829`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 151 |
+| `spell` | 148 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **832** |
+| **total** | **829** |
 
-## spell (151)
+## spell (148)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -162,31 +162,16 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DRAGON_SHRINE`
 - path: `src_custom/spell_effects/dragon_shrine.c`
-- L165: no dedicated choice UI — A = send 1 more, B = stop. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L209: cancel on first pick auto-sends first Dragon (activation committed).
-- L246: once-per-turn activation not tracked after this normal spell leaves the field (no shared turn-flag RAM editable from this file alone). Ceiling: multiple Dragon Shrine per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
+- L177: no dedicated choice UI — A = send 1 more, B = stop. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
+- L222: cancel on first pick auto-sends first Dragon (activation committed).
 
 ### `DYNAMIC_EQUIP`
 - path: `src_custom/spell_effects/dynamic_equip.c`
 - L35: gTurnZones uses mirrored columns on opponent rows
 
-### `EL_SHADDOLL_FUSION`
-- path: `src_custom/spell_effects/el_shaddoll_fusion.c`
-- L98: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple El Shaddoll Fusion per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
-
 ### `EN_ENGAGE_NEO_SPACE`
 - path: `src_custom/spell_effects/en_engage_neo_space.c`
-- L313: 1 stage ~= 500 ATK so +2 ≈ +1000.
-- L325: ED Fusion-only SS lock this turn needs SpecialSummon gate outside this file. Ceiling: no lock; upgrade: turn flag → ED non-Fusion blocked.
-
-### `EN_SHUFFLE`
-- path: `src_custom/spell_effects/en_shuffle.c`
-- L308: GY ignition (banish this; shuffle E-HERO+Neo OR Neos from GY → Deck, draw 1) needs a GY-activate spell path outside this file. Ceiling: on-field shuffle+SS only; upgrade: GY activate → banish EN_SHUFFLE → return pair/Neos → Duel_DrawCards(1).
-
-### `EN_WAVE`
-- path: `src_custom/spell_effects/en_wave.c`
-- L11: OPT "E-HERO used as Fusion material → GY/banish (not Damage Step): SS 1 Neo-Spacian or ELEMENTAL_HERO_NEOS from Deck" needs a fusion-material send listener outside this file. Ceiling: continuous face-up only; upgrade: after Fusion material leave → if face-up EN_WAVE and OPT clear, DeckMenu Neo-Spacian / NEOS → Duel_SpecialSummonFromDeck.
-- L17: OPT "Neo-Spacian or ELEMENTAL_HERO_NEOS shuffled from field/GY into Deck/Extra Deck (not Damage Step): SS 1 Elemental HERO from GY" needs a shuffle-into-deck listener + GY pick outside this file. Ceiling: continuous face-up only; upgrade: on shuffle → if face-up EN_WAVE and OPT clear, PickZone/DeckMenu E-HERO in GY → Duel_SpecialSummonFromGrave.
+- L330: 1 stage ~= 500 ATK so +2 ≈ +1000.
 
 ### `END_OF_THE_WORLD`
 - path: `src_custom/spell_effects/end_of_the_world.c`
@@ -194,14 +179,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_ASSAULT`
 - path: `src_custom/spell_effects/evil_assault.c`
-- L134: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L334: "cannot Special Summon from Extra Deck except HERO monsters this turn" needs a summon-lock flag outside this file. Ceiling: discard+search/SS only; upgrade: turn flag → Extra Deck SS gate allows only HERO name results.
-- L338: GY ignition "except the turn sent; banish this; add Dark Fusion from GY" needs a GY-activate spell path outside this file. Ceiling: on-field effect only; upgrade: GY activate → banish EVIL_ASSAULT → recover DARK_FUSION from GY to hand.
+- L148: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `EVIL_MIND`
 - path: `src_custom/spell_effects/evil_mind.c`
-- L196: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L414: "only activate 1 Evil Mind per turn" needs a turn-scoped cardId lock outside this file (spell is already in GY). Ceiling: no OPT lock after destroy; upgrade: turn flag checked in CanActivateEVIL_MIND.
+- L211: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `FACTORY_OF_ONE_HUNDRED_MACHINES`
 - path: `src_custom/spell_effects/factory_of_one_hundred_machines.c`
@@ -338,11 +320,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `INSTANT_CONTACT`
 - path: `src_custom/spell_effects/instant_contact.c`
-- L290: without Neos, effects negated + End Phase return to Extra need negate + turn_effect hooks outside this file. Ceiling: SS + attack-lock only when Neos absent; upgrade: mark zone / turn_effect End Phase → ExtraDeck return + effect-negate while marked.
+- L291: without Neos, effects negated + End Phase return to Extra need negate + turn_effect hooks outside this file. Ceiling: SS + attack-lock only when Neos absent; upgrade: mark zone / turn_effect End Phase → ExtraDeck return + effect-negate while marked.
 
 ### `INSTANT_FUSION`
 - path: `src_custom/spell_effects/instant_fusion.c`
-- L238: End Phase destroy of the Instant Fusion monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS mark). Ceiling: SS + attack-lock only; upgrade: turn_effect_hooks End Phase → destroy zone marked by Instant Fusion this turn. Treated-as-Fusion-Summon name checks also need a summon-tag outside this file.
+- L239: End Phase destroy of the Instant Fusion monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS mark). Ceiling: SS + attack-lock only; upgrade: turn_effect_hooks End Phase → destroy zone marked by Instant Fusion this turn. Treated-as-Fusion-Summon name checks also need a summon-tag outside this file.
 
 ### `INSTANT_NEO_SPACE`
 - path: `src_custom/spell_effects/instant_neo_space.c`
@@ -646,20 +628,20 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/the_claw_of_hermos.c`
 - L41: OPT needs turn-scoped flag cleared outside this file. Ceiling: multiple Claw per turn until soft-reset; upgrade: Standby clear.
 - L194: no dedicated field/hand choice UI — A = field, B = hand. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L353: Set reveal has no dedicated flip UI — send face-down as-is. Ceiling: no reveal animation; upgrade: brief face-up before GY send.
+- L355: Set reveal has no dedicated flip UI — send face-down as-is. Ceiling: no reveal animation; upgrade: brief face-up before GY send.
 
 ### `THE_EYE_OF_TIMAEUS`
 - path: `src_custom/spell_effects/the_eye_of_timaeus.c`
-- L255: "also always treated as Legendary Dragon Timaeus" name-treat needs a name-alias outside this file. Ceiling: fusion via listed DM material only; upgrade: Duel_GetEffectiveCardId / name-contains Legendary Dragon Timaeus.
+- L257: "also always treated as Legendary Dragon Timaeus" name-treat needs a name-alias outside this file. Ceiling: fusion via listed DM material only; upgrade: Duel_GetEffectiveCardId / name-contains Legendary Dragon Timaeus.
 
 ### `THE_FANG_OF_CRITIAS`
 - path: `src_custom/spell_effects/the_fang_of_critias.c`
 - L153: no dedicated hand/field choice UI — A = hand, B = field. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L356: "always treated as Legendary Dragon Critias" name/tag needs a treat-as outside this file. Ceiling: activation + trap-send + Extra Deck SS only; upgrade: name-contains / archetype tag = Legendary Dragon Critias.
+- L358: "always treated as Legendary Dragon Critias" name/tag needs a treat-as outside this file. Ceiling: activation + trap-send + Extra Deck SS only; upgrade: name-contains / archetype tag = Legendary Dragon Critias.
 
 ### `THE_GAZE_OF_TIMAEUS`
 - path: `src_custom/spell_effects/the_gaze_of_timaeus.c`
-- L388: End Phase banish of the Fusion during the next turn needs a turn_effect queue outside this file. Ceiling: Fusion SS + shuffle only; upgrade: mark summoned zone + turn_effect End Phase (controller's next End Phase) → Duel_BanishZone. "Treated as Eye of Timaeus" name checks also need a summon-tag outside this file.
+- L389: End Phase banish of the Fusion during the next turn needs a turn_effect queue outside this file. Ceiling: Fusion SS + shuffle only; upgrade: mark summoned zone + turn_effect End Phase (controller's next End Phase) → Duel_BanishZone. "Treated as Eye of Timaeus" name checks also need a summon-tag outside this file.
 
 ### `THE_SACRED_WATERS_IN_THE_SKY`
 - path: `src_custom/spell_effects/the_sacred_waters_in_the_sky.c`

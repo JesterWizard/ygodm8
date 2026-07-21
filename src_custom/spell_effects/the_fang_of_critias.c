@@ -247,7 +247,8 @@ static void ResolveCritiasFieldTrap(u8 fixedRow, u8 fixedCol)
   if (IsDuelOver() == TRUE)
     return;
 
-  if (gRuntimeConfig.enable_extra_deck && !ExtraDeck_TryRemoveCard(fusionId))
+  if (gRuntimeConfig.enable_extra_deck
+      && (Duel_BlocksExtraDeckSpecialSummon(fusionId) || !ExtraDeck_TryRemoveCard(fusionId)))
     return;
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
@@ -294,7 +295,8 @@ static void ResolveFromHand(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  if (gRuntimeConfig.enable_extra_deck && !ExtraDeck_TryRemoveCard(fusionId))
+  if (gRuntimeConfig.enable_extra_deck
+      && (Duel_BlocksExtraDeckSpecialSummon(fusionId) || !ExtraDeck_TryRemoveCard(fusionId)))
     return;
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);

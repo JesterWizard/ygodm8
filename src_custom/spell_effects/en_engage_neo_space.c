@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "en_engage_neo_space.h"
 #include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
@@ -17,6 +18,7 @@ void IncrementPermStage(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 
 static const char sNeoSpacianName[] APPEND_RODATA = "Neo-Spacian";
+static u8 sEnEngageNeoSpaceFusionOnlyLock APPEND_DATA = {0};
 
 static const u8 sEnEngagePickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -24,6 +26,21 @@ static const u8 sEnEngagePickLabels[] APPEND_RODATA = {
 };
 
 /* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
+
+u8 EN_ENGAGE_NEO_SPACE_IsLocked(void)
+{
+  return sEnEngageNeoSpaceFusionOnlyLock;
+}
+
+void EN_ENGAGE_NEO_SPACE_MarkLocked(void)
+{
+  sEnEngageNeoSpaceFusionOnlyLock = TRUE;
+}
+
+void EN_ENGAGE_NEO_SPACE_ClearOnTurnBoundary(void)
+{
+  sEnEngageNeoSpaceFusionOnlyLock = FALSE;
+}
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -320,10 +337,8 @@ static void EN_ENGAGE_NEO_SPACE_ResolveBody(void)
 
   AddPolymerization();
   EffectOpt_MarkUsed(EN_ENGAGE_NEO_SPACE);
+  EN_ENGAGE_NEO_SPACE_MarkLocked();
   UpdateDuelGfxExceptField();
-
-  /* ponytail: ED Fusion-only SS lock this turn needs SpecialSummon gate outside
-   * this file. Ceiling: no lock; upgrade: turn flag → ED non-Fusion blocked. */
 }
 
 APPEND_TEXT void EffectEN_ENGAGE_NEO_SPACE(void)

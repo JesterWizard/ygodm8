@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round1 Batch5 (10 spells CCTO)
+**Last worked on:** 2026-07-21 — Round1 complete (6×10 PARTIAL batches)
 
-**Outcome:** Circles ON_SUMMON, Capsule Standby, Double Tool ATK/destroy. Partials **834→831**.
+**Outcome:** Batches 1–6 committed on `master` (Advance → Factory of 100 Machines pack). Partials **851→829** this round (Batch3 start was ~840 after Batch2). Shared surfaces: CCTO, GyIgnition, EffectOpt, `Duel_BlocksExtraDeckSpecialSummon`.
 
-**Open / next:** Round1 Batch6 (Dragon Shrine → Factory); then notify for Round2.
+**Open / next:** Round2 — continue 6×10 from next PARTIAL spell (Field Barrier+). Reply “continue” to start.

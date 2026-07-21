@@ -5,6 +5,8 @@
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
+#include "evil_mind.h"
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
@@ -36,6 +38,16 @@ static const u8 sEvilMindPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
+
+u8 EvilMind_IsOptUsed(void)
+{
+  return EffectOpt_IsUsed(EVIL_MIND);
+}
+
+void EvilMind_MarkOptUsed(void)
+{
+  EffectOpt_MarkUsed(EVIL_MIND);
+}
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -165,6 +177,9 @@ static u8 ModeIsAvailable(u8 mode, u8 gyMonsters)
 u8 CanActivateEVIL_MIND(void)
 {
   u8 gyMonsters;
+
+  if (EvilMind_IsOptUsed())
+    return FALSE;
 
   if (!ControlsFiendMonster())
     return FALSE;
@@ -399,6 +414,7 @@ static void EVIL_MIND_ResolveBody(void)
       return;
   }
 
+  EvilMind_MarkOptUsed();
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
 
   if (mode == EVIL_MIND_MODE_DRAW) {
@@ -410,10 +426,6 @@ static void EVIL_MIND_ResolveBody(void)
   }
 
   UpdateDuelGfxExceptField();
-
-  /* ponytail: "only activate 1 Evil Mind per turn" needs a turn-scoped cardId
-   * lock outside this file (spell is already in GY). Ceiling: no OPT lock after
-   * destroy; upgrade: turn flag checked in CanActivateEVIL_MIND. */
 }
 
 APPEND_TEXT void EffectEVIL_MIND(void)

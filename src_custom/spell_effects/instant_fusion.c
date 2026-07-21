@@ -218,7 +218,8 @@ static void INSTANT_FUSION_ResolveBody(void)
   if (chosenId == CARD_NONE || !IsInstantFusionTarget(chosenId))
     return;
 
-  if (gRuntimeConfig.enable_extra_deck && !ExtraDeck_TryRemoveCard(chosenId))
+  if (gRuntimeConfig.enable_extra_deck
+      && (Duel_BlocksExtraDeckSpecialSummon(chosenId) || !ExtraDeck_TryRemoveCard(chosenId)))
     return;
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);

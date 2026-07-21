@@ -6,6 +6,8 @@
 #include "arcana_spread.h"
 #include "contact_gate.h"
 #include "constants/card_ids.h"
+#include "en_shuffle.h"
+#include "evil_assault.h"
 #include "expanded_graveyard.h"
 #include "gy_ignition.h"
 
@@ -37,6 +39,12 @@ static const struct GyIgnitionEntry sGyIgnitionTable[] APPEND_RODATA = {
   { CONTACT_GATE,
     CanActivateContactGateGy,
     ActivateContactGateGy },
+  { EN_SHUFFLE,
+    CanActivateEnShuffleGy,
+    ActivateEnShuffleGy },
+  { EVIL_ASSAULT,
+    CanActivateEvilAssaultGy,
+    ActivateEvilAssaultGy },
 };
 
 u8 GyIgnition_TryAt(u8 fixedDuelist, u16 cardId)

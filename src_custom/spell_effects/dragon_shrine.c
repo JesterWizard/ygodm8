@@ -4,6 +4,7 @@
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
 
@@ -60,9 +61,20 @@ static s16 FindFirstMatchingDeckIndex(u8 turnDuelist, u8 (*pred)(u16))
   return -1;
 }
 
+u8 DragonShrine_IsOptUsed(void)
+{
+  return EffectOpt_IsUsed(DRAGON_SHRINE);
+}
+
+void DragonShrine_MarkOptUsed(void)
+{
+  EffectOpt_MarkUsed(DRAGON_SHRINE);
+}
+
 u8 CanActivateDRAGON_SHRINE(void)
 {
-  return FindFirstMatchingDeckIndex(ACTIVE_DUELIST, IsDragonMonster) >= 0;
+  return !DragonShrine_IsOptUsed()
+      && FindFirstMatchingDeckIndex(ACTIVE_DUELIST, IsDragonMonster) >= 0;
 }
 
 static u8 LoadMatchingDeckMenu(u8 turnDuelist, u8 (*pred)(u16), u8 *deckIndexOut)
@@ -199,6 +211,7 @@ static void DRAGON_SHRINE_ResolveBody(void)
     return;
   }
 
+  DragonShrine_MarkOptUsed();
   Duel_ShowEffectText(DRAGON_SHRINE);
 
   if (IsDuelOver() == TRUE)
@@ -242,11 +255,6 @@ static void DRAGON_SHRINE_ResolveBody(void)
       }
     }
   }
-
-  /* ponytail: once-per-turn activation not tracked after this normal spell leaves
-   * the field (no shared turn-flag RAM editable from this file alone).
-   * Ceiling: multiple Dragon Shrine per turn possible; upgrade: shared OPT RAM
-   * bit / effect_usage once_per_turn. */
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
   UpdateDuelGfxExceptField();
