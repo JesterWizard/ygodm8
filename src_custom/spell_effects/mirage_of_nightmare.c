@@ -102,11 +102,6 @@ static void MIRAGE_OF_NIGHTMARE_ResolveBody(void)
   }
 
   Duel_ShowEffectText(MIRAGE_OF_NIGHTMARE);
-
-  /* ponytail: opponent-Standby draw / next-Standby discard need turn_effect_hooks
-   * call to TryApplyMirageOfNightmareStandby (clone Nightmare Wheel wiring).
-   * Ceiling: continuous face-up + unk4 pending-discard store only until wired;
-   * upgrade: turn_effect_hooks Standby → TryApplyMirageOfNightmareStandby. */
 }
 
 APPEND_TEXT void EffectMIRAGE_OF_NIGHTMARE(void)

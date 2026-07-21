@@ -16,6 +16,7 @@
 #include "kaiser_colosseum.h"
 #include "wall_of_revealing_light.h"
 #include "world_suppression.h"
+#include "spell_effects.h"
 #include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
 #include "six_card_hand.h"
@@ -767,6 +768,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   TryApplySkullInvitationOnFieldLeave(zone);
   TryApplyCoffinSellerOnFieldLeave(zone);
   TryApplyNightmareWheelOnTargetLeave(zone);
+  MaskOfDispel_OnTargetLeave(zone);
   TryApplyFutureFusionOnMonsterLeave(zone);
   FutureFusion_OnZoneCleared(zone);
   OnCustomFieldSpellZoneCleared(zone);

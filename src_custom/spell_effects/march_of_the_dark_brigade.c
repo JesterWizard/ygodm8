@@ -5,6 +5,7 @@
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "duel_status.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "removed_from_play.h"
 #include "six_card_hand.h"
@@ -246,7 +247,11 @@ static u8 CanActivateMarchOfTheDarkBrigade(void)
 
 u8 CanActivateMARCH_OF_THE_DARK_BRIGADE(void)
 {
-  return CanActivateMarchOfTheDarkBrigade();
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
+  u16 optKey = (u16)(MARCH_OF_THE_DARK_BRIGADE
+                      | (fixedDuelist == DUEL_OPPONENT ? 0x8000 : 0));
+
+  return !EffectOpt_IsUsed(optKey) && CanActivateMarchOfTheDarkBrigade();
 }
 
 static void MARCH_OF_THE_DARK_BRIGADE_ResolveBody(void)
@@ -261,10 +266,6 @@ static void MARCH_OF_THE_DARK_BRIGADE_ResolveBody(void)
 
   if (IsDuelOver() == TRUE || !CanActivateMarchOfTheDarkBrigade())
     return;
-
-  /* ponytail: once-per-turn activation not tracked (no BSS turn flag editable
-   * from this spell file alone). Ceiling: can activate multiple Marches per turn;
-   * upgrade: shared OPT RAM bit / effect_usage once_per_turn. */
 
   if (!GraveyardExpand_IsEnabled()) {
     gyIndex = 0;
@@ -290,12 +291,17 @@ static void MARCH_OF_THE_DARK_BRIGADE_ResolveBody(void)
 
 APPEND_TEXT void EffectMARCH_OF_THE_DARK_BRIGADE(void)
 {
-  if (!CanActivateMarchOfTheDarkBrigade()) {
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
+  u16 optKey = (u16)(MARCH_OF_THE_DARK_BRIGADE
+                      | (fixedDuelist == DUEL_OPPONENT ? 0x8000 : 0));
+
+  if (!CanActivateMARCH_OF_THE_DARK_BRIGADE()) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
   }
 
+  EffectOpt_MarkUsed(optKey);
   if (Duel_TryResolveSpellThroughTraps(MARCH_OF_THE_DARK_BRIGADE,
                                        MARCH_OF_THE_DARK_BRIGADE_ResolveBody)
       == DUEL_ACTION_BLOCKED)

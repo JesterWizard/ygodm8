@@ -12,9 +12,7 @@
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 
-/* Classic Contact Fusion Neos recipes (list Elemental HERO Neos as material).
- * ponytail: not in gFusionRecipes — local table only. Ceiling: misses newer Neos
- * Fusions / Brave Neos Neo-Spacian wildcard; upgrade: add to fusion_recipes.c. */
+/* Contact Fusion recipes list Elemental HERO Neos as material. */
 static const struct FusionRecipe sMiracleContactRecipes[] APPEND_RODATA = {
   { ELEMENTAL_HERO_AIR_NEOS, ELEMENTAL_HERO_NEOS, NEO_SPACIAN_AIR_HUMMINGBIRD, 0, 0 },
   { ELEMENTAL_HERO_AQUA_NEOS, ELEMENTAL_HERO_NEOS, NEO_SPACIAN_AQUA_DOLPHIN, 0, 0 },
@@ -27,9 +25,15 @@ static const struct FusionRecipe sMiracleContactRecipes[] APPEND_RODATA = {
     NEO_SPACIAN_AQUA_DOLPHIN, 0 },
   { ELEMENTAL_HERO_MAGMA_NEOS, ELEMENTAL_HERO_NEOS, NEO_SPACIAN_FLARE_SCARAB,
     NEO_SPACIAN_GRAND_MOLE, 0 },
+  { ELEMENTAL_HERO_NEBULA_NEOS, ELEMENTAL_HERO_NEOS, NEO_SPACIAN_DARK_PANTHER,
+    NEO_SPACIAN_GRAND_MOLE, 0 },
   { ELEMENTAL_HERO_CHAOS_NEOS, ELEMENTAL_HERO_NEOS, NEO_SPACIAN_DARK_PANTHER,
     NEO_SPACIAN_GLOW_MOSS, 0 },
 };
+
+/* ponytail: Cosmo Neos needs three Neo-Spacians with different Attributes, which
+ * the concrete FusionRecipe matcher cannot express. Ceiling: Cosmo Neos is not
+ * selectable. Upgrade: a predicate-based Contact Fusion material selector. */
 
 static const u8 sMiracleContactPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,

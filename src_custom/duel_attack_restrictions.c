@@ -9,6 +9,7 @@
 #include "wall_of_revealing_light.h"
 #include "nightmare_wheel.h"
 #include "harpie_lady_3.h"
+#include "spell_effects.h"
 
 void Duel_ResetAttackRestrictions(void)
 {
@@ -55,10 +56,20 @@ u8 SphereMode_CanDeclareAttack(const struct DuelCard *zone);
 
 u8 Duel_CanMonsterDeclareAttackWithCachedRestrictions(const struct DuelCard *zone)
 {
+  u8 fixedRow;
+  u8 fixedCol;
+
   if (zone == NULL || zone->id == CARD_NONE)
     return FALSE;
 
+  if (Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &fixedCol)
+      && MysticMine_LocksFixedDuelist(Duel_FixedDuelistForMonsterRow(fixedRow)))
+    return FALSE;
+
   if (!SphereMode_CanDeclareAttack(zone))
+    return FALSE;
+
+  if (!MaskOfTheAccursed_CanMonsterDeclareAttack(zone))
     return FALSE;
 
   if (gDuelAttackRestrictionsActive == 0)

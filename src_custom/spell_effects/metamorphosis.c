@@ -1,13 +1,37 @@
 #include "global.h"
 #include "common-chax.h"
+#include "configs/runtime.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "deck_menu.h"
 #include "duel_helpers.h"
 #include "effect_events.h"
 #include "dynamic_equip.h"
+#include "fusion_recipes.h"
+#include "player_decks.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
+u8 ExtraDeck_TryRemoveCard(u16 cardId);
+
+static const u8 sMetamorphosisPickLabels[] APPEND_RODATA = {
+  DECK_MENU_PICK_LABEL_DETAILS,
+  DECK_MENU_PICK_LABEL_SELECT_CARD,
+};
+
+static u16 *ActiveExtraDeck(void)
+{
+  switch (gActiveDeckIndex) {
+  case 1:
+    return gPlayerDeck1ExtraDeck;
+  case 2:
+    return gPlayerDeck2ExtraDeck;
+  case 3:
+    return gPlayerDeck3ExtraDeck;
+  default:
+    return gPlayerDeck1ExtraDeck;
+  }
+}
 
 static u8 ActiveMonsterFixedRow(void)
 {
@@ -28,22 +52,132 @@ static u8 IsValidMetamorphosisTributeZone(u8 fixedRow, u8 fixedCol)
   return GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER;
 }
 
-static u8 HasMetamorphosisTribute(void)
+static u8 IsMetamorphosisFusionTarget(u16 cardId, u8 tributeLevel)
 {
-  u8 col;
-  u8 row = ActiveMonsterFixedRow();
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
 
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsValidMetamorphosisTributeZone(row, col))
-      return TRUE;
+  SetCardInfo(cardId);
+  return gCardInfo.color == COLOR_FUSION && gCardInfo.level == tributeLevel;
+}
+
+static u8 BuildMetamorphosisFusionTargets(u8 tributeLevel, u16 *outIds, u8 maxOut)
+{
+  u8 count = 0;
+  u8 i;
+
+  if (outIds == NULL || maxOut == 0)
+    return 0;
+
+  if (gRuntimeConfig.enable_extra_deck) {
+    u16 *extra = ActiveExtraDeck();
+
+    for (i = 0; i < EXTRA_DECK_SIZE && count < maxOut; i++) {
+      u16 cardId = extra[i];
+      u8 j;
+
+      if (!IsMetamorphosisFusionTarget(cardId, tributeLevel))
+        continue;
+      for (j = 0; j < count; j++) {
+        if (outIds[j] == cardId)
+          break;
+      }
+      if (j == count)
+        outIds[count++] = cardId;
+    }
+    return count;
   }
 
-  return FALSE;
+  /* ponytail: without the runtime Extra Deck, use registered Fusion results as
+   * a stand-in. Ceiling: permits a result not physically in an Extra Deck. */
+  for (i = 0; i < FusionRecipe_Count() && count < maxOut; i++) {
+    u16 cardId = gFusionRecipes[i].result;
+    u8 j;
+
+    if (!IsMetamorphosisFusionTarget(cardId, tributeLevel))
+      continue;
+    for (j = 0; j < count; j++) {
+      if (outIds[j] == cardId)
+        break;
+    }
+    if (j == count)
+      outIds[count++] = cardId;
+  }
+
+  return count;
+}
+
+static u16 PlayerPickMetamorphosisFusion(const u16 *targetIds, u8 count)
+{
+  u8 savedDeckMenu[sizeof(gDeckMenu)];
+  u16 chosenId;
+  u8 i;
+
+  if (targetIds == NULL || count == 0)
+    return CARD_NONE;
+  if (count == 1)
+    return targetIds[0];
+
+  DECKMENU_SAVE();
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    gDeckMenu.cards[i] = CARD_NONE;
+  for (i = 0; i < count; i++)
+    gDeckMenu.cards[i] = targetIds[i];
+
+  gDeckMenu.cost = 0;
+  gDeckMenu.currentPos = 0;
+  gDeckMenu.sortMode = 0;
+  gDeckMenu.displayMode = 1;
+  gDeckMenu.cardCount = count;
+
+  DeckMenu_BeginDuelTrunkView();
+  if (!DeckMenuMainPickConfirmWithLabels(sMetamorphosisPickLabels,
+                                         ARRAY_COUNT(sMetamorphosisPickLabels))) {
+    DECKMENU_RESTORE();
+    DeckMenu_EndDuelTrunkView();
+    return CARD_NONE;
+  }
+
+  chosenId = gDeckMenu.cards[gDeckMenu.currentPos];
+  DECKMENU_RESTORE();
+  DeckMenu_EndDuelTrunkView();
+  return chosenId;
+}
+
+static u16 AiPickMetamorphosisFusion(const u16 *targetIds, u8 count)
+{
+  u8 i;
+  u16 chosenId = CARD_NONE;
+  u16 bestAtk = 0;
+
+  for (i = 0; i < count; i++) {
+    SetCardInfo(targetIds[i]);
+    if (chosenId == CARD_NONE || gCardInfo.atk > bestAtk) {
+      chosenId = targetIds[i];
+      bestAtk = gCardInfo.atk;
+    }
+  }
+
+  return chosenId;
 }
 
 u8 CanActivateMETAMORPHOSIS(void)
 {
-  return HasMetamorphosisTribute();
+  u8 col;
+  u8 row = ActiveMonsterFixedRow();
+  u16 targets[EXTRA_DECK_SIZE];
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (!IsValidMetamorphosisTributeZone(row, col))
+      continue;
+    SetCardInfo(zone->id);
+    if (BuildMetamorphosisFusionTargets(gCardInfo.level, targets, ARRAY_COUNT(targets)) != 0)
+      return TRUE;
+  }
+
+  return FALSE;
 }
 
 static void DestroyMetamorphosisSpellZone(void)
@@ -60,6 +194,10 @@ static void FinishMetamorphosis(u8 tributeRow, u8 tributeCol)
 {
   struct DuelCard *tributeZone;
   u8 tributeLevel;
+  u16 targets[EXTRA_DECK_SIZE];
+  u8 targetCount;
+  u16 chosenId;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
 
   if (!IsValidMetamorphosisTributeZone(tributeRow, tributeCol)) {
     DestroyMetamorphosisSpellZone();
@@ -69,6 +207,19 @@ static void FinishMetamorphosis(u8 tributeRow, u8 tributeCol)
   tributeZone = gFixedZones[tributeRow][tributeCol];
   SetCardInfo(tributeZone->id);
   tributeLevel = gCardInfo.level;
+  targetCount = BuildMetamorphosisFusionTargets(tributeLevel, targets, ARRAY_COUNT(targets));
+  if (targetCount == 0) {
+    DestroyMetamorphosisSpellZone();
+    return;
+  }
+
+  chosenId = WhoseTurn() == DUEL_PLAYER
+      ? PlayerPickMetamorphosisFusion(targets, targetCount)
+      : AiPickMetamorphosisFusion(targets, targetCount);
+  if (chosenId == CARD_NONE) {
+    DestroyMetamorphosisSpellZone();
+    return;
+  }
 
   DestroyMetamorphosisSpellZone();
   if (IsDuelOver() == TRUE)
@@ -82,12 +233,9 @@ static void FinishMetamorphosis(u8 tributeRow, u8 tributeCol)
   NotifyDynamicEquipFieldChanged();
   EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 
-  /* ponytail: Extra Deck Special Summon (Fusion of matching Level) needs a duel-time
-   * Extra Deck browser + SS path. Trunk ExtraDeck_* APIs are deck-builder only and
-   * must not be used mid-duel. Ceiling: tribute-only; upgrade: ExtraDeck duel pick
-   * filtered by COLOR_FUSION + level == tributeLevel, then Duel_SpecialSummonMonsterId. */
-  (void)tributeLevel;
-  (void)COLOR_FUSION;
+  if ((gRuntimeConfig.enable_extra_deck && !ExtraDeck_TryRemoveCard(chosenId))
+      || Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, chosenId, opts) == DUEL_ACTION_DUEL_OVER)
+    return;
 }
 
 static void CancelMetamorphosisTargeting(void)

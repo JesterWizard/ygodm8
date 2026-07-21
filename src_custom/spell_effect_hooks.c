@@ -7,6 +7,7 @@
 #include "curse_of_darkness.h"
 #include "custom_field_spell.h"
 #include "soul_taker.h"
+#include "spell_effects.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "jar_robber.h"
@@ -138,6 +139,13 @@ static void ActivateSpellEffect__Body(void)
   }
 
   if (gSpellEffectData.id == MONSTER_REBORN && !CanActivateMonsterReborn()) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
+
+  if (MagiciansRightHand_ShouldNegateSpell(WhoseTurn())) {
+    MagiciansRightHand_MarkSpellNegationUsed(WhoseTurn());
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;

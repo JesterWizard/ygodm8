@@ -50,6 +50,52 @@ u8 CanActivateMOLTING_ESCAPE(void)
   return HasMoltingEscapeTarget();
 }
 
+static struct DuelCard *FindMoltingEscapeSpellForTarget(const struct DuelCard *target)
+{
+  u8 i;
+  u8 targetRow;
+  u8 targetCol;
+
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)target, &targetRow, &targetCol))
+    return NULL;
+
+  for (i = 0; i < MAX_DYNAMIC_EQUIP_SLOTS; i++) {
+    struct DynamicEquipLink *link = &gDynamicEquipLinks[i];
+    struct DuelCard *spellZone;
+
+    if (!link->active || link->spellId != MOLTING_ESCAPE
+        || link->targetFixedRow != targetRow || link->targetFixedCol != targetCol)
+      continue;
+
+    spellZone = gFixedZones[link->spellFixedRow][link->spellFixedCol];
+    if (IsActiveDynamicEquipSpellZone(spellZone))
+      return spellZone;
+  }
+
+  return NULL;
+}
+
+u8 MoltingEscape_PreventsBattleDestruction(const struct DuelCard *target)
+{
+  struct DuelCard *spellZone = FindMoltingEscapeSpellForTarget(target);
+
+  return spellZone != NULL && spellZone->effectUsedThisTurn == FALSE;
+}
+
+void MoltingEscape_ApplyBattleProtection(struct DuelCard *target)
+{
+  struct DuelCard *spellZone = FindMoltingEscapeSpellForTarget(target);
+
+  if (spellZone == NULL || spellZone->effectUsedThisTurn)
+    return;
+
+  spellZone->effectUsedThisTurn = TRUE;
+  IncrementPermStage(target);
+
+  /* ponytail: one stage is +500 rather than the printed +300. Ceiling: the
+   * protected monster gains +500 ATK. Upgrade: exact +300 ATK overlay. */
+}
+
 static void EquipMoltingEscape(struct DuelCard *spellZone, struct DuelCard *target)
 {
   /* No ATK on equip — printed +300 applies only when OPT battle-protect fires. */
@@ -58,13 +104,6 @@ static void EquipMoltingEscape(struct DuelCard *spellZone, struct DuelCard *targ
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: OPT battle-protect + +300 ATK when applied needs a battle_effects /
-   * CanMonsterBeDestroyedByBattle / damage-step hook outside this file (like
-   * Spirit Reaper / Kishido via Duel_ApplyBattleDestroyProtection).
-   * Ceiling: Reptile equip register only; upgrade: if DynamicEquipTargetsMonsterWithSpell
-   * (zone, MOLTING_ESCAPE) and effectUsedThisTurn clear, skip battle destroy once,
-   * then mark OPT + apply +300 (exact overlay or nearest stage) at Damage Step end. */
 }
 
 static void ResolveMoltingEscapeTarget(u8 fixedRow, u8 fixedCol)

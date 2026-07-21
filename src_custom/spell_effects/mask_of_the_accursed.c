@@ -3,9 +3,74 @@
 #include "constants/card_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
+#include "imperial_order.h"
 #include "spell_effects.h"
 
 #define MASK_OF_THE_ACCURSED_STANDBY_DAMAGE 500
+
+static u8 IsActivatedMaskOfTheAccursedZone(const struct DuelCard *spellZone)
+{
+  return spellZone != NULL && spellZone->id == MASK_OF_THE_ACCURSED
+      && spellZone->isFaceUp == TRUE && spellZone->isLocked == TRUE
+      && !IsImperialOrderNegatingSpell(MASK_OF_THE_ACCURSED);
+}
+
+u8 MaskOfTheAccursed_CanMonsterDeclareAttack(const struct DuelCard *zone)
+{
+  u8 targetRow;
+  u8 targetCol;
+  u8 i;
+
+  if (zone == NULL || zone->id == CARD_NONE
+      || !Duel_FindFixedMonsterZone((struct DuelCard *)zone, &targetRow, &targetCol))
+    return TRUE;
+
+  for (i = 0; i < MAX_DYNAMIC_EQUIP_SLOTS; i++) {
+    struct DynamicEquipLink *link = &gDynamicEquipLinks[i];
+    struct DuelCard *spellZone;
+
+    if (!link->active || link->spellId != MASK_OF_THE_ACCURSED
+        || link->targetFixedRow != targetRow || link->targetFixedCol != targetCol)
+      continue;
+
+    spellZone = gFixedZones[link->spellFixedRow][link->spellFixedCol];
+    if (IsActivatedMaskOfTheAccursedZone(spellZone))
+      return FALSE;
+  }
+
+  return TRUE;
+}
+
+void TryApplyMaskOfTheAccursedStandbyDamage(void)
+{
+  u8 i;
+
+  if (IsDuelOver() == TRUE || IsImperialOrderNegatingSpell(MASK_OF_THE_ACCURSED))
+    return;
+
+  for (i = 0; i < MAX_DYNAMIC_EQUIP_SLOTS; i++) {
+    struct DynamicEquipLink *link = &gDynamicEquipLinks[i];
+    struct DuelCard *spellZone;
+    struct DuelCard *target;
+
+    if (!link->active || link->spellId != MASK_OF_THE_ACCURSED)
+      continue;
+
+    spellZone = gFixedZones[link->spellFixedRow][link->spellFixedCol];
+    if (!IsActivatedMaskOfTheAccursedZone(spellZone)
+        || GetDuelistForZone(spellZone) != WhoseTurn())
+      continue;
+
+    target = gFixedZones[link->targetFixedRow][link->targetFixedCol];
+    if (target == NULL || target->id == CARD_NONE)
+      continue;
+
+    Duel_ShowEffectText(MASK_OF_THE_ACCURSED);
+    if (Duel_ChangeLp(GetDuelistForZone(target), -MASK_OF_THE_ACCURSED_STANDBY_DAMAGE, TRUE)
+        == DUEL_ACTION_DUEL_OVER)
+      return;
+  }
+}
 
 static void ActivateMaskOfTheAccursedEquip(struct DuelCard *spellZone, struct DuelCard *target)
 {
@@ -21,14 +86,6 @@ static void MASK_OF_THE_ACCURSED_ResolveBody(void)
 
   ActivateMaskOfTheAccursedEquip(spellZone, target);
   Duel_ShowEffectText(MASK_OF_THE_ACCURSED);
-
-  /* ponytail: attack lock + Standby 500 burn need hooks outside this file.
-   * Ceiling: equip registers only (like Raregold Armor without force-target).
-   * Upgrade: wire DynamicEquipTargetsMonsterWithSpell(MASK_OF_THE_ACCURSED) into
-   * duel_attack_restrictions.c (CannotAttack) and turn_effect_hooks.c
-   * (Duel_ChangeLp controller, -MASK_OF_THE_ACCURSED_STANDBY_DAMAGE) — clone
-   * NightmareWheel_CanMonsterDeclareAttack / TryApplyNightmareWheelStandbyDamage. */
-  (void)MASK_OF_THE_ACCURSED_STANDBY_DAMAGE;
 }
 
 APPEND_TEXT void EffectMASK_OF_THE_ACCURSED(void)

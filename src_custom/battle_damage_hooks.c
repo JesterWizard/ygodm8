@@ -237,14 +237,22 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   if (sActionData.flags & FLAG_GRAVEYARD_PLAYER) {
     struct DuelCard *zone = gFixedZones[sActionData.playerMonsterRow][sActionData.unkA];
 
-    if (GladiatorBeastsBattleManica_PreventsBattleDestruction(zone))
+    if (MoltingEscape_PreventsBattleDestruction(zone)) {
+      MoltingEscape_ApplyBattleProtection(zone);
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (GladiatorBeastsBattleManica_PreventsBattleDestruction(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
     struct DuelCard *zone = gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16];
 
-    if (GladiatorBeastsBattleManica_PreventsBattleDestruction(zone))
+    if (MoltingEscape_PreventsBattleDestruction(zone)) {
+      MoltingEscape_ApplyBattleProtection(zone);
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (GladiatorBeastsBattleManica_PreventsBattleDestruction(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    }
   }
   playerGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_PLAYER) != 0;
   opponentGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) != 0;

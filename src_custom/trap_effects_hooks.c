@@ -10,6 +10,7 @@
 #include "royal_decree.h"
 #include "duel_helpers.h"
 #include "effect_system.h"
+#include "spell_effects.h"
 #include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
 #include "blast_held_by_a_tribute.h"
@@ -156,6 +157,17 @@ void ActivateTrapEffect__Replacement(u16 lp)
 
   respondingZone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
   if (respondingZone != NULL && Duel_IsCardActivationBlocked(respondingZone->id)) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
+      SaveDrainingShieldAttackResume();
+      TryResumeInterruptedAttackAfterDrainingShield();
+    }
+    return;
+  }
+
+  if (MagiciansLeftHand_ShouldNegateTrap(INACTIVE_DUELIST)) {
+    MagiciansLeftHand_MarkTrapNegationUsed(INACTIVE_DUELIST);
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {

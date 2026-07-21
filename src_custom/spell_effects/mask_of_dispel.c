@@ -75,6 +75,78 @@ static void StashMaskOfDispelTarget(struct DuelCard *spellZone, u8 fixedRow, u8 
   spellZone->unk4 = (u8)((((fixedRow & 0xF) << 4) | (fixedCol & 0xF)) + 1);
 }
 
+static u8 IsActivatedMaskOfDispelZone(const struct DuelCard *spellZone)
+{
+  return spellZone != NULL && spellZone->id == MASK_OF_DISPEL && spellZone->isFaceUp == TRUE
+      && spellZone->isLocked == TRUE && spellZone->unk4 > 0;
+}
+
+static struct DuelCard *MaskOfDispelGetTarget(const struct DuelCard *spellZone)
+{
+  u8 target = spellZone->unk4 - 1;
+  u8 fixedRow = target >> 4;
+  u8 fixedCol = target & 0xF;
+  struct DuelCard *targetZone;
+
+  if (!IsActivatedMaskOfDispelZone(spellZone))
+    return NULL;
+
+  if ((fixedRow != OPPONENT_BACKROW && fixedRow != PLAYER_BACKROW)
+      || fixedCol >= MAX_ZONES_IN_ROW)
+    return NULL;
+
+  targetZone = gFixedZones[fixedRow][fixedCol];
+  if (targetZone == NULL || targetZone->id == CARD_NONE)
+    return NULL;
+
+  return GetTypeGroup(targetZone->id) == TYPE_GROUP_SPELL ? targetZone : NULL;
+}
+
+void MaskOfDispel_OnTargetLeave(struct DuelCard *zone)
+{
+  u8 row;
+  u8 col;
+  struct DuelCard *spellZone;
+
+  if (gHideEffectText || zone == NULL || GetTypeGroup(zone->id) != TYPE_GROUP_SPELL)
+    return;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      spellZone = gFixedZones[row][col];
+      if (MaskOfDispelGetTarget(spellZone) != zone)
+        continue;
+
+      Duel_DestroyZone(spellZone, row == PLAYER_BACKROW ? DUEL_PLAYER : DUEL_OPPONENT, TRUE);
+    }
+  }
+}
+
+void TryApplyMaskOfDispelStandbyDamage(void)
+{
+  u8 col;
+  struct DuelCard *spellZone;
+  struct DuelCard *target;
+  u8 targetRow;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    spellZone = gTurnZones[ACTIVE_DUELIST_BACKROW][col];
+    target = MaskOfDispelGetTarget(spellZone);
+    if (target == NULL)
+      continue;
+
+    targetRow = (spellZone->unk4 - 1) >> 4;
+    Duel_ShowEffectTextTyped(MASK_OF_DISPEL, 9);
+    if (Duel_ChangeLp(targetRow == PLAYER_BACKROW ? DUEL_PLAYER : DUEL_OPPONENT,
+                      -MASK_OF_DISPEL_STANDBY_DAMAGE, TRUE)
+        == DUEL_ACTION_DUEL_OVER)
+      return;
+  }
+}
+
 static void FinishMaskOfDispel(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -87,18 +159,6 @@ static void FinishMaskOfDispel(u8 fixedRow, u8 fixedCol)
 
   StashMaskOfDispelTarget(spellZone, fixedRow, fixedCol);
   Duel_ActivateContinuousZone(spellZone);
-
-  /* ponytail: Standby Phase 500 burn to the selected Spell's controller needs a
-   * turn_effect_hooks Standby path outside this file (clone
-   * TryApplyNightmareWheelStandbyDamage). Ceiling: continuous face-up + target
-   * stash only; upgrade: Standby → if face-up MASK_OF_DISPEL with unk4 target
-   * still present then Duel_ChangeLp(controller, -MASK_OF_DISPEL_STANDBY_DAMAGE). */
-  (void)MASK_OF_DISPEL_STANDBY_DAMAGE;
-
-  /* ponytail: self-destroy when selected Spell leaves the field needs a
-   * destroy/leave-field listener outside this file. Ceiling: target stash only;
-   * upgrade: OnZoneClear → if id matches stashed MASK_OF_DISPEL target then
-   * Duel_DestroyZone(mask). */
 }
 
 static void CancelMaskOfDispelTargeting(void)
