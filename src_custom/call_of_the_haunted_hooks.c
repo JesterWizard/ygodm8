@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "aroma_jar.h"
+#include "flip_deck_search.h"
 #include "call_of_the_haunted.h"
 #include "constants/card_ids.h"
 #include "embodiment_of_apophis.h"
@@ -21,6 +22,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_wing.h"
 #include "arcana_force_ex_the_dark_ruler.h"
+#include "destiny_hero_double_dude.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
 #include "the_tripper_mercury.h"
@@ -366,6 +368,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
     defender = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][defenderTurnCol];
     defender->isFaceUp = TRUE;
     TryAromaJarOnFaceUp(defender);
+    TryActivateFlipDeckSearchOnFaceUp(defender);
 
     if (WhoseTurn() == DUEL_PLAYER) {
       playerCol = FixedColForZone(attacker, PLAYER_MONSTER_ROW);
@@ -389,6 +392,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
 
     defender->isFaceUp = TRUE;
     TryAromaJarOnFaceUp(defender);
+    TryActivateFlipDeckSearchOnFaceUp(defender);
 
     if (WhoseTurn() == DUEL_PLAYER) {
       playerCol = FixedColForZone(attacker, PLAYER_MONSTER_ROW);
@@ -438,6 +442,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   TryUnlockDForcePlasmaForSecondAttack(attacker);
   TryUnlockTyrantWingForSecondAttack(attacker);
   TryUnlockArcanaForceExDarkRulerForSecondAttack(attacker);
+  TryUnlockDestinyHeroDoubleDudeForSecondAttack(attacker);
   {
     u8 fr;
     u8 fc;

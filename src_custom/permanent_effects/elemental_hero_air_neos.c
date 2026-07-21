@@ -41,7 +41,7 @@ u8 ElementalHeroAirNeos_ApplyDynamicZoneStats(struct DuelCard *zone)
 
 unsigned char ShouldActivateELEMENTAL_HERO_AIR_NEOS(void)
 {
-  /* ponytail: End Phase shuffle to Extra Deck needs turn_effect hook — ApplyDynamicZoneStats only. */
+  /* End Phase Extra return is live via TryReturnContactFusionsAtEndPhase. */
   (void)gActiveEffect;
   return FALSE;
 }

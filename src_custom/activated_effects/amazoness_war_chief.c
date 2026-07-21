@@ -115,8 +115,7 @@ unsigned char CanActivateAMAZONESS_WAR_CHIEF(void)
   if (zone == NULL || zone->id != AMAZONESS_WAR_CHIEF)
     return FALSE;
 
-  /* ponytail: on-NS/SS Set + Amazoness-only attack lock need summon/attack hooks.
-   * Ceiling: OPT Set 1 Amazoness S/T or Polymerization from Deck. */
+  /* OPT Set Amazoness S/T / Polymerization; Amazoness-only attack lock on activate. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -142,6 +141,18 @@ void ActivateAMAZONESS_WAR_CHIEFEffect(void)
 
   if (!SetSpellTrapFromDeck(cardId))
     return;
+
+  /* Amazoness-only attacks for rest of turn: lock non-Amazoness. */
+  {
+    u8 col;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *own = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+      if (own != NULL && own->id != CARD_NONE && !Duel_IsAmazonessCard(own->id))
+        own->isLocked = TRUE;
+    }
+  }
 
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();

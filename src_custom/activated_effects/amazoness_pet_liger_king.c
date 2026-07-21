@@ -138,8 +138,9 @@ static void ResolveDestroyTarget(u8 fixedRow, u8 fixedCol)
   if (SpecialSummonAmazonessWarriorFromGy(gyIndex) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: cannot-attack-this-turn needs attack-gate; mark unk4. */
+  /* Cannot attack this turn: isLocked honored by attack validators. */
   self->unk4 |= 0x80;
+  self->isLocked = TRUE;
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

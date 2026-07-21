@@ -13,7 +13,115 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
+#define FLAG_GRAVEYARD_PLAYER 1
+#define FLAG_GRAVEYARD_OPPONENT 2
+#define FLAG_LOSER_PLAYER 4
+#define FLAG_LOSER_OPPONENT 16
+
+struct AmazonessEmpressActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct AmazonessEmpressActionData sActionData;
+
 static u8 sEmpressInit APPEND_DATA = {0};
+
+static u8 ControllerHasFaceUpEmpress(u8 controller)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(controller);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AMAZONESS_EMPRESS)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static void ApplyPiercingDamageToOpponent(u16 damage)
+{
+  if (damage == 0)
+    return;
+
+  if (gDuelLifePoints[DUEL_OPPONENT] <= damage) {
+    gDuelLifePoints[DUEL_OPPONENT] = 0;
+    sActionData.flags |= FLAG_LOSER_OPPONENT;
+  } else {
+    gDuelLifePoints[DUEL_OPPONENT] -= damage;
+  }
+
+  gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+  sActionData.opponentLifePoints = gDuelLifePoints[DUEL_OPPONENT];
+}
+
+static void ApplyPiercingDamageToPlayer(u16 damage)
+{
+  if (damage == 0)
+    return;
+
+  if (gDuelLifePoints[DUEL_PLAYER] <= damage) {
+    gDuelLifePoints[DUEL_PLAYER] = 0;
+    sActionData.flags |= FLAG_LOSER_PLAYER;
+  } else {
+    gDuelLifePoints[DUEL_PLAYER] -= damage;
+  }
+
+  gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+  sActionData.playerLifePoints = gDuelLifePoints[DUEL_PLAYER];
+}
+
+void ApplyAmazonessEmpressPiercingBattleEffect(void)
+{
+  u16 attackerAtk;
+  u16 defenderDef;
+  u16 damage;
+
+  /* Player Amazoness attacks DEF (id 2). */
+  if (sActionData.id == 2 && Duel_IsAmazonessCard(sActionData.playerCardId)
+      && ControllerHasFaceUpEmpress(DUEL_PLAYER)
+      && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT)) {
+    attackerAtk = sActionData.playerCardAtkOrLifePointsMod;
+    defenderDef = sActionData.opponentCardDefense;
+    if (attackerAtk > defenderDef) {
+      damage = attackerAtk - defenderDef;
+      ApplyPiercingDamageToOpponent(damage);
+    }
+    return;
+  }
+
+  /* Opponent Amazoness attacks DEF (id 5). */
+  if (sActionData.id == 5 && Duel_IsAmazonessCard(sActionData.opponentCardId)
+      && ControllerHasFaceUpEmpress(DUEL_OPPONENT)
+      && (sActionData.flags & FLAG_GRAVEYARD_PLAYER)) {
+    attackerAtk = sActionData.opponentCardAtkOrLifePointsMod;
+    defenderDef = sActionData.playerCardDefense;
+    if (attackerAtk > defenderDef) {
+      damage = attackerAtk - defenderDef;
+      ApplyPiercingDamageToPlayer(damage);
+    }
+  }
+}
 
 static u8 TurnDuelistForFixed(u8 fixedDuelist)
 {
@@ -147,7 +255,7 @@ unsigned char CanActivateAMAZONESS_EMPRESS(void)
 
   /* Battle protect via AmazonessQueen_PreventsBattleDestroy.
    * Leave-field SS Queen via AmazonessEmpress_EnsureInit.
-   * ponytail: Amazoness pierce while Empress face-up not wired. */
+   * Pierce via ApplyAmazonessEmpressPiercingBattleEffect. */
   return FALSE;
 }
 

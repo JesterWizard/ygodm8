@@ -71,7 +71,7 @@ unsigned char CanActivateAN_OWL_OF_LUCK(void)
   if (zone == NULL || zone->id != AN_OWL_OF_LUCK)
     return FALSE;
 
-  /* ponytail: FLIP trigger needs flip hook. Ceiling: once via usage if Field Spell in Deck. */
+  /* Flip trigger is live via TryActivateFlipDeckSearchOnFaceUp. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

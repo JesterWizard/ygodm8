@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 23:15 UTC  
-**Remaining partials:** `566`
+**Last updated:** 2026-07-21 23:19 UTC  
+**Remaining partials:** `560`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 5 |
 | `trap` | 10 |
-| `activated` | 445 |
-| `permanent` | 106 |
-| **total** | **566** |
+| `activated` | 441 |
+| `permanent` | 104 |
+| **total** | **560** |
 
 ## spell (5)
 
@@ -91,19 +91,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (445)
-
-### `A_CAT_OF_ILL_OMEN`
-- path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
-- L71: FLIP trigger needs flip hook. Ceiling: once via usage if Trap in Deck.
+## activated (441)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
 - L16: Amazoness-Tiger name + GY ATK boost need continuous hooks. Ceiling: SS from hand only; upgrade: on Amazoness summon trigger.
-
-### `AMAZONESS_EMPRESS`
-- path: `src_custom/activated_effects/amazoness_empress.c`
-- L150: * ponytail: Amazoness pierce while Empress face-up not wired. */
 
 ### `AMAZONESS_PET_LIGER`
 - path: `src_custom/activated_effects/amazoness_pet_liger.c`
@@ -111,8 +103,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
-- L141: cannot-attack-this-turn needs attack-gate; mark unk4.
-- L190: attack redirect FALSE. Ceiling: OPT destroy Amazoness → SS Warrior GY.
+- L191: attack redirect FALSE. Ceiling: OPT destroy Amazoness → SS Warrior GY.
 
 ### `AMAZONESS_PRINCESS`
 - path: `src_custom/activated_effects/amazoness_princess.c`
@@ -127,18 +118,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/amazoness_spiritualist.c`
 - L104: hand/GY bounce→SS + ED lock need GY/ED hooks. Ceiling: field OPT add Polymerization from Deck.
 
-### `AMAZONESS_WAR_CHIEF`
-- path: `src_custom/activated_effects/amazoness_war_chief.c`
-- L118: on-NS/SS Set + Amazoness-only attack lock need summon/attack hooks. Ceiling: OPT Set 1 Amazoness S/T or Polymerization from Deck.
-
 ### `AMULET_DRAGON`
 - path: `src_custom/activated_effects/amulet_dragon.c`
 - L58: no multi-select GY UI — banish every Spell in both GYs (min.1 gate above).
 - L254: on-summon text after field draw so Amulet Dragon is visible (fusion uses updateGfx=FALSE).
-
-### `AN_OWL_OF_LUCK`
-- path: `src_custom/activated_effects/an_owl_of_luck.c`
-- L74: FLIP trigger needs flip hook. Ceiling: once via usage if Field Spell in Deck.
 
 ### `ANCIENT_FAIRY_DRAGON`
 - path: `src_custom/activated_effects/ancient_fairy_dragon.c`
@@ -1957,7 +1940,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (106)
+## permanent (104)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -2047,7 +2030,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DOUBLE_DUDE`
 - path: `src_custom/permanent_effects/destiny_hero_double_dude.c`
-- L8: double attack + destroyed Standby 2 Tokens need battle/turn hooks.
+- L24: * ponytail: destroyed Standby 2 Tokens need turn/token hooks. */
 
 ### `DESTINY_HERO_DRAWHAND`
 - path: `src_custom/permanent_effects/destiny_hero_drawhand.c`
@@ -2091,10 +2074,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/el_shaddoll_winda.c`
 - L126: opp destroy immunity + SS-once lock need continuous hooks.
 
-### `ELEMENTAL_HERO_AIR_NEOS`
-- path: `src_custom/permanent_effects/elemental_hero_air_neos.c`
-- L44: End Phase shuffle to Extra Deck needs turn_effect hook — ApplyDynamicZoneStats only.
-
 ### `ELEMENTAL_HERO_CAPTAIN_GOLD`
 - path: `src_custom/permanent_effects/elemental_hero_captain_gold.c`
 - L68: with Skyscraper active, prefer normal summon as a 2100 beater
@@ -2102,10 +2081,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ELEMENTAL_HERO_ELECTRUM`
 - path: `src_custom/permanent_effects/elemental_hero_electrum.c`
 - L67: no removed-from-play zone yet — shuffle banished/exiled monsters back into each owner's deck once Duel_BanishZone (or equivalent) exists.
-
-### `ELEMENTAL_HERO_FLARE_NEOS`
-- path: `src_custom/permanent_effects/elemental_hero_flare_neos.c`
-- L46: End Phase shuffle to Extra Deck needs turn_effect hook — ApplyDynamicZoneStats only.
 
 ### `ELEMENTAL_HERO_FLASH`
 - path: `src_custom/permanent_effects/elemental_hero_flash.c`

@@ -68,7 +68,7 @@ unsigned char CanActivateA_CAT_OF_ILL_OMEN(void)
   if (zone == NULL || zone->id != A_CAT_OF_ILL_OMEN)
     return FALSE;
 
-  /* ponytail: FLIP trigger needs flip hook. Ceiling: once via usage if Trap in Deck. */
+  /* Flip trigger is live via TryActivateFlipDeckSearchOnFaceUp. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

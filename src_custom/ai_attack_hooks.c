@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "aroma_jar.h"
+#include "flip_deck_search.h"
 #include "call_of_the_haunted.h"
 #include "constants/card_ids.h"
 #include "debug_ruleset.h"
@@ -28,6 +29,7 @@
 #include "neutron_blast.h"
 #include "tyrant_wing.h"
 #include "arcana_force_ex_the_dark_ruler.h"
+#include "destiny_hero_double_dude.h"
 #include "aroma_gardening.h"
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
 #include "lightsworn_barrier.h"
@@ -151,6 +153,7 @@ static u8 AiTryActivateTrapOnAttack(struct DuelCard *attacker, struct DuelCard *
   if (defender != NULL)
     defender->isFaceUp = TRUE;
     TryAromaJarOnFaceUp(defender);
+    TryActivateFlipDeckSearchOnFaceUp(defender);
 
   if (gTrapEffectData.trapCardId == TRAP_CALL_OF_THE_HAUNTED)
     CallOfTheHauntedRequestAiResimulate();
@@ -247,6 +250,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockDForcePlasmaForSecondAttack(attacker);
   TryUnlockTyrantWingForSecondAttack(attacker);
   TryUnlockArcanaForceExDarkRulerForSecondAttack(attacker);
+  TryUnlockDestinyHeroDoubleDudeForSecondAttack(attacker);
   TryUnlockNeutronBlastForExtraAttack(attacker);
   {
     u8 fr;
@@ -307,6 +311,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   if (defender->id != CARD_NONE)
     defender->isFaceUp = TRUE;
     TryAromaJarOnFaceUp(defender);
+    TryActivateFlipDeckSearchOnFaceUp(defender);
   DebugRuleset_MarkAttackUsed();
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
@@ -325,6 +330,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockDForcePlasmaForSecondAttack(attacker);
   TryUnlockTyrantWingForSecondAttack(attacker);
   TryUnlockArcanaForceExDarkRulerForSecondAttack(attacker);
+  TryUnlockDestinyHeroDoubleDudeForSecondAttack(attacker);
   TryUnlockNeutronBlastForExtraAttack(attacker);
   {
     u8 fr;
