@@ -7,18 +7,18 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 21:25 UTC  
-**Ceiling lines tagged:** `953`  
-**Partial files:** `780`
+**Last updated:** 2026-07-21 21:29 UTC  
+**Ceiling lines tagged:** `950`  
+**Partial files:** `778`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
 | `other` | 321 | triage |
-| `event.OnStandby` | 230 | 3 (OPT / turn flags) |
+| `event.OnStandby` | 228 | 3 (OPT / turn flags) |
 | `event.OnBattleDestroy` | 75 | 3 |
-| `event.OnSummon` | 67 | 3 |
+| `event.OnSummon` | 66 | 3 |
 | `ui.Choice` | 55 | 2 |
 | `chain.Negate` | 49 | later / chain |
 | `gate.Tribute` | 38 | 2–3 |
@@ -28,7 +28,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `stat.Continuous` | 18 | 1–3 |
 | `event.GyIgnition` | 13 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **953** | |
+| **total** | **950** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -150,10 +150,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLADIATOR_BEAST_GAIODIAZ` (permanent): L8: battle DEF burn + GB tag-out need battle-end/destroy hooks.
 - `GLADIATOR_BEAST_SAMNITE` (permanent): L8: battle search + GB tag-out need battle-end/destroy hooks.
 
-## `event.OnSummon` (67)
+## `event.OnSummon` (66)
 
 - `AROMA_BLEND` (spell): L291: GY effect (banish this → Fusion Summon Plant Fusion by banishing materials from hand/field, and GY Plants if LP higher) needs a GY-activate path + Plant Fusion recipe filter outside this file. Ceiling: discard + place Humid/Dried/Blessed Winds face-up only; upgrade: GY activate AROMA_BLEND → banish self → FusionDuel Plant Fusion pay
-- `DARK_CALLING` (spell): L165: "treated as a Fusion Summon with Dark Fusion" name/interaction checks (cards that look for Dark Fusion) need a summon-tag outside this file. Ceiling: Fiend Fusion via hand/GY banish only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
 - `DARK_CONTACT` (spell): L571: "treated as a Fusion Summon with Dark Fusion" name/interaction checks need a summon-tag outside this file. Ceiling: Fiend Fusion via field/GY/banish shuffle only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
 - `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` (spell): L127: special-face-up sets unk4=2 and blocks DMoC's on-summon effect
 - `SUPREME_KINGS_CASTLE` (spell): L121: "Fusion Summon monsters that must be Special Summoned with Dark Fusion, with effects other than Dark Fusion" needs Evil HERO summon gates to check SupremeKingsCastle_IsActive. Ceiling: face-up field only.
@@ -220,10 +219,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (230)
+## `event.OnStandby` (228)
 
-- `CHICKEN_GAME` (spell): L209: OPT ignition no-response — parent skips TryResolveSpellThroughTraps when ChickenGame_ShouldSkipTrapChain() during face-up re-activation.
-- `COURT_OF_JUSTICE` (spell): L33: attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp.
 - `DOCTOR_D` (spell): L315: GY ignition "banish this card from GY, target 2 Destiny HERO; copy ATK until EOT" needs a GY-activate spell path + PickZone pair outside this file. Ceiling: on-field banish-cost recover only; upgrade: GY activate → banish DOCTOR_D → PickZone two Destiny HERO → set target ATK via temp stages / exact overlay until End Phase.
 - `FACTORY_OF_ONE_HUNDRED_MACHINES` (spell): L148: stage unit is 500 ATK — applied +500×banished, not printed +200×. Ceiling: no fractional temp stages; upgrade: exact-ATK overlay cleared at End Phase (tempStage already clears EOT).
 - `LEMURIA_THE_FORGOTTEN_CITY` (spell): L191: no per-zone Level overlay API — levels come from SetCardInfo / Legendary Ocean adjusters only. Ceiling: OPT marks used + shows text; Levels unchanged. Upgrade: turn-scoped level bonus on each controlled WATER (= waterCount) cleared at End Phase (card_hooks GetLegendaryOcean-style).
@@ -708,7 +705,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `CHAIN_SUMMONING` (spell): L60: no Chain Link / chain-depth API — assume min Link 3. Ceiling: always legal at Link≥3 floor; upgrade: real chain counter.
 - `CHRYSALIS_NEO_SPACIAN` (spell): L31: only the five Chrysalis in-trunk pairs are mapped.
 - `COCOON_REBIRTH` (spell): L60: only the five Chrysalis in-trunk pairs are mapped.
-- `COLD_WAVE` (spell): L30: no Main Phase 1-start / prior-action API - parent wires ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction) at activation.
+- `COLD_WAVE` (spell): L30: no Main Phase 1-start / prior-action API — allow whenever unused this turn. Ceiling: can activate mid-MP1 after other actions; upgrade: wire ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction).
 - `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS` (spell): L231: no labeled confirm menu - auto-discard when another copy is in hand.
 - `CONTACT_GATE` (spell): L525: no RemovedFromPlay_RemoveAt - parent must shift RFP after SS.
 - `CYBERNETIC_ZONE` (spell): L133: no RemovedFromPlay_RemoveAt — shift RFP after return.

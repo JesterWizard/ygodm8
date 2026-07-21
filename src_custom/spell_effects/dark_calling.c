@@ -6,6 +6,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "dark_calling.h"
+#include "dark_fusion.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
@@ -161,11 +162,18 @@ static void RunPlayerDarkCallingFlow(void)
 
   /* Banishes hand/GY materials (Miracle Fusion pay). Treated as Dark Fusion FS. */
   FusionDuel_ExecuteMiracleFusion(recipe, sources, sourceCount, DARK_CALLING, FALSE);
+  {
+    u8 col;
 
-  /* ponytail: "treated as a Fusion Summon with Dark Fusion" name/interaction
-   * checks (cards that look for Dark Fusion) need a summon-tag outside this file.
-   * Ceiling: Fiend Fusion via hand/GY banish only; upgrade: mark result zone /
-   * last-fusion-spell = DARK_FUSION for name-gated effects. */
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+      if (zone != NULL && zone->id == recipe->result) {
+        DarkFusion_MarkSummonedZone(zone);
+        break;
+      }
+    }
+  }
 }
 
 static void DARK_CALLING_ResolveBody(void)
@@ -198,6 +206,18 @@ static void DARK_CALLING_ResolveBody(void)
 
     FusionDuel_ExecuteMiracleFusion(&gFusionRecipes[bestIdx], sources, sourceCount,
                                     DARK_CALLING, TRUE);
+    {
+      u8 col;
+
+      for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+        struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+        if (zone != NULL && zone->id == gFusionRecipes[bestIdx].result) {
+          DarkFusion_MarkSummonedZone(zone);
+          break;
+        }
+      }
+    }
     return;
   }
 

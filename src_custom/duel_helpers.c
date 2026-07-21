@@ -45,6 +45,7 @@
 #include "the_wicked_dreadroot.h"
 #include "the_wicked_eraser.h"
 #include "the_wicked_avatar.h"
+#include "cold_wave.h"
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_blazeman.h"
@@ -2938,6 +2939,8 @@ u8 Duel_IsCardActivationBlocked(u16 cardId)
 
   typeGroup = GetTypeGroup(cardId);
   if (typeGroup == TYPE_GROUP_SPELL || typeGroup == TYPE_GROUP_RITUAL) {
+    if (ColdWave_IsSpellTrapPlayOrSetLocked())
+      return TRUE;
     if (TheWickedAvatar_IsSpellTrapActivationLocked())
       return TRUE;
     if (IsSpellCancellerSpellLockActive())
@@ -2948,6 +2951,8 @@ u8 Duel_IsCardActivationBlocked(u16 cardId)
   }
 
   if (typeGroup == TYPE_GROUP_TRAP) {
+    if (ColdWave_IsSpellTrapPlayOrSetLocked())
+      return TRUE;
     if (TheWickedAvatar_IsSpellTrapActivationLocked())
       return TRUE;
     if (IsRoyalDecreeNegatingTrap(cardId))

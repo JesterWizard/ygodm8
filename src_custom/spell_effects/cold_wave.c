@@ -27,9 +27,10 @@ u8 ColdWave_CanActivateAtMainPhase1Start(u8 isMainPhase1Start, u8 priorMainPhase
 
 u8 CanActivateCOLD_WAVE(void)
 {
-  /* ponytail: no Main Phase 1-start / prior-action API - parent wires
-   * ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction) at activation. */
-  return FALSE;
+  /* ponytail: no Main Phase 1-start / prior-action API — allow whenever unused
+   * this turn. Ceiling: can activate mid-MP1 after other actions; upgrade: wire
+   * ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction). */
+  return TRUE;
 }
 
 void ColdWave_ArmSpellTrapLock(void)

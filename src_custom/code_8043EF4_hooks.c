@@ -119,6 +119,7 @@
 #include "neutron_blast.h"
 #include "elemental_hero_necroshade.h"
 #include "ancient_gear_advance.h"
+#include "cold_wave.h"
 #include "ancient_gear_castle.h"
 #include "ancient_gear_drill.h"
 #include "ancient_gear_factory.h"
@@ -1589,6 +1590,15 @@ void sub_80449D8__Replacement(void)
   if (GetTypeGroup(gSelectedCard.id) == TYPE_GROUP_MONSTER
       && gSelectedCard.isDefending
       && AncientGearAdvance_CannotSetThisTurn()) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
+
+  if ((GetTypeGroup(gSelectedCard.id) == TYPE_GROUP_SPELL
+       || GetTypeGroup(gSelectedCard.id) == TYPE_GROUP_TRAP
+       || GetTypeGroup(gSelectedCard.id) == TYPE_GROUP_RITUAL)
+      && ColdWave_IsSpellTrapPlayOrSetLocked()) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
     return;

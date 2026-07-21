@@ -206,8 +206,16 @@ static void CHICKEN_GAME_ResolveBody(void)
 
 APPEND_TEXT void EffectCHICKEN_GAME(void)
 {
-  /* ponytail: OPT ignition no-response — parent skips TryResolveSpellThroughTraps
-   * when ChickenGame_ShouldSkipTrapChain() during face-up re-activation. */
+  struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+
+  /* Face-up ignition: no response (skip trap chain). */
+  if (zone != NULL && zone->isLocked && ChickenGame_CanActivateIgnition(zone)) {
+    ChickenGame_BeginIgnitionNoResponse();
+    CHICKEN_GAME_ResolveBody();
+    ChickenGame_EndIgnitionNoResponse();
+    return;
+  }
+
   if (Duel_TryResolveSpellThroughTraps(CHICKEN_GAME, CHICKEN_GAME_ResolveBody)
       == DUEL_ACTION_BLOCKED)
     return;

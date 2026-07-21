@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 21:25 UTC  
-**Remaining partials:** `780`
+**Last updated:** 2026-07-21 21:29 UTC  
+**Remaining partials:** `778`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 99 |
+| `spell` | 97 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **780** |
+| **total** | **778** |
 
-## spell (99)
+## spell (97)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -65,7 +65,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CHICKEN_GAME`
 - path: `src_custom/spell_effects/chicken_game.c`
 - L95: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L209: OPT ignition no-response — parent skips TryResolveSpellThroughTraps when ChickenGame_ShouldSkipTrapChain() during face-up re-activation.
 
 ### `CHRYSALIS_NEO_SPACIAN`
 - path: `src_custom/spell_effects/chrysalis_neo_spacian.c`
@@ -77,7 +76,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `COLD_WAVE`
 - path: `src_custom/spell_effects/cold_wave.c`
-- L30: no Main Phase 1-start / prior-action API - parent wires ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction) at activation.
+- L30: no Main Phase 1-start / prior-action API — allow whenever unused this turn. Ceiling: can activate mid-MP1 after other actions; upgrade: wire ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction).
 
 ### `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS`
 - path: `src_custom/spell_effects/colosseum_cage_of_the_gladiator_beasts.c`
@@ -87,18 +86,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/contact_gate.c`
 - L525: no RemovedFromPlay_RemoveAt - parent must shift RFP after SS.
 
-### `COURT_OF_JUSTICE`
-- path: `src_custom/spell_effects/court_of_justice.c`
-- L33: attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp.
-
 ### `CYBERNETIC_ZONE`
 - path: `src_custom/spell_effects/cybernetic_zone.c`
 - L133: no RemovedFromPlay_RemoveAt — shift RFP after return.
 - L167: stage unit is 500 ATK — double via +original/500 stages. Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay.
-
-### `DARK_CALLING`
-- path: `src_custom/spell_effects/dark_calling.c`
-- L165: "treated as a Fusion Summon with Dark Fusion" name/interaction checks (cards that look for Dark Fusion) need a summon-tag outside this file. Ceiling: Fiend Fusion via hand/GY banish only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
 
 ### `DARK_CONTACT`
 - path: `src_custom/spell_effects/dark_contact.c`

@@ -30,7 +30,7 @@ static u8 IsFaceUpMonsterZone(const struct DuelCard *zone)
   if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
     return FALSE;
 
-  /* ponytail: attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp. */
+  /* Attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp. */
   return zone->isFaceUp || !zone->isDefending;
 }
 
