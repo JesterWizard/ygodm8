@@ -52,9 +52,21 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidTarget(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* ponytail: -800 ≈ -2 tempStage (~-1000); battle-after / cannot-attack Amazoness FALSE. */
+  /* −800 ≈ −2 tempStage (~−1000); stage granularity. */
   if (zone->tempStage > -126)
     zone->tempStage = (s8)(zone->tempStage - 2);
+
+  /* Lock own Amazoness for rest of turn (cannot attack). */
+  {
+    u8 col;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *own = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+      if (own != NULL && own->id != CARD_NONE && Duel_IsAmazonessCard(own->id))
+        own->isLocked = TRUE;
+    }
+  }
 
   MarkMonsterEffectUsed(self);
   RefreshFieldMonsterStatOverlays();
@@ -95,8 +107,8 @@ unsigned char CanActivateAMAZONESS_PET_LIGER(void)
   if (zone == NULL || zone->id != AMAZONESS_PET_LIGER)
     return FALSE;
 
-  /* ponytail: once-per-battle +500 / cannot-attack Amazoness need battle hooks.
-   * Ceiling: OPT −2 tempStage on 1 face-up opp monster. */
+  /* OPT stand-in for after-damage −800 + Amazoness attack lock.
+   * ponytail: damage-calc +500 ATK not wired. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

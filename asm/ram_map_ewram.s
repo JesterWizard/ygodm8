@@ -375,6 +375,20 @@ _kernel_malloc_ewram gAbsoluteZeroSuppressLeave, 1
 _kernel_malloc_ewram gGhostKnightOfJackalPendingController, 1
 @ Fixed duelist whose graveyard holds the monster Jackal destroyed in battle.
 _kernel_malloc_ewram gGhostKnightOfJackalPendingGraveyardDuelist, 1
+@ Arcana Force VII Heads: controller who steals the destroyed monster, else 0xFF.
+_kernel_malloc_ewram gArcanaForceViiChariotPendingController, 1
+@ Fixed duelist whose GY holds Chariot's battle-destroyed monster.
+_kernel_malloc_ewram gArcanaForceViiChariotPendingGraveyardDuelist, 1
+@ Amazoness Spy battle-destroy recycle controller, else 0xFF.
+_kernel_malloc_ewram gAmazonessSpyPendingController, 1
+@ Amazoness Trainee: defender returned to deck bottom (row/col), else 0xFF row.
+_kernel_malloc_ewram gAmazonessTraineePendingDefenderRow, 1
+_kernel_malloc_ewram gAmazonessTraineePendingDefenderCol, 1
+_kernel_malloc_ewram gAmazonessTraineePendingAttackerRow, 1
+_kernel_malloc_ewram gAmazonessTraineePendingAttackerCol, 1
+@ Amazoness Sage end-of-Damage-Step fixed row/col, else 0xFF row.
+_kernel_malloc_ewram gAmazonessSagePendingRow, 1
+_kernel_malloc_ewram gAmazonessSagePendingCol, 1
 @ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Mefist, else 0xFF.
 _kernel_malloc_ewram gPendingMefistDiscardDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Reaper on the Nightmare, else 0xFF.

@@ -1,86 +1,157 @@
 #include "global.h"
 #include "common-chax.h"
+#include "amazoness_empress.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
+#include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
-static u8 FixedDuelistForActive(void)
-{
-  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
+static u8 sEmpressInit APPEND_DATA = {0};
 
-  return DUEL_OPPONENT;
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST]
+      == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
 }
 
-static u16 FindAmazonessQueenOrAmazonessInDeck(void)
+static u8 CanSpecialSummonQueen(u8 turnDuelist)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
-  u8 deckSize = NumCardsInDeck(fixedDuelist);
-  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
-  u8 i;
+  u8 monsterRow = turnDuelist == ACTIVE_DUELIST
+      ? ACTIVE_DUELIST_MONSTER_ROW
+      : INACTIVE_DUELIST_MONSTER_ROW;
 
-  if (Duel_FindDeckCardIndex(ACTIVE_DUELIST, AMAZONESS_QUEEN) >= 0)
-    return AMAZONESS_QUEEN;
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
 
-  for (i = top; i < deckSize; i++) {
-    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+  return FirstEmptyZoneInRow(gTurnZones[monsterRow]) >= 0;
+}
 
-    if (GetTypeGroup(cardId) == TYPE_GROUP_MONSTER && Duel_IsAmazonessCard(cardId)
-        && cardId != AMAZONESS_EMPRESS && !Duel_CardCannotBeSpecialSummoned(cardId))
-      return cardId;
+static u8 TrySsQueenFromHand(u8 turnDuelist)
+{
+  u8 col;
+  struct DuelSummonOpts opts;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *slot = SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], col);
+
+    if (slot == NULL || slot->id != AMAZONESS_QUEEN)
+      continue;
+
+    opts = Duel_DefaultSpecialSummonOpts(TRUE);
+    return Duel_SpecialSummonFromHandZone(turnDuelist, col, opts) == DUEL_ACTION_OK;
   }
 
-  return CARD_NONE;
+  return FALSE;
+}
+
+static u8 TrySsQueenFromDeck(u8 turnDuelist)
+{
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+
+  if (Duel_FindDeckCardIndex(turnDuelist, AMAZONESS_QUEEN) < 0)
+    return FALSE;
+
+  return Duel_SpecialSummonFromDeck(turnDuelist, AMAZONESS_QUEEN, opts) == DUEL_ACTION_OK;
+}
+
+static u8 TrySsQueenFromGy(u8 fixedDuelist, u8 turnDuelist)
+{
+  s16 gyIndex = -1;
+  u16 cardId;
+  struct DuelSummonOpts opts;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    if (gDuel.duelistbattleState[fixedDuelist].graveyard != AMAZONESS_QUEEN)
+      return FALSE;
+    cardId = gDuel.duelistbattleState[fixedDuelist].graveyard;
+    gDuel.duelistbattleState[fixedDuelist].graveyard = CARD_NONE;
+  } else {
+    u8 i;
+
+    for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+      if (GraveyardExpand_GetCardAt(fixedDuelist, i) == AMAZONESS_QUEEN) {
+        gyIndex = (s16)i;
+        break;
+      }
+    }
+    if (gyIndex < 0)
+      return FALSE;
+    cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, (u8)gyIndex);
+    GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  }
+
+  if (cardId != AMAZONESS_QUEEN)
+    return FALSE;
+
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  return Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts) == DUEL_ACTION_OK;
+}
+
+static void TrySpecialSummonAmazonessQueen(u8 fixedDuelist)
+{
+  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+
+  if (!CanSpecialSummonQueen(turnDuelist))
+    return;
+
+  Duel_ShowEffectTextTyped(AMAZONESS_EMPRESS, 2);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (TrySsQueenFromHand(turnDuelist)
+      || TrySsQueenFromDeck(turnDuelist)
+      || TrySsQueenFromGy(fixedDuelist, turnDuelist)) {
+    UpdateDuelGfxExceptField();
+    CheckWinConditionExodia(WhoseTurn());
+    if (IsDuelOver() != TRUE)
+      TryActivatingPermanentEffects();
+  }
+}
+
+static void OnEmpressLeaveField(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->cardId != AMAZONESS_EMPRESS)
+    return;
+
+  if (ev->controller != DUEL_PLAYER && ev->controller != DUEL_OPPONENT)
+    return;
+
+  TrySpecialSummonAmazonessQueen(ev->controller);
+}
+
+void AmazonessEmpress_EnsureInit(void)
+{
+  if (sEmpressInit)
+    return;
+
+  sEmpressInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnEmpressLeaveField);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_BATTLE_DESTROY, OnEmpressLeaveField);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnEmpressLeaveField);
 }
 
 unsigned char CanActivateAMAZONESS_EMPRESS(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != AMAZONESS_EMPRESS)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != AMAZONESS_EMPRESS)
-    return FALSE;
-
-  /* Battle protect for other Amazoness is live via AmazonessQueen_PreventsBattleDestroy.
-   * ponytail: pierce + leave-field SS Queen need permanent/leave hooks.
-   * Ceiling: OPT add Amazoness Queen (or Amazoness) from Deck to hand. */
-  if (!CanUseMonsterEffect(zone))
-    return FALSE;
-
-  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
-    return FALSE;
-
-  return FindAmazonessQueenOrAmazonessInDeck() != CARD_NONE;
+  /* Battle protect via AmazonessQueen_PreventsBattleDestroy.
+   * Leave-field SS Queen via AmazonessEmpress_EnsureInit.
+   * ponytail: Amazoness pierce while Empress face-up not wired. */
+  return FALSE;
 }
 
 void ActivateAMAZONESS_EMPRESSEffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u16 cardId;
-
   Duel_ShowEffectTextTyped(AMAZONESS_EMPRESS, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  cardId = FindAmazonessQueenOrAmazonessInDeck();
-  if (cardId == CARD_NONE)
-    return;
-
-  /* ponytail: leave-field SS → Deck search stand-in (safer than Extra SS). */
-  if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, cardId, TRUE) != DUEL_ACTION_OK)
-    return;
-
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
 }

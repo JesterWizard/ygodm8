@@ -2,9 +2,15 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "el_shaddoll_apkallone.h"
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
 #include "six_card_hand.h"
+
+u8 ElShaddollApkallone_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  return zone != NULL && zone->id == EL_SHADDOLL_APKALLONE && zone->isFaceUp;
+}
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
@@ -255,7 +261,7 @@ static u8 IsApkalloneGraveyardTrigger(void)
 
 unsigned char ShouldActivateEL_SHADDOLL_APKALLONE(void)
 {
-  /* ponytail: battle indestructible needs battle hook. */
+  /* Battle indestructible is live via ElShaddollApkallone_PreventsBattleDestroy. */
   if (IsApkalloneOnSummonTrigger())
     return TRUE;
 

@@ -22,6 +22,7 @@
 #include "level_limit_area_b.h"
 #include "level_limit_area_a.h"
 #include "vengeful_bog_spirit.h"
+#include "aroma_jar.h"
 #include "spell_effects.h"
 #include "sasuke_samurai_2.h"
 #include "man_thro_tro.h"
@@ -2283,6 +2284,7 @@ FAILED:
           if (!isFaceUp) {
             zone->isDefending = 0;
             zone->isFaceUp = 1;
+            TryAromaJarOnFaceUp(zone);
             TryVengefulBogSpiritOnFlipSummon(zone);
             TryElementalHeroGreatTornadoOnMonsterPlacement(zone);
             TryTheWickedDreadrootOnMonsterPlacement(zone);

@@ -49,9 +49,15 @@
 #include "des_kangaroo.h"
 #include "des_counterblow.h"
 #include "continuous_destruction_punch.h"
+#include "arcana_force_0_the_fool.h"
+#include "arcana_force_vii_the_chariot.h"
+#include "aroma_jar.h"
 #include "amazoness_heirloom.h"
 #include "amazoness_queen.h"
-#include "arcana_force_0_the_fool.h"
+#include "amazoness_sage.h"
+#include "amazoness_spy.h"
+#include "amazoness_trainee.h"
+#include "el_shaddoll_apkallone.h"
 #include "ancient_gear_fist.h"
 #include "double_tool_c_and_d.h"
 #include "dragon_s_rage.h"
@@ -258,6 +264,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (ArcanaForce0TheFool_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (ElShaddollApkallone_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (AromaJar_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -274,6 +284,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (AmazonessQueen_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (ArcanaForce0TheFool_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (ElShaddollApkallone_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (AromaJar_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }
@@ -303,6 +317,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyAncientGearFistBattleEffect();
   ApplyDoubleToolCAndDBattleEffect();
   ApplyAttackPheromonesBattleEffect();
+  ApplyAmazonessTraineeBattleEffect();
 
   {
     s32 playerDmg =
@@ -416,6 +431,9 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyElementalHeroCoreBattleEffect();
   ApplyElementalHeroIceEdgeBattleEffect();
   ApplyGhostKnightOfJackalBattleEffect();
+  ApplyArcanaForceViiChariotBattleEffect();
+  ApplyAmazonessSpyBattleEffect();
+  ApplyAmazonessSageBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();
   ApplyNeedleBurrowerBattleEffect();
   ApplyAbsorbingKidFromTheSkyBattleEffect();

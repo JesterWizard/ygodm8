@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "aroma_jar.h"
 #include "configs/runtime.h"
 #include "debug_ruleset.h"
 #include "duel_helpers.h"
@@ -56,6 +57,10 @@ void UpdateAllDuelGfx(void);
 void ResolveTheUnhappyMaidenBattleEffect(void);
 void ResolveVampireBabyBattleEffect(void);
 void ResolveGhostKnightOfJackalBattleEffect(void);
+void ResolveArcanaForceViiChariotBattleEffect(void);
+void ResolveAmazonessSpyBattleEffect(void);
+void ResolveAmazonessTraineeBattleEffect(void);
+void ResolveAmazonessSageBattleEffect(void);
 void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void);
 void ResolveReaperOnTheNightmareDirectDamageEffect(void);
 void ResolveSpiritReaperDiscardBattleEffect(void);
@@ -184,6 +189,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
       return;
 
     defender->isFaceUp = TRUE;
+    TryAromaJarOnFaceUp(defender);
     defenderFixedCol = FixedColForTurnZone(sAttackResume.defenderRow, sAttackResume.defenderCol);
 
     if (WhoseTurn() == DUEL_PLAYER)
@@ -235,6 +241,10 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveTheUnhappyMaidenBattleEffect();
   ResolveVampireBabyBattleEffect();
   ResolveGhostKnightOfJackalBattleEffect();
+  ResolveArcanaForceViiChariotBattleEffect();
+  ResolveAmazonessSpyBattleEffect();
+  ResolveAmazonessTraineeBattleEffect();
+  ResolveAmazonessSageBattleEffect();
   ResolveMefistTheInfernalGeneralDiscardBattleEffect();
   ResolveReaperOnTheNightmareDirectDamageEffect();
   ResolveSpiritReaperDiscardBattleEffect();

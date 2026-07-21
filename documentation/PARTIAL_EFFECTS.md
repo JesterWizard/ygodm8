@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 23:02 UTC  
-**Remaining partials:** `572`
+**Last updated:** 2026-07-21 23:15 UTC  
+**Remaining partials:** `566`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 5 |
 | `trap` | 10 |
-| `activated` | 449 |
-| `permanent` | 108 |
-| **total** | **572** |
+| `activated` | 445 |
+| `permanent` | 106 |
+| **total** | **566** |
 
 ## spell (5)
 
@@ -91,7 +91,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (449)
+## activated (445)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
@@ -103,12 +103,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AMAZONESS_EMPRESS`
 - path: `src_custom/activated_effects/amazoness_empress.c`
-- L77: leave-field SS → Deck search stand-in (safer than Extra SS).
+- L150: * ponytail: Amazoness pierce while Empress face-up not wired. */
 
 ### `AMAZONESS_PET_LIGER`
 - path: `src_custom/activated_effects/amazoness_pet_liger.c`
-- L55: -800 ≈ -2 tempStage (~-1000); battle-after / cannot-attack Amazoness FALSE.
-- L98: once-per-battle +500 / cannot-attack Amazoness need battle hooks. Ceiling: OPT −2 tempStage on 1 face-up opp monster.
+- L111: * ponytail: damage-calc +500 ATK not wired. */
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -119,10 +118,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/amazoness_princess.c`
 - L63: name=Queen + attack-send→SS need name/battle hooks. Ceiling: OPT add 1 Amazoness Spell/Trap from Deck.
 
-### `AMAZONESS_SAGE`
-- path: `src_custom/activated_effects/amazoness_sage.c`
-- L98: end-of-Damage-Step-after-attack trigger needs battle hook. Ceiling: once via usage if opp Spell/Trap on field; upgrade: damage-step gate.
-
 ### `AMAZONESS_SCOUTS`
 - path: `src_custom/activated_effects/amazoness_scouts.c`
 - L22: either-player quick timing not wired; allow once via usage on your turn only. Ceiling: tribute self only; upgrade: Amazoness protection flags on face-up Amazoness monsters until EOT.
@@ -131,14 +126,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `AMAZONESS_SPIRITUALIST`
 - path: `src_custom/activated_effects/amazoness_spiritualist.c`
 - L104: hand/GY bounce→SS + ED lock need GY/ED hooks. Ceiling: field OPT add Polymerization from Deck.
-
-### `AMAZONESS_SPY`
-- path: `src_custom/activated_effects/amazoness_spy.c`
-- L34: battle destroy → return Amazoness from GY needs battle hook. Ceiling: SS from hand only; upgrade: reveal + battle recycle.
-
-### `AMAZONESS_TRAINEE`
-- path: `src_custom/activated_effects/amazoness_trainee.c`
-- L12: battle shuffle-to-deck-bottom + +200 ATK need battle hooks. Ceiling: not ignition-activatable here; upgrade: battle destroy + stat overlay.
 
 ### `AMAZONESS_WAR_CHIEF`
 - path: `src_custom/activated_effects/amazoness_war_chief.c`
@@ -283,10 +270,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ARMORY_ARM`
 - path: `src_custom/activated_effects/armory_arm.c`
 - L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
-
-### `AROMA_JAR`
-- path: `src_custom/activated_effects/aroma_jar.c`
-- L12: FLIP battle protection + End Phase LP gain need FLIP/continuous hooks. Ceiling: not ignition-activatable here; upgrade: flip + turn-end overlay.
 
 ### `AROMAGE_BERGAMOT`
 - path: `src_custom/activated_effects/aromage_bergamot.c`
@@ -1974,7 +1957,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (108)
+## permanent (106)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -2007,11 +1990,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ARCANA_FORCE_VI_THE_LOVERS`
 - path: `src_custom/permanent_effects/arcana_force_vi_the_lovers.c`
 - L48: tribute engine not wired — unk4 marks double-tribute / no-tribute only.
-
-### `ARCANA_FORCE_VII_THE_CHARIOT`
-- path: `src_custom/permanent_effects/arcana_force_vii_the_chariot.c`
-- L125: battle SS destroyed monster needs battle-end hook; unk4=1 only.
-- L130: tails control switch is immediate; heads steal not wired.
 
 ### `ARCANA_FORCE_XVIII_THE_MOON`
 - path: `src_custom/permanent_effects/arcana_force_xviii_the_moon.c`
@@ -2096,10 +2074,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `EL_SHADDOLL_ANOYATYLLIS`
 - path: `src_custom/permanent_effects/el_shaddoll_anoyatyllis.c`
 - L126: SS-from-hand/GY via S/T lock needs continuous summon gate.
-
-### `EL_SHADDOLL_APKALLONE`
-- path: `src_custom/permanent_effects/el_shaddoll_apkallone.c`
-- L258: battle indestructible needs battle hook.
 
 ### `EL_SHADDOLL_CONSTRUCT`
 - path: `src_custom/permanent_effects/el_shaddoll_construct.c`

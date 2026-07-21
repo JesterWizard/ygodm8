@@ -56,6 +56,11 @@
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "ghost_knight_of_jackal.h"
+#include "arcana_force_vii_the_chariot.h"
+#include "amazoness_spy.h"
+#include "amazoness_trainee.h"
+#include "amazoness_sage.h"
+#include "aroma_jar.h"
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
@@ -1877,6 +1882,10 @@ void sub_8044570__Replacement(void)
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
       ResolveGhostKnightOfJackalBattleEffect();
+      ResolveArcanaForceViiChariotBattleEffect();
+      ResolveAmazonessSpyBattleEffect();
+      ResolveAmazonessTraineeBattleEffect();
+      ResolveAmazonessSageBattleEffect();
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       ResolveReaperOnTheNightmareDirectDamageEffect();
       ResolveSpiritReaperDiscardBattleEffect();
@@ -2001,6 +2010,7 @@ void TryAttackWithMonster__Replacement(void)
       RunMonsterBattleAction();
       if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id != CARD_NONE) {
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
+        TryAromaJarOnFaceUp(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
         Duel_NotifyMonsterZoneChanged(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       }
       DebugRuleset_MarkAttackUsed();
@@ -2055,6 +2065,10 @@ void TryAttackWithMonster__Replacement(void)
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
       ResolveGhostKnightOfJackalBattleEffect();
+      ResolveArcanaForceViiChariotBattleEffect();
+      ResolveAmazonessSpyBattleEffect();
+      ResolveAmazonessTraineeBattleEffect();
+      ResolveAmazonessSageBattleEffect();
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       ResolveReaperOnTheNightmareDirectDamageEffect();
       ResolveSpiritReaperDiscardBattleEffect();

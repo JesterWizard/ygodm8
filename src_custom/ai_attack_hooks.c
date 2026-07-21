@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "aroma_jar.h"
 #include "call_of_the_haunted.h"
 #include "constants/card_ids.h"
 #include "debug_ruleset.h"
@@ -149,6 +150,7 @@ static u8 AiTryActivateTrapOnAttack(struct DuelCard *attacker, struct DuelCard *
   attacker->isFaceUp = TRUE;
   if (defender != NULL)
     defender->isFaceUp = TRUE;
+    TryAromaJarOnFaceUp(defender);
 
   if (gTrapEffectData.trapCardId == TRAP_CALL_OF_THE_HAUNTED)
     CallOfTheHauntedRequestAiResimulate();
@@ -304,6 +306,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   RunMonsterBattleAction();
   if (defender->id != CARD_NONE)
     defender->isFaceUp = TRUE;
+    TryAromaJarOnFaceUp(defender);
   DebugRuleset_MarkAttackUsed();
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();

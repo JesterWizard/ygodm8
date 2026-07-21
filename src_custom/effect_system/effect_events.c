@@ -16,6 +16,7 @@
 #include "en_engage_neo_space.h"
 #include "effect_events.h"
 #include "effect.h"
+#include "amazoness_empress.h"
 #include "evil_assault.h"
 #include "forbidden_chalice.h"
 #include "forbidden_dress.h"
@@ -42,6 +43,7 @@ extern u8 gEffectOptUsedCount;
 
 void DestinyHeroFearMonger_EnsureInit(void);
 void TheWhiteStoneOfAncients_EnsureInit(void);
+void AmazonessEmpress_EnsureInit(void);
 
 static u8 sEffectEventsInited APPEND_DATA = {0};
 
@@ -72,6 +74,7 @@ void EffectEvent_EnsureInit(void)
   EffectEvent_Subscribe(EFFECT_EVENT_ON_FIELD_CHANGE, EffectEvent_OnFieldChangeHandler);
   DestinyHeroFearMonger_EnsureInit();
   TheWhiteStoneOfAncients_EnsureInit();
+  AmazonessEmpress_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 

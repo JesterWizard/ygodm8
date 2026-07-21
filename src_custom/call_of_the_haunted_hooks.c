@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "aroma_jar.h"
 #include "call_of_the_haunted.h"
 #include "constants/card_ids.h"
 #include "embodiment_of_apophis.h"
@@ -58,6 +59,10 @@ void UpdateAllDuelGfx(void);
 void ResolveTheUnhappyMaidenBattleEffect(void);
 void ResolveVampireBabyBattleEffect(void);
 void ResolveGhostKnightOfJackalBattleEffect(void);
+void ResolveArcanaForceViiChariotBattleEffect(void);
+void ResolveAmazonessSpyBattleEffect(void);
+void ResolveAmazonessTraineeBattleEffect(void);
+void ResolveAmazonessSageBattleEffect(void);
 void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void);
 void ResolveReaperOnTheNightmareDirectDamageEffect(void);
 void ResolveSpiritReaperDiscardBattleEffect(void);
@@ -360,6 +365,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   if (ShouldRedirectToRevivedMonster(&defenderTurnCol)) {
     defender = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][defenderTurnCol];
     defender->isFaceUp = TRUE;
+    TryAromaJarOnFaceUp(defender);
 
     if (WhoseTurn() == DUEL_PLAYER) {
       playerCol = FixedColForZone(attacker, PLAYER_MONSTER_ROW);
@@ -382,6 +388,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
       return;
 
     defender->isFaceUp = TRUE;
+    TryAromaJarOnFaceUp(defender);
 
     if (WhoseTurn() == DUEL_PLAYER) {
       playerCol = FixedColForZone(attacker, PLAYER_MONSTER_ROW);
@@ -446,6 +453,10 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   ResolveTheUnhappyMaidenBattleEffect();
   ResolveVampireBabyBattleEffect();
   ResolveGhostKnightOfJackalBattleEffect();
+  ResolveArcanaForceViiChariotBattleEffect();
+  ResolveAmazonessSpyBattleEffect();
+  ResolveAmazonessTraineeBattleEffect();
+  ResolveAmazonessSageBattleEffect();
   ResolveMefistTheInfernalGeneralDiscardBattleEffect();
   ResolveReaperOnTheNightmareDirectDamageEffect();
   ResolveSpiritReaperDiscardBattleEffect();
