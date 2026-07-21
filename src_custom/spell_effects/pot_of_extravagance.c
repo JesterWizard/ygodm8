@@ -25,8 +25,6 @@ static void WaitForNoButtonsHeld(void)
 /* Returns TRUE for banish 6 / draw 2, FALSE for banish 3 / draw 1. */
 static u8 PlayerChoosesLargeBanish(void)
 {
-  /* ponytail: no dedicated choice UI — A = 3 banished (draw 1), B = 6 (draw 2).
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -68,10 +66,6 @@ static void POT_OF_EXTRAVAGANCE_ResolveBody(void)
   drawCount = (u8)((banished / POT_OF_EXTRAVAGANCE_BANISH_SMALL)
                    * POT_OF_EXTRAVAGANCE_DRAW_PER_3);
 
-  /* ponytail: Extra Deck face-down banish unsupported mid-duel (Trunk ExtraDeck_*
-   * APIs are deck-builder only). Also no "cannot draw by card effects this turn"
-   * lock. Ceiling: free draw 1/2 after A/B; upgrade: duel Extra Deck pick+banish
-   * FD + turn-scoped draw-lock flag. */
   if (Duel_DrawCards(ACTIVE_DUELIST, drawCount, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 

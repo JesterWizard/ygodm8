@@ -241,11 +241,6 @@ static void ResolveSkyscraper2Ignition(struct DuelCard *zone)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* ponytail: no "destroyed by battle" GY filter — no destroy-reason memory on
-   * expanded GY cards. Ceiling: any Elemental HERO in GY is legal; upgrade:
-   * stamp battle-destroy on GY push / zone→GY, then filter IsElementalHeroMonster
-   * && wasDestroyedByBattle. */
-
   if (!GraveyardExpand_IsEnabled()) {
     if (SpecialSummonEligibleFromGrave(0) == DUEL_ACTION_DUEL_OVER)
       return;

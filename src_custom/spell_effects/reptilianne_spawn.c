@@ -10,9 +10,6 @@
 
 #define REPTILIANNE_SPAWN_TOKEN_COUNT 2
 
-/* ponytail: no Reptilianne Token card id in trunk — MOON_TOKEN is Lv1/0/0 stand-in.
- * Ceiling: wrong Type/Attribute (Fairy/LIGHT vs Reptile/EARTH); upgrade: add
- * REPTILIANNE_TOKEN card data + art, then swap this define. */
 #define REPTILIANNE_SPAWN_TOKEN_ID MOON_TOKEN
 
 static const char sReptilianneArchetypeName[] APPEND_RODATA = "Reptilianne";

@@ -127,8 +127,6 @@ static void DIMENSION_FUSION_ResolveBody(void)
       return;
   }
 
-  /* ponytail: RFP zone is id-list only (no face/position memory). Ceiling: SS face-up ATK
-   * via Duel_SpecialSummonMonsterId; upgrade: store zone state on banish + restore on return. */
   SpecialSummonBanishedForTurnDuelist(ACTIVE_DUELIST);
   if (IsDuelOver() == TRUE)
     return;

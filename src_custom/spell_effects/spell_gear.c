@@ -236,8 +236,6 @@ static void CancelSpellGearTargeting(void)
 
   PlayMusic(SFX_CANCEL);
 
-  /* ponytail: no committed multi-pick UI — cancel mid-loop auto-fills remaining
-   * Ancient Gear zones in row order. Ceiling: player cannot abort partial pick. */
   while (sSpellGearPickCount < SPELL_GEAR_SEND_COUNT) {
     u8 found = FALSE;
 

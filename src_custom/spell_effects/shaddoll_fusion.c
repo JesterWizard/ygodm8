@@ -240,9 +240,6 @@ static void RunPlayerShaddollFusionFlow(void)
 
 static void SHADDOLL_FUSION_ResolveBody(void)
 {
-  /* ponytail: Extra Deck SS detection uses Fusion/Synchro/Xyz/Link color on
-   * opponent's field (no per-zone summon-origin flag). Ceiling: misses Main Deck
-   * monsters SS'd from Extra edge cases; upgrade: mark Extra Deck origin on SS. */
 
   if (EffectOpt_IsUsed(SHADDOLL_FUSION)) {
     if (!gHideEffectText)

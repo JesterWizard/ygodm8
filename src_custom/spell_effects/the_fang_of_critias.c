@@ -150,8 +150,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = hand, FALSE = field. */
 static u8 PlayerChoosesHandTrap(void)
 {
-  /* ponytail: no dedicated hand/field choice UI — A = hand, B = field.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

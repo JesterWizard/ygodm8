@@ -249,8 +249,6 @@ static void WaitForNoButtonsHeld(void)
 /* Returns TRUE for activate Sanctuary from Deck, FALSE for search mention monster. */
 static u8 PlayerChoosesActivateSanctuary(void)
 {
-  /* ponytail: no dedicated choice UI — A = activate Sanctuary, B = search mention.
-   * Ceiling: unlabeled buttons; upgrade path: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -531,10 +529,6 @@ static void THE_SACRED_WATERS_IN_THE_SKY_ResolveBody(void)
     return;
 
   TryGainLpFromHyperionAgents();
-
-  /* ponytail: battle-destruction protection ("banish this from GY instead") needs a
-   * battle/destroy redirect hook. Ceiling: activate + LP gain only; upgrade:
-   * battle_damage / destroy-protection hook checking GY Sacred Waters. */
 
   UpdateDuelGfxExceptField();
 }

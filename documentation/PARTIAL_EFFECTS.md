@@ -10,66 +10,23 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
 **Last updated:** 2026-07-21 22:55 UTC  
-**Remaining partials:** `601`
+**Remaining partials:** `580`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 27 |
+| `spell` | 6 |
 | `trap` | 10 |
 | `activated` | 451 |
 | `permanent` | 113 |
-| **total** | **601** |
+| **total** | **580** |
 
-## spell (27)
-
-### `DE_SYNCHRO`
-- path: `src_custom/spell_effects/de_synchro.c`
-- L81: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field + best-effort ExtraDeck_AddCard when enable_extra_deck; upgrade: per-duelist mid-duel Extra Deck return for the Synchro's controller.
-- L101: Synchro Summon materials are not recorded at summon time, so "if all materials are in your GY, SS all of them" cannot run. Ceiling: return-to-Extra-Deck only; upgrade: store material cardIds on the Synchro zone at SynchroDuel_Execute, then if each is in GY, SS from GY.
-
-### `DIMENSION_FUSION`
-- path: `src_custom/spell_effects/dimension_fusion.c`
-- L130: RFP zone is id-list only (no face/position memory). Ceiling: SS face-up ATK via Duel_SpecialSummonMonsterId; upgrade: store zone state on banish + restore on return.
-
-### `END_OF_THE_WORLD`
-- path: `src_custom/spell_effects/end_of_the_world.c`
-- L16: Ruin, Queen of Oblivion is not in the trunk — only Demise is Ritual- Summonable via this card. Ceiling: Demise only; upgrade: add Ruin card + ID.
+## spell (6)
 
 ### `FUSION_DESTINY`
 - path: `src_custom/spell_effects/fusion_destiny.c`
 - L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
-
-### `LEMURIA_THE_FORGOTTEN_CITY`
-- path: `src_custom/spell_effects/lemuria_the_forgotten_city.c`
-- L191: no per-zone Level overlay API — levels come from SetCardInfo / Legendary Ocean adjusters only. Ceiling: OPT marks used + shows text; Levels unchanged. Upgrade: turn-scoped level bonus on each controlled WATER (= waterCount) cleared at End Phase (card_hooks GetLegendaryOcean-style).
-
-### `POT_OF_AVARICE`
-- path: `src_custom/spell_effects/pot_of_avarice.c`
-- L93: no multi-select GY UI — return 5 most recent monsters. Ceiling: no targeting; upgrade: DeckMenu multi-pick like Angels Tear.
-
-### `POT_OF_EXTRAVAGANCE`
-- path: `src_custom/spell_effects/pot_of_extravagance.c`
-- L28: no dedicated choice UI — A = 3 banished (draw 1), B = 6 (draw 2). Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L71: Extra Deck face-down banish unsupported mid-duel (Trunk ExtraDeck_* APIs are deck-builder only). Also no "cannot draw by card effects this turn" lock. Ceiling: free draw 1/2 after A/B; upgrade: duel Extra Deck pick+banish FD + turn-scoped draw-lock flag.
-
-### `PSEUDO_SPACE`
-- path: `src_custom/spell_effects/pseudo_space.c`
-- L241: name-become + replace effects until End Phase need copy-host / turn_effect hooks outside this file (no per-zone name/effect RAM here). Ceiling: OPT banish Field Spell from GY only; upgrade: store banished id → treat zone as that Field Spell until End Phase clear.
-- L262: name-become + replace effects until End Phase — same ceiling as legacy-GY path above.
-
-### `REALM_OF_LIGHT`
-- path: `src_custom/spell_effects/realm_of_light.c`
-- L14: Shine Counters on mill / +100 ATK per counter on Lightsworn / remove 2 counters instead of destroy need mill + destroy-gate + counter storage outside this file (DuelCard has no shine-counter field; no in-file Deck→GY or destroy dispatch). Ceiling: continuous face-up only; upgrade: mill hook → if face-up REALM_OF_LIGHT controller's Deck→GY then ++counters;
-
-### `REASONING`
-- path: `src_custom/spell_effects/reasoning.c`
-- L63: no Level-declare UI — D-Pad cycles, A confirms (unlabeled). Ceiling: no on-screen Level readout; upgrade: effect-text Level picker.
-
-### `REPTILIANNE_SPAWN`
-- path: `src_custom/spell_effects/reptilianne_spawn.c`
-- L13: no Reptilianne Token card id in trunk — MOON_TOKEN is Lv1/0/0 stand-in. Ceiling: wrong Type/Attribute (Fairy/LIGHT vs Reptile/EARTH); upgrade: add REPTILIANNE_TOKEN card data + art, then swap this define.
 
 ### `SCAPEGOAT`
 - path: `src_custom/spell_effects/scapegoat.c`
@@ -79,30 +36,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `SECRETS_OF_DARK_MAGIC`
 - path: `src_custom/spell_effects/secrets_of_dark_magic.c`
-- L319: no dedicated choice UI — A = Fusion, B = Ritual. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-
-### `SHADDOLL_FUSION`
-- path: `src_custom/spell_effects/shaddoll_fusion.c`
-- L243: Extra Deck SS detection uses Fusion/Synchro/Xyz/Link color on opponent's field (no per-zone summon-origin flag). Ceiling: misses Main Deck monsters SS'd from Extra edge cases; upgrade: mark Extra Deck origin on SS.
+- L34: * ponytail: incomplete vs printed DM Fusion pool (Dragon Knight, etc.).
 
 ### `SHINING_SARCOPHAGUS`
 - path: `src_custom/spell_effects/shining_sarcophagus.c`
 - L137: printed ignition is Main Phase OPT, not on-activate. Ceiling: one Deck search when this continuous is activated; upgrade: face-up ignition hook → same search with OPT reset.
 - L170: opp GY Special Summon → discard Spell → send that monster to GY needs summon/trigger hook outside this file.
 - L176: printed text is monster-effect destroy only; Duel_DestroyZone has no source tag so all card-effect destroys are blocked. Battle uses a different path.
-
-### `SKYSCRAPER_2_HERO_CITY`
-- path: `src_custom/spell_effects/skyscraper_2_hero_city.c`
-- L244: no "destroyed by battle" GY filter — no destroy-reason memory on expanded GY cards. Ceiling: any Elemental HERO in GY is legal; upgrade: stamp battle-destroy on GY push / zone→GY, then filter IsElementalHeroMonster && wasDestroyedByBattle.
-
-### `SNAKE_RAIN`
-- path: `src_custom/spell_effects/snake_rain.c`
-- L179: no committed multi-pick UI — cancel mid-loop auto-fills remaining reptiles in deck order. Ceiling: player cannot abort partial selection.
-
-### `SOUL_SERVANT`
-- path: `src_custom/spell_effects/soul_servant.c`
-- L30: no card-description text search — approximate "lists DM/DMG" via name contains "Dark Magician" plus a known support ID list. Ceiling: misses text-only mentions. Upgrade: description-string helper.
-- L161: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `SPELL_CHRONICLE`
 - path: `src_custom/spell_effects/spell_chronicle.c`
@@ -112,38 +52,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `SPELL_GEAR`
 - path: `src_custom/spell_effects/spell_gear.c`
-- L239: no committed multi-pick UI — cancel mid-loop auto-fills remaining Ancient Gear zones in row order. Ceiling: player cannot abort partial pick.
-
-### `SUPREME_KINGS_CASTLE`
-- path: `src_custom/spell_effects/supreme_kings_castle.c`
-- L121: "Fusion Summon monsters that must be Special Summoned with Dark Fusion, with effects other than Dark Fusion" needs Evil HERO summon gates to check SupremeKingsCastle_IsActive. Ceiling: face-up field only.
-- L216: Deck/Extra Evil HERO pick UI skipped — first Deck match auto-sent.
-
-### `THE_CLAW_OF_HERMOS`
-- path: `src_custom/spell_effects/the_claw_of_hermos.c`
-- L192: no dedicated field/hand choice UI — A = field, B = hand. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L353: Set reveal has no dedicated flip UI — send face-down as-is. Ceiling: no reveal animation; upgrade: brief face-up before GY send.
-
-### `THE_FANG_OF_CRITIAS`
-- path: `src_custom/spell_effects/the_fang_of_critias.c`
-- L153: no dedicated hand/field choice UI — A = hand, B = field. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-
-### `THE_SACRED_WATERS_IN_THE_SKY`
-- path: `src_custom/spell_effects/the_sacred_waters_in_the_sky.c`
-- L252: no dedicated choice UI — A = activate Sanctuary, B = search mention. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L535: battle-destruction protection ("banish this from GY instead") needs a battle/destroy redirect hook. Ceiling: activate + LP gain only; upgrade: battle_damage / destroy-protection hook checking GY Sacred Waters.
-
-### `THE_SHALLOW_GRAVE`
-- path: `src_custom/spell_effects/the_shallow_grave.c`
-- L155: no DUEL_SUMMON_SPECIAL_FACE_DOWN_DEF — NORMAL_SET for face-down DEF, then mark unk4=2 as Special Summon. Ceiling: SS-locks that only gate SummonModeIsSpecial still apply via SpecialSummonMonsterId's Kristya check; CannotBeSpecialSummoned checked here. Upgrade: add face-down SS mode.
-
-### `TWLIGHT_TWIN_DRAGONS`
-- path: `src_custom/spell_effects/twlight_twin_dragons.c`
-- L241: Deck-to-GY by Lightsworn → add Punishment Dragon from GY + banish top 4 needs a mill/send-from-deck hook outside this file. Ceiling: on-activate JD recycle + mill only; upgrade: if TWLIGHT_TWIN_DRAGONS sent Deck→GY by Lightsworn effect → PickZone PD in GY → hand, then banish top 4.
-
-### `ULTRA_POLYMERIZATION`
-- path: `src_custom/spell_effects/ultra_polymerization.c`
-- L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
+- L156: * ponytail: optional SS offered as auto-yes when legal. Ceiling: cannot skip
 
 ## trap (10)
 

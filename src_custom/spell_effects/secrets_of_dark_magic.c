@@ -316,8 +316,6 @@ static void WaitForNoButtonsHeld(void)
 
 static u8 PlayerChoosesSecretsMode(u8 canFusion, u8 canRitual)
 {
-  /* ponytail: no dedicated choice UI — A = Fusion, B = Ritual.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   if (canFusion && !canRitual)
     return SECRETS_MODE_FUSION;
   if (canRitual && !canFusion)

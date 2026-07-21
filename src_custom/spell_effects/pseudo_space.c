@@ -238,10 +238,6 @@ static void ResolvePseudoSpaceIgnition(struct DuelCard *zone)
     zone->effectUsedThisTurn = TRUE;
     UpdateDuelGfxExceptField();
 
-    /* ponytail: name-become + replace effects until End Phase need copy-host /
-     * turn_effect hooks outside this file (no per-zone name/effect RAM here).
-     * Ceiling: OPT banish Field Spell from GY only; upgrade: store banished id
-     * → treat zone as that Field Spell until End Phase clear. */
     return;
   }
 
@@ -259,8 +255,6 @@ static void ResolvePseudoSpaceIgnition(struct DuelCard *zone)
   zone->effectUsedThisTurn = TRUE;
   UpdateDuelGfxExceptField();
 
-  /* ponytail: name-become + replace effects until End Phase — same ceiling as
-   * legacy-GY path above. */
 }
 
 static void PSEUDO_SPACE_ResolveBody(void)

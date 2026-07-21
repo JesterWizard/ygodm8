@@ -27,9 +27,6 @@ enum SoulServantSource {
 static const char sDarkMagicianName[] APPEND_RODATA = "Dark Magician";
 static const char sPalladiumName[] APPEND_RODATA = "Palladium";
 
-/* ponytail: no card-description text search — approximate "lists DM/DMG" via
- * name contains "Dark Magician" plus a known support ID list.
- * Ceiling: misses text-only mentions. Upgrade: description-string helper. */
 static const u16 sDmMentionSupport[] APPEND_RODATA = {
   DARK_MAGICIAN,
   DARK_MAGICIAN_GIRL,
@@ -158,8 +155,6 @@ static void WaitForNoButtonsHeld(void)
 /* Nested A/B among available sources: A = hand; B then A = Deck; B then B = GY. */
 static u8 PlayerChoosesSource(u8 hasHand, u8 hasDeck, u8 hasGy)
 {
-  /* ponytail: no dedicated 3-way choice UI — nested A/B unlabeled.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   if (hasHand && !hasDeck && !hasGy)
     return SOUL_SERVANT_SRC_HAND;
   if (!hasHand && hasDeck && !hasGy)

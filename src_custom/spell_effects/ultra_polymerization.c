@@ -169,12 +169,6 @@ static void RunPlayerUltraPolymerizationFlow(void)
 
   FusionDuel_ExecutePolymerization(recipe, sources, sourceCount, ULTRA_POLYMERIZATION, FALSE);
 
-  /* ponytail: GY ignition "banish this card, target 1 Fusion Summoned by this
-   * card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY
-   * activation + material-memory outside this file.
-   * Ceiling: on-field Fusion only; upgrade: store material ids on summon tag →
-   * GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
-   * ATK/DEF 0 + negate. */
 }
 
 static void ULTRA_POLYMERIZATION_ResolveBody(void)

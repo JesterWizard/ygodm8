@@ -90,8 +90,6 @@ static void ShuffleMonstersFromGraveToDeck(u8 turnDuelist)
   u8 found;
   u8 i;
 
-  /* ponytail: no multi-select GY UI — return 5 most recent monsters.
-   * Ceiling: no targeting; upgrade: DeckMenu multi-pick like Angels Tear. */
   found = CollectRecentMonsterGyIndices(fixedDuelist, indices);
   if (found < POT_OF_AVARICE_RETURN_COUNT)
     return;

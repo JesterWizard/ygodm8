@@ -11,13 +11,6 @@ static void REALM_OF_LIGHT_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(REALM_OF_LIGHT);
 
-  /* ponytail: Shine Counters on mill / +100 ATK per counter on Lightsworn /
-   * remove 2 counters instead of destroy need mill + destroy-gate + counter
-   * storage outside this file (DuelCard has no shine-counter field; no in-file
-   * Deck→GY or destroy dispatch). Ceiling: continuous face-up only; upgrade:
-   * mill hook → if face-up REALM_OF_LIGHT controller's Deck→GY then ++counters;
-   * Lightsworn ATK overlay += 100 * counters; Duel_DestroyZone on this card →
-   * if counters >= 2 then counters -= 2 and skip destroy. */
 }
 
 APPEND_TEXT void EffectREALM_OF_LIGHT(void)

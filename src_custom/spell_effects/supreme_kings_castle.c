@@ -118,9 +118,6 @@ static void SUPREME_KINGS_CASTLE_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(SUPREME_KINGS_CASTLE);
 
-  /* ponytail: "Fusion Summon monsters that must be Special Summoned with Dark
-   * Fusion, with effects other than Dark Fusion" needs Evil HERO summon gates
-   * to check SupremeKingsCastle_IsActive. Ceiling: face-up field only. */
 }
 
 u8 SupremeKingsCastle_IsActive(void)
@@ -213,7 +210,6 @@ void ApplySupremeKingsCastleBattleAtkBoost(void)
     return;
 
   fixedDuelist = attackerDuelist;
-  /* ponytail: Deck/Extra Evil HERO pick UI skipped — first Deck match auto-sent. */
   if (!TrySendEvilHeroFromDeck(fixedDuelist))
     return;
 

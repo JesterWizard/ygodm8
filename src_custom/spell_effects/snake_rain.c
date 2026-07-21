@@ -176,8 +176,6 @@ static void SendFourReptilesFromDeck(void)
 
     deckIndex = PickReptileDeckIndex(ACTIVE_DUELIST);
     if (deckIndex == 0xFF) {
-      /* ponytail: no committed multi-pick UI — cancel mid-loop auto-fills remaining
-       * reptiles in deck order. Ceiling: player cannot abort partial selection. */
       while (i < SNAKE_RAIN_SEND_COUNT) {
         s16 autoIndex = FindFirstReptileDeckIndex(ACTIVE_DUELIST);
 

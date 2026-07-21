@@ -152,11 +152,6 @@ static enum DuelActionResult SpecialSummonFaceDownDefFromGrave(u8 turnDuelist, u
   enum DuelActionResult result;
   struct DuelCard *zone;
 
-  /* ponytail: no DUEL_SUMMON_SPECIAL_FACE_DOWN_DEF — NORMAL_SET for face-down DEF,
-   * then mark unk4=2 as Special Summon. Ceiling: SS-locks that only gate
-   * SummonModeIsSpecial still apply via SpecialSummonMonsterId's Kristya check;
-   * CannotBeSpecialSummoned checked here. Upgrade: add face-down SS mode. */
-
   emptyZone = FirstEmptyZoneInRow(gTurnZones[monsterRow]);
   if (emptyZone < 0)
     return DUEL_ACTION_NO_ZONE;

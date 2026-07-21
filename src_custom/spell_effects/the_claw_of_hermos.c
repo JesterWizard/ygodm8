@@ -189,8 +189,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = field, FALSE = hand. */
 static u8 PlayerChoosesField(void)
 {
-  /* ponytail: no dedicated field/hand choice UI — A = field, B = hand.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -350,8 +348,6 @@ static void ResolveHermosFieldTarget(u8 fixedRow, u8 fixedCol)
     return;
 
   zone = gFixedZones[fixedRow][fixedCol];
-  /* ponytail: Set reveal has no dedicated flip UI — send face-down as-is.
-   * Ceiling: no reveal animation; upgrade: brief face-up before GY send. */
   Duel_DestroyZone(zone, ACTIVE_DUELIST, FALSE);
   if (IsDuelOver() == TRUE)
     return;

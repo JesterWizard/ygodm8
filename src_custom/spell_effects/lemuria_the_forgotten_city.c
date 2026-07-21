@@ -188,10 +188,6 @@ static void ResolveLemuriaIgnition(struct DuelCard *zone)
   if (waterCount == 0)
     return;
 
-  /* ponytail: no per-zone Level overlay API — levels come from SetCardInfo /
-   * Legendary Ocean adjusters only. Ceiling: OPT marks used + shows text;
-   * Levels unchanged. Upgrade: turn-scoped level bonus on each controlled WATER
-   * (= waterCount) cleared at End Phase (card_hooks GetLegendaryOcean-style). */
   (void)waterCount;
 
   zone->effectUsedThisTurn = TRUE;

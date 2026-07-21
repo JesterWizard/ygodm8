@@ -60,8 +60,6 @@ static u8 PlayerDeclareLevel(void)
 {
   u8 level = 4;
 
-  /* ponytail: no Level-declare UI — D-Pad cycles, A confirms (unlabeled).
-   * Ceiling: no on-screen Level readout; upgrade: effect-text Level picker. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

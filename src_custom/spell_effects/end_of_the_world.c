@@ -13,8 +13,6 @@
 
 void UpdateDuelGfxExceptField(void);
 
-/* ponytail: Ruin, Queen of Oblivion is not in the trunk — only Demise is Ritual-
- * Summonable via this card. Ceiling: Demise only; upgrade: add Ruin card + ID. */
 static u8 IsEndOfTheWorldRitual(u16 cardId)
 {
   return cardId == DEMISE_KING_OF_ARMAGEDDON;

@@ -238,11 +238,6 @@ static void TWLIGHT_TWIN_DRAGONS_ResolveBody(void)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: Deck-to-GY by Lightsworn → add Punishment Dragon from GY + banish
-   * top 4 needs a mill/send-from-deck hook outside this file.
-   * Ceiling: on-activate JD recycle + mill only; upgrade: if TWLIGHT_TWIN_DRAGONS
-   * sent Deck→GY by Lightsworn effect → PickZone PD in GY → hand, then banish top 4. */
-
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
   UpdateDuelGfxExceptField();
 }

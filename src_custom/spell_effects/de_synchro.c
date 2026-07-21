@@ -78,10 +78,6 @@ static void ReturnSynchroToExtraDeck(struct DuelCard *zone)
   NotifyDynamicEquipFieldChanged();
   EffectEvent_EmitSimple(EFFECT_EVENT_ON_FIELD_CHANGE, CARD_NONE, NULL);
 
-  /* ponytail: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the
-   * player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field
-   * + best-effort ExtraDeck_AddCard when enable_extra_deck; upgrade: per-duelist
-   * mid-duel Extra Deck return for the Synchro's controller. */
   if (gRuntimeConfig.enable_extra_deck)
     ExtraDeck_AddCard(cardId);
 }
@@ -98,10 +94,6 @@ static void FinishDeSynchro(u8 fixedRow, u8 fixedCol)
   ReturnSynchroToExtraDeck(target);
   DestroyDeSynchroSpellZone();
 
-  /* ponytail: Synchro Summon materials are not recorded at summon time, so
-   * "if all materials are in your GY, SS all of them" cannot run.
-   * Ceiling: return-to-Extra-Deck only; upgrade: store material cardIds on the
-   * Synchro zone at SynchroDuel_Execute, then if each is in GY, SS from GY. */
 }
 
 static void ResolveDeSynchroTarget(u8 fixedRow, u8 fixedCol)
