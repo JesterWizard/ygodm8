@@ -49,6 +49,7 @@ extern u8 CanActivateCYBERNETIC_ZONE(void);
 extern u8 CanActivateDARK_BURNING_ATTACK(void);
 extern u8 CanActivateDARK_BURNING_MAGIC(void);
 extern u8 CanActivateDARK_MAGIC_ATTACK(void);
+extern u8 CanActivateDARK_MAGIC_VEIL(void);
 extern u8 CanActivateDedicationThroughLightAndDarkness(void);
 extern u8 CanActivateDelinquentDuo(void);
 extern u8 CanActivateDESTINY_DRAW(void);
@@ -163,6 +164,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { DARK_BURNING_ATTACK, CanActivateDARK_BURNING_ATTACK, TRUE },
   { DARK_BURNING_MAGIC, CanActivateDARK_BURNING_MAGIC, TRUE },
   { DARK_MAGIC_ATTACK, CanActivateDARK_MAGIC_ATTACK, TRUE },
+  { DARK_MAGIC_VEIL, CanActivateDARK_MAGIC_VEIL, TRUE },
   { DEDICATION_THROUGH_LIGHT_AND_DARKNESS, CanActivateDedicationThroughLightAndDarkness, TRUE },
   { DELINQUENT_DUO, CanActivateDelinquentDuo, TRUE },
   { DESTINY_DRAW, CanActivateDESTINY_DRAW, TRUE },

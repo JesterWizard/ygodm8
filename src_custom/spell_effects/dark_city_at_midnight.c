@@ -3,6 +3,7 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
+#include "dark_city_at_midnight.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -10,6 +11,7 @@
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
+void IncrementPermStage(struct DuelCard *zone);
 
 static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
 
@@ -42,12 +44,16 @@ static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
   ResetTempStage(handSlot);
 }
 
-static u8 IsDestinyHeroMonster(u16 cardId)
+u8 DarkCity_IsLevel8OrHigherDestinyHero(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
     return FALSE;
 
-  return Duel_CardNameContains(cardId, sDestinyHeroName);
+  if (!Duel_CardNameContains(cardId, sDestinyHeroName))
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.level >= 8;
 }
 
 static u8 IsDarkCitySearchTarget(u16 cardId)
@@ -55,7 +61,7 @@ static u8 IsDarkCitySearchTarget(u16 cardId)
   if (cardId == CARD_NONE || cardId == DARK_CITY_AT_MIDNIGHT)
     return FALSE;
 
-  if (IsDestinyHeroMonster(cardId))
+  if (Duel_CardNameContains(cardId, sDestinyHeroName))
     return TRUE;
 
   /* Approximate "mentions a Destiny HERO monster's card name". */
@@ -92,25 +98,94 @@ static u8 LoadSearchMenu(u8 *deckIndexOut)
   return menuCount;
 }
 
-static void AddDeckCardToHand(u8 deckIndex)
+static u8 FindDestinyHeroDeckCard(u8 fixedDuelist)
 {
-  u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
-  s8 empty;
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    if (Duel_CardNameContains(gDuelDecks[fixedDuelist].cards[i], sDestinyHeroName))
+      return i;
+  }
+
+  return 0xFF;
+}
+
+u8 Cond_DarkCityOnSummon(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+
+  /* Parent wires this only from the Special Summon event path. */
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+
+  ev = ctx->event;
+  if (ev->controller > DUEL_OPPONENT || !DarkCity_IsLevel8OrHigherDestinyHero(ev->cardId))
+    return FALSE;
+
+  return Duel_FindBackrowCard(ev->controller, DARK_CITY_AT_MIDNIGHT, TRUE) != NULL;
+}
+
+enum DuelActionResult Op_DarkCityOnSummon(struct EffectCtx *ctx)
+{
+  u8 row;
+  u8 i;
+
+  if (!Cond_DarkCityOnSummon(ctx))
+    return DUEL_ACTION_NO_TARGET;
+
+  row = Duel_FixedMonsterRowForDuelist(ctx->event->controller);
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    struct DuelCard *zone = gFixedZones[row][i];
+
+    if (zone->id != CARD_NONE && zone->isFaceUp
+        && Duel_CardHasMonsterType(zone->id, TYPE_WARRIOR)) {
+      IncrementPermStage(zone);
+      IncrementPermStage(zone);
+      IncrementPermStage(zone);
+    }
+  }
+
+  Duel_RefreshMonsterStatOverlays();
+  return DUEL_ACTION_OK;
+}
+
+u8 Cond_DarkCityOnDestroy(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+
+  ev = ctx->event;
+  if (ev->cardId != DARK_CITY_AT_MIDNIGHT || ev->controller > DUEL_OPPONENT)
+    return FALSE;
+
+  return FindDestinyHeroDeckCard(ev->controller) != 0xFF;
+}
+
+enum DuelActionResult Op_DarkCityOnDestroy(struct EffectCtx *ctx)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  u8 deckIndex;
   u16 cardId;
+  struct DuelSummonOpts opts;
 
-  if (deckIndex < gDuelDecks[fixedDuelist].cardsDrawn
-      || deckIndex >= NumCardsInDeck(fixedDuelist))
-    return;
+  if (!Cond_DarkCityOnDestroy(ctx))
+    return DUEL_ACTION_NO_TARGET;
 
-  empty = FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]);
-  if (empty < 0)
-    return;
+  fixedDuelist = ctx->event->controller;
+  deckIndex = FindDestinyHeroDeckCard(fixedDuelist);
+  if (deckIndex == 0xFF)
+    return DUEL_ACTION_NO_TARGET;
 
-  if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, deckIndex, FALSE) != DUEL_ACTION_OK)
-    return;
-
-  cardId = gDeckMenu.cards[0]; /* wrong — need save before remove */
-  (void)cardId;
+  cardId = gDuelDecks[fixedDuelist].cards[deckIndex];
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_ATK;
+  return Duel_SpecialSummonFromDeck(turnDuelist, cardId, opts);
 }
 
 static void SearchOnActivate(void)
@@ -168,11 +243,6 @@ static void DARK_CITY_AT_MIDNIGHT_ResolveBody(void)
   Duel_ShowEffectText(DARK_CITY_AT_MIDNIGHT);
   SearchOnActivate();
   UpdateDuelGfxExceptField();
-
-  /* ponytail: each Lv8+ Destiny HERO SS → Warriors +300 ATK, and destroy → Deck
-   * SS Destiny HERO need summon/destroy hooks outside this file.
-   * Ceiling: activate search only (printed: search if activated this turn). */
-  (void)AddDeckCardToHand;
 }
 
 APPEND_TEXT void EffectDARK_CITY_AT_MIDNIGHT(void)

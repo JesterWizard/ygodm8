@@ -5,10 +5,62 @@
 #include "constants/card_effect_texts.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
+#include "dark_fusion.h"
 #include "duel_helpers.h"
 #include "fusion_duel.h"
 #include "player_decks.h"
 #include "spell_effects.h"
+
+static u8 sDarkFusionProtectedMaskOpponentRow APPEND_DATA = {0};
+static u8 sDarkFusionProtectedMaskPlayerRow APPEND_DATA = {0};
+
+static u8 *ProtectedMaskForMonsterRow(u8 fixedRow)
+{
+  if (fixedRow == OPPONENT_MONSTER_ROW)
+    return &sDarkFusionProtectedMaskOpponentRow;
+  if (fixedRow == PLAYER_MONSTER_ROW)
+    return &sDarkFusionProtectedMaskPlayerRow;
+  return NULL;
+}
+
+void DarkFusion_MarkSummonedZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+  u8 *mask;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &fixedCol))
+    return;
+
+  mask = ProtectedMaskForMonsterRow(fixedRow);
+  if (mask != NULL && fixedCol < MAX_ZONES_IN_ROW)
+    *mask |= (u8)(1 << fixedCol);
+}
+
+u8 DarkFusion_IsTargetProtected(const struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+  u8 *mask;
+
+  if (zone == NULL || !Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &fixedCol))
+    return FALSE;
+
+  mask = ProtectedMaskForMonsterRow(fixedRow);
+  if (mask == NULL || fixedCol >= MAX_ZONES_IN_ROW)
+    return FALSE;
+
+  return (*mask & (u8)(1 << fixedCol)) != 0;
+}
+
+void DarkFusion_ClearOnTurnBoundary(void)
+{
+  sDarkFusionProtectedMaskOpponentRow = 0;
+  sDarkFusionProtectedMaskPlayerRow = 0;
+}
 
 static u8 RecipeIsFiendFusion(const struct FusionRecipe *recipe)
 {
@@ -16,6 +68,20 @@ static u8 RecipeIsFiendFusion(const struct FusionRecipe *recipe)
     return FALSE;
 
   return Duel_CardHasMonsterType(recipe->result, TYPE_FIEND);
+}
+
+static void MarkDarkFusionSummonedResult(u16 result)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+    if (zone->id == result) {
+      DarkFusion_MarkSummonedZone(zone);
+      return;
+    }
+  }
 }
 
 static void RunPlayerDarkFusionFlow(void)
@@ -90,11 +156,7 @@ static void RunPlayerDarkFusionFlow(void)
     return;
 
   FusionDuel_ExecutePolymerization(recipe, sources, sourceCount, DARK_FUSION, FALSE);
-
-  /* ponytail: "opponent cannot target the Fusion this turn" needs a turn-scoped
-   * targeting-protect flag on the summoned zone (no in-file targeting gate).
-   * Ceiling: Fiend Fusion via Poly materials only; upgrade: mark result zone
-   * + spell/trap/monster target validators skip it until turn end. */
+  MarkDarkFusionSummonedResult(recipe->result);
 }
 
 APPEND_TEXT void EffectDARK_FUSION(void)
@@ -120,8 +182,7 @@ APPEND_TEXT void EffectDARK_FUSION(void)
 
     FusionDuel_ExecutePolymerization(&gFusionRecipes[bestIdx], sources, sourceCount,
                                      DARK_FUSION, TRUE);
-
-    /* ponytail: targeting protect this turn — same ceiling as player path. */
+    MarkDarkFusionSummonedResult(gFusionRecipes[bestIdx].result);
     return;
   }
 

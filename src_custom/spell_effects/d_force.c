@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "d_force.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
@@ -18,6 +19,86 @@ static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
   return DUEL_OPPONENT;
 }
 
+static u8 DForceControlsPlasma(u8 fixedDuelist)
+{
+  return Duel_FindBackrowCard(fixedDuelist, D_FORCE, TRUE) != NULL
+      && Duel_FindFixedZoneById(Duel_FixedMonsterRowForDuelist(fixedDuelist),
+                                DESTINY_HERO_PLASMA, TRUE) != NULL;
+}
+
+static u8 DForcePlasmaController(const struct DuelCard *zone, u8 *fixedDuelist)
+{
+  u8 row;
+  u8 col;
+
+  if (zone == NULL || zone->id != DESTINY_HERO_PLASMA || zone->isFaceUp == FALSE)
+    return FALSE;
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)zone, &row, &col))
+    return FALSE;
+
+  *fixedDuelist = Duel_FixedDuelistForMonsterRow(row);
+  return DForceControlsPlasma(*fixedDuelist);
+}
+
+u8 DForce_ShouldBlockDrawPhase(void)
+{
+  return DForceControlsPlasma(DUEL_PLAYER) || DForceControlsPlasma(DUEL_OPPONENT);
+}
+
+u8 DForce_CanTargetPlasmaByCardEffect(const struct DuelCard *target,
+                                      u8 effectControllerFixedDuelist)
+{
+  u8 plasmaController;
+
+  if (!DForcePlasmaController(target, &plasmaController))
+    return TRUE;
+
+  return effectControllerFixedDuelist == plasmaController;
+}
+
+void ApplyDForcePlasmaAtkBonusToCardInfo(struct DuelCard *zone)
+{
+  u8 plasmaController;
+  u8 opponent;
+  u8 gyCount;
+
+  if (!DForcePlasmaController(zone, &plasmaController))
+    return;
+  if (gCardInfo.atk == 0xFFFF)
+    return;
+
+  opponent = plasmaController == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  gyCount = GraveyardExpand_IsEnabled() ? GraveyardExpand_GetCount(opponent)
+                                        : (gDuel.duelistbattleState[opponent].graveyard != CARD_NONE);
+  gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + (u32)gyCount * 100);
+}
+
+u8 DForce_PreventsPlasmaEffectDestruction(const struct DuelCard *target)
+{
+  u8 plasmaController;
+
+  return DForcePlasmaController(target, &plasmaController);
+}
+
+u8 DForce_PlasmaCanAttackAgain(const struct DuelCard *attacker)
+{
+  u8 plasmaController;
+
+  return DForcePlasmaController(attacker, &plasmaController);
+}
+
+void TryUnlockDForcePlasmaForSecondAttack(struct DuelCard *attacker)
+{
+  if (attacker == NULL || attacker->effectUsedThisTurn == TRUE)
+    return;
+  if (!DForce_PlasmaCanAttackAgain(attacker))
+    return;
+
+  attacker->effectUsedThisTurn = TRUE;
+  attacker->isLocked = FALSE;
+}
+
+/* Parent continuous hooks use the exported DForce_* queries in d_force.h. */
 static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
 {
   handSlot->id = cardId;
@@ -115,10 +196,6 @@ static void D_FORCE_ResolveBody(void)
   Duel_ShowEffectText(D_FORCE);
   AddPlasmaToHand();
   UpdateDuelGfxExceptField();
-
-  /* ponytail: While Plasma controlled — no Draw Phase draw / opp cannot target /
-   * Plasma +100 ATK per GY monster / destroy protect / second attack need
-   * continuous hooks outside this file. Ceiling: activate + Plasma search only. */
 }
 
 APPEND_TEXT void EffectD_FORCE(void)

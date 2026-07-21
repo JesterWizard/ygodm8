@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 20:06 UTC  
-**Remaining partials:** `838`
+**Last updated:** 2026-07-21 20:20 UTC  
+**Remaining partials:** `834`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 157 |
+| `spell` | 153 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **838** |
+| **total** | **834** |
 
-## spell (157)
+## spell (153)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -102,46 +102,26 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CYBERNETIC_ZONE`
 - path: `src_custom/spell_effects/cybernetic_zone.c`
-- L132: no RemovedFromPlay_RemoveAt — shift RFP after return.
-- L166: stage unit is 500 ATK — double via +original/500 stages. Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay.
-- L307: End Phase return + ATK double + next Standby destroy need turn_effect_hooks calls to TryApplyCyberneticZoneEndPhase / TryApplyCyberneticZoneStandby (clone Power Bond / Capsule wiring). Ceiling: banished + state stored only until wired; upgrade: hook those TryApply* from TryActivatingTurnEffects.
-
-### `D_BURST`
-- path: `src_custom/spell_effects/d_burst.c`
-- L134: GY ignition second attack needs battle End Damage Step hook.
-
-### `D_FORCE`
-- path: `src_custom/spell_effects/d_force.c`
-- L119: While Plasma controlled — no Draw Phase draw / opp cannot target / Plasma +100 ATK per GY monster / destroy protect / second attack need continuous hooks outside this file. Ceiling: activate + Plasma search only.
+- L133: no RemovedFromPlay_RemoveAt — shift RFP after return.
+- L167: stage unit is 500 ATK — double via +original/500 stages. Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay.
 
 ### `DARK_CALLING`
 - path: `src_custom/spell_effects/dark_calling.c`
-- L159: "treated as a Fusion Summon with Dark Fusion" name/interaction checks (cards that look for Dark Fusion) need a summon-tag outside this file. Ceiling: Fiend Fusion via hand/GY banish only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
-
-### `DARK_CITY_AT_MIDNIGHT`
-- path: `src_custom/spell_effects/dark_city_at_midnight.c`
-- L172: each Lv8+ Destiny HERO SS → Warriors +300 ATK, and destroy → Deck SS Destiny HERO need summon/destroy hooks outside this file. Ceiling: activate search only (printed: search if activated this turn).
+- L165: "treated as a Fusion Summon with Dark Fusion" name/interaction checks (cards that look for Dark Fusion) need a summon-tag outside this file. Ceiling: Fiend Fusion via hand/GY banish only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
 
 ### `DARK_CONTACT`
 - path: `src_custom/spell_effects/dark_contact.c`
-- L37: OPT flags never clear without a turn-end hook outside this file. Ceiling: each mode once per duel after first use; upgrade: turn_effect_hooks End Phase / turn-start → clear both flags.
-- L271: no dedicated choice UI — A = Dark Fusion FS, B = search. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L426: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
-- L567: "treated as a Fusion Summon with Dark Fusion" name/interaction checks need a summon-tag outside this file. Ceiling: Fiend Fusion via field/GY/banish shuffle only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
-
-### `DARK_FUSION`
-- path: `src_custom/spell_effects/dark_fusion.c`
-- L94: "opponent cannot target the Fusion this turn" needs a turn-scoped targeting-protect flag on the summoned zone (no in-file targeting gate). Ceiling: Fiend Fusion via Poly materials only; upgrade: mark result zone + spell/trap/monster target validators skip it until turn end.
-- L124: targeting protect this turn — same ceiling as player path.
+- L275: no dedicated choice UI — A = Dark Fusion FS, B = search. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L430: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
+- L571: "treated as a Fusion Summon with Dark Fusion" name/interaction checks need a summon-tag outside this file. Ceiling: Fiend Fusion via field/GY/banish shuffle only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
 
 ### `DARK_MAGIC_INHERITANCE`
 - path: `src_custom/spell_effects/dark_magic_inheritance.c`
-- L15: no card-description text search — approximate DM/DMG support S/T via name contains "Dark Magician"/"Dark Magic" plus a known support ID list. Ceiling: misses text-only mentions (e.g. cards that only list DM in effect text). Upgrade: description-string helper or generated support bitmask.
-- L360: once-per-turn activation not tracked after this normal spell leaves the field (no shared turn-flag RAM editable from this file alone).
+- L17: no card-description text search — approximate DM/DMG support S/T via name contains "Dark Magician"/"Dark Magic" plus a known support ID list. Ceiling: misses text-only mentions (e.g. cards that only list DM in effect text). Upgrade: description-string helper or generated support bitmask.
 
 ### `DARK_MAGIC_VEIL`
 - path: `src_custom/spell_effects/dark_magic_veil.c`
-- L109: no dedicated hand/GY choice UI — A = hand, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L110: no dedicated hand/GY choice UI — A = hand, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `DARK_MAGICAL_CIRCLE`
 - path: `src_custom/spell_effects/dark_magical_circle.c`

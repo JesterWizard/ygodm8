@@ -41,6 +41,7 @@
 #include "timed_duel.h"
 #include "mechanics_tutorial.h"
 #include "the_wicked_avatar.h"
+#include "d_force.h"
 
 void sub_8041B38(void);
 void sub_8041014(void);
@@ -374,6 +375,8 @@ static bool8 RunDuelTurnLoop(void) {
       /* ponytail: board and hand are pre-seeded; skip the draw phase. */
     } else if (MechanicsTutorial_ShouldSkipDrawPhase(turn)) {
       /* ponytail: board and hand are pre-seeded; skip the draw phase. */
+    } else if (DForce_ShouldBlockDrawPhase()) {
+      /* D - Force: neither player draws while Plasma is controlled. */
     } else if (SixCardHand_HasDrawRoom(turn)
                || NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
       PerformGuardianTreasureDrawPhaseDraws(turn);

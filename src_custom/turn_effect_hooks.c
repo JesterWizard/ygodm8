@@ -19,6 +19,7 @@
 #include "cyber_barrier_dragon.h"
 #include "ectoplasmer.h"
 #include "future_fusion.h"
+#include "cybernetic_zone.h"
 #include "power_bond.h"
 #include "the_big_saturn.h"
 #include "the_grand_jupiter.h"
@@ -350,6 +351,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyDarkSnakeSyndromeStandbyDamage();
   TryApplyNightmareWheelStandbyDamage();
   TryApplyFutureFusionStandby();
+  TryApplyCyberneticZoneStandby();
   TryBottomlessShiftingSandTurnStart();
   if (IsDuelOver() == 1)
     return;
@@ -369,6 +371,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyPowerBondEndPhaseBurn();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyCyberneticZoneEndPhase();
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();

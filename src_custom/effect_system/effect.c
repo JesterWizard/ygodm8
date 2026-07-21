@@ -17,6 +17,7 @@
 #include "celestial_sword_eatos.h"
 #include "clock_tower_prison.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
+#include "dark_city_at_midnight.h"
 #include "elemental_hero_inferno.h"
 #include "geartown.h"
 #include "skyscraper.h"
@@ -197,6 +198,30 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_ClockTowerPrisonOnDestroy,
+  },
+  {
+      DARK_CITY_AT_MIDNIGHT,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_DarkCityOnSummon,
+      NULL,
+      NULL,
+      Op_DarkCityOnSummon,
+  },
+  {
+      DARK_CITY_AT_MIDNIGHT,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_DarkCityOnDestroy,
+      NULL,
+      NULL,
+      Op_DarkCityOnDestroy,
   },
   {
       COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS,

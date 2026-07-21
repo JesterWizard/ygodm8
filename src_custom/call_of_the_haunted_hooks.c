@@ -5,6 +5,7 @@
 #include "embodiment_of_apophis.h"
 #include "configs/runtime.h"
 #include "debug_ruleset.h"
+#include "duel_helpers.h"
 #include "fairy_box.h"
 #include "mirror_wall.h"
 #include "cyber_barrier_dragon.h"
@@ -24,6 +25,8 @@
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_wildedge.h"
 #include "amazoness_call.h"
+#include "d_burst.h"
+#include "d_force.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "ghost_knight_of_jackal.h"
@@ -423,6 +426,17 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
       attacker,
       isDirect ? NULL
                : gTurnZones[sAttackResume.defenderRow][sAttackResume.defenderCol]);
+  TryUnlockDForcePlasmaForSecondAttack(attacker);
+  {
+    u8 fr;
+    u8 fc;
+    u8 fixed;
+
+    if (attacker != NULL && Duel_FindFixedMonsterZone(attacker, &fr, &fc)) {
+      fixed = Duel_FixedDuelistForMonsterRow(fr);
+      D_Burst_ActivateGyBattle(attacker, fixed);
+    }
+  }
   sub_801BC00();
   UpdateAllDuelGfx();
   ResolveTheUnhappyMaidenBattleEffect();

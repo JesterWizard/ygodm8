@@ -7,6 +7,8 @@
 #include "chain_summoning.h"
 #include "cold_wave.h"
 #include "contact_gate.h"
+#include "dark_contact.h"
+#include "dark_fusion.h"
 #include "constants/card_ids.h"
 #include "duel.h"
 #include "duel_helpers.h"
@@ -163,6 +165,8 @@ void EffectEvent_OnTurnBoundary(void)
   ChainSummoning_ResetTurnState();
   ColdWave_OnTurnBoundary();
   ContactGate_OnTurnBoundary();
+  DarkContact_ClearOnTurnBoundary();
+  DarkFusion_ClearOnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

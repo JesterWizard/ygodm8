@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "cybernetic_zone.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
@@ -304,11 +305,9 @@ static void ResolveCyberneticZoneTarget(u8 fixedRow, u8 fixedCol)
 
   DestroyCyberneticZoneSpellZone();
 
-  /* ponytail: End Phase return + ATK double + next Standby destroy need
-   * turn_effect_hooks calls to TryApplyCyberneticZoneEndPhase /
-   * TryApplyCyberneticZoneStandby (clone Power Bond / Capsule wiring).
-   * Ceiling: banished + state stored only until wired; upgrade: hook those
-   * TryApply* from TryActivatingTurnEffects. */
+  /* Parent wires TryApplyCyberneticZoneEndPhase and
+   * TryApplyCyberneticZoneStandby from cybernetic_zone.h into the matching
+   * turn-effect boundaries. */
 }
 
 static void CancelCyberneticZoneTargeting(void)

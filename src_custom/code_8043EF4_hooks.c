@@ -112,6 +112,8 @@
 #include "elemental_hero_wild_wingman.h"
 #include "elemental_hero_wildedge.h"
 #include "amazoness_call.h"
+#include "d_burst.h"
+#include "d_force.h"
 #include "elemental_hero_necroshade.h"
 #include "ancient_gear_advance.h"
 #include "ancient_gear_castle.h"
@@ -1806,6 +1808,20 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       TryUnlockAmazonessCallForNextAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
+      TryUnlockDForcePlasmaForSecondAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      {
+        u8 fr;
+        u8 fc;
+        u8 fixed;
+
+        if (Duel_FindFixedMonsterZone(
+                gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], &fr, &fc)) {
+          fixed = Duel_FixedDuelistForMonsterRow(fr);
+          D_Burst_ActivateGyBattle(
+              gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], fixed);
+        }
+      }
       gDuelCursor.state = 0;
       sub_801BC00();
       UpdateAllDuelGfx();
@@ -1959,6 +1975,20 @@ void TryAttackWithMonster__Replacement(void)
       TryUnlockAmazonessCallForNextAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockDForcePlasmaForSecondAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      {
+        u8 fr;
+        u8 fc;
+        u8 fixed;
+
+        if (Duel_FindFixedMonsterZone(
+                gFixedZones[gDuelCursor.destY][gDuelCursor.destX], &fr, &fc)) {
+          fixed = Duel_FixedDuelistForMonsterRow(fr);
+          D_Burst_ActivateGyBattle(
+              gFixedZones[gDuelCursor.destY][gDuelCursor.destX], fixed);
+        }
+      }
       gDuelCursor.state = 0;
       SetCursorToCardDest();
       sub_801BC00();

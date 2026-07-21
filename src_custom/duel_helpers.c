@@ -5,6 +5,7 @@
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
+#include "d_force.h"
 #include "duel_status.h"
 #include "effect_events.h"
 #include "god_card.h"
@@ -560,6 +561,10 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
 
   if (zone == NULL || zone->id == CARD_NONE)
     return DUEL_ACTION_NO_TARGET;
+
+  if (DForce_PreventsPlasmaEffectDestruction(zone)
+      || ColosseumCage_TryPreventDestroyByCardEffect(zone))
+    return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;
   wasMonster = GetTypeGroup(cardId) == TYPE_GROUP_MONSTER;

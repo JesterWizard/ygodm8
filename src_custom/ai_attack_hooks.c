@@ -22,6 +22,8 @@
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_wildedge.h"
 #include "amazoness_call.h"
+#include "d_burst.h"
+#include "d_force.h"
 #include "aroma_gardening.h"
 #include "sasuke_samurai.h"
 #include "toll.h"
@@ -229,6 +231,17 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockBlackLusterSoldierEnvoyForSecondAttack(attacker);
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, NULL);
   TryUnlockAmazonessCallForNextAttack(attacker, NULL);
+  TryUnlockDForcePlasmaForSecondAttack(attacker);
+  {
+    u8 fr;
+    u8 fc;
+    u8 fixed;
+
+    if (attacker != NULL && Duel_FindFixedMonsterZone(attacker, &fr, &fc)) {
+      fixed = Duel_FixedDuelistForMonsterRow(fr);
+      D_Burst_ActivateGyBattle(attacker, fixed);
+    }
+  }
 }
 
 static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender) {
@@ -290,6 +303,17 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockBlackLusterSoldierEnvoyForSecondAttack(attacker);
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, defender);
   TryUnlockAmazonessCallForNextAttack(attacker, defender);
+  TryUnlockDForcePlasmaForSecondAttack(attacker);
+  {
+    u8 fr;
+    u8 fc;
+    u8 fixed;
+
+    if (attacker != NULL && Duel_FindFixedMonsterZone(attacker, &fr, &fc)) {
+      fixed = Duel_FixedDuelistForMonsterRow(fr);
+      D_Burst_ActivateGyBattle(attacker, fixed);
+    }
+  }
 }
 
 LYN_REPLACE_CHECK(sub_800E50C);

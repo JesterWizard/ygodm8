@@ -4,6 +4,7 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
+#include "dark_magic_veil.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -83,7 +84,7 @@ static u8 CanPayDarkMagicVeilCost(void)
   return gDuelLifePoints[DUEL_OPPONENT] > DARK_MAGIC_VEIL_LP_COST;
 }
 
-static u8 CanActivateDarkMagicVeil(void)
+u8 CanActivateDARK_MAGIC_VEIL(void)
 {
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
@@ -332,7 +333,7 @@ static void DARK_MAGIC_VEIL_ResolveBody(void)
   struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
   u8 useHand;
 
-  if (!CanActivateDarkMagicVeil())
+  if (!CanActivateDARK_MAGIC_VEIL())
     return;
 
   if (!IsSpellEconomicsActiveForActiveDuelist()) {
@@ -367,7 +368,7 @@ static void DARK_MAGIC_VEIL_ResolveBody(void)
 
 APPEND_TEXT void EffectDARK_MAGIC_VEIL(void)
 {
-  if (!CanActivateDarkMagicVeil()) {
+  if (!CanActivateDARK_MAGIC_VEIL()) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;

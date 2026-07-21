@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "d_burst.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
@@ -110,6 +111,75 @@ u8 CanActivateD_BURST(void)
   return EffectSel_ExistsByCond(EFFECT_COND_ACTIVE_FACE_UP_SPELL);
 }
 
+static s8 FindDBurstGyIndex(u8 fixedDuelist)
+{
+  u8 i;
+
+  if (!GraveyardExpand_IsEnabled())
+    return -1;
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (GraveyardExpand_GetCardAt(fixedDuelist, i) == D_BURST)
+      return (s8)i;
+  }
+
+  return -1;
+}
+
+static u8 AttackerBelongsToFixedDuelist(struct DuelCard *attacker, u8 fixedDuelist)
+{
+  u8 turnRow;
+  u8 turnCol;
+  u8 turnDuelist;
+
+  if (attacker == NULL || !Duel_FindTurnMonsterZone(attacker, &turnRow, &turnCol))
+    return FALSE;
+
+  turnDuelist = turnRow == ACTIVE_DUELIST_MONSTER_ROW ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+  return FixedDuelistForTurnDuelist(turnDuelist) == fixedDuelist;
+}
+
+/* Parent wires these d_burst.h helpers at the end of a Destiny HERO battle. */
+u8 D_Burst_CanActivateGyBattle(struct DuelCard *attacker, u8 fixedDuelist)
+{
+  if (fixedDuelist > DUEL_OPPONENT)
+    return FALSE;
+
+  if (EffectOpt_IsUsed(D_BURST))
+    return FALSE;
+
+  if (!AttackerBelongsToFixedDuelist(attacker, fixedDuelist))
+    return FALSE;
+
+  if (!IsDestinyHeroMonster(attacker->id))
+    return FALSE;
+
+  return FindDBurstGyIndex(fixedDuelist) >= 0;
+}
+
+void D_Burst_ActivateGyBattle(struct DuelCard *attacker, u8 fixedDuelist)
+{
+  s8 gyIndex;
+
+  if (!D_Burst_CanActivateGyBattle(attacker, fixedDuelist))
+    return;
+
+  gyIndex = FindDBurstGyIndex(fixedDuelist);
+  if (gyIndex < 0)
+    return;
+
+  Duel_ShowEffectText(D_BURST);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (Duel_BanishGraveyardAtFixed(fixedDuelist, (u8)gyIndex) == CARD_NONE)
+    return;
+
+  EffectOpt_MarkUsed(D_BURST);
+  attacker->isLocked = FALSE;
+  UpdateDuelGfxExceptField();
+}
+
 static void D_BURST_ResolveBody(void)
 {
   if (!CanActivateD_BURST()) {
@@ -130,8 +200,6 @@ static void D_BURST_ResolveBody(void)
     Duel_EnterPickZoneTargeting();
   else
     Duel_ResolvePickZoneForAi();
-
-  /* ponytail: GY ignition second attack needs battle End Damage Step hook. */
 }
 
 APPEND_TEXT void EffectD_BURST(void)

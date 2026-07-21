@@ -5,6 +5,7 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
+#include "dark_contact.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "elemental_hero_absolute_zero.h"
@@ -34,9 +35,6 @@ enum DarkContactMode {
 /* gyIndex bit7 set → Removed-from-play index in low 7 bits; else GY index. */
 #define DARK_CONTACT_RFP_FLAG 0x80
 
-/* ponytail: OPT flags never clear without a turn-end hook outside this file.
- * Ceiling: each mode once per duel after first use; upgrade: turn_effect_hooks
- * End Phase / turn-start → clear both flags. */
 static u8 sDarkContactFusionUsed APPEND_DATA = {0};
 static u8 sDarkContactSearchUsed APPEND_DATA = {0};
 
@@ -58,6 +56,12 @@ static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+void DarkContact_ClearOnTurnBoundary(void)
+{
+  sDarkContactFusionUsed = FALSE;
+  sDarkContactSearchUsed = FALSE;
 }
 
 static u8 RecipeIsFiendFusion(const struct FusionRecipe *recipe)

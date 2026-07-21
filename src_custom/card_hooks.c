@@ -11,6 +11,7 @@
 #include "bubble_blaster.h"
 #include "burden_of_the_mighty.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
+#include "d_force.h"
 #include "divine_sanctuary.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -759,6 +760,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyAncientGearCastleAtkBoostForZone(gSetFinalStatZone);
     ApplyBurdenOfTheMightyStatForZone(gSetFinalStatZone);
     ApplyColosseumCageStatForZone(gSetFinalStatZone);
+    ApplyDForcePlasmaAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyTheTripperMercuryOpponentAtkDrain(gSetFinalStatZone);
     ApplyTheGrandJupiterEquipAtkBonus(gSetFinalStatZone);
     ApplyTheDespairUranusAtkBoost(gSetFinalStatZone);

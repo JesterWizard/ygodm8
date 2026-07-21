@@ -7,35 +7,34 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 20:06 UTC  
-**Ceiling lines tagged:** `1064`  
-**Partial files:** `838`
+**Last updated:** 2026-07-21 20:20 UTC  
+**Ceiling lines tagged:** `1056`  
+**Partial files:** `834`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 343 | triage |
-| `event.OnStandby` | 262 | 3 (OPT / turn flags) |
-| `event.OnBattleDestroy` | 86 | 3 |
+| `other` | 341 | triage |
+| `event.OnStandby` | 260 | 3 (OPT / turn flags) |
+| `event.OnBattleDestroy` | 85 | 3 |
 | `event.OnSummon` | 72 | 3 |
 | `ui.Choice` | 57 | 2 |
 | `chain.Negate` | 54 | later / chain |
 | `gate.Tribute` | 43 | 2–3 |
 | `op.Search` | 38 | 1 |
-| `event.OnDestroy` | 37 | 3 |
-| `stat.Continuous` | 28 | 1–3 |
-| `op.BanishTimed` | 23 | 1–3 |
+| `event.OnDestroy` | 36 | 3 |
+| `stat.Continuous` | 27 | 1–3 |
+| `op.BanishTimed` | 22 | 1–3 |
 | `event.GyIgnition` | 16 | 3 |
 | `equip.Register` | 3 | 1 (lists) |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **1064** | |
+| **total** | **1056** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (86)
+## `event.OnBattleDestroy` (85)
 
-- `D_BURST` (spell): L134: GY ignition second attack needs battle End Damage Step hook.
 - `EN_WAVE` (spell): L11: OPT "E-HERO used as Fusion material → GY/banish (not Damage Step): SS 1 Neo-Spacian or ELEMENTAL_HERO_NEOS from Deck" needs a fusion-material send listener outside this file. Ceiling: continuous face-up only; upgrade: after Fusion material leave → if face-up EN_WAVE and OPT clear, DeckMenu Neo-Spacian / NEOS → Duel_SpecialSummonFromDeck.
 - `EN_WAVE` (spell): L17: OPT "Neo-Spacian or ELEMENTAL_HERO_NEOS shuffled from field/GY into Deck/Extra Deck (not Damage Step): SS 1 Elemental HERO from GY" needs a shuffle-into-deck listener + GY pick outside this file. Ceiling: continuous face-up only; upgrade: on shuffle → if face-up EN_WAVE and OPT clear, PickZone/DeckMenu E-HERO in GY → Duel_SpecialSummonFromGrave.
 - `FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS` (spell): L309: when opponent declares an attack → OPT SS 1 Gladiator Beast from Deck (cannot be destroyed by battle) needs an attack-declaration hook outside this file. Ceiling: face-up field + search ignition only; upgrade: on attack declare → if face-up FLAVIAN and !OPT2 then Duel_SpecialSummonFromDeck(GB) + battle-destroy protect flag.
@@ -127,9 +126,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ELEMENTAL_HERO_CAPTAIN_GOLD` (permanent): L68: with Skyscraper active, prefer normal summon as a 2100 beater
 - `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` (permanent): L121: unaffected-after-SS + battle ATK boost need continuous/battle hooks.
 
-## `event.OnDestroy` (37)
+## `event.OnDestroy` (36)
 
-- `DARK_CITY_AT_MIDNIGHT` (spell): L172: each Lv8+ Destiny HERO SS → Warriors +300 ATK, and destroy → Deck SS Destiny HERO need summon/destroy hooks outside this file. Ceiling: activate search only (printed: search if activated this turn).
 - `INSTANT_NEO_SPACE` (spell): L92: leave-field → SS 1 ELEMENTAL_HERO_NEOS from hand/Deck/GY needs a destroy/leave hook outside this file (OnDynamicEquipZoneAboutToClear). Ceiling: equip-only works; revive not wired from this file. Upgrade: leave-hook → Duel_SpecialSummonFromHand/Deck/Grave(ELEMENTAL_HERO_NEOS).
 - `MASK_OF_DISPEL` (spell): L98: self-destroy when selected Spell leaves the field needs a destroy/leave-field listener outside this file. Ceiling: target stash only; upgrade: OnZoneClear → if id matches stashed MASK_OF_DISPEL target then Duel_DestroyZone(mask).
 - `MORALE_BOOST` (spell): L17: equip-on / equip-off LP swing needs field/equip hooks outside this file (RegisterDynamicEquip / OnDynamicEquipZoneAboutToClear / vanilla equip attach-detach). Ceiling: continuous face-up only; upgrade: when any Equip Spell equips → Duel_ChangeLp(controller, +MORALE_BOOST_LP_GAIN); when any Equip Spell leaves field → Duel_ChangeLp(controller, -MORALE_BOOST_DAMAGE).
@@ -170,8 +168,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 ## `event.OnSummon` (72)
 
 - `AROMA_BLEND` (spell): L291: GY effect (banish this → Fusion Summon Plant Fusion by banishing materials from hand/field, and GY Plants if LP higher) needs a GY-activate path + Plant Fusion recipe filter outside this file. Ceiling: discard + place Humid/Dried/Blessed Winds face-up only; upgrade: GY activate AROMA_BLEND → banish self → FusionDuel Plant Fusion pay
-- `DARK_CALLING` (spell): L159: "treated as a Fusion Summon with Dark Fusion" name/interaction checks (cards that look for Dark Fusion) need a summon-tag outside this file. Ceiling: Fiend Fusion via hand/GY banish only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
-- `DARK_CONTACT` (spell): L567: "treated as a Fusion Summon with Dark Fusion" name/interaction checks need a summon-tag outside this file. Ceiling: Fiend Fusion via field/GY/banish shuffle only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
+- `DARK_CALLING` (spell): L165: "treated as a Fusion Summon with Dark Fusion" name/interaction checks (cards that look for Dark Fusion) need a summon-tag outside this file. Ceiling: Fiend Fusion via hand/GY banish only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
+- `DARK_CONTACT` (spell): L571: "treated as a Fusion Summon with Dark Fusion" name/interaction checks need a summon-tag outside this file. Ceiling: Fiend Fusion via field/GY/banish shuffle only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
 - `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` (spell): L127: special-face-up sets unk4=2 and blocks DMoC's on-summon effect
 - `FUSION_DESTINY` (spell): L344: destroy summoned Fusion during End Phase of next turn needs a turn_effect hook + 2-turn stamp outside this file. Ceiling: Fusion Summon only; upgrade: mark result zone / BSS turn counter → End Phase destroy.
 - `HARPIES_HUNTING_GROUND` (spell): L93: on Normal/Special Summon of Harpie Lady / Harpie Lady Sisters (name-treated), summoner destroys 1 S/T — needs a summon-listener outside this file. Ceiling: no trigger from spell file alone; upgrade: after-summon hook → if face-up HARPIES_HUNTING_GROUND and summoned id is HARPIE_LADY / HARPIE_LADY_1/2/3 / HARPIE_LADY_SISTERS (or name "Harpie Lady") then
@@ -242,13 +240,11 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (262)
+## `event.OnStandby` (260)
 
 - `AROMA_GARDEN` (spell): L90: printed "until end of opponent's next turn (even if this card leaves)" needs a multi-turn temp-stage / overlay tracker outside this file. Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages / EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on zones and skip ResetTempStages until that turn's End Phase.
 - `CHICKEN_GAME` (spell): L209: OPT ignition no-response — parent skips TryResolveSpellThroughTraps when ChickenGame_ShouldSkipTrapChain() during face-up re-activation.
 - `COURT_OF_JUSTICE` (spell): L33: attack-position monsters keep isFaceUp=0 until EOT FlipAtkPosCardsFaceUp.
-- `DARK_CONTACT` (spell): L37: OPT flags never clear without a turn-end hook outside this file. Ceiling: each mode once per duel after first use; upgrade: turn_effect_hooks End Phase / turn-start → clear both flags.
-- `DARK_MAGIC_INHERITANCE` (spell): L360: once-per-turn activation not tracked after this normal spell leaves the field (no shared turn-flag RAM editable from this file alone).
 - `DARK_MAGICAL_CIRCLE` (spell): L189: If DM NS/SS → target opp card banish needs summon trigger + PickZone outside this file. Ceiling: activate look/add only; upgrade: on DM summon → PickZone opp field → Duel_BanishZone. OPT flags need turn_effect reset.
 - `DARK_MAGICIAN_CIRCLE` (spell): L189: If DM NS/SS → target opp card banish needs summon trigger + PickZone outside this file. Ceiling: activate look/add only; upgrade: on DM summon → PickZone opp field → Duel_BanishZone. OPT flags need turn_effect reset.
 - `DIFFERENT_DIMENSION_CAPSULE` (spell): L297: 2nd Standby destroy+add needs turn_effect_hooks call to TryApplyDifferentDimensionCapsuleStandby (clone Future Fusion wiring). Ceiling: banished card stored + continuous face-up only until wired; upgrade: turn_effect_hooks Standby → TryApplyDifferentDimensionCapsuleStandby.
@@ -629,9 +625,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `LEGENDARY_MAJU_GARZETT` (permanent): L8: ATK = tributed originals needs hand-tribute SS stat capture; FromHand only.
 - `MAGICIANS_ROD` (permanent): L138: GY tribute Spellcaster → add this needs opp-turn quick hook.
 
-## `stat.Continuous` (28)
+## `stat.Continuous` (27)
 
-- `D_FORCE` (spell): L119: While Plasma controlled — no Draw Phase draw / opp cannot target / Plasma +100 ATK per GY monster / destroy protect / second attack need continuous hooks outside this file. Ceiling: activate + Plasma search only.
 - `FIELD_BARRIER` (spell): L43: Field Spell destroy protection + block new Field Spell activation need destroy-gate and Field Spell activation hooks outside this file (no in-file destroy/activate dispatch). Ceiling: continuous face-up + 1-copy control check only; upgrade: LynJump Duel_DestroyZone / Field Spell activate → if face-up FIELD_BARRIER then skip Field Spell destroy and refuse new
 - `HARPIES_HUNTING_GROUND` (spell): L88: +200 ATK/DEF for all Winged Beast monsters needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up HARPIES_HUNTING_GROUND and TYPE_WINGED_BEAST then ATK/DEF += 200.
 - `HIDDEN_TEMPLES_OF_NECROVALLEY` (spell): L53: SS lock "except Gravekeeper's" needs a CanSpecialSummon / Duel_CardCannotBeSpecialSummoned gate outside this file. Ceiling: continuous face-up only; upgrade: LynJump PlaceMonster / Duel_CardCannotBeSpecialSummoned → if face-up HIDDEN_TEMPLES_OF_NECROVALLEY on field and card is not Gravekeeper (Duel_CardNameContains "Gravekeeper"),
@@ -673,8 +668,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ARCANA_SPREAD` (spell): L232: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L172: no dedicated choice UI — A = SS Dark Magician, B = SS Dark Magician Girl. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - `CHICKEN_GAME` (spell): L95: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- `DARK_CONTACT` (spell): L271: no dedicated choice UI — A = Dark Fusion FS, B = search. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- `DARK_MAGIC_VEIL` (spell): L109: no dedicated hand/GY choice UI — A = hand, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- `DARK_CONTACT` (spell): L275: no dedicated choice UI — A = Dark Fusion FS, B = search. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- `DARK_MAGIC_VEIL` (spell): L110: no dedicated hand/GY choice UI — A = hand, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - `DOCTOR_D` (spell): L110: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - `DRAGON_RAVINE` (spell): L187: no dedicated choice UI — A = add Dragunity, B = send Dragon to GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - `DRAGON_SHRINE` (spell): L165: no dedicated choice UI — A = send 1 more, B = stop. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
@@ -729,7 +724,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 ## `op.Search` (38)
 
 - `CHARGE_OF_THE_LIGHT_BRIGADE` (spell): L149: legacy single-card GY — milled cards vanish from deck only.
-- `DARK_MAGIC_INHERITANCE` (spell): L15: no card-description text search — approximate DM/DMG support S/T via name contains "Dark Magician"/"Dark Magic" plus a known support ID list. Ceiling: misses text-only mentions (e.g. cards that only list DM in effect text). Upgrade: description-string helper or generated support bitmask.
+- `DARK_MAGIC_INHERITANCE` (spell): L17: no card-description text search — approximate DM/DMG support S/T via name contains "Dark Magician"/"Dark Magic" plus a known support ID list. Ceiling: misses text-only mentions (e.g. cards that only list DM in effect text). Upgrade: description-string helper or generated support bitmask.
 - `EVIL_ASSAULT` (spell): L334: "cannot Special Summon from Extra Deck except HERO monsters this turn" needs a summon-lock flag outside this file. Ceiling: discard+search/SS only; upgrade: turn flag → Extra Deck SS gate allows only HERO name results.
 - `GLADIATOR_BEAST_BATTLE_HALBERD` (spell): L70: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip only; upgrade: on GB return-to-deck → if linked GLADIATOR_BEAST_BATTLE_HALBERD hits GY then GY→hand.
 - `GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD` (spell): L69: recycle-to-hand when equipped monster returns to Deck (tag-out) and this card is sent to GY needs a return-to-deck / equip-send hook outside this file. Ceiling: equip only; upgrade: on GB return-to-deck → if linked ARCHFIEND_SHIELD hits GY then add it from GY to hand.
@@ -767,10 +762,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `REPTILIANNE_GARDNA` (permanent): L8: destroyed→search Reptilianne needs destroy-to-GY permanent hook.
 - `WULF_LIGHTSWORN_BEAST` (permanent): L8: milled-from-Deck Special Summon needs mill/deck-send hook.
 
-## `op.BanishTimed` (23)
+## `op.BanishTimed` (22)
 
 - `BOOK_OF_LIFE` (spell): L159: single-card GY model — banish removes opponent's top graveyard card.
-- `CYBERNETIC_ZONE` (spell): L307: End Phase return + ATK double + next Standby destroy need turn_effect_hooks calls to TryApplyCyberneticZoneEndPhase / TryApplyCyberneticZoneStandby (clone Power Bond / Capsule wiring). Ceiling: banished + state stored only until wired; upgrade: hook those TryApply* from TryActivatingTurnEffects.
 - `DIFFERENT_DIMENSION_CAPSULE` (spell): L274: RFP disabled — cannot banish from Deck. Ceiling: activation text only; upgrade: enable removed_from_play.
 - `DIMENSION_FUSION` (spell): L147: RFP zone is id-list only (no face/position memory). Ceiling: SS face-up ATK via Duel_SpecialSummonMonsterId; upgrade: store zone state on banish + restore on return.
 - `GRAVEKEEPERS_INSCRIPTION` (spell): L110: chosen lock until end of opponent's turn needs gates outside this file. Ceiling: mode stored in APPEND_DATA only (no enforcement alone); upgrade: Duel_IsCardActivationBlocked / banish / SS-from-GY hooks → if GravekeepersInscription_GetActiveMode() matches, block that path; End Phase → TryClearGravekeepersInscriptionEndPhase.
@@ -793,7 +787,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (343)
+## `other` (341)
 
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
@@ -806,11 +800,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `COLD_WAVE` (spell): L30: no Main Phase 1-start / prior-action API - parent wires ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction) at activation.
 - `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS` (spell): L231: no labeled confirm menu - auto-discard when another copy is in hand.
 - `CONTACT_GATE` (spell): L525: no RemovedFromPlay_RemoveAt - parent must shift RFP after SS.
-- `CYBERNETIC_ZONE` (spell): L132: no RemovedFromPlay_RemoveAt — shift RFP after return.
-- `CYBERNETIC_ZONE` (spell): L166: stage unit is 500 ATK — double via +original/500 stages. Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay.
-- `DARK_CONTACT` (spell): L426: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
-- `DARK_FUSION` (spell): L94: "opponent cannot target the Fusion this turn" needs a turn-scoped targeting-protect flag on the summoned zone (no in-file targeting gate). Ceiling: Fiend Fusion via Poly materials only; upgrade: mark result zone + spell/trap/monster target validators skip it until turn end.
-- `DARK_FUSION` (spell): L124: targeting protect this turn — same ceiling as player path.
+- `CYBERNETIC_ZONE` (spell): L133: no RemovedFromPlay_RemoveAt — shift RFP after return.
+- `CYBERNETIC_ZONE` (spell): L167: stage unit is 500 ATK — double via +original/500 stages. Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay.
+- `DARK_CONTACT` (spell): L430: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
 - `DE_SYNCHRO` (spell): L81: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field + best-effort ExtraDeck_AddCard when enable_extra_deck; upgrade: per-duelist mid-duel Extra Deck return for the Synchro's controller.
 - `DE_SYNCHRO` (spell): L101: Synchro Summon materials are not recorded at summon time, so "if all materials are in your GY, SS all of them" cannot run. Ceiling: return-to-Extra-Deck only; upgrade: store material cardIds on the Synchro zone at SynchroDuel_Execute, then if each is in GY, SS from GY.
 - `DIFFERENT_DIMENSION_CAPSULE` (spell): L174: no RemovedFromPlay_RemoveAt — shift RFP after returning the capsule card. Ceiling: local mutate; upgrade: RemovedFromPlay_RemoveAt helper.

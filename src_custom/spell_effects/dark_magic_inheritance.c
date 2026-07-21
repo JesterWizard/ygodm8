@@ -1,8 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "dark_magic_inheritance.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
@@ -38,6 +40,16 @@ static const u8 sDarkMagicInheritancePickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
+
+u8 DarkMagicInheritance_IsOptUsed(void)
+{
+  return EffectOpt_IsUsed(DARK_MAGIC_INHERITANCE);
+}
+
+void DarkMagicInheritance_MarkOptUsed(void)
+{
+  EffectOpt_MarkUsed(DARK_MAGIC_INHERITANCE);
+}
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -357,8 +369,8 @@ static u8 CanActivateDarkMagicInheritance(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
 
-  /* ponytail: once-per-turn activation not tracked after this normal spell
-   * leaves the field (no shared turn-flag RAM editable from this file alone). */
+  if (DarkMagicInheritance_IsOptUsed())
+    return FALSE;
 
   if (CountSpellsInGraveyard(fixedDuelist) < 2)
     return FALSE;
@@ -380,6 +392,7 @@ static void DARK_MAGIC_INHERITANCE_ResolveBody(void)
   if (IsDuelOver() == TRUE || !CanActivateDarkMagicInheritance())
     return;
 
+  DarkMagicInheritance_MarkOptUsed();
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
 
   if (IsDuelOver() == TRUE)

@@ -5,6 +5,7 @@
 #include "constants/card_effect_texts.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
+#include "dark_calling.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
@@ -16,6 +17,11 @@ static u8 TurnDuelistToFixed(u8 turnDuelist)
   if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_OPPONENT])
     return DUEL_OPPONENT;
   return DUEL_PLAYER;
+}
+
+u8 DarkCalling_TreatsSpellAsDarkFusion(u16 spellId)
+{
+  return spellId == DARK_CALLING;
 }
 
 static u8 RecipeIsFiendFusion(const struct FusionRecipe *recipe)
