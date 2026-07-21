@@ -64,11 +64,6 @@ static void EquipBubbleBlaster(struct DuelCard *spellZone, struct DuelCard *targ
    * step hook outside this file. Ceiling: Bubbleman equip + ATK only; upgrade:
    * if DynamicEquipTargetsMonsterWithSpell(zone, BUBBLE_BLASTER) would be battle-
    * destroyed → destroy BUBBLE_BLASTER instead and set battle damage to 0. */
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add BUBBLE_BLASTER to card_hooks GetSpellType EQUIP list and
-   * dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART. */
 }
 
 static void ResolveBubbleBlasterTarget(u8 fixedRow, u8 fixedCol)

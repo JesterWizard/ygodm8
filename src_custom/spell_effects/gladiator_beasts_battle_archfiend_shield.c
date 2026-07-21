@@ -60,12 +60,6 @@ static void EquipArchfiendShield(struct DuelCard *spellZone, struct DuelCard *ta
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
 
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD to card_hooks
-   * GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone;
-   * upgrade: same as H_HEATED_HEART. */
-
   /* ponytail: "if equipped would be destroyed, destroy this instead" needs a
    * destroy-substitute gate outside this file (no in-file Duel_DestroyZone
    * redirect). Ceiling: equip link only; upgrade: Duel_DestroyZone → if

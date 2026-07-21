@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcane_barrier.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
@@ -169,16 +170,46 @@ static void ARCANE_BARRIER_ResolveBody(void)
     zone->unk4 = 0;
 
   Duel_ShowEffectText(ARCANE_BARRIER);
+}
 
-  /* ponytail: Spell Counters when a face-up Spellcaster is destroyed need a
-   * destroy / leave-field hook outside this file (no in-file destroy dispatch).
-   * Ceiling: continuous face-up + ignition when unk4>0 (never rises alone);
-   * upgrade: on face-up Spellcaster destroy → if face-up ARCANE_BARRIER then
-   * zone->unk4++ (cap ARCANE_BARRIER_MAX_COUNTERS). */
+u8 Cond_ArcaneBarrierOnDestroy(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+  struct DuelCard *zone;
 
-  /* ponytail: not in GetSpellType NORMAL override — face-up re-activation may
-   * need card_hooks GetSpellType + ARCANE_BARRIER listed (same as SHARD_OF_GREED /
-   * CALL_OF_THE_MUMMY). */
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+
+  ev = ctx->event;
+  if (ev->controller != DUEL_PLAYER && ev->controller != DUEL_OPPONENT)
+    return FALSE;
+
+  if (ev->cardId == CARD_NONE || !Duel_CardHasMonsterType(ev->cardId, TYPE_SPELLCASTER))
+    return FALSE;
+
+  /* Face-up: attack-pos may still have isFaceUp=0 mid-turn. */
+  zone = ev->zone;
+  if (zone != NULL && zone->isDefending && !IsCardFaceUp(zone))
+    return FALSE;
+
+  return Duel_FindBackrowCard(ev->controller, ARCANE_BARRIER, TRUE) != NULL;
+}
+
+enum DuelActionResult Op_ArcaneBarrierOnDestroy(struct EffectCtx *ctx)
+{
+  struct DuelCard *barrier;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return DUEL_ACTION_INVALID;
+
+  barrier = Duel_FindBackrowCard(ctx->event->controller, ARCANE_BARRIER, TRUE);
+  if (barrier == NULL)
+    return DUEL_ACTION_NO_TARGET;
+
+  if (barrier->unk4 < ARCANE_BARRIER_MAX_COUNTERS)
+    barrier->unk4++;
+
+  return DUEL_ACTION_OK;
 }
 
 APPEND_TEXT void EffectARCANE_BARRIER(void)

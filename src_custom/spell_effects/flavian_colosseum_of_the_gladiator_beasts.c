@@ -317,12 +317,7 @@ static void FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS_ResolveBody(void)
    * Ceiling: no End Phase Set; upgrade: turn_effect End Phase → if face-up
    * FLAVIAN && ssFromDeckFlag && !OPT3 then DeckMenu Set trap with name
    * containing "Gladiator" and TYPE_GROUP_TRAP. */
-
-  /* ponytail: not in GetSpellType NORMAL/FIELD override — face-up OPT
-   * re-activation may need card_hooks GetSpellType + FLAVIAN listed
-   * (same as DRAGON_RAVINE / CHICKEN_GAME). */
-
-  (void)sGladiatorName;
+(void)sGladiatorName;
 }
 
 APPEND_TEXT void EffectFLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS(void)

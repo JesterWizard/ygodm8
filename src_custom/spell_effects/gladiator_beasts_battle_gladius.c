@@ -69,12 +69,6 @@ static void EquipGladius(struct DuelCard *spellZone, struct DuelCard *target)
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
 
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add GLADIATOR_BEASTS_BATTLE_GLADIUS to card_hooks GetSpellType
-   * EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as
-   * H_HEATED_HEART. */
-
   /* ponytail: recycle-to-hand when equipped monster returns to Deck (tag-out) and
    * this card is sent to GY needs a return-to-deck / equip-send hook outside this
    * file. Ceiling: equip +ATK only; upgrade: on GB return-to-deck → if linked

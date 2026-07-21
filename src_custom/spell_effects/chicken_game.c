@@ -161,12 +161,7 @@ static void CHICKEN_GAME_ResolveBody(void)
    * response-block flag outside this file. Ceiling: normal trap chain still
    * possible on Effect entry; upgrade: skip TryResolveSpellThroughTraps for
    * ignition / set activation-protect flag. */
-
-  /* ponytail: not in GetSpellType NORMAL/FIELD override — face-up OPT
-   * re-activation may need card_hooks GetSpellType + CHICKEN_GAME listed
-   * (same as CALL_OF_THE_MUMMY / WATERHAZARD). */
-
-  if (CanActivateChickenGameIgnition(zone))
+if (CanActivateChickenGameIgnition(zone))
     ResolveChickenGameIgnition(zone);
 }
 

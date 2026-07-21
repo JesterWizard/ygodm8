@@ -155,10 +155,6 @@ static void INFECTED_MAIL_ResolveBody(void)
 
   if (CanActivateInfectedMailIgnition(zone))
     BeginInfectedMailIgnition(zone);
-
-  /* ponytail: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up
-   * OPT re-activation may need card_hooks GetSpellType + INFECTED_MAIL listed.
-   * Ceiling: first-activation OPT works; upgrade: add to NORMAL spell-type list. */
 }
 
 APPEND_TEXT void EffectINFECTED_MAIL(void)

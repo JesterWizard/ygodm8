@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ancient_gear_tank.h"
 #include "constants/card_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
@@ -56,11 +57,38 @@ u8 CanActivateANCIENT_GEAR_TANK(void)
   return HasAncientGearTankTarget();
 }
 
+u8 Cond_AncientGearTankOnDestroy(struct EffectCtx *ctx)
+{
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+
+  return ctx->event->cardId == ANCIENT_GEAR_TANK;
+}
+
+enum DuelActionResult Op_AncientGearTankOnDestroy(struct EffectCtx *ctx)
+{
+  u8 controller;
+  u8 turnController;
+  u8 turnOpp;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return DUEL_ACTION_INVALID;
+
+  controller = ctx->event->controller;
+  if (controller != DUEL_PLAYER && controller != DUEL_OPPONENT)
+    return DUEL_ACTION_INVALID;
+
+  turnController = Duel_TurnDuelistForFixedDuelist(controller);
+  turnOpp = turnController == ACTIVE_DUELIST ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+
+  Duel_ShowEffectText(ANCIENT_GEAR_TANK);
+  return Duel_ChangeLp(turnOpp, -ANCIENT_GEAR_TANK_DESTROY_BURN, TRUE);
+}
+
 static void EquipAncientGearTank(struct DuelCard *spellZone, struct DuelCard *target)
 {
   /* ponytail: stage unit is 500 ATK — applied +500, not printed +600.
-   * Ceiling: no fractional stages; upgrade: exact-ATK overlay like BIG_BANG_SHOT
-   * after listing ANCIENT_GEAR_TANK in IsActiveDynamicEquipSpellZone. */
+   * Ceiling: no fractional stages; upgrade: exact-ATK overlay like BIG_BANG_SHOT. */
 
   ApplyDynamicEquipStages(target, ANCIENT_GEAR_TANK_ATK_STAGES);
   if (!RegisterDynamicEquip(spellZone, target, ANCIENT_GEAR_TANK,
@@ -69,19 +97,6 @@ static void EquipAncientGearTank(struct DuelCard *spellZone, struct DuelCard *ta
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: destroy→GY burn 600 to opponent needs a field/destroy hook
-   * outside this file (OnDynamicEquipZoneAboutToClear / GY send).
-   * Ceiling: equip-only works; destroy-burn not wired from this file.
-   * Upgrade: destroy-hook → Duel_ChangeLp(INACTIVE_DUELIST,
-   * -ANCIENT_GEAR_TANK_DESTROY_BURN). */
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add ANCIENT_GEAR_TANK to card_hooks GetSpellType EQUIP list and
-   * dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART. */
-
-  (void)ANCIENT_GEAR_TANK_DESTROY_BURN;
 }
 
 static void ResolveAncientGearTankTarget(u8 fixedRow, u8 fixedCol)

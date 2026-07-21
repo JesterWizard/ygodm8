@@ -209,11 +209,6 @@ static void EquipRepairUnit(struct DuelCard *spellZone, struct DuelCard *target)
 
   NotifyDynamicEquipFieldChanged();
   Duel_NotifyMonsterZoneChanged(target);
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone /
-   * OnDynamicEquipZoneAboutToClear destroy-equipped list. Ceiling: link may
-   * not clean up / destroy equipped on leave; upgrade: add
-   * MORPHTRONIC_REPAIR_UNIT beside PREMATURE_BURIAL in dynamic_equip.c. */
 }
 
 static void MORPHTRONIC_REPAIR_UNIT_ResolveBody(void)

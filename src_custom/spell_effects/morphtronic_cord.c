@@ -109,11 +109,7 @@ static void MORPHTRONIC_CORD_ResolveBody(void)
 
   if (IsDuelOver() == TRUE || !CanActivateMORPHTRONIC_CORD())
     return;
-
-  /* ponytail: not in GetSpellType EQUIP override — PickZone instead of vanilla
-   * equip targeting. Ceiling: add MORPHTRONIC_CORD to card_hooks GetSpellType
-   * EQUIP list for pre-target cursor; upgrade path: same as H_HEATED_HEART. */
-  gDuelCursor.destY = gSpellEffectData.row1;
+gDuelCursor.destY = gSpellEffectData.row1;
   gDuelCursor.destX = gSpellEffectData.col1;
 
   Duel_SetupPickZone(IsValidMorphtronicCordTarget, ResolveMorphtronicCordTarget,

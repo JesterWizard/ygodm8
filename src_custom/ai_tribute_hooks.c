@@ -12,6 +12,7 @@
 #include "precious_cards_from_beyond.h"
 #include "blast_held_by_a_tribute.h"
 #include "elemental_hero_necroshade.h"
+#include "ancient_gear_castle.h"
 #include "summon_animations.h"
 #include "constants/card_ids.h"
 #include "tribute.h"
@@ -163,6 +164,7 @@ void sub_800E0D4__Replacement(void)
     TryApplyPreciousCardsFromBeyondOnTributeSummon(
         GetPendingTributeSummonCardId(), WhoseTurn());
     ElementalHeroNecroshade_TryConsumeOnNormalSummon(GetPendingTributeSummonCardId());
+    AncientGearCastle_TryConsumeOnNormalSummon(GetPendingTributeSummonCardId());
   }
   if (gAiResimulateAfterCallOfTheHaunted) {
     CallOfTheHauntedUnlockAiAttackerAfterTrap();

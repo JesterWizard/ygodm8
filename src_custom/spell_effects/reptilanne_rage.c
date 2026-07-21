@@ -76,11 +76,6 @@ static void EquipReptilanneRage(struct DuelCard *spellZone, struct DuelCard *tar
    * Ceiling: equip-only works; GY trigger not wired from this file.
    * Upgrade: destroy-hook → PickZone opp face-up monster → apply -800 ATK
    * overlay (or -2 stages). */
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add REPTILANNE_RAGE to card_hooks GetSpellType EQUIP list and
-   * dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART. */
 }
 
 static void ResolveReptilanneRageTarget(u8 fixedRow, u8 fixedCol)

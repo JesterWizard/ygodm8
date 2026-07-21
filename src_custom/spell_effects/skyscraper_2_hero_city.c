@@ -300,10 +300,7 @@ static void SKYSCRAPER_2_HERO_CITY_ResolveBody(void)
 
 APPEND_TEXT void EffectSKYSCRAPER_2_HERO_CITY(void)
 {
-  /* ponytail: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up
-   * OPT re-activation may need card_hooks GetSpellType + SKYSCRAPER_2_HERO_CITY
-   * listed. Ceiling: first-activation OPT works; upgrade: add to NORMAL list. */
-  if (Duel_TryResolveSpellThroughTraps(SKYSCRAPER_2_HERO_CITY,
+if (Duel_TryResolveSpellThroughTraps(SKYSCRAPER_2_HERO_CITY,
                                        SKYSCRAPER_2_HERO_CITY_ResolveBody)
       == DUEL_ACTION_BLOCKED)
     return;

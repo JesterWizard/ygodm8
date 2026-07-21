@@ -1,11 +1,13 @@
 #include "global.h"
 #include "common-chax.h"
+#include "aroma_garden.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
 
 #define AROMA_GARDEN_LP_GAIN 500
+#define AROMA_GARDEN_DESTROY_LP_GAIN 1000
 #define AROMA_GARDEN_STAT_STAGES 1
 
 static const char sAromaArchetypeName[] APPEND_RODATA = "Aroma";
@@ -16,6 +18,15 @@ static u8 IsAromaMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sAromaArchetypeName);
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST]
+      == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
 }
 
 static u8 ControlsAromaMonster(void)
@@ -86,6 +97,35 @@ static void ResolveAromaGardenIgnition(struct DuelCard *zone)
   zone->effectUsedThisTurn = TRUE;
 }
 
+u8 Cond_AromaGardenOnDestroy(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+
+  ev = ctx->event;
+  if (ev->controller != DUEL_PLAYER && ev->controller != DUEL_OPPONENT)
+    return FALSE;
+
+  if (!IsAromaMonster(ev->cardId))
+    return FALSE;
+
+  return Duel_FindBackrowCard(ev->controller, AROMA_GARDEN, TRUE) != NULL;
+}
+
+enum DuelActionResult Op_AromaGardenOnDestroy(struct EffectCtx *ctx)
+{
+  u8 turnDuelist;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return DUEL_ACTION_INVALID;
+
+  turnDuelist = TurnDuelistForFixed(ctx->event->controller);
+  Duel_ShowEffectText(AROMA_GARDEN);
+  return Duel_ChangeLp(turnDuelist, AROMA_GARDEN_DESTROY_LP_GAIN, TRUE);
+}
+
 static void AROMA_GARDEN_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -108,19 +148,10 @@ static void AROMA_GARDEN_ResolveBody(void)
     ResolveAromaGardenIgnition(zone);
   else
     Duel_ShowEffectText(AROMA_GARDEN);
-
-  /* ponytail: "If a face-up Aroma you control is destroyed by battle or card
-   * effect and sent to the GY: Gain 1000 LP" needs a destroy→GY hook outside
-   * this file. Ceiling: OPT LP/+500 only; upgrade: on ClearZoneAndSendMonTo-
-   * Graveyard / battle destroy, if controller has face-up AROMA_GARDEN and
-   * destroyed card IsAromaMonster, Duel_ChangeLp(+1000). */
 }
 
 APPEND_TEXT void EffectAROMA_GARDEN(void)
 {
-  /* ponytail: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up
-   * OPT re-activation may need card_hooks GetSpellType + AROMA_GARDEN listed.
-   * Ceiling: first-activation OPT works; upgrade: add to NORMAL spell-type list. */
   if (Duel_TryResolveSpellThroughTraps(AROMA_GARDEN, AROMA_GARDEN_ResolveBody)
       == DUEL_ACTION_BLOCKED)
     return;
@@ -136,6 +167,9 @@ void AROMA_GARDEN_SelfCheck(void)
     while (1)
       ;
   if (AROMA_GARDEN_LP_GAIN != 500)
+    while (1)
+      ;
+  if (AROMA_GARDEN_DESTROY_LP_GAIN != 1000)
     while (1)
       ;
 }

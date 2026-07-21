@@ -8,6 +8,8 @@
 #include "divine_sanctuary.h"
 #include "debug_ruleset.h"
 #include "elemental_hero_necroshade.h"
+#include "ancient_gear_castle.h"
+#include "geartown.h"
 #include "tribute.h"
 #include "summon_tribute.h"
 #include "ai_actions.h"
@@ -105,7 +107,16 @@ static int GetBaseRequiredTributes(u16 cardId)
 
   gCardInfo.level = GetLegendaryOceanAdjustedLevel(cardId, gCardInfo.level);
 
-  return ApplyDivineSanctuaryTributeOverride(cardId, LookupRequiredTributes(gCardInfo.level));
+  {
+    int required =
+        ApplyDivineSanctuaryTributeOverride(cardId, LookupRequiredTributes(gCardInfo.level));
+
+    required = Geartown_ReduceRequiredTributes(cardId, required);
+    if (AncientGearCastle_CanSubstituteTributes(cardId, required))
+      return 0;
+
+    return required;
+  }
 }
 
 int GetNumRequiredTributesWithCostDown(u16 cardId)
@@ -138,7 +149,16 @@ int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
 
   gCardInfo.level = GetLegendaryOceanAdjustedLevel(cardId, gCardInfo.level);
 
-  return ApplyDivineSanctuaryTributeOverride(cardId, LookupRequiredTributes(gCardInfo.level));
+  {
+    int required =
+        ApplyDivineSanctuaryTributeOverride(cardId, LookupRequiredTributes(gCardInfo.level));
+
+    required = Geartown_ReduceRequiredTributes(cardId, required);
+    if (AncientGearCastle_CanSubstituteTributes(cardId, required))
+      return 0;
+
+    return required;
+  }
 }
 
 LYN_REPLACE_CHECK(GetNumRequiredTributes);

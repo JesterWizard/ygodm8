@@ -9,7 +9,13 @@
 #include "amazoness_call.h"
 #include "amazoness_village.h"
 #include "amazoness_fighting_spirit.h"
+#include "ancient_gear_castle.h"
+#include "ancient_gear_tank.h"
+#include "arcane_barrier.h"
+#include "aroma_garden.h"
+#include "aroma_gardening.h"
 #include "elemental_hero_inferno.h"
+#include "geartown.h"
 #include "skyscraper.h"
 
 /* Generated ACTIVATE Effects mirroring EffectScript table. */
@@ -92,6 +98,90 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_AmazonessVillageDestroySs,
+  },
+  {
+      ANCIENT_GEAR_CASTLE,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_AncientGearCastleOnSummon,
+      NULL,
+      NULL,
+      Op_AncientGearCastleOnSummon,
+  },
+  {
+      GEARTOWN,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_GeartownOnDestroy,
+      NULL,
+      NULL,
+      Op_GeartownOnDestroy,
+  },
+  {
+      ANCIENT_GEAR_TANK,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_AncientGearTankOnDestroy,
+      NULL,
+      NULL,
+      Op_AncientGearTankOnDestroy,
+  },
+  {
+      ARCANE_BARRIER,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_ArcaneBarrierOnDestroy,
+      NULL,
+      NULL,
+      Op_ArcaneBarrierOnDestroy,
+  },
+  {
+      AROMA_GARDEN,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_AromaGardenOnDestroy,
+      NULL,
+      NULL,
+      Op_AromaGardenOnDestroy,
+  },
+  {
+      AROMA_GARDEN,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_BATTLE_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_AromaGardenOnDestroy,
+      NULL,
+      NULL,
+      Op_AromaGardenOnDestroy,
+  },
+  {
+      AROMA_GARDENING,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_OPT,
+      Cond_AromaGardeningOnSummon,
+      NULL,
+      NULL,
+      Op_AromaGardeningOnSummon,
   },
   {
       CARD_NONE,

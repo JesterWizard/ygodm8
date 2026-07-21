@@ -283,8 +283,6 @@ static void FUSION_GATE_ResolveBody(void)
    * Ceiling: only the controller's face-up gate via this spell activation path;
    * upgrade: turn-player Main Phase check for any face-up FUSION_GATE then run
    * ResolveFusionGateIgnition for ACTIVE_DUELIST. */
-  /* ponytail: not in GetSpellType NORMAL override — face-up re-activation may
-   * need card_hooks GetSpellType + FUSION_GATE listed (same as DRAGON_RAVINE). */
 }
 
 APPEND_TEXT void EffectFUSION_GATE(void)

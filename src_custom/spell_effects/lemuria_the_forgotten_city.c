@@ -186,9 +186,7 @@ static void LEMURIA_THE_FORGOTTEN_CITY_ResolveBody(void)
 
 APPEND_TEXT void EffectLEMURIA_THE_FORGOTTEN_CITY(void)
 {
-  /* ponytail: not in GetSpellType NORMAL override — face-up OPT re-activation
-   * may need card_hooks GetSpellType + LEMURIA listed (same as SKYSCRAPER_2). */
-  if (Duel_TryResolveSpellThroughTraps(LEMURIA_THE_FORGOTTEN_CITY,
+if (Duel_TryResolveSpellThroughTraps(LEMURIA_THE_FORGOTTEN_CITY,
                                        LEMURIA_THE_FORGOTTEN_CITY_ResolveBody)
       == DUEL_ACTION_BLOCKED)
     return;

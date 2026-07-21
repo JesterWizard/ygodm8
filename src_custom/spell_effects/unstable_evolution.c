@@ -120,11 +120,6 @@ static void EquipUnstableEvolution(struct DuelCard *spellZone, struct DuelCard *
    * from printed original; equal LP leaves ATK unchanged.
    * Upgrade: card_info / RecalculateDynamicEquips → if DynamicEquipTargetsMonster
    * WithSpell(UNSTABLE_EVOLUTION) force original ATK from controller vs opp LP. */
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting. Ceiling: add UNSTABLE_EVOLUTION to
-   * card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone;
-   * upgrade path: same as H_HEATED_HEART. */
 }
 
 static void ResolveUnstableEvolutionTarget(u8 fixedRow, u8 fixedCol)

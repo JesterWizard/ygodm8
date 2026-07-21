@@ -101,10 +101,7 @@ static void WATERHAZARD_ResolveBody(void)
 
 APPEND_TEXT void EffectWATERHAZARD(void)
 {
-  /* ponytail: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up
-   * OPT re-activation may need card_hooks GetSpellType + WATERHAZARD listed.
-   * Ceiling: first-activation OPT works; upgrade: add to NORMAL spell-type list. */
-  if (Duel_TryResolveSpellThroughTraps(WATERHAZARD, WATERHAZARD_ResolveBody) == DUEL_ACTION_BLOCKED)
+if (Duel_TryResolveSpellThroughTraps(WATERHAZARD, WATERHAZARD_ResolveBody) == DUEL_ACTION_BLOCKED)
     return;
 }
 

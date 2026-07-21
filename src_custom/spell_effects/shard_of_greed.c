@@ -63,9 +63,6 @@ static void SHARD_OF_GREED_ResolveBody(void)
    * Ceiling: continuous face-up + ignition when unk4>=2 (never rises alone);
    * upgrade: Draw Phase normal-draw listener → if face-up SHARD_OF_GREED then
    * zone->unk4++ (cap optional). */
-  /* ponytail: not in GetSpellType NORMAL override — face-up re-activation may
-   * need card_hooks GetSpellType + SHARD_OF_GREED listed (same as BACKUP_SQUAD /
-   * CALL_OF_THE_MUMMY). */
 }
 
 APPEND_TEXT void EffectSHARD_OF_GREED(void)

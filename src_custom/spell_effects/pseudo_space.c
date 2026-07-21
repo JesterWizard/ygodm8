@@ -294,10 +294,7 @@ static void PSEUDO_SPACE_ResolveBody(void)
 
 APPEND_TEXT void EffectPSEUDO_SPACE(void)
 {
-  /* ponytail: not in GetSpellType NORMAL override (unlike VALHALLA) — face-up
-   * OPT re-activation may need card_hooks GetSpellType + PSEUDO_SPACE listed.
-   * Ceiling: first-activation OPT works; upgrade: add to NORMAL spell-type list. */
-  if (Duel_TryResolveSpellThroughTraps(PSEUDO_SPACE, PSEUDO_SPACE_ResolveBody)
+if (Duel_TryResolveSpellThroughTraps(PSEUDO_SPACE, PSEUDO_SPACE_ResolveBody)
       == DUEL_ACTION_BLOCKED)
     return;
 }

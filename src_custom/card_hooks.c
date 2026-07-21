@@ -6,6 +6,7 @@
 #include "cost_down.h"
 #include "a_legendary_ocean.h"
 #include "amazoness_village.h"
+#include "ancient_gear_castle.h"
 #include "divine_sanctuary.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -444,25 +445,49 @@ void SetCardInfo__Replacement(unsigned short id) {
 LYN_REPLACE_CHECK(GetSpellType);
 int GetSpellType__Replacement(u16 cardId) {
   SetCardInfo(cardId);
+  /* Continuous / face-up OPT re-activate: treat as NORMAL so the spell menu
+   * can fire again while the card stays face-up (Valhalla pattern). */
   if (cardId == JAM_BREEDING_MACHINE || cardId == CHAIN_ENERGY || cardId == TOLL
       || cardId == THE_DARK_DOOR || cardId == DARK_ROOM_OF_NIGHTMARE
       || cardId == WAVE_MOTION_CANNON || cardId == PYRAMID_OF_LIGHT
       || cardId == SWORDS_OF_REVEALING_LIGHT || cardId == GUARDIAN_TREASURE
       || cardId == PRECIOUS_CARDS_FROM_BEYOND || cardId == FINAL_COUNTDOWN
-      || cardId == BURNING_LAND       || cardId == LEVEL_LIMIT_AREA_B
+      || cardId == BURNING_LAND || cardId == LEVEL_LIMIT_AREA_B
       || cardId == VENGEFUL_BOG_SPIRIT
       || cardId == KAISER_COLOSSEUM
       || cardId == NIGHTMARE_WHEEL || cardId == ECTOPLASMER
       || cardId == DARK_SNAKE_SYNDROME || cardId == GRAVEKEEPERS_SERVANT
       || cardId == E_EMERGENCY_CALL || cardId == FUTURE_FUSION
       || cardId == VALHALLA_HALL_OF_THE_FALLEN || cardId == COURT_OF_JUSTICE
-      || cardId == AUTONOMOUS_ACTION_UNIT || cardId == PREMATURE_BURIAL)
+      || cardId == AUTONOMOUS_ACTION_UNIT || cardId == PREMATURE_BURIAL
+      || cardId == ARCANE_BARRIER || cardId == AROMA_GARDEN
+      || cardId == CALL_OF_THE_MUMMY || cardId == CHICKEN_GAME
+      || cardId == DRAGON_RAVINE
+      || cardId == FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS
+      || cardId == FUSION_GATE || cardId == INFECTED_MAIL
+      || cardId == LEMURIA_THE_FORGOTTEN_CITY || cardId == LIGHT_FORCE
+      || cardId == LIGHTSWORN_SANCTUARY || cardId == MAUSOLEUM_OF_THE_EMPEROR
+      || cardId == PSEUDO_SPACE
+      || cardId == SHARD_OF_GREED || cardId == SKYSCRAPER_2_HERO_CITY
+      || cardId == WATERHAZARD || cardId == WEAPON_CHANGE)
     return SPELL_TYPE_NORMAL;
 
+  /* Dynamic equip spells (RegisterDynamicEquip + IsActiveDynamicEquipSpellZone). */
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND
       || cardId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE || cardId == RAREGOLD_ARMOR
       || cardId == BIG_BANG_SHOT || cardId == H_HEATED_HEART
-      || cardId == AMAZONESS_HEIRLOOM)
+      || cardId == AMAZONESS_HEIRLOOM
+      || cardId == ANCIENT_GEAR_FIST || cardId == ANCIENT_GEAR_TANK
+      || cardId == BUBBLE_BLASTER || cardId == CELESTIAL_SWORD_EATOS
+      || cardId == GLADIATOR_BEAST_BATTLE_HALBERD
+      || cardId == GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD
+      || cardId == GLADIATOR_BEASTS_BATTLE_GLADIUS
+      || cardId == GLADIATOR_BEASTS_BATTLE_MANICA
+      || cardId == INSTANT_NEO_SPACE || cardId == LIGHTSWORN_SABRE
+      || cardId == MOLTING_ESCAPE || cardId == MORPHTRONIC_CORD
+      || cardId == MORPHTRONIC_ENGINE || cardId == MORPHTRONIC_REPAIR_UNIT
+      || cardId == NEPHE_SHADDOLL_FUSION || cardId == REPTILANNE_RAGE
+      || cardId == UNSTABLE_EVOLUTION)
     return SPELL_TYPE_EQUIP;
 
   if (gCardInfo.spellEffect >= SPELL_EFFECT_FOREST
@@ -602,6 +627,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyHarpieLady1WindAtkBoost(zone);
   ApplyLegendaryOceanFieldStatBoostForZone(zone);
   ApplyAmazonessVillageFieldStatBoostForZone(zone);
+  ApplyAncientGearCastleAtkBoostForZone(zone);
   ApplyDivineSanctuaryFieldStatPenaltyForZone(zone);
   ApplyTheTripperMercuryOpponentAtkDrain(zone);
   ApplyTheGrandJupiterEquipAtkBonus(zone);
@@ -719,6 +745,8 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyShatielFairyStatBoost(gSetFinalStatZone);
     ApplyElementalHeroGaiaStatMod(gSetFinalStatZone);
     ApplyLegendaryOceanFieldStatBoostForZone(gSetFinalStatZone);
+    ApplyAmazonessVillageFieldStatBoostForZone(gSetFinalStatZone);
+    ApplyAncientGearCastleAtkBoostForZone(gSetFinalStatZone);
     ApplyTheTripperMercuryOpponentAtkDrain(gSetFinalStatZone);
     ApplyTheGrandJupiterEquipAtkBonus(gSetFinalStatZone);
     ApplyTheDespairUranusAtkBoost(gSetFinalStatZone);

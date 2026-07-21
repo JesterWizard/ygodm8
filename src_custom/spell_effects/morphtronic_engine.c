@@ -102,13 +102,7 @@ static void EquipMorphtronicEngine(struct DuelCard *spellZone, struct DuelCard *
   NotifyDynamicEquipFieldChanged();
   Duel_NotifyMonsterZoneChanged(target);
   Duel_RefreshMonsterStatOverlays();
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add MORPHTRONIC_ENGINE to card_hooks GetSpellType EQUIP list and
-   * dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART. */
-
-  /* ponytail: 2nd Standby destroy + burn original ATK needs turn_effect_hooks call to
+/* ponytail: 2nd Standby destroy + burn original ATK needs turn_effect_hooks call to
    * TryApplyMorphtronicEngineStandby (clone Capsule / Future Fusion wiring).
    * Ceiling: equip + stage ATK only until wired; upgrade: Standby →
    * TryApplyMorphtronicEngineStandby. */

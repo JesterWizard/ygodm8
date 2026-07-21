@@ -458,6 +458,23 @@ u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone)
     case AMAZONESS_HEIRLOOM:
     case AUTONOMOUS_ACTION_UNIT:
     case PREMATURE_BURIAL:
+    case ANCIENT_GEAR_FIST:
+    case ANCIENT_GEAR_TANK:
+    case BUBBLE_BLASTER:
+    case CELESTIAL_SWORD_EATOS:
+    case GLADIATOR_BEAST_BATTLE_HALBERD:
+    case GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD:
+    case GLADIATOR_BEASTS_BATTLE_GLADIUS:
+    case GLADIATOR_BEASTS_BATTLE_MANICA:
+    case INSTANT_NEO_SPACE:
+    case LIGHTSWORN_SABRE:
+    case MOLTING_ESCAPE:
+    case MORPHTRONIC_CORD:
+    case MORPHTRONIC_ENGINE:
+    case MORPHTRONIC_REPAIR_UNIT:
+    case NEPHE_SHADDOLL_FUSION:
+    case REPTILANNE_RAGE:
+    case UNSTABLE_EVOLUTION:
       return zone->isFaceUp == TRUE && zone->isLocked == TRUE
           && !IsImperialOrderNegatingSpell(zone->id);
     default:
@@ -521,7 +538,8 @@ void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
   if (link != NULL) {
     u8 banishEquippedMonster = link->spellId == BIG_BANG_SHOT;
     u8 destroyEquippedMonster = link->spellId == AUTONOMOUS_ACTION_UNIT
-        || link->spellId == PREMATURE_BURIAL;
+        || link->spellId == PREMATURE_BURIAL
+        || link->spellId == MORPHTRONIC_REPAIR_UNIT;
     struct DuelCard *targetZone = NULL;
 
     if (banishEquippedMonster || destroyEquippedMonster)

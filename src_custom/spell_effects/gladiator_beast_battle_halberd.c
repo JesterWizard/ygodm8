@@ -72,11 +72,6 @@ static void EquipHalberd(struct DuelCard *spellZone, struct DuelCard *target)
    * outside this file. Ceiling: equip only; upgrade: on GB return-to-deck → if
    * linked GLADIATOR_BEAST_BATTLE_HALBERD hits GY then GY→hand. */
 
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add GLADIATOR_BEAST_BATTLE_HALBERD to card_hooks GetSpellType
-   * EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as
-   * H_HEATED_HEART. */
 }
 
 static void ResolveHalberdTarget(u8 fixedRow, u8 fixedCol)

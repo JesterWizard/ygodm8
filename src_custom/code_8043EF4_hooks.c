@@ -113,6 +113,8 @@
 #include "elemental_hero_wildedge.h"
 #include "amazoness_call.h"
 #include "elemental_hero_necroshade.h"
+#include "ancient_gear_castle.h"
+#include "effect_events.h"
 #include "amazoness_archer.h"
 #include "sasuke_samurai.h"
 #include "block_attack.h"
@@ -415,6 +417,7 @@ static void TryPlaceSelectedCardOnField_Local(void)
         sub_80449D8();
         TryActivatingPermanentEffects();
         ElementalHeroNecroshade_TryConsumeOnNormalSummon(placedCardId);
+        AncientGearCastle_TryConsumeOnNormalSummon(placedCardId);
         if (placedCardId == GetPendingTributeSummonCardId()) {
           ResetNumTributes();
           ClearPendingTributeSummonCardId();
@@ -1645,6 +1648,9 @@ void sub_80449D8__Replacement(void)
     TryAthenaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroStratosOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryTheSuppressionPlutoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    EffectEvent_EmitSimple(EFFECT_EVENT_ON_SUMMON,
+                           gFixedZones[placedRow][placedCol]->id,
+                           gFixedZones[placedRow][placedCol]);
   }
   if (gDuelCursor.state != DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET) {
     gDuelCursor.state = 0;

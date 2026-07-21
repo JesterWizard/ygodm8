@@ -314,11 +314,7 @@ static void LIGHT_FORCE_ResolveBody(void)
    * this file (stage steps are 500). Ceiling: face-up continuous only; upgrade:
    * LynJump/stat overlay → if face-up LIGHT_FORCE && !negated && TYPE_FAIRY
    * then ATK/DEF += LIGHT_FORCE_FAIRY_STAT_BONUS. */
-
-  /* ponytail: not in GetSpellType NORMAL override — face-up OPT re-activation
-   * may need card_hooks GetSpellType + LIGHT_FORCE listed (same as CHICKEN_GAME). */
-
-  if (CanActivateLightForceIgnition(zone))
+if (CanActivateLightForceIgnition(zone))
     ResolveLightForceIgnition(zone);
 }
 

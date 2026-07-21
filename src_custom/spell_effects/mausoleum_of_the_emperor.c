@@ -245,12 +245,7 @@ static void MAUSOLEUM_OF_THE_EMPEROR_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(MAUSOLEUM_OF_THE_EMPEROR);
-
-  /* ponytail: not in GetSpellType NORMAL/FIELD override — face-up OPT
-   * re-activation may need card_hooks GetSpellType + MAUSOLEUM listed
-   * (same as CHICKEN_GAME / WATERHAZARD). */
-
-  if (CanActivateMausoleumIgnition(zone))
+if (CanActivateMausoleumIgnition(zone))
     ResolveMausoleumIgnition(zone);
 }
 

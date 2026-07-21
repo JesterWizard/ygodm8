@@ -65,12 +65,6 @@ static void EquipManica(struct DuelCard *spellZone, struct DuelCard *target)
    * GLADIATOR_BEASTS_BATTLE_MANICA). Ceiling: equip registers only; upgrade:
    * wire into Duel_ApplyBattleDestroyProtection like Spirit Reaper / Tempest. */
 
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add GLADIATOR_BEASTS_BATTLE_MANICA to card_hooks GetSpellType
-   * EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as
-   * H_HEATED_HEART. */
-
   /* ponytail: recycle-to-hand when equipped monster returns to Deck (tag-out) and
    * this card is sent to GY needs a return-to-deck / equip-send hook outside this
    * file. Ceiling: equip register only; upgrade: on GB return-to-deck → if linked

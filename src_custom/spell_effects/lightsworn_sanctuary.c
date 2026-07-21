@@ -329,9 +329,7 @@ static void LIGHTSWORN_SANCTUARY_ResolveBody(void)
 
 APPEND_TEXT void EffectLIGHTSWORN_SANCTUARY(void)
 {
-  /* ponytail: not in GetSpellType NORMAL override — face-up OPT re-activation
-   * may need card_hooks GetSpellType + LIGHTSWORN_SANCTUARY listed. */
-  if (Duel_TryResolveSpellThroughTraps(LIGHTSWORN_SANCTUARY, LIGHTSWORN_SANCTUARY_ResolveBody)
+if (Duel_TryResolveSpellThroughTraps(LIGHTSWORN_SANCTUARY, LIGHTSWORN_SANCTUARY_ResolveBody)
       == DUEL_ACTION_BLOCKED)
     return;
 }

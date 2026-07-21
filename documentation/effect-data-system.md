@@ -82,6 +82,15 @@ flowchart LR
 
 Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (events + OPT) before mass card rewrites. Tagging lives in [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.md); regenerate with `--write-list`.
 
+**Fast clear order (no per-card LynJump):**
+
+1. **List registers** — `GetSpellType` NORMAL (face-up OPT) / EQUIP + `IsActiveDynamicEquipSpellZone` (+ destroy-on-leave beside Premature Burial). One switch case clears many `equip.Register` / re-activate ceilings.
+2. **CCTO row** — `Cond_*` / `Op_*` in the card file + one `sEffectsExtra[]` TRIGGER/CONTINUOUS (or `sGyIgnitionTable` entry). Use `EFFECT_FLAG_OPT` + existing emits; do not add a new LynJump per card.
+3. **Script activate** — simple draw/burn/destroy → `effect_scripts_manifest.json` (codegen), not a new `.c` body.
+4. **Escape hatch** — only when text cannot share an event/op.
+
+Do not delete `ponytail:` until the surface exists. Do not clone summon/destroy/battle hooks into each spell file.
+
 ### Compatibility rules
 
 1. Unconverted card IDs always hit legacy handlers.

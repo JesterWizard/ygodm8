@@ -65,11 +65,6 @@ static void EquipMoltingEscape(struct DuelCard *spellZone, struct DuelCard *targ
    * Ceiling: Reptile equip register only; upgrade: if DynamicEquipTargetsMonsterWithSpell
    * (zone, MOLTING_ESCAPE) and effectUsedThisTurn clear, skip battle destroy once,
    * then mark OPT + apply +300 (exact overlay or nearest stage) at Damage Step end. */
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add MOLTING_ESCAPE to card_hooks GetSpellType EQUIP list and
-   * dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART. */
 }
 
 static void ResolveMoltingEscapeTarget(u8 fixedRow, u8 fixedCol)

@@ -68,13 +68,7 @@ static void EquipLightswornSabre(struct DuelCard *spellZone, struct DuelCard *ta
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add LIGHTSWORN_SABRE to card_hooks GetSpellType EQUIP list and
-   * dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART. */
-
-  /* ponytail: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook
+/* ponytail: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook
    * outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path →
    * if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and
    * RegisterDynamicEquip again. */

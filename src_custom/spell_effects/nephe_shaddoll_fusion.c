@@ -403,10 +403,6 @@ static void EquipNephe(struct DuelCard *spellZone, struct DuelCard *target, u8 a
    * still use printed SetCardInfo attribute. Ceiling: equip + OPT fusion works;
    * Attribute change cosmetic. Upgrade: MaterialMatches / SourceQualifies reads
    * DynamicEquipTargetsMonsterWithSpell attribute override from unk4. */
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting. Ceiling: add NEPHE_SHADDOLL_FUSION to
-   * card_hooks GetSpellType EQUIP list and dynamic_equip IsActiveDynamicEquipSpellZone. */
 }
 
 static void ResolveNepheEquipTarget(u8 fixedRow, u8 fixedCol)
@@ -483,10 +479,6 @@ static void NEPHE_SHADDOLL_FUSION_ResolveBody(void)
     Duel_EnterPickZoneTargeting();
   else
     Duel_ResolvePickZoneForAi();
-
-  /* ponytail: not in GetSpellType NORMAL override — face-up OPT fusion
-   * re-activation may need card_hooks GetSpellType + NEPHE_SHADDOLL_FUSION
-   * listed (same as WEAPON_CHANGE / CHICKEN_GAME). */
 }
 
 APPEND_TEXT void EffectNEPHE_SHADDOLL_FUSION(void)

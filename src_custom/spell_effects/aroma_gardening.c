@@ -1,10 +1,59 @@
 #include "global.h"
 #include "common-chax.h"
+#include "aroma_gardening.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
 
 #define AROMA_GARDENING_LP_GAIN 1000
+
+static const char sAromaArchetypeName[] APPEND_RODATA = "Aroma";
+
+static u8 IsAromaMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sAromaArchetypeName);
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST]
+      == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
+}
+
+u8 Cond_AromaGardeningOnSummon(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+
+  ev = ctx->event;
+  if (ev->controller != DUEL_PLAYER && ev->controller != DUEL_OPPONENT)
+    return FALSE;
+
+  if (!IsAromaMonster(ev->cardId))
+    return FALSE;
+
+  return Duel_FindBackrowCard(ev->controller, AROMA_GARDENING, TRUE) != NULL;
+}
+
+enum DuelActionResult Op_AromaGardeningOnSummon(struct EffectCtx *ctx)
+{
+  u8 turnDuelist;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return DUEL_ACTION_INVALID;
+
+  turnDuelist = TurnDuelistForFixed(ctx->event->controller);
+  Duel_ShowEffectText(AROMA_GARDENING);
+  return Duel_ChangeLp(turnDuelist, AROMA_GARDENING_LP_GAIN, TRUE);
+}
 
 static void AROMA_GARDENING_ResolveBody(void)
 {
@@ -13,19 +62,10 @@ static void AROMA_GARDENING_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(AROMA_GARDENING);
 
-  /* ponytail: OPT "NS/SS Aroma → +1000 LP" needs a summon hook outside this file
-   * (no in-file Normal/Special Summon dispatch). Ceiling: continuous face-up only;
-   * upgrade: after NS/SS (not Damage Step), if face-up AROMA_GARDENING and OPT bit
-   * clear and summoned monster name contains "Aroma", Duel_ChangeLp(+1000) and mark
-   * OPT. */
-
   /* ponytail: OPT "opp attack declare while LP lower → SS Aroma from Deck" needs
-   * an attack-declare hook + deck pick outside this file. Ceiling: continuous
-   * face-up only; upgrade: on opp attack declare, if controller LP < opp LP and
-   * OPT clear and empty monster zone, PickZone/DeckMenu Aroma monster →
-   * Duel_SpecialSummonFromDeck. */
-
-  (void)AROMA_GARDENING_LP_GAIN;
+   * an attack-declare hook + deck pick outside this file. Ceiling: summon LP wired;
+   * upgrade: on opp attack declare, if controller LP < opp LP and OPT clear and
+   * empty monster zone, PickZone/DeckMenu Aroma monster → Duel_SpecialSummonFromDeck. */
 }
 
 APPEND_TEXT void EffectAROMA_GARDENING(void)
@@ -38,15 +78,13 @@ APPEND_TEXT void EffectAROMA_GARDENING(void)
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void AROMA_GARDENING_SelfCheck(void)
 {
-  static const char aromaName[] = "Aroma";
-
   if (AROMA_GARDENING_LP_GAIN != 1000)
     while (1)
       ;
-  if (!Duel_CardNameContains(AROMA_JAR, aromaName))
+  if (!IsAromaMonster(AROMA_JAR))
     while (1)
       ;
-  if (Duel_CardNameContains(BLUE_EYES_WHITE_DRAGON, aromaName))
+  if (IsAromaMonster(BLUE_EYES_WHITE_DRAGON))
     while (1)
       ;
 }

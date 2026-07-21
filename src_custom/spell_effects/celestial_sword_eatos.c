@@ -62,14 +62,7 @@ static void EquipCelestialSword(struct DuelCard *spellZone, struct DuelCard *tar
    * (OnDynamicEquipZoneAboutToClear). Ceiling: equip +500 only; upgrade: leave-
    * hook → PickZone GUARDIAN_EATOS then ApplyDynamicEquipStages /
    * IncrementTempStage × banished count (CELESTIAL_SWORD_EATOS_GY_ATK_PER_BANISH_STAGES). */
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add CELESTIAL_SWORD_EATOS to card_hooks GetSpellType EQUIP list
-   * and dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as
-   * H_HEATED_HEART. */
-
-  (void)CELESTIAL_SWORD_EATOS_GY_ATK_PER_BANISH_STAGES;
+(void)CELESTIAL_SWORD_EATOS_GY_ATK_PER_BANISH_STAGES;
 }
 
 static void ResolveCelestialSwordTarget(u8 fixedRow, u8 fixedCol)

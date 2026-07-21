@@ -59,18 +59,6 @@ static void EquipAncientGearFist(struct DuelCard *spellZone, struct DuelCard *ta
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: end of Damage Step destroy the monster it battled (if equipped
-   * still on field) needs a battle_effects Damage Step end hook outside this
-   * file. Ceiling: equip-only works; destroy trigger not wired from this file.
-   * Upgrade: end-of-Damage-Step → if DynamicEquipTargetsMonsterWithSpell
-   * (attacker/defender, ANCIENT_GEAR_FIST) and equip still face-up, then
-   * Duel_DestroyZone the battled monster. */
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add ANCIENT_GEAR_FIST to card_hooks GetSpellType EQUIP list and
-   * dynamic_equip IsActiveDynamicEquipSpellZone; upgrade: same as H_HEATED_HEART. */
 }
 
 static void ResolveAncientGearFistTarget(u8 fixedRow, u8 fixedCol)

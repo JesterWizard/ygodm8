@@ -93,11 +93,6 @@ static void EquipInstantNeoSpace(struct DuelCard *spellZone, struct DuelCard *ta
    * destroy/leave hook outside this file (OnDynamicEquipZoneAboutToClear).
    * Ceiling: equip-only works; revive not wired from this file.
    * Upgrade: leave-hook → Duel_SpecialSummonFromHand/Deck/Grave(ELEMENTAL_HERO_NEOS). */
-
-  /* ponytail: not in GetSpellType EQUIP / IsActiveDynamicEquipSpellZone — PickZone
-   * instead of vanilla equip targeting; link cleanup may not treat this as active
-   * equip. Ceiling: add INSTANT_NEO_SPACE to card_hooks GetSpellType EQUIP list and
-   * dynamic_equip IsActiveDynamicEquipSpellZone; upgrade path: same as H_HEATED_HEART. */
 }
 
 static void ResolveInstantNeoSpaceTarget(u8 fixedRow, u8 fixedCol)
