@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-20 23:36 UTC  
-**Remaining partials:** `863`
+**Last updated:** 2026-07-20 23:45 UTC  
+**Remaining partials:** `862`
 
 ## Counts by kind
 
@@ -20,8 +20,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| `turn` | 1 |
-| **total** | **863** |
+| **total** | **862** |
 
 ## spell (181)
 
@@ -3761,9 +3760,3 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ZERIEL`
 - path: `src_custom/permanent_effects/zeriel.c`
 - L44: GetTypeGroup/SetCardInfo would clobber gCardInfo.atk already computed.
-
-## turn (1)
-
-### `THE_WHITE_STONE_OF_ANCIENTS`
-- path: `src_custom/turn_effects/the_white_stone_of_ancients.c`
-- L161: GY banish → add Blue-Eyes needs GY ignition. Ceiling: banish this from GY once per turn; add 1 Blue-Eyes monster from Deck to hand.

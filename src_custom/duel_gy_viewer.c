@@ -1,10 +1,12 @@
 #include "global.h"
+#include "common-chax.h"
 #include "card.h"
 #include "configs/runtime.h"
 #include "duel.h"
 #include "duel_helpers.h"
 #include "duel_b_menu.h"
 #include "expanded_graveyard.h"
+#include "gy_ignition.h"
 #include "removed_from_play.h"
 
 extern u16 gNewButtons;
@@ -27,6 +29,9 @@ void sub_0801F62C(void);
 u16 GetSelectedCardWithOffset(u8 offset);
 void SetCardInfoWithWarning(u16 *id);
 void ShowCardDetailView(void);
+
+static u8 sViewerFixedDuelist APPEND_DATA = {0};
+static u8 sViewerAllowGyIgnition APPEND_DATA = {0};
 
 static u16 CardListViewerProcessInput(void)
 {
@@ -93,6 +98,21 @@ static void CardListViewerShowSelectedCardDetails(void)
   CardListViewerRestoreAfterCardDetails();
 }
 
+/* Returns TRUE if a GY ignition fired (viewer should close). */
+static u8 CardListViewerTryGyIgnitionOrDetails(void)
+{
+  u16 cardId = GetSelectedCardWithOffset(2);
+
+  if (sViewerAllowGyIgnition
+      && GyIgnition_TryAt(sViewerFixedDuelist, cardId)) {
+    PlayMusic(SFX_SELECT);
+    return TRUE;
+  }
+
+  CardListViewerShowSelectedCardDetails();
+  return FALSE;
+}
+
 static void CardListViewerMain(void)
 {
   u8 keepProcessing;
@@ -136,8 +156,10 @@ static void CardListViewerMain(void)
         sub_801F4A0(4);
         break;
       case A_BUTTON:
-        CardListViewerShowSelectedCardDetails();
-        sub_801F4A0(7);
+        if (CardListViewerTryGyIgnitionOrDetails())
+          keepProcessing = FALSE;
+        else
+          sub_801F4A0(7);
         break;
       case B_BUTTON:
         keepProcessing = FALSE;
@@ -188,7 +210,7 @@ void CardListViewerOpenLoaded(u8 cardCount)
 }
 
 static void CardListViewerLoadCards(u8 fixedDuelist, u8 count, u8 capacity,
-                                    u16 (*getCardAt)(u8, u8))
+                                    u16 (*getCardAt)(u8, u8), u8 allowGyIgnition)
 {
   u8 savedDeckMenu[sizeof(gDeckMenu)];
   u8 i;
@@ -207,18 +229,27 @@ static void CardListViewerLoadCards(u8 fixedDuelist, u8 count, u8 capacity,
   for (i = 0; i < count; i++)
     gDeckMenu.cards[i] = getCardAt(fixedDuelist, i);
 
+  sViewerFixedDuelist = fixedDuelist;
+  sViewerAllowGyIgnition = allowGyIgnition;
   CardListViewerOpenLoaded(count);
+  sViewerAllowGyIgnition = FALSE;
 
   DECKMENU_RESTORE();
 }
 
 void Duel_GraveyardViewer_Open(u8 fixedDuelist)
 {
+  u8 allowIgnition;
+
   if (gRuntimeConfig.expand_graveyard != TRUE)
     return;
 
+  /* Own GY on your turn: A can fire registered GY ignitions. */
+  allowIgnition = (fixedDuelist == DUEL_PLAYER && WhoseTurn() == DUEL_PLAYER);
+
   CardListViewerLoadCards(fixedDuelist, GraveyardExpand_GetCount(fixedDuelist),
-                          EXPANDED_GRAVEYARD_CAPACITY, GraveyardExpand_GetCardAt);
+                          EXPANDED_GRAVEYARD_CAPACITY, GraveyardExpand_GetCardAt,
+                          allowIgnition);
 }
 
 void Duel_RemovedFromPlayViewer_Open(u8 fixedDuelist)
@@ -227,5 +258,6 @@ void Duel_RemovedFromPlayViewer_Open(u8 fixedDuelist)
     return;
 
   CardListViewerLoadCards(fixedDuelist, RemovedFromPlay_GetCount(fixedDuelist),
-                          REMOVED_FROM_PLAY_CAPACITY, RemovedFromPlay_GetCardAt);
+                          REMOVED_FROM_PLAY_CAPACITY, RemovedFromPlay_GetCardAt,
+                          FALSE);
 }

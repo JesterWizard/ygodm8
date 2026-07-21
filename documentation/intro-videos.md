@@ -16,9 +16,7 @@
 
 ## Introduction
 
-The intro video player plays a short MP4 video on the title screen after 5 seconds of idle time. When a button is pressed during the video, playback stops immediately and the idle timer resets. After the video ends (or is skipped), the idle timer resets and the title screen remains active — another 5-second idle period triggers the video again.
-
-This gives the title screen a subtle screensaver-like behaviour: the game shows a looping intro video whenever the player leaves it unattended.
+The intro video player plays a short video on the title screen after 5 seconds of idle time (Meteo/COMET blob). Press **START** (or **B**) during playback to exit early back to the title screen. After the video ends or is skipped, `gIntroVideoPlayed` blocks a second play until the next power cycle.
 
 ## How it works
 
@@ -100,6 +98,7 @@ If no MP4s exist, the generator produces a stub with `VIDEO_COUNT 0` and an empt
 
 ## Limitations & bugs
 
+- Skip buttons are patched in `tools/meteo_integrate.py` (START mask at blob+0xAD48; B edge-skip at +0xAE08). Both return via `MeteoExitTrampoline` → title, not a full SoftReset.
 - The frame buffer is 0x4B00 bytes, suitable for 240x160 4bpp tile data only. Changing the resolution or bit depth requires updating this buffer size.
 - The encode tool's LZSS Python fallback is slower than the native gbagfx tool. For more than ~200 frames, install and use gbagfx for compression.
 - ffmpeg is required in PATH to encode videos. No video is encoded at build time without it; the build silently produces a stub include.

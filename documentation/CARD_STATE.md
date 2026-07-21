@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-20 — Clear battle + turn PARTIALS
+**Last worked on:** 2026-07-21 — White Stone GY ignition (turn=0)
 
-**Outcome:** All 5 battle partials cleared. Turn: Fear Monger + Yubel done; White Stone End Phase SS wired (sent-this-turn flags). Only leftover turn pony: White Stone GY banish→add Blue-Eyes (needs GY ignition). `EffectEvent_Subscribe` now dedupes handlers. Partials 872→863; battle=0, turn=1.
+**Outcome:** Last turn partial cleared. Banish White Stone from GY → add Blue-Eyes from GY to hand via own-GY viewer A + `GyIgnition` table + `EffectOpt`. End Phase SS unchanged. Partials 863→862; **battle=0, turn=0**.
 
-**Open / next:** GY ignition surface (White Stone + Malicious-class backlog), or more custom CCTO / OPT ceilings.
+**Open / next:** Drop Malicious / Mezuki / Treeborn onto `sGyIgnitionTable`; playtest White Stone GY path.

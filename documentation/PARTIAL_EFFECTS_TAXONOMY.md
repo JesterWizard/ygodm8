@@ -7,16 +7,16 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-20 23:36 UTC  
-**Ceiling lines tagged:** `1146`  
-**Partial files:** `863`
+**Last updated:** 2026-07-20 23:45 UTC  
+**Ceiling lines tagged:** `1145`  
+**Partial files:** `862`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
 | `other` | 350 | triage |
-| `event.OnStandby` | 280 | 3 (OPT / turn flags) |
+| `event.OnStandby` | 279 | 3 (OPT / turn flags) |
 | `event.OnBattleDestroy` | 97 | 3 |
 | `event.OnSummon` | 74 | 3 |
 | `ui.Choice` | 58 | 2 |
@@ -29,7 +29,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `equip.Register` | 22 | 1 (lists) |
 | `event.GyIgnition` | 20 | 3 |
 | `event.OnDamageCalc` | 4 | 3 |
-| **total** | **1146** | |
+| **total** | **1145** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -265,7 +265,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (280)
+## `event.OnStandby` (279)
 
 - `AMAZONESS_SECRET_ARTS` (spell): L16: OPT / GY ignition (banish → Extra Deck material) need hooks outside this file. Ceiling: field Fusion only once per BSS; upgrade: turn_effect reset + GY ignition → mark Amazoness Extra material flag.
 - `ANCIENT_GEAR_ADVANCE` (spell): L149: OPT Tribute 1 → draw + tribute-free NS for AGG / Lv5+ that mention it, and cannot-Set this turn need ignition + Normal Summon / Set gates outside this file. Ceiling: activate search only.
@@ -546,7 +546,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `CYBER_KIRIN` (permanent): L8: ATK-position spell/trap negate, battle-draw, and OPT tribute damage zero need continuous/battle/tribute hooks not wired for permanents.
 - `DRAGON_MASTER_MAGIA` (permanent): L8: Quick negate-by-card-type needs chain/OPT hooks.
 - `THE_DARK_MAGICIANS` (permanent): L154: OPT draw on S/T activation needs chain/OPT hooks.
-- `THE_WHITE_STONE_OF_ANCIENTS` (turn): L161: GY banish → add Blue-Eyes needs GY ignition. Ceiling: banish this from GY once per turn; add 1 Blue-Eyes monster from Deck to hand.
 
 ## `event.GyIgnition` (20)
 

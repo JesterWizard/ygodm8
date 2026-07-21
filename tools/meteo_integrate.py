@@ -7,8 +7,9 @@ known code ranges must be shifted by the placement delta.
 
 Stock COMET loops the video and SoftResets to 0x08000000 (full reboot through
 copyright).  We:
-  1. Point EOF / skip exits at the blob SoftReset cleanup (+0xAF1C).
-  2. Rewrite that SoftReset tail to branch to MeteoExitTrampoline, which
+  1. Point EOF / B-skip / key-exit at the blob SoftReset cleanup (+0xAF1C).
+  2. Narrow the key-exit mask to START alone (stock required SELECT+START+R+L).
+  3. Rewrite that SoftReset tail to branch to MeteoExitTrampoline, which
      RegisterRamResets and jumps to MeteoReturnToTitle (title screen, no
      crt0 / copyright).
 """
@@ -51,6 +52,11 @@ AE08_EXIT = arm_b(0xAE08, 0xAF1C)
 
 AD54_STOCK = bytes.fromhex("0100a0e3")
 AD54_EXIT = arm_b(0xAD54, 0xAF1C)
+
+# Stock key-exit: tst KEYINPUT, #0x30C (SELECT|START|R|L all held).
+# Narrow to START alone so players can skip back to title.
+AD48_STOCK = bytes.fromhex("c30f10e3")  # tst r0, #0x30c
+AD48_START = bytes.fromhex("080010e3")  # tst r0, #0x8 (START)
 
 # Thumb: r1=0 so Play won't internally loop; SoftReset only if Play returns
 # (EOF/skip normally take the IWRAM cleanup → trampoline path and never return).
@@ -155,6 +161,7 @@ def patch_no_loop(rom: bytearray, blob_start: int, trampoline: int) -> None:
     patch_at(rom, blob_start, 0xAE3C, AE3C_STOCK, AE3C_EXIT, "EOF->cleanup")
     patch_at(rom, blob_start, 0xAE08, AE08_STOCK, AE08_EXIT, "B-skip->cleanup")
     patch_at(rom, blob_start, 0xAD54, AD54_STOCK, AD54_EXIT, "key-exit->cleanup")
+    patch_at(rom, blob_start, 0xAD48, AD48_STOCK, AD48_START, "START-skip mask")
     patch_at(
         rom, blob_start, THUMB_MAIN_OFF, THUMB_MAIN_STOCK, THUMB_MAIN_EXIT, "thumb once"
     )
@@ -211,6 +218,8 @@ def _self_check() -> None:
     assert AE3C_EXIT == bytes.fromhex("360000ea")
     assert AE08_EXIT == bytes.fromhex("430000ea")
     assert AD54_EXIT == bytes.fromhex("700000ea")
+    assert AD48_STOCK == bytes.fromhex("c30f10e3")
+    assert AD48_START == bytes.fromhex("080010e3")
     assert len(THUMB_MAIN_EXIT) == len(THUMB_MAIN_STOCK) == 10
     assert AF3C_STOCK == bytes.fromhex(
         "0314a0e37f1c81e2fa1081e20000a0e3b000c1e1fd00a0e3000001ef000000ef"
