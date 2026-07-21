@@ -108,6 +108,8 @@
 #include "elemental_hero_gaia.h"
 #include "elemental_hero_necroid_shaman.h"
 #include "elemental_hero_plasma_vice.h"
+#include "hero_flash.h"
+#include "spell_effects.h"
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
 #include "elemental_hero_wildedge.h"
@@ -1743,6 +1745,10 @@ void sub_8044570__Replacement(void)
       || CanNeoSpacianGlowMossAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
       || CanJowlsControlledMonsterAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+      || HeroFlash_CanMonsterAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+      || CanInfectedMailMonsterAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]))
       && !Duel_ForcedAttackBlocksDirect(
           WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER)

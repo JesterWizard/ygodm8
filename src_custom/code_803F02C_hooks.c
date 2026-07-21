@@ -48,6 +48,8 @@
 #include "amazoness_secret_arts.h"
 #include "power_bond.h"
 #include "imperial_order.h"
+#include "instant_contact.h"
+#include "instant_fusion.h"
 #include "dynamic_equip.h"
 #include "big_bang_shot.h"
 #include "embodiment_of_apophis.h"
@@ -805,6 +807,8 @@ void ClearZone__Replacement(struct DuelCard *zone) {
       gDuel.duelistbattleState[blockedDuelist].sorlTurns = 0;
   }
 
+  InstantContact_ClearRestrictedSummon(zone);
+  InstantFusion_ClearStampedZone(zone);
   zone->id = CARD_NONE;
   zone->isFaceUp = 0;
   zone->isLocked = 0;

@@ -15,11 +15,13 @@
 
 #define INSTANT_CONTACT_LP_COST 1000
 #define INSTANT_CONTACT_MAX_LEVEL 7
+#define INSTANT_CONTACT_BOARD_CELLS 20
 
 void UpdateDuelGfxExceptField(void);
 u8 ExtraDeck_TryRemoveCard(u16 cardId);
 
 static const char sNeoSpacianName[] APPEND_RODATA = "Neo-Spacian";
+static u16 sInstantContactStampedCardIds[INSTANT_CONTACT_BOARD_CELLS] APPEND_DATA = {0};
 
 static const u8 sInstantContactPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -27,6 +29,44 @@ static const u8 sInstantContactPickLabels[] APPEND_RODATA = {
 };
 
 /* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
+
+static s8 InstantContactBoardCellIndex(const struct DuelCard *zone)
+{
+  const struct DuelCard *base = &gDuel.board[0][0];
+
+  if (zone == NULL || zone < base || zone >= base + INSTANT_CONTACT_BOARD_CELLS)
+    return -1;
+
+  return (s8)(zone - base);
+}
+
+void InstantContact_StampRestrictedSummon(struct DuelCard *zone)
+{
+  s8 cell = InstantContactBoardCellIndex(zone);
+
+  if (cell >= 0 && zone->id != CARD_NONE)
+    sInstantContactStampedCardIds[cell] = zone->id;
+}
+
+void InstantContact_ClearRestrictedSummon(const struct DuelCard *zone)
+{
+  s8 cell = InstantContactBoardCellIndex(zone);
+
+  if (cell >= 0)
+    sInstantContactStampedCardIds[cell] = CARD_NONE;
+}
+
+u8 InstantContact_NegatesMonsterEffects(const struct DuelCard *zone)
+{
+  s8 cell = InstantContactBoardCellIndex(zone);
+
+  return cell >= 0 && zone->id != CARD_NONE && sInstantContactStampedCardIds[cell] == zone->id;
+}
+
+u8 InstantContact_ShouldReturnToExtraDeckAtEndPhase(const struct DuelCard *zone)
+{
+  return InstantContact_NegatesMonsterEffects(zone);
+}
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -247,6 +287,7 @@ static void INSTANT_CONTACT_ResolveBody(void)
   u16 chosenId;
   struct DuelSummonOpts opts;
   u8 neosPresent;
+  s8 emptyZone;
 
   Duel_ShowEffectText(INSTANT_CONTACT);
 
@@ -277,6 +318,9 @@ static void INSTANT_CONTACT_ResolveBody(void)
     return;
 
   neosPresent = ControlsOrGyHasElementalHeroNeos();
+  emptyZone = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
+  if (emptyZone < 0)
+    return;
 
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
   opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_ATK;
@@ -286,12 +330,11 @@ static void INSTANT_CONTACT_ResolveBody(void)
   if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, chosenId, opts) != DUEL_ACTION_OK)
     return;
 
-  EffectOpt_MarkUsed(INSTANT_CONTACT);
+  if (!neosPresent)
+    InstantContact_StampRestrictedSummon(
+        gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][(u8)emptyZone]);
 
-  /* ponytail: without Neos, effects negated + End Phase return to Extra need
-   * negate + turn_effect hooks outside this file. Ceiling: SS + attack-lock only
-   * when Neos absent; upgrade: mark zone / turn_effect End Phase → ExtraDeck
-   * return + effect-negate while marked. */
+  EffectOpt_MarkUsed(INSTANT_CONTACT);
 }
 
 APPEND_TEXT void EffectINSTANT_CONTACT(void)

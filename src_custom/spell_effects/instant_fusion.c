@@ -14,9 +14,12 @@
 
 #define INSTANT_FUSION_LP_COST 1000
 #define INSTANT_FUSION_MAX_LEVEL 5
+#define INSTANT_FUSION_BOARD_CELLS 20
 
 void UpdateDuelGfxExceptField(void);
 u8 ExtraDeck_TryRemoveCard(u16 cardId);
+
+static u16 sInstantFusionStampedCardIds[INSTANT_FUSION_BOARD_CELLS] APPEND_DATA = {0};
 
 static const u8 sInstantFusionPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -24,6 +27,39 @@ static const u8 sInstantFusionPickLabels[] APPEND_RODATA = {
 };
 
 /* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
+
+static s8 InstantFusionBoardCellIndex(const struct DuelCard *zone)
+{
+  const struct DuelCard *base = &gDuel.board[0][0];
+
+  if (zone == NULL || zone < base || zone >= base + INSTANT_FUSION_BOARD_CELLS)
+    return -1;
+
+  return (s8)(zone - base);
+}
+
+void InstantFusion_StampSummonedZone(struct DuelCard *zone)
+{
+  s8 cell = InstantFusionBoardCellIndex(zone);
+
+  if (cell >= 0 && zone->id != CARD_NONE)
+    sInstantFusionStampedCardIds[cell] = zone->id;
+}
+
+void InstantFusion_ClearStampedZone(const struct DuelCard *zone)
+{
+  s8 cell = InstantFusionBoardCellIndex(zone);
+
+  if (cell >= 0)
+    sInstantFusionStampedCardIds[cell] = CARD_NONE;
+}
+
+u8 InstantFusion_ShouldDestroyAtEndPhase(const struct DuelCard *zone)
+{
+  s8 cell = InstantFusionBoardCellIndex(zone);
+
+  return cell >= 0 && zone->id != CARD_NONE && sInstantFusionStampedCardIds[cell] == zone->id;
+}
 
 static u16 *ActiveExtraDeck(void)
 {
@@ -197,6 +233,7 @@ static void INSTANT_FUSION_ResolveBody(void)
   u8 targetCount;
   u16 chosenId;
   struct DuelSummonOpts opts;
+  s8 emptyZone;
 
   Duel_ShowEffectText(INSTANT_FUSION);
 
@@ -226,6 +263,10 @@ static void INSTANT_FUSION_ResolveBody(void)
   if (IsDuelOver() == TRUE)
     return;
 
+  emptyZone = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
+  if (emptyZone < 0)
+    return;
+
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
   opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_ATK;
   /* cannot attack — isLocked honored by attack validators (clone Instant Neo Space lock). */
@@ -234,13 +275,8 @@ static void INSTANT_FUSION_ResolveBody(void)
   if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, chosenId, opts) != DUEL_ACTION_OK)
     return;
 
+  InstantFusion_StampSummonedZone(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][(u8)emptyZone]);
   EffectOpt_MarkUsed(INSTANT_FUSION);
-
-  /* ponytail: End Phase destroy of the Instant Fusion monster needs a turn_effect
-   * hook outside this file (no in-file End Phase destroy queue without BSS mark).
-   * Ceiling: SS + attack-lock only; upgrade: turn_effect_hooks End Phase → destroy
-   * zone marked by Instant Fusion this turn. Treated-as-Fusion-Summon name checks
-   * also need a summon-tag outside this file. */
 }
 
 APPEND_TEXT void EffectINSTANT_FUSION(void)

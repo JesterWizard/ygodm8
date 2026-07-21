@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round2 Batch2 (10 spells CCTO)
+**Last worked on:** 2026-07-21 — Round2 Batch3 (10 spells CCTO)
 
-**Outcome:** Generation Next → Harpies Hunting Ground. Partials **824→817**.
+**Outcome:** Hero Flash → Instant Neo Space. See PARTIAL_EFFECTS.md for count.
 
-**Open / next:** Round2 Batches 3–6.
+**Open / next:** Round2 Batches 4–6.

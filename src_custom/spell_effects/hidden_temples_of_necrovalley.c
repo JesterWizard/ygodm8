@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "hidden_temples_of_necrovalley.h"
 #include "spell_effects.h"
 
 static const char sGravekeeperArchetypeName[] APPEND_RODATA = "Gravekeeper";
@@ -40,6 +41,32 @@ static u8 CanActivateHiddenTemples(void)
   return FieldHasGravekeeperMonster() && NecrovalleyOnField();
 }
 
+u8 HiddenTemplesOfNecrovalley_BlocksSpecialSummon(u16 cardId)
+{
+  return cardId != CARD_NONE && Duel_IsBackrowCardOnField(HIDDEN_TEMPLES_OF_NECROVALLEY, TRUE)
+         && !IsGravekeeperMonster(cardId);
+}
+
+void HiddenTemplesOfNecrovalley_CheckAfterFieldChange(void)
+{
+  u8 row;
+  u8 col;
+
+  if (FieldHasGravekeeperMonster() && NecrovalleyOnField())
+    return;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    u8 fixedDuelist = row == PLAYER_BACKROW ? DUEL_PLAYER : DUEL_OPPONENT;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone->id == HIDDEN_TEMPLES_OF_NECROVALLEY && zone->isFaceUp)
+        Duel_DestroyZone(zone, fixedDuelist, FALSE);
+    }
+  }
+}
+
 static void HIDDEN_TEMPLES_OF_NECROVALLEY_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -49,19 +76,6 @@ static void HIDDEN_TEMPLES_OF_NECROVALLEY_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(HIDDEN_TEMPLES_OF_NECROVALLEY);
-
-  /* ponytail: SS lock "except Gravekeeper's" needs a CanSpecialSummon /
-   * Duel_CardCannotBeSpecialSummoned gate outside this file.
-   * Ceiling: continuous face-up only; upgrade: LynJump PlaceMonster /
-   * Duel_CardCannotBeSpecialSummoned → if face-up HIDDEN_TEMPLES_OF_NECROVALLEY
-   * on field and card is not Gravekeeper (Duel_CardNameContains "Gravekeeper"),
-   * block SS for both players. */
-
-  /* ponytail: self-destroy when no Gravekeeper or no Necrovalley needs a field-
-   * change / permanent hook outside this file.
-   * Ceiling: activation condition only; upgrade: after monster/backrow change,
-   * if face-up HIDDEN_TEMPLES and (!FieldHasGravekeeper || !NecrovalleyOnField),
-   * Duel_DestroyZone(this). */
 }
 
 APPEND_TEXT void EffectHIDDEN_TEMPLES_OF_NECROVALLEY(void)

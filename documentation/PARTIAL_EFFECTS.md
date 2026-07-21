@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 20:47 UTC  
-**Remaining partials:** `817`
+**Last updated:** 2026-07-21 20:52 UTC  
+**Remaining partials:** `809`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 136 |
+| `spell` | 128 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **817** |
+| **total** | **809** |
 
-## spell (136)
+## spell (128)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -223,50 +223,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/harpies_feather_rest.c`
 - L152: no multi-select GY UI — return 3 most recent Harpie Lady / Harpie Lady Sisters. Ceiling: no targeting; upgrade: DeckMenu multi-pick.
 
-### `HERO_FLASH`
-- path: `src_custom/spell_effects/hero_flash.c`
-- L222: direct-attack grant needs a Can*AttackDirectly hook in code_8043EF4_hooks / ai_attack_hooks (Infected Mail / Jowls pattern). Ceiling: marks zone->unkTwo only; upgrade: CanHeroFlashMonsterAttackDirectly → zone->unkTwo after HERO_FLASH resolution this turn.
-
-### `HIDDEN_TEMPLES_OF_NECROVALLEY`
-- path: `src_custom/spell_effects/hidden_temples_of_necrovalley.c`
-- L53: SS lock "except Gravekeeper's" needs a CanSpecialSummon / Duel_CardCannotBeSpecialSummoned gate outside this file. Ceiling: continuous face-up only; upgrade: LynJump PlaceMonster / Duel_CardCannotBeSpecialSummoned → if face-up HIDDEN_TEMPLES_OF_NECROVALLEY on field and card is not Gravekeeper (Duel_CardNameContains "Gravekeeper"),
-- L60: self-destroy when no Gravekeeper or no Necrovalley needs a field- change / permanent hook outside this file. Ceiling: activation condition only; upgrade: after monster/backrow change, if face-up HIDDEN_TEMPLES and (!FieldHasGravekeeper \|\| !NecrovalleyOnField), Duel_DestroyZone(this).
-
 ### `HYSTERIC_SIGN`
 - path: `src_custom/spell_effects/hysteric_sign.c`
-- L92: no dedicated choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L189: End Phase "sent from hand/field this turn → add up to 3 different Harpie cards from Deck" needs a GY/sent-this-turn + End Phase hook. Ceiling: only on-activate Elegant Egotist search works; upgrade: turn_effect or GY send tracker that opens a multi-pick Harpie deck search.
+- L117: the End Phase search auto-selects the first three distinct Harpie cards. Ceiling: no player multi-pick; upgrade: DeckMenu multi-select.
+- L168: no dedicated choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 
 ### `ILLUSION_MAGIC`
 - path: `src_custom/spell_effects/illusion_magic.c`
 - L137: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L322: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple Illusion Magic per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
-
-### `INFECTED_MAIL`
-- path: `src_custom/spell_effects/infected_mail.c`
-- L65: direct-attack grant needs a Can*AttackDirectly hook in code_8043EF4_hooks / ai_attack_hooks (Ice Edge / Jowls pattern). Ceiling: marks zone->unkTwo only; upgrade: CanInfectedMailMonsterAttackDirectly → zone->unkTwo && controller has face-up INFECTED_MAIL.
-- L71: "Send it to the Graveyard at the end of the Battle Phase" needs an end-of-BP hook outside this file. Ceiling: mark only; upgrade: BP-end → if zone still marked, Duel_DestroyZone to controller GY.
-
-### `INFERNO_FIRE_BLAST`
-- path: `src_custom/spell_effects/inferno_fire_blast.c`
-- L90: "cannot attack the turn you activate this" — isLocked is honored by AI attack selection / some mini_card paths, not a dedicated CannotAttack hook. Ceiling: best-effort lock on the targeted Red-Eyes; upgrade: turn-scoped attack-restriction flag cleared EOT (clone NightmareWheel / Mask of the Accursed).
-
-### `INFERNO_TEMPEST`
-- path: `src_custom/spell_effects/inferno_tempest.c`
-- L105: activation gate "took ≥3000 Battle Damage from 1 attack" needs a battle-damage listener / flag outside this file (no mid-battle OPT hook editable here). Ceiling: resolve banish whenever activated from hand/backrow; upgrade: battle_damage_hooks → set flag on ≥3000 damage then gate CanActivate.
-
-### `INSTANT_CONTACT`
-- path: `src_custom/spell_effects/instant_contact.c`
-- L291: without Neos, effects negated + End Phase return to Extra need negate + turn_effect hooks outside this file. Ceiling: SS + attack-lock only when Neos absent; upgrade: mark zone / turn_effect End Phase → ExtraDeck return + effect-negate while marked.
-
-### `INSTANT_FUSION`
-- path: `src_custom/spell_effects/instant_fusion.c`
-- L239: End Phase destroy of the Instant Fusion monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS mark). Ceiling: SS + attack-lock only; upgrade: turn_effect_hooks End Phase → destroy zone marked by Instant Fusion this turn. Treated-as-Fusion-Summon name checks also need a summon-tag outside this file.
-
-### `INSTANT_NEO_SPACE`
-- path: `src_custom/spell_effects/instant_neo_space.c`
-- L86: "does not shuffle into Extra Deck during End Phase" needs an End Phase Contact-return suppress flag outside this file (Neos Contact return hooks live in permanent/turn effects). Ceiling: equip link only; upgrade: if DynamicEquipTargetsMonsterWithSpell (INSTANT_NEO_SPACE) then skip End Phase Extra Deck shuffle for that zone.
-- L92: leave-field → SS 1 ELEMENTAL_HERO_NEOS from hand/Deck/GY needs a destroy/leave hook outside this file (OnDynamicEquipZoneAboutToClear). Ceiling: equip-only works; revive not wired from this file. Upgrade: leave-hook → Duel_SpecialSummonFromHand/Deck/Grave(ELEMENTAL_HERO_NEOS).
 
 ### `KNIGHTS_TITLE`
 - path: `src_custom/spell_effects/knights_title.c`

@@ -112,7 +112,7 @@ static u8 HandHasEmptySlot(void)
 
 u8 CanActivateILLUSION_MAGIC(void)
 {
-  return HasSpellcasterTribute();
+  return !EffectOpt_IsUsed(ILLUSION_MAGIC) && HasSpellcasterTribute();
 }
 
 static void DestroyIllusionMagicSpellZone(void)
@@ -252,6 +252,7 @@ static void FinishIllusionMagic(u8 fixedRow, u8 fixedCol)
   if (IsDuelOver() == TRUE)
     return;
 
+  EffectOpt_MarkUsed(ILLUSION_MAGIC);
   AddUpToTwoDarkMagicians();
   DestroyIllusionMagicSpellZone();
 }
@@ -319,9 +320,6 @@ static void ILLUSION_MAGIC_ResolveBody(void)
 
 APPEND_TEXT void EffectILLUSION_MAGIC(void)
 {
-  /* ponytail: once-per-turn activation not tracked (no BSS turn flag editable
-   * from this file alone). Ceiling: multiple Illusion Magic per turn possible;
-   * upgrade: shared OPT RAM bit / effect_usage once_per_turn. */
   if (!CanActivateILLUSION_MAGIC()) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);

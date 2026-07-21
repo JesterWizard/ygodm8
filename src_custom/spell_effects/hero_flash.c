@@ -7,6 +7,7 @@
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "hero_flash.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -41,6 +42,11 @@ static u8 IsElementalHeroNormalMonster(u16 cardId)
 
   SetCardInfo(cardId);
   return gCardInfo.color == NORMAL_CARD;
+}
+
+u8 HeroFlash_CanMonsterAttackDirectly(const struct DuelCard *zone)
+{
+  return zone != NULL && zone->unkTwo && IsElementalHeroNormalMonster(zone->id);
 }
 
 static s8 FindGyIndexOfId(u8 fixedDuelist, u16 cardId)
@@ -219,10 +225,6 @@ static void GrantDirectAttackToControlledHeroNormals(void)
     if (zone == NULL || !IsElementalHeroNormalMonster(zone->id))
       continue;
 
-    /* ponytail: direct-attack grant needs a Can*AttackDirectly hook in
-     * code_8043EF4_hooks / ai_attack_hooks (Infected Mail / Jowls pattern).
-     * Ceiling: marks zone->unkTwo only; upgrade: CanHeroFlashMonsterAttackDirectly
-     * → zone->unkTwo after HERO_FLASH resolution this turn. */
     zone->unkTwo = TRUE;
   }
 }

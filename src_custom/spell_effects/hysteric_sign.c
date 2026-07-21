@@ -4,6 +4,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "hysteric_sign.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
 
@@ -14,6 +15,11 @@ void UpdateDuelGfxExceptField(void);
 
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
+
+#define HYSTERIC_SIGN_END_PHASE_SEARCH_COUNT 3
+
+static const char sHarpieName[] APPEND_RODATA = "Harpie";
+static u8 sHystericSignPendingDuelistMask APPEND_DATA = {0};
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -40,6 +46,76 @@ static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
 static u8 HandHasRoomForSearch(u8 turnDuelist)
 {
   return FirstEmptyZoneInRow(gTurnHands[turnDuelist]) >= 0;
+}
+
+static u8 IsHarpieCard(u16 cardId)
+{
+  return cardId != CARD_NONE && Duel_CardNameContains(cardId, sHarpieName);
+}
+
+void HystericSign_NotifySentFromHandOrField(u8 fixedDuelist, u16 cardId)
+{
+  if (fixedDuelist > DUEL_OPPONENT || cardId != HYSTERIC_SIGN)
+    return;
+
+  sHystericSignPendingDuelistMask |= 1 << fixedDuelist;
+}
+
+static u16 FindDifferentHarpieInDeck(u8 fixedDuelist, const u16 *pickedIds, u8 pickedCount)
+{
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+  u8 j;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (!IsHarpieCard(cardId))
+      continue;
+
+    for (j = 0; j < pickedCount; j++) {
+      if (pickedIds[j] == cardId)
+        break;
+    }
+    if (j == pickedCount)
+      return cardId;
+  }
+
+  return CARD_NONE;
+}
+
+static void AddDifferentHarpieCardsFromDeck(u8 fixedDuelist)
+{
+  u16 pickedIds[HYSTERIC_SIGN_END_PHASE_SEARCH_COUNT];
+  u8 turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  u8 pickedCount = 0;
+
+  while (pickedCount < ARRAY_COUNT(pickedIds)) {
+    u16 cardId = FindDifferentHarpieInDeck(fixedDuelist, pickedIds, pickedCount);
+
+    if (cardId == CARD_NONE
+        || Duel_AddDeckCardToHand(turnDuelist, cardId, FALSE) != DUEL_ACTION_OK)
+      break;
+
+    pickedIds[pickedCount++] = cardId;
+  }
+}
+
+void HystericSign_TryResolveEndPhase(void)
+{
+  u8 fixedDuelist;
+
+  for (fixedDuelist = DUEL_PLAYER; fixedDuelist <= DUEL_OPPONENT; fixedDuelist++) {
+    if (!(sHystericSignPendingDuelistMask & (1 << fixedDuelist)))
+      continue;
+
+    sHystericSignPendingDuelistMask &= ~(1 << fixedDuelist);
+    AddDifferentHarpieCardsFromDeck(fixedDuelist);
+  }
+
+  /* ponytail: the End Phase search auto-selects the first three distinct Harpie
+   * cards. Ceiling: no player multi-pick; upgrade: DeckMenu multi-select. */
 }
 
 static u8 DeckHasElegantEgotist(u8 turnDuelist)
@@ -186,11 +262,6 @@ static void HYSTERIC_SIGN_ResolveBody(void)
   if (spellZone != NULL && spellZone->id == HYSTERIC_SIGN)
     Duel_ActivateContinuousZone(spellZone);
 
-  /* ponytail: End Phase "sent from hand/field this turn → add up to 3 different
-   * Harpie cards from Deck" needs a GY/sent-this-turn + End Phase hook.
-   * Ceiling: only on-activate Elegant Egotist search works; upgrade: turn_effect
-   * or GY send tracker that opens a multi-pick Harpie deck search. */
-
   UpdateDuelGfxExceptField();
 }
 
@@ -211,6 +282,9 @@ APPEND_TEXT void EffectHYSTERIC_SIGN(void)
 void HYSTERIC_SIGN_SelfCheck(void)
 {
   if (ELEGANT_EGOTIST == CARD_NONE)
+    while (1)
+      ;
+  if (!IsHarpieCard(HARPIE_LADY))
     while (1)
       ;
 }

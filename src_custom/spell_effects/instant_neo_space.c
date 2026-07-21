@@ -9,6 +9,16 @@
 
 static const char sNeosName[] APPEND_RODATA = "Neos";
 
+u8 InstantNeoSpace_PreventsEndPhaseExtraDeckReturn(const struct DuelCard *zone)
+{
+  return DynamicEquipTargetsMonsterWithSpell(zone, INSTANT_NEO_SPACE);
+}
+
+u8 InstantNeoSpace_ShouldSpecialSummonNeosOnLeave(const struct DuelCard *zone)
+{
+  return zone != NULL && zone->id == INSTANT_NEO_SPACE && IsActiveDynamicEquipSpellZone(zone);
+}
+
 static u8 ActiveMonsterFixedRow(void)
 {
   return WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
@@ -82,17 +92,6 @@ static void EquipInstantNeoSpace(struct DuelCard *spellZone, struct DuelCard *ta
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-
-  /* ponytail: "does not shuffle into Extra Deck during End Phase" needs an
-   * End Phase Contact-return suppress flag outside this file (Neos Contact
-   * return hooks live in permanent/turn effects).
-   * Ceiling: equip link only; upgrade: if DynamicEquipTargetsMonsterWithSpell
-   * (INSTANT_NEO_SPACE) then skip End Phase Extra Deck shuffle for that zone. */
-
-  /* ponytail: leave-field → SS 1 ELEMENTAL_HERO_NEOS from hand/Deck/GY needs a
-   * destroy/leave hook outside this file (OnDynamicEquipZoneAboutToClear).
-   * Ceiling: equip-only works; revive not wired from this file.
-   * Upgrade: leave-hook → Duel_SpecialSummonFromHand/Deck/Grave(ELEMENTAL_HERO_NEOS). */
 }
 
 static void ResolveInstantNeoSpaceTarget(u8 fixedRow, u8 fixedCol)

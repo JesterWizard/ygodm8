@@ -87,10 +87,6 @@ static void ResolveInfernoFireBlastTarget(u8 fixedRow, u8 fixedCol)
 
   burn = GetOriginalAtk(zone->id);
 
-  /* ponytail: "cannot attack the turn you activate this" — isLocked is honored by
-   * AI attack selection / some mini_card paths, not a dedicated CannotAttack hook.
-   * Ceiling: best-effort lock on the targeted Red-Eyes; upgrade: turn-scoped
-   * attack-restriction flag cleared EOT (clone NightmareWheel / Mask of the Accursed). */
   zone->isLocked = TRUE;
 
   if (burn > 0 && Duel_ChangeLp(INACTIVE_DUELIST, -(s32)burn, TRUE) == DUEL_ACTION_DUEL_OVER)

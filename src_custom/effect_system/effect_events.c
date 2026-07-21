@@ -22,6 +22,7 @@
 #include "forbidden_lance.h"
 #include "fusion_deployment.h"
 #include "fusion_destiny.h"
+#include "hidden_temples_of_necrovalley.h"
 #include "spell_effects.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
@@ -41,6 +42,7 @@ static void EffectEvent_OnFieldChangeHandler(const struct EffectEvent *ev)
   Duel_CheckLevelLimitAreaBAfterFieldChange();
   Duel_CheckLevelLimitAreaAAfterFieldChange();
   Duel_CheckAmazonessTigerAfterFieldChange();
+  HiddenTemplesOfNecrovalley_CheckAfterFieldChange();
 
   /* Rivalry / Ring text flips skip AI-sim (gHideEffectText). */
   if (gHideEffectText)

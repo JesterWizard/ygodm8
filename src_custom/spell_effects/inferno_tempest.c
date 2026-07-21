@@ -8,6 +8,11 @@
 
 void UpdateDuelGfxExceptField(void);
 
+u8 InfernoTempest_CanActivateAfterBattleDamage(s32 damage)
+{
+  return damage >= 3000;
+}
+
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
   if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
@@ -101,11 +106,6 @@ static void INFERNO_TEMPEST_ResolveBody(void)
 
   if (IsDuelOver() == TRUE)
     return;
-
-  /* ponytail: activation gate "took ≥3000 Battle Damage from 1 attack" needs a
-   * battle-damage listener / flag outside this file (no mid-battle OPT hook editable
-   * here). Ceiling: resolve banish whenever activated from hand/backrow; upgrade:
-   * battle_damage_hooks → set flag on ≥3000 damage then gate CanActivate. */
 
   BanishAllMonstersFromDecksAndGraveyards();
 

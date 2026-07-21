@@ -32,6 +32,8 @@
 #include "big_evolution_pill.h"
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
 #include "fusion_destiny.h"
+#include "hysteric_sign.h"
+#include "instant_fusion.h"
 #include "red_dragon_archfiend.h"
 #include "spell_effects.h"
 
@@ -99,6 +101,21 @@ void DestroyKarateManAtEndOfTurn(void);
 void DestroyThousandEnergyMonstersAtEndOfTurn(void);
 void DestroyTrianglePowerMonstersAtEndOfTurn(void);
 void DestroyLimiterRemovalMonstersAtEndOfTurn(void);
+
+static void DestroyInstantFusionMonstersAtEndPhase(void)
+{
+  u8 fixedRow;
+  u8 col;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_MONSTER_ROW; fixedRow++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (InstantFusion_ShouldDestroyAtEndPhase(zone))
+        Duel_DestroyZone(zone, Duel_FixedDuelistForMonsterRow(fixedRow), FALSE);
+    }
+  }
+}
 
 typedef unsigned char (*TurnEffectRowMatch)(void);
 typedef unsigned char (*TurnEffectCondition)(void);
@@ -386,6 +403,10 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyFusionDestinyEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  HystericSign_TryResolveEndPhase();
+  DestroyInstantFusionMonstersAtEndPhase();
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();
