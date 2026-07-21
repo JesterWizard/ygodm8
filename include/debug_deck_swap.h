@@ -6,9 +6,6 @@
 #define DEBUG_DECK_SWAP_INACTIVE 0xFF
 #define DEBUG_DECK_SWAP_SAVE_MAGIC 0xD6
 
-#define DEBUG_DECK_SWAP_PRESET_DIRECT_DAMAGE 1
-#define DEBUG_DECK_SWAP_PRESET_RA_PHOENIX 2
-
 extern u16 gDebugDeckSwapBackup[40];
 extern u8 gDebugDeckSwapActivePreset;
 extern u8 gDebugDeckSwapBackupValid;

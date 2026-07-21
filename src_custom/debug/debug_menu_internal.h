@@ -194,6 +194,7 @@ void DebugMenuDrawGraphics(u8 scrollTop, u16 playingId);
 void DebugMenuDrawMaps(u8 scrollTop, u8 confirmedLocationId);
 void DebugMenuDrawScenes(u16 scrollTop, u16 confirmedIndex);
 void DebugMenuDrawDecks(u8 scrollTop, u8 activePreset);
+const u16 *DebugMenuDeck_GetCards(u8 index);
 
 void DebugMenuLoadSpriteFrameIfChanged(s16 *shownSpriteId, u8 *shownFrame, s16 spriteId,
                                        u8 frameIndex, bool8 force);

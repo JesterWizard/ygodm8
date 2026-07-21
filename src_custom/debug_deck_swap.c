@@ -10,18 +10,10 @@ extern u16 gDebugDeckSwapBackupFlashBackup[40];
 extern u8 gDebugDeckSwapBackupValidFlashPrimary;
 extern u8 gDebugDeckSwapBackupValidFlashBackup;
 
-extern const u16 sDirectDamage_Deck[];
-extern const u16 sRAPhoenixMode_Deck[];
+const u16 *DebugMenuDeck_GetCards(u8 index);
 
 static const u16 *DebugDeckSwap_GetPresetCards(u8 presetIndex) {
-  switch (presetIndex) {
-  case DEBUG_DECK_SWAP_PRESET_DIRECT_DAMAGE:
-    return sDirectDamage_Deck;
-  case DEBUG_DECK_SWAP_PRESET_RA_PHOENIX:
-    return sRAPhoenixMode_Deck;
-  default:
-    return NULL;
-  }
+  return DebugMenuDeck_GetCards(presetIndex);
 }
 
 static void DebugDeckSwap_ClearStorage(void) {
