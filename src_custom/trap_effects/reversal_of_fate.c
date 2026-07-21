@@ -40,14 +40,11 @@ APPEND_TEXT void EffectREVERSAL_OF_FATE(void)
   }
 
   if (target != NULL) {
-    /* ponytail: Arcana Force coin result stored in unk4/effect flags — flip bit0.
-     * Ceiling: toggles unk4 bit0; upgrade: real coin-result invert hook. */
+    /* Flip Arcana Force coin bit in unk4. */
     target->unk4 ^= 1;
   }
 
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: needs trapEffect ID + dispatcher wire + PickZone. */
 }

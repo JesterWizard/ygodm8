@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_0_the_fool.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
@@ -9,6 +10,13 @@
 static struct DuelCard *SelfZone(void)
 {
   return gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+}
+
+u8 ArcanaForce0TheFool_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  /* Heads: cannot be destroyed by battle. */
+  return zone != NULL && zone->id == ARCANA_FORCE_0_THE_FOOL
+      && zone->unk4 == ARCANA_FORCE_0_THE_FOOL_COIN_HEADS;
 }
 
 unsigned char ShouldActivateARCANA_FORCE_0_THE_FOOL(void)
@@ -45,5 +53,5 @@ void ActivateARCANA_FORCE_0_THE_FOOL(void)
   heads = RandRangeU8(0, 1) == 1;
   zone->unk4 = heads ? ARCANA_FORCE_0_THE_FOOL_COIN_HEADS
                      : ARCANA_FORCE_0_THE_FOOL_COIN_TAILS;
-  /* ponytail: battle indestructible + targeting immunity need battle/target hooks. */
+  /* Tails targeting immunity still needs target-hook; Heads battle protect is live. */
 }

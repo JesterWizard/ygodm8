@@ -47,6 +47,4 @@ APPEND_TEXT void EffectICARUS_ATTACK(void)
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: needs trapEffect wire + PickZone for 2 targets. */
 }

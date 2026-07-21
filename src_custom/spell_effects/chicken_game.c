@@ -92,8 +92,7 @@ u8 ChickenGame_CanActivateIgnition(struct DuelCard *zone)
 /* Nested A/B: A = draw; B then A = destroy+gain; B then B = opp gains 1000. */
 static u8 PlayerChoosesChickenGameMode(void)
 {
-  /* ponytail: no dedicated 3-way choice UI — nested A/B unlabeled.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
+  /* Nested A/B stand-in for 3-way choice (unlabeled). */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

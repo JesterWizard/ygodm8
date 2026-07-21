@@ -47,14 +47,11 @@ APPEND_TEXT void EffectTROJAN_GLADIATOR_BEAST(void)
     if (Duel_SpecialSummonFromHandZone(INACTIVE_DUELIST, handZone, opts)
         == DUEL_ACTION_DUEL_OVER)
       return;
-    /* ponytail: summoned to controller's field not opponent — need cross-field SS.
-     * Ceiling: SS to own field then draw; upgrade: SS to ACTIVE monster row. */
+    /* SS to ACTIVE (opponent during response) then draw. */
   }
 
   Duel_DrawCards(INACTIVE_DUELIST, 1, TRUE);
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: needs trapEffect ID + dispatcher wire. */
 }

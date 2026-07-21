@@ -9,32 +9,24 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:48 UTC  
-**Remaining partials:** `669`
+**Last updated:** 2026-07-21 22:51 UTC  
+**Remaining partials:** `657`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 72 |
-| `trap` | 32 |
+| `spell` | 69 |
+| `trap` | 24 |
 | `activated` | 451 |
-| `permanent` | 114 |
-| **total** | **669** |
+| `permanent` | 113 |
+| **total** | **657** |
 
-## spell (72)
+## spell (69)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
 - L237: no multi-select GY UI — auto-pick an exact Level-sum mask. Ceiling: no player choice among valid GY sets; upgrade: DeckMenu multi-pick until sum == 2× revealed Level.
-
-### `ARCANA_READING`
-- path: `src_custom/spell_effects/arcana_reading.c`
-- L142: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-
-### `ARCANA_SPREAD`
-- path: `src_custom/spell_effects/arcana_spread.c`
-- L232: no dedicated choice UI — A = Heads, B = Tails. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 
 ### `AROMA_BLEND`
 - path: `src_custom/spell_effects/aroma_blend.c`
@@ -57,10 +49,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CHAIN_SUMMONING`
 - path: `src_custom/spell_effects/chain_summoning.c`
 - L60: no Chain Link / chain-depth API — assume min Link 3. Ceiling: always legal at Link≥3 floor; upgrade: real chain counter.
-
-### `CHICKEN_GAME`
-- path: `src_custom/spell_effects/chicken_game.c`
-- L95: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `CHRYSALIS_NEO_SPACIAN`
 - path: `src_custom/spell_effects/chrysalis_neo_spacian.c`
@@ -334,15 +322,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (32)
+## trap (24)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
 - L26: Extra Deck / Ritual need proper summon; treat as unsummonable from hand
-
-### `ACE_OF_WAND`
-- path: `src_custom/trap_effects/ace_of_wand.c`
-- L33: needs destroy-by-effect trigger wire + trapEffect ID.
 
 ### `AMAZONESS_HALL`
 - path: `src_custom/trap_effects/amazoness_hall.c`
@@ -369,22 +353,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/favourite_contact.c`
 - L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API. Ceiling: return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
 
-### `GLADIATOR_BEASTS_MEDUSA_SHIELD`
-- path: `src_custom/trap_effects/gladiator_beasts_medusa_shield.c`
-- L46: cannot be destroyed by card effects / OPT negate opp monster / if sent GY this turn Set GB Trap from Deck need destroy/negate/GY hooks. Ceiling: continuous face-up + marks only.
-- L55: needs trapEffect ID + dispatcher wire + PickZone.
-
 ### `HARPIE_LADY_ELEGANCE`
 - path: `src_custom/trap_effects/harpie_lady_elegance.c`
 - L47: * ponytail: WIND-only SS lock this turn + destroy-search Harpie Spell need hooks. */
-
-### `HARPIES_FEATHER_STORM`
-- path: `src_custom/trap_effects/harpies_feather_storm.c`
-- L107: opp monster-effect negate this turn + hand activate need gates. Ceiling: if WIND Winged Beast, mark continuous lock via unk4 on this resolve; if Harpie present, also try add Feather Duster (destroy-search stand-in when gate missing).
-
-### `ICARUS_ATTACK`
-- path: `src_custom/trap_effects/icarus_attack.c`
-- L51: needs trapEffect wire + PickZone for 2 targets.
 
 ### `MAGICIANS_COMBINATION`
 - path: `src_custom/trap_effects/magicians_combination.c`
@@ -407,11 +378,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/red_reboot.c`
 - L30: hand-activate by paying half LP + full Trap negate need gates. Ceiling: Set origin Trap face-down + optional Deck Set 1 Trap for opp; opp Trap lock this turn not wired.
 
-### `REVERSAL_OF_FATE`
-- path: `src_custom/trap_effects/reversal_of_fate.c`
-- L43: Arcana Force coin result stored in unk4/effect flags — flip bit0. Ceiling: toggles unk4 bit0; upgrade: real coin-result invert hook.
-- L52: needs trapEffect ID + dispatcher wire + PickZone.
-
 ### `SHADDOLL_CORE`
 - path: `src_custom/trap_effects/shaddoll_core.c`
 - L45: true trap-monster (still a Trap) + Attribute fusion substitute need Embodiment-style link. Ceiling: place SHADDOLL_CORE on monster row and keep trap face-up continuous; GY add Shaddoll S/T stand-in on activate.
@@ -424,10 +390,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/snake_deitys_command.c`
 - L71: full Spell negate (prevent resolve) needs negation gate like Magic Jammer. Ceiling: destroys origin Spell zone; upgrade: trapEffect counter + cancel spell resolve.
 
-### `SNAKE_WHISTLE`
-- path: `src_custom/trap_effects/snake_whistle.c`
-- L55: needs Reptile-destroyed trigger + trapEffect wire.
-
 ### `SOLEMN_JUDGMENT`
 - path: `src_custom/trap_effects/solemn_judgment.c`
 - L39: full Summon/ST negate needs summon/activation chain gates (like Magic Jammer / Solemn). Ceiling: pay half LP + destroy origin; upgrade: trapEffect counter → cancel resolve.
@@ -436,20 +398,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/spark_blaster.c`
 - L40: Main Phase OPT change battle position of 1 face-up + destroy after 3 uses need ignition + counter. Ceiling: equips to Sparkman; unk4 use counter starts at 0.
 
-### `TRAP_DUSTSHOOT`
-- path: `src_custom/trap_effects/trap_dustshoot.c`
-- L67: look at full hand + choose monster UI; trapEffect wire. Ceiling: auto first monster in opp hand → Deck shuffle.
-
 ### `TRAP_TRICK`
 - path: `src_custom/trap_effects/trap_trick.c`
 - L30: no Continuous/Counter trap type split — treat all traps as Normal.
 - L102: "can activate this turn" — leave unlocked.
 - L111: only 1 Trap activate rest of turn + OPT reset need gates.
-
-### `TROJAN_GLADIATOR_BEAST`
-- path: `src_custom/trap_effects/trojan_gladiator_beast.c`
-- L50: summoned to controller's field not opponent — need cross-field SS. Ceiling: SS to own field then draw; upgrade: SS to ACTIVE monster row.
-- L59: needs trapEffect ID + dispatcher wire.
 
 ### `TWILIGHT_ERASER`
 - path: `src_custom/trap_effects/twilight_eraser.c`
@@ -2363,7 +2316,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (114)
+## permanent (113)
 
 ### `AMAZONESS_TIGER`
 - path: `src_custom/permanent_effects/amazoness_tiger.c`
@@ -2373,10 +2326,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/ameba.c`
 - L23: AI candidate sim runs real effect code but restores duel state; do not queue burns that survive into the chosen action.
 - L72: skip nested UpdateDuelGfxExceptField; caller just refreshed field.
-
-### `ARCANA_FORCE_0_THE_FOOL`
-- path: `src_custom/permanent_effects/arcana_force_0_the_fool.c`
-- L48: battle indestructible + targeting immunity need battle/target hooks.
 
 ### `ARCANA_FORCE_EX_THE_DARK_RULER`
 - path: `src_custom/permanent_effects/arcana_force_ex_the_dark_ruler.c`

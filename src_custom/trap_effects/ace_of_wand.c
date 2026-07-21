@@ -29,6 +29,4 @@ APPEND_TEXT void EffectACE_OF_WAND(void)
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: needs destroy-by-effect trigger wire + trapEffect ID. */
 }

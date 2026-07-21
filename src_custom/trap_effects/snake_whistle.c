@@ -51,6 +51,4 @@ APPEND_TEXT void EffectSNAKE_WHISTLE(void)
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: needs Reptile-destroyed trigger + trapEffect wire. */
 }

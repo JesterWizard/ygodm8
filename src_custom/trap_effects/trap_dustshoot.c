@@ -63,7 +63,4 @@ APPEND_TEXT void EffectTRAP_DUSTSHOOT(void)
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
-
-  /* ponytail: look at full hand + choose monster UI; trapEffect wire.
-   * Ceiling: auto first monster in opp hand → Deck shuffle. */
 }

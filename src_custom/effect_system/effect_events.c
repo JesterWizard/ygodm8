@@ -31,6 +31,7 @@
 #include "triangle_ecstasy_spark.h"
 #include "destined_rivals.h"
 #include "meteorain.h"
+#include "harpies_feather_storm.h"
 #include "spell_effects.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
@@ -203,6 +204,7 @@ void EffectEvent_OnTurnBoundary(void)
   LightForce_ClearTurnState();
   DestinedRivals_ClearExhaustedOnTurnBoundary();
   Meteorain_ClearOnTurnBoundary();
+  HarpiesFeatherStorm_ClearAtTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

@@ -5,6 +5,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "harpies_feather_storm.h"
 
 void UpdateDuelGfxExceptField(void);
 
@@ -100,14 +101,42 @@ static void TryAddFeatherDuster(void)
   }
 }
 
+u8 HarpiesFeatherStorm_BlocksMonsterEffects(u8 fixedDuelist)
+{
+  struct DuelCard *trap;
+
+  if (fixedDuelist > DUEL_OPPONENT)
+    return FALSE;
+
+  /* Blocks the opponent of the Storm controller. */
+  trap = Duel_FindBackrowCard(fixedDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER,
+                              HARPIES_FEATHER_STORM, TRUE);
+  return trap != NULL && trap->unk4 != 0;
+}
+
+void HarpiesFeatherStorm_ClearAtTurnBoundary(void)
+{
+  u8 fixed;
+  u8 col;
+
+  for (fixed = DUEL_PLAYER; fixed <= DUEL_OPPONENT; fixed++) {
+    u8 backrow = fixed == DUEL_PLAYER ? PLAYER_BACKROW : OPPONENT_BACKROW;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *trap = gFixedZones[backrow][col];
+
+      if (trap != NULL && trap->id == HARPIES_FEATHER_STORM && trap->isFaceUp
+          && trap->unk4 != 0) {
+        trap->unk4 = 0;
+        Duel_DestroyZone(trap, Duel_TurnDuelistForFixedDuelist(fixed), FALSE);
+      }
+    }
+  }
+}
+
 APPEND_TEXT void EffectHARPIES_FEATHER_STORM(void)
 {
   Duel_ShowTrapResponseText(HARPIES_FEATHER_STORM, gTrapEffectData.originCardId);
-
-  /* ponytail: opp monster-effect negate this turn + hand activate need gates.
-   * Ceiling: if WIND Winged Beast, mark continuous lock via unk4 on this
-   * resolve; if Harpie present, also try add Feather Duster (destroy-search
-   * stand-in when gate missing). */
 
   if (ControlsWindWingedBeast()) {
     struct DuelCard *trapZone =
@@ -115,7 +144,7 @@ APPEND_TEXT void EffectHARPIES_FEATHER_STORM(void)
 
     if (trapZone != NULL) {
       Duel_ActivateContinuousZone(trapZone);
-      trapZone->unk4 = 1; /* monster-effect lock mark */
+      trapZone->unk4 = 1; /* monster-effect lock until turn boundary */
     }
   } else {
     Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],

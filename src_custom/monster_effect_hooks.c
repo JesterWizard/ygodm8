@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "forbidden_chalice.h"
+#include "harpies_feather_storm.h"
 #include "card_passives.h"
 #include "configs/runtime.h"
 #include "duel_helpers.h"
@@ -1011,6 +1012,10 @@ unsigned char CanActivateMonsterEffect(void) {
     return FALSE;
 
   if (ForbiddenChalice_IsNegated(zone))
+    return FALSE;
+
+  if (HarpiesFeatherStorm_BlocksMonsterEffects(
+          Duel_FixedDuelistForMonsterRow(gMonEffect.row)))
     return FALSE;
 
   neptuneSavedId = Duel_BeginCopiedEffectIdentity(zone);

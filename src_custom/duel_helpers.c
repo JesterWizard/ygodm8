@@ -15,6 +15,7 @@
 #include "fusion_destiny.h"
 #include "gadget_box.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
+#include "gladiator_beasts_medusa_shield.h"
 #include "d_force.h"
 #include "duel_status.h"
 #include "effect_events.h"
@@ -641,6 +642,7 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
 
   if (DForce_PreventsPlasmaEffectDestruction(zone)
       || ColosseumCage_TryPreventDestroyByCardEffect(zone)
+      || GladiatorBeastsMedusaShield_PreventsDestroy(zone)
       || FieldBarrier_PreventsFieldSpellDestroy(zone)
       || ForbiddenDress_IsDestroyImmune(zone)
       || GladiatorBeastsBattleArchfiendShield_PreventsDestruction(zone)

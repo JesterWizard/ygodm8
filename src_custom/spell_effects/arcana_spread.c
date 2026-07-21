@@ -229,8 +229,7 @@ static void WaitForNoButtonsHeld(void)
 /* Returns TRUE for Heads path, FALSE for Tails. */
 static u8 PlayerChoosesCoinEffect(void)
 {
-  /* ponytail: no dedicated choice UI — A = Heads, B = Tails.
-   * Ceiling: unlabeled buttons; upgrade path: effect-text choice menu. */
+  /* A = Heads, B = Tails (unlabeled; effect-text menu later). */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
