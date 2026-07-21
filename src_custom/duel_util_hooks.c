@@ -10,6 +10,7 @@
 #include "ojama_trio.h"
 #include "solemn_wishes.h"
 #include "drop_off.h"
+#include "shard_of_greed.h"
 #include "tethys_goddess_of_light.h"
 #include "six_card_hand.h"
 #include "generated/duelist_decks_generated.inc"
@@ -354,8 +355,10 @@ void TryDrawingCard__Replacement(unsigned turn) {
       gDuel.hands[turn_u8][i].id = cardDrawn;
       TryApplySolemnWishesOnDraw(turn_u8, cardDrawn, i);
       TryApplyTethysGoddessOfLightOnDraw(turn_u8, cardDrawn, i);
-      if (gDrawPhaseNormalDrawActive)
+      if (gDrawPhaseNormalDrawActive) {
         TryApplyDropOffOnDrawPhaseDraw(turn_u8, i);
+        ShardOfGreed_OnNormalDraw(turn_u8);
+      }
     } else
       DeclareLoser(turn_u8); // deck out
     return;
@@ -377,8 +380,10 @@ void TryDrawingCard__Replacement(unsigned turn) {
         gHandExtraSlots[turn_u8][i].id = cardDrawn;
         TryApplySolemnWishesOnDraw(turn_u8, cardDrawn, handSlot);
         TryApplyTethysGoddessOfLightOnDraw(turn_u8, cardDrawn, handSlot);
-        if (gDrawPhaseNormalDrawActive)
+        if (gDrawPhaseNormalDrawActive) {
           TryApplyDropOffOnDrawPhaseDraw(turn_u8, handSlot);
+          ShardOfGreed_OnNormalDraw(turn_u8);
+        }
       } else
         DeclareLoser(turn_u8);
       return;

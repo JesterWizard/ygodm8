@@ -2,8 +2,17 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "second_coin_toss.h"
 
 #define CUP_OF_ACE_DRAW_COUNT 2
+
+static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
+{
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
 
 static void CUP_OF_ACE_ResolveBody(void)
 {
@@ -16,7 +25,7 @@ static void CUP_OF_ACE_ResolveBody(void)
     return;
 
   /* Heads: active draws; Tails: opponent draws. Same coin convention as blowback_dragon. */
-  if (RandRangeU8(0, 1) == 1)
+  if (SecondCoinToss_Flip(FixedDuelistForTurnDuelist(ACTIVE_DUELIST)))
     drawDuelist = ACTIVE_DUELIST;
   else
     drawDuelist = INACTIVE_DUELIST;

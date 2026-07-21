@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "shard_of_greed.h"
 #include "spell_effects.h"
 
 #define SHARD_OF_GREED_COUNTER_COST 2
@@ -57,12 +58,25 @@ static void SHARD_OF_GREED_ResolveBody(void)
     zone->unk4 = 0;
 
   Duel_ShowEffectText(SHARD_OF_GREED);
+}
 
-  /* ponytail: Greed Counters on normal Draw Phase draw need a draw-phase hook
-   * outside this file (no in-file normal-draw dispatch).
-   * Ceiling: continuous face-up + ignition when unk4>=2 (never rises alone);
-   * upgrade: Draw Phase normal-draw listener → if face-up SHARD_OF_GREED then
-   * zone->unk4++ (cap optional). */
+void ShardOfGreed_OnNormalDraw(u8 fixedDuelist)
+{
+  struct DuelCard *zone;
+  u8 col;
+  u8 row;
+
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  row = fixedDuelist == DUEL_PLAYER ? PLAYER_BACKROW : OPPONENT_BACKROW;
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    zone = gFixedZones[row][col];
+    if (zone != NULL && zone->id == SHARD_OF_GREED && zone->isFaceUp && zone->isLocked) {
+      if (zone->unk4 < 255)
+        zone->unk4++;
+    }
+  }
 }
 
 APPEND_TEXT void EffectSHARD_OF_GREED(void)

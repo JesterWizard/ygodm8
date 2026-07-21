@@ -69,6 +69,7 @@
 #include "parallel_world_fusion.h"
 #include "power_filter.h"
 #include "return_of_the_dragon_lords.h"
+#include "shining_sarcophagus.h"
 #include "uria_lord_of_searing_flames.h"
 #include "raviel_lord_of_phantasms.h"
 #include "expanded_graveyard.h"
@@ -623,7 +624,8 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
       || FieldBarrier_PreventsFieldSpellDestroy(zone)
       || ForbiddenDress_IsDestroyImmune(zone)
       || GladiatorBeastsBattleArchfiendShield_PreventsDestruction(zone)
-      || ReturnOfTheDragonLords_TryProtectDragon(zone))
+      || ReturnOfTheDragonLords_TryProtectDragon(zone)
+      || ShiningSarcophagus_PreventsDestroy(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;

@@ -9,6 +9,7 @@
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
 #include "player_decks.h"
+#include "effect_events.h"
 #include "spell_effects.h"
 
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyard);
@@ -194,6 +195,7 @@ static void ExecuteShaddollFusion(const struct FusionRecipe *recipe,
       gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
   FusionDuel_SpecialSummonResult(recipe->result, selectedCount);
   ElementalHeroAbsoluteZero_EndSuppressLeave();
+  EffectOpt_MarkUsed(SHADDOLL_FUSION);
   UpdateDuelGfxExceptField();
 }
 
@@ -238,13 +240,15 @@ static void RunPlayerShaddollFusionFlow(void)
 
 static void SHADDOLL_FUSION_ResolveBody(void)
 {
-  /* ponytail: once-per-turn activation not tracked (no BSS turn flag editable
-   * from this file alone). Ceiling: multiple Shaddoll Fusion per turn possible;
-   * upgrade: shared OPT RAM bit / effect_usage once_per_turn. */
-
   /* ponytail: Extra Deck SS detection uses Fusion/Synchro/Xyz/Link color on
    * opponent's field (no per-zone summon-origin flag). Ceiling: misses Main Deck
    * monsters SS'd from Extra edge cases; upgrade: mark Extra Deck origin on SS. */
+
+  if (EffectOpt_IsUsed(SHADDOLL_FUSION)) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
 
   if (WhoseTurn() != DUEL_PLAYER) {
     struct FusionMaterialSource sources[FUSION_MAX_SOURCES];

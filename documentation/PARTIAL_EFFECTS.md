@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 21:11 UTC  
-**Remaining partials:** `789`
+**Last updated:** 2026-07-21 21:14 UTC  
+**Remaining partials:** `785`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 108 |
+| `spell` | 104 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **789** |
+| **total** | **785** |
 
-## spell (108)
+## spell (104)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -360,36 +360,19 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L74: LockMonsterCardsInRow also blocks Normal Set of monsters. Ceiling: cannot allow Set while blocking Summon without a menu hook that distinguishes Set vs Summon; upgrade: Set path unlocks hand briefly.
 - L77: token tribute-lock is only via isLocked — not all tribute paths honor it, and Tokens can still be used for non-Tribute costs. Ceiling: best-effort lockMonster; upgrade: tribute validator excludes SCAPEGOAT_TOKEN_ID / token flag.
 
-### `SECOND_COIN_TOSS`
-- path: `src_custom/spell_effects/second_coin_toss.c`
-- L8: redo coin toss (OPT) needs a shared coin-flip hook wrapping RandRangeU8(0,1) / multi-coin callers (cup_of_ace, suit_of_sword_x, etc.). Ceiling: continuous face-up only; upgrade: after coin resolve, if face-up SECOND_COIN_TOSS on controller's field and effectUsedThisTurn clear, offer redo (player confirm / AI heuristic), re-roll all flips, then mark OPT.
-
-### `SECRET_VILLAGE_OF_THE_SPELLCASTERS`
-- path: `src_custom/spell_effects/secret_village_of_the_spellcasters.c`
-- L14: Spell activation lock based on Spellcaster control needs a Duel_IsCardActivationBlocked / CanActivateSpell gate outside this file (no in-file spell-activate dispatch). Ceiling: continuous face-up only; upgrade: if face-up SECRET_VILLAGE_OF_THE_SPELLCASTERS on field → count Spellcasters you control vs opponent; if only you control any Spellcaster
-
 ### `SECRETS_OF_DARK_MAGIC`
 - path: `src_custom/spell_effects/secrets_of_dark_magic.c`
 - L319: no dedicated choice UI — A = Fusion, B = Ritual. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `SHADDOLL_FUSION`
 - path: `src_custom/spell_effects/shaddoll_fusion.c`
-- L241: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple Shaddoll Fusion per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
-- L245: Extra Deck SS detection uses Fusion/Synchro/Xyz/Link color on opponent's field (no per-zone summon-origin flag). Ceiling: misses Main Deck monsters SS'd from Extra edge cases; upgrade: mark Extra Deck origin on SS.
-
-### `SHARD_OF_GREED`
-- path: `src_custom/spell_effects/shard_of_greed.c`
-- L61: Greed Counters on normal Draw Phase draw need a draw-phase hook outside this file (no in-file normal-draw dispatch). Ceiling: continuous face-up + ignition when unk4>=2 (never rises alone); upgrade: Draw Phase normal-draw listener → if face-up SHARD_OF_GREED then zone->unk4++ (cap optional).
+- L243: Extra Deck SS detection uses Fusion/Synchro/Xyz/Link color on opponent's field (no per-zone summon-origin flag). Ceiling: misses Main Deck monsters SS'd from Extra edge cases; upgrade: mark Extra Deck origin on SS.
 
 ### `SHINING_SARCOPHAGUS`
 - path: `src_custom/spell_effects/shining_sarcophagus.c`
-- L136: printed ignition is Main Phase OPT, not on-activate. Ceiling: one Deck search when this continuous is activated; upgrade: face-up ignition hook → same search with OPT reset.
-- L168: cannot be destroyed by monster effects needs destroy-gate outside this file. Ceiling: face-up continuous only; upgrade: destroy validator → if zone id SHINING_SARCOPHAGUS skip monster-effect destroy.
-- L172: opp GY Special Summon → discard Spell → send that monster to GY needs summon/trigger hook outside this file.
-
-### `SILVERS_CRY`
-- path: `src_custom/spell_effects/silvers_cry.c`
-- L167: no once-per-turn tracker without file BSS / shared OPT flags. Ceiling: can activate multiple Silver's Cry per turn; upgrade: duel-state OPT bit.
+- L137: printed ignition is Main Phase OPT, not on-activate. Ceiling: one Deck search when this continuous is activated; upgrade: face-up ignition hook → same search with OPT reset.
+- L170: opp GY Special Summon → discard Spell → send that monster to GY needs summon/trigger hook outside this file.
+- L176: printed text is monster-effect destroy only; Duel_DestroyZone has no source tag so all card-effect destroys are blocked. Battle uses a different path.
 
 ### `SKYSCRAPER_2_HERO_CITY`
 - path: `src_custom/spell_effects/skyscraper_2_hero_city.c`

@@ -5,6 +5,7 @@
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
 
@@ -57,6 +58,8 @@ static u8 CanActivateSilversCry(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
 
+  if (EffectOpt_IsUsed(SILVERS_CRY))
+    return FALSE;
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
@@ -164,11 +167,10 @@ static void SILVERS_CRY_ResolveBody(void)
 
   Duel_ShowEffectText(SILVERS_CRY);
 
-  /* ponytail: no once-per-turn tracker without file BSS / shared OPT flags.
-   * Ceiling: can activate multiple Silver's Cry per turn; upgrade: duel-state OPT bit. */
-
   if (IsDuelOver() == TRUE || !CanActivateSilversCry())
     return;
+
+  EffectOpt_MarkUsed(SILVERS_CRY);
 
   if (!GraveyardExpand_IsEnabled()) {
     if (SpecialSummonEligibleFromGrave(0) == DUEL_ACTION_DUEL_OVER)

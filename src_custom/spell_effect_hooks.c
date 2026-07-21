@@ -15,6 +15,7 @@
 #include "duel_helpers.h"
 #include "effect_system.h"
 #include "field_barrier.h"
+#include "secret_village_of_the_spellcasters.h"
 #include "world_suppression.h"
 #include "kishido_spirit.h"
 #include "ring_of_destruction.h"
@@ -124,6 +125,17 @@ static void ActivateSpellEffect__Body(void)
   SetupSpellTrapOrigin();
 
   if (Duel_IsCardActivationBlocked(gSpellEffectData.id)) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
+
+  if ((GetTypeGroup(gSpellEffectData.id) == TYPE_GROUP_SPELL
+       || GetTypeGroup(gSpellEffectData.id) == TYPE_GROUP_RITUAL)
+      && SecretVillage_BlocksSpellActivation(
+          gTurnDuelistBattleState[WhoseTurn()] == &gDuel.duelistbattleState[DUEL_PLAYER]
+              ? DUEL_PLAYER
+              : DUEL_OPPONENT)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;

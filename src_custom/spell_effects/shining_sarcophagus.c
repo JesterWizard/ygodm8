@@ -5,6 +5,7 @@
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "shining_sarcophagus.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
 
@@ -164,13 +165,17 @@ static void SHINING_SARCOPHAGUS_ResolveBody(void)
   Duel_ShowEffectText(SHINING_SARCOPHAGUS);
 
   TrySearchMentionOnActivate();
-
-  /* ponytail: cannot be destroyed by monster effects needs destroy-gate outside
-   * this file. Ceiling: face-up continuous only; upgrade: destroy validator →
-   * if zone id SHINING_SARCOPHAGUS skip monster-effect destroy. */
+  /* Parent: ShiningSarcophagus_PreventsDestroy in Duel_DestroyZone. */
 
   /* ponytail: opp GY Special Summon → discard Spell → send that monster to GY
    * needs summon/trigger hook outside this file. */
+}
+
+u8 ShiningSarcophagus_PreventsDestroy(const struct DuelCard *zone)
+{
+  /* ponytail: printed text is monster-effect destroy only; Duel_DestroyZone has no
+   * source tag so all card-effect destroys are blocked. Battle uses a different path. */
+  return zone != NULL && zone->id == SHINING_SARCOPHAGUS && zone->isFaceUp;
 }
 
 APPEND_TEXT void EffectSHINING_SARCOPHAGUS(void)

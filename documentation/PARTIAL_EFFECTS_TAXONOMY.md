@@ -7,16 +7,16 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 21:11 UTC  
-**Ceiling lines tagged:** `969`  
-**Partial files:** `789`
+**Last updated:** 2026-07-21 21:14 UTC  
+**Ceiling lines tagged:** `964`  
+**Partial files:** `785`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
 | `other` | 323 | triage |
-| `event.OnStandby` | 236 | 3 (OPT / turn flags) |
+| `event.OnStandby` | 233 | 3 (OPT / turn flags) |
 | `event.OnBattleDestroy` | 76 | 3 |
 | `event.OnSummon` | 68 | 3 |
 | `ui.Choice` | 55 | 2 |
@@ -25,10 +25,10 @@ python3 tools/stub_effect_queue.py --write-list
 | `op.Search` | 33 | 1 |
 | `event.OnDestroy` | 32 | 3 |
 | `op.BanishTimed` | 21 | 1–3 |
-| `stat.Continuous` | 21 | 1–3 |
+| `stat.Continuous` | 19 | 1–3 |
 | `event.GyIgnition` | 14 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **969** | |
+| **total** | **964** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -222,7 +222,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (236)
+## `event.OnStandby` (233)
 
 - `AROMA_GARDEN` (spell): L90: printed "until end of opponent's next turn (even if this card leaves)" needs a multi-turn temp-stage / overlay tracker outside this file. Ceiling: +500 ATK/DEF via 1 temp stage (~clears at next ResetTempStages / EOT), not opponent's next End Phase; upgrade: stamp expiry turn counter on zones and skip ResetTempStages until that turn's End Phase.
 - `CHICKEN_GAME` (spell): L209: OPT ignition no-response — parent skips TryResolveSpellThroughTraps when ChickenGame_ShouldSkipTrapChain() during face-up re-activation.
@@ -233,10 +233,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `LIGHTSWORN_SANCTUARY` (spell): L328: Shine Counters on Deck→GY mill / remove 2 instead of destroy need mill + destroy-gate + counter storage outside this file (DuelCard has no shine-counter field). Ceiling: continuous face-up + OPT recycle only; upgrade: mill hook → ++Shine; Duel_DestroyZone on Lightsworn → if counters >= 2*n then counters -= 2*n and skip destroy.
 - `NEPHE_SHADDOLL_FUSION` (spell): L402: declared Attribute is stored in unk4 only — fusion/material checks still use printed SetCardInfo attribute. Ceiling: equip + OPT fusion works; Attribute change cosmetic. Upgrade: MaterialMatches / SourceQualifies reads DynamicEquipTargetsMonsterWithSpell attribute override from unk4.
 - `PSEUDO_SPACE` (spell): L241: name-become + replace effects until End Phase need copy-host / turn_effect hooks outside this file (no per-zone name/effect RAM here). Ceiling: OPT banish Field Spell from GY only; upgrade: store banished id → treat zone as that Field Spell until End Phase clear.
-- `SECOND_COIN_TOSS` (spell): L8: redo coin toss (OPT) needs a shared coin-flip hook wrapping RandRangeU8(0,1) / multi-coin callers (cup_of_ace, suit_of_sword_x, etc.). Ceiling: continuous face-up only; upgrade: after coin resolve, if face-up SECOND_COIN_TOSS on controller's field and effectUsedThisTurn clear, offer redo (player confirm / AI heuristic), re-roll all flips, then mark OPT.
-- `SHADDOLL_FUSION` (spell): L241: once-per-turn activation not tracked (no BSS turn flag editable from this file alone). Ceiling: multiple Shaddoll Fusion per turn possible; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
-- `SHINING_SARCOPHAGUS` (spell): L136: printed ignition is Main Phase OPT, not on-activate. Ceiling: one Deck search when this continuous is activated; upgrade: face-up ignition hook → same search with OPT reset.
-- `SILVERS_CRY` (spell): L167: no once-per-turn tracker without file BSS / shared OPT flags. Ceiling: can activate multiple Silver's Cry per turn; upgrade: duel-state OPT bit.
+- `SHINING_SARCOPHAGUS` (spell): L137: printed ignition is Main Phase OPT, not on-activate. Ceiling: one Deck search when this continuous is activated; upgrade: face-up ignition hook → same search with OPT reset.
 - `THE_CLAW_OF_HERMOS` (spell): L41: OPT needs turn-scoped flag cleared outside this file. Ceiling: multiple Claw per turn until soft-reset; upgrade: Standby clear.
 - `TRIANGLE_ECSTASY_SPARK` (spell): L65: stage unit is 500 ATK — Sisters (1950) become 2450 or 2950, not exact printed 2700. Ceiling: nearest-stage temp boost until EOT; upgrade: exact-ATK overlay (like riryoku) forced to 2700 until End Phase clear.
 - `TRIANGLE_ECSTASY_SPARK` (spell): L69: opponent cannot activate Trap Cards / negate opp Trap effects until EOT needs a trap-activation / trap-resolve gate outside this file. Ceiling: Sisters ATK approx only; upgrade: turn flag → block CanActivateTrap / trap effect resolve for INACTIVE_DUELIST until End Phase.
@@ -572,12 +569,10 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `LEGENDARY_MAJU_GARZETT` (permanent): L8: ATK = tributed originals needs hand-tribute SS stat capture; FromHand only.
 - `MAGICIANS_ROD` (permanent): L138: GY tribute Spellcaster → add this needs opp-turn quick hook.
 
-## `stat.Continuous` (21)
+## `stat.Continuous` (19)
 
 - `MOLTING_ESCAPE` (spell): L95: one stage is +500 rather than the printed +300. Ceiling: the protected monster gains +500 ATK. Upgrade: exact +300 ATK overlay.
 - `REALM_OF_LIGHT` (spell): L14: Shine Counters on mill / +100 ATK per counter on Lightsworn / remove 2 counters instead of destroy need mill + destroy-gate + counter storage outside this file (DuelCard has no shine-counter field; no in-file Deck→GY or destroy dispatch). Ceiling: continuous face-up only; upgrade: mill hook → if face-up REALM_OF_LIGHT controller's Deck→GY then ++counters;
-- `SECRET_VILLAGE_OF_THE_SPELLCASTERS` (spell): L14: Spell activation lock based on Spellcaster control needs a Duel_IsCardActivationBlocked / CanActivateSpell gate outside this file (no in-file spell-activate dispatch). Ceiling: continuous face-up only; upgrade: if face-up SECRET_VILLAGE_OF_THE_SPELLCASTERS on field → count Spellcasters you control vs opponent; if only you control any Spellcaster
-- `SHARD_OF_GREED` (spell): L61: Greed Counters on normal Draw Phase draw need a draw-phase hook outside this file (no in-file normal-draw dispatch). Ceiling: continuous face-up + ignition when unk4>=2 (never rises alone); upgrade: Draw Phase normal-draw listener → if face-up SHARD_OF_GREED then zone->unk4++ (cap optional).
 - `THE_A_FORCES` (spell): L14: continuous +200 ATK per Warrior/Spellcaster you control on your Warriors needs a field-stat / continuous ATK overlay outside this file (no in-file hook into Duel_TryApplyDynamicZoneStats or Refresh overlays). Ceiling: face-up continuous only; upgrade: stat overlay → if face-up THE_A_FORCES then each face-up Warrior you control ATK += 200 *
 - `VENOM_SWAMP` (spell): L14: End Phase Venom Counters / -500 ATK per counter / destroy at 0 ATK need an End Phase turn_effect hook + per-monster counter storage outside this file (DuelCard has no venom-counter field; no in-file End Phase dispatch). Ceiling: continuous face-up only; upgrade: turn_effect End Phase → if face-up VENOM_SWAMP then place 1 counter on each face-up non-Venom monster, apply
 - `TWILIGHT_CLOTH` (trap): L56: exact +200 ATK/DEF per banished until End Phase needs temp overlay. Ceiling: +1 perm stage (~500) per banished (capped).
@@ -756,9 +751,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `PSEUDO_SPACE` (spell): L262: name-become + replace effects until End Phase — same ceiling as legacy-GY path above.
 - `REPTILANNE_RAGE` (spell): L66: "becomes Reptile-Type" needs a temp-type overlay outside this file (DuelCard has no type field; type lives in ROM via SetCardInfo). Ceiling: equip-only-to-Reptile (already TYPE_REPTILE); upgrade: type overlay → treat equipped target as TYPE_REPTILE while link is active.
 - `SCAPEGOAT` (spell): L74: LockMonsterCardsInRow also blocks Normal Set of monsters. Ceiling: cannot allow Set while blocking Summon without a menu hook that distinguishes Set vs Summon; upgrade: Set path unlocks hand briefly.
-- `SHADDOLL_FUSION` (spell): L245: Extra Deck SS detection uses Fusion/Synchro/Xyz/Link color on opponent's field (no per-zone summon-origin flag). Ceiling: misses Main Deck monsters SS'd from Extra edge cases; upgrade: mark Extra Deck origin on SS.
-- `SHINING_SARCOPHAGUS` (spell): L168: cannot be destroyed by monster effects needs destroy-gate outside this file. Ceiling: face-up continuous only; upgrade: destroy validator → if zone id SHINING_SARCOPHAGUS skip monster-effect destroy.
-- `SHINING_SARCOPHAGUS` (spell): L172: opp GY Special Summon → discard Spell → send that monster to GY needs summon/trigger hook outside this file.
+- `SHADDOLL_FUSION` (spell): L243: Extra Deck SS detection uses Fusion/Synchro/Xyz/Link color on opponent's field (no per-zone summon-origin flag). Ceiling: misses Main Deck monsters SS'd from Extra edge cases; upgrade: mark Extra Deck origin on SS.
+- `SHINING_SARCOPHAGUS` (spell): L170: opp GY Special Summon → discard Spell → send that monster to GY needs summon/trigger hook outside this file.
+- `SHINING_SARCOPHAGUS` (spell): L176: printed text is monster-effect destroy only; Duel_DestroyZone has no source tag so all card-effect destroys are blocked. Battle uses a different path.
 - `THE_CLAW_OF_HERMOS` (spell): L355: Set reveal has no dedicated flip UI — send face-down as-is. Ceiling: no reveal animation; upgrade: brief face-up before GY send.
 - `THE_EYE_OF_TIMAEUS` (spell): L257: "also always treated as Legendary Dragon Timaeus" name-treat needs a name-alias outside this file. Ceiling: fusion via listed DM material only; upgrade: Duel_GetEffectiveCardId / name-contains Legendary Dragon Timaeus.
 - `THE_SHALLOW_GRAVE` (spell): L155: no DUEL_SUMMON_SPECIAL_FACE_DOWN_DEF — NORMAL_SET for face-down DEF, then mark unk4=2 as Special Summon. Ceiling: SS-locks that only gate SummonModeIsSpecial still apply via SpecialSummonMonsterId's Kristya check; CannotBeSpecialSummoned checked here. Upgrade: add face-down SS mode.
