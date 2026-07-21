@@ -47,10 +47,12 @@
 #include "sasuke_samurai_3.h"
 #include "d_d_warrior.h"
 #include "des_kangaroo.h"
+#include "des_counterblow.h"
 #include "continuous_destruction_punch.h"
 #include "amazoness_heirloom.h"
 #include "ancient_gear_fist.h"
 #include "double_tool_c_and_d.h"
+#include "dragon_s_rage.h"
 #include "attack_pheromones.h"
 #include "backup_squad.h"
 #include "berserker_soul.h"
@@ -270,6 +272,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyElementalHeroPlasmaVicePiercingBattleEffect();
   ApplyBigBangShotPiercingBattleEffect();
   ApplyHHeatedHeartPiercingBattleEffect();
+  ApplyDragonsRagePiercingBattleEffect();
   ApplyGyakuGirePandaBattleEffect();
   ApplyDDWarriorBattleEffect();
   ApplyLesserFiendBattleEffect();
@@ -296,8 +299,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
         sActionData.flags &= (u8)~FLAG_LOSER_PLAYER;
       } else {
         ApplyBackupSquadAfterDamage(playerDmg, DUEL_PLAYER);
-        if (sActionData.playerCardId == CARD_NONE)
+        if (sActionData.playerCardId == CARD_NONE) {
           BerserkerSoul_OnDirectDamage(playerDmg);
+          TryApplyDesCounterblowAfterDirectDamage(DUEL_PLAYER);
+        }
       }
     }
     if (opponentDmg > 0) {
@@ -309,8 +314,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
         sActionData.flags &= (u8)~FLAG_LOSER_OPPONENT;
       } else {
         ApplyBackupSquadAfterDamage(opponentDmg, DUEL_OPPONENT);
-        if (sActionData.opponentCardId == CARD_NONE)
+        if (sActionData.opponentCardId == CARD_NONE) {
           BerserkerSoul_OnDirectDamage(opponentDmg);
+          TryApplyDesCounterblowAfterDirectDamage(DUEL_OPPONENT);
+        }
       }
     }
   }

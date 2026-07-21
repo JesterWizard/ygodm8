@@ -36,6 +36,8 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "kishido_spirit.h"
+#include "light_of_destruction.h"
+#include "light_spiral.h"
 #include "ryu_kishin_clown.h"
 #include "dark_dust_spirit.h"
 #include "kaiser_colosseum.h"
@@ -616,6 +618,13 @@ enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx)
     if (IsDuelOver() == TRUE)
       return DUEL_ACTION_DUEL_OVER;
   }
+
+  TryApplyLightSpiralAfterMill(duelist, count);
+  if (IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+  TryApplyLightOfDestructionAfterMill(duelist, count);
+  if (IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
 
   MaybeUpdateGfx(updateGfx);
   return DUEL_ACTION_OK;

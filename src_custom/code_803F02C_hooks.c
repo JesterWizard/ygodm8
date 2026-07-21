@@ -120,6 +120,7 @@
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
 #include "dark_room_of_nightmare.h"
+#include "doppelganger.h"
 #include "fire_princess.h"
 #include "sasuke_samurai.h"
 
@@ -954,11 +955,15 @@ void CheckLoserFlags__Replacement(void)
   if (sActionData.flags & FLAG_LOSER_OPPONENT)
     DeclareLoser(DUEL_OPPONENT);
 
-  if (actionId == 9 && sActionData.opponentCardAtkOrLifePointsMod > 0)
+  if (actionId == 9 && sActionData.opponentCardAtkOrLifePointsMod > 0) {
     TryApplyDarkRoomAfterEffectDamage(DUEL_OPPONENT);
-  else if (actionId == 8 && sActionData.playerCardAtkOrLifePointsMod > 0)
+    TryApplyDoppelgangerAfterEffectDamage(DUEL_OPPONENT,
+                                          sActionData.opponentCardAtkOrLifePointsMod);
+  } else if (actionId == 8 && sActionData.playerCardAtkOrLifePointsMod > 0) {
     TryApplyDarkRoomAfterEffectDamage(DUEL_PLAYER);
-  else if (actionId == 7 && sActionData.playerCardAtkOrLifePointsMod > 0)
+    TryApplyDoppelgangerAfterEffectDamage(DUEL_PLAYER,
+                                          sActionData.playerCardAtkOrLifePointsMod);
+  } else if (actionId == 7 && sActionData.playerCardAtkOrLifePointsMod > 0)
     TryApplyFirePrincessAfterLpGain(DUEL_PLAYER);
   else if (actionId == 10 && sActionData.opponentCardAtkOrLifePointsMod > 0)
     TryApplyFirePrincessAfterLpGain(DUEL_OPPONENT);

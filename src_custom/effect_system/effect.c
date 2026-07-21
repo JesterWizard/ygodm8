@@ -9,6 +9,7 @@
 #include "amazoness_call.h"
 #include "amazoness_village.h"
 #include "amazoness_fighting_spirit.h"
+#include "all_out_attacks.h"
 #include "ancient_gear_castle.h"
 #include "ancient_gear_tank.h"
 #include "arcane_barrier.h"
@@ -27,7 +28,9 @@
 #include "harpies_hunting_ground.h"
 #include "pandemonium.h"
 #include "skyscraper.h"
+#include "soul_levy.h"
 #include "supreme_kings_castle.h"
+#include "thumbs_down.h"
 
 /* Generated ACTIVATE Effects mirroring EffectScript table. */
 #include "../generated/effect_registry.inc"
@@ -86,6 +89,18 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_AlluringMirrorSplitFloat,
+  },
+  {
+      ALL_OUT_ATTACKS,
+      EFFECT_KIND_TRAP,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_AllOutAttacksOnSummon,
+      NULL,
+      NULL,
+      Op_AllOutAttacksOnSummon,
   },
   {
       AMAZONESS_VILLAGE,
@@ -218,6 +233,42 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_BackfireOnDestroy,
+  },
+  {
+      SOUL_LEVY,
+      EFFECT_KIND_TRAP,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_SoulLevyOnSummon,
+      NULL,
+      NULL,
+      Op_SoulLevyOnSummon,
+  },
+  {
+      THUMBS_DOWN,
+      EFFECT_KIND_TRAP,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_ThumbsDownOnDestroy,
+      NULL,
+      NULL,
+      Op_ThumbsDownOnDestroy,
+  },
+  {
+      THUMBS_DOWN,
+      EFFECT_KIND_TRAP,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_BATTLE_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_ThumbsDownOnDestroy,
+      NULL,
+      NULL,
+      Op_ThumbsDownOnDestroy,
   },
   {
       CLOCK_TOWER_PRISON,

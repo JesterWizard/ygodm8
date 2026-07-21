@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Debug deck presets Extra Deck split
+**Last worked on:** 2026-07-21 — Round6 Batch1
 
-**Outcome:** Fusion/Synchro/Xyz/Link moved out of main 40 into Extra Deck (15) for archetype debug presets; apply/restore/refresh backs up Extra Deck too. `make` OK.
+**Outcome:** Gravity Bind face-up-only; Dragon's Rage pierce; Des Counterblow; Doppelganger; All-Out Attacks; Soul Levy; Morphtronic Bind; Light Spiral/Destruction mill; Thumbs Down. Partials **746→736**.
 
-**Open / next:** Round 6 — continue PARTIAL clear; Masked HERO cards still absent.
+**Open / next:** Round6 Batches 2–6.

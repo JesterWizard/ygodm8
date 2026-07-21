@@ -53,22 +53,11 @@ u8 GravityBind_ShouldActivateTrapOnAttack(const struct DuelCard *trapZone, u16 a
 
 u8 GravityBind_CanMonsterAttack(u16 cardId)
 {
-  u8 i;
-
   if (!MonsterLevelIsBlockedByGravityBind(cardId))
     return TRUE;
 
-  if (IsGravityBindActiveOnField())
-    return FALSE;
-
-  // ponytail: face-down GB still blocks the declare; AI sim restore keeps it face-down every trial
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (GravityBind_ShouldActivateTrapOnAttack(
-            gTurnZones[INACTIVE_DUELIST_BACKROW][i], cardId))
-      return FALSE;
-  }
-
-  return TRUE;
+  /* Only face-up Gravity Bind blocks declare; face-down may still flip on attack. */
+  return !IsGravityBindActiveOnField();
 }
 
 APPEND_TEXT void EffectGravityBind(void)

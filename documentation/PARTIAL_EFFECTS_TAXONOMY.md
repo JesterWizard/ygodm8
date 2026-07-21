@@ -7,40 +7,38 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 22:27 UTC  
-**Ceiling lines tagged:** `885`  
-**Partial files:** `746`
+**Last updated:** 2026-07-21 22:36 UTC  
+**Ceiling lines tagged:** `874`  
+**Partial files:** `736`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 274 | triage |
+| `other` | 269 | triage |
 | `event.OnStandby` | 224 | 3 (OPT / turn flags) |
-| `event.OnBattleDestroy` | 73 | 3 |
-| `event.OnSummon` | 64 | 3 |
+| `event.OnBattleDestroy` | 71 | 3 |
+| `event.OnSummon` | 63 | 3 |
 | `ui.Choice` | 55 | 2 |
 | `chain.Negate` | 49 | later / chain |
 | `gate.Tribute` | 38 | 2–3 |
-| `event.OnDestroy` | 29 | 3 |
-| `op.Search` | 28 | 1 |
+| `event.OnDestroy` | 28 | 3 |
+| `op.Search` | 26 | 1 |
 | `op.BanishTimed` | 20 | 1–3 |
 | `stat.Continuous` | 16 | 1–3 |
 | `event.GyIgnition` | 13 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **885** | |
+| **total** | **874** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (73)
+## `event.OnBattleDestroy` (71)
 
 - `SKYSCRAPER_2_HERO_CITY` (spell): L244: no "destroyed by battle" GY filter — no destroy-reason memory on expanded GY cards. Ceiling: any Elemental HERO in GY is legal; upgrade: stamp battle-destroy on GY push / zone→GY, then filter IsElementalHeroMonster && wasDestroyedByBattle.
 - `THE_SACRED_WATERS_IN_THE_SKY` (spell): L535: battle-destruction protection ("banish this from GY instead") needs a battle/destroy redirect hook. Ceiling: activate + LP gain only; upgrade: battle_damage / destroy-protection hook checking GY Sacred Waters.
 - `AMAZONESS_HOT_SPRING` (trap): L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
 - `DAMAGE_EQUALS_REPTILE` (trap): L71: battle-damage involving Reptile trigger + OPT.
 - `DAMAGE_REPTILE` (trap): L49: OPT when take battle damage involving Reptile. Ceiling: when Effect runs, SS Reptile from Deck with ATK ≤ a stand-in damage amount (origin ATK if monster); upgrade: battle-damage hook stores damage.
-- `DES_COUNTERBLOW` (trap): L11: destroy monster that inflicts direct battle damage needs battle LP hook. Ceiling: face-up continuous only; upgrade: after direct battle damage → Duel_DestroyZone(attacker). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- `DRAGON_S_RAGE` (trap): L11: Dragon piercing needs battle damage calc hook outside this file. Ceiling: face-up continuous only; upgrade: if face-up DRAGON_S_RAGE and attacker TYPE_DRAGON vs Defense Position → piercing.
 - `GLADIATOR_NAUMACHIA` (trap): L44: forced attack + destroy-search GB from Deck need battle/destroy hooks. Ceiling: if GB on field, mark opp must-attack; shuffle 1 GB from hand/GY and boost 1 GB by +1 stage (~original DEF stand-in).
 - `HALF_COUNTER` (trap): L20: damage calculation when your monster attacked needs battle hook. Ceiling: when Effect runs, boost defender by ~half attacker original ATK via stages; upgrade: damage-calc targeting wire.
 - `MAGICAL_ARM_SHIELD` (trap): L23: attack declare + redirect damage calc need battle hooks. Ceiling: take control of 1 face-up opp monster except origin attacker (Change of Heart style move to our monster row).
@@ -113,7 +111,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ELEMENTAL_HERO_CAPTAIN_GOLD` (permanent): L68: with Skyscraper active, prefer normal summon as a 2100 beater
 - `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` (permanent): L121: unaffected-after-SS + battle ATK boost need continuous/battle hooks.
 
-## `event.OnDestroy` (29)
+## `event.OnDestroy` (28)
 
 - `SPELL_CHRONICLE` (spell): L151: Chronicle Counters on opp Spell resolve / remove 2 → opp chooses banished add / leave-field burn need continuous hooks outside this file. Ceiling: activate discard+banish 5 only; unk4 counter slot unused.
 - `CROSS_DIMENSONAL_DUEL` (trap): L27: next Standby return at double ATK + GY protect Golem need turn/destroy hooks. Ceiling: banish 1 Ancient Gear you control.
@@ -122,7 +120,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `HYSTERIC_PARTY` (trap): L72: when this face-up leaves → destroy those SS'd Harpie Lady needs leave-field hook. Ceiling: continuous face-up + GY Harpie Lady SS; OPT trapEffect wire.
 - `NECROVALLEY_TEMPLE` (trap): L90: -500 ATK/DEF while GK+Necrovalley need stat overlay; destroy-Set Necrovalley S/T from Deck need destroy hook. Ceiling: if GK present, try place Necrovalley from hand/GY; mark opp monsters -1 stage.
 - `RISE_OF_THE_SNAKE_DEITY` (trap): L16: printed trigger is Vennominon destroyed except by battle. Ceiling: when Effect runs, SS Vennominaga from hand/Deck; upgrade: destroy hook gates activation to non-battle Vennominon leave.
-- `THUMBS_DOWN` (trap): L31: destroy by battle/effect → controller takes 500 each needs destroy hook. Ceiling: face-up continuous only.
 - `AMAZONESS_EMPRESS` (activated): L51: protect/pierce + leave-field SS Queen need permanent/leave hooks. Ceiling: OPT add Amazoness Queen (or Amazoness) from Deck to hand.
 - `AMAZONESS_EMPRESS` (activated): L76: leave-field SS → Deck search stand-in (safer than Extra SS).
 - `ANCIENT_GEAR_FRAME` (activated): L68: attack S/T lock + leave-field SS FALSE. Ceiling: OPT discard 1 → add AG Golem or S/T mentioning Golem from Deck.
@@ -145,14 +142,13 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLADIATOR_BEAST_GAIODIAZ` (permanent): L8: battle DEF burn + GB tag-out need battle-end/destroy hooks.
 - `GLADIATOR_BEAST_SAMNITE` (permanent): L8: battle search + GB tag-out need battle-end/destroy hooks.
 
-## `event.OnSummon` (64)
+## `event.OnSummon` (63)
 
 - `AROMA_BLEND` (spell): L291: GY effect (banish this → Fusion Summon Plant Fusion by banishing materials from hand/field, and GY Plants if LP higher) needs a GY-activate path + Plant Fusion recipe filter outside this file. Ceiling: discard + place Humid/Dried/Blessed Winds face-up only; upgrade: GY activate AROMA_BLEND → banish self → FusionDuel Plant Fusion pay
 - `SUPREME_KINGS_CASTLE` (spell): L121: "Fusion Summon monsters that must be Special Summoned with Dark Fusion, with effects other than Dark Fusion" needs Evil HERO summon gates to check SupremeKingsCastle_IsActive. Ceiling: face-up field only.
 - `ULTRA_POLYMERIZATION` (spell): L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 - `MORPHTRONIC_MONITRON` (trap): L14: when Morphtronic Summoned → optional to Defense needs summon hook. Ceiling: face-up continuous only.
 - `SHADDOLL_SCHISM` (trap): L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
-- `SOUL_LEVY` (trap): L11: only control 1 + each opp SS → mill top 3 opp Deck need unique- continuous + summon hook. Ceiling: face-up continuous only; upgrade: after opp Special Summon → send top 3 of opp Deck to GY.
 - `AMAZONESS_AUGUSTA` (activated): L62: protect other Amazoness + second attack FALSE. Ceiling: OPT SS Amazoness from Deck (Fusion Summon trigger stand-in).
 - `AMULET_DRAGON` (activated): L254: on-summon text after field draw so Amulet Dragon is visible (fusion uses updateGfx=FALSE).
 - `ANCIENT_GEAR_DRAGON` (activated): L121: Quick negate + tribute-less NS need negate/summon hooks. Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY.
@@ -625,7 +621,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `OJAMA_KING` (activated): L54: PickZone for up to 3 empty zones + continuous lock gate. Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
 - `ELEMENTAL_HERO_SUNRISE` (permanent): L464: true timing is attack declaration; resolve post-battle so PickZone can run from the main loop (same pattern as Core). Opponent-turn textboxes corrupt field VRAM — auto-resolve silently.
 
-## `op.Search` (28)
+## `op.Search` (26)
 
 - `DARK_MAGIC_INHERITANCE` (spell): L17: no card-description text search — approximate DM/DMG support S/T via name contains "Dark Magician"/"Dark Magic" plus a known support ID list. Ceiling: misses text-only mentions (e.g. cards that only list DM in effect text). Upgrade: description-string helper or generated support bitmask.
 - `SOUL_SERVANT` (spell): L30: no card-description text search — approximate "lists DM/DMG" via name contains "Dark Magician" plus a known support ID list. Ceiling: misses text-only mentions. Upgrade: description-string helper.
@@ -635,8 +631,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLORIOUS_ILLUSION` (trap): L70: End Phase mill 2 + mutual destroy-on-leave need turn/leave hooks.
 - `GRAVEKEEPERS_TRAP` (trap): L83: Exchange lock GY effects/SS + opp Draw Phase look + discard cost need GY/draw gates. Ceiling: if Exchange in GY mark unk4 lock; discard 1 → search Gravekeeper's / EARTH Fairy.
 - `HARPIE_LADY_ELEGANCE` (trap): L47: * ponytail: WIND-only SS lock this turn + destroy-search Harpie Spell need hooks. */
-- `LIGHT_OF_DESTRUCTION` (trap): L11: when opp effect mills their Deck → mill top 3 needs mill hook. Ceiling: face-up continuous only; upgrade: after opp Deck→GY by effect → send top 3 of that Deck to GY.
-- `LIGHT_SPIRAL` (trap): L11: Lightsworn mill → banish opp top Deck needs mill hook. Ceiling: face-up continuous only.
 - `LIGHTSWORN_JUDGEMENT` (trap): L45: if sent Deck→GY by Lightsworn effect → add Judgment Dragon needs mill/GY hook. Ceiling: places on Deck top only; upgrade: on LS mill of this card → search JUDGMENT_DRAGON to hand.
 - `TWILIGHT_CLOTH` (trap): L70: Deck→GY Lightsworn protection mode needs mill-sent trigger.
 - `EHREN_LIGHTSWORN_MONK` (activated): L12: battle shuffle + End Phase mill 3 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: battle + EP mill.
@@ -679,7 +673,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (274)
+## `other` (269)
 
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
@@ -713,7 +707,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `A_HERO_EMERGES` (trap): L62: Normal Trap must leave the backrow to prevent AI re-trigger loop
 - `ACE_OF_WAND` (trap): L33: needs destroy-by-effect trigger wire + trapEffect ID.
 - `AEGIS_OF_THE_OCEAN_DRAGON_LORD` (trap): L37: battle/effect destroy protect until EP + trapEffect wire. Ceiling: marks unk4 on matching monsters; upgrade: destroy gates skip marked until End Phase clear + trap dispatcher.
-- `ALL_OUT_ATTACKS` (trap): L11: when monster(s) SS while face-up → change to ATK and must attack that turn. Ceiling: face-up continuous only; upgrade: SS hook → isDefending=FALSE + forced-attack flag. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - `AMAZONESS_HALL` (trap): L43: * ponytail: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
 - `AMAZONESS_WILLPOWER` (trap): L62: must-attack + mutual destroy-on-leave need battle/leave hooks.
 - `APPARATION` (trap): L37: printed trigger is HERO destroy. Ceiling: if origin was a HERO monster OR we control a HERO, allow Deck SS.
@@ -723,14 +716,11 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `BATTLE_MANIA` (trap): L16: activate only opp Standby. Ceiling: when Effect runs, flip opp monsters to ATK; forced-attack / cannot-change-position need battle gates.
 - `BOTTOMLESS_SHIFTING_SAND` (trap): L10: GBA hand cap is 5; TCG rule uses 4 — scale self-destruct threshold down
 - `DARK_SUPREMACY` (trap): L38: "Spells that mention Dark Fusion" not scanned by text.
-- `DOPPELGANGER` (trap): L11: when you take monster-effect damage → mirror to opp needs LP/effect-damage hook. Ceiling: face-up continuous only; upgrade: after effect damage from opp monster → Duel_ChangeLp(opp, -same). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- `DRAGON_S_RAGE` (trap): L21: wire TryActivate into turn_effect_hooks.
 - `DUST_TORNADO` (trap): L112: optional hand pick — B skips; upgrade path: shared helper in exchange_hand_selection
 - `EXCHANGE_OF_THE_SPIRIT` (trap): L32: full Deck↔GY swap is heavy — approximate by pushing all GY to deck bottom and rebuilding GY from current undrawn deck top chunk. Ceiling: incomplete swap if GY expand / deck sizes mismatch; upgrade: proper dual-buffer swap of entire Deck and GY stacks.
 - `FAIRY_BOX` (trap): L96: age both fixed backrows so a trap set last turn is live when the other duelist attacks
 - `FAVOURITE_CONTACT` (trap): L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API. Ceiling: return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
 - `GLADIATOR_BEASTS_VALOR` (trap): L32: opp can only attack GB monsters needs attack-target gate. Ceiling: face-up continuous only.
-- `GRAVITY_BIND` (trap): L64: face-down GB still blocks the declare; AI sim restore keeps it face-down every trial
 - `HALF_COUNTER` (trap): L39: 1 stage ~= 500 ATK.
 - `HUNTING_INSTINCT` (trap): L27: printed trigger is opp Special Summon. Ceiling: when Effect runs, SS Dinosaur from hand; upgrade: SS-to-opp-field trigger wire.
 - `MACRO_COSMOS` (trap): L31: any card sent to GY is banished instead needs GY-send redirect while face-up MACRO_COSMOS. Ceiling: continuous + optional Helios SS.
@@ -741,7 +731,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `METAVERSE` (trap): L122: choose activate Field vs add to hand — always add to hand. Ceiling: no Field Zone activate path; upgrade: A/B choice → set gDuel.field.
 - `METAVERSE` (trap): L132: needs trapEffect ID + dispatcher wire.
 - `MIRROR_FORCE` (trap): L21: destroy self after monsters so AI sim doesn't re-trigger
-- `MORPHTRONIC_BIND` (trap): L13: while face-up Morphtronic controlled, opp Lv≥4 cannot attack or change battle position needs attack/position gates. Ceiling: face-up continuous only.
 - `NUMINOUS_HEALER` (trap): L48: activate when you take damage. Ceiling: when Effect runs, heal 1000 + 500×GY copies; upgrade: LP-damage trigger wire.
 - `PROPHECY` (trap): L68: player predict UI (bigger/smaller) + trapEffect wire. Ceiling: random opp hand card; AI random guess / player always higher.
 - `REVERSAL_OF_FATE` (trap): L43: Arcana Force coin result stored in unk4/effect flags — flip bit0. Ceiling: toggles unk4 bit0; upgrade: real coin-result invert hook.

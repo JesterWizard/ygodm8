@@ -9,6 +9,7 @@
 #include "wall_of_revealing_light.h"
 #include "nightmare_wheel.h"
 #include "harpie_lady_3.h"
+#include "morphtronic_bind.h"
 #include "spell_effects.h"
 
 void Duel_ResetAttackRestrictions(void)
@@ -35,7 +36,7 @@ void Duel_RefreshAttackRestrictions(void)
   if (gTurnDuelistBattleState[ACTIVE_DUELIST]->sorlTurns)
     flags |= DUEL_ATTACK_RESTRICT_SORL;
 
-  if (Duel_IsBackrowCardOnField(GRAVITY_BIND, FALSE))
+  if (Duel_IsBackrowCardOnField(GRAVITY_BIND, TRUE))
     flags |= DUEL_ATTACK_RESTRICT_GRAVITY_BIND;
 
   if (IsLevelLimitAreaBActiveOnField())
@@ -95,6 +96,9 @@ u8 Duel_CanMonsterDeclareAttackWithCachedRestrictions(const struct DuelCard *zon
     return FALSE;
 
   if (!NightmareWheel_CanMonsterDeclareAttack(zone))
+    return FALSE;
+
+  if (MorphtronicBind_BlocksAttack(zone))
     return FALSE;
 
   /* Harpie Lady 3: check per-zone attack lock */

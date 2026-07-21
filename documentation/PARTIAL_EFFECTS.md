@@ -9,18 +9,18 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:27 UTC  
-**Remaining partials:** `746`
+**Last updated:** 2026-07-21 22:36 UTC  
+**Remaining partials:** `736`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 72 |
-| `trap` | 108 |
+| `trap` | 98 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **746** |
+| **total** | **736** |
 
 ## spell (72)
 
@@ -334,7 +334,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (108)
+## trap (98)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -348,10 +348,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `AEGIS_OF_THE_OCEAN_DRAGON_LORD`
 - path: `src_custom/trap_effects/aegis_of_the_ocean_dragon_lord.c`
 - L37: battle/effect destroy protect until EP + trapEffect wire. Ceiling: marks unk4 on matching monsters; upgrade: destroy gates skip marked until End Phase clear + trap dispatcher.
-
-### `ALL_OUT_ATTACKS`
-- path: `src_custom/trap_effects/all_out_attacks.c`
-- L11: when monster(s) SS while face-up → change to ATK and must attack that turn. Ceiling: face-up continuous only; upgrade: SS hook → isDefending=FALSE + forced-attack flag. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 
 ### `AMAZONESS_HALL`
 - path: `src_custom/trap_effects/amazoness_hall.c`
@@ -450,22 +446,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L38: "Spells that mention Dark Fusion" not scanned by text.
 - L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
 
-### `DES_COUNTERBLOW`
-- path: `src_custom/trap_effects/des_counterblow.c`
-- L11: destroy monster that inflicts direct battle damage needs battle LP hook. Ceiling: face-up continuous only; upgrade: after direct battle damage → Duel_DestroyZone(attacker). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-
 ### `DESTINED_RIVALS`
 - path: `src_custom/trap_effects/destined_rivals.c`
 - L54: effectExhausted until EP + OPT turn reset need End Phase / turn_effect clear. Ceiling: marks opp face-up monsters exhausted.
-
-### `DOPPELGANGER`
-- path: `src_custom/trap_effects/doppelganger.c`
-- L11: when you take monster-effect damage → mirror to opp needs LP/effect-damage hook. Ceiling: face-up continuous only; upgrade: after effect damage from opp monster → Duel_ChangeLp(opp, -same). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-
-### `DRAGON_S_RAGE`
-- path: `src_custom/trap_effects/dragon_s_rage.c`
-- L11: Dragon piercing needs battle damage calc hook outside this file. Ceiling: face-up continuous only; upgrade: if face-up DRAGON_S_RAGE and attacker TYPE_DRAGON vs Defense Position → piercing.
-- L21: wire TryActivate into turn_effect_hooks.
 
 ### `DRAMATIC_RESCUE`
 - path: `src_custom/trap_effects/dramatic_rescue.c`
@@ -528,10 +511,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/gravekeepers_trap.c`
 - L83: Exchange lock GY effects/SS + opp Draw Phase look + discard cost need GY/draw gates. Ceiling: if Exchange in GY mark unk4 lock; discard 1 → search Gravekeeper's / EARTH Fairy.
 
-### `GRAVITY_BIND`
-- path: `src_custom/trap_effects/gravity_bind.c`
-- L64: face-down GB still blocks the declare; AI sim restore keeps it face-down every trial
-
 ### `HALF_COUNTER`
 - path: `src_custom/trap_effects/half_counter.c`
 - L20: damage calculation when your monster attacked needs battle hook. Ceiling: when Effect runs, boost defender by ~half attacker original ATK via stages; upgrade: damage-calc targeting wire.
@@ -568,14 +547,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `INFINITE_IMPERMANENCE`
 - path: `src_custom/trap_effects/infinite_impermanence.c`
 - L17: hand-activate if empty field + column S/T negate need gates. Ceiling: mark 1 face-up opp monster (unk4) as effect-negated stand-in.
-
-### `LIGHT_OF_DESTRUCTION`
-- path: `src_custom/trap_effects/light_of_destruction.c`
-- L11: when opp effect mills their Deck → mill top 3 needs mill hook. Ceiling: face-up continuous only; upgrade: after opp Deck→GY by effect → send top 3 of that Deck to GY.
-
-### `LIGHT_SPIRAL`
-- path: `src_custom/trap_effects/light_spiral.c`
-- L11: Lightsworn mill → banish opp top Deck needs mill hook. Ceiling: face-up continuous only.
 
 ### `LIGHTSWORN_AEGIS`
 - path: `src_custom/trap_effects/lightsworn_aegis.c`
@@ -630,10 +601,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MIRROR_FORCE`
 - path: `src_custom/trap_effects/mirror_force.c`
 - L21: destroy self after monsters so AI sim doesn't re-trigger
-
-### `MORPHTRONIC_BIND`
-- path: `src_custom/trap_effects/morphtronic_bind.c`
-- L13: while face-up Morphtronic controlled, opp Lv≥4 cannot attack or change battle position needs attack/position gates. Ceiling: face-up continuous only.
 
 ### `MORPHTRONIC_FORCEFIELD`
 - path: `src_custom/trap_effects/morphtronic_forcefield.c`
@@ -728,17 +695,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/solemn_wishes.c`
 - L89: InitBoard fills hands via TryDrawingCard before duel gfx; skip until past opening hand.
 
-### `SOUL_LEVY`
-- path: `src_custom/trap_effects/soul_levy.c`
-- L11: only control 1 + each opp SS → mill top 3 opp Deck need unique- continuous + summon hook. Ceiling: face-up continuous only; upgrade: after opp Special Summon → send top 3 of opp Deck to GY.
-
 ### `SPARK_BLASTER`
 - path: `src_custom/trap_effects/spark_blaster.c`
 - L40: Main Phase OPT change battle position of 1 face-up + destroy after 3 uses need ignition + counter. Ceiling: equips to Sparkman; unk4 use counter starts at 0.
-
-### `THUMBS_DOWN`
-- path: `src_custom/trap_effects/thumbs_down.c`
-- L31: destroy by battle/effect → controller takes 500 each needs destroy hook. Ceiling: face-up continuous only.
 
 ### `TRAP_DUSTSHOOT`
 - path: `src_custom/trap_effects/trap_dustshoot.c`
