@@ -7,17 +7,17 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 21:34 UTC  
-**Ceiling lines tagged:** `938`  
-**Partial files:** `771`
+**Last updated:** 2026-07-21 21:36 UTC  
+**Ceiling lines tagged:** `935`  
+**Partial files:** `769`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 312 | triage |
+| `other` | 310 | triage |
 | `event.OnStandby` | 228 | 3 (OPT / turn flags) |
-| `event.OnBattleDestroy` | 74 | 3 |
+| `event.OnBattleDestroy` | 73 | 3 |
 | `event.OnSummon` | 64 | 3 |
 | `ui.Choice` | 55 | 2 |
 | `chain.Negate` | 49 | later / chain |
@@ -28,13 +28,12 @@ python3 tools/stub_effect_queue.py --write-list
 | `stat.Continuous` | 18 | 1–3 |
 | `event.GyIgnition` | 13 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **938** | |
+| **total** | **935** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (74)
+## `event.OnBattleDestroy` (73)
 
-- `LIGHT_BARRIER` (spell): L12: EffectEvent battle-destroy payloads expose the destroyed monster, not its attacker. Ceiling: LP gain needs a battle parent that supplies both zones to LightBarrier_GetArcanaForceBattleDestroyLp; upgrade: add attacker data to the event payload.
 - `SKYSCRAPER_2_HERO_CITY` (spell): L244: no "destroyed by battle" GY filter — no destroy-reason memory on expanded GY cards. Ceiling: any Elemental HERO in GY is legal; upgrade: stamp battle-destroy on GY push / zone→GY, then filter IsElementalHeroMonster && wasDestroyedByBattle.
 - `THE_SACRED_WATERS_IN_THE_SKY` (spell): L535: battle-destruction protection ("banish this from GY instead") needs a battle/destroy redirect hook. Ceiling: activate + LP gain only; upgrade: battle_damage / destroy-protection hook checking GY Sacred Waters.
 - `DAMAGE_EQUALS_REPTILE` (trap): L71: battle-damage involving Reptile trigger + OPT.
@@ -599,7 +598,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `HYSTERIC_SIGN` (spell): L168: no dedicated choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - `ILLUSION_MAGIC` (spell): L137: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - `LIGHTNING_STORM` (spell): L132: no dedicated choice UI — A = monsters, B = Spells/Traps. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- `LIGHTSWORN_SABRE` (spell): L84: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path → if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and RegisterDynamicEquip again.
+- `LIGHTSWORN_SABRE` (spell): L81: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path → if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and RegisterDynamicEquip again.
 - `MAUSOLEUM_OF_THE_EMPEROR` (spell): L112: no dedicated Summon/Set UI — A = Summon, B = Set. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - `MYSTIK_WOK` (spell): L93: no dedicated ATK/DEF choice UI — A = ATK, B = DEF. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - `NECROVALLEY_THRONE` (spell): L130: no dedicated choice UI — A = add Gravekeeper's, B = Normal Summon. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
@@ -694,7 +693,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (312)
+## `other` (310)
 
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
@@ -715,8 +714,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `FUSION_DESTINY` (spell): L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 - `GADGET_BOX` (spell): L13: no dedicated Gadget Box Token card id — reuse MOON_TOKEN like other token spells. Ceiling: wrong printed name/stats; upgrade: real token card.
 - `GRAVEKEEPERS_INSCRIPTION` (spell): L112: "activate only at start of Main Phase 1" needs a phase/action counter outside this file (no Main Phase 1-start gate API). Ceiling: activable any time like a normal spell; upgrade: CanActivate → require MP1 + no prior play/set/summon this turn.
-- `LIGHTSWORN_SABRE` (spell): L31: this exact +200 overlay must be called by both card-info stat pipelines in card_hooks.c. Ceiling: displayed and battle ATK stay +500 until those parent wire points invoke this export.
-- `METAMORPHOSIS` (spell): L91: without the runtime Extra Deck, use registered Fusion results as a stand-in. Ceiling: permits a result not physically in an Extra Deck.
 - `MORPHTRONIC_ENGINE` (spell): L88: stage unit is 500 ATK — nearest-stage double, not exact original×2 when ATK is not a multiple of 500. Ceiling: stage-approx only; upgrade: exact-ATK overlay while equipped (clone Power Bond / Big Bang Shot).
 - `MORPHTRONIC_REPAIR_UNIT` (spell): L208: Parent battle-position paths have no shared interception point. Ceiling: the exported predicate is not consulted, so the equipped monster may still change position. Upgrade: add a common position-change gate and call MorphtronicRepairUnit_PreventsBattlePositionChange(zone).
 - `NEX` (spell): L155: duel Extra Deck browser/SS missing (Trunk ExtraDeck_* is deck-builder only). Ceiling: spawn Lv4 Neo form by id when not in Main Deck; upgrade: Extra Deck pick + SS.

@@ -28,9 +28,6 @@ void ApplyLightswornSabreAtkBonusToCardInfo(const struct DuelCard *zone)
 {
   u32 atk;
 
-  /* ponytail: this exact +200 overlay must be called by both card-info stat
-   * pipelines in card_hooks.c. Ceiling: displayed and battle ATK stay +500
-   * until those parent wire points invoke this export. */
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 

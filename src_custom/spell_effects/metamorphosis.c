@@ -85,23 +85,6 @@ static u8 BuildMetamorphosisFusionTargets(u8 tributeLevel, u16 *outIds, u8 maxOu
       if (j == count)
         outIds[count++] = cardId;
     }
-    return count;
-  }
-
-  /* ponytail: without the runtime Extra Deck, use registered Fusion results as
-   * a stand-in. Ceiling: permits a result not physically in an Extra Deck. */
-  for (i = 0; i < FusionRecipe_Count() && count < maxOut; i++) {
-    u16 cardId = gFusionRecipes[i].result;
-    u8 j;
-
-    if (!IsMetamorphosisFusionTarget(cardId, tributeLevel))
-      continue;
-    for (j = 0; j < count; j++) {
-      if (outIds[j] == cardId)
-        break;
-    }
-    if (j == count)
-      outIds[count++] = cardId;
   }
 
   return count;

@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 21:34 UTC  
-**Remaining partials:** `771`
+**Last updated:** 2026-07-21 21:36 UTC  
+**Remaining partials:** `769`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 90 |
+| `spell` | 88 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **771** |
+| **total** | **769** |
 
-## spell (90)
+## spell (88)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -189,18 +189,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/level_tuning.c`
 - L13: the marked target can feed the card-info UI through LevelTuning_ApplyLevelToCardInfo, but the duel engine has no dynamic Level query for tribute, Ritual, or Synchro rules. Ceiling: display-only -1 Level; upgrade: route all level consumers through this zone overlay.
 
-### `LIGHT_BARRIER`
-- path: `src_custom/spell_effects/light_barrier.c`
-- L12: EffectEvent battle-destroy payloads expose the destroyed monster, not its attacker. Ceiling: LP gain needs a battle parent that supplies both zones to LightBarrier_GetArcanaForceBattleDestroyLp; upgrade: add attacker data to the event payload.
-
 ### `LIGHTNING_STORM`
 - path: `src_custom/spell_effects/lightning_storm.c`
 - L132: no dedicated choice UI — A = monsters, B = Spells/Traps. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `LIGHTSWORN_SABRE`
 - path: `src_custom/spell_effects/lightsworn_sabre.c`
-- L31: this exact +200 overlay must be called by both card-info stat pipelines in card_hooks.c. Ceiling: displayed and battle ATK stay +500 until those parent wire points invoke this export.
-- L84: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path → if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and RegisterDynamicEquip again.
+- L81: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path → if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and RegisterDynamicEquip again.
 
 ### `LIGHTSWORN_SANCTUARY`
 - path: `src_custom/spell_effects/lightsworn_sanctuary.c`
@@ -210,10 +205,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/mausoleum_of_the_emperor.c`
 - L112: no dedicated Summon/Set UI — A = Summon, B = Set. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 - L224: SpecialSummonFromHandZone still hits ArchlordKristya SS lock and is not a true engine Normal Summon path. Ceiling: no-tribute placement + summoningBlocked; upgrade: dedicated NormalSummonWithoutTribute helper that skips GetNumRequiredTributes pay while using vanilla NS hooks.
-
-### `METAMORPHOSIS`
-- path: `src_custom/spell_effects/metamorphosis.c`
-- L91: without the runtime Extra Deck, use registered Fusion results as a stand-in. Ceiling: permits a result not physically in an Extra Deck.
 
 ### `MIRACLE_CONTACT`
 - path: `src_custom/spell_effects/miracle_contact.c`

@@ -23,6 +23,7 @@
 #include "ghost_knight_of_jackal.h"
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
+#include "light_barrier.h"
 #include "royal_knight.h"
 #include "elemental_hero_steam_healer.h"
 #include "elemental_hero_flame_wingman.h"
@@ -373,6 +374,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplySpiritReaperDiscardBattleEffect();
   ApplyMefistTheInfernalGeneralDiscardBattleEffect();
   ApplyGuardianAngelJoanBattleEffect();
+  ApplyLightBarrierBattleEffect();
   ApplyRoyalKnightBattleEffect();
   ApplyElementalHeroSteamHealerBattleEffect();
   ApplyElementalHeroFlameWingmanBattleEffect();
