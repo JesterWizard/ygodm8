@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Debug menu archetype deck presets
+**Last worked on:** 2026-07-21 — Codify face-up backrow cache for future overlays
 
-**Outcome:** Added 13 archetype 40-card debug Deck Presets (GB, Blue-Eyes, Amazoness, Lightsworn, Deep Sea/Atlantean, DM, Gravekeepers, Harpie, E-HERO, Vision/Evil HERO, Neo-Spacians, Arcana Force). Masked HERO skipped (no cards in ROM). `make` OK.
+**Outcome:** Always-on rule `stat-overlay-perf.mdc`; skill + effect-data-system updated; host tests guard hand-scanned backrows in ApplyFieldZoneStats appliers.
 
-**Open / next:** Round5 Batches 1–6 from remaining PARTIAL list; add Masked HERO cards if desired.
+**Open / next:** Round5 PARTIAL — new continuous overlays must use FindBackrow*.

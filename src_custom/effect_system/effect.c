@@ -419,6 +419,154 @@ static void InitCtxEvent(struct EffectCtx *ctx, const struct Effect *e, const st
   ctx->zone = ev != NULL ? ev->zone : NULL;
 }
 
+/* Hot-path indexes (built once).
+ * - cardId sorted: Try/Query/Has/Category → O(log n + matches)
+ * - event lists: DispatchEvent → O(subscribers for that event)
+ * Kind presence kept so empty PERMANENT/TURN kinds stay O(1). */
+#define EFFECT_KIND_COUNT 5
+#define EFFECT_REGISTRY_TOTAL \
+  (ARRAY_COUNT(sEffectsFromScripts) + ARRAY_COUNT(sEffectsExtra))
+
+struct EffectCardIndexEntry {
+  u16 cardId;
+  const struct Effect *effect;
+};
+
+static u8 sKindPresent[EFFECT_KIND_COUNT] APPEND_DATA = {0};
+static struct EffectCardIndexEntry sCardIndex[EFFECT_REGISTRY_TOTAL] APPEND_DATA = {{0}};
+static u16 sCardIndexCount APPEND_DATA = {0};
+static const struct Effect *sEventFlat[EFFECT_REGISTRY_TOTAL] APPEND_DATA = {0};
+static u8 sEventStart[EFFECT_EVENT_COUNT] APPEND_DATA = {0};
+static u8 sEventCount[EFFECT_EVENT_COUNT] APPEND_DATA = {0};
+static u8 sIndexesReady APPEND_DATA = {0};
+
+static void SortCardIndex(void)
+{
+  u16 i;
+
+  /* Insertion sort — registry is tiny (~80). */
+  for (i = 1; i < sCardIndexCount; i++) {
+    struct EffectCardIndexEntry key = sCardIndex[i];
+    s16 j = (s16)i - 1;
+
+    while (j >= 0 && sCardIndex[j].cardId > key.cardId) {
+      sCardIndex[j + 1] = sCardIndex[j];
+      j--;
+    }
+    sCardIndex[j + 1] = key;
+  }
+}
+
+static void EnsureIndexes(void)
+{
+  u16 i;
+  u16 n;
+  u8 eventTotals[EFFECT_EVENT_COUNT];
+  u8 eventWrite[EFFECT_EVENT_COUNT];
+
+  if (sIndexesReady)
+    return;
+
+  for (i = 0; i < EFFECT_KIND_COUNT; i++)
+    sKindPresent[i] = FALSE;
+  for (i = 0; i < EFFECT_EVENT_COUNT; i++) {
+    eventTotals[i] = 0;
+    sEventCount[i] = 0;
+    sEventStart[i] = 0;
+  }
+
+  n = 0;
+  for (i = 0; i < ARRAY_COUNT(sEffectsFromScripts); i++) {
+    const struct Effect *e = &sEffectsFromScripts[i];
+
+    if (e->kind < EFFECT_KIND_COUNT)
+      sKindPresent[e->kind] = TRUE;
+    if (n < EFFECT_REGISTRY_TOTAL) {
+      sCardIndex[n].cardId = e->cardId;
+      sCardIndex[n].effect = e;
+      n++;
+    }
+    if ((e->type == EFFECT_TYPE_TRIGGER || e->type == EFFECT_TYPE_CONTINUOUS)
+        && e->code < EFFECT_EVENT_COUNT)
+      eventTotals[e->code]++;
+  }
+  for (i = 0; i < ARRAY_COUNT(sEffectsExtra); i++) {
+    const struct Effect *e = &sEffectsExtra[i];
+
+    if (e->kind < EFFECT_KIND_COUNT)
+      sKindPresent[e->kind] = TRUE;
+    if (n < EFFECT_REGISTRY_TOTAL) {
+      sCardIndex[n].cardId = e->cardId;
+      sCardIndex[n].effect = e;
+      n++;
+    }
+    if ((e->type == EFFECT_TYPE_TRIGGER || e->type == EFFECT_TYPE_CONTINUOUS)
+        && e->code < EFFECT_EVENT_COUNT)
+      eventTotals[e->code]++;
+  }
+  sCardIndexCount = n;
+  SortCardIndex();
+
+  n = 0;
+  for (i = 0; i < EFFECT_EVENT_COUNT; i++) {
+    sEventStart[i] = (u8)n;
+    sEventCount[i] = eventTotals[i];
+    eventWrite[i] = 0;
+    n = (u16)(n + eventTotals[i]);
+  }
+
+  for (i = 0; i < ARRAY_COUNT(sEffectsFromScripts); i++) {
+    const struct Effect *e = &sEffectsFromScripts[i];
+    u8 code;
+
+    if (e->type != EFFECT_TYPE_TRIGGER && e->type != EFFECT_TYPE_CONTINUOUS)
+      continue;
+    if (e->code >= EFFECT_EVENT_COUNT)
+      continue;
+    code = e->code;
+    sEventFlat[sEventStart[code] + eventWrite[code]] = e;
+    eventWrite[code]++;
+  }
+  for (i = 0; i < ARRAY_COUNT(sEffectsExtra); i++) {
+    const struct Effect *e = &sEffectsExtra[i];
+    u8 code;
+
+    if (e->type != EFFECT_TYPE_TRIGGER && e->type != EFFECT_TYPE_CONTINUOUS)
+      continue;
+    if (e->code >= EFFECT_EVENT_COUNT)
+      continue;
+    code = e->code;
+    sEventFlat[sEventStart[code] + eventWrite[code]] = e;
+    eventWrite[code]++;
+  }
+
+  sIndexesReady = TRUE;
+}
+
+static u8 KindHasEffects(u8 kind)
+{
+  EnsureIndexes();
+  return kind < EFFECT_KIND_COUNT && sKindPresent[kind];
+}
+
+/* First index with cardId >= needle, or sCardIndexCount. */
+static u16 CardIndexLowerBound(u16 cardId)
+{
+  u16 lo = 0;
+  u16 hi = sCardIndexCount;
+
+  EnsureIndexes();
+  while (lo < hi) {
+    u16 mid = (u16)((lo + hi) / 2);
+
+    if (sCardIndex[mid].cardId < cardId)
+      lo = (u16)(mid + 1);
+    else
+      hi = mid;
+  }
+  return lo;
+}
+
 u8 Effect_HasCard(u16 cardId)
 {
   u16 i;
@@ -426,17 +574,8 @@ u8 Effect_HasCard(u16 cardId)
   if (cardId == CARD_NONE)
     return FALSE;
 
-  for (i = 0; i < ARRAY_COUNT(sEffectsFromScripts); i++) {
-    if (sEffectsFromScripts[i].cardId == cardId)
-      return TRUE;
-  }
-
-  for (i = 0; i < ARRAY_COUNT(sEffectsExtra); i++) {
-    if (sEffectsExtra[i].cardId == cardId)
-      return TRUE;
-  }
-
-  return FALSE;
+  i = CardIndexLowerBound(cardId);
+  return i < sCardIndexCount && sCardIndex[i].cardId == cardId;
 }
 
 u8 Effect_TryActivate(u16 cardId, u8 kind)
@@ -447,12 +586,15 @@ u8 Effect_TryActivate(u16 cardId, u8 kind)
 
   if (cardId == CARD_NONE)
     return EFFECT_DISPATCH_LEGACY;
+  if (!KindHasEffects(kind))
+    return EFFECT_DISPATCH_LEGACY;
 
-  for (i = 0; i < ARRAY_COUNT(sEffectsFromScripts); i++) {
-    const struct Effect *e = &sEffectsFromScripts[i];
+  for (i = CardIndexLowerBound(cardId);
+       i < sCardIndexCount && sCardIndex[i].cardId == cardId; i++) {
+    const struct Effect *e = sCardIndex[i].effect;
     enum DuelActionResult result;
 
-    if (e->cardId != cardId || e->kind != kind)
+    if (e->kind != kind)
       continue;
     if (e->type != EFFECT_TYPE_ACTIVATE || e->code != EFFECT_CODE_ACTIVATE)
       continue;
@@ -462,19 +604,6 @@ u8 Effect_TryActivate(u16 cardId, u8 kind)
     result = EffectRunPipeline(e, &ctx);
     if (result == DUEL_ACTION_BLOCKED && !gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
-  }
-
-  for (i = 0; i < ARRAY_COUNT(sEffectsExtra); i++) {
-    const struct Effect *e = &sEffectsExtra[i];
-
-    if (e->cardId != cardId || e->kind != kind)
-      continue;
-    if (e->type != EFFECT_TYPE_ACTIVATE || e->code != EFFECT_CODE_ACTIVATE)
-      continue;
-
-    found = TRUE;
-    InitCtxActivate(&ctx, cardId, kind, e);
-    EffectRunPipeline(e, &ctx);
   }
 
   return found ? EFFECT_DISPATCH_HANDLED : EFFECT_DISPATCH_LEGACY;
@@ -488,25 +617,14 @@ u8 Effect_QueryShouldActivate(u16 cardId, u8 kind)
 
   if (cardId == CARD_NONE)
     return EFFECT_SHOULD_NO;
+  if (!KindHasEffects(kind))
+    return EFFECT_SHOULD_LEGACY;
 
-  for (i = 0; i < ARRAY_COUNT(sEffectsFromScripts); i++) {
-    const struct Effect *e = &sEffectsFromScripts[i];
+  for (i = CardIndexLowerBound(cardId);
+       i < sCardIndexCount && sCardIndex[i].cardId == cardId; i++) {
+    const struct Effect *e = sCardIndex[i].effect;
 
-    if (e->cardId != cardId || e->kind != kind)
-      continue;
-    if (e->type != EFFECT_TYPE_ACTIVATE)
-      continue;
-
-    found = TRUE;
-    InitCtxActivate(&ctx, cardId, kind, e);
-    if (!EffectPassesCondition(e, &ctx))
-      return EFFECT_SHOULD_NO;
-  }
-
-  for (i = 0; i < ARRAY_COUNT(sEffectsExtra); i++) {
-    const struct Effect *e = &sEffectsExtra[i];
-
-    if (e->cardId != cardId || e->kind != kind)
+    if (e->kind != kind)
       continue;
     if (e->type != EFFECT_TYPE_ACTIVATE)
       continue;
@@ -522,31 +640,19 @@ u8 Effect_QueryShouldActivate(u16 cardId, u8 kind)
 
 void Effect_DispatchEvent(const struct EffectEvent *ev)
 {
-  u16 i;
+  u8 i;
+  u8 n;
+  u8 start;
   struct EffectCtx ctx;
 
   if (ev == NULL || ev->type >= EFFECT_EVENT_COUNT)
     return;
 
-  for (i = 0; i < ARRAY_COUNT(sEffectsFromScripts); i++) {
-    const struct Effect *e = &sEffectsFromScripts[i];
-
-    if (e->code != ev->type)
-      continue;
-    if (e->type != EFFECT_TYPE_TRIGGER && e->type != EFFECT_TYPE_CONTINUOUS)
-      continue;
-
-    InitCtxEvent(&ctx, e, ev);
-    EffectRunPipeline(e, &ctx);
-  }
-
-  for (i = 0; i < ARRAY_COUNT(sEffectsExtra); i++) {
-    const struct Effect *e = &sEffectsExtra[i];
-
-    if (e->code != ev->type)
-      continue;
-    if (e->type != EFFECT_TYPE_TRIGGER && e->type != EFFECT_TYPE_CONTINUOUS)
-      continue;
+  EnsureIndexes();
+  start = sEventStart[ev->type];
+  n = sEventCount[ev->type];
+  for (i = 0; i < n; i++) {
+    const struct Effect *e = sEventFlat[start + i];
 
     InitCtxEvent(&ctx, e, ev);
     EffectRunPipeline(e, &ctx);
@@ -560,15 +666,9 @@ u8 Effect_GetCategory(u16 cardId)
   if (cardId == CARD_NONE)
     return EFFECT_META_NONE;
 
-  for (i = 0; i < ARRAY_COUNT(sEffectsFromScripts); i++) {
-    if (sEffectsFromScripts[i].cardId == cardId)
-      return sEffectsFromScripts[i].category;
-  }
-
-  for (i = 0; i < ARRAY_COUNT(sEffectsExtra); i++) {
-    if (sEffectsExtra[i].cardId == cardId)
-      return sEffectsExtra[i].category;
-  }
+  i = CardIndexLowerBound(cardId);
+  if (i < sCardIndexCount && sCardIndex[i].cardId == cardId)
+    return sCardIndex[i].effect->category;
 
   return EFFECT_META_NONE;
 }

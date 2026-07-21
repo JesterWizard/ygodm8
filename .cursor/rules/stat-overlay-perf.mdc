@@ -1,0 +1,25 @@
+---
+description: Continuous ATK/DEF overlays must use FindBackrow* (face-up cache) — never per-overlay backrow scans.
+alwaysApply: true
+---
+
+# Stat overlay performance
+
+`ApplyFieldZoneStatsToCardInfo` runs on every board GFX / info-bar / SetFinalStat refresh. PARTIAL batches grew it to dozens of `Apply*` calls — **each must stay cheap**.
+
+## Required pattern for continuous / field ATK·DEF overlays
+
+1. **Detect the continuous card with** `Duel_FindBackrowCard`, `Duel_FindBackrowCardOnField`, or `Duel_IsBackrowCardOnField` (face-up).  
+   During overlay passes these hit `Duel_BeginFaceUpBackrowCache` — **O(1) after one snapshot**.
+2. **Check field presence before** `Duel_CardNameContains` / `SetCardInfo` / archetype helpers.
+3. **Do not** hand-roll `for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; …)` inside an `Apply*ToCardInfo` / `Apply*ForZone` used from `card_hooks.c`.
+4. Wire new overlays into `ApplyFieldZoneStatsToCardInfo` **and** the `SetFinalStat` overlay block in `card_hooks.c` the same way existing ones are.
+
+## Batch refresh
+
+Outer loops that stamp many zones (`RefreshFieldMonsterStatOverlays`, `RefreshAllFieldCardTiles`) already `Begin`/`End` the cache. `ApplyFieldZoneStatsToCardInfo` nests Begin/End itself — do not skip FindBackrow* “for speed”; the cache makes them cheap.
+
+## See also
+
+- `documentation/effect-data-system.md` — Stat overlay performance
+- `Duel_BeginFaceUpBackrowCache` / `Duel_EndFaceUpBackrowCache` in `duel_helpers.h`

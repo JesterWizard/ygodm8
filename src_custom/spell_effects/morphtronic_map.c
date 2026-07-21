@@ -114,22 +114,20 @@ void MorphtronicMap_OnBattlePositionChanged(void)
 
 void ApplyMorphtronicMapAtkBonusToCardInfo(const struct DuelCard *zone)
 {
-  u8 row;
-  u8 col;
-  u32 bonus = 0;
+  const struct DuelCard *mapZone;
+  u32 bonus;
 
-  if (zone == NULL || !IsMorphtronicMonster(zone->id))
+  if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-      const struct DuelCard *mapZone = gFixedZones[row][col];
+  mapZone = Duel_FindBackrowCardOnField(MORPHTRONIC_MAP, TRUE);
+  if (mapZone == NULL)
+    return;
 
-      if (IsActiveMorphtronicMap(mapZone))
-        bonus += (u32)mapZone->unk4 * MORPHTRONIC_MAP_ATK_PER_COUNTER;
-    }
-  }
+  if (!IsMorphtronicMonster(zone->id))
+    return;
 
+  bonus = (u32)mapZone->unk4 * MORPHTRONIC_MAP_ATK_PER_COUNTER;
   gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + bonus);
 }
 

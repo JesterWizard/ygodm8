@@ -162,6 +162,11 @@ struct DuelCard *Duel_FindFixedZoneById(u8 fixedRow, u16 cardId, u8 requireFaceU
 struct DuelCard *Duel_FindBackrowCard(u8 fixedDuelist, u16 cardId, u8 requireFaceUp);
 struct DuelCard *Duel_FindBackrowCardOnField(u16 cardId, u8 requireFaceUp);
 u8 Duel_IsBackrowCardOnField(u16 cardId, u8 requireFaceUp);
+
+/* One face-up backrow snapshot for ApplyFieldZoneStats overlay storms.
+ * Begin/End nest; FindBackrow* with requireFaceUp uses the snapshot while active. */
+void Duel_BeginFaceUpBackrowCache(void);
+void Duel_EndFaceUpBackrowCache(void);
 u8 Duel_FixedMonsterSlotBit(const struct DuelCard *zone);
 u8 Duel_ZoneIsHandSlot(const struct DuelCard *zone);
 enum DuelActionResult Duel_ChangeLpSuppressingEffectText(u8 turnDuelist, s32 delta, u8 updateGfx);

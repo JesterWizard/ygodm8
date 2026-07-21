@@ -132,10 +132,11 @@ void ApplyAmazonessVillageFieldStatBoostForZone(struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  if (!Duel_IsAmazonessCard(zone->id))
+  /* Field presence first — avoids SetCardInfo name scan when Village is off. */
+  if (Duel_FindBackrowCardOnField(AMAZONESS_VILLAGE, TRUE) == NULL)
     return;
 
-  if (Duel_FindBackrowCardOnField(AMAZONESS_VILLAGE, TRUE) == NULL)
+  if (!Duel_IsAmazonessCard(zone->id))
     return;
 
   if (gCardInfo.atk != 0xFFFF) {

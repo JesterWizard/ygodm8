@@ -170,6 +170,8 @@ No Lua/VM. JSON scripts remain optional codegen for simple activate **steps**; c
 
 ## Limitations & Bugs
 
+- Activate/query/has/category use a **cardId-sorted index** (binary search); event dispatch uses **per-event lists**. Built once in `EnsureIndexes`. Empty `EFFECT_KIND_*` still early-out via kind-presence bits.
+- **Stat overlay performance:** `ApplyFieldZoneStatsToCardInfo` may call dozens of `Apply*` helpers per monster. New continuous ATK/DEF overlays **must** use `Duel_FindBackrowCard*` / `Duel_IsBackrowCardOnField` (face-up) so they hit `Duel_BeginFaceUpBackrowCache`, and must check field presence **before** `Duel_CardNameContains` / `SetCardInfo`. Do not hand-loop both backrows inside an overlay. Rule: `.cursor/rules/stat-overlay-perf.mdc`.
 - Until Phase 3, continuous/trigger ceilings in PARTIAL_EFFECTS will keep growing as agents implement stand-in bodies.
 - C-table scripts (2A) still need merge discipline; they do not by themselves make “thousands of cards” cheap — that is the 2B authoring step.
 - Burn/heal script args must not stash in `APPEND_DATA` (ROM) — use `Duel_TryResolveBurn/HealSpellThroughTraps` helpers.

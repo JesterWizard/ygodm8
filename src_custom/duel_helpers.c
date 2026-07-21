@@ -2039,9 +2039,76 @@ u8 Duel_IsMonsterZoneTarget(u16 cardId)
   return cardId != CARD_NONE && GetTypeGroup(cardId) == TYPE_GROUP_MONSTER;
 }
 
+/* ponytail: PARTIAL batches grew ApplyFieldZoneStats to ~75 overlay calls; many
+ * each rescanned both backrows. Snapshot once per overlay pass. */
+#define FACEUP_BACKROW_CACHE_MAX (MAX_ZONES_IN_ROW * 2)
+
+struct FaceUpBackrowCacheEntry {
+  struct DuelCard *zone;
+  u8 fixedRow;
+};
+
+static struct FaceUpBackrowCacheEntry sFaceUpBackrowCache[FACEUP_BACKROW_CACHE_MAX] APPEND_DATA = {{0}};
+static u8 sFaceUpBackrowCacheCount APPEND_DATA = {0};
+static u8 sFaceUpBackrowCacheDepth APPEND_DATA = {0};
+
+void Duel_BeginFaceUpBackrowCache(void)
+{
+  u8 row;
+  u8 col;
+  u8 n;
+
+  if (sFaceUpBackrowCacheDepth > 0) {
+    sFaceUpBackrowCacheDepth++;
+    return;
+  }
+
+  n = 0;
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone->id == CARD_NONE || zone->isFaceUp != TRUE)
+        continue;
+      if (n >= FACEUP_BACKROW_CACHE_MAX)
+        break;
+      sFaceUpBackrowCache[n].zone = zone;
+      sFaceUpBackrowCache[n].fixedRow = row;
+      n++;
+    }
+  }
+  sFaceUpBackrowCacheCount = n;
+  sFaceUpBackrowCacheDepth = 1;
+}
+
+void Duel_EndFaceUpBackrowCache(void)
+{
+  if (sFaceUpBackrowCacheDepth == 0)
+    return;
+  sFaceUpBackrowCacheDepth--;
+}
+
+static struct DuelCard *FindInFaceUpBackrowCache(u8 fixedRowOrFF, u16 cardId)
+{
+  u8 i;
+
+  for (i = 0; i < sFaceUpBackrowCacheCount; i++) {
+    if (sFaceUpBackrowCache[i].zone->id != cardId)
+      continue;
+    if (fixedRowOrFF != 0xFF && sFaceUpBackrowCache[i].fixedRow != fixedRowOrFF)
+      continue;
+    return sFaceUpBackrowCache[i].zone;
+  }
+  return NULL;
+}
+
 struct DuelCard *Duel_FindFixedZoneById(u8 fixedRow, u16 cardId, u8 requireFaceUp)
 {
   u8 col;
+
+  if (sFaceUpBackrowCacheDepth > 0 && requireFaceUp
+      && (fixedRow == PLAYER_BACKROW || fixedRow == OPPONENT_BACKROW))
+    return FindInFaceUpBackrowCache(fixedRow, cardId);
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[fixedRow][col];
@@ -2065,7 +2132,12 @@ struct DuelCard *Duel_FindBackrowCard(u8 fixedDuelist, u16 cardId, u8 requireFac
 
 struct DuelCard *Duel_FindBackrowCardOnField(u16 cardId, u8 requireFaceUp)
 {
-  struct DuelCard *zone = Duel_FindBackrowCard(DUEL_OPPONENT, cardId, requireFaceUp);
+  struct DuelCard *zone;
+
+  if (sFaceUpBackrowCacheDepth > 0 && requireFaceUp)
+    return FindInFaceUpBackrowCache(0xFF, cardId);
+
+  zone = Duel_FindBackrowCard(DUEL_OPPONENT, cardId, requireFaceUp);
 
   if (zone != NULL)
     return zone;
@@ -2075,8 +2147,7 @@ struct DuelCard *Duel_FindBackrowCardOnField(u16 cardId, u8 requireFaceUp)
 
 u8 Duel_IsBackrowCardOnField(u16 cardId, u8 requireFaceUp)
 {
-  return Duel_FindBackrowCard(DUEL_PLAYER, cardId, requireFaceUp) != NULL
-      || Duel_FindBackrowCard(DUEL_OPPONENT, cardId, requireFaceUp) != NULL;
+  return Duel_FindBackrowCardOnField(cardId, requireFaceUp) != NULL;
 }
 
 u8 Duel_FixedMonsterSlotBit(const struct DuelCard *zone)

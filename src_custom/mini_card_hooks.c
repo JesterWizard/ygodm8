@@ -11,6 +11,7 @@
 #include "wave_motion_cannon.h"
 #include "cost_down.h"
 #include "tribute.h"
+#include "duel_helpers.h"
 
 extern unsigned char* g8E1168C[]; //attribute mini-icons
 extern unsigned char gSharedMem[];
@@ -59,6 +60,42 @@ static u8 *FieldCardTilePtr(u8 row, u8 col)
   return gBgVram.cbb0 + 0x10000 + g8E116BC[tileIndex] * 32;
 }
 
+static void StampFieldCardAtkFromCardInfo(u8 *tilePtr)
+{
+  if (gCardInfo.atk / 100 > 99)
+    ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
+  else
+    ConvertU16ToDigitBuffer(gCardInfo.atk / 100, DIGIT_FLAG_NONE);
+
+  tilePtr += 0x800;
+  CpuCopy16(g89A81DE + gDigitBufferU16[3] * 64, tilePtr, 0x40);
+  tilePtr += 0x40;
+  CpuCopy16(g89A7F1E[gDigitBufferU16[4]], tilePtr, 0x40);
+}
+
+static void StampFieldCardDefFromCardInfo(u8 *tilePtr)
+{
+  if (gCardInfo.def / 100 > 99)
+    ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
+  else
+    ConvertU16ToDigitBuffer(gCardInfo.def / 100, DIGIT_FLAG_NONE);
+
+  tilePtr += 0x880;
+  CpuCopy16(g89A875E[gDigitBufferU16[3]], tilePtr, 0x40);
+  tilePtr += 0x40;
+  CpuCopy16(g89A849E[gDigitBufferU16[4]], tilePtr, 0x40);
+}
+
+static void StampFieldCardAtkDefForZone(u8 *tilePtr, struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE || !ZoneShowsCombatStats(zone))
+    return;
+
+  ApplyFieldZoneStatsToCardInfo(zone);
+  StampFieldCardAtkFromCardInfo(tilePtr);
+  StampFieldCardDefFromCardInfo(tilePtr);
+}
+
 void RefreshFieldMonsterStatOverlays(void)
 {
   u8 col;
@@ -72,6 +109,7 @@ void RefreshFieldMonsterStatOverlays(void)
   if (gAiSimInBatch)
     return;
 
+  Duel_BeginFaceUpBackrowCache();
   for (row = 0; row < 5; row++) {
     for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
       zone = gFixedZones[row][col];
@@ -93,12 +131,11 @@ void RefreshFieldMonsterStatOverlays(void)
       if (row == PLAYER_HAND && ExpandedHand_ShouldHideHandAtkDef(DUEL_PLAYER))
         continue;
 
-      if (row == OPPONENT_MONSTER_ROW || row == PLAYER_MONSTER_ROW || row == PLAYER_HAND) {
-        sub_80572A8(tilePtr, zone);
-        sub_805733C(tilePtr, zone);
-      }
+      if (row == OPPONENT_MONSTER_ROW || row == PLAYER_MONSTER_ROW || row == PLAYER_HAND)
+        StampFieldCardAtkDefForZone(tilePtr, zone);
     }
   }
+  Duel_EndFaceUpBackrowCache();
 }
 
 void sub_80573D0(void* arg0, unsigned short cardId);
@@ -162,6 +199,8 @@ void sub_805742C__Replacement(unsigned char* arg0, unsigned short cardId) {
 }
 
 void sub_80572A8(unsigned char* arg0, struct DuelCard* arg1);
+void sub_805733C(unsigned char* arg0, struct DuelCard* arg1);
+
 LYN_REPLACE_CHECK(sub_80572A8);
 void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
   if (arg1 == NULL || arg1->id == CARD_NONE)
@@ -171,19 +210,9 @@ void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
     return;
 
   ApplyFieldZoneStatsToCardInfo(arg1);
-
-  if (gCardInfo.atk / 100 > 99)
-    ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
-  else
-    ConvertU16ToDigitBuffer(gCardInfo.atk / 100, DIGIT_FLAG_NONE);
-
-  arg0 += 0x800;
-  CpuCopy16(g89A81DE + gDigitBufferU16[3] * 64, arg0, 0x40);
-  arg0 += 0x40;
-  CpuCopy16(g89A7F1E[gDigitBufferU16[4]], arg0, 0x40);
+  StampFieldCardAtkFromCardInfo(arg0);
 }
 
-void sub_805733C(unsigned char* arg0, struct DuelCard* arg1);
 LYN_REPLACE_CHECK(sub_805733C);
 void sub_805733C__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
   if (arg1 == NULL || arg1->id == CARD_NONE)
@@ -193,16 +222,7 @@ void sub_805733C__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
     return;
 
   ApplyFieldZoneStatsToCardInfo(arg1);
-
-  if (gCardInfo.def / 100 > 99)
-    ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
-  else
-    ConvertU16ToDigitBuffer(gCardInfo.def / 100, DIGIT_FLAG_NONE);
-
-  arg0 += 0x880;
-  CpuCopy16(g89A875E[gDigitBufferU16[3]], arg0, 0x40);
-  arg0 += 0x40;
-  CpuCopy16(g89A849E[gDigitBufferU16[4]], arg0, 0x40);
+  StampFieldCardDefFromCardInfo(arg0);
 }
 
 void sub_80576B4(unsigned char* arg0, unsigned short cardId);
@@ -275,6 +295,8 @@ static void RefreshAllFieldCardTiles(void)
 {
   u8 i;
 
+  Duel_BeginFaceUpBackrowCache();
+
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (gFixedZones[0][i]->isFaceUp)
       sub_80573D0(gBgVram.cbb0 + 0x10000 + g8E116BC[i] * 32, gFixedZones[0][i]->id);
@@ -291,8 +313,7 @@ static void RefreshAllFieldCardTiles(void)
       sub_80576EC(tilePtr, zone->id);
       sub_80576B4(tilePtr, zone->id);
       StampFieldCardStage(tilePtr, ComputeFinalStage(zone));
-      sub_80572A8(tilePtr, zone);
-      sub_805733C(tilePtr, zone);
+      StampFieldCardAtkDefForZone(tilePtr, zone);
     } else {
       CopyFaceDownCardTiles(tilePtr);
     }
@@ -314,8 +335,7 @@ static void RefreshAllFieldCardTiles(void)
     sub_80576B4(tilePtr, zone->id);
     sub_80576EC(tilePtr, zone->id);
     StampFieldCardStage(tilePtr, ComputeFinalStage(zone));
-    sub_80572A8(tilePtr, zone);
-    sub_805733C(tilePtr, zone);
+    StampFieldCardAtkDefForZone(tilePtr, zone);
 
     if (!zone->isFaceUp && !ElementalHeroTerraFirma_RevealsAllyZone(PLAYER_MONSTER_ROW, i)) {
       tilePtr += 0xC80;
@@ -349,8 +369,7 @@ static void RefreshAllFieldCardTiles(void)
     sub_80573D0(tilePtr, zone->id);
     sub_80576B4(tilePtr, zone->id);
     sub_80576EC(tilePtr, zone->id);
-    sub_80572A8(tilePtr, zone);
-    sub_805733C(tilePtr, zone);
+    StampFieldCardAtkDefForZone(tilePtr, zone);
 
     if (zone->isLocked)
       StampFieldCardLocked(tilePtr);
@@ -360,6 +379,8 @@ static void RefreshAllFieldCardTiles(void)
       CpuCopy16(g89A7BDE, tilePtr, 64);
     }
   }
+
+  Duel_EndFaceUpBackrowCache();
 }
 
 LYN_REPLACE_CHECK(sub_80577A4);
@@ -391,7 +412,8 @@ void sub_80577A4__Replacement(void) {
   }
 
   SixCardHand_DrawHandOam();
-  RefreshFieldMonsterStatOverlays();
+  /* RefreshAllFieldCardTiles already stamped ATK/DEF/stage — skip a second
+   * ApplyFieldZoneStats pass (was ~2× overlay cost per UpdateDuelGfxExceptField). */
 }
 
 LYN_REPLACE_CHECK(sub_8057808);

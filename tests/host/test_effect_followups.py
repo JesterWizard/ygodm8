@@ -110,6 +110,72 @@ class TestEffectFollowups(unittest.TestCase):
                 leftover.append(str(path.relative_to(ROOT)))
         self.assertEqual(leftover, [])
 
+    def test_stat_overlay_appliers_use_find_backrow(self):
+        """Apply* wired from ApplyFieldZoneStats must not hand-scan both backrows."""
+        import re
+
+        hooks = read("src_custom/card_hooks.c")
+        m = re.search(
+            r"void ApplyFieldZoneStatsToCardInfo\(.*?^\}", hooks, re.M | re.S
+        )
+        self.assertIsNotNone(m)
+        names = sorted(
+            set(
+                re.findall(
+                    r"\b(Apply[A-Za-z0-9_]+|Necrovalley_Apply[A-Za-z0-9_]+|"
+                    r"LevelTuning_Apply[A-Za-z0-9_]+)\(",
+                    m.group(0),
+                )
+            )
+        )
+        # Skip non-overlay helpers that appear in the same function.
+        skip = {
+            "ApplyFieldZoneStatsToCardInfo",
+            "ApplyCardInfoOverrides",
+            "ApplyEmbodimentOfApophisCardInfoOverridesForStatMod",
+            "ApplyOjamaTrioCardInfoOverridesForStatMod",
+            "ApplyCopycatStatsToCardInfo",
+        }
+        bad = []
+        hand_scan = re.compile(
+            r"for\s*\([^)]*OPPONENT_BACKROW[^)]*PLAYER_BACKROW", re.S
+        )
+        for name in names:
+            if name in skip or name.startswith("ApplyField"):
+                continue
+            found_body = None
+            for path in (ROOT / "src_custom").rglob("*.c"):
+                text = path.read_text(encoding="utf-8")
+                fm = re.search(
+                    rf"(?:void|u8|u16)\s+{re.escape(name)}\s*\([^;]*?\)\s*\{{(.*?)\n\}}",
+                    text,
+                    re.S,
+                )
+                if fm:
+                    found_body = fm.group(1)
+                    break
+            if found_body is None:
+                continue
+            if hand_scan.search(found_body):
+                bad.append(name)
+        self.assertEqual(
+            bad,
+            [],
+            "Use Duel_FindBackrowCard* / Duel_IsBackrowCardOnField instead of "
+            "hand-scanning both backrows in overlay Apply* helpers "
+            "(see .cursor/rules/stat-overlay-perf.mdc)",
+        )
+
+    def test_face_up_backrow_cache_api(self):
+        hdr = read("include/duel_helpers.h")
+        self.assertIn("Duel_BeginFaceUpBackrowCache", hdr)
+        self.assertIn("Duel_EndFaceUpBackrowCache", hdr)
+        helpers = read("src_custom/duel_helpers.c")
+        self.assertIn("sFaceUpBackrowCacheDepth", helpers)
+        hooks = read("src_custom/card_hooks.c")
+        self.assertIn("Duel_BeginFaceUpBackrowCache", hooks)
+        self.assertIn("Duel_EndFaceUpBackrowCache", hooks)
+
 
 if __name__ == "__main__":
     unittest.main()

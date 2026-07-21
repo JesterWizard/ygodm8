@@ -58,9 +58,50 @@ class TestEffectPhase4(unittest.TestCase):
         self.assertIn("ONE_DAY_OF_PEACE", reg)
         effect_c = read("src_custom/effect_system/effect.c")
         self.assertIn("Op_DamageCalcAtkBoosts", effect_c)
+        self.assertIn("EnsureIndexes", effect_c)
+        self.assertIn("CardIndexLowerBound", effect_c)
+        self.assertIn("sEventFlat", effect_c)
+        self.assertIn("sCardIndex", effect_c)
+        # Activate path must use the cardId index, not a full registry walk.
+        try_fn = effect_c.split("u8 Effect_TryActivate", 1)[1].split(
+            "u8 Effect_QueryShouldActivate", 1
+        )[0]
+        self.assertIn("CardIndexLowerBound", try_fn)
+        self.assertNotIn("ARRAY_COUNT(sEffectsFromScripts)", try_fn)
+        dispatch_fn = effect_c.split("void Effect_DispatchEvent", 1)[1].split(
+            "u8 Effect_GetCategory", 1
+        )[0]
+        self.assertIn("sEventFlat", dispatch_fn)
+        self.assertNotIn("ARRAY_COUNT(sEffectsFromScripts)", dispatch_fn)
         events = read("src_custom/effect_system/effect_events.c")
         self.assertIn("Effect_DispatchEvent", events)
         self.assertNotIn("ApplySkyscraperBattleAtkBoost", events)
+
+    def test_card_index_lower_bound(self):
+        """Mirrors CardIndexLowerBound — fails if the search contract drifts."""
+        ids = [10, 20, 20, 30, 40]
+
+        def lower_bound(card_id: int) -> int:
+            lo, hi = 0, len(ids)
+            while lo < hi:
+                mid = (lo + hi) // 2
+                if ids[mid] < card_id:
+                    lo = mid + 1
+                else:
+                    hi = mid
+            return lo
+
+        self.assertEqual(lower_bound(20), 1)
+        self.assertEqual(lower_bound(25), 3)
+        self.assertEqual(lower_bound(5), 0)
+        self.assertEqual(lower_bound(50), 5)
+        # Equal-key run for card 20 covers indexes 1..2
+        i = lower_bound(20)
+        run = []
+        while i < len(ids) and ids[i] == 20:
+            run.append(i)
+            i += 1
+        self.assertEqual(run, [1, 2])
 
     def test_pot_of_greed_not_inline(self):
         hooks = read("src_custom/spell_effect_hooks.c")

@@ -577,6 +577,8 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
+  Duel_BeginFaceUpBackrowCache();
+
   statMod.card = zone->id;
   statMod.field = gDuel.field;
   statMod.stage = 0;
@@ -599,17 +601,20 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
     ApplyTheGrandJupiterEquipAtkBonus(zone);
     ApplyTheDespairUranusAtkBoost(zone);
     gSetFinalStatZone = NULL;
+    Duel_EndFaceUpBackrowCache();
     return;
   }
 
   if (zone->id == COPYCAT && gComputingCopycatStats == FALSE) {
     ApplyCopycatStatsToCardInfo(&statMod);
     gSetFinalStatZone = NULL;
+    Duel_EndFaceUpBackrowCache();
     return;
   }
 
   if (!ZoneShowsCombatStats(zone)) {
     gSetFinalStatZone = NULL;
+    Duel_EndFaceUpBackrowCache();
     return;
   }
 
@@ -664,6 +669,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyNeoSpaceAtkBoostForZone(zone);
   LevelTuning_ApplyLevelToCardInfo(zone);
   gSetFinalStatZone = NULL;
+  Duel_EndFaceUpBackrowCache();
 }
 
 static u8 IsPendingMonsterAttackAction(u8 actionId)
@@ -763,6 +769,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
   if (gSetFinalStatZone != NULL
       && gSetFinalStatZone->id == ptr->card
       && CardUsesMonsterCombatStats(ptr->card)) {
+    Duel_BeginFaceUpBackrowCache();
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
     ApplyLightEndDragonDefStagesToCardInfo(gSetFinalStatZone);
     ApplyPowerBondAtkBonusToCardInfo(gSetFinalStatZone);
@@ -798,6 +805,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     Necrovalley_ApplyGravekeeperStatBonusToCardInfo(gSetFinalStatZone);
     ApplyNeoSpaceAtkBoostForZone(gSetFinalStatZone);
     LevelTuning_ApplyLevelToCardInfo(gSetFinalStatZone);
+    Duel_EndFaceUpBackrowCache();
   }
 
   gSetFinalStatZone = NULL;

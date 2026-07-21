@@ -83,6 +83,7 @@ For cursor targeting effects, use `Duel_PickZone` (no header file, no cursor con
 
 - Prefer one file per card effect.
 - For draw, destroy, discard, LP, summon, deck search, effect text, and spell-through-traps, use `include/duel_helpers.h` instead of copying static helpers into each card file.
+- **Continuous ATK/DEF overlays:** use `Duel_FindBackrowCard*` / `Duel_IsBackrowCardOnField` (face-up). Check field presence **before** `Duel_CardNameContains` / `SetCardInfo`. Never hand-scan both backrows inside an `Apply*ToCardInfo` / `Apply*ForZone` — overlay passes use `Duel_BeginFaceUpBackrowCache`. See `.cursor/rules/stat-overlay-perf.mdc` and `documentation/effect-data-system.md`.
 - If the effect already has a hook-side home, extend that file instead of adding new vanilla logic.
 - If the effect needs a replacement of a vanilla entrypoint, use the vanilla-function-replacements skill in addition to this one.
 - Keep `src_custom/card_effect_tally.md` current whenever hook-side card logic is added or moved.

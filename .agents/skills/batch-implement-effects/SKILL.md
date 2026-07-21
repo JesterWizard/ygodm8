@@ -36,7 +36,8 @@ Work packs land in `documentation/effect_work_packs/YYYY-MM-DD/` (`index.json`, 
 2. Open `clone_path` if present; copy structure, swap IDs/filters/amounts.
 3. If `pattern` is set and the text truly matches, `--fill` then tighten — do not blind-fill multi-step cards.
 4. Replace every `TODO`. Use `duel_helpers.h`.
-5. Skip Timed Duel / runtime hand setup unless the card needs awkward multi-step playtest.
+5. Continuous ATK/DEF field overlays: `Duel_FindBackrowCard*` / `Duel_IsBackrowCardOnField`, field check **before** name/`SetCardInfo` — see `.cursor/rules/stat-overlay-perf.mdc`.
+6. Skip Timed Duel / runtime hand setup unless the card needs awkward multi-step playtest.
 
 ## Done criteria
 

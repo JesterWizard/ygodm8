@@ -969,12 +969,56 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
 /* END PERMANENT EFFECT OVERRIDES */
 };
 
-static const PermanentEffectOverride *GetPermanentEffectOverride(u16 cardId) {
-  unsigned char i;
+static const PermanentEffectOverride *sPermanentOverrideByCard[
+    ARRAY_COUNT(sPermanentEffectOverrides)] APPEND_DATA = {0};
+static u16 sPermanentOverrideIndexCount APPEND_DATA = {0};
+static u8 sPermanentOverrideIndexReady APPEND_DATA = {0};
 
-  for (i = 0; i < ARRAY_COUNT(sPermanentEffectOverrides); i++) {
-    if (sPermanentEffectOverrides[i].cardId == cardId)
-      return &sPermanentEffectOverrides[i];
+static void EnsurePermanentOverrideIndex(void)
+{
+  u16 i;
+
+  if (sPermanentOverrideIndexReady)
+    return;
+
+  for (i = 0; i < ARRAY_COUNT(sPermanentEffectOverrides); i++)
+    sPermanentOverrideByCard[i] = &sPermanentEffectOverrides[i];
+  sPermanentOverrideIndexCount = ARRAY_COUNT(sPermanentEffectOverrides);
+
+  /* Insertion sort by cardId — table is ~140. */
+  for (i = 1; i < sPermanentOverrideIndexCount; i++) {
+    const PermanentEffectOverride *key = sPermanentOverrideByCard[i];
+    s16 j = (s16)i - 1;
+
+    while (j >= 0 && sPermanentOverrideByCard[j]->cardId > key->cardId) {
+      sPermanentOverrideByCard[j + 1] = sPermanentOverrideByCard[j];
+      j--;
+    }
+    sPermanentOverrideByCard[j + 1] = key;
+  }
+  sPermanentOverrideIndexReady = TRUE;
+}
+
+static const PermanentEffectOverride *GetPermanentEffectOverride(u16 cardId) {
+  u16 lo;
+  u16 hi;
+
+  if (cardId == CARD_NONE)
+    return NULL;
+
+  EnsurePermanentOverrideIndex();
+  lo = 0;
+  hi = sPermanentOverrideIndexCount;
+  while (lo < hi) {
+    u16 mid = (u16)((lo + hi) / 2);
+    u16 midId = sPermanentOverrideByCard[mid]->cardId;
+
+    if (midId < cardId)
+      lo = (u16)(mid + 1);
+    else if (midId > cardId)
+      hi = mid;
+    else
+      return sPermanentOverrideByCard[mid];
   }
 
   return NULL;
@@ -1288,6 +1332,7 @@ void TryActivatingPermanentEffects__Replacement(void) {
   u8 hideEffectText = gHideEffectText;
   u8 aiSim = gHideEffectText == TRUE;
   u8 needsRescan;
+  u8 showScanner;
 
   if (aiSim) {
     if (HasActiveDynamicEquips())
@@ -1302,25 +1347,31 @@ void TryActivatingPermanentEffects__Replacement(void) {
     return;
   }
 
-  if (!aiSim || HasActiveDynamicEquips())
+  /* Match vanilla: at most one UpdateDuelGfxExceptField (each WaitForVBlank).
+   * Scanner on → refresh before scan (vanilla). Scanner off → one refresh after
+   * so ATK/stage tiles catch up without a double VBlank stall. */
+  if (HasActiveDynamicEquips())
     RecalculateAllDynamicEquips();
   gActiveEffect.turn = WhoseTurn();
-  if (!aiSim && !gRuntimeConfig.turn_off_visual_scanner) {
+
+  if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
+    gHideEffectText = TRUE;
+
+  showScanner = !gHideEffectText;
+  if (showScanner) {
     sub_80408BC();
     sub_802ADA4();
   }
   ResetTempStagesForAllCards();
-  if (!aiSim)
+  if (showScanner)
     UpdateDuelGfxExceptField();
-  if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
-    gHideEffectText = TRUE;
-  CheckBoardForPermanentEffects__Hook(!aiSim && !gRuntimeConfig.turn_off_visual_scanner);
 
-  TryActivatingPermanentEffectsPostBoardScan(aiSim);
+  CheckBoardForPermanentEffects__Hook(showScanner);
+  TryActivatingPermanentEffectsPostBoardScan(FALSE);
 
   gHideEffectText = hideEffectText;
-  if (!aiSim) {
-    UpdateDuelGfxExceptField();
+  if (showScanner)
     sub_802AE44();
-  }
+  else
+    UpdateDuelGfxExceptField();
 }
