@@ -4,6 +4,7 @@
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
@@ -121,6 +122,8 @@ u8 CanActivateOIL(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
 
+  if (EffectOpt_IsUsed(OIL))
+    return FALSE;
   if (!GraveyardExpand_IsEnabled())
     return FALSE;
 
@@ -229,9 +232,7 @@ static void OIL_ResolveBody(void)
   if (IsDuelOver() == TRUE || !CanActivateOIL())
     return;
 
-  /* ponytail: once-per-turn activation not tracked (no BSS turn flag editable
-   * from this spell file alone). Ceiling: can activate multiple Oils per turn;
-   * upgrade: shared OPT RAM bit / effect_usage once_per_turn. */
+  EffectOpt_MarkUsed(OIL);
 
   if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText) {
     firstIndex = PlayerPickOilGyIndex(fixedDuelist, 0xFF, CARD_NONE);

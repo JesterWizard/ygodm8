@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round2 complete (6×10 PARTIAL batches)
+**Last worked on:** 2026-07-21 — Round3 Batch1 (no Task agents)
 
-**Outcome:** Field Barrier → Necrovalley Throne pack. Partials **829→796**.
+**Outcome:** Neo Space → Parallel World Fusion. Partials **796→791**.
 
-**Open / next:** Round3 — continue 6×10 from next PARTIAL spell (Neo Space+). Reply “continue”.
+**Open / next:** Round3 Batches 2–6.

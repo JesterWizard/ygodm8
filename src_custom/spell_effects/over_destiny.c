@@ -5,9 +5,14 @@
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "over_destiny.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
+
+static u8 sOverDestinyStampRow APPEND_DATA = {0xFF};
+static u8 sOverDestinyStampCol APPEND_DATA = {0xFF};
+static u16 sOverDestinyStampId APPEND_DATA = {CARD_NONE};
 
 static const char sDestinyHeroArchetypeName[] APPEND_RODATA = "Destiny HERO";
 
@@ -253,6 +258,8 @@ static enum DuelActionResult SpecialSummonDeckCardAtIndex(u8 turnDuelist, u8 dec
   u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
   u16 cardId;
   struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
+  enum DuelActionResult result;
+  u8 col;
 
   if (deckIndex < gDuelDecks[fixedDuelist].cardsDrawn
       || deckIndex >= NumCardsInDeck(fixedDuelist))
@@ -266,7 +273,54 @@ static enum DuelActionResult SpecialSummonDeckCardAtIndex(u8 turnDuelist, u8 dec
     return DUEL_ACTION_NO_TARGET;
 
   Duel_ShuffleDeckFromDrawn(turnDuelist);
-  return Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts);
+  result = Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts);
+  if (result == DUEL_ACTION_OK) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+      if (zone != NULL && zone->id == cardId) {
+        OverDestiny_StampSummonedZone(zone);
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
+void OverDestiny_StampSummonedZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &fixedCol))
+    return;
+
+  sOverDestinyStampRow = fixedRow;
+  sOverDestinyStampCol = fixedCol;
+  sOverDestinyStampId = zone->id;
+}
+
+void TryApplyOverDestinyEndPhase(void)
+{
+  struct DuelCard *zone;
+
+  if (sOverDestinyStampRow > PLAYER_MONSTER_ROW || sOverDestinyStampCol >= MAX_ZONES_IN_ROW) {
+    sOverDestinyStampRow = 0xFF;
+    sOverDestinyStampCol = 0xFF;
+    sOverDestinyStampId = CARD_NONE;
+    return;
+  }
+
+  zone = gFixedZones[sOverDestinyStampRow][sOverDestinyStampCol];
+  if (zone != NULL && zone->id == sOverDestinyStampId && zone->id != CARD_NONE)
+    Duel_DestroyZone(zone, Duel_FixedDuelistForMonsterRow(sOverDestinyStampRow), TRUE);
+
+  sOverDestinyStampRow = 0xFF;
+  sOverDestinyStampCol = 0xFF;
+  sOverDestinyStampId = CARD_NONE;
 }
 
 static u16 GyCardIdAtIndex(u8 fixedDuelist, s8 gyIndex)
@@ -323,10 +377,7 @@ static void OVER_DESTINY_ResolveBody(void)
   if (SpecialSummonDeckCardAtIndex(ACTIVE_DUELIST, deckIndex) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: End Phase destroy of the SS'd monster needs a turn_effect hook
-   * outside this file (no in-file End Phase destroy queue without BSS).
-   * Ceiling: SS only; upgrade: turn_effect_hooks End Phase → destroy marked zone. */
-
+  /* Parent: TryApplyOverDestinyEndPhase from turn_effect_hooks End Phase. */
   UpdateDuelGfxExceptField();
 }
 

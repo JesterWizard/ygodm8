@@ -24,6 +24,7 @@
 #include "amazoness_call.h"
 #include "d_burst.h"
 #include "d_force.h"
+#include "neutron_blast.h"
 #include "aroma_gardening.h"
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
 #include "sasuke_samurai.h"
@@ -238,6 +239,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, NULL);
   TryUnlockAmazonessCallForNextAttack(attacker, NULL);
   TryUnlockDForcePlasmaForSecondAttack(attacker);
+  TryUnlockNeutronBlastForExtraAttack(attacker);
   {
     u8 fr;
     u8 fc;
@@ -311,6 +313,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, defender);
   TryUnlockAmazonessCallForNextAttack(attacker, defender);
   TryUnlockDForcePlasmaForSecondAttack(attacker);
+  TryUnlockNeutronBlastForExtraAttack(attacker);
   {
     u8 fr;
     u8 fc;

@@ -3,12 +3,16 @@
 #include "constants/card_ids.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
+#include "deck_menu.h"
 #include "duel_helpers.h"
+#include "pandemonium.h"
+#include "six_card_hand.h"
 #include "spell_effects.h"
 
 void SetDuelFieldGfx(u8 field);
 
 static const char sArchfiendName[] APPEND_RODATA = "Archfiend";
+static u16 sPandemoniumSearchMaxLevel APPEND_DATA = {0};
 
 static u8 IsVanillaTerrainFieldSpell(u16 cardId)
 {
@@ -90,19 +94,102 @@ static void PANDEMONIUM_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(PANDEMONIUM);
+  /* Parent: Pandemonium_ShouldSkipArchfiendMaintenance; effect.c ON_DESTROY Cond/Op. */
+}
 
-  /* ponytail: skip Archfiend Standby LP maintenance costs needs a Standby /
-   * maintenance-cost gate outside this file. Ceiling: face-up field only;
-   * upgrade: Archfiend maintenance pay → if face-up PANDEMONIUM on field then
-   * skip LP cost for that Archfiend. */
+u8 Pandemonium_IsFaceUpOnField(void)
+{
+  return Duel_FindBackrowCard(DUEL_PLAYER, PANDEMONIUM, TRUE) != NULL
+      || Duel_FindBackrowCard(DUEL_OPPONENT, PANDEMONIUM, TRUE) != NULL;
+}
 
-  /* ponytail: when an Archfiend is destroyed (not by battle) → that player may
-   * add 1 lower-Level Archfiend from Deck needs a destroy/GY listener outside
-   * this file. Ceiling: continuous face-up only; upgrade: after-destroy hook →
-   * if face-up PANDEMONIUM and destroyed name contains "Archfiend" (not battle)
-   * then DeckMenu search Level < destroyed.level. */
+u8 Pandemonium_ShouldSkipArchfiendMaintenance(u16 cardId)
+{
+  if (!Pandemonium_IsFaceUpOnField())
+    return FALSE;
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
 
-  (void)sArchfiendName;
+  return Duel_CardNameContains(cardId, sArchfiendName);
+}
+
+u8 Cond_PandemoniumOnArchfiendDestroy(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+
+  if (ctx == NULL || ctx->event == NULL || !Pandemonium_IsFaceUpOnField())
+    return FALSE;
+
+  ev = ctx->event;
+  if (!Duel_CardNameContains(ev->cardId, sArchfiendName))
+    return FALSE;
+
+  SetCardInfo(ev->cardId);
+  sPandemoniumSearchMaxLevel = gCardInfo.level;
+  return sPandemoniumSearchMaxLevel > 1;
+}
+
+enum DuelActionResult Op_PandemoniumOnArchfiendDestroy(struct EffectCtx *ctx)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  u8 deckSize;
+  u8 top;
+  u8 i;
+  s8 emptyHand;
+
+  if (!Cond_PandemoniumOnArchfiendDestroy(ctx))
+    return DUEL_ACTION_NO_TARGET;
+
+  fixedDuelist = ctx->event->controller;
+  if (fixedDuelist > DUEL_OPPONENT)
+    return DUEL_ACTION_INVALID;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  emptyHand = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
+  if (emptyHand < 0)
+    return DUEL_ACTION_NO_ZONE;
+
+  deckSize = NumCardsInDeck(fixedDuelist);
+  top = gDuelDecks[fixedDuelist].cardsDrawn;
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (!Duel_CardNameContains(cardId, sArchfiendName))
+      continue;
+    SetCardInfo(cardId);
+    if (gCardInfo.level >= sPandemoniumSearchMaxLevel)
+      continue;
+
+    Duel_ShowEffectText(PANDEMONIUM);
+    if (IsDuelOver() == TRUE)
+      return DUEL_ACTION_DUEL_OVER;
+
+    /* Move deck card to hand (no pred). */
+    {
+      struct DuelCard *handSlot = SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)emptyHand);
+
+      if (handSlot == NULL)
+        return DUEL_ACTION_NO_ZONE;
+      if (Duel_RemoveDeckCardAt(turnDuelist, i, FALSE) != DUEL_ACTION_OK)
+        return DUEL_ACTION_NO_TARGET;
+
+      handSlot->id = cardId;
+      handSlot->isFaceUp = FALSE;
+      handSlot->isLocked = FALSE;
+      handSlot->isDefending = FALSE;
+      handSlot->unkTwo = 0;
+      handSlot->unkThree = 0;
+      handSlot->unk4 = 0;
+      handSlot->willChangeSides = FALSE;
+      ResetPermStage(handSlot);
+      ResetTempStage(handSlot);
+      Duel_ShuffleDeckFromDrawn(turnDuelist);
+      return DUEL_ACTION_OK;
+    }
+  }
+
+  return DUEL_ACTION_NO_TARGET;
 }
 
 APPEND_TEXT void EffectPANDEMONIUM(void)

@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 21:05 UTC  
-**Remaining partials:** `796`
+**Last updated:** 2026-07-21 21:10 UTC  
+**Remaining partials:** `791`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 115 |
+| `spell` | 110 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **796** |
+| **total** | **791** |
 
-## spell (115)
+## spell (110)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -298,20 +298,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/necrovalley_throne.c`
 - L130: no dedicated choice UI — A = add Gravekeeper's, B = Normal Summon. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 
-### `NEO_SPACE`
-- path: `src_custom/spell_effects/neo_space.c`
-- L122: +500 ATK for ELEMENTAL_HERO_NEOS / Neos-listing Fusions needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up NEO_SPACE and IsNeoSpaceAtkTarget(id) then ATK += 500.
-- L127: Neos-listing Fusions skip End Phase Extra Deck shuffle needs a Contact-return suppress flag outside this file (same as INSTANT_NEO_SPACE). Ceiling: field face-up only; upgrade: End Phase → if face-up NEO_SPACE and IsNeoSpaceAtkTarget(zone) then skip Extra Deck shuffle.
-
 ### `NEPHE_SHADDOLL_FUSION`
 - path: `src_custom/spell_effects/nephe_shaddoll_fusion.c`
 - L134: no attribute-name UI — A confirms, B cycles list. Ceiling: unlabeled; upgrade: effect-text attribute menu.
 - L402: declared Attribute is stored in unk4 only — fusion/material checks still use printed SetCardInfo attribute. Ceiling: equip + OPT fusion works; Attribute change cosmetic. Upgrade: MaterialMatches / SourceQualifies reads DynamicEquipTargetsMonsterWithSpell attribute override from unk4.
-
-### `NEUTRON_BLAST`
-- path: `src_custom/spell_effects/neutron_blast.c`
-- L89: 2nd/3rd Battle Phase attacks need an attack-completion unlock outside this file (isLocked after attack; clone Cyber Twin / Tryce TryUnlock*ForSecondAttack wired in code_8043EF4 / ai_attack / draining_shield / call_of_the_haunted). Ceiling: mark unkThree only; upgrade: TryUnlockNeutronBlastForExtraAttack + turn-scoped remaining-attack counter
-- L97: "opponent's cards and effects cannot be activated until end of Damage Step" when it attacks needs a battle-activation gate outside this file. Ceiling: no activation lock from this file; upgrade: attack-declare / damage-step flag while marked BEUD is attacker → block CanActivateSpell / Trap / monster effects for INACTIVE_DUELIST until Damage Step end.
 
 ### `NEX`
 - path: `src_custom/spell_effects/nex.c`
@@ -321,27 +311,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/obliterate_blaze.c`
 - L131: granted effects (pay half LP → destroy S/T + equip 5 Forbidden One as +2000 Equip; piercing) need activated monster hooks / equip system outside this file. Ceiling: marks target unk4=1 only; upgrade: copy Obliterate effects onto marked Exodia monster.
 
-### `OIL`
-- path: `src_custom/spell_effects/oil.c`
-- L232: once-per-turn activation not tracked (no BSS turn flag editable from this spell file alone). Ceiling: can activate multiple Oils per turn; upgrade: shared OPT RAM bit / effect_usage once_per_turn.
-
-### `OVER_DESTINY`
-- path: `src_custom/spell_effects/over_destiny.c`
-- L326: End Phase destroy of the SS'd monster needs a turn_effect hook outside this file (no in-file End Phase destroy queue without BSS). Ceiling: SS only; upgrade: turn_effect_hooks End Phase → destroy marked zone.
-
 ### `PAINFUL_CHOICE`
 - path: `src_custom/spell_effects/painful_choice.c`
 - L153: no committed multi-pick UI — pick 5 in a loop (snake_rain style). Cancel mid-loop auto-fills remaining in deck order.
 
-### `PANDEMONIUM`
-- path: `src_custom/spell_effects/pandemonium.c`
-- L94: skip Archfiend Standby LP maintenance costs needs a Standby / maintenance-cost gate outside this file. Ceiling: face-up field only; upgrade: Archfiend maintenance pay → if face-up PANDEMONIUM on field then skip LP cost for that Archfiend.
-- L99: when an Archfiend is destroyed (not by battle) → that player may add 1 lower-Level Archfiend from Deck needs a destroy/GY listener outside this file. Ceiling: continuous face-up only; upgrade: after-destroy hook → if face-up PANDEMONIUM and destroyed name contains "Archfiend" (not battle) then DeckMenu search Level < destroyed.level.
-
 ### `PARALLEL_WORLD_FUSION`
 - path: `src_custom/spell_effects/parallel_world_fusion.c`
-- L109: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
-- L219: "cannot Special Summon except by this effect this turn" needs a turn-scoped SS lock outside this file. Ceiling: Fusion SS only; upgrade: set ArchlordKristya-style / turn flag that blocks other Special Summons.
+- L112: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
 
 ### `POISON_OF_THE_OLD_MAN`
 - path: `src_custom/spell_effects/poison_of_the_old_man.c`

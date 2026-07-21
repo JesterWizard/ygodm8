@@ -5,6 +5,7 @@
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
 #include "fusion_recipes.h"
+#include "neo_space.h"
 #include "spell_effects.h"
 
 void SetDuelFieldGfx(u8 field);
@@ -78,7 +79,7 @@ static void DestroyOtherFieldSpellsOnBoard(struct DuelCard *activatingZone)
 }
 
 /* ELEMENTAL_HERO_NEOS or Fusion that specifically lists it as material. */
-static u8 IsNeoSpaceAtkTarget(u16 cardId)
+u8 NeoSpace_IsAtkTarget(u16 cardId)
 {
   const struct FusionRecipe *recipe;
   u8 i;
@@ -107,6 +108,30 @@ static u8 IsNeoSpaceAtkTarget(u16 cardId)
   return Duel_CardNameContains(cardId, sNeosName);
 }
 
+static u8 NeoSpaceFaceUpOnField(void)
+{
+  return Duel_FindBackrowCard(DUEL_PLAYER, NEO_SPACE, TRUE) != NULL
+      || Duel_FindBackrowCard(DUEL_OPPONENT, NEO_SPACE, TRUE) != NULL;
+}
+
+void ApplyNeoSpaceAtkBoostForZone(struct DuelCard *zone)
+{
+  if (zone == NULL || !NeoSpaceFaceUpOnField() || !NeoSpace_IsAtkTarget(zone->id))
+    return;
+  if (gCardInfo.atk == 0xFFFF)
+    return;
+
+  gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + 500);
+}
+
+u8 NeoSpace_PreventsEndPhaseExtraDeckReturn(const struct DuelCard *zone)
+{
+  if (zone == NULL || !NeoSpaceFaceUpOnField())
+    return FALSE;
+
+  return NeoSpace_IsAtkTarget(zone->id);
+}
+
 static void NEO_SPACE_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -118,16 +143,8 @@ static void NEO_SPACE_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(NEO_SPACE);
-
-  /* ponytail: +500 ATK for ELEMENTAL_HERO_NEOS / Neos-listing Fusions needs a
-   * field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only
-   * covers monster ids registered in duel_helpers.c).
-   * Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up
-   * NEO_SPACE and IsNeoSpaceAtkTarget(id) then ATK += 500. */
-  /* ponytail: Neos-listing Fusions skip End Phase Extra Deck shuffle needs a
-   * Contact-return suppress flag outside this file (same as INSTANT_NEO_SPACE).
-   * Ceiling: field face-up only; upgrade: End Phase → if face-up NEO_SPACE and
-   * IsNeoSpaceAtkTarget(zone) then skip Extra Deck shuffle. */
+  /* Parent: ApplyNeoSpaceAtkBoostForZone in card_hooks; NeoSpace_PreventsEndPhaseExtraDeckReturn
+   * in Contact Fusion End Phase return (with InstantNeoSpace). */
 }
 
 APPEND_TEXT void EffectNEO_SPACE(void)
@@ -139,13 +156,13 @@ APPEND_TEXT void EffectNEO_SPACE(void)
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void NEO_SPACE_SelfCheck(void)
 {
-  if (!IsNeoSpaceAtkTarget(ELEMENTAL_HERO_NEOS))
+  if (!NeoSpace_IsAtkTarget(ELEMENTAL_HERO_NEOS))
     while (1)
       ;
-  if (!IsNeoSpaceAtkTarget(ELEMENTAL_HERO_AIR_NEOS))
+  if (!NeoSpace_IsAtkTarget(ELEMENTAL_HERO_AIR_NEOS))
     while (1)
       ;
-  if (IsNeoSpaceAtkTarget(BLUE_EYES_WHITE_DRAGON))
+  if (NeoSpace_IsAtkTarget(BLUE_EYES_WHITE_DRAGON))
     while (1)
       ;
 }

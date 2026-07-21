@@ -7,6 +7,7 @@
 #include "duel_helpers.h"
 #include "elemental_hero_absolute_zero.h"
 #include "fusion_duel.h"
+#include "parallel_world_fusion.h"
 #include "player_decks.h"
 #include "removed_from_play.h"
 #include "spell_effects.h"
@@ -15,6 +16,8 @@ void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyard);
 void UpdateDuelGfxExceptField(void);
 
 extern u16 gRemovedFromPlay[2][REMOVED_FROM_PLAY_CAPACITY];
+
+static u8 sParallelWorldFusionSpecialSummonLock APPEND_DATA = {FALSE};
 
 static u8 TurnDuelistToFixed(u8 turnDuelist)
 {
@@ -214,11 +217,24 @@ static void ExecuteParallelWorldFusion(const struct FusionRecipe *recipe,
       gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
   FusionDuel_SpecialSummonResult(recipe->result, selectedCount);
   ElementalHeroAbsoluteZero_EndSuppressLeave();
+  ParallelWorldFusion_MarkSpecialSummonLock();
   UpdateDuelGfxExceptField();
+}
 
-  /* ponytail: "cannot Special Summon except by this effect this turn" needs a
-   * turn-scoped SS lock outside this file. Ceiling: Fusion SS only; upgrade:
-   * set ArchlordKristya-style / turn flag that blocks other Special Summons. */
+void ParallelWorldFusion_MarkSpecialSummonLock(void)
+{
+  sParallelWorldFusionSpecialSummonLock = TRUE;
+}
+
+void ParallelWorldFusion_ClearOnTurnBoundary(void)
+{
+  sParallelWorldFusionSpecialSummonLock = FALSE;
+}
+
+u8 ParallelWorldFusion_BlocksSpecialSummon(u16 cardId)
+{
+  (void)cardId;
+  return sParallelWorldFusionSpecialSummonLock;
 }
 
 static void RunPlayerParallelWorldFusionFlow(void)

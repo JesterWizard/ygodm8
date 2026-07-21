@@ -2,9 +2,13 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "neutron_blast.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
+
+static u8 sNeutronBlastAttacksUsed APPEND_DATA = {0};
+static u8 sNeutronBlastBlockOppEffects APPEND_DATA = {FALSE};
 
 /* Attack-position summons keep isFaceUp=0 until end-of-turn flip. */
 static u8 MonsterIsFaceUp(struct DuelCard *zone)
@@ -85,20 +89,33 @@ static void ApplyNeutronBlast(struct DuelCard *zone)
   /* Flag BEUD for Neutron Blast this turn (unkThree is a 1-bit field). */
   zone->unkThree = 1;
   zone->effectUsedThisTurn = FALSE;
+  sNeutronBlastAttacksUsed = 0;
+  sNeutronBlastBlockOppEffects = FALSE;
+}
 
-  /* ponytail: 2nd/3rd Battle Phase attacks need an attack-completion unlock
-   * outside this file (isLocked after attack; clone Cyber Twin / Tryce
-   * TryUnlock*ForSecondAttack wired in code_8043EF4 / ai_attack / draining_shield /
-   * call_of_the_haunted). Ceiling: mark unkThree only; upgrade:
-   * TryUnlockNeutronBlastForExtraAttack + turn-scoped remaining-attack counter
-   * (like gChimeratechOverdragonAttacksUsed) → if id==BLUE_EYES_ULTIMATE_DRAGON
-   * && unkThree && attacksUsed<2 then attacksUsed++, isLocked=FALSE. */
+void TryUnlockNeutronBlastForExtraAttack(struct DuelCard *attacker)
+{
+  if (attacker == NULL || attacker->id != BLUE_EYES_ULTIMATE_DRAGON)
+    return;
+  if (attacker->unkThree == 0)
+    return;
+  if (sNeutronBlastAttacksUsed >= 2)
+    return;
 
-  /* ponytail: "opponent's cards and effects cannot be activated until end of
-   * Damage Step" when it attacks needs a battle-activation gate outside this
-   * file. Ceiling: no activation lock from this file; upgrade: attack-declare /
-   * damage-step flag while marked BEUD is attacker → block CanActivateSpell /
-   * Trap / monster effects for INACTIVE_DUELIST until Damage Step end. */
+  sNeutronBlastAttacksUsed++;
+  attacker->isLocked = FALSE;
+  sNeutronBlastBlockOppEffects = TRUE;
+}
+
+u8 NeutronBlast_ShouldBlockOpponentEffects(const struct DuelCard *attacker)
+{
+  (void)attacker;
+  return sNeutronBlastBlockOppEffects;
+}
+
+void NeutronBlast_ClearDamageStepBlock(void)
+{
+  sNeutronBlastBlockOppEffects = FALSE;
 }
 
 static void ResolveNeutronBlastTarget(u8 fixedRow, u8 fixedCol)

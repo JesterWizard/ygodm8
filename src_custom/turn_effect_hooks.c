@@ -34,6 +34,7 @@
 #include "fusion_destiny.h"
 #include "hysteric_sign.h"
 #include "instant_fusion.h"
+#include "over_destiny.h"
 #include "red_dragon_archfiend.h"
 #include "spell_effects.h"
 
@@ -416,6 +417,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyFusionDestinyEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyOverDestinyEndPhase();
   if (IsDuelOver() == 1)
     return;
   HystericSign_TryResolveEndPhase();

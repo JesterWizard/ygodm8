@@ -66,6 +66,7 @@
 #include "theban_nightmare.h"
 #include "hamon_lord_of_striking_thunder.h"
 #include "hidden_temples_of_necrovalley.h"
+#include "parallel_world_fusion.h"
 #include "uria_lord_of_searing_flames.h"
 #include "raviel_lord_of_phantasms.h"
 #include "expanded_graveyard.h"
@@ -328,7 +329,8 @@ u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
       || cardId == HAMON_LORD_OF_STRIKING_THUNDER
       || cardId == URIA_LORD_OF_SEARING_FLAMES
       || cardId == RAVIEL_LORD_OF_PHANTASMS
-      || HiddenTemplesOfNecrovalley_BlocksSpecialSummon(cardId);
+      || HiddenTemplesOfNecrovalley_BlocksSpecialSummon(cardId)
+      || ParallelWorldFusion_BlocksSpecialSummon(cardId);
 }
 
 u8 Duel_BlocksExtraDeckSpecialSummon(u16 cardId)

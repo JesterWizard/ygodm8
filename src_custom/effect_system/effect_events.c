@@ -23,6 +23,7 @@
 #include "fusion_deployment.h"
 #include "fusion_destiny.h"
 #include "hidden_temples_of_necrovalley.h"
+#include "parallel_world_fusion.h"
 #include "spell_effects.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
@@ -182,6 +183,7 @@ void EffectEvent_OnTurnBoundary(void)
   ForbiddenChalice_ClearOnTurnBoundary();
   ForbiddenDress_ClearOnTurnBoundary();
   ForbiddenLance_ClearOnTurnBoundary();
+  ParallelWorldFusion_ClearOnTurnBoundary();
   FusionDeployment_ClearOnTurnBoundary();
   FusionDestiny_ClearDarkHeroSpecialSummonLock();
   GenerationNext_ClearOnTurnBoundary();
