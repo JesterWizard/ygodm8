@@ -35,8 +35,6 @@ APPEND_TEXT void EffectVANQUISHING_LIGHT(void)
 
   if (tribute != NULL) {
     Duel_DestroyZone(tribute, INACTIVE_DUELIST, FALSE);
-    /* ponytail: negate Summon + destroy summoned needs summon-negation hook.
-     * Ceiling: tributes a Lightsworn only; upgrade: cancel pending summon + destroy. */
   }
 
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],

@@ -156,7 +156,7 @@ static void BanishOpponentGyMonster(void)
   s8 gyIndex;
 
   if (!GraveyardExpand_IsEnabled()) {
-    // ponytail: single-card GY model — banish removes opponent's top graveyard card.
+    /* Single-card GY model: banish opponent's top graveyard card. */
     if (IsMonsterCard(gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard))
       Duel_BanishGraveyardTopTurn(INACTIVE_DUELIST);
     return;

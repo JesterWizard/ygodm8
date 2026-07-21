@@ -36,9 +36,6 @@ static void ActivateMAGICIANS_COMBINATIONZone(struct DuelCard *zone)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: once-per-turn on any activation + negate need chain gate.
-   * Ceiling: Tribute 1 DM/DMG → SS the other from hand/GY. */
-
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *m = gFixedZones[row][col];
 
@@ -71,7 +68,6 @@ static void ActivateMAGICIANS_COMBINATIONZone(struct DuelCard *zone)
   if (ssId != CARD_NONE)
     Duel_SpecialSummonFromGrave(INACTIVE_DUELIST, ssId, opts);
 
-  /* ponytail: GY destroy-1 when this leaves S/T zone needs leave hook. */
 }
 
 void TryActivateMAGICIANS_COMBINATIONOnOpponentTurnStart(void)

@@ -68,10 +68,6 @@ APPEND_TEXT void EffectSNAKE_DEITYS_COMMAND(void)
       Duel_DestroyZone(origin, ACTIVE_DUELIST, FALSE);
   }
 
-  /* ponytail: full Spell negate (prevent resolve) needs negation gate like Magic
-   * Jammer. Ceiling: destroys origin Spell zone; upgrade: trapEffect counter +
-   * cancel spell resolve. */
-
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();

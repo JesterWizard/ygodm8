@@ -25,9 +25,6 @@ enum {
 
 static const char sDarkMagicianGirlName[] APPEND_RODATA = "Dark Magician Girl";
 
-/* ponytail: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the
- * three in-game Dark Magician support Spells only.
- * Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id. */
 static const u16 sBondSetSpellIds[] APPEND_RODATA = {
   DARK_MAGIC_ATTACK,
   DARK_BURNING_ATTACK,
@@ -169,8 +166,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = summon Dark Magician (need DMG); FALSE = summon Dark Magician Girl (need DM). */
 static u8 PlayerChoosesSummonDarkMagician(void)
 {
-  /* ponytail: no dedicated choice UI — A = SS Dark Magician, B = SS Dark Magician Girl.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

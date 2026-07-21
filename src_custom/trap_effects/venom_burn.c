@@ -43,7 +43,4 @@ APPEND_TEXT void EffectVENOM_BURN(void)
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
 
-  /* ponytail: Venom Counters may live elsewhere than unk4; PickZone for target;
-   * trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during
-   * response). */
 }

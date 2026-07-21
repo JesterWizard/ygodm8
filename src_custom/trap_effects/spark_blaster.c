@@ -37,7 +37,4 @@ APPEND_TEXT void EffectSPARK_BLASTER(void)
 
   UpdateDuelGfxExceptField();
 
-  /* ponytail: Main Phase OPT change battle position of 1 face-up + destroy
-   * after 3 uses need ignition + counter. Ceiling: equips to Sparkman; unk4
-   * use counter starts at 0. */
 }

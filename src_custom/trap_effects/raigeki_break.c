@@ -71,6 +71,4 @@ APPEND_TEXT void EffectRAIGEKI_BREAK(void)
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
 
-  /* ponytail: needs trapEffect ID + CheckTrapActivationConditions / Effect dispatch
-   * + player PickZone for field target. Ceiling: Effect body only. */
 }

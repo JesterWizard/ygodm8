@@ -107,5 +107,4 @@ APPEND_TEXT void EffectTWILIGHT_ERASER(void)
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
 
-  /* ponytail: PickZone for 2 field targets + mill→SS Lightsworn from hand. */
 }

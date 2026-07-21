@@ -72,5 +72,4 @@ APPEND_TEXT void EffectMORPHTRONIC_MIXUP(void)
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
 
-  /* ponytail: PickZone for 2 targets + opp choice UI; trapEffect wire. */
 }

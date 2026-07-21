@@ -27,10 +27,6 @@ APPEND_TEXT void EffectRED_REBOOT(void)
 
   Duel_ShowTrapResponseText(RED_REBOOT, gTrapEffectData.originCardId);
 
-  /* ponytail: hand-activate by paying half LP + full Trap negate need gates.
-   * Ceiling: Set origin Trap face-down + optional Deck Set 1 Trap for opp;
-   * opp Trap lock this turn not wired. */
-
   origin = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
   if (origin != NULL && GetTypeGroup(origin->id) == TYPE_GROUP_TRAP) {
     origin->isFaceUp = FALSE;

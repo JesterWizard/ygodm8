@@ -23,7 +23,6 @@ static u8 HandCardCanBeSpecialSummoned(u16 cardId, u8 duelist)
 
   SetCardInfo(cardId);
   color = gCardInfo.color;
-  /* ponytail: Extra Deck / Ritual need proper summon; treat as unsummonable from hand */
   if (color == FUSION_CARD || color == RITUAL_CARD || color == SYNCHRO_CARD
       || color == XYZ_CARD || color == LINK_CARD)
     return FALSE;

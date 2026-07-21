@@ -57,8 +57,6 @@ void ChainSummoning_ResetTurnState(void)
 
 u8 CanActivateCHAIN_SUMMONING(void)
 {
-  /* ponytail: no Chain Link / chain-depth API — assume min Link 3. Ceiling:
-   * always legal at Link≥3 floor; upgrade: real chain counter. */
   return ChainSummoning_CanActivateForChain(CHAIN_SUMMONING_MIN_LINK, FALSE);
 }
 

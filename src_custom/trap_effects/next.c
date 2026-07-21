@@ -39,9 +39,6 @@ APPEND_TEXT void EffectNEXT(void)
 
   Duel_ShowTrapResponseText(NEXT, gTrapEffectData.originCardId);
 
-  /* ponytail: negate effects + Extra Deck lock (Fusion only) need gates.
-   * Ceiling: SS distinct Neo-Spacians / Neos from hand then GY in DEF. */
-
   if (ArchlordKristya_IsSpecialSummonLocked()) {
     Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                      INACTIVE_DUELIST, FALSE);

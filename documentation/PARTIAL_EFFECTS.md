@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:51 UTC  
-**Remaining partials:** `657`
+**Last updated:** 2026-07-21 22:52 UTC  
+**Remaining partials:** `637`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 69 |
-| `trap` | 24 |
+| `spell` | 61 |
+| `trap` | 12 |
 | `activated` | 451 |
 | `permanent` | 113 |
-| **total** | **657** |
+| **total** | **637** |
 
-## spell (69)
+## spell (61)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -32,39 +32,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/aroma_blend.c`
 - L291: GY effect (banish this → Fusion Summon Plant Fusion by banishing materials from hand/field, and GY Plants if LP higher) needs a GY-activate path + Plant Fusion recipe filter outside this file. Ceiling: discard + place Humid/Dried/Blessed Winds face-up only; upgrade: GY activate AROMA_BLEND → banish self → FusionDuel Plant Fusion pay
 - L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
-
-### `BOND_BETWEEN_TEACHER_AND_STUDENT`
-- path: `src_custom/spell_effects/bond_between_teacher_and_student.c`
-- L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
-- L172: no dedicated choice UI — A = SS Dark Magician, B = SS Dark Magician Girl. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-
-### `BOOK_OF_LIFE`
-- path: `src_custom/spell_effects/book_of_life.c`
-- L159: single-card GY model — banish removes opponent's top graveyard card.
-
-### `CHAIN_STRIKE`
-- path: `src_custom/spell_effects/chain_strike.c`
-- L40: no Chain Link / chain-depth API — assume min Link 2, never same-name on chain. Ceiling: always legal at Link≥2 floor; upgrade: real chain counter.
-
-### `CHAIN_SUMMONING`
-- path: `src_custom/spell_effects/chain_summoning.c`
-- L60: no Chain Link / chain-depth API — assume min Link 3. Ceiling: always legal at Link≥3 floor; upgrade: real chain counter.
-
-### `CHRYSALIS_NEO_SPACIAN`
-- path: `src_custom/spell_effects/chrysalis_neo_spacian.c`
-- L31: only the five Chrysalis in-trunk pairs are mapped.
-
-### `COCOON_REBIRTH`
-- path: `src_custom/spell_effects/cocoon_rebirth.c`
-- L60: only the five Chrysalis in-trunk pairs are mapped.
-
-### `COLD_WAVE`
-- path: `src_custom/spell_effects/cold_wave.c`
-- L30: no Main Phase 1-start / prior-action API — allow whenever unused this turn. Ceiling: can activate mid-MP1 after other actions; upgrade: wire ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction).
-
-### `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS`
-- path: `src_custom/spell_effects/colosseum_cage_of_the_gladiator_beasts.c`
-- L231: no labeled confirm menu - auto-discard when another copy is in hand.
 
 ### `DARK_CONTACT`
 - path: `src_custom/spell_effects/dark_contact.c`
@@ -322,11 +289,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (24)
-
-### `A_HERO_EMERGES`
-- path: `src_custom/trap_effects/a_hero_emerges.c`
-- L26: Extra Deck / Ritual need proper summon; treat as unsummonable from hand
+## trap (12)
 
 ### `AMAZONESS_HALL`
 - path: `src_custom/trap_effects/amazoness_hall.c`
@@ -357,27 +320,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/harpie_lady_elegance.c`
 - L47: * ponytail: WIND-only SS lock this turn + destroy-search Harpie Spell need hooks. */
 
-### `MAGICIANS_COMBINATION`
-- path: `src_custom/trap_effects/magicians_combination.c`
-- L39: once-per-turn on any activation + negate need chain gate. Ceiling: Tribute 1 DM/DMG → SS the other from hand/GY.
-- L74: GY destroy-1 when this leaves S/T zone needs leave hook.
-
-### `MORPHTRONIC_MIXUP`
-- path: `src_custom/trap_effects/morphtronic_mixup.c`
-- L75: PickZone for 2 targets + opp choice UI; trapEffect wire.
-
-### `NEXT`
-- path: `src_custom/trap_effects/next.c`
-- L42: negate effects + Extra Deck lock (Fusion only) need gates. Ceiling: SS distinct Neo-Spacians / Neos from hand then GY in DEF.
-
-### `RAIGEKI_BREAK`
-- path: `src_custom/trap_effects/raigeki_break.c`
-- L74: needs trapEffect ID + CheckTrapActivationConditions / Effect dispatch + player PickZone for field target. Ceiling: Effect body only.
-
-### `RED_REBOOT`
-- path: `src_custom/trap_effects/red_reboot.c`
-- L30: hand-activate by paying half LP + full Trap negate need gates. Ceiling: Set origin Trap face-down + optional Deck Set 1 Trap for opp; opp Trap lock this turn not wired.
-
 ### `SHADDOLL_CORE`
 - path: `src_custom/trap_effects/shaddoll_core.c`
 - L45: true trap-monster (still a Trap) + Attribute fusion substitute need Embodiment-style link. Ceiling: place SHADDOLL_CORE on monster row and keep trap face-up continuous; GY add Shaddoll S/T stand-in on activate.
@@ -386,27 +328,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/shaddoll_schism.c`
 - L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
 
-### `SNAKE_DEITYS_COMMAND`
-- path: `src_custom/trap_effects/snake_deitys_command.c`
-- L71: full Spell negate (prevent resolve) needs negation gate like Magic Jammer. Ceiling: destroys origin Spell zone; upgrade: trapEffect counter + cancel spell resolve.
-
-### `SOLEMN_JUDGMENT`
-- path: `src_custom/trap_effects/solemn_judgment.c`
-- L39: full Summon/ST negate needs summon/activation chain gates (like Magic Jammer / Solemn). Ceiling: pay half LP + destroy origin; upgrade: trapEffect counter → cancel resolve.
-
-### `SPARK_BLASTER`
-- path: `src_custom/trap_effects/spark_blaster.c`
-- L40: Main Phase OPT change battle position of 1 face-up + destroy after 3 uses need ignition + counter. Ceiling: equips to Sparkman; unk4 use counter starts at 0.
-
 ### `TRAP_TRICK`
 - path: `src_custom/trap_effects/trap_trick.c`
 - L30: no Continuous/Counter trap type split — treat all traps as Normal.
 - L102: "can activate this turn" — leave unlocked.
 - L111: only 1 Trap activate rest of turn + OPT reset need gates.
-
-### `TWILIGHT_ERASER`
-- path: `src_custom/trap_effects/twilight_eraser.c`
-- L110: PickZone for 2 field targets + mill→SS Lightsworn from hand.
 
 ### `TYRANT_WING`
 - path: `src_custom/trap_effects/tyrant_wing.c`
@@ -415,14 +341,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `URGENT_TUNING`
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
-
-### `VANQUISHING_LIGHT`
-- path: `src_custom/trap_effects/vanquishing_light.c`
-- L38: negate Summon + destroy summoned needs summon-negation hook. Ceiling: tributes a Lightsworn only; upgrade: cancel pending summon + destroy.
-
-### `VENOM_BURN`
-- path: `src_custom/trap_effects/venom_burn.c`
-- L46: Venom Counters may live elsewhere than unk4; PickZone for target; trapEffect wire. Ceiling: first unk4>0 monster, burn ACTIVE (opp during response).
 
 ## activated (451)
 

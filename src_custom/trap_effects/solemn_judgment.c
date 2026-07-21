@@ -36,7 +36,4 @@ APPEND_TEXT void EffectSOLEMN_JUDGMENT(void)
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
 
-  /* ponytail: full Summon/ST negate needs summon/activation chain gates
-   * (like Magic Jammer / Solemn). Ceiling: pay half LP + destroy origin;
-   * upgrade: trapEffect counter → cancel resolve. */
 }

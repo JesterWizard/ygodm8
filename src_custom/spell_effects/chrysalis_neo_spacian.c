@@ -28,7 +28,6 @@ u16 ChrysalisNeoSpacian_ForId(u16 chrysalisId)
   case CHRYSALIS_PINNY:
     return NEO_SPACIAN_GLOW_MOSS;
   default:
-    /* ponytail: only the five Chrysalis in-trunk pairs are mapped. */
     return CARD_NONE;
   }
 }

@@ -228,7 +228,6 @@ u8 ColosseumCage_TryPreventDestroyByCardEffect(struct DuelCard *zone)
     return FALSE;
 
   if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText) {
-    /* ponytail: no labeled confirm menu - auto-discard when another copy is in hand. */
   }
 
   if (Duel_DiscardFromHand(turnDuelist, 1, IsColosseumCageHandCard, TRUE) != DUEL_ACTION_OK)
