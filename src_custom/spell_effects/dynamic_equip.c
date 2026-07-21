@@ -28,20 +28,9 @@ static u8 IsMonsterCard(u16 cardId)
 static u8 GetFixedRowForZone(const struct DuelCard *zone, u8 *outCol)
 {
   u8 row;
-  u8 col;
 
   if (Duel_FindFixedZone((struct DuelCard *)zone, &row, outCol))
     return row;
-
-  /* ponytail: gTurnZones uses mirrored columns on opponent rows */
-  for (row = 0; row < 4; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-      if (&gDuel.board[row][col] == zone) {
-        *outCol = (row <= 1) ? (MAX_ZONES_IN_ROW - 1 - col) : col;
-        return row;
-      }
-    }
-  }
 
   return DYNAMIC_EQUIP_COORD_INVALID;
 }

@@ -110,57 +110,26 @@ static u8 LoadRevealFusionMenu(u16 *fusionIdOut)
 {
   u8 menuCount = 0;
   u8 i;
+  u16 *extra;
 
   for (i = 0; i < EXPANDED_GRAVEYARD_CAPACITY; i++)
     gDeckMenu.cards[i] = CARD_NONE;
 
-  if (gRuntimeConfig.enable_extra_deck) {
-    u16 *extra = ActiveExtraDeck();
+  if (!gRuntimeConfig.enable_extra_deck)
+    return 0;
 
-    for (i = 0; i < EXTRA_DECK_SIZE; i++) {
-      u16 cardId = extra[i];
+  extra = ActiveExtraDeck();
+  for (i = 0; i < EXTRA_DECK_SIZE; i++) {
+    u16 cardId = extra[i];
 
-      if (!IsFusionMonsterCard(cardId))
-        continue;
-      if (!FusionHasAvailableListedMaterial(cardId))
-        continue;
+    if (!IsFusionMonsterCard(cardId))
+      continue;
+    if (!FusionHasAvailableListedMaterial(cardId))
+      continue;
 
-      fusionIdOut[menuCount] = cardId;
-      gDeckMenu.cards[menuCount] = cardId;
-      menuCount++;
-    }
-  } else {
-    /* ponytail: Extra Deck disabled — browse gFusionRecipes results instead.
-     * Ceiling: not a real ED reveal; upgrade: require enable_extra_deck. */
-    u8 recipeCount = FusionRecipe_Count();
-
-    for (i = 0; i < recipeCount && menuCount < EXPANDED_GRAVEYARD_CAPACITY; i++) {
-      u16 result = gFusionRecipes[i].result;
-
-      if (!IsFusionMonsterCard(result))
-        continue;
-      if (!FusionHasAvailableListedMaterial(result))
-        continue;
-
-      /* Dedupe identical results. */
-      {
-        u8 j;
-        u8 seen = FALSE;
-
-        for (j = 0; j < menuCount; j++) {
-          if (fusionIdOut[j] == result) {
-            seen = TRUE;
-            break;
-          }
-        }
-        if (seen)
-          continue;
-      }
-
-      fusionIdOut[menuCount] = result;
-      gDeckMenu.cards[menuCount] = result;
-      menuCount++;
-    }
+    fusionIdOut[menuCount] = cardId;
+    gDeckMenu.cards[menuCount] = cardId;
+    menuCount++;
   }
 
   gDeckMenu.cost = 0;

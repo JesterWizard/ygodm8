@@ -162,7 +162,7 @@ static u8 SourceQualifies(const struct FusionRecipe *recipe,
   if (recipe == NULL || source == NULL || source->cardId == CARD_NONE)
     return FALSE;
 
-  /* ponytail: hand test copies of the fusion result are not valid materials. */
+  /* Hand copies of the fusion result are not valid Future Fusion materials. */
   if (source->cardId == recipe->result)
     return FALSE;
 

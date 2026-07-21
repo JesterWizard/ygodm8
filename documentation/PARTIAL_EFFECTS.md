@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 21:32 UTC  
-**Remaining partials:** `775`
+**Last updated:** 2026-07-21 21:34 UTC  
+**Remaining partials:** `771`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 94 |
+| `spell` | 90 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **775** |
+| **total** | **771** |
 
-## spell (94)
+## spell (90)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -130,10 +130,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L177: no dedicated choice UI — A = send 1 more, B = stop. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 - L222: cancel on first pick auto-sends first Dragon (activation committed).
 
-### `DYNAMIC_EQUIP`
-- path: `src_custom/spell_effects/dynamic_equip.c`
-- L36: gTurnZones uses mirrored columns on opponent rows
-
 ### `EN_ENGAGE_NEO_SPACE`
 - path: `src_custom/spell_effects/en_engage_neo_space.c`
 - L330: 1 stage ~= 500 ATK so +2 ≈ +1000.
@@ -154,21 +150,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/factory_of_one_hundred_machines.c`
 - L148: stage unit is 500 ATK — applied +500×banished, not printed +200×. Ceiling: no fractional temp stages; upgrade: exact-ATK overlay cleared at End Phase (tempStage already clears EOT).
 
-### `FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS`
-- path: `src_custom/spell_effects/flavian_colosseum_of_the_gladiator_beasts.c`
-- L406: the existing deck picker only presents a choice to the turn player; an off-turn Flavian controller automatically Sets the first valid card.
-
-### `FUSION_DEPLOYMENT`
-- path: `src_custom/spell_effects/fusion_deployment.c`
-- L133: Extra Deck disabled — browse gFusionRecipes results instead. Ceiling: not a real ED reveal; upgrade: require enable_extra_deck.
-
 ### `FUSION_DESTINY`
 - path: `src_custom/spell_effects/fusion_destiny.c`
 - L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
-
-### `FUTURE_FUSION`
-- path: `src_custom/spell_effects/future_fusion.c`
-- L165: hand test copies of the fusion result are not valid materials.
 
 ### `GADGET_BOX`
 - path: `src_custom/spell_effects/gadget_box.c`

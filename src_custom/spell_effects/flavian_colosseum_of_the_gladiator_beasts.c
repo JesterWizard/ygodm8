@@ -403,8 +403,7 @@ void TryApplyFlavianEndPhase(void)
   if (FindFirstMatchingDeckIndex(turnDuelist, IsGladiatorBeastSpellTrap) < 0)
     return;
 
-  /* ponytail: the existing deck picker only presents a choice to the turn player;
-   * an off-turn Flavian controller automatically Sets the first valid card. */
+  /* Deck picker is turn-player only; off-turn Flavian controller Sets first valid. */
   deckIndex = PickMatchingDeckIndex(turnDuelist, IsGladiatorBeastSpellTrap);
   if (deckIndex != 0xFF)
     SetDeckCardAtIndex(turnDuelist, deckIndex, IsGladiatorBeastSpellTrap);

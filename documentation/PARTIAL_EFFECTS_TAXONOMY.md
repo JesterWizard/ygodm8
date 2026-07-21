@@ -7,15 +7,15 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 21:32 UTC  
-**Ceiling lines tagged:** `942`  
-**Partial files:** `775`
+**Last updated:** 2026-07-21 21:34 UTC  
+**Ceiling lines tagged:** `938`  
+**Partial files:** `771`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 316 | triage |
+| `other` | 312 | triage |
 | `event.OnStandby` | 228 | 3 (OPT / turn flags) |
 | `event.OnBattleDestroy` | 74 | 3 |
 | `event.OnSummon` | 64 | 3 |
@@ -28,7 +28,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `stat.Continuous` | 18 | 1–3 |
 | `event.GyIgnition` | 13 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **942** | |
+| **total** | **938** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -694,7 +694,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (316)
+## `other` (312)
 
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
@@ -710,13 +710,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DIFFERENT_DIMENSION_CAPSULE` (spell): L209: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
 - `DOUBLE_SPELL` (spell): L230: nested ActivateSpellEffect re-runs trap responses / field-spell specials; equips that need pre-set row2/col2 targets may fail. Ceiling: place + best-effort activate; upgrade: shared "resolve spell as if activated" helper that skips chain traps and supplies targeting for EQUIP/Field.
 - `DRAGON_SHRINE` (spell): L222: cancel on first pick auto-sends first Dragon (activation committed).
-- `DYNAMIC_EQUIP` (spell): L36: gTurnZones uses mirrored columns on opponent rows
 - `EN_ENGAGE_NEO_SPACE` (spell): L330: 1 stage ~= 500 ATK so +2 ≈ +1000.
 - `END_OF_THE_WORLD` (spell): L16: Ruin, Queen of Oblivion is not in the trunk — only Demise is Ritual- Summonable via this card. Ceiling: Demise only; upgrade: add Ruin card + ID.
-- `FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS` (spell): L406: the existing deck picker only presents a choice to the turn player; an off-turn Flavian controller automatically Sets the first valid card.
-- `FUSION_DEPLOYMENT` (spell): L133: Extra Deck disabled — browse gFusionRecipes results instead. Ceiling: not a real ED reveal; upgrade: require enable_extra_deck.
 - `FUSION_DESTINY` (spell): L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
-- `FUTURE_FUSION` (spell): L165: hand test copies of the fusion result are not valid materials.
 - `GADGET_BOX` (spell): L13: no dedicated Gadget Box Token card id — reuse MOON_TOKEN like other token spells. Ceiling: wrong printed name/stats; upgrade: real token card.
 - `GRAVEKEEPERS_INSCRIPTION` (spell): L112: "activate only at start of Main Phase 1" needs a phase/action counter outside this file (no Main Phase 1-start gate API). Ceiling: activable any time like a normal spell; upgrade: CanActivate → require MP1 + no prior play/set/summon this turn.
 - `LIGHTSWORN_SABRE` (spell): L31: this exact +200 overlay must be called by both card-info stat pipelines in card_hooks.c. Ceiling: displayed and battle ATK stay +500 until those parent wire points invoke this export.
