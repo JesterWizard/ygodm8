@@ -4,6 +4,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "spell_effects.h"
 
 void InitButtonMaps(void);
@@ -115,10 +116,8 @@ static u8 OpponentHasSpellOrTrap(void)
 
 u8 CanActivateLIGHTNING_STORM(void)
 {
-  /* ponytail: once-per-turn not tracked after this normal spell leaves the field
-   * (no shared turn-flag RAM editable from this file alone).
-   * Ceiling: multiple Lightning Storm per turn; upgrade: duel-state OPT bit. */
-  return ControlsNoFaceUpCardsExceptActivating();
+  return !EffectOpt_IsUsed(LIGHTNING_STORM)
+      && ControlsNoFaceUpCardsExceptActivating();
 }
 
 static void WaitForNoButtonsHeld(void)
@@ -218,6 +217,8 @@ static void LIGHTNING_STORM_ResolveBody(void)
 
   if (IsDuelOver() == TRUE)
     return;
+
+  EffectOpt_MarkUsed(LIGHTNING_STORM);
 
   if (spellZone != NULL && spellZone->id == LIGHTNING_STORM)
     Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);

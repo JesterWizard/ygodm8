@@ -185,6 +185,8 @@ void EffectEvent_OnTurnBoundary(void)
   FusionDeployment_ClearOnTurnBoundary();
   FusionDestiny_ClearDarkHeroSpecialSummonLock();
   GenerationNext_ClearOnTurnBoundary();
+  LevelTuning_ClearAtTurnBoundary();
+  LightForce_ClearTurnState();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

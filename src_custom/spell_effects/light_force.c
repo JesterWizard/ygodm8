@@ -14,6 +14,8 @@
 void UpdateDuelGfxExceptField(void);
 
 static const char sArcanaForceArchetypeName[] APPEND_RODATA = "Arcana Force";
+static u8 sLightForceNegated[2] APPEND_DATA = {FALSE, FALSE};
+static u8 sLightForceSpecialSummonLocked[2] APPEND_DATA = {FALSE, FALSE};
 
 static const u8 sLightForcePickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -39,6 +41,77 @@ static u8 IsArcanaForceMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sArcanaForceArchetypeName);
+}
+
+u8 LightForce_IsActiveForDuelist(u8 fixedDuelist)
+{
+  if (fixedDuelist != DUEL_PLAYER && fixedDuelist != DUEL_OPPONENT)
+    return FALSE;
+
+  return Duel_FindBackrowCard(fixedDuelist, LIGHT_FORCE, TRUE) != NULL;
+}
+
+u8 LightForce_IsNegatedForDuelist(u8 fixedDuelist)
+{
+  if (fixedDuelist != DUEL_PLAYER && fixedDuelist != DUEL_OPPONENT)
+    return FALSE;
+
+  return sLightForceNegated[fixedDuelist];
+}
+
+void LightForce_ResolveStandbyCoin(u8 fixedDuelist, u8 heads)
+{
+  if (fixedDuelist != DUEL_PLAYER && fixedDuelist != DUEL_OPPONENT)
+    return;
+
+  if (Duel_FindBackrowCard(fixedDuelist, LIGHT_BARRIER, TRUE) != NULL) {
+    sLightForceNegated[fixedDuelist] = FALSE;
+    return;
+  }
+
+  sLightForceNegated[fixedDuelist] =
+      LightForce_IsActiveForDuelist(fixedDuelist) && !heads;
+}
+
+u8 LightForce_BlocksSpecialSummon(u8 fixedDuelist, u16 cardId)
+{
+  if (fixedDuelist != DUEL_PLAYER && fixedDuelist != DUEL_OPPONENT)
+    return FALSE;
+
+  return sLightForceSpecialSummonLocked[fixedDuelist] && !IsArcanaForceMonster(cardId);
+}
+
+void LightForce_ClearTurnState(void)
+{
+  sLightForceSpecialSummonLocked[DUEL_PLAYER] = FALSE;
+  sLightForceSpecialSummonLocked[DUEL_OPPONENT] = FALSE;
+}
+
+void ApplyLightForceFairyStatBoostForZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+  u8 fixedDuelist;
+  u32 boosted;
+
+  if (zone == NULL || zone->id == CARD_NONE
+      || !Duel_CardHasMonsterType(zone->id, TYPE_FAIRY)
+      || !Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return;
+
+  fixedDuelist = Duel_FixedDuelistForMonsterRow(fixedRow);
+  if (!LightForce_IsActiveForDuelist(fixedDuelist)
+      || LightForce_IsNegatedForDuelist(fixedDuelist))
+    return;
+
+  if (gCardInfo.atk != 0xFFFF) {
+    boosted = (u32)gCardInfo.atk + LIGHT_FORCE_FAIRY_STAT_BONUS;
+    gCardInfo.atk = boosted > 0xFFFE ? 0xFFFE : (u16)boosted;
+  }
+  if (gCardInfo.def != 0xFFFF) {
+    boosted = (u32)gCardInfo.def + LIGHT_FORCE_FAIRY_STAT_BONUS;
+    gCardInfo.def = boosted > 0xFFFE ? 0xFFFE : (u16)boosted;
+  }
 }
 
 static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
@@ -277,13 +350,9 @@ static void ResolveLightForceIgnition(struct DuelCard *zone)
     return;
 
   SearchTwoArcanaForce();
+  sLightForceSpecialSummonLocked[FixedDuelistForTurnDuelist(ACTIVE_DUELIST)] = TRUE;
   zone->effectUsedThisTurn = TRUE;
   UpdateDuelGfxExceptField();
-
-  /* ponytail: "cannot Special Summon except Arcana Force for the rest of this
-   * turn" needs a CanSpecialSummon / Duel_CardCannotBeSpecialSummoned gate
-   * outside this file. Ceiling: discard+search OPT only; upgrade: turn flag →
-   * if set and card is not Arcana Force then block SS. */
 }
 
 static void LIGHT_FORCE_ResolveBody(void)
@@ -305,16 +374,7 @@ static void LIGHT_FORCE_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(LIGHT_FORCE);
 
-  /* ponytail: Standby coin (if LIGHT_BARRIER not in Field Zone; Tails → negate
-   * until next Standby) needs turn_effect_hooks outside this file.
-   * Ceiling: continuous face-up only; upgrade: Standby → if face-up LIGHT_FORCE
-   * and no face-up LIGHT_BARRIER then toss coin; Tails set negated flag. */
-
-  /* ponytail: Fairy monsters +300 ATK/DEF needs a field-stat applier outside
-   * this file (stage steps are 500). Ceiling: face-up continuous only; upgrade:
-   * LynJump/stat overlay → if face-up LIGHT_FORCE && !negated && TYPE_FAIRY
-   * then ATK/DEF += LIGHT_FORCE_FAIRY_STAT_BONUS. */
-if (CanActivateLightForceIgnition(zone))
+  if (CanActivateLightForceIgnition(zone))
     ResolveLightForceIgnition(zone);
 }
 

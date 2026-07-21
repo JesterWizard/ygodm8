@@ -98,7 +98,7 @@ static void TributeFaceUpDarkMagician(void)
   Duel_DestroyZone(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][darkMagicianCol], ACTIVE_DUELIST, FALSE);
 }
 
-static void ClearDarkMagicianKnightSpecialSummonLock(void)
+void KnightsTitle_ClearDarkMagicianKnightSpecialSummonLock(void)
 {
   u8 i;
 
@@ -106,7 +106,7 @@ static void ClearDarkMagicianKnightSpecialSummonLock(void)
     struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i];
 
     if (zone->id == DARK_MAGICIAN_KNIGHT) {
-      // ponytail: special-face-up sets unk4=2 and blocks DMK's on-summon effect
+      /* Special face-up summons set unk4=2; DMK needs its summon effect enabled. */
       zone->unk4 = 0;
       return;
     }
@@ -124,7 +124,7 @@ static void SpecialSummonDarkMagicianKnight(void)
     if (WhoseTurn() == DUEL_PLAYER) {
       if (Duel_SpecialSummonFromHand(ACTIVE_DUELIST, DARK_MAGICIAN_KNIGHT, IsDarkMagicianKnight, opts)
           == DUEL_ACTION_OK)
-        ClearDarkMagicianKnightSpecialSummonLock();
+        KnightsTitle_ClearDarkMagicianKnightSpecialSummonLock();
       return;
     }
 
@@ -133,19 +133,19 @@ static void SpecialSummonDarkMagicianKnight(void)
 
       if (handZone >= 0
           && Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) == DUEL_ACTION_OK)
-        ClearDarkMagicianKnightSpecialSummonLock();
+        KnightsTitle_ClearDarkMagicianKnightSpecialSummonLock();
     }
     return;
   }
 
   if (Duel_FindDeckCardIndex(ACTIVE_DUELIST, DARK_MAGICIAN_KNIGHT) >= 0) {
     if (Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, DARK_MAGICIAN_KNIGHT, opts) == DUEL_ACTION_OK)
-      ClearDarkMagicianKnightSpecialSummonLock();
+      KnightsTitle_ClearDarkMagicianKnightSpecialSummonLock();
     return;
   }
 
   if (Duel_SpecialSummonFromGrave(ACTIVE_DUELIST, DARK_MAGICIAN_KNIGHT, opts) == DUEL_ACTION_OK)
-    ClearDarkMagicianKnightSpecialSummonLock();
+    KnightsTitle_ClearDarkMagicianKnightSpecialSummonLock();
 }
 
 APPEND_TEXT void EffectKnightsTitle(void)

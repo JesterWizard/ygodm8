@@ -370,6 +370,10 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   if (SummonModeIsSpecial(opts.mode) && Duel_CardCannotBeSpecialSummoned(monsterId))
     return DUEL_ACTION_BLOCKED;
 
+  if (SummonModeIsSpecial(opts.mode)
+      && LightForce_BlocksSpecialSummon(TurnDuelistToFixed(turnDuelist), monsterId))
+    return DUEL_ACTION_BLOCKED;
+
   if (SummonModeIsSpecial(opts.mode) && ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;
 

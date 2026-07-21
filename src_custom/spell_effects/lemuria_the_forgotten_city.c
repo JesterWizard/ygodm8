@@ -1,5 +1,7 @@
 #include "global.h"
+#include "card.h"
 #include "common-chax.h"
+#include "configs/runtime.h"
 #include "constants/card_ids.h"
 #include "constants/card_enums.h"
 #include "constants/duel_fields.h"
@@ -7,6 +9,7 @@
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
+#include "lemuria_the_forgotten_city.h"
 #include "spell_effects.h"
 
 void SetDuelFieldGfx(u8 field);
@@ -18,6 +21,60 @@ static u8 IsWaterMonster(u16 cardId)
 
   SetCardInfo(cardId);
   return gCardInfo.attribute == ATTRIBUTE_WATER;
+}
+
+static u8 IsWaterMonsterWithoutCardInfo(u16 cardId)
+{
+  const CardData *card;
+
+  if (cardId >= NUM_TOTAL_CARDS || gRuntimeConfig.disable_element_system == TRUE)
+    return FALSE;
+
+  card = &gCardData_NEW[cardId];
+  if (card->color != NORMAL_CARD && card->color != EFFECT_CARD
+      && card->color != FUSION_CARD && card->color != RITUAL_CARD)
+    return FALSE;
+
+  return card->attribute == ATTRIBUTE_WATER;
+}
+
+u8 Lemuria_IsActive(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone->id == LEMURIA_THE_FORGOTTEN_CITY && zone->isFaceUp)
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+void ApplyLemuriaFieldStatBoostForZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+  u32 boosted;
+
+  if (zone == NULL || zone->id == CARD_NONE || !Lemuria_IsActive()
+      || !Duel_FindFixedMonsterZone(zone, &fixedRow, &col)
+      || !IsWaterMonsterWithoutCardInfo(zone->id))
+    return;
+
+  if (gCardInfo.atk != 0xFFFF) {
+    boosted = (u32)gCardInfo.atk + 200;
+    gCardInfo.atk = boosted > 0xFFFE ? 0xFFFE : (u16)boosted;
+  }
+
+  if (gCardInfo.def != 0xFFFF) {
+    boosted = (u32)gCardInfo.def + 200;
+    gCardInfo.def = boosted > 0xFFFE ? 0xFFFE : (u16)boosted;
+  }
 }
 
 static u8 IsVanillaTerrainFieldSpell(u16 cardId)
@@ -172,11 +229,6 @@ static void LEMURIA_THE_FORGOTTEN_CITY_ResolveBody(void)
   /* Name treated as Umi → apply Umi terrain while this stays face-up. */
   ApplyLemuriaAsUmiField();
   Duel_ActivateContinuousZone(zone);
-
-  /* ponytail: +200 ATK/DEF for all WATER monsters needs a field-stat applier
-   * outside this file (clone ApplyLegendaryOceanFieldStatBoostForZone).
-   * Ceiling: face-up field + FIELD_UMI only; upgrade: LynJump/stat overlay →
-   * if face-up LEMURIA and ATTRIBUTE_WATER then ATK/DEF += 200. */
 
   if (CanActivateLemuriaIgnition(zone))
     ResolveLemuriaIgnition(zone);

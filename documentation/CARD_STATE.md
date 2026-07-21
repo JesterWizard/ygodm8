@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round2 Batch3 (10 spells CCTO)
+**Last worked on:** 2026-07-21 — Round2 complete (6×10 PARTIAL batches)
 
-**Outcome:** Hero Flash → Instant Neo Space. See PARTIAL_EFFECTS.md for count.
+**Outcome:** Field Barrier → Necrovalley Throne pack. Partials **829→796**.
 
-**Open / next:** Round2 Batches 4–6.
+**Open / next:** Round3 — continue 6×10 from next PARTIAL spell (Neo Space+). Reply “continue”.

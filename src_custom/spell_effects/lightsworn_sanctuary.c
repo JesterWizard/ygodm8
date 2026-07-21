@@ -19,6 +19,11 @@ static const u8 sSanctuaryPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
+u8 LightswornSanctuary_IsFaceUp(const struct DuelCard *zone)
+{
+  return zone != NULL && zone->id == LIGHTSWORN_SANCTUARY && zone->isFaceUp == TRUE;
+}
+
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
   if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
@@ -41,7 +46,7 @@ static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
   ResetTempStage(handSlot);
 }
 
-static u8 IsLightswornMonster(u16 cardId)
+u8 LightswornSanctuary_IsLightswornMonster(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
     return FALSE;
@@ -54,7 +59,7 @@ static u8 HandHasLightsworn(void)
   u8 i;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (IsLightswornMonster(gTurnHands[ACTIVE_DUELIST][i]->id))
+    if (LightswornSanctuary_IsLightswornMonster(gTurnHands[ACTIVE_DUELIST][i]->id))
       return TRUE;
   }
 
@@ -67,10 +72,10 @@ static s8 PickLightswornHandZone(void)
   u8 i;
 
   if (WhoseTurn() == DUEL_PLAYER)
-    return SelectHandCardMatchingPredicate(handRow, IsLightswornMonster);
+    return SelectHandCardMatchingPredicate(handRow, LightswornSanctuary_IsLightswornMonster);
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (IsLightswornMonster(handRow[i]->id))
+    if (LightswornSanctuary_IsLightswornMonster(handRow[i]->id))
       return (s8)i;
   }
 
@@ -93,7 +98,7 @@ static u8 GyHasOtherLightsworn(u8 fixedDuelist, s8 excludeGyIndex)
   for (i = 0; i < gyCount; i++) {
     if ((s8)i == excludeGyIndex)
       continue;
-    if (IsLightswornMonster(GraveyardExpand_GetCardAt(fixedDuelist, i)))
+    if (LightswornSanctuary_IsLightswornMonster(GraveyardExpand_GetCardAt(fixedDuelist, i)))
       return TRUE;
   }
 
@@ -112,7 +117,7 @@ static s8 FindFirstOtherLightswornGyIndex(u8 fixedDuelist, s8 excludeGyIndex)
   for (i = 0; i < gyCount; i++) {
     if ((s8)i == excludeGyIndex)
       continue;
-    if (IsLightswornMonster(GraveyardExpand_GetCardAt(fixedDuelist, i)))
+    if (LightswornSanctuary_IsLightswornMonster(GraveyardExpand_GetCardAt(fixedDuelist, i)))
       return (s8)i;
   }
 
@@ -139,7 +144,7 @@ static u8 LoadOtherLightswornGyMenu(u8 fixedDuelist, s8 excludeGyIndex, u8 *gyIn
       continue;
 
     cardId = GraveyardExpand_GetCardAt(fixedDuelist, i);
-    if (!IsLightswornMonster(cardId))
+    if (!LightswornSanctuary_IsLightswornMonster(cardId))
       continue;
 
     gyIndexMap[menuCount] = i;
@@ -204,7 +209,7 @@ static u8 AddLightswornFromGyToHand(u8 turnDuelist, u8 gyIndex)
     return FALSE;
 
   cardId = GraveyardExpand_GetCardAt(fixedDuelist, gyIndex);
-  if (!IsLightswornMonster(cardId))
+  if (!LightswornSanctuary_IsLightswornMonster(cardId))
     return FALSE;
 
   cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, gyIndex);
@@ -220,7 +225,7 @@ static u8 CanActivateSanctuaryIgnition(struct DuelCard *zone)
   u8 i;
   u8 otherCount = 0;
 
-  if (zone == NULL || zone->id != LIGHTSWORN_SANCTUARY || zone->isFaceUp == FALSE)
+  if (!LightswornSanctuary_IsFaceUp(zone))
     return FALSE;
 
   if (zone->effectUsedThisTurn)
@@ -236,7 +241,7 @@ static u8 CanActivateSanctuaryIgnition(struct DuelCard *zone)
     return FALSE;
 
   for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
-    if (IsLightswornMonster(GraveyardExpand_GetCardAt(fixedDuelist, i)))
+    if (LightswornSanctuary_IsLightswornMonster(GraveyardExpand_GetCardAt(fixedDuelist, i)))
       otherCount++;
   }
 
@@ -337,10 +342,10 @@ if (Duel_TryResolveSpellThroughTraps(LIGHTSWORN_SANCTUARY, LIGHTSWORN_SANCTUARY_
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void LIGHTSWORN_SANCTUARY_SelfCheck(void)
 {
-  if (!IsLightswornMonster(JAIN_LIGHTSWORN_PALADIN))
+  if (!LightswornSanctuary_IsLightswornMonster(JAIN_LIGHTSWORN_PALADIN))
     while (1)
       ;
-  if (IsLightswornMonster(BLUE_EYES_WHITE_DRAGON))
+  if (LightswornSanctuary_IsLightswornMonster(BLUE_EYES_WHITE_DRAGON))
     while (1)
       ;
 }

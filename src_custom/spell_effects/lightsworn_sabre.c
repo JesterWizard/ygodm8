@@ -7,6 +7,7 @@
 
 /* 1 stage ~= 500 ATK. Printed +700; nearest stage unit is +500. */
 #define LIGHTSWORN_SABRE_ATK_STAGES 1
+#define LIGHTSWORN_SABRE_EXACT_ATK_BONUS 200
 
 static const char sLightswornArchetypeName[] APPEND_RODATA = "Lightsworn";
 
@@ -21,6 +22,23 @@ static u8 IsLightswornMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sLightswornArchetypeName);
+}
+
+void ApplyLightswornSabreAtkBonusToCardInfo(const struct DuelCard *zone)
+{
+  u32 atk;
+
+  /* ponytail: this exact +200 overlay must be called by both card-info stat
+   * pipelines in card_hooks.c. Ceiling: displayed and battle ATK stay +500
+   * until those parent wire points invoke this export. */
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  if (!DynamicEquipTargetsMonsterWithSpell(zone, LIGHTSWORN_SABRE))
+    return;
+
+  atk = (u32)gCardInfo.atk + LIGHTSWORN_SABRE_EXACT_ATK_BONUS;
+  gCardInfo.atk = Duel_ClampStat(atk);
 }
 
 static u8 IsValidLightswornSabreTarget(u8 fixedRow, u8 fixedCol)
@@ -57,11 +75,6 @@ u8 CanActivateLIGHTSWORN_SABRE(void)
 
 static void EquipLightswornSabre(struct DuelCard *spellZone, struct DuelCard *target)
 {
-  /* ponytail: stage unit is 500 ATK — applied +500, not printed +700.
-   * Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART
-   * (ApplyHeatedHeartAtkBonusToCardInfo) after listing LIGHTSWORN_SABRE in
-   * IsActiveDynamicEquipSpellZone. */
-
   ApplyDynamicEquipStages(target, LIGHTSWORN_SABRE_ATK_STAGES);
   if (!RegisterDynamicEquip(spellZone, target, LIGHTSWORN_SABRE, LIGHTSWORN_SABRE_ATK_STAGES))
     return;
