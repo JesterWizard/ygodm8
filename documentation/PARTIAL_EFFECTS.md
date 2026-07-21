@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:55 UTC  
-**Remaining partials:** `580`
+**Last updated:** 2026-07-21 23:02 UTC  
+**Remaining partials:** `572`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 6 |
+| `spell` | 5 |
 | `trap` | 10 |
-| `activated` | 451 |
-| `permanent` | 113 |
-| **total** | **580** |
+| `activated` | 449 |
+| `permanent` | 108 |
+| **total** | **572** |
 
-## spell (6)
+## spell (5)
 
 ### `FUSION_DESTINY`
 - path: `src_custom/spell_effects/fusion_destiny.c`
@@ -37,12 +37,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `SECRETS_OF_DARK_MAGIC`
 - path: `src_custom/spell_effects/secrets_of_dark_magic.c`
 - L34: * ponytail: incomplete vs printed DM Fusion pool (Dragon Knight, etc.).
-
-### `SHINING_SARCOPHAGUS`
-- path: `src_custom/spell_effects/shining_sarcophagus.c`
-- L137: printed ignition is Main Phase OPT, not on-activate. Ceiling: one Deck search when this continuous is activated; upgrade: face-up ignition hook → same search with OPT reset.
-- L170: opp GY Special Summon → discard Spell → send that monster to GY needs summon/trigger hook outside this file.
-- L176: printed text is monster-effect destroy only; Duel_DestroyZone has no source tag so all card-effect destroys are blocked. Battle uses a different path.
 
 ### `SPELL_CHRONICLE`
 - path: `src_custom/spell_effects/spell_chronicle.c`
@@ -97,20 +91,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (451)
+## activated (449)
 
 ### `A_CAT_OF_ILL_OMEN`
 - path: `src_custom/activated_effects/a_cat_of_ill_omen.c`
 - L71: FLIP trigger needs flip hook. Ceiling: once via usage if Trap in Deck.
-
-### `ALECTOR_SOVEREIGN_OF_BIRDS`
-- path: `src_custom/activated_effects/alector_sovereign_of_birds.c`
-- L85: until end of turn clear needs EOT unk4 reset hook.
-- L141: hand SS when opp has 2+ same Attribute uses FromHand path.
-
-### `AMAZONESS_AUGUSTA`
-- path: `src_custom/activated_effects/amazoness_augusta.c`
-- L62: protect other Amazoness + second attack FALSE. Ceiling: OPT SS Amazoness from Deck (Fusion Summon trigger stand-in).
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -1989,21 +1974,12 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (113)
-
-### `AMAZONESS_TIGER`
-- path: `src_custom/permanent_effects/amazoness_tiger.c`
-- L30: normal hand summon copies isFaceUp=0; attack-position monsters still count
+## permanent (108)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
 - L23: AI candidate sim runs real effect code but restores duel state; do not queue burns that survive into the chosen action.
 - L72: skip nested UpdateDuelGfxExceptField; caller just refreshed field.
-
-### `ARCANA_FORCE_EX_THE_DARK_RULER`
-- path: `src_custom/permanent_effects/arcana_force_ex_the_dark_ruler.c`
-- L94: Heads second attack FALSE; Tails wipe only when other cards exist.
-- L115: second attack + forced DEF at EP need battle hooks.
 
 ### `ARCANA_FORCE_EX_THE_LIGHT_RULER`
 - path: `src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c`
@@ -2037,10 +2013,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L125: battle SS destroyed monster needs battle-end hook; unk4=1 only.
 - L130: tails control switch is immediate; heads steal not wired.
 
-### `ARCANA_FORCE_XIV_TEMPERANCE`
-- path: `src_custom/permanent_effects/arcana_force_xiv_temperance.c`
-- L48: hand discard battle-damage cancel + halve damage need battle hooks.
-
 ### `ARCANA_FORCE_XVIII_THE_MOON`
 - path: `src_custom/permanent_effects/arcana_force_xviii_the_moon.c`
 - L48: Standby Moon Token / End Phase give-control need turn hooks; unk4 only.
@@ -2048,10 +2020,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ARCANA_FORCE_XXI_THE_WORLD`
 - path: `src_custom/permanent_effects/arcana_force_xxi_the_world.c`
 - L48: skip-turn / opp GY-to-hand need turn hooks; unk4 marks coin only.
-
-### `AURKUS_LIGHTSWORN_DRUID`
-- path: `src_custom/permanent_effects/aurkus_lightsworn_druid.c`
-- L44: Lightsworn target protection + true End Phase mill need turn hooks; on-summon mill 2 is the End-Phase stand-in.
 
 ### `BLUE_EYES_ALTERNATIVE_WHITE_DRAGON`
 - path: `src_custom/permanent_effects/blue_eyes_alternative_white_dragon.c`
@@ -2065,10 +2033,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/breaker_the_magical_warrior.c`
 - L15: hand normal summon copies isFaceUp=0; attack-position monsters still count
 - L40: placement hook is hand normal/tribute summon only — special summons use duel_helpers
-
-### `CANNONBALL_SPEAR_SHELLFISH`
-- path: `src_custom/permanent_effects/cannonball_spear_shellfish.c`
-- L8: spell-immunity while Umi is face-up needs Duel_IsCardActivationBlocked / targeting gate for this zone; no self-activation hook exists.
 
 ### `CYBER_KIRIN`
 - path: `src_custom/permanent_effects/cyber_kirin.c`

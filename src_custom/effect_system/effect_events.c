@@ -32,6 +32,7 @@
 #include "destined_rivals.h"
 #include "meteorain.h"
 #include "harpies_feather_storm.h"
+#include "alector_sovereign_of_birds.h"
 #include "spell_effects.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
@@ -205,6 +206,7 @@ void EffectEvent_OnTurnBoundary(void)
   DestinedRivals_ClearExhaustedOnTurnBoundary();
   Meteorain_ClearOnTurnBoundary();
   HarpiesFeatherStorm_ClearAtTurnBoundary();
+  Alector_ClearNegateMarksAtTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

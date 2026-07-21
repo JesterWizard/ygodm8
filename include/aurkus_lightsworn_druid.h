@@ -1,0 +1,6 @@
+#ifndef GUARD_AURKUS_LIGHTSWORN_DRUID_H
+#define GUARD_AURKUS_LIGHTSWORN_DRUID_H
+
+void TryApplyAurkusEndPhase(void);
+
+#endif /* GUARD_AURKUS_LIGHTSWORN_DRUID_H */

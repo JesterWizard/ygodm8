@@ -5,8 +5,7 @@
 
 unsigned char ShouldActivateCANNONBALL_SPEAR_SHELLFISH(void)
 {
-  /* ponytail: spell-immunity while Umi is face-up needs Duel_IsCardActivationBlocked
-   * / targeting gate for this zone; no self-activation hook exists. */
+  /* Continuous Umi spell-immunity via IsImmuneToSpellEffectsOnField — not ignition. */
   return FALSE;
 }
 

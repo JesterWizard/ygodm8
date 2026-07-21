@@ -27,11 +27,10 @@ static u8 CountAmazonessOnFixedRow(u8 fixedRow)
   return count;
 }
 
-// ponytail: normal hand summon copies isFaceUp=0; attack-position monsters still count
+// Face-up only for uniqueness (attack-position face-down still counts as present for ATK).
 static u8 IsTigerUniquenessActive(struct DuelCard *zone)
 {
-  return zone != NULL && zone->id == AMAZONESS_TIGER
-      && (zone->isFaceUp || !zone->isDefending);
+  return zone != NULL && zone->id == AMAZONESS_TIGER && zone->isFaceUp;
 }
 
 static struct DuelCard *FindFaceUpTigerOnFixedRow(u8 fixedRow)

@@ -134,9 +134,7 @@ static void TrySearchMentionOnActivate(void)
   if (menuCount == 0)
     return;
 
-  /* ponytail: printed ignition is Main Phase OPT, not on-activate. Ceiling:
-   * one Deck search when this continuous is activated; upgrade: face-up
-   * ignition hook → same search with OPT reset. */
+  /* One Deck search when this continuous is activated (printed: Main Phase OPT). */
   DECKMENU_SAVE();
   if (menuCount == 1 || WhoseTurn() != DUEL_PLAYER) {
     pick = 0;
@@ -165,16 +163,81 @@ static void SHINING_SARCOPHAGUS_ResolveBody(void)
   Duel_ShowEffectText(SHINING_SARCOPHAGUS);
 
   TrySearchMentionOnActivate();
-  /* Parent: ShiningSarcophagus_PreventsDestroy in Duel_DestroyZone. */
+}
 
-  /* ponytail: opp GY Special Summon → discard Spell → send that monster to GY
-   * needs summon/trigger hook outside this file. */
+static u8 IsSpellHandCard(u16 cardId)
+{
+  return cardId != CARD_NONE && GetTypeGroup(cardId) == TYPE_GROUP_SPELL;
+}
+
+u8 Cond_ShiningSarcophagusOnSummon(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+  u8 sarcController;
+  u8 summonController;
+
+  if (ctx == NULL || ctx->event == NULL || ctx->event->zone == NULL)
+    return FALSE;
+
+  ev = ctx->event;
+  if (GetTypeGroup(ev->cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+  if (ev->controller > DUEL_OPPONENT)
+    return FALSE;
+
+  summonController = ev->controller;
+  if (Duel_FindBackrowCard(DUEL_PLAYER, SHINING_SARCOPHAGUS, TRUE) != NULL)
+    sarcController = DUEL_PLAYER;
+  else if (Duel_FindBackrowCard(DUEL_OPPONENT, SHINING_SARCOPHAGUS, TRUE) != NULL)
+    sarcController = DUEL_OPPONENT;
+  else
+    return FALSE;
+
+  if (summonController == sarcController)
+    return FALSE;
+
+  /* Need a Spell in sarcophagus controller's hand to discard. */
+  {
+    u8 turn = Duel_TurnDuelistForFixedDuelist(sarcController);
+    u8 i;
+
+    for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+      if (gTurnHands[turn][i] != NULL && IsSpellHandCard(gTurnHands[turn][i]->id))
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+enum DuelActionResult Op_ShiningSarcophagusOnSummon(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+  u8 sarcController;
+  u8 turn;
+  u8 i;
+
+  if (ctx == NULL || ctx->event == NULL || ctx->event->zone == NULL)
+    return DUEL_ACTION_INVALID;
+
+  ev = ctx->event;
+  if (Duel_FindBackrowCard(DUEL_PLAYER, SHINING_SARCOPHAGUS, TRUE) != NULL)
+    sarcController = DUEL_PLAYER;
+  else
+    sarcController = DUEL_OPPONENT;
+
+  turn = Duel_TurnDuelistForFixedDuelist(sarcController);
+  if (Duel_DiscardFromHand(turn, 1, IsSpellHandCard, TRUE) != DUEL_ACTION_OK)
+    return DUEL_ACTION_BLOCKED;
+
+  Duel_ShowEffectText(SHINING_SARCOPHAGUS);
+  Duel_DestroyZone(ev->zone, Duel_TurnDuelistForFixedDuelist(ev->controller), FALSE);
+  return IsDuelOver() == TRUE ? DUEL_ACTION_DUEL_OVER : DUEL_ACTION_OK;
 }
 
 u8 ShiningSarcophagus_PreventsDestroy(const struct DuelCard *zone)
 {
-  /* ponytail: printed text is monster-effect destroy only; Duel_DestroyZone has no
-   * source tag so all card-effect destroys are blocked. Battle uses a different path. */
+  /* Blocks all card-effect destroys (no destroy-source tag in Duel_DestroyZone). */
   return zone != NULL && zone->id == SHINING_SARCOPHAGUS && zone->isFaceUp;
 }
 

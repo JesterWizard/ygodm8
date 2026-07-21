@@ -1,13 +1,18 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_ex_the_dark_ruler.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
+#include "the_dark_door.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+#define ARCANA_FORCE_EX_DARK_RULER_HEADS 1
+#define ARCANA_FORCE_EX_DARK_RULER_TAILS 2
 
 static struct DuelCard *SelfZone(void)
 {
@@ -27,25 +32,6 @@ static u8 TurnDuelistForFixedRow(u8 fixedRow)
     return ACTIVE_DUELIST;
 
   return INACTIVE_DUELIST;
-}
-
-static u8 FieldHasOtherCard(struct DuelCard *self)
-{
-  u8 row;
-  u8 col;
-
-  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_BACKROW; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-      struct DuelCard *zone = &gDuel.board[row][col];
-
-      if (zone == self || zone->id == CARD_NONE)
-        continue;
-
-      return TRUE;
-    }
-  }
-
-  return FALSE;
 }
 
 static void DestroyAllOtherFieldCards(struct DuelCard *self)
@@ -76,6 +62,45 @@ static void DestroyAllOtherFieldCards(struct DuelCard *self)
   }
 }
 
+void TryUnlockArcanaForceExDarkRulerForSecondAttack(struct DuelCard *attacker)
+{
+  if (attacker == NULL || attacker->id != ARCANA_FORCE_EX_THE_DARK_RULER)
+    return;
+  if (attacker->unk4 != ARCANA_FORCE_EX_DARK_RULER_HEADS)
+    return;
+  if (IsTheDarkDoorActiveOnField())
+    return;
+
+  if (attacker->effectUsedThisTurn == FALSE) {
+    attacker->effectUsedThisTurn = TRUE;
+    attacker->isLocked = FALSE;
+  }
+}
+
+void TryApplyArcanaForceExDarkRulerEndPhase(void)
+{
+  u8 fixed;
+  u8 col;
+
+  for (fixed = DUEL_PLAYER; fixed <= DUEL_OPPONENT; fixed++) {
+    u8 row = Duel_FixedMonsterRowForDuelist(fixed);
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone == NULL || zone->id != ARCANA_FORCE_EX_THE_DARK_RULER)
+        continue;
+      if (zone->unk4 != ARCANA_FORCE_EX_DARK_RULER_HEADS)
+        continue;
+      if (!zone->effectUsedThisTurn)
+        continue;
+
+      zone->isDefending = TRUE;
+      zone->isFaceUp = TRUE;
+    }
+  }
+}
+
 unsigned char ShouldActivateARCANA_FORCE_EX_THE_DARK_RULER(void)
 {
   struct DuelCard *zone;
@@ -88,11 +113,7 @@ unsigned char ShouldActivateARCANA_FORCE_EX_THE_DARK_RULER(void)
     return FALSE;
 
   zone = SelfZone();
-  if (zone == NULL || zone->unk4 != 0)
-    return FALSE;
-
-  /* ponytail: Heads second attack FALSE; Tails wipe only when other cards exist. */
-  return FieldHasOtherCard(zone);
+  return zone != NULL && zone->unk4 == 0;
 }
 
 void ActivateARCANA_FORCE_EX_THE_DARK_RULER(void)
@@ -109,12 +130,11 @@ void ActivateARCANA_FORCE_EX_THE_DARK_RULER(void)
     return;
 
   heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = 1;
+  zone->unk4 = heads ? ARCANA_FORCE_EX_DARK_RULER_HEADS
+                     : ARCANA_FORCE_EX_DARK_RULER_TAILS;
 
-  if (heads) {
-    /* ponytail: second attack + forced DEF at EP need battle hooks. */
+  if (heads)
     return;
-  }
 
   DestroyAllOtherFieldCards(zone);
   CheckWinConditionExodia(WhoseTurn());

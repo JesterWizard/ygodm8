@@ -2,61 +2,39 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-
-static u8 DuelistForMonsterTurnRow(u8 turnRow)
-{
-  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
-    return ACTIVE_DUELIST;
-  if (turnRow == INACTIVE_DUELIST_MONSTER_ROW)
-    return INACTIVE_DUELIST;
-  return ACTIVE_DUELIST;
-}
-
-static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
-{
-  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
-}
+#include "aurkus_lightsworn_druid.h"
 
 #define AURKUS_MILL_COUNT 2
 
+void TryApplyAurkusEndPhase(void)
+{
+  u8 fixed;
+  u8 col;
+
+  for (fixed = DUEL_PLAYER; fixed <= DUEL_OPPONENT; fixed++) {
+    u8 row = Duel_FixedMonsterRowForDuelist(fixed);
+    u8 turn = Duel_TurnDuelistForFixedDuelist(fixed);
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone == NULL || zone->id != AURKUS_LIGHTSWORN_DRUID || !zone->isFaceUp)
+        continue;
+
+      Duel_ShowEffectTextTyped(AURKUS_LIGHTSWORN_DRUID, 8);
+      if (Duel_MillTopDeckCards(turn, AURKUS_MILL_COUNT, TRUE) == DUEL_ACTION_DUEL_OVER)
+        return;
+    }
+  }
+}
+
 unsigned char ShouldActivateAURKUS_LIGHTSWORN_DRUID(void)
 {
-  struct DuelCard *zone;
-  u8 duelist;
-  u8 fixedDuelist;
-
-  if (gActiveEffect.cardId != AURKUS_LIGHTSWORN_DRUID)
-    return FALSE;
-
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
-      && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
-    return FALSE;
-
-  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  fixedDuelist = FixedDuelistForTurnDuelist(duelist);
-  /* ponytail: Lightsworn target protection + true End Phase mill need turn hooks;
-     on-summon mill 2 is the End-Phase stand-in. */
-  return NumCardsInDeck(fixedDuelist) > 0;
+  /* End Phase mill is TryApplyAurkusEndPhase; Lightsworn targeting immunity still
+   * needs a targeting gate. No on-summon ignition. */
+  return FALSE;
 }
 
 void ActivateAURKUS_LIGHTSWORN_DRUID(void)
 {
-  u8 duelist;
-  struct DuelCard *zone;
-
-  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-
-  Duel_ShowEffectTextTyped(AURKUS_LIGHTSWORN_DRUID, 8);
-  if (IsDuelOver() != TRUE)
-    Duel_MillTopDeckCards(duelist, AURKUS_MILL_COUNT, TRUE);
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  zone->unk4 = 1;
 }

@@ -18,6 +18,7 @@
 #include "mermaid_knight.h"
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_wing.h"
+#include "arcana_force_ex_the_dark_ruler.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
 #include "the_tripper_mercury.h"
@@ -218,6 +219,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
                              : gTurnZones[sAttackResume.defenderRow][sAttackResume.defenderCol]);
   TryUnlockDForcePlasmaForSecondAttack(attacker);
   TryUnlockTyrantWingForSecondAttack(attacker);
+  TryUnlockArcanaForceExDarkRulerForSecondAttack(attacker);
   {
     u8 fr;
     u8 fc;

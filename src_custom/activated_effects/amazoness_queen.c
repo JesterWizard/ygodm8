@@ -21,7 +21,7 @@ static u8 ControllerHasFaceUpQueen(u8 controller)
   return FALSE;
 }
 
-static u8 ControllerHasFaceUpEmpress(u8 controller)
+static u8 ControllerHasFaceUpEmpressOrAugusta(u8 controller)
 {
   u8 row = Duel_FixedMonsterRowForDuelist(controller);
   u8 col;
@@ -29,7 +29,8 @@ static u8 ControllerHasFaceUpEmpress(u8 controller)
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];
 
-    if (zone != NULL && zone->isFaceUp && zone->id == AMAZONESS_EMPRESS)
+    if (zone != NULL && zone->isFaceUp
+        && (zone->id == AMAZONESS_EMPRESS || zone->id == AMAZONESS_AUGUSTA))
       return TRUE;
   }
 
@@ -50,8 +51,9 @@ u8 AmazonessQueen_PreventsBattleDestroy(const struct DuelCard *zone)
   if (ControllerHasFaceUpQueen(controller))
     return TRUE;
 
-  /* Empress protects other Amazoness only. */
-  if (zone->id != AMAZONESS_EMPRESS && ControllerHasFaceUpEmpress(controller))
+  /* Empress / Augusta protect other Amazoness only. */
+  if (zone->id != AMAZONESS_EMPRESS && zone->id != AMAZONESS_AUGUSTA
+      && ControllerHasFaceUpEmpressOrAugusta(controller))
     return TRUE;
 
   return FALSE;

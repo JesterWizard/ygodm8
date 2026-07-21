@@ -7,20 +7,20 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 22:55 UTC  
-**Ceiling lines tagged:** `691`  
-**Partial files:** `580`
+**Last updated:** 2026-07-21 23:02 UTC  
+**Ceiling lines tagged:** `679`  
+**Partial files:** `572`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 209 | triage |
-| `event.OnStandby` | 207 | 3 (OPT / turn flags) |
-| `event.OnBattleDestroy` | 60 | 3 |
-| `event.OnSummon` | 59 | 3 |
+| `event.OnStandby` | 205 | 3 (OPT / turn flags) |
+| `other` | 203 | triage |
+| `event.OnBattleDestroy` | 59 | 3 |
+| `event.OnSummon` | 57 | 3 |
 | `chain.Negate` | 33 | later / chain |
-| `gate.Tribute` | 33 | 2–3 |
+| `gate.Tribute` | 32 | 2–3 |
 | `event.OnDestroy` | 21 | 3 |
 | `op.Search` | 18 | 1 |
 | `op.BanishTimed` | 14 | 1–3 |
@@ -28,11 +28,11 @@ python3 tools/stub_effect_queue.py --write-list
 | `event.GyIgnition` | 11 | 3 |
 | `ui.Choice` | 10 | 2 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **691** | |
+| **total** | **679** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (60)
+## `event.OnBattleDestroy` (59)
 
 - `AMAZONESS_HOT_SPRING` (trap): L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
 - `AMAZONESS_SPY` (activated): L34: battle destroy → return Amazoness from GY needs battle hook. Ceiling: SS from hand only; upgrade: reveal + battle recycle.
@@ -85,7 +85,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `TURBO_SYNCHRON` (activated): L12: attack-target DEF change + battle-damage SS from hand need battle hooks. Ceiling: not ignition-activatable here.
 - `ULTIMATE_ANCIENT_GEAR_GOLEM` (activated): L51: piercing + attack S/T lock + on-destroy SS need battle/destroy hooks. Ceiling: OPT SS Ancient Gear Golem from GY.
 - `X_SABER_AIRBELLUM` (activated): L12: direct-attack battle-damage trigger needs battle hook. Ceiling: not ignition-activatable here; upgrade: battle end discard.
-- `ARCANA_FORCE_XIV_TEMPERANCE` (permanent): L48: hand discard battle-damage cancel + halve damage need battle hooks.
 - `DESTINY_HERO_DREAD_SERVANT` (permanent): L8: Clock Tower counters + battle-destroy S/T need NS/battle hooks.
 - `DESTINY_HERO_DREADMASTER` (permanent): L216: D-HERO indestructible + no battle damage this turn need continuous hooks.
 - `EL_SHADDOLL_CONSTRUCT` (permanent): L194: battle vs SS monster destroy needs Damage Step hook.
@@ -124,10 +123,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLADIATOR_BEAST_GAIODIAZ` (permanent): L8: battle DEF burn + GB tag-out need battle-end/destroy hooks.
 - `GLADIATOR_BEAST_SAMNITE` (permanent): L8: battle search + GB tag-out need battle-end/destroy hooks.
 
-## `event.OnSummon` (59)
+## `event.OnSummon` (57)
 
 - `SHADDOLL_SCHISM` (trap): L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
-- `AMAZONESS_AUGUSTA` (activated): L62: protect other Amazoness + second attack FALSE. Ceiling: OPT SS Amazoness from Deck (Fusion Summon trigger stand-in).
 - `AMULET_DRAGON` (activated): L254: on-summon text after field draw so Amulet Dragon is visible (fusion uses updateGfx=FALSE).
 - `ANCIENT_GEAR_DRAGON` (activated): L121: Quick negate + tribute-less NS need negate/summon hooks. Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY.
 - `ARCANA_FORCE_V_THE_HIEROPHANT` (activated): L86: on-Summon coin + discard summon-lock need summon/FromHand paths. Ceiling: OPT coin → SS 1 Arcana Force from Deck.
@@ -171,7 +169,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ARCANA_FORCE_I_THE_MAGICIAN` (permanent): L69: tails LP heal on spell activation not wired; on-summon +500 opp LP only.
 - `ARCANA_FORCE_III_THE_EMPRESS` (permanent): L48: opp Normal Summon SS/discard triggers need summon hooks; unk4 only.
 - `ARCANA_FORCE_THE_CHAOS_RULER` (permanent): L162: true trigger is Special Summon; on-summon coin stand-in covers SS path.
-- `AURKUS_LIGHTSWORN_DRUID` (permanent): L44: Lightsworn target protection + true End Phase mill need turn hooks; on-summon mill 2 is the End-Phase stand-in.
 - `DESTINY_HERO_DOGMA` (permanent): L77: true trigger is opp next Standby after 3-tribute SS; on-summon halve LP once.
 - `DESTINY_HERO_DRAWHAND` (permanent): L98: HERO-effect SS gate not checked; on-summon mutual draw stand-in.
 - `DESTINY_HERO_DREADMASTER` (permanent): L185: Clock Tower Prison gate + battle protection skipped; on-summon stand-in.
@@ -186,11 +183,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (207)
+## `event.OnStandby` (205)
 
-- `SHINING_SARCOPHAGUS` (spell): L137: printed ignition is Main Phase OPT, not on-activate. Ceiling: one Deck search when this continuous is activated; upgrade: face-up ignition hook → same search with OPT reset.
 - `DARK_SUPREMACY` (trap): L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
-- `ALECTOR_SOVEREIGN_OF_BIRDS` (activated): L85: until end of turn clear needs EOT unk4 reset hook.
 - `AMAZONESS_PET_LIGER` (activated): L98: once-per-battle +500 / cannot-attack Amazoness need battle hooks. Ceiling: OPT −2 tempStage on 1 face-up opp monster.
 - `AMAZONESS_PET_LIGER_KING` (activated): L190: attack redirect FALSE. Ceiling: OPT destroy Amazoness → SS Warrior GY.
 - `AMAZONESS_PRINCESS` (activated): L63: name=Queen + attack-send→SS need name/battle hooks. Ceiling: OPT add 1 Amazoness Spell/Trap from Deck.
@@ -446,12 +441,11 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `EL_SHADDOLL_SHEKHINAGA` (permanent): L126: negate SS monster effect + send Shaddoll need effect-chain hook.
 - `LIGHT_AND_DARKNESS_DRAGON` (permanent): L8: chain negate (−500 ATK/DEF) + GY destroy-all/SS need chain/GY hooks.
 
-## `gate.Tribute` (33)
+## `gate.Tribute` (32)
 
 - `SCAPEGOAT` (spell): L10: no Sheep Token card id in trunk — MOON_TOKEN is Lv1/0/0 stand-in. Ceiling: wrong Type/Attribute (Fairy/LIGHT vs Beast/EARTH); upgrade: add SHEEP_TOKEN card data + art, then swap this define.
 - `SCAPEGOAT` (spell): L77: token tribute-lock is only via isLocked — not all tribute paths honor it, and Tokens can still be used for non-Tribute costs. Ceiling: best-effort lockMonster; upgrade: tribute validator excludes SCAPEGOAT_TOKEN_ID / token flag.
 - `SHADDOLL_CORE` (trap): L45: true trap-monster (still a Trap) + Attribute fusion substitute need Embodiment-style link. Ceiling: place SHADDOLL_CORE on monster row and keep trap face-up continuous; GY add Shaddoll S/T stand-in on activate.
-- `ALECTOR_SOVEREIGN_OF_BIRDS` (activated): L141: hand SS when opp has 2+ same Attribute uses FromHand path.
 - `ANCIENT_GEAR_GADJILTRON_CHIMERA` (activated): L12: Green/Red/Yellow Gadget tribute branches (+300 ATK, direct burn, battle burn) need summon/tribute hooks. Ceiling: not ignition-activatable.
 - `ARCHLORD_KRISTYA` (activated): L322: engine treats level 5+ with no tribute as special-like (Cyber Dragon, etc.).
 - `AROMASERAPHY_JASMINE` (activated): L179: LP-higher battle protect + Link-point tribute + LP-gain search need Link/LP hooks. Ceiling: tribute 1 you control → SS Plant from Deck.
@@ -550,13 +544,11 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (209)
+## `other` (203)
 
 - `FUSION_DESTINY` (spell): L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 - `SCAPEGOAT` (spell): L74: LockMonsterCardsInRow also blocks Normal Set of monsters. Ceiling: cannot allow Set while blocking Summon without a menu hook that distinguishes Set vs Summon; upgrade: Set path unlocks hand briefly.
 - `SECRETS_OF_DARK_MAGIC` (spell): L34: * ponytail: incomplete vs printed DM Fusion pool (Dragon Knight, etc.).
-- `SHINING_SARCOPHAGUS` (spell): L170: opp GY Special Summon → discard Spell → send that monster to GY needs summon/trigger hook outside this file.
-- `SHINING_SARCOPHAGUS` (spell): L176: printed text is monster-effect destroy only; Duel_DestroyZone has no source tag so all card-effect destroys are blocked. Battle uses a different path.
 - `SPELL_GEAR` (spell): L156: * ponytail: optional SS offered as auto-yes when legal. Ceiling: cannot skip
 - `AMAZONESS_HALL` (trap): L43: * ponytail: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
 - `DARK_SUPREMACY` (trap): L38: "Spells that mention Dark Fusion" not scanned by text.
@@ -693,11 +685,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `WARM_WORM` (activated): L18: printed trigger is when destroyed. Ceiling: once via usage.
 - `WHITE_HORNED_DRAGON` (activated): L101: +1 tempStage per banished (~500 ATK each, not exact +300).
 - `ZERADIAS_HERALD_OF_HEAVEN` (activated): L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
-- `AMAZONESS_TIGER` (permanent): L30: normal hand summon copies isFaceUp=0; attack-position monsters still count
 - `AMEBA` (permanent): L23: AI candidate sim runs real effect code but restores duel state; do not queue burns that survive into the chosen action.
 - `AMEBA` (permanent): L72: skip nested UpdateDuelGfxExceptField; caller just refreshed field.
-- `ARCANA_FORCE_EX_THE_DARK_RULER` (permanent): L94: Heads second attack FALSE; Tails wipe only when other cards exist.
-- `ARCANA_FORCE_EX_THE_DARK_RULER` (permanent): L115: second attack + forced DEF at EP need battle hooks.
 - `ARCANA_FORCE_IV_THE_EMPEROR` (permanent): L86: ±500 ATK uses tempStage (~500/stage); only your Arcana Force on field.
 - `ARCANA_FORCE_THE_CHAOS_RULER` (permanent): L198: Light Barrier opp-activation lock needs continuous field hook.
 - `ARCANA_FORCE_VII_THE_CHARIOT` (permanent): L125: battle SS destroyed monster needs battle-end hook; unk4=1 only.
@@ -707,7 +696,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `BLUE_EYES_ALTERNATIVE_WHITE_DRAGON` (permanent): L50: BEWD stays in hand as a visible cost; only the alt card is cleared
 - `BLUE_EYES_SHINING_DRAGON` (permanent): L68: in-place BEUD zone replacement; Duel_SpecialSummon* only fills empty zones
 - `BREAKER_THE_MAGICAL_WARRIOR` (permanent): L15: hand normal summon copies isFaceUp=0; attack-position monsters still count
-- `CANNONBALL_SPEAR_SHELLFISH` (permanent): L8: spell-immunity while Umi is face-up needs Duel_IsCardActivationBlocked / targeting gate for this zone; no self-activation hook exists.
 - `DARK_MAGICIAN_OF_DESTRUCTION` (permanent): L131: deck-first add; DM preferred by scan order, no picker.
 - `DARKLORD_NURSE_REFICULE` (permanent): L8: LP gain→damage redirect needs LP-change hook.
 - `DEEP_EYES_WHITE_DRAGON` (permanent): L121: first Dragon in GY stand-in for target picker.

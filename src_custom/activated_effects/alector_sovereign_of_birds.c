@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "alector_sovereign_of_birds.h"
 #include "archlord_kristya.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
@@ -12,6 +13,32 @@ void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
 u32 NumFaceUpMatchingAttributeInRow(u8, u8);
+
+#define ALECTOR_NEGATE_MARK 0x80
+
+void Alector_ClearNegateMarksAtTurnBoundary(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL && (zone->unk4 & ALECTOR_NEGATE_MARK))
+        zone->unk4 = (u8)(zone->unk4 & (u8)~ALECTOR_NEGATE_MARK);
+    }
+  }
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL && (zone->unk4 & ALECTOR_NEGATE_MARK))
+        zone->unk4 = (u8)(zone->unk4 & (u8)~ALECTOR_NEGATE_MARK);
+    }
+  }
+}
 
 static u8 OpponentHasTwoFaceUpSameAttribute(void)
 {
@@ -82,8 +109,8 @@ static void ResolveNegateTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidNegateTarget(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* ponytail: until end of turn clear needs EOT unk4 reset hook. */
-  zone->unk4 |= 0x80;
+  /* Negate mark cleared at turn boundary via Alector_ClearNegateMarksAtTurnBoundary. */
+  zone->unk4 |= ALECTOR_NEGATE_MARK;
 
   if (self != NULL)
     MarkMonsterEffectUsed(self);
@@ -138,7 +165,7 @@ unsigned char CanActivateALECTOR_SOVEREIGN_OF_BIRDS(void)
   if (zone == NULL || zone->id != ALECTOR_SOVEREIGN_OF_BIRDS)
     return FALSE;
 
-  /* ponytail: hand SS when opp has 2+ same Attribute uses FromHand path. */
+  /* Hand SS when opp has 2+ same Attribute uses FromHand path. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -118,6 +118,7 @@
 #include "d_force.h"
 #include "neutron_blast.h"
 #include "tyrant_wing.h"
+#include "arcana_force_ex_the_dark_ruler.h"
 #include "elemental_hero_necroshade.h"
 #include "ancient_gear_advance.h"
 #include "cold_wave.h"
@@ -1854,6 +1855,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockTyrantWingForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockArcanaForceExDarkRulerForSecondAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockNeutronBlastForExtraAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       {
@@ -2028,6 +2031,8 @@ void TryAttackWithMonster__Replacement(void)
       TryUnlockDForcePlasmaForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockTyrantWingForSecondAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      TryUnlockArcanaForceExDarkRulerForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockNeutronBlastForExtraAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);

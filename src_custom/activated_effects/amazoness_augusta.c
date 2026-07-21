@@ -59,8 +59,8 @@ unsigned char CanActivateAMAZONESS_AUGUSTA(void)
   if (zone == NULL || zone->id != AMAZONESS_AUGUSTA)
     return FALSE;
 
-  /* ponytail: protect other Amazoness + second attack FALSE.
-   * Ceiling: OPT SS Amazoness from Deck (Fusion Summon trigger stand-in). */
+  /* Battle protect for other Amazoness is live via AmazonessQueen_PreventsBattleDestroy.
+   * Ceiling: OPT SS Amazoness from Deck (Fusion Summon trigger stand-in); second attack FALSE. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

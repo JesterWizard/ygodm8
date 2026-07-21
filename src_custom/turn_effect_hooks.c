@@ -20,6 +20,8 @@
 #include "venom_swamp.h"
 #include "glorious_illusion.h"
 #include "tyrant_wing.h"
+#include "arcana_force_ex_the_dark_ruler.h"
+#include "aurkus_lightsworn_druid.h"
 #include "weapon_change.h"
 #include "nightmare_wheel.h"
 #include "mirror_wall.h"
@@ -435,6 +437,12 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryDestroyTyrantWingAtEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyArcanaForceExDarkRulerEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyAurkusEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyFlavianEndPhase();

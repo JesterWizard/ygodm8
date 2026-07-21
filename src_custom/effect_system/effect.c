@@ -33,6 +33,7 @@
 #include "supreme_kings_castle.h"
 #include "thumbs_down.h"
 #include "linked_revive_trap.h"
+#include "shining_sarcophagus.h"
 
 /* Generated ACTIVATE Effects mirroring EffectScript table. */
 #include "../generated/effect_registry.inc"
@@ -415,6 +416,18 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_LinkedReviveTrapOnLeave,
+  },
+  {
+      SHINING_SARCOPHAGUS,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_SUMMON,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_ShiningSarcophagusOnSummon,
+      NULL,
+      NULL,
+      Op_ShiningSarcophagusOnSummon,
   },
   {
       CARD_NONE,

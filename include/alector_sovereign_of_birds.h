@@ -1,0 +1,6 @@
+#ifndef GUARD_ALECTOR_SOVEREIGN_OF_BIRDS_H
+#define GUARD_ALECTOR_SOVEREIGN_OF_BIRDS_H
+
+void Alector_ClearNegateMarksAtTurnBoundary(void);
+
+#endif /* GUARD_ALECTOR_SOVEREIGN_OF_BIRDS_H */

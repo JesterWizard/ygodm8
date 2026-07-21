@@ -63,6 +63,7 @@
 #include "chicken_game.h"
 #include "clock_tower_prison.h"
 #include "tornado_wall.h"
+#include "arcana_force_xiv_temperance.h"
 #include "big_bang_shot.h"
 #include "h_heated_heart.h"
 #include "cyber_end_dragon.h"
@@ -312,7 +313,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     if (playerDmg > 0) {
       if (ChickenGame_ShouldBlockBattleDamage(DUEL_PLAYER)
           || ClockTowerPrison_ShouldBlockBattleDamage(DUEL_PLAYER)
-          || TornadoWall_ShouldBlockBattleDamage(DUEL_PLAYER)) {
+          || TornadoWall_ShouldBlockBattleDamage(DUEL_PLAYER)
+          || ArcanaForceXivTemperance_ShouldBlockBattleDamage(DUEL_PLAYER)) {
         gDuelLifePoints[DUEL_PLAYER] = gUnk2023EA0.unk0[0].initialLifePoints;
         gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
         sActionData.flags &= (u8)~FLAG_LOSER_PLAYER;
@@ -327,7 +329,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     if (opponentDmg > 0) {
       if (ChickenGame_ShouldBlockBattleDamage(DUEL_OPPONENT)
           || ClockTowerPrison_ShouldBlockBattleDamage(DUEL_OPPONENT)
-          || TornadoWall_ShouldBlockBattleDamage(DUEL_OPPONENT)) {
+          || TornadoWall_ShouldBlockBattleDamage(DUEL_OPPONENT)
+          || ArcanaForceXivTemperance_ShouldBlockBattleDamage(DUEL_OPPONENT)) {
         gDuelLifePoints[DUEL_OPPONENT] = gUnk2023EA0.unk0[1].initialLifePoints;
         gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
         sActionData.flags &= (u8)~FLAG_LOSER_OPPONENT;
