@@ -112,5 +112,3 @@ void TryActivateNECROVALLEY_TEMPLEOnOpponentTurnStart(void)
                                          ActivateNECROVALLEY_TEMPLEZone);
 }
 
-/* ponytail: TryActivateNECROVALLEY_TEMPLEOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

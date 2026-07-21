@@ -100,5 +100,3 @@ void TryActivateBLESSED_WINDSOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(BLESSED_WINDS, ActivateBLESSED_WINDSZone);
 }
 
-/* ponytail: TryActivateBLESSED_WINDSOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

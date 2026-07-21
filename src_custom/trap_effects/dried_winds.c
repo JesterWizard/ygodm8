@@ -87,5 +87,3 @@ void TryActivateDRIED_WINDSOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(DRIED_WINDS, ActivateDRIED_WINDSZone);
 }
 
-/* ponytail: TryActivateDRIED_WINDSOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

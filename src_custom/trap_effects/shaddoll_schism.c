@@ -80,5 +80,3 @@ void TryActivateSHADDOLL_SCHISMOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(SHADDOLL_SCHISM, ActivateSHADDOLL_SCHISMZone);
 }
 
-/* ponytail: TryActivateSHADDOLL_SCHISMOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

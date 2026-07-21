@@ -19,5 +19,3 @@ void TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(ANTI_SPELL_FRAGRANCE, ActivateANTI_SPELL_FRAGRANCEZone);
 }
 
-/* ponytail: TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

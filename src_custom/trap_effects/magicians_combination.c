@@ -80,5 +80,3 @@ void TryActivateMAGICIANS_COMBINATIONOnOpponentTurnStart(void)
                                          ActivateMAGICIANS_COMBINATIONZone);
 }
 
-/* ponytail: TryActivateMAGICIANS_COMBINATIONOnOpponentTurnStart must be called
- * from turn_effect_hooks. Ceiling: body ready, not wired. */

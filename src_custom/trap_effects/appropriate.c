@@ -19,5 +19,3 @@ void TryActivateAPPROPRIATEOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(APPROPRIATE, ActivateAPPROPRIATEZone);
 }
 
-/* ponytail: TryActivateAPPROPRIATEOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

@@ -100,5 +100,3 @@ void TryActivateD_TACTICSOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(D_TACTICS, ActivateD_TACTICSZone);
 }
 
-/* ponytail: TryActivateD_TACTICSOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

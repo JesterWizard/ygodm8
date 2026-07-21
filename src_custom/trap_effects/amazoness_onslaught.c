@@ -57,5 +57,3 @@ void TryActivateAMAZONESS_ONSLAUGHTOnOpponentTurnStart(void)
                                          ActivateAMAZONESS_ONSLAUGHTZone);
 }
 
-/* ponytail: TryActivateAMAZONESS_ONSLAUGHTOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

@@ -19,5 +19,3 @@ void TryActivateALL_OUT_ATTACKSOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(ALL_OUT_ATTACKS, ActivateALL_OUT_ATTACKSZone);
 }
 
-/* ponytail: TryActivateALL_OUT_ATTACKSOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

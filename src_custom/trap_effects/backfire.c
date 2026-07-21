@@ -19,5 +19,3 @@ void TryActivateBACKFIREOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(BACKFIRE, ActivateBACKFIREZone);
 }
 
-/* ponytail: TryActivateBACKFIREOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

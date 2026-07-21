@@ -19,5 +19,3 @@ void TryActivateDES_COUNTERBLOWOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(DES_COUNTERBLOW, ActivateDES_COUNTERBLOWZone);
 }
 
-/* ponytail: TryActivateDES_COUNTERBLOWOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

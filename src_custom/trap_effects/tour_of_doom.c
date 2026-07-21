@@ -19,5 +19,3 @@ void TryActivateTOUR_OF_DOOMOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(TOUR_OF_DOOM, ActivateTOUR_OF_DOOMZone);
 }
 
-/* ponytail: TryActivateTOUR_OF_DOOMOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

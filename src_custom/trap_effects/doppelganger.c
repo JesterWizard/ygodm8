@@ -19,5 +19,3 @@ void TryActivateDOPPELGANGEROnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(DOPPELGANGER, ActivateDOPPELGANGERZone);
 }
 
-/* ponytail: TryActivateDOPPELGANGEROnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

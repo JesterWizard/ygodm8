@@ -108,5 +108,3 @@ void TryActivateETERNAL_SOULOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(ETERNAL_SOUL, ActivateETERNAL_SOULZone);
 }
 
-/* ponytail: TryActivateETERNAL_SOULOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

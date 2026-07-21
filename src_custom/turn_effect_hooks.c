@@ -13,6 +13,7 @@
 #include "duel_helpers.h"
 #include "sasuke_samurai_2.h"
 #include "bottomless_shifting_sand.h"
+#include "continuous_trap_turn_start.h"
 #include "dark_dust_spirit.h"
 #include "nightmare_wheel.h"
 #include "mirror_wall.h"
@@ -393,6 +394,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyCyberneticZoneStandby();
   TryApplyDifferentDimensionCapsuleStandby();
   TryBottomlessShiftingSandTurnStart();
+  ContinuousTraps_TryActivateOnOpponentTurnStart();
   if (IsDuelOver() == 1)
     return;
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {

@@ -41,5 +41,4 @@ void TryActivateNEEDLE_WALLOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(NEEDLE_WALL, ActivateNEEDLE_WALLZone);
 }
 
-/* ponytail: TryActivateNEEDLE_WALLOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. Standby re-roll not looped. */
+/* ponytail: Needle Wall Standby Phase re-roll not looped. */

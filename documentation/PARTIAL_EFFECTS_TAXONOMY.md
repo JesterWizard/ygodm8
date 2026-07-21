@@ -7,17 +7,17 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 22:18 UTC  
-**Ceiling lines tagged:** `918`  
-**Partial files:** `757`
+**Last updated:** 2026-07-21 22:20 UTC  
+**Ceiling lines tagged:** `897`  
+**Partial files:** `756`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 302 | triage |
+| `other` | 280 | triage |
 | `event.OnStandby` | 226 | 3 (OPT / turn flags) |
-| `event.OnBattleDestroy` | 73 | 3 |
+| `event.OnBattleDestroy` | 74 | 3 |
 | `event.OnSummon` | 64 | 3 |
 | `ui.Choice` | 55 | 2 |
 | `chain.Negate` | 49 | later / chain |
@@ -28,14 +28,15 @@ python3 tools/stub_effect_queue.py --write-list
 | `stat.Continuous` | 17 | 1–3 |
 | `event.GyIgnition` | 13 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **918** | |
+| **total** | **897** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (73)
+## `event.OnBattleDestroy` (74)
 
 - `SKYSCRAPER_2_HERO_CITY` (spell): L244: no "destroyed by battle" GY filter — no destroy-reason memory on expanded GY cards. Ceiling: any Elemental HERO in GY is legal; upgrade: stamp battle-destroy on GY push / zone→GY, then filter IsElementalHeroMonster && wasDestroyedByBattle.
 - `THE_SACRED_WATERS_IN_THE_SKY` (spell): L535: battle-destruction protection ("banish this from GY instead") needs a battle/destroy redirect hook. Ceiling: activate + LP gain only; upgrade: battle_damage / destroy-protection hook checking GY Sacred Waters.
+- `AMAZONESS_HOT_SPRING` (trap): L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
 - `DAMAGE_EQUALS_REPTILE` (trap): L71: battle-damage involving Reptile trigger + OPT.
 - `DAMAGE_REPTILE` (trap): L49: OPT when take battle damage involving Reptile. Ceiling: when Effect runs, SS Reptile from Deck with ATK ≤ a stand-in damage amount (origin ATK if monster); upgrade: battle-damage hook stores damage.
 - `DES_COUNTERBLOW` (trap): L11: destroy monster that inflicts direct battle damage needs battle LP hook. Ceiling: face-up continuous only; upgrade: after direct battle damage → Duel_DestroyZone(attacker). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
@@ -684,7 +685,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (302)
+## `other` (280)
 
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
@@ -722,40 +723,23 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ACE_OF_WAND` (trap): L33: needs destroy-by-effect trigger wire + trapEffect ID.
 - `AEGIS_OF_THE_OCEAN_DRAGON_LORD` (trap): L37: battle/effect destroy protect until EP + trapEffect wire. Ceiling: marks unk4 on matching monsters; upgrade: destroy gates skip marked until End Phase clear + trap dispatcher.
 - `ALL_OUT_ATTACKS` (trap): L11: when monster(s) SS while face-up → change to ATK and must attack that turn. Ceiling: face-up continuous only; upgrade: SS hook → isDefending=FALSE + forced-attack flag. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- `ALL_OUT_ATTACKS` (trap): L22: TryActivateALL_OUT_ATTACKSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
-- `AMAZONESS_HALL` (trap): L72: TryActivateAMAZONESS_HALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
-- `AMAZONESS_HOT_SPRING` (trap): L77: TryActivateAMAZONESS_HOT_SPRINGOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
-- `AMAZONESS_ONSLAUGHT` (trap): L60: TryActivateAMAZONESS_ONSLAUGHTOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+- `AMAZONESS_HALL` (trap): L43: * ponytail: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
 - `AMAZONESS_WILLPOWER` (trap): L62: must-attack + mutual destroy-on-leave need battle/leave hooks.
-- `ANCIENT_GEAR_DUEL` (trap): L110: TryActivateANCIENT_GEAR_DUELOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `ANTI_SPELL_FRAGRANCE` (trap): L11: both players must Set Spells before activate (next turn) needs spell-activation gate. Ceiling: face-up continuous only; upgrade: spell activate validator requires prior Set + turn delay. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- `ANTI_SPELL_FRAGRANCE` (trap): L22: TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `APPARATION` (trap): L37: printed trigger is HERO destroy. Ceiling: if origin was a HERO monster OR we control a HERO, allow Deck SS.
-- `APPROPRIATE` (trap): L22: TryActivateAPPROPRIATEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `ARCANA_CALL` (trap): L81: until EP, selected AF uses banished AF's coin effect — needs End Phase clear + Arcana effect dispatch override. Ceiling: marks field monster; GY Arcana banished.
 - `ATTACK_AND_RECEIVE` (trap): L48: activate when you take damage. Ceiling: burn 700 + 300×GY copies.
 - `ATTACK_GUIDANCE_ARMOR` (trap): L15: attack-declare choice Destroy OR redirect target. Ceiling: destroy declared attacker (origin) when Effect runs.
-- `BACKFIRE` (trap): L22: TryActivateBACKFIREOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `BATTLE_MANIA` (trap): L16: activate only opp Standby. Ceiling: when Effect runs, flip opp monsters to ATK; forced-attack / cannot-change-position need battle gates.
-- `BLESSED_WINDS` (trap): L103: TryActivateBLESSED_WINDSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `BOTTOMLESS_SHIFTING_SAND` (trap): L10: GBA hand cap is 5; TCG rule uses 4 — scale self-destruct threshold down
-- `D_TACTICS` (trap): L103: TryActivateD_TACTICSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `DARK_SUPREMACY` (trap): L38: "Spells that mention Dark Fusion" not scanned by text.
-- `DES_COUNTERBLOW` (trap): L22: TryActivateDES_COUNTERBLOWOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `DOPPELGANGER` (trap): L11: when you take monster-effect damage → mirror to opp needs LP/effect-damage hook. Ceiling: face-up continuous only; upgrade: after effect damage from opp monster → Duel_ChangeLp(opp, -same). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- `DOPPELGANGER` (trap): L22: TryActivateDOPPELGANGEROnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `DRAGON_S_RAGE` (trap): L21: wire TryActivate into turn_effect_hooks.
-- `DRIED_WINDS` (trap): L90: TryActivateDRIED_WINDSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `DUST_TORNADO` (trap): L112: optional hand pick — B skips; upgrade path: shared helper in exchange_hand_selection
-- `ETERNAL_SOUL` (trap): L111: TryActivateETERNAL_SOULOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `EXCHANGE_OF_THE_SPIRIT` (trap): L32: full Deck↔GY swap is heavy — approximate by pushing all GY to deck bottom and rebuilding GY from current undrawn deck top chunk. Ceiling: incomplete swap if GY expand / deck sizes mismatch; upgrade: proper dual-buffer swap of entire Deck and GY stacks.
 - `FAIRY_BOX` (trap): L96: age both fixed backrows so a trap set last turn is live when the other duelist attacks
 - `FAVOURITE_CONTACT` (trap): L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API. Ceiling: return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
-- `FORGOTTEN_TEMPLE_OF_THE_DEEP` (trap): L56: TryActivateFORGOTTEN_TEMPLE_OF_THE_DEEPOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
-- `GIFT_CARD` (trap): L20: TryActivateGIFT_CARDOnOpponentTurnStart must be called from turn_effect_hooks (opp turn start). Ceiling: body ready, not wired; upgrade: add call next to Jar of Greed turn-start activations.
 - `GLADIATOR_BEASTS_VALOR` (trap): L32: opp can only attack GB monsters needs attack-target gate. Ceiling: face-up continuous only.
-- `GLADIATOR_NAUMACHIA` (trap): L102: TryActivateGLADIATOR_NAUMACHIAOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
-- `GRAVEKEEPERS_TRAP` (trap): L118: TryActivateGRAVEKEEPERS_TRAPOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `GRAVITY_BIND` (trap): L64: face-down GB still blocks the declare; AI sim restore keeps it face-down every trial
 - `HALF_COUNTER` (trap): L39: 1 stage ~= 500 ATK.
 - `HUNTING_INSTINCT` (trap): L27: printed trigger is opp Special Summon. Ceiling: when Effect runs, SS Dinosaur from hand; upgrade: SS-to-opp-field trigger wire.
@@ -764,23 +748,18 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `MAGICAL_HATS` (trap): L34: face-down DEF 0/0 hat tokens + shuffle + End BP destroy need token zones / battle-phase gate. Ceiling: pull 2 S/T from Deck onto empty monster zones face-down DEF; Set 1 own monster face-down.
 - `MAGICIANS_CIRCLE` (trap): L55: printed trigger is Spellcaster attack declare. Ceiling: when Effect runs, each player Deck SS Spellcaster ≤2000 ATK; upgrade: attack declare hook when attacker is Spellcaster.
 - `MAGICIANS_COMBINATION` (trap): L74: GY destroy-1 when this leaves S/T zone needs leave hook.
-- `MAGICIANS_COMBINATION` (trap): L83: TryActivateMAGICIANS_COMBINATIONOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `METAVERSE` (trap): L122: choose activate Field vs add to hand — always add to hand. Ceiling: no Field Zone activate path; upgrade: A/B choice → set gDuel.field.
 - `METAVERSE` (trap): L132: needs trapEffect ID + dispatcher wire.
 - `MIRROR_FORCE` (trap): L21: destroy self after monsters so AI sim doesn't re-trigger
 - `MORPHTRONIC_BIND` (trap): L13: while face-up Morphtronic controlled, opp Lv≥4 cannot attack or change battle position needs attack/position gates. Ceiling: face-up continuous only.
-- `NECROVALLEY_TEMPLE` (trap): L115: TryActivateNECROVALLEY_TEMPLEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
-- `NEEDLE_WALL` (trap): L44: TryActivateNEEDLE_WALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired. Standby re-roll not looped.
+- `NEEDLE_WALL` (trap): L44: Needle Wall Standby Phase re-roll not looped.
 - `NUMINOUS_HEALER` (trap): L48: activate when you take damage. Ceiling: when Effect runs, heal 1000 + 500×GY copies; upgrade: LP-damage trigger wire.
 - `PROPHECY` (trap): L68: player predict UI (bigger/smaller) + trapEffect wire. Ceiling: random opp hand card; AI random guess / player always higher.
 - `REVERSAL_OF_FATE` (trap): L43: Arcana Force coin result stored in unk4/effect flags — flip bit0. Ceiling: toggles unk4 bit0; upgrade: real coin-result invert hook.
-- `SHADDOLL_SCHISM` (trap): L83: TryActivateSHADDOLL_SCHISMOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `SIXTH_SENSE` (trap): L43: no declare-2-numbers UI — fixed guess 2+5. Ceiling: AI/player always declare 2 and 5; upgrade: D-Pad number picker.
 - `SNAKE_WHISTLE` (trap): L55: needs Reptile-destroyed trigger + trapEffect wire.
 - `SOLEMN_WISHES` (trap): L89: InitBoard fills hands via TryDrawingCard before duel gfx; skip until past opening hand.
-- `TORNADO_WALL` (trap): L22: TryActivateTORNADO_WALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `TOUR_OF_DOOM` (trap): L11: opp Standby coin → Heads: opp cannot NS/Flip until EP; Tails: you cannot next turn. Ceiling: face-up continuous only; upgrade: Standby turn_effect → RandRange coin + summoningBlocked flags. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- `TOUR_OF_DOOM` (trap): L22: TryActivateTOUR_OF_DOOMOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 - `TRAP_DUSTSHOOT` (trap): L67: look at full hand + choose monster UI; trapEffect wire. Ceiling: auto first monster in opp hand → Deck shuffle.
 - `TRAP_TRICK` (trap): L30: no Continuous/Counter trap type split — treat all traps as Normal.
 - `TRAP_TRICK` (trap): L102: "can activate this turn" — leave unlocked.

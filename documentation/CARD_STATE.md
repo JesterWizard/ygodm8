@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round5 Batch4
+**Last worked on:** 2026-07-21 — Round5 Batch5
 
-**Outcome:** Dragon Relic name-treats; Ultra Poly no-response. Partials **759→757**.
+**Outcome:** Continuous trap turn-start dispatcher (`ContinuousTraps_TryActivateOnOpponentTurnStart`); Gift Card fully cleared. Partials **757→756**.
 
-**Open / next:** Round5 Batches 5–6.
+**Open / next:** Round5 Batch6 (late spells Ultra Poly→Weapon Change + more).

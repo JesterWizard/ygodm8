@@ -69,5 +69,3 @@ void TryActivateAMAZONESS_HALLOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(AMAZONESS_HALL, ActivateAMAZONESS_HALLZone);
 }
 
-/* ponytail: TryActivateAMAZONESS_HALLOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

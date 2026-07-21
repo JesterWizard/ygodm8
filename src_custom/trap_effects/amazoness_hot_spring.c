@@ -74,5 +74,3 @@ void TryActivateAMAZONESS_HOT_SPRINGOnOpponentTurnStart(void)
                                          ActivateAMAZONESS_HOT_SPRINGZone);
 }
 
-/* ponytail: TryActivateAMAZONESS_HOT_SPRINGOnOpponentTurnStart must be called
- * from turn_effect_hooks. Ceiling: body ready, not wired. */

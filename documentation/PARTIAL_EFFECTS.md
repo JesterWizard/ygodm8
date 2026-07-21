@@ -9,18 +9,18 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:18 UTC  
-**Remaining partials:** `757`
+**Last updated:** 2026-07-21 22:20 UTC  
+**Remaining partials:** `756`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 76 |
-| `trap` | 115 |
+| `trap` | 114 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **757** |
+| **total** | **756** |
 
 ## spell (76)
 
@@ -352,7 +352,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L111: duration is "until end of opponent's next turn" but Riryoku deltas clear every End Phase (ClearAllRiryokuAtkDeltas). Ceiling: lasts until next EOT clear; upgrade: turn_effect_hooks 2-End-Phase counter.
 - L208: printed "once during each of your Standby Phases" needs a turn_effect_hooks Standby gate outside this file. Ceiling: face-up OPT ignition any phase (Main-style re-activate); upgrade: Standby-only CanActivate + auto-prompt, or GetSpellType NORMAL list like CALL_OF_THE_MUMMY.
 
-## trap (115)
+## trap (114)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -370,20 +370,18 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ALL_OUT_ATTACKS`
 - path: `src_custom/trap_effects/all_out_attacks.c`
 - L11: when monster(s) SS while face-up → change to ATK and must attack that turn. Ceiling: face-up continuous only; upgrade: SS hook → isDefending=FALSE + forced-attack flag. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- L22: TryActivateALL_OUT_ATTACKSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `AMAZONESS_HALL`
 - path: `src_custom/trap_effects/amazoness_hall.c`
-- L72: TryActivateAMAZONESS_HALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+- L43: * ponytail: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
 
 ### `AMAZONESS_HOT_SPRING`
 - path: `src_custom/trap_effects/amazoness_hot_spring.c`
-- L77: TryActivateAMAZONESS_HOT_SPRINGOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
+- L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
 
 ### `AMAZONESS_ONSLAUGHT`
 - path: `src_custom/trap_effects/amazoness_onslaught.c`
 - L20: Battle Phase OPT SS + after-damage banish + leave GY search need battle/leave hooks. Ceiling: SS 1 Amazoness from hand +1 stage (~500 ATK).
-- L60: TryActivateAMAZONESS_ONSLAUGHTOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `AMAZONESS_WILLPOWER`
 - path: `src_custom/trap_effects/amazoness_willpower.c`
@@ -396,7 +394,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ANCIENT_GEAR_DUEL`
 - path: `src_custom/trap_effects/ancient_gear_duel.c`
 - L45: unaffected by opp monster effects + Extra Deck Fusion + 3 attacks need protection/fusion/battle hooks. Ceiling: mark AG Golem/mentioners (unk4); if opp has monster + we control Golem, banish Golem + 1 AG from GY and SS Ultimate Ancient Gear Golem stand-in from Deck/hand.
-- L110: TryActivateANCIENT_GEAR_DUELOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `ANGELS_TEAR`
 - path: `src_custom/trap_effects/angels_tear.c`
@@ -405,7 +402,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ANTI_SPELL_FRAGRANCE`
 - path: `src_custom/trap_effects/anti_spell_fragrance.c`
 - L11: both players must Set Spells before activate (next turn) needs spell-activation gate. Ceiling: face-up continuous only; upgrade: spell activate validator requires prior Set + turn delay. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- L22: TryActivateANTI_SPELL_FRAGRANCEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `APPARATION`
 - path: `src_custom/trap_effects/apparation.c`
@@ -414,7 +410,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `APPROPRIATE`
 - path: `src_custom/trap_effects/appropriate.c`
 - L11: activate when opp draws outside Draw Phase; then each such draw → you draw 2. Ceiling: face-up continuous only; upgrade: non-Draw-Phase draw hook → Duel_DrawCards(controller, 2). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- L22: TryActivateAPPROPRIATEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `ARCANA_CALL`
 - path: `src_custom/trap_effects/arcana_call.c`
@@ -431,7 +426,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `BACKFIRE`
 - path: `src_custom/trap_effects/backfire.c`
 - L11: FIRE monster destroyed → 500 to opp needs destroy hook. Ceiling: face-up continuous only; upgrade: OnDestroy FIRE face-up owned → Duel_ChangeLp(opp, -500). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- L22: TryActivateBACKFIREOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `BATTLE_MANIA`
 - path: `src_custom/trap_effects/battle_mania.c`
@@ -440,7 +434,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `BLESSED_WINDS`
 - path: `src_custom/trap_effects/blessed_winds.c`
 - L51: 3 OPT modes + once-per-turn flag need ignition menu. Ceiling on activate: prefer pay 1000 → SS Aroma from GY; else send Plant → +500 LP; else shuffle Plant from GY → +500 LP.
-- L103: TryActivateBLESSED_WINDSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `BOTTOMLESS_SHIFTING_SAND`
 - path: `src_custom/trap_effects/bottomless_shifting_sand.c`
@@ -461,7 +454,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `D_TACTICS`
 - path: `src_custom/trap_effects/d_tactics.c`
 - L58: Standby HERO +400 + destroy-Set D-HERO Spell need turn/destroy hooks. Ceiling: +1 stage on HERO monsters; if Lv8+ D-HERO present, banish 1 opp card (field then GY then hand).
-- L103: TryActivateD_TACTICSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `D_TIME`
 - path: `src_custom/trap_effects/d_time.c`
@@ -491,7 +483,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DES_COUNTERBLOW`
 - path: `src_custom/trap_effects/des_counterblow.c`
 - L11: destroy monster that inflicts direct battle damage needs battle LP hook. Ceiling: face-up continuous only; upgrade: after direct battle damage → Duel_DestroyZone(attacker). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- L22: TryActivateDES_COUNTERBLOWOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `DESTINED_RIVALS`
 - path: `src_custom/trap_effects/destined_rivals.c`
@@ -500,7 +491,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DOPPELGANGER`
 - path: `src_custom/trap_effects/doppelganger.c`
 - L11: when you take monster-effect damage → mirror to opp needs LP/effect-damage hook. Ceiling: face-up continuous only; upgrade: after effect damage from opp monster → Duel_ChangeLp(opp, -same). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- L22: TryActivateDOPPELGANGEROnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `DRAGON_S_RAGE`
 - path: `src_custom/trap_effects/dragon_s_rage.c`
@@ -514,7 +504,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DRIED_WINDS`
 - path: `src_custom/trap_effects/dried_winds.c`
 - L47: LP-gain destroy + OPT flags need LP-gain hook. Ceiling: if Aroma + LP≥opp+3000, pay difference and destroy opp face-up monsters while remaining budget covers printed ATK.
-- L90: TryActivateDRIED_WINDSOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `DUST_TORNADO`
 - path: `src_custom/trap_effects/dust_tornado.c`
@@ -523,7 +512,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ETERNAL_SOUL`
 - path: `src_custom/trap_effects/eternal_soul.c`
 - L75: DM unaffected by opp + destroy all on leave need protection / leave hooks. Ceiling: OPT stand-in — SS Dark Magician from hand/GY, else search Dark Magic Attack / Thousand Knives.
-- L111: TryActivateETERNAL_SOULOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `EXCHANGE_OF_THE_SPIRIT`
 - path: `src_custom/trap_effects/exchange_of_the_spirit.c`
@@ -540,15 +528,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `FORGOTTEN_TEMPLE_OF_THE_DEEP`
 - path: `src_custom/trap_effects/forgotten_temple_of_the_deep.c`
 - L34: name-becomes-Umi + End Phase return need field-name/turn hooks. Ceiling: once on activate, banish one Lv4- Fish/SS/Aqua you control.
-- L56: TryActivateFORGOTTEN_TEMPLE_OF_THE_DEEPOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `FOSSIL_EXCAVATION`
 - path: `src_custom/trap_effects/fossil_excavation.c`
 - L78: negate SS effects + mutual destroy-on-leave need leave hooks.
-
-### `GIFT_CARD`
-- path: `src_custom/trap_effects/gift_card.c`
-- L20: TryActivateGIFT_CARDOnOpponentTurnStart must be called from turn_effect_hooks (opp turn start). Ceiling: body ready, not wired; upgrade: add call next to Jar of Greed turn-start activations.
 
 ### `GLADIATOR_BEAST_WAR_CHARIOT`
 - path: `src_custom/trap_effects/gladiator_beast_war_chariot.c`
@@ -566,7 +549,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GLADIATOR_NAUMACHIA`
 - path: `src_custom/trap_effects/gladiator_naumachia.c`
 - L44: forced attack + destroy-search GB from Deck need battle/destroy hooks. Ceiling: if GB on field, mark opp must-attack; shuffle 1 GB from hand/GY and boost 1 GB by +1 stage (~original DEF stand-in).
-- L102: TryActivateGLADIATOR_NAUMACHIAOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `GLORIOUS_ILLUSION`
 - path: `src_custom/trap_effects/glorious_illusion.c`
@@ -575,7 +557,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GRAVEKEEPERS_TRAP`
 - path: `src_custom/trap_effects/gravekeepers_trap.c`
 - L83: Exchange lock GY effects/SS + opp Draw Phase look + discard cost need GY/draw gates. Ceiling: if Exchange in GY mark unk4 lock; discard 1 → search Gravekeeper's / EARTH Fairy.
-- L118: TryActivateGRAVEKEEPERS_TRAPOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `GRAVITY_BIND`
 - path: `src_custom/trap_effects/gravity_bind.c`
@@ -666,7 +647,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/magicians_combination.c`
 - L39: once-per-turn on any activation + negate need chain gate. Ceiling: Tribute 1 DM/DMG → SS the other from hand/GY.
 - L74: GY destroy-1 when this leaves S/T zone needs leave hook.
-- L83: TryActivateMAGICIANS_COMBINATIONOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `METAVERSE`
 - path: `src_custom/trap_effects/metaverse.c`
@@ -704,11 +684,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `NECROVALLEY_TEMPLE`
 - path: `src_custom/trap_effects/necrovalley_temple.c`
 - L90: -500 ATK/DEF while GK+Necrovalley need stat overlay; destroy-Set Necrovalley S/T from Deck need destroy hook. Ceiling: if GK present, try place Necrovalley from hand/GY; mark opp monsters -1 stage.
-- L115: TryActivateNECROVALLEY_TEMPLEOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `NEEDLE_WALL`
 - path: `src_custom/trap_effects/needle_wall.c`
-- L44: TryActivateNEEDLE_WALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired. Standby re-roll not looped.
+- L44: Needle Wall Standby Phase re-roll not looped.
 
 ### `NEXT`
 - path: `src_custom/trap_effects/next.c`
@@ -762,7 +741,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `SHADDOLL_SCHISM`
 - path: `src_custom/trap_effects/shaddoll_schism.c`
 - L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
-- L83: TryActivateSHADDOLL_SCHISMOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `SIXTH_SENSE`
 - path: `src_custom/trap_effects/sixth_sense.c`
@@ -799,12 +777,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `TORNADO_WALL`
 - path: `src_custom/trap_effects/tornado_wall.c`
 - L11: activate only while Umi on field; no battle damage while Umi face-up; destroy when Umi leaves. Ceiling: face-up continuous only; upgrade: Umi field check on activate + battle-damage gate + Umi leave destroy. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- L22: TryActivateTORNADO_WALLOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `TOUR_OF_DOOM`
 - path: `src_custom/trap_effects/tour_of_doom.c`
 - L11: opp Standby coin → Heads: opp cannot NS/Flip until EP; Tails: you cannot next turn. Ceiling: face-up continuous only; upgrade: Standby turn_effect → RandRange coin + summoningBlocked flags. Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
-- L22: TryActivateTOUR_OF_DOOMOnOpponentTurnStart must be called from turn_effect_hooks. Ceiling: body ready, not wired.
 
 ### `TRAP_DUSTSHOOT`
 - path: `src_custom/trap_effects/trap_dustshoot.c`

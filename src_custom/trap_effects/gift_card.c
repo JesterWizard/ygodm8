@@ -16,7 +16,3 @@ void TryActivateGIFT_CARDOnOpponentTurnStart(void)
 {
   Duel_TryActivateBackrowTrapOnTurnStart(GIFT_CARD, ActivateGIFT_CARDZone);
 }
-
-/* ponytail: TryActivateGIFT_CARDOnOpponentTurnStart must be called from
- * turn_effect_hooks (opp turn start). Ceiling: body ready, not wired; upgrade:
- * add call next to Jar of Greed turn-start activations. */

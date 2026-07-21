@@ -115,5 +115,3 @@ void TryActivateGRAVEKEEPERS_TRAPOnOpponentTurnStart(void)
                                          ActivateGRAVEKEEPERS_TRAPZone);
 }
 
-/* ponytail: TryActivateGRAVEKEEPERS_TRAPOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

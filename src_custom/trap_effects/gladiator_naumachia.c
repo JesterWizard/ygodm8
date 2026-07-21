@@ -99,5 +99,3 @@ void TryActivateGLADIATOR_NAUMACHIAOnOpponentTurnStart(void)
                                          ActivateGLADIATOR_NAUMACHIAZone);
 }
 
-/* ponytail: TryActivateGLADIATOR_NAUMACHIAOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

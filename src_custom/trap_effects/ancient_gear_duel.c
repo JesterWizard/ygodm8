@@ -107,5 +107,3 @@ void TryActivateANCIENT_GEAR_DUELOnOpponentTurnStart(void)
                                          ActivateANCIENT_GEAR_DUELZone);
 }
 
-/* ponytail: TryActivateANCIENT_GEAR_DUELOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */

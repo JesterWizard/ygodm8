@@ -52,6 +52,3 @@ void TryActivateFORGOTTEN_TEMPLE_OF_THE_DEEPOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(FORGOTTEN_TEMPLE_OF_THE_DEEP,
                                          ActivateFORGOTTEN_TEMPLE_OF_THE_DEEPZone);
 }
-
-/* ponytail: TryActivateFORGOTTEN_TEMPLE_OF_THE_DEEPOnOpponentTurnStart must be
- * called from turn_effect_hooks. Ceiling: body ready, not wired. */

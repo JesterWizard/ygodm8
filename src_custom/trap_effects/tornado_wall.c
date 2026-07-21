@@ -19,5 +19,3 @@ void TryActivateTORNADO_WALLOnOpponentTurnStart(void)
   Duel_TryActivateBackrowTrapOnTurnStart(TORNADO_WALL, ActivateTORNADO_WALLZone);
 }
 
-/* ponytail: TryActivateTORNADO_WALLOnOpponentTurnStart must be called from
- * turn_effect_hooks. Ceiling: body ready, not wired. */
