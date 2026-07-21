@@ -3,10 +3,11 @@
 #include "constants/card_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
+#include "reptilanne_rage.h"
+#include "riryoku.h"
 #include "spell_effects.h"
 
-/* 1 stage ~= 500 ATK. Printed +800; nearest stage unit is +1000 (2 stages). */
-#define REPTILANNE_RAGE_ATK_STAGES 2
+#define REPTILANNE_RAGE_ATK_BOOST 800
 
 static u8 ActiveMonsterFixedRow(void)
 {
@@ -55,12 +56,8 @@ u8 CanActivateREPTILANNE_RAGE(void)
 
 static void EquipReptilanneRage(struct DuelCard *spellZone, struct DuelCard *target)
 {
-  /* ponytail: stage unit is 500 ATK — applied +1000, not printed +800.
-   * Ceiling: no fractional stages; upgrade: exact-ATK overlay like H_HEATED_HEART
-   * after listing REPTILANNE_RAGE in IsActiveDynamicEquipSpellZone. */
-
-  ApplyDynamicEquipStages(target, REPTILANNE_RAGE_ATK_STAGES);
-  if (!RegisterDynamicEquip(spellZone, target, REPTILANNE_RAGE, REPTILANNE_RAGE_ATK_STAGES))
+  AddRiryokuAtkDelta(target, REPTILANNE_RAGE_ATK_BOOST);
+  if (!RegisterDynamicEquip(spellZone, target, REPTILANNE_RAGE, 0))
     return;
 
   Duel_ActivateContinuousZone(spellZone);
@@ -76,6 +73,14 @@ static void EquipReptilanneRage(struct DuelCard *spellZone, struct DuelCard *tar
    * Ceiling: equip-only works; GY trigger not wired from this file.
    * Upgrade: destroy-hook → PickZone opp face-up monster → apply -800 ATK
    * overlay (or -2 stages). */
+}
+
+void ApplyReptilanneRageAtkBonusToCardInfo(const struct DuelCard *zone)
+{
+  if (zone == NULL || !DynamicEquipTargetsMonsterWithSpell(zone, REPTILANNE_RAGE))
+    return;
+  /* Exact +800 already applied via AddRiryokuAtkDelta; Riryoku overlay path covers it. */
+  (void)zone;
 }
 
 static void ResolveReptilanneRageTarget(u8 fixedRow, u8 fixedCol)

@@ -6,6 +6,7 @@
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "return_of_the_dragon_lords.h"
 #include "spell_effects.h"
 
 static const u8 sReturnDragonLordsPickLabels[] APPEND_RODATA = {
@@ -187,11 +188,46 @@ static void RETURN_OF_THE_DRAGON_LORDS_ResolveBody(void)
   }
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
+  /* Parent: ReturnOfTheDragonLords_TryProtectDragon in Duel_DestroyZone. */
+}
 
-  /* ponytail: GY protect ("banish this instead of destroy Dragon you control")
-   * needs a battle/destroy redirect hook checking this card in GY.
-   * Ceiling: SS only; upgrade: destroy-protection → if Dragon would be destroyed
-   * and RETURN_OF_THE_DRAGON_LORDS in GY, banish it instead. */
+u8 ReturnOfTheDragonLords_TryProtectDragon(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+  u8 fixedDuelist;
+  u8 i;
+  s8 gyIndex = -1;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+  if (!Duel_CardHasMonsterType(zone->id, TYPE_DRAGON))
+    return FALSE;
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &fixedCol))
+    return FALSE;
+
+  fixedDuelist = Duel_FixedDuelistForMonsterRow(fixedRow);
+  if (!GraveyardExpand_IsEnabled()) {
+    if (gDuel.duelistbattleState[fixedDuelist].graveyard != RETURN_OF_THE_DRAGON_LORDS)
+      return FALSE;
+    gyIndex = 0;
+  } else {
+    for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+      if (GraveyardExpand_GetCardAt(fixedDuelist, i) == RETURN_OF_THE_DRAGON_LORDS) {
+        gyIndex = (s8)i;
+        break;
+      }
+    }
+    if (gyIndex < 0)
+      return FALSE;
+  }
+
+  Duel_ShowEffectText(RETURN_OF_THE_DRAGON_LORDS);
+  if (IsDuelOver() == TRUE)
+    return TRUE;
+
+  Duel_BanishGraveyardAtFixed(fixedDuelist, (u8)gyIndex);
+  return TRUE;
 }
 
 APPEND_TEXT void EffectRETURN_OF_THE_DRAGON_LORDS(void)

@@ -2,7 +2,20 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "power_filter.h"
 #include "spell_effects.h"
+
+u8 PowerFilter_BlocksSpecialSummon(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+  if (Duel_FindBackrowCard(DUEL_PLAYER, POWER_FILTER, TRUE) == NULL
+      && Duel_FindBackrowCard(DUEL_OPPONENT, POWER_FILTER, TRUE) == NULL)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.atk != 0xFFFF && gCardInfo.atk <= 1000;
+}
 
 static void POWER_FILTER_ResolveBody(void)
 {
@@ -10,12 +23,7 @@ static void POWER_FILTER_ResolveBody(void)
 
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(POWER_FILTER);
-
-  /* ponytail: SS lock for monsters with ATK ≤1000 needs a CanSpecialSummon /
-   * PlaceMonster gate outside this file (no in-file summon dispatch).
-   * Ceiling: continuous face-up only; upgrade: LynJump Duel_CardCannotBeSpecialSummoned
-   * (or PlaceMonsterFromId) → if face-up POWER_FILTER on field and printed ATK ≤1000
-   * then block. */
+  /* Parent: PowerFilter_BlocksSpecialSummon in Duel_CardCannotBeSpecialSummoned. */
 }
 
 APPEND_TEXT void EffectPOWER_FILTER(void)

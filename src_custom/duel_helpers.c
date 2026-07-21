@@ -67,6 +67,8 @@
 #include "hamon_lord_of_striking_thunder.h"
 #include "hidden_temples_of_necrovalley.h"
 #include "parallel_world_fusion.h"
+#include "power_filter.h"
+#include "return_of_the_dragon_lords.h"
 #include "uria_lord_of_searing_flames.h"
 #include "raviel_lord_of_phantasms.h"
 #include "expanded_graveyard.h"
@@ -330,7 +332,8 @@ u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
       || cardId == URIA_LORD_OF_SEARING_FLAMES
       || cardId == RAVIEL_LORD_OF_PHANTASMS
       || HiddenTemplesOfNecrovalley_BlocksSpecialSummon(cardId)
-      || ParallelWorldFusion_BlocksSpecialSummon(cardId);
+      || ParallelWorldFusion_BlocksSpecialSummon(cardId)
+      || PowerFilter_BlocksSpecialSummon(cardId);
 }
 
 u8 Duel_BlocksExtraDeckSpecialSummon(u16 cardId)
@@ -619,7 +622,8 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
       || ColosseumCage_TryPreventDestroyByCardEffect(zone)
       || FieldBarrier_PreventsFieldSpellDestroy(zone)
       || ForbiddenDress_IsDestroyImmune(zone)
-      || GladiatorBeastsBattleArchfiendShield_PreventsDestruction(zone))
+      || GladiatorBeastsBattleArchfiendShield_PreventsDestruction(zone)
+      || ReturnOfTheDragonLords_TryProtectDragon(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;
