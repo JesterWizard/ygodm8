@@ -205,11 +205,6 @@ static void EquipRepairUnit(struct DuelCard *spellZone, struct DuelCard *target)
 
   Duel_ActivateContinuousZone(spellZone);
 
-  /* ponytail: Parent battle-position paths have no shared interception point.
-   * Ceiling: the exported predicate is not consulted, so the equipped monster
-   * may still change position. Upgrade: add a common position-change gate and
-   * call MorphtronicRepairUnit_PreventsBattlePositionChange(zone). */
-
   NotifyDynamicEquipFieldChanged();
   Duel_NotifyMonsterZoneChanged(target);
 }

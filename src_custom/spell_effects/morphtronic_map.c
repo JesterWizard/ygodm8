@@ -1,9 +1,12 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
+#include "effect.h"
+#include "expanded_graveyard.h"
 #include "spell_effects.h"
 
 void SetDuelFieldGfx(u8 field);
@@ -144,11 +147,95 @@ static void MORPHTRONIC_MAP_ResolveBody(void)
     zone->unk4 = 0; /* Morph Counter slot */
 
   Duel_ShowEffectText(MORPHTRONIC_MAP);
+}
 
-  /* ponytail: destroy→GY → optional SS Morphtronic from GY needs a destroy hook
-   * + PickZone/GY menu outside this file. Ceiling: field face-up only; upgrade:
-   * on ClearZoneAndSendMonToGraveyard of face-up MORPHTRONIC_MAP → PickZone
-   * Morphtronic in GY → Duel_SpecialSummonFromGrave. */
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+  return INACTIVE_DUELIST;
+}
+
+static u16 FindMorphtronicInGy(u8 fixedDuelist)
+{
+  if (GraveyardExpand_IsEnabled()) {
+    u8 i;
+    u8 count = GraveyardExpand_GetCount(fixedDuelist);
+
+    for (i = 0; i < count; i++) {
+      u16 cardId = GraveyardExpand_GetCardAt(fixedDuelist, i);
+
+      if (IsMorphtronicMonster(cardId))
+        return cardId;
+    }
+    return CARD_NONE;
+  }
+
+  {
+    u16 cardId = gDuel.duelistbattleState[fixedDuelist].graveyard;
+
+    if (IsMorphtronicMonster(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
+}
+
+u8 Cond_MorphtronicMapOnDestroy(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+
+  ev = ctx->event;
+  if (ev->cardId != MORPHTRONIC_MAP)
+    return FALSE;
+
+  fixedDuelist = ev->controller;
+  if (fixedDuelist != DUEL_PLAYER && fixedDuelist != DUEL_OPPONENT)
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  if (FirstEmptyZoneInRow(gTurnZones[turnDuelist == ACTIVE_DUELIST
+                                         ? ACTIVE_DUELIST_MONSTER_ROW
+                                         : INACTIVE_DUELIST_MONSTER_ROW])
+      < 0)
+    return FALSE;
+
+  return FindMorphtronicInGy(fixedDuelist) != CARD_NONE;
+}
+
+enum DuelActionResult Op_MorphtronicMapOnDestroy(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  u16 cardId;
+  struct DuelSummonOpts opts;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return DUEL_ACTION_INVALID;
+
+  ev = ctx->event;
+  fixedDuelist = ev->controller;
+  turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  cardId = FindMorphtronicInGy(fixedDuelist);
+  if (cardId == CARD_NONE)
+    return DUEL_ACTION_NO_TARGET;
+
+  Duel_ShowEffectText(MORPHTRONIC_MAP);
+  if (IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_ATK;
+  return Duel_SpecialSummonFromGrave(turnDuelist, cardId, opts);
 }
 
 APPEND_TEXT void EffectMORPHTRONIC_MAP(void)

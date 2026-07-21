@@ -66,33 +66,9 @@ u8 CanActivateMORPHTRONIC_ENGINE(void)
   return HasMorphtronicEngineTarget();
 }
 
-static u8 StagesToDoubleOriginalAtk(u16 cardId)
-{
-  u16 originalAtk;
-  s32 needed;
-
-  SetCardInfo(cardId);
-  originalAtk = gCardInfo.atk;
-  if (originalAtk == 0)
-    return 0;
-
-  /* 1 stage ~= 500 ATK; nearest stage to +original (double). */
-  needed = (s32)originalAtk;
-  return (u8)((needed + 250) / 500);
-}
-
 static void EquipMorphtronicEngine(struct DuelCard *spellZone, struct DuelCard *target)
 {
-  u8 stages = StagesToDoubleOriginalAtk(target->id);
-
-  /* ponytail: stage unit is 500 ATK — nearest-stage double, not exact
-   * original×2 when ATK is not a multiple of 500. Ceiling: stage-approx only;
-   * upgrade: exact-ATK overlay while equipped (clone Power Bond / Big Bang Shot). */
-
-  if (stages > 0)
-    ApplyDynamicEquipStages(target, stages);
-
-  if (!RegisterDynamicEquip(spellZone, target, MORPHTRONIC_ENGINE, stages))
+  if (!RegisterDynamicEquip(spellZone, target, MORPHTRONIC_ENGINE, 0))
     return;
 
   Duel_ActivateContinuousZone(spellZone);
@@ -102,6 +78,19 @@ static void EquipMorphtronicEngine(struct DuelCard *spellZone, struct DuelCard *
   NotifyDynamicEquipFieldChanged();
   Duel_NotifyMonsterZoneChanged(target);
   Duel_RefreshMonsterStatOverlays();
+}
+
+void ApplyMorphtronicEngineAtkBonusToCardInfo(const struct DuelCard *zone)
+{
+  u32 atk;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+  if (!DynamicEquipTargetsMonsterWithSpell(zone, MORPHTRONIC_ENGINE))
+    return;
+
+  atk = (u32)gCardInfo.atk * 2;
+  gCardInfo.atk = Duel_ClampStat(atk);
 }
 
 static void ResolveMorphtronicEngineTarget(u8 fixedRow, u8 fixedCol)

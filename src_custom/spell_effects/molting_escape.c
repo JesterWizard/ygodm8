@@ -5,6 +5,21 @@
 #include "duel_helpers.h"
 #include "spell_effects.h"
 
+#define MOLTING_ESCAPE_EXACT_ATK_BONUS 300
+#define MOLTING_ESCAPE_BOARD_CELLS 20
+
+static u8 sMoltingEscapeBoostCells[MOLTING_ESCAPE_BOARD_CELLS] APPEND_DATA = {0};
+
+static u16 GetDuelBoardCellIndex(const struct DuelCard *zone)
+{
+  const struct DuelCard *base = &gDuel.board[0][0];
+
+  if (zone < base || zone >= base + MOLTING_ESCAPE_BOARD_CELLS)
+    return 0xFFFF;
+
+  return (u16)(zone - base);
+}
+
 static u8 ActiveMonsterFixedRow(void)
 {
   return WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
@@ -90,10 +105,29 @@ void MoltingEscape_ApplyBattleProtection(struct DuelCard *target)
     return;
 
   spellZone->effectUsedThisTurn = TRUE;
-  IncrementPermStage(target);
+  {
+    u16 cell = GetDuelBoardCellIndex(target);
 
-  /* ponytail: one stage is +500 rather than the printed +300. Ceiling: the
-   * protected monster gains +500 ATK. Upgrade: exact +300 ATK overlay. */
+    if (cell < MOLTING_ESCAPE_BOARD_CELLS)
+      sMoltingEscapeBoostCells[cell] = TRUE;
+  }
+  Duel_RefreshMonsterStatOverlays();
+}
+
+void ApplyMoltingEscapeAtkBonusToCardInfo(const struct DuelCard *zone)
+{
+  u16 cell;
+  u32 atk;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  cell = GetDuelBoardCellIndex(zone);
+  if (cell >= MOLTING_ESCAPE_BOARD_CELLS || !sMoltingEscapeBoostCells[cell])
+    return;
+
+  atk = (u32)gCardInfo.atk + MOLTING_ESCAPE_EXACT_ATK_BONUS;
+  gCardInfo.atk = Duel_ClampStat(atk);
 }
 
 static void EquipMoltingEscape(struct DuelCard *spellZone, struct DuelCard *target)

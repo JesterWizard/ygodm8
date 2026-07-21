@@ -137,6 +137,8 @@ extern u8 MorphtronicCord_ShouldDestroySpellTrapOnPositionChange(
 extern void TryApplyMorphtronicEngineStandby(void);
 extern void MorphtronicMap_OnBattlePositionChanged(void);
 extern void ApplyMorphtronicMapAtkBonusToCardInfo(const struct DuelCard *zone);
+extern void ApplyMorphtronicEngineAtkBonusToCardInfo(const struct DuelCard *zone);
+extern void ApplyMoltingEscapeAtkBonusToCardInfo(const struct DuelCard *zone);
 extern u8 MagiciansLeftHand_ShouldNegateTrap(u8 activatingFixedDuelist);
 extern void MagiciansLeftHand_MarkTrapNegationUsed(u8 activatingFixedDuelist);
 extern u8 MagiciansRightHand_ShouldNegateSpell(u8 activatingFixedDuelist);

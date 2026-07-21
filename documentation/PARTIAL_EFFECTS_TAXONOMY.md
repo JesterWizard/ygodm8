@@ -7,15 +7,15 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 21:36 UTC  
-**Ceiling lines tagged:** `935`  
-**Partial files:** `769`
+**Last updated:** 2026-07-21 21:41 UTC  
+**Ceiling lines tagged:** `931`  
+**Partial files:** `765`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 310 | triage |
+| `other` | 308 | triage |
 | `event.OnStandby` | 228 | 3 (OPT / turn flags) |
 | `event.OnBattleDestroy` | 73 | 3 |
 | `event.OnSummon` | 64 | 3 |
@@ -23,12 +23,12 @@ python3 tools/stub_effect_queue.py --write-list
 | `chain.Negate` | 49 | later / chain |
 | `gate.Tribute` | 38 | 2–3 |
 | `op.Search` | 33 | 1 |
-| `event.OnDestroy` | 32 | 3 |
+| `event.OnDestroy` | 31 | 3 |
 | `op.BanishTimed` | 20 | 1–3 |
-| `stat.Continuous` | 18 | 1–3 |
+| `stat.Continuous` | 17 | 1–3 |
 | `event.GyIgnition` | 13 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **935** | |
+| **total** | **931** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -113,9 +113,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ELEMENTAL_HERO_CAPTAIN_GOLD` (permanent): L68: with Skyscraper active, prefer normal summon as a 2100 beater
 - `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` (permanent): L121: unaffected-after-SS + battle ATK boost need continuous/battle hooks.
 
-## `event.OnDestroy` (32)
+## `event.OnDestroy` (31)
 
-- `MORPHTRONIC_MAP` (spell): L148: destroy→GY → optional SS Morphtronic from GY needs a destroy hook + PickZone/GY menu outside this file. Ceiling: field face-up only; upgrade: on ClearZoneAndSendMonToGraveyard of face-up MORPHTRONIC_MAP → PickZone Morphtronic in GY → Duel_SpecialSummonFromGrave.
 - `REPTILANNE_RAGE` (spell): L71: destroy→GY target opp face-up monster -800 ATK needs a field/ destroy hook outside this file (OnDynamicEquipZoneAboutToClear / GY send). Ceiling: equip-only works; GY trigger not wired from this file. Upgrade: destroy-hook → PickZone opp face-up monster → apply -800 ATK overlay (or -2 stages).
 - `SPELL_CHRONICLE` (spell): L151: Chronicle Counters on opp Spell resolve / remove 2 → opp chooses banished add / leave-field burn need continuous hooks outside this file. Ceiling: activate discard+banish 5 only; unk4 counter slot unused.
 - `BACKFIRE` (trap): L11: FIRE monster destroyed → 500 to opp needs destroy hook. Ceiling: face-up continuous only; upgrade: OnDestroy FIRE face-up owned → Duel_ChangeLp(opp, -500). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
@@ -555,9 +554,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `LEGENDARY_MAJU_GARZETT` (permanent): L8: ATK = tributed originals needs hand-tribute SS stat capture; FromHand only.
 - `MAGICIANS_ROD` (permanent): L138: GY tribute Spellcaster → add this needs opp-turn quick hook.
 
-## `stat.Continuous` (18)
+## `stat.Continuous` (17)
 
-- `MOLTING_ESCAPE` (spell): L95: one stage is +500 rather than the printed +300. Ceiling: the protected monster gains +500 ATK. Upgrade: exact +300 ATK overlay.
 - `REALM_OF_LIGHT` (spell): L14: Shine Counters on mill / +100 ATK per counter on Lightsworn / remove 2 counters instead of destroy need mill + destroy-gate + counter storage outside this file (DuelCard has no shine-counter field; no in-file Deck→GY or destroy dispatch). Ceiling: continuous face-up only; upgrade: mill hook → if face-up REALM_OF_LIGHT controller's Deck→GY then ++counters;
 - `VENOM_SWAMP` (spell): L14: End Phase Venom Counters / -500 ATK per counter / destroy at 0 ATK need an End Phase turn_effect hook + per-monster counter storage outside this file (DuelCard has no venom-counter field; no in-file End Phase dispatch). Ceiling: continuous face-up only; upgrade: turn_effect End Phase → if face-up VENOM_SWAMP then place 1 counter on each face-up non-Venom monster, apply
 - `TWILIGHT_CLOTH` (trap): L56: exact +200 ATK/DEF per banished until End Phase needs temp overlay. Ceiling: +1 perm stage (~500) per banished (capped).
@@ -693,7 +691,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (310)
+## `other` (308)
 
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
@@ -714,8 +712,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `FUSION_DESTINY` (spell): L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 - `GADGET_BOX` (spell): L13: no dedicated Gadget Box Token card id — reuse MOON_TOKEN like other token spells. Ceiling: wrong printed name/stats; upgrade: real token card.
 - `GRAVEKEEPERS_INSCRIPTION` (spell): L112: "activate only at start of Main Phase 1" needs a phase/action counter outside this file (no Main Phase 1-start gate API). Ceiling: activable any time like a normal spell; upgrade: CanActivate → require MP1 + no prior play/set/summon this turn.
-- `MORPHTRONIC_ENGINE` (spell): L88: stage unit is 500 ATK — nearest-stage double, not exact original×2 when ATK is not a multiple of 500. Ceiling: stage-approx only; upgrade: exact-ATK overlay while equipped (clone Power Bond / Big Bang Shot).
-- `MORPHTRONIC_REPAIR_UNIT` (spell): L208: Parent battle-position paths have no shared interception point. Ceiling: the exported predicate is not consulted, so the equipped monster may still change position. Upgrade: add a common position-change gate and call MorphtronicRepairUnit_PreventsBattlePositionChange(zone).
 - `NEX` (spell): L155: duel Extra Deck browser/SS missing (Trunk ExtraDeck_* is deck-builder only). Ceiling: spawn Lv4 Neo form by id when not in Main Deck; upgrade: Extra Deck pick + SS.
 - `OBLITERATE_BLAZE` (spell): L131: granted effects (pay half LP → destroy S/T + equip 5 Forbidden One as +2000 Equip; piercing) need activated monster hooks / equip system outside this file. Ceiling: marks target unk4=1 only; upgrade: copy Obliterate effects onto marked Exodia monster.
 - `PARALLEL_WORLD_FUSION` (spell): L112: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.

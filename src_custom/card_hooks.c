@@ -655,7 +655,9 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyGladiatorBeastsBattleGladiusAtkCorrection(zone);
   ApplyHarpiesHuntingGroundStatBonusToCardInfo(zone);
   ApplyLightswornSabreAtkBonusToCardInfo(zone);
+  ApplyMorphtronicEngineAtkBonusToCardInfo(zone);
   ApplyMorphtronicMapAtkBonusToCardInfo(zone);
+  ApplyMoltingEscapeAtkBonusToCardInfo(zone);
   Necrovalley_ApplyGravekeeperStatBonusToCardInfo(zone);
   ApplyTheAForcesAtkBoostToCardInfo(zone);
   ApplyWetlandsAtkBoostToCardInfo(zone);
@@ -790,7 +792,9 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyGladiatorBeastsBattleGladiusAtkCorrection(gSetFinalStatZone);
     ApplyHarpiesHuntingGroundStatBonusToCardInfo(gSetFinalStatZone);
     ApplyLightswornSabreAtkBonusToCardInfo(gSetFinalStatZone);
+    ApplyMorphtronicEngineAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMorphtronicMapAtkBonusToCardInfo(gSetFinalStatZone);
+    ApplyMoltingEscapeAtkBonusToCardInfo(gSetFinalStatZone);
     Necrovalley_ApplyGravekeeperStatBonusToCardInfo(gSetFinalStatZone);
     ApplyNeoSpaceAtkBoostForZone(gSetFinalStatZone);
     LevelTuning_ApplyLevelToCardInfo(gSetFinalStatZone);

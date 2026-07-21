@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 21:36 UTC  
-**Remaining partials:** `769`
+**Last updated:** 2026-07-21 21:41 UTC  
+**Remaining partials:** `765`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 88 |
+| `spell` | 84 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **769** |
+| **total** | **765** |
 
-## spell (88)
+## spell (84)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -209,22 +209,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MIRACLE_CONTACT`
 - path: `src_custom/spell_effects/miracle_contact.c`
 - L34: Cosmo Neos needs three Neo-Spacians with different Attributes, which the concrete FusionRecipe matcher cannot express. Ceiling: Cosmo Neos is not selectable. Upgrade: a predicate-based Contact Fusion material selector.
-
-### `MOLTING_ESCAPE`
-- path: `src_custom/spell_effects/molting_escape.c`
-- L95: one stage is +500 rather than the printed +300. Ceiling: the protected monster gains +500 ATK. Upgrade: exact +300 ATK overlay.
-
-### `MORPHTRONIC_ENGINE`
-- path: `src_custom/spell_effects/morphtronic_engine.c`
-- L88: stage unit is 500 ATK — nearest-stage double, not exact original×2 when ATK is not a multiple of 500. Ceiling: stage-approx only; upgrade: exact-ATK overlay while equipped (clone Power Bond / Big Bang Shot).
-
-### `MORPHTRONIC_MAP`
-- path: `src_custom/spell_effects/morphtronic_map.c`
-- L148: destroy→GY → optional SS Morphtronic from GY needs a destroy hook + PickZone/GY menu outside this file. Ceiling: field face-up only; upgrade: on ClearZoneAndSendMonToGraveyard of face-up MORPHTRONIC_MAP → PickZone Morphtronic in GY → Duel_SpecialSummonFromGrave.
-
-### `MORPHTRONIC_REPAIR_UNIT`
-- path: `src_custom/spell_effects/morphtronic_repair_unit.c`
-- L208: Parent battle-position paths have no shared interception point. Ceiling: the exported predicate is not consulted, so the equipped monster may still change position. Upgrade: add a common position-change gate and call MorphtronicRepairUnit_PreventsBattlePositionChange(zone).
 
 ### `MYSTIK_WOK`
 - path: `src_custom/spell_effects/mystik_wok.c`

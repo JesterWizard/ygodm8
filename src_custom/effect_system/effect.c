@@ -22,6 +22,7 @@
 #include "dark_magician_circle.h"
 #include "elemental_hero_inferno.h"
 #include "geartown.h"
+#include "morphtronic_map.h"
 #include "harpies_hunting_ground.h"
 #include "pandemonium.h"
 #include "skyscraper.h"
@@ -132,6 +133,18 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       NULL,
       NULL,
       Op_GeartownOnDestroy,
+  },
+  {
+      MORPHTRONIC_MAP,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_MorphtronicMapOnDestroy,
+      NULL,
+      NULL,
+      Op_MorphtronicMapOnDestroy,
   },
   {
       ANCIENT_GEAR_TANK,

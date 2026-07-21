@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round4 Batch4
+**Last worked on:** 2026-07-21 — Round4 Batch6 (Round 4 complete)
 
-**Outcome:** Dragon Ravine→Fusion Deployment: Dynamic Equip FindFixedZone, Fusion Deployment ED-required, Flavian/Future Fusion comment demotes. Partials **775→771**.
+**Outcome:** Morphtronic Engine/Map/Repair + Molting Escape parent wires. Partials **769→765** (Round start ~782).
 
-**Open / next:** Round4 Batches 5–6.
+**Open / next:** Round5 Batches 1–6 from remaining PARTIAL list.

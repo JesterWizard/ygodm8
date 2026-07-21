@@ -2083,12 +2083,15 @@ void MonsterActionMenu__Replacement(void) {
         PlayMusic(SFX_FORBIDDEN);
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
       } else if (NightmareWheel_CannotChangeBattlePosition(
+                     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+                 || MorphtronicRepairUnit_PreventsBattlePositionChange(
                      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
         PlayMusic(SFX_FORBIDDEN);
       } else if (!gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked) {
         PlayMusic(SFX_SELECT);
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 1;
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+        MorphtronicMap_OnBattlePositionChanged();
       }
       else {
         PlayMusic(SFX_FORBIDDEN);
@@ -2127,7 +2130,9 @@ void MonsterActionMenu__Replacement(void) {
       u8 isFaceUp = zone->isFaceUp;
       u16 effectCardId = Duel_ZoneEffectCardId(zone);
 
-      if (!isFaceUp && NightmareWheel_CannotChangeBattlePosition(zone))
+      if (!isFaceUp
+          && (NightmareWheel_CannotChangeBattlePosition(zone)
+              || MorphtronicRepairUnit_PreventsBattlePositionChange(zone)))
         goto FAILED;
 
       if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
@@ -2328,10 +2333,13 @@ FAILED:
                 gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
           PlayMusic(SFX_FORBIDDEN);
         } else if (NightmareWheel_CannotChangeBattlePosition(
+                       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+                   || MorphtronicRepairUnit_PreventsBattlePositionChange(
                        gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
           PlayMusic(SFX_FORBIDDEN);
         } else if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked) {
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
+          MorphtronicMap_OnBattlePositionChanged();
         }
       } else {
         if (LevelLimitAreaA_CannotUseDefensePosition(
