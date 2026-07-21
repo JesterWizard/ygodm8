@@ -53,6 +53,8 @@
 #include "backup_squad.h"
 #include "berserker_soul.h"
 #include "bubble_blaster.h"
+#include "chicken_game.h"
+#include "clock_tower_prison.h"
 #include "big_bang_shot.h"
 #include "h_heated_heart.h"
 #include "cyber_end_dragon.h"
@@ -261,14 +263,28 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
         (s32)gUnk2023EA0.unk0[1].initialLifePoints - (s32)gDuelLifePoints[DUEL_OPPONENT];
 
     if (playerDmg > 0) {
-      ApplyBackupSquadAfterDamage(playerDmg, DUEL_PLAYER);
-      if (sActionData.playerCardId == CARD_NONE)
-        BerserkerSoul_OnDirectDamage(playerDmg);
+      if (ChickenGame_ShouldBlockBattleDamage(DUEL_PLAYER)
+          || ClockTowerPrison_ShouldBlockBattleDamage(DUEL_PLAYER)) {
+        gDuelLifePoints[DUEL_PLAYER] = gUnk2023EA0.unk0[0].initialLifePoints;
+        gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+        sActionData.flags &= (u8)~FLAG_LOSER_PLAYER;
+      } else {
+        ApplyBackupSquadAfterDamage(playerDmg, DUEL_PLAYER);
+        if (sActionData.playerCardId == CARD_NONE)
+          BerserkerSoul_OnDirectDamage(playerDmg);
+      }
     }
     if (opponentDmg > 0) {
-      ApplyBackupSquadAfterDamage(opponentDmg, DUEL_OPPONENT);
-      if (sActionData.opponentCardId == CARD_NONE)
-        BerserkerSoul_OnDirectDamage(opponentDmg);
+      if (ChickenGame_ShouldBlockBattleDamage(DUEL_OPPONENT)
+          || ClockTowerPrison_ShouldBlockBattleDamage(DUEL_OPPONENT)) {
+        gDuelLifePoints[DUEL_OPPONENT] = gUnk2023EA0.unk0[1].initialLifePoints;
+        gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+        sActionData.flags &= (u8)~FLAG_LOSER_OPPONENT;
+      } else {
+        ApplyBackupSquadAfterDamage(opponentDmg, DUEL_OPPONENT);
+        if (sActionData.opponentCardId == CARD_NONE)
+          BerserkerSoul_OnDirectDamage(opponentDmg);
+      }
     }
   }
 

@@ -1,6 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "chrysalis_neo_spacian.h"
+#include "contact.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
@@ -8,36 +10,6 @@
 void UpdateDuelGfxExceptField(void);
 
 #define CONTACT_MAX_UNIQUE_NEOS 5
-
-static const char sChrysalisName[] APPEND_RODATA = "Chrysalis";
-
-static u8 IsChrysalisMonster(u16 cardId)
-{
-  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
-    return FALSE;
-
-  return Duel_CardNameContains(cardId, sChrysalisName);
-}
-
-/* Printed Chrysalis → Neo-Spacian pairs (same as COCOON_REBIRTH). */
-static u16 NeoSpacianForChrysalis(u16 chrysalisId)
-{
-  switch (chrysalisId) {
-  case CHRYSALIS_CHICKY:
-    return NEO_SPACIAN_AIR_HUMMINGBIRD;
-  case CHRYSALIS_DOLPHIN:
-    return NEO_SPACIAN_AQUA_DOLPHIN;
-  case CHRYSALIS_MOLE:
-    return NEO_SPACIAN_GRAND_MOLE;
-  case CHRYSALIS_PANTAIL:
-    return NEO_SPACIAN_DARK_PANTHER;
-  case CHRYSALIS_PINNY:
-    return NEO_SPACIAN_GLOW_MOSS;
-  default:
-    /* ponytail: only the five Chrysalis in-trunk pairs are mapped. */
-    return CARD_NONE;
-  }
-}
 
 static u8 IdAlreadySeen(const u16 *seen, u8 seenCount, u16 cardId)
 {
@@ -60,10 +32,10 @@ static u8 CollectUniqueNeoIdsFromField(u16 *out, u8 maxOut)
     u16 neoId;
     u16 chrysalisId = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col]->id;
 
-    if (!IsChrysalisMonster(chrysalisId))
+    if (!ChrysalisNeoSpacian_IsChrysalisMonster(chrysalisId))
       continue;
 
-    neoId = NeoSpacianForChrysalis(chrysalisId);
+    neoId = ChrysalisNeoSpacian_ForId(chrysalisId);
     if (neoId == CARD_NONE)
       continue;
 
@@ -163,7 +135,7 @@ static void SendAllChrysalisToGraveyard(void)
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
 
-    if (zone == NULL || !IsChrysalisMonster(zone->id))
+    if (zone == NULL || !ChrysalisNeoSpacian_IsChrysalisMonster(zone->id))
       continue;
 
     if (Duel_DestroyZone(zone, ACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
@@ -235,10 +207,10 @@ APPEND_TEXT void EffectCONTACT(void)
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void CONTACT_SelfCheck(void)
 {
-  if (NeoSpacianForChrysalis(CHRYSALIS_CHICKY) != NEO_SPACIAN_AIR_HUMMINGBIRD)
+  if (ChrysalisNeoSpacian_ForId(CHRYSALIS_CHICKY) != NEO_SPACIAN_AIR_HUMMINGBIRD)
     while (1)
       ;
-  if (NeoSpacianForChrysalis(CHRYSALIS_PINNY) != NEO_SPACIAN_GLOW_MOSS)
+  if (ChrysalisNeoSpacian_ForId(CHRYSALIS_PINNY) != NEO_SPACIAN_GLOW_MOSS)
     while (1)
       ;
 }

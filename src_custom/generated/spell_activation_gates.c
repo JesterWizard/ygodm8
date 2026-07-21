@@ -36,9 +36,11 @@ extern u8 CanActivateBookOfLife(void);
 extern u8 CanActivateBUBBLE_BLASTER(void);
 extern u8 CanActivateCELESTIAL_SWORD_EATOS(void);
 extern u8 CanActivateCHAIN_STRIKE(void);
+extern u8 CanActivateCHAIN_SUMMONING(void);
 extern u8 CanActivateChaosGreed(void);
 extern u8 CanActivateCHARGE_OF_THE_LIGHT_BRIGADE(void);
 extern u8 CanActivateCOCOON_REBIRTH(void);
+extern u8 CanActivateCOLD_WAVE(void);
 extern u8 CanActivateConfiscation(void);
 extern u8 CanActivateCONTACT(void);
 extern u8 CanActivateCONTACT_GATE(void);
@@ -148,9 +150,11 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { BUBBLE_BLASTER, CanActivateBUBBLE_BLASTER, TRUE },
   { CELESTIAL_SWORD_EATOS, CanActivateCELESTIAL_SWORD_EATOS, TRUE },
   { CHAIN_STRIKE, CanActivateCHAIN_STRIKE, TRUE },
+  { CHAIN_SUMMONING, CanActivateCHAIN_SUMMONING, TRUE },
   { CHAOS_GREED, CanActivateChaosGreed, TRUE },
   { CHARGE_OF_THE_LIGHT_BRIGADE, CanActivateCHARGE_OF_THE_LIGHT_BRIGADE, TRUE },
   { COCOON_REBIRTH, CanActivateCOCOON_REBIRTH, TRUE },
+  { COLD_WAVE, CanActivateCOLD_WAVE, TRUE },
   { CONFISCATION, CanActivateConfiscation, TRUE },
   { CONTACT, CanActivateCONTACT, TRUE },
   { CONTACT_GATE, CanActivateCONTACT_GATE, TRUE },

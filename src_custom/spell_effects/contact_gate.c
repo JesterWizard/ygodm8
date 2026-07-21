@@ -1,24 +1,31 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "contact_gate.h"
 #include "constants/card_ids.h"
 #include "effect_events.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "fusion_recipes.h"
+#include "removed_from_play.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
 
 static const char sNeoSpacianName[] APPEND_RODATA = "Neo-Spacian";
+static const char sNeosName[] APPEND_RODATA = "Neos";
+
+static u8 sContactGateFusionOnlyLock APPEND_DATA = {0};
+static u8 sContactGateFusionReturnController APPEND_DATA = {0xFF};
 
 static const u8 sContactGatePickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_SELECT_CARD,
 };
 
-/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
+/* OPT via EffectOpt_* - cleared on turn boundary (EffectEvent_OnTurnBoundary). */
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -34,6 +41,131 @@ static u8 IsNeoSpacianMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sNeoSpacianName);
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST]
+      == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
+}
+
+u8 ContactGate_FusionListsElementalHeroNeos(u16 cardId)
+{
+  const struct FusionRecipe *recipe;
+  u8 i;
+  u8 materialCount;
+
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  if (gCardInfo.color != FUSION_CARD)
+    return FALSE;
+
+  recipe = FusionRecipe_FindByResult(cardId);
+  if (recipe != NULL) {
+    materialCount = FusionRecipe_MaterialCount(recipe);
+    for (i = 0; i < materialCount; i++) {
+      if (FusionRecipe_MaterialAt(recipe, i) == ELEMENTAL_HERO_NEOS)
+        return TRUE;
+    }
+  }
+
+  if (cardId == ELEMENTAL_HERO_NEOS)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sNeosName);
+}
+
+static u8 GyContainsContactGate(u8 fixedDuelist)
+{
+  u8 i;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (GraveyardExpand_GetCardAt(fixedDuelist, i) == CONTACT_GATE)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static s16 FindBanishedNeoSpacianIndex(u8 fixedDuelist)
+{
+  u8 i;
+
+  if (!RemovedFromPlay_IsEnabled())
+    return -1;
+
+  for (i = 0; i < RemovedFromPlay_GetCount(fixedDuelist); i++) {
+    if (IsNeoSpacianMonster(RemovedFromPlay_GetCardAt(fixedDuelist, i)))
+      return (s16)i;
+  }
+
+  return -1;
+}
+
+void ContactGate_NotifyNeosFusionReturnedToExtra(u8 controllerFixedDuelist)
+{
+  if (controllerFixedDuelist == DUEL_PLAYER || controllerFixedDuelist == DUEL_OPPONENT)
+    sContactGateFusionReturnController = controllerFixedDuelist;
+}
+
+void ContactGate_ArmExtraDeckFusionOnlyLock(void)
+{
+  sContactGateFusionOnlyLock = TRUE;
+}
+
+u8 ContactGate_BlocksExtraDeckSpecialSummon(u16 cardId)
+{
+  if (!sContactGateFusionOnlyLock)
+    return FALSE;
+
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  if (gCardInfo.color == FUSION_CARD)
+    return FALSE;
+
+  if (FusionRecipe_FindByResult(cardId) != NULL)
+    return FALSE;
+
+  return TRUE;
+}
+
+void ContactGate_OnTurnBoundary(void)
+{
+  sContactGateFusionOnlyLock = FALSE;
+  sContactGateFusionReturnController = 0xFF;
+}
+
+u8 Cond_ContactGateOnFusionReturn(struct EffectCtx *ctx)
+{
+  u8 fixedDuelist;
+
+  (void)ctx;
+
+  fixedDuelist = sContactGateFusionReturnController;
+  if (fixedDuelist > DUEL_OPPONENT)
+    return FALSE;
+
+  if (!GyContainsContactGate(fixedDuelist))
+    return FALSE;
+
+  return FindBanishedNeoSpacianIndex(fixedDuelist) >= 0;
+}
+
+enum DuelActionResult Op_ContactGateOnFusionReturn(struct EffectCtx *ctx)
+{
+  (void)ctx;
+  /* Flag consumed when GyIgnition resolves; parent may also call Notify directly. */
+  return DUEL_ACTION_OK;
 }
 
 static u8 CountGyNeoDifferentNames(u16 *outIds, u8 maxOut)
@@ -332,11 +464,70 @@ static void CONTACT_GATE_ResolveBody(void)
   }
 
   EffectOpt_MarkUsed(CONTACT_GATE);
+  ContactGate_ArmExtraDeckFusionOnlyLock();
   UpdateDuelGfxExceptField();
+}
 
-  /* ponytail: ED Fusion-only lock + GY ignition (banish this → SS banished Neo)
-   * need hooks outside this file. Ceiling: field SS path only. */
-  (void)costIds;
+u8 CanActivateContactGateGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist;
+  u8 monsterRow;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+
+  if (sContactGateFusionReturnController != fixedDuelist)
+    return FALSE;
+
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != CONTACT_GATE)
+    return FALSE;
+
+  if (FindBanishedNeoSpacianIndex(fixedDuelist) < 0)
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  monsterRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                             : INACTIVE_DUELIST_MONSTER_ROW;
+  return FirstEmptyZoneInRow(gTurnZones[monsterRow]) >= 0;
+}
+
+void ActivateContactGateGy(u8 fixedDuelist, u8 gyIndex)
+{
+  s16 banishedIndex;
+  u16 cardId;
+  u8 turnDuelist;
+  struct DuelSummonOpts opts;
+
+  if (!CanActivateContactGateGy(fixedDuelist, gyIndex))
+    return;
+
+  banishedIndex = FindBanishedNeoSpacianIndex(fixedDuelist);
+  if (banishedIndex < 0)
+    return;
+
+  cardId = RemovedFromPlay_GetCardAt(fixedDuelist, (u8)banishedIndex);
+  if (!IsNeoSpacianMonster(cardId))
+    return;
+
+  Duel_ShowEffectText(CONTACT_GATE);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex);
+  sContactGateFusionReturnController = 0xFF;
+
+  /* ponytail: no RemovedFromPlay_RemoveAt - parent must shift RFP after SS. */
+  turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_ATK;
+  Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts);
+  UpdateDuelGfxExceptField();
 }
 
 APPEND_TEXT void EffectCONTACT_GATE(void)

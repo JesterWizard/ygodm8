@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "charge_of_the_light_brigade.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
@@ -7,9 +8,6 @@
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
 #include "spell_effects.h"
-
-#define CHARGE_OF_THE_LIGHT_BRIGADE_MILL_COUNT 3
-#define CHARGE_OF_THE_LIGHT_BRIGADE_MAX_LEVEL 4
 
 void UpdateDuelGfxExceptField(void);
 
@@ -119,7 +117,6 @@ u8 CanActivateCHARGE_OF_THE_LIGHT_BRIGADE(void)
   if (!DeckHasCardsRemaining(ACTIVE_DUELIST, CHARGE_OF_THE_LIGHT_BRIGADE_MILL_COUNT))
     return FALSE;
 
-  /* Need a Level 4- Lightsworn remaining after the mill. */
   fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
   deckSize = NumCardsInDeck(fixedDuelist);
   top = gDuelDecks[fixedDuelist].cardsDrawn;
@@ -130,6 +127,34 @@ u8 CanActivateCHARGE_OF_THE_LIGHT_BRIGADE(void)
   }
 
   return FALSE;
+}
+
+enum DuelActionResult ChargeOfTheLightBrigade_MillDeckToGy(u8 turnDuelist, u8 count)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  u8 i;
+
+  for (i = 0; i < count; i++) {
+    u16 cardId;
+
+    if (gDuelDecks[fixedDuelist].cardsDrawn >= NumCardsInDeck(fixedDuelist)) {
+      DeclareLoser(fixedDuelist);
+      return DUEL_ACTION_DUEL_OVER;
+    }
+
+    cardId = gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn];
+
+    if (GraveyardExpand_IsEnabled())
+      GraveyardExpand_PushTurn(turnDuelist, cardId);
+    /* ponytail: legacy single-card GY — milled cards vanish from deck only. */
+
+    gDuelDecks[fixedDuelist].cardsDrawn++;
+
+    if (IsDuelOver() == TRUE)
+      return DUEL_ACTION_DUEL_OVER;
+  }
+
+  return DUEL_ACTION_OK;
 }
 
 static u8 LoadEligibleDeckMenu(u8 turnDuelist, u8 *deckIndexOut)
@@ -236,12 +261,10 @@ static void CHARGE_OF_THE_LIGHT_BRIGADE_ResolveBody(void)
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
 
-  if (Duel_MillTopDeckCards(ACTIVE_DUELIST, CHARGE_OF_THE_LIGHT_BRIGADE_MILL_COUNT, FALSE)
+  if (ChargeOfTheLightBrigade_MillDeckToGy(ACTIVE_DUELIST,
+                                           CHARGE_OF_THE_LIGHT_BRIGADE_MILL_COUNT)
       == DUEL_ACTION_DUEL_OVER)
     return;
-
-  /* ponytail: mill helper advances deck top only (no expanded-GY push), matching
-   * needle_worm / gravekeepers_servant. Ceiling: milled cards may not appear in GY UI. */
 
   if (FindFirstEligibleDeckIndex(ACTIVE_DUELIST) < 0)
     return;
@@ -266,3 +289,15 @@ APPEND_TEXT void EffectCHARGE_OF_THE_LIGHT_BRIGADE(void)
       == DUEL_ACTION_BLOCKED)
     return;
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void CHARGE_OF_THE_LIGHT_BRIGADE_SelfCheck(void)
+{
+  if (CHARGE_OF_THE_LIGHT_BRIGADE_MILL_COUNT != 3)
+    while (1)
+      ;
+  if (CHARGE_OF_THE_LIGHT_BRIGADE_MAX_LEVEL != 4)
+    while (1)
+      ;
+}
+#endif

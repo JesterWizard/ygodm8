@@ -4,6 +4,9 @@
 #include "ancient_gear_drill.h"
 #include "ancient_gear_factory.h"
 #include "berserker_soul.h"
+#include "chain_summoning.h"
+#include "cold_wave.h"
+#include "contact_gate.h"
 #include "constants/card_ids.h"
 #include "duel.h"
 #include "duel_helpers.h"
@@ -157,6 +160,9 @@ void EffectEvent_OnTurnBoundary(void)
   AncientGearDrill_OnTurnBoundary();
   AncientGearFactory_OnTurnBoundary();
   BerserkerSoul_OnTurnBoundary();
+  ChainSummoning_ResetTurnState();
+  ColdWave_OnTurnBoundary();
+  ContactGate_OnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

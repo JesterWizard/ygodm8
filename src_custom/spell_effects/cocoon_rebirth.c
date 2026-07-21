@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "cocoon_rebirth.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -42,8 +43,7 @@ static u8 IsChrysalisMonster(u16 cardId)
   return Duel_CardNameContains(cardId, sChrysalisName);
 }
 
-/* Printed Chrysalis → Neo-Spacian pairs from card text. */
-static u16 NeoSpacianForChrysalis(u16 chrysalisId)
+u16 CocoonRebirth_NeoSpacianForChrysalis(u16 chrysalisId)
 {
   switch (chrysalisId) {
   case CHRYSALIS_CHICKY:
@@ -62,6 +62,11 @@ static u16 NeoSpacianForChrysalis(u16 chrysalisId)
   }
 }
 
+u8 CocoonRebirth_IsMappedChrysalis(u16 chrysalisId)
+{
+  return CocoonRebirth_NeoSpacianForChrysalis(chrysalisId) != CARD_NONE;
+}
+
 static u8 IsValidChrysalisTarget(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone;
@@ -73,7 +78,7 @@ static u8 IsValidChrysalisTarget(u8 fixedRow, u8 fixedCol)
   if (zone == NULL || !IsChrysalisMonster(zone->id) || !MonsterIsFaceUp(zone))
     return FALSE;
 
-  return NeoSpacianForChrysalis(zone->id) != CARD_NONE;
+  return CocoonRebirth_IsMappedChrysalis(zone->id);
 }
 
 static u8 HasChrysalisTarget(void)
@@ -146,7 +151,7 @@ static u8 FieldHasMappedNeoInGy(void)
       continue;
 
     zone = gFixedZones[monsterRow][col];
-    neoId = NeoSpacianForChrysalis(zone->id);
+    neoId = CocoonRebirth_NeoSpacianForChrysalis(zone->id);
     if (neoId != CARD_NONE && FindNeoInEitherGy(neoId, &fd, &idx))
       return TRUE;
   }
@@ -211,7 +216,7 @@ static void ResolveChrysalisTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidChrysalisTarget(fixedRow, fixedCol))
     return;
 
-  neoId = NeoSpacianForChrysalis(tributeZone->id);
+  neoId = CocoonRebirth_NeoSpacianForChrysalis(tributeZone->id);
   if (neoId == CARD_NONE || !FindNeoInEitherGy(neoId, &gyFixed, &gyIndex))
     return;
 
@@ -232,7 +237,6 @@ static void ResolveChrysalisTarget(u8 fixedRow, u8 fixedCol)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* Re-find after tribute — Chrysalis landing in GY can shift indices. */
   if (!FindNeoInEitherGy(neoId, &gyFixed, &gyIndex))
     return;
 
@@ -261,7 +265,7 @@ static u8 AiPickChrysalisTarget(u8 *outRow, u8 *outCol)
       continue;
 
     zone = gFixedZones[monsterRow][col];
-    neoId = NeoSpacianForChrysalis(zone->id);
+    neoId = CocoonRebirth_NeoSpacianForChrysalis(zone->id);
     if (neoId == CARD_NONE || !FindNeoInEitherGy(neoId, &fd, &idx))
       continue;
 
@@ -308,10 +312,13 @@ APPEND_TEXT void EffectCOCOON_REBIRTH(void)
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void COCOON_REBIRTH_SelfCheck(void)
 {
-  if (NeoSpacianForChrysalis(CHRYSALIS_CHICKY) != NEO_SPACIAN_AIR_HUMMINGBIRD)
+  if (CocoonRebirth_NeoSpacianForChrysalis(CHRYSALIS_CHICKY) != NEO_SPACIAN_AIR_HUMMINGBIRD)
     while (1)
       ;
-  if (NeoSpacianForChrysalis(CHRYSALIS_PINNY) != NEO_SPACIAN_GLOW_MOSS)
+  if (CocoonRebirth_NeoSpacianForChrysalis(CHRYSALIS_PINNY) != NEO_SPACIAN_GLOW_MOSS)
+    while (1)
+      ;
+  if (CocoonRebirth_IsMappedChrysalis(CARD_NONE))
     while (1)
       ;
 }

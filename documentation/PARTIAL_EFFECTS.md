@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 19:57 UTC  
-**Remaining partials:** `840`
+**Last updated:** 2026-07-21 20:06 UTC  
+**Remaining partials:** `838`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 159 |
+| `spell` | 157 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **840** |
+| **total** | **838** |
 
-## spell (159)
+## spell (157)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -64,25 +64,21 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CHAIN_SUMMONING`
 - path: `src_custom/spell_effects/chain_summoning.c`
-- L22: Double Summon API only grants 1 extra NS (=2 total), not 3. Ceiling: up to 2 Normal Summons/Sets this turn; upgrade: chain-summoning pending counter of 2 extras in code_803F02C_hooks (like Double Summon unlock loop) so LockMonsterCardsInRow can unlock twice.
-- L26: no Chain Link / chain-depth API (same as CHAIN_STRIKE). Ceiling: activable without Link≥3 or same-name-on-chain forbid; upgrade: require link >= 3 and reject when multiple same-name cards/effects already on chain.
-- L35: Chain Link 3+ gate missing — see ResolveBody. Always offered.
+- L27: parent wires TryUnlockAfterNormalSummon in code_803F02C_hooks so LockMonsterCardsInRow unlocks for each of the 2 extra NS beyond base.
+- L61: no Chain Link / chain-depth API in this engine — parent wires ChainSummoning_CanActivateForChain(link, sameNameOnChain) at activation.
 
 ### `CHARGE_OF_THE_LIGHT_BRIGADE`
 - path: `src_custom/spell_effects/charge_of_the_light_brigade.c`
-- L243: mill helper advances deck top only (no expanded-GY push), matching needle_worm / gravekeepers_servant. Ceiling: milled cards may not appear in GY UI.
+- L149: legacy single-card GY — milled cards vanish from deck only.
 
 ### `CHICKEN_GAME`
 - path: `src_custom/spell_effects/chicken_game.c`
-- L34: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L154: lowest-LP player takes no damage needs an LP/damage gate outside this file (no damage-immunity helper keyed to field spell). Ceiling: continuous face-up + OPT pay/draw/destroy/opp-gain only; upgrade: ChangeLp / battle-damage hook → if face-up CHICKEN_GAME and target has strictly lower LP (or tied-lowest), skip damage.
-- L160: "neither player can activate cards/effects in response" needs a response-block flag outside this file. Ceiling: normal trap chain still possible on Effect entry; upgrade: skip TryResolveSpellThroughTraps for ignition / set activation-protect flag.
+- L95: no dedicated 3-way choice UI — nested A/B unlabeled. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
+- L209: OPT ignition no-response — parent skips TryResolveSpellThroughTraps when ChickenGame_ShouldSkipTrapChain() during face-up re-activation.
 
-### `CLOCK_TOWER_PRISON`
-- path: `src_custom/spell_effects/clock_tower_prison.c`
-- L10: Opp Standby Clock Counter placement needs a turn_effect Standby hook outside this file (no in-file Standby dispatch). Ceiling: continuous face-up + unk4 counter slot (never rises alone); upgrade: opp Standby → if face-up CLOCK_TOWER_PRISON then unk4++ (cap CLOCK_TOWER_PRISON_MAX_COUNTERS).
-- L16: 4+ counters → no battle damage needs a battle-damage gate outside this file. Ceiling: continuous only; upgrade: battle LP calc → if face-up CLOCK_TOWER_PRISON with unk4 >= 4 then battle damage to controller = 0.
-- L20: destroy with 4+ counters → SS Destiny HERO - Dreadmaster from hand/Deck needs a destroy/leave-field hook outside this file. Ceiling: continuous face-up only; upgrade: OnDestroy → if unk4 >= 4 then Duel_SpecialSummonFromHand/Deck(DESTINY_HERO_DREADMASTER).
+### `CHRYSALIS_NEO_SPACIAN`
+- path: `src_custom/spell_effects/chrysalis_neo_spacian.c`
+- L31: only the five Chrysalis in-trunk pairs are mapped.
 
 ### `COCOON_REBIRTH`
 - path: `src_custom/spell_effects/cocoon_rebirth.c`
@@ -90,26 +86,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `COLD_WAVE`
 - path: `src_custom/spell_effects/cold_wave.c`
-- L16: "activate only at start of Main Phase 1" needs a phase/action counter outside this file (no Main Phase 1-start gate API). Ceiling: activable any time like a normal spell; upgrade: CanActivate → require MP1 + no prior play/set/summon this turn.
-- L21: block play/Set of Spell/Trap until next turn needs a shared lock hooked into Duel_IsCardActivationBlocked / set-from-hand (like Wicked Avatar SpellTrap lock). Ceiling: show text + send to GY only; upgrade: arm a Cold Wave turn flag in Duel_IsCardActivationBlocked for TYPE_SPELL/TRAP and Set paths until activator's next Standby, then clear.
+- L30: no Main Phase 1-start / prior-action API - parent wires ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction) at activation.
 
 ### `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS`
 - path: `src_custom/spell_effects/colosseum_cage_of_the_gladiator_beasts.c`
-- L93: Counter on Special Summon from Deck needs a summon-listener outside this file (no in-file SS-from-Deck dispatch). Ceiling: face-up field + unk4 counter slot (never rises alone); upgrade: after SS from Deck → if face-up COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS then zone->unk4++.
-- L98: +100 ATK/DEF per counter for all Gladiator Beast monsters needs a field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers monster ids registered in duel_helpers.c). Ceiling: face-up field only; upgrade: LynJump/stat overlay → if face-up COLOSSEUM and name contains "Gladiator Beast" then ATK/DEF += 100 * zone->unk4.
-- L104: discard another Colosseum to prevent destroy by card effect needs a destroy-protection / replacement hook outside this file. Ceiling: no protect; upgrade: OnWouldDestroySpell → if hand has COLOSSEUM_CAGE then optional discard and skip destroy.
-
-### `CONTACT`
-- path: `src_custom/spell_effects/contact.c`
-- L37: only the five Chrysalis in-trunk pairs are mapped.
+- L231: no labeled confirm menu - auto-discard when another copy is in hand.
 
 ### `CONTACT_GATE`
 - path: `src_custom/spell_effects/contact_gate.c`
-- L337: ED Fusion-only lock + GY ignition (banish this → SS banished Neo) need hooks outside this file. Ceiling: field SS path only.
-
-### `CONVERT_CONTACT`
-- path: `src_custom/spell_effects/convert_contact.c`
-- L191: cancel on deck pick auto-sends first Neo-Spacian (activation committed).
+- L525: no RemovedFromPlay_RemoveAt - parent must shift RFP after SS.
 
 ### `COURT_OF_JUSTICE`
 - path: `src_custom/spell_effects/court_of_justice.c`

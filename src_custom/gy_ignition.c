@@ -4,6 +4,7 @@
 #include "amazoness_secret_arts.h"
 #include "arcana_reading.h"
 #include "arcana_spread.h"
+#include "contact_gate.h"
 #include "constants/card_ids.h"
 #include "expanded_graveyard.h"
 #include "gy_ignition.h"
@@ -33,6 +34,9 @@ static const struct GyIgnitionEntry sGyIgnitionTable[] APPEND_RODATA = {
   { ARCANA_SPREAD,
     CanActivateArcanaSpreadGy,
     ActivateArcanaSpreadGy },
+  { CONTACT_GATE,
+    CanActivateContactGateGy,
+    ActivateContactGateGy },
 };
 
 u8 GyIgnition_TryAt(u8 fixedDuelist, u16 cardId)

@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
+#include "colosseum_cage_of_the_gladiator_beasts.h"
 #include "duel_status.h"
 #include "effect_events.h"
 #include "god_card.h"
@@ -2587,6 +2588,8 @@ enum DuelActionResult Duel_SpecialSummonFromDeck(u8 duelist, u16 cardId, struct 
   s16 deckIndex;
   u16 monsterId;
   enum DuelActionResult result;
+
+  ColosseumCage_MarkSpecialSummonFromDeck(TurnDuelistToFixed(duelist));
 
   if (ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;

@@ -15,6 +15,8 @@
 #include "aroma_garden.h"
 #include "aroma_gardening.h"
 #include "celestial_sword_eatos.h"
+#include "clock_tower_prison.h"
+#include "colosseum_cage_of_the_gladiator_beasts.h"
 #include "elemental_hero_inferno.h"
 #include "geartown.h"
 #include "skyscraper.h"
@@ -173,16 +175,40 @@ static const struct Effect sEffectsExtra[] __attribute__((section(".text"))) = {
       Op_AromaGardenOnDestroy,
   },
   {
-      AROMA_GARDENING,
+      CLOCK_TOWER_PRISON,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_TURN_STANDBY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_ClockTowerPrisonOnOppStandby,
+      NULL,
+      NULL,
+      Op_ClockTowerPrisonOnOppStandby,
+  },
+  {
+      CLOCK_TOWER_PRISON,
+      EFFECT_KIND_SPELL,
+      EFFECT_TYPE_TRIGGER,
+      EFFECT_EVENT_ON_DESTROY,
+      EFFECT_META_NONE,
+      EFFECT_FLAG_NONE,
+      Cond_ClockTowerPrisonOnDestroy,
+      NULL,
+      NULL,
+      Op_ClockTowerPrisonOnDestroy,
+  },
+  {
+      COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS,
       EFFECT_KIND_SPELL,
       EFFECT_TYPE_TRIGGER,
       EFFECT_EVENT_ON_SUMMON,
       EFFECT_META_NONE,
-      EFFECT_FLAG_OPT,
-      Cond_AromaGardeningOnSummon,
+      EFFECT_FLAG_NONE,
+      Cond_ColosseumCageOnDeckSpecialSummon,
       NULL,
       NULL,
-      Op_AromaGardeningOnSummon,
+      Op_ColosseumCageOnDeckSpecialSummon,
   },
   {
       CELESTIAL_SWORD_EATOS,

@@ -1,12 +1,18 @@
 #include "global.h"
 #include "common-chax.h"
+#include "colosseum_cage_of_the_gladiator_beasts.h"
 #include "constants/card_ids.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
+#include "mini_card.h"
 #include "spell_effects.h"
 
 void SetDuelFieldGfx(u8 field);
+
+static const char sGladiatorBeastName[] APPEND_RODATA = "Gladiator Beast";
+
+static u8 sColosseumPendingDeckSummonController APPEND_DATA = {0xFF};
 
 static u8 IsVanillaTerrainFieldSpell(u16 cardId)
 {
@@ -75,6 +81,162 @@ static void DestroyOtherFieldSpellsOnBoard(struct DuelCard *activatingZone)
   ResetActiveFieldTerrain();
 }
 
+static struct DuelCard *FindFaceUpColosseumCage(u8 fixedDuelist)
+{
+  return Duel_FindBackrowCard(fixedDuelist, COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS, TRUE);
+}
+
+static u8 IsGladiatorBeastMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sGladiatorBeastName);
+}
+
+static u8 FixedDuelistForZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (zone == NULL || !Duel_FindFixedZone(zone, &fixedRow, &col))
+    return 0xFF;
+
+  if (fixedRow == PLAYER_BACKROW || fixedRow == PLAYER_MONSTER_ROW)
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST]
+      == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
+}
+
+static u8 IsColosseumCageHandCard(u16 cardId)
+{
+  return cardId == COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS;
+}
+
+static u8 HandHasAnotherColosseumCage(u8 turnDuelist)
+{
+  return RowHasCardMatch(gTurnHands[turnDuelist], COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS);
+}
+
+void ApplyColosseumCageStatForZone(struct DuelCard *zone)
+{
+  struct DuelCard *colosseum;
+  u8 fixedDuelist;
+  u8 row;
+  u8 col;
+  u32 boosted;
+
+  if (zone == NULL || zone->id == CARD_NONE || !ZoneShowsCombatStats(zone))
+    return;
+
+  if (!IsGladiatorBeastMonster(zone->id))
+    return;
+
+  if (!Duel_FindFixedZone(zone, &row, &col) || !Duel_IsFixedMonsterRow(row))
+    return;
+
+  fixedDuelist = Duel_FixedDuelistForMonsterRow(row);
+  colosseum = FindFaceUpColosseumCage(fixedDuelist);
+  if (colosseum == NULL)
+    return;
+
+  if (colosseum->unk4 == 0)
+    return;
+
+  if (gCardInfo.atk != 0xFFFF) {
+    boosted = (u32)gCardInfo.atk
+              + (u32)colosseum->unk4 * COLOSSEUM_CAGE_ATK_DEF_PER_COUNTER;
+    gCardInfo.atk = boosted > 0xFFFE ? 0xFFFE : (u16)boosted;
+  }
+
+  if (gCardInfo.def != 0xFFFF) {
+    boosted = (u32)gCardInfo.def
+              + (u32)colosseum->unk4 * COLOSSEUM_CAGE_ATK_DEF_PER_COUNTER;
+    gCardInfo.def = boosted > 0xFFFE ? 0xFFFE : (u16)boosted;
+  }
+}
+
+void ColosseumCage_MarkSpecialSummonFromDeck(u8 controllerFixedDuelist)
+{
+  if (controllerFixedDuelist == DUEL_PLAYER || controllerFixedDuelist == DUEL_OPPONENT)
+    sColosseumPendingDeckSummonController = controllerFixedDuelist;
+}
+
+u8 Cond_ColosseumCageOnDeckSpecialSummon(struct EffectCtx *ctx)
+{
+  const struct EffectEvent *ev;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return FALSE;
+
+  ev = ctx->event;
+  if (ev->controller != sColosseumPendingDeckSummonController)
+    return FALSE;
+
+  if (FindFaceUpColosseumCage(ev->controller) == NULL)
+    return FALSE;
+
+  return TRUE;
+}
+
+enum DuelActionResult Op_ColosseumCageOnDeckSpecialSummon(struct EffectCtx *ctx)
+{
+  struct DuelCard *colosseum;
+
+  if (ctx == NULL || ctx->event == NULL)
+    return DUEL_ACTION_INVALID;
+
+  colosseum = FindFaceUpColosseumCage(ctx->event->controller);
+  if (colosseum == NULL)
+    return DUEL_ACTION_NO_TARGET;
+
+  if (colosseum->unk4 < 255)
+    colosseum->unk4++;
+
+  sColosseumPendingDeckSummonController = 0xFF;
+  RefreshFieldMonsterStatOverlays();
+  return DUEL_ACTION_OK;
+}
+
+u8 ColosseumCage_TryPreventDestroyByCardEffect(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS)
+    return FALSE;
+
+  fixedDuelist = FixedDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return FALSE;
+
+  turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  if (!HandHasAnotherColosseumCage(turnDuelist))
+    return FALSE;
+
+  Duel_ShowEffectText(COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS);
+  if (IsDuelOver() == TRUE)
+    return FALSE;
+
+  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText) {
+    /* ponytail: no labeled confirm menu - auto-discard when another copy is in hand. */
+  }
+
+  if (Duel_DiscardFromHand(turnDuelist, 1, IsColosseumCageHandCard, TRUE) != DUEL_ACTION_OK)
+    return FALSE;
+
+  return TRUE;
+}
+
 static void COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -89,22 +251,6 @@ static void COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS_ResolveBody(void)
     zone->unk4 = 0;
 
   Duel_ShowEffectText(COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS);
-
-  /* ponytail: Counter on Special Summon from Deck needs a summon-listener outside
-   * this file (no in-file SS-from-Deck dispatch). Ceiling: face-up field + unk4
-   * counter slot (never rises alone); upgrade: after SS from Deck → if face-up
-   * COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS then zone->unk4++. */
-
-  /* ponytail: +100 ATK/DEF per counter for all Gladiator Beast monsters needs a
-   * field-stat applier outside this file (Duel_TryApplyDynamicZoneStats only covers
-   * monster ids registered in duel_helpers.c). Ceiling: face-up field only;
-   * upgrade: LynJump/stat overlay → if face-up COLOSSEUM and name contains
-   * "Gladiator Beast" then ATK/DEF += 100 * zone->unk4. */
-
-  /* ponytail: discard another Colosseum to prevent destroy by card effect needs a
-   * destroy-protection / replacement hook outside this file. Ceiling: no protect;
-   * upgrade: OnWouldDestroySpell → if hand has COLOSSEUM_CAGE then optional discard
-   * and skip destroy. */
 }
 
 APPEND_TEXT void EffectCOLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS(void)
@@ -118,15 +264,16 @@ APPEND_TEXT void EffectCOLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS(void)
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS_SelfCheck(void)
 {
-  static const char gbName[] = "Gladiator Beast";
-
-  if (!Duel_CardNameContains(GLADIATOR_BEAST_ANDAL, gbName))
+  if (!Duel_CardNameContains(GLADIATOR_BEAST_ANDAL, sGladiatorBeastName))
     while (1)
       ;
-  if (Duel_CardNameContains(BLUE_EYES_WHITE_DRAGON, gbName))
+  if (Duel_CardNameContains(BLUE_EYES_WHITE_DRAGON, sGladiatorBeastName))
     while (1)
       ;
   if (!IsFieldSpellCardOnField(COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS))
+    while (1)
+      ;
+  if (COLOSSEUM_CAGE_ATK_DEF_PER_COUNTER != 100)
     while (1)
       ;
 }

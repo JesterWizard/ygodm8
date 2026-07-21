@@ -1,13 +1,11 @@
 #include "global.h"
 #include "common-chax.h"
+#include "chicken_game.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "spell_effects.h"
-
-#define CHICKEN_GAME_LP_COST 1000
-#define CHICKEN_GAME_LP_GAIN 1000
-#define CHICKEN_GAME_DRAW_COUNT 1
 
 enum ChickenGameMode {
   CHICKEN_GAME_DRAW = 0,
@@ -22,10 +20,73 @@ void WaitForVBlank(void);
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
 
+static u8 sChickenGameIgnitionNoResponse APPEND_DATA = {0};
+
 static void WaitForNoButtonsHeld(void)
 {
   while (gPressedButtons & ANY_BUTTON)
     WaitForVBlank();
+}
+
+u8 ChickenGame_FaceUpOnField(void)
+{
+  return Duel_FindBackrowCard(DUEL_PLAYER, CHICKEN_GAME, TRUE) != NULL
+      || Duel_FindBackrowCard(DUEL_OPPONENT, CHICKEN_GAME, TRUE) != NULL;
+}
+
+u8 ChickenGame_PlayerHasLowestLifePoints(u8 fixedDuelist)
+{
+  u8 other = fixedDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+
+  if (gDuelLifePoints[fixedDuelist] < gDuelLifePoints[other])
+    return TRUE;
+
+  if (gDuelLifePoints[fixedDuelist] == gDuelLifePoints[other])
+    return TRUE;
+
+  return FALSE;
+}
+
+u8 ChickenGame_ShouldBlockBattleDamage(u8 damagedFixedDuelist)
+{
+  if (!ChickenGame_FaceUpOnField())
+    return FALSE;
+
+  return ChickenGame_PlayerHasLowestLifePoints(damagedFixedDuelist);
+}
+
+u8 ChickenGame_ShouldSkipTrapChain(void)
+{
+  return sChickenGameIgnitionNoResponse;
+}
+
+void ChickenGame_BeginIgnitionNoResponse(void)
+{
+  sChickenGameIgnitionNoResponse = TRUE;
+}
+
+void ChickenGame_EndIgnitionNoResponse(void)
+{
+  sChickenGameIgnitionNoResponse = FALSE;
+}
+
+static u8 CanPayChickenGameCost(void)
+{
+  if (WhoseTurn() == DUEL_PLAYER)
+    return gDuelLifePoints[DUEL_PLAYER] >= CHICKEN_GAME_LP_COST;
+
+  return gDuelLifePoints[DUEL_OPPONENT] >= CHICKEN_GAME_LP_COST;
+}
+
+u8 ChickenGame_CanActivateIgnition(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != CHICKEN_GAME || zone->isFaceUp == FALSE)
+    return FALSE;
+
+  if (EffectOpt_IsUsed(CHICKEN_GAME))
+    return FALSE;
+
+  return CanPayChickenGameCost();
 }
 
 /* Nested A/B: A = draw; B then A = destroy+gain; B then B = opp gains 1000. */
@@ -73,54 +134,43 @@ static u8 PlayerChoosesChickenGameMode(void)
   }
 }
 
-static u8 CanPayChickenGameCost(void)
-{
-  if (WhoseTurn() == DUEL_PLAYER)
-    return gDuelLifePoints[DUEL_PLAYER] >= CHICKEN_GAME_LP_COST;
-
-  return gDuelLifePoints[DUEL_OPPONENT] >= CHICKEN_GAME_LP_COST;
-}
-
-static u8 CanActivateChickenGameIgnition(struct DuelCard *zone)
-{
-  if (zone == NULL || zone->id != CHICKEN_GAME || zone->isFaceUp == FALSE)
-    return FALSE;
-
-  if (zone->effectUsedThisTurn)
-    return FALSE;
-
-  return CanPayChickenGameCost();
-}
-
 static void ResolveChickenGameIgnition(struct DuelCard *zone)
 {
   u8 mode;
 
-  if (!CanActivateChickenGameIgnition(zone))
+  if (!ChickenGame_CanActivateIgnition(zone))
     return;
+
+  ChickenGame_BeginIgnitionNoResponse();
 
   Duel_ShowEffectText(CHICKEN_GAME);
 
-  if (IsDuelOver() == TRUE)
+  if (IsDuelOver() == TRUE) {
+    ChickenGame_EndIgnitionNoResponse();
     return;
+  }
 
-  if (Duel_ChangeLp(ACTIVE_DUELIST, -CHICKEN_GAME_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -CHICKEN_GAME_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER) {
+    ChickenGame_EndIgnitionNoResponse();
     return;
+  }
 
   if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
     mode = PlayerChoosesChickenGameMode();
   else
-    mode = CHICKEN_GAME_DRAW; /* AI prefers draw */
+    mode = CHICKEN_GAME_DRAW;
 
-  zone->effectUsedThisTurn = TRUE;
+  EffectOpt_MarkUsed(CHICKEN_GAME);
 
   if (mode == CHICKEN_GAME_DRAW) {
     Duel_DrawCards(ACTIVE_DUELIST, CHICKEN_GAME_DRAW_COUNT, TRUE);
+    ChickenGame_EndIgnitionNoResponse();
     return;
   }
 
   if (mode == CHICKEN_GAME_DESTROY_GAIN) {
     Duel_DestroyZone(zone, ACTIVE_DUELIST, FALSE);
+    ChickenGame_EndIgnitionNoResponse();
     if (IsDuelOver() == TRUE)
       return;
 
@@ -128,7 +178,7 @@ static void ResolveChickenGameIgnition(struct DuelCard *zone)
     return;
   }
 
-  /* CHICKEN_GAME_OPP_GAIN */
+  ChickenGame_EndIgnitionNoResponse();
   Duel_ChangeLp(INACTIVE_DUELIST, CHICKEN_GAME_LP_GAIN, TRUE);
 }
 
@@ -136,9 +186,8 @@ static void CHICKEN_GAME_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
-  /* Re-activation of face-up Field (OPT ignition). */
   if (zone != NULL && zone->isLocked) {
-    if (!CanActivateChickenGameIgnition(zone)) {
+    if (!ChickenGame_CanActivateIgnition(zone)) {
       if (!gHideEffectText)
         PlayMusic(SFX_FORBIDDEN);
       return;
@@ -151,22 +200,14 @@ static void CHICKEN_GAME_ResolveBody(void)
   Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(CHICKEN_GAME);
 
-  /* ponytail: lowest-LP player takes no damage needs an LP/damage gate outside
-   * this file (no damage-immunity helper keyed to field spell).
-   * Ceiling: continuous face-up + OPT pay/draw/destroy/opp-gain only; upgrade:
-   * ChangeLp / battle-damage hook → if face-up CHICKEN_GAME and target has
-   * strictly lower LP (or tied-lowest), skip damage. */
-
-  /* ponytail: "neither player can activate cards/effects in response" needs a
-   * response-block flag outside this file. Ceiling: normal trap chain still
-   * possible on Effect entry; upgrade: skip TryResolveSpellThroughTraps for
-   * ignition / set activation-protect flag. */
-if (CanActivateChickenGameIgnition(zone))
+  if (ChickenGame_CanActivateIgnition(zone))
     ResolveChickenGameIgnition(zone);
 }
 
 APPEND_TEXT void EffectCHICKEN_GAME(void)
 {
+  /* ponytail: OPT ignition no-response — parent skips TryResolveSpellThroughTraps
+   * when ChickenGame_ShouldSkipTrapChain() during face-up re-activation. */
   if (Duel_TryResolveSpellThroughTraps(CHICKEN_GAME, CHICKEN_GAME_ResolveBody)
       == DUEL_ACTION_BLOCKED)
     return;
@@ -182,6 +223,10 @@ void CHICKEN_GAME_SelfCheck(void)
     while (1)
       ;
   if (CHICKEN_GAME_DRAW_COUNT != 1)
+    while (1)
+      ;
+  if (ChickenGame_ShouldBlockBattleDamage(DUEL_PLAYER)
+      && !ChickenGame_FaceUpOnField())
     while (1)
       ;
 }

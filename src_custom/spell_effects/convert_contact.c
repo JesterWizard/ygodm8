@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "convert_contact.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
@@ -187,15 +188,8 @@ static void CONVERT_CONTACT_ResolveBody(void)
   }
 
   deckIndex = PickNeoSpacianDeckIndex(ACTIVE_DUELIST);
-  if (deckIndex == 0xFF) {
-    /* ponytail: cancel on deck pick auto-sends first Neo-Spacian (activation committed). */
-    s16 autoIndex = FindFirstNeoSpacianDeckIndex(ACTIVE_DUELIST);
-
-    if (autoIndex >= 0)
-      SendDeckCardAtIndexToGraveyard(ACTIVE_DUELIST, (u8)autoIndex);
-  } else {
+  if (deckIndex != 0xFF)
     SendDeckCardAtIndexToGraveyard(ACTIVE_DUELIST, deckIndex);
-  }
 
   if (IsDuelOver() == TRUE)
     return;

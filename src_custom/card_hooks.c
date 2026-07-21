@@ -10,6 +10,7 @@
 #include "ancient_gear_tank.h"
 #include "bubble_blaster.h"
 #include "burden_of_the_mighty.h"
+#include "colosseum_cage_of_the_gladiator_beasts.h"
 #include "divine_sanctuary.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -634,6 +635,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyAmazonessVillageFieldStatBoostForZone(zone);
   ApplyAncientGearCastleAtkBoostForZone(zone);
   ApplyBurdenOfTheMightyStatForZone(zone);
+  ApplyColosseumCageStatForZone(zone);
   ApplyDivineSanctuaryFieldStatPenaltyForZone(zone);
   ApplyTheTripperMercuryOpponentAtkDrain(zone);
   ApplyTheGrandJupiterEquipAtkBonus(zone);
@@ -756,6 +758,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyAmazonessVillageFieldStatBoostForZone(gSetFinalStatZone);
     ApplyAncientGearCastleAtkBoostForZone(gSetFinalStatZone);
     ApplyBurdenOfTheMightyStatForZone(gSetFinalStatZone);
+    ApplyColosseumCageStatForZone(gSetFinalStatZone);
     ApplyTheTripperMercuryOpponentAtkDrain(gSetFinalStatZone);
     ApplyTheGrandJupiterEquipAtkBonus(gSetFinalStatZone);
     ApplyTheDespairUranusAtkBoost(gSetFinalStatZone);

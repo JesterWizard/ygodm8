@@ -1,11 +1,67 @@
 #include "global.h"
 #include "common-chax.h"
+#include "chain_summoning.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
 
 void EnableDoubleSummonForTurn(void);
+void UnlockCardsInRow(unsigned char turnRow);
+
+static u8 sChainSummoningExtraPending APPEND_DATA = {0};
+
+u8 ChainSummoning_CanActivateForChain(u8 linkCount, u8 sameNameOnChain)
+{
+  if (linkCount < CHAIN_SUMMONING_MIN_LINK)
+    return FALSE;
+
+  if (sameNameOnChain)
+    return FALSE;
+
+  return TRUE;
+}
+
+void ChainSummoning_GrantExtraNormalSummons(void)
+{
+  /* ponytail: parent wires TryUnlockAfterNormalSummon in code_803F02C_hooks so
+   * LockMonsterCardsInRow unlocks for each of the 2 extra NS beyond base. */
+  sChainSummoningExtraPending = CHAIN_SUMMONING_EXTRA_NORMAL_SUMMONS;
+
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
+    UnlockCardsInRow(ACTIVE_DUELIST_HAND);
+}
+
+u8 ChainSummoning_ExtraSummonsRemaining(void)
+{
+  return sChainSummoningExtraPending;
+}
+
+u8 ChainSummoning_TryUnlockAfterNormalSummon(void)
+{
+  if (sChainSummoningExtraPending == 0)
+    return FALSE;
+
+  sChainSummoningExtraPending--;
+
+  if (sChainSummoningExtraPending > 0
+      && gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
+    UnlockCardsInRow(ACTIVE_DUELIST_HAND);
+
+  return TRUE;
+}
+
+void ChainSummoning_ResetTurnState(void)
+{
+  sChainSummoningExtraPending = 0;
+}
+
+u8 CanActivateCHAIN_SUMMONING(void)
+{
+  /* ponytail: no Chain Link / chain-depth API in this engine — parent wires
+   * ChainSummoning_CanActivateForChain(link, sameNameOnChain) at activation. */
+  return FALSE;
+}
 
 static void CHAIN_SUMMONING_ResolveBody(void)
 {
@@ -16,24 +72,38 @@ static void CHAIN_SUMMONING_ResolveBody(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* Extra Normal Summons this turn via Double Summon turn flag. */
-  EnableDoubleSummonForTurn();
-
-  /* ponytail: Double Summon API only grants 1 extra NS (=2 total), not 3.
-   * Ceiling: up to 2 Normal Summons/Sets this turn; upgrade: chain-summoning
-   * pending counter of 2 extras in code_803F02C_hooks (like Double Summon
-   * unlock loop) so LockMonsterCardsInRow can unlock twice. */
-  /* ponytail: no Chain Link / chain-depth API (same as CHAIN_STRIKE). Ceiling:
-   * activable without Link≥3 or same-name-on-chain forbid; upgrade: require
-   * link >= 3 and reject when multiple same-name cards/effects already on chain. */
+  ChainSummoning_GrantExtraNormalSummons();
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
 }
 
 APPEND_TEXT void EffectCHAIN_SUMMONING(void)
 {
-  /* ponytail: Chain Link 3+ gate missing — see ResolveBody. Always offered. */
+  if (!CanActivateCHAIN_SUMMONING()) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
+
   if (Duel_TryResolveSpellThroughTraps(CHAIN_SUMMONING, CHAIN_SUMMONING_ResolveBody)
       == DUEL_ACTION_BLOCKED)
     return;
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void CHAIN_SUMMONING_SelfCheck(void)
+{
+  if (ChainSummoning_CanActivateForChain(2, FALSE))
+    while (1)
+      ;
+  if (!ChainSummoning_CanActivateForChain(3, FALSE))
+    while (1)
+      ;
+  if (ChainSummoning_CanActivateForChain(3, TRUE))
+    while (1)
+      ;
+  if (CHAIN_SUMMONING_EXTRA_NORMAL_SUMMONS != 2)
+    while (1)
+      ;
+}
+#endif
