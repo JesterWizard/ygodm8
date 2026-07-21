@@ -124,8 +124,8 @@ static void ClearDarkMagicianOfChaosSpecialSummonLock(void)
     struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i];
 
     if (zone->id == DARK_MAGICIAN_OF_CHAOS) {
-      // ponytail: special-face-up sets unk4=2 and blocks DMoC's on-summon effect
-      zone->unk4 = 0;
+  /* Special-face-up sets unk4=2 and blocks DMoC's on-summon effect. */
+  zone->unk4 = 0;
       return;
     }
   }

@@ -23,6 +23,7 @@
 #include "mini_card.h"
 #include "summon_tribute.h"
 #include "raregold_armor.h"
+#include "double_tool_c_and_d.h"
 #include "rivalry_of_warlords.h"
 #include "level_limit_area_b.h"
 #include "level_limit_area_a.h"
@@ -1523,6 +1524,7 @@ struct DuelForcedAttackRedirect {
 
 static const struct DuelForcedAttackRedirect sForcedAttackRedirects[] __attribute__((section(".text"))) = {
   { RaregoldArmor_GetForcedAttackTarget },
+  { DoubleTool_GetForcedAttackTarget },
   { ElementalHeroPoisonRose_GetForcedAttackTarget },
   { HamonLordOfStrikingThunder_GetForcedAttackTarget },
 };

@@ -8,6 +8,7 @@ struct DuelCard;
 #define DOUBLE_TOOL_C_AND_D_ATK_BOOST 1000
 
 void ApplyDoubleToolCAndDAtkBonusToCardInfo(const struct DuelCard *zone);
+struct DuelCard *DoubleTool_GetForcedAttackTarget(u8 defenderDuelist);
 u8 DoubleTool_ShouldNegateAttackTargetEffects(const struct DuelCard *attacker,
                                               const struct DuelCard *target);
 struct DuelCard *DoubleTool_GetAttackRedirectTarget(const struct DuelCard *attacker);

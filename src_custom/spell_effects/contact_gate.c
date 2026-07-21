@@ -522,11 +522,11 @@ void ActivateContactGateGy(u8 fixedDuelist, u8 gyIndex)
   Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex);
   sContactGateFusionReturnController = 0xFF;
 
-  /* ponytail: no RemovedFromPlay_RemoveAt - parent must shift RFP after SS. */
   turnDuelist = TurnDuelistForFixed(fixedDuelist);
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
   opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_ATK;
-  Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts);
+  if (Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts) == DUEL_ACTION_OK)
+    RemovedFromPlay_RemoveAt(fixedDuelist, (u8)banishedIndex);
   UpdateDuelGfxExceptField();
 }
 

@@ -16,6 +16,7 @@
 #include "mirror_force.h"
 #include "a_hero_emerges.h"
 #include "big_bang_shot.h"
+#include "double_tool_c_and_d.h"
 #include "riryoku.h"
 
 static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
@@ -358,6 +359,15 @@ unsigned IsTrapTriggered__Replacement(void) {
 
   if (Duel_IsOriginActivationProtectedFromNegation())
     return FALSE;
+
+  if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
+    struct DuelCard *attacker =
+        gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
+
+    if (attacker != NULL
+        && DoubleTool_ShouldNegateAttackTargetEffects(attacker, NULL))
+      return FALSE;
+  }
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_BACKROW][i];

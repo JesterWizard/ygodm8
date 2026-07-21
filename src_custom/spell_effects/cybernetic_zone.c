@@ -22,8 +22,6 @@ static u8 sCyberneticZoneFixedDuelist APPEND_DATA = {0};
 static u8 sCyberneticZonePhase APPEND_DATA = {0};
 static u16 sCyberneticZoneBoardCell APPEND_DATA = {0};
 
-extern u16 gRemovedFromPlay[2][REMOVED_FROM_PLAY_CAPACITY];
-
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
   if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
@@ -130,27 +128,9 @@ static u16 GetDuelBoardCellIndex(const struct DuelCard *zone)
   return (u16)(zone - base);
 }
 
-/* ponytail: no RemovedFromPlay_RemoveAt — shift RFP after return. */
 static void RemoveBanishedMatching(u8 fixedDuelist, u16 cardId)
 {
-  u8 count;
-  u8 i;
-  u8 j;
-
-  if (fixedDuelist > DUEL_OPPONENT || cardId == CARD_NONE)
-    return;
-
-  count = RemovedFromPlay_GetCount(fixedDuelist);
-  for (i = 0; i < count; i++) {
-    if (RemovedFromPlay_GetCardAt(fixedDuelist, i) != cardId)
-      continue;
-
-    for (j = i + 1; j < count; j++)
-      gRemovedFromPlay[fixedDuelist][j - 1] = gRemovedFromPlay[fixedDuelist][j];
-
-    gRemovedFromPlay[fixedDuelist][count - 1] = CARD_NONE;
-    return;
-  }
+  RemovedFromPlay_RemoveMatching(fixedDuelist, cardId);
 }
 
 static void DoubleReturnedAtk(struct DuelCard *zone)

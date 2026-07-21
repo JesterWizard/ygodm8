@@ -109,3 +109,40 @@ u16 RemovedFromPlay_GetCardAt(u8 fixedDuelist, u8 index)
     return CARD_NONE;
   return gRemovedFromPlay[fixedDuelist][index];
 }
+
+u8 RemovedFromPlay_RemoveAt(u8 fixedDuelist, u8 index)
+{
+  u8 count;
+  u8 i;
+
+  if (fixedDuelist > DUEL_OPPONENT || !RemovedFromPlay_IsEnabled())
+    return FALSE;
+
+  count = CountFromArray(fixedDuelist);
+  if (index >= count)
+    return FALSE;
+
+  for (i = index + 1; i < count; i++)
+    gRemovedFromPlay[fixedDuelist][i - 1] = gRemovedFromPlay[fixedDuelist][i];
+
+  gRemovedFromPlay[fixedDuelist][count - 1] = CARD_NONE;
+  return TRUE;
+}
+
+u8 RemovedFromPlay_RemoveMatching(u8 fixedDuelist, u16 cardId)
+{
+  u8 count;
+  u8 i;
+
+  if (fixedDuelist > DUEL_OPPONENT || cardId == CARD_NONE || !RemovedFromPlay_IsEnabled())
+    return FALSE;
+
+  count = CountFromArray(fixedDuelist);
+  for (i = 0; i < count; i++) {
+    if (gRemovedFromPlay[fixedDuelist][i] != cardId)
+      continue;
+    return RemovedFromPlay_RemoveAt(fixedDuelist, i);
+  }
+
+  return FALSE;
+}

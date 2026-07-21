@@ -120,9 +120,30 @@ void ApplyDoubleToolCAndDAtkBonusToCardInfo(const struct DuelCard *zone)
   gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + DOUBLE_TOOL_C_AND_D_ATK_BOOST);
 }
 
-/* ponytail: attack-target negate/redirect need attacker-context selection hook.
- * Ceiling: ATK overlay + battle destroy wired; upgrade: call ShouldNegate /
- * GetAttackRedirectTarget from attack-declare / target-pick path. */
+/* During opponent's turn, attacks against this controller must target the
+ * Double Tool-equipped monster (same ForcedAttack table as Raregold Armor). */
+struct DuelCard *DoubleTool_GetForcedAttackTarget(u8 defenderDuelist)
+{
+  u8 col;
+  u8 equippedController;
+  struct DuelCard *target;
+
+  if (WhoseTurn() == defenderDuelist)
+    return NULL;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    target = gFixedZones[Duel_FixedMonsterRowForDuelist(defenderDuelist)][col];
+    if (target == NULL || target->id == CARD_NONE)
+      continue;
+    if (!DoubleToolEquippedMonsterController(target, &equippedController))
+      continue;
+    if (equippedController == defenderDuelist)
+      return target;
+  }
+
+  return NULL;
+}
+
 u8 DoubleTool_ShouldNegateAttackTargetEffects(const struct DuelCard *attacker,
                                               const struct DuelCard *target)
 {
@@ -132,6 +153,8 @@ u8 DoubleTool_ShouldNegateAttackTargetEffects(const struct DuelCard *attacker,
   if (!DoubleToolEquippedMonsterController(attacker, &attackerController)
       || WhoseTurn() != attackerController)
     return FALSE;
+  if (target == NULL)
+    return TRUE;
   if (!FixedDuelistForMonster(target, &targetController))
     return FALSE;
 
@@ -141,23 +164,12 @@ u8 DoubleTool_ShouldNegateAttackTargetEffects(const struct DuelCard *attacker,
 struct DuelCard *DoubleTool_GetAttackRedirectTarget(const struct DuelCard *attacker)
 {
   u8 attackerController;
-  u8 targetController;
-  u8 equippedController;
-  u8 col;
-  struct DuelCard *target;
 
-  if (!FixedDuelistForMonster(attacker, &attackerController)
-      || WhoseTurn() != attackerController)
+  if (!FixedDuelistForMonster(attacker, &attackerController))
     return NULL;
 
-  targetController = attackerController == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    target = gFixedZones[Duel_FixedMonsterRowForDuelist(targetController)][col];
-    if (DoubleToolEquippedMonsterController(target, &equippedController))
-      return target;
-  }
-
-  return NULL;
+  return DoubleTool_GetForcedAttackTarget(
+      attackerController == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER);
 }
 
 u8 DoubleTool_ShouldDestroyBattleOpponent(const struct DuelCard *attacker,

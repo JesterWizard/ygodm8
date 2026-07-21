@@ -14,8 +14,6 @@
 
 void UpdateDuelGfxExceptField(void);
 
-extern u16 gRemovedFromPlay[2][REMOVED_FROM_PLAY_CAPACITY];
-
 /* Banished card id per fixed backrow cell (opp 0-4, player 5-9). */
 static u16 sCapsuleBanishedCard[MAX_ZONES_IN_ROW * 2] APPEND_DATA = {0};
 
@@ -172,24 +170,9 @@ static u8 PickAnyDeckIndex(u8 turnDuelist)
   return deckIndex;
 }
 
-/* ponytail: no RemovedFromPlay_RemoveAt — shift RFP after returning the capsule card.
- * Ceiling: local mutate; upgrade: RemovedFromPlay_RemoveAt helper. */
 static void RemoveBanishedMatching(u8 fixedDuelist, u16 cardId)
 {
-  u8 count = RemovedFromPlay_GetCount(fixedDuelist);
-  u8 i;
-  u8 j;
-
-  for (i = 0; i < count; i++) {
-    if (RemovedFromPlay_GetCardAt(fixedDuelist, i) != cardId)
-      continue;
-
-    for (j = i + 1; j < count; j++)
-      gRemovedFromPlay[fixedDuelist][j - 1] = gRemovedFromPlay[fixedDuelist][j];
-
-    gRemovedFromPlay[fixedDuelist][count - 1] = CARD_NONE;
-    return;
-  }
+  RemovedFromPlay_RemoveMatching(fixedDuelist, cardId);
 }
 
 static u8 AddBanishedCardToHand(u8 turnDuelist, u16 cardId)

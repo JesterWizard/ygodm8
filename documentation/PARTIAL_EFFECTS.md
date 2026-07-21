@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 21:29 UTC  
-**Remaining partials:** `778`
+**Last updated:** 2026-07-21 21:32 UTC  
+**Remaining partials:** `775`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 97 |
+| `spell` | 94 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **778** |
+| **total** | **775** |
 
-## spell (97)
+## spell (94)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -82,20 +82,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/colosseum_cage_of_the_gladiator_beasts.c`
 - L231: no labeled confirm menu - auto-discard when another copy is in hand.
 
-### `CONTACT_GATE`
-- path: `src_custom/spell_effects/contact_gate.c`
-- L525: no RemovedFromPlay_RemoveAt - parent must shift RFP after SS.
-
 ### `CYBERNETIC_ZONE`
 - path: `src_custom/spell_effects/cybernetic_zone.c`
-- L133: no RemovedFromPlay_RemoveAt — shift RFP after return.
-- L167: stage unit is 500 ATK — double via +original/500 stages. Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay.
+- L147: stage unit is 500 ATK — double via +original/500 stages. Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay.
 
 ### `DARK_CONTACT`
 - path: `src_custom/spell_effects/dark_contact.c`
 - L275: no dedicated choice UI — A = Dark Fusion FS, B = search. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L430: no RemovedFromPlay_RemoveAt — shift RFP array in place. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
-- L571: "treated as a Fusion Summon with Dark Fusion" name/interaction checks need a summon-tag outside this file. Ceiling: Fiend Fusion via field/GY/banish shuffle only; upgrade: mark result zone / last-fusion-spell = DARK_FUSION for name-gated effects.
 
 ### `DARK_MAGIC_INHERITANCE`
 - path: `src_custom/spell_effects/dark_magic_inheritance.c`
@@ -110,20 +103,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L81: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field + best-effort ExtraDeck_AddCard when enable_extra_deck; upgrade: per-duelist mid-duel Extra Deck return for the Synchro's controller.
 - L101: Synchro Summon materials are not recorded at summon time, so "if all materials are in your GY, SS all of them" cannot run. Ceiling: return-to-Extra-Deck only; upgrade: store material cardIds on the Synchro zone at SynchroDuel_Execute, then if each is in GY, SS from GY.
 
-### `DEDICATION_THROUGH_LIGHT_AND_DARKNESS`
-- path: `src_custom/spell_effects/dedication_through_light_and_darkness.c`
-- L127: special-face-up sets unk4=2 and blocks DMoC's on-summon effect
-
 ### `DIFFERENT_DIMENSION_CAPSULE`
 - path: `src_custom/spell_effects/different_dimension_capsule.c`
-- L175: no RemovedFromPlay_RemoveAt — shift RFP after returning the capsule card. Ceiling: local mutate; upgrade: RemovedFromPlay_RemoveAt helper.
-- L226: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
-- L274: RFP disabled — cannot banish from Deck. Ceiling: activation text only; upgrade: enable removed_from_play.
+- L209: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
+- L257: RFP disabled — cannot banish from Deck. Ceiling: activation text only; upgrade: enable removed_from_play.
 
 ### `DIMENSION_FUSION`
 - path: `src_custom/spell_effects/dimension_fusion.c`
-- L88: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS. Ceiling: local mutate of gRemovedFromPlay; upgrade: add RemoveAt to removed_from_play.c.
-- L147: RFP zone is id-list only (no face/position memory). Ceiling: SS face-up ATK via Duel_SpecialSummonMonsterId; upgrade: store zone state on banish + restore on return.
+- L130: RFP zone is id-list only (no face/position memory). Ceiling: SS face-up ATK via Duel_SpecialSummonMonsterId; upgrade: store zone state on banish + restore on return.
 
 ### `DOCTOR_D`
 - path: `src_custom/spell_effects/doctor_d.c`
@@ -133,10 +120,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DOUBLE_SPELL`
 - path: `src_custom/spell_effects/double_spell.c`
 - L230: nested ActivateSpellEffect re-runs trap responses / field-spell specials; equips that need pre-set row2/col2 targets may fail. Ceiling: place + best-effort activate; upgrade: shared "resolve spell as if activated" helper that skips chain traps and supplies targeting for EQUIP/Field.
-
-### `DOUBLE_TOOL_C_AND_D`
-- path: `src_custom/spell_effects/double_tool_c_and_d.c`
-- L123: attack-target negate/redirect need attacker-context selection hook. Ceiling: ATK overlay + battle destroy wired; upgrade: call ShouldNegate / GetAttackRedirectTarget from attack-declare / target-pick path.
 
 ### `DRAGON_RAVINE`
 - path: `src_custom/spell_effects/dragon_ravine.c`

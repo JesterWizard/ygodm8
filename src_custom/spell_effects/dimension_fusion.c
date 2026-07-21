@@ -12,8 +12,6 @@
 
 void UpdateDuelGfxExceptField(void);
 
-extern u16 gRemovedFromPlay[2][REMOVED_FROM_PLAY_CAPACITY];
-
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
   if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
@@ -85,24 +83,9 @@ u8 CanActivateDIMENSION_FUSION(void)
   return FALSE;
 }
 
-/* ponytail: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
- * Ceiling: local mutate of gRemovedFromPlay; upgrade: add RemoveAt to removed_from_play.c. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {
-  u8 count;
-  u8 i;
-
-  if (fixedDuelist > DUEL_OPPONENT)
-    return;
-
-  count = RemovedFromPlay_GetCount(fixedDuelist);
-  if (index >= count)
-    return;
-
-  for (i = index + 1; i < count; i++)
-    gRemovedFromPlay[fixedDuelist][i - 1] = gRemovedFromPlay[fixedDuelist][i];
-
-  gRemovedFromPlay[fixedDuelist][count - 1] = CARD_NONE;
+  RemovedFromPlay_RemoveAt(fixedDuelist, index);
 }
 
 static void SpecialSummonBanishedForTurnDuelist(u8 turnDuelist)

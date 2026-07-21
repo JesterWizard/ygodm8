@@ -6,6 +6,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "dark_contact.h"
+#include "dark_fusion.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "elemental_hero_absolute_zero.h"
@@ -25,7 +26,6 @@ void WaitForVBlank(void);
 
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
-extern u16 gRemovedFromPlay[2][REMOVED_FROM_PLAY_CAPACITY];
 
 enum DarkContactMode {
   DARK_CONTACT_MODE_FUSION = 0,
@@ -427,24 +427,9 @@ static void ResolveSearch(void)
     sDarkContactSearchUsed = TRUE;
 }
 
-/* ponytail: no RemovedFromPlay_RemoveAt — shift RFP array in place.
- * Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {
-  u8 count;
-  u8 i;
-
-  if (fixedDuelist > DUEL_OPPONENT)
-    return;
-
-  count = RemovedFromPlay_GetCount(fixedDuelist);
-  if (index >= count)
-    return;
-
-  for (i = index + 1; i < count; i++)
-    gRemovedFromPlay[fixedDuelist][i - 1] = gRemovedFromPlay[fixedDuelist][i];
-
-  gRemovedFromPlay[fixedDuelist][count - 1] = CARD_NONE;
+  RemovedFromPlay_RemoveAt(fixedDuelist, index);
 }
 
 static void ReturnCardToDeck(u8 turnDuelist, u16 cardId)
@@ -568,10 +553,18 @@ static void ExecuteDarkContactFusion(const struct FusionRecipe *recipe,
   UpdateDuelGfxExceptField();
   sDarkContactFusionUsed = TRUE;
 
-  /* ponytail: "treated as a Fusion Summon with Dark Fusion" name/interaction
-   * checks need a summon-tag outside this file.
-   * Ceiling: Fiend Fusion via field/GY/banish shuffle only; upgrade: mark result
-   * zone / last-fusion-spell = DARK_FUSION for name-gated effects. */
+  {
+    u8 col;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+      if (zone != NULL && zone->id == recipe->result) {
+        DarkFusion_MarkSummonedZone(zone);
+        break;
+      }
+    }
+  }
 }
 
 static void RunPlayerDarkContactFusionFlow(void)
