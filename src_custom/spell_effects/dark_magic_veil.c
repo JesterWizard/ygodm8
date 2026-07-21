@@ -107,8 +107,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = hand, FALSE = GY. */
 static u8 PlayerChoosesHand(void)
 {
-  /* ponytail: no dedicated hand/GY choice UI — A = hand, B = GY.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

@@ -107,8 +107,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = add to hand, FALSE = Special Summon. */
 static u8 PlayerChoosesAddToHand(void)
 {
-  /* ponytail: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -312,11 +310,6 @@ static void DOCTOR_D_ResolveBody(void)
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
   UpdateDuelGfxExceptField();
 
-  /* ponytail: GY ignition "banish this card from GY, target 2 Destiny HERO;
-   * copy ATK until EOT" needs a GY-activate spell path + PickZone pair outside
-   * this file. Ceiling: on-field banish-cost recover only; upgrade: GY activate
-   * → banish DOCTOR_D → PickZone two Destiny HERO → set target ATK via temp
-   * stages / exact overlay until End Phase. */
 }
 
 APPEND_TEXT void EffectDOCTOR_D(void)

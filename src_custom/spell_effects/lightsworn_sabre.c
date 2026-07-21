@@ -78,10 +78,6 @@ static void EquipLightswornSabre(struct DuelCard *spellZone, struct DuelCard *ta
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-/* ponytail: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook
-   * outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path →
-   * if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and
-   * RegisterDynamicEquip again. */
 }
 
 static void ResolveLightswornSabreTarget(u8 fixedRow, u8 fixedCol)

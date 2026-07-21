@@ -129,8 +129,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = destroy Attack Position monsters; FALSE = destroy Spells/Traps. */
 static u8 PlayerChoosesDestroyMonsters(void)
 {
-  /* ponytail: no dedicated choice UI — A = monsters, B = Spells/Traps.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

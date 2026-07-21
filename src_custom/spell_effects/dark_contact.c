@@ -272,8 +272,6 @@ static u8 PlayerChoosesDarkContactMode(void)
   if (hasSearch && !hasFusion)
     return DARK_CONTACT_MODE_SEARCH;
 
-  /* ponytail: no dedicated choice UI — A = Dark Fusion FS, B = search.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

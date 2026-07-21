@@ -184,8 +184,6 @@ static void WaitForNoButtonsHeld(void)
 /* Returns TRUE for Dragunity search, FALSE for Dragon mill. */
 static u8 PlayerChoosesDragunitySearch(void)
 {
-  /* ponytail: no dedicated choice UI — A = add Dragunity, B = send Dragon to GY.
-   * Ceiling: unlabeled buttons; upgrade path: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:52 UTC  
-**Remaining partials:** `637`
+**Last updated:** 2026-07-21 22:54 UTC  
+**Remaining partials:** `624`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 61 |
-| `trap` | 12 |
+| `spell` | 50 |
+| `trap` | 10 |
 | `activated` | 451 |
 | `permanent` | 113 |
-| **total** | **637** |
+| **total** | **624** |
 
-## spell (61)
+## spell (50)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -33,17 +33,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L291: GY effect (banish this → Fusion Summon Plant Fusion by banishing materials from hand/field, and GY Plants if LP higher) needs a GY-activate path + Plant Fusion recipe filter outside this file. Ceiling: discard + place Humid/Dried/Blessed Winds face-up only; upgrade: GY activate AROMA_BLEND → banish self → FusionDuel Plant Fusion pay
 - L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 
-### `DARK_CONTACT`
-- path: `src_custom/spell_effects/dark_contact.c`
-- L275: no dedicated choice UI — A = Dark Fusion FS, B = search. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-
 ### `DARK_MAGIC_INHERITANCE`
 - path: `src_custom/spell_effects/dark_magic_inheritance.c`
 - L17: no card-description text search — approximate DM/DMG support S/T via name contains "Dark Magician"/"Dark Magic" plus a known support ID list. Ceiling: misses text-only mentions (e.g. cards that only list DM in effect text). Upgrade: description-string helper or generated support bitmask.
-
-### `DARK_MAGIC_VEIL`
-- path: `src_custom/spell_effects/dark_magic_veil.c`
-- L110: no dedicated hand/GY choice UI — A = hand, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `DE_SYNCHRO`
 - path: `src_custom/spell_effects/de_synchro.c`
@@ -59,23 +51,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/dimension_fusion.c`
 - L130: RFP zone is id-list only (no face/position memory). Ceiling: SS face-up ATK via Duel_SpecialSummonMonsterId; upgrade: store zone state on banish + restore on return.
 
-### `DOCTOR_D`
-- path: `src_custom/spell_effects/doctor_d.c`
-- L110: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L315: GY ignition "banish this card from GY, target 2 Destiny HERO; copy ATK until EOT" needs a GY-activate spell path + PickZone pair outside this file. Ceiling: on-field banish-cost recover only; upgrade: GY activate → banish DOCTOR_D → PickZone two Destiny HERO → set target ATK via temp stages / exact overlay until End Phase.
-
 ### `DOUBLE_SPELL`
 - path: `src_custom/spell_effects/double_spell.c`
 - L230: nested ActivateSpellEffect re-runs trap responses / field-spell specials; equips that need pre-set row2/col2 targets may fail. Ceiling: place + best-effort activate; upgrade: shared "resolve spell as if activated" helper that skips chain traps and supplies targeting for EQUIP/Field.
-
-### `DRAGON_RAVINE`
-- path: `src_custom/spell_effects/dragon_ravine.c`
-- L187: no dedicated choice UI — A = add Dragunity, B = send Dragon to GY. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-
-### `DRAGON_SHRINE`
-- path: `src_custom/spell_effects/dragon_shrine.c`
-- L177: no dedicated choice UI — A = send 1 more, B = stop. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
-- L222: cancel on first pick auto-sends first Dragon (activation committed).
 
 ### `EN_ENGAGE_NEO_SPACE`
 - path: `src_custom/spell_effects/en_engage_neo_space.c`
@@ -84,10 +62,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `END_OF_THE_WORLD`
 - path: `src_custom/spell_effects/end_of_the_world.c`
 - L16: Ruin, Queen of Oblivion is not in the trunk — only Demise is Ritual- Summonable via this card. Ceiling: Demise only; upgrade: add Ruin card + ID.
-
-### `EVIL_ASSAULT`
-- path: `src_custom/spell_effects/evil_assault.c`
-- L148: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `EVIL_MIND`
 - path: `src_custom/spell_effects/evil_mind.c`
@@ -104,11 +78,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GADGET_BOX`
 - path: `src_custom/spell_effects/gadget_box.c`
 - L13: no dedicated Gadget Box Token card id — reuse MOON_TOKEN like other token spells. Ceiling: wrong printed name/stats; upgrade: real token card.
-
-### `GENERATION_NEXT`
-- path: `src_custom/spell_effects/generation_next.c`
-- L185: no dedicated Deck/GY choice UI — A = Deck, B = GY. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-- L211: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `GRAVEKEEPERS_INSCRIPTION`
 - path: `src_custom/spell_effects/gravekeepers_inscription.c`
@@ -136,14 +105,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/level_tuning.c`
 - L13: the marked target can feed the card-info UI through LevelTuning_ApplyLevelToCardInfo, but the duel engine has no dynamic Level query for tribute, Ritual, or Synchro rules. Ceiling: display-only -1 Level; upgrade: route all level consumers through this zone overlay.
 
-### `LIGHTNING_STORM`
-- path: `src_custom/spell_effects/lightning_storm.c`
-- L132: no dedicated choice UI — A = monsters, B = Spells/Traps. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
-
-### `LIGHTSWORN_SABRE`
-- path: `src_custom/spell_effects/lightsworn_sabre.c`
-- L81: Deck-to-GY re-equip (when milled) needs a mill/send-from-deck hook outside this file. Ceiling: equip-from-hand/field only; upgrade: mill path → if LIGHTSWORN_SABRE sent from Deck to GY then PickZone Lightsworn and RegisterDynamicEquip again.
-
 ### `LIGHTSWORN_SANCTUARY`
 - path: `src_custom/spell_effects/lightsworn_sanctuary.c`
 - L328: Shine Counters on Deck→GY mill / remove 2 instead of destroy need mill + destroy-gate + counter storage outside this file (DuelCard has no shine-counter field). Ceiling: continuous face-up + OPT recycle only; upgrade: mill hook → ++Shine; Duel_DestroyZone on Lightsworn → if counters >= 2*n then counters -= 2*n and skip destroy.
@@ -156,10 +117,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MIRACLE_CONTACT`
 - path: `src_custom/spell_effects/miracle_contact.c`
 - L34: Cosmo Neos needs three Neo-Spacians with different Attributes, which the concrete FusionRecipe matcher cannot express. Ceiling: Cosmo Neos is not selectable. Upgrade: a predicate-based Contact Fusion material selector.
-
-### `MYSTIK_WOK`
-- path: `src_custom/spell_effects/mystik_wok.c`
-- L93: no dedicated ATK/DEF choice UI — A = ATK, B = DEF. Ceiling: unlabeled buttons; upgrade: effect-text choice menu.
 
 ### `NECROVALLEY`
 - path: `src_custom/spell_effects/necrovalley.c`
@@ -184,10 +141,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `PAINFUL_CHOICE`
 - path: `src_custom/spell_effects/painful_choice.c`
 - L153: no committed multi-pick UI — pick 5 in a loop (snake_rain style). Cancel mid-loop auto-fills remaining in deck order.
-
-### `POISON_OF_THE_OLD_MAN`
-- path: `src_custom/spell_effects/poison_of_the_old_man.c`
-- L27: no dedicated choice UI — A = burn 800, B = gain 1200 LP. Ceiling: unlabeled buttons; upgrade path: effect-text choice menu.
 
 ### `POT_OF_AVARICE`
 - path: `src_custom/spell_effects/pot_of_avarice.c`
@@ -289,7 +242,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (12)
+## trap (10)
 
 ### `AMAZONESS_HALL`
 - path: `src_custom/trap_effects/amazoness_hall.c`
@@ -327,16 +280,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `SHADDOLL_SCHISM`
 - path: `src_custom/trap_effects/shaddoll_schism.c`
 - L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
-
-### `TRAP_TRICK`
-- path: `src_custom/trap_effects/trap_trick.c`
-- L30: no Continuous/Counter trap type split — treat all traps as Normal.
-- L102: "can activate this turn" — leave unlocked.
-- L111: only 1 Trap activate rest of turn + OPT reset need gates.
-
-### `TYRANT_WING`
-- path: `src_custom/trap_effects/tyrant_wing.c`
-- L58: second attack on monsters + End Phase self-destroy after attack need battle/turn hooks. Ceiling: Dragon equip + ~500 ATK stage.
 
 ### `URGENT_TUNING`
 - path: `src_custom/trap_effects/urgent_tuning.c`

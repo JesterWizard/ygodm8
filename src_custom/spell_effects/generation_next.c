@@ -182,8 +182,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = Deck, FALSE = GY. */
 static u8 PlayerChoosesDeck(void)
 {
-  /* ponytail: no dedicated Deck/GY choice UI — A = Deck, B = GY.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -208,8 +206,6 @@ static u8 PlayerChoosesDeck(void)
 /* TRUE = add to hand, FALSE = Special Summon. */
 static u8 PlayerChoosesAddToHand(void)
 {
-  /* ponytail: no dedicated hand/SS choice UI — A = add to hand, B = Special Summon.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

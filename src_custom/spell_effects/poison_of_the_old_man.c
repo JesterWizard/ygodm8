@@ -24,8 +24,6 @@ static void WaitForNoButtonsHeld(void)
 /* Returns TRUE for burn 800, FALSE for gain 1200. */
 static u8 PlayerChoosesBurn(void)
 {
-  /* ponytail: no dedicated choice UI — A = burn 800, B = gain 1200 LP.
-   * Ceiling: unlabeled buttons; upgrade path: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

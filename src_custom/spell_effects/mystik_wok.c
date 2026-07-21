@@ -90,8 +90,6 @@ static void WaitForNoButtonsHeld(void)
 /* TRUE = gain ATK, FALSE = gain DEF. */
 static u8 PlayerChoosesAtk(void)
 {
-  /* ponytail: no dedicated ATK/DEF choice UI — A = ATK, B = DEF.
-   * Ceiling: unlabeled buttons; upgrade: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();

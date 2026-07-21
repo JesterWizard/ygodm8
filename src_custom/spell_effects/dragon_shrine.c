@@ -174,8 +174,6 @@ static void WaitForNoButtonsHeld(void)
 /* Returns TRUE to send a second Dragon. */
 static u8 PlayerChoosesSecondSend(void)
 {
-  /* ponytail: no dedicated choice UI — A = send 1 more, B = stop.
-   * Ceiling: unlabeled buttons; upgrade path: effect-text choice menu. */
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -219,7 +217,6 @@ static void DRAGON_SHRINE_ResolveBody(void)
 
   deckIndex = PickMatchingDeckIndex(ACTIVE_DUELIST, IsDragonMonster);
   if (deckIndex == 0xFF) {
-    /* ponytail: cancel on first pick auto-sends first Dragon (activation committed). */
     s16 autoIndex = FindFirstMatchingDeckIndex(ACTIVE_DUELIST, IsDragonMonster);
 
     if (autoIndex < 0)

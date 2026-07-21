@@ -27,7 +27,6 @@ static u8 IsNormalTrapExceptTrick(u16 cardId)
   if (GetTypeGroup(cardId) != TYPE_GROUP_TRAP)
     return FALSE;
 
-  /* ponytail: no Continuous/Counter trap type split — treat all traps as Normal. */
   return TRUE;
 }
 
@@ -99,7 +98,6 @@ APPEND_TEXT void EffectTRAP_TRICK(void)
       slot->id = setId;
       slot->isFaceUp = FALSE;
       slot->isLocked = FALSE;
-      /* ponytail: "can activate this turn" — leave unlocked. */
     }
   }
 
@@ -108,5 +106,4 @@ APPEND_TEXT void EffectTRAP_TRICK(void)
                    INACTIVE_DUELIST, FALSE);
   UpdateDuelGfxExceptField();
 
-  /* ponytail: only 1 Trap activate rest of turn + OPT reset need gates. */
 }

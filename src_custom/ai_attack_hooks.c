@@ -25,6 +25,7 @@
 #include "d_burst.h"
 #include "d_force.h"
 #include "neutron_blast.h"
+#include "tyrant_wing.h"
 #include "aroma_gardening.h"
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
 #include "lightsworn_barrier.h"
@@ -241,6 +242,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, NULL);
   TryUnlockAmazonessCallForNextAttack(attacker, NULL);
   TryUnlockDForcePlasmaForSecondAttack(attacker);
+  TryUnlockTyrantWingForSecondAttack(attacker);
   TryUnlockNeutronBlastForExtraAttack(attacker);
   {
     u8 fr;
@@ -316,6 +318,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, defender);
   TryUnlockAmazonessCallForNextAttack(attacker, defender);
   TryUnlockDForcePlasmaForSecondAttack(attacker);
+  TryUnlockTyrantWingForSecondAttack(attacker);
   TryUnlockNeutronBlastForExtraAttack(attacker);
   {
     u8 fr;
