@@ -9,18 +9,18 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:39 UTC  
-**Remaining partials:** `726`
+**Last updated:** 2026-07-21 22:40 UTC  
+**Remaining partials:** `715`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 72 |
-| `trap` | 88 |
+| `trap` | 77 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **726** |
+| **total** | **715** |
 
 ## spell (72)
 
@@ -334,7 +334,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/ultra_polymerization.c`
 - L172: GY ignition "banish this card, target 1 Fusion Summoned by this card; SS all materials used from GY, ATK/DEF 0, effects negated" needs GY activation + material-memory outside this file. Ceiling: on-field Fusion only; upgrade: store material ids on summon tag → GY activate ULTRA_POLYMERIZATION → Duel_BanishGraveyard → SS materials with
 
-## trap (88)
+## trap (77)
 
 ### `A_HERO_EMERGES`
 - path: `src_custom/trap_effects/a_hero_emerges.c`
@@ -376,10 +376,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ARCANA_CALL`
 - path: `src_custom/trap_effects/arcana_call.c`
 - L81: until EP, selected AF uses banished AF's coin effect — needs End Phase clear + Arcana effect dispatch override. Ceiling: marks field monster; GY Arcana banished.
-
-### `ATTACK_AND_RECEIVE`
-- path: `src_custom/trap_effects/attack_and_receive.c`
-- L48: activate when you take damage. Ceiling: burn 700 + 300×GY copies.
 
 ### `BATTLE_MANIA`
 - path: `src_custom/trap_effects/battle_mania.c`
@@ -438,10 +434,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/dried_winds.c`
 - L47: LP-gain destroy + OPT flags need LP-gain hook. Ceiling: if Aroma + LP≥opp+3000, pay difference and destroy opp face-up monsters while remaining budget covers printed ATK.
 
-### `DUST_TORNADO`
-- path: `src_custom/trap_effects/dust_tornado.c`
-- L112: optional hand pick — B skips; upgrade path: shared helper in exchange_hand_selection
-
 ### `ETERNAL_SOUL`
 - path: `src_custom/trap_effects/eternal_soul.c`
 - L75: DM unaffected by opp + destroy all on leave need protection / leave hooks. Ceiling: OPT stand-in — SS Dark Magician from hand/GY, else search Dark Magic Attack / Thousand Knives.
@@ -483,11 +475,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/gravekeepers_trap.c`
 - L83: Exchange lock GY effects/SS + opp Draw Phase look + discard cost need GY/draw gates. Ceiling: if Exchange in GY mark unk4 lock; discard 1 → search Gravekeeper's / EARTH Fairy.
 
-### `HALF_COUNTER`
-- path: `src_custom/trap_effects/half_counter.c`
-- L20: damage calculation when your monster attacked needs battle hook. Ceiling: when Effect runs, boost defender by ~half attacker original ATK via stages; upgrade: damage-calc targeting wire.
-- L39: 1 stage ~= 500 ATK.
-
 ### `HARPIE_LADY_ELEGANCE`
 - path: `src_custom/trap_effects/harpie_lady_elegance.c`
 - L47: * ponytail: WIND-only SS lock this turn + destroy-search Harpie Spell need hooks. */
@@ -499,10 +486,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `HUMID_WINDS`
 - path: `src_custom/trap_effects/humid_winds.c`
 - L103: each effect OPT as face-up ignition needs Main Phase hooks + turn reset. Ceiling: one search+heal path on activate flip.
-
-### `HUNTING_INSTINCT`
-- path: `src_custom/trap_effects/hunting_instinct.c`
-- L27: printed trigger is opp Special Summon. Ceiling: when Effect runs, SS Dinosaur from hand; upgrade: SS-to-opp-field trigger wire.
 
 ### `HYSTERIC_PARTY`
 - path: `src_custom/trap_effects/hysteric_party.c`
@@ -532,10 +515,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/macro_cosmos.c`
 - L31: any card sent to GY is banished instead needs GY-send redirect while face-up MACRO_COSMOS. Ceiling: continuous + optional Helios SS.
 
-### `MAGIC_CYLINDER`
-- path: `src_custom/trap_effects/magic_cylinder.c`
-- L22: Normal Trap must leave the backrow to prevent AI re-trigger loop
-
 ### `MAGICAL_ARM_SHIELD`
 - path: `src_custom/trap_effects/magical_arm_shield.c`
 - L23: attack declare + redirect damage calc need battle hooks. Ceiling: take control of 1 face-up opp monster except origin attacker (Change of Heart style move to our monster row).
@@ -562,14 +541,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L122: choose activate Field vs add to hand — always add to hand. Ceiling: no Field Zone activate path; upgrade: A/B choice → set gDuel.field.
 - L132: needs trapEffect ID + dispatcher wire.
 
-### `METEORAIN`
-- path: `src_custom/trap_effects/meteorain.c`
-- L23: this turn your monsters inflict piercing needs battle damage calc hook + End Phase leave. Ceiling: face-up continuous mark; upgrade: battle ATK>DEF vs Defense → piercing while METEORAIN face-up this turn.
-
-### `MIRROR_FORCE`
-- path: `src_custom/trap_effects/mirror_force.c`
-- L21: destroy self after monsters so AI sim doesn't re-trigger
-
 ### `MORPHTRONIC_FORCEFIELD`
 - path: `src_custom/trap_effects/morphtronic_forcefield.c`
 - L81: negate ST that would destroy face-up Morphtronic needs destroy- targeting chain gate. Ceiling: destroy origin ST if present + search Morphtronic; upgrade: full negate + trapEffect.
@@ -589,10 +560,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `NEXT`
 - path: `src_custom/trap_effects/next.c`
 - L42: negate effects + Extra Deck lock (Fusion only) need gates. Ceiling: SS distinct Neo-Spacians / Neos from hand then GY in DEF.
-
-### `NUMINOUS_HEALER`
-- path: `src_custom/trap_effects/numinous_healer.c`
-- L48: activate when you take damage. Ceiling: when Effect runs, heal 1000 + 500×GY copies; upgrade: LP-damage trigger wire.
 
 ### `PROPHECY`
 - path: `src_custom/trap_effects/prophecy.c`
@@ -623,10 +590,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/rite_of_spirit.c`
 - L61: unaffected by Necrovalley — already no Necrovalley gate here. PickZone for GY target + trapEffect wire.
 
-### `SCRAP_IRON_SCARECROW`
-- path: `src_custom/trap_effects/scrap_iron_scarecrow.c`
-- L16: negate attack needs attack-declare hook (Negate Attack path). Ceiling: Set face-down again instead of GY; upgrade: NegateAttack + trapEffect wire.
-
 ### `SHADDOLL_CORE`
 - path: `src_custom/trap_effects/shaddoll_core.c`
 - L45: true trap-monster (still a Trap) + Attribute fusion substitute need Embodiment-style link. Ceiling: place SHADDOLL_CORE on monster row and keep trap face-up continuous; GY add Shaddoll S/T stand-in on activate.
@@ -634,10 +597,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `SHADDOLL_SCHISM`
 - path: `src_custom/trap_effects/shaddoll_schism.c`
 - L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
-
-### `SIXTH_SENSE`
-- path: `src_custom/trap_effects/sixth_sense.c`
-- L43: no declare-2-numbers UI — fixed guess 2+5. Ceiling: AI/player always declare 2 and 5; upgrade: D-Pad number picker.
 
 ### `SNAKE_DEITYS_COMMAND`
 - path: `src_custom/trap_effects/snake_deitys_command.c`
@@ -650,10 +609,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `SOLEMN_JUDGMENT`
 - path: `src_custom/trap_effects/solemn_judgment.c`
 - L39: full Summon/ST negate needs summon/activation chain gates (like Magic Jammer / Solemn). Ceiling: pay half LP + destroy origin; upgrade: trapEffect counter → cancel resolve.
-
-### `SOLEMN_WISHES`
-- path: `src_custom/trap_effects/solemn_wishes.c`
-- L89: InitBoard fills hands via TryDrawingCard before duel gfx; skip until past opening hand.
 
 ### `SPARK_BLASTER`
 - path: `src_custom/trap_effects/spark_blaster.c`

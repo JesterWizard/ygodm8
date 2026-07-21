@@ -53,6 +53,7 @@
 #include "ancient_gear_fist.h"
 #include "double_tool_c_and_d.h"
 #include "dragon_s_rage.h"
+#include "meteorain.h"
 #include "attack_pheromones.h"
 #include "backup_squad.h"
 #include "berserker_soul.h"
@@ -280,6 +281,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyBigBangShotPiercingBattleEffect();
   ApplyHHeatedHeartPiercingBattleEffect();
   ApplyDragonsRagePiercingBattleEffect();
+  ApplyMeteorainPiercingBattleEffect();
   ApplyGyakuGirePandaBattleEffect();
   ApplyDDWarriorBattleEffect();
   ApplyLesserFiendBattleEffect();

@@ -7,20 +7,20 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 22:39 UTC  
-**Ceiling lines tagged:** `864`  
-**Partial files:** `726`
+**Last updated:** 2026-07-21 22:40 UTC  
+**Ceiling lines tagged:** `852`  
+**Partial files:** `715`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 264 | triage |
+| `other` | 255 | triage |
 | `event.OnStandby` | 223 | 3 (OPT / turn flags) |
-| `event.OnBattleDestroy` | 70 | 3 |
+| `event.OnBattleDestroy` | 68 | 3 |
 | `event.OnSummon` | 62 | 3 |
 | `ui.Choice` | 55 | 2 |
-| `chain.Negate` | 47 | later / chain |
+| `chain.Negate` | 46 | later / chain |
 | `gate.Tribute` | 38 | 2–3 |
 | `event.OnDestroy` | 28 | 3 |
 | `op.Search` | 26 | 1 |
@@ -28,11 +28,11 @@ python3 tools/stub_effect_queue.py --write-list
 | `stat.Continuous` | 16 | 1–3 |
 | `event.GyIgnition` | 13 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **864** | |
+| **total** | **852** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (70)
+## `event.OnBattleDestroy` (68)
 
 - `SKYSCRAPER_2_HERO_CITY` (spell): L244: no "destroyed by battle" GY filter — no destroy-reason memory on expanded GY cards. Ceiling: any Elemental HERO in GY is legal; upgrade: stamp battle-destroy on GY push / zone→GY, then filter IsElementalHeroMonster && wasDestroyedByBattle.
 - `THE_SACRED_WATERS_IN_THE_SKY` (spell): L535: battle-destruction protection ("banish this from GY instead") needs a battle/destroy redirect hook. Ceiling: activate + LP gain only; upgrade: battle_damage / destroy-protection hook checking GY Sacred Waters.
@@ -40,9 +40,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DAMAGE_EQUALS_REPTILE` (trap): L71: battle-damage involving Reptile trigger + OPT.
 - `DAMAGE_REPTILE` (trap): L49: OPT when take battle damage involving Reptile. Ceiling: when Effect runs, SS Reptile from Deck with ATK ≤ a stand-in damage amount (origin ATK if monster); upgrade: battle-damage hook stores damage.
 - `GLADIATOR_NAUMACHIA` (trap): L44: forced attack + destroy-search GB from Deck need battle/destroy hooks. Ceiling: if GB on field, mark opp must-attack; shuffle 1 GB from hand/GY and boost 1 GB by +1 stage (~original DEF stand-in).
-- `HALF_COUNTER` (trap): L20: damage calculation when your monster attacked needs battle hook. Ceiling: when Effect runs, boost defender by ~half attacker original ATK via stages; upgrade: damage-calc targeting wire.
 - `MAGICAL_ARM_SHIELD` (trap): L23: attack declare + redirect damage calc need battle hooks. Ceiling: take control of 1 face-up opp monster except origin attacker (Change of Heart style move to our monster row).
-- `METEORAIN` (trap): L23: this turn your monsters inflict piercing needs battle damage calc hook + End Phase leave. Ceiling: face-up continuous mark; upgrade: battle ATK>DEF vs Defense → piercing while METEORAIN face-up this turn.
 - `QUEENS_PAWN` (trap): L50: activate when Amazoness destroys by battle. Ceiling: when Effect runs, Deck SS Lv≤4 Amazoness; upgrade: battle-destroy hook when attacker passes Duel_IsAmazonessCard.
 - `AMAZONESS_QUEEN` (activated): L12: Amazoness cannot be destroyed by battle needs battle-destroy protection. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 - `AMAZONESS_SPY` (activated): L34: battle destroy → return Amazoness from GY needs battle hook. Ceiling: SS from hand only; upgrade: reveal + battle recycle.
@@ -448,7 +446,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `YAMORIMORI` (activated): L124: GY ignition needs GY-menu wire. Ceiling: banish self from GY + own Reptile + opp face-up present → destroy opp face-up monster.
 - `THUNDER_DRAGON_COLOSSUS` (permanent): L8: opp search lock + battle/effect destroy→GY-banish need continuous/battle hooks.
 
-## `chain.Negate` (47)
+## `chain.Negate` (46)
 
 - `NECROVALLEY` (spell): L126: GY Type-Attribute change still needs SetCardInfo-in-GY gates. Ceiling: banish/move blocked via Necrovalley_Blocks*; upgrade: GY type/attr mutate → negate.
 - `DAMAGE_POLARIZER` (trap): L13: negate effect-damage activation needs damage-effect chain gate. Ceiling: both players draw 1 when Effect runs; upgrade: trapEffect on effect-damage activate → cancel damage + draw.
@@ -460,7 +458,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `MORPHTRONIC_FORCEFIELD` (trap): L81: negate ST that would destroy face-up Morphtronic needs destroy- targeting chain gate. Ceiling: destroy origin ST if present + search Morphtronic; upgrade: full negate + trapEffect.
 - `NEXT` (trap): L42: negate effects + Extra Deck lock (Fusion only) need gates. Ceiling: SS distinct Neo-Spacians / Neos from hand then GY in DEF.
 - `RED_REBOOT` (trap): L30: hand-activate by paying half LP + full Trap negate need gates. Ceiling: Set origin Trap face-down + optional Deck Set 1 Trap for opp; opp Trap lock this turn not wired.
-- `SCRAP_IRON_SCARECROW` (trap): L16: negate attack needs attack-declare hook (Negate Attack path). Ceiling: Set face-down again instead of GY; upgrade: NegateAttack + trapEffect wire.
 - `SNAKE_DEITYS_COMMAND` (trap): L71: full Spell negate (prevent resolve) needs negation gate like Magic Jammer. Ceiling: destroys origin Spell zone; upgrade: trapEffect counter + cancel spell resolve.
 - `SOLEMN_JUDGMENT` (trap): L39: full Summon/ST negate needs summon/activation chain gates (like Magic Jammer / Solemn). Ceiling: pay half LP + destroy origin; upgrade: trapEffect counter → cancel resolve.
 - `VANQUISHING_LIGHT` (trap): L38: negate Summon + destroy summoned needs summon-negation hook. Ceiling: tributes a Lightsworn only; upgrade: cancel pending summon + destroy.
@@ -668,7 +665,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (264)
+## `other` (255)
 
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
@@ -705,28 +702,19 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `AMAZONESS_HALL` (trap): L43: * ponytail: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
 - `AMAZONESS_WILLPOWER` (trap): L62: must-attack + mutual destroy-on-leave need battle/leave hooks.
 - `ARCANA_CALL` (trap): L81: until EP, selected AF uses banished AF's coin effect — needs End Phase clear + Arcana effect dispatch override. Ceiling: marks field monster; GY Arcana banished.
-- `ATTACK_AND_RECEIVE` (trap): L48: activate when you take damage. Ceiling: burn 700 + 300×GY copies.
 - `BATTLE_MANIA` (trap): L16: activate only opp Standby. Ceiling: when Effect runs, flip opp monsters to ATK; forced-attack / cannot-change-position need battle gates.
 - `DARK_SUPREMACY` (trap): L38: "Spells that mention Dark Fusion" not scanned by text.
-- `DUST_TORNADO` (trap): L112: optional hand pick — B skips; upgrade path: shared helper in exchange_hand_selection
 - `EXCHANGE_OF_THE_SPIRIT` (trap): L32: full Deck↔GY swap is heavy — approximate by pushing all GY to deck bottom and rebuilding GY from current undrawn deck top chunk. Ceiling: incomplete swap if GY expand / deck sizes mismatch; upgrade: proper dual-buffer swap of entire Deck and GY stacks.
 - `FAVOURITE_CONTACT` (trap): L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API. Ceiling: return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
-- `HALF_COUNTER` (trap): L39: 1 stage ~= 500 ATK.
-- `HUNTING_INSTINCT` (trap): L27: printed trigger is opp Special Summon. Ceiling: when Effect runs, SS Dinosaur from hand; upgrade: SS-to-opp-field trigger wire.
 - `MACRO_COSMOS` (trap): L31: any card sent to GY is banished instead needs GY-send redirect while face-up MACRO_COSMOS. Ceiling: continuous + optional Helios SS.
-- `MAGIC_CYLINDER` (trap): L22: Normal Trap must leave the backrow to prevent AI re-trigger loop
 - `MAGICAL_HATS` (trap): L34: face-down DEF 0/0 hat tokens + shuffle + End BP destroy need token zones / battle-phase gate. Ceiling: pull 2 S/T from Deck onto empty monster zones face-down DEF; Set 1 own monster face-down.
 - `MAGICIANS_CIRCLE` (trap): L55: printed trigger is Spellcaster attack declare. Ceiling: when Effect runs, each player Deck SS Spellcaster ≤2000 ATK; upgrade: attack declare hook when attacker is Spellcaster.
 - `MAGICIANS_COMBINATION` (trap): L74: GY destroy-1 when this leaves S/T zone needs leave hook.
 - `METAVERSE` (trap): L122: choose activate Field vs add to hand — always add to hand. Ceiling: no Field Zone activate path; upgrade: A/B choice → set gDuel.field.
 - `METAVERSE` (trap): L132: needs trapEffect ID + dispatcher wire.
-- `MIRROR_FORCE` (trap): L21: destroy self after monsters so AI sim doesn't re-trigger
-- `NUMINOUS_HEALER` (trap): L48: activate when you take damage. Ceiling: when Effect runs, heal 1000 + 500×GY copies; upgrade: LP-damage trigger wire.
 - `PROPHECY` (trap): L68: player predict UI (bigger/smaller) + trapEffect wire. Ceiling: random opp hand card; AI random guess / player always higher.
 - `REVERSAL_OF_FATE` (trap): L43: Arcana Force coin result stored in unk4/effect flags — flip bit0. Ceiling: toggles unk4 bit0; upgrade: real coin-result invert hook.
-- `SIXTH_SENSE` (trap): L43: no declare-2-numbers UI — fixed guess 2+5. Ceiling: AI/player always declare 2 and 5; upgrade: D-Pad number picker.
 - `SNAKE_WHISTLE` (trap): L55: needs Reptile-destroyed trigger + trapEffect wire.
-- `SOLEMN_WISHES` (trap): L89: InitBoard fills hands via TryDrawingCard before duel gfx; skip until past opening hand.
 - `TRAP_DUSTSHOOT` (trap): L67: look at full hand + choose monster UI; trapEffect wire. Ceiling: auto first monster in opp hand → Deck shuffle.
 - `TRAP_TRICK` (trap): L30: no Continuous/Counter trap type split — treat all traps as Normal.
 - `TRAP_TRICK` (trap): L102: "can activate this turn" — leave unlocked.

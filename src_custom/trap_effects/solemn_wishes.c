@@ -86,7 +86,6 @@ static u8 TryAutoPlaceDrawnSolemnWishes(u8 duelist, u8 handSlot)
 
 void TryApplySolemnWishesOnDraw(u8 duelist, u16 cardDrawn, u8 handSlot)
 {
-  /* ponytail: InitBoard fills hands via TryDrawingCard before duel gfx; skip until past opening hand. */
   if (gDuelDecks[duelist].cardsDrawn <= MAX_ZONES_IN_ROW)
     return;
 

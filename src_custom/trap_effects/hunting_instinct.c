@@ -24,9 +24,6 @@ APPEND_TEXT void EffectHUNTING_INSTINCT(void)
 
   Duel_ShowTrapResponseText(HUNTING_INSTINCT, gTrapEffectData.originCardId);
 
-  /* ponytail: printed trigger is opp Special Summon. Ceiling: when Effect runs,
-   * SS Dinosaur from hand; upgrade: SS-to-opp-field trigger wire. */
-
   if (ArchlordKristya_IsSpecialSummonLocked()
       || FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) < 0) {
     Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],

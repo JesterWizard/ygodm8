@@ -45,9 +45,6 @@ APPEND_TEXT void EffectNUMINOUS_HEALER(void)
 
   Duel_ShowTrapResponseText(NUMINOUS_HEALER, gTrapEffectData.originCardId);
 
-  /* ponytail: activate when you take damage. Ceiling: when Effect runs, heal
-   * 1000 + 500×GY copies; upgrade: LP-damage trigger wire. */
-
   gyCount = CountNuminousHealerInGy();
   heal = NUMINOUS_HEALER_BASE + (u16)gyCount * NUMINOUS_HEALER_PER_GY;
   Duel_ChangeLp(INACTIVE_DUELIST, (s32)heal, TRUE);

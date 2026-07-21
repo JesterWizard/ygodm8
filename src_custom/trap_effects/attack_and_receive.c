@@ -45,8 +45,6 @@ APPEND_TEXT void EffectATTACK_AND_RECEIVE(void)
 
   Duel_ShowTrapResponseText(ATTACK_AND_RECEIVE, gTrapEffectData.originCardId);
 
-  /* ponytail: activate when you take damage. Ceiling: burn 700 + 300×GY copies. */
-
   gyCount = CountAttackAndReceiveInGy();
   damage = ATTACK_AND_RECEIVE_BASE + (u16)gyCount * ATTACK_AND_RECEIVE_PER_GY;
   Duel_ChangeLp(ACTIVE_DUELIST, -(s32)damage, TRUE);

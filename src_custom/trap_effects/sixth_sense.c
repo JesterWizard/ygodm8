@@ -39,9 +39,6 @@ APPEND_TEXT void EffectSIXTH_SENSE(void)
   u8 hit;
 
   Duel_ShowTrapResponseText(SIXTH_SENSE, gTrapEffectData.originCardId);
-
-  /* ponytail: no declare-2-numbers UI — fixed guess 2+5.
-   * Ceiling: AI/player always declare 2 and 5; upgrade: D-Pad number picker. */
   roll = RandRangeU8(1, 6);
   hit = (roll == declareA || roll == declareB);
 

@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 
 void UpdateDuelGfxExceptField(void);
+void LockMonsterCardsInRow(unsigned char turnRow);
 
 APPEND_TEXT void EffectSCRAP_IRON_SCARECROW(void)
 {
@@ -13,9 +14,7 @@ APPEND_TEXT void EffectSCRAP_IRON_SCARECROW(void)
 
   Duel_ShowTrapResponseText(SCRAP_IRON_SCARECROW, gTrapEffectData.originCardId);
 
-  /* ponytail: negate attack needs attack-declare hook (Negate Attack path).
-   * Ceiling: Set face-down again instead of GY; upgrade: NegateAttack +
-   * trapEffect wire. */
+  LockMonsterCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
 
   if (trapZone != NULL) {
     trapZone->isFaceUp = FALSE;

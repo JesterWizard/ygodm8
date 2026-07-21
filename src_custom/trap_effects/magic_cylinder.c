@@ -18,8 +18,6 @@ APPEND_TEXT void EffectMagicCylinder(void)
   atk = gCardInfo.atk;
 
   Duel_ChangeLp(ACTIVE_DUELIST, -(s32)atk, FALSE);
-
-  /* ponytail: Normal Trap must leave the backrow to prevent AI re-trigger loop */
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST, FALSE);
 
   Duel_ShowTrapResponseText(MAGIC_CYLINDER, gTrapEffectData.originCardId);

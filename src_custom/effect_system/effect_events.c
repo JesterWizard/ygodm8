@@ -30,6 +30,7 @@
 #include "tornado_wall.h"
 #include "triangle_ecstasy_spark.h"
 #include "destined_rivals.h"
+#include "meteorain.h"
 #include "spell_effects.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
@@ -201,6 +202,7 @@ void EffectEvent_OnTurnBoundary(void)
   LevelTuning_ClearAtTurnBoundary();
   LightForce_ClearTurnState();
   DestinedRivals_ClearExhaustedOnTurnBoundary();
+  Meteorain_ClearOnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

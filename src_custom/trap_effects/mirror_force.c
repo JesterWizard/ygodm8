@@ -17,8 +17,6 @@ APPEND_TEXT void EffectMirrorForce(void)
     if (Duel_DestroyZone(zone, ACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
       return;
   }
-
-  /* ponytail: destroy self after monsters so AI sim doesn't re-trigger */
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
                    INACTIVE_DUELIST, FALSE);
 

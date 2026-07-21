@@ -108,8 +108,6 @@ static u8 HandZoneHasSettableSpellTrap(u8 handCol)
 {
   return IsSpellOrTrapHandCard(gTurnHands[ACTIVE_DUELIST][handCol]->id);
 }
-
-/* ponytail: optional hand pick — B skips; upgrade path: shared helper in exchange_hand_selection */
 static s8 SelectOptionalSpellTrapFromHand(void)
 {
   struct DuelCursor savedCursor = gDuelCursor;
