@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 22:13 UTC  
-**Remaining partials:** `764`
+**Last updated:** 2026-07-21 22:15 UTC  
+**Remaining partials:** `762`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 83 |
+| `spell` | 81 |
 | `trap` | 115 |
 | `activated` | 452 |
 | `permanent` | 114 |
-| **total** | **764** |
+| **total** | **762** |
 
-## spell (83)
+## spell (81)
 
 ### `ANCIENT_GEAR_FACTORY`
 - path: `src_custom/spell_effects/ancient_gear_factory.c`
@@ -81,10 +81,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS`
 - path: `src_custom/spell_effects/colosseum_cage_of_the_gladiator_beasts.c`
 - L231: no labeled confirm menu - auto-discard when another copy is in hand.
-
-### `CYBERNETIC_ZONE`
-- path: `src_custom/spell_effects/cybernetic_zone.c`
-- L147: stage unit is 500 ATK — double via +original/500 stages. Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay.
 
 ### `DARK_CONTACT`
 - path: `src_custom/spell_effects/dark_contact.c`
@@ -263,11 +259,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `REASONING`
 - path: `src_custom/spell_effects/reasoning.c`
 - L63: no Level-declare UI — D-Pad cycles, A confirms (unlabeled). Ceiling: no on-screen Level readout; upgrade: effect-text Level picker.
-
-### `REPTILANNE_RAGE`
-- path: `src_custom/spell_effects/reptilanne_rage.c`
-- L66: "becomes Reptile-Type" needs a temp-type overlay outside this file (DuelCard has no type field; type lives in ROM via SetCardInfo). Ceiling: equip-only-to-Reptile (already TYPE_REPTILE); upgrade: type overlay → treat equipped target as TYPE_REPTILE while link is active.
-- L71: destroy→GY target opp face-up monster -800 ATK needs a field/ destroy hook outside this file (OnDynamicEquipZoneAboutToClear / GY send). Ceiling: equip-only works; GY trigger not wired from this file. Upgrade: destroy-hook → PickZone opp face-up monster → apply -800 ATK overlay (or -2 stages).
 
 ### `REPTILIANNE_SPAWN`
 - path: `src_custom/spell_effects/reptilianne_spawn.c`

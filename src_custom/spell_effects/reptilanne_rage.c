@@ -63,16 +63,44 @@ static void EquipReptilanneRage(struct DuelCard *spellZone, struct DuelCard *tar
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
 
-  /* ponytail: "becomes Reptile-Type" needs a temp-type overlay outside this file
-   * (DuelCard has no type field; type lives in ROM via SetCardInfo).
-   * Ceiling: equip-only-to-Reptile (already TYPE_REPTILE); upgrade: type overlay
-   * → treat equipped target as TYPE_REPTILE while link is active. */
+  /* Equip target is already TYPE_REPTILE (activation filter). */
+}
 
-  /* ponytail: destroy→GY target opp face-up monster -800 ATK needs a field/
-   * destroy hook outside this file (OnDynamicEquipZoneAboutToClear / GY send).
-   * Ceiling: equip-only works; GY trigger not wired from this file.
-   * Upgrade: destroy-hook → PickZone opp face-up monster → apply -800 ATK
-   * overlay (or -2 stages). */
+void ReptilanneRage_OnEquipSentFromField(u8 controllerFixedDuelist)
+{
+  u8 oppFixed;
+  u8 oppRow;
+  u8 col;
+  struct DuelCard *best = NULL;
+  u16 bestAtk = 0;
+
+  if (controllerFixedDuelist != DUEL_PLAYER && controllerFixedDuelist != DUEL_OPPONENT)
+    return;
+
+  oppFixed = controllerFixedDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  oppRow = Duel_FixedMonsterRowForDuelist(oppFixed);
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[oppRow][col];
+    u16 atk;
+
+    if (zone == NULL || zone->id == CARD_NONE || !zone->isFaceUp)
+      continue;
+
+    SetCardInfo(zone->id);
+    atk = gCardInfo.atk;
+    if (best == NULL || atk > bestAtk) {
+      best = zone;
+      bestAtk = atk;
+    }
+  }
+
+  if (best == NULL)
+    return;
+
+  Duel_ShowEffectText(REPTILANNE_RAGE);
+  AddRiryokuAtkDelta(best, (s16)(-REPTILANNE_RAGE_ATK_BOOST));
+  Duel_RefreshMonsterStatOverlays();
 }
 
 void ApplyReptilanneRageAtkBonusToCardInfo(const struct DuelCard *zone)

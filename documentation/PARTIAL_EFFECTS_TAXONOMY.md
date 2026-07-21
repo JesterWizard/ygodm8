@@ -7,15 +7,15 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-21 22:13 UTC  
-**Ceiling lines tagged:** `929`  
-**Partial files:** `764`
+**Last updated:** 2026-07-21 22:15 UTC  
+**Ceiling lines tagged:** `926`  
+**Partial files:** `762`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 307 | triage |
+| `other` | 305 | triage |
 | `event.OnStandby` | 227 | 3 (OPT / turn flags) |
 | `event.OnBattleDestroy` | 73 | 3 |
 | `event.OnSummon` | 64 | 3 |
@@ -23,12 +23,12 @@ python3 tools/stub_effect_queue.py --write-list
 | `chain.Negate` | 49 | later / chain |
 | `gate.Tribute` | 38 | 2–3 |
 | `op.Search` | 33 | 1 |
-| `event.OnDestroy` | 31 | 3 |
+| `event.OnDestroy` | 30 | 3 |
 | `op.BanishTimed` | 20 | 1–3 |
 | `stat.Continuous` | 17 | 1–3 |
 | `event.GyIgnition` | 13 | 3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **929** | |
+| **total** | **926** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -113,9 +113,8 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ELEMENTAL_HERO_CAPTAIN_GOLD` (permanent): L68: with Skyscraper active, prefer normal summon as a 2100 beater
 - `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` (permanent): L121: unaffected-after-SS + battle ATK boost need continuous/battle hooks.
 
-## `event.OnDestroy` (31)
+## `event.OnDestroy` (30)
 
-- `REPTILANNE_RAGE` (spell): L71: destroy→GY target opp face-up monster -800 ATK needs a field/ destroy hook outside this file (OnDynamicEquipZoneAboutToClear / GY send). Ceiling: equip-only works; GY trigger not wired from this file. Upgrade: destroy-hook → PickZone opp face-up monster → apply -800 ATK overlay (or -2 stages).
 - `SPELL_CHRONICLE` (spell): L151: Chronicle Counters on opp Spell resolve / remove 2 → opp chooses banished add / leave-field burn need continuous hooks outside this file. Ceiling: activate discard+banish 5 only; unk4 counter slot unused.
 - `BACKFIRE` (trap): L11: FIRE monster destroyed → 500 to opp needs destroy hook. Ceiling: face-up continuous only; upgrade: OnDestroy FIRE face-up owned → Duel_ChangeLp(opp, -500). Ceiling: face-up continuous only; upgrade: wire trigger/gate outside this file.
 - `CROSS_DIMENSONAL_DUEL` (trap): L27: next Standby return at double ATK + GY protect Golem need turn/destroy hooks. Ceiling: banish 1 Ancient Gear you control.
@@ -690,7 +689,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (307)
+## `other` (305)
 
 - `AROMA_BLEND` (spell): L298: placed Winds are face-up/locked but their continuous trap effects are not auto-wired (trap stubs). Ceiling: card sits face-up; upgrade: call each Winds activate body after place, or wire trap dispatcher.
 - `BOND_BETWEEN_TEACHER_AND_STUDENT` (spell): L28: Dark Magic Twin Burst is not in trunk/card_ids — Set list is the three in-game Dark Magician support Spells only. Ceiling: misses Twin Burst; upgrade: add DARK_MAGIC_TWIN_BURST card + id.
@@ -700,7 +699,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `COCOON_REBIRTH` (spell): L60: only the five Chrysalis in-trunk pairs are mapped.
 - `COLD_WAVE` (spell): L30: no Main Phase 1-start / prior-action API — allow whenever unused this turn. Ceiling: can activate mid-MP1 after other actions; upgrade: wire ColdWave_CanActivateAtMainPhase1Start(isMp1Start, priorAction).
 - `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS` (spell): L231: no labeled confirm menu - auto-discard when another copy is in hand.
-- `CYBERNETIC_ZONE` (spell): L147: stage unit is 500 ATK — double via +original/500 stages. Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay.
 - `DE_SYNCHRO` (spell): L81: duel Extra Deck return is imperfect — ExtraDeck_AddCard writes the player's trunk Extra Deck only (deck-builder API). Ceiling: ClearZone off-field + best-effort ExtraDeck_AddCard when enable_extra_deck; upgrade: per-duelist mid-duel Extra Deck return for the Synchro's controller.
 - `DE_SYNCHRO` (spell): L101: Synchro Summon materials are not recorded at summon time, so "if all materials are in your GY, SS all of them" cannot run. Ceiling: return-to-Extra-Deck only; upgrade: store material cardIds on the Synchro zone at SynchroDuel_Execute, then if each is in GY, SS from GY.
 - `DIFFERENT_DIMENSION_CAPSULE` (spell): L209: RFP has no face-down flag — card is face-up in banished list. Ceiling: banished as normal RFP id; upgrade: face-down RFP bit.
@@ -714,7 +712,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `NEX` (spell): L155: duel Extra Deck browser/SS missing (Trunk ExtraDeck_* is deck-builder only). Ceiling: spawn Lv4 Neo form by id when not in Main Deck; upgrade: Extra Deck pick + SS.
 - `OBLITERATE_BLAZE` (spell): L131: granted effects (pay half LP → destroy S/T + equip 5 Forbidden One as +2000 Equip; piercing) need activated monster hooks / equip system outside this file. Ceiling: marks target unk4=1 only; upgrade: copy Obliterate effects onto marked Exodia monster.
 - `PSEUDO_SPACE` (spell): L262: name-become + replace effects until End Phase — same ceiling as legacy-GY path above.
-- `REPTILANNE_RAGE` (spell): L66: "becomes Reptile-Type" needs a temp-type overlay outside this file (DuelCard has no type field; type lives in ROM via SetCardInfo). Ceiling: equip-only-to-Reptile (already TYPE_REPTILE); upgrade: type overlay → treat equipped target as TYPE_REPTILE while link is active.
 - `SCAPEGOAT` (spell): L74: LockMonsterCardsInRow also blocks Normal Set of monsters. Ceiling: cannot allow Set while blocking Summon without a menu hook that distinguishes Set vs Summon; upgrade: Set path unlocks hand briefly.
 - `SHADDOLL_FUSION` (spell): L243: Extra Deck SS detection uses Fusion/Synchro/Xyz/Link color on opponent's field (no per-zone summon-origin flag). Ceiling: misses Main Deck monsters SS'd from Extra edge cases; upgrade: mark Extra Deck origin on SS.
 - `SHINING_SARCOPHAGUS` (spell): L170: opp GY Special Summon → discard Spell → send that monster to GY needs summon/trigger hook outside this file.

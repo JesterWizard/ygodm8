@@ -6,6 +6,7 @@
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "imperial_order.h"
+#include "reptilanne_rage.h"
 #include "spell_effects.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -541,14 +542,26 @@ void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
     u8 destroyEquippedMonster = link->spellId == AUTONOMOUS_ACTION_UNIT
         || link->spellId == PREMATURE_BURIAL
         || link->spellId == MORPHTRONIC_REPAIR_UNIT;
+    u8 reptilanneRageGy = link->spellId == REPTILANNE_RAGE;
+    u8 controllerFixed = 0xFF;
     struct DuelCard *targetZone = NULL;
 
     if (banishEquippedMonster || destroyEquippedMonster)
       targetZone = GetZoneFromFixedCoords(link->targetFixedRow, link->targetFixedCol);
 
+    if (reptilanneRageGy) {
+      if (link->spellFixedRow == OPPONENT_BACKROW)
+        controllerFixed = DUEL_OPPONENT;
+      else
+        controllerFixed = DUEL_PLAYER;
+    }
+
     MoraleBoost_OnEquipSpellSentFromField();
     RemoveDynamicEquipStages(link);
     ClearDynamicEquipLink(link);
+
+    if (reptilanneRageGy)
+      ReptilanneRage_OnEquipSentFromField(controllerFixed);
 
     if (banishEquippedMonster && targetZone != NULL && targetZone->id != CARD_NONE)
       Duel_BanishZone(targetZone, FALSE);

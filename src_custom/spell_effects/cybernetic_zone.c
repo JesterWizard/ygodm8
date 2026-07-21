@@ -8,7 +8,6 @@
 #include "removed_from_play.h"
 #include "spell_effects.h"
 
-void IncrementPermStage(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 
 #define CYBERNETIC_ZONE_PHASE_IDLE 0
@@ -135,20 +134,30 @@ static void RemoveBanishedMatching(u8 fixedDuelist, u16 cardId)
 
 static void DoubleReturnedAtk(struct DuelCard *zone)
 {
-  u16 originalAtk;
-  u8 stages;
-  u8 i;
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  /* Exact ATK×2 via ApplyCyberneticZoneAtkBonusToCardInfo (board-cell stamp). */
+  (void)zone;
+}
+
+void ApplyCyberneticZoneAtkBonusToCardInfo(const struct DuelCard *zone)
+{
+  u16 cell;
+  u32 atk;
 
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  SetCardInfo(zone->id);
-  originalAtk = gCardInfo.atk;
-  /* ponytail: stage unit is 500 ATK — double via +original/500 stages.
-   * Ceiling: non-multiples of 500 are floored; upgrade: exact ATK overlay. */
-  stages = (u8)(originalAtk / 500);
-  for (i = 0; i < stages; i++)
-    IncrementPermStage(zone);
+  cell = GetDuelBoardCellIndex(zone);
+  if (cell == 0xFFFF || cell != sCyberneticZoneBoardCell)
+    return;
+  if (sCyberneticZonePhase != CYBERNETIC_ZONE_PHASE_AWAIT_DESTROY
+      && sCyberneticZonePhase != CYBERNETIC_ZONE_PHASE_BANISHED)
+    return;
+
+  atk = (u32)gCardInfo.atk * 2;
+  gCardInfo.atk = Duel_ClampStat(atk);
 }
 
 static void ClearCyberneticZoneState(void)
@@ -215,6 +224,7 @@ void TryApplyCyberneticZoneEndPhase(void)
   if (zone != NULL) {
     DoubleReturnedAtk(zone);
     sCyberneticZoneBoardCell = GetDuelBoardCellIndex(zone);
+    Duel_RefreshMonsterStatOverlays();
   } else {
     sCyberneticZoneBoardCell = 0xFFFF;
   }

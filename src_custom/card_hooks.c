@@ -11,6 +11,7 @@
 #include "bubble_blaster.h"
 #include "burden_of_the_mighty.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
+#include "cybernetic_zone.h"
 #include "d_force.h"
 #include "double_tool_c_and_d.h"
 #include "divine_sanctuary.h"
@@ -660,6 +661,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyGladiatorBeastsBattleGladiusAtkCorrection(zone);
   ApplyHarpiesHuntingGroundStatBonusToCardInfo(zone);
   ApplyLightswornSabreAtkBonusToCardInfo(zone);
+  ApplyCyberneticZoneAtkBonusToCardInfo(zone);
   ApplyMorphtronicEngineAtkBonusToCardInfo(zone);
   ApplyMorphtronicMapAtkBonusToCardInfo(zone);
   ApplyMoltingEscapeAtkBonusToCardInfo(zone);
@@ -799,6 +801,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyGladiatorBeastsBattleGladiusAtkCorrection(gSetFinalStatZone);
     ApplyHarpiesHuntingGroundStatBonusToCardInfo(gSetFinalStatZone);
     ApplyLightswornSabreAtkBonusToCardInfo(gSetFinalStatZone);
+    ApplyCyberneticZoneAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMorphtronicEngineAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMorphtronicMapAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMoltingEscapeAtkBonusToCardInfo(gSetFinalStatZone);

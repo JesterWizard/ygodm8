@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-21 — Round5 Batch1
+**Last worked on:** 2026-07-21 — Round5 Batch2
 
-**Outcome:** Mystik→Avarice: Parallel World RFP RemoveAt, Necrovalley GY banish/SS gates, Nephe Attribute override in fusion. Partials **765→764**.
+**Outcome:** Extravagance→Sarcophagus pack: Cybernetic Zone exact ATK×2, Reptilanne Rage GY −800. Partials **764→762**.
 
-**Open / next:** Round5 Batches 2–6.
+**Open / next:** Round5 Batches 3–6.
