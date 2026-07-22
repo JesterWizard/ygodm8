@@ -9,8 +9,8 @@ unsigned char CanActivateARMITYLE_THE_CHAOS_PHANTASM(void)
   if (gMonEffect.id != ARMITYLE_THE_CHAOS_PHANTASM)
     return FALSE;
 
-  /* ponytail: Extra Deck banish-fusion SS + battle indestructible + turn-only
-   * +10000 ATK need summon/permanent/battle hooks. Ceiling: not ignition here. */
+  /* Pierce + multi-attack via ApplySimplePiercersBattleEffect and
+   * TryMarkBuiltInExtraAttackOnPlacement. Ceiling: not ignition here. */
   return FALSE;
 }
 

@@ -6,6 +6,7 @@
 #include "dynamic_equip.h"
 #include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
+#include "extra_attack_unk4.h"
 
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
@@ -233,6 +234,7 @@ void GladiatorBeast_MarkTagSummonedZone(u16 cardId)
 
     if (zone != NULL && zone->id == cardId) {
       zone->unk4 |= GLADIATOR_BEAST_TAG_SS_MARK;
+      TryMarkBuiltInExtraAttackOnPlacement(zone);
       return;
     }
   }
@@ -289,6 +291,190 @@ void ClearGladiatorBeastBattledMarks(void)
       if (zone != NULL)
         zone->unk4 &= (u8)~GLADIATOR_BEAST_BATTLED_MARK;
     }
+  }
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+
+  return INACTIVE_DUELIST;
+}
+
+static u16 FindGladiatorBeastInDeck(u16 excludeId)
+{
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsGladiatorBeastMonster(cardId) && cardId != excludeId)
+      return cardId;
+  }
+
+  return CARD_NONE;
+}
+
+u8 GladiatorBeast_DeckHasTwoDifferentGladiatorBeasts(u16 excludeId)
+{
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u16 first = CARD_NONE;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (!IsGladiatorBeastMonster(cardId) || cardId == excludeId)
+      continue;
+
+    if (first == CARD_NONE) {
+      first = cardId;
+      continue;
+    }
+
+    if (cardId != first)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+void GladiatorBeast_SpecialSummonTwoFromDeck(u16 excludeId)
+{
+  u8 fixedDuelist = FixedDuelistForActive();
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  u16 first = CARD_NONE;
+  u16 second = CARD_NONE;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (!IsGladiatorBeastMonster(cardId) || cardId == excludeId)
+      continue;
+
+    if (first == CARD_NONE) {
+      first = cardId;
+      continue;
+    }
+
+    if (cardId != first) {
+      second = cardId;
+      break;
+    }
+  }
+
+  if (first != CARD_NONE)
+    Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, first, opts);
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (second != CARD_NONE)
+    Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, second, opts);
+}
+
+void GladiatorBeast_ActivateDeckTagOutTwo(struct DuelCard *self, u16 selfCardId)
+{
+  if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  MarkMonsterEffectUsed(self);
+  ShuffleSelfToDeck(self);
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  GladiatorBeast_SpecialSummonTwoFromDeck(selfCardId);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+static u8 AttackerDestroyedDefenderByBattle(u16 attackerId, u8 attackerFixed,
+                                            u16 *outDef)
+{
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 5)
+    return FALSE;
+
+  if (attackerFixed == DUEL_PLAYER && sActionData.playerCardId == attackerId
+      && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT)
+      && !(sActionData.flags & FLAG_GRAVEYARD_PLAYER)) {
+    *outDef = sActionData.opponentCardDefense;
+    return TRUE;
+  }
+
+  if (attackerFixed == DUEL_OPPONENT && sActionData.opponentCardId == attackerId
+      && (sActionData.flags & FLAG_GRAVEYARD_PLAYER)
+      && !(sActionData.flags & FLAG_GRAVEYARD_OPPONENT)) {
+    *outDef = sActionData.playerCardDefense;
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+void ApplyGladiatorBeastPermanentBattleEffects(void)
+{
+  u16 def;
+  u8 turnDuelist;
+  u16 deckCard;
+
+  if (gHideEffectText)
+    return;
+
+  if (AttackerDestroyedDefenderByBattle(GLADIATOR_BEAST_SAMNITE, DUEL_PLAYER, &def)) {
+    turnDuelist = TurnDuelistForFixed(DUEL_PLAYER);
+    if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+      return;
+
+    deckCard = FindGladiatorBeastInDeck(GLADIATOR_BEAST_SAMNITE);
+    if (deckCard == CARD_NONE)
+      return;
+
+    Duel_ShowEffectTextTyped(GLADIATOR_BEAST_SAMNITE, 2);
+    Duel_AddDeckCardToHand(turnDuelist, deckCard, TRUE);
+    return;
+  }
+
+  if (AttackerDestroyedDefenderByBattle(GLADIATOR_BEAST_SAMNITE, DUEL_OPPONENT, &def)) {
+    turnDuelist = TurnDuelistForFixed(DUEL_OPPONENT);
+    if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+      return;
+
+    deckCard = FindGladiatorBeastInDeck(GLADIATOR_BEAST_SAMNITE);
+    if (deckCard == CARD_NONE)
+      return;
+
+    Duel_ShowEffectTextTyped(GLADIATOR_BEAST_SAMNITE, 2);
+    Duel_AddDeckCardToHand(turnDuelist, deckCard, TRUE);
+    return;
+  }
+
+  if (AttackerDestroyedDefenderByBattle(GLADIATOR_BEAST_GAIODIAZ, DUEL_PLAYER, &def)) {
+    if (def == 0)
+      return;
+
+    Duel_ShowEffectTextTyped(GLADIATOR_BEAST_GAIODIAZ, 2);
+    Duel_ChangeLp(INACTIVE_DUELIST, -(s32)def, TRUE);
+    return;
+  }
+
+  if (AttackerDestroyedDefenderByBattle(GLADIATOR_BEAST_GAIODIAZ, DUEL_OPPONENT, &def)) {
+    if (def == 0)
+      return;
+
+    Duel_ShowEffectTextTyped(GLADIATOR_BEAST_GAIODIAZ, 2);
+    Duel_ChangeLp(ACTIVE_DUELIST, -(s32)def, TRUE);
   }
 }
 

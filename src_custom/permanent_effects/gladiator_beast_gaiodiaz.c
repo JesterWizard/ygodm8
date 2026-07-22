@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGLADIATOR_BEAST_GAIODIAZ(void)
 {
-  /* ponytail: battle DEF burn needs battle-end/destroy hook; tag-out via CanActivateGLADIATOR_BEAST_GAIODIAZ. */
+  /* Battle DEF burn via ApplyGladiatorBeastPermanentBattleEffects; tag-out via CanActivateGLADIATOR_BEAST_GAIODIAZ. */
   (void)gActiveEffect;
   return FALSE;
 }

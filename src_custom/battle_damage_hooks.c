@@ -464,6 +464,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyArmedDragonLv7BattleDestroyPending();
   ApplyHorusBattleDestroyPending();
   ApplyGladiatorBeastBattledMarks();
+  ApplyGladiatorBeastPermanentBattleEffects();
   ApplyReptilianneNagaBattleZeroAtk();
 
   {

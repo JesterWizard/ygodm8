@@ -10,7 +10,7 @@ unsigned char CanActivateANCIENT_GEAR_BEAST(void)
     return FALSE;
 
   /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
-   * ponytail: negate destroyed-in-battle monster effects need battle hook. */
+   * Negate destroyed-in-battle monster effects via ApplyHarpieLady2FlipNegation. */
   return FALSE;
 }
 

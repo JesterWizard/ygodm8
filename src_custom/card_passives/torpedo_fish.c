@@ -24,6 +24,9 @@ u8 IsImmuneToSpellEffectsOnField(u16 cardId, u8 turnRow)
       || cardId == SILENT_SWORDSMAN_LV7)
     return TRUE;
 
+  if (cardId == GLADIATOR_BEAST_ALEXANDER)
+    return TRUE;
+
   if (cardId == TORPEDO_FISH || cardId == CANNONBALL_SPEAR_SHELLFISH)
     return gDuel.field == FIELD_UMI;
 

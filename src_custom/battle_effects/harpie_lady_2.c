@@ -39,15 +39,17 @@ void ApplyHarpieLady2FlipNegation(void)
   if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 5)
     return;
 
-  /* Player's HL2 destroyed opponent's monster */
-  if (sActionData.playerCardId == HARPIE_LADY_2
+  /* Player destroyed opponent's monster by battle */
+  if ((sActionData.playerCardId == HARPIE_LADY_2
+       || sActionData.playerCardId == ANCIENT_GEAR_BEAST)
       && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT)) {
     gHarpieLady2NegatedCardId = sActionData.opponentCardId;
     return;
   }
 
-  /* Opponent's HL2 destroyed player's monster */
-  if (sActionData.opponentCardId == HARPIE_LADY_2
+  /* Opponent destroyed player's monster by battle */
+  if ((sActionData.opponentCardId == HARPIE_LADY_2
+       || sActionData.opponentCardId == ANCIENT_GEAR_BEAST)
       && (sActionData.flags & FLAG_GRAVEYARD_PLAYER)) {
     gHarpieLady2NegatedCardId = sActionData.playerCardId;
   }

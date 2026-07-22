@@ -87,6 +87,21 @@ static u8 CyberDragonCanSummonWithoutTribute(u16 cardId)
   return !playerHasMonster && opponentHasMonster;
 }
 
+static u8 MaliciousEdgeAllowsOneTribute(u16 cardId)
+{
+  u8 col;
+
+  if (cardId != EVIL_HERO_MALICIOUS_EDGE)
+    return FALSE;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][col]->id != CARD_NONE)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
 static int GetBaseRequiredTributes(u16 cardId)
 {
   if (gRuntimeConfig.ignore_tribute_requirements)
@@ -126,6 +141,9 @@ static int GetBaseRequiredTributes(u16 cardId)
     required = Geartown_ReduceRequiredTributes(cardId, required);
     if (AncientGearCastle_CanSubstituteTributes(cardId, required))
       return 0;
+
+    if (required >= 2 && MaliciousEdgeAllowsOneTribute(cardId))
+      return 1;
 
     return required;
   }
@@ -177,6 +195,9 @@ int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
     required = Geartown_ReduceRequiredTributes(cardId, required);
     if (AncientGearCastle_CanSubstituteTributes(cardId, required))
       return 0;
+
+    if (required >= 2 && MaliciousEdgeAllowsOneTribute(cardId))
+      return 1;
 
     return required;
   }

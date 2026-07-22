@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/card_ids.h"
 #include "extra_attack_unk4.h"
 #include "the_dark_door.h"
 
@@ -13,4 +14,13 @@ void TryUnlockUnk4MarkedExtraAttack(struct DuelCard *attacker)
     attacker->effectUsedThisTurn = TRUE;
     attacker->isLocked = FALSE;
   }
+}
+
+void TryMarkBuiltInExtraAttackOnPlacement(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  if (zone->id == GLADIATOR_BEAST_DIMACARI || zone->id == ARMITYLE_THE_CHAOS_PHANTASM)
+    zone->unk4 = 2;
 }

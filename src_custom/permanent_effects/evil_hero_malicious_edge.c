@@ -5,8 +5,7 @@
 
 unsigned char ShouldActivateEVIL_HERO_MALICIOUS_EDGE(void)
 {
-  /* Pierce via ApplySimplePiercersBattleEffect.
-   * ponytail: 1-tribute summon gate need summon hook. */
+  /* Pierce via ApplySimplePiercersBattleEffect; 1-tribute gate via MaliciousEdgeAllowsOneTribute. */
   (void)gActiveEffect;
   return FALSE;
 }

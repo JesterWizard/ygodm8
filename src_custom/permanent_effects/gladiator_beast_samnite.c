@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGLADIATOR_BEAST_SAMNITE(void)
 {
-  /* ponytail: battle search needs battle-end/destroy hook; tag-out via CanActivateGLADIATOR_BEAST_SAMNITE. */
+  /* Battle search via ApplyGladiatorBeastPermanentBattleEffects; tag-out via CanActivateGLADIATOR_BEAST_SAMNITE. */
   (void)gActiveEffect;
   return FALSE;
 }

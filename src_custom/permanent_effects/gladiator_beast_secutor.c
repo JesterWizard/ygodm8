@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGLADIATOR_BEAST_SECUTOR(void)
 {
-  /* ponytail: battle-end tag SS 2 GB from Deck needs battle-end hook. */
+  /* Tag-out SS 2 GB via CanActivateGLADIATOR_BEAST_SECUTOR / GladiatorBeast_ActivateDeckTagOutTwo. */
   (void)gActiveEffect;
   return FALSE;
 }

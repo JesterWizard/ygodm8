@@ -84,6 +84,7 @@
 #include "silent_swordsman.h"
 #include "destiny_hero_decider.h"
 #include "destiny_hero_destroy_dogma.h"
+#include "destiny_hero_dogma_standby.h"
 #include "destiny_hero_dusktopia.h"
 #include "destiny_hero_drawhand.h"
 #include "elemental_hero_glow_neos.h"
@@ -451,6 +452,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyDestinyHeroDefenderStandbyDraw();
   TryApplyDestinyHeroDrawhandStandby();
   TryApplyDestinyHeroDestroyDogmaStandby();
+  TryApplyDestinyHeroDogmaStandby();
   TryApplySilentSwordsmanStandby();
   TryApplySilentSwordsmanZeroStandby();
   TryApplyAzureEyesSilverDragonStandby();

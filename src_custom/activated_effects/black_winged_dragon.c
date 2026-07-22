@@ -3,12 +3,30 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "god_card.h"
+#include "black_winged_dragon.h"
 #include "monster_effect_usage.h"
 
 void RefreshFieldMonsterStatOverlays(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+void ApplyBlackWingedDragonContinuousAtkToCardInfo(const struct DuelCard *zone)
+{
+  u16 penalty;
+
+  if (zone == NULL || zone->id != BLACK_WINGED_DRAGON)
+    return;
+
+  if (zone->tempStage >= 0)
+    return;
+
+  penalty = (u16)((u8)(-zone->tempStage) / 2 * 700);
+  if (penalty >= gCardInfo.atk)
+    gCardInfo.atk = 0;
+  else
+    gCardInfo.atk -= penalty;
+}
 
 static u8 IsFaceUpOppMonster(struct DuelCard *zone)
 {
@@ -49,7 +67,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidTarget(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* ponytail: −700 ≈ −2 tempStage (~−1000); counter/damage-redirect FALSE. */
+  /* −700 ≈ −2 tempStage stand-in; counter/damage-redirect FALSE. */
   if (zone->tempStage > -126)
     zone->tempStage = (s8)(zone->tempStage - 2);
 
@@ -92,8 +110,9 @@ unsigned char CanActivateBLACK_WINGED_DRAGON(void)
   if (zone == NULL || zone->id != BLACK_WINGED_DRAGON)
     return FALSE;
 
-  /* ponytail: damage redirect + Black Feather Counters + burn need damage hooks.
-   * Ceiling: OPT −2 tempStage on 1 face-up opp monster. */
+  /* Damage redirect + Black Feather Counters + burn need damage hooks.
+   * OPT −2 tempStage on 1 face-up opp monster; ATK via
+   * ApplyBlackWingedDragonContinuousAtkToCardInfo. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

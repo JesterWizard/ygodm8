@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 17:12 UTC  
-**Remaining partials:** `445`
+**Last updated:** 2026-07-22 17:17 UTC  
+**Remaining partials:** `435`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 351 |
-| `permanent` | 78 |
-| **total** | **445** |
+| `activated` | 348 |
+| `permanent` | 71 |
+| **total** | **435** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (351)
+## activated (348)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -114,10 +114,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/ancient_fairy_dragon.c`
 - L135: cannot conduct Battle Phase — unk4 lock stand-in.
 - L196: true BP skip needs phase lock; unk4 stand-in. Ceiling: OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field.
-
-### `ANCIENT_GEAR_BEAST`
-- path: `src_custom/activated_effects/ancient_gear_beast.c`
-- L13: * ponytail: negate destroyed-in-battle monster effects need battle hook. */
 
 ### `ANCIENT_GEAR_COMMANDER`
 - path: `src_custom/activated_effects/ancient_gear_commander.c`
@@ -199,10 +195,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/armed_neos.c`
 - L116: battle-destroy gain Extra tribute SS need battle/Extra hooks. Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY.
 
-### `ARMITYLE_THE_CHAOS_PHANTASM`
-- path: `src_custom/activated_effects/armityle_the_chaos_phantasm.c`
-- L12: Extra Deck banish-fusion SS + battle indestructible + turn-only +10000 ATK need summon/permanent/battle hooks. Ceiling: not ignition here.
-
 ### `ARMORY_ARM`
 - path: `src_custom/activated_effects/armory_arm.c`
 - L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
@@ -282,11 +274,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `BLACK_ROSE_DRAGON`
 - path: `src_custom/activated_effects/black_rose_dragon.c`
 - L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
-
-### `BLACK_WINGED_DRAGON`
-- path: `src_custom/activated_effects/black_winged_dragon.c`
-- L52: −700 ≈ −2 tempStage (~−1000); counter/damage-redirect FALSE.
-- L95: damage redirect + Black Feather Counters + burn need damage hooks. Ceiling: OPT −2 tempStage on 1 face-up opp monster.
 
 ### `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c`
@@ -1561,7 +1548,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (78)
+## permanent (71)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1631,10 +1618,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/despair_from_the_dark.c`
 - L47: opp hand/Deck send by card effect not tracked — GY-top SS only.
 
-### `DESTINY_HERO_DOGMA`
-- path: `src_custom/permanent_effects/destiny_hero_dogma.c`
-- L77: true trigger is opp next Standby after 3-tribute SS; on-summon halve LP once.
-
 ### `DESTINY_HERO_DOOM_OVERLORD`
 - path: `src_custom/permanent_effects/destiny_hero_doom_overlord.c`
 - L327: banish-until-Standby = permanent banish; DARK HERO SS lock not wired.
@@ -1703,10 +1686,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L128: true trigger is Special Summon; on-summon stand-in covers SS path.
 - L149: HERO battle-destroy 2100 burn needs battle-end hook.
 
-### `EVIL_HERO_MALICIOUS_EDGE`
-- path: `src_custom/permanent_effects/evil_hero_malicious_edge.c`
-- L9: * ponytail: 1-tribute summon gate need summon hook. */
-
 ### `EVIL_HERO_MALICIOUS_FIEND`
 - path: `src_custom/permanent_effects/evil_hero_malicious_fiend.c`
 - L9: * ponytail: forced attack + face-up Attack Position need battle redirect hooks. */
@@ -1723,29 +1702,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/fire_princess.c`
 - L37: normal hand summon copies isFaceUp=0; attack-position monsters still count
 
-### `GLADIATOR_BEAST_ALEXANDER`
-- path: `src_custom/permanent_effects/gladiator_beast_alexander.c`
-- L8: spell immunity needs continuous hook; tag-out via CanActivateGLADIATOR_BEAST_ALEXANDER.
-
-### `GLADIATOR_BEAST_DIMACARI`
-- path: `src_custom/permanent_effects/gladiator_beast_dimacari.c`
-- L8: double attack needs battle-end/summon hook; tag-out via CanActivateGLADIATOR_BEAST_DIMACARI.
-
 ### `GLADIATOR_BEAST_ESSEDARII`
 - path: `src_custom/permanent_effects/gladiator_beast_essedarii.c`
 - L8: Contact Fusion has no permanent ignition path.
-
-### `GLADIATOR_BEAST_GAIODIAZ`
-- path: `src_custom/permanent_effects/gladiator_beast_gaiodiaz.c`
-- L8: battle DEF burn needs battle-end/destroy hook; tag-out via CanActivateGLADIATOR_BEAST_GAIODIAZ.
-
-### `GLADIATOR_BEAST_SAMNITE`
-- path: `src_custom/permanent_effects/gladiator_beast_samnite.c`
-- L8: battle search needs battle-end/destroy hook; tag-out via CanActivateGLADIATOR_BEAST_SAMNITE.
-
-### `GLADIATOR_BEAST_SECUTOR`
-- path: `src_custom/permanent_effects/gladiator_beast_secutor.c`
-- L8: battle-end tag SS 2 GB from Deck needs battle-end hook.
 
 ### `GRANADORA`
 - path: `src_custom/permanent_effects/granadora.c`

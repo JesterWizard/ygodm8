@@ -49,30 +49,14 @@ unsigned char ShouldActivateDESTINY_HERO_DOGMA(void)
 
 void ActivateDESTINY_HERO_DOGMA(void)
 {
-  u8 duelist;
-  u8 oppTurn;
-  u8 oppFixed;
-  u16 lp;
-  s32 pay;
   struct DuelCard *zone;
-
-  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  oppTurn = OpponentDuelist(duelist);
-  oppFixed = FixedDuelistForTurnDuelist(oppTurn);
-  lp = gDuelLifePoints[oppFixed];
-  pay = (s32)(lp / 2);
 
   Duel_ShowEffectTextTyped(DESTINY_HERO_DOGMA, 8);
   if (IsDuelOver() == TRUE)
     return;
 
-  if (pay > 0) {
-    if (Duel_ChangeLp(oppTurn, -pay, TRUE) == DUEL_ACTION_DUEL_OVER)
-      return;
-  }
-
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
-  /* ponytail: true trigger is opp next Standby after 3-tribute SS; on-summon halve LP once. */
+  /* Opp Standby halve LP via TryApplyDestinyHeroDogmaStandby after SS. */
 }

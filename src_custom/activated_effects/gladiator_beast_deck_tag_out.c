@@ -33,6 +33,28 @@ DEFINE_GB_DECK_TAG_OUT(GLADIATOR_BEAST_DIMACARI)
 DEFINE_GB_DECK_TAG_OUT(GLADIATOR_BEAST_ALEXANDER)
 DEFINE_GB_DECK_TAG_OUT(GLADIATOR_BEAST_GAIODIAZ)
 
+unsigned char CanActivateGLADIATOR_BEAST_SECUTOR(void)
+{
+  struct DuelCard *zone;
+
+  if (gMonEffect.id != GLADIATOR_BEAST_SECUTOR)
+    return FALSE;
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (!GladiatorBeast_CanActivateDeckTagOut(GLADIATOR_BEAST_SECUTOR, zone))
+    return FALSE;
+
+  return GladiatorBeast_DeckHasTwoDifferentGladiatorBeasts(GLADIATOR_BEAST_SECUTOR);
+}
+
+void ActivateGLADIATOR_BEAST_SECUTOREffect(void)
+{
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  Duel_ShowEffectTextTyped(GLADIATOR_BEAST_SECUTOR, 2);
+  GladiatorBeast_ActivateDeckTagOutTwo(self, GLADIATOR_BEAST_SECUTOR);
+}
+
 unsigned char CanActivateGLADIATOR_BEAST_TORAX(void)
 {
   struct DuelCard *zone;

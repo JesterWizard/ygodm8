@@ -1685,6 +1685,7 @@ void sub_80449D8__Replacement(void)
       TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
       TryAmazonessTigerOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
       TryAmazonessBabyTigerOnAmazonessPlacement(gFixedZones[placedRow][placedCol]);
+      TryMarkBuiltInExtraAttackOnPlacement(gFixedZones[placedRow][placedCol]);
       TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
       TryVengefulBogSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
       TryElementalHeroGreatTornadoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);

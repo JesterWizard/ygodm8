@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGLADIATOR_BEAST_ALEXANDER(void)
 {
-  /* ponytail: spell immunity needs continuous hook; tag-out via CanActivateGLADIATOR_BEAST_ALEXANDER. */
+  /* Spell immunity via IsImmuneToSpellEffectsOnField; tag-out via CanActivateGLADIATOR_BEAST_ALEXANDER. */
   (void)gActiveEffect;
   return FALSE;
 }
