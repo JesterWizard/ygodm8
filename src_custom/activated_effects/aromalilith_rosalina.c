@@ -103,7 +103,7 @@ unsigned char CanActivateAROMALILITH_ROSALINA(void)
   if (zone == NULL || zone->id != AROMALILITH_ROSALINA)
     return FALSE;
 
-  /* Ceiling: OPT SS 1 non-Tuner Aroma from Deck in DEF. */
+  /* OPT SS 1 non-Tuner Aroma from Deck in DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

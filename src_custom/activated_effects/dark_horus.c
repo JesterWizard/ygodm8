@@ -97,7 +97,7 @@ unsigned char CanActivateDARK_HORUS(void)
     return FALSE;
 
   /* Ceiling: after opp Main Phase Spell resolve trigger needs spell hook.
-   * Ceiling: OPT SS 1 Lv4 DARK from GY while face-up. */
+   * OPT SS 1 Lv4 DARK from GY while face-up. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

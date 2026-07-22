@@ -91,7 +91,7 @@ unsigned char CanActivateGRAVEKEEPERS_ORACLE(void)
     return FALSE;
 
   /* Tribute Summon sequence (destroy/flip/ATK) FALSE.
-   * Ceiling: OPT destroy up to 2 cards on opp field. */
+   * OPT destroy up to 2 cards on opp field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

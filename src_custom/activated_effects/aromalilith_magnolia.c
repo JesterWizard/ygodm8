@@ -134,7 +134,7 @@ unsigned char CanActivateAROMALILITH_MAGNOLIA(void)
     return FALSE;
 
   /* LP-higher Plant effect-destroy immunity via AromalilithMagnolia_PreventsDestroy.
-   * Ceiling: OPT pay 2000 → banish up to Humid/Dried/Blessed Winds count. */
+   * OPT pay 2000 → banish up to Humid/Dried/Blessed Winds count. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -45,7 +45,7 @@ unsigned char CanActivateGLADIATOR_BEAST_AUGUSTUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_AUGUSTUS)
     return FALSE;
 
-  /* Ceiling: OPT SS 1 other GB from hand in DEF. */
+  /* OPT SS 1 other GB from hand in DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

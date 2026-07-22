@@ -113,7 +113,7 @@ unsigned char CanActivateDARKLORD_DESIRE(void)
   if (zone == NULL || zone->id != DARKLORD_DESIRE)
     return FALSE;
 
-  /* Ceiling: Fairy-only Tribute Summon + cannot SS need summon hooks. Ceiling:
+  /* Ceiling: Fairy-only Tribute Summon + cannot SS need summon hooks. 
    * OPT -1000 ATK (tempStage) → send 1 opp monster to GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

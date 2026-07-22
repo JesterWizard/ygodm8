@@ -187,7 +187,8 @@ unsigned char CanActivateAROMASERAPHY_ROSEMARY(void)
     return FALSE;
 
   /* Plant +500 via ApplyAromaseraphyRosemaryStatBoostToCardInfo.
-   * Ceiling: OPT destroy 1 face-up opp. Residual: LP-gain negate needs LP hook. */
+   * OPT destroy 1 face-up opp.
+   * Ceiling: LP-gain negate needs LP hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

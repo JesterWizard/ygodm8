@@ -37,7 +37,7 @@ unsigned char CanActivateTHEINEN_THE_GREAT_SPHINX(void)
     return FALSE;
 
   /* Andro+Teleia destroy SS from hand/Deck needs destroy hook.
-   * Ceiling: OPT pay 500 → +7 tempStage (~3000 ATK). */
+   * OPT pay 500 → +7 tempStage (~3000 ATK). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

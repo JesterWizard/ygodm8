@@ -63,8 +63,8 @@ unsigned char CanActivateAROMAGE_LAUREL(void)
   if (zone == NULL || zone->id != AROMAGE_LAUREL)
     return FALSE;
 
-  /* Ceiling: OPT add 1 Plant from Deck.
-   * Residual: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks. */
+  /* OPT add 1 Plant from Deck.
+   * Ceiling: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
