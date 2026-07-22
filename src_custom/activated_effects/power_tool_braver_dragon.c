@@ -97,7 +97,7 @@ unsigned char CanActivatePOWER_TOOL_BRAVER_DRAGON(void)
     return FALSE;
 
   /* SS equip Equip Spells from Deck/GY hard; send-equip negate FALSE.
-   * Ceiling: OPT change battle position of 1 monster. */
+   * OPT change battle position of 1 monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

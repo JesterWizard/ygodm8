@@ -235,7 +235,7 @@ unsigned char CanActivateTEST_BEAR(void)
     return FALSE;
 
   /* Deck/ED-summoned GB gate for hand SS relaxed to any face-up GB.
-   * Ceiling: OPT tribute self + shuffle 1 GB → SS up to 2 GB from Deck. */
+   * OPT tribute self + shuffle 1 GB → SS up to 2 GB from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

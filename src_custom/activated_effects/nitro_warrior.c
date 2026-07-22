@@ -94,7 +94,7 @@ unsigned char CanActivateNITRO_WARRIOR(void)
     return FALSE;
 
   /* Spell ATK gain + battle-after destroy trigger FALSE.
-   * Ceiling: OPT change 1 face-up DEF opp monster to ATK (battle-after stand-in). */
+   * OPT change 1 face-up DEF opp monster to ATK (battle-after stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

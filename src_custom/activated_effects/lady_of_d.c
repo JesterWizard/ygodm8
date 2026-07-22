@@ -85,8 +85,8 @@ unsigned char CanActivateLADY_OF_D(void)
   if (zone == NULL || zone->id != LADY_OF_D)
     return FALSE;
 
-  /* Dragon attack lock via LadyOfD_CanAttackMonsterZone. Ceiling: OPT discard
-   * 1 Dragon from hand (destroy-save stand-in). */
+  /* Dragon attack lock via LadyOfD_CanAttackMonsterZone.
+   * OPT discard 1 Dragon from hand (destroy-save stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

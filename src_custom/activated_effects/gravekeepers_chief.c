@@ -184,7 +184,7 @@ unsigned char CanActivateGRAVEKEEPERS_CHIEF(void)
     return FALSE;
 
   /* Tribute Summon trigger, once-only control, and Necrovalley GY
-   * immunity need summon/continuous hooks. Ceiling: OPT SS GK from GY. */
+   * immunity need summon/continuous hooks. OPT SS GK from GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

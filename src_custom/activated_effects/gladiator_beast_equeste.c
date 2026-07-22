@@ -157,7 +157,7 @@ unsigned char CanActivateGLADIATOR_BEAST_EQUESTE(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_EQUESTE)
     return FALSE;
 
-  /* On-GB-tag SS add trigger need summon hook. Ceiling: OPT add 1 GB from GY to
+  /* Tag-SS GY add via GladiatorBeast_TryTagSummonTriggers; OPT add 1 GB from GY to
    * hand; tag-out via GladiatorBeast_CanActivateTagOutEffect. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -174,8 +174,9 @@ unsigned char CanActivateGLADIATOR_BEAST_DARIUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_DARIUS)
     return FALSE;
 
-  /* GB-tag SS revive + leave-field shuffle need summon/leave hooks. Ceiling: OPT
-   * SS GB from GY negated; tag-out via GladiatorBeast_CanActivateTagOutEffect. */
+  /* Tag-SS GY revive via GladiatorBeast_TryTagSummonTriggers.
+   * Ceiling: leave-field shuffle need leave hook.
+   * OPT SS GB from GY negated; tag-out via GladiatorBeast_CanActivateTagOutEffect. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -191,7 +191,7 @@ unsigned char CanActivateGLADIATOR_BEAST_BESTIARI(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_BESTIARI)
     return FALSE;
 
-  /* GB-tag SS destroy trigger need summon hook. Ceiling: OPT destroy 1 opp S/T;
+  /* Tag-SS destroy via GladiatorBeast_TryTagSummonTriggers; OPT destroy 1 opp S/T;
    * tag-out via GladiatorBeast_CanActivateTagOutEffect. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

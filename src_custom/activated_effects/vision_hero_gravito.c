@@ -111,7 +111,7 @@ unsigned char CanActivateVISION_HERO_GRAVITO(void)
     return FALSE;
 
   /* Ceiling: tribute self → SS 2 Vision HERO from Spell & Trap Zone needs equip
-   * zone API. Ceiling: OPT add 1 banished HERO monster to hand. */
+   * zone API. OPT add 1 banished HERO monster to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

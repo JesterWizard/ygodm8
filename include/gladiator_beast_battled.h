@@ -20,6 +20,7 @@ u8 GladiatorBeast_CanActivateTagOutDraw(u16 cardId, struct DuelCard *zone);
 void GladiatorBeast_ActivateDeckTagOutDraw(struct DuelCard *self, u16 selfCardId);
 void GladiatorBeast_ActivateDeckTagOutTwo(struct DuelCard *self, u16 selfCardId);
 void GladiatorBeast_MarkTagSummonedZone(u16 cardId);
+void GladiatorBeast_TryTagSummonTriggers(struct DuelCard *zone);
 void ApplyGladiatorBeastTagOutStatBoostToCardInfo(const struct DuelCard *zone);
 u8 GladiatorBeast_ZoneBattledThisBattlePhase(const struct DuelCard *zone);
 void ApplyGladiatorBeastBattledMarks(void);

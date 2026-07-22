@@ -189,7 +189,7 @@ unsigned char CanActivateREPTILIANNE_VASKII(void)
     return FALSE;
 
   /* only-SS-by-tribute + unique-on-field need summon/field hooks.
-   * Ceiling: OPT destroy 1 face-up opp monster. */
+   * OPT destroy 1 face-up opp monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

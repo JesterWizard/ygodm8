@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 19:13 UTC  
-**Remaining partials:** `280`
+**Last updated:** 2026-07-22 19:18 UTC  
+**Remaining partials:** `265`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 11 |
-| `activated` | 241 |
+| `activated` | 226 |
 | `permanent` | 22 |
-| **total** | **280** |
+| **total** | **265** |
 
 ## spell (6)
 
@@ -101,7 +101,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (241)
+## activated (226)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -163,7 +163,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ARCANITE_MAGICIAN`
 - path: `src_custom/activated_effects/arcanite_magician.c`
-- L158: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. Ceiling: OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card.
+- L158: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card.
 
 ### `ARMORY_ARM`
 - path: `src_custom/activated_effects/armory_arm.c`
@@ -260,7 +260,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CORAL_DRAGON`
 - path: `src_custom/activated_effects/coral_dragon.c`
-- L114: GY draw when Synchro Summoned card sent from field needs GY hook. Ceiling: OPT discard 1 → destroy 1 opp card.
+- L114: GY draw when Synchro Summoned card sent from field needs GY hook. OPT discard 1 → destroy 1 opp card.
 
 ### `CRIMSON_DRAGON`
 - path: `src_custom/activated_effects/crimson_dragon.c`
@@ -538,21 +538,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c`
 - L69: * Ceiling: FromHand tribute 1 opp → SS to your field (or free SS if opp has Kaiju). */
 
-### `GLADIATOR_BEAST_ATTORIX`
-- path: `src_custom/activated_effects/gladiator_beast_attorix.c`
-- L133: * Ceiling: OPT send 1 other GB from Deck to GY (unkTwo name copy) or tag-out. */
-
-### `GLADIATOR_BEAST_BESTIARI`
-- path: `src_custom/activated_effects/gladiator_beast_bestiari.c`
-- L194: /* GB-tag SS destroy trigger need summon hook. Ceiling: OPT destroy 1 opp S/T;
-
 ### `GLADIATOR_BEAST_DARIUS`
 - path: `src_custom/activated_effects/gladiator_beast_darius.c`
-- L177: /* GB-tag SS revive + leave-field shuffle need summon/leave hooks. Ceiling: OPT
-
-### `GLADIATOR_BEAST_EQUESTE`
-- path: `src_custom/activated_effects/gladiator_beast_equeste.c`
-- L160: /* On-GB-tag SS add trigger need summon hook. Ceiling: OPT add 1 GB from GY to
+- L178: * Ceiling: leave-field shuffle need leave hook.
 
 ### `GLADIATOR_BEAST_GYZARUS`
 - path: `src_custom/activated_effects/gladiator_beast_gyzarus.c`
@@ -561,18 +549,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GLADIATOR_BEAST_HERAKLINOS`
 - path: `src_custom/activated_effects/gladiator_beast_heraklinos.c`
 - L148: either-turn chain negate needs chain hook. OPT discard 1 → destroy 1 opponent card below.
-
-### `GLADIATOR_BEAST_LANISTA`
-- path: `src_custom/activated_effects/gladiator_beast_lanista.c`
-- L157: * Ceiling: OPT banish 1 GB from GY (unkTwo name copy) or tag-out. */
-
-### `GLADIATOR_BEAST_MURMILLO`
-- path: `src_custom/activated_effects/gladiator_beast_murmillo.c`
-- L237: /* GB-tag SS destroy trigger need summon hook. Ceiling: OPT destroy face-up
-
-### `GLADIATOR_BEAST_SAGITTARII`
-- path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
-- L112: * Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
 
 ### `GODDESS_BOW`
 - path: `src_custom/activated_effects/goddess_bow.c`
@@ -590,10 +566,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/gravekeepers_ambusher.c`
 - L146: /* flip trigger + Necrovalley search need flip/send hooks. Ceiling:
 
-### `GRAVEKEEPERS_CHIEF`
-- path: `src_custom/activated_effects/gravekeepers_chief.c`
-- L187: * immunity need summon/continuous hooks. Ceiling: OPT SS GK from GY. */
-
 ### `GRAVEKEEPERS_CURSE`
 - path: `src_custom/activated_effects/gravekeepers_curse.c`
 - L20: /* printed is If Summoned trigger. Ceiling: allow once via usage
@@ -605,10 +577,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GRAVEKEEPERS_VASSAL`
 - path: `src_custom/activated_effects/gravekeepers_vassal.c`
 - L13: * Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle
-
-### `GRAVEKEEPERS_VISIONARY`
-- path: `src_custom/activated_effects/gravekeepers_visionary.c`
-- L89: * destroy-replace needs destroy gate. Ceiling: OPT discard GK stand-in. */
 
 ### `GRAVEKEEPERS_WATCHER`
 - path: `src_custom/activated_effects/gravekeepers_watcher.c`
@@ -681,10 +649,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `KEEPER_OF_DRAGON_MAGIC`
 - path: `src_custom/activated_effects/keeper_of_dragon_magic.c`
 - L186: * Ceiling: OPT discard → add Poly/Fusion Normal; else OPT SS any from GY face-down DEF. */
-
-### `LADY_OF_D`
-- path: `src_custom/activated_effects/lady_of_d.c`
-- L88: /* Dragon attack lock via LadyOfD_CanAttackMonsterZone. Ceiling: OPT discard
 
 ### `LEKUNGA`
 - path: `src_custom/activated_effects/lekunga.c`
@@ -853,10 +817,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/nibiru_the_primal_being.c`
 - L91: * Ceiling: FromHand wipe+SS if ≥5 face-up monsters on field. */
 
-### `NITRO_WARRIOR`
-- path: `src_custom/activated_effects/nitro_warrior.c`
-- L97: * Ceiling: OPT change 1 face-up DEF opp monster to ATK (battle-after stand-in). */
-
 ### `NUMBER_39_UTOPIA`
 - path: `src_custom/activated_effects/number_39_utopia.c`
 - L13: * hook and XYZ material system. Ceiling: not field-ignition activatable. */
@@ -872,10 +832,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `POSEIDRA_THE_ATLANTEAN_DRAGON`
 - path: `src_custom/activated_effects/poseidra_the_atlantean_dragon.c`
 - L284: /* hand SS uses FromHand path. Ceiling: GY ignition like Malicious. */
-
-### `POWER_TOOL_BRAVER_DRAGON`
-- path: `src_custom/activated_effects/power_tool_braver_dragon.c`
-- L100: * Ceiling: OPT change battle position of 1 monster. */
 
 ### `POWER_TOOL_DRAGON`
 - path: `src_custom/activated_effects/power_tool_dragon.c`
@@ -916,10 +872,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `REPTILIANNE_LAMIA`
 - path: `src_custom/activated_effects/reptilianne_lamia.c`
 - L98: * Ceiling: not field-ignition; FromHand ATK-0 + SS + self-damage. */
-
-### `REPTILIANNE_VASKII`
-- path: `src_custom/activated_effects/reptilianne_vaskii.c`
-- L192: * Ceiling: OPT destroy 1 face-up opp monster. */
 
 ### `RINYAN_LIGHTSWORN_ROGUE`
 - path: `src_custom/activated_effects/rinyan_lightsworn_rogue.c`
@@ -985,14 +937,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/tatsunoko.c`
 - L13: * synchro/summon continuous hooks. Ceiling: not field-ignition here. */
 
-### `TEST_BEAR`
-- path: `src_custom/activated_effects/test_bear.c`
-- L238: * Ceiling: OPT tribute self + shuffle 1 GB → SS up to 2 GB from Deck. */
-
-### `TEST_PANTHER`
-- path: `src_custom/activated_effects/test_panther.c`
-- L200: * Ceiling: OPT search GB from Deck, else bounce GB → SS different GB. */
-
 ### `THE_AGENT_OF_DESTRUCTION_VENUS`
 - path: `src_custom/activated_effects/the_agent_of_destruction_venus.c`
 - L193: * Ceiling: OPT pay 500×N → SS N Mystical Shine Ball from banished/GY. */
@@ -1012,10 +956,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO`
 - path: `src_custom/activated_effects/the_executor_of_the_underworld_pluto.c`
 - L164: * Ceiling: OPT banish 1 monster from GY → flip 1 Effect Monster face-down DEF. */
-
-### `THE_LEGENDARY_EXODIA_INCARNATE`
-- path: `src_custom/activated_effects/the_legendary_exodia_incarnate.c`
-- L126: * Ceiling: OPT add Forbidden One from GY. FromHand tribute Forbidden One → SS. */
 
 ### `THESTALOS_THE_FIRESTORM_MONARCH`
 - path: `src_custom/activated_effects/thestalos_the_firestorm_monarch.c`
@@ -1076,7 +1016,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `VISION_HERO_GRAVITO`
 - path: `src_custom/activated_effects/vision_hero_gravito.c`
 - L64: no RemovedFromPlay_RemoveAt — shift RFP array in place after add. Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt.
-- L113: tribute self → SS 2 Vision HERO from Spell & Trap Zone needs equip zone API. Ceiling: OPT add 1 banished HERO monster to hand.
+- L113: tribute self → SS 2 Vision HERO from Spell & Trap Zone needs equip zone API. OPT add 1 banished HERO monster to hand.
 
 ### `VISION_HERO_INCREASE`
 - path: `src_custom/activated_effects/vision_hero_increase.c`

@@ -234,7 +234,7 @@ unsigned char CanActivateGLADIATOR_BEAST_MURMILLO(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_MURMILLO)
     return FALSE;
 
-  /* GB-tag SS destroy trigger need summon hook. Ceiling: OPT destroy face-up
+  /* Tag-SS destroy via GladiatorBeast_TryTagSummonTriggers; OPT destroy face-up
    * monster; tag-out via GladiatorBeast_CanActivateTagOutEffect. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

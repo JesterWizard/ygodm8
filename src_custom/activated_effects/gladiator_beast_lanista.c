@@ -154,7 +154,7 @@ unsigned char CanActivateGLADIATOR_BEAST_LANISTA(void)
 
   /* Name copy via GladiatorBeast_GetCopiedEffectCardId + Duel_ZoneEffectCardId;
    * end-of-BP battled tag-out via GladiatorBeast_CanActivateTagOutEffect.
-   * Ceiling: OPT banish 1 GB from GY (unkTwo name copy) or tag-out. */
+   * OPT banish 1 GB from GY (unkTwo name copy) or tag-out. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

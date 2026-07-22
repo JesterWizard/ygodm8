@@ -109,7 +109,7 @@ unsigned char CanActivateGLADIATOR_BEAST_SAGITTARII(void)
     return FALSE;
 
   /* End-of-BP + battled via GladiatorBeast_CanActivateTagOutEffect.
-   * Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
+   * OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
    * Residual: discard-GB draw 2 on GB-SS need summon hooks. */
   if (!GladiatorBeast_CanActivateTagOutEffect(zone))
     return FALSE;

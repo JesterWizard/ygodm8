@@ -257,6 +257,7 @@ void GladiatorBeast_MarkTagSummonedZone(u16 cardId)
     if (zone != NULL && zone->id == cardId) {
       zone->unk4 |= GLADIATOR_BEAST_TAG_SS_MARK;
       TryMarkBuiltInExtraAttackOnPlacement(zone);
+      GladiatorBeast_TryTagSummonTriggers(zone);
       return;
     }
   }

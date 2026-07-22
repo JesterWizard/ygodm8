@@ -156,7 +156,7 @@ unsigned char CanActivateARCANITE_MAGICIAN(void)
     return FALSE;
 
   /* Ceiling: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat
-   * hooks. Ceiling: OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card. */
+   * hooks. OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

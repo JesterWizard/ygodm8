@@ -197,7 +197,7 @@ unsigned char CanActivateTEST_PANTHER(void)
     return FALSE;
 
   /* Link Summon trigger for search needs summon hook.
-   * Ceiling: OPT search GB from Deck, else bounce GB → SS different GB. */
+   * OPT search GB from Deck, else bounce GB → SS different GB. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

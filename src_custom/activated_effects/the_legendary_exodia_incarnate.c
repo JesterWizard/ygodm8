@@ -123,7 +123,7 @@ unsigned char CanActivateTHE_LEGENDARY_EXODIA_INCARNATE(void)
     return FALSE;
 
   /* ATK gain / unaffected FALSE.
-   * Ceiling: OPT add Forbidden One from GY. FromHand tribute Forbidden One → SS. */
+   * OPT add Forbidden One from GY. FromHand tribute Forbidden One → SS. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

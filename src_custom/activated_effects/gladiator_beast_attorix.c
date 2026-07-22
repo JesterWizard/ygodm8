@@ -130,7 +130,7 @@ unsigned char CanActivateGLADIATOR_BEAST_ATTORIX(void)
 
   /* Name copy via GladiatorBeast_GetCopiedEffectCardId + Duel_ZoneEffectCardId;
    * end-of-BP battled tag-out via GladiatorBeast_CanActivateTagOutEffect.
-   * Ceiling: OPT send 1 other GB from Deck to GY (unkTwo name copy) or tag-out. */
+   * OPT send 1 other GB from Deck to GY (unkTwo name copy) or tag-out. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
