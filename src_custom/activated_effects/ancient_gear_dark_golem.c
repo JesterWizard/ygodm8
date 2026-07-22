@@ -57,7 +57,7 @@ unsigned char CanActivateANCIENT_GEAR_DARK_GOLEM(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_DARK_GOLEM)
     return FALSE;
 
-  /* Ceiling: OPT add up to 2 Ancient Gear/Geartown from Deck then discard 1. */
+  /* OPT add up to 2 Ancient Gear/Geartown from Deck then discard 1. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

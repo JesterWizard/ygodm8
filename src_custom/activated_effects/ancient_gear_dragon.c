@@ -118,7 +118,7 @@ unsigned char CanActivateANCIENT_GEAR_DRAGON(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_DRAGON)
     return FALSE;
 
-  /* Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY. */
+  /* OPT send Machine hand/field or AG Golem from Deck to GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

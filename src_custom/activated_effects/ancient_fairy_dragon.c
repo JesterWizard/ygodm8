@@ -193,7 +193,7 @@ unsigned char CanActivateANCIENT_FAIRY_DRAGON(void)
   if (zone == NULL || zone->id != ANCIENT_FAIRY_DRAGON)
     return FALSE;
 
-  /* Ceiling: OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field. */
+  /* OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

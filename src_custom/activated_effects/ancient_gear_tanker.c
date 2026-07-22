@@ -234,7 +234,7 @@ unsigned char CanActivateANCIENT_GEAR_TANKER(void)
     return FALSE;
 
   /* AG pierce mark via AncientGearTanker_MarkControllerPierce on destroy OPT.
-   * Ceiling: OPT SS AG from hand (GY if opp has monster), else OPT destroy your face-up.
+   * OPT SS AG from hand (GY if opp has monster), else OPT destroy your face-up.
    * Separate OPTs share one MarkMonsterEffectUsed. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

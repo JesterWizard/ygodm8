@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Phase 3+ engine (LP gain / card activate)
+**Last worked on:** 2026-07-22 — Ceiling Round 15 Batch 1/6
 
-**Outcome:** `ON_LP_GAIN`/`ON_LP_LOSS`/`ON_CARD_ACTIVATE` + negate latch. `Duel_ChangeLp` + spell activate emit. Aroma Bergamot/Cananga/Jasmine LP pilots. Partials **347→345**. `make` OK.
+**Outcome:** Princess attack-declare send→SS DEF; Statue `EffectOpt` on tribute-SS; cleared stale OPT ceilings (AG cluster, Fairy Dragon, Aroma search/tribute, Liger/Spiritualist OPT notes). Partials **345→333**. `make` OK.
 
-**Deferred:** full TCG chain (latch only); Extra Deck Xyz/Link/Synchro; Jasmine extra Plant NS.
+**Deferred:** Liger attack redirect; Spiritualist GY/ED; Megaton multi-attack/leave; Apprentice on-summon/Quick; Extra Deck / full chain.
 
-**Open / next:** Round 15 OPT/summon/battle sweeps; wire `RequestActivationNegate` pilots; Extra Deck later.
+**Open / next:** Round 15 Batch 2 — more OPT/summon/battle ceiling clears.

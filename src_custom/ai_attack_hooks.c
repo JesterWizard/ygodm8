@@ -13,6 +13,7 @@
 #include "morphtronic_boomboxen.h"
 #include "elemental_hero_core.h"
 #include "destiny_hero_celestial.h"
+#include "amazoness_princess.h"
 #include "elemental_hero_sunrise.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
@@ -241,6 +242,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   GladiatorBeast_MarkBattlePhaseActive();
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, NULL);
   TryDestinyHeroCelestialOnAttackDeclared(attacker, NULL);
+  TryAmazonessPrincessOnAttackDeclared(attacker, NULL);
   ApplyAromaGardeningAttackDeclare();
   LightswornBarrier_OnAttackDeclare(attacker, NULL);
   Flavian_OnAttackDeclare();
@@ -317,6 +319,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   GladiatorBeast_MarkBattlePhaseActive();
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, defender);
   TryDestinyHeroCelestialOnAttackDeclared(attacker, defender);
+  TryAmazonessPrincessOnAttackDeclared(attacker, defender);
   ApplyAromaGardeningAttackDeclare();
   LightswornBarrier_OnAttackDeclare(attacker, defender);
   Flavian_OnAttackDeclare();

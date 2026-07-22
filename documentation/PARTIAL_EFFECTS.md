@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 18:50 UTC  
-**Remaining partials:** `345`
+**Last updated:** 2026-07-22 19:05 UTC  
+**Remaining partials:** `333`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 11 |
-| `activated` | 306 |
+| `activated` | 294 |
 | `permanent` | 22 |
-| **total** | **345** |
+| **total** | **333** |
 
 ## spell (6)
 
@@ -101,55 +101,27 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (306)
+## activated (294)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
-- L191: OPT destroy Amazoness → SS Warrior GY. Residual: attack redirect FALSE.
-
-### `AMAZONESS_PRINCESS`
-- path: `src_custom/activated_effects/amazoness_princess.c`
-- L65: * Ceiling: battle-declare send→SS need battle hook. */
+- L192: * Ceiling: attack redirect FALSE. */
 
 ### `AMAZONESS_SPIRITUALIST`
 - path: `src_custom/activated_effects/amazoness_spiritualist.c`
-- L104: field OPT add Polymerization from Deck. Residual: hand/GY bounce→SS + ED lock need GY/ED hooks.
+- L105: * Ceiling: hand/GY bounce→SS + ED lock need GY/ED hooks. */
 
 ### `AMULET_DRAGON`
 - path: `src_custom/activated_effects/amulet_dragon.c`
 - L58: no multi-select GY UI — banish every Spell in both GYs (min.1 gate above).
 
-### `ANCIENT_FAIRY_DRAGON`
-- path: `src_custom/activated_effects/ancient_fairy_dragon.c`
-- L196: OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field.
-
-### `ANCIENT_GEAR_COMMANDER`
-- path: `src_custom/activated_effects/ancient_gear_commander.c`
-- L202: OPT send AG Golem hand/field/Deck → SS AG hand/Deck.
-
-### `ANCIENT_GEAR_DARK_GOLEM`
-- path: `src_custom/activated_effects/ancient_gear_dark_golem.c`
-- L60: OPT add up to 2 Ancient Gear/Geartown from Deck then discard 1.
-
-### `ANCIENT_GEAR_DRAGON`
-- path: `src_custom/activated_effects/ancient_gear_dragon.c`
-- L121: OPT send Machine hand/field or AG Golem from Deck to GY.
-
 ### `ANCIENT_GEAR_ENGINEER`
 - path: `src_custom/activated_effects/ancient_gear_engineer.c`
 - L14: * Ceiling: opp Trap activation negate on attack needs chain gate. */
 
-### `ANCIENT_GEAR_FRAME`
-- path: `src_custom/activated_effects/ancient_gear_frame.c`
-- L123: * Ceiling: OPT discard 1 → add AG Golem or S/T mentioning Golem from Deck. */
-
 ### `ANCIENT_GEAR_GADJILTRON_CHIMERA`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c`
 - L13: * Ceiling: not ignition-activatable. */
-
-### `ANCIENT_GEAR_GADJILTRON_DRAGON`
-- path: `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c`
-- L108: * Ceiling: OPT destroy 1 DEF opp OR OPT burn 700. */
 
 ### `ANCIENT_GEAR_KNIGHT`
 - path: `src_custom/activated_effects/ancient_gear_knight.c`
@@ -157,15 +129,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ANCIENT_GEAR_MEGATON_GOLEM`
 - path: `src_custom/activated_effects/ancient_gear_megaton_golem.c`
-- L124: * Ceiling: OPT SS AG Golem from hand/GY. */
-
-### `ANCIENT_GEAR_STATUE`
-- path: `src_custom/activated_effects/ancient_gear_statue.c`
-- L111: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck.
-
-### `ANCIENT_GEAR_TANKER`
-- path: `src_custom/activated_effects/ancient_gear_tanker.c`
-- L237: * Ceiling: OPT SS AG from hand (GY if opp has monster), else OPT destroy your face-up.
+- L124: * Ceiling: multi-attack + leave-field SS FALSE. */
 
 ### `ANDRO_SPHINX`
 - path: `src_custom/activated_effects/andro_sphinx.c`
@@ -173,7 +137,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `APPRENTICE_ILLUSION_MAGICIAN`
 - path: `src_custom/activated_effects/apprentice_illusion_magician.c`
-- L120: on-NS/SS search auto + hand/field send +2000 Quick need summon/ damage hooks. Ceiling: OPT add Dark Magician from Deck.
+- L121: * Ceiling: on-NS/SS search auto + hand/field send +2000 Quick need summon/damage hooks. */
 
 ### `ARCANA_FORCE_V_THE_HIEROPHANT`
 - path: `src_custom/activated_effects/arcana_force_v_the_hierophant.c`
@@ -235,21 +199,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/aromalilith_rosalina.c`
 - L106: OPT SS 1 non-Tuner Aroma from Deck in DEF.
 
-### `AROMALILITH_ROSEMARY`
-- path: `src_custom/activated_effects/aromalilith_rosemary.c`
-- L57: OPT search Aroma from Deck.
-
-### `AROMASERAPHY_JASMINE`
-- path: `src_custom/activated_effects/aromaseraphy_jasmine.c`
-- L216: * Ceiling: tribute 1 you control → SS Plant from Deck. */
-
 ### `AROMASERAPHY_ROSEMARY`
 - path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
 - L190: * Ceiling: OPT destroy 1 face-up opp. Residual: LP-gain negate needs LP hook. */
-
-### `AROMASERAPHY_SWEET_MARJORAM`
-- path: `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c`
-- L100: * Ceiling: OPT search Aroma Plant. */
 
 ### `ASH_BLOSSOM_AND_JOYOUS_SPRING`
 - path: `src_custom/activated_effects/ash_blossom_and_joyous_spring.c`

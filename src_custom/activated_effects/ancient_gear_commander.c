@@ -199,7 +199,7 @@ unsigned char CanActivateANCIENT_GEAR_COMMANDER(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_COMMANDER)
     return FALSE;
 
-  /* Ceiling: OPT send AG Golem hand/field/Deck → SS AG hand/Deck. */
+  /* OPT send AG Golem hand/field/Deck → SS AG hand/Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

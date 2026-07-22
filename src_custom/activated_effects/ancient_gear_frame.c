@@ -120,7 +120,7 @@ unsigned char CanActivateANCIENT_GEAR_FRAME(void)
 
   /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
    * Leave-field SS via AncientGearFrame_EnsureInit.
-   * Ceiling: OPT discard 1 → add AG Golem or S/T mentioning Golem from Deck. */
+   * OPT discard 1 → add AG Golem or S/T mentioning Golem from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

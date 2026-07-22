@@ -73,6 +73,7 @@
 #include "elemental_hero_steam_healer.h"
 #include "elemental_hero_core.h"
 #include "destiny_hero_celestial.h"
+#include "amazoness_princess.h"
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_blazeman.h"
 #include "deep_sea_diva.h"
@@ -1856,6 +1857,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       TryDestinyHeroCelestialOnAttackDeclared(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
+      TryAmazonessPrincessOnAttackDeclared(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       ApplyAromaGardeningAttackDeclare();
       LightswornBarrier_OnAttackDeclare(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
@@ -2060,6 +2063,9 @@ void TryAttackWithMonster__Replacement(void)
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryDestinyHeroCelestialOnAttackDeclared(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryAmazonessPrincessOnAttackDeclared(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       ApplyAromaGardeningAttackDeclare();

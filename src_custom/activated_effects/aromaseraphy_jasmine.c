@@ -213,7 +213,7 @@ unsigned char CanActivateAROMASERAPHY_JASMINE(void)
     return FALSE;
 
   /* LP-higher Plant battle protect via AromaseraphyJasmine_PreventsBattleDestroy.
-   * Ceiling: tribute 1 you control → SS Plant from Deck. */
+   * Tribute 1 you control → SS Plant from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

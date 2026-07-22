@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
 
@@ -108,7 +109,11 @@ unsigned char CanActivateANCIENT_GEAR_STATUE(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_STATUE)
     return FALSE;
 
-  /* Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck. */
+  /* Tribute self → SS AG Golem / mentions-Golem from hand/Deck (OPT via EffectOpt).
+   * FromHand SS when opp has more monsters — no OPT tracking. */
+  if (EffectOpt_IsUsed(ANCIENT_GEAR_STATUE))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -148,6 +153,7 @@ void ActivateANCIENT_GEAR_STATUEEffect(void)
     return;
 
 done:
+  EffectOpt_MarkUsed(ANCIENT_GEAR_STATUE);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)

@@ -105,7 +105,7 @@ unsigned char CanActivateANCIENT_GEAR_GADJILTRON_DRAGON(void)
 
   /* Attack S/T lock via AncientGear_AttackerBlocksOppSpellTrap; pierce via
    * ApplyAncientGearGolemPiercingBattleEffect.
-   * Ceiling: OPT destroy 1 DEF opp OR OPT burn 700. */
+   * OPT destroy 1 DEF opp OR OPT burn 700. */
   return CanUseMonsterEffect(zone);
 }
 

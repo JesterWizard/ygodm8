@@ -97,7 +97,7 @@ unsigned char CanActivateAROMASERAPHY_SWEET_MARJORAM(void)
     return FALSE;
 
   /* LP-higher Plant attack block via AromaseraphySweetMarjoram_CanAttackMonsterZone.
-   * Ceiling: OPT search Aroma Plant. */
+   * OPT search Aroma Plant. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

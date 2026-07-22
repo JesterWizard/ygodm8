@@ -54,7 +54,7 @@ unsigned char CanActivateAROMALILITH_ROSEMARY(void)
   if (zone == NULL || zone->id != AROMALILITH_ROSEMARY)
     return FALSE;
 
-  /* Ceiling: OPT search Aroma from Deck. */
+  /* OPT search Aroma from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
