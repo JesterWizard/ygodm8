@@ -92,5 +92,4 @@ void ActivateGLADIATOR_BEAST_SPARTACUS(void)
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
-  /* ponytail: Hoplomus-only SS + GB tag-out need summon/battle-end hooks. */
 }

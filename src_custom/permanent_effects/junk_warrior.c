@@ -2,21 +2,19 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "junk_warrior.h"
 
-static struct DuelCard *SelfZone(void)
-{
-  return gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-}
-
-static u32 SumLevelTwoOrLowerAtkOnRow(u8 turnRow)
+static u32 SumLevelTwoOrLowerAtkOnFixedRow(u8 fixedRow, u8 skipCol)
 {
   u32 sum = 0;
   u8 col;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[turnRow][col];
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
 
-    if (zone->id == CARD_NONE || GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    if (col == skipCol || zone == NULL || zone->id == CARD_NONE)
+      continue;
+    if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
       continue;
 
     SetCardInfo(zone->id);
@@ -29,12 +27,26 @@ static u32 SumLevelTwoOrLowerAtkOnRow(u8 turnRow)
   return sum;
 }
 
-static void ApplyAtkBonusViaTempStage(struct DuelCard *zone, u32 bonusAtk)
+void ApplyJunkWarriorContinuousAtkToCardInfo(const struct DuelCard *zone)
 {
-  u8 stages = (u8)(bonusAtk / 500);
+  u8 fixedRow;
+  u8 fixedCol;
 
-  while (stages--)
-    IncrementTempStage(zone);
+  if (zone == NULL || zone->id != JUNK_WARRIOR)
+    return;
+
+  if (gCardInfo.id != zone->id || gCardInfo.type >= TYPE_SPELL)
+    return;
+
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &fixedCol))
+    return;
+
+  gCardInfo.atk = (u16)(gCardInfo.atk + SumLevelTwoOrLowerAtkOnFixedRow(fixedRow, fixedCol));
+}
+
+static struct DuelCard *SelfZone(void)
+{
+  return gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 }
 
 unsigned char ShouldActivateJUNK_WARRIOR(void)
@@ -58,7 +70,6 @@ unsigned char ShouldActivateJUNK_WARRIOR(void)
 void ActivateJUNK_WARRIOR(void)
 {
   struct DuelCard *zone;
-  u32 bonusAtk;
 
   Duel_ShowEffectTextTyped(JUNK_WARRIOR, 8);
   if (IsDuelOver() == TRUE)
@@ -68,9 +79,6 @@ void ActivateJUNK_WARRIOR(void)
   if (zone == NULL)
     return;
 
-  bonusAtk = SumLevelTwoOrLowerAtkOnRow(gActiveEffect.turnRow);
-  ApplyAtkBonusViaTempStage(zone, bonusAtk);
   zone->unk4 = 1;
   RefreshFieldMonsterStatOverlays();
-  /* ponytail: tempStage (~500/stage) on-summon only; no continuous recompute. */
 }

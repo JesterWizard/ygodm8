@@ -1,8 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "azure_eyes_silver_dragon.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -100,6 +102,111 @@ u8 AzureEyesSilverDragon_PreventsDestroy(const struct DuelCard *zone)
   return IsProtectedOwnDragon(zone);
 }
 
+static u8 IsNormalMonsterId(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.monsterEffect == MONSTER_EFFECT_NONE;
+}
+
+static s16 FindNormalMonsterInOwnGy(void)
+{
+  u8 fixedDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER]
+      ? DUEL_PLAYER
+      : DUEL_OPPONENT;
+  u8 i;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    if (IsNormalMonsterId(gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard))
+      return 0;
+    return -1;
+  }
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (IsNormalMonsterId(GraveyardExpand_GetCardAt(fixedDuelist, i)))
+      return (s16)i;
+  }
+
+  return -1;
+}
+
+static enum DuelActionResult SpecialSummonNormalFromOwnGy(s16 gyIndex, u16 cardId)
+{
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  u8 fixedDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER]
+      ? DUEL_PLAYER
+      : DUEL_OPPONENT;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    if (!IsNormalMonsterId(gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard))
+      return DUEL_ACTION_NO_TARGET;
+
+    return Duel_SpecialSummonFromGrave(ACTIVE_DUELIST, cardId, opts);
+  }
+
+  if (gyIndex < 0)
+    return DUEL_ACTION_NO_TARGET;
+
+  if (GraveyardExpand_GetCardAt(fixedDuelist, (u8)gyIndex) != cardId)
+    return DUEL_ACTION_NO_TARGET;
+
+  GraveyardExpand_RemoveAtFixed(fixedDuelist, (u8)gyIndex);
+  GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  GraveyardExpand_RefreshDisplay();
+  return Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
+}
+
+void TryApplyAzureEyesSilverDragonStandby(void)
+{
+  u8 col;
+  struct DuelCard *azure = NULL;
+  s16 gyIndex;
+  u16 normalId;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AZURE_EYES_SILVER_DRAGON) {
+      azure = zone;
+      break;
+    }
+  }
+
+  if (azure == NULL || !CanUseMonsterEffect(azure))
+    return;
+
+  gyIndex = FindNormalMonsterInOwnGy();
+  if (gyIndex < 0)
+    return;
+
+  if (ArchlordKristya_IsSpecialSummonLocked()
+      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return;
+
+  if (!GraveyardExpand_IsEnabled())
+    normalId = gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard;
+  else {
+    u8 fixedDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER]
+        ? DUEL_PLAYER
+        : DUEL_OPPONENT;
+
+    normalId = GraveyardExpand_GetCardAt(fixedDuelist, (u8)gyIndex);
+  }
+
+  Duel_ShowEffectTextTyped(AZURE_EYES_SILVER_DRAGON, 9);
+
+  if (SpecialSummonNormalFromOwnGy(gyIndex, normalId) != DUEL_ACTION_OK)
+    return;
+
+  MarkMonsterEffectUsed(azure);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
 unsigned char CanActivateAZURE_EYES_SILVER_DRAGON(void)
 {
   struct DuelCard *zone;
@@ -112,8 +219,8 @@ unsigned char CanActivateAZURE_EYES_SILVER_DRAGON(void)
     return FALSE;
 
   /* Dragon battle/effect protect via AzureEyesSilverDragon_Prevents*.
-   * ponytail: until end of next turn clear needs EOT hook; Standby SS Normal
-   * needs phase hook. Ceiling: OPT mark your Dragons protected (unk4). */
+   * Standby Normal SS via TryApplyAzureEyesSilverDragonStandby.
+   * ponytail: until end of next turn clear needs EOT hook. Ceiling: OPT mark Dragons protected (unk4). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

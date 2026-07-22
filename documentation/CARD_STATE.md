@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — PARTIAL Round 11 Batch 6/6 (round complete)
+**Last worked on:** 2026-07-22 — PARTIAL Round 12 Batch 1/6
 
-**Outcome:** Round 11 done. Partials **489→452** across 6 committed batches. B6: GB tag-outs, Blue-Eyes Jet/Solid protect, Cyber Valley, Silent Swordsman Zero, Minerva Exhalted, Aroma/Amazoness OPT, Athena (−16). `make` OK.
+**Outcome:** Partials **452→445**. B1: GB deck tag-out (Retiari/Torax/Octavius/Tygerius/Spartacus cleared); Infernal Prodigy EP draw; Junk Warrior overlay; Azure-Eyes Standby; Breaker SS; Arcana IV. `make` OK.
 
-**Open / next:** Round 12 PARTIAL clear, or residuals (GB-tag SS triggers, LP-gain, negate/chain).
+**Open / next:** Round 12 Batches 2–6.

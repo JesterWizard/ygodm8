@@ -107,5 +107,4 @@ void ActivateGLADIATOR_BEAST_RETIARI(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
-  /* ponytail: GB tag-out after battle needs battle-end hook. */
 }

@@ -496,6 +496,24 @@ unsigned char CanActivateENLIGHTENMENT_DRAGON(void);
 void ActivateENLIGHTENMENT_DRAGONEffect(void);
 unsigned char CanActivateFELIS_LIGHTSWORN_ARCHER(void);
 void ActivateFELIS_LIGHTSWORN_ARCHEREffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_ALEXANDER(void);
+void ActivateGLADIATOR_BEAST_ALEXANDEREffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_DIMACARI(void);
+void ActivateGLADIATOR_BEAST_DIMACARIEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_GAIODIAZ(void);
+void ActivateGLADIATOR_BEAST_GAIODIAZEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_OCTAVIUS(void);
+void ActivateGLADIATOR_BEAST_OCTAVIUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_RETIARI(void);
+void ActivateGLADIATOR_BEAST_RETIARIEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_SAMNITE(void);
+void ActivateGLADIATOR_BEAST_SAMNITEEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_SPARTACUS(void);
+void ActivateGLADIATOR_BEAST_SPARTACUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_TORAX(void);
+void ActivateGLADIATOR_BEAST_TORAXEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_TYGERIUS(void);
+void ActivateGLADIATOR_BEAST_TYGERIUSEffect(void);
 unsigned char CanActivateGLADIATOR_BEAST_ANDABATA(void);
 void ActivateGLADIATOR_BEAST_ANDABATAEffect(void);
 unsigned char CanActivateGLADIATOR_BEAST_ATTORIX(void);
@@ -1095,6 +1113,24 @@ unsigned char CanActivateMonsterEffect(void) {
     canActivate = CanActivateLIGHTRAY_GEARFRIED();
   else if (gMonEffect.id == GLADIATOR_BEAST_NOXIOUS)
     canActivate = CanActivateGLADIATOR_BEAST_NOXIOUS();
+  else if (gMonEffect.id == GLADIATOR_BEAST_RETIARI)
+    canActivate = CanActivateGLADIATOR_BEAST_RETIARI();
+  else if (gMonEffect.id == GLADIATOR_BEAST_TORAX)
+    canActivate = CanActivateGLADIATOR_BEAST_TORAX();
+  else if (gMonEffect.id == GLADIATOR_BEAST_OCTAVIUS)
+    canActivate = CanActivateGLADIATOR_BEAST_OCTAVIUS();
+  else if (gMonEffect.id == GLADIATOR_BEAST_TYGERIUS)
+    canActivate = CanActivateGLADIATOR_BEAST_TYGERIUS();
+  else if (gMonEffect.id == GLADIATOR_BEAST_SPARTACUS)
+    canActivate = CanActivateGLADIATOR_BEAST_SPARTACUS();
+  else if (gMonEffect.id == GLADIATOR_BEAST_SAMNITE)
+    canActivate = CanActivateGLADIATOR_BEAST_SAMNITE();
+  else if (gMonEffect.id == GLADIATOR_BEAST_DIMACARI)
+    canActivate = CanActivateGLADIATOR_BEAST_DIMACARI();
+  else if (gMonEffect.id == GLADIATOR_BEAST_ALEXANDER)
+    canActivate = CanActivateGLADIATOR_BEAST_ALEXANDER();
+  else if (gMonEffect.id == GLADIATOR_BEAST_GAIODIAZ)
+    canActivate = CanActivateGLADIATOR_BEAST_GAIODIAZ();
   else if (gMonEffect.id == POWER_TOOL_BRAVER_DRAGON)
     canActivate = CanActivatePOWER_TOOL_BRAVER_DRAGON();
   else if (gMonEffect.id == SILENT_SWORDSMAN_ZERO)
@@ -2904,6 +2940,42 @@ FAILED:
   }
   if (gMonEffect.id == GLADIATOR_BEAST_ANDABATA) {
     ActivateGLADIATOR_BEAST_ANDABATAEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_ALEXANDER) {
+    ActivateGLADIATOR_BEAST_ALEXANDEREffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_DIMACARI) {
+    ActivateGLADIATOR_BEAST_DIMACARIEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_GAIODIAZ) {
+    ActivateGLADIATOR_BEAST_GAIODIAZEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_OCTAVIUS) {
+    ActivateGLADIATOR_BEAST_OCTAVIUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_RETIARI) {
+    ActivateGLADIATOR_BEAST_RETIARIEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_SAMNITE) {
+    ActivateGLADIATOR_BEAST_SAMNITEEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_SPARTACUS) {
+    ActivateGLADIATOR_BEAST_SPARTACUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_TORAX) {
+    ActivateGLADIATOR_BEAST_TORAXEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_TYGERIUS) {
+    ActivateGLADIATOR_BEAST_TYGERIUSEffect();
     return;
   }
   if (gMonEffect.id == GLADIATOR_BEAST_ATTORIX) {

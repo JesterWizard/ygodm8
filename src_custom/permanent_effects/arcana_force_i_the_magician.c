@@ -61,10 +61,9 @@ void ActivateARCANA_FORCE_I_THE_MAGICIAN(void)
   if (heads) {
     IncrementTempStage(zone);
     RefreshFieldMonsterStatOverlays();
-    /* ponytail: +1 tempStage (~500 ATK) on-summon; spell-trigger double ATK not wired. */
     return;
   }
 
   Duel_ChangeLp(OpponentDuelist(duelist), 500, TRUE);
-  /* ponytail: tails LP heal on spell activation not wired; on-summon +500 opp LP only. */
+  /* ponytail: spell-trigger heads/tails not wired; on-summon coin only. */
 }

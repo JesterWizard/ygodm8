@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGLADIATOR_BEAST_DIMACARI(void)
 {
-  /* ponytail: double attack + GB tag-out need battle-end/summon hooks. */
+  /* ponytail: double attack needs battle-end/summon hook; tag-out via CanActivateGLADIATOR_BEAST_DIMACARI. */
   (void)gActiveEffect;
   return FALSE;
 }

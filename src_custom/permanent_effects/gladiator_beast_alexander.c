@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGLADIATOR_BEAST_ALEXANDER(void)
 {
-  /* ponytail: spell immunity + GB tag-out need continuous/battle-end hooks. */
+  /* ponytail: spell immunity needs continuous hook; tag-out via CanActivateGLADIATOR_BEAST_ALEXANDER. */
   (void)gActiveEffect;
   return FALSE;
 }

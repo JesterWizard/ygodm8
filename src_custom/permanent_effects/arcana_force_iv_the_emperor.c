@@ -83,5 +83,4 @@ void ActivateARCANA_FORCE_IV_THE_EMPEROR(void)
   zone->unk4 = 1;
   heads = RandRangeU8(0, 1) == 1;
   ApplyCoinToArcanaForceMonsters(heads);
-  /* ponytail: ±500 ATK uses tempStage (~500/stage); only your Arcana Force on field. */
 }

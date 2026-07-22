@@ -78,6 +78,8 @@
 #include "twilightsworn_end_phase.h"
 #include "treeborn_frog.h"
 #include "evil_dragon_ananta.h"
+#include "azure_eyes_silver_dragon.h"
+#include "evil_hero_infernal_prodigy.h"
 #include "evil_hero_infernal_sniper.h"
 #include "silent_swordsman.h"
 #include "destiny_hero_decider.h"
@@ -451,6 +453,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyDestinyHeroDestroyDogmaStandby();
   TryApplySilentSwordsmanStandby();
   TryApplySilentSwordsmanZeroStandby();
+  TryApplyAzureEyesSilverDragonStandby();
   TryApplySilentMagicianLv4Standby();
   TryBottomlessShiftingSandTurnStart();
   ContinuousTraps_TryActivateOnOpponentTurnStart();
@@ -470,6 +473,9 @@ void TryActivatingTurnEffects__Replacement(void) {
     return;
   TryApplyEctoplasmerEndPhaseEffect();
   ClearGladiatorBeastBattledMarks();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyEvilHeroInfernalProdigyEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyPowerBondEndPhaseBurn();

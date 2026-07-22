@@ -33,6 +33,7 @@
 #include "amazoness_call.h"
 #include "gladiator_beasts_valor.h"
 #include "blast_held_by_a_tribute.h"
+#include "breaker_the_magical_warrior.h"
 #include "vengeful_bog_spirit.h"
 #include "tribute.h"
 #include "imperial_order.h"
@@ -473,6 +474,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
         Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)),
         (u8)monsterZone);
     TryBlastHeldByATributeOnMonsterPlacement(summonZone);
+    TryBreakerTheMagicalWarriorOnMonsterPlacement(summonZone);
     TryVengefulBogSpiritOnMonsterPlacement(summonZone);
     TryElementalHeroGreatTornadoOnMonsterPlacement(summonZone);
     TryTheWickedDreadrootOnMonsterPlacement(summonZone);

@@ -136,5 +136,4 @@ void ActivateGLADIATOR_BEAST_OCTAVIUS(void)
     Duel_EnterPickZoneTargeting();
   else
     Duel_ResolvePickZoneForAi();
-  /* ponytail: GB-tag SS + battle-end tag-out need summon/battle-end hooks. */
 }

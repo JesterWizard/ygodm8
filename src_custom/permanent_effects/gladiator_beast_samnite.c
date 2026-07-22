@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGLADIATOR_BEAST_SAMNITE(void)
 {
-  /* ponytail: battle search + GB tag-out need battle-end/destroy hooks. */
+  /* ponytail: battle search needs battle-end/destroy hook; tag-out via CanActivateGLADIATOR_BEAST_SAMNITE. */
   (void)gActiveEffect;
   return FALSE;
 }

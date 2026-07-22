@@ -12,7 +12,7 @@ void FlipCardFaceUp(struct DuelCard *zone);
 
 static u8 IsBreakerNormalSummonPlacement(const struct DuelCard *zone)
 {
-  /* ponytail: hand normal summon copies isFaceUp=0; attack-position monsters still count */
+  /* ponytail: hand normal summon copies isFaceUp=0; attack-position monsters still count. */
   return zone->isFaceUp || !zone->isDefending;
 }
 
@@ -37,7 +37,7 @@ void TryBreakerTheMagicalWarriorOnMonsterPlacement(struct DuelCard *zone)
   if (zone == NULL || zone->id != BREAKER_THE_MAGICAL_WARRIOR)
     return;
 
-  /* ponytail: placement hook is hand normal/tribute summon only — special summons use duel_helpers */
+  /* NS/tribute + Special Summon via code_8043EF4_hooks / duel_helpers placement. */
   if (!IsBreakerNormalSummonPlacement(zone) || BreakerTheMagicalWarrior_ZoneHasSpellCounter(zone))
     return;
 

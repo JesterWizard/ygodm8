@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGLADIATOR_BEAST_TORAX(void)
 {
-  /* ponytail: GB tag-out draw after battle needs battle-end hook. */
+  /* Tag-out draw via CanActivateGLADIATOR_BEAST_TORAX. */
   (void)gActiveEffect;
   return FALSE;
 }

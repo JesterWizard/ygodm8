@@ -107,5 +107,4 @@ void ActivateGLADIATOR_BEAST_TYGERIUS(void)
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   zone->unk4 = 1;
-  /* ponytail: GB tag-out + optional discard gate not wired; on-summon search stand-in. */
 }

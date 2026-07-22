@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 16:54 UTC  
-**Remaining partials:** `452`
+**Last updated:** 2026-07-22 17:12 UTC  
+**Remaining partials:** `445`
 
 ## Counts by kind
 
@@ -19,8 +19,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 | `spell` | 6 |
 | `trap` | 10 |
 | `activated` | 351 |
-| `permanent` | 85 |
-| **total** | **452** |
+| `permanent` | 78 |
+| **total** | **445** |
 
 ## spell (6)
 
@@ -265,7 +265,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AZURE_EYES_SILVER_DRAGON`
 - path: `src_custom/activated_effects/azure_eyes_silver_dragon.c`
-- L48: until end of next turn clear needs EOT hook.
+- L50: until end of next turn clear needs EOT hook.
 
 ### `BAZOO_THE_SOUL_EATER`
 - path: `src_custom/activated_effects/bazoo_the_soul_eater.c`
@@ -1561,7 +1561,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (85)
+## permanent (78)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1575,16 +1575,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ARCANA_FORCE_I_THE_MAGICIAN`
 - path: `src_custom/permanent_effects/arcana_force_i_the_magician.c`
-- L64: +1 tempStage (~500 ATK) on-summon; spell-trigger double ATK not wired.
-- L69: tails LP heal on spell activation not wired; on-summon +500 opp LP only.
+- L68: spell-trigger heads/tails not wired; on-summon coin only.
 
 ### `ARCANA_FORCE_III_THE_EMPRESS`
 - path: `src_custom/permanent_effects/arcana_force_iii_the_empress.c`
 - L48: opp Normal Summon SS/discard triggers need summon hooks; unk4 only.
-
-### `ARCANA_FORCE_IV_THE_EMPEROR`
-- path: `src_custom/permanent_effects/arcana_force_iv_the_emperor.c`
-- L86: ±500 ATK uses tempStage (~500/stage); only your Arcana Force on field.
 
 ### `ARCANA_FORCE_THE_CHAOS_RULER`
 - path: `src_custom/permanent_effects/arcana_force_the_chaos_ruler.c`
@@ -1613,8 +1608,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `BREAKER_THE_MAGICAL_WARRIOR`
 - path: `src_custom/permanent_effects/breaker_the_magical_warrior.c`
-- L15: hand normal summon copies isFaceUp=0; attack-position monsters still count
-- L40: placement hook is hand normal/tribute summon only — special summons use duel_helpers
+- L15: hand normal summon copies isFaceUp=0; attack-position monsters still count.
 
 ### `CYBER_KIRIN`
 - path: `src_custom/permanent_effects/cyber_kirin.c`
@@ -1702,7 +1696,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_INFERNAL_PRODIGY`
 - path: `src_custom/permanent_effects/evil_hero_infernal_prodigy.c`
-- L8: empty-field hand SS is FromHand activated; End-Phase tribute draw needs turn hook.
+- L40: empty-field hand SS is FromHand activated; End-Phase tribute draw via TryApplyEvilHeroInfernalProdigyEndPhase.
 
 ### `EVIL_HERO_INFERNO_WING_BACKFIRE`
 - path: `src_custom/permanent_effects/evil_hero_inferno_wing_backfire.c`
@@ -1731,11 +1725,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GLADIATOR_BEAST_ALEXANDER`
 - path: `src_custom/permanent_effects/gladiator_beast_alexander.c`
-- L8: spell immunity + GB tag-out need continuous/battle-end hooks.
+- L8: spell immunity needs continuous hook; tag-out via CanActivateGLADIATOR_BEAST_ALEXANDER.
 
 ### `GLADIATOR_BEAST_DIMACARI`
 - path: `src_custom/permanent_effects/gladiator_beast_dimacari.c`
-- L8: double attack + GB tag-out need battle-end/summon hooks.
+- L8: double attack needs battle-end/summon hook; tag-out via CanActivateGLADIATOR_BEAST_DIMACARI.
 
 ### `GLADIATOR_BEAST_ESSEDARII`
 - path: `src_custom/permanent_effects/gladiator_beast_essedarii.c`
@@ -1743,35 +1737,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GLADIATOR_BEAST_GAIODIAZ`
 - path: `src_custom/permanent_effects/gladiator_beast_gaiodiaz.c`
-- L8: battle DEF burn + GB tag-out need battle-end/destroy hooks.
-
-### `GLADIATOR_BEAST_OCTAVIUS`
-- path: `src_custom/permanent_effects/gladiator_beast_octavius.c`
-- L139: GB-tag SS + battle-end tag-out need summon/battle-end hooks.
-
-### `GLADIATOR_BEAST_RETIARI`
-- path: `src_custom/permanent_effects/gladiator_beast_retiari.c`
-- L110: GB tag-out after battle needs battle-end hook.
+- L8: battle DEF burn needs battle-end/destroy hook; tag-out via CanActivateGLADIATOR_BEAST_GAIODIAZ.
 
 ### `GLADIATOR_BEAST_SAMNITE`
 - path: `src_custom/permanent_effects/gladiator_beast_samnite.c`
-- L8: battle search + GB tag-out need battle-end/destroy hooks.
+- L8: battle search needs battle-end/destroy hook; tag-out via CanActivateGLADIATOR_BEAST_SAMNITE.
 
 ### `GLADIATOR_BEAST_SECUTOR`
 - path: `src_custom/permanent_effects/gladiator_beast_secutor.c`
 - L8: battle-end tag SS 2 GB from Deck needs battle-end hook.
-
-### `GLADIATOR_BEAST_SPARTACUS`
-- path: `src_custom/permanent_effects/gladiator_beast_spartacus.c`
-- L95: Hoplomus-only SS + GB tag-out need summon/battle-end hooks.
-
-### `GLADIATOR_BEAST_TORAX`
-- path: `src_custom/permanent_effects/gladiator_beast_torax.c`
-- L8: GB tag-out draw after battle needs battle-end hook.
-
-### `GLADIATOR_BEAST_TYGERIUS`
-- path: `src_custom/permanent_effects/gladiator_beast_tygerius.c`
-- L110: GB tag-out + optional discard gate not wired; on-summon search stand-in.
 
 ### `GRANADORA`
 - path: `src_custom/permanent_effects/granadora.c`
@@ -1800,10 +1774,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `JENIS_LIGHTSWORN_MENDER`
 - path: `src_custom/permanent_effects/jenis_lightsworn_mender.c`
 - L53: LS-effect mill source not tracked — any deck mill this turn stand-in. EP burn/heal via TryApplyJenisEndPhase.
-
-### `JUNK_WARRIOR`
-- path: `src_custom/permanent_effects/junk_warrior.c`
-- L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 
 ### `KNIGHT_OF_PENTACLES`
 - path: `src_custom/permanent_effects/knight_of_pentacles.c`

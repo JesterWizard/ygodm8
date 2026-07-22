@@ -46,6 +46,7 @@
 #include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_sunrise.h"
+#include "junk_warrior.h"
 #include "elemental_hero_gaia.h"
 #include "harpie_lady_1.h"
 #include "harpies_hunting_ground.h"
@@ -613,6 +614,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
     ApplyGreatTornadoStatHalving(zone);
     ApplyTheWickedDreadrootStatHalving(zone);
     ApplyElementalHeroSunriseAtkBoost(zone);
+    ApplyJunkWarriorContinuousAtkToCardInfo(zone);
     ApplyZerielFairyAtkBoost(zone);
     ApplyShatielFairyStatBoost(zone);
     ApplyElementalHeroGaiaStatMod(zone);
@@ -661,6 +663,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyGreatTornadoStatHalving(zone);
   ApplyTheWickedDreadrootStatHalving(zone);
   ApplyElementalHeroSunriseAtkBoost(zone);
+  ApplyJunkWarriorContinuousAtkToCardInfo(zone);
   ApplyZerielFairyAtkBoost(zone);
   ApplyShatielFairyStatBoost(zone);
   ApplyElementalHeroGaiaStatMod(zone);
@@ -825,6 +828,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyGreatTornadoStatHalving(gSetFinalStatZone);
     ApplyTheWickedDreadrootStatHalving(gSetFinalStatZone);
     ApplyElementalHeroSunriseAtkBoost(gSetFinalStatZone);
+    ApplyJunkWarriorContinuousAtkToCardInfo(gSetFinalStatZone);
     ApplyZerielFairyAtkBoost(gSetFinalStatZone);
     ApplyShatielFairyStatBoost(gSetFinalStatZone);
     ApplyElementalHeroGaiaStatMod(gSetFinalStatZone);
