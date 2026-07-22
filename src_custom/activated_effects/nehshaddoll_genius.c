@@ -51,7 +51,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidNegateTarget(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* ponytail: until end of turn clear needs EOT unk4 reset hook. */
+  /* Negate mark cleared at turn boundary via Alector_ClearNegateMarksAtTurnBoundary. */
   zone->unk4 |= 0x80;
 
   if (self != NULL)
@@ -107,8 +107,8 @@ unsigned char CanActivateNEHSHADDOLL_GENIUS(void)
   if (zone == NULL || zone->id != NEHSHADDOLL_GENIUS)
     return FALSE;
 
-  /* ponytail: FLIP Shaddoll unaffected + sent-by-effect branches need flip/send
-   * hooks. Ceiling: OPT negate 1 face-up Effect Monster (unk4). */
+  /* FLIP Shaddoll unaffected + sent-by-effect branches need flip/send hooks.
+   * Ceiling: OPT negate 1 face-up Effect Monster (unk4). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

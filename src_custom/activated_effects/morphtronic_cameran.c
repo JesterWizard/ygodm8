@@ -32,6 +32,57 @@ static u8 IsLevel4Morphtronic(u16 cardId)
   return gCardData_NEW[cardId].level <= 4;
 }
 
+static u8 RowHasDefCameran(u8 fixedMonsterRow)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedMonsterRow][col];
+
+    if (zone != NULL && zone->id == MORPHTRONIC_CAMERAN && zone->isDefending
+        && IsCardFaceUp(zone))
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static u8 IsOtherMorphtronicMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || cardId == MORPHTRONIC_CAMERAN)
+    return FALSE;
+
+  if (GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sMorphtronicName);
+}
+
+u8 MorphtronicCameran_ProtectsZoneFromTargeting(const struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (!IsOtherMorphtronicMonster(zone->id))
+    return FALSE;
+
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &col))
+    return FALSE;
+
+  return RowHasDefCameran(fixedRow);
+}
+
+u8 MorphtronicCameran_CanAttackMonsterZone(struct DuelCard *zone)
+{
+  if (MorphtronicCameran_ProtectsZoneFromTargeting(zone))
+    return FALSE;
+
+  return TRUE;
+}
+
 static u8 HandHasLevel4Morphtronic(u8 turnDuelist)
 {
   u8 i;
@@ -171,8 +222,8 @@ unsigned char CanActivateMORPHTRONIC_CAMERAN(void)
   if (gMonEffect.id != MORPHTRONIC_CAMERAN)
     return FALSE;
 
-  /* ATK battle-destroy SS via MorphtronicCameran_EnsureInit.
-   * ponytail: DEF Morphtronic untargetable needs targeting gate. */
+  /* ATK battle-destroy SS via MorphtronicCameran_EnsureInit; DEF Morphtronic
+   * untargetable via MorphtronicCameran_ProtectsZoneFromTargeting. */
   return FALSE;
 }
 

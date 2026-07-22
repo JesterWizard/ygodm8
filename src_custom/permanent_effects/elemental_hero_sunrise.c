@@ -102,7 +102,7 @@ void ApplyElementalHeroSunriseAtkBoost(const struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  /* ponytail: GetTypeGroup/SetCardInfo would clobber gCardInfo.atk already computed. */
+  /* gCardInfo.type check avoids SetCardInfo clobber during overlay pass. */
   if (gCardInfo.id != zone->id || gCardInfo.type >= TYPE_SPELL)
     return;
 
@@ -140,7 +140,7 @@ void ElementalHeroSunrise_OnZoneCleared(const struct DuelCard *zone)
 
 void TryElementalHeroSunriseOnMonsterPlacement(struct DuelCard *zone)
 {
-  /* ponytail: never RefreshFieldMonsterStatOverlays here. Placement often runs with
+  /* Never RefreshFieldMonsterStatOverlays here. Placement often runs with
    * updateGfx=FALSE (AI summon / fusion). Overlay-only stamps without a full field
    * draw leave level stars and ATK/DEF tiles on undrawn card faces — field-wide
    * glitch on the opponent's turn. ATK boost applies via ApplyFieldZoneStatsToCardInfo
@@ -461,9 +461,9 @@ void ResolveElementalHeroSunriseDestroyEffect(void)
   if (!OpponentFieldHasDestroyTarget(originRow))
     return;
 
-  /* ponytail: true timing is attack declaration; resolve post-battle so PickZone
-   * can run from the main loop (same pattern as Core). Opponent-turn textboxes
-   * corrupt field VRAM — auto-resolve silently. */
+  /* True timing is attack declaration; resolve post-battle so PickZone can run
+   * from the main loop (same pattern as Core). Opponent-turn textboxes corrupt
+   * field VRAM — auto-resolve silently. */
   if (WhoseTurn() != DUEL_PLAYER) {
     DestroyFirstAutoTarget(originRow, originCol);
     return;

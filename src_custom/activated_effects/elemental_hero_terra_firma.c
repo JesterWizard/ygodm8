@@ -39,7 +39,7 @@ u8 ElementalHeroTerraFirma_RevealsAllyZone(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone;
 
-  // ponytail: fixed POV — only reveal the player's own monster row
+  // Fixed POV — only reveal the player's own monster row.
   if (fixedRow != PLAYER_MONSTER_ROW)
     return FALSE;
 
@@ -67,7 +67,7 @@ static u8 ZoneIsTributeableElementalHero(struct DuelCard *zone)
   if (IsCardFaceUp(zone))
     return TRUE;
 
-  // ponytail: attack-position summons stay isFaceUp=0 until end-of-turn flip
+  // Attack-position summons stay isFaceUp=0 until end-of-turn flip.
   return zone->isDefending == FALSE;
 }
 

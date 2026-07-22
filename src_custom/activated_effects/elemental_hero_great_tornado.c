@@ -23,8 +23,7 @@ static u8 ZoneQualifiesForGreatTornadoHalving(const struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return FALSE;
 
-  /* ponytail: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.atk/def
-   * that the stat pipeline already computed for zone. */
+  /* gCardInfo.type check avoids SetCardInfo clobber during overlay pass. */
   if (gCardInfo.id != zone->id || gCardInfo.type >= TYPE_SPELL)
     return FALSE;
 

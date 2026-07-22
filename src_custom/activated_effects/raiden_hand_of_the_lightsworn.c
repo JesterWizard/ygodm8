@@ -98,7 +98,7 @@ void ActivateRAIDEN_HAND_OF_THE_LIGHTSWORNEffect(void)
     return;
 
   if (milledLightsworn) {
-    /* ponytail: +1 tempStage (~500 ATK, not exact +200); until opp EP clear needs hook. */
+    /* +1 tempStage (~500 ATK, not exact +200); until EP via ResetTempStagesForAllCards. */
     if (self->tempStage < 127)
       self->tempStage += 1;
     RefreshFieldMonsterStatOverlays();

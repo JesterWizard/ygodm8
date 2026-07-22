@@ -78,7 +78,7 @@ static u8 Ocean_GraveyardTargetAllowed(u8 turnDuelist, u8 graveyardIndex, u16 ca
   if (!IsHeroMonster(cardId))
     return FALSE;
 
-  // ponytail: skip stale GY Ocean while the activator is still on field
+  // Skip stale GY Ocean while the activator is still on field.
   if (cardId == ELEMENTAL_HERO_OCEAN && Ocean_ActivatorOnField())
     return FALSE;
 

@@ -99,7 +99,7 @@ unsigned char CanActivateMORPHTRONIC_STAPLEN(void)
     return FALSE;
 
   /* DEF battle indestructible via MorphtronicStaplen_PreventsBattleDestroy.
-   * ponytail: ATK attack-redirect needs battle hook. Ceiling: OPT change 1 opp ATK to DEF. */
+   * Ceiling: ATK attack-redirect needs battle hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

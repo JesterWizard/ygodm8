@@ -10,8 +10,8 @@ unsigned char CanActivateHARPIE_QUEEN(void)
   if (gMonEffect.id != HARPIE_QUEEN)
     return FALSE;
 
-  /* Printed discard is hand — use FromHand path.
-   * ponytail: name becomes Harpie Lady on field/GY needs name override hook. */
+  /* Printed discard is hand — use FromHand path; name=Harpie Lady via
+   * HarpiePerfumer_TreatsNameAsHarpieLady + Duel_ZoneEffectCardId. */
   return FALSE;
 }
 

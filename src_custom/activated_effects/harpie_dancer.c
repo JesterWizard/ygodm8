@@ -74,7 +74,7 @@ static void TryNormalSummonWindFromHand(void)
   struct DuelSummonOpts opts = Duel_DefaultNormalSummonOpts(TRUE);
   u8 savedBlocked = gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked;
 
-  /* ponytail: granted NS after bounce — clear block like Necrovalley Throne. */
+  /* Granted NS after bounce — clear summoningBlocked like Necrovalley Throne. */
   gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked = 0;
   if (Duel_NormalSummonFromHand(ACTIVE_DUELIST, CARD_NONE, IsWindMonsterHand, opts)
       != DUEL_ACTION_OK)
@@ -122,7 +122,7 @@ unsigned char CanActivateHARPIE_DANCER(void)
   if (zone == NULL || zone->id != HARPIE_DANCER)
     return FALSE;
 
-  /* ponytail: name becomes Harpie Lady on field/GY needs continuous rename hook. */
+  /* Name=Harpie Lady via HarpiePerfumer_TreatsNameAsHarpieLady + Duel_ZoneEffectCardId. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

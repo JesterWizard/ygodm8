@@ -55,6 +55,7 @@
 #include "harpie_perfumer.h"
 #include "oshaleon.h"
 #include "reptilianne_servant.h"
+#include "morphtronic_cameran.h"
 #include "the_wicked_eraser.h"
 #include "the_wicked_avatar.h"
 #include "cold_wave.h"
@@ -172,6 +173,7 @@ u8 TheAgentOfForceMars_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 UnstoppableExodiaIncarnate_ApplyStat(struct DuelCard *zone);
 u8 HarpiesPetBabyDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 HarpiesPetBabyDragon_CanAttackMonsterZone(struct DuelCard *zone);
+u8 MorphtronicCameran_CanAttackMonsterZone(struct DuelCard *zone);
 u8 ElementalHeroKnospe_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroKnospe_CanAttackMonsterZone(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -1786,6 +1788,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   AromaseraphySweetMarjoram_CanAttackMonsterZone,
   EvilHeroMaliciousFiend_CanAttackMonsterZone,
   Oshaleon_CanAttackMonsterZone,
+  MorphtronicCameran_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)

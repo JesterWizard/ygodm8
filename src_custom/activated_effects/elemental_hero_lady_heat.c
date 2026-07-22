@@ -42,7 +42,7 @@ static u8 CountElementalHeroForLadyHeatCanActivate(struct DuelCard *activator)
 {
   u8 count = CountFaceUpElementalHeroOnMonsterRow(ACTIVE_DUELIST_MONSTER_ROW);
 
-  // ponytail: CanActivate runs before the menu flips a face-down activator
+  // CanActivate runs before the menu flips a face-down activator.
   if (activator != NULL && !activator->isFaceUp && IsElementalHeroMonster(activator->id))
     count++;
 

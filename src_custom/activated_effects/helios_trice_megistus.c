@@ -57,6 +57,42 @@ static struct DuelCard *FindHeliosDuoMegistusYouControl(void)
   return NULL;
 }
 
+static u8 OpponentMonsterRowForFixedRow(u8 fixedMonsterRow)
+{
+  return fixedMonsterRow == PLAYER_MONSTER_ROW ? OPPONENT_MONSTER_ROW : PLAYER_MONSTER_ROW;
+}
+
+static u8 OpponentControlsMonster(u8 fixedMonsterRow)
+{
+  u8 oppRow = OpponentMonsterRowForFixedRow(fixedMonsterRow);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[oppRow][col];
+
+    if (zone != NULL && zone->id != CARD_NONE
+        && GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+void HeliosTriceMegistus_MaybeMarkExtraAttackOnPlacement(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (zone == NULL || zone->id != HELIOS_TRICE_MEGISTUS)
+    return;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return;
+
+  if (OpponentControlsMonster(fixedRow))
+    zone->unk4 = 2;
+}
+
 unsigned char CanActivateHELIOS_TRICE_MEGISTUS(void)
 {
   if (gMonEffect.id != HELIOS_TRICE_MEGISTUS)
@@ -64,7 +100,7 @@ unsigned char CanActivateHELIOS_TRICE_MEGISTUS(void)
 
   /* Continuous ATK/DEF via HeliosTriceMegistus_ApplyDynamicZoneStats.
    * Battle-destroy EP SS via ApplyHeliosTriceMegistusBattleDestroyPending.
-   * ponytail: extra attack if opp controls a monster needs multi-attack hook. */
+   * Extra attack when opp controls a monster via HeliosTriceMegistus_MaybeMarkExtraAttackOnPlacement. */
   return FALSE;
 }
 

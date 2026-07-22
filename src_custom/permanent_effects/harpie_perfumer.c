@@ -10,7 +10,19 @@ static const char sHarpieName[] APPEND_RODATA = "Harpie";
 
 u8 HarpiePerfumer_TreatsNameAsHarpieLady(const struct DuelCard *zone)
 {
-  return zone != NULL && zone->id == HARPIE_PERFUMER;
+  if (zone == NULL)
+    return FALSE;
+
+  switch (zone->id) {
+  case HARPIE_PERFUMER:
+  case HARPIE_QUEEN:
+  case HARPIE_DANCER:
+  case HARPIE_ORACLE:
+  case HARPIE_CONDUCTOR:
+    return TRUE;
+  default:
+    return FALSE;
+  }
 }
 
 static u8 DuelistForMonsterTurnRow(u8 turnRow)

@@ -13,6 +13,7 @@
 #include "the_despair_uranus.h"
 #include "archlord_kristya.h"
 #include "the_wicked_eraser.h"
+#include "morphtronic_cameran.h"
 #include "xyz_duel.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
@@ -36,7 +37,10 @@ static u8 ShouldBlockHarmfulEffectOnZone(struct DuelCard *zone) {
     return FALSE;
 
   turnRow = GetTurnRowForZone(zone);
-  return IsImmuneToHarmfulTargetedEffectsOnField(zone->id, turnRow);
+  if (IsImmuneToHarmfulTargetedEffectsOnField(zone->id, turnRow))
+    return TRUE;
+
+  return MorphtronicCameran_ProtectsZoneFromTargeting(zone);
 }
 
 static u8 ShouldBlockEffectOnZone(struct DuelCard *zone) {

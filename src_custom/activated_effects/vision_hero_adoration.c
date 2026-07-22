@@ -102,7 +102,7 @@ static void ApplyAdorationReduction(struct DuelCard *heroZone, struct DuelCard *
     return;
 
   stages = (s8)(-((s32)heroAtk + 499) / 500);
-  /* ponytail: until end of turn clear needs EOT tempStage reset hook. */
+  /* Until End Phase via ResetTempStagesForAllCards at EP. */
   oppZone->tempStage = stages;
 }
 

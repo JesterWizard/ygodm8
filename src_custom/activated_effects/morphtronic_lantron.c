@@ -95,7 +95,7 @@ unsigned char CanActivateMORPHTRONIC_LANTRON(void)
     return FALSE;
 
   /* DEF destroy → no battle damage this turn via ApplyMorphtronicLantronNoBattleDamage.
-   * ponytail: ATK redirect effect damage needs effect-damage hook. */
+   * Ceiling: ATK redirect effect damage needs effect-damage hook. */
   return FALSE;
 }
 

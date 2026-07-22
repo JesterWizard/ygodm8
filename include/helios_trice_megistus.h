@@ -6,5 +6,6 @@
 u8 HeliosTriceMegistus_ApplyDynamicZoneStats(struct DuelCard *zone);
 void ApplyHeliosTriceMegistusBattleDestroyPending(void);
 void TryApplyHeliosTriceMegistusEndPhase(void);
+void HeliosTriceMegistus_MaybeMarkExtraAttackOnPlacement(struct DuelCard *zone);
 
 #endif /* GUARD_HELIOS_TRICE_MEGISTUS_H */

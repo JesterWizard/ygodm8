@@ -459,11 +459,11 @@ void TryElementalHeroStratosOnMonsterPlacement(struct DuelCard *zone)
   if (!canSearch && !canDestroy)
     return;
 
-  /* ponytail: on-summon text after field draw so Stratos is visible. */
+  /* On-summon text after field draw so Stratos is visible. */
   UpdateDuelGfxExceptField();
 
-  /* ponytail: no dedicated A/B choice UI — try search first; player can cancel
-   * the deck pick (B) to fall through to destroy when that option is legal. */
+  /* No dedicated A/B choice UI — try search first; player can cancel the deck
+   * pick (B) to fall through to destroy when that option is legal. */
   if (canSearch) {
     if (TryAddHeroFromDeck(turnDuelist))
       return;

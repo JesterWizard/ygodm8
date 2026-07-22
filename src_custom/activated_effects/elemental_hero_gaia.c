@@ -46,7 +46,7 @@ void ApplyElementalHeroGaiaStatMod(const struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  /* ponytail: GetTypeGroup calls SetCardInfo and would clobber gCardInfo. */
+  /* gCardInfo.type check avoids SetCardInfo clobber during overlay pass. */
   if (gCardInfo.id != zone->id || gCardInfo.type >= TYPE_SPELL)
     return;
 

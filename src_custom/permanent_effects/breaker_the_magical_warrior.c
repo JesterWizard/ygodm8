@@ -12,7 +12,7 @@ void FlipCardFaceUp(struct DuelCard *zone);
 
 static u8 IsBreakerNormalSummonPlacement(const struct DuelCard *zone)
 {
-  /* ponytail: hand normal summon copies isFaceUp=0; attack-position monsters still count. */
+  /* Hand normal summon copies isFaceUp=0; attack-position monsters still count. */
   return zone->isFaceUp || !zone->isDefending;
 }
 

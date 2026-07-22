@@ -26,7 +26,7 @@ static u8 IsFaceUpMonsterZone(struct DuelCard *zone)
   if (IsCardFaceUp(zone))
     return TRUE;
 
-  /* ponytail: attack-position summons keep isFaceUp=0 until end-of-turn flip. */
+  /* Attack-position summons stay isFaceUp=0 until end-of-turn flip. */
   return zone->isDefending == FALSE;
 }
 

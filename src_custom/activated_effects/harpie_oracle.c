@@ -121,8 +121,8 @@ unsigned char CanActivateHARPIE_ORACLE(void)
   if (zone == NULL || zone->id != HARPIE_ORACLE)
     return FALSE;
 
-  /* ponytail: name becomes Harpie Lady + End Phase Sisters S/T add need name/EP hooks.
-   * Ceiling: OPT add 1 Harpie from GY to hand. */
+  /* Name=Harpie Lady via HarpiePerfumer_TreatsNameAsHarpieLady; OPT GY add below.
+   * Ceiling: End Phase Sisters S/T add need EP hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

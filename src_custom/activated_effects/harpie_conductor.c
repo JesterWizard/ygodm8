@@ -17,7 +17,7 @@ static u8 IsLikelySpecialSummonedOpp(struct DuelCard *zone)
   if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
     return FALSE;
 
-  /* ponytail: no SS-origin flag; face-up/ATK stand-in for Special Summoned. */
+  /* No SS-origin flag; face-up/ATK stand-in for Special Summoned. */
   if (IsCardFaceUp(zone))
     return TRUE;
 
@@ -96,8 +96,8 @@ unsigned char CanActivateHARPIE_CONDUCTOR(void)
   if (zone == NULL || zone->id != HARPIE_CONDUCTOR)
     return FALSE;
 
-  /* ponytail: name Lady + protect destroy redirect + on-Harpie-return trigger need
-   * name/destroy/return hooks. Ceiling: OPT bounce 1 face-up/ATK opp monster. */
+  /* Name=Harpie Lady via HarpiePerfumer_TreatsNameAsHarpieLady; OPT bounce below.
+   * Ceiling: protect destroy redirect + on-Harpie-return trigger need hooks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

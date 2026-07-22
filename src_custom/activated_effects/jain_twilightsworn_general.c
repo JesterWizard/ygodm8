@@ -148,7 +148,7 @@ static void ApplyLevelReduction(struct DuelCard *zone, u8 level)
 {
   s8 stages = (s8)(-((s32)level * 300 + 499) / 500);
 
-  /* ponytail: until end of turn clear needs EOT tempStage reset hook. */
+  /* Until End Phase via ResetTempStagesForAllCards at EP. */
   zone->tempStage = stages;
 }
 
