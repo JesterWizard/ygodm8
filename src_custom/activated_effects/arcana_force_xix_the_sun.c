@@ -134,7 +134,7 @@ u8 CanSpecialSummonArcanaForceXixTheSunFromHand(u8 handZone)
   if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != ARCANA_FORCE_XIX_THE_SUN)
     return FALSE;
 
-  /* Ceiling: requires coin-toss card on field — skipped; SS anytime when legal. */
+  /* Requires coin-toss card on field — skipped; SS anytime when legal. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

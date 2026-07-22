@@ -57,7 +57,7 @@ static void ReturnCardToDeckTop(u8 fixedDuelist, u16 cardId)
   gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
 }
 
-/* ponytail: auto-shuffle up to MICHAEL_SHUFFLE_MAX other LS (no GY picker). */
+/* Auto-shuffle up to MICHAEL_SHUFFLE_MAX other LS (no GY picker). */
 static u8 ShuffleOtherLightswornFromGy(u8 fixedDuelist, u8 turnDuelist)
 {
   u8 shuffled = 0;

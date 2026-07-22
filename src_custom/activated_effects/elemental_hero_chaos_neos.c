@@ -238,7 +238,7 @@ void TryApplyElementalHeroChaosNeosEndPhase(void)
   } else if (heads == 1) {
     ShuffleFieldCards(TRUE);
   } else {
-    /* ponytail: 3H Set-all needs set-from-deck hook; 2H/3H both shuffle all. */
+    /* 3H Set-all needs set-from-deck hook; 2H/3H both shuffle all. */
     ShuffleFieldCards(FALSE);
   }
 

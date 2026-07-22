@@ -229,7 +229,7 @@ void ActivateBRIONAC_DRAGON_OF_THE_ICE_BARRIEREffect(void)
     return;
   }
 
-  /* Ceiling: N-discard path auto-bounces N cards; upgrade: sequential PickZone. */
+  /* N-discard path auto-bounces N cards; sequential PickZone not wired. */
   BounceWithoutPick(discardCount);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();

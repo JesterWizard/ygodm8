@@ -9,8 +9,8 @@ unsigned char CanActivateTYRANT_BURST_DRAGON(void)
   if (gMonEffect.id != TYRANT_BURST_DRAGON)
     return FALSE;
 
-  /* multi-attack + equip-to-monster need battle/equip continuous hooks.
-   * Ceiling: not ignition-activatable here; upgrade: permanent battle/equip gate. */
+  /* Multi-attack + equip-to-monster need battle/equip continuous hooks outside this file.
+   * Not field-ignition. */
   return FALSE;
 }
 

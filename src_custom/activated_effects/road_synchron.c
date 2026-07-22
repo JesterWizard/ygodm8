@@ -10,7 +10,7 @@ unsigned char CanActivateROAD_SYNCHRON(void)
     return FALSE;
 
   /* Synchro Level -2 (non-Road Warrior) + battle-hit Level +1 need
-   * synchro/battle hooks. Ceiling: not ignition-activatable here. */
+   * synchro/battle hooks outside this file. Not field-ignition. */
   return FALSE;
 }
 

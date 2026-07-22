@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
@@ -78,6 +79,7 @@ static void ResolveDestroyTarget(u8 fixedRow, u8 fixedCol)
     return;
 
   NotifyDynamicEquipFieldChanged();
+  EffectOpt_MarkUsed(GLADIATOR_BEAST_HERAKLINOS);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
@@ -145,8 +147,11 @@ unsigned char CanActivateGLADIATOR_BEAST_HERAKLINOS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_HERAKLINOS)
     return FALSE;
 
-  /* Ceiling: either-turn chain negate needs chain hook. OPT discard 1 → destroy
-   * 1 opponent card below. */
+  /* Either-turn chain negate needs chain hook outside this file.
+   * OPT discard 1 → destroy 1 opponent card (EffectOpt). */
+  if (EffectOpt_IsUsed(GLADIATOR_BEAST_HERAKLINOS))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -161,6 +166,9 @@ void ActivateGLADIATOR_BEAST_HERAKLINOSEffect(void)
   Duel_ShowEffectTextTyped(GLADIATOR_BEAST_HERAKLINOS, 2);
 
   if (IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(GLADIATOR_BEAST_HERAKLINOS))
     return;
 
   if (!HandHasDiscardableCard() || !OppFieldHasCard())

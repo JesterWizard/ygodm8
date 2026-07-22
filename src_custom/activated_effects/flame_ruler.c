@@ -9,9 +9,8 @@ unsigned char CanActivateFLAME_RULER(void)
   if (gMonEffect.id != FLAME_RULER)
     return FALSE;
 
-  /* Ceiling: treat as 2 Tributes for FIRE Tribute Summon needs tribute-cost LynJump.
-   * Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle
-   * gate outside this file. */
+  /* Treat as 2 Tributes for FIRE Tribute Summon needs tribute-cost LynJump
+   * outside this file. Not field-ignition. */
   return FALSE;
 }
 

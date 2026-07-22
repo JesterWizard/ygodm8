@@ -10,7 +10,7 @@ unsigned char CanActivateGODDESS_BOW(void)
     return FALSE;
 
   /* Hermos fusion + equip + battle-phase negate/second attack need
-   * fusion/equip/chain hooks. Ceiling: not ignition-activatable here. */
+   * fusion/equip/chain hooks outside this file. Not field-ignition. */
   return FALSE;
 }
 

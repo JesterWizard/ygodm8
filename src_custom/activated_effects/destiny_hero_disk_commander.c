@@ -25,7 +25,7 @@ void TryDestinyHeroDiskCommanderOnMonsterPlacement(struct DuelCard *zone)
 
   turnDuelist = Duel_TurnDuelistForFixedDuelist(controller);
 
-  /* ponytail: printed is SS from GY once per Duel; any-placement + EffectOpt stand-in. */
+  /* Printed is SS from GY once per Duel; any-placement + EffectOpt stand-in. */
   Duel_ShowEffectTextTyped(DESTINY_HERO_DISK_COMMANDER, 8);
   if (Duel_DrawCards(turnDuelist, 2, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;

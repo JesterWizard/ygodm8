@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
@@ -116,6 +117,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
         return;
 
       NotifyDynamicEquipFieldChanged();
+      EffectOpt_MarkUsed(MORPHTRONIC_SLINGEN);
       MarkMonsterEffectUsed(self);
       UpdateDuelGfxExceptField();
       CheckWinConditionExodia(WhoseTurn());
@@ -157,9 +159,12 @@ unsigned char CanActivateMORPHTRONIC_SLINGEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SLINGEN)
     return FALSE;
 
-  /* Ceiling: DEF destroy-other-Morphtronic substitute needs destroy redirect hook.
-   * Ceiling: ATK OPT tribute 1 other Morphtronic → destroy 1 field card. */
+  /* DEF destroy-other-Morphtronic substitute needs destroy redirect hook outside.
+   * ATK OPT tribute 1 other Morphtronic → destroy 1 field card (EffectOpt). */
   if (zone->isDefending)
+    return FALSE;
+
+  if (EffectOpt_IsUsed(MORPHTRONIC_SLINGEN))
     return FALSE;
 
   if (!CanUseMonsterEffect(zone))
@@ -173,6 +178,9 @@ void ActivateMORPHTRONIC_SLINGENEffect(void)
   Duel_ShowEffectTextTyped(MORPHTRONIC_SLINGEN, 2);
 
   if (IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(MORPHTRONIC_SLINGEN))
     return;
 
   gDuelCursor.destY = gMonEffect.row;

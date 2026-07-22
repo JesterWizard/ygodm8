@@ -62,7 +62,7 @@ unsigned char CanActivateDARK_MAGICIAN_THE_DRAGON_KNIGHT(void)
 
   /* Name=Dark Magician via DarkMagicianTheDragonKnight_TreatsNameAsDarkMagician +
    * Duel_ZoneEffectCardId; S/T protect via DarkMagicianTheDragonKnight_ProtectsSpellTrap.
-   * Ceiling: not ignition-activatable here. */
+   * Not field-ignition. */
   return FALSE;
 }
 

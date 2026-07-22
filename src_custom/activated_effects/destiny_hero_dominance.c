@@ -63,7 +63,7 @@ static void ShuffleTopNOfFixedDeck(u8 fixedDuelist, u8 n)
   if (size <= 1)
     return;
 
-  /* Ceiling: look+reorder UI missing; RandRange shuffle of top N is stand-in. */
+  /* Look+reorder UI missing; RandRange shuffle of top N is stand-in. */
   for (i = 0; i < 200; i++) {
     u8 indexA = RandRangeU8(0, size - 1);
     u8 indexB = RandRangeU8(0, size - 1);

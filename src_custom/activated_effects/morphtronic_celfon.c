@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
 
@@ -133,8 +134,11 @@ unsigned char CanActivateMORPHTRONIC_CELFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_CELFON)
     return FALSE;
 
-  /* Ceiling: reveal/look UI missing; die roll + SS/add among top N.
-   * Ceiling: ATK OPT die→SS Lv≤4 Morphtronic; DEF OPT die→add Morphtronic. */
+  /* ATK OPT die→SS Lv≤4 Morphtronic; DEF OPT die→add Morphtronic (EffectOpt).
+   * Reveal/look UI missing — RandRange die + peek top N stand-in. */
+  if (EffectOpt_IsUsed(MORPHTRONIC_CELFON))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -167,6 +171,9 @@ void ActivateMORPHTRONIC_CELFONEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(MORPHTRONIC_CELFON))
+    return;
+
   remaining = DeckCardsRemaining();
   if (remaining == 0)
     return;
@@ -180,6 +187,7 @@ void ActivateMORPHTRONIC_CELFONEffect(void)
     cardId = FindAnyMorphtronicAmongTop(peek);
     if (cardId == CARD_NONE) {
       Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
+      EffectOpt_MarkUsed(MORPHTRONIC_CELFON);
       MarkMonsterEffectUsed(self);
       UpdateDuelGfxExceptField();
       return;
@@ -195,6 +203,7 @@ void ActivateMORPHTRONIC_CELFONEffect(void)
     cardId = FindLv4MorphtronicAmongTop(peek);
     if (cardId == CARD_NONE) {
       Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
+      EffectOpt_MarkUsed(MORPHTRONIC_CELFON);
       MarkMonsterEffectUsed(self);
       UpdateDuelGfxExceptField();
       return;
@@ -207,6 +216,7 @@ void ActivateMORPHTRONIC_CELFONEffect(void)
     Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
   }
 
+  EffectOpt_MarkUsed(MORPHTRONIC_CELFON);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

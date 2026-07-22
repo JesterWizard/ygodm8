@@ -10,7 +10,7 @@ unsigned char CanActivateGRAVEKEEPERS_SPIRITUALIST(void)
     return FALSE;
 
   /* Necrovalley-gated Spellcaster Fusion from Extra Deck needs fusion
-   * summon API. Ceiling: not ignition-activatable here. */
+   * summon API outside this file. Not field-ignition. */
   return FALSE;
 }
 

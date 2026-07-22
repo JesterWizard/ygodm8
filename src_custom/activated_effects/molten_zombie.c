@@ -25,7 +25,7 @@ void TryMoltenZombieOnMonsterPlacement(struct DuelCard *zone)
 
   turnDuelist = Duel_TurnDuelistForFixedDuelist(controller);
 
-  /* ponytail: printed is SS from GY; any placement stand-in. */
+  /* Printed is SS from GY; any placement stand-in. */
   Duel_ShowEffectTextTyped(MOLTEN_ZOMBIE, 8);
   if (Duel_DrawCards(turnDuelist, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;

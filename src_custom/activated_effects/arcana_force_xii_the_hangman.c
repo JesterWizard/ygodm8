@@ -163,7 +163,7 @@ static u8 ResolveArcanaForceXiiTheHangmanCoin(void)
     targetRow = INACTIVE_DUELIST_MONSTER_ROW;
   }
 
-  /* Ceiling: coin targeting uses auto-pick highest ATK; upgrade: PickZone. */
+  /* Coin targeting uses auto-pick highest ATK; PickZone not wired. */
   if (!DestroyMonsterAndBurn(targetRow, heads ? ACTIVE_DUELIST : INACTIVE_DUELIST))
     return FALSE;
 

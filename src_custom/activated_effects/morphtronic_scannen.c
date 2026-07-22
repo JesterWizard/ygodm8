@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
 
@@ -191,7 +192,10 @@ unsigned char CanActivateMORPHTRONIC_SCANNEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SCANNEN)
     return FALSE;
 
-  /* Ceiling: FromHand banish Morphtronic → SS; ATK/DEF OPT search modes. */
+  /* FromHand banish Morphtronic → SS. ATK/DEF OPT search modes (EffectOpt). */
+  if (EffectOpt_IsUsed(MORPHTRONIC_SCANNEN))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -211,6 +215,9 @@ void ActivateMORPHTRONIC_SCANNENEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(MORPHTRONIC_SCANNEN))
+    return;
+
   if (self->isDefending) {
     cardId = FindLvLe4MorphtronicInDeck();
     if (cardId == CARD_NONE || !AddCardFromDeckToHand(cardId))
@@ -223,6 +230,7 @@ void ActivateMORPHTRONIC_SCANNENEffect(void)
     PlaceOneHandCardOnDeckTop();
   }
 
+  EffectOpt_MarkUsed(MORPHTRONIC_SCANNEN);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

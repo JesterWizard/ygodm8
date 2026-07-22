@@ -9,9 +9,7 @@ unsigned char CanActivateGAGAGIGO_THE_RISEN(void)
   if (gMonEffect.id != GAGAGIGO_THE_RISEN)
     return FALSE;
 
-  /* Ceiling: Gagagigo the Risen has no printed monster effect (Xyz materials only).
-   * Ceiling: not ignition-activatable from this file; upgrade: permanent /
-   * duel gate outside activated_effects. */
+  /* No printed monster effect (Xyz materials only). Not field-ignition. */
   return FALSE;
 }
 

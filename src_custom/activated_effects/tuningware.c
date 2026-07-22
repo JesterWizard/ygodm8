@@ -9,8 +9,8 @@ unsigned char CanActivateTUNINGWARE(void)
   if (gMonEffect.id != TUNINGWARE)
     return FALSE;
 
-  /* Synchro level-2 treatment + draw-on-material need synchro hooks.
-   * Ceiling: not ignition-activatable here; upgrade: synchro summon gate. */
+  /* Synchro level-2 treatment + draw-on-material need synchro hooks outside this file.
+   * Not field-ignition. */
   return FALSE;
 }
 

@@ -9,8 +9,8 @@ unsigned char CanActivateTURBO_SYNCHRON(void)
   if (gMonEffect.id != TURBO_SYNCHRON)
     return FALSE;
 
-  /* attack-target DEF change + battle-damage SS from hand need battle
-   * hooks. Ceiling: not ignition-activatable here. */
+  /* Attack-target DEF change + battle-damage SS from hand need battle hooks
+   * outside this file. Not field-ignition. */
   return FALSE;
 }
 

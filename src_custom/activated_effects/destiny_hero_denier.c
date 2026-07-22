@@ -66,7 +66,7 @@ static void TryDenierGySs(u8 fixedDuelist)
                                             : INACTIVE_DUELIST_MONSTER_ROW;
   struct DuelSummonOpts opts;
 
-  /* ponytail: once-per-duel ≈ EffectOpt (turn); upgrade: duel-scoped latch. */
+  /* Once-per-duel ≈ EffectOpt (turn); duel-scoped latch not tracked. */
   if (EffectOpt_IsUsed(DESTINY_HERO_DENIER))
     return;
   if (ArchlordKristya_IsSpecialSummonLocked())

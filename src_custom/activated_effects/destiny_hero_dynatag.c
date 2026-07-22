@@ -37,7 +37,7 @@ static u8 IsFaceUpMonsterZone(struct DuelCard *zone)
   return zone->isDefending == FALSE;
 }
 
-/* ponytail: auto-pick first face-up D-HERO; upgrade: PickZone targeting. */
+/* Auto-pick first face-up D-HERO; PickZone targeting not wired. */
 static struct DuelCard *FindFaceUpDestinyHero(u8 turnDuelist)
 {
   u8 monRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
