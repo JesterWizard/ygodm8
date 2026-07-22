@@ -97,7 +97,7 @@ unsigned char CanActivateLEGENDARY_KNIGHT_HERMOS(void)
     return FALSE;
 
   /* Legend of Heart SS + when-attacked GY name/effect copy need
-   * summon/battle hooks. Ceiling: OPT banish 1 face-up Spell/Trap. */
+   * summon/battle hooks. OPT banish 1 face-up Spell/Trap. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -192,7 +192,7 @@ unsigned char CanActivateLIGHTRAY_GEARFRIED(void)
     return FALSE;
 
   /* Quick negate S/T activation needs chain hooks.
-   * Ceiling: OPT banish Warrior GY → destroy 1 S/T. */
+   * OPT banish Warrior GY → destroy 1 S/T. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

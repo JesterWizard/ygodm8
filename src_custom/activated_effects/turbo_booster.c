@@ -99,7 +99,7 @@ unsigned char CanActivateTURBO_BOOSTER(void)
     return FALSE;
 
   /* destroy only monsters that battled your monsters this turn needs
-   * battle-tracking hook. Ceiling: OPT tribute self then destroy 1 opponent
+   * battle-tracking hook. OPT tribute self then destroy 1 opponent
    * monster; SS-from-hand uses FromHand path. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

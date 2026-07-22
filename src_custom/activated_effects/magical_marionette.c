@@ -116,7 +116,7 @@ unsigned char CanActivateMAGICAL_MARIONETTE(void)
 
   /* Spell Counter on resolve via TryIncrementSpellCountersOnSpellResolve;
    * +200 ATK/counter via ApplyMagicalMarionetteStatBoostToCardInfo.
-   * Ceiling: OPT remove 2 unk4 counters → destroy 1 monster. */
+   * OPT remove 2 unk4 counters → destroy 1 monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

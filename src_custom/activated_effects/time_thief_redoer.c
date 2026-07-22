@@ -138,7 +138,7 @@ unsigned char CanActivateTIME_THIEF_REDOER(void)
     return FALSE;
 
   /* detach materials + banish-until-EP FALSE.
-   * Ceiling: OPT draw 1 OR return 1 face-up opp monster to Deck. */
+   * OPT draw 1 OR return 1 face-up opp monster to Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

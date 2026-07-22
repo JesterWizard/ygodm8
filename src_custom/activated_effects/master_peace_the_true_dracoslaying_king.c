@@ -109,7 +109,7 @@ unsigned char CanActivateMASTER_PEACE_THE_TRUE_DRACOSLAYING_KING(void)
     return FALSE;
 
   /* Tribute Continuous S/T + unaffected-by-type FALSE.
-   * Ceiling: OPT banish 1 other field card (Quick destroy stand-in). */
+   * OPT banish 1 other field card (Quick destroy stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

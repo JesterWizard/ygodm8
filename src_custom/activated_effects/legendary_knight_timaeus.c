@@ -97,7 +97,7 @@ unsigned char CanActivateLEGENDARY_KNIGHT_TIMAEUS(void)
     return FALSE;
 
   /* Legend of Heart SS + attacked-set-Spell-from-GY need summon/battle
-   * hooks. Ceiling: OPT banish 1 face-up Spell/Trap on the field. */
+   * hooks. OPT banish 1 face-up Spell/Trap on the field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

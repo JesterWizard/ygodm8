@@ -100,7 +100,7 @@ unsigned char CanActivateGATE_GUARDIANS_COMBINED(void)
     return FALSE;
 
   /* negate-on-target + leave-field SS FALSE.
-   * Ceiling: OPT destroy 1 opp card (negate stand-in). */
+   * OPT destroy 1 opp card (negate stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

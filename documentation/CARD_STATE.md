@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Ceiling Round 15 Batch 1/6
+**Last worked on:** 2026-07-22 — Ceiling Round 15 B2–B6 + Round 16 Batch 1
 
-**Outcome:** Princess attack-declare send→SS DEF; Statue `EffectOpt` on tribute-SS; cleared stale OPT ceilings (AG cluster, Fairy Dragon, Aroma search/tribute, Liger/Spiritualist OPT notes). Partials **345→333**. `make` OK.
+**Outcome:** Six-batch OPT ceiling sweep + Apprentice/Headman on-summon wires. Partials **333→280**. `make` OK.
 
-**Deferred:** Liger attack redirect; Spiritualist GY/ED; Megaton multi-attack/leave; Apprentice on-summon/Quick; Extra Deck / full chain.
+**Deferred:** Extra Deck / full chain / Pendulum; remaining residuals on cleared files.
 
-**Open / next:** Round 15 Batch 2 — more OPT/summon/battle ceiling clears.
+**Open / next:** Round 16 Batch 2 — more OPT/summon/battle clears + real hooks for Atlantean sent-for-WATER / GB-tag triggers.

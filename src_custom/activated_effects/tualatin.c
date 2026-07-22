@@ -106,7 +106,7 @@ unsigned char CanActivateTUALATIN(void)
     return FALSE;
 
   /* FromHand battle-wipe SS + Summon Attribute lock FALSE.
-   * Ceiling: OPT destroy all face-up monsters of first opp monster's Attribute. */
+   * OPT destroy all face-up monsters of first opp monster's Attribute. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

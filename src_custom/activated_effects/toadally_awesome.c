@@ -210,7 +210,7 @@ unsigned char CanActivateTOADALLY_AWESOME(void)
     return FALSE;
 
   /* detach/Standby/negate FALSE.
-   * Ceiling: OPT SS Frog from Deck, else OPT send Aqua → destroy 1 opp. */
+   * OPT SS Frog from Deck, else OPT send Aqua → destroy 1 opp. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
