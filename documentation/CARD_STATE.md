@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — PARTIAL Round 12 Batch 2/6
+**Last worked on:** 2026-07-22 — PARTIAL Round 12 Batch 3/6
 
-**Outcome:** Partials **445→435**. B2: GB Alexander/Dimacari/Samnite/Gaiodiaz/Secutor; AG Beast BD negate; Malicious Edge 1-tribute; Dogma Standby; Armityle; Black-Winged Dragon ATK. `make` OK.
+**Outcome:** Partials **435→424**. B3: Chimeratech Fortress/Megafleet ATK; Kristya Fairy SS lock; Barbaros no-tribute; GB Nerokius/Gyzarus; Parshath pierce; Cyber Laser/Curious/Heraklinos/Rampage cleanup. `make` OK.
 
-**Open / next:** Round 12 Batches 3–6.
+**Open / next:** Round 12 Batches 4–6.

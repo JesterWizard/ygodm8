@@ -145,8 +145,8 @@ unsigned char CanActivateGLADIATOR_BEAST_HERAKLINOS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_HERAKLINOS)
     return FALSE;
 
-  /* ponytail: either-turn chain negate needs chain hook. Ceiling: OPT discard
-   * 1 → destroy 1 opponent card. */
+  /* Ceiling: either-turn chain negate needs chain hook. OPT discard 1 → destroy
+   * 1 opponent card below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

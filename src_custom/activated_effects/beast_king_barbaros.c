@@ -1,14 +1,45 @@
 #include "global.h"
 #include "common-chax.h"
+#include "beast_king_barbaros.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
+#include "summon_tribute.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+#define BEAST_KING_BARBAROS_NO_TRIBUTE_ATK 1900
+
+u8 BeastKingBarbaros_CanNormalSummonWithoutTribute(u16 cardId)
+{
+  return cardId == BEAST_KING_BARBAROS;
+}
+
+u8 BeastKingBarbaros_ApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != BEAST_KING_BARBAROS)
+    return FALSE;
+
+  if (zone->permStage != 1)
+    return FALSE;
+
+  SetCardInfo(zone->id);
+  Duel_WriteCardInfoStats(zone->id, BEAST_KING_BARBAROS_NO_TRIBUTE_ATK, gCardInfo.def);
+  return TRUE;
+}
+
+void TryBeastKingBarbarosOnMonsterPlacement(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != BEAST_KING_BARBAROS)
+    return;
+
+  if (GetPendingSummonTributeCount() == 0)
+    zone->permStage = 1;
+}
 
 static void DestroyAllOpponentCards(void)
 {
@@ -61,8 +92,8 @@ unsigned char CanActivateBEAST_KING_BARBAROS(void)
   if (zone == NULL || zone->id != BEAST_KING_BARBAROS)
     return FALSE;
 
-  /* ponytail: no-tribute 1900 ATK + tribute-3 summon gate need summon hooks.
-   * Ceiling: once via usage destroy all opp cards (tribute-3 stand-in). */
+  /* No-tribute 1900 ATK via BeastKingBarbaros_ApplyDynamicZoneStats + tribute hook.
+   * Ceiling: 3-Tribute on-summon destroy — OPT stand-in below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -89,3 +120,19 @@ void ActivateBEAST_KING_BARBAROSEffect(void)
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void BeastKingBarbaros_SelfCheck(void)
+{
+  struct DuelCard zone;
+
+  zone.id = BEAST_KING_BARBAROS;
+  zone.permStage = 1;
+  if (!BeastKingBarbaros_ApplyDynamicZoneStats(&zone))
+    while (1)
+      ;
+  if (gCardInfo.atk != BEAST_KING_BARBAROS_NO_TRIBUTE_ATK)
+    while (1)
+      ;
+}
+#endif

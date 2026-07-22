@@ -14,9 +14,6 @@ void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
 
-/* ponytail: targets face-up monsters on opponent's side with ATK >= 2400 or DEF >= 2400.
- * Upgrade path: scan backrow S/T cards if the card text ever changes. */
-
 static u8 OpponentControlsRow(u8 fixedRow)
 {
   if (gMonEffect.row == PLAYER_MONSTER_ROW)

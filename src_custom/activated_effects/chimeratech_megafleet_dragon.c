@@ -9,8 +9,8 @@ unsigned char CanActivateCHIMERATECH_MEGAFLEET_DRAGON(void)
   if (gMonEffect.id != CHIMERATECH_MEGAFLEET_DRAGON)
     return FALSE;
 
-  /* ponytail: original ATK = 1200 x fusion material count needs fusion/summon
-   * stat overlay hook. Ceiling: not ignition-activatable here. */
+  /* Fusion ATK overlay via ChimeratechMegafleetDragon_ApplyDynamicZoneStats.
+   * Ceiling: not field-ignition activatable here. */
   return FALSE;
 }
 

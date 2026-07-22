@@ -14,6 +14,7 @@ void GladiatorBeast_ClearBattlePhaseActive(void);
 u8 GladiatorBeast_CanActivateTagOutEffect(const struct DuelCard *zone);
 u8 GladiatorBeast_HasOtherMonsterInDeck(u16 excludeId);
 u8 GladiatorBeast_CanActivateDeckTagOut(u16 cardId, struct DuelCard *zone);
+u8 GladiatorBeast_CanActivateDeckTagOutTwo(u16 cardId, struct DuelCard *zone);
 void GladiatorBeast_ActivateDeckTagOut(struct DuelCard *self, u16 selfCardId);
 u8 GladiatorBeast_CanActivateTagOutDraw(u16 cardId, struct DuelCard *zone);
 void GladiatorBeast_ActivateDeckTagOutDraw(struct DuelCard *self, u16 selfCardId);

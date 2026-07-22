@@ -179,6 +179,8 @@ struct DuelCard *HamonLordOfStrikingThunder_GetForcedAttackTarget(u8 defenderDue
 u8 HamonLordOfStrikingThunder_CanAttackMonsterZone(struct DuelCard *zone);
 u8 UriaLordOfSearingFlames_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmuletDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 BeastKingBarbaros_ApplyDynamicZoneStats(struct DuelCard *zone);
+void TryBeastKingBarbarosOnMonsterPlacement(struct DuelCard *zone);
 u8 NeoSpacianFlareScarab_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 OrichalcosShunoros_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ShireLightswornSpirit_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -193,6 +195,8 @@ u8 ElementalHeroAirNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroBraveNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 CyberDragonInfinity_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GandoraX_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ChimeratechFortressDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ChimeratechMegafleetDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AromaseraphySweetMarjoram_CanAttackMonsterZone(struct DuelCard *zone);
 u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol);
 u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone);
@@ -382,6 +386,7 @@ u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
     return FALSE;
 
   return cardId == DARK_DUST_SPIRIT || cardId == THE_TYRANT_NEPTUNE
+      || cardId == BEAST_KING_BARBAROS
       || cardId == THE_BIG_SATURN || cardId == THE_SUPREMACY_SUN
       || cardId == THE_WICKED_DREADROOT || cardId == THE_WICKED_ERASER
       || cardId == THE_WICKED_AVATAR
@@ -438,7 +443,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
       && LightForce_BlocksSpecialSummon(TurnDuelistToFixed(turnDuelist), monsterId))
     return DUEL_ACTION_BLOCKED;
 
-  if (SummonModeIsSpecial(opts.mode) && ArchlordKristya_IsSpecialSummonLocked())
+  if (SummonModeIsSpecial(opts.mode) && ArchlordKristya_BlocksSpecialSummon(monsterId))
     return DUEL_ACTION_BLOCKED;
 
   if (SummonModeIsSpecial(opts.mode)
@@ -496,6 +501,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryElementalHeroStratosOnMonsterPlacement(summonZone);
   TryTheSuppressionPlutoOnMonsterPlacement(summonZone);
   TryAmuletDragonOnMonsterPlacement(summonZone);
+  TryBeastKingBarbarosOnMonsterPlacement(summonZone);
   TryMinervaLightswornMaidenOnNormalSummon(summonZone, opts.mode);
   TryJunkSynchronOnNormalSummon(summonZone, opts.mode);
   TryAmazonessPrincessOnMonsterPlacement(summonZone);
@@ -1693,11 +1699,14 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_ESCURIDAO, ElementalHeroEscuridao_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_BLAZEMAN, ElementalHeroBlazeman_ApplyDynamicZoneStats },
   { CHIMERATECH_OVERDRAGON, ChimeratechOverdragon_ApplyDynamicZoneStats },
+  { CHIMERATECH_FORTRESS_DRAGON, ChimeratechFortressDragon_ApplyDynamicZoneStats },
+  { CHIMERATECH_MEGAFLEET_DRAGON, ChimeratechMegafleetDragon_ApplyDynamicZoneStats },
   { LYRILUSC_INDEPENDENT_NIGHTINGALE, LyriluscIndependentNightingale_ApplyDynamicZoneStats },
   { THE_WICKED_ERASER, TheWickedEraser_ApplyDynamicZoneStats },
   { THE_WICKED_AVATAR, TheWickedAvatar_ApplyDynamicZoneStats },
   { URIA_LORD_OF_SEARING_FLAMES, UriaLordOfSearingFlames_ApplyDynamicZoneStats },
   { AMULET_DRAGON, AmuletDragon_ApplyDynamicZoneStats },
+  { BEAST_KING_BARBAROS, BeastKingBarbaros_ApplyDynamicZoneStats },
   { NEO_SPACIAN_FLARE_SCARAB, NeoSpacianFlareScarab_ApplyDynamicZoneStats },
   { ORICHALCOS_SHUNOROS, OrichalcosShunoros_ApplyDynamicZoneStats },
   { SHIRE_LIGHTSWORN_SPIRIT, ShireLightswornSpirit_ApplyDynamicZoneStats },
@@ -2858,7 +2867,7 @@ enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCar
   enum DuelActionResult result;
   u8 relockHand = FALSE;
 
-  if (ArchlordKristya_IsSpecialSummonLocked())
+  if (ArchlordKristya_BlocksSpecialSummon(cardId))
     return DUEL_ACTION_BLOCKED;
 
   if (ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon())
@@ -2902,9 +2911,6 @@ enum DuelActionResult Duel_SpecialSummonFromHandZone(u8 duelist, s8 handZone,
   u16 monsterId;
   enum DuelActionResult result;
 
-  if (ArchlordKristya_IsSpecialSummonLocked())
-    return DUEL_ACTION_BLOCKED;
-
   if (ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon())
     return DUEL_ACTION_BLOCKED;
 
@@ -2919,6 +2925,9 @@ enum DuelActionResult Duel_SpecialSummonFromHandZone(u8 duelist, s8 handZone,
     return DUEL_ACTION_NO_TARGET;
 
   monsterId = SixCardHand_ZoneAtHandRow(handRow, handZone)->id;
+
+  if (ArchlordKristya_BlocksSpecialSummon(monsterId))
+    return DUEL_ACTION_BLOCKED;
   if (monsterId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
     MarkAbsoluteZeroHandSummonCleanup();
   ClearZone(SixCardHand_ZoneAtHandRow(handRow, handZone));
@@ -2935,7 +2944,7 @@ enum DuelActionResult Duel_SpecialSummonFromGrave(u8 duelist, u16 cardId, struct
   u8 fixedDuelist = TurnDuelistToFixed(duelist);
   u16 revivedId;
 
-  if (ArchlordKristya_IsSpecialSummonLocked())
+  if (ArchlordKristya_BlocksSpecialSummon(cardId))
     return DUEL_ACTION_BLOCKED;
 
   if (ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon())
@@ -2969,7 +2978,7 @@ enum DuelActionResult Duel_SpecialSummonFromDeck(u8 duelist, u16 cardId, struct 
 
   ColosseumCage_MarkSpecialSummonFromDeck(TurnDuelistToFixed(duelist));
 
-  if (ArchlordKristya_IsSpecialSummonLocked())
+  if (ArchlordKristya_BlocksSpecialSummon(cardId))
     return DUEL_ACTION_BLOCKED;
 
   if (HarpieLadyPhoenixFormation_CannotSpecialSummonFromMainOrExtraDeck())
@@ -3003,7 +3012,7 @@ enum DuelActionResult Duel_SpecialSummonMonsterId(u8 duelist, u16 monsterId,
 {
   enum DuelActionResult result;
 
-  if (ArchlordKristya_IsSpecialSummonLocked())
+  if (ArchlordKristya_BlocksSpecialSummon(monsterId))
     return DUEL_ACTION_BLOCKED;
 
   result = PlaceMonsterFromId(duelist, monsterId, opts);

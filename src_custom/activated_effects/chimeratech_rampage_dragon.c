@@ -83,8 +83,8 @@ unsigned char CanActivateCHIMERATECH_RAMPAGE_DRAGON(void)
   if (zone == NULL || zone->id != CHIMERATECH_RAMPAGE_DRAGON)
     return FALSE;
 
-  /* ponytail: on-Fusion destroy + multi-attack need fusion/battle hooks.
-   * Ceiling: OPT destroy up to 2 S/T on field. */
+  /* Ceiling: on-Fusion destroy + multi-attack need fusion/battle hooks.
+   * OPT destroy up to 2 S/T on field below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

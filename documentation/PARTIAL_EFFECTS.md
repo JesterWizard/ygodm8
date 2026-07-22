@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 17:17 UTC  
-**Remaining partials:** `435`
+**Last updated:** 2026-07-22 17:22 UTC  
+**Remaining partials:** `424`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 348 |
+| `activated` | 337 |
 | `permanent` | 71 |
-| **total** | **435** |
+| **total** | **424** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (348)
+## activated (337)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -187,10 +187,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/arcanite_magician.c`
 - L158: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. Ceiling: OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card.
 
-### `ARCHLORD_KRISTYA`
-- path: `src_custom/activated_effects/archlord_kristya.c`
-- L322: engine treats level 5+ with no tribute as special-like (Cyber Dragon, etc.).
-
 ### `ARMED_NEOS`
 - path: `src_custom/activated_effects/armed_neos.c`
 - L116: battle-destroy gain Extra tribute SS need battle/Extra hooks. Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY.
@@ -263,10 +259,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/bazoo_the_soul_eater.c`
 - L130: unk4 = banish count for +300 ATK each; cleared each EP with tempStage reset — not exact until-opp-EP hook.
 
-### `BEAST_KING_BARBAROS`
-- path: `src_custom/activated_effects/beast_king_barbaros.c`
-- L64: no-tribute 1900 ATK + tribute-3 summon gate need summon hooks. Ceiling: once via usage destroy all opp cards (tribute-3 stand-in).
-
 ### `BEAST_MACHINE_KING_BARBAROS_UR`
 - path: `src_custom/activated_effects/beast_machine_king_barbaros_ur.c`
 - L224: multi-zone banish picker not wired; require both types reachable.
@@ -292,25 +284,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/castel_the_sky_blaster_musketeer.c`
 - L138: detach/material + face-down branch need overlay engine. Ceiling: OPT return 1 face-up monster to the Deck.
 
-### `CELESTIAL_KNIGHTLORD_PARSHATH`
-- path: `src_custom/activated_effects/celestial_knightlord_parshath.c`
-- L104: Link material + GY banish Fairy → SS Fairy need send/banish hooks. Ceiling: OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field.
-
 ### `CHAOS_ANCIENT_GEAR_GIANT`
 - path: `src_custom/activated_effects/chaos_ancient_gear_giant.c`
 - L12: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock + multi-attack need fusion/battle hooks. Pierce via ApplySimplePiercersBattleEffect. Ceiling: not ignition-activatable here.
-
-### `CHIMERATECH_FORTRESS_DRAGON`
-- path: `src_custom/activated_effects/chimeratech_fortress_dragon.c`
-- L12: original ATK = 1000 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not field-ignition activatable here.
-
-### `CHIMERATECH_MEGAFLEET_DRAGON`
-- path: `src_custom/activated_effects/chimeratech_megafleet_dragon.c`
-- L12: original ATK = 1200 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not ignition-activatable here.
-
-### `CHIMERATECH_RAMPAGE_DRAGON`
-- path: `src_custom/activated_effects/chimeratech_rampage_dragon.c`
-- L86: on-Fusion destroy + multi-attack need fusion/battle hooks. Ceiling: OPT destroy up to 2 S/T on field.
 
 ### `CLEAR_VICE_DRAGON`
 - path: `src_custom/activated_effects/clear_vice_dragon.c`
@@ -329,18 +305,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/cross_keeper.c`
 - L145: GY draw-on-E-HERO-Fusion need Fusion/GY hooks. Ceiling: send self → SS Elemental HERO or Neo-Spacian from hand/GY.
 
-### `CURIOUS_THE_LIGHTSWORN_DOMINION`
-- path: `src_custom/activated_effects/curious_the_lightsworn_dominion.c`
-- L33: Link Summon mill + leave-field GY add + mill-cascade need summon/ leave-field hooks. Ceiling: OPT mill 1 from Deck.
-
 ### `CYBER_DRAGON_INFINITY`
 - path: `src_custom/activated_effects/cyber_dragon_infinity.c`
 - L35: ATK summons keep isFaceUp=0 until EOT flip.
 - L62: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
-
-### `CYBER_LASER_DRAGON`
-- path: `src_custom/activated_effects/cyber_laser_dragon.c`
-- L17: targets face-up monsters on opponent's side with ATK >= 2400 or DEF >= 2400. Upgrade path: scan backrow S/T cards if the card text ever changes.
 
 ### `CYBER_PHOENIX`
 - path: `src_custom/activated_effects/cyber_phoenix.c`
@@ -736,24 +704,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/gladiator_beast_gistel.c`
 - L162: on-GB-SS search + end-BP battled tag gate need summon/battle hooks. Ceiling: OPT search Gladiator S/T, else tag-out. FromHand: reveal+SS both.
 
-### `GLADIATOR_BEAST_GYZARUS`
-- path: `src_custom/activated_effects/gladiator_beast_gyzarus.c`
-- L183: Extra Deck return needs ED API; deck-top stand-in like other GB tags.
-- L308: Contact SS destroy trigger + end-BP Extra tag need summon/battle/ Extra hooks. Ceiling: OPT destroy up to 2 monsters, else tag-out → SS 2.
-
-### `GLADIATOR_BEAST_HERAKLINOS`
-- path: `src_custom/activated_effects/gladiator_beast_heraklinos.c`
-- L148: either-turn chain negate needs chain hook. Ceiling: OPT discard 1 → destroy 1 opponent card.
-
 ### `GLADIATOR_BEAST_LANISTA`
 - path: `src_custom/activated_effects/gladiator_beast_lanista.c`
 - L154: on-SS name copy + end-of-BP tag gate need summon/battle hooks. Ceiling: OPT banish 1 GB from GY (unkTwo name copy) or tag-out.
 - L181: copied name until End Phase needs name-override hook; unkTwo stores copied card id as stand-in.
-
-### `GLADIATOR_BEAST_NEROKIUS`
-- path: `src_custom/activated_effects/gladiator_beast_nerokius.c`
-- L135: Extra Deck return + battle protection need ED/battle hooks.
-- L158: battle indestruct + opp chain block + end-of-BP gate need battle hooks. Ceiling: OPT tag-out → SS 2 different GB from Deck.
 
 ### `GLADIATOR_BEAST_NOXIOUS`
 - path: `src_custom/activated_effects/gladiator_beast_noxious.c`

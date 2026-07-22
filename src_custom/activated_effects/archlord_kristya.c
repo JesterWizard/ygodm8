@@ -307,6 +307,21 @@ u8 ArchlordKristya_IsSpecialSummonLocked(void)
   return FALSE;
 }
 
+u8 ArchlordKristya_BlocksSpecialSummon(u16 cardId)
+{
+  if (!ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  if (cardId == ARCHLORD_KRISTYA && gArchlordKristyaEffectSummon)
+    return FALSE;
+
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.type != TYPE_FAIRY;
+}
+
 u8 ArchlordKristya_ShouldBlockFieldPlacement(u16 cardId, u8 tributesPaid)
 {
   if (!ArchlordKristya_IsSpecialSummonLocked())
@@ -319,7 +334,7 @@ u8 ArchlordKristya_ShouldBlockFieldPlacement(u16 cardId, u8 tributesPaid)
     return FALSE;
 
   SetCardInfo(cardId);
-  /* ponytail: engine treats level 5+ with no tribute as special-like (Cyber Dragon, etc.). */
+  /* Ceiling: level 5+ no-tribute NS loophole — Kristya lock is Special Summon only. */
   return gCardInfo.level > 4;
 }
 

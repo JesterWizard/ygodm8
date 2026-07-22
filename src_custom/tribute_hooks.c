@@ -11,6 +11,7 @@
 #include "ancient_gear_advance.h"
 #include "ancient_gear_castle.h"
 #include "ancient_gear_factory.h"
+#include "beast_king_barbaros.h"
 #include "big_evolution_pill.h"
 #include "geartown.h"
 #include "tribute.h"
@@ -125,6 +126,9 @@ static int GetBaseRequiredTributes(u16 cardId)
   if (BigEvolutionPill_CanNormalSummonWithoutTribute(cardId))
     return 0;
 
+  if (BeastKingBarbaros_CanNormalSummonWithoutTribute(cardId))
+    return 0;
+
   /* Can Tribute Summon by Tributing 1 monster (printed Level 10 would need 3). */
   if (cardId == THE_TYRANT_NEPTUNE)
     return 1;
@@ -178,6 +182,9 @@ int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
     return 0;
 
   if (BigEvolutionPill_CanNormalSummonWithoutTribute(cardId))
+    return 0;
+
+  if (BeastKingBarbaros_CanNormalSummonWithoutTribute(cardId))
     return 0;
 
   if (cardId == THE_TYRANT_NEPTUNE)

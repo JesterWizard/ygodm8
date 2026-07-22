@@ -101,8 +101,8 @@ unsigned char CanActivateCELESTIAL_KNIGHTLORD_PARSHATH(void)
   if (zone == NULL || zone->id != CELESTIAL_KNIGHTLORD_PARSHATH)
     return FALSE;
 
-  /* ponytail: Link material + GY banish Fairy → SS Fairy need send/banish hooks.
-   * Ceiling: OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field. */
+  /* Ceiling: Link material + GY banish Fairy → SS Fairy need send/banish hooks.
+   * OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

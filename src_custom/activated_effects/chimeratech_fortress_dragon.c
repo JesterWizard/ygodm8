@@ -9,8 +9,8 @@ unsigned char CanActivateCHIMERATECH_FORTRESS_DRAGON(void)
   if (gMonEffect.id != CHIMERATECH_FORTRESS_DRAGON)
     return FALSE;
 
-  /* ponytail: original ATK = 1000 x fusion material count needs fusion/summon
-   * stat overlay hook. Ceiling: not field-ignition activatable here. */
+  /* Fusion ATK overlay via ChimeratechFortressDragon_ApplyDynamicZoneStats.
+   * Ceiling: not field-ignition activatable here. */
   return FALSE;
 }
 

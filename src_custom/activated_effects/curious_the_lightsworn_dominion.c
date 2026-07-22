@@ -30,8 +30,8 @@ unsigned char CanActivateCURIOUS_THE_LIGHTSWORN_DOMINION(void)
   if (zone == NULL || zone->id != CURIOUS_THE_LIGHTSWORN_DOMINION)
     return FALSE;
 
-  /* ponytail: Link Summon mill + leave-field GY add + mill-cascade need summon/
-   * leave-field hooks. Ceiling: OPT mill 1 from Deck. */
+  /* Ceiling: Link Summon mill + leave-field GY add + mill-cascade need summon/
+   * leave-field hooks. OPT mill 1 from Deck below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

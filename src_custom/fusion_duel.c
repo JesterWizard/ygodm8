@@ -19,6 +19,7 @@
 #include "player_decks.h"
 #include "power_bond.h"
 #include "spell_effects.h"
+#include "chimeratech_fusion_stats.h"
 #include "fusion_recipes.h"
 
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
@@ -876,8 +877,13 @@ void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount)
           && resultId != ELEMENTAL_HERO_ABSOLUTE_ZERO
           && resultId != ELEMENTAL_HERO_GAIA
           && resultId != ELEMENTAL_HERO_NECROID_SHAMAN
-          && resultId != CHIMERATECH_OVERDRAGON)
+          && resultId != CHIMERATECH_OVERDRAGON
+          && resultId != CHIMERATECH_FORTRESS_DRAGON
+          && resultId != CHIMERATECH_MEGAFLEET_DRAGON)
         FlipCardFaceDown(zone);
+      if (resultId == CHIMERATECH_FORTRESS_DRAGON
+          || resultId == CHIMERATECH_MEGAFLEET_DRAGON)
+        ChimeratechFusion_StampMaterialCount(zone, materialCount);
       break;
     }
   }

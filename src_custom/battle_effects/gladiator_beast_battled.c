@@ -165,6 +165,26 @@ u8 GladiatorBeast_CanActivateDeckTagOut(u16 cardId, struct DuelCard *zone)
   return GladiatorBeast_HasOtherMonsterInDeck(cardId);
 }
 
+u8 GladiatorBeast_CanActivateDeckTagOutTwo(u16 cardId, struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != cardId)
+    return FALSE;
+
+  if (!GladiatorBeast_CanActivateTagOutEffect(zone))
+    return FALSE;
+
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return FALSE;
+
+  return GladiatorBeast_DeckHasTwoDifferentGladiatorBeasts(cardId);
+}
+
 void GladiatorBeast_ActivateDeckTagOut(struct DuelCard *self, u16 selfCardId)
 {
   struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
