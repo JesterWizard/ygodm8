@@ -4,9 +4,44 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "atlantean_dragoons.h"
 #include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
+
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+static u8 ControllerHasFaceUpDragoons(u8 controller)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(controller);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == ATLANTEAN_DRAGOONS)
+      return TRUE;
+  }
+  return FALSE;
+}
+
+u8 AtlanteanDragoons_CanSeaSerpentAttackDirectly(const struct DuelCard *attacker)
+{
+  u8 controller;
+
+  if (attacker == NULL || attacker->id == CARD_NONE)
+    return FALSE;
+  if (!Duel_CardHasMonsterType(attacker->id, TYPE_SEA_SERPENT))
+    return FALSE;
+  if (gCardData_NEW[attacker->id].level == 0 || gCardData_NEW[attacker->id].level > 3)
+    return FALSE;
+
+  controller = GetDuelistForZone((struct DuelCard *)attacker);
+  if (controller > DUEL_OPPONENT)
+    return FALSE;
+  return ControllerHasFaceUpDragoons(controller);
+}
+
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
@@ -98,8 +133,9 @@ unsigned char CanActivateATLANTEAN_DRAGOONS(void)
   if (zone == NULL || zone->id != ATLANTEAN_DRAGOONS)
     return FALSE;
 
-  /* ponytail: Lv3- Sea Serpent direct attack + sent-for-WATER-effect search need
-   * continuous/send hooks. Ceiling: OPT add 1 Sea Serpent except self from Deck. */
+  /* Lv3- Sea Serpent direct via AtlanteanDragoons_CanSeaSerpentAttackDirectly.
+   * ponytail: sent-for-WATER-effect search needs send hook.
+   * Ceiling: OPT add 1 Sea Serpent except self from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

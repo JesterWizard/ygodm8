@@ -118,6 +118,7 @@
 #include "elemental_hero_plasma_vice.h"
 #include "hero_flash.h"
 #include "morphtronic_boarden.h"
+#include "atlantean_dragoons.h"
 #include "spell_striker.h"
 #include "mucus_yolk.h"
 #include "spell_effects.h"
@@ -1786,6 +1787,8 @@ void sub_8044570__Replacement(void)
       || CanInfectedMailMonsterAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
       || MorphtronicBoarden_CanMorphtronicAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+      || AtlanteanDragoons_CanSeaSerpentAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
       || CanSpellStrikerAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)

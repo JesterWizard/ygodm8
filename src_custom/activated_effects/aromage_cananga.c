@@ -1,4 +1,5 @@
 #include "global.h"
+#include "aromage_cananga.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
@@ -8,6 +9,53 @@ void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(void);
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+#define CANANGA_STAT_PENALTY 500
+
+static u8 ControllerHasFaceUpCanangaWithLpAdvantage(u8 oppController)
+{
+  u8 me = oppController == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  u8 row;
+  u8 col;
+
+  if (gDuelLifePoints[me] <= gDuelLifePoints[oppController])
+    return FALSE;
+
+  row = Duel_FixedMonsterRowForDuelist(me);
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AROMAGE_CANANGA)
+      return TRUE;
+  }
+  return FALSE;
+}
+
+void ApplyAromageCanangaStatPenaltyToCardInfo(const struct DuelCard *zone)
+{
+  u8 controller;
+
+  if (zone == NULL || zone->id == CARD_NONE || !zone->isFaceUp)
+    return;
+  if (!Duel_CardIsMonster(zone->id))
+    return;
+
+  controller = GetDuelistForZone((struct DuelCard *)zone);
+  if (controller > DUEL_OPPONENT)
+    return;
+  if (!ControllerHasFaceUpCanangaWithLpAdvantage(controller))
+    return;
+
+  if (gCardInfo.atk > CANANGA_STAT_PENALTY)
+    gCardInfo.atk -= CANANGA_STAT_PENALTY;
+  else
+    gCardInfo.atk = 0;
+  if (gCardInfo.def > CANANGA_STAT_PENALTY)
+    gCardInfo.def -= CANANGA_STAT_PENALTY;
+  else
+    gCardInfo.def = 0;
+}
 
 static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
 {
@@ -123,9 +171,9 @@ unsigned char CanActivateAROMAGE_CANANGA(void)
   if (zone == NULL || zone->id != AROMAGE_CANANGA)
     return FALSE;
 
-  /* ponytail: continuous -500 ATK/DEF + LP-gain trigger need permanent/LP hooks.
-   * Ceiling: OPT bounce 1 opp Spell/Trap if hand room; upgrade: LP-gain gate +
-   * continuous stat overlay when your LP is higher. */
+  /* Continuous -500 via ApplyAromageCanangaStatPenaltyToCardInfo.
+   * ponytail: LP-gain bounce trigger needs LP hook.
+   * Ceiling: OPT bounce 1 opp Spell/Trap if hand room. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -51,6 +51,9 @@
 #include "troop_dragon.h"
 #include "ultimate_ancient_gear_golem.h"
 #include "warm_worm.h"
+#include "gravekeepers_recruiter.h"
+#include "green_baboon_defender_of_the_forest.h"
+#include "crimson_blader.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -104,6 +107,8 @@ void EffectEvent_EnsureInit(void)
   MucusYolk_EnsureInit();
   UltimateAncientGearGolem_EnsureInit();
   Babycerasaurus_EnsureInit();
+  GravekeepersRecruiter_EnsureInit();
+  GreenBaboon_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 
@@ -244,6 +249,7 @@ void EffectEvent_OnTurnBoundary(void)
   Meteorain_ClearOnTurnBoundary();
   HarpiesFeatherStorm_ClearAtTurnBoundary();
   Alector_ClearNegateMarksAtTurnBoundary();
+  CrimsonBlader_ClearOnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

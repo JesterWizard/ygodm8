@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 07:18 UTC  
-**Remaining partials:** `512`
+**Last updated:** 2026-07-22 07:30 UTC  
+**Remaining partials:** `507`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 400 |
+| `activated` | 395 |
 | `permanent` | 96 |
-| **total** | **512** |
+| **total** | **507** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (400)
+## activated (395)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -235,7 +235,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AROMAGE_CANANGA`
 - path: `src_custom/activated_effects/aromage_cananga.c`
-- L126: continuous -500 ATK/DEF + LP-gain trigger need permanent/LP hooks. Ceiling: OPT bounce 1 opp Spell/Trap if hand room; upgrade: LP-gain gate + continuous stat overlay when your LP is higher.
+- L175: * ponytail: LP-gain bounce trigger needs LP hook.
 
 ### `AROMAGE_JASMINE`
 - path: `src_custom/activated_effects/aromage_jasmine.c`
@@ -272,7 +272,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AROMASERAPHY_ROSEMARY`
 - path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
-- L148: LP-higher Plant +500 ATK/DEF + LP-gain negate need permanent/LP hooks. Ceiling: OPT destroy 1 face-up opp card.
+- L190: * ponytail: LP-gain negate needs LP hook. Ceiling: OPT destroy 1 face-up opp. */
 
 ### `AROMASERAPHY_SWEET_MARJORAM`
 - path: `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c`
@@ -289,7 +289,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ATLANTEAN_DRAGOONS`
 - path: `src_custom/activated_effects/atlantean_dragoons.c`
-- L101: Lv3- Sea Serpent direct attack + sent-for-WATER-effect search need continuous/send hooks. Ceiling: OPT add 1 Sea Serpent except self from Deck.
+- L137: * ponytail: sent-for-WATER-effect search needs send hook.
 
 ### `ATLANTEAN_HEAVY_INFANTRY`
 - path: `src_custom/activated_effects/atlantean_heavy_infantry.c`
@@ -393,10 +393,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CORAL_DRAGON`
 - path: `src_custom/activated_effects/coral_dragon.c`
 - L114: GY draw when Synchro Summoned card sent from field needs GY hook. Ceiling: OPT discard 1 → destroy 1 opp card.
-
-### `CRIMSON_BLADER`
-- path: `src_custom/activated_effects/crimson_blader.c`
-- L12: battle destroy → opp cannot NS/SS Lv5+ next turn needs battle destroy + summon-lock hooks. Ceiling: not ignition-activatable here.
 
 ### `CRIMSON_DRAGON`
 - path: `src_custom/activated_effects/crimson_dragon.c`
@@ -950,10 +946,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L93: Tribute Summon sequence (destroy/flip/ATK) FALSE. Ceiling: OPT destroy up to 2 cards on opp field.
 - L110: multi-target picker not wired; auto-destroy up to 2 opp cards.
 
-### `GRAVEKEEPERS_RECRUITER`
-- path: `src_custom/activated_effects/gravekeepers_recruiter.c`
-- L102: sent-to-GY trigger needs destroy/send hook. Ceiling: once via usage if GK ≤1500 DEF in Deck and hand space.
-
 ### `GRAVEKEEPERS_SHAMAN`
 - path: `src_custom/activated_effects/gravekeepers_shaman.c`
 - L63: * ponytail: GY-effect negate + Necrovalley Field lock need permanent hooks. */
@@ -986,10 +978,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GREAT_POSEIDON_BEETLE`
 - path: `src_custom/activated_effects/great_poseidon_beetle.c`
 - L12: re-attack same target after surviving battle needs battle re-attack hook. Ceiling: not ignition-activatable here.
-
-### `GREEN_BABOON_DEFENDER_OF_THE_FOREST`
-- path: `src_custom/activated_effects/green_baboon_defender_of_the_forest.c`
-- L81: hand/GY SS when your face-up Beast is destroyed needs destroy trigger hook. Ceiling: GY ignition like Malicious — pay 1000 LP then SS; hand path uses FromHand wire.
 
 ### `GREEN_GADGET`
 - path: `src_custom/activated_effects/green_gadget.c`
@@ -1029,13 +1017,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/harpie_queen.c`
 - L14: * ponytail: name becomes Harpie Lady on field/GY needs name override hook. */
 
-### `HELIOS_DUO_MEGISTUS`
-- path: `src_custom/activated_effects/helios_duo_megistus.c`
-- L74: * ponytail: battle-destroy End Phase SS Megistus needs battle/EP hooks. */
-
 ### `HELIOS_TRICE_MEGISTUS`
 - path: `src_custom/activated_effects/helios_trice_megistus.c`
-- L66: * ponytail: extra battle + battle-destroy End Phase SS +500 need battle/EP hooks. */
+- L67: * ponytail: extra attack if opp controls a monster needs multi-attack hook. */
 
 ### `HELSHADDOLL_HOLLOW`
 - path: `src_custom/activated_effects/helshaddoll_hollow.c`
@@ -1076,10 +1060,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ILLUSION_OF_CHAOS`
 - path: `src_custom/activated_effects/illusion_of_chaos.c`
 - L135: field bounce→SS DM negate FALSE. Ceiling: FromHand search only.
-
-### `JAIN_LIGHTSWORN_PALADIN`
-- path: `src_custom/activated_effects/jain_lightsworn_paladin.c`
-- L12: Damage Step +300 ATK and End Phase mill 2 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: permanent/battle + EP mill.
 
 ### `JAIN_TWILIGHTSWORN_GENERAL`
 - path: `src_custom/activated_effects/jain_twilightsworn_general.c`

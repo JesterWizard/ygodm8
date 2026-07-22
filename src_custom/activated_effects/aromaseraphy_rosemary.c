@@ -1,4 +1,5 @@
 #include "global.h"
+#include "aromaseraphy_rosemary.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
@@ -9,6 +10,46 @@
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
+
+#define ROSEMARY_STAT_BONUS 500
+
+static u8 ControllerHasFaceUpRosemaryWithLpAdvantage(u8 controller)
+{
+  u8 opp = controller == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  u8 row;
+  u8 col;
+
+  if (gDuelLifePoints[controller] <= gDuelLifePoints[opp])
+    return FALSE;
+
+  row = Duel_FixedMonsterRowForDuelist(controller);
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AROMASERAPHY_ROSEMARY)
+      return TRUE;
+  }
+  return FALSE;
+}
+
+void ApplyAromaseraphyRosemaryStatBoostToCardInfo(const struct DuelCard *zone)
+{
+  u8 controller;
+
+  if (zone == NULL || zone->id == CARD_NONE || !zone->isFaceUp)
+    return;
+  if (!Duel_CardHasMonsterType(zone->id, TYPE_PLANT))
+    return;
+
+  controller = GetDuelistForZone((struct DuelCard *)zone);
+  if (controller > DUEL_OPPONENT)
+    return;
+  if (!ControllerHasFaceUpRosemaryWithLpAdvantage(controller))
+    return;
+
+  gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + ROSEMARY_STAT_BONUS);
+  gCardInfo.def = Duel_ClampStat((u32)gCardInfo.def + ROSEMARY_STAT_BONUS);
+}
 
 static u8 IsFaceUpOppCardTarget(struct DuelCard *zone)
 {
@@ -145,8 +186,8 @@ unsigned char CanActivateAROMASERAPHY_ROSEMARY(void)
   if (zone == NULL || zone->id != AROMASERAPHY_ROSEMARY)
     return FALSE;
 
-  /* ponytail: LP-higher Plant +500 ATK/DEF + LP-gain negate need permanent/LP
-   * hooks. Ceiling: OPT destroy 1 face-up opp card. */
+  /* Plant +500 via ApplyAromaseraphyRosemaryStatBoostToCardInfo.
+   * ponytail: LP-gain negate needs LP hook. Ceiling: OPT destroy 1 face-up opp. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

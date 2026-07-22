@@ -71,7 +71,7 @@ unsigned char CanActivateHELIOS_DUO_MEGISTUS(void)
     return FALSE;
 
   /* Continuous ATK/DEF via HeliosDuoMegistus_ApplyDynamicZoneStats.
-   * ponytail: battle-destroy End Phase SS Megistus needs battle/EP hooks. */
+   * Battle-destroy EP SS via ApplyHeliosDuoMegistusBattleDestroyPending. */
   return FALSE;
 }
 
@@ -127,3 +127,89 @@ u8 TrySpecialSummonHeliosDuoMegistusFromHand(u8 handZone)
 u8 CanSpecialSummonHeliosDuoMegistusFromHand(u8 handZone);
 u8 TrySpecialSummonHeliosDuoMegistusFromHand(u8 handZone);
 #endif
+
+#define FLAG_GRAVEYARD_PLAYER 1
+#define FLAG_GRAVEYARD_OPPONENT 2
+#define HELIOS_DUO_EP_STAT_STAGES 1 /* ~500; printed +300 */
+
+struct HeliosDuoBdActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct HeliosDuoBdActionData sActionData;
+static u8 sHeliosDuoPending APPEND_DATA = {0};
+
+static u8 TurnDuelistForFixedDuo(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+  return INACTIVE_DUELIST;
+}
+
+void ApplyHeliosDuoMegistusBattleDestroyPending(void)
+{
+  if ((sActionData.flags & FLAG_GRAVEYARD_PLAYER)
+      && sActionData.playerCardId == HELIOS_DUO_MEGISTUS)
+    sHeliosDuoPending |= 1;
+  if ((sActionData.flags & FLAG_GRAVEYARD_OPPONENT)
+      && sActionData.opponentCardId == HELIOS_DUO_MEGISTUS)
+    sHeliosDuoPending |= 2;
+}
+
+void TryApplyHeliosDuoMegistusEndPhase(void)
+{
+  u8 fixed = WhoseTurn() == DUEL_PLAYER ? DUEL_PLAYER : DUEL_OPPONENT;
+  u8 bit = fixed == DUEL_PLAYER ? 1 : 2;
+  u8 turnDuelist;
+  u8 monsterRow;
+  struct DuelSummonOpts opts;
+  struct DuelCard *zone;
+  u8 col;
+
+  if ((sHeliosDuoPending & bit) == 0)
+    return;
+  sHeliosDuoPending &= (u8)~bit;
+
+  turnDuelist = TurnDuelistForFixedDuo(fixed);
+  monsterRow = turnDuelist == ACTIVE_DUELIST
+      ? ACTIVE_DUELIST_MONSTER_ROW
+      : INACTIVE_DUELIST_MONSTER_ROW;
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return;
+  if (FirstEmptyZoneInRow(gTurnZones[monsterRow]) < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(HELIOS_DUO_MEGISTUS, 2);
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  if (Duel_SpecialSummonFromGrave(turnDuelist, HELIOS_DUO_MEGISTUS, opts) != DUEL_ACTION_OK)
+    return;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    zone = gTurnZones[monsterRow][col];
+    if (zone != NULL && zone->id == HELIOS_DUO_MEGISTUS) {
+      if (zone->tempStage < 126)
+        zone->tempStage += HELIOS_DUO_EP_STAT_STAGES;
+      break;
+    }
+  }
+  RefreshFieldMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
+}

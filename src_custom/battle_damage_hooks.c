@@ -87,6 +87,9 @@
 #include "evil_hero_wild_cyclone.h"
 #include "destiny_hero_dread_servant.h"
 #include "vennominon_the_king_of_poisonous_snakes.h"
+#include "helios_duo_megistus.h"
+#include "helios_trice_megistus.h"
+#include "crimson_blader.h"
 #include "attack_pheromones.h"
 #include "backup_squad.h"
 #include "berserker_soul.h"
@@ -383,6 +386,9 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyElementalHeroBraveNeosBattleEffect();
   ApplyEvilHeroWildCycloneBattleEffect();
   ApplyDestinyHeroDreadServantBattleEffect();
+  ApplyCrimsonBladerBattleEffect();
+  ApplyHeliosDuoMegistusBattleDestroyPending();
+  ApplyHeliosTriceMegistusBattleDestroyPending();
 
   {
     s32 playerDmg =

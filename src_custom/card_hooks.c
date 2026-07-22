@@ -36,6 +36,9 @@
 #include "spined_gillman.h"
 #include "morphtronic_radion.h"
 #include "gravekeepers_priestess.h"
+#include "aromage_cananga.h"
+#include "aromaseraphy_rosemary.h"
+#include "jain_lightsworn_paladin.h"
 #include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_sunrise.h"
@@ -686,6 +689,9 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplySpinedGillmanAtkBoostToCardInfo(zone);
   ApplyMorphtronicRadionStatBoostToCardInfo(zone);
   ApplyGravekeepersPriestessStatBoostToCardInfo(zone);
+  ApplyAromageCanangaStatPenaltyToCardInfo(zone);
+  ApplyAromaseraphyRosemaryStatBoostToCardInfo(zone);
+  ApplyJainLightswornPaladinDamageStepAtk(zone);
   ApplyNeoSpaceAtkBoostForZone(zone);
   LevelTuning_ApplyLevelToCardInfo(zone);
   gSetFinalStatZone = NULL;
@@ -836,6 +842,9 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplySpinedGillmanAtkBoostToCardInfo(gSetFinalStatZone);
     ApplyMorphtronicRadionStatBoostToCardInfo(gSetFinalStatZone);
     ApplyGravekeepersPriestessStatBoostToCardInfo(gSetFinalStatZone);
+    ApplyAromageCanangaStatPenaltyToCardInfo(gSetFinalStatZone);
+    ApplyAromaseraphyRosemaryStatBoostToCardInfo(gSetFinalStatZone);
+    ApplyJainLightswornPaladinDamageStepAtk(gSetFinalStatZone);
     LevelTuning_ApplyLevelToCardInfo(gSetFinalStatZone);
     Duel_EndFaceUpBackrowCache();
   }

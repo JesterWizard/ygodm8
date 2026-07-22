@@ -2,36 +2,36 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "monster_effect_usage.h"
-#include "six_card_hand.h"
+#include "effect_events.h"
+#include "gravekeepers_recruiter.h"
 
 void UpdateDuelGfxExceptField(void);
 
+static u8 sRecruiterInit APPEND_DATA = {0};
 static const char sGravekeepersName[] APPEND_RODATA = "Gravekeeper";
 
-static u8 FixedDuelistForActive(void)
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
 {
-  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+  return INACTIVE_DUELIST;
 }
 
 static u8 IsRecruiterTarget(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
     return FALSE;
-
   if (!Duel_CardNameContains(cardId, sGravekeepersName))
     return FALSE;
-
-  SetCardInfo(cardId);
-  return gCardInfo.def <= 1500;
+  return gCardData_NEW[cardId].def <= 1500;
 }
 
-static u16 FindDeckRecruiterTarget(void)
+static u16 FindDeckRecruiterTarget(u8 turnDuelist)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
+  u8 fixedDuelist =
+      gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER]
+          ? DUEL_PLAYER
+          : DUEL_OPPONENT;
   u8 deckSize = NumCardsInDeck(fixedDuelist);
   u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
   u8 i;
@@ -40,93 +40,53 @@ static u16 FindDeckRecruiterTarget(void)
     if (IsRecruiterTarget(gDuelDecks[fixedDuelist].cards[i]))
       return gDuelDecks[fixedDuelist].cards[i];
   }
-
   return CARD_NONE;
 }
 
-static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
+static void TryRecruiterSearch(u8 fixedDuelist)
 {
-  handSlot->id = cardId;
-  handSlot->isFaceUp = FALSE;
-  handSlot->isLocked = FALSE;
-  handSlot->isDefending = FALSE;
-  handSlot->unkTwo = 0;
-  handSlot->unkThree = 0;
-  handSlot->unk4 = 0;
-  handSlot->willChangeSides = FALSE;
-  ResetPermStage(handSlot);
-  ResetTempStage(handSlot);
+  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  u16 cardId;
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return;
+  cardId = FindDeckRecruiterTarget(turnDuelist);
+  if (cardId == CARD_NONE)
+    return;
+
+  Duel_ShowEffectTextTyped(GRAVEKEEPERS_RECRUITER, 2);
+  Duel_AddDeckCardToHand(turnDuelist, cardId, TRUE);
+  UpdateDuelGfxExceptField();
 }
 
-static u8 AddDeckRecruiterTargetToHand(u16 cardId)
+static void OnRecruiterSentToGy(const struct EffectEvent *ev)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
-  u8 deckSize = NumCardsInDeck(fixedDuelist);
-  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
-  u8 i;
-  s8 handZone;
+  if (ev == NULL || ev->cardId != GRAVEKEEPERS_RECRUITER)
+    return;
+  if (ev->controller != DUEL_PLAYER && ev->controller != DUEL_OPPONENT)
+    return;
+  TryRecruiterSearch(ev->controller);
+}
 
-  if (cardId == CARD_NONE)
-    return FALSE;
-
-  handZone = FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]);
-  if (handZone < 0)
-    return FALSE;
-
-  for (i = top; i < deckSize; i++) {
-    if (gDuelDecks[fixedDuelist].cards[i] != cardId)
-      continue;
-
-    if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, i, FALSE) != DUEL_ACTION_OK)
-      return FALSE;
-
-    InitHandSlotFromCard(
-        SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], (u8)handZone), cardId);
-    return TRUE;
-  }
-
-  return FALSE;
+void GravekeepersRecruiter_EnsureInit(void)
+{
+  if (sRecruiterInit)
+    return;
+  sRecruiterInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_BATTLE_DESTROY, OnRecruiterSentToGy);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnRecruiterSentToGy);
 }
 
 unsigned char CanActivateGRAVEKEEPERS_RECRUITER(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != GRAVEKEEPERS_RECRUITER)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != GRAVEKEEPERS_RECRUITER)
-    return FALSE;
-
-  /* ponytail: sent-to-GY trigger needs destroy/send hook. Ceiling: once via usage
-   * if GK ≤1500 DEF in Deck and hand space. */
-  if (!CanUseMonsterEffect(zone))
-    return FALSE;
-
-  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
-    return FALSE;
-
-  return FindDeckRecruiterTarget() != CARD_NONE;
+  /* Sent-to-GY search via GravekeepersRecruiter_EnsureInit. */
+  return FALSE;
 }
 
 void ActivateGRAVEKEEPERS_RECRUITEREffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u16 cardId;
-
   Duel_ShowEffectTextTyped(GRAVEKEEPERS_RECRUITER, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  cardId = FindDeckRecruiterTarget();
-  if (cardId == CARD_NONE)
-    return;
-
-  if (!AddDeckRecruiterTargetToHand(cardId))
-    return;
-
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
 }

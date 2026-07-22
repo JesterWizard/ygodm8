@@ -22,6 +22,9 @@
 #include "tyrant_wing.h"
 #include "arcana_force_ex_the_dark_ruler.h"
 #include "aurkus_lightsworn_druid.h"
+#include "jain_lightsworn_paladin.h"
+#include "helios_duo_megistus.h"
+#include "helios_trice_megistus.h"
 #include "aroma_jar.h"
 #include "contact_fusion_end_phase.h"
 #include "destiny_hero_double_dude.h"
@@ -447,6 +450,15 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyAurkusEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyJainEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyHeliosDuoMegistusEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyHeliosTriceMegistusEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyAromaJarEndPhase();

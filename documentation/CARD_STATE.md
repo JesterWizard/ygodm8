@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — PARTIAL Round 9 Batch 7
+**Last worked on:** 2026-07-22 — PARTIAL Round 10 Batch 1/6
 
-**Outcome:** Partials **517→512**. Shared wires: Ultimate AG Golem destroy SS; Darkblaze BD burn; Wyvern BD SS; Babycerasaurus effect-destroy SS; Visionary/Shaman overlays; Brave Neos ATK+BD search; Andro burn; Marksman BD SS; Wild Cyclone Set wipe; Dread Servant BD S/T; Vennominon BD SS. `make` OK.
+**Outcome:** Partials **512→507**. Process: 6 batches per round again. B1: Crimson Blader lock; Helios Duo EP SS; Baboon Beast-destroy SS; Dragoons direct; Cananga/Rosemary LP overlays; Jain DS+EP; Recruiter GY search. Helios Trice / Dragoons WATER-send / Cananga·Rosemary LP-gain residuals. `make` OK.
 
-**Open / next:** Round 9 Batch 8+. Residuals on Darkblaze GY-double / Visionary destroy-replace / Shaman GY-negate / Andro GY-ban / Marksman WATER-send / Cyclone attack lock / Dread Servant Clock Tower. Wendigo / Gadjiltron / Masked HERO.
+**Open / next:** Round 10 Batches 2–6.

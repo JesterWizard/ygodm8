@@ -4,5 +4,7 @@
 #include "global.h"
 
 u8 HeliosDuoMegistus_ApplyDynamicZoneStats(struct DuelCard *zone);
+void ApplyHeliosDuoMegistusBattleDestroyPending(void);
+void TryApplyHeliosDuoMegistusEndPhase(void);
 
 #endif /* GUARD_HELIOS_DUO_MEGISTUS_H */

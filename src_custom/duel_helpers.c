@@ -57,6 +57,7 @@
 #include "iofiel.h"
 #include "athena.h"
 #include "archlord_kristya.h"
+#include "crimson_blader.h"
 #include "elemental_hero_stratos.h"
 #include "the_suppression_pluto.h"
 #include "elemental_hero_core.h"
@@ -412,6 +413,9 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
     return DUEL_ACTION_BLOCKED;
 
   if (SummonModeIsSpecial(opts.mode) && ArchlordKristya_IsSpecialSummonLocked())
+    return DUEL_ACTION_BLOCKED;
+
+  if (CrimsonBlader_BlocksLevel5PlusSummon(turnDuelist, monsterId))
     return DUEL_ACTION_BLOCKED;
 
   if (SummonModeIsSpecial(opts.mode)

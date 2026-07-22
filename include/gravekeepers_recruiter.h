@@ -1,0 +1,6 @@
+#ifndef GUARD_GRAVEKEEPERS_RECRUITER_H
+#define GUARD_GRAVEKEEPERS_RECRUITER_H
+
+void GravekeepersRecruiter_EnsureInit(void);
+
+#endif /* GUARD_GRAVEKEEPERS_RECRUITER_H */
