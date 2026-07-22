@@ -123,7 +123,7 @@ static u8 IsGrystaGraveyardTrigger(void)
 
 unsigned char ShouldActivateEL_SHADDOLL_GRYSTA(void)
 {
-  /* Printed remainder omitted by this ruleset. */
+  /* negate opp Special Summon + send Shaddoll from hand need SS chain hook. */
   return IsGrystaGraveyardTrigger();
 }
 

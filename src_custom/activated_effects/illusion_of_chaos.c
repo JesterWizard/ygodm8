@@ -132,7 +132,7 @@ unsigned char CanActivateILLUSION_OF_CHAOS(void)
   if (gMonEffect.id != ILLUSION_OF_CHAOS)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Field bounce→SS DM negate FALSE. FromHand search only. */
   return FALSE;
 }
 

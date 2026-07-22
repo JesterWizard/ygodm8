@@ -1554,14 +1554,14 @@ def write_partials_taxonomy(out_path: Path | None = None) -> Path:
         "event.GyIgnition": "3",
         "event.OnLpGain": "later / LP event",
         "battle.ExtraAttack": "1–3 (unk4 mark)",
-        "extra.XyzLinkSynchro": "later / Extra Deck",
+        "extra.XyzLinkSynchro": "now (Extra Deck exists)",
         "op.Search": "1",
         "op.BanishTimed": "1–3",
         "ui.Choice": "2",
         "gate.Tribute": "2–3",
         "stat.Continuous": "1–3",
         "equip.Register": "1 (lists)",
-        "chain.Negate": "later / chain",
+        "chain.Negate": "next (chain on horizon)",
         "other": "triage",
     }
     for tag in sorted(tag_counts.keys(), key=lambda t: (-tag_counts[t], t)):
@@ -1722,7 +1722,7 @@ def write_deferred_list(out_path: Path | None = None) -> Path:
     phase_hint = {
         "event.OnStandby": "3 (OPT / turn flags)",
         "event.OnSummon": "3",
-        "event.OnFusionSummon": "3 (fusion callback)",
+        "event.OnFusionSummon": "now (Extra Deck Fusion)",
         "event.OnDestroy": "3",
         "event.OnBattleDestroy": "3",
         "event.OnDamageCalc": "3",
@@ -1730,7 +1730,7 @@ def write_deferred_list(out_path: Path | None = None) -> Path:
         "event.OnLpGain": "later / LP event",
         "battle.ExtraAttack": "1–3 (unk4 mark)",
         "battle.AttackRedirect": "3 (battle targeting)",
-        "extra.XyzLinkSynchro": "later / Extra Deck",
+        "extra.XyzLinkSynchro": "now (Extra Deck exists)",
         "op.Search": "1",
         "op.BanishTimed": "1–3",
         "ui.Choice": "2",
@@ -1738,7 +1738,7 @@ def write_deferred_list(out_path: Path | None = None) -> Path:
         "gate.SendCost": "3 (send-as-cost)",
         "stat.Continuous": "1–3",
         "equip.Register": "1 (lists)",
-        "chain.Negate": "later / chain",
+        "chain.Negate": "next (chain on horizon)",
         "other": "triage",
     }
     known_tags = [t for t, _ in _TAXONOMY_RULES] + ["other"]
@@ -1770,24 +1770,16 @@ def write_deferred_list(out_path: Path | None = None) -> Path:
         "",
         "## Suggested tackle order",
         "",
-        "Difficulty order (easiest first) within the current surface work:",
+        "Difficulty order (easiest first) for the restored backlog:",
         "",
-        "1. **Already-wired comment clears** — notes that only restate live hooks "
-        "(Honest MP return, Dynatag/Dominance battle Apply*, Earfon PickZone).",
-        "2. **Single-target PickZone / trunk pick** — Dystopia on-SS GY pick, "
-        "Chicken Game L/R+A 3-way.",
-        "3. **Sequential PickZone** — Brionac bounce-N, Gungnir destroy-2, Double Cyclone.",
-        "4. **OnSummon residuals** — Empress / Desire / Marine Dolphin / Sagittarii draw.",
-        "5. **OnBattleDestroy** — bump `EFFECT_EVENT_MAX_SUBSCRIBERS` first (23/24 full), "
-        "then Dreamer timing / Vassal / Lantron / Turbo Synchron.",
-        "6. **Hard UI** — multi-select (Amulet/Magnolia), look+reorder (Dominance), "
-        "reveal excavate (Smartfon/Telefon), DeckMenu+PickZone crash (Athena/Dark Armed).",
-        "7. **Post-battle softlocks** — Core / Ice Edge / Sunrise (needs main-loop queue).",
-        "8. **Hard deferred** — `chain.Negate`, Extra Deck / Pendulum, `gate.SendCost`, "
-        "equip API (Armory Arm), win-on-summon (Holactie).",
+        "1. **Extra Deck effects** — `extra.XyzLinkSynchro` / `event.OnFusionSummon`. "
+        "Extra Deck exists in-game; do **not** soft-clear these as omitted.",
+        "2. **Chain / negate** — `chain.Negate` (Quick negate notes). Chain is on the "
+        "horizon; keep this as the active follow-up list.",
+        "3. **Remaining UI / summon / destroy gates** — leftover `ui.Choice`, "
+        "`gate.Tribute`, send-cost, etc.",
         "",
-        "Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / "
-        "`gate.Tribute` before Extra Deck / full chain.",
+        "Do not mark Extra Deck or chain debt as accepted omissions.",
         "",
         "## Counts by missing surface",
         "",

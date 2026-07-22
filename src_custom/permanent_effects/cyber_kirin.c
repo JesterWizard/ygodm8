@@ -5,7 +5,8 @@
 
 unsigned char ShouldActivateCYBER_KIRIN(void)
 {
-  /* Printed remainder omitted by this ruleset. */
+  /* ATK-position spell/trap negate, battle-draw, and OPT tribute damage
+   * zero need continuous/battle/tribute hooks not wired for permanents. */
   return FALSE;
 }
 

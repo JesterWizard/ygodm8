@@ -78,7 +78,8 @@ unsigned char CanActivateDESTINY_HERO_DARK_ANGEL(void)
   if (gMonEffect.id != DESTINY_HERO_DARK_ANGEL)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* field spell-negate FALSE.
+   * FromHand discard → SS D-HERO to opp DEF. */
   return FALSE;
 }
 

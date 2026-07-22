@@ -9,7 +9,8 @@ unsigned char CanActivateHERALD_OF_PERFECTION(void)
   if (gMonEffect.id != HERALD_OF_PERFECTION)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Quick negate by sending Fairy from hand needs chain/negation hooks outside.
+   * Not field-ignition (either-turn discard Fairy → negate + destroy). */
   return FALSE;
 }
 

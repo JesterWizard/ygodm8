@@ -132,7 +132,7 @@ static void ShuffleSelfTagOut(struct DuelCard *self)
   u8 fixedDuelist = FixedDuelistForActive();
   u16 cardId = self->id;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Extra Deck return + Lv≤7 GB Fusion Extra SS need ED/Fusion APIs. */
   ClearZone(self);
   ReturnCardToDeckTop(fixedDuelist, cardId);
   Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);

@@ -50,7 +50,7 @@ static void ResolveTunerMark(u8 fixedRow, u8 fixedCol)
   if (!IsFaceUpMonsterTarget(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* Printed remainder omitted by this ruleset.
+  /* real Tuner flag / Equip double-attack need Synchro/equip hooks.
    * OPT mark unk4 as Tuner stand-in. */
   zone->unk4 |= 0x40;
 

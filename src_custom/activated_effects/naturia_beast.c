@@ -9,7 +9,8 @@ unsigned char CanActivateNATURIA_BEAST(void)
   if (gMonEffect.id != NATURIA_BEAST)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Quick Effect spell negate + mill 2 need chain/negation hooks outside this file.
+   * Not field-ignition. */
   return FALSE;
 }
 

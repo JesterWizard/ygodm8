@@ -116,7 +116,7 @@ static u8 IsOnSummonTrigger(void)
 
 unsigned char ShouldActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION(void)
 {
-  /* Printed remainder omitted by this ruleset.
+  /* EP half LP needs EP hook; on-summon wipe only here. ATK overlay via
    * GandoraX_ApplyDynamicZoneStats. */
   return IsOnSummonTrigger();
 }

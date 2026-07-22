@@ -102,7 +102,8 @@ unsigned char CanActivateCELESTIAL_KNIGHTLORD_PARSHATH(void)
   if (zone == NULL || zone->id != CELESTIAL_KNIGHTLORD_PARSHATH)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field
+   * (EffectOpt). Link material + GY banish Fairy → SS Fairy need send/banish hooks. */
   if (EffectOpt_IsUsed(CELESTIAL_KNIGHTLORD_PARSHATH))
     return FALSE;
 

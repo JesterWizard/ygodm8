@@ -96,7 +96,7 @@ unsigned char CanActivatePOWER_TOOL_BRAVER_DRAGON(void)
   if (zone == NULL || zone->id != POWER_TOOL_BRAVER_DRAGON)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
+  /* SS equip Equip Spells from Deck/GY hard; send-equip negate FALSE.
    * OPT change battle position of 1 monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

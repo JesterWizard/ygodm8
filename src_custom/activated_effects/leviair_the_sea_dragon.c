@@ -103,7 +103,8 @@ unsigned char CanActivateLEVIAIR_THE_SEA_DRAGON(void)
   if (zone == NULL || zone->id != LEVIAIR_THE_SEA_DRAGON)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* No Xyz detach cost; OPT SS banished Lv≤4 stand-in when RFP enabled.
+   * Materials not checked; overlay detach before SS not wired. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

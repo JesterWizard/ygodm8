@@ -302,7 +302,7 @@ unsigned char CanActivatePROTECTOR_OF_THE_AGENTS_MOON(void)
   if (zone == NULL || zone->id != PROTECTOR_OF_THE_AGENTS_MOON)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
+  /* Link Summon trigger gate missing. OPT mill/add Sanctuary
    * path, else OPT tribute Fairy → destroy 1 opp. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -60,7 +60,7 @@ static void ResolveAbsorb(u8 fixedRow, u8 fixedCol)
   if (!IsFaceUpAtkMonster(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Xyz attach / negate FALSE. ClearZone absorb + +1 tempStage. */
   ClearZone(zone);
   NotifyDynamicEquipFieldChanged();
 
@@ -128,7 +128,8 @@ unsigned char CanActivateCYBER_DRAGON_INFINITY(void)
   if (zone == NULL || zone->id != CYBER_DRAGON_INFINITY)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* ATK overlay via CyberDragonInfinity_ApplyDynamicZoneStats (+200 per tempStage).
+   * Xyz attach / negate FALSE. OPT ClearZone absorb + tempStage (EffectOpt). */
   if (EffectOpt_IsUsed(CYBER_DRAGON_INFINITY))
     return FALSE;
 

@@ -12,7 +12,8 @@ unsigned char CanActivateGRAVEKEEPERS_WATCHER(void)
   if (gMonEffect.id != GRAVEKEEPERS_WATCHER)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Either-turn chain negate when opp discards needs chain/negation hooks
+   * outside this file. Not field-ignition; discard-from-hand path below. */
   return FALSE;
 }
 
@@ -43,7 +44,7 @@ u8 TryActivateGravekeepersWatcherFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* negate activation + destroy activated card not wired. */
   if (Duel_DestroyZone(SixCardHand_ZoneAtHandRow(handRow, handZone), ACTIVE_DUELIST, FALSE)
       == DUEL_ACTION_DUEL_OVER)
     return TRUE;

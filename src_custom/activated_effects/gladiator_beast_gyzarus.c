@@ -171,7 +171,8 @@ unsigned char CanActivateGLADIATOR_BEAST_GYZARUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_GYZARUS)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Tag-out via GladiatorBeast_CanActivateDeckTagOutTwo.
+   * Contact Fusion SS destroy trigger + Extra Deck return not wired. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

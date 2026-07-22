@@ -172,7 +172,8 @@ unsigned char CanActivateREPTILIANNE_LAMIA(void)
   if (gMonEffect.id != REPTILIANNE_LAMIA)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* GY synchro-material ATK-0 need synchro hook. Remains.
+   * FromHand ATK-0 + SS via TrySpecialSummonReptilianneLamiaFromHand; not field-ignition. */
   return FALSE;
 }
 

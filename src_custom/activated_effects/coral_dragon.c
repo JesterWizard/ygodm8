@@ -20,7 +20,7 @@ static u8 TurnDuelistForFixed(u8 fixedDuelist)
              : INACTIVE_DUELIST;
 }
 
-/* Printed remainder omitted by this ruleset. */
+/* Any leave ≈ Synchro-Summoned leave; SS-origin flag not tracked. */
 static void OnCoralLeaveField(const struct EffectEvent *ev)
 {
   u8 turnDuelist;

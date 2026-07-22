@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateDRAGON_MASTER_MAGIA(void)
 {
-  /* Printed remainder omitted by this ruleset. */
+  /* Quick negate-by-card-type needs chain/OPT hooks. */
   (void)gActiveEffect;
   return FALSE;
 }

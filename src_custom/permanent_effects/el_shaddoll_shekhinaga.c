@@ -123,7 +123,7 @@ static u8 IsShekhinagaGraveyardTrigger(void)
 
 unsigned char ShouldActivateEL_SHADDOLL_SHEKHINAGA(void)
 {
-  /* Printed remainder omitted by this ruleset. */
+  /* negate SS monster effect + send Shaddoll need effect-chain hook. */
   return IsShekhinagaGraveyardTrigger();
 }
 

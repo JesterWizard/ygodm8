@@ -9,7 +9,8 @@ unsigned char CanActivateTATSUNOKO(void)
   if (gMonEffect.id != TATSUNOKO)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Hand-as-Synchro-material and unaffected-by-monster-effects need
+   * synchro/summon continuous hooks outside this file. Not field-ignition. */
   return FALSE;
 }
 

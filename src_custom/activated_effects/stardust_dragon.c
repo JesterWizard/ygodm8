@@ -9,7 +9,8 @@ unsigned char CanActivateSTARDUST_DRAGON(void)
   if (gMonEffect.id != STARDUST_DRAGON)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Quick Effect tribute-negate-destroy + End Phase GY SS need chain and EP hooks
+   * outside this file. Not field-ignition. */
   return FALSE;
 }
 

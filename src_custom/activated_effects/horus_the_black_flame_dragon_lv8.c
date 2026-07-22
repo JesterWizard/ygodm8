@@ -9,7 +9,8 @@ unsigned char CanActivateHORUS_THE_BLACK_FLAME_DRAGON_LV8(void)
   if (gMonEffect.id != HORUS_THE_BLACK_FLAME_DRAGON_LV8)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Spell immunity via IsImmuneToSpellEffectsOnField.
+   * either-turn Spell negate needs chain hook. */
   return FALSE;
 }
 

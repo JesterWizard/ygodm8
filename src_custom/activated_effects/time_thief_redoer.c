@@ -137,7 +137,7 @@ unsigned char CanActivateTIME_THIEF_REDOER(void)
   if (zone == NULL || zone->id != TIME_THIEF_REDOER)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
+  /* detach materials + banish-until-EP FALSE.
    * OPT draw 1 OR return 1 face-up opp monster to Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -191,7 +191,7 @@ unsigned char CanActivateLIGHTRAY_GEARFRIED(void)
   if (zone == NULL || zone->id != LIGHTRAY_GEARFRIED)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
+  /* Quick negate S/T activation needs chain hooks.
    * OPT banish Warrior GY → destroy 1 S/T. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

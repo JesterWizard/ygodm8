@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Deferred Batch56 (empty backlog)
+**Last worked on:** 2026-07-22 — Restore Extra Deck + chain deferred
 
-**Outcome:** Replaced remaining deferred-matching comment blocks with accepted-omission one-liners. Deferred **150→0** / **157→0**. Living backlog empty.
+**Outcome:** Restored Extra Deck / Synchro-Xyz-Link / Fusion-from-Extra and `chain.Negate` comments that Batch55–56 had soft-cleared. Deferred **0→94 files / 105 notes** (`extra` 61, `chain` 40, `OnFusionSummon` 3).
 
-**Open / next:** New cards / engine surfaces will reappear on `--write-list` when comments match deferred hints again.
+**Open / next:** Wire Extra Deck effects (feature exists); keep `chain.Negate` as the upcoming chain-work list.

@@ -150,7 +150,7 @@ static u8 BuildInstantContactTargets(u16 *outIds, u8 maxOut)
     return count;
   }
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Extra Deck off: offer matching Fusion recipe results by id. */
   {
     u8 recipeCount = FusionRecipe_Count();
 

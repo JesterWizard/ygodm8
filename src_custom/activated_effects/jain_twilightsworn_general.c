@@ -228,7 +228,9 @@ unsigned char CanActivateJAIN_TWILIGHTSWORN_GENERAL(void)
   if (zone == NULL || zone->id != JAIN_TWILIGHTSWORN_GENERAL)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* OPT banish 1 Lightsworn from hand/GY → weaken 1 face-up monster (EffectOpt).
+   * EP mill 2 via TryApplyTwilightswornEndPhase. other-Lightsworn-
+   * activated mill 2 needs chain hook. */
   if (EffectOpt_IsUsed(JAIN_TWILIGHTSWORN_GENERAL))
     return FALSE;
 

@@ -43,7 +43,9 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsProtectedMonsterTarget(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Battle protect + no battle damage via DestinyHeroDusktopia_*; EP clear via
+   * TryClearDestinyHeroDusktopiaProtectionEndPhase. Fusion on Summon
+   * need fusion hook (Extra Deck fusion from hand/field). */
   zone->unk4 |= DESTINY_HERO_DUSKTOPIA_PROTECT_MARK;
 
   MarkMonsterEffectUsed(self);

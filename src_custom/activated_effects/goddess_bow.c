@@ -9,7 +9,8 @@ unsigned char CanActivateGODDESS_BOW(void)
   if (gMonEffect.id != GODDESS_BOW)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Hermos fusion + equip + battle-phase negate/second attack need
+   * fusion/equip/chain hooks outside this file. Not field-ignition. */
   return FALSE;
 }
 

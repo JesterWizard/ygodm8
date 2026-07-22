@@ -130,7 +130,8 @@ unsigned char CanActivateSILENT_SWORDSMAN(void)
   if (zone == NULL || zone->id != SILENT_SWORDSMAN)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Standby +500 via TryApplySilentSwordsmanStandby; OPT tempStage/destroy Spell unchanged.
+   * Quick Spell negate needs chain hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

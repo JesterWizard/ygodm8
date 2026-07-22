@@ -9,7 +9,8 @@ unsigned char CanActivateGRAVEKEEPERS_SPIRITUALIST(void)
   if (gMonEffect.id != GRAVEKEEPERS_SPIRITUALIST)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Necrovalley-gated Spellcaster Fusion from Extra Deck needs fusion
+   * summon API outside this file. Not field-ignition. */
   return FALSE;
 }
 

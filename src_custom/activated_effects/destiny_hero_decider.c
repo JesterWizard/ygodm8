@@ -112,7 +112,8 @@ unsigned char CanActivateDESTINY_HERO_DECIDER(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DECIDER)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. OPT add 1 HERO from
+   * GY to hand (EffectOpt). GY quick return-on-damage need chain hook. */
   if (EffectOpt_IsUsed(DESTINY_HERO_DECIDER))
     return FALSE;
 

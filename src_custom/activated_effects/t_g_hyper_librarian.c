@@ -9,7 +9,8 @@ unsigned char CanActivateT_G_HYPER_LIBRARIAN(void)
   if (gMonEffect.id != T_G_HYPER_LIBRARIAN)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
+  /* Synchro Summon draw trigger needs synchro hook outside this file.
+   * Not field-ignition. */
   return FALSE;
 }
 

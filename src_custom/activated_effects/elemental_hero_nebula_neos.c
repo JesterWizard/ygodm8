@@ -117,7 +117,7 @@ unsigned char CanActivateELEMENTAL_HERO_NEBULA_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_NEBULA_NEOS)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
+  /* Extra SS trigger FALSE. OPT draw = opp card count + negate via targeting;
    * EP banish field via TryApplyElementalHeroNebulaNeosEndPhase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
