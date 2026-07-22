@@ -265,7 +265,7 @@ unsigned char CanActivateEVIL_HERO_INFERNAL_RIDER(void)
   if (zone == NULL || zone->id != EVIL_HERO_INFERNAL_RIDER)
     return FALSE;
 
-  /* On-summon add Dark Fusion via TryEvilHeroInfernalRiderOnMonsterPlacement (EffectOpt).
+  /* Add Dark Fusion via TryEvilHeroInfernalRiderOnMonsterPlacement (EffectOpt).
    * OPT banish self+4 GY → Set Super Poly.
    * HERO lock need SS gates. */
   if (!CanUseMonsterEffect(zone))

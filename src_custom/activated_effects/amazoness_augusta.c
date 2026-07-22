@@ -151,7 +151,7 @@ void AmazonessAugusta_OnFusionSummoned(struct DuelCard *zone, const u16 *materia
 
 unsigned char CanActivateAMAZONESS_AUGUSTA(void)
 {
-  /* Continuous protect + Fusion Summon trigger only — not ignition. */
+  /* Continuous protect + Fusion Summon trigger (no field OPT). */
   return FALSE;
 }
 

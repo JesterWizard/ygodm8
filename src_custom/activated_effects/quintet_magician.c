@@ -111,9 +111,9 @@ unsigned char CanActivateQUINTET_MAGICIAN(void)
   if (zone == NULL || zone->id != QUINTET_MAGICIAN)
     return FALSE;
 
-  /* On-summon wipe via TryQuintetMagicianOnMonsterPlacement.
+  /* Field wipe via TryQuintetMagicianOnMonsterPlacement.
    * Untributable/undestroyable need continuous hooks.
-   * OPT destroy all opp cards (ignition). */
+   * OPT destroy all opp cards. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

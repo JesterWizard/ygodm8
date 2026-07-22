@@ -8,9 +8,9 @@ Stubs: [`STUB_EFFECTS.md`](STUB_EFFECTS.md). Ceiling markers: [`PARTIAL_EFFECTS.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ```
 
-**Last updated:** 2026-07-22 21:51 UTC  
-**Files with deferred notes:** `307`  
-**Notes tagged:** `355`
+**Last updated:** 2026-07-22 21:55 UTC  
+**Files with deferred notes:** `304`  
+**Notes tagged:** `352`
 
 ## Suggested tackle order
 
@@ -31,17 +31,17 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 
 | Tag | Notes | Cards | Suggested phase |
 |-----|------:|------:|-----------------|
-| `other` | 81 | 73 | triage |
+| `other` | 82 | 74 | triage |
 | `extra.XyzLinkSynchro` | 58 | 55 | later / Extra Deck |
-| `gate.Tribute` | 40 | 37 | 2–3 |
+| `gate.Tribute` | 41 | 38 | 2–3 |
 | `chain.Negate` | 39 | 36 | later / chain |
-| `op.Search` | 21 | 21 | 1 |
+| `op.Search` | 22 | 22 | 1 |
 | `ui.Choice` | 18 | 13 | 2 |
-| `event.OnSummon` | 14 | 14 | 3 |
 | `event.OnStandby` | 13 | 13 | 3 (OPT / turn flags) |
 | `gate.SendCost` | 13 | 13 | 3 (send-as-cost) |
 | `op.BanishTimed` | 11 | 11 | 1–3 |
 | `event.OnBattleDestroy` | 10 | 10 | 3 |
+| `event.OnSummon` | 8 | 8 | 3 |
 | `battle.ExtraAttack` | 7 | 6 | 1–3 (unk4 mark) |
 | `event.OnDestroy` | 7 | 7 | 3 |
 | `battle.AttackRedirect` | 6 | 6 | 3 (battle targeting) |
@@ -50,7 +50,7 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 | `event.OnFusionSummon` | 3 | 3 | 3 (fusion callback) |
 | `event.OnLpGain` | 2 | 2 | later / LP event |
 | `event.OnDamageCalc` | 1 | 1 | 3 |
-| **total** | **355** | **307** | |
+| **total** | **352** | **304** | |
 
 ## `gate.SendCost` (13 notes)
 
@@ -435,23 +435,11 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 - path: `src_custom/activated_effects/the_agent_of_destruction_venus.c`
 - L192: leave-field Deck bottom for Shine Balls needs leave hook. OPT pay 500×N → SS N Mystical Shine Ball from banished/GY.
 
-## `event.OnSummon` (14 notes)
-
-### `AMAZONESS_AUGUSTA` (activated)
-- path: `src_custom/activated_effects/amazoness_augusta.c`
-- L154: Continuous protect + Fusion Summon trigger only — not ignition.
+## `event.OnSummon` (8 notes)
 
 ### `ANCIENT_GEAR_KNIGHT` (activated)
 - path: `src_custom/activated_effects/ancient_gear_knight.c`
 - L12: Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap. Gemini Normal Monster treatment need summon hook.
-
-### `APPRENTICE_ILLUSION_MAGICIAN` (activated)
-- path: `src_custom/activated_effects/apprentice_illusion_magician.c`
-- L162: On-NS/SS search via TryApprenticeIllusionMagicianOnMonsterPlacement (EffectOpt). OPT add Dark Magician from Deck (shares EffectOpt with on-summon). hand/field send +2000 Quick need damage hooks.
-
-### `ARCANA_FORCE_III_THE_EMPRESS` (permanent)
-- path: `src_custom/permanent_effects/arcana_force_iii_the_empress.c`
-- L48: Opp Normal Summon SS/discard triggers need summon hooks; unk4 only.
 
 ### `DARKLORD_DESIRE` (activated)
 - path: `src_custom/activated_effects/darklord_desire.c`
@@ -460,14 +448,6 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 ### `DRAGON_SPIRIT_OF_WHITE` (permanent)
 - path: `src_custom/permanent_effects/dragon_spirit_of_white.c`
 - L59: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks.
-
-### `EVIL_HERO_INFERNAL_RIDER` (activated)
-- path: `src_custom/activated_effects/evil_hero_infernal_rider.c`
-- L268: On-summon add Dark Fusion via TryEvilHeroInfernalRiderOnMonsterPlacement (EffectOpt). OPT banish self+4 GY → Set Super Poly. HERO lock need SS gates.
-
-### `GLADIATOR_BEAST_SAGITTARII` (activated)
-- path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
-- L111: End-of-BP + battled via GladiatorBeast_CanActivateTagOutEffect. OPT shuffle self into Deck then SS another Gladiator Beast from Deck. Residual: discard-GB draw 2 on GB-SS need summon hooks.
 
 ### `HOLACTIE_THE_CREATOR_OF_LIGHT` (activated)
 - path: `src_custom/activated_effects/holactie_the_creator_of_light.c`
@@ -480,10 +460,6 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 ### `NEO_SPACIAN_MARINE_DOLPHIN` (activated)
 - path: `src_custom/activated_effects/neo_spacian_marine_dolphin.c`
 - L79: treated-as Aqua Dolphin name + NEX-only SS need continuous/summon hooks.
-
-### `QUINTET_MAGICIAN` (activated)
-- path: `src_custom/activated_effects/quintet_magician.c`
-- L114: On-summon wipe via TryQuintetMagicianOnMonsterPlacement. Untributable/undestroyable need continuous hooks. OPT destroy all opp cards (ignition).
 
 ### `SHADDOLL_SCHISM` (trap)
 - path: `src_custom/trap_effects/shaddoll_schism.c`
@@ -656,7 +632,7 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 - path: `src_custom/activated_effects/stardust_dragon.c`
 - L12: Quick Effect tribute-negate-destroy + End Phase GY SS need chain and EP hooks outside this file. Not field-ignition.
 
-## `gate.Tribute` (40 notes)
+## `gate.Tribute` (41 notes)
 
 ### `ALECTOR_SOVEREIGN_OF_BIRDS` (activated)
 - path: `src_custom/activated_effects/alector_sovereign_of_birds.c`
@@ -697,6 +673,10 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 ### `EL_SHADDOLL_ANOYATYLLIS` (permanent)
 - path: `src_custom/permanent_effects/el_shaddoll_anoyatyllis.c`
 - L159: Hand/GY SS lock via ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon.
+
+### `EVIL_HERO_INFERNAL_RIDER` (activated)
+- path: `src_custom/activated_effects/evil_hero_infernal_rider.c`
+- L268: Add Dark Fusion via TryEvilHeroInfernalRiderOnMonsterPlacement (EffectOpt). OPT banish self+4 GY → Set Super Poly. HERO lock need SS gates.
 
 ### `EVIL_HERO_TOXIC_BUBBLE` (activated)
 - path: `src_custom/activated_effects/evil_hero_toxic_bubble.c`
@@ -1007,7 +987,11 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 - path: `src_custom/activated_effects/ojama_king.c`
 - L54: PickZone for up to 3 empty zones + continuous lock gate. auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
 
-## `op.Search` (21 notes)
+## `op.Search` (22 notes)
+
+### `APPRENTICE_ILLUSION_MAGICIAN` (activated)
+- path: `src_custom/activated_effects/apprentice_illusion_magician.c`
+- L162: NS/SS search via TryApprenticeIllusionMagicianOnMonsterPlacement (EffectOpt). OPT add Dark Magician from Deck (shares EffectOpt). hand/field send +2000 Quick need damage hooks.
 
 ### `ARCANA_FORCE_XV_THE_FIEND` (activated)
 - path: `src_custom/activated_effects/arcana_force_xv_the_fiend.c`
@@ -1139,7 +1123,7 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 - path: `src_custom/activated_effects/time_magic_hammer.c`
 - L12: Hermos equip + battle-step dice banish need summon/equip/battle hooks outside this file. Not field-ignition.
 
-## `other` (81 notes)
+## `other` (82 notes)
 
 ### `AMAZONESS_QUEEN` (activated)
 - path: `src_custom/activated_effects/amazoness_queen.c`
@@ -1383,6 +1367,10 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 ### `OBLITERATE_BLAZE` (spell)
 - path: `src_custom/spell_effects/obliterate_blaze.c`
 - L68: Mark granted effects via unk4 bit — secondary pay-half / equip / pierce need hooks.
+
+### `QUINTET_MAGICIAN` (activated)
+- path: `src_custom/activated_effects/quintet_magician.c`
+- L114: Field wipe via TryQuintetMagicianOnMonsterPlacement. Untributable/undestroyable need continuous hooks. OPT destroy all opp cards.
 
 ### `REPTILIANNE_SERVANT` (permanent)
 - path: `src_custom/permanent_effects/reptilianne_servant.c`

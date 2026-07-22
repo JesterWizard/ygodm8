@@ -4,8 +4,10 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
@@ -22,12 +24,57 @@ static u8 FixedDuelistForActive(void)
   return DUEL_OPPONENT;
 }
 
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
+}
+
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
 static u8 IsGladiatorBeastMonster(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sGladiatorBeastName);
+}
+
+static u8 ControlsOtherFaceUpSagittarii(u8 fixedDuelist, struct DuelCard *exclude)
+{
+  u8 monRow = fixedDuelist == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[monRow][col];
+
+    if (zone == NULL || zone == exclude || zone->id != GLADIATOR_BEAST_SAGITTARII)
+      continue;
+
+    if (IsCardFaceUp(zone) || zone->isDefending == FALSE)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static s8 FindGladiatorBeastHandZone(u8 turnDuelist)
+{
+  u8 i;
+  u8 max = IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW;
+
+  for (i = 0; i < max; i++) {
+    u16 cardId = SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], i)->id;
+
+    if (IsGladiatorBeastMonster(cardId))
+      return (s8)i;
+  }
+
+  return -1;
 }
 
 static u8 IsOtherGladiatorBeastInDeck(u16 excludeId)
@@ -97,6 +144,56 @@ static void ShuffleSelfTagOut(struct DuelCard *self)
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, tagId, opts);
 }
 
+/* When a GB is SS while another face-up Sagittarii is controlled: discard 1 GB; draw 2.
+ * Deck-source not distinguished (any Special Summon stand-in). */
+void TryGladiatorBeastSagittariiOnMonsterPlacement(struct DuelCard *zone,
+                                                   enum DuelSummonMode mode)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  s8 handZone;
+
+  if (zone == NULL || !IsGladiatorBeastMonster(zone->id) || !SummonModeIsSpecial(mode))
+    return;
+
+  if (gHideEffectText)
+    return;
+
+  if (EffectOpt_IsUsed(GLADIATOR_BEAST_SAGITTARII))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  if (!ControlsOtherFaceUpSagittarii(fixedDuelist, zone))
+    return;
+
+  turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  handZone = FindGladiatorBeastHandZone(turnDuelist);
+  if (handZone < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(GLADIATOR_BEAST_SAGITTARII, 8);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (Duel_DestroyZone(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)handZone),
+                       turnDuelist, FALSE)
+      == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  EffectOpt_MarkUsed(GLADIATOR_BEAST_SAGITTARII);
+  Duel_DrawCards(turnDuelist, 2, TRUE);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
 unsigned char CanActivateGLADIATOR_BEAST_SAGITTARII(void)
 {
   struct DuelCard *zone;
@@ -110,7 +207,7 @@ unsigned char CanActivateGLADIATOR_BEAST_SAGITTARII(void)
 
   /* End-of-BP + battled via GladiatorBeast_CanActivateTagOutEffect.
    * OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
-   * Residual: discard-GB draw 2 on GB-SS need summon hooks. */
+   * GB-SS discard→draw via TryGladiatorBeastSagittariiOnMonsterPlacement. */
   if (!GladiatorBeast_CanActivateTagOutEffect(zone))
     return FALSE;
 
