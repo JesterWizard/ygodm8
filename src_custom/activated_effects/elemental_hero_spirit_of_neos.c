@@ -151,7 +151,7 @@ unsigned char CanActivateELEMENTAL_HERO_SPIRIT_OF_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_SPIRIT_OF_NEOS)
     return FALSE;
 
-  /* Ceiling: attack-hand SS FALSE. Ceiling: OPT search Poly/E-HERO S/T, else
+  /* Ceiling: attack-hand SS FALSE. OPT search Poly/E-HERO S/T, else
    * OPT shuffle self → SS Normal E-HERO from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

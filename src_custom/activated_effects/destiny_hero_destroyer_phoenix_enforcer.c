@@ -225,7 +225,7 @@ unsigned char CanActivateDESTINY_HERO_DESTROYER_PHOENIX_ENFORCER(void)
     return FALSE;
 
   /* Ceiling: Quick destroy + GY revive + continuous ATK loss need quick/GY/
-   * permanent hooks. Ceiling: OPT destroy 1 you control + 1 other field card. */
+   * permanent hooks. OPT destroy 1 you control + 1 other field card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

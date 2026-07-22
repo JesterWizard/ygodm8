@@ -148,7 +148,7 @@ unsigned char CanActivateELEMENTAL_HERO_SHINING_NEOS_WINGMAN(void)
     return FALSE;
 
   /* Ceiling: GY ATK gain + effect destroy immunity + battle burn need permanent/
-   * battle hooks. Ceiling: OPT destroy opp cards up to different Attributes. */
+   * battle hooks. OPT destroy opp cards up to different Attributes. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

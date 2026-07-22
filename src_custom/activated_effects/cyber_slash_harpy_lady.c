@@ -194,7 +194,7 @@ unsigned char CanActivateCYBER_SLASH_HARPY_LADY(void)
     return FALSE;
 
   /* Ceiling: Quick on S/T activation + Synchro/name hooks missing.
-   * Ceiling: OPT bounce 1 opp card or your Harpie to hand. */
+   * OPT bounce 1 opp card or your Harpie to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

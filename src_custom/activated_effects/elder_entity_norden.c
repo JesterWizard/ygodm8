@@ -122,7 +122,7 @@ unsigned char CanActivateELDER_ENTITY_NORDEN(void)
     return FALSE;
 
   /* Ceiling: SS-trigger timing + banish-when-leaves need summon/leave hooks.
-   * Ceiling: OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark. */
+   * OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark. */
   if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

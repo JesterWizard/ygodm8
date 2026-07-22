@@ -76,7 +76,7 @@ unsigned char CanActivateEBON_ILLUSION_MAGICIAN(void)
     return FALSE;
 
   /* Ceiling: Xyz detach cost + attack-banish FALSE.
-   * Ceiling: OPT SS Spellcaster Normal from hand/Deck (detach stand-in). */
+   * OPT SS Spellcaster Normal from hand/Deck (detach stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

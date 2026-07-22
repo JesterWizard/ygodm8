@@ -112,7 +112,7 @@ unsigned char CanActivateELEMENTAL_HERO_GLOW_NEOS(void)
     return FALSE;
 
   /* EP Extra return via TryReturnContactFusionsAtEndPhase; cannot-attack/direct
-   * via ElementalHeroGlowNeos_* attack gates. Ceiling: OPT destroy 1 face-up
+   * via ElementalHeroGlowNeos_* attack gates. OPT destroy 1 face-up
    * opp + type-branch marks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
