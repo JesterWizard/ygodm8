@@ -60,7 +60,7 @@ static void ResolveAbsorb(u8 fixedRow, u8 fixedCol)
   if (!IsFaceUpAtkMonster(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* Xyz attach / negate FALSE. ClearZone absorb + +1 tempStage. */
+  /* Printed remainder omitted by this ruleset. */
   ClearZone(zone);
   NotifyDynamicEquipFieldChanged();
 

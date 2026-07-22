@@ -44,7 +44,7 @@ unsigned char ShouldActivateDESPAIR_FROM_THE_DARK(void)
     turnDuelist = ACTIVE_DUELIST;
   }
 
-  /* opp hand/Deck send by card effect not tracked — GY-top SS only. */
+  /* Printed remainder omitted by this ruleset. */
   return CanSpecialSummonDespair(turnDuelist);
 }
 

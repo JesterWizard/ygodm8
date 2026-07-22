@@ -83,7 +83,7 @@ unsigned char CanActivateDESTINY_HERO_BLADE_MASTER(void)
   if (gMonEffect.id != DESTINY_HERO_BLADE_MASTER)
     return FALSE;
 
-  /* Printed effect is hand discard during opp Battle Phase — use FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

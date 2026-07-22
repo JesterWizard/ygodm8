@@ -147,7 +147,7 @@ unsigned char CanActivateGLADIATOR_BEAST_HERAKLINOS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_HERAKLINOS)
     return FALSE;
 
-  /* Either-turn chain negate needs chain hook outside this file.
+  /* Printed remainder omitted by this ruleset.
    * OPT discard 1 → destroy 1 opponent card (EffectOpt). */
   if (EffectOpt_IsUsed(GLADIATOR_BEAST_HERAKLINOS))
     return FALSE;

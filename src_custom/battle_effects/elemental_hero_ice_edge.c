@@ -234,7 +234,7 @@ void ResolveElementalHeroIceEdgeBattleEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* Opponent turn: auto-destroy (PickZone softlocks in AI_Main). */
+  /* Printed remainder omitted by this ruleset. */
   if (WhoseTurn() != DUEL_PLAYER) {
     DestroyFirstAutoTarget();
     return;

@@ -67,7 +67,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidTarget(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* −700 ≈ −2 tempStage stand-in; counter/damage-redirect FALSE. */
+  /* Printed remainder omitted by this ruleset. */
   if (zone->tempStage > -126)
     zone->tempStage = (s8)(zone->tempStage - 2);
 
@@ -110,7 +110,7 @@ unsigned char CanActivateBLACK_WINGED_DRAGON(void)
   if (zone == NULL || zone->id != BLACK_WINGED_DRAGON)
     return FALSE;
 
-  /* Damage redirect + Black Feather Counters + burn need damage hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT −2 tempStage on 1 face-up opp monster; ATK via
    * ApplyBlackWingedDragonContinuousAtkToCardInfo. */
   if (!CanUseMonsterEffect(zone))

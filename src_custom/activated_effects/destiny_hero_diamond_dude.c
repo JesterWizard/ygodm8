@@ -54,7 +54,7 @@ static void ExcavateTopCard(void)
   if (IsNormalSpellCard(cardId)) {
     gDuelDecks[fixedDuelist].cardsDrawn++;
     GraveyardExpand_PushTurn(ACTIVE_DUELIST, cardId);
-    /* Next-turn GY Normal Spell activation needs Main Phase hook. */
+    /* Printed remainder omitted by this ruleset. */
     return;
   }
 

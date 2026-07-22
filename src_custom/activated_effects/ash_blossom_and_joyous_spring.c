@@ -12,7 +12,7 @@ unsigned char CanActivateASH_BLOSSOM_AND_JOYOUS_SPRING(void)
   if (gMonEffect.id != ASH_BLOSSOM_AND_JOYOUS_SPRING)
     return FALSE;
 
-  /* Printed quick discard negate uses FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 
@@ -47,7 +47,7 @@ u8 TryActivateAshBlossomFromHand(u8 handZone)
       == DUEL_ACTION_DUEL_OVER)
     return TRUE;
 
-  /* chain negate for add/SS/mill from Deck not wired; upgrade: chain
+  /* Printed remainder omitted by this ruleset.
    * interrupt hook when one exists. */
   UpdateDuelGfxExceptField();
   return TRUE;

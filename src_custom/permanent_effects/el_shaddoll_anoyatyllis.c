@@ -156,7 +156,7 @@ static u8 IsAnoyatyllisGraveyardTrigger(void)
 
 unsigned char ShouldActivateEL_SHADDOLL_ANOYATYLLIS(void)
 {
-  /* Hand/GY SS lock via ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon. */
+  /* Printed remainder omitted by this ruleset. */
   return IsAnoyatyllisGraveyardTrigger();
 }
 

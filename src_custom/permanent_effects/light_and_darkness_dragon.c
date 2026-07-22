@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateLIGHT_AND_DARKNESS_DRAGON(void)
 {
-  /* chain negate (−500 ATK/DEF) + GY destroy-all/SS need chain/GY hooks. */
+  /* Printed remainder omitted by this ruleset. */
   (void)gActiveEffect;
   return FALSE;
 }

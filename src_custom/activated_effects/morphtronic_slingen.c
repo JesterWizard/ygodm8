@@ -159,7 +159,7 @@ unsigned char CanActivateMORPHTRONIC_SLINGEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SLINGEN)
     return FALSE;
 
-  /* DEF destroy-other-Morphtronic substitute needs destroy redirect hook outside.
+  /* Printed remainder omitted by this ruleset.
    * ATK OPT tribute 1 other Morphtronic → destroy 1 field card (EffectOpt). */
   if (zone->isDefending)
     return FALSE;

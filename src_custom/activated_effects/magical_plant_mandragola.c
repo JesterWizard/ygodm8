@@ -9,7 +9,7 @@ unsigned char CanActivateMAGICAL_PLANT_MANDRAGOLA(void)
   if (gMonEffect.id != MAGICAL_PLANT_MANDRAGOLA)
     return FALSE;
 
-  /* FLIP place Spell Counters needs flip + counter storage outside this file.
+  /* Printed remainder omitted by this ruleset.
    * Not field-ignition. */
   return FALSE;
 }

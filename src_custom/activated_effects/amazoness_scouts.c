@@ -76,7 +76,7 @@ unsigned char CanActivateAMAZONESS_SCOUTS(void)
   if (zone == NULL || zone->id != AMAZONESS_SCOUTS)
     return FALSE;
 
-  /* Either-player quick timing not wired; once via usage on your turn only. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

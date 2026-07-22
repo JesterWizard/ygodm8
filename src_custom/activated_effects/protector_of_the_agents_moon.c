@@ -249,7 +249,7 @@ static void ResolveDestroyTarget(u8 fixedRow, u8 fixedCol)
   if (!IsOppCardTarget(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* dual PickZone needs scratch; auto first Fairy tribute. */
+  /* Printed remainder omitted by this ruleset. */
   fairy = FindFairyTribute(self);
   if (fairy == NULL)
     return;
@@ -302,7 +302,7 @@ unsigned char CanActivatePROTECTOR_OF_THE_AGENTS_MOON(void)
   if (zone == NULL || zone->id != PROTECTOR_OF_THE_AGENTS_MOON)
     return FALSE;
 
-  /* Link Summon trigger gate missing. OPT mill/add Sanctuary
+  /* Printed remainder omitted by this ruleset.
    * path, else OPT tribute Fairy → destroy 1 opp. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

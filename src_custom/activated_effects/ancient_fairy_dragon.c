@@ -132,7 +132,7 @@ static u8 DoSsFromHand(struct DuelCard *self)
   if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, (u8)handZone, opts) != DUEL_ACTION_OK)
     return FALSE;
 
-    /* Cannot conduct Battle Phase stand-in (unk4 lock); true phase skip needs hook. */
+    /* Printed remainder omitted by this ruleset. */
   if (self != NULL)
     self->unk4 |= 0x80;
 

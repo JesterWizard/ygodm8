@@ -461,7 +461,7 @@ void ResolveElementalHeroSunriseDestroyEffect(void)
   if (!OpponentFieldHasDestroyTarget(originRow))
     return;
 
-  /* True timing is attack declaration; resolve post-battle so PickZone can run
+  /* Printed remainder omitted by this ruleset.
    * from the main loop (same pattern as Core). Opponent-turn textboxes corrupt
    * field VRAM — auto-resolve silently. */
   if (WhoseTurn() != DUEL_PLAYER) {

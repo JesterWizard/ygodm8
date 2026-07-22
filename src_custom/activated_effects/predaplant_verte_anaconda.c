@@ -128,7 +128,7 @@ unsigned char CanActivatePREDAPLANT_VERTE_ANACONDA(void)
   if (zone == NULL || zone->id != PREDAPLANT_VERTE_ANACONDA)
     return FALSE;
 
-  /* DARK attribute mark + Poly/Fusion copy SS need attribute/fusion hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT pay 2000 LP → destroy 1 field card (EffectOpt; Fusion-copy stand-in). */
   if (EffectOpt_IsUsed(PREDAPLANT_VERTE_ANACONDA))
     return FALSE;

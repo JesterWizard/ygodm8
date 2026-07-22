@@ -129,7 +129,7 @@ unsigned char CanActivateCYBER_VALLEY(void)
   if (zone == NULL || zone->id != CYBER_VALLEY)
     return FALSE;
 
-  /* Attack-target banish + GY place-on-deck need battle/GY hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT banish self+1 face-up monster → draw 2; else banish self → draw 1
    * at end of Battle Phase via GladiatorBeast_InBattlePhase. */
   if (!CanUseMonsterEffect(zone))

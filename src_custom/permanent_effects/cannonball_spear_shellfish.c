@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateCANNONBALL_SPEAR_SHELLFISH(void)
 {
-  /* Continuous Umi spell-immunity via IsImmuneToSpellEffectsOnField — not ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

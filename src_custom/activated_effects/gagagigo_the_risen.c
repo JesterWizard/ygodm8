@@ -9,12 +9,12 @@ unsigned char CanActivateGAGAGIGO_THE_RISEN(void)
   if (gMonEffect.id != GAGAGIGO_THE_RISEN)
     return FALSE;
 
-  /* No printed monster effect (Xyz materials only). Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 
 void ActivateGAGAGIGO_THE_RISENEffect(void)
 {
-  /* Unreachable while CanActivate returns FALSE. */
+  /* Printed remainder omitted by this ruleset. */
   Duel_ShowEffectTextTyped(GAGAGIGO_THE_RISEN, 2);
 }

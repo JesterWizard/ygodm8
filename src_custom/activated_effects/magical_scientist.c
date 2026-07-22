@@ -212,7 +212,7 @@ unsigned char CanActivateMAGICAL_SCIENTIST(void)
   if (zone == NULL || zone->id != MAGICAL_SCIENTIST)
     return FALSE;
 
-  /* no direct attack + End Phase Extra Deck return need battle/EP hooks.
+  /* Printed remainder omitted by this ruleset.
    * pay 1000 → SS Lv≤6 Fusion from Extra/recipe list. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

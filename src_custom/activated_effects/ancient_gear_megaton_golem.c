@@ -137,7 +137,7 @@ static u8 SpecialSummonGolem(void)
   return FALSE;
 }
 
-/* Extra Deck Ultimate AG Golem SS blocked — AG Golem from hand/GY/Deck instead. */
+/* Printed remainder omitted by this ruleset. */
 static void TrySsAncientGearGolemOnLeave(u8 fixedDuelist)
 {
   u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);

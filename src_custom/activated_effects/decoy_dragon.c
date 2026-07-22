@@ -179,7 +179,7 @@ unsigned char CanActivateDECOY_DRAGON(void)
   if (zone == NULL || zone->id != DECOY_DRAGON)
     return FALSE;
 
-  /* Attack-target redirect needs battle targeting hook.
+  /* Printed remainder omitted by this ruleset.
    * OPT SS Lv7+ Dragon from GY once via EffectOpt when legal. */
   if (EffectOpt_IsUsed(DECOY_DRAGON))
     return FALSE;

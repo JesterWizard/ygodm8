@@ -54,7 +54,7 @@ static void ResolveFiendTarget(u8 fixedRow, u8 fixedCol)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* second Standby Phase GY return needs turn/Standby hook; unk4=2 extra attack
+  /* Printed remainder omitted by this ruleset.
    * via TryUnlockUnk4MarkedExtraAttack. */
   target->unk4 = 2;
   UpdateDuelGfxExceptField();
@@ -107,7 +107,7 @@ unsigned char CanActivateEVIL_HERO_INFERNAL_GAINER(void)
   if (zone == NULL || zone->id != EVIL_HERO_INFERNAL_GAINER)
     return FALSE;
 
-  /* Main Phase 1 gate needs phase hook. Extra attack via TryUnlockUnk4MarkedExtraAttack
+  /* Printed remainder omitted by this ruleset.
    * when unk4=2; second Standby GY return needs Standby hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -192,7 +192,7 @@ unsigned char CanActivateMORPHTRONIC_SCANNEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SCANNEN)
     return FALSE;
 
-  /* FromHand banish Morphtronic → SS. ATK/DEF OPT search modes (EffectOpt). */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(MORPHTRONIC_SCANNEN))
     return FALSE;
 

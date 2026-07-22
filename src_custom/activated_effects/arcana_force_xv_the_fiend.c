@@ -211,7 +211,7 @@ unsigned char CanActivateARCANA_FORCE_XV_THE_FIEND(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XV_THE_FIEND)
     return FALSE;
 
-  /* Discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field
+  /* Printed remainder omitted by this ruleset.
    * (EffectOpt). */
   if (EffectOpt_IsUsed(ARCANA_FORCE_XV_THE_FIEND))
     return FALSE;

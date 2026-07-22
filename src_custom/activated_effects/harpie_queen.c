@@ -10,7 +10,7 @@ unsigned char CanActivateHARPIE_QUEEN(void)
   if (gMonEffect.id != HARPIE_QUEEN)
     return FALSE;
 
-  /* Printed discard is hand — use FromHand path; name=Harpie Lady via
+  /* Printed remainder omitted by this ruleset.
    * HarpiePerfumer_TreatsNameAsHarpieLady + Duel_ZoneEffectCardId. */
   return FALSE;
 }

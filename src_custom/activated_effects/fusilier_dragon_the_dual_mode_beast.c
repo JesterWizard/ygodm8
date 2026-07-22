@@ -9,7 +9,7 @@ unsigned char CanActivateFUSILIER_DRAGON_THE_DUAL_MODE_BEAST(void)
   if (gMonEffect.id != FUSILIER_DRAGON_THE_DUAL_MODE_BEAST)
     return FALSE;
 
-  /* NS without tribute + halved ATK/DEF needs summon tribute gate outside this file.
+  /* Printed remainder omitted by this ruleset.
    * Not field-ignition. */
   return FALSE;
 }

@@ -75,7 +75,7 @@ unsigned char CanActivateEBON_ILLUSION_MAGICIAN(void)
   if (zone == NULL || zone->id != EBON_ILLUSION_MAGICIAN)
     return FALSE;
 
-  /* Xyz detach cost + attack-banish FALSE.
+  /* Printed remainder omitted by this ruleset.
    * OPT SS Spellcaster Normal from hand/Deck (detach stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

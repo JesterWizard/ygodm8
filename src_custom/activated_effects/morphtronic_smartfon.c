@@ -226,7 +226,7 @@ unsigned char CanActivateMORPHTRONIC_SMARTFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SMARTFON)
     return FALSE;
 
-  /* ATK die excavate add; DEF GY add Morphtronic (EffectOpt). Reveal UI FALSE.
+  /* Printed remainder omitted by this ruleset.
    * FromHand: banish Morphtronic GY → SS. */
   if (EffectOpt_IsUsed(MORPHTRONIC_SMARTFON))
     return FALSE;

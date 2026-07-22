@@ -83,7 +83,7 @@ u8 CanActivateEvilHeroAdustedGoldFromHand(u8 handZone)
   if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
     return FALSE;
 
-  /* once-per-turn not tracked without turn hook. */
+  /* Printed remainder omitted by this ruleset. */
   return FindDarkFusionSearchTarget() != CARD_NONE;
 }
 

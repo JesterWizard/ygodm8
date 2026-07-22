@@ -107,7 +107,7 @@ unsigned char CanActivateEVIL_HERO_DEAD_END_PRISON(void)
   if (zone == NULL || zone->id != EVIL_HERO_DEAD_END_PRISON)
     return FALSE;
 
-  /* Dark Fusion Fusion gate + Fusion-substitute name marker FALSE.
+  /* Printed remainder omitted by this ruleset.
    * OPT mill 1 HERO from Deck (EffectOpt). */
   if (EffectOpt_IsUsed(EVIL_HERO_DEAD_END_PRISON))
     return FALSE;

@@ -9,7 +9,7 @@ unsigned char CanActivateANCIENT_GEAR_GADJILTRON_CHIMERA(void)
   if (gMonEffect.id != ANCIENT_GEAR_GADJILTRON_CHIMERA)
     return FALSE;
 
-  /* Green/Red/Yellow Gadget tribute branches need summon/tribute hooks.
+  /* Printed remainder omitted by this ruleset.
    * Not ignition-activatable here. */
   return FALSE;
 }

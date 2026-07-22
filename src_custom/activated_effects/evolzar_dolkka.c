@@ -9,7 +9,7 @@ unsigned char CanActivateEVOLZAR_DOLKKA(void)
   if (gMonEffect.id != EVOLZAR_DOLKKA)
     return FALSE;
 
-  /* Quick Xyz detach + negate monster effect need chain/Xyz hooks outside this file.
+  /* Printed remainder omitted by this ruleset.
    * Not field-ignition. */
   return FALSE;
 }

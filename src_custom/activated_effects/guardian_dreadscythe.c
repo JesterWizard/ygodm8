@@ -167,7 +167,7 @@ unsigned char CanActivateGUARDIAN_DREADSCYTHE(void)
   if (zone == NULL || zone->id != GUARDIAN_DREADSCYTHE)
     return FALSE;
 
-  /* summon lock + GY revive loop need summon/leave hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT equip/add Reaper Scythe from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

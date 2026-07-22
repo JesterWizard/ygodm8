@@ -104,7 +104,7 @@ unsigned char CanActivateRYKO_LIGHTSWORN_HUNTER(void)
   if (zone == NULL || zone->id != RYKO_LIGHTSWORN_HUNTER)
     return FALSE;
 
-  /* FLIP trigger needs flip hook outside; once via usage. */
+  /* Printed remainder omitted by this ruleset. */
   return CanUseMonsterEffect(zone);
 }
 

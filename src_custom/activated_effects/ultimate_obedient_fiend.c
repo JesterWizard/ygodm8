@@ -9,7 +9,7 @@ unsigned char CanActivateULTIMATE_OBEDIENT_FIEND(void)
   if (gMonEffect.id != ULTIMATE_OBEDIENT_FIEND)
     return FALSE;
 
-  /* Solo-field + empty-hand attack restriction needs attack gate hook
+  /* Printed remainder omitted by this ruleset.
    * outside this file. Not field-ignition. */
   return FALSE;
 }

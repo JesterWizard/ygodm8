@@ -72,7 +72,7 @@ unsigned char CanActivateEVIL_HERO_MALICIOUS_BANE(void)
   if (zone == NULL || zone->id != EVIL_HERO_MALICIOUS_BANE)
     return FALSE;
 
-  /* destruction immunity + HERO-only attack gate need destroy/attack hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT destroy opp monsters with ATK≤self, +tempStage, mark unk4. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

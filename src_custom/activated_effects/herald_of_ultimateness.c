@@ -9,7 +9,7 @@ unsigned char CanActivateHERALD_OF_ULTIMATENESS(void)
   if (gMonEffect.id != HERALD_OF_ULTIMATENESS)
     return FALSE;
 
-  /* Quick negate by sending Fairy from hand needs chain/negation hooks outside.
+  /* Printed remainder omitted by this ruleset.
    * Not field-ignition (either-turn discard Fairy → negate + destroy). */
   return FALSE;
 }

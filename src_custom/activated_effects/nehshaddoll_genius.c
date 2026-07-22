@@ -107,7 +107,7 @@ unsigned char CanActivateNEHSHADDOLL_GENIUS(void)
   if (zone == NULL || zone->id != NEHSHADDOLL_GENIUS)
     return FALSE;
 
-  /* FLIP Shaddoll unaffected + sent-by-effect branches need flip/send hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT negate 1 face-up Effect Monster (unk4). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

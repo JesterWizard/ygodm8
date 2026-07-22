@@ -76,7 +76,7 @@ unsigned char CanActivateNEO_SPACIAN_MARINE_DOLPHIN(void)
   if (zone == NULL || zone->id != NEO_SPACIAN_MARINE_DOLPHIN)
     return FALSE;
 
-  /* treated-as Aqua Dolphin name + NEX-only SS need continuous/summon hooks. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

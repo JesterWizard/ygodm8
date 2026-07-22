@@ -87,7 +87,7 @@ unsigned char CanActivateNIBIRU_THE_PRIMAL_BEING(void)
   if (gMonEffect.id != NIBIRU_THE_PRIMAL_BEING)
     return FALSE;
 
-  /* 5-summon gate + Primal Being Token to opp FALSE.
+  /* Printed remainder omitted by this ruleset.
    * FromHand wipe+SS if ≥5 face-up monsters on field. */
   return FALSE;
 }

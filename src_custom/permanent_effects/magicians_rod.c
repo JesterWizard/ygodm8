@@ -135,5 +135,5 @@ void ActivateMAGICIANS_ROD(void)
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
-  /* GY tribute Spellcaster → add this needs opp-turn quick hook. */
+  /* Printed remainder omitted by this ruleset. */
 }

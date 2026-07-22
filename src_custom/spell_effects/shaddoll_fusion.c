@@ -46,7 +46,7 @@ static u8 IsExtraDeckMonsterId(u16 cardId)
          || gCardInfo.color == XYZ_CARD || gCardInfo.color == LINK_CARD;
 }
 
-/* Proxy for "Special Summoned from the Extra Deck" — Extra Deck colors on field. */
+/* Printed remainder omitted by this ruleset. */
 static u8 OpponentControlsExtraDeckMonster(void)
 {
   u8 i;

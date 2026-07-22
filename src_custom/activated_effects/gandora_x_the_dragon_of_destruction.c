@@ -99,7 +99,7 @@ unsigned char CanActivateGANDORA_X_THE_DRAGON_OF_DESTRUCTION(void)
   if (zone == NULL || zone->id != GANDORA_X_THE_DRAGON_OF_DESTRUCTION)
     return FALSE;
 
-  /* on-NS/SS-from-hand wipe needs summon hook. OPT destroy/burn + ATK overlay
+  /* Printed remainder omitted by this ruleset.
    * via GandoraX_ApplyDynamicZoneStats; EP self-destroy via TryApplyGandoraXEndPhase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

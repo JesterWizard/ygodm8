@@ -7,7 +7,7 @@ Each `ponytail:` / `Ceiling:` note is tagged with its **primary missing engine s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 22:00 UTC  
+**Last updated:** 2026-07-22 22:04 UTC  
 **Ceiling lines tagged:** `0`  
 **Partial files:** `0`
 

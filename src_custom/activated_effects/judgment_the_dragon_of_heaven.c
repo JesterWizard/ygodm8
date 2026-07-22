@@ -105,7 +105,7 @@ unsigned char CanActivateJUDGMENT_THE_DRAGON_OF_HEAVEN(void)
   if (zone == NULL || zone->id != JUDGMENT_THE_DRAGON_OF_HEAVEN)
     return FALSE;
 
-  /* 4+ GY Tuners gate + Dragon-only SS lock need GY/SS hooks. EP mill 4 via
+  /* Printed remainder omitted by this ruleset.
    * TryApplyJudgmentEndPhase. OPT pay half LP → destroy all other field cards. */
   if (EffectOpt_IsUsed(JUDGMENT_THE_DRAGON_OF_HEAVEN))
     return FALSE;

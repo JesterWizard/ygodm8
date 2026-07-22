@@ -40,6 +40,6 @@ u8 AntiSpellFragrance_BlocksSpellActivation(struct DuelCard *spellZone)
     }
   }
 
-  /* Hand play / face-up field play without Set → blocked. */
+  /* Printed remainder omitted by this ruleset. */
   return TRUE;
 }

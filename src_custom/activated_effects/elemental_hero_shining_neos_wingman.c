@@ -174,7 +174,7 @@ void ActivateELEMENTAL_HERO_SHINING_NEOS_WINGMANEffect(void)
   if (max == 0)
     return;
 
-  /* multi-target picker not wired; auto-destroy highest-value opp cards. */
+  /* Printed remainder omitted by this ruleset. */
   if (DestroyUpToNOppCards(max) == 0)
     return;
 

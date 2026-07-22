@@ -38,7 +38,7 @@ unsigned char CanActivateRINYAN_LIGHTSWORN_ROGUE(void)
   if (zone == NULL || zone->id != RINYAN_LIGHTSWORN_ROGUE)
     return FALSE;
 
-  /* FLIP trigger needs flip hook outside; once via usage if LS in GY. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone) || !GraveyardExpand_IsEnabled())
     return FALSE;
 

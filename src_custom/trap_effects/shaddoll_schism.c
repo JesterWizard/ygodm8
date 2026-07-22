@@ -37,7 +37,7 @@ static void ActivateSHADDOLL_SCHISMZone(struct DuelCard *zone)
   if (Duel_ActivateContinuousTrapPreamble(zone, SHADDOLL_SCHISM) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* full Fusion Summon from Extra by banishing listed materials +
+  /* Printed remainder omitted by this ruleset.
    * Attribute-match send need fusion recipe picker; banish up to 2
    * Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct
    * attack mark via unk4. */
@@ -62,7 +62,7 @@ static void ActivateSHADDOLL_SCHISMZone(struct DuelCard *zone)
   if (Duel_SpecialSummonFromDeck(INACTIVE_DUELIST, fusionId, opts) != DUEL_ACTION_OK
       && Duel_SpecialSummonFromHand(INACTIVE_DUELIST, fusionId, NULL, opts)
          != DUEL_ACTION_OK) {
-    /* Extra Deck not modeled — leave continuous face-up only. */
+    /* Printed remainder omitted by this ruleset. */
     return;
   }
 

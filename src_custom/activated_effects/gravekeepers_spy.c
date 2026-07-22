@@ -55,7 +55,7 @@ unsigned char CanActivateGRAVEKEEPERS_SPY(void)
   if (zone == NULL || zone->id != GRAVEKEEPERS_SPY)
     return FALSE;
 
-  /* FLIP trigger needs flip hook. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

@@ -157,7 +157,7 @@ unsigned char CanActivateARCANITE_MAGICIAN(void)
   if (zone == NULL || zone->id != ARCANITE_MAGICIAN)
     return FALSE;
 
-  /* Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat
+  /* extra procedure +2 Spell Counters + +1000 ATK/counter need extra procedure/stat
    * hooks. OPT remove 1 unk4 counter → destroy 1 opp (EffectOpt). */
   if (EffectOpt_IsUsed(ARCANITE_MAGICIAN))
     return FALSE;

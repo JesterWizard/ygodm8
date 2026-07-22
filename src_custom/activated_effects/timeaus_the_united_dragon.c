@@ -144,7 +144,7 @@ unsigned char CanActivateTIMEAUS_THE_UNITED_DRAGON(void)
   if (gMonEffect.id != TIMEAUS_THE_UNITED_DRAGON)
     return FALSE;
 
-  /* Main Phase Fusion Summon needs fusion UI hook.
+  /* Printed remainder omitted by this ruleset.
    * SS from hand via send cost uses FromHand path. */
   return FALSE;
 }

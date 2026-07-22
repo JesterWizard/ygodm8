@@ -201,7 +201,7 @@ void TryRykoTwilightswornFighterOnNormalSummon(struct DuelCard *zone, enum DuelS
     return;
 
   turnDuelist = Duel_TurnDuelistForFixedDuelist(controller);
-  /* NS mill 3 stand-in for other-LS effect→mill; upgrade: chain hook. */
+  /* Printed remainder omitted by this ruleset. */
   Duel_ShowEffectTextTyped(RYKO_TWILIGHTSWORN_FIGHTER, 8);
   Duel_MillTopDeckCards(turnDuelist, RYKO_TWILIGHT_NS_MILL, TRUE);
 }

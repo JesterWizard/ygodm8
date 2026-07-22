@@ -112,7 +112,7 @@ unsigned char CanActivateLORD_OF_THE_RED(void)
   if (zone == NULL || zone->id != LORD_OF_THE_RED)
     return FALSE;
 
-  /* either-turn chain on activation + S/T branch need chain hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT destroy 1 monster on the field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

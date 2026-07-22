@@ -51,7 +51,7 @@ void ActivateOJAMA_KINGEffect(void)
   if (king == NULL || IsDuelOver() == TRUE)
     return;
 
-  /* PickZone for up to 3 empty zones + continuous lock gate.
+  /* Printed remainder omitted by this ruleset.
    * auto-lock first 3 empty opp MMZ via isLocked (ignored by
    * FirstEmptyZoneInRow today — same as Ground Collapse). */
 

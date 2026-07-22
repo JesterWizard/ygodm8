@@ -269,7 +269,7 @@ unsigned char CanActivateLIGHTSWORN_DRAGONLING(void)
   if (zone == NULL || zone->id != LIGHTSWORN_DRAGONLING)
     return FALSE;
 
-  /* hand SS when Lightsworn in GY uses FromHand path.
+  /* Printed remainder omitted by this ruleset.
    * On-SS mill via TryLightswornDragonlingOnMonsterPlacement (EffectOpt).
    * Leave → LIGHT Dragon 3000/2600 (or BEWD) via LightswornDragonling_EnsureInit.
    * OPT send 1 other Lightsworn from Deck to GY (shares EffectOpt). */

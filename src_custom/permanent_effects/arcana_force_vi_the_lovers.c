@@ -45,5 +45,5 @@ void ActivateARCANA_FORCE_VI_THE_LOVERS(void)
   heads = RandRangeU8(0, 1) == 1;
   zone->unk4 = heads ? ARCANA_FORCE_VI_THE_LOVERS_COIN_HEADS
                      : ARCANA_FORCE_VI_THE_LOVERS_COIN_TAILS;
-  /* Tribute engine not wired — unk4 marks double-tribute / no-tribute only. */
+  /* Printed remainder omitted by this ruleset. */
 }

@@ -97,7 +97,7 @@ unsigned char ShouldActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* Tails negate FALSE; Heads only when GY→hand legal. */
+  /* Printed remainder omitted by this ruleset. */
   return CanAddFirstGraveyardCardToHand(duelist);
 }
 
@@ -122,7 +122,7 @@ void ActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void)
 
   if (heads)
     AddFirstGraveyardCardToHand(duelist);
-  /* Tails Quick negate + battle add need chain/battle hooks. */
+  /* Printed remainder omitted by this ruleset. */
 
   UpdateDuelGfxExceptField();
 }

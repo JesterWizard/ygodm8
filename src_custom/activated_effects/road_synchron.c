@@ -9,7 +9,7 @@ unsigned char CanActivateROAD_SYNCHRON(void)
   if (gMonEffect.id != ROAD_SYNCHRON)
     return FALSE;
 
-  /* Synchro Level -2 (non-Road Warrior) + battle-hit Level +1 need
+  /* extra procedure Level -2 (non-Road Warrior) + battle-hit Level +1 need
    * synchro/battle hooks outside this file. Not field-ignition. */
   return FALSE;
 }

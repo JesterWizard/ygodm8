@@ -9,7 +9,7 @@ unsigned char CanActivateARCANA_KNIGHT_JOKER(void)
   if (gMonEffect.id != ARCANA_KNIGHT_JOKER)
     return FALSE;
 
-  /* Discard matching type to negate activation needs chain/response hooks
+  /* Printed remainder omitted by this ruleset.
    * outside this file. Not field-ignition. */
   return FALSE;
 }

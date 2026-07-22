@@ -86,7 +86,7 @@ static void ActivateHUMID_WINDSZone(struct DuelCard *zone)
   if (Duel_ActivateContinuousTrapPreamble(zone, HUMID_WINDS) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* On flip: try pay 1000 → search Aroma (one-shot stand-in for OPT ignition). */
+  /* Printed remainder omitted by this ruleset. */
   myLp = gDuelLifePoints[FixedDuelistForTurnDuelist(INACTIVE_DUELIST)];
   if (myLp > 1000) {
     Duel_ChangeLp(INACTIVE_DUELIST, -1000, FALSE);

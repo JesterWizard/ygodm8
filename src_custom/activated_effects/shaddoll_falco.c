@@ -112,7 +112,7 @@ unsigned char CanActivateSHADDOLL_FALCO(void)
   if (zone == NULL || zone->id != SHADDOLL_FALCO)
     return FALSE;
 
-  /* FLIP vs GY-sent exclusivity + SS-self-on-send need trigger hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT SS 1 other Shaddoll from GY face-down DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

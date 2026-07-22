@@ -148,7 +148,7 @@ unsigned char CanActivateGANDORA_G_THE_DRAGON_OF_DESTRUCTION(void)
   if (zone == NULL || zone->id != GANDORA_G_THE_DRAGON_OF_DESTRUCTION)
     return FALSE;
 
-  /* +300 ATK/banished needs permanent/banish count hook.
+  /* Printed remainder omitted by this ruleset.
    * OPT pay half LP → banish all other field → SS Lv≤7 Sarc mention. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

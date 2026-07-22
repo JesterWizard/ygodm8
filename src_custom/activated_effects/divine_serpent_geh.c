@@ -37,7 +37,7 @@ unsigned char CanActivateDIVINE_SERPENT_GEH(void)
   if (gMonEffect.id != DIVINE_SERPENT_GEH)
     return FALSE;
 
-  /* Untargetable via DivineSerpentGeh_IsTargetImmune; FromHand half-LP SS below.
+  /* Printed remainder omitted by this ruleset.
    * destroy gate + battle negate need destroy/battle hooks.
    * field ignition FALSE. */
   return FALSE;

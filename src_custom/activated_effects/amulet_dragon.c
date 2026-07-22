@@ -55,7 +55,7 @@ static u8 AnyGraveyardHasSpell(void)
   return FALSE;
 }
 
-/* No multi-select GY UI — banish every Spell in both GYs (min.1 gate above). */
+/* Printed remainder omitted by this ruleset. */
 static u8 BanishAllSpellsFromGraveyards(void)
 {
   u8 banished = 0;

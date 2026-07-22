@@ -282,7 +282,7 @@ unsigned char CanActivatePOSEIDRA_THE_ATLANTEAN_DRAGON(void)
   if (zone != NULL && zone->id == POSEIDRA_THE_ATLANTEAN_DRAGON)
     return FALSE;
 
-  /* hand SS uses FromHand path. GY ignition via CanActivatePoseidraTheAtlanteanDragonGy. */
+  /* Printed remainder omitted by this ruleset. */
   if (FindPoseidraInGy() < 0)
     return FALSE;
 

@@ -45,7 +45,7 @@ static u8 SendOtherMonstersToGrave(struct DuelCard *selfZone)
 
 u8 CanSpecialSummonTheBlazingMarsFromHandOrGrave(void)
 {
-  /* no multi-select GY banish + hand/GY activation path yet — banish 3
+  /* Printed remainder omitted by this ruleset.
      other monsters to Special Summon deferred until expanded GY targeting exists. */
   return FALSE;
 }

@@ -42,7 +42,7 @@ static void ActivateANCIENT_GEAR_DUELZone(struct DuelCard *zone)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* unaffected by opp monster effects + Extra Deck Fusion + 3 attacks
+  /* Printed remainder omitted by this ruleset.
    * need protection/fusion/battle hooks; mark AG Golem/mentioners
    * (unk4); if opp has monster + we control Golem, banish Golem + 1 AG from GY
    * and SS Ultimate Ancient Gear Golem stand-in from Deck/hand. */

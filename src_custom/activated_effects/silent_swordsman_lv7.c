@@ -8,7 +8,7 @@ unsigned char CanActivateSILENT_SWORDSMAN_LV7(void)
   if (gMonEffect.id != SILENT_SWORDSMAN_LV7)
     return FALSE;
 
-  /* Spell immunity via IsImmuneToSpellEffectsOnField; not ignition-activatable. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

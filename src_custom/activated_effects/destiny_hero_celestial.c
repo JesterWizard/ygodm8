@@ -57,7 +57,7 @@ u8 CanActivateDestinyHeroCelestialGy(u8 fixedDuelist, u8 gyIndex)
 
   if (!GraveyardExpand_IsEnabled())
     return FALSE;
-  /* Except-turn-sent not tracked; EffectOpt ≈ once/turn. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(DESTINY_HERO_CELESTIAL))
     return FALSE;
   if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))

@@ -360,7 +360,7 @@ static void ResolveCostTarget(u8 fixedRow, u8 fixedCol)
   if (Duel_DestroyZone(zone, turnDuelist, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* Drop field-target cursor before GY deck menu — PickZone state + trunk view was
+  /* Printed remainder omitted by this ruleset.
    * crashing when the menu opened on confirm. */
   gDuelCursor.state = 0;
   gDuelCursor.currentY = originRow;

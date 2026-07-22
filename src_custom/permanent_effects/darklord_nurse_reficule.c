@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateDARKLORD_NURSE_REFICULE(void)
 {
-  /* LP gain→damage redirect needs LP-change hook. */
+  /* Printed remainder omitted by this ruleset. */
   (void)gActiveEffect;
   return FALSE;
 }

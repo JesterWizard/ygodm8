@@ -82,7 +82,7 @@ unsigned char CanActivateTORNADO_BIRD(void)
   if (zone == NULL || zone->id != TORNADO_BIRD)
     return FALSE;
 
-  /* FLIP trigger needs flip hook outside; once via usage. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

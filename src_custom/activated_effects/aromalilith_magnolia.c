@@ -168,7 +168,7 @@ void ActivateAROMALILITH_MAGNOLIAEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* Auto-banish up to winds count (opp rows first); no multi-select UI. */
+  /* Printed remainder omitted by this ruleset. */
   BanishUpToNFieldCards(self, winds);
 
   MarkMonsterEffectUsed(self);

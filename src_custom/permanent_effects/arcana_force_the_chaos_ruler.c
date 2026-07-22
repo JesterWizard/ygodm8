@@ -195,5 +195,5 @@ void ActivateARCANA_FORCE_THE_CHAOS_RULER(void)
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
-  /* Light Barrier opp-activation lock needs continuous field hook. */
+  /* Printed remainder omitted by this ruleset. */
 }

@@ -191,7 +191,7 @@ unsigned char CanActivateULTIMATE_CONDUCTOR_TYRANNO(void)
   if (zone == NULL || zone->id != ULTIMATE_CONDUCTOR_TYRANNO)
     return FALSE;
 
-  /* multi-attack + DEF burn/send need battle hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT destroy 1 of your monsters → flip all opp face-up monsters face-down DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

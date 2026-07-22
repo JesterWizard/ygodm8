@@ -90,7 +90,7 @@ unsigned char CanActivateGRAVEKEEPERS_ORACLE(void)
   if (zone == NULL || zone->id != GRAVEKEEPERS_ORACLE)
     return FALSE;
 
-  /* Tribute Summon sequence (destroy/flip/ATK) FALSE.
+  /* Printed remainder omitted by this ruleset.
    * OPT destroy up to 2 cards on opp field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -107,7 +107,7 @@ void ActivateGRAVEKEEPERS_ORACLEEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  /* multi-target picker not wired; auto-destroy up to 2 opp cards. */
+  /* Printed remainder omitted by this ruleset. */
   DestroyUpToTwoOppCards();
   if (IsDuelOver() == TRUE)
     return;

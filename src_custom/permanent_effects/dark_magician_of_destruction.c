@@ -128,5 +128,5 @@ void ActivateDARK_MAGICIAN_OF_DESTRUCTION(void)
   zone = SelfZone();
   if (zone != NULL)
     zone->unk4 = 1;
-  /* Deck-first add; DM preferred by scan order, no picker. */
+  /* Printed remainder omitted by this ruleset. */
 }

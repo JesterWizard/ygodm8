@@ -165,7 +165,7 @@ unsigned char CanActivateALECTOR_SOVEREIGN_OF_BIRDS(void)
   if (zone == NULL || zone->id != ALECTOR_SOVEREIGN_OF_BIRDS)
     return FALSE;
 
-  /* Hand SS when opp has 2+ same Attribute uses FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

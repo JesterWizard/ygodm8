@@ -62,7 +62,7 @@ static u8 FindBanishedHero(u8 *outFixedDuelist, u8 *outIndex)
   return FALSE;
 }
 
-/* no RemovedFromPlay_RemoveAt — shift RFP array in place after add.
+/* Printed remainder omitted by this ruleset.
  * local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {

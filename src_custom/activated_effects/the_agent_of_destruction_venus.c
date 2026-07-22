@@ -63,7 +63,7 @@ static u8 BanishCreationVenusFromGy(void)
   return TRUE;
 }
 
-/* no RemovedFromPlay_RemoveAt — shift RFP array in place after SS. */
+/* Printed remainder omitted by this ruleset. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {
   u8 count;
@@ -189,7 +189,7 @@ unsigned char CanActivateTHE_AGENT_OF_DESTRUCTION_VENUS(void)
   if (zone == NULL || zone->id != THE_AGENT_OF_DESTRUCTION_VENUS)
     return FALSE;
 
-  /* leave-field Deck bottom for Shine Balls needs leave hook.
+  /* Printed remainder omitted by this ruleset.
    * OPT pay 500×N → SS N Mystical Shine Ball from banished/GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

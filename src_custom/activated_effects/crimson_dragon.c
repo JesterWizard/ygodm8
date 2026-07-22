@@ -121,7 +121,7 @@ static void ShuffleSelfSsDragon(struct DuelCard *self)
   if (dragonId == CARD_NONE)
     return;
 
-  /* Extra Deck Synchro SS FALSE; Deck Dragon stand-in. */
+  /* Printed remainder omitted by this ruleset. */
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, dragonId, opts);
 }
 

@@ -9,7 +9,7 @@ unsigned char CanActivateTYRANT_BURST_DRAGON(void)
   if (gMonEffect.id != TYRANT_BURST_DRAGON)
     return FALSE;
 
-  /* Multi-attack + equip-to-monster need battle/equip continuous hooks outside this file.
+  /* Printed remainder omitted by this ruleset.
    * Not field-ignition. */
   return FALSE;
 }

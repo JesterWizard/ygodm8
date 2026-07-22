@@ -110,7 +110,7 @@ u8 CanSpecialSummonDarknessNeosphereFromHand(u8 handZone)
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
     return FALSE;
 
-  /* Opp attack declare gate not wired; require 1 field + 1 hand Fiend. */
+  /* Printed remainder omitted by this ruleset. */
   return FieldHasFiendExcludingHandSlot(handZone);
 }
 

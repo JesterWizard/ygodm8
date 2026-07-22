@@ -86,7 +86,7 @@ u8 CanSpecialSummonEvilHeroToxicBubbleFromHand(u8 handZone)
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
-  /* HERO-only SS lock this turn needs summon gate. */
+  /* Printed remainder omitted by this ruleset. */
   return FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) >= 0;
 }
 

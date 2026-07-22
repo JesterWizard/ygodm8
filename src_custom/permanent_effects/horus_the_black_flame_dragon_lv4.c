@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV4(void)
 {
-  /* Control lock needs continuous hook. EP send self → SS LV6 via
+  /* Printed remainder omitted by this ruleset.
    * TryApplyHorusEndPhase when this card destroyed a monster by battle. */
   (void)gActiveEffect;
   return FALSE;

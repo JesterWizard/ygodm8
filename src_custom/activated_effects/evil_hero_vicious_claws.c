@@ -118,7 +118,7 @@ static void TryClawsGySs(u8 fixedDuelist)
   struct DuelSummonOpts opts;
   s8 gyIndex;
 
-  /* Once-per-duel ≈ EffectOpt (turn); duel-scoped latch not tracked. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(EVIL_HERO_VICIOUS_CLAWS))
     return;
   if (ArchlordKristya_IsSpecialSummonLocked())

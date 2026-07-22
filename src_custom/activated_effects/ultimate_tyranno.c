@@ -9,7 +9,7 @@ unsigned char CanActivateULTIMATE_TYRANNO(void)
   if (gMonEffect.id != ULTIMATE_TYRANNO)
     return FALSE;
 
-  /* Multi-attack + Tyranno-only battle phase gate need battle hooks
+  /* Printed remainder omitted by this ruleset.
    * outside this file. Not field-ignition. */
   return FALSE;
 }

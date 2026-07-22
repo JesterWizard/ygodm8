@@ -52,7 +52,7 @@ static u8 IsLikelySpecialSummonedOpp(struct DuelCard *zone)
   if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
     return FALSE;
 
-  /* No SS-origin flag; face-up/ATK stand-in for Special Summoned. */
+  /* Printed remainder omitted by this ruleset. */
   if (IsCardFaceUp(zone))
     return TRUE;
 
@@ -130,7 +130,7 @@ static void TryBounceOppOnHarpieReturn(u8 controller)
   }
 }
 
-/* any other Harpie leave ≈ return-to-hand; upgrade: true bounce-origin flag. */
+/* Printed remainder omitted by this ruleset. */
 static void OnOtherHarpieLeaveWhileConductor(const struct EffectEvent *ev)
 {
   if (ev == NULL || gHideEffectText)
@@ -228,7 +228,7 @@ unsigned char CanActivateHARPIE_CONDUCTOR(void)
   /* Name=Harpie Lady via HarpiePerfumer_TreatsNameAsHarpieLady.
    * Harpie leave → bounce opp SS via HarpieConductor_EnsureInit (leave≈return).
    * OPT bounce below. */
-  /* protect destroy redirect needs destroy-sub hook. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

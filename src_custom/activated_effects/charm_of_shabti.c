@@ -43,7 +43,7 @@ unsigned char CanActivateCHARM_OF_SHABTI(void)
   if (gMonEffect.id != CHARM_OF_SHABTI)
     return FALSE;
 
-  /* Printed effect is hand discard — use FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

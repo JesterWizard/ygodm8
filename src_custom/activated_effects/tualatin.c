@@ -105,7 +105,7 @@ unsigned char CanActivateTUALATIN(void)
   if (zone == NULL || zone->id != TUALATIN)
     return FALSE;
 
-  /* FromHand battle-wipe SS + Summon Attribute lock FALSE.
+  /* Printed remainder omitted by this ruleset.
    * OPT destroy all face-up monsters of first opp monster's Attribute. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -36,7 +36,7 @@ unsigned char CanActivateTHE_AGENT_OF_JUDGMENT_SATURN(void)
   if (zone == NULL || zone->id != THE_AGENT_OF_JUDGMENT_SATURN)
     return FALSE;
 
-  /* skip Battle Phase this turn needs phase-lock hook. tribute
+  /* Printed remainder omitted by this ruleset.
    * self → burn LP difference when Sanctuary face-up and LP higher. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

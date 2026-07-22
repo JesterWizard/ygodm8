@@ -195,7 +195,7 @@ u8 TryActivateArcanaForceVTheHierophantFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* discard only; opp cannot respond to Arcana Summons needs turn flag hook. */
+  /* Printed remainder omitted by this ruleset. */
   if (Duel_DestroyZone(SixCardHand_ZoneAtHandRow(handRow, handZone), ACTIVE_DUELIST, TRUE)
       == DUEL_ACTION_DUEL_OVER)
     return TRUE;

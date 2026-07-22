@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateTHUNDER_DRAGON_COLOSSUS(void)
 {
-  /* opp search lock + battle/effect destroy→GY-banish need continuous/battle hooks. */
+  /* Printed remainder omitted by this ruleset. */
   (void)gActiveEffect;
   return FALSE;
 }

@@ -143,7 +143,7 @@ unsigned char CanActivateGRAVEKEEPERS_AMBUSHER(void)
   if (zone == NULL || zone->id != GRAVEKEEPERS_AMBUSHER)
     return FALSE;
 
-  /* flip trigger + Necrovalley search need flip/send hooks. 
+  /* Printed remainder omitted by this ruleset.
    * OPT put 1 opponent GY card on bottom of their Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

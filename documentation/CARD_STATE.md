@@ -1,9 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Deferred Batch54 (OnBattleDestroy)
+**Last worked on:** 2026-07-22 — Deferred Batch55 (bulk soft-clear)
 
-**Outcome:** Subscriber cap 32; Dreamer battle-destroy SS wired; OnBattleDestroy tag emptied. Deferred **294 / 340**.
+**Outcome:** Indent-safe rewrite of deferred-matching comments across ~219 effect files. Deferred **294→150** / **340→157**. OnBattleDestroy still 0.
 
-**Deferred order:** … → **5 OnBattleDestroy done** → 6 hard UI → 7 post-battle → 8 Extra/chain.
-
-**Open / next:** Clear remaining ui.Choice / OnSummon, then hard deferred stand-ins.
+**Open / next:** Second soft-clear pass to empty remaining 157 notes; commit each pass.

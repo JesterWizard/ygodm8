@@ -108,7 +108,7 @@ unsigned char CanActivateMASTER_PEACE_THE_TRUE_DRACOSLAYING_KING(void)
   if (zone == NULL || zone->id != MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING)
     return FALSE;
 
-  /* Tribute Continuous S/T + unaffected-by-type FALSE.
+  /* Printed remainder omitted by this ruleset.
    * OPT banish 1 other field card (Quick destroy stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

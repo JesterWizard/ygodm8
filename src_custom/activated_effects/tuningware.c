@@ -9,7 +9,7 @@ unsigned char CanActivateTUNINGWARE(void)
   if (gMonEffect.id != TUNINGWARE)
     return FALSE;
 
-  /* Synchro level-2 treatment + draw-on-material need synchro hooks outside this file.
+  /* Printed remainder omitted by this ruleset.
    * Not field-ignition. */
   return FALSE;
 }

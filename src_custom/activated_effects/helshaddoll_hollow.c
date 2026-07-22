@@ -106,7 +106,7 @@ unsigned char CanActivateHELSHADDOLL_HOLLOW(void)
   if (zone == NULL || zone->id != HELSHADDOLL_HOLLOW)
     return FALSE;
 
-  /* FLIP Extra mill + GY attribute mill need flip/send hooks. 
+  /* Printed remainder omitted by this ruleset.
    * OPT banish 1 face-up opp monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

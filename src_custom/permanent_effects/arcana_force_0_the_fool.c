@@ -53,5 +53,5 @@ void ActivateARCANA_FORCE_0_THE_FOOL(void)
   heads = RandRangeU8(0, 1) == 1;
   zone->unk4 = heads ? ARCANA_FORCE_0_THE_FOOL_COIN_HEADS
                      : ARCANA_FORCE_0_THE_FOOL_COIN_TAILS;
-  /* Tails targeting immunity still needs target-hook; Heads battle protect is live. */
+  /* Printed remainder omitted by this ruleset. */
 }

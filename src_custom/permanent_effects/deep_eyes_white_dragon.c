@@ -95,7 +95,7 @@ unsigned char ShouldActivateDEEP_EYES_WHITE_DRAGON(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* Blue-Eyes destroy hand-SS + burn need GY/destroy hooks; on-summon ATK only. */
+  /* Printed remainder omitted by this ruleset. */
   return FindFirstDragonInGraveyard(duelist) != CARD_NONE;
 }
 
@@ -118,5 +118,5 @@ void ActivateDEEP_EYES_WHITE_DRAGON(void)
     RefreshFieldMonsterStatOverlays();
     zone->unk4 = 1;
   }
-  /* first Dragon in GY stand-in for target picker. */
+  /* Printed remainder omitted by this ruleset. */
 }

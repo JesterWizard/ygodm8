@@ -10,7 +10,7 @@ unsigned char CanActivateGRAVEKEEPERS_COMMANDANT(void)
   if (gMonEffect.id != GRAVEKEEPERS_COMMANDANT)
     return FALSE;
 
-  /* Printed effect is hand discard — use FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

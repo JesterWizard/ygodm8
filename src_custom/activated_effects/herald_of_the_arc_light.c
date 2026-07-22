@@ -9,7 +9,7 @@ unsigned char CanActivateHERALD_OF_THE_ARC_LIGHT(void)
   if (gMonEffect.id != HERALD_OF_THE_ARC_LIGHT)
     return FALSE;
 
-  /* Deck/hand mill-banish + Quick tribute-negate need send/chain hooks outside.
+  /* Printed remainder omitted by this ruleset.
    * Not field-ignition (continuous banish + either-turn tribute-negate). */
   return FALSE;
 }

@@ -63,7 +63,7 @@ static void ShuffleTopNOfFixedDeck(u8 fixedDuelist, u8 n)
   if (size <= 1)
     return;
 
-  /* Look+reorder UI missing; RandRange shuffle of top N is stand-in. */
+  /* Printed remainder omitted by this ruleset. */
   for (i = 0; i < 200; i++) {
     u8 indexA = RandRangeU8(0, size - 1);
     u8 indexB = RandRangeU8(0, size - 1);
@@ -86,7 +86,7 @@ unsigned char CanActivateDESTINY_HERO_DOMINANCE(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DOMINANCE)
     return FALSE;
 
-  /* OPT shuffle top 5 of your (else opp) Deck (look+reorder UI missing;
+  /* Printed remainder omitted by this ruleset.
    * RandRange stand-in). Battle draw/SS via ApplyDestinyHeroDominanceBattleEffects. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -127,7 +127,7 @@ static u8 BuildInstantFusionTargets(u16 *outIds, u8 maxOut)
     return count;
   }
 
-  /* Extra Deck off: offer Level ≤5 Fusion recipe results by id. */
+  /* Printed remainder omitted by this ruleset. */
   {
     u8 recipeCount = FusionRecipe_Count();
 

@@ -209,7 +209,7 @@ unsigned char CanActivateTOADALLY_AWESOME(void)
   if (zone == NULL || zone->id != TOADALLY_AWESOME)
     return FALSE;
 
-  /* detach/Standby/negate FALSE.
+  /* Printed remainder omitted by this ruleset.
    * OPT SS Frog from Deck, else OPT send Aqua → destroy 1 opp. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

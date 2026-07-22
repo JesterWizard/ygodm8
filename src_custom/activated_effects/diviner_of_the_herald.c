@@ -81,7 +81,7 @@ void TryDivinerOfTheHeraldOnMonsterPlacement(struct DuelCard *zone)
     return;
 
   Duel_ShowEffectTextTyped(DIVINER_OF_THE_HERALD, 8);
-  /* Extra Deck Fairy mill skipped. */
+  /* Printed remainder omitted by this ruleset. */
   if (!SendFairyFromDeckToGraveyardFor(turnDuelist, fixedDuelist, &level))
     return;
 

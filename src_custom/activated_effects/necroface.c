@@ -104,7 +104,7 @@ void ActivateNECROFACEEffect(void)
   if (!ShuffleAllBanishedIntoDecks(&shuffled))
     return;
 
-  /* tempStage unit is ~500 ATK, not printed +100; upgrade: exact overlay. */
+  /* Printed remainder omitted by this ruleset. */
   if (shuffled > 0 && self->tempStage < 127 - (s8)shuffled)
     self->tempStage += (s8)shuffled;
 

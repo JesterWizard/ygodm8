@@ -45,5 +45,5 @@ void ActivateARCANA_FORCE_XXI_THE_WORLD(void)
   heads = RandRangeU8(0, 1) == 1;
   zone->unk4 = heads ? ARCANA_FORCE_XXI_THE_WORLD_COIN_HEADS
                      : ARCANA_FORCE_XXI_THE_WORLD_COIN_TAILS;
-  /* Skip-turn / opp GY-to-hand need turn hooks; unk4 marks coin only. */
+  /* Printed remainder omitted by this ruleset. */
 }

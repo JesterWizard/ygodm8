@@ -54,7 +54,7 @@ unsigned char CanActivateGRAVEKEEPERS_SUPERNATURALIST(void)
   if (zone == NULL || zone->id != GRAVEKEEPERS_SUPERNATURALIST)
     return FALSE;
 
-  /* material ATK gain + Necrovalley destroy protect + EP schedule FALSE.
+  /* Printed remainder omitted by this ruleset.
    * OPT add Gravekeeper or Necrovalley from Deck now (EP add stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

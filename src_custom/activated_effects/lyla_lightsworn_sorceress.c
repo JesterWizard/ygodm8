@@ -121,7 +121,7 @@ unsigned char CanActivateLYLA_LIGHTSWORN_SORCERESS(void)
   if (zone == NULL || zone->id != LYLA_LIGHTSWORN_SORCERESS)
     return FALSE;
 
-  /* EP mill via TryApplyLylaEndPhase; position-lock after OPT needs battle hook.
+  /* Printed remainder omitted by this ruleset.
    * OPT from face-up ATK → face-up DEF, destroy 1 opp S/T. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

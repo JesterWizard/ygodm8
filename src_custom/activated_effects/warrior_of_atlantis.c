@@ -10,7 +10,7 @@ unsigned char CanActivateWARRIOR_OF_ATLANTIS(void)
   if (gMonEffect.id != WARRIOR_OF_ATLANTIS)
     return FALSE;
 
-  /* Printed effect is hand discard — use FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

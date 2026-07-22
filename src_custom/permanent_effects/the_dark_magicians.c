@@ -151,7 +151,7 @@ static u8 IsDarkMagiciansGraveyardTrigger(void)
 
 unsigned char ShouldActivateTHE_DARK_MAGICIANS(void)
 {
-  /* OPT draw on S/T activation needs chain/OPT hooks. */
+  /* Printed remainder omitted by this ruleset. */
   return IsDarkMagiciansGraveyardTrigger();
 }
 
@@ -174,5 +174,5 @@ void ActivateTHE_DARK_MAGICIANS(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
-  /* Deck-first SS order; hand/GY picker not wired. */
+  /* Printed remainder omitted by this ruleset. */
 }

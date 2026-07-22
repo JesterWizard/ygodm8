@@ -196,7 +196,7 @@ unsigned char CanActivateTEST_PANTHER(void)
   if (zone == NULL || zone->id != TEST_PANTHER)
     return FALSE;
 
-  /* Link Summon trigger for search needs summon hook.
+  /* Printed remainder omitted by this ruleset.
    * OPT search GB from Deck, else bounce GB → SS different GB. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

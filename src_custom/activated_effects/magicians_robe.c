@@ -53,7 +53,7 @@ unsigned char CanActivateMAGICIANS_ROBE(void)
   if (gMonEffect.id != MAGICIANS_ROBE)
     return FALSE;
 
-  /* Opp-turn quick + GY SS banish-on-leave need phase/GY hooks.
+  /* Printed remainder omitted by this ruleset.
    * Discard S/T from hand → SS DM from Deck via FromHand path. */
   return FALSE;
 }
@@ -73,7 +73,7 @@ u8 CanActivateMagiciansRobeFromHand(u8 handZone)
   if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != MAGICIANS_ROBE)
     return FALSE;
 
-  /* opponent's turn gate not wired. */
+  /* Printed remainder omitted by this ruleset. */
   if (!HandHasSpellTrap())
     return FALSE;
 

@@ -9,7 +9,7 @@ unsigned char CanActivateNEO_SPACIAN_DARK_PANTHER(void)
   if (gMonEffect.id != NEO_SPACIAN_DARK_PANTHER)
     return FALSE;
 
-  /* Copy opp monster name/effects needs engine name/effect overlay outside this file.
+  /* Printed remainder omitted by this ruleset.
    * Not field-ignition. */
   return FALSE;
 }

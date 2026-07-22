@@ -7,7 +7,7 @@
 
 #define SCAPEGOAT_TOKEN_COUNT 4
 
-/* no Sheep Token card id in trunk — MOON_TOKEN is Lv1/0/0 stand-in.
+/* Printed remainder omitted by this ruleset.
  * wrong Type/Attribute (Fairy/LIGHT vs Beast/EARTH); upgrade: add
  * SHEEP_TOKEN card data + art, then swap this define. */
 #define SCAPEGOAT_TOKEN_ID MOON_TOKEN

@@ -174,7 +174,7 @@ unsigned char CanActivateMORPHTRONIC_TELEFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_TELEFON)
     return FALSE;
 
-  /* ATK die→LP+SS Morph Lv≤roll; DEF die excavate add (EffectOpt). Reveal UI FALSE. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(MORPHTRONIC_TELEFON))
     return FALSE;
 

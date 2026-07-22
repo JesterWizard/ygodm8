@@ -64,7 +64,7 @@ unsigned char CanActivateAMAZONESS_QUEEN(void)
   if (gMonEffect.id != AMAZONESS_QUEEN)
     return FALSE;
 
-  /* Continuous battle protection — not ignition-activatable. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

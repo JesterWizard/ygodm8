@@ -56,7 +56,7 @@ unsigned char ShouldActivateDRAGON_SPIRIT_OF_WHITE(void)
   if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks. */
+  /* Printed remainder omitted by this ruleset. */
   return EffectSel_ExistsByCond(EFFECT_COND_OPP_BACKROW_SPELL_TRAP);
 }
 

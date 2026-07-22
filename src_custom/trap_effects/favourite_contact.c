@@ -45,7 +45,7 @@ APPEND_TEXT void EffectFAVOURITE_CONTACT(void)
 
   Duel_ShowTrapResponseText(FAVOURITE_CONTACT, gTrapEffectData.originCardId);
 
-  /* Extra Deck Fusion ignoring summon conditions + materials to
+  /* Printed remainder omitted by this ruleset.
    * Deck bottom need fusion recipe API; return up to 2 HERO/Neos/
    * Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free. */
 

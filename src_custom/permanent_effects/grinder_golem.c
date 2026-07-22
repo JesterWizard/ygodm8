@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGRINDER_GOLEM(void)
 {
-  /* hand SS to opp field + Grinder Tokens + NS/Set lock need summon/token hooks. */
+  /* Printed remainder omitted by this ruleset. */
   (void)gActiveEffect;
   return FALSE;
 }

@@ -50,7 +50,7 @@ static void ResolveTunerMark(u8 fixedRow, u8 fixedCol)
   if (!IsFaceUpMonsterTarget(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* real Tuner flag / Equip double-attack need Synchro/equip hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT mark unk4 as Tuner stand-in. */
   zone->unk4 |= 0x40;
 
@@ -91,7 +91,7 @@ void TryMorphtronicEarfonOnMonsterPlacement(struct DuelCard *zone, enum DuelSumm
   if (zone == NULL || zone->id != MORPHTRONIC_EARFON || !SummonModeIsSpecial(mode))
     return;
 
-  /* Equip 2-attacks FALSE. On-SS mark self as Tuner (unk4). */
+  /* Printed remainder omitted by this ruleset. */
   zone->unk4 |= 0x40;
   Duel_ShowEffectTextTyped(MORPHTRONIC_EARFON, 8);
   UpdateDuelGfxExceptField();

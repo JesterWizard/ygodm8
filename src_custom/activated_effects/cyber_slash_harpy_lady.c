@@ -195,7 +195,7 @@ unsigned char CanActivateCYBER_SLASH_HARPY_LADY(void)
   if (zone == NULL || zone->id != CYBER_SLASH_HARPY_LADY)
     return FALSE;
 
-  /* Quick on S/T activation + Synchro/name hooks missing.
+  /* Printed remainder omitted by this ruleset.
    * OPT bounce 1 opp card or your Harpie to hand (EffectOpt). */
   if (EffectOpt_IsUsed(CYBER_SLASH_HARPY_LADY))
     return FALSE;

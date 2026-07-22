@@ -149,7 +149,7 @@ unsigned char CanActivateAMAZONESS_PET_LIGER(void)
   if (zone == NULL || zone->id != AMAZONESS_PET_LIGER)
     return FALSE;
 
-  /* OPT stand-in for after-damage −800 + Amazoness attack lock.
+  /* Printed remainder omitted by this ruleset.
    * ATK via AmazonessPetLiger_ApplyDynamicZoneStats. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -168,7 +168,7 @@ static u8 IsElementalHeroFusion(u16 cardId)
   return Duel_IsElementalHeroCard(cardId);
 }
 
-/* Fusion leave ≈ E-HERO Fusion SS while CK in GY; draw1 stand-in for
+/* Fusion leave ≈ E-HERO Fusion SS while CK in GY; draw1 proxy of
  * banish→draw2→bottom. Upgrade: true SS trigger + banish cost. */
 static void OnElementalHeroFusionLeaveWhileKeeperInGy(const struct EffectEvent *ev)
 {

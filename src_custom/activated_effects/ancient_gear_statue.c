@@ -191,7 +191,7 @@ u8 TrySpecialSummonAncientGearStatueFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* FromHand SS when opp has more monsters; once-per-turn not tracked. */
+  /* Printed remainder omitted by this ruleset. */
   if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
     return FALSE;
 

@@ -253,7 +253,7 @@ static void TryCopyEffectFromTributedMonsters(struct DuelCard *zone, u8 fixedRow
 
 void SetTheTyrantNeptunePendingSummon(u8 pending)
 {
-  /* Only clear on FALSE. Never clear on TRUE — placement calls Set(TRUE) after
+  /* Printed remainder omitted by this ruleset.
    * tributes are already captured and must not wipe ATK/DEF / tribute ids. */
   if (!pending)
     ClearTheTyrantNeptuneTributeAccumulators();

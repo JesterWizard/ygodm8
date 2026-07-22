@@ -19,7 +19,7 @@ unsigned char CanActivateTOHUSHADDOLL_GRYSTA(void)
   if (zone == NULL || zone->id != TOHUSHADDOLL_GRYSTA)
     return FALSE;
 
-  /* FLIP copy + GY Fusion-by-banish need flip/GY hooks.
+  /* Printed remainder omitted by this ruleset.
    * OPT add Shaddoll Fusion from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

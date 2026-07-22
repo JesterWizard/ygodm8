@@ -203,7 +203,7 @@ static void BeginDestroyTargeting(u8 originRow, u8 originCol)
   u8 targetRow;
   u8 targetCol;
 
-  /* Exclude Core before scanning — dest is the origin for PickZone validators. */
+  /* Printed remainder omitted by this ruleset. */
   gDuelCursor.destY = originRow;
   gDuelCursor.destX = originCol;
 
@@ -289,7 +289,7 @@ void ResolveElementalHeroCoreBattledEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* Opponent turn: auto-destroy (PickZone softlocks in AI_Main). */
+  /* Printed remainder omitted by this ruleset. */
   if (WhoseTurn() != DUEL_PLAYER) {
     DestroyFirstAutoTarget(originRow, originCol);
     return;

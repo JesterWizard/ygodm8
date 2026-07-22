@@ -35,7 +35,7 @@ unsigned char CanActivateANCIENT_GEAR(void)
   if (gMonEffect.id != ANCIENT_GEAR)
     return FALSE;
 
-  /* Printed SS is from hand — use FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

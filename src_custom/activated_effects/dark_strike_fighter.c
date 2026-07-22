@@ -124,7 +124,7 @@ unsigned char CanActivateDARK_STRIKE_FIGHTER(void)
   if (zone == NULL || zone->id != DARK_STRIKE_FIGHTER)
     return FALSE;
 
-  /* Main Phase 1 gate not wired; allow once via usage any main phase. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

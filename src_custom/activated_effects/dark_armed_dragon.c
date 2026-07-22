@@ -303,7 +303,7 @@ void ActivateDARK_ARMED_DRAGONEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* Cost: banish 1 DARK monster from own GY (auto-picks first found) */
+  /* Printed remainder omitted by this ruleset. */
   if (!FindDarkMonsterInGraveyard(ownerFixed, &banishIndex))
     return;
 
@@ -314,7 +314,7 @@ void ActivateDARK_ARMED_DRAGONEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* Auto-target. No GY picker (DeckMenu screen switch corrupts VRAM
+  /* Printed remainder omitted by this ruleset.
      from inside monster effect handler) and no PickZone cursor state (200
      conflicts with game loop after MonsterActionMenu case 4 returns).
      Picks the best field target via AiPickTarget logic.

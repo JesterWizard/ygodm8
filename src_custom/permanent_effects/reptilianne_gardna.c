@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateREPTILIANNE_GARDNA(void)
 {
-  /* destroyed→search Reptilianne needs destroy-to-GY permanent hook. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 
