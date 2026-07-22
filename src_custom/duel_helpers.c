@@ -120,12 +120,23 @@ u8 MajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 TheTyrantNeptune_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessPetLiger_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 AmazonessBabyTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 AncientSacredWyvern_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AtlanteanAttackSquad_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 BootUpSoldierDreadDynamo_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ColossalFighter_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 CyberEltanin_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GoldenHomunculus_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 HeliosDuoMegistus_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 HeliosThePrimordialSun_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 HeliosTriceMegistus_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 MontageDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 MorphtronicClocken_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 MorphtronicVideon_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 MucusYolk_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 MagnaDrago_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 TheCalculator_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 TyrannoInfinity_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ThebanNightmare_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 TheAgentOfForceMars_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 UnstoppableExodiaIncarnate_ApplyStat(struct DuelCard *zone);
@@ -1186,8 +1197,9 @@ u8 Duel_CardHasMonsterType(u16 cardId, u8 monsterType)
   if (!Duel_CardIsMonster(cardId))
     return FALSE;
 
-  SetCardInfo(cardId);
-  return gCardInfo.type == monsterType;
+  /* ponytail: never SetCardInfo here — ApplyFieldZoneStats overlays call this
+   * after stage/field ATK is computed; SetCardInfo would wipe them back to print. */
+  return gCardData_NEW[cardId].type == monsterType;
 }
 
 u8 Duel_CardNameContains(u16 cardId, const char *needle)
@@ -1195,6 +1207,10 @@ u8 Duel_CardNameContains(u16 cardId, const char *needle)
   const u8 *name;
   u8 needleLen = 0;
   u8 i;
+  u16 savedAtk;
+  u16 savedDef;
+  u16 savedId;
+  u8 match;
 
   if (cardId == CARD_NONE || needle == NULL)
     return FALSE;
@@ -1256,22 +1272,36 @@ u8 Duel_CardNameContains(u16 cardId, const char *needle)
       && needle[12] == 'u' && needle[13] == 's')
     return TRUE;
 
+  /* ponytail: SetCardInfo clobbers stage/field ATK·DEF mid-overlay; restore. */
+  savedAtk = gCardInfo.atk;
+  savedDef = gCardInfo.def;
+  savedId = gCardInfo.id;
+
   SetCardInfo(cardId);
   name = gCardInfo.name;
-  if (name == NULL)
-    return FALSE;
+  match = FALSE;
+  if (name != NULL) {
+    for (i = 0; name[i] != 0; i++) {
+      u8 j = 0;
 
-  for (i = 0; name[i] != 0; i++) {
-    u8 j = 0;
+      while (j < needleLen && name[i + j] == (u8)needle[j])
+        j++;
 
-    while (j < needleLen && name[i + j] == (u8)needle[j])
-      j++;
-
-    if (j == needleLen)
-      return TRUE;
+      if (j == needleLen) {
+        match = TRUE;
+        break;
+      }
+    }
   }
 
-  return FALSE;
+  if (savedId != CARD_NONE) {
+    if (gCardInfo.id != savedId)
+      SetCardInfo(savedId);
+    gCardInfo.atk = savedAtk;
+    gCardInfo.def = savedDef;
+  }
+
+  return match;
 }
 
 u8 Duel_IsAmazonessCard(u16 cardId)
@@ -1567,13 +1597,24 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { GYAKU_GIRE_PANDA, GyakuGirePanda_ApplyDynamicZoneStats },
   { SERAPHIM_BLASTER, SeraphimBlaster_ApplyDynamicZoneStats },
   { AMAZONESS_TIGER, AmazonessTiger_ApplyDynamicZoneStats },
+  { AMAZONESS_BABY_TIGER, AmazonessBabyTiger_ApplyDynamicZoneStats },
   { AMAZONESS_PET_LIGER, AmazonessPetLiger_ApplyDynamicZoneStats },
+  { ANCIENT_SACRED_WYVERN, AncientSacredWyvern_ApplyDynamicZoneStats },
   { ATLANTEAN_ATTACK_SQUAD, AtlanteanAttackSquad_ApplyDynamicZoneStats },
   { BOOT_UP_SOLDIER_DREAD_DYNAMO, BootUpSoldierDreadDynamo_ApplyDynamicZoneStats },
+  { COLOSSAL_FIGHTER, ColossalFighter_ApplyDynamicZoneStats },
   { CYBER_ELTANIN, CyberEltanin_ApplyDynamicZoneStats },
   { GOLDEN_HOMUNCULUS, GoldenHomunculus_ApplyDynamicZoneStats },
+  { HELIOS_DUO_MEGISTUS, HeliosDuoMegistus_ApplyDynamicZoneStats },
   { HELIOS_THE_PRIMORDIAL_SUN, HeliosThePrimordialSun_ApplyDynamicZoneStats },
+  { HELIOS_TRICE_MEGISTUS, HeliosTriceMegistus_ApplyDynamicZoneStats },
+  { MONTAGE_DRAGON, MontageDragon_ApplyDynamicZoneStats },
+  { MORPHTRONIC_CLOCKEN, MorphtronicClocken_ApplyDynamicZoneStats },
+  { MORPHTRONIC_VIDEON, MorphtronicVideon_ApplyDynamicZoneStats },
+  { MUCUS_YOLK, MucusYolk_ApplyDynamicZoneStats },
+  { MAGNA_DRAGO, MagnaDrago_ApplyDynamicZoneStats },
   { THE_CALCULATOR, TheCalculator_ApplyDynamicZoneStats },
+  { TYRANNO_INFINITY, TyrannoInfinity_ApplyDynamicZoneStats },
   { THEBAN_NIGHTMARE, ThebanNightmare_ApplyDynamicZoneStats },
   { THE_AGENT_OF_FORCE_MARS, TheAgentOfForceMars_ApplyDynamicZoneStats },
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, UnstoppableExodiaIncarnate_ApplyStat },

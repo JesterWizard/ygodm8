@@ -63,13 +63,17 @@ class MiniCardStatOverlayTests(unittest.TestCase):
         self.assertIn("ZoneShowsCombatStats(zone)", apply_body)
         self.assertIn("GetStageModifiedStat_Hook", apply_body)
         self.assertIn("ComputeFinalStage(zone)", apply_body)
+        dyn_pos = apply_body.index("Duel_TryApplyDynamicZoneStats(zone)")
+        after_dyn = apply_body[dyn_pos : dyn_pos + 500]
+        self.assertIn("ComputeFinalStage(zone)", after_dyn)
+        self.assertIn("GetStageModifiedStat_Hook", after_dyn)
         self.assertIn("gSetFinalStatZone = NULL", apply_body)
         self.assertNotIn("SetFinalStat(&statMod)", apply_body)
         self.assertNotIn("GetFinalStage(zone)", apply_body)
         self.assertNotIn("gCardInfo.spellEffect != SPELL_EFFECT_MONSTER", apply_body)
 
         set_final_body = extract_function_body(card_hooks, "SetFinalStat__Replacement")
-        self.assertIn("ApplyGreatMajuGarzettStatsToCardInfo(ptr)", set_final_body)
+        self.assertIn("Duel_TryApplyDynamicStatMod(ptr)", set_final_body)
         self.assertIn("GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER", set_final_body)
         self.assertIn("gSetFinalStatZone->id == ptr->card", set_final_body)
         self.assertIn("ComputeFinalStage(gSetFinalStatZone)", set_final_body)
@@ -77,6 +81,35 @@ class MiniCardStatOverlayTests(unittest.TestCase):
         self.assertNotIn("gCardInfo.spellEffect == SPELL_EFFECT_MONSTER", set_final_body)
 
         self.assertNotIn("ShouldShowMiniCardCombatStats", mini_card_hooks)
+
+    def test_overlay_archetype_helpers_avoid_get_type_group(self):
+        """GetTypeGroup→SetCardInfo wipes stage ATK mid-ApplyFieldZoneStats (Hourglass)."""
+        paths = [
+            ROOT / "src_custom" / "spell_effects" / "ancient_gear_castle.c",
+            ROOT / "src_custom" / "activated_effects" / "spined_gillman.c",
+            ROOT / "src_custom" / "activated_effects" / "morphtronic_radion.c",
+            ROOT / "src_custom" / "spell_effects" / "colosseum_cage_of_the_gladiator_beasts.c",
+            ROOT / "src_custom" / "spell_effects" / "morphtronic_map.c",
+            ROOT / "src_custom" / "spell_effects" / "necrovalley.c",
+            ROOT / "src_custom" / "spell_effects" / "neo_space.c",
+        ]
+        for path in paths:
+            source = path.read_text()
+            with self.subTest(path=path.name):
+                # Monster-gate helpers used from Apply* overlays must use Duel_CardIsMonster.
+                self.assertNotRegex(
+                    source,
+                    r"GetTypeGroup\(cardId\)\s*!=\s*TYPE_GROUP_MONSTER",
+                    msg=f"{path.name} still gates monsters via GetTypeGroup",
+                )
+
+        helpers = (ROOT / "src_custom" / "duel_helpers.c").read_text()
+        has_monster_type = extract_function_body(helpers, "Duel_CardHasMonsterType")
+        self.assertIn("gCardData_NEW[cardId].type", has_monster_type)
+        self.assertNotIn("SetCardInfo(cardId)", has_monster_type)
+        name_contains = extract_function_body(helpers, "Duel_CardNameContains")
+        self.assertIn("savedAtk", name_contains)
+        self.assertIn("gCardInfo.atk = savedAtk", name_contains)
 
     def test_hourglass_defers_gfx_until_after_effect_text(self):
         source = HOURGLASS_EFFECT.read_text()
@@ -92,8 +125,7 @@ class MiniCardStatOverlayTests(unittest.TestCase):
         source = MINI_CARD_HOOKS.read_text()
         body = extract_function_body(source, "RefreshFieldMonsterStatOverlays")
 
-        self.assertIn("sub_80572A8(tilePtr, zone)", body)
-        self.assertIn("sub_805733C(tilePtr, zone)", body)
+        self.assertIn("StampFieldCardAtkDefForZone(tilePtr, zone)", body)
         self.assertIn("StampFieldCardStage(tilePtr, ComputeFinalStage(zone))", body)
 
     def test_battle_action_stats_resync_from_field_zones(self):

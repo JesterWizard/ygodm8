@@ -115,10 +115,28 @@ class TheTyrantNeptuneTests(unittest.TestCase):
         self.assertIn("sCopiedPassiveAtkBonuses", helpers_c)
 
     def test_neptune_applies_stage_to_dynamic_stats(self):
-        neptune = NEPTUNE_EFFECT.read_text()
+        """Stage comes from ApplyFieldZoneStats after dynamic path (Hourglass etc.)."""
+        card_hooks = (ROOT / "src_custom" / "card_hooks.c").read_text()
+        apply_match = re.search(
+            r"void ApplyFieldZoneStatsToCardInfo\([^)]*\)\s*\{",
+            card_hooks,
+        )
+        self.assertIsNotNone(apply_match)
+        start = apply_match.end()
+        depth = 1
+        index = start
+        while index < len(card_hooks) and depth:
+            if card_hooks[index] == "{":
+                depth += 1
+            elif card_hooks[index] == "}":
+                depth -= 1
+            index += 1
+        apply_body = card_hooks[start : index - 1]
+        dyn_pos = apply_body.index("Duel_TryApplyDynamicZoneStats(zone)")
+        after_dyn = apply_body[dyn_pos : dyn_pos + 500]
+        self.assertIn("ComputeFinalStage(zone)", after_dyn)
+        self.assertIn("GetStageModifiedStat_Hook", after_dyn)
         helpers_h = DUEL_HELPERS_H.read_text()
-        self.assertIn("ComputeFinalStage(zone)", neptune)
-        self.assertIn("Duel_StageModifiedStat", neptune)
         self.assertIn("Duel_StageModifiedStat", helpers_h)
 
     def test_passives_register_copied_atk_bonus(self):

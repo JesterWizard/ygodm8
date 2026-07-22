@@ -61,7 +61,8 @@ unsigned char CanActivateDESTINY_HERO_DRILLDARK(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DRILLDARK)
     return FALSE;
 
-  /* ponytail: on-Summon trigger + piercing need summon/battle hooks.
+  /* Pierce via ApplySimplePiercersBattleEffect.
+   * ponytail: on-Summon trigger need summon hook.
    * Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -2,65 +2,110 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dark_blade_the_dragon_knight.h"
 #include "expanded_graveyard.h"
-#include "monster_effect_usage.h"
+
+struct DarkBladeActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct DarkBladeActionData sActionData;
 
 void UpdateDuelGfxExceptField(void);
 
-static u8 FixedDuelistForInactive(void)
+static u8 DidDarkBladeDealBattleDamage(u8 attackerFixed)
 {
-  if (gTurnDuelistBattleState[INACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
+  u16 damage;
 
-  return DUEL_OPPONENT;
+  if (attackerFixed == DUEL_PLAYER) {
+    if (sActionData.playerCardId != DARK_BLADE_THE_DRAGON_KNIGHT)
+      return FALSE;
+    if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 4)
+      return FALSE;
+    damage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];
+  } else {
+    if (sActionData.opponentCardId != DARK_BLADE_THE_DRAGON_KNIGHT)
+      return FALSE;
+    if (sActionData.id != 5 && sActionData.id != 6)
+      return FALSE;
+    damage = gUnk2023EA0.unk0[0].initialLifePoints - gDuelLifePoints[DUEL_PLAYER];
+  }
+  return damage > 0;
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+  return INACTIVE_DUELIST;
+}
+
+static void BanishUpTo3OppMonstersFromGy(u8 oppFixed)
+{
+  u8 banished = 0;
+  u8 i;
+  u8 oppTurn = TurnDuelistForFixed(oppFixed);
+
+  if (!GraveyardExpand_IsEnabled()) {
+    if (GetTypeGroup(gDuel.duelistbattleState[oppFixed].graveyard) == TYPE_GROUP_MONSTER) {
+      Duel_ShowEffectTextTyped(DARK_BLADE_THE_DRAGON_KNIGHT, 2);
+      Duel_BanishGraveyardTopTurn(oppTurn);
+      UpdateDuelGfxExceptField();
+    }
+    return;
+  }
+
+  for (i = GraveyardExpand_GetCount(oppFixed); i > 0 && banished < 3; i--) {
+    if (GetTypeGroup(GraveyardExpand_GetCardAt(oppFixed, i - 1)) != TYPE_GROUP_MONSTER)
+      continue;
+    if (banished == 0)
+      Duel_ShowEffectTextTyped(DARK_BLADE_THE_DRAGON_KNIGHT, 2);
+    Duel_BanishGraveyardAtFixed(oppFixed, i - 1);
+    banished++;
+  }
+
+  if (banished > 0)
+    UpdateDuelGfxExceptField();
+}
+
+void ApplyDarkBladeTheDragonKnightBattleEffect(void)
+{
+  if (DidDarkBladeDealBattleDamage(DUEL_PLAYER)) {
+    BanishUpTo3OppMonstersFromGy(DUEL_OPPONENT);
+    return;
+  }
+  if (DidDarkBladeDealBattleDamage(DUEL_OPPONENT))
+    BanishUpTo3OppMonstersFromGy(DUEL_PLAYER);
 }
 
 unsigned char CanActivateDARK_BLADE_THE_DRAGON_KNIGHT(void)
 {
-  struct DuelCard *zone;
-  u8 fixedOpp;
-  u8 i;
-
   if (gMonEffect.id != DARK_BLADE_THE_DRAGON_KNIGHT)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != DARK_BLADE_THE_DRAGON_KNIGHT)
-    return FALSE;
-
-  /* ponytail: battle-damage trigger. Ceiling: once via usage if opp GY has
-   * monsters. */
-  if (!CanUseMonsterEffect(zone) || !GraveyardExpand_IsEnabled())
-    return FALSE;
-
-  fixedOpp = FixedDuelistForInactive();
-  for (i = 0; i < GraveyardExpand_GetCount(fixedOpp); i++) {
-    if (GetTypeGroup(GraveyardExpand_GetCardAt(fixedOpp, i)) == TYPE_GROUP_MONSTER)
-      return TRUE;
-  }
-
+  /* Battle-damage GY banish via ApplyDarkBladeTheDragonKnightBattleEffect. */
   return FALSE;
 }
 
 void ActivateDARK_BLADE_THE_DRAGON_KNIGHTEffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u8 fixedOpp = FixedDuelistForInactive();
-  u8 banished = 0;
-  u8 i;
-
   Duel_ShowEffectTextTyped(DARK_BLADE_THE_DRAGON_KNIGHT, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE || !GraveyardExpand_IsEnabled())
-    return;
-
-  for (i = GraveyardExpand_GetCount(fixedOpp); i > 0 && banished < 3; i--) {
-    if (GetTypeGroup(GraveyardExpand_GetCardAt(fixedOpp, i - 1)) != TYPE_GROUP_MONSTER)
-      continue;
-    Duel_BanishGraveyardAtFixed(fixedOpp, i - 1);
-    banished++;
-  }
-
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
 }

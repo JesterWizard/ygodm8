@@ -69,6 +69,16 @@
 #include "dragon_s_rage.h"
 #include "meteorain.h"
 #include "marshmallon.h"
+#include "morphtronic_boarden.h"
+#include "evil_hero_inferno_wing.h"
+#include "chainsaw_insect.h"
+#include "x_saber_airbellum.h"
+#include "magna_drago.h"
+#include "dark_blade_the_dragon_knight.h"
+#include "mucus_yolk.h"
+#include "spell_striker.h"
+#include "beast_machine_king_barbaros_ur.h"
+#include "neos_wiseman.h"
 #include "attack_pheromones.h"
 #include "backup_squad.h"
 #include "berserker_soul.h"
@@ -226,6 +236,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplySanctuaryInTheSkyBattleDamageProtection();
   ApplyAmazonessSwordsWomanBattleDamageRedirect();
   ApplyYubelBattleEffects();
+  ApplySpellStrikerNoSelfBattleDamage();
+  ApplyBeastMachineKingBarbarosUrNoOppBattleDamage();
 
   if (sActionData.playerCardId == STONE_STATUE_OF_THE_AZTECS && sActionData.id == 5) {
     damage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];
@@ -285,6 +297,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (CharmOfShabti_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (MorphtronicBoarden_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -311,6 +325,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (Substitoad_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (CharmOfShabti_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (MorphtronicBoarden_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }
@@ -346,6 +362,13 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyAmazonessTraineeBattleEffect();
   ApplyMarshmallonBattleEffect();
   ApplyTurboRocketBattleEffect();
+  ApplyEvilHeroInfernoWingBattleEffect();
+  ApplyChainsawInsectBattleEffect();
+  ApplyXSaberAirbellumBattleEffect();
+  ApplyMagnaDragoBattleEffect();
+  ApplyDarkBladeTheDragonKnightBattleEffect();
+  ApplyMucusYolkBattleEffect();
+  ApplyNeosWisemanBattleEffect();
 
   {
     s32 playerDmg =

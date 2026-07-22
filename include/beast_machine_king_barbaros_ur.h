@@ -1,0 +1,6 @@
+#ifndef GUARD_BEAST_MACHINE_KING_BARBAROS_UR_H
+#define GUARD_BEAST_MACHINE_KING_BARBAROS_UR_H
+
+void ApplyBeastMachineKingBarbarosUrNoOppBattleDamage(void);
+
+#endif /* GUARD_BEAST_MACHINE_KING_BARBAROS_UR_H */

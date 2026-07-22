@@ -4,6 +4,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "morphtronic_clocken.h"
 
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
@@ -11,6 +12,22 @@ void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
 #define MORPHTRONIC_CLOCKEN_BURN_PER 1000
+#define MORPHTRONIC_CLOCKEN_ATK_PER_COUNTER 500
+
+u8 MorphtronicClocken_ApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  u16 atk;
+
+  if (zone == NULL || zone->id != MORPHTRONIC_CLOCKEN)
+    return FALSE;
+  if (zone->isDefending)
+    return FALSE;
+
+  SetCardInfo(zone->id);
+  atk = Duel_StatFromCount(zone->unk4, MORPHTRONIC_CLOCKEN_ATK_PER_COUNTER, gCardInfo.atk);
+  Duel_WriteCardInfoStats(zone->id, atk, gCardInfo.def);
+  return TRUE;
+}
 
 unsigned char CanActivateMORPHTRONIC_CLOCKEN(void)
 {
@@ -23,8 +40,8 @@ unsigned char CanActivateMORPHTRONIC_CLOCKEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_CLOCKEN)
     return FALSE;
 
-  /* ponytail: +500 ATK per Morph Counter in ATK Position needs stat overlay hook.
-   * Ceiling: DEF OPT place unk4 counter, else tribute self → burn 1000*(unk4 or 1). */
+  /* ATK overlay via MorphtronicClocken_ApplyDynamicZoneStats.
+   * DEF: place Morph Counter; ATK: tribute self → burn. */
   if (zone->isDefending) {
     if (!CanUseMonsterEffect(zone))
       return FALSE;

@@ -87,7 +87,8 @@ u8 GaronithLightswornDragon_ApplyDynamicZoneStats(struct DuelCard *zone)
 
 unsigned char ShouldActivateGARONITH_LIGHTSWORN_DRAGON(void)
 {
-  /* ponytail: End Phase mill 3 + piercing need turn/battle hooks — ApplyDynamicZoneStats only. */
+  /* Pierce via ApplySimplePiercersBattleEffect.
+   * ponytail: End Phase mill 3 need turn hook — ApplyDynamicZoneStats live. */
   (void)gActiveEffect;
   return FALSE;
 }

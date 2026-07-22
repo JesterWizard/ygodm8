@@ -5,6 +5,7 @@
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
+#include "gravekeepers_priestess.h"
 
 #define NECROVALLEY_GRAVEKEEPER_STAT_BONUS 500
 
@@ -19,7 +20,7 @@ u8 Necrovalley_IsActive(void)
 
 u8 Necrovalley_IsGravekeeperMonster(u16 cardId)
 {
-  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+  if (cardId == CARD_NONE || !Duel_CardIsMonster(cardId))
     return FALSE;
 
   return Duel_CardNameContains(cardId, sGravekeeperArchetypeName);
@@ -37,12 +38,12 @@ void Necrovalley_ApplyGravekeeperStatBonusToCardInfo(const struct DuelCard *zone
 
 u8 Necrovalley_BlocksGraveyardBanish(void)
 {
-  return Necrovalley_IsActive();
+  return Necrovalley_IsActive() || GravekeepersPriestess_TreatsFieldAsNecrovalley();
 }
 
 u8 Necrovalley_BlocksGraveyardMove(void)
 {
-  return Necrovalley_IsActive();
+  return Necrovalley_IsActive() || GravekeepersPriestess_TreatsFieldAsNecrovalley();
 }
 
 static u8 IsVanillaTerrainFieldSpell(u16 cardId)

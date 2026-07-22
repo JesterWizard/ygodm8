@@ -117,6 +117,9 @@
 #include "elemental_hero_necroid_shaman.h"
 #include "elemental_hero_plasma_vice.h"
 #include "hero_flash.h"
+#include "morphtronic_boarden.h"
+#include "spell_striker.h"
+#include "mucus_yolk.h"
 #include "spell_effects.h"
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
@@ -1781,7 +1784,13 @@ void sub_8044570__Replacement(void)
       || HeroFlash_CanMonsterAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
       || CanInfectedMailMonsterAttackDirectly(
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]))
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+      || MorphtronicBoarden_CanMorphtronicAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+      || CanSpellStrikerAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || CanMucusYolkAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id))
       && !Duel_ForcedAttackBlocksDirect(
           WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER)
       && !ChimeratechOverdragon_BlocksDirectAttack(

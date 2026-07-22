@@ -86,7 +86,7 @@ static void DestroyOtherFieldSpellsOnBoard(struct DuelCard *activatingZone)
 
 static u8 IsMorphtronicMonster(u16 cardId)
 {
-  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+  if (cardId == CARD_NONE || !Duel_CardIsMonster(cardId))
     return FALSE;
 
   return Duel_CardNameContains(cardId, sMorphtronicName);

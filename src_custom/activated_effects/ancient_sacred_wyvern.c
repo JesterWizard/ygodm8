@@ -1,67 +1,53 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ancient_sacred_wyvern.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "monster_effect_usage.h"
 
-void RefreshFieldMonsterStatOverlays(void);
-void UpdateDuelGfxExceptField(void);
-void CheckWinConditionExodia(unsigned char);
-void TryActivatingPermanentEffects(void);
+u8 GetDuelistForZone(struct DuelCard *zone);
 
-static u8 FixedDuelistForActive(void)
+u8 AncientSacredWyvern_ApplyDynamicZoneStats(struct DuelCard *zone)
 {
-  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
+  u8 me;
+  u8 opp;
+  s32 diff;
+  u16 base;
+  u16 atk;
 
-  return DUEL_OPPONENT;
+  if (zone == NULL || zone->id != ANCIENT_SACRED_WYVERN)
+    return FALSE;
+
+  me = GetDuelistForZone(zone);
+  if (me > DUEL_OPPONENT)
+    return FALSE;
+
+  opp = me == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  diff = (s32)gDuelLifePoints[me] - (s32)gDuelLifePoints[opp];
+  if (diff < 0)
+    diff = -diff;
+
+  SetCardInfo(zone->id);
+  base = gCardInfo.atk;
+  if ((s32)gDuelLifePoints[me] >= (s32)gDuelLifePoints[opp])
+    atk = Duel_ClampStat((u32)base + (u32)diff);
+  else
+    atk = (base > (u16)diff) ? (u16)(base - (u16)diff) : 0;
+
+  Duel_WriteCardInfoStats(zone->id, atk, gCardInfo.def);
+  return TRUE;
 }
 
 unsigned char CanActivateANCIENT_SACRED_WYVERN(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != ANCIENT_SACRED_WYVERN)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != ANCIENT_SACRED_WYVERN)
-    return FALSE;
-
-  /* ponytail: continuous LP→ATK + battle-reborn need permanent/battle hooks.
-   * Ceiling: OPT refresh tempStage from LP difference/500. */
-  return CanUseMonsterEffect(zone);
+  /* Continuous LP→ATK via AncientSacredWyvern_ApplyDynamicZoneStats.
+   * ponytail: battle-destroy pay 1000 → SS self need battle/GY hooks. */
+  return FALSE;
 }
 
 void ActivateANCIENT_SACRED_WYVERNEffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u8 me;
-  u8 opp;
-  s32 diff;
-  s32 stages;
-
   Duel_ShowEffectTextTyped(ANCIENT_SACRED_WYVERN, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  me = FixedDuelistForActive();
-  opp = me == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
-  diff = (s32)gDuelLifePoints[me] - (s32)gDuelLifePoints[opp];
-  stages = diff / 500;
-
-  if (stages > 126)
-    stages = 126;
-  else if (stages < -126)
-    stages = -126;
-
-  self->tempStage = (s8)stages;
-
-  MarkMonsterEffectUsed(self);
-  RefreshFieldMonsterStatOverlays();
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
 }

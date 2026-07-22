@@ -48,7 +48,9 @@ unsigned char CanActivateULTIMATE_ANCIENT_GEAR_GOLEM(void)
   if (zone == NULL || zone->id != ULTIMATE_ANCIENT_GEAR_GOLEM)
     return FALSE;
 
-  /* ponytail: piercing + attack S/T lock + on-destroy SS need battle/destroy hooks.
+  /* Attack S/T lock via AncientGear_AttackerBlocksOppSpellTrap;
+   * pierce via ApplyAncientGearGolemPiercingBattleEffect.
+   * ponytail: on-destroy SS need destroy hook.
    * Ceiling: OPT SS Ancient Gear Golem from GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

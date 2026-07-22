@@ -41,8 +41,14 @@
 #include "ancient_gear_frame.h"
 #include "birdface.h"
 #include "charm_of_shabti.h"
+#include "colossal_fighter.h"
+#include "cyber_phoenix.h"
+#include "gravekeepers_nobleman.h"
+#include "morphtronic_cameran.h"
+#include "mucus_yolk.h"
 #include "spell_effects.h"
 #include "troop_dragon.h"
+#include "warm_worm.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -88,6 +94,12 @@ void EffectEvent_EnsureInit(void)
   AncientGearFrame_EnsureInit();
   Birdface_EnsureInit();
   TroopDragon_EnsureInit();
+  ColossalFighter_EnsureInit();
+  MorphtronicCameran_EnsureInit();
+  GravekeepersNobleman_EnsureInit();
+  WarmWorm_EnsureInit();
+  CyberPhoenix_EnsureInit();
+  MucusYolk_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 

@@ -3,75 +3,55 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "monster_effect_usage.h"
 #include "removed_from_play.h"
+#include "tyranno_infinity.h"
 
-void UpdateDuelGfxExceptField(void);
-void RefreshFieldMonsterStatOverlays(void);
+#define TYRANNO_INFINITY_ATK_PER_DINO 1000
 
-static u8 FixedDuelistForMonEffect(void)
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+static u8 CountOwnBanishedDinosaurs(struct DuelCard *zone)
 {
-  if (gMonEffect.row == PLAYER_MONSTER_ROW)
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
-}
-
-static u8 CountOwnBanishedDinosaurs(void)
-{
-  u8 fixedDuelist = FixedDuelistForMonEffect();
+  u8 fixedDuelist = GetDuelistForZone(zone);
   u8 count = 0;
   u8 i;
 
-  if (!RemovedFromPlay_IsEnabled())
+  if (fixedDuelist > DUEL_OPPONENT || !RemovedFromPlay_IsEnabled())
     return 0;
 
   for (i = 0; i < RemovedFromPlay_GetCount(fixedDuelist); i++) {
     u16 id = RemovedFromPlay_GetCardAt(fixedDuelist, i);
 
-    if (GetTypeGroup(id) != TYPE_GROUP_MONSTER)
-      continue;
-    if (Duel_CardHasMonsterType(id, TYPE_DINOSAUR))
+    if (GetTypeGroup(id) == TYPE_GROUP_MONSTER
+        && Duel_CardHasMonsterType(id, TYPE_DINOSAUR))
       count++;
   }
-
   return count;
+}
+
+u8 TyrannoInfinity_ApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  u16 atk;
+
+  if (zone == NULL || zone->id != TYRANNO_INFINITY)
+    return FALSE;
+
+  atk = Duel_StatFromCount(CountOwnBanishedDinosaurs(zone), TYRANNO_INFINITY_ATK_PER_DINO, 0);
+  SetCardInfo(zone->id);
+  Duel_WriteCardInfoStats(zone->id, atk, gCardInfo.def);
+  return TRUE;
 }
 
 unsigned char CanActivateTYRANNO_INFINITY(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != TYRANNO_INFINITY)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != TYRANNO_INFINITY)
-    return FALSE;
-
-  /* ponytail: original ATK = banished Dinos×1000 needs permanent overlay.
-   * Ceiling: OPT stages ≈ (count×1000)/500. */
-  return CanUseMonsterEffect(zone);
+  /* Continuous ATK via TyrannoInfinity_ApplyDynamicZoneStats. */
+  return FALSE;
 }
 
 void ActivateTYRANNO_INFINITYEffect(void)
 {
-  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u8 count;
-  u8 stages;
-
   Duel_ShowEffectTextTyped(TYRANNO_INFINITY, 2);
-
-  if (zone == NULL || IsDuelOver() == TRUE)
-    return;
-
-  count = CountOwnBanishedDinosaurs();
-  stages = (u8)((count * 1000) / 500);
-  if (stages > 20)
-    stages = 20;
-
-  SetPermStage(zone, stages);
-  MarkMonsterEffectUsed(zone);
-  RefreshFieldMonsterStatOverlays();
-  UpdateDuelGfxExceptField();
 }

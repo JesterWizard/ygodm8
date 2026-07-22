@@ -34,6 +34,8 @@
 #include "weapon_change.h"
 #include "wetlands.h"
 #include "spined_gillman.h"
+#include "morphtronic_radion.h"
+#include "gravekeepers_priestess.h"
 #include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_sunrise.h"
@@ -595,6 +597,10 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyOjamaTrioCardInfoOverridesForStatMod(&statMod);
 
   if (Duel_TryApplyDynamicZoneStats(zone)) {
+    /* Dynamic ATK/DEF writers skip stage; Hourglass / equip stages still apply. */
+    stage = ComputeFinalStage(zone);
+    gCardInfo.atk = GetStageModifiedStat_Hook(gCardInfo.atk, stage);
+    gCardInfo.def = GetStageModifiedStat_Hook(gCardInfo.def, stage);
     ApplyGladiatorBeastsBattleGladiusAtkCorrection(zone);
     ApplyHarpiesHuntingGroundStatBonusToCardInfo(zone);
     ApplyGreatTornadoStatHalving(zone);
@@ -678,6 +684,8 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyTriangleEcstasySparkAtkToCardInfo(zone);
   ApplyWetlandsAtkBoostToCardInfo(zone);
   ApplySpinedGillmanAtkBoostToCardInfo(zone);
+  ApplyMorphtronicRadionStatBoostToCardInfo(zone);
+  ApplyGravekeepersPriestessStatBoostToCardInfo(zone);
   ApplyNeoSpaceAtkBoostForZone(zone);
   LevelTuning_ApplyLevelToCardInfo(zone);
   gSetFinalStatZone = NULL;
@@ -747,9 +755,14 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
 
   if (ptr->card == COPYCAT && gComputingCopycatStats == FALSE)
     ApplyCopycatStatsToCardInfo(ptr);
-  else if (Duel_TryApplyDynamicStatMod(ptr))
-    ;
-  else if (GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER
+  else if (Duel_TryApplyDynamicStatMod(ptr)) {
+    s8 stage = ptr->stage;
+
+    if (gSetFinalStatZone != NULL && gSetFinalStatZone->id == ptr->card)
+      stage = ComputeFinalStage(gSetFinalStatZone);
+    gCardInfo.atk = GetStageModifiedStat_Hook(gCardInfo.atk, stage);
+    gCardInfo.def = GetStageModifiedStat_Hook(gCardInfo.def, stage);
+  } else if (GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER
            || (gSetFinalStatZone != NULL
                && gSetFinalStatZone->id == ptr->card
                && (EmbodimentOfApophisZoneIsMonsterForm(gSetFinalStatZone)
@@ -821,6 +834,8 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyNecrovalleyTempleOppStatPenaltyToCardInfo(gSetFinalStatZone);
     ApplyNeoSpaceAtkBoostForZone(gSetFinalStatZone);
     ApplySpinedGillmanAtkBoostToCardInfo(gSetFinalStatZone);
+    ApplyMorphtronicRadionStatBoostToCardInfo(gSetFinalStatZone);
+    ApplyGravekeepersPriestessStatBoostToCardInfo(gSetFinalStatZone);
     LevelTuning_ApplyLevelToCardInfo(gSetFinalStatZone);
     Duel_EndFaceUpBackrowCache();
   }

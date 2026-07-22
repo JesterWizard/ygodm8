@@ -19,7 +19,7 @@ enum EffectEventId {
   EFFECT_EVENT_COUNT
 };
 
-#define EFFECT_EVENT_MAX_SUBSCRIBERS 8
+#define EFFECT_EVENT_MAX_SUBSCRIBERS 16
 #define EFFECT_OPT_MAX_CARDS 48
 
 struct EffectEvent {

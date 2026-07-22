@@ -85,14 +85,14 @@ u8 NeoSpace_IsAtkTarget(u16 cardId)
   u8 i;
   u8 materialCount;
 
-  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+  if (cardId == CARD_NONE || !Duel_CardIsMonster(cardId))
     return FALSE;
 
   if (cardId == ELEMENTAL_HERO_NEOS)
     return TRUE;
 
-  SetCardInfo(cardId);
-  if (gCardInfo.color != FUSION_CARD)
+  /* ponytail: gCardData_NEW — SetCardInfo would wipe stage/field ATK mid-overlay. */
+  if (cardId >= NUM_TOTAL_CARDS || gCardData_NEW[cardId].color != COLOR_FUSION)
     return FALSE;
 
   recipe = FusionRecipe_FindByResult(cardId);

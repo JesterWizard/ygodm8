@@ -88,7 +88,7 @@ static struct DuelCard *FindFaceUpColosseumCage(u8 fixedDuelist)
 
 static u8 IsGladiatorBeastMonster(u16 cardId)
 {
-  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+  if (cardId == CARD_NONE || !Duel_CardIsMonster(cardId))
     return FALSE;
 
   return Duel_CardNameContains(cardId, sGladiatorBeastName);

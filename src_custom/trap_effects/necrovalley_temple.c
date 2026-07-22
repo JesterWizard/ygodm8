@@ -33,8 +33,8 @@ static u8 FieldHasGravekeepers(void)
       struct DuelCard *zone = gFixedZones[row][col];
 
       if (zone != NULL && zone->isFaceUp
-          && Duel_CardNameContains(zone->id, sGravekeepersName)
-          && GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER)
+          && Duel_CardIsMonster(zone->id)
+          && Duel_CardNameContains(zone->id, sGravekeepersName))
         return TRUE;
     }
   }

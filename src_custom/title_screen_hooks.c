@@ -140,8 +140,17 @@ static void CustomCopyGfxAndInitGfxRegs(void) {
   WaitForVBlank();
 }
 
+/* Title screen idle frame counter */
+extern u16 gTitleScreenIdleFrames;
+extern bool8 VideoPlayer_Play(void);
+
+#define IDLE_FRAMES_TO_VIDEO 300  /* ~5 seconds at 60fps */
+
 /* LYN_REPLACE_CHECK(CopyGfxAndInitGfxRegs) */
 APPEND_TEXT void CopyGfxAndInitGfxRegs__Replacement(void) {
+  /* EWRAM is not zeroed at boot on every emulator (MyBoy leaves garbage). */
+  gTitleScreenIdleFrames = 0;
+
   if (gRuntimeConfig.enable_custom_title_screen == TRUE)
     CustomCopyGfxAndInitGfxRegs();
   else
@@ -174,25 +183,36 @@ static void VanillaSub80357F8(void) {
   }
 }
 
-/* Title screen idle frame counter */
-extern u16 gTitleScreenIdleFrames;
-extern bool8 VideoPlayer_Play(void);
-
-#define IDLE_FRAMES_TO_VIDEO 300  /* ~5 seconds at 60fps */
-
 /* LYN_REPLACE_CHECK(sub_80357F8) */
 APPEND_TEXT void sub_80357F8__Replacement(void) {
   VanillaSub80357F8();
 
-  if (gRuntimeConfig.enable_title_screen_video == TRUE) {
-    /* EWRAM is not zero-initialised at boot. Clear typical garbage. */
-    if (gTitleScreenIdleFrames >= 0xFF00)
-      gTitleScreenIdleFrames = 0;
+  if (gRuntimeConfig.enable_title_screen_video != TRUE)
+    return;
 
-    gTitleScreenIdleFrames++;
-    if (gTitleScreenIdleFrames >= IDLE_FRAMES_TO_VIDEO) {
-      gTitleScreenIdleFrames = 0;
-      VideoPlayer_Play();
-    }
+  /*
+   * EWRAM is not zero-initialised at boot. MyBoy (and hardware after some
+   * resets) leaves garbage here; any value >= IDLE_FRAMES_TO_VIDEO would
+   * start COMET on the first idle tick and crash that emulator. Only clearing
+   * >= 0xFF00 was not enough.
+   */
+  if (gTitleScreenIdleFrames >= IDLE_FRAMES_TO_VIDEO)
+    gTitleScreenIdleFrames = 0;
+
+  gTitleScreenIdleFrames++;
+  if (gTitleScreenIdleFrames < IDLE_FRAMES_TO_VIDEO)
+    return;
+
+  /*
+   * Vanilla also calls this once on the New Game / Continue exit path.
+   * If a button is still held, treat it as "not idle" so we do not hijack
+   * the transition into the naming screen with VideoPlayer_Play().
+   */
+  if ((~REG_KEYINPUT & ANY_BUTTON) != 0) {
+    gTitleScreenIdleFrames = 0;
+    return;
   }
+
+  gTitleScreenIdleFrames = 0;
+  VideoPlayer_Play();
 }

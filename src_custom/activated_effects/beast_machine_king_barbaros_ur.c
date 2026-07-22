@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "beast_machine_king_barbaros_ur.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -8,6 +9,30 @@
 #include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
+
+struct BarbarosUrActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct BarbarosUrActionData sActionData;
 
 static u8 IsMachineMonster(u16 cardId)
 {
@@ -136,14 +161,48 @@ unsigned char CanActivateBEAST_MACHINE_KING_BARBAROS_UR(void)
   if (gMonEffect.id != BEAST_MACHINE_KING_BARBAROS_UR)
     return FALSE;
 
-  /* ponytail: no battle damage to opp when this card battles needs battle hook.
-   * Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path. */
+  /* Opp takes no battle damage via ApplyBeastMachineKingBarbarosUrNoOppBattleDamage.
+   * ponytail: multi-zone banish picker not wired; FromHand requires both types reachable. */
   return FALSE;
 }
 
 void ActivateBEAST_MACHINE_KING_BARBAROS_UREffect(void)
 {
   Duel_ShowEffectTextTyped(BEAST_MACHINE_KING_BARBAROS_UR, 2);
+}
+
+void ApplyBeastMachineKingBarbarosUrNoOppBattleDamage(void)
+{
+  u16 playerDamage;
+  u16 opponentDamage;
+  u8 involved;
+
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 4
+      && sActionData.id != 5 && sActionData.id != 6)
+    return;
+
+  involved = sActionData.playerCardId == BEAST_MACHINE_KING_BARBAROS_UR
+      || sActionData.opponentCardId == BEAST_MACHINE_KING_BARBAROS_UR;
+  if (!involved)
+    return;
+
+  playerDamage = gUnk2023EA0.unk0[0].initialLifePoints - gDuelLifePoints[DUEL_PLAYER];
+  opponentDamage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];
+
+  /* Opponent of Barbaros's controller takes no battle damage. */
+  if (sActionData.playerCardId == BEAST_MACHINE_KING_BARBAROS_UR && opponentDamage > 0) {
+    gDuelLifePoints[DUEL_OPPONENT] = gUnk2023EA0.unk0[1].initialLifePoints;
+    gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+    sActionData.flags &= (u8)~16;
+  }
+  if (sActionData.opponentCardId == BEAST_MACHINE_KING_BARBAROS_UR && playerDamage > 0) {
+    gDuelLifePoints[DUEL_PLAYER] = gUnk2023EA0.unk0[0].initialLifePoints;
+    gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+    sActionData.flags &= (u8)~4;
+  }
+
+  sActionData.playerLifePoints = gDuelLifePoints[DUEL_PLAYER];
+  sActionData.opponentLifePoints = gDuelLifePoints[DUEL_OPPONENT];
 }
 
 u8 CanSpecialSummonBeastMachineKingBarbarosUrFromHand(u8 handZone)

@@ -704,9 +704,9 @@ _kernel_malloc_ewram gBuyShopPackView, 1
 _kernel_malloc_ewram_array gBuyShopPackStock, 16
 
 @ Effect data system Phase 3: event subscribers + generic OPT card ids.
-@ Handlers: EFFECT_EVENT_COUNT(6) * EFFECT_EVENT_MAX_SUBSCRIBERS(8) * 4 = 192
-_kernel_malloc_ewram_array gEffectEventHandlers, 192
-_kernel_malloc_ewram_array gEffectEventHandlerCounts, 6
+@ Handlers: EFFECT_EVENT_COUNT(7) * EFFECT_EVENT_MAX_SUBSCRIBERS(16) * 4 = 448
+_kernel_malloc_ewram_array gEffectEventHandlers, 448
+_kernel_malloc_ewram_array gEffectEventHandlerCounts, 7
 @ OPT: EFFECT_OPT_MAX_CARDS(48) * u16 = 96
 _kernel_malloc_ewram_array gEffectOptUsedIds, 96
 _kernel_malloc_ewram gEffectOptUsedCount, 1

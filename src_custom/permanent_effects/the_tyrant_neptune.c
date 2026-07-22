@@ -413,7 +413,6 @@ u8 TheTyrantNeptune_ApplyDynamicZoneStats(struct DuelCard *zone)
     u32 atk = LoadBoardAtk(cellIndex);
     u16 def = LoadBoardDef(cellIndex);
     u16 copied = LoadCopiedCardId(cellIndex);
-    s8 stage;
 
     /* Registered passive/continuous bonuses for the copied effect card. */
     if (copied != CARD_NONE)
@@ -422,11 +421,8 @@ u8 TheTyrantNeptune_ApplyDynamicZoneStats(struct DuelCard *zone)
     if (atk > 0xFFFF)
       atk = 0xFFFF;
 
-    SetCardInfo(THE_TYRANT_NEPTUNE);
-    /* Copied vanilla passives (e.g. Blade Knight) use tempStage/permStage. */
-    stage = ComputeFinalStage(zone);
-    gCardInfo.atk = Duel_StageModifiedStat((u16)atk, stage);
-    gCardInfo.def = Duel_StageModifiedStat(def, stage);
+    /* Stage applied by ApplyFieldZoneStatsToCardInfo after dynamic path. */
+    Duel_WriteCardInfoStats(THE_TYRANT_NEPTUNE, (u16)atk, def);
   }
   return TRUE;
 }

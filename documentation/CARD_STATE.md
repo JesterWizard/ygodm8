@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — PARTIAL Round 9 Batches 1–2
+**Last worked on:** 2026-07-22 — Hourglass stage ATK wiped by overlay SetCardInfo
 
-**Outcome:** Partials **549→533**. B1: pierce list, Marshmallon/Turbo Rocket protect+burn, Birdface/Troop Dragon BD triggers, Substitoad Frog protect, Charm Shabti turn flag, Atlantean +800. B2: Boot-Up/Calculator/Homunculus/Helios/Eltanin/Flare Scarab overlays + Spined Gillman field +400. `make` OK.
+**Outcome:** Stage applied, then `GetTypeGroup`/`SetCardInfo` in Castle/Gillman/etc. overlays reset ATK/DEF to print. Fixed via `Duel_CardIsMonster` / `gCardData_NEW` gates + atk/def restore in `Duel_CardNameContains`. `make` OK.
 
-**Open / next:** Round 9 Batches 3–6. Wendigo GY-add / Gadjiltron tribute burn-draw residual. Masked HERO still absent.
+**Open / next:** Playtest Flip Hourglass alone → 1200/1100. Audit other Apply* helpers for GetTypeGroup.

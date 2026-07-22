@@ -11,7 +11,7 @@ u8 GetDuelistForZone(struct DuelCard *zone);
 
 static u8 IsFishSeaAqua(u16 cardId)
 {
-  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+  if (cardId == CARD_NONE || !Duel_CardIsMonster(cardId))
     return FALSE;
 
   return Duel_CardHasMonsterType(cardId, TYPE_FISH)

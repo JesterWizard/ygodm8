@@ -1,6 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "simple_piercers.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -35,6 +37,11 @@ extern struct SimplePiercerActionData sActionData;
 static const u16 sPiercerIds[] APPEND_RODATA = {
   ENRAGED_BATTLE_OX,
   GRAVEKEEPERS_SPEAR_SOLDIER,
+  DESTINY_HERO_DRILLDARK,
+  EVIL_HERO_MALICIOUS_EDGE,
+  EVIL_HERO_INFERNO_WING,
+  GARONITH_LIGHTSWORN_DRAGON,
+  MAJESTIC_MECH_GORYU,
 };
 
 static u8 IsListedPiercer(u16 cardId)
@@ -45,6 +52,34 @@ static u8 IsListedPiercer(u16 cardId)
     if (sPiercerIds[i] == cardId)
       return TRUE;
   }
+  return FALSE;
+}
+
+static u8 ControllerHasBergamotLpHigher(u8 controller)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(controller);
+  u8 col;
+  u8 opp = controller == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+
+  if (gDuelLifePoints[controller] <= gDuelLifePoints[opp])
+    return FALSE;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AROMAGE_BERGAMOT)
+      return TRUE;
+  }
+  return FALSE;
+}
+
+static u8 IsPiercingAttacker(u16 cardId, u8 controller)
+{
+  if (IsListedPiercer(cardId))
+    return TRUE;
+  if (Duel_CardHasMonsterType(cardId, TYPE_PLANT)
+      && ControllerHasBergamotLpHigher(controller))
+    return TRUE;
   return FALSE;
 }
 
@@ -81,7 +116,7 @@ void ApplySimplePiercersBattleEffect(void)
   u16 atk;
   u16 def;
 
-  if (sActionData.id == 2 && IsListedPiercer(sActionData.playerCardId)
+  if (sActionData.id == 2 && IsPiercingAttacker(sActionData.playerCardId, DUEL_PLAYER)
       && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT)) {
     atk = sActionData.playerCardAtkOrLifePointsMod;
     def = sActionData.opponentCardDefense;
@@ -90,7 +125,7 @@ void ApplySimplePiercersBattleEffect(void)
     return;
   }
 
-  if (sActionData.id == 5 && IsListedPiercer(sActionData.opponentCardId)
+  if (sActionData.id == 5 && IsPiercingAttacker(sActionData.opponentCardId, DUEL_OPPONENT)
       && (sActionData.flags & FLAG_GRAVEYARD_PLAYER)) {
     atk = sActionData.opponentCardAtkOrLifePointsMod;
     def = sActionData.playerCardDefense;

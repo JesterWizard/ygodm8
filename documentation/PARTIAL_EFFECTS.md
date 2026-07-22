@@ -9,24 +9,28 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-21 23:48 UTC  
-**Remaining partials:** `533`
+**Last updated:** 2026-07-22 07:07 UTC  
+**Remaining partials:** `517`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 5 |
+| `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 420 |
-| `permanent` | 98 |
-| **total** | **533** |
+| `activated` | 404 |
+| `permanent` | 97 |
+| **total** | **517** |
 
-## spell (5)
+## spell (6)
 
 ### `FUSION_DESTINY`
 - path: `src_custom/spell_effects/fusion_destiny.c`
 - L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
+
+### `NEO_SPACE`
+- path: `src_custom/spell_effects/neo_space.c`
+- L94: gCardData_NEW — SetCardInfo would wipe stage/field ATK mid-overlay.
 
 ### `SCAPEGOAT`
 - path: `src_custom/spell_effects/scapegoat.c`
@@ -91,11 +95,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (420)
+## activated (404)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
-- L16: Amazoness-Tiger name + GY ATK boost need continuous hooks. Ceiling: SS from hand only; upgrade: on Amazoness summon trigger.
+- L59: * ponytail: Amazoness-Tiger name + on Amazoness summon SS need continuous/summon hooks.
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -172,7 +176,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ANCIENT_SACRED_WYVERN`
 - path: `src_custom/activated_effects/ancient_sacred_wyvern.c`
-- L31: continuous LP→ATK + battle-reborn need permanent/battle hooks. Ceiling: OPT refresh tempStage from LP difference/500.
+- L46: * ponytail: battle-destroy pay 1000 → SS self need battle/GY hooks. */
 
 ### `ANDRO_SPHINX`
 - path: `src_custom/activated_effects/andro_sphinx.c`
@@ -231,7 +235,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AROMAGE_BERGAMOT`
 - path: `src_custom/activated_effects/aromage_bergamot.c`
-- L21: LP-higher Plant piercing + LP-gain gate + until opp EP clear need permanent/LP/battle hooks. Ceiling: OPT +2 tempStage (~1000 ATK/DEF).
+- L22: * ponytail: LP-gain gate + until opp EP clear need permanent/LP hooks.
 
 ### `AROMAGE_CANANGA`
 - path: `src_custom/activated_effects/aromage_cananga.c`
@@ -322,8 +326,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `BEAST_MACHINE_KING_BARBAROS_UR`
 - path: `src_custom/activated_effects/beast_machine_king_barbaros_ur.c`
-- L139: no battle damage to opp when this card battles needs battle hook. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
-- L165: multi-zone banish picker not wired; require both types reachable.
+- L224: multi-zone banish picker not wired; require both types reachable.
 
 ### `BLACK_ROSE_DRAGON`
 - path: `src_custom/activated_effects/black_rose_dragon.c`
@@ -375,10 +378,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/celestial_knightlord_parshath.c`
 - L104: Link material + GY banish Fairy → SS Fairy need send/banish hooks. Ceiling: OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field.
 
-### `CHAINSAW_INSECT`
-- path: `src_custom/activated_effects/chainsaw_insect.c`
-- L12: opp draws after Damage Step needs battle end hook. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
-
 ### `CHAOS_ANCIENT_GEAR_GIANT`
 - path: `src_custom/activated_effects/chaos_ancient_gear_giant.c`
 - L12: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock + multi-attack + piercing need fusion/battle hooks. Ceiling: not ignition-activatable here.
@@ -398,10 +397,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CLEAR_VICE_DRAGON`
 - path: `src_custom/activated_effects/clear_vice_dragon.c`
 - L12: Clear World immunity + battle ATK double + discard-to-save need continuous/battle/destruction hooks. Ceiling: not ignition-activatable here.
-
-### `COLOSSAL_FIGHTER`
-- path: `src_custom/activated_effects/colossal_fighter.c`
-- L119: +100 ATK per Warrior in any GY needs stat overlay; battle-destroy trigger deferred. Ceiling: OPT SS 1 Warrior from either GY once via usage.
 
 ### `CORAL_DRAGON`
 - path: `src_custom/activated_effects/coral_dragon.c`
@@ -436,7 +431,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CYBER_PHOENIX`
 - path: `src_custom/activated_effects/cyber_phoenix.c`
-- L12: Attack Position S/T negate + destroy-by-battle draw need continuous and battle hooks. Ceiling: not field-ignition activatable here.
+- L48: * ponytail: ATK-position Machine S/T target-negate needs targeting gate. */
 
 ### `CYBER_SLASH_HARPIE_LADY`
 - path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
@@ -463,10 +458,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/dark_armed_dragon.c`
 - L174: allow self-target for faithful TCG simulation; player can choose suboptimally
 - L317: auto-target. No GY picker (DeckMenu screen switch corrupts VRAM from inside monster effect handler) and no PickZone cursor state (200 conflicts with game loop after MonsterActionMenu case 4 returns). Picks the best field target via AiPickTarget logic. Upgrade path: dedicated cursor state + A/B handlers like Cannon Soldier.
-
-### `DARK_BLADE_THE_DRAGON_KNIGHT`
-- path: `src_custom/activated_effects/dark_blade_the_dragon_knight.c`
-- L31: battle-damage trigger. Ceiling: once via usage if opp GY has monsters.
 
 ### `DARK_DUST_SPIRIT`
 - path: `src_custom/activated_effects/dark_dust_spirit.c`
@@ -599,7 +590,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DRILLDARK`
 - path: `src_custom/activated_effects/destiny_hero_drilldark.c`
-- L64: on-Summon trigger + piercing need summon/battle hooks. Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK.
+- L65: * ponytail: on-Summon trigger need summon hook.
 
 ### `DESTINY_HERO_DUSKTOPIA`
 - path: `src_custom/activated_effects/destiny_hero_dusktopia.c`
@@ -966,19 +957,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/gravekeepers_heratic.c`
 - L12: continuous unaffected-while-Necrovalley needs permanent protection gate. Ceiling: not ignition-activatable here; upgrade: permanent effect while Duel_IsBackrowCardOnField(NECROVALLEY).
 
-### `GRAVEKEEPERS_NOBLEMAN`
-- path: `src_custom/activated_effects/gravekeepers_nobleman.c`
-- L57: destroyed-by-battle trigger needs battle/destroy hook. Ceiling: OPT SS 1 GK from Deck face-down DEF except Nobleman.
-- L87: no DUEL_SUMMON_SPECIAL_FACE_DOWN_DEF — NORMAL_SET stand-in.
-
 ### `GRAVEKEEPERS_ORACLE`
 - path: `src_custom/activated_effects/gravekeepers_oracle.c`
 - L93: Tribute Summon sequence (destroy/flip/ATK) FALSE. Ceiling: OPT destroy up to 2 cards on opp field.
 - L110: multi-target picker not wired; auto-destroy up to 2 opp cards.
-
-### `GRAVEKEEPERS_PRIESTESS`
-- path: `src_custom/activated_effects/gravekeepers_priestess.c`
-- L12: Necrovalley field treatment + GK ATK/DEF boost need continuous hooks. Ceiling: not ignition-activatable here; upgrade: permanent/field overlay.
 
 ### `GRAVEKEEPERS_RECRUITER`
 - path: `src_custom/activated_effects/gravekeepers_recruiter.c`
@@ -1061,13 +1043,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `HELIOS_DUO_MEGISTUS`
 - path: `src_custom/activated_effects/helios_duo_megistus.c`
-- L58: battle-destroy End Phase SS Megistus needs battle/EP hooks. Ceiling: OPT refresh stages from banished-monster count.
-- L146: permStage unit is ~500 ATK/DEF each, not exact banished×200 overlay.
+- L74: * ponytail: battle-destroy End Phase SS Megistus needs battle/EP hooks. */
 
 ### `HELIOS_TRICE_MEGISTUS`
 - path: `src_custom/activated_effects/helios_trice_megistus.c`
-- L58: extra battle + battle-destroy End Phase SS +500 need battle/EP hooks. Ceiling: OPT refresh permStage from banished-monster count.
-- L146: permStage unit is ~500 ATK/DEF each, not exact banished×300 overlay.
+- L66: * ponytail: extra battle + battle-destroy End Phase SS +500 need battle/EP hooks. */
 
 ### `HELSHADDOLL_HOLLOW`
 - path: `src_custom/activated_effects/helshaddoll_hollow.c`
@@ -1231,13 +1211,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/magicians_souls.c`
 - L143: Continuous Spell placement + DM/DMG GY SS branch need placement/ GY hooks. Ceiling: OPT send 1–2 S/T from hand/field → draw that many.
 
-### `MAGNA_DRAGO`
-- path: `src_custom/activated_effects/magna_drago.c`
-- L21: battle-damage trigger needs battle hook. Ceiling: OPT +1 stage (~500; printed +200) stand-in.
-
 ### `MAJESTIC_MECH_GORYU`
 - path: `src_custom/activated_effects/majestic_mech_goryu.c`
-- L12: 1-tribute EP self-send + piercing battle damage need summon/battle hooks. Ceiling: not ignition-activatable here.
+- L12: * ponytail: 1-tribute EP self-send need summon/EP hooks.
 
 ### `MAJESTY_HYPERION`
 - path: `src_custom/activated_effects/majesty_hyperion.c`
@@ -1308,29 +1284,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/molten_zombie.c`
 - L18: printed trigger is SS from GY. Ceiling: once via usage when Activate runs (summon-dispatch or manual).
 
-### `MONTAGE_DRAGON`
-- path: `src_custom/activated_effects/montage_dragon.c`
-- L39: ATK = combined sent Levels x 300 needs summon-stat overlay hook. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
-
-### `MORPHTRONIC_BOARDEN`
-- path: `src_custom/activated_effects/morphtronic_boarden.c`
-- L12: Morphtronic direct attack / battle indestructible continuous need attack and battle hooks. Ceiling: not field-ignition activatable here.
-
 ### `MORPHTRONIC_BOOMBOXEN`
 - path: `src_custom/activated_effects/morphtronic_boomboxen.c`
 - L12: double attack in ATK + DEF negate-attack need battle/position hooks. Ceiling: not ignition-activatable here.
 
 ### `MORPHTRONIC_CAMERAN`
 - path: `src_custom/activated_effects/morphtronic_cameran.c`
-- L128: DEF cannot-be-targeted continuous + battle-destroy trigger need battle/continuous hooks. Ceiling: ATK OPT SS Lv4 Morphtronic from hand/GY.
+- L175: * ponytail: DEF Morphtronic untargetable needs targeting gate. */
 
 ### `MORPHTRONIC_CELFON`
 - path: `src_custom/activated_effects/morphtronic_celfon.c`
 - L136: reveal/look UI missing; die roll + SS/add among top N. Ceiling: ATK OPT die→SS Lv≤4 Morphtronic; DEF OPT die→add Morphtronic.
-
-### `MORPHTRONIC_CLOCKEN`
-- path: `src_custom/activated_effects/morphtronic_clocken.c`
-- L26: +500 ATK per Morph Counter in ATK Position needs stat overlay hook. Ceiling: DEF OPT place unk4 counter, else tribute self → burn 1000*(unk4 or 1).
 
 ### `MORPHTRONIC_EARFON`
 - path: `src_custom/activated_effects/morphtronic_earfon.c`
@@ -1348,10 +1312,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MORPHTRONIC_MAGNEN_BAR`
 - path: `src_custom/activated_effects/morphtronic_magnen_bar.c`
 - L55: exactly-2-other ATK gate + DEF cannot-attack need battle hooks. Ceiling: ATK Position OPT refresh tempStage from other ATK/500.
-
-### `MORPHTRONIC_RADION`
-- path: `src_custom/activated_effects/morphtronic_radion.c`
-- L12: position-based Morphtronic ATK/DEF boost needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position gate.
 
 ### `MORPHTRONIC_REMOTEN`
 - path: `src_custom/activated_effects/morphtronic_remoten.c`
@@ -1384,14 +1344,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MORPHTRONIC_VACUUMEN`
 - path: `src_custom/activated_effects/morphtronic_vacuumen.c`
 - L24: send Equip → burn + DEF equip-take-control need equip hooks. Ceiling: ATK Position OPT burn 500.
-
-### `MORPHTRONIC_VIDEON`
-- path: `src_custom/activated_effects/morphtronic_videon.c`
-- L12: position-based ATK/DEF per Equip needs continuous stat overlay. Ceiling: not ignition-activatable here; upgrade: permanent position/equip gate.
-
-### `MUCUS_YOLK`
-- path: `src_custom/activated_effects/mucus_yolk.c`
-- L21: direct attack + Standby +1000 after battle damage need battle/EP hooks. Ceiling: OPT +2 tempStage (~1000 ATK stand-in for printed Standby gain).
 
 ### `NAELSHADDOLL_ARIEL`
 - path: `src_custom/activated_effects/naelshaddoll_ariel.c`
@@ -1430,7 +1382,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `NEOS_WISEMAN`
 - path: `src_custom/activated_effects/neos_wiseman.c`
-- L39: battle burn/heal + effect-destroy immunity FALSE. Ceiling: FromHand send Neos+Yubel → SS only.
+- L68: * ponytail: effect-destroy immunity needs destroy gate. */
 
 ### `NIBIRU_THE_PRIMAL_BEING`
 - path: `src_custom/activated_effects/nibiru_the_primal_being.c`
@@ -1621,10 +1573,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/soul_absorbing_bone_tower.c`
 - L12: attack redirect while another Zombie present + mill 2 on Zombie SS need continuous/SS hooks. Ceiling: not ignition-activatable here.
 
-### `SPELL_STRIKER`
-- path: `src_custom/activated_effects/spell_striker.c`
-- L82: direct attack + no self battle damage need battle/attack hooks. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
-
 ### `STARDUST_DRAGON`
 - path: `src_custom/activated_effects/stardust_dragon.c`
 - L12: Quick Effect tribute-negate-destroy + End Phase GY SS need chain and EP hooks. Ceiling: not ignition-activatable here.
@@ -1775,17 +1723,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/turbo_synchron.c`
 - L12: attack-target DEF change + battle-damage SS from hand need battle hooks. Ceiling: not ignition-activatable here.
 
-### `TYRANNO_INFINITY`
-- path: `src_custom/activated_effects/tyranno_infinity.c`
-- L52: original ATK = banished Dinos×1000 needs permanent overlay. Ceiling: OPT stages ≈ (count×1000)/500.
-
 ### `TYRANT_BURST_DRAGON`
 - path: `src_custom/activated_effects/tyrant_burst_dragon.c`
 - L12: multi-attack + equip-to-monster need battle/equip continuous hooks. Ceiling: not ignition-activatable here; upgrade: permanent battle/equip gate.
 
 ### `ULTIMATE_ANCIENT_GEAR_GOLEM`
 - path: `src_custom/activated_effects/ultimate_ancient_gear_golem.c`
-- L51: piercing + attack S/T lock + on-destroy SS need battle/destroy hooks. Ceiling: OPT SS Ancient Gear Golem from GY.
+- L53: * ponytail: on-destroy SS need destroy hook.
 
 ### `ULTIMATE_CONDUCTOR_TYRANNO`
 - path: `src_custom/activated_effects/ultimate_conductor_tyranno.c`
@@ -1828,10 +1772,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/vision_hero_increase.c`
 - L69: GY Continuous Trap place + tribute HERO SS-self FALSE. Ceiling: OPT SS Vision HERO Lv≤4 from Deck (ST-zone SS stand-in).
 
-### `WARM_WORM`
-- path: `src_custom/activated_effects/warm_worm.c`
-- L18: printed trigger is when destroyed. Ceiling: once via usage.
-
 ### `WEISS_LIGHTSWORN_ARCHFIEND`
 - path: `src_custom/activated_effects/weiss_lightsworn_archfiend.c`
 - L167: sent-from-Deck-to-GY trigger needs mill/send hook. Ceiling: field OPT SS 1 other Lightsworn from GY.
@@ -1841,10 +1781,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L79: on-Normal/Special Summon trigger needs summon hook. Ceiling: OPT banish up to 5 opp GY Spells + tempStage once via usage.
 - L101: +1 tempStage per banished (~500 ATK each, not exact +300).
 
-### `X_SABER_AIRBELLUM`
-- path: `src_custom/activated_effects/x_saber_airbellum.c`
-- L12: direct-attack battle-damage trigger needs battle hook. Ceiling: not ignition-activatable here; upgrade: battle end discard.
-
 ### `YAMORIMORI`
 - path: `src_custom/activated_effects/yamorimori.c`
 - L124: GY ignition needs GY-menu wire. Ceiling: banish self from GY + own Reptile + opp face-up present → destroy opp face-up monster.
@@ -1853,7 +1789,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (98)
+## permanent (97)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -2009,10 +1945,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/evil_hero_infernal_sniper.c`
 - L8: spell immunity + Standby burn 1000 (face-up DEF) need continuous/phase hooks.
 
-### `EVIL_HERO_INFERNO_WING`
-- path: `src_custom/permanent_effects/evil_hero_inferno_wing.c`
-- L8: piercing + battle-destroy burn need Damage Step / battle hooks.
-
 ### `EVIL_HERO_INFERNO_WING_BACKFIRE`
 - path: `src_custom/permanent_effects/evil_hero_inferno_wing_backfire.c`
 - L128: true trigger is Special Summon; on-summon stand-in covers SS path.
@@ -2020,7 +1952,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_MALICIOUS_EDGE`
 - path: `src_custom/permanent_effects/evil_hero_malicious_edge.c`
-- L8: piercing + 1-tribute summon gate need battle/summon hooks.
+- L9: * ponytail: 1-tribute summon gate need summon hook. */
 
 ### `EVIL_HERO_MALICIOUS_FIEND`
 - path: `src_custom/permanent_effects/evil_hero_malicious_fiend.c`
@@ -2045,7 +1977,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GARONITH_LIGHTSWORN_DRAGON`
 - path: `src_custom/permanent_effects/garonith_lightsworn_dragon.c`
-- L90: End Phase mill 3 + piercing need turn/battle hooks — ApplyDynamicZoneStats only.
+- L91: * ponytail: End Phase mill 3 need turn hook — ApplyDynamicZoneStats live. */
 
 ### `GAROTH_LIGHTSWORN_WARRIOR`
 - path: `src_custom/permanent_effects/garoth_lightsworn_warrior.c`
@@ -2225,7 +2157,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `THE_TYRANT_NEPTUNE`
 - path: `src_custom/permanent_effects/the_tyrant_neptune.c`
 - L59: ram_map byte packing can leave u16 fields at odd EWRAM addresses;
-- L455: draw Neptune on the field before popup / trunk picker.
+- L451: draw Neptune on the field before popup / trunk picker.
 
 ### `THE_WICKED_AVATAR`
 - path: `src_custom/permanent_effects/the_wicked_avatar.c`

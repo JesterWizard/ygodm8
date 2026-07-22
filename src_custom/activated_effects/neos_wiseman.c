@@ -4,10 +4,38 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "neos_wiseman.h"
 #include "six_card_hand.h"
 
 void ClearZoneAndSendMonToGraveyard2(struct DuelCard *zone, u8 player);
 void UpdateDuelGfxExceptField(void);
+
+#define FLAG_LOSER_PLAYER 4
+#define FLAG_LOSER_OPPONENT 16
+
+struct NeosWisemanActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct NeosWisemanActionData sActionData;
 
 static u8 FixedDuelistForActive(void)
 {
@@ -36,14 +64,61 @@ unsigned char CanActivateNEOS_WISEMAN(void)
   if (gMonEffect.id != NEOS_WISEMAN)
     return FALSE;
 
-  /* ponytail: battle burn/heal + effect-destroy immunity FALSE.
-   * Ceiling: FromHand send Neos+Yubel → SS only. */
+  /* Battle burn/heal via ApplyNeosWisemanBattleEffect.
+   * ponytail: effect-destroy immunity needs destroy gate. */
   return FALSE;
 }
 
 void ActivateNEOS_WISEMANEffect(void)
 {
   Duel_ShowEffectTextTyped(NEOS_WISEMAN, 2);
+}
+
+static void BurnAndHealFromBattledMonster(u16 battledCardId, u8 burnFixed, u8 healFixed)
+{
+  u16 burn;
+  u16 heal;
+
+  if (battledCardId == CARD_NONE)
+    return;
+
+  SetCardInfo(battledCardId);
+  burn = gCardInfo.atk;
+  heal = gCardInfo.def;
+
+  Duel_ShowEffectTextTyped(NEOS_WISEMAN, 2);
+
+  if (burn > 0) {
+    if (gDuelLifePoints[burnFixed] <= burn) {
+      gDuelLifePoints[burnFixed] = 0;
+      sActionData.flags |= burnFixed == DUEL_PLAYER ? FLAG_LOSER_PLAYER : FLAG_LOSER_OPPONENT;
+    } else {
+      gDuelLifePoints[burnFixed] -= burn;
+    }
+  }
+
+  if (heal > 0)
+    gDuelLifePoints[healFixed] += heal;
+
+  gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+  gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+  sActionData.playerLifePoints = gDuelLifePoints[DUEL_PLAYER];
+  sActionData.opponentLifePoints = gDuelLifePoints[DUEL_OPPONENT];
+}
+
+void ApplyNeosWisemanBattleEffect(void)
+{
+  /* End of Damage Step after battling an opponent's monster. */
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 5)
+    return;
+
+  if (sActionData.playerCardId == NEOS_WISEMAN && sActionData.opponentCardId != CARD_NONE) {
+    BurnAndHealFromBattledMonster(sActionData.opponentCardId, DUEL_OPPONENT, DUEL_PLAYER);
+    return;
+  }
+
+  if (sActionData.opponentCardId == NEOS_WISEMAN && sActionData.playerCardId != CARD_NONE)
+    BurnAndHealFromBattledMonster(sActionData.playerCardId, DUEL_PLAYER, DUEL_OPPONENT);
 }
 
 u8 CanSpecialSummonNeosWisemanFromHand(u8 handZone)

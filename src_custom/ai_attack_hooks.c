@@ -47,6 +47,9 @@
 #include "elemental_hero_knospe.h"
 #include "elemental_hero_ice_edge.h"
 #include "hero_flash.h"
+#include "morphtronic_boarden.h"
+#include "spell_striker.h"
+#include "mucus_yolk.h"
 #include "jowls_of_dark_demise.h"
 #include "neo_spacian_glow_moss.h"
 #include "red_dragon_archfiend.h"
@@ -205,7 +208,10 @@ static void AiAttackDirect(struct DuelCard *attacker) {
       && !CanNeoSpacianGlowMossAttackDirectly(attacker)
       && !CanThunderNyanNyanAttackDirectly(attacker->id)
       && !HeroFlash_CanMonsterAttackDirectly(attacker)
-      && !CanInfectedMailMonsterAttackDirectly(attacker))
+      && !CanInfectedMailMonsterAttackDirectly(attacker)
+      && !MorphtronicBoarden_CanMorphtronicAttackDirectly(attacker)
+      && !CanSpellStrikerAttackDirectly(attacker->id)
+      && !CanMucusYolkAttackDirectly(attacker->id))
     return;
 
   if (!AiPayAttackTollIfNeeded())
