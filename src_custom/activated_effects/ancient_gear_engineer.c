@@ -10,7 +10,8 @@ unsigned char CanActivateANCIENT_GEAR_ENGINEER(void)
     return FALSE;
 
   /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
-   * ponytail: trap negate + end-of-Damage-Step destroy need battle/trap hooks. */
+   * End-of-Damage-Step Set S/T destroy via ApplyAncientGearEngineerBattleEffect.
+   * ponytail: opp Trap activation negate on attack needs chain gate. */
   return FALSE;
 }
 

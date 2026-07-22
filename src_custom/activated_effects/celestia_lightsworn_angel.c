@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "summon_tribute.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
@@ -75,6 +76,55 @@ static void DestroyUpToTwoOppCards(void)
   }
 }
 
+static void RunCelestiaMillAndDestroy(struct DuelCard *self)
+{
+  if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  Duel_MillTopDeckCards(ACTIVE_DUELIST, 4, TRUE);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  DestroyUpToTwoOppCards();
+}
+
+unsigned char ShouldActivateCelestiaLightswornAngelTribute(void)
+{
+  struct DuelCard *zone;
+
+  if (gActiveEffect.cardId != CELESTIA_LIGHTSWORN_ANGEL)
+    return FALSE;
+
+  if (GetPendingTributeSummonCardId() != CELESTIA_LIGHTSWORN_ANGEL)
+    return FALSE;
+
+  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
+      && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
+    return FALSE;
+
+  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+  if (zone == NULL || zone->id != CELESTIA_LIGHTSWORN_ANGEL)
+    return FALSE;
+
+  return zone->unk4 == 0;
+}
+
+void ActivateCelestiaLightswornAngelTribute(void)
+{
+  struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+
+  Duel_ShowEffectTextTyped(CELESTIA_LIGHTSWORN_ANGEL, 8);
+  RunCelestiaMillAndDestroy(zone);
+
+  if (zone != NULL && IsDuelOver() != TRUE)
+    zone->unk4 = 1;
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
 unsigned char CanActivateCELESTIA_LIGHTSWORN_ANGEL(void)
 {
   struct DuelCard *zone;
@@ -86,9 +136,8 @@ unsigned char CanActivateCELESTIA_LIGHTSWORN_ANGEL(void)
   if (zone == NULL || zone->id != CELESTIA_LIGHTSWORN_ANGEL)
     return FALSE;
 
-  /* ponytail: Tribute Summon (by Lightsworn) trigger needs summon hook.
-   * Ceiling: once via usage — mill 4 then auto-destroy up to 2 opp cards
-   * (no player target pick; upgrade: PickZone for up to 2). */
+  /* Tribute Summon mill/destroy via ActivateCelestiaLightswornAngelTribute.
+   * Ceiling: field OPT repeat (usage-gated). Auto-destroy up to 2 (no PickZone). */
   return CanUseMonsterEffect(zone);
 }
 
@@ -101,11 +150,7 @@ void ActivateCELESTIA_LIGHTSWORN_ANGELEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  Duel_MillTopDeckCards(ACTIVE_DUELIST, 4, TRUE);
-  if (IsDuelOver() == TRUE)
-    return;
-
-  DestroyUpToTwoOppCards();
+  RunCelestiaMillAndDestroy(self);
   if (IsDuelOver() == TRUE)
     return;
 

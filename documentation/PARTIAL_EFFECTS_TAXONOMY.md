@@ -7,17 +7,17 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 16:38 UTC  
-**Ceiling lines tagged:** `556`  
-**Partial files:** `475`
+**Last updated:** 2026-07-22 16:43 UTC  
+**Ceiling lines tagged:** `552`  
+**Partial files:** `471`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 181 | triage |
-| `event.OnStandby` | 168 | 3 (OPT / turn flags) |
-| `event.OnSummon` | 60 | 3 |
+| `other` | 182 | triage |
+| `event.OnStandby` | 166 | 3 (OPT / turn flags) |
+| `event.OnSummon` | 57 | 3 |
 | `chain.Negate` | 33 | later / chain |
 | `gate.Tribute` | 31 | 2–3 |
 | `event.OnDestroy` | 16 | 3 |
@@ -28,7 +28,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `ui.Choice` | 10 | 2 |
 | `stat.Continuous` | 5 | 1–3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **556** | |
+| **total** | **552** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -73,7 +73,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLADIATOR_BEAST_GAIODIAZ` (permanent): L8: battle DEF burn + GB tag-out need battle-end/destroy hooks.
 - `GLADIATOR_BEAST_SAMNITE` (permanent): L8: battle search + GB tag-out need battle-end/destroy hooks.
 
-## `event.OnSummon` (60)
+## `event.OnSummon` (57)
 
 - `SHADDOLL_SCHISM` (trap): L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
 - `AMAZONESS_PRINCESS` (activated): L63: /* On-Summon search via TryAmazonessPrincessOnMonsterPlacement. ponytail:
@@ -88,7 +88,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ATHENA` (activated): L71: attack-position summons keep isFaceUp=0 until end-of-turn flip.
 - `BEAST_KING_BARBAROS` (activated): L64: no-tribute 1900 ATK + tribute-3 summon gate need summon hooks. Ceiling: once via usage destroy all opp cards (tribute-3 stand-in).
 - `BLACK_ROSE_DRAGON` (activated): L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
-- `CELESTIA_LIGHTSWORN_ANGEL` (activated): L89: Tribute Summon (by Lightsworn) trigger needs summon hook. Ceiling: once via usage — mill 4 then auto-destroy up to 2 opp cards (no player target pick; upgrade: PickZone for up to 2).
 - `CHIMERATECH_FORTRESS_DRAGON` (activated): L12: original ATK = 1000 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not field-ignition activatable here.
 - `CHIMERATECH_MEGAFLEET_DRAGON` (activated): L12: original ATK = 1200 x fusion material count needs fusion/summon stat overlay hook. Ceiling: not ignition-activatable here.
 - `DARKLORD_DESIRE` (activated): L116: Fairy-only Tribute Summon + cannot SS need summon hooks. Ceiling: OPT -1000 ATK (tempStage) → send 1 opp monster to GY.
@@ -101,14 +100,13 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `EVIL_HERO_INFERNAL_RIDER` (activated): L228: on-summon + HERO lock need summon/SS gates. Ceiling: OPT add Dark Fusion Deck/GY, else OPT banish self+4 GY → Set Super Poly.
 - `EVIL_HERO_NEOS_LORD` (activated): L144: indestructible + on-SS/opp-GY-sent take-control triggers need continuous/summon hooks. Ceiling: OPT take control of 1 face-up opp monster.
 - `EVIL_HERO_TOXIC_BUBBLE` (activated): L16: on-SS draw when Dark Fusion Fusion up needs summon hook. Ceiling: not field-ignition activatable; SS-from-hand uses FromHand path.
-- `GLADIATOR_BEAST_SAGITTARII` (activated): L110: end-of-Battle-Phase + battled gate + discard-GB draw 2 on GB-SS need battle/summon hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
+- `GLADIATOR_BEAST_SAGITTARII` (activated): L112: * ponytail: end-of-Battle-Phase timing + discard-GB draw 2 on GB-SS need phase/summon hooks.
 - `GLADIATOR_BEAST_VESPASIUS` (activated): L121: FromHand battle SS + continuous +500 while GB-SS'd + end-BP battled gate need battle/summon hooks. Ceiling: OPT tag-out shuffle→SS.
 - `GRAVEKEEPERS_DESCENDANT` (activated): L29: attack-position summons keep isFaceUp=0 until end-of-turn flip.
 - `GRAVEKEEPERS_HEADMAN` (activated): L95: on-Summon trigger + ATK/face-down DEF choice need summon hook. Ceiling: OPT SS 1 Lv4 Gravekeeper's from GY in ATK.
 - `GRAVEKEEPERS_SPIRITUALIST` (activated): L12: Necrovalley-gated Spellcaster Fusion from Extra Deck needs fusion summon API. Ceiling: not ignition-activatable here.
 - `GREEN_GADGET` (activated): L60: NS/SS trigger needs summon hook. Ceiling: once via usage.
 - `HOLACTIE_THE_CREATOR_OF_LIGHT` (activated): L64: SS-this-card-wins-Duel needs win-on-summon hook; no duel_helpers win API. Ceiling: not field-ignition activatable; use FromHand tribute path.
-- `JUNK_SYNCHRON` (activated): L123: Normal Summon trigger needs summon hook. Ceiling: once via usage if GY Lv≤2.
 - `MANJU_OF_THE_TEN_THOUSAND_HANDS` (activated): L113: Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage if Ritual Monster or Ritual Spell in Deck and hand space.
 - `MAZERA_DEVILLE` (activated): L53: on-SS-with-Pandemonium discard-3 needs summon hook. Ceiling: OPT discard 1 random opp + mill 3.
 - `NEO_SPACIAN_MARINE_DOLPHIN` (activated): L79: treated-as Aqua Dolphin name + NEX-only SS need continuous/summon hooks.
@@ -116,7 +114,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `TEST_PANTHER` (activated): L199: Link Summon trigger for search needs summon hook. Ceiling: OPT search GB from Deck, else bounce GB → SS different GB.
 - `THE_AGENT_OF_MYSTERU_EARTH` (activated): L110: Normal Summon trigger needs summon hook. Ceiling: OPT add 1 The Agent except Earth from Deck, or Master Hyperion if Sanctuary is face-up.
 - `THE_SUPPRESSION_PLUTO` (activated): L213: on-summon text after field draw so Pluto is visible.
-- `THESTALOS_THE_FIRESTORM_MONARCH` (activated): L55: Tribute Summon trigger needs summon hook. Ceiling: once via usage if opp hand.
 - `TIMEAUS_THE_UNITED_DRAGON` (activated): L147: Main Phase Fusion Summon needs fusion UI hook. Ceiling: SS from hand via send cost uses FromHand path.
 - `WHITE_HORNED_DRAGON` (activated): L79: on-Normal/Special Summon trigger needs summon hook. Ceiling: OPT banish up to 5 opp GY Spells + tempStage once via usage.
 - `ARCANA_FORCE_I_THE_MAGICIAN` (permanent): L64: +1 tempStage (~500 ATK) on-summon; spell-trigger double ATK not wired.
@@ -136,7 +133,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (168)
+## `event.OnStandby` (166)
 
 - `DARK_SUPREMACY` (trap): L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
 - `AMAZONESS_PET_LIGER_KING` (activated): L191: attack redirect FALSE. Ceiling: OPT destroy Amazoness → SS Warrior GY.
@@ -217,9 +214,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLADIATOR_BEAST_GISTEL` (activated): L162: on-GB-SS search + end-BP battled tag gate need summon/battle hooks. Ceiling: OPT search Gladiator S/T, else tag-out. FromHand: reveal+SS both.
 - `GLADIATOR_BEAST_GYZARUS` (activated): L308: Contact SS destroy trigger + end-BP Extra tag need summon/battle/ Extra hooks. Ceiling: OPT destroy up to 2 monsters, else tag-out → SS 2.
 - `GLADIATOR_BEAST_HERAKLINOS` (activated): L148: either-turn chain negate needs chain hook. Ceiling: OPT discard 1 → destroy 1 opponent card.
-- `GLADIATOR_BEAST_HOPLOMUS` (activated): L110: end-of-Battle-Phase + attacked/was-attacked gate + DEF 2400 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
 - `GLADIATOR_BEAST_LANISTA` (activated): L154: on-SS name copy + end-of-BP tag gate need summon/battle hooks. Ceiling: OPT banish 1 GB from GY (unkTwo name copy) or tag-out.
-- `GLADIATOR_BEAST_LAQUARI` (activated): L110: end-of-Battle-Phase + attacked/was-attacked gate + ATK 2100 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
 - `GLADIATOR_BEAST_MURMILLO` (activated): L235: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy face-up monster, else tag-out shuffle→SS.
 - `GLADIATOR_BEAST_NEROKIUS` (activated): L158: battle indestruct + opp chain block + end-of-BP gate need battle hooks. Ceiling: OPT tag-out → SS 2 different GB from Deck.
 - `GLADIATOR_BEAST_NOXIOUS` (activated): L130: hand attack-redirect SS + battled tag gate need battle hooks. Ceiling: OPT mill 1 GB from Deck, else tag-out.
@@ -324,11 +319,11 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 ## `chain.Negate` (33)
 
 - `ANCIENT_GEAR_BEAST` (activated): L13: * ponytail: negate destroyed-in-battle monster effects need battle hook. */
-- `ANCIENT_GEAR_ENGINEER` (activated): L13: * ponytail: trap negate + end-of-Damage-Step destroy need battle/trap hooks. */
+- `ANCIENT_GEAR_ENGINEER` (activated): L14: * ponytail: opp Trap activation negate on attack needs chain gate. */
 - `ARCANA_KNIGHT_JOKER` (activated): L12: discard matching type to negate activation needs chain/response hooks. Ceiling: not ignition-activatable here.
 - `ASH_BLOSSOM_AND_JOYOUS_SPRING` (activated): L50: chain negate for add/SS/mill from Deck not wired; upgrade: chain interrupt hook when one exists.
 - `CYBER_DRAGON_INFINITY` (activated): L62: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
-- `CYBER_PHOENIX` (activated): L48: * ponytail: ATK-position Machine S/T target-negate needs targeting gate. */
+- `CYBER_PHOENIX` (activated): L13: * ponytail: ATK-position Machine S/T target-negate needs targeting gate. */
 - `DESTINY_HERO_DARK_ANGEL` (activated): L81: field spell-negate FALSE. Ceiling: FromHand discard → SS D-HERO to opp DEF.
 - `DESTINY_HERO_PLASMA` (activated): L95: equip/absorb + half-ATK boost + continuous opp negate need equip hooks. Ceiling: destroy 1 opp monster.
 - `DIVINE_SERPENT_GEH` (activated): L31: destroy gate + untargetable + battle negate need destroy/battle hooks. Ceiling: field ignition FALSE; FromHand pay half LP → SS only.
@@ -443,7 +438,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive via TryApplyDestinyHeroDrawhandStandby.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (181)
+## `other` (182)
 
 - `FUSION_DESTINY` (spell): L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 - `NEO_SPACE` (spell): L94: gCardData_NEW — SetCardInfo would wipe stage/field ATK mid-overlay.
@@ -464,7 +459,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `AROMAGE_CANANGA` (activated): L175: * ponytail: LP-gain bounce trigger needs LP hook.
 - `AROMASERAPHY_JASMINE` (activated): L48: no Link points — all your Plants while Jasmine face-up and LP higher.
 - `ATLANTEAN_MARKSMAN` (activated): L149: * ponytail: sent-for-WATER destroy Set S/T needs send hook. */
-- `BARRIER_STATUE_OF_THE_STORMWINDS` (activated): L12: no SS except WIND needs Special Summon lock gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 - `BLACK_WINGED_DRAGON` (activated): L52: −700 ≈ −2 tempStage (~−1000); counter/damage-redirect FALSE.
 - `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` (activated): L55: cannot-attack-this-turn needs attack-gate; mark unk4.
 - `BLUE_EYES_SOLID_DRAGON` (activated): L49: summon Quick shuffle→SS BEWD + per-effect usage need hooks.
@@ -505,7 +499,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLADIATOR_BEAST_ANDABATA` (activated): L135: Extra Deck return + Lv≤7 GB Fusion Extra SS need ED/Fusion APIs.
 - `GLADIATOR_BEAST_ATTORIX` (activated): L157: copied name/Level until End Phase needs name-override hook; unkTwo stores sent card id as stand-in.
 - `GLADIATOR_BEAST_GYZARUS` (activated): L183: Extra Deck return needs ED API; deck-top stand-in like other GB tags.
+- `GLADIATOR_BEAST_HOPLOMUS` (activated): L112: * ponytail: end-of-Battle-Phase timing + DEF 2400 on GB tag-SS need phase/stat hooks.
 - `GLADIATOR_BEAST_LANISTA` (activated): L181: copied name until End Phase needs name-override hook; unkTwo stores copied card id as stand-in.
+- `GLADIATOR_BEAST_LAQUARI` (activated): L112: * ponytail: end-of-Battle-Phase timing + ATK 2100 on GB tag-SS need phase/stat hooks.
 - `GLADIATOR_BEAST_NEROKIUS` (activated): L135: Extra Deck return + battle protection need ED/battle hooks.
 - `GORZ_THE_EMISSARY_OF_DARKNESS` (activated): L34: damage-gate + Token FALSE. Ceiling: FromHand empty-field SS.
 - `GRAVEKEEPERS_CURSE` (activated): L20: printed is If Summoned trigger. Ceiling: allow once via usage when manually activated / summon-dispatch calls Activate.
@@ -590,7 +586,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ELEMENTAL_HERO_SUNRISE` (permanent): L105: GetTypeGroup/SetCardInfo would clobber gCardInfo.atk already computed.
 - `ELEMENTAL_HERO_SUNRISE` (permanent): L143: never RefreshFieldMonsterStatOverlays here. Placement often runs with updateGfx=FALSE (AI summon / fusion). Overlay-only stamps without a full field draw leave level stars and ATK/DEF tiles on undrawn card faces — field-wide glitch on the opponent's turn. ATK boost applies via ApplyFieldZoneStatsToCardInfo on the next real gfx update.
 - `EVIL_HERO_DARK_GAIA` (permanent): L8: ATK = fusion materials + flip opp Defense→Attack need fusion/battle hooks.
-- `EVIL_HERO_MALICIOUS_FIEND` (permanent): L8: forced attack + face-up Attack Position need battle redirect hooks.
+- `EVIL_HERO_MALICIOUS_FIEND` (permanent): L9: * ponytail: forced attack + face-up Attack Position need battle redirect hooks. */
 - `EXECUTOR_MAKYURA` (permanent): L93: most non-zero trapEffect values are chain-only; allow continuous exceptions.
 - `FIRE_PRINCESS` (permanent): L37: normal hand summon copies isFaceUp=0; attack-position monsters still count
 - `GLADIATOR_BEAST_ALEXANDER` (permanent): L8: spell immunity + GB tag-out need continuous/battle-end hooks.

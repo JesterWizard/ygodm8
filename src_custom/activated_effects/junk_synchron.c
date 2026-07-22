@@ -120,7 +120,8 @@ unsigned char CanActivateJUNK_SYNCHRON(void)
   if (zone == NULL || zone->id != JUNK_SYNCHRON)
     return FALSE;
 
-  /* ponytail: Normal Summon trigger needs summon hook. Ceiling: once via usage if GY Lv≤2. */
+  /* Normal Summon GY SS via TryJunkSynchronOnNormalSummon.
+   * Ceiling: field OPT repeat (usage-gated below). */
   if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

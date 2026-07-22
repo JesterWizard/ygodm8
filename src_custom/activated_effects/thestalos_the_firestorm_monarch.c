@@ -4,6 +4,7 @@
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
+#include "summon_tribute.h"
 
 extern const CardData gCardData_NEW[];
 
@@ -41,30 +42,8 @@ static void TryBurnForDiscardedMonster(void)
   Duel_ChangeLpWithPrefaceText(INACTIVE_DUELIST, -damage, THESTALOS_THE_FIRESTORM_MONARCH, 2, TRUE);
 }
 
-unsigned char CanActivateTHESTALOS_THE_FIRESTORM_MONARCH(void)
+static void RunThestalosDiscardAndBurn(struct DuelCard *self)
 {
-  struct DuelCard *zone;
-
-  if (gMonEffect.id != THESTALOS_THE_FIRESTORM_MONARCH)
-    return FALSE;
-
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != THESTALOS_THE_FIRESTORM_MONARCH)
-    return FALSE;
-
-  /* ponytail: Tribute Summon trigger needs summon hook. Ceiling: once via usage if opp hand. */
-  if (!CanUseMonsterEffect(zone))
-    return FALSE;
-
-  return Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) > 0;
-}
-
-void ActivateTHESTALOS_THE_FIRESTORM_MONARCHEffect(void)
-{
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-
-  Duel_ShowEffectTextTyped(THESTALOS_THE_FIRESTORM_MONARCH, 2);
-
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
@@ -78,6 +57,73 @@ void ActivateTHESTALOS_THE_FIRESTORM_MONARCHEffect(void)
     return;
 
   TryBurnForDiscardedMonster();
+}
+
+unsigned char ShouldActivateThestalosTheFirestormMonarchTribute(void)
+{
+  struct DuelCard *zone;
+
+  if (gActiveEffect.cardId != THESTALOS_THE_FIRESTORM_MONARCH)
+    return FALSE;
+
+  if (GetPendingTributeSummonCardId() != THESTALOS_THE_FIRESTORM_MONARCH)
+    return FALSE;
+
+  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
+      && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
+    return FALSE;
+
+  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+  if (zone == NULL || zone->id != THESTALOS_THE_FIRESTORM_MONARCH || zone->unk4 != 0)
+    return FALSE;
+
+  return Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) > 0;
+}
+
+void ActivateThestalosTheFirestormMonarchTribute(void)
+{
+  struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+
+  Duel_ShowEffectTextTyped(THESTALOS_THE_FIRESTORM_MONARCH, 8);
+  RunThestalosDiscardAndBurn(zone);
+
+  if (zone != NULL && IsDuelOver() != TRUE)
+    zone->unk4 = 1;
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+unsigned char CanActivateTHESTALOS_THE_FIRESTORM_MONARCH(void)
+{
+  struct DuelCard *zone;
+
+  if (gMonEffect.id != THESTALOS_THE_FIRESTORM_MONARCH)
+    return FALSE;
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != THESTALOS_THE_FIRESTORM_MONARCH)
+    return FALSE;
+
+  /* Tribute Summon discard/burn via ActivateThestalosTheFirestormMonarchTribute.
+   * Ceiling: field OPT repeat (usage-gated below). */
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
+  return Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) > 0;
+}
+
+void ActivateTHESTALOS_THE_FIRESTORM_MONARCHEffect(void)
+{
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  Duel_ShowEffectTextTyped(THESTALOS_THE_FIRESTORM_MONARCH, 2);
+
+  RunThestalosDiscardAndBurn(self);
+  if (IsDuelOver() == TRUE)
+    return;
 
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();

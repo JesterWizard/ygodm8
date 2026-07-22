@@ -70,6 +70,7 @@
 #include "armed_dragon_lv5.h"
 #include "armed_dragon_lv7.h"
 #include "horus_end_phase.h"
+#include "gladiator_beast_battled.h"
 #include "gandora_x.h"
 #include "judgment_the_dragon_of_heaven.h"
 #include "reptilianne_naga.h"
@@ -468,6 +469,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyEctoplasmerEndPhaseEffect();
+  ClearGladiatorBeastBattledMarks();
   if (IsDuelOver() == 1)
     return;
   TryApplyPowerBondEndPhaseBurn();

@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 16:38 UTC  
-**Remaining partials:** `475`
+**Last updated:** 2026-07-22 16:43 UTC  
+**Remaining partials:** `471`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 374 |
+| `activated` | 370 |
 | `permanent` | 85 |
-| **total** | **475** |
+| **total** | **471** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (374)
+## activated (370)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -141,7 +141,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ANCIENT_GEAR_ENGINEER`
 - path: `src_custom/activated_effects/ancient_gear_engineer.c`
-- L13: * ponytail: trap negate + end-of-Damage-Step destroy need battle/trap hooks. */
+- L14: * ponytail: opp Trap activation negate on attack needs chain gate. */
 
 ### `ANCIENT_GEAR_GADJILTRON_CHIMERA`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c`
@@ -288,10 +288,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/azure_eyes_silver_dragon.c`
 - L48: until end of next turn clear needs EOT hook.
 
-### `BARRIER_STATUE_OF_THE_STORMWINDS`
-- path: `src_custom/activated_effects/barrier_statue_of_the_stormwinds.c`
-- L12: no SS except WIND needs Special Summon lock gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
-
 ### `BAZOO_THE_SOUL_EATER`
 - path: `src_custom/activated_effects/bazoo_the_soul_eater.c`
 - L130: unk4 = banish count for +300 ATK each; cleared each EP with tempStage reset — not exact until-opp-EP hook.
@@ -341,10 +337,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CASTEL_THE_SKY_BLASTER_MUSKETEER`
 - path: `src_custom/activated_effects/castel_the_sky_blaster_musketeer.c`
 - L138: detach/material + face-down branch need overlay engine. Ceiling: OPT return 1 face-up monster to the Deck.
-
-### `CELESTIA_LIGHTSWORN_ANGEL`
-- path: `src_custom/activated_effects/celestia_lightsworn_angel.c`
-- L89: Tribute Summon (by Lightsworn) trigger needs summon hook. Ceiling: once via usage — mill 4 then auto-destroy up to 2 opp cards (no player target pick; upgrade: PickZone for up to 2).
 
 ### `CELESTIAL_KNIGHTLORD_PARSHATH`
 - path: `src_custom/activated_effects/celestial_knightlord_parshath.c`
@@ -398,7 +390,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CYBER_PHOENIX`
 - path: `src_custom/activated_effects/cyber_phoenix.c`
-- L48: * ponytail: ATK-position Machine S/T target-negate needs targeting gate. */
+- L13: * ponytail: ATK-position Machine S/T target-negate needs targeting gate. */
 
 ### `CYBER_SLASH_HARPIE_LADY`
 - path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
@@ -818,7 +810,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GLADIATOR_BEAST_HOPLOMUS`
 - path: `src_custom/activated_effects/gladiator_beast_hoplomus.c`
-- L110: end-of-Battle-Phase + attacked/was-attacked gate + DEF 2400 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
+- L112: * ponytail: end-of-Battle-Phase timing + DEF 2400 on GB tag-SS need phase/stat hooks.
 
 ### `GLADIATOR_BEAST_LANISTA`
 - path: `src_custom/activated_effects/gladiator_beast_lanista.c`
@@ -827,7 +819,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GLADIATOR_BEAST_LAQUARI`
 - path: `src_custom/activated_effects/gladiator_beast_laquari.c`
-- L110: end-of-Battle-Phase + attacked/was-attacked gate + ATK 2100 on GB tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
+- L112: * ponytail: end-of-Battle-Phase timing + ATK 2100 on GB tag-SS need phase/stat hooks.
 
 ### `GLADIATOR_BEAST_MURMILLO`
 - path: `src_custom/activated_effects/gladiator_beast_murmillo.c`
@@ -844,7 +836,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GLADIATOR_BEAST_SAGITTARII`
 - path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
-- L110: end-of-Battle-Phase + battled gate + discard-GB draw 2 on GB-SS need battle/summon hooks. Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck.
+- L112: * ponytail: end-of-Battle-Phase timing + discard-GB draw 2 on GB-SS need phase/summon hooks.
 
 ### `GLADIATOR_BEAST_TAMER_EDITOR`
 - path: `src_custom/activated_effects/gladiator_beast_tamer_editor.c`
@@ -1022,10 +1014,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `JOWLS_OF_DARK_DEMISE`
 - path: `src_custom/activated_effects/jowls_of_dark_demise.c`
 - L70: Jowls direct-attack flag; cleared when zone resets
-
-### `JUNK_SYNCHRON`
-- path: `src_custom/activated_effects/junk_synchron.c`
-- L123: Normal Summon trigger needs summon hook. Ceiling: once via usage if GY Lv≤2.
 
 ### `KAIBAMAN`
 - path: `src_custom/activated_effects/kaibaman.c`
@@ -1532,10 +1520,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/theinen_the_great_sphinx.c`
 - L39: Andro+Teleia destroy SS from hand/Deck needs destroy hook. Ceiling: OPT pay 500 → +7 tempStage (~3000 ATK).
 
-### `THESTALOS_THE_FIRESTORM_MONARCH`
-- path: `src_custom/activated_effects/thestalos_the_firestorm_monarch.c`
-- L55: Tribute Summon trigger needs summon hook. Ceiling: once via usage if opp hand.
-
 ### `THUNDER_DRAGON_TITAN`
 - path: `src_custom/activated_effects/thunder_dragon_titan.c`
 - L102: Thunder hand-effect trigger + GY-banish instead of destroy need chain/continuous hooks. Ceiling: OPT destroy 1 card on the field.
@@ -1809,7 +1793,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_MALICIOUS_FIEND`
 - path: `src_custom/permanent_effects/evil_hero_malicious_fiend.c`
-- L8: forced attack + face-up Attack Position need battle redirect hooks.
+- L9: * ponytail: forced attack + face-up Attack Position need battle redirect hooks. */
 
 ### `EVIL_HERO_WILD_CYCLONE`
 - path: `src_custom/permanent_effects/evil_hero_wild_cyclone.c`

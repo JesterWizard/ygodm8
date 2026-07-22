@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
 
 void ClearZone(struct DuelCard *zone);
@@ -107,9 +108,12 @@ unsigned char CanActivateGLADIATOR_BEAST_HOPLOMUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_HOPLOMUS)
     return FALSE;
 
-  /* ponytail: end-of-Battle-Phase + attacked/was-attacked gate + DEF 2400 on GB
-   * tag-SS need battle/end-BP hooks. Ceiling: OPT shuffle self into Deck then SS
-   * another Gladiator Beast from Deck. */
+  /* Battled gate via GladiatorBeast_ZoneBattledThisBattlePhase.
+   * ponytail: end-of-Battle-Phase timing + DEF 2400 on GB tag-SS need phase/stat hooks.
+   * Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck. */
+  if (!GladiatorBeast_ZoneBattledThisBattlePhase(zone))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

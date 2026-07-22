@@ -1,0 +1,6 @@
+#ifndef GUARD_ANCIENT_GEAR_ENGINEER_BATTLE_H
+#define GUARD_ANCIENT_GEAR_ENGINEER_BATTLE_H
+
+void ApplyAncientGearEngineerBattleEffect(void);
+
+#endif /* GUARD_ANCIENT_GEAR_ENGINEER_BATTLE_H */

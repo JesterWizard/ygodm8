@@ -103,6 +103,8 @@
 #include "destiny_hero_decider.h"
 #include "destiny_hero_drawhand.h"
 #include "minerva_lightsworn_maiden.h"
+#include "junk_synchron.h"
+#include "barrier_statue_wind_lock.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -436,6 +438,10 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   if (SummonModeIsSpecial(opts.mode) && ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;
 
+  if (SummonModeIsSpecial(opts.mode)
+      && BarrierStatueOfTheStormwinds_BlocksSpecialSummon(monsterId))
+    return DUEL_ACTION_BLOCKED;
+
   if (CrimsonBlader_BlocksLevel5PlusSummon(turnDuelist, monsterId))
     return DUEL_ACTION_BLOCKED;
 
@@ -487,6 +493,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryTheSuppressionPlutoOnMonsterPlacement(summonZone);
   TryAmuletDragonOnMonsterPlacement(summonZone);
   TryMinervaLightswornMaidenOnNormalSummon(summonZone, opts.mode);
+  TryJunkSynchronOnNormalSummon(summonZone, opts.mode);
   TryAmazonessPrincessOnMonsterPlacement(summonZone);
   TryDestinyHeroDeciderOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));

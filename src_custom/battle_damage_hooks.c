@@ -132,6 +132,9 @@
 #include "spell_effects.h"
 #include "serpent_suppression.h"
 #include "simple_piercers.h"
+#include "cyber_phoenix_battle.h"
+#include "ancient_gear_engineer_battle.h"
+#include "gladiator_beast_battled.h"
 #include "substitoad.h"
 #include "turbo_rocket.h"
 #include "yubel.h"
@@ -451,6 +454,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyArmedDragonLv5BattleDestroyPending();
   ApplyArmedDragonLv7BattleDestroyPending();
   ApplyHorusBattleDestroyPending();
+  ApplyGladiatorBeastBattledMarks();
   ApplyReptilianneNagaBattleZeroAtk();
 
   {
@@ -575,6 +579,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyArcanaForceViiChariotBattleEffect();
   ApplyAmazonessSpyBattleEffect();
   ApplyAmazonessSageBattleEffect();
+  ApplyAncientGearEngineerBattleEffect();
+  ApplyCyberPhoenixBattleDestroyDraw();
   ApplyAirknightParshathDrawBattleEffect();
   ApplyNeedleBurrowerBattleEffect();
   ApplyAbsorbingKidFromTheSkyBattleEffect();

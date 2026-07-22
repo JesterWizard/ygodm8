@@ -104,6 +104,10 @@ void ActivateBurningAlgae(void);
 unsigned char ShouldActivateBerserkGorilla(void);
 unsigned char ShouldActivateMobiusTheFrostMonarch(void);
 void ActivateMobiusTheFrostMonarch(void);
+unsigned char ShouldActivateCelestiaLightswornAngelTribute(void);
+void ActivateCelestiaLightswornAngelTribute(void);
+unsigned char ShouldActivateThestalosTheFirestormMonarchTribute(void);
+void ActivateThestalosTheFirestormMonarchTribute(void);
 void ActivateBerserkGorilla(void);
 unsigned char ShouldActivateElementalHeroCaptainGold(void);
 void ActivateElementalHeroCaptainGold(void);
@@ -470,6 +474,16 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = MOBIUS_THE_FROST_MONARCH,
     .shouldActivate = ShouldActivateMobiusTheFrostMonarch,
     .activate = ActivateMobiusTheFrostMonarch,
+  },
+  {
+    .cardId = CELESTIA_LIGHTSWORN_ANGEL,
+    .shouldActivate = ShouldActivateCelestiaLightswornAngelTribute,
+    .activate = ActivateCelestiaLightswornAngelTribute,
+  },
+  {
+    .cardId = THESTALOS_THE_FIRESTORM_MONARCH,
+    .shouldActivate = ShouldActivateThestalosTheFirestormMonarchTribute,
+    .activate = ActivateThestalosTheFirestormMonarchTribute,
   },
   {
     .cardId = DARK_MAGICIAN_OF_CHAOS,

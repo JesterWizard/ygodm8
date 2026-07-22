@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — PARTIAL Round 11 Batch 3/6
+**Last worked on:** 2026-07-22 — PARTIAL Round 11 Batch 4/6
 
-**Outcome:** Partials **478→475**. B3: Armed Dragon LV7, Horus LV8, D-HERO Decider/Dogma/Dusktopia/Drawhand, Minerva Maiden (cleared), Princess, Naga (cleared), Phantasmal direct, Glow Neos (cleared). `make` OK.
+**Outcome:** Partials **475→471**. B4: Celestia/Thestalos/Junk Synchron/Barrier Statue (cleared); Cyber Phoenix BD draw; AG Engineer; Malicious Fiend pierce; GB battled marks. `make` OK.
 
-**Open / next:** Round 11 Batches 4–6.
+**Open / next:** Round 11 Batches 5–6.

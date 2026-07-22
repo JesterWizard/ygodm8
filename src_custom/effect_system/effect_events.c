@@ -43,7 +43,6 @@
 #include "babycerasaurus.h"
 #include "charm_of_shabti.h"
 #include "colossal_fighter.h"
-#include "cyber_phoenix.h"
 #include "gravekeepers_nobleman.h"
 #include "morphtronic_cameran.h"
 #include "mucus_yolk.h"
@@ -103,7 +102,6 @@ void EffectEvent_EnsureInit(void)
   MorphtronicCameran_EnsureInit();
   GravekeepersNobleman_EnsureInit();
   WarmWorm_EnsureInit();
-  CyberPhoenix_EnsureInit();
   MucusYolk_EnsureInit();
   UltimateAncientGearGolem_EnsureInit();
   Babycerasaurus_EnsureInit();
