@@ -16,6 +16,9 @@
 #include "morphtronic_cameran.h"
 #include "amazoness_augusta.h"
 #include "blue_eyes_alternative_ultimate_dragon.h"
+#include "cyber_phoenix.h"
+#include "dark_magician_the_dragon_knight.h"
+#include "divine_serpent_geh.h"
 #include "xyz_duel.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
@@ -43,6 +46,15 @@ static u8 ShouldBlockHarmfulEffectOnZone(struct DuelCard *zone) {
     return TRUE;
 
   if (MorphtronicCameran_ProtectsZoneFromTargeting(zone))
+    return TRUE;
+
+  if (DivineSerpentGeh_IsTargetImmune(zone))
+    return TRUE;
+
+  if (DarkMagicianTheDragonKnight_ProtectsSpellTrap(zone))
+    return TRUE;
+
+  if (Duel_IsSpellEffectResolving() && CyberPhoenix_BlocksSpellTrapTarget(zone))
     return TRUE;
 
   return AmazonessAugusta_IsTargetImmune(zone)

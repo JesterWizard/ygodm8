@@ -58,7 +58,7 @@ unsigned char CanActivateDARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE(void)
   if (zone == NULL || zone->id != DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE)
     return FALSE;
 
-  /* Ceiling: name=DMG + GY +300 mention FALSE.
+  /* Ceiling: name=DMG GY +300 mention FALSE.
    * Ceiling: field OPT add Shining Sarcophagus from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -126,7 +126,8 @@ u8 TrySpecialSummonDarkMagicianGirlTheMagiciansApprenticeAltFromHand(u8 handZone
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* Ceiling: name becomes Dark Magician Girl FALSE (no name-override hook). */
+  /* Name=Dark Magician Girl via DarkMagicianGirlTheMagiciansApprentice_TreatsNameAsDarkMagicianGirl
+   * + Duel_ZoneEffectCardId. */
   if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
     return FALSE;
 

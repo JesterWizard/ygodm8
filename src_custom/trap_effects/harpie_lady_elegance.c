@@ -6,6 +6,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "harpie_lady_elegance_lock.h"
 
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
@@ -44,7 +45,8 @@ APPEND_TEXT void EffectHARPIE_LADY_ELEGANCE(void)
   Duel_ShowTrapResponseText(HARPIE_LADY_ELEGANCE, gTrapEffectData.originCardId);
 
   /* Shuffle Sisters into Deck, then SS up to 3 different Harpies from hand/Deck/GY.
-   * Ceiling: WIND-only SS lock this turn + destroy-search Harpie Spell need hooks. */
+   * WIND-only SS lock this turn via HarpieLadyElegance_MarkWindOnlyLock.
+   * Ceiling: destroy-search Harpie Spell need hooks. */
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];
@@ -60,6 +62,8 @@ APPEND_TEXT void EffectHARPIE_LADY_ELEGANCE(void)
                      INACTIVE_DUELIST, FALSE);
     return;
   }
+
+  HarpieLadyElegance_MarkWindOnlyLock(INACTIVE_DUELIST);
 
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
 

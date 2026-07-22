@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 18:41 UTC  
-**Remaining partials:** `351`
+**Last updated:** 2026-07-22 18:45 UTC  
+**Remaining partials:** `347`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 11 |
-| `activated` | 311 |
-| `permanent` | 23 |
-| **total** | **351** |
+| `activated` | 308 |
+| `permanent` | 22 |
+| **total** | **347** |
 
 ## spell (6)
 
@@ -83,7 +83,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `HARPIE_LADY_ELEGANCE`
 - path: `src_custom/trap_effects/harpie_lady_elegance.c`
-- L47: * Ceiling: WIND-only SS lock this turn + destroy-search Harpie Spell need hooks. */
+- L49: * Ceiling: destroy-search Harpie Spell need hooks. */
 
 ### `NECROVALLEY_TEMPLE`
 - path: `src_custom/trap_effects/necrovalley_temple.c`
@@ -101,7 +101,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (311)
+## activated (308)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -109,7 +109,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AMAZONESS_PRINCESS`
 - path: `src_custom/activated_effects/amazoness_princess.c`
-- L64: * Ceiling: OPT add 1 Amazoness Spell/Trap from Deck; name=Queen + attack-send→SS
+- L65: * Ceiling: battle-declare send→SS need battle hook. */
 
 ### `AMAZONESS_SPIRITUALIST`
 - path: `src_custom/activated_effects/amazoness_spiritualist.c`
@@ -202,10 +202,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ARCANITE_MAGICIAN`
 - path: `src_custom/activated_effects/arcanite_magician.c`
 - L158: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. Ceiling: OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card.
-
-### `ARCHLORD_KRISTYA`
-- path: `src_custom/activated_effects/archlord_kristya.c`
-- L337: level 5+ no-tribute NS loophole — Kristya lock is Special Summon only.
 
 ### `ARMED_NEOS`
 - path: `src_custom/activated_effects/armed_neos.c`
@@ -361,10 +357,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L35: ATK summons keep isFaceUp=0 until EOT flip.
 - L62: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
 
-### `CYBER_PHOENIX`
-- path: `src_custom/activated_effects/cyber_phoenix.c`
-- L13: * Ceiling: ATK-position Machine S/T target-negate needs targeting gate. */
-
 ### `CYBER_SLASH_HARPIE_LADY`
 - path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
 - L196: Quick on S/T activation + Synchro/name hooks missing. Ceiling: OPT bounce 1 opp card or your Harpie to hand.
@@ -392,25 +384,25 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE`
 - path: `src_custom/activated_effects/dark_magician_girl_the_magician_s_apprentice.c`
-- L61: name=DMG + GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
-- L129: name becomes Dark Magician Girl FALSE (no name-override hook).
+- L61: name=DMG GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
 
 ### `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE`
 - path: `src_custom/activated_effects/dark_magician_girl_the_magicians_apprentice.c`
-- L61: name=DMG + GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
-- L129: name becomes Dark Magician Girl FALSE (no name-override hook).
+- L61: name=DMG GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
 
 ### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
 - path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
-- L12: name becomes Dark Magician + S/T protection need permanent/name hooks. Ceiling: not ignition-activatable here; upgrade: permanent overlay.
+- L65: * Ceiling: not ignition-activatable here. */
 
 ### `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS`
 - path: `src_custom/activated_effects/dark_magician_the_magician_of_black_chaos.c`
-- L33: name=DM + destroy-revive/Set need name/destroy hooks. Ceiling: not field-ignition; FromHand if Shining Sarcophagus.
+- L34: * Duel_ZoneEffectCardId. Ceiling: destroy-revive/Set need destroy hooks.
+- L35: * Ceiling: not field-ignition; FromHand if Shining Sarcophagus. */
 
 ### `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC`
 - path: `src_custom/activated_effects/dark_magician_the_magician_of_black_magic.c`
-- L33: name=DM + destroy-revive/Set need name/destroy hooks. Ceiling: not field-ignition; FromHand if Shining Sarcophagus.
+- L34: * Duel_ZoneEffectCardId. Ceiling: destroy-revive/Set need destroy hooks.
+- L35: * Ceiling: not field-ignition; FromHand if Shining Sarcophagus. */
 
 ### `DARK_STRIKE_FIGHTER`
 - path: `src_custom/activated_effects/dark_strike_fighter.c`
@@ -431,7 +423,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DECOY_DRAGON`
 - path: `src_custom/activated_effects/decoy_dragon.c`
-- L181: attack-target redirect needs battle targeting hook. Ceiling: OPT SS Lv7+ Dragon from GY once via usage when legal.
+- L181: attack-target redirect needs battle targeting hook. OPT SS Lv7+ Dragon from GY once via usage when legal.
 
 ### `DEEP_SEA_DIVA`
 - path: `src_custom/activated_effects/deep_sea_diva.c`
@@ -519,7 +511,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DIVINE_SERPENT_GEH`
 - path: `src_custom/activated_effects/divine_serpent_geh.c`
-- L31: destroy gate + untargetable + battle negate need destroy/battle hooks. Ceiling: field ignition FALSE; FromHand pay half LP → SS only.
+- L41: * Ceiling: destroy gate + battle negate need destroy/battle hooks.
+- L42: * Ceiling: field ignition FALSE. */
 
 ### `DIVINER_OF_THE_HERALD`
 - path: `src_custom/activated_effects/diviner_of_the_herald.c`
@@ -1347,10 +1340,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/ultimate_tyranno.c`
 - L13: * Ceiling: not field-ignition activatable here. */
 
-### `VICTORIA`
-- path: `src_custom/activated_effects/victoria.c`
-- L178: * attack-target hook. Ceiling: OPT SS 1 Dragon from opponent's GY. */
-
 ### `VISION_HERO_FARIS`
 - path: `src_custom/activated_effects/vision_hero_faris.c`
 - L148: Continuous Trap place + ED HERO lock need place/ED hooks. OPT add 1 Vision HERO from Deck to hand wired below.
@@ -1376,7 +1365,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/yamorimori.c`
 - L124: /* GY ignition needs GY-menu wire. Ceiling: banish self from GY +
 
-## permanent (23)
+## permanent (22)
 
 ### `ARCANA_FORCE_EX_THE_LIGHT_RULER`
 - path: `src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c`
@@ -1446,10 +1435,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/evil_hero_inferno_wing_backfire.c`
 - L155: true trigger is Special Summon; on-summon stand-in covers SS path.
 
-### `EVIL_HERO_MALICIOUS_FIEND`
-- path: `src_custom/permanent_effects/evil_hero_malicious_fiend.c`
-- L45: * EvilHeroMaliciousFiend_GetForcedAttackTarget. Ceiling: not ignition. */
-
 ### `EVIL_HERO_WILD_CYCLONE`
 - path: `src_custom/permanent_effects/evil_hero_wild_cyclone.c`
 - L97: * Ceiling: attack S/T lock until end of Damage Step needs chain gate. */
@@ -1468,4 +1453,4 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `REPTILIANNE_SERVANT`
 - path: `src_custom/permanent_effects/reptilianne_servant.c`
-- L119: * Reptile NS lock via ReptilianneServant_BlocksNormalSummonReptile. Ceiling:
+- L120: * Ceiling: spell-target destroy needs continuous hook. */

@@ -33,6 +33,7 @@
 #include "destined_rivals.h"
 #include "meteorain.h"
 #include "harpies_feather_storm.h"
+#include "harpie_lady_elegance_lock.h"
 #include "alector_sovereign_of_birds.h"
 #include "el_shaddoll_winda.h"
 #include "amazoness_scouts.h"
@@ -253,6 +254,7 @@ void EffectEvent_OnTurnBoundary(void)
   HarpiesFeatherStorm_ClearAtTurnBoundary();
   Alector_ClearNegateMarksAtTurnBoundary();
   CrimsonBlader_ClearOnTurnBoundary();
+  HarpieLadyElegance_ClearOnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

@@ -6,6 +6,7 @@
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
+#include "victoria.h"
 
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
@@ -162,6 +163,38 @@ static enum DuelActionResult SpecialSummonDragonFromOppGy(u8 gyIndex)
   return Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
 }
 
+static u8 RowHasFaceUpVictoria(u8 fixedMonsterRow)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedMonsterRow][col];
+
+    if (zone != NULL && zone->id == VICTORIA && zone->isFaceUp)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+u8 Victoria_CanAttackMonsterZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (zone == NULL || zone->id == CARD_NONE || zone->id == VICTORIA || !zone->isFaceUp)
+    return TRUE;
+
+  SetCardInfo(zone->id);
+  if (gCardInfo.type != TYPE_FAIRY)
+    return TRUE;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return TRUE;
+
+  return !RowHasFaceUpVictoria(fixedRow);
+}
+
 unsigned char CanActivateVICTORIA(void)
 {
   struct DuelCard *zone;
@@ -174,8 +207,7 @@ unsigned char CanActivateVICTORIA(void)
   if (zone == NULL || zone->id != VICTORIA)
     return FALSE;
 
-  /* continuous attack redirect for other face-up Fairies needs
-   * attack-target hook. Ceiling: OPT SS 1 Dragon from opponent's GY. */
+  /* Fairy attack gate via Victoria_CanAttackMonsterZone; OPT SS below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

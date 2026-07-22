@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "divine_serpent_geh.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
@@ -23,13 +24,22 @@ static u16 HalfLpCost(void)
   return gDuelLifePoints[FixedDuelistForActive()] / 2;
 }
 
+u8 DivineSerpentGeh_IsTargetImmune(const struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != DIVINE_SERPENT_GEH || !zone->isFaceUp)
+    return FALSE;
+
+  return TRUE;
+}
+
 unsigned char CanActivateDIVINE_SERPENT_GEH(void)
 {
   if (gMonEffect.id != DIVINE_SERPENT_GEH)
     return FALSE;
 
-  /* Ceiling: destroy gate + untargetable + battle negate need destroy/battle hooks.
-   * Ceiling: field ignition FALSE; FromHand pay half LP → SS only. */
+  /* Untargetable via DivineSerpentGeh_IsTargetImmune; FromHand half-LP SS below.
+   * Ceiling: destroy gate + battle negate need destroy/battle hooks.
+   * Ceiling: field ignition FALSE. */
   return FALSE;
 }
 

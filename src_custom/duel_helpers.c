@@ -124,7 +124,13 @@
 #include "junk_synchron.h"
 #include "deep_sea_diva.h"
 #include "barrier_statue_wind_lock.h"
+#include "card_name_overrides.h"
+#include "cyber_phoenix.h"
+#include "dark_magician_the_dragon_knight.h"
+#include "divine_serpent_geh.h"
 #include "gladiator_beast_battled.h"
+#include "harpie_lady_elegance_lock.h"
+#include "victoria.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -481,6 +487,10 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
 
   if (SummonModeIsSpecial(opts.mode)
       && BarrierStatueOfTheStormwinds_BlocksSpecialSummon(monsterId))
+    return DUEL_ACTION_BLOCKED;
+
+  if (SummonModeIsSpecial(opts.mode)
+      && HarpieLadyElegance_BlocksSpecialSummon(turnDuelist, monsterId))
     return DUEL_ACTION_BLOCKED;
 
   if (CrimsonBlader_BlocksLevel5PlusSummon(turnDuelist, monsterId))
@@ -1469,6 +1479,21 @@ u16 Duel_ZoneEffectCardId(struct DuelCard *zone)
   if (HarpiePerfumer_TreatsNameAsHarpieLady(zone))
     return HARPIE_LADY;
 
+  if (AmazonessPrincess_TreatsNameAsQueen(zone))
+    return AMAZONESS_QUEEN;
+
+  if (DarkMagicianTheMagicianOfBlackMagic_TreatsNameAsDarkMagician(zone))
+    return DARK_MAGICIAN;
+
+  if (DarkMagicianTheMagicianOfBlackChaos_TreatsNameAsDarkMagician(zone))
+    return DARK_MAGICIAN;
+
+  if (DarkMagicianTheDragonKnight_TreatsNameAsDarkMagician(zone))
+    return DARK_MAGICIAN;
+
+  if (DarkMagicianGirlTheMagiciansApprentice_TreatsNameAsDarkMagicianGirl(zone))
+    return DARK_MAGICIAN_GIRL;
+
   return zone->id;
 }
 
@@ -1817,6 +1842,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   MorphtronicCameran_CanAttackMonsterZone,
   MorphtronicMagnen_CanAttackMonsterZone,
   MorphtronicStaplen_CanAttackMonsterZone,
+  Victoria_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)
@@ -3303,7 +3329,8 @@ u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone)
       && !ForbiddenDress_IsTargetImmune(zone)
       && !AmazonessScouts_IsTargetImmune(zone)
       && !AmazonessAugusta_IsTargetImmune(zone)
-      && !BlueEyesAlternativeUltimateDragon_IsTargetImmune(zone);
+      && !BlueEyesAlternativeUltimateDragon_IsTargetImmune(zone)
+      && !DivineSerpentGeh_IsTargetImmune(zone);
 }
 
 u8 Duel_IsAnyTrapActivationBlocked(void)

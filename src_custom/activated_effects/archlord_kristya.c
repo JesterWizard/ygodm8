@@ -334,7 +334,7 @@ u8 ArchlordKristya_ShouldBlockFieldPlacement(u16 cardId, u8 tributesPaid)
     return FALSE;
 
   SetCardInfo(cardId);
-  /* Ceiling: level 5+ no-tribute NS loophole — Kristya lock is Special Summon only. */
+  /* Level 5+ no-tribute NS blocked via ArchlordKristya_ShouldBlockFieldPlacement in summon UI. */
   return gCardInfo.level > 4;
 }
 
