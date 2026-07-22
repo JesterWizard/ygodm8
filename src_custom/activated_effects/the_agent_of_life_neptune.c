@@ -158,7 +158,7 @@ unsigned char CanActivateTHE_AGENT_OF_LIFE_NEPTUNE(void)
     return FALSE;
 
   /* tribute-lock + banish search FALSE.
-   * Ceiling: FromHand discard self → SS Agent (or Hyperion if Sanctuary). */
+   * FromHand discard self → SS Agent (or Hyperion if Sanctuary). */
   return FALSE;
 }
 

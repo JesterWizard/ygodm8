@@ -47,7 +47,7 @@ u8 TryActivateAshBlossomFromHand(u8 handZone)
       == DUEL_ACTION_DUEL_OVER)
     return TRUE;
 
-  /* Ceiling: chain negate for add/SS/mill from Deck not wired; upgrade: chain
+  /* chain negate for add/SS/mill from Deck not wired; upgrade: chain
    * interrupt hook when one exists. */
   UpdateDuelGfxExceptField();
   return TRUE;

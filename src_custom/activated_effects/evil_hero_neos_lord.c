@@ -183,7 +183,7 @@ unsigned char CanActivateEVIL_HERO_NEOS_LORD(void)
     return FALSE;
 
   /* On-SS take-control via TryEvilHeroNeosLordOnMonsterPlacement (EffectOpt).
-   * Ceiling: indestructible + opp-GY-sent take-control need continuous/send hooks.
+   * indestructible + opp-GY-sent take-control need continuous/send hooks.
    * Field OPT take control of 1 face-up opp (EffectOpt; ignition stand-in). */
   if (EffectOpt_IsUsed(EVIL_HERO_NEOS_LORD))
     return FALSE;

@@ -10,7 +10,7 @@ unsigned char CanActivateHORUS_THE_BLACK_FLAME_DRAGON_LV8(void)
     return FALSE;
 
   /* Spell immunity via IsImmuneToSpellEffectsOnField.
-   * Ceiling: either-turn Spell negate needs chain hook. */
+   * either-turn Spell negate needs chain hook. */
   return FALSE;
 }
 

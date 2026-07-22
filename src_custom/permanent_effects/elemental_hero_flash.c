@@ -44,7 +44,7 @@ void ActivateElementalHeroFlash(void)
   GetGraveCardAndClearGrave(turnDuelist);
   ClearElementalHeroFlashBattleDestroyPending();
 
-  /* Ceiling: no banished-zone + no multi-card GY search yet — banish 3 E-Heroes
+  /* no banished-zone + no multi-card GY search yet — banish 3 E-Heroes
    * and add Normal Spell from GY deferred until banish + GY targeting exist.
    * Battle-destruction GY trigger wired above. */
 }

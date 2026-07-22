@@ -339,7 +339,7 @@ u8 CanActivateAngelsTearForDuelist(u8 turnDuelist)
   if (FirstEmptyZoneInRow(gTurnZones[MonsterRowForTurnDuelist(turnDuelist)]) < 0)
     return FALSE;
 
-  /* Ceiling: need 4 banish targets plus 1 summon target. */
+  /* need 4 banish targets plus 1 summon target. */
   if (CountFairyMonstersInGraveyard(fixedDuelist) < ANGELS_TEAR_BANISH_COUNT + 1)
     return FALSE;
 

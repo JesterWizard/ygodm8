@@ -32,7 +32,7 @@ unsigned char CanActivateGORZ_THE_EMISSARY_OF_DARKNESS(void)
     return FALSE;
 
   /* damage-gate + Token FALSE.
-   * Ceiling: FromHand empty-field SS. */
+   * FromHand empty-field SS. */
   return FALSE;
 }
 

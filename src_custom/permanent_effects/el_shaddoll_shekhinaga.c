@@ -123,7 +123,7 @@ static u8 IsShekhinagaGraveyardTrigger(void)
 
 unsigned char ShouldActivateEL_SHADDOLL_SHEKHINAGA(void)
 {
-  /* Ceiling: negate SS monster effect + send Shaddoll need effect-chain hook. */
+  /* negate SS monster effect + send Shaddoll need effect-chain hook. */
   return IsShekhinagaGraveyardTrigger();
 }
 

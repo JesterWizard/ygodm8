@@ -134,7 +134,7 @@ unsigned char CanActivateATLANTEAN_DRAGOONS(void)
     return FALSE;
 
   /* Lv3- Sea Serpent direct via AtlanteanDragoons_CanSeaSerpentAttackDirectly.
-   * Ceiling: sent-for-WATER-effect search needs send hook.
+   * sent-for-WATER-effect search needs send hook.
    * OPT add 1 Sea Serpent except self from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -117,5 +117,5 @@ void ActivateREPTILIANNE_SERVANT(void)
     TryActivatingPermanentEffects();
   /* Cannot-be-attacked via sAttackGates + ReptilianneServant_HasOtherFaceUpMonster;
    * Reptile NS lock via ReptilianneServant_BlocksNormalSummonReptile.
-   * Ceiling: spell-target destroy needs continuous hook. */
+   * spell-target destroy needs continuous hook. */
 }

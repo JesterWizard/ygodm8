@@ -40,7 +40,7 @@ static void ActivateAMAZONESS_HALLZone(struct DuelCard *zone)
     return;
 
   /* On activate: add 1 Amazoness from GY to hand.
-   * Ceiling: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
+   * Extra Deck / Pendulum place + opp SS gain LP need hooks. */
 
   empty = FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]);
   if (empty < 0)

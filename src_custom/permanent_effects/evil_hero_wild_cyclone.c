@@ -94,7 +94,7 @@ void ApplyEvilHeroWildCycloneBattleEffect(void)
 unsigned char ShouldActivateEVIL_HERO_WILD_CYCLONE(void)
 {
   /* Battle-damage Set S/T wipe via ApplyEvilHeroWildCycloneBattleEffect.
-   * Ceiling: attack S/T lock until end of Damage Step needs chain gate. */
+   * attack S/T lock until end of Damage Step needs chain gate. */
   (void)gActiveEffect;
   return FALSE;
 }

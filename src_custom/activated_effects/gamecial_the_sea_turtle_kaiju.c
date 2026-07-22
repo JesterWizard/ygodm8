@@ -66,7 +66,7 @@ unsigned char CanActivateGAMECIAL_THE_SEA_TURTLE_KAIJU(void)
     return FALSE;
 
   /* SS to opp field + Quick remove Kaiju Counter FALSE.
-   * Ceiling: FromHand tribute 1 opp → SS to your field (or free SS if opp has Kaiju). */
+   * FromHand tribute 1 opp → SS to your field (or free SS if opp has Kaiju). */
   return FALSE;
 }
 

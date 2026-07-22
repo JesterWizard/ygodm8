@@ -11,7 +11,7 @@ unsigned char CanActivateANCIENT_GEAR_ENGINEER(void)
 
   /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
    * End-of-Damage-Step Set S/T destroy via ApplyAncientGearEngineerBattleEffect.
-   * Ceiling: opp Trap activation negate on attack needs chain gate. */
+   * opp Trap activation negate on attack needs chain gate. */
   return FALSE;
 }
 

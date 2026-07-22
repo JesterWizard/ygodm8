@@ -88,7 +88,7 @@ unsigned char CanActivateNIBIRU_THE_PRIMAL_BEING(void)
     return FALSE;
 
   /* 5-summon gate + Primal Being Token to opp FALSE.
-   * Ceiling: FromHand wipe+SS if ≥5 face-up monsters on field. */
+   * FromHand wipe+SS if ≥5 face-up monsters on field. */
   return FALSE;
 }
 

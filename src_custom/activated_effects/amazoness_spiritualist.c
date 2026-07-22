@@ -102,7 +102,7 @@ unsigned char CanActivateAMAZONESS_SPIRITUALIST(void)
     return FALSE;
 
   /* Field OPT add Polymerization from Deck.
-   * Ceiling: hand/GY bounce→SS + ED lock need GY/ED hooks. */
+   * hand/GY bounce→SS + ED lock need GY/ED hooks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

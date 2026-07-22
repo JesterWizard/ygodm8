@@ -189,7 +189,7 @@ unsigned char CanActivateAMAZONESS_PET_LIGER_KING(void)
     return FALSE;
 
   /* OPT destroy Amazoness → SS Warrior GY via Activate.
-   * Ceiling: attack redirect FALSE. */
+   * attack redirect FALSE. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

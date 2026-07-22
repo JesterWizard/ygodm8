@@ -61,7 +61,7 @@ unsigned char CanActivateANDRO_SPHINX(void)
     return FALSE;
 
   /* Battle burn via ApplyAndroSphinxBattleEffect.
-   * Ceiling: GY SS ban needs summon gate. */
+   * GY SS ban needs summon gate. */
   return FALSE;
 }
 

@@ -229,7 +229,7 @@ unsigned char CanActivateJAIN_TWILIGHTSWORN_GENERAL(void)
     return FALSE;
 
   /* OPT banish 1 Lightsworn from hand/GY → weaken 1 face-up monster (EffectOpt).
-   * EP mill 2 via TryApplyTwilightswornEndPhase. Ceiling: other-Lightsworn-
+   * EP mill 2 via TryApplyTwilightswornEndPhase. other-Lightsworn-
    * activated mill 2 needs chain hook. */
   if (EffectOpt_IsUsed(JAIN_TWILIGHTSWORN_GENERAL))
     return FALSE;

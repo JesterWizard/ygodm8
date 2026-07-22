@@ -22,7 +22,7 @@ unsigned char CanActivateBLUE_EYES_ULTIMATE_SPIRIT_DRAGON(void)
     return FALSE;
 
   /* OPT +2 tempStage (~+1000) as negate stand-in (EffectOpt).
-   * Ceiling: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. */
+   * Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. */
   if (EffectOpt_IsUsed(BLUE_EYES_ULTIMATE_SPIRIT_DRAGON))
     return FALSE;
 

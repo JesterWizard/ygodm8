@@ -124,7 +124,7 @@ unsigned char CanActivateAROMAGE_ROSEMARY(void)
   if (zone == NULL || zone->id != AROMAGE_ROSEMARY)
     return FALSE;
 
-  /* Ceiling: LP-higher Plant attack → opp monster effects locked need
+  /* LP-higher Plant attack → opp monster effects locked need
    * permanent/battle hooks. LP-gain position change via aroma_lp_gain.c.
    * OPT change 1 face-up battle position (EffectOpt). */
   if (EffectOpt_IsUsed(AROMAGE_ROSEMARY))

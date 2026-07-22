@@ -143,7 +143,7 @@ unsigned char CanActivateCURIOUS_THE_LIGHTSWORN_DOMINION(void)
     return FALSE;
 
   /* Leave-field GY add via CuriousTheLightswornDominion_EnsureInit.
-   * Ceiling: Link Summon mill + mill-cascade need summon/send hooks.
+   * Link Summon mill + mill-cascade need summon/send hooks.
    * OPT mill 1 from Deck below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

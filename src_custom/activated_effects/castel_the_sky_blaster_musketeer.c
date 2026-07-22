@@ -135,7 +135,7 @@ unsigned char CanActivateCASTEL_THE_SKY_BLASTER_MUSKETEER(void)
   if (zone == NULL || zone->id != CASTEL_THE_SKY_BLASTER_MUSKETEER)
     return FALSE;
 
-  /* Ceiling: detach/material + face-down branch need overlay engine. 
+  /* detach/material + face-down branch need overlay engine. 
    * OPT return 1 face-up monster to the Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -146,7 +146,7 @@ unsigned char CanActivateATLANTEAN_MARKSMAN(void)
     return FALSE;
 
   /* Battle-damage Deck SS via ApplyAtlanteanMarksmanBattleEffect.
-   * Ceiling: sent-for-WATER destroy Set S/T needs send hook. */
+   * sent-for-WATER destroy Set S/T needs send hook. */
   return FALSE;
 }
 

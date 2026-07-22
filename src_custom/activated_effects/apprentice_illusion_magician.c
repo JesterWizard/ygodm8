@@ -161,7 +161,7 @@ unsigned char CanActivateAPPRENTICE_ILLUSION_MAGICIAN(void)
 
   /* On-NS/SS search via TryApprenticeIllusionMagicianOnMonsterPlacement (EffectOpt).
    * OPT add Dark Magician from Deck (shares EffectOpt with on-summon).
-   * Ceiling: hand/field send +2000 Quick need damage hooks. */
+   * hand/field send +2000 Quick need damage hooks. */
   if (EffectOpt_IsUsed(APPRENTICE_ILLUSION_MAGICIAN))
     return FALSE;
 

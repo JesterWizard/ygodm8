@@ -205,7 +205,7 @@ unsigned char CanActivateLYLA_TWILIGHTSWORN_ENCHANTRESS(void)
     return FALSE;
 
   /* OPT banish LS from hand/GY then destroy 1 face-up Spell/Trap (EffectOpt).
-   * EP mill 3 via TryApplyTwilightswornEndPhase. Ceiling: quick effect on
+   * EP mill 3 via TryApplyTwilightswornEndPhase. quick effect on
    * Spell/Trap activation + mill 3 when other LS activates need chain hooks. */
   if (EffectOpt_IsUsed(LYLA_TWILIGHTSWORN_ENCHANTRESS))
     return FALSE;

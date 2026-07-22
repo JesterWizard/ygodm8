@@ -73,7 +73,7 @@ unsigned char CanActivateEL_SHADDOLL_MESHAHRAIL(void)
     return FALSE;
 
   /* OPT pay 800 → add 1 Shaddoll or Void S/T from Deck (EffectOpt).
-   * Ceiling: unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks. */
+   * unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks. */
   if (EffectOpt_IsUsed(EL_SHADDOLL_MESHAHRAIL))
     return FALSE;
 
