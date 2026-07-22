@@ -97,7 +97,6 @@ unsigned char CanActivateAROMASERAPHY_SWEET_MARJORAM(void)
     return FALSE;
 
   /* LP-higher Plant attack block via AromaseraphySweetMarjoram_CanAttackMonsterZone.
-   * ponytail: Synchro Winds search + LP-gain destroy need summon/LP hooks.
    * Ceiling: OPT search Aroma Plant. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

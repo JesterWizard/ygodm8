@@ -159,8 +159,7 @@ unsigned char CanActivateGLADIATOR_BEAST_GISTEL(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_GISTEL)
     return FALSE;
 
-  /* ponytail: on-GB-SS search + end-BP battled tag gate need summon/battle hooks.
-   * Ceiling: OPT search Gladiator S/T, else tag-out. FromHand: reveal+SS both. */
+  /* Ceiling: OPT search Gladiator S/T, else tag-out. FromHand: reveal+SS both. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -45,7 +45,7 @@ u8 AromaseraphyJasmine_PreventsBattleDestroy(const struct DuelCard *zone)
   if (controller > DUEL_OPPONENT)
     return FALSE;
 
-  /* ponytail: no Link points — all your Plants while Jasmine face-up and LP higher. */
+  /* All your Plants while Jasmine face-up and LP higher (no Link points). */
   return ControllerHasFaceUpSeraphyJasmineWithLpAdvantage(controller);
 }
 
@@ -213,7 +213,6 @@ unsigned char CanActivateAROMASERAPHY_JASMINE(void)
     return FALSE;
 
   /* LP-higher Plant battle protect via AromaseraphyJasmine_PreventsBattleDestroy.
-   * ponytail: Link-point tribute + LP-gain search need Link/LP hooks.
    * Ceiling: tribute 1 you control → SS Plant from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

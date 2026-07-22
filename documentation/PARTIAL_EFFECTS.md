@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 17:30 UTC  
-**Remaining partials:** `378`
+**Last updated:** 2026-07-22 17:33 UTC  
+**Remaining partials:** `351`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 298 |
-| `permanent` | 64 |
-| **total** | **378** |
+| `activated` | 273 |
+| `permanent` | 62 |
+| **total** | **351** |
 
 ## spell (6)
 
@@ -95,45 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (298)
-
-### `ANCIENT_FAIRY_DRAGON`
-- path: `src_custom/activated_effects/ancient_fairy_dragon.c`
-- L135: cannot conduct Battle Phase — unk4 lock stand-in.
-- L196: true BP skip needs phase lock; unk4 stand-in. Ceiling: OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field.
-
-### `ANCIENT_GEAR_COMMANDER`
-- path: `src_custom/activated_effects/ancient_gear_commander.c`
-- L202: NS stand-in → SS AG; GY banish SS Golem FALSE. Ceiling: OPT send AG Golem hand/field/Deck → SS AG hand/Deck.
-
-### `ANCIENT_GEAR_DARK_GOLEM`
-- path: `src_custom/activated_effects/ancient_gear_dark_golem.c`
-- L60: name=AG Golem + cannot-Set lock FALSE. Ceiling: OPT add up to 2 Ancient Gear/Geartown from Deck then discard 1.
-
-### `ANCIENT_GEAR_DRAGON`
-- path: `src_custom/activated_effects/ancient_gear_dragon.c`
-- L121: Quick negate + tribute-less NS need negate/summon hooks. Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY.
-
-### `ANCIENT_GEAR_GADJILTRON_CHIMERA`
-- path: `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c`
-- L12: Green/Red/Yellow Gadget tribute branches (+300 ATK, direct burn, battle burn) need summon/tribute hooks. Ceiling: not ignition-activatable.
-
-### `ANCIENT_GEAR_GADJILTRON_DRAGON`
-- path: `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c`
-- L108: * ponytail: burn/draw FALSE.
-
-### `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND`
-- path: `src_custom/activated_effects/ancient_gear_golem_ultimate_pound.c`
-- L85: real multi-attack needs battle hook; unk4=2 extra-attack stand-in.
-
-### `ANCIENT_GEAR_KNIGHT`
-- path: `src_custom/activated_effects/ancient_gear_knight.c`
-- L13: * ponytail: Gemini Normal Monster treatment need summon hook. */
-
-### `ANCIENT_GEAR_STATUE`
-- path: `src_custom/activated_effects/ancient_gear_statue.c`
-- L111: ignore summoning conditions partial via CannotBeSS check. Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck.
-- L189: once-per-turn FromHand not tracked without turn flag.
+## activated (273)
 
 ### `ARCANA_KNIGHT_JOKER`
 - path: `src_custom/activated_effects/arcana_knight_joker.c`
@@ -143,26 +105,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/armory_arm.c`
 - L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
 
-### `AROMALILITH_MAGNOLIA`
-- path: `src_custom/activated_effects/aromalilith_magnolia.c`
-- L172: no multi-select UI — auto-banish up to winds count (opp rows first).
-
-### `AROMALILITH_ROSALINA`
-- path: `src_custom/activated_effects/aromalilith_rosalina.c`
-- L106: discard quick LP + Plant-only SS lock need chain/SS hooks. Ceiling: OPT SS 1 non-Tuner Aroma from Deck in DEF.
-
-### `AROMALILITH_ROSEMARY`
-- path: `src_custom/activated_effects/aromalilith_rosemary.c`
-- L57: SS-trigger search + LP-gain Link-point SS + pointed tribute banish need summon/LP/Link hooks. Ceiling: OPT search Aroma from Deck.
-
-### `AROMASERAPHY_JASMINE`
-- path: `src_custom/activated_effects/aromaseraphy_jasmine.c`
-- L48: no Link points — all your Plants while Jasmine face-up and LP higher.
-
-### `AROMASERAPHY_SWEET_MARJORAM`
-- path: `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c`
-- L100: * ponytail: Synchro Winds search + LP-gain destroy need summon/LP hooks.
-
 ### `AZURE_EYES_SILVER_DRAGON`
 - path: `src_custom/activated_effects/azure_eyes_silver_dragon.c`
 - L50: until end of next turn clear needs EOT hook.
@@ -170,10 +112,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `BAZOO_THE_SOUL_EATER`
 - path: `src_custom/activated_effects/bazoo_the_soul_eater.c`
 - L130: unk4 = banish count for +300 ATK each; cleared each EP with tempStage reset — not exact until-opp-EP hook.
-
-### `CHAOS_ANCIENT_GEAR_GIANT`
-- path: `src_custom/activated_effects/chaos_ancient_gear_giant.c`
-- L12: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock + multi-attack need fusion/battle hooks. Pierce via ApplySimplePiercersBattleEffect. Ceiling: not ignition-activatable here.
 
 ### `CYBERNETIC_MAGICIAN`
 - path: `src_custom/activated_effects/cybernetic_magician.c`
@@ -522,47 +460,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GATE_GUARDIANS_COMBINED`
 - path: `src_custom/activated_effects/gate_guardians_combined.c`
 - L102: negate-on-target + leave-field SS FALSE. Ceiling: OPT destroy 1 opp card (negate stand-in).
-
-### `GLADIATOR_BEAST_ANDABATA`
-- path: `src_custom/activated_effects/gladiator_beast_andabata.c`
-- L135: Extra Deck return + Lv≤7 GB Fusion Extra SS need ED/Fusion APIs.
-- L158: contact Fusion SS Lv≤7 GB Fusion from Extra needs Extra API. Ceiling: OPT tag-out → SS 2 different GB from Deck.
-
-### `GLADIATOR_BEAST_AUGUSTUS`
-- path: `src_custom/activated_effects/gladiator_beast_augustus.c`
-- L48: GB-SS trigger + end-of-BP tag-out need summon/battle hooks. Ceiling: OPT SS 1 other GB from hand in DEF.
-
-### `GLADIATOR_BEAST_CLAUDIUS`
-- path: `src_custom/activated_effects/gladiator_beast_claudius.c`
-- L61: double BP + opp-effect trigger FALSE. Ceiling: OPT SS Gladiator Beast from Deck (opp effect stand-in).
-
-### `GLADIATOR_BEAST_DAREIOS`
-- path: `src_custom/activated_effects/gladiator_beast_dareios.c`
-- L179: Link Summon trigger + BP protect + Link Material lock FALSE. Ceiling: OPT SS Lv≤4 GB from hand/GY, or any GB from Deck if opp has monster.
-
-### `GLADIATOR_BEAST_DOMITIANUS`
-- path: `src_custom/activated_effects/gladiator_beast_domitianus.c`
-- L133: Quick negate/destroy + attack-redirect FALSE; end-BP battled gate missing. Ceiling: OPT tag-out → SS 1–2 GB from Deck.
-
-### `GLADIATOR_BEAST_DRAGASES`
-- path: `src_custom/activated_effects/gladiator_beast_dragases.c`
-- L157: battle indestruct + opp chain block + end-of-BP battled gate need battle hooks. Ceiling: OPT GB tag-out → SS 2 different from Deck.
-
-### `GLADIATOR_BEAST_GISTEL`
-- path: `src_custom/activated_effects/gladiator_beast_gistel.c`
-- L162: on-GB-SS search + end-BP battled tag gate need summon/battle hooks. Ceiling: OPT search Gladiator S/T, else tag-out. FromHand: reveal+SS both.
-
-### `GLADIATOR_BEAST_NOXIOUS`
-- path: `src_custom/activated_effects/gladiator_beast_noxious.c`
-- L130: hand attack-redirect SS + battled tag gate need battle hooks. Ceiling: OPT mill 1 GB from Deck, else tag-out.
-
-### `GLADIATOR_BEAST_TAMER_EDITOR`
-- path: `src_custom/activated_effects/gladiator_beast_tamer_editor.c`
-- L70: Extra Deck Fusion SS + immunity + BP tag FALSE. Ceiling: OPT SS Lv≥5 GB from Deck (Extra stand-in).
-
-### `GLADIATOR_BEAST_VESPASIUS`
-- path: `src_custom/activated_effects/gladiator_beast_vespasius.c`
-- L121: FromHand battle SS + continuous +500 while GB-SS'd + end-BP battled gate need battle/summon hooks. Ceiling: OPT tag-out shuffle→SS.
 
 ### `GODDESS_BOW`
 - path: `src_custom/activated_effects/goddess_bow.c`
@@ -1337,22 +1234,12 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (64)
+## permanent (62)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
 - L23: AI candidate sim runs real effect code but restores duel state; do not queue burns that survive into the chosen action.
 - L72: skip nested UpdateDuelGfxExceptField; caller just refreshed field.
-
-### `ARCANA_FORCE_EX_THE_LIGHT_RULER`
-- path: `src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c`
-- L100: Tails negate FALSE; Heads only when GY→hand legal.
-- L125: Tails Quick negate + battle add need chain/battle hooks.
-
-### `ARCANA_FORCE_THE_CHAOS_RULER`
-- path: `src_custom/permanent_effects/arcana_force_the_chaos_ruler.c`
-- L162: true trigger is Special Summon; on-summon coin stand-in covers SS path.
-- L198: Light Barrier opp-activation lock needs continuous field hook.
 
 ### `BLUE_EYES_ALTERNATIVE_WHITE_DRAGON`
 - path: `src_custom/permanent_effects/blue_eyes_alternative_white_dragon.c`

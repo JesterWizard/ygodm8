@@ -67,8 +67,7 @@ unsigned char CanActivateGLADIATOR_BEAST_TAMER_EDITOR(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_TAMER_EDITOR)
     return FALSE;
 
-  /* ponytail: Extra Deck Fusion SS + immunity + BP tag FALSE.
-   * Ceiling: OPT SS Lv≥5 GB from Deck (Extra stand-in). */
+  /* Ceiling: OPT SS Lv≥5 GB from Deck (Extra stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

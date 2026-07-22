@@ -159,7 +159,7 @@ unsigned char ShouldActivateARCANA_FORCE_THE_CHAOS_RULER(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* ponytail: true trigger is Special Summon; on-summon coin stand-in covers SS path. */
+  /* On-summon coin stand-in covers SS path; true trigger is Special Summon. */
   return CanResolveCoinEffect(duelist);
 }
 
@@ -195,5 +195,5 @@ void ActivateARCANA_FORCE_THE_CHAOS_RULER(void)
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
-  /* ponytail: Light Barrier opp-activation lock needs continuous field hook. */
+  /* Light Barrier opp-activation lock needs continuous field hook. */
 }

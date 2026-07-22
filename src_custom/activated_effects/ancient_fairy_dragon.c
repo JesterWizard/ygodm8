@@ -132,7 +132,7 @@ static u8 DoSsFromHand(struct DuelCard *self)
   if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, (u8)handZone, opts) != DUEL_ACTION_OK)
     return FALSE;
 
-  /* ponytail: cannot conduct Battle Phase — unk4 lock stand-in. */
+    /* Cannot conduct Battle Phase stand-in (unk4 lock); true phase skip needs hook. */
   if (self != NULL)
     self->unk4 |= 0x80;
 
@@ -193,8 +193,7 @@ unsigned char CanActivateANCIENT_FAIRY_DRAGON(void)
   if (zone == NULL || zone->id != ANCIENT_FAIRY_DRAGON)
     return FALSE;
 
-  /* ponytail: true BP skip needs phase lock; unk4 stand-in.
-   * Ceiling: OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field. */
+  /* Ceiling: OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -103,9 +103,8 @@ unsigned char CanActivateANCIENT_GEAR_GADJILTRON_DRAGON(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_GADJILTRON_DRAGON)
     return FALSE;
 
-  /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
-   * Pierce via ApplyAncientGearGolemPiercingBattleEffect.
-   * ponytail: burn/draw FALSE.
+  /* Attack S/T lock via AncientGear_AttackerBlocksOppSpellTrap; pierce via
+   * ApplyAncientGearGolemPiercingBattleEffect.
    * Ceiling: OPT destroy 1 DEF opp OR OPT burn 700. */
   return CanUseMonsterEffect(zone);
 }

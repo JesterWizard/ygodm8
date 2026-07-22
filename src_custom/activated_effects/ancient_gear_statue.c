@@ -108,8 +108,7 @@ unsigned char CanActivateANCIENT_GEAR_STATUE(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_STATUE)
     return FALSE;
 
-  /* ponytail: ignore summoning conditions partial via CannotBeSS check.
-   * Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck. */
+  /* Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -186,7 +185,7 @@ u8 TrySpecialSummonAncientGearStatueFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* ponytail: once-per-turn FromHand not tracked without turn flag. */
+  /* FromHand SS when opp has more monsters; once-per-turn not tracked. */
   if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
     return FALSE;
 

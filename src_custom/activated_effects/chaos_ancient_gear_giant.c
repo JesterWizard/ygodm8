@@ -9,8 +9,8 @@ unsigned char CanActivateCHAOS_ANCIENT_GEAR_GIANT(void)
   if (gMonEffect.id != CHAOS_ANCIENT_GEAR_GIANT)
     return FALSE;
 
-  /* ponytail: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock +
-   * multi-attack need fusion/battle hooks. Pierce via ApplySimplePiercersBattleEffect.
+  /* Attack S/T lock via AncientGear_AttackerBlocksOppSpellTrap; pierce via
+   * ApplySimplePiercersBattleEffect; multi-attack via TryMarkBuiltInExtraAttackOnPlacement.
    * Ceiling: not ignition-activatable here. */
   return FALSE;
 }

@@ -176,8 +176,7 @@ unsigned char CanActivateGLADIATOR_BEAST_DAREIOS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_DAREIOS)
     return FALSE;
 
-  /* ponytail: Link Summon trigger + BP protect + Link Material lock FALSE.
-   * Ceiling: OPT SS Lv≤4 GB from hand/GY, or any GB from Deck if opp has monster. */
+  /* Ceiling: OPT SS Lv≤4 GB from hand/GY, or any GB from Deck if opp has monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

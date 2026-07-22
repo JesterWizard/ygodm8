@@ -45,8 +45,7 @@ unsigned char CanActivateGLADIATOR_BEAST_AUGUSTUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_AUGUSTUS)
     return FALSE;
 
-  /* ponytail: GB-SS trigger + end-of-BP tag-out need summon/battle hooks.
-   * Ceiling: OPT SS 1 other GB from hand in DEF. */
+  /* Ceiling: OPT SS 1 other GB from hand in DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

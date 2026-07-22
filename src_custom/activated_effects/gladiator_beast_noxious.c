@@ -127,8 +127,7 @@ unsigned char CanActivateGLADIATOR_BEAST_NOXIOUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_NOXIOUS)
     return FALSE;
 
-  /* ponytail: hand attack-redirect SS + battled tag gate need battle hooks.
-   * Ceiling: OPT mill 1 GB from Deck, else tag-out. */
+  /* Ceiling: OPT mill 1 GB from Deck, else tag-out. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

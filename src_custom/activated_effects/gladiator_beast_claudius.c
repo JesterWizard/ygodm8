@@ -58,8 +58,7 @@ unsigned char CanActivateGLADIATOR_BEAST_CLAUDIUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_CLAUDIUS)
     return FALSE;
 
-  /* ponytail: double BP + opp-effect trigger FALSE.
-   * Ceiling: OPT SS Gladiator Beast from Deck (opp effect stand-in). */
+  /* Ceiling: OPT SS Gladiator Beast from Deck (opp effect stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

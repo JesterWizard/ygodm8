@@ -118,8 +118,7 @@ unsigned char CanActivateANCIENT_GEAR_DRAGON(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_DRAGON)
     return FALSE;
 
-  /* ponytail: Quick negate + tribute-less NS need negate/summon hooks.
-   * Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY. */
+  /* Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

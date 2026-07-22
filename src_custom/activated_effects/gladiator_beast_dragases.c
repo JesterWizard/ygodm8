@@ -154,8 +154,7 @@ unsigned char CanActivateGLADIATOR_BEAST_DRAGASES(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_DRAGASES)
     return FALSE;
 
-  /* ponytail: battle indestruct + opp chain block + end-of-BP battled gate need
-   * battle hooks. Ceiling: OPT GB tag-out → SS 2 different from Deck. */
+  /* Ceiling: OPT GB tag-out → SS 2 different from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

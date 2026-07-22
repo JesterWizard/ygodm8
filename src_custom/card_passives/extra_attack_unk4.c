@@ -21,6 +21,8 @@ void TryMarkBuiltInExtraAttackOnPlacement(struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  if (zone->id == GLADIATOR_BEAST_DIMACARI || zone->id == ARMITYLE_THE_CHAOS_PHANTASM)
+  if (zone->id == GLADIATOR_BEAST_DIMACARI || zone->id == ARMITYLE_THE_CHAOS_PHANTASM
+      || zone->id == CHAOS_ANCIENT_GEAR_GIANT
+      || zone->id == ANCIENT_GEAR_GOLEM_ULTIMATE_POUND)
     zone->unk4 = 2;
 }

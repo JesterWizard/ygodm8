@@ -132,7 +132,7 @@ static void ShuffleSelfTagOut(struct DuelCard *self)
   u8 fixedDuelist = FixedDuelistForActive();
   u16 cardId = self->id;
 
-  /* ponytail: Extra Deck return + Lv≤7 GB Fusion Extra SS need ED/Fusion APIs. */
+  /* Extra Deck return + Lv≤7 GB Fusion Extra SS need ED/Fusion APIs. */
   ClearZone(self);
   ReturnCardToDeckTop(fixedDuelist, cardId);
   Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
@@ -155,8 +155,7 @@ unsigned char CanActivateGLADIATOR_BEAST_ANDABATA(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_ANDABATA)
     return FALSE;
 
-  /* ponytail: contact Fusion SS Lv≤7 GB Fusion from Extra needs Extra API.
-   * Ceiling: OPT tag-out → SS 2 different GB from Deck. */
+  /* Ceiling: OPT tag-out → SS 2 different GB from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

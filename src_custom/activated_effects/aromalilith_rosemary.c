@@ -54,8 +54,7 @@ unsigned char CanActivateAROMALILITH_ROSEMARY(void)
   if (zone == NULL || zone->id != AROMALILITH_ROSEMARY)
     return FALSE;
 
-  /* ponytail: SS-trigger search + LP-gain Link-point SS + pointed tribute banish
-   * need summon/LP/Link hooks. Ceiling: OPT search Aroma from Deck. */
+  /* Ceiling: OPT search Aroma from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

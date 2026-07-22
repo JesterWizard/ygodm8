@@ -103,8 +103,7 @@ unsigned char CanActivateAROMALILITH_ROSALINA(void)
   if (zone == NULL || zone->id != AROMALILITH_ROSALINA)
     return FALSE;
 
-  /* ponytail: discard quick LP + Plant-only SS lock need chain/SS hooks.
-   * Ceiling: OPT SS 1 non-Tuner Aroma from Deck in DEF. */
+  /* Ceiling: OPT SS 1 non-Tuner Aroma from Deck in DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

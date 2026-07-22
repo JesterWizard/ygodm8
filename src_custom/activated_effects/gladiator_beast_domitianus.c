@@ -130,8 +130,7 @@ unsigned char CanActivateGLADIATOR_BEAST_DOMITIANUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_DOMITIANUS)
     return FALSE;
 
-  /* ponytail: Quick negate/destroy + attack-redirect FALSE; end-BP battled gate
-   * missing. Ceiling: OPT tag-out → SS 1–2 GB from Deck. */
+  /* Ceiling: OPT tag-out → SS 1–2 GB from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

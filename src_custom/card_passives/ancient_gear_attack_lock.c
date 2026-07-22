@@ -18,6 +18,7 @@ u8 AncientGear_AttackerBlocksOppSpellTrap(const struct DuelCard *attacker)
   case ANCIENT_GEAR_GADJILTRON_DRAGON:
   case ULTIMATE_ANCIENT_GEAR_GOLEM:
   case ANCIENT_GEAR_GOLEM_ULTIMATE_POUND:
+  case CHAOS_ANCIENT_GEAR_GIANT:
     return TRUE;
   default:
     return FALSE;

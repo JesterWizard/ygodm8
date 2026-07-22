@@ -55,8 +55,9 @@ unsigned char CanActivateANCIENT_GEAR_GOLEM_ULTIMATE_POUND(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_GOLEM_ULTIMATE_POUND)
     return FALSE;
 
-  /* Pierce via ApplyAncientGearGolemPiercingBattleEffect (IsGolemAttacker).
-   * ponytail: real multi-attack needs battle hook; else OPT discard Machine → unk4 extra-attack / add Poly. */
+  /* Pierce via ApplyAncientGearGolemPiercingBattleEffect (IsGolemAttacker);
+   * multi-attack via TryMarkBuiltInExtraAttackOnPlacement + TryUnlockUnk4MarkedExtraAttack.
+   * Ceiling: OPT discard Machine → unk4 extra-attack / add Poly. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -82,7 +83,7 @@ void ActivateANCIENT_GEAR_GOLEM_ULTIMATE_POUNDEffect(void)
     if (Duel_DestroyZone(machine, ACTIVE_DUELIST, TRUE) == DUEL_ACTION_DUEL_OVER)
       return;
 
-    /* ponytail: real multi-attack needs battle hook; unk4=2 extra-attack stand-in. */
+    /* Third attack stand-in via TryUnlockUnk4MarkedExtraAttack (unk4=2). */
     self->unk4 = 2;
     MarkMonsterEffectUsed(self);
     UpdateDuelGfxExceptField();

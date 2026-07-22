@@ -134,8 +134,7 @@ unsigned char CanActivateAROMALILITH_MAGNOLIA(void)
     return FALSE;
 
   /* LP-higher Plant effect-destroy immunity via AromalilithMagnolia_PreventsDestroy.
-   * ponytail: LP-gain ATK need LP hook. Ceiling: OPT pay 2000 → banish up to
-   * Humid/Dried/Blessed Winds count. */
+   * Ceiling: OPT pay 2000 → banish up to Humid/Dried/Blessed Winds count. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -169,7 +168,7 @@ void ActivateAROMALILITH_MAGNOLIAEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* ponytail: no multi-select UI — auto-banish up to winds count (opp rows first). */
+  /* Auto-banish up to winds count (opp rows first); no multi-select UI. */
   BanishUpToNFieldCards(self, winds);
 
   MarkMonsterEffectUsed(self);

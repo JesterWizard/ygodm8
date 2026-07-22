@@ -118,8 +118,7 @@ unsigned char CanActivateGLADIATOR_BEAST_VESPASIUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_VESPASIUS)
     return FALSE;
 
-  /* ponytail: FromHand battle SS + continuous +500 while GB-SS'd + end-BP battled
-   * gate need battle/summon hooks. Ceiling: OPT tag-out shuffle→SS. */
+  /* Ceiling: OPT tag-out shuffle→SS. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

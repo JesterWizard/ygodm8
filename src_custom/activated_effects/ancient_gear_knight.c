@@ -10,7 +10,7 @@ unsigned char CanActivateANCIENT_GEAR_KNIGHT(void)
     return FALSE;
 
   /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
-   * ponytail: Gemini Normal Monster treatment need summon hook. */
+   * Ceiling: Gemini Normal Monster treatment need summon hook. */
   return FALSE;
 }
 

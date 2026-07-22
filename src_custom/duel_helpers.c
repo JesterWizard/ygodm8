@@ -179,6 +179,8 @@ struct DuelCard *ElementalHeroPoisonRose_GetForcedAttackTarget(u8 defenderDuelis
 u8 SphereMode_CanAttackMonsterZone(struct DuelCard *zone);
 struct DuelCard *HamonLordOfStrikingThunder_GetForcedAttackTarget(u8 defenderDuelist);
 u8 HamonLordOfStrikingThunder_CanAttackMonsterZone(struct DuelCard *zone);
+struct DuelCard *EvilHeroMaliciousFiend_GetForcedAttackTarget(u8 defenderDuelist);
+u8 EvilHeroMaliciousFiend_CanAttackMonsterZone(struct DuelCard *zone);
 u8 UriaLordOfSearingFlames_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmuletDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 BeastKingBarbaros_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -1749,6 +1751,7 @@ static const struct DuelForcedAttackRedirect sForcedAttackRedirects[] __attribut
   { DoubleTool_GetForcedAttackTarget },
   { ElementalHeroPoisonRose_GetForcedAttackTarget },
   { HamonLordOfStrikingThunder_GetForcedAttackTarget },
+  { EvilHeroMaliciousFiend_GetForcedAttackTarget },
 };
 
 typedef u8 (*DuelAttackZoneCheckFn)(struct DuelCard *zone);
@@ -1764,6 +1767,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   HamonLordOfStrikingThunder_CanAttackMonsterZone,
   KnightOfPentacles_CanAttackMonsterZone,
   AromaseraphySweetMarjoram_CanAttackMonsterZone,
+  EvilHeroMaliciousFiend_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)
