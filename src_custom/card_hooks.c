@@ -38,6 +38,7 @@
 #include "gravekeepers_priestess.h"
 #include "aromage_cananga.h"
 #include "aromaseraphy_rosemary.h"
+#include "ehren_lightsworn_monk.h"
 #include "jain_lightsworn_paladin.h"
 #include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
@@ -721,6 +722,13 @@ void RefreshPendingBattleActionStatsFromZones(void)
   struct DuelCard *zone;
 
   if (!IsPendingMonsterAttackAction(sActionData.id))
+    return;
+
+  ApplyEhrenLightswornMonkBeforeDamageCalc();
+
+  if (sActionData.id == 2 && sActionData.opponentCardId == CARD_NONE)
+    return;
+  if (sActionData.id == 5 && sActionData.playerCardId == CARD_NONE)
     return;
 
   if (sActionData.playerCardId != CARD_NONE) {

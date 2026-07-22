@@ -7,32 +7,32 @@ Each `ponytail:` ceiling is tagged with its **primary missing engine surface** s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 07:30 UTC  
-**Ceiling lines tagged:** `604`  
-**Partial files:** `507`
+**Last updated:** 2026-07-22 07:38 UTC  
+**Ceiling lines tagged:** `597`  
+**Partial files:** `502`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `event.OnStandby` | 190 | 3 (OPT / turn flags) |
-| `other` | 189 | triage |
+| `event.OnStandby` | 188 | 3 (OPT / turn flags) |
+| `other` | 188 | triage |
 | `event.OnSummon` | 60 | 3 |
 | `chain.Negate` | 34 | later / chain |
 | `gate.Tribute` | 33 | 2–3 |
-| `event.OnBattleDestroy` | 21 | 3 |
-| `op.Search` | 18 | 1 |
+| `event.OnBattleDestroy` | 19 | 3 |
 | `event.OnDestroy` | 17 | 3 |
+| `op.Search` | 17 | 1 |
 | `op.BanishTimed` | 13 | 1–3 |
 | `event.GyIgnition` | 10 | 3 |
 | `ui.Choice` | 10 | 2 |
-| `stat.Continuous` | 7 | 1–3 |
+| `stat.Continuous` | 6 | 1–3 |
 | `event.OnDamageCalc` | 2 | 3 |
-| **total** | **604** | |
+| **total** | **597** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (21)
+## `event.OnBattleDestroy` (19)
 
 - `AMAZONESS_HOT_SPRING` (trap): L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
 - `ARMED_NEOS` (activated): L116: battle-destroy gain Extra tribute SS need battle/Extra hooks. Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY.
@@ -46,8 +46,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DYNATAG` (activated): L54: no battle damage from that battle not wired; both players 1000.
 - `GRAVEKEEPERS_VASSAL` (activated): L12: battle damage as effect damage needs battle-damage type gate. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
 - `HONEST` (activated): L95: Damage Step hand discard uses FromHand path. Ceiling: Main Phase return this face-up card to the hand.
-- `MAJESTY_HYPERION` (activated): L270: Fairy battle-damage share FALSE. Ceiling: OPT banish Fairy hand/GY → destroy 1 card. FromHand banish Agent → SS.
-- `MORPHTRONIC_LANTRON` (activated): L12: ATK redirect effect damage + DEF no battle damage when destroyed need damage-redirect and battle-destroy hooks. Ceiling: not ignition here.
 - `NEO_BLUE_EYES_ULTIMATE_DRAGON` (activated): L79: Damage Step / Fusion-Summon / protect-negate FALSE. Ceiling: OPT send BE Fusion-ish from Deck → unk4 extra-attack mark. (printed up-to-twice; OPT usage flag is the stand-in).
 - `TETHYS_GODDESS_OF_LIGHT` (activated): L54: unk18 != 0 means battle/damage resolution is active.
 - `TIMAEUS_THE_KNIGHT_OF_DESTINY` (activated): L53: unaffected + once-per-battle damage calc FALSE. Ceiling: OPT set ATK/DEF ≈ highest field ATK via tempStage.
@@ -144,7 +142,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JUNK_WARRIOR` (permanent): L75: tempStage (~500/stage) on-summon only; no continuous recompute.
 - `MAGICIAN_OF_DARK_ILLUSION` (permanent): L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
 
-## `event.OnStandby` (190)
+## `event.OnStandby` (188)
 
 - `DARK_SUPREMACY` (trap): L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
 - `AMAZONESS_PET_LIGER_KING` (activated): L191: attack redirect FALSE. Ceiling: OPT destroy Amazoness → SS Warrior GY.
@@ -153,7 +151,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ANCIENT_FAIRY_DRAGON` (activated): L196: true BP skip needs phase lock; unk4 stand-in. Ceiling: OPT SS Lv≤4 from hand; OPT destroy Field Spells + 1000 LP + add Field.
 - `ANCIENT_GEAR_COMMANDER` (activated): L202: NS stand-in → SS AG; GY banish SS Golem FALSE. Ceiling: OPT send AG Golem hand/field/Deck → SS AG hand/Deck.
 - `ANCIENT_GEAR_DARK_GOLEM` (activated): L60: name=AG Golem + cannot-Set lock FALSE. Ceiling: OPT add up to 2 Ancient Gear/Geartown from Deck then discard 1.
-- `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` (activated): L58: piercing/multi-attack + destroy-trigger Poly FALSE. Ceiling: OPT discard Machine → unk4 extra-attack, else OPT add Poly.
 - `ANCIENT_GEAR_STATUE` (activated): L111: ignore summoning conditions partial via CannotBeSS check. Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck.
 - `ANCIENT_GEAR_STATUE` (activated): L189: once-per-turn FromHand not tracked without turn flag.
 - `ANCIENT_GEAR_TANKER` (activated): L234: pierce mark AG monsters FALSE. Ceiling: OPT SS AG from hand (GY if opp has monster), else OPT destroy your face-up. Separate OPTs share one MarkMonsterEffectUsed.
@@ -162,7 +159,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ARMED_DRAGON_LV5` (activated): L135: EP send self → SS LV7 needs End Phase hook. Ceiling: OPT discard 1 hand monster → destroy 1 opp monster ATK≤.
 - `AROMAGE_JASMINE` (activated): L20: extra Plant Normal Summon while LP higher + draw-on-LP-gain need permanent/LP hooks. Ceiling: OPT draw 1 via usage; upgrade: LP-gain gate + extra Normal Summon overlay when your LP exceed opponent's.
 - `AROMAGE_LAUREL` (activated): L66: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks. Ceiling: OPT add 1 Plant from Deck; upgrade: full Aroma branches.
-- `AROMAGE_MARJORAM` (activated): L97: FromHand SS on Plant destroy + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish up to Aroma-count cards from opp GY.
+- `AROMAGE_MARJORAM` (activated): L180: * ponytail: destroy-SS + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish opp GY. */
 - `AROMAGE_ROSEMARY` (activated): L125: LP-higher Plant attack → opp monster effects locked + LP-gain gate need permanent/LP hooks. Ceiling: OPT change 1 face-up battle position.
 - `AROMALILITH_MAGNOLIA` (activated): L100: Plant protect + LP-gain ATK need permanent/LP hooks. Ceiling: OPT pay 2000 → banish up to Humid/Dried/Blessed Winds count.
 - `AROMALILITH_ROSALINA` (activated): L106: discard quick LP + Plant-only SS lock need chain/SS hooks. Ceiling: OPT SS 1 non-Tuner Aroma from Deck in DEF.
@@ -287,7 +284,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `MORPHTRONIC_SCANNEN` (activated): L194: FromHand banish Morphtronic → SS; ATK/DEF OPT search modes.
 - `MORPHTRONIC_SCOPEN` (activated): L58: DEF Position → treat as Level 4 + EP destroy on ATK-mode SS need position/EP hooks. Ceiling: ATK Position OPT SS 1 Lv4 Morphtronic from hand.
 - `MORPHTRONIC_SLINGEN` (activated): L160: DEF destroy-other-Morphtronic substitute needs destroy redirect hook. Ceiling: ATK OPT tribute 1 other Morphtronic → destroy 1 field card.
-- `MORPHTRONIC_STAPLEN` (activated): L92: ATK attack-redirect + DEF battle-immune / on-attack change need battle hooks. Ceiling: OPT change 1 opp ATK monster to DEF.
+- `MORPHTRONIC_STAPLEN` (activated): L102: * ponytail: ATK attack-redirect needs battle hook. Ceiling: OPT change 1 opp ATK to DEF. */
 - `MORPHTRONIC_VACUUMEN` (activated): L24: send Equip → burn + DEF equip-take-control need equip hooks. Ceiling: ATK Position OPT burn 500.
 - `NAELSHADDOLL_ARIEL` (activated): L72: FLIP SS banished Shaddoll + sent-by-effect branch need flip/RFP hooks. Ceiling: OPT banish up to 3 cards from either GY.
 - `NECROFACE` (activated): L86: Normal Summon shuffle + banish-mill branches need summon/banish hooks. Ceiling: OPT shuffle all banished into Decks + tempStage per card.
@@ -295,7 +292,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `NEHSHADDOLL_GENIUS` (activated): L110: FLIP Shaddoll unaffected + sent-by-effect branches need flip/send hooks. Ceiling: OPT negate 1 face-up Effect Monster (unk4).
 - `NEO_SPACE_CONNECTOR` (activated): L61: on-Normal-Summon trigger + tribute-bounce second effect need summon/tribute hooks. Ceiling: OPT SS Neo-Spacian or Neos from Deck DEF.
 - `NITRO_WARRIOR` (activated): L96: Spell ATK gain + battle-after destroy trigger FALSE. Ceiling: OPT change 1 face-up DEF opp monster to ATK (battle-after stand-in).
-- `ORICHALCOS_SHUNOROS` (activated): L40: battle-trigger SS + Lv4 Normal indestructible need trigger/permanent hooks. Ceiling: OPT +2 tempStage per opp monster (~1000 ATK each).
 - `POWER_TOOL_BRAVER_DRAGON` (activated): L99: SS equip Equip Spells from Deck/GY hard; send-equip negate FALSE. Ceiling: OPT change battle position of 1 monster.
 - `PROTECTOR_OF_THE_AGENTS_MOON` (activated): L305: Link Summon trigger gate missing. Ceiling: OPT mill/add Sanctuary path, else OPT tribute Fairy → destroy 1 opp.
 - `QADSHADDOLL_KEIOS` (activated): L50: FLIP vs sent-by-effect exclusivity + mill ATK gain need flip/send hooks. Ceiling: OPT SS 1 Shaddoll from hand face-up DEF.
@@ -423,7 +419,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `LEGENDARY_MAJU_GARZETT` (permanent): L8: ATK = tributed originals needs hand-tribute SS stat capture; FromHand only.
 - `MAGICIANS_ROD` (permanent): L138: GY tribute Spellcaster → add this needs opp-turn quick hook.
 
-## `stat.Continuous` (7)
+## `stat.Continuous` (6)
 
 - `ARMITYLE_THE_CHAOS_PHANTASM` (activated): L12: Extra Deck banish-fusion SS + battle indestructible + turn-only +10000 ATK need summon/permanent/battle hooks. Ceiling: not ignition here.
 - `EVIL_HERO_MALICIOUS_BANE` (activated): L105: +200 ATK each via tempStage (~500/unit); attack lock only marks self unk4.
@@ -431,7 +427,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ELEMENTAL_HERO_THE_SHINING` (permanent): L22: no banished-zone storage yet — +300 ATK per banished E-HERO and return up to 2 banished E-HEROes to hand deferred until banish zone exists.
 - `EVIL_DRAGON_ANANTA` (permanent): L52: End Phase destroy 1 card needs turn_effect hook — ApplyDynamicZoneStats only.
 - `GARONITH_LIGHTSWORN_DRAGON` (permanent): L91: * ponytail: End Phase mill 3 need turn hook — ApplyDynamicZoneStats live. */
-- `SHIRE_LIGHTSWORN_SPIRIT` (permanent): L89: End Phase mill 2 needs turn_effect hook — ApplyDynamicZoneStats only.
 
 ## `ui.Choice` (10)
 
@@ -446,12 +441,11 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `OJAMA_KING` (activated): L54: PickZone for up to 3 empty zones + continuous lock gate. Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
 - `ELEMENTAL_HERO_SUNRISE` (permanent): L464: true timing is attack declaration; resolve post-battle so PickZone can run from the main loop (same pattern as Core). Opponent-turn textboxes corrupt field VRAM — auto-resolve silently.
 
-## `op.Search` (18)
+## `op.Search` (17)
 
 - `SPELL_CHRONICLE` (spell): L68: no simple Deck→banish helper for arbitrary ST — mill to GY as stand-in for the 5 banished. Ceiling: cards go to GY not banished; upgrade: Duel_BanishDeckCardAt.
 - `HARPIE_LADY_ELEGANCE` (trap): L47: * ponytail: WIND-only SS lock this turn + destroy-search Harpie Spell need hooks. */
 - `ATLANTEAN_DRAGOONS` (activated): L137: * ponytail: sent-for-WATER-effect search needs send hook.
-- `EHREN_LIGHTSWORN_MONK` (activated): L12: battle shuffle + End Phase mill 3 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: battle + EP mill.
 - `EVIL_HERO_ADUSTED_GOLD` (activated): L63: cannot attack without Fusion Monster needs attack gate hook. Ceiling: not field-ignition activatable; discard search uses FromHand path.
 - `JUDGMENT_THE_DRAGON_OF_HEAVEN` (activated): L107: 4+ GY Tuners gate + Dragon-only SS lock + End Phase mill 4 need GY/phase hooks. Ceiling: pay half LP → destroy all other field cards.
 - `LUMINA_LIGHTSWORN_SUMMONER` (activated): L236: End Phase mill 3 needs EP phase hook.
@@ -483,7 +477,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DESTINY_HERO_DRAWHAND` (permanent): L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
 - `THE_WICKED_AVATAR` (permanent): L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
 
-## `other` (189)
+## `other` (188)
 
 - `FUSION_DESTINY` (spell): L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 - `NEO_SPACE` (spell): L94: gCardData_NEW — SetCardInfo would wipe stage/field ATK mid-overlay.
@@ -536,7 +530,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ELEMENTAL_HERO_GLOW_NEOS` (activated): L47: cannot-attack mark via unk4.
 - `ELEMENTAL_HERO_GLOW_NEOS` (activated): L50: direct-attack mark via unk4.
 - `ELEMENTAL_HERO_GREAT_TORNADO` (activated): L26: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.atk/def that the stat pipeline already computed for zone.
-- `ELEMENTAL_HERO_ICE_EDGE` (activated): L59: direct-attack grant this turn; cleared in UnlockCardsInRow.
 - `ELEMENTAL_HERO_LADY_HEAT` (activated): L45: CanActivate runs before the menu flips a face-down activator
 - `ELEMENTAL_HERO_OCEAN` (activated): L81: skip stale GY Ocean while the activator is still on field
 - `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN` (activated): L177: multi-target picker not wired; auto-destroy highest-value opp cards.
@@ -578,13 +571,13 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `MIRROR_FORCE_DRAGON` (activated): L12: when targeted for attack/effect trigger needs protection hook. Ceiling: not ignition-activatable here; upgrade: trigger destroy-all.
 - `MOLTEN_ZOMBIE` (activated): L18: printed trigger is SS from GY. Ceiling: once via usage when Activate runs (summon-dispatch or manual).
 - `MORPHTRONIC_CAMERAN` (activated): L175: * ponytail: DEF Morphtronic untargetable needs targeting gate. */
+- `MORPHTRONIC_LANTRON` (activated): L98: * ponytail: ATK redirect effect damage needs effect-damage hook. */
 - `MORPHTRONIC_MAGNEN` (activated): L12: ATK-position highest-ATK-only attack target + DEF-position redirect-attack need battle/position hooks. Ceiling: not ignition here.
 - `MORPHTRONIC_TELEFON` (activated): L176: reveal UI FALSE. Ceiling: ATK die→LP+SS Morph Lv≤roll; DEF die excavate add.
 - `NECROFACE` (activated): L107: tempStage unit is ~500 ATK, not printed +100; upgrade: exact overlay.
 - `NEO_BLUE_EYES_ULTIMATE_DRAGON` (activated): L105: real multi-attack needs battle hook; unk4=2 extra-attack stand-in.
 - `NEO_SPACIAN_DARK_PANTHER` (activated): L12: copy opp monster name/effects needs engine name/effect overlay. Ceiling: not ignition-activatable here; upgrade: permanent/name/effect copy.
 - `NEOS_WISEMAN` (activated): L68: * ponytail: effect-destroy immunity needs destroy gate. */
-- `ORICHALCOS_SHUNOROS` (activated): L85: SS only when your Normal Monster destroyed by battle needs battle hook. Ceiling: hand SS anytime when zone open.
 - `PROTECTOR_OF_THE_SANCTUARY` (activated): L12: opp cannot draw except Draw Phase needs draw-gate LynJump. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 - `RAIDEN_HAND_OF_THE_LIGHTSWORN` (activated): L82: +1 tempStage (~500 ATK, not exact +200); until opp EP clear needs hook.
 - `REPTILIANNE_LAMIA` (activated): L97: GY synchro-material ATK-0 need synchro hook. Ceiling: not field-ignition; FromHand ATK-0 + SS + self-damage.

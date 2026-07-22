@@ -4,11 +4,13 @@
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "shire_lightsworn_spirit.h"
 
 static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
 
 #define SHIRE_DISTINCT_CAP 32
 #define SHIRE_ATK_PER_NAME 300
+#define SHIRE_END_PHASE_MILL 2
 
 static u8 IsLightswornMonster(u16 cardId)
 {
@@ -84,9 +86,26 @@ u8 ShireLightswornSpirit_ApplyDynamicZoneStats(struct DuelCard *zone)
   return TRUE;
 }
 
+void TryApplyShireEndPhase(void)
+{
+  u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  u8 turn = ACTIVE_DUELIST;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone == NULL || !zone->isFaceUp || zone->id != SHIRE_LIGHTSWORN_SPIRIT)
+      continue;
+    Duel_ShowEffectTextTyped(SHIRE_LIGHTSWORN_SPIRIT, 2);
+    Duel_MillTopDeckCards(turn, SHIRE_END_PHASE_MILL, TRUE);
+    return;
+  }
+}
+
 unsigned char ShouldActivateSHIRE_LIGHTSWORN_SPIRIT(void)
 {
-  /* ponytail: End Phase mill 2 needs turn_effect hook — ApplyDynamicZoneStats only. */
+  /* ATK overlay via ShireLightswornSpirit_ApplyDynamicZoneStats; EP mill via TryApplyShireEndPhase. */
   (void)gActiveEffect;
   return FALSE;
 }

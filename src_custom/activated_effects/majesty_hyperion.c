@@ -6,6 +6,7 @@
 #include "dynamic_equip.h"
 #include "expanded_graveyard.h"
 #include "god_card.h"
+#include "majesty_hyperion.h"
 #include "monster_effect_usage.h"
 #include "removed_from_play.h"
 #include "six_card_hand.h"
@@ -13,6 +14,33 @@
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+#define FLAG_LOSER_OPPONENT 16
+#define FLAG_LOSER_PLAYER 4
+
+struct MajestyHyperionActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct MajestyHyperionActionData sActionData;
 
 static const char sTheAgentName[] APPEND_RODATA = "The Agent";
 
@@ -41,6 +69,74 @@ static u8 IsFairyMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardHasMonsterType(cardId, TYPE_FAIRY);
+}
+
+static struct DuelCard *FindFaceUpHyperion(u8 controller)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(controller);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == MAJESTY_HYPERION)
+      return zone;
+  }
+
+  return NULL;
+}
+
+static void MirrorDamageToOpponent(u16 damage)
+{
+  if (damage == 0)
+    return;
+
+  if (gDuelLifePoints[DUEL_OPPONENT] <= damage) {
+    gDuelLifePoints[DUEL_OPPONENT] = 0;
+    sActionData.flags |= FLAG_LOSER_OPPONENT;
+  } else {
+    gDuelLifePoints[DUEL_OPPONENT] -= damage;
+  }
+
+  gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+  sActionData.opponentLifePoints = gDuelLifePoints[DUEL_OPPONENT];
+}
+
+static void MirrorDamageToPlayer(u16 damage)
+{
+  if (damage == 0)
+    return;
+
+  if (gDuelLifePoints[DUEL_PLAYER] <= damage) {
+    gDuelLifePoints[DUEL_PLAYER] = 0;
+    sActionData.flags |= FLAG_LOSER_PLAYER;
+  } else {
+    gDuelLifePoints[DUEL_PLAYER] -= damage;
+  }
+
+  gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+  sActionData.playerLifePoints = gDuelLifePoints[DUEL_PLAYER];
+}
+
+void ApplyMajestyHyperionBattleDamageShare(void)
+{
+  u16 playerDamage;
+  u16 opponentDamage;
+
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 4
+      && sActionData.id != 5 && sActionData.id != 6)
+    return;
+
+  playerDamage = gUnk2023EA0.unk0[0].initialLifePoints - gDuelLifePoints[DUEL_PLAYER];
+  opponentDamage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];
+
+  if (playerDamage > 0 && FindFaceUpHyperion(DUEL_PLAYER) != NULL
+      && IsFairyMonster(sActionData.playerCardId))
+    MirrorDamageToOpponent(playerDamage);
+
+  if (opponentDamage > 0 && FindFaceUpHyperion(DUEL_OPPONENT) != NULL
+      && IsFairyMonster(sActionData.opponentCardId))
+    MirrorDamageToPlayer(opponentDamage);
 }
 
 static u8 HasTheAgentAccessible(void)
@@ -267,7 +363,7 @@ unsigned char CanActivateMAJESTY_HYPERION(void)
   if (zone == NULL || zone->id != MAJESTY_HYPERION)
     return FALSE;
 
-  /* ponytail: Fairy battle-damage share FALSE.
+  /* Fairy battle-damage share via ApplyMajestyHyperionBattleDamageShare.
    * Ceiling: OPT banish Fairy hand/GY → destroy 1 card. FromHand banish Agent → SS. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

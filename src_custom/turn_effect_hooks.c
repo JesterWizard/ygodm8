@@ -22,6 +22,9 @@
 #include "tyrant_wing.h"
 #include "arcana_force_ex_the_dark_ruler.h"
 #include "aurkus_lightsworn_druid.h"
+#include "ehren_lightsworn_monk.h"
+#include "morphtronic_lantron.h"
+#include "shire_lightsworn_spirit.h"
 #include "jain_lightsworn_paladin.h"
 #include "helios_duo_megistus.h"
 #include "helios_trice_megistus.h"
@@ -381,6 +384,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   ClearRedDragonArchfiendAttackDeclaredMask();
   ResetTheGrandJupiterEndPhaseFlags();
   Yubel_ClearTurnState();
+  MorphtronicLantron_ClearTurnState();
   ClearCostDown();
   ResetUltimateOfferingTurnState();
   CourtOfJustice_ResetTurnState();
@@ -453,6 +457,12 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyJainEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyEhrenEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyShireEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyHeliosDuoMegistusEndPhase();

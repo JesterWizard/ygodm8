@@ -69,7 +69,12 @@
 #include "dragon_s_rage.h"
 #include "meteorain.h"
 #include "marshmallon.h"
+#include "aromage_marjoram.h"
+#include "majesty_hyperion.h"
 #include "morphtronic_boarden.h"
+#include "morphtronic_lantron.h"
+#include "morphtronic_staplen.h"
+#include "orichalcos_shunoros.h"
 #include "evil_hero_inferno_wing.h"
 #include "chainsaw_insect.h"
 #include "x_saber_airbellum.h"
@@ -249,6 +254,9 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyYubelBattleEffects();
   ApplySpellStrikerNoSelfBattleDamage();
   ApplyBeastMachineKingBarbarosUrNoOppBattleDamage();
+  ApplyAromageMarjoramNoPlantBattleDamage();
+  ApplyMorphtronicLantronNoBattleDamage();
+  ApplyMajestyHyperionBattleDamageShare();
 
   if (sActionData.playerCardId == STONE_STATUE_OF_THE_AZTECS && sActionData.id == 5) {
     damage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];
@@ -310,6 +318,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (MorphtronicBoarden_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (MorphtronicStaplen_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (OrichalcosShunoros_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -339,8 +351,13 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (MorphtronicBoarden_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (MorphtronicStaplen_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (OrichalcosShunoros_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }
+  MorphtronicLantron_MarkDefDestroyed();
   playerGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_PLAYER) != 0;
   opponentGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) != 0;
   ApplyPiranhaArmyDoubleDirectDamage();
@@ -437,11 +454,13 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
 
   if (sActionData.flags & 1) {
     struct DuelCard *zone = gFixedZones[sActionData.playerMonsterRow][sActionData.unkA];
+    u16 destroyedId = CARD_NONE;
 
     /* ponytail: expanded graveyard keeps every push; skip if zone already cleared. */
     if (zone != NULL && zone->id != CARD_NONE
         && !DarkMagicianOfChaosBattleZoneIsPendingBanish(sActionData.playerMonsterRow,
                                                          sActionData.unkA)) {
+      destroyedId = zone->id;
       if (CardDefersGraveyardEffectUntilBattleFinish(zone->id))
         gDeferGraveyardDrawBattleResolve = TRUE;
       MarkFamiliarKnightBattleDestruction(zone->id);
@@ -452,15 +471,18 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       EffectEvent_EmitSimple(EFFECT_EVENT_ON_BATTLE_DESTROY, zone->id, zone);
       EffectEvent_EmitSimple(EFFECT_EVENT_ON_LEAVE_FIELD, zone->id, zone);
       ClearZoneAndSendMonToGraveyard2(zone, 0);
+      TryOrichalcosShunorosSsAfterNormalMonsterBd(DUEL_PLAYER, destroyedId);
       fieldChanged = TRUE;
     }
   }
   if (sActionData.flags & 2) {
     struct DuelCard *zone = gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16];
+    u16 destroyedId = CARD_NONE;
 
     if (zone != NULL && zone->id != CARD_NONE
         && !DarkMagicianOfChaosBattleZoneIsPendingBanish(sActionData.opponentMonsterRow,
                                                          sActionData.unk16)) {
+      destroyedId = zone->id;
       if (CardDefersGraveyardEffectUntilBattleFinish(zone->id))
         gDeferGraveyardDrawBattleResolve = TRUE;
       MarkFamiliarKnightBattleDestruction(zone->id);
@@ -471,6 +493,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       EffectEvent_EmitSimple(EFFECT_EVENT_ON_BATTLE_DESTROY, zone->id, zone);
       EffectEvent_EmitSimple(EFFECT_EVENT_ON_LEAVE_FIELD, zone->id, zone);
       ClearZoneAndSendMonToGraveyard2(zone, 1);
+      TryOrichalcosShunorosSsAfterNormalMonsterBd(DUEL_OPPONENT, destroyedId);
       fieldChanged = TRUE;
     }
   }

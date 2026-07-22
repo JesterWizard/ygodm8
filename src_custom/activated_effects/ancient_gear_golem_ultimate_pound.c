@@ -55,8 +55,8 @@ unsigned char CanActivateANCIENT_GEAR_GOLEM_ULTIMATE_POUND(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_GOLEM_ULTIMATE_POUND)
     return FALSE;
 
-  /* ponytail: piercing/multi-attack + destroy-trigger Poly FALSE.
-   * Ceiling: OPT discard Machine → unk4 extra-attack, else OPT add Poly. */
+  /* Pierce via ApplyAncientGearGolemPiercingBattleEffect (IsGolemAttacker).
+   * ponytail: real multi-attack needs battle hook; else OPT discard Machine → unk4 extra-attack / add Poly. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

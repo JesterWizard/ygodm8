@@ -160,6 +160,7 @@ u8 HamonLordOfStrikingThunder_CanAttackMonsterZone(struct DuelCard *zone);
 u8 UriaLordOfSearingFlames_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmuletDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 NeoSpacianFlareScarab_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 OrichalcosShunoros_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ShireLightswornSpirit_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GaronithLightswornDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroFlareNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -1640,6 +1641,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { URIA_LORD_OF_SEARING_FLAMES, UriaLordOfSearingFlames_ApplyDynamicZoneStats },
   { AMULET_DRAGON, AmuletDragon_ApplyDynamicZoneStats },
   { NEO_SPACIAN_FLARE_SCARAB, NeoSpacianFlareScarab_ApplyDynamicZoneStats },
+  { ORICHALCOS_SHUNOROS, OrichalcosShunoros_ApplyDynamicZoneStats },
   { SHIRE_LIGHTSWORN_SPIRIT, ShireLightswornSpirit_ApplyDynamicZoneStats },
   { GARONITH_LIGHTSWORN_DRAGON, GaronithLightswornDragon_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_FLARE_NEOS, ElementalHeroFlareNeos_ApplyDynamicZoneStats },

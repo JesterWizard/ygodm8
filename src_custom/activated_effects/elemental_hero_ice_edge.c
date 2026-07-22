@@ -56,6 +56,6 @@ void ActivateElementalHeroIceEdgeEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* ponytail: direct-attack grant this turn; cleared in UnlockCardsInRow. */
+  /* Direct-attack grant (unkTwo); destroy Set S/T on direct damage via ApplyElementalHeroIceEdgeBattleEffect. */
   zone->unkTwo = TRUE;
 }

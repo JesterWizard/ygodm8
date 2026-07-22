@@ -4,6 +4,7 @@
 #include "duel_helpers.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
+#include "morphtronic_staplen.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
@@ -78,6 +79,14 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return FALSE;
 }
 
+u8 MorphtronicStaplen_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != MORPHTRONIC_STAPLEN)
+    return FALSE;
+
+  return zone->isDefending;
+}
+
 unsigned char CanActivateMORPHTRONIC_STAPLEN(void)
 {
   struct DuelCard *zone;
@@ -89,8 +98,8 @@ unsigned char CanActivateMORPHTRONIC_STAPLEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_STAPLEN)
     return FALSE;
 
-  /* ponytail: ATK attack-redirect + DEF battle-immune / on-attack change need
-   * battle hooks. Ceiling: OPT change 1 opp ATK monster to DEF. */
+  /* DEF battle indestructible via MorphtronicStaplen_PreventsBattleDestroy.
+   * ponytail: ATK attack-redirect needs battle hook. Ceiling: OPT change 1 opp ATK to DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

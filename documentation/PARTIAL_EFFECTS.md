@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 07:30 UTC  
-**Remaining partials:** `507`
+**Last updated:** 2026-07-22 07:38 UTC  
+**Remaining partials:** `502`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 395 |
-| `permanent` | 96 |
-| **total** | **507** |
+| `activated` | 391 |
+| `permanent` | 95 |
+| **total** | **502** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (395)
+## activated (391)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -153,7 +153,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND`
 - path: `src_custom/activated_effects/ancient_gear_golem_ultimate_pound.c`
-- L58: piercing/multi-attack + destroy-trigger Poly FALSE. Ceiling: OPT discard Machine → unk4 extra-attack, else OPT add Poly.
 - L85: real multi-attack needs battle hook; unk4=2 extra-attack stand-in.
 
 ### `ANCIENT_GEAR_KNIGHT`
@@ -247,7 +246,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AROMAGE_MARJORAM`
 - path: `src_custom/activated_effects/aromage_marjoram.c`
-- L97: FromHand SS on Plant destroy + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish up to Aroma-count cards from opp GY.
+- L180: * ponytail: destroy-SS + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish opp GY. */
 
 ### `AROMAGE_ROSEMARY`
 - path: `src_custom/activated_effects/aromage_rosemary.c`
@@ -614,10 +613,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/ebon_illusion_magician.c`
 - L78: Xyz detach cost + attack-banish FALSE. Ceiling: OPT SS Spellcaster Normal from hand/Deck (detach stand-in).
 
-### `EHREN_LIGHTSWORN_MONK`
-- path: `src_custom/activated_effects/ehren_lightsworn_monk.c`
-- L12: battle shuffle + End Phase mill 3 need battle/phase hooks. Ceiling: not ignition-activatable here; upgrade: battle + EP mill.
-
 ### `EL_SHADDOLL_MESHAHRAIL`
 - path: `src_custom/activated_effects/el_shaddoll_meshahrail.c`
 - L74: unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks. Ceiling: OPT pay 800 → add 1 Shaddoll or Void S/T from Deck.
@@ -668,10 +663,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ELEMENTAL_HERO_GREAT_TORNADO`
 - path: `src_custom/activated_effects/elemental_hero_great_tornado.c`
 - L26: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.atk/def that the stat pipeline already computed for zone.
-
-### `ELEMENTAL_HERO_ICE_EDGE`
-- path: `src_custom/activated_effects/elemental_hero_ice_edge.c`
-- L59: direct-attack grant this turn; cleared in UnlockCardsInRow.
 
 ### `ELEMENTAL_HERO_LADY_HEAT`
 - path: `src_custom/activated_effects/elemental_hero_lady_heat.c`
@@ -1183,10 +1174,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/majestic_mech_goryu.c`
 - L12: * ponytail: 1-tribute EP self-send need summon/EP hooks.
 
-### `MAJESTY_HYPERION`
-- path: `src_custom/activated_effects/majesty_hyperion.c`
-- L270: Fairy battle-damage share FALSE. Ceiling: OPT banish Fairy hand/GY → destroy 1 card. FromHand banish Agent → SS.
-
 ### `MAN_THRO_TRO`
 - path: `src_custom/activated_effects/man_thro_tro.c`
 - L21: Ojama Trio monster form is the only token-like field unit today
@@ -1271,7 +1258,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `MORPHTRONIC_LANTRON`
 - path: `src_custom/activated_effects/morphtronic_lantron.c`
-- L12: ATK redirect effect damage + DEF no battle damage when destroyed need damage-redirect and battle-destroy hooks. Ceiling: not ignition here.
+- L98: * ponytail: ATK redirect effect damage needs effect-damage hook. */
 
 ### `MORPHTRONIC_MAGNEN`
 - path: `src_custom/activated_effects/morphtronic_magnen.c`
@@ -1303,7 +1290,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `MORPHTRONIC_STAPLEN`
 - path: `src_custom/activated_effects/morphtronic_staplen.c`
-- L92: ATK attack-redirect + DEF battle-immune / on-attack change need battle hooks. Ceiling: OPT change 1 opp ATK monster to DEF.
+- L102: * ponytail: ATK attack-redirect needs battle hook. Ceiling: OPT change 1 opp ATK to DEF. */
 
 ### `MORPHTRONIC_TELEFON`
 - path: `src_custom/activated_effects/morphtronic_telefon.c`
@@ -1367,11 +1354,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `OJAMA_KING`
 - path: `src_custom/activated_effects/ojama_king.c`
 - L54: PickZone for up to 3 empty zones + continuous lock gate. Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
-
-### `ORICHALCOS_SHUNOROS`
-- path: `src_custom/activated_effects/orichalcos_shunoros.c`
-- L40: battle-trigger SS + Lv4 Normal indestructible need trigger/permanent hooks. Ceiling: OPT +2 tempStage per opp monster (~1000 ATK each).
-- L85: SS only when your Normal Monster destroyed by battle needs battle hook. Ceiling: hand SS anytime when zone open.
 
 ### `POSEIDRA_THE_ATLANTEAN_DRAGON`
 - path: `src_custom/activated_effects/poseidra_the_atlantean_dragon.c`
@@ -1753,7 +1735,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (96)
+## permanent (95)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -2090,10 +2072,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `SHATIEL`
 - path: `src_custom/permanent_effects/shatiel.c`
 - L51: GetTypeGroup/SetCardInfo would clobber gCardInfo mid-pipeline.
-
-### `SHIRE_LIGHTSWORN_SPIRIT`
-- path: `src_custom/permanent_effects/shire_lightsworn_spirit.c`
-- L89: End Phase mill 2 needs turn_effect hook — ApplyDynamicZoneStats only.
 
 ### `SPIRIT_OF_THE_POT_OF_GREED`
 - path: `src_custom/permanent_effects/spirit_of_the_pot_of_greed.c`

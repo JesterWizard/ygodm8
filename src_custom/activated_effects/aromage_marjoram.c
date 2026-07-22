@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "aromage_marjoram.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -9,14 +10,55 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
+#define FLAG_LOSER_PLAYER 4
+#define FLAG_LOSER_OPPONENT 16
+
+struct AromageMarjoramActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct AromageMarjoramActionData sActionData;
+
 static const char sAromaName[] APPEND_RODATA = "Aroma";
 
-static u8 FixedDuelistForActive(void)
+static struct DuelCard *FindFaceUpMarjoram(u8 controller)
 {
-  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
+  u8 row = Duel_FixedMonsterRowForDuelist(controller);
+  u8 col;
 
-  return DUEL_OPPONENT;
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AROMAGE_MARJORAM)
+      return zone;
+  }
+
+  return NULL;
+}
+
+static u8 ControllerLpHigher(u8 controller)
+{
+  u8 opp = controller == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+
+  return gDuelLifePoints[controller] > gDuelLifePoints[opp];
 }
 
 static u8 IsAromaMonster(u16 cardId)
@@ -25,6 +67,46 @@ static u8 IsAromaMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sAromaName);
+}
+
+void ApplyAromageMarjoramNoPlantBattleDamage(void)
+{
+  u16 playerDamage;
+  u16 opponentDamage;
+
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 4
+      && sActionData.id != 5 && sActionData.id != 6)
+    return;
+
+  playerDamage = gUnk2023EA0.unk0[0].initialLifePoints - gDuelLifePoints[DUEL_PLAYER];
+  opponentDamage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];
+
+  if (playerDamage > 0 && FindFaceUpMarjoram(DUEL_PLAYER) != NULL
+      && ControllerLpHigher(DUEL_PLAYER)
+      && Duel_CardHasMonsterType(sActionData.playerCardId, TYPE_PLANT)) {
+    gDuelLifePoints[DUEL_PLAYER] = gUnk2023EA0.unk0[0].initialLifePoints;
+    gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+    sActionData.flags &= (u8)~FLAG_LOSER_PLAYER;
+  }
+
+  if (opponentDamage > 0 && FindFaceUpMarjoram(DUEL_OPPONENT) != NULL
+      && ControllerLpHigher(DUEL_OPPONENT)
+      && Duel_CardHasMonsterType(sActionData.opponentCardId, TYPE_PLANT)) {
+    gDuelLifePoints[DUEL_OPPONENT] = gUnk2023EA0.unk0[1].initialLifePoints;
+    gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+    sActionData.flags &= (u8)~FLAG_LOSER_OPPONENT;
+  }
+
+  sActionData.playerLifePoints = gDuelLifePoints[DUEL_PLAYER];
+  sActionData.opponentLifePoints = gDuelLifePoints[DUEL_OPPONENT];
+}
+
+static u8 FixedDuelistForActive(void)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
 }
 
 static u8 CountAromaOnField(void)
@@ -94,8 +176,8 @@ unsigned char CanActivateAROMAGE_MARJORAM(void)
   if (zone == NULL || zone->id != AROMAGE_MARJORAM)
     return FALSE;
 
-  /* ponytail: FromHand SS on Plant destroy + LP-gain trigger need destroy/LP hooks.
-   * Ceiling: OPT banish up to Aroma-count cards from opp GY. */
+  /* LP-higher Plant no battle damage via ApplyAromageMarjoramNoPlantBattleDamage.
+   * ponytail: destroy-SS + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish opp GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
