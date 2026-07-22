@@ -68,7 +68,7 @@ static u8 IsFaceUpMonsterZone(struct DuelCard *zone)
   if (IsCardFaceUp(zone))
     return TRUE;
 
-  /* ponytail: attack-position summons keep isFaceUp=0 until end-of-turn flip. */
+  /* Attack-position summons stay isFaceUp=0 until end-of-turn flip. */
   return zone->isDefending == FALSE;
 }
 
@@ -360,8 +360,8 @@ static void ResolveCostTarget(u8 fixedRow, u8 fixedCol)
   if (Duel_DestroyZone(zone, turnDuelist, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: drop field-target cursor before GY deck menu — PickZone state + trunk
-   * view was crashing when the menu opened on confirm. */
+  /* Drop field-target cursor before GY deck menu — PickZone state + trunk view was
+   * crashing when the menu opened on confirm. */
   gDuelCursor.state = 0;
   gDuelCursor.currentY = originRow;
   gDuelCursor.currentX = originCol;

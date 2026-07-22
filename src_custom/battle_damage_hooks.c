@@ -102,6 +102,7 @@
 #include "destiny_hero_dynatag.h"
 #include "destiny_hero_dreadmaster.h"
 #include "azure_eyes_silver_dragon.h"
+#include "blue_eyes_protect.h"
 #include "vennominon_the_king_of_poisonous_snakes.h"
 #include "helios_duo_megistus.h"
 #include "helios_trice_megistus.h"
@@ -353,6 +354,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (DestinyHeroDusktopia_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (BlueEyesJetDragon_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (BlueEyesSolidDragon_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -399,6 +404,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (AzureEyesSilverDragon_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (DestinyHeroDusktopia_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (BlueEyesJetDragon_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (BlueEyesSolidDragon_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }

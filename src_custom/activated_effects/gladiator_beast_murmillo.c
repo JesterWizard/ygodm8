@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "gladiator_beast_battled.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
@@ -208,6 +209,7 @@ static void ShuffleSelfTagOut(struct DuelCard *self)
     return;
 
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, tagId, opts);
+  GladiatorBeast_MarkTagSummonedZone(tagId);
 }
 
 static u8 CanTagOut(void)
@@ -232,13 +234,16 @@ unsigned char CanActivateGLADIATOR_BEAST_MURMILLO(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_MURMILLO)
     return FALSE;
 
-  /* ponytail: GB-tag SS destroy trigger + end-of-BP battled gate need summon/
-   * battle hooks. Ceiling: OPT destroy face-up monster, else tag-out shuffle→SS. */
+  /* GB-tag SS destroy trigger need summon hook. Ceiling: OPT destroy face-up
+   * monster; tag-out via GladiatorBeast_CanActivateTagOutEffect. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   if (FieldHasDestroyTarget())
     return TRUE;
+
+  if (!GladiatorBeast_CanActivateTagOutEffect(zone))
+    return FALSE;
 
   return CanTagOut();
 }
@@ -265,7 +270,7 @@ void ActivateGLADIATOR_BEAST_MURMILLOEffect(void)
     return;
   }
 
-  if (!CanTagOut())
+  if (!CanTagOut() || !GladiatorBeast_CanActivateTagOutEffect(self))
     return;
 
   MarkMonsterEffectUsed(self);

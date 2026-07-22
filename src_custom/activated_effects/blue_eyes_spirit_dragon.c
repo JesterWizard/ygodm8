@@ -62,7 +62,7 @@ unsigned char CanActivateBLUE_EYES_SPIRIT_DRAGON(void)
   if (zone == NULL || zone->id != BLUE_EYES_SPIRIT_DRAGON)
     return FALSE;
 
-  /* ponytail: OPT GY negate + Extra Synchro + EP destroy need chain/Extra hooks.
+  /* OPT GY negate + Extra Synchro + EP destroy need chain/Extra hooks.
    * Ceiling: OPT tribute self → SS LIGHT Dragon from Deck in DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

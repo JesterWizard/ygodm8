@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "expanded_graveyard.h"
+#include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
 
@@ -131,6 +132,7 @@ static void ShuffleSelfTagOut(struct DuelCard *self)
     return;
 
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, tagId, opts);
+  GladiatorBeast_MarkTagSummonedZone(tagId);
 }
 
 static u8 CanTagOut(void)
@@ -155,14 +157,17 @@ unsigned char CanActivateGLADIATOR_BEAST_EQUESTE(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_EQUESTE)
     return FALSE;
 
-  /* ponytail: on-GB-tag SS add trigger + end-of-BP battled gate need summon/battle
-   * hooks. Ceiling: OPT add 1 GB from GY to hand, else tag-out shuffle→SS. */
+  /* On-GB-tag SS add trigger need summon hook. Ceiling: OPT add 1 GB from GY to
+   * hand; tag-out via GladiatorBeast_CanActivateTagOutEffect. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   if (FindGladiatorBeastGyIndex() >= 0
       && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0)
     return TRUE;
+
+  if (!GladiatorBeast_CanActivateTagOutEffect(zone))
+    return FALSE;
 
   return CanTagOut();
 }
@@ -190,7 +195,7 @@ void ActivateGLADIATOR_BEAST_EQUESTEEffect(void)
     return;
   }
 
-  if (!CanTagOut())
+  if (!CanTagOut() || !GladiatorBeast_CanActivateTagOutEffect(self))
     return;
 
   MarkMonsterEffectUsed(self);

@@ -44,7 +44,7 @@ unsigned char CanActivateSILENT_SWORDSMAN_ZERO(void)
     return FALSE;
 
   /* Standby Level/ATK via TryApplySilentSwordsmanZeroStandby; OPT +1 Level/+1
-   * tempStage unchanged. ponytail: Sarcophagus negate needs chain hook. */
+   * tempStage unchanged. Ceiling: Sarcophagus negate needs chain hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

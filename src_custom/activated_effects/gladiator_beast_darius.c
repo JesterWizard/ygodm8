@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "expanded_graveyard.h"
+#include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
 
 void ClearZone(struct DuelCard *zone);
@@ -158,6 +159,7 @@ static void ShuffleSelfTagOut(struct DuelCard *self)
     return;
 
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, tagId, opts);
+  GladiatorBeast_MarkTagSummonedZone(tagId);
 }
 
 unsigned char CanActivateGLADIATOR_BEAST_DARIUS(void)
@@ -172,8 +174,8 @@ unsigned char CanActivateGLADIATOR_BEAST_DARIUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_DARIUS)
     return FALSE;
 
-  /* ponytail: GB-tag SS revive trigger + leave-field shuffle + end-BP tag need
-   * summon/leave/battle hooks. Ceiling: OPT SS GB from GY negated, else tag-out. */
+  /* GB-tag SS revive + leave-field shuffle need summon/leave hooks. Ceiling: OPT
+   * SS GB from GY negated; tag-out via GladiatorBeast_CanActivateTagOutEffect. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -181,6 +183,9 @@ unsigned char CanActivateGLADIATOR_BEAST_DARIUS(void)
       && FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) >= 0
       && OwnGyHasOtherGladiatorBeast(fixedDuelist))
     return TRUE;
+
+  if (!GladiatorBeast_CanActivateTagOutEffect(zone))
+    return FALSE;
 
   return CanTagOut();
 }
@@ -209,7 +214,7 @@ void ActivateGLADIATOR_BEAST_DARIUSEffect(void)
     return;
   }
 
-  if (!CanTagOut())
+  if (!CanTagOut() || !GladiatorBeast_CanActivateTagOutEffect(self))
     return;
 
   MarkMonsterEffectUsed(self);

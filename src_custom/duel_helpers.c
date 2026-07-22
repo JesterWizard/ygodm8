@@ -84,6 +84,7 @@
 #include "aromalilith_magnolia.h"
 #include "neos_wiseman.h"
 #include "azure_eyes_silver_dragon.h"
+#include "blue_eyes_protect.h"
 #include "evil_hero_infernal_sniper.h"
 #include "jenis_lightsworn_mender.h"
 #include "wulf_lightsworn_beast.h"
@@ -730,7 +731,9 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
       || NeosWiseman_PreventsDestroy(zone)
       || AzureEyesSilverDragon_PreventsDestroy(zone)
       || EvilHeroInfernalSniper_PreventsDestroy(zone)
-      || SilentMagicianLv8_PreventsDestroy(zone))
+      || SilentMagicianLv8_PreventsDestroy(zone)
+      || BlueEyesJetDragon_PreventsDestroy(zone)
+      || BlueEyesSolidDragon_PreventsDestroy(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;

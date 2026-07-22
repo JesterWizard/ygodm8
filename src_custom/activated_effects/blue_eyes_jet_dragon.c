@@ -194,8 +194,9 @@ unsigned char CanActivateBLUE_EYES_JET_DRAGON(void)
   if (zone == NULL || zone->id != BLUE_EYES_JET_DRAGON)
     return FALSE;
 
-  /* ponytail: protect + destroy-trigger SS FALSE.
-   * Ceiling: field OPT bounce 1; FromHand if BEWD field/GY → SS. */
+  /* Battle/effect protect via BlueEyesJetDragon_Prevents* while BEWD on field/GY.
+   * Ceiling: field OPT bounce 1; FromHand if BEWD field/GY → SS.
+   * Residual: destroy-trigger SS need battle/destroy hooks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

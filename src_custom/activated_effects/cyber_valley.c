@@ -129,8 +129,9 @@ unsigned char CanActivateCYBER_VALLEY(void)
   if (zone == NULL || zone->id != CYBER_VALLEY)
     return FALSE;
 
-  /* ponytail: attack-target banish + GY place-on-deck need battle/GY hooks.
-   * Ceiling: OPT banish self+1 face-up monster → draw 2; else banish self → draw 1. */
+  /* Attack-target banish + GY place-on-deck need battle/GY hooks.
+   * Ceiling: OPT banish self+1 face-up monster → draw 2; else banish self → draw 1
+   * at end of Battle Phase via GladiatorBeast_InBattlePhase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

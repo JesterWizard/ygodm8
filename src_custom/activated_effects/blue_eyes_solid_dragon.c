@@ -46,7 +46,8 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsFaceUpOppMonster(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* ponytail: summon Quick shuffle→SS BEWD + per-effect usage need hooks. */
+  /* Battle/effect protect via BlueEyesSolidDragon_Prevents*.
+   * Residual: summon Quick shuffle→SS BEWD + per-effect usage need hooks. */
   zone->unk4 |= 0x80;
 
   if (self != NULL)

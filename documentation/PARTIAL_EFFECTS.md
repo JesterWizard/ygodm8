@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 16:50 UTC  
-**Remaining partials:** `468`
+**Last updated:** 2026-07-22 16:54 UTC  
+**Remaining partials:** `452`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 367 |
+| `activated` | 351 |
 | `permanent` | 85 |
-| **total** | **468** |
+| **total** | **452** |
 
 ## spell (6)
 
@@ -95,23 +95,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (367)
+## activated (351)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
 - L88: * ponytail: printed name=Amazoness-Tiger needs name-override hook. Ceiling: SS from hand only. */
 
-### `AMAZONESS_PET_LIGER_KING`
-- path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
-- L191: attack redirect FALSE. Ceiling: OPT destroy Amazoness → SS Warrior GY.
-
 ### `AMAZONESS_PRINCESS`
 - path: `src_custom/activated_effects/amazoness_princess.c`
 - L63: /* On-Summon search via TryAmazonessPrincessOnMonsterPlacement. ponytail:
-
-### `AMAZONESS_SPIRITUALIST`
-- path: `src_custom/activated_effects/amazoness_spiritualist.c`
-- L104: hand/GY bounce→SS + ED lock need GY/ED hooks. Ceiling: field OPT add Polymerization from Deck.
 
 ### `AMULET_DRAGON`
 - path: `src_custom/activated_effects/amulet_dragon.c`
@@ -227,10 +219,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/aromage_jasmine.c`
 - L57: * ponytail: extra Plant Normal Summon + draw-on-LP-gain need LP/summon hooks.
 
-### `AROMAGE_LAUREL`
-- path: `src_custom/activated_effects/aromage_laurel.c`
-- L66: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks. Ceiling: OPT add 1 Plant from Deck; upgrade: full Aroma branches.
-
 ### `AROMAGE_MARJORAM`
 - path: `src_custom/activated_effects/aromage_marjoram.c`
 - L180: * ponytail: destroy-SS + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish opp GY. */
@@ -255,10 +243,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/aromaseraphy_jasmine.c`
 - L48: no Link points — all your Plants while Jasmine face-up and LP higher.
 
-### `AROMASERAPHY_ROSEMARY`
-- path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
-- L190: * ponytail: LP-gain negate needs LP hook. Ceiling: OPT destroy 1 face-up opp. */
-
 ### `AROMASERAPHY_SWEET_MARJORAM`
 - path: `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c`
 - L100: * ponytail: Synchro Winds search + LP-gain destroy need summon/LP hooks.
@@ -266,11 +250,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ASH_BLOSSOM_AND_JOYOUS_SPRING`
 - path: `src_custom/activated_effects/ash_blossom_and_joyous_spring.c`
 - L50: chain negate for add/SS/mill from Deck not wired; upgrade: chain interrupt hook when one exists.
-
-### `ATHENA`
-- path: `src_custom/activated_effects/athena.c`
-- L71: attack-position summons keep isFaceUp=0 until end-of-turn flip.
-- L363: drop field-target cursor before GY deck menu — PickZone state + trunk view was crashing when the menu opened on confirm.
 
 ### `ATLANTEAN_DRAGOONS`
 - path: `src_custom/activated_effects/atlantean_dragoons.c`
@@ -313,18 +292,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c`
 - L55: cannot-attack-this-turn needs attack-gate; mark unk4.
 - L98: protect + up-to-3-if-Alt-material need fusion/material hooks. Ceiling: OPT destroy 1 opp card; mark self unk4 cannot-attack.
-
-### `BLUE_EYES_JET_DRAGON`
-- path: `src_custom/activated_effects/blue_eyes_jet_dragon.c`
-- L197: protect + destroy-trigger SS FALSE. Ceiling: field OPT bounce 1; FromHand if BEWD field/GY → SS.
-
-### `BLUE_EYES_SOLID_DRAGON`
-- path: `src_custom/activated_effects/blue_eyes_solid_dragon.c`
-- L49: summon Quick shuffle→SS BEWD + per-effect usage need hooks.
-
-### `BLUE_EYES_SPIRIT_DRAGON`
-- path: `src_custom/activated_effects/blue_eyes_spirit_dragon.c`
-- L65: OPT GY negate + Extra Synchro + EP destroy need chain/Extra hooks. Ceiling: OPT tribute self → SS LIGHT Dragon from Deck in DEF.
 
 ### `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c`
@@ -399,10 +366,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CYBER_SLASH_HARPY_LADY`
 - path: `src_custom/activated_effects/cyber_slash_harpy_lady.c`
 - L196: Quick on S/T activation + Synchro/name hooks missing. Ceiling: OPT bounce 1 opp card or your Harpie to hand.
-
-### `CYBER_VALLEY`
-- path: `src_custom/activated_effects/cyber_valley.c`
-- L132: attack-target banish + GY place-on-deck need battle/GY hooks. Ceiling: OPT banish self+1 face-up monster → draw 2; else banish self → draw 1.
 
 ### `CYBERNETIC_MAGICIAN`
 - path: `src_custom/activated_effects/cybernetic_magician.c`
@@ -766,10 +729,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/gladiator_beast_augustus.c`
 - L48: GB-SS trigger + end-of-BP tag-out need summon/battle hooks. Ceiling: OPT SS 1 other GB from hand in DEF.
 
-### `GLADIATOR_BEAST_BESTIARI`
-- path: `src_custom/activated_effects/gladiator_beast_bestiari.c`
-- L192: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy 1 opp S/T, else tag-out shuffle→SS.
-
 ### `GLADIATOR_BEAST_CLAUDIUS`
 - path: `src_custom/activated_effects/gladiator_beast_claudius.c`
 - L61: double BP + opp-effect trigger FALSE. Ceiling: OPT SS Gladiator Beast from Deck (opp effect stand-in).
@@ -778,10 +737,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/gladiator_beast_dareios.c`
 - L179: Link Summon trigger + BP protect + Link Material lock FALSE. Ceiling: OPT SS Lv≤4 GB from hand/GY, or any GB from Deck if opp has monster.
 
-### `GLADIATOR_BEAST_DARIUS`
-- path: `src_custom/activated_effects/gladiator_beast_darius.c`
-- L175: GB-tag SS revive trigger + leave-field shuffle + end-BP tag need summon/leave/battle hooks. Ceiling: OPT SS GB from GY negated, else tag-out.
-
 ### `GLADIATOR_BEAST_DOMITIANUS`
 - path: `src_custom/activated_effects/gladiator_beast_domitianus.c`
 - L133: Quick negate/destroy + attack-redirect FALSE; end-BP battled gate missing. Ceiling: OPT tag-out → SS 1–2 GB from Deck.
@@ -789,10 +744,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GLADIATOR_BEAST_DRAGASES`
 - path: `src_custom/activated_effects/gladiator_beast_dragases.c`
 - L157: battle indestruct + opp chain block + end-of-BP battled gate need battle hooks. Ceiling: OPT GB tag-out → SS 2 different from Deck.
-
-### `GLADIATOR_BEAST_EQUESTE`
-- path: `src_custom/activated_effects/gladiator_beast_equeste.c`
-- L158: on-GB-tag SS add trigger + end-of-BP battled gate need summon/battle hooks. Ceiling: OPT add 1 GB from GY to hand, else tag-out shuffle→SS.
 
 ### `GLADIATOR_BEAST_GISTEL`
 - path: `src_custom/activated_effects/gladiator_beast_gistel.c`
@@ -812,10 +763,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L154: on-SS name copy + end-of-BP tag gate need summon/battle hooks. Ceiling: OPT banish 1 GB from GY (unkTwo name copy) or tag-out.
 - L181: copied name until End Phase needs name-override hook; unkTwo stores copied card id as stand-in.
 
-### `GLADIATOR_BEAST_MURMILLO`
-- path: `src_custom/activated_effects/gladiator_beast_murmillo.c`
-- L235: GB-tag SS destroy trigger + end-of-BP battled gate need summon/ battle hooks. Ceiling: OPT destroy face-up monster, else tag-out shuffle→SS.
-
 ### `GLADIATOR_BEAST_NEROKIUS`
 - path: `src_custom/activated_effects/gladiator_beast_nerokius.c`
 - L135: Extra Deck return + battle protection need ED/battle hooks.
@@ -824,10 +771,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GLADIATOR_BEAST_NOXIOUS`
 - path: `src_custom/activated_effects/gladiator_beast_noxious.c`
 - L130: hand attack-redirect SS + battled tag gate need battle hooks. Ceiling: OPT mill 1 GB from Deck, else tag-out.
-
-### `GLADIATOR_BEAST_SAGITTARII`
-- path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
-- L112: * ponytail: discard-GB draw 2 on GB-SS need summon hooks.
 
 ### `GLADIATOR_BEAST_TAMER_EDITOR`
 - path: `src_custom/activated_effects/gladiator_beast_tamer_editor.c`
@@ -1139,10 +1082,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/minerva_the_athenian_lightsworn.c`
 - L184: anti-banish continuous + Synchro material count need continuous/synchro hooks. Ceiling: OPT mill LS different Types (up to field LS count), or banish ≤4 LS GY → mill.
 
-### `MINERVA_THE_EXHALTED_LIGHTSWORN`
-- path: `src_custom/activated_effects/minerva_the_exhalted_lightsworn.c`
-- L69: Xyz detach + destroy-on-death FALSE. OPT mill 3 → draw = Lightsworn among milled is wired above.
-
 ### `MIRAGE_DRAGON`
 - path: `src_custom/activated_effects/mirage_dragon.c`
 - L12: opp cannot activate Traps in Battle Phase needs trap-activation gate. Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
@@ -1401,10 +1340,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `SILENT_SWORDSMAN_LV5`
 - path: `src_custom/activated_effects/silent_swordsman_lv5.c`
 - L71: * SS LV7 wired below. ponytail: Standby-after-direct-damage gate needs hook. */
-
-### `SILENT_SWORDSMAN_ZERO`
-- path: `src_custom/activated_effects/silent_swordsman_zero.c`
-- L47: * tempStage unchanged. ponytail: Sarcophagus negate needs chain hook. */
 
 ### `SIMORGH_BIRD_OF_ANCESTRY`
 - path: `src_custom/activated_effects/simorgh_bird_of_ancestry.c`
