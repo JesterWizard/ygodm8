@@ -105,6 +105,7 @@
 #include "minerva_lightsworn_maiden.h"
 #include "junk_synchron.h"
 #include "barrier_statue_wind_lock.h"
+#include "gladiator_beast_battled.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -1162,6 +1163,7 @@ void Duel_ApplyStopDefense(void)
 {
   u8 col;
 
+  GladiatorBeast_MarkBattlePhaseActive();
   gTurnDuelistBattleState[INACTIVE_DUELIST]->defenseBlocked = 1;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {

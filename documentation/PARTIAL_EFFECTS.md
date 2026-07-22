@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 16:43 UTC  
-**Remaining partials:** `471`
+**Last updated:** 2026-07-22 16:50 UTC  
+**Remaining partials:** `468`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 370 |
+| `activated` | 367 |
 | `permanent` | 85 |
-| **total** | **471** |
+| **total** | **468** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (370)
+## activated (367)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -402,8 +402,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CYBER_VALLEY`
 - path: `src_custom/activated_effects/cyber_valley.c`
-- L107: end Battle Phase needs phase hook; draw 1 is attack-target stand-in.
-- L128: attack-target banish + GY place-on-deck need battle/GY hooks. Ceiling: OPT banish self+1 face-up monster → draw 2; else banish self → draw 1.
+- L132: attack-target banish + GY place-on-deck need battle/GY hooks. Ceiling: OPT banish self+1 face-up monster → draw 2; else banish self → draw 1.
 
 ### `CYBERNETIC_MAGICIAN`
 - path: `src_custom/activated_effects/cybernetic_magician.c`
@@ -808,18 +807,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/gladiator_beast_heraklinos.c`
 - L148: either-turn chain negate needs chain hook. Ceiling: OPT discard 1 → destroy 1 opponent card.
 
-### `GLADIATOR_BEAST_HOPLOMUS`
-- path: `src_custom/activated_effects/gladiator_beast_hoplomus.c`
-- L112: * ponytail: end-of-Battle-Phase timing + DEF 2400 on GB tag-SS need phase/stat hooks.
-
 ### `GLADIATOR_BEAST_LANISTA`
 - path: `src_custom/activated_effects/gladiator_beast_lanista.c`
 - L154: on-SS name copy + end-of-BP tag gate need summon/battle hooks. Ceiling: OPT banish 1 GB from GY (unkTwo name copy) or tag-out.
 - L181: copied name until End Phase needs name-override hook; unkTwo stores copied card id as stand-in.
-
-### `GLADIATOR_BEAST_LAQUARI`
-- path: `src_custom/activated_effects/gladiator_beast_laquari.c`
-- L112: * ponytail: end-of-Battle-Phase timing + ATK 2100 on GB tag-SS need phase/stat hooks.
 
 ### `GLADIATOR_BEAST_MURMILLO`
 - path: `src_custom/activated_effects/gladiator_beast_murmillo.c`
@@ -836,7 +827,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GLADIATOR_BEAST_SAGITTARII`
 - path: `src_custom/activated_effects/gladiator_beast_sagittarii.c`
-- L112: * ponytail: end-of-Battle-Phase timing + discard-GB draw 2 on GB-SS need phase/summon hooks.
+- L112: * ponytail: discard-GB draw 2 on GB-SS need summon hooks.
 
 ### `GLADIATOR_BEAST_TAMER_EDITOR`
 - path: `src_custom/activated_effects/gladiator_beast_tamer_editor.c`
@@ -853,10 +844,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GORZ_THE_EMISSARY_OF_DARKNESS`
 - path: `src_custom/activated_effects/gorz_the_emissary_of_darkness.c`
 - L34: damage-gate + Token FALSE. Ceiling: FromHand empty-field SS.
-
-### `GRANMARG_THE_ROCK_MONARCH`
-- path: `src_custom/activated_effects/granmarg_the_rock_monarch.c`
-- L105: Tribute Summon trigger. Ceiling: once via usage if Set target.
 
 ### `GRAVEKEEPERS_AMBUSHER`
 - path: `src_custom/activated_effects/gravekeepers_ambusher.c`

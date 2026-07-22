@@ -11,6 +11,7 @@
 #include "bubble_blaster.h"
 #include "burden_of_the_mighty.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
+#include "gladiator_beast_battled.h"
 #include "cybernetic_zone.h"
 #include "d_force.h"
 #include "double_tool_c_and_d.h"
@@ -676,6 +677,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyTheGrandJupiterEquipAtkBonus(zone);
   ApplyTheDespairUranusAtkBoost(zone);
   ApplyGladiatorBeastsBattleGladiusAtkCorrection(zone);
+  ApplyGladiatorBeastTagOutStatBoostToCardInfo(zone);
   ApplyHarpiesHuntingGroundStatBonusToCardInfo(zone);
   ApplyLightswornSabreAtkBonusToCardInfo(zone);
   ApplyCyberneticZoneAtkBonusToCardInfo(zone);
@@ -839,6 +841,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyTheGrandJupiterEquipAtkBonus(gSetFinalStatZone);
     ApplyTheDespairUranusAtkBoost(gSetFinalStatZone);
     ApplyGladiatorBeastsBattleGladiusAtkCorrection(gSetFinalStatZone);
+    ApplyGladiatorBeastTagOutStatBoostToCardInfo(gSetFinalStatZone);
     ApplyHarpiesHuntingGroundStatBonusToCardInfo(gSetFinalStatZone);
     ApplyLightswornSabreAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyCyberneticZoneAtkBonusToCardInfo(gSetFinalStatZone);

@@ -108,6 +108,8 @@ unsigned char ShouldActivateCelestiaLightswornAngelTribute(void);
 void ActivateCelestiaLightswornAngelTribute(void);
 unsigned char ShouldActivateThestalosTheFirestormMonarchTribute(void);
 void ActivateThestalosTheFirestormMonarchTribute(void);
+unsigned char ShouldActivateGranmargTheRockMonarchTribute(void);
+void ActivateGranmargTheRockMonarchTribute(void);
 void ActivateBerserkGorilla(void);
 unsigned char ShouldActivateElementalHeroCaptainGold(void);
 void ActivateElementalHeroCaptainGold(void);
@@ -484,6 +486,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = THESTALOS_THE_FIRESTORM_MONARCH,
     .shouldActivate = ShouldActivateThestalosTheFirestormMonarchTribute,
     .activate = ActivateThestalosTheFirestormMonarchTribute,
+  },
+  {
+    .cardId = GRANMARG_THE_ROCK_MONARCH,
+    .shouldActivate = ShouldActivateGranmargTheRockMonarchTribute,
+    .activate = ActivateGranmargTheRockMonarchTribute,
   },
   {
     .cardId = DARK_MAGICIAN_OF_CHAOS,

@@ -108,10 +108,10 @@ unsigned char CanActivateGLADIATOR_BEAST_SAGITTARII(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_SAGITTARII)
     return FALSE;
 
-  /* Battled gate via GladiatorBeast_ZoneBattledThisBattlePhase.
-   * ponytail: end-of-Battle-Phase timing + discard-GB draw 2 on GB-SS need phase/summon hooks.
+  /* End-of-BP + battled via GladiatorBeast_CanActivateTagOutEffect.
+   * ponytail: discard-GB draw 2 on GB-SS need summon hooks.
    * Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck. */
-  if (!GladiatorBeast_ZoneBattledThisBattlePhase(zone))
+  if (!GladiatorBeast_CanActivateTagOutEffect(zone))
     return FALSE;
 
   if (!CanUseMonsterEffect(zone))

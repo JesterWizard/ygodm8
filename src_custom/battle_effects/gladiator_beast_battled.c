@@ -6,6 +6,10 @@
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
+#define GLADIATOR_BEAST_HOPLOMUS_TAG_DEF 2400
+#define GLADIATOR_BEAST_LAQUARI_TAG_ATK 2100
+
+static u8 sGladiatorBeastBattlePhaseActive APPEND_DATA = {FALSE};
 
 static const char sGladiatorBeastName[] APPEND_RODATA = "Gladiator Beast";
 
@@ -57,6 +61,64 @@ static void MarkGladiatorFromBattle(u16 cardId, u8 fixedRow, u8 fixedCol)
   MarkBattledZone(fixedRow, fixedCol);
 }
 
+u8 GladiatorBeast_InBattlePhase(void)
+{
+  return sGladiatorBeastBattlePhaseActive;
+}
+
+void GladiatorBeast_MarkBattlePhaseActive(void)
+{
+  sGladiatorBeastBattlePhaseActive = TRUE;
+}
+
+void GladiatorBeast_ClearBattlePhaseActive(void)
+{
+  sGladiatorBeastBattlePhaseActive = FALSE;
+}
+
+u8 GladiatorBeast_CanActivateTagOutEffect(const struct DuelCard *zone)
+{
+  if (!GladiatorBeast_InBattlePhase())
+    return FALSE;
+
+  return GladiatorBeast_ZoneBattledThisBattlePhase(zone);
+}
+
+void GladiatorBeast_MarkTagSummonedZone(u16 cardId)
+{
+  u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->id == cardId) {
+      zone->unk4 |= GLADIATOR_BEAST_TAG_SS_MARK;
+      return;
+    }
+  }
+}
+
+void ApplyGladiatorBeastTagOutStatBoostToCardInfo(const struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  if ((zone->unk4 & GLADIATOR_BEAST_TAG_SS_MARK) == 0)
+    return;
+
+  if (zone->id == GLADIATOR_BEAST_HOPLOMUS) {
+    if (gCardInfo.def < GLADIATOR_BEAST_HOPLOMUS_TAG_DEF)
+      gCardInfo.def = GLADIATOR_BEAST_HOPLOMUS_TAG_DEF;
+    return;
+  }
+
+  if (zone->id == GLADIATOR_BEAST_LAQUARI
+      && gCardInfo.atk < GLADIATOR_BEAST_LAQUARI_TAG_ATK) {
+    gCardInfo.atk = GLADIATOR_BEAST_LAQUARI_TAG_ATK;
+  }
+}
+
 u8 GladiatorBeast_ZoneBattledThisBattlePhase(const struct DuelCard *zone)
 {
   if (zone == NULL || zone->id == CARD_NONE)
@@ -100,7 +162,9 @@ void GladiatorBeastBattled_SelfCheck(void)
   struct DuelCard fake;
 
   fake.id = GLADIATOR_BEAST_HOPLOMUS;
-  fake.unk4 = GLADIATOR_BEAST_BATTLED_MARK;
-  if (!GladiatorBeast_ZoneBattledThisBattlePhase(&fake))
+  fake.unk4 = GLADIATOR_BEAST_TAG_SS_MARK;
+  SetCardInfo(fake.id);
+  ApplyGladiatorBeastTagOutStatBoostToCardInfo(&fake);
+  if (gCardInfo.def != GLADIATOR_BEAST_HOPLOMUS_TAG_DEF)
     return;
 }

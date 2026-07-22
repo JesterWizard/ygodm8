@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "gladiator_beast_battled.h"
 #include "effect_events.h"
 #include "custom_decks/custom_decks.h"
 #include "duel.h"
@@ -428,6 +429,7 @@ static bool8 RunDuelTurnLoop(void) {
     UnlockCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
     UnlockCardsInRow(ACTIVE_DUELIST_HAND);
     VengefulBogSpirit_ClearAllMarks();
+    GladiatorBeast_ClearBattlePhaseActive();
     WorldSuppression_ClearNegation();
   }
 }

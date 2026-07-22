@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "summon_tribute.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -54,16 +55,18 @@ static u8 TurnDuelistOwningFixedRow(u8 fixedRow)
   return INACTIVE_DUELIST;
 }
 
+static u8 sGranmargMarkUsage APPEND_DATA = {FALSE};
+
 static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  struct DuelCard *self = gFixedZones[gDuelCursor.destY][gDuelCursor.destX];
 
   if (!IsValidTarget(fixedRow, fixedCol) || zone == NULL)
     return;
 
   Duel_DestroyZone(zone, TurnDuelistOwningFixedRow(fixedRow), FALSE);
-  if (self != NULL)
+  if (sGranmargMarkUsage && self != NULL)
     MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
 }
@@ -91,6 +94,56 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return FALSE;
 }
 
+static void RunGranmargDestroyPickZone(u8 originRow, u8 originCol, u8 markUsage)
+{
+  if (IsDuelOver() == TRUE)
+    return;
+
+  sGranmargMarkUsage = markUsage;
+  gDuelCursor.destY = originRow;
+  gDuelCursor.destX = originCol;
+
+  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+
+  if (WhoseTurn() == DUEL_PLAYER && originRow == PLAYER_MONSTER_ROW)
+    Duel_EnterPickZoneTargeting();
+  else
+    Duel_ResolvePickZoneForAi();
+}
+
+unsigned char ShouldActivateGranmargTheRockMonarchTribute(void)
+{
+  struct DuelCard *zone;
+
+  if (gActiveEffect.cardId != GRANMARG_THE_ROCK_MONARCH)
+    return FALSE;
+
+  if (GetPendingTributeSummonCardId() != GRANMARG_THE_ROCK_MONARCH)
+    return FALSE;
+
+  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW
+      && gActiveEffect.turnRow != INACTIVE_DUELIST_MONSTER_ROW)
+    return FALSE;
+
+  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+  if (zone == NULL || zone->id != GRANMARG_THE_ROCK_MONARCH || zone->unk4 != 0)
+    return FALSE;
+
+  return FieldHasSetTarget();
+}
+
+void ActivateGranmargTheRockMonarchTribute(void)
+{
+  struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+
+  Duel_ShowEffectTextTyped(GRANMARG_THE_ROCK_MONARCH, 8);
+
+  if (zone != NULL && IsDuelOver() != TRUE)
+    zone->unk4 = 1;
+
+  RunGranmargDestroyPickZone(gActiveEffect.turnRow, gActiveEffect.col, FALSE);
+}
+
 unsigned char CanActivateGRANMARG_THE_ROCK_MONARCH(void)
 {
   struct DuelCard *zone;
@@ -102,24 +155,13 @@ unsigned char CanActivateGRANMARG_THE_ROCK_MONARCH(void)
   if (zone == NULL || zone->id != GRANMARG_THE_ROCK_MONARCH)
     return FALSE;
 
-  /* ponytail: Tribute Summon trigger. Ceiling: once via usage if Set target. */
+  /* Tribute Summon destroy via ActivateGranmargTheRockMonarchTribute.
+   * Ceiling: once via usage if Set target. */
   return CanUseMonsterEffect(zone) && FieldHasSetTarget();
 }
 
 void ActivateGRANMARG_THE_ROCK_MONARCHEffect(void)
 {
   Duel_ShowEffectTextTyped(GRANMARG_THE_ROCK_MONARCH, 2);
-
-  if (IsDuelOver() == TRUE)
-    return;
-
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
-
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
+  RunGranmargDestroyPickZone(gMonEffect.row, gMonEffect.zone, TRUE);
 }

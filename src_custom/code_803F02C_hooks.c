@@ -6,6 +6,7 @@
 #include "timed_duel.h"
 #include "mechanics_tutorial.h"
 #include "duel_helpers.h"
+#include "gladiator_beast_battled.h"
 #include "the_dark_door.h"
 #include "ring_of_destruction.h"
 #include "level_limit_area_b.h"
@@ -506,6 +507,7 @@ void InitBoard__Replacement(void) {
   ClearRoyalKnightPending();
   ClearElementalHeroSteamHealerPending();
   ClearElementalHeroFlameWingmanPending();
+  GladiatorBeast_ClearBattlePhaseActive();
   ClearElementalHeroCoreBattledPending();
   ClearCyberBarrierDragonTurnState();
   ClearElementalHeroIceEdgeBattledPending();

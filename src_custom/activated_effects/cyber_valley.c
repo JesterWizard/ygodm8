@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -104,7 +105,10 @@ static void BanishSelfDraw1(struct DuelCard *self)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* ponytail: end Battle Phase needs phase hook; draw 1 is attack-target stand-in. */
+  /* End-of-Battle-Phase draw 1 via GladiatorBeast_InBattlePhase. */
+  if (!GladiatorBeast_InBattlePhase())
+    return;
+
   if (Duel_DrawCards(ACTIVE_DUELIST, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 

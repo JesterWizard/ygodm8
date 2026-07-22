@@ -58,6 +58,7 @@
 #include "neo_spacian_glow_moss.h"
 #include "red_dragon_archfiend.h"
 #include "duel_helpers.h"
+#include "gladiator_beast_battled.h"
 #include "spell_effects.h"
 #include "d_d_warrior.h"
 #include "lesser_fiend.h"
@@ -231,6 +232,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
   MarkMonsterDeclaredAttackThisTurn(attacker);
+  GladiatorBeast_MarkBattlePhaseActive();
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, NULL);
   ApplyAromaGardeningAttackDeclare();
   LightswornBarrier_OnAttackDeclare(attacker, NULL);
@@ -304,6 +306,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
   MarkMonsterDeclaredAttackThisTurn(attacker);
+  GladiatorBeast_MarkBattlePhaseActive();
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, defender);
   ApplyAromaGardeningAttackDeclare();
   LightswornBarrier_OnAttackDeclare(attacker, defender);

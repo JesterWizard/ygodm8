@@ -95,6 +95,7 @@ static void ShuffleSelfTagOut(struct DuelCard *self)
     return;
 
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, tagId, opts);
+  GladiatorBeast_MarkTagSummonedZone(tagId);
 }
 
 unsigned char CanActivateGLADIATOR_BEAST_LAQUARI(void)
@@ -108,10 +109,8 @@ unsigned char CanActivateGLADIATOR_BEAST_LAQUARI(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_LAQUARI)
     return FALSE;
 
-  /* Battled gate via GladiatorBeast_ZoneBattledThisBattlePhase.
-   * ponytail: end-of-Battle-Phase timing + ATK 2100 on GB tag-SS need phase/stat hooks.
-   * Ceiling: OPT shuffle self into Deck then SS another Gladiator Beast from Deck. */
-  if (!GladiatorBeast_ZoneBattledThisBattlePhase(zone))
+  /* End-of-BP + battled via GladiatorBeast_CanActivateTagOutEffect. */
+  if (!GladiatorBeast_CanActivateTagOutEffect(zone))
     return FALSE;
 
   if (!CanUseMonsterEffect(zone))

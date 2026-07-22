@@ -24,6 +24,7 @@
 #include "royal_decree.h"
 #include "card_passives.h"
 #include "duel_helpers.h"
+#include "gladiator_beast_battled.h"
 #include "spell_activation_gates.h"
 #include "six_card_hand.h"
 #include "duel_attack_restrictions.h"
@@ -1837,6 +1838,7 @@ void sub_8044570__Replacement(void)
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
       MarkMonsterDeclaredAttackThisTurn(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      GladiatorBeast_MarkBattlePhaseActive();
       TryArmElementalHeroSunriseOnAttackDeclared(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       ApplyAromaGardeningAttackDeclare();
@@ -2029,6 +2031,7 @@ void TryAttackWithMonster__Replacement(void)
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isLocked = 1;
       MarkMonsterDeclaredAttackThisTurn(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      GladiatorBeast_MarkBattlePhaseActive();
       TryArmElementalHeroSunriseOnAttackDeclared(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
