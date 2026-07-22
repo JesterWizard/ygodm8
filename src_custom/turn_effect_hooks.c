@@ -33,6 +33,7 @@
 #include "raiden_hand_of_the_lightsworn.h"
 #include "michael_the_arch_lightsworn.h"
 #include "silent_magician_lv4.h"
+#include "cannot_attack_this_turn.h"
 #include "destiny_hero_doom_lord.h"
 #include "bazoo_the_soul_eater.h"
 #include "helios_duo_megistus.h"
@@ -532,6 +533,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   DestinyHeroDoomLord_ClearAttackLockAtEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  CannotAttackThisTurn_ClearMarksAtEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyHeliosDuoMegistusEndPhase();

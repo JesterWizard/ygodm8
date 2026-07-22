@@ -10,7 +10,7 @@ unsigned char CanActivateCYBER_PHOENIX(void)
     return FALSE;
 
   /* Battle-destroy draw via ApplyCyberPhoenixBattleDestroyDraw.
-   * ponytail: ATK-position Machine S/T target-negate needs targeting gate. */
+   * Ceiling: ATK-position Machine S/T target-negate needs targeting gate. */
   return FALSE;
 }
 

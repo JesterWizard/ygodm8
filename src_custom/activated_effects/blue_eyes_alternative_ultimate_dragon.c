@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "cannot_attack_this_turn.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
@@ -52,8 +53,8 @@ static void ResolveDestroyTarget(u8 fixedRow, u8 fixedCol)
 
   NotifyDynamicEquipFieldChanged();
 
-  /* ponytail: cannot-attack-this-turn needs attack-gate; mark unk4. */
-  self->unk4 |= 0x80;
+  /* Cannot-attack-this-turn via CannotAttackThisTurn_CanDeclareAttack (unk4 mark). */
+  self->unk4 |= DUEL_CANNOT_ATTACK_THIS_TURN_MARK;
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
@@ -95,8 +96,8 @@ unsigned char CanActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON(void)
   if (zone == NULL || zone->id != BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON)
     return FALSE;
 
-  /* ponytail: protect + up-to-3-if-Alt-material need fusion/material hooks.
-   * Ceiling: OPT destroy 1 opp card; mark self unk4 cannot-attack. */
+  /* Ceiling: protect + up-to-3-if-Alt-material need fusion/material hooks.
+   * Ceiling: OPT destroy 1 opp card; cannot-attack via CannotAttackThisTurn. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

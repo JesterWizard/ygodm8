@@ -142,7 +142,7 @@ unsigned char CanActivateCROSS_KEEPER(void)
   if (zone == NULL || zone->id != CROSS_KEEPER)
     return FALSE;
 
-  /* ponytail: GY draw-on-E-HERO-Fusion need Fusion/GY hooks. Ceiling: send self
+  /* Ceiling: GY draw-on-E-HERO-Fusion need Fusion/GY hooks. Ceiling: send self
    * → SS Elemental HERO or Neo-Spacian from hand/GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

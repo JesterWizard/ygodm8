@@ -15,6 +15,7 @@
 #include "fusion_destiny.h"
 #include "gadget_box.h"
 #include "colosseum_cage_of_the_gladiator_beasts.h"
+#include "cannot_attack_this_turn.h"
 #include "gladiator_beasts_medusa_shield.h"
 #include "d_force.h"
 #include "duel_status.h"
@@ -30,6 +31,7 @@
 #include "level_limit_area_a.h"
 #include "ring_of_destruction.h"
 #include "amazoness_tiger.h"
+#include "amazoness_baby_tiger.h"
 #include "amazoness_call.h"
 #include "gladiator_beasts_valor.h"
 #include "blast_held_by_a_tribute.h"
@@ -1418,6 +1420,9 @@ u16 Duel_ZoneEffectCardId(struct DuelCard *zone)
   copied = TheTyrantNeptune_GetCopiedCardId(zone);
   if (copied != CARD_NONE)
     return copied;
+
+  if (AmazonessBabyTiger_TreatsNameAsTiger(zone))
+    return AMAZONESS_TIGER;
 
   return zone->id;
 }
@@ -3561,5 +3566,6 @@ void DuelHelpers_SelfCheck(void)
 
   FusionDuel_SelfCheck();
   SynchroDuel_SelfCheck();
+  CannotAttackThisTurn_SelfCheck();
 }
 #endif

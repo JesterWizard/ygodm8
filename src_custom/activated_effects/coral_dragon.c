@@ -111,7 +111,7 @@ unsigned char CanActivateCORAL_DRAGON(void)
   if (zone == NULL || zone->id != CORAL_DRAGON)
     return FALSE;
 
-  /* ponytail: GY draw when Synchro Summoned card sent from field needs GY hook.
+  /* Ceiling: GY draw when Synchro Summoned card sent from field needs GY hook.
    * Ceiling: OPT discard 1 → destroy 1 opp card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

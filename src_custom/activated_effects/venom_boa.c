@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "cannot_attack_this_turn.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
@@ -47,7 +48,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 
   zone->unk4 += 2; /* Venom Counters */
   if (self != NULL) {
-    self->unk4 |= 0x80;
+    self->unk4 |= DUEL_CANNOT_ATTACK_THIS_TURN_MARK;
     MarkMonsterEffectUsed(self);
   }
   UpdateDuelGfxExceptField();
@@ -84,7 +85,7 @@ unsigned char CanActivateVENOM_BOA(void)
   if (zone == NULL || zone->id != VENOM_BOA)
     return FALSE;
 
-  /* ponytail: cannot-attack-this-turn needs attack gate on unk4. */
+  /* Cannot-attack-this-turn via CannotAttackThisTurn_CanDeclareAttack. */
   return CanUseMonsterEffect(zone) && FieldHasTarget();
 }
 

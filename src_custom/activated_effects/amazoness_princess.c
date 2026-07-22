@@ -60,9 +60,9 @@ unsigned char CanActivateAMAZONESS_PRINCESS(void)
   if (zone == NULL || zone->id != AMAZONESS_PRINCESS)
     return FALSE;
 
-  /* On-Summon search via TryAmazonessPrincessOnMonsterPlacement. ponytail:
-   * name=Queen + attack-send→SS need name/battle hooks. Ceiling: OPT add 1
-   * Amazoness Spell/Trap from Deck. */
+  /* On-Summon search via TryAmazonessPrincessOnMonsterPlacement.
+   * Ceiling: OPT add 1 Amazoness Spell/Trap from Deck; name=Queen + attack-send→SS
+   * need name/battle hooks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

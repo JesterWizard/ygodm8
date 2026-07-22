@@ -155,7 +155,7 @@ unsigned char CanActivateBLACK_ROSE_DRAGON(void)
   if (zone == NULL || zone->id != BLACK_ROSE_DRAGON)
     return FALSE;
 
-  /* ponytail: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish
+  /* Ceiling: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish
    * 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

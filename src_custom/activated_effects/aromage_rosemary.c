@@ -122,7 +122,7 @@ unsigned char CanActivateAROMAGE_ROSEMARY(void)
   if (zone == NULL || zone->id != AROMAGE_ROSEMARY)
     return FALSE;
 
-  /* ponytail: LP-higher Plant attack → opp monster effects locked + LP-gain
+  /* Ceiling: LP-higher Plant attack → opp monster effects locked + LP-gain
    * gate need permanent/LP hooks. Ceiling: OPT change 1 face-up battle position. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

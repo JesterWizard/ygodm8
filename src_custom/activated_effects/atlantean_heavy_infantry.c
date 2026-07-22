@@ -108,7 +108,7 @@ unsigned char CanActivateATLANTEAN_HEAVY_INFANTRY(void)
   if (zone == NULL || zone->id != ATLANTEAN_HEAVY_INFANTRY)
     return FALSE;
 
-  /* ponytail: extra Normal Summon Sea Serpent + sent-for-WATER destroy need
+  /* Ceiling: extra Normal Summon Sea Serpent + sent-for-WATER destroy need
    * summon/send hooks. Ceiling: OPT destroy 1 Set Spell/Trap. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

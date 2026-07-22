@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 17:22 UTC  
-**Remaining partials:** `424`
+**Last updated:** 2026-07-22 17:26 UTC  
+**Remaining partials:** `406`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 337 |
+| `activated` | 319 |
 | `permanent` | 71 |
-| **total** | **424** |
+| **total** | **406** |
 
 ## spell (6)
 
@@ -95,20 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (337)
-
-### `AMAZONESS_BABY_TIGER`
-- path: `src_custom/activated_effects/amazoness_baby_tiger.c`
-- L88: * ponytail: printed name=Amazoness-Tiger needs name-override hook. Ceiling: SS from hand only. */
-
-### `AMAZONESS_PRINCESS`
-- path: `src_custom/activated_effects/amazoness_princess.c`
-- L63: /* On-Summon search via TryAmazonessPrincessOnMonsterPlacement. ponytail:
-
-### `AMULET_DRAGON`
-- path: `src_custom/activated_effects/amulet_dragon.c`
-- L58: no multi-select GY UI — banish every Spell in both GYs (min.1 gate above).
-- L254: on-summon text after field draw so Amulet Dragon is visible (fusion uses updateGfx=FALSE).
+## activated (319)
 
 ### `ANCIENT_FAIRY_DRAGON`
 - path: `src_custom/activated_effects/ancient_fairy_dragon.c`
@@ -195,10 +182,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/armory_arm.c`
 - L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
 
-### `AROMAGE_BERGAMOT`
-- path: `src_custom/activated_effects/aromage_bergamot.c`
-- L22: * ponytail: LP-gain gate + until opp EP clear need permanent/LP hooks.
-
 ### `AROMAGE_CANANGA`
 - path: `src_custom/activated_effects/aromage_cananga.c`
 - L175: * ponytail: LP-gain bounce trigger needs LP hook.
@@ -210,10 +193,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `AROMAGE_MARJORAM`
 - path: `src_custom/activated_effects/aromage_marjoram.c`
 - L180: * ponytail: destroy-SS + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish opp GY. */
-
-### `AROMAGE_ROSEMARY`
-- path: `src_custom/activated_effects/aromage_rosemary.c`
-- L125: LP-higher Plant attack → opp monster effects locked + LP-gain gate need permanent/LP hooks. Ceiling: OPT change 1 face-up battle position.
 
 ### `AROMALILITH_MAGNOLIA`
 - path: `src_custom/activated_effects/aromalilith_magnolia.c`
@@ -235,22 +214,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c`
 - L100: * ponytail: Synchro Winds search + LP-gain destroy need summon/LP hooks.
 
-### `ASH_BLOSSOM_AND_JOYOUS_SPRING`
-- path: `src_custom/activated_effects/ash_blossom_and_joyous_spring.c`
-- L50: chain negate for add/SS/mill from Deck not wired; upgrade: chain interrupt hook when one exists.
-
-### `ATLANTEAN_DRAGOONS`
-- path: `src_custom/activated_effects/atlantean_dragoons.c`
-- L137: * ponytail: sent-for-WATER-effect search needs send hook.
-
-### `ATLANTEAN_HEAVY_INFANTRY`
-- path: `src_custom/activated_effects/atlantean_heavy_infantry.c`
-- L111: extra Normal Summon Sea Serpent + sent-for-WATER destroy need summon/send hooks. Ceiling: OPT destroy 1 Set Spell/Trap.
-
-### `ATLANTEAN_MARKSMAN`
-- path: `src_custom/activated_effects/atlantean_marksman.c`
-- L149: * ponytail: sent-for-WATER destroy Set S/T needs send hook. */
-
 ### `AZURE_EYES_SILVER_DRAGON`
 - path: `src_custom/activated_effects/azure_eyes_silver_dragon.c`
 - L50: until end of next turn clear needs EOT hook.
@@ -263,26 +226,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/beast_machine_king_barbaros_ur.c`
 - L224: multi-zone banish picker not wired; require both types reachable.
 
-### `BLACK_ROSE_DRAGON`
-- path: `src_custom/activated_effects/black_rose_dragon.c`
-- L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
-
-### `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON`
-- path: `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c`
-- L55: cannot-attack-this-turn needs attack-gate; mark unk4.
-- L98: protect + up-to-3-if-Alt-material need fusion/material hooks. Ceiling: OPT destroy 1 opp card; mark self unk4 cannot-attack.
-
 ### `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c`
 - L23: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. Ceiling: OPT +2 tempStage (~+1000) as negate stand-in.
-
-### `BRIONAC_DRAGON_OF_THE_ICE_BARRIER`
-- path: `src_custom/activated_effects/brionac_dragon_of_the_ice_barrier.c`
-- L232: N-discard path auto-bounces N cards; upgrade: sequential PickZone.
-
-### `CASTEL_THE_SKY_BLASTER_MUSKETEER`
-- path: `src_custom/activated_effects/castel_the_sky_blaster_musketeer.c`
-- L138: detach/material + face-down branch need overlay engine. Ceiling: OPT return 1 face-up monster to the Deck.
 
 ### `CHAOS_ANCIENT_GEAR_GIANT`
 - path: `src_custom/activated_effects/chaos_ancient_gear_giant.c`
@@ -292,27 +238,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/clear_vice_dragon.c`
 - L72: * ponytail: Clear World immunity + discard-to-save need continuous/destruction hooks.
 
-### `CORAL_DRAGON`
-- path: `src_custom/activated_effects/coral_dragon.c`
-- L114: GY draw when Synchro Summoned card sent from field needs GY hook. Ceiling: OPT discard 1 → destroy 1 opp card.
-
 ### `CRIMSON_DRAGON`
 - path: `src_custom/activated_effects/crimson_dragon.c`
 - L123: Extra Deck Synchro SS FALSE; Deck Dragon stand-in.
 - L138: on-SS search + Extra Synchro return FALSE. Ceiling: OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon.
 
-### `CROSS_KEEPER`
-- path: `src_custom/activated_effects/cross_keeper.c`
-- L145: GY draw-on-E-HERO-Fusion need Fusion/GY hooks. Ceiling: send self → SS Elemental HERO or Neo-Spacian from hand/GY.
-
 ### `CYBER_DRAGON_INFINITY`
 - path: `src_custom/activated_effects/cyber_dragon_infinity.c`
 - L35: ATK summons keep isFaceUp=0 until EOT flip.
 - L62: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
-
-### `CYBER_PHOENIX`
-- path: `src_custom/activated_effects/cyber_phoenix.c`
-- L13: * ponytail: ATK-position Machine S/T target-negate needs targeting gate. */
 
 ### `CYBER_SLASH_HARPIE_LADY`
 - path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
@@ -1455,14 +1389,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ULTIMATE_TYRANNO`
 - path: `src_custom/activated_effects/ultimate_tyranno.c`
 - L12: multi-attack + Tyranno-only battle phase gate need battle hooks. Ceiling: not field-ignition activatable here.
-
-### `VENOM_BOA`
-- path: `src_custom/activated_effects/venom_boa.c`
-- L87: cannot-attack-this-turn needs attack gate on unk4.
-
-### `VENOM_SNAKE`
-- path: `src_custom/activated_effects/venom_snake.c`
-- L87: cannot-attack-this-turn needs attack gate on unk4.
 
 ### `VICTORIA`
 - path: `src_custom/activated_effects/victoria.c`

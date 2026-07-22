@@ -55,7 +55,7 @@ static u8 AnyGraveyardHasSpell(void)
   return FALSE;
 }
 
-/* ponytail: no multi-select GY UI — banish every Spell in both GYs (min.1 gate above). */
+/* Ceiling: no multi-select GY UI — banish every Spell in both GYs (min.1 gate above). */
 static u8 BanishAllSpellsFromGraveyards(void)
 {
   u8 banished = 0;
@@ -251,7 +251,7 @@ static void ResolveAmuletDragonOnSpecialSummon(struct DuelCard *zone)
     return;
   }
 
-  /* ponytail: on-summon text after field draw so Amulet Dragon is visible (fusion uses
+  /* On-summon text after field draw so Amulet Dragon is visible (fusion uses
    * updateGfx=FALSE). */
   UpdateDuelGfxExceptField();
 

@@ -19,7 +19,7 @@ unsigned char CanActivateAROMAGE_BERGAMOT(void)
     return FALSE;
 
   /* Plant pierce while LP higher via ApplySimplePiercersBattleEffect.
-   * ponytail: LP-gain gate + until opp EP clear need permanent/LP hooks.
+   * Ceiling: LP-gain gate + until opp EP clear need permanent/LP hooks.
    * Ceiling: OPT +2 tempStage (~1000 ATK/DEF). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

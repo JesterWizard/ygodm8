@@ -84,8 +84,8 @@ unsigned char CanActivateAMAZONESS_BABY_TIGER(void)
     return FALSE;
 
   /* Continuous GY ATK via AmazonessBabyTiger_ApplyDynamicZoneStats; hand SS on
-   * Amazoness placement via TryAmazonessBabyTigerOnAmazonessPlacement.
-   * ponytail: printed name=Amazoness-Tiger needs name-override hook. Ceiling: SS from hand only. */
+   * Amazoness placement via TryAmazonessBabyTigerOnAmazonessPlacement; name
+   * override via AmazonessBabyTiger_TreatsNameAsTiger + Duel_ZoneEffectCardId. */
   return FALSE;
 }
 
