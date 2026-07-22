@@ -16,6 +16,16 @@ u8 CanActivateTheWhiteStoneOfAncientsGy(u8 fixedDuelist, u8 gyIndex);
 void ActivateTheWhiteStoneOfAncientsGy(u8 fixedDuelist, u8 gyIndex);
 u8 CanActivateDestinyHeroMaliciousGy(u8 fixedDuelist, u8 gyIndex);
 void ActivateDestinyHeroMaliciousGy(u8 fixedDuelist, u8 gyIndex);
+u8 CanActivateMezukiGy(u8 fixedDuelist, u8 gyIndex);
+void ActivateMezukiGy(u8 fixedDuelist, u8 gyIndex);
+u8 CanActivateEvilHeroSinisterNecromGy(u8 fixedDuelist, u8 gyIndex);
+void ActivateEvilHeroSinisterNecromGy(u8 fixedDuelist, u8 gyIndex);
+u8 CanActivateLevelEaterGy(u8 fixedDuelist, u8 gyIndex);
+void ActivateLevelEaterGy(u8 fixedDuelist, u8 gyIndex);
+u8 CanActivatePoseidraTheAtlanteanDragonGy(u8 fixedDuelist, u8 gyIndex);
+void ActivatePoseidraTheAtlanteanDragonGy(u8 fixedDuelist, u8 gyIndex);
+u8 CanActivateYamorimoriGy(u8 fixedDuelist, u8 gyIndex);
+void ActivateYamorimoriGy(u8 fixedDuelist, u8 gyIndex);
 
 struct GyIgnitionEntry {
   u16 cardId;
@@ -54,6 +64,21 @@ static const struct GyIgnitionEntry sGyIgnitionTable[] APPEND_RODATA = {
   { DESTINY_HERO_MALICIOUS,
     CanActivateDestinyHeroMaliciousGy,
     ActivateDestinyHeroMaliciousGy },
+  { MEZUKI,
+    CanActivateMezukiGy,
+    ActivateMezukiGy },
+  { EVIL_HERO_SINISTER_NECROM,
+    CanActivateEvilHeroSinisterNecromGy,
+    ActivateEvilHeroSinisterNecromGy },
+  { LEVEL_EATER,
+    CanActivateLevelEaterGy,
+    ActivateLevelEaterGy },
+  { POSEIDRA_THE_ATLANTEAN_DRAGON,
+    CanActivatePoseidraTheAtlanteanDragonGy,
+    ActivatePoseidraTheAtlanteanDragonGy },
+  { YAMORIMORI,
+    CanActivateYamorimoriGy,
+    ActivateYamorimoriGy },
 };
 
 u8 GyIgnition_TryAt(u8 fixedDuelist, u16 cardId)

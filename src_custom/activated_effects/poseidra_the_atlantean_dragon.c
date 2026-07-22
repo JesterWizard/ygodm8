@@ -4,6 +4,7 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
@@ -281,7 +282,7 @@ unsigned char CanActivatePOSEIDRA_THE_ATLANTEAN_DRAGON(void)
   if (zone != NULL && zone->id == POSEIDRA_THE_ATLANTEAN_DRAGON)
     return FALSE;
 
-  /* hand SS uses FromHand path. Ceiling: GY ignition like Malicious. */
+  /* hand SS uses FromHand path. GY ignition via CanActivatePoseidraTheAtlanteanDragonGy. */
   if (FindPoseidraInGy() < 0)
     return FALSE;
 
@@ -308,6 +309,48 @@ void ActivatePOSEIDRA_THE_ATLANTEAN_DRAGONEffect(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
+}
+
+u8 CanActivatePoseidraTheAtlanteanDragonGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u16 savedId;
+  u8 savedRow;
+  u8 savedZone;
+  u8 ok;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+  if (EffectOpt_IsUsed(POSEIDRA_THE_ATLANTEAN_DRAGON))
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != POSEIDRA_THE_ATLANTEAN_DRAGON)
+    return FALSE;
+
+  savedId = gMonEffect.id;
+  savedRow = gMonEffect.row;
+  savedZone = gMonEffect.zone;
+  gMonEffect.id = POSEIDRA_THE_ATLANTEAN_DRAGON;
+  /* Avoid false "on field" reject from stale gMonEffect.row/zone. */
+  gMonEffect.row = INACTIVE_DUELIST_BACKROW;
+  gMonEffect.zone = 0;
+  ok = CanActivatePOSEIDRA_THE_ATLANTEAN_DRAGON();
+  gMonEffect.id = savedId;
+  gMonEffect.row = savedRow;
+  gMonEffect.zone = savedZone;
+  return ok;
+}
+
+void ActivatePoseidraTheAtlanteanDragonGy(u8 fixedDuelist, u8 gyIndex)
+{
+  if (!CanActivatePoseidraTheAtlanteanDragonGy(fixedDuelist, gyIndex))
+    return;
+
+  EffectOpt_MarkUsed(POSEIDRA_THE_ATLANTEAN_DRAGON);
+  gMonEffect.id = POSEIDRA_THE_ATLANTEAN_DRAGON;
+  gMonEffect.row = INACTIVE_DUELIST_BACKROW;
+  gMonEffect.zone = 0;
+  ActivatePOSEIDRA_THE_ATLANTEAN_DRAGONEffect();
 }
 
 #if !defined(__GNUC__)

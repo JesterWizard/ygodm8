@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "exchange_hand_selection.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
@@ -100,8 +101,7 @@ unsigned char CanActivateEVIL_HERO_SINISTER_NECROM(void)
   if (gMonEffect.id != EVIL_HERO_SINISTER_NECROM)
     return FALSE;
 
-  /* Ceiling: GY ignition needs GY-menu wire; allow when Sinister Necrom
-   * in GY + Evil HERO in hand or Deck (callable if gMonEffect set). */
+  /* GY ignition via CanActivateEvilHeroSinisterNecromGy / gy_ignition table. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
@@ -158,4 +158,35 @@ void ActivateEVIL_HERO_SINISTER_NECROMEffect(void)
 
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, gDuelDecks[fixedDuelist].cards[deckIndex], opts);
   UpdateDuelGfxExceptField();
+}
+
+u8 CanActivateEvilHeroSinisterNecromGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u16 savedId;
+  u8 ok;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+  if (EffectOpt_IsUsed(EVIL_HERO_SINISTER_NECROM))
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != EVIL_HERO_SINISTER_NECROM)
+    return FALSE;
+
+  savedId = gMonEffect.id;
+  gMonEffect.id = EVIL_HERO_SINISTER_NECROM;
+  ok = CanActivateEVIL_HERO_SINISTER_NECROM();
+  gMonEffect.id = savedId;
+  return ok;
+}
+
+void ActivateEvilHeroSinisterNecromGy(u8 fixedDuelist, u8 gyIndex)
+{
+  if (!CanActivateEvilHeroSinisterNecromGy(fixedDuelist, gyIndex))
+    return;
+
+  EffectOpt_MarkUsed(EVIL_HERO_SINISTER_NECROM);
+  gMonEffect.id = EVIL_HERO_SINISTER_NECROM;
+  ActivateEVIL_HERO_SINISTER_NECROMEffect();
 }

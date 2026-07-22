@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -174,9 +175,8 @@ unsigned char CanActivateLEVEL_EATER(void)
   if (gMonEffect.id != LEVEL_EATER)
     return FALSE;
 
-  /* GY ignition + cannot-be-Tributed-except-for-Tribute-Summon need
-   * GY-menu + tribute hooks. Ceiling: GY ignition when Lv5+ you control + empty
-   * zone (Treeborn pattern). */
+  /* GY ignition via CanActivateLevelEaterGy / gy_ignition table.
+   * Ceiling: cannot-be-Tributed-except-for-Tribute-Summon needs tribute hooks. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
@@ -205,4 +205,35 @@ void ActivateLEVEL_EATEREffect(void)
     Duel_EnterPickZoneTargetingFromRow(PLAYER_HAND);
   else
     Duel_ResolvePickZoneForAi();
+}
+
+u8 CanActivateLevelEaterGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u16 savedId;
+  u8 ok;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+  if (EffectOpt_IsUsed(LEVEL_EATER))
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != LEVEL_EATER)
+    return FALSE;
+
+  savedId = gMonEffect.id;
+  gMonEffect.id = LEVEL_EATER;
+  ok = CanActivateLEVEL_EATER();
+  gMonEffect.id = savedId;
+  return ok;
+}
+
+void ActivateLevelEaterGy(u8 fixedDuelist, u8 gyIndex)
+{
+  if (!CanActivateLevelEaterGy(fixedDuelist, gyIndex))
+    return;
+
+  EffectOpt_MarkUsed(LEVEL_EATER);
+  gMonEffect.id = LEVEL_EATER;
+  ActivateLEVEL_EATEREffect();
 }

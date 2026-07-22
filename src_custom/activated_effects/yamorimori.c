@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
@@ -121,8 +122,7 @@ unsigned char CanActivateYAMORIMORI(void)
   if (zone != NULL && zone->id == YAMORIMORI)
     return FALSE;
 
-  /* GY ignition needs GY-menu wire. Ceiling: banish self from GY +
-   * own Reptile + opp face-up present → destroy opp face-up monster. */
+  /* GY ignition via CanActivateYamorimoriGy / gy_ignition table. */
   if (FindYamorimoriInGy() < 0)
     return FALSE;
 
@@ -163,4 +163,46 @@ void ActivateYAMORIMORIEffect(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
+}
+
+u8 CanActivateYamorimoriGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u16 savedId;
+  u8 savedRow;
+  u8 savedZone;
+  u8 ok;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+  if (EffectOpt_IsUsed(YAMORIMORI))
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != YAMORIMORI)
+    return FALSE;
+
+  savedId = gMonEffect.id;
+  savedRow = gMonEffect.row;
+  savedZone = gMonEffect.zone;
+  gMonEffect.id = YAMORIMORI;
+  /* Avoid false "on field" reject from stale gMonEffect.row/zone. */
+  gMonEffect.row = INACTIVE_DUELIST_BACKROW;
+  gMonEffect.zone = 0;
+  ok = CanActivateYAMORIMORI();
+  gMonEffect.id = savedId;
+  gMonEffect.row = savedRow;
+  gMonEffect.zone = savedZone;
+  return ok;
+}
+
+void ActivateYamorimoriGy(u8 fixedDuelist, u8 gyIndex)
+{
+  if (!CanActivateYamorimoriGy(fixedDuelist, gyIndex))
+    return;
+
+  EffectOpt_MarkUsed(YAMORIMORI);
+  gMonEffect.id = YAMORIMORI;
+  gMonEffect.row = INACTIVE_DUELIST_BACKROW;
+  gMonEffect.zone = 0;
+  ActivateYAMORIMORIEffect();
 }

@@ -7,9 +7,9 @@ Each `ponytail:` / `Ceiling:` note is tagged with its **primary missing engine s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 19:52 UTC  
-**Ceiling lines tagged:** `247`  
-**Partial files:** `222`
+**Last updated:** 2026-07-22 20:03 UTC  
+**Ceiling lines tagged:** `242`  
+**Partial files:** `217`
 
 ## Counts by missing surface
 
@@ -19,26 +19,25 @@ python3 tools/stub_effect_queue.py --write-list
 | `event.OnStandby` | 55 | 3 (OPT / turn flags) |
 | `extra.XyzLinkSynchro` | 18 | later / Extra Deck |
 | `chain.Negate` | 14 | later / chain |
-| `gate.Tribute` | 13 | 2–3 |
+| `gate.Tribute` | 14 | 2–3 |
 | `event.OnSummon` | 10 | 3 |
 | `op.BanishTimed` | 8 | 1–3 |
-| `event.GyIgnition` | 7 | 3 |
-| `event.OnBattleDestroy` | 6 | 3 |
+| `event.OnBattleDestroy` | 5 | 3 |
 | `op.Search` | 5 | 1 |
 | `ui.Choice` | 5 | 2 |
 | `event.OnFusionSummon` | 3 | 3 (fusion callback) |
+| `event.GyIgnition` | 2 | 3 |
 | `event.OnDestroy` | 2 | 3 |
 | `event.OnLpGain` | 1 | later / LP event |
 | `stat.Continuous` | 1 | 1–3 |
-| **total** | **247** | |
+| **total** | **242** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (6)
+## `event.OnBattleDestroy` (5)
 
 - `AMAZONESS_HOT_SPRING` (trap): L46: * Ceiling: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
 - `ARMORY_ARM` (activated): L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
-- `D_D_WARRIOR` (activated): L13: * battle_effects/d_d_warrior.c. Ceiling: not ignition-activatable here. */
 - `DESTINY_HERO_DREAMER` (activated): L130: * Ceiling: true damage-calc GY SS timing needs battle hook. */
 - `HONEST` (activated): L95: /* Damage Step hand discard uses FromHand path. Ceiling: Main Phase
 - `EVIL_HERO_WILD_CYCLONE` (permanent): L97: * Ceiling: attack S/T lock until end of Damage Step needs chain gate. */
@@ -125,15 +124,10 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `VISION_HERO_INCREASE` (activated): L69: GY Continuous Trap place + tribute HERO SS-self FALSE. OPT SS Vision HERO Lv≤4 from Deck (ST-zone SS stand-in).
 - `WEISS_LIGHTSWORN_ARCHFIEND` (activated): L167: /* sent-from-Deck-to-GY trigger needs mill/send hook. Ceiling: field OPT
 
-## `event.GyIgnition` (7)
+## `event.GyIgnition` (2)
 
 - `DESTINY_HERO_DREADNOUGHT_SERVANT` (activated): L89: GY banish destroy on Lv8 D-HERO SS FALSE. Ceiling: FromHand if control D-HERO or Field Spell → SS, destroy 1, add Poly.
 - `DESTINY_HERO_DYNATAG` (activated): L134: GY banish ATK boost not wired; both players 1000 on FromHand.
-- `EVIL_HERO_SINISTER_NECROM` (activated): L103: GY ignition needs GY-menu wire; allow when Sinister Necrom in GY + Evil HERO in hand or Deck (callable if gMonEffect set).
-- `LEVEL_EATER` (activated): L178: * GY-menu + tribute hooks. Ceiling: GY ignition when Lv5+ you control + empty
-- `MEZUKI` (activated): L169: /* GY ignition needs GY-menu wire. Ceiling: allow when Mezuki +
-- `POSEIDRA_THE_ATLANTEAN_DRAGON` (activated): L284: /* hand SS uses FromHand path. Ceiling: GY ignition like Malicious. */
-- `YAMORIMORI` (activated): L124: /* GY ignition needs GY-menu wire. Ceiling: banish self from GY +
 
 ## `event.OnLpGain` (1)
 
@@ -147,7 +141,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `CURIOUS_THE_LIGHTSWORN_DOMINION` (activated): L146: * Ceiling: Link Summon mill + mill-cascade need summon/send hooks.
 - `CYBER_DRAGON_INFINITY` (activated): L62: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
 - `GAGAGIGO_THE_RISEN` (activated): L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). duel gate outside activated_effects.
-- `LEVEL_EATER` (activated): L122: * Ceiling: SS self from GY; upgrade: TempLevel overlay on target. */
+- `LEVEL_EATER` (activated): L123: * Ceiling: SS self from GY; upgrade: TempLevel overlay on target. */
 - `LEVIAIR_THE_SEA_DRAGON` (activated): L108: * Ceiling: materials not checked; upgrade: overlay detach before SS. */
 - `NUMBER_39_UTOPIA` (activated): L13: * hook and XYZ material system. Ceiling: not field-ignition activatable. */
 - `ROAD_SYNCHRON` (activated): L13: * synchro/battle hooks. Ceiling: not ignition-activatable here. */
@@ -177,7 +171,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `EL_SHADDOLL_GRYSTA` (permanent): L126: negate opp Special Summon + send Shaddoll from hand need SS chain hook.
 - `EL_SHADDOLL_SHEKHINAGA` (permanent): L126: negate SS monster effect + send Shaddoll need effect-chain hook.
 
-## `gate.Tribute` (13)
+## `gate.Tribute` (14)
 
 - `LEV_SHADDOLL_FUSION` (spell): L158: the face-up ignition still needs a monster-zone tribute picker and an Extra Deck special-summon flow, neither of which is owned by this spell activation dispatcher.
 - `SCAPEGOAT` (spell): L77: token tribute-lock is only via isLocked — not all tribute paths honor it, and Tokens can still be used for non-Tribute costs. SCAPEGOAT_TOKEN_ID / token flag.
@@ -190,6 +184,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GRAVEKEEPERS_VASSAL` (activated): L13: * Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle
 - `HOLACTIE_THE_CREATOR_OF_LIGHT` (activated): L65: * Ceiling: not field-ignition activatable; use FromHand tribute path. */
 - `LEKUNGA` (activated): L13: * Ceiling: wrong Type/Attribute/stats (Fairy/LIGHT 0/0 vs Plant/WATER 700/700);
+- `LEVEL_EATER` (activated): L179: * Ceiling: cannot-be-Tributed-except-for-Tribute-Summon needs tribute hooks. */
 - `THE_AGENT_OF_JUDGMENT_SATURN` (activated): L39: /* skip Battle Phase this turn needs phase-lock hook. Ceiling: tribute
 - `ARCANA_FORCE_VI_THE_LOVERS` (permanent): L48: tribute engine not wired — unk4 marks double-tribute / no-tribute only.
 

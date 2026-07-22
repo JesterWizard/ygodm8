@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 19:52 UTC  
-**Remaining partials:** `222`
+**Last updated:** 2026-07-22 20:03 UTC  
+**Remaining partials:** `217`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 9 |
-| `activated` | 186 |
+| `activated` | 181 |
 | `permanent` | 21 |
-| **total** | **222** |
+| **total** | **217** |
 
 ## spell (6)
 
@@ -93,7 +93,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (186)
+## activated (181)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -255,10 +255,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CYBER_SLASH_HARPY_LADY`
 - path: `src_custom/activated_effects/cyber_slash_harpy_lady.c`
 - L196: Quick on S/T activation + Synchro/name hooks missing. OPT bounce 1 opp card or your Harpie to hand.
-
-### `D_D_WARRIOR`
-- path: `src_custom/activated_effects/d_d_warrior.c`
-- L13: * battle_effects/d_d_warrior.c. Ceiling: not ignition-activatable here. */
 
 ### `DARK_ARMED_DRAGON`
 - path: `src_custom/activated_effects/dark_armed_dragon.c`
@@ -437,10 +433,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/evil_hero_neos_lord.c`
 - L144: indestructible + on-SS/opp-GY-sent take-control triggers need continuous/summon hooks; OPT take control of 1 face-up opp monster.
 
-### `EVIL_HERO_SINISTER_NECROM`
-- path: `src_custom/activated_effects/evil_hero_sinister_necrom.c`
-- L103: GY ignition needs GY-menu wire; allow when Sinister Necrom in GY + Evil HERO in hand or Deck (callable if gMonEffect set).
-
 ### `EVIL_HERO_TOXIC_BUBBLE`
 - path: `src_custom/activated_effects/evil_hero_toxic_bubble.c`
 - L89: HERO-only SS lock this turn needs summon gate.
@@ -579,8 +571,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `LEVEL_EATER`
 - path: `src_custom/activated_effects/level_eater.c`
-- L122: * Ceiling: SS self from GY; upgrade: TempLevel overlay on target. */
-- L178: * GY-menu + tribute hooks. Ceiling: GY ignition when Lv5+ you control + empty
+- L123: * Ceiling: SS self from GY; upgrade: TempLevel overlay on target. */
+- L179: * Ceiling: cannot-be-Tributed-except-for-Tribute-Summon needs tribute hooks. */
 
 ### `LEVIAIR_THE_SEA_DRAGON`
 - path: `src_custom/activated_effects/leviair_the_sea_dragon.c`
@@ -618,10 +610,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MANJU_OF_THE_TEN_THOUSAND_HANDS`
 - path: `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c`
 - L113: once via usage if Ritual Monster or Ritual Spell in Deck and hand space.
-
-### `MEZUKI`
-- path: `src_custom/activated_effects/mezuki.c`
-- L169: /* GY ignition needs GY-menu wire. Ceiling: allow when Mezuki +
 
 ### `MICHAEL_THE_ARCH_LIGHTSWORN`
 - path: `src_custom/activated_effects/michael_the_arch_lightsworn.c`
@@ -699,10 +687,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `OJAMA_KING`
 - path: `src_custom/activated_effects/ojama_king.c`
 - L54: PickZone for up to 3 empty zones + continuous lock gate. FirstEmptyZoneInRow today — same as Ground Collapse).
-
-### `POSEIDRA_THE_ATLANTEAN_DRAGON`
-- path: `src_custom/activated_effects/poseidra_the_atlantean_dragon.c`
-- L284: /* hand SS uses FromHand path. Ceiling: GY ignition like Malicious. */
 
 ### `PREDAPLANT_VERTE_ANACONDA`
 - path: `src_custom/activated_effects/predaplant_verte_anaconda.c`
@@ -852,10 +836,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `WEISS_LIGHTSWORN_ARCHFIEND`
 - path: `src_custom/activated_effects/weiss_lightsworn_archfiend.c`
 - L167: /* sent-from-Deck-to-GY trigger needs mill/send hook. Ceiling: field OPT
-
-### `YAMORIMORI`
-- path: `src_custom/activated_effects/yamorimori.c`
-- L124: /* GY ignition needs GY-menu wire. Ceiling: banish self from GY +
 
 ## permanent (21)
 

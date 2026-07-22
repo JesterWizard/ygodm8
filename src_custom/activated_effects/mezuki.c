@@ -5,6 +5,7 @@
 #include "constants/card_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -166,8 +167,7 @@ unsigned char CanActivateMEZUKI(void)
   if (gMonEffect.id != MEZUKI)
     return FALSE;
 
-  /* GY ignition needs GY-menu wire. Ceiling: allow when Mezuki +
-   * another Zombie in expanded GY (callable if gMonEffect set to Mezuki). */
+  /* GY ignition via CanActivateMezukiGy / gy_ignition table. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
@@ -219,4 +219,35 @@ void ActivateMEZUKIEffect(void)
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
   Duel_SpecialSummonFromGrave(ACTIVE_DUELIST, zombieId, opts);
   UpdateDuelGfxExceptField();
+}
+
+u8 CanActivateMezukiGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u16 savedId;
+  u8 ok;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+  if (EffectOpt_IsUsed(MEZUKI))
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != MEZUKI)
+    return FALSE;
+
+  savedId = gMonEffect.id;
+  gMonEffect.id = MEZUKI;
+  ok = CanActivateMEZUKI();
+  gMonEffect.id = savedId;
+  return ok;
+}
+
+void ActivateMezukiGy(u8 fixedDuelist, u8 gyIndex)
+{
+  if (!CanActivateMezukiGy(fixedDuelist, gyIndex))
+    return;
+
+  EffectOpt_MarkUsed(MEZUKI);
+  gMonEffect.id = MEZUKI;
+  ActivateMEZUKIEffect();
 }
