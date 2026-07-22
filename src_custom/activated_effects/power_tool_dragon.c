@@ -53,7 +53,7 @@ unsigned char CanActivatePOWER_TOOL_DRAGON(void)
     return FALSE;
 
   /* reveal-3 opp-picks + equip destruction replace need reveal/destroy
-   * hooks. Ceiling: OPT add first Equip Spell from Deck. */
+   * hooks. OPT add first Equip Spell from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

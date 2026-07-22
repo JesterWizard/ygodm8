@@ -84,7 +84,7 @@ unsigned char CanActivateNECROFACE(void)
     return FALSE;
 
   /* Normal Summon shuffle + banish-mill branches need summon/banish
-   * hooks. Ceiling: OPT shuffle all banished into Decks + tempStage per card. */
+   * hooks. OPT shuffle all banished into Decks + tempStage per card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

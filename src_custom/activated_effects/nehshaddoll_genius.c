@@ -108,7 +108,7 @@ unsigned char CanActivateNEHSHADDOLL_GENIUS(void)
     return FALSE;
 
   /* FLIP Shaddoll unaffected + sent-by-effect branches need flip/send hooks.
-   * Ceiling: OPT negate 1 face-up Effect Monster (unk4). */
+   * OPT negate 1 face-up Effect Monster (unk4). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

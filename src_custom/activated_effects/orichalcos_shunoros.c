@@ -122,7 +122,7 @@ unsigned char CanActivateORICHALCOS_SHUNOROS(void)
     return FALSE;
 
   /* ATK overlay + Lv4 Normal protect + Normal BD SS wired via shared helpers.
-   * Ceiling: OPT +2 tempStage per opp monster (~1000 ATK each). */
+   * OPT +2 tempStage per opp monster (~1000 ATK each). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

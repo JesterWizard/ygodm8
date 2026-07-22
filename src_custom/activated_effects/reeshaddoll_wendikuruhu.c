@@ -71,7 +71,7 @@ unsigned char CanActivateREESHADDOLL_WENDIKURUHU(void)
     return FALSE;
 
   /* Quick face-up→face-down follow-up + GY Shaddoll add need flip/send
-   * hooks. Ceiling: OPT flip all face-down monsters face-up DEF. */
+   * hooks. OPT flip all face-down monsters face-up DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
