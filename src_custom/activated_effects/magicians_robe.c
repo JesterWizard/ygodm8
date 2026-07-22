@@ -53,8 +53,8 @@ unsigned char CanActivateMAGICIANS_ROBE(void)
   if (gMonEffect.id != MAGICIANS_ROBE)
     return FALSE;
 
-  /* opp-turn quick + GY SS banish-on-leave need phase/GY hooks.
-   * Ceiling: discard S/T from hand → SS DM from Deck via FromHand path. */
+  /* Opp-turn quick + GY SS banish-on-leave need phase/GY hooks.
+   * Discard S/T from hand → SS DM from Deck via FromHand path. */
   return FALSE;
 }
 

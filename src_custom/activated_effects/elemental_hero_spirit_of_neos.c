@@ -222,7 +222,7 @@ unsigned char CanActivateELEMENTAL_HERO_SPIRIT_OF_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_SPIRIT_OF_NEOS)
     return FALSE;
 
-  /* Ceiling: attack-hand SS FALSE.
+  /* Attack-hand SS FALSE.
    * On-SS search via TryElementalHeroSpiritOfNeosOnMonsterPlacement (EffectOpt).
    * OPT search Poly/E-HERO S/T (shares EffectOpt), else OPT shuffle self → SS Normal E-HERO. */
   if (!CanUseMonsterEffect(zone))

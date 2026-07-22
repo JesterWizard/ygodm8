@@ -113,7 +113,7 @@ unsigned char CanActivateDESTINY_HERO_DECIDER(void)
     return FALSE;
 
   /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. OPT add 1 HERO from
-   * GY to hand (EffectOpt). Ceiling: GY quick return-on-damage need chain hook. */
+   * GY to hand (EffectOpt). GY quick return-on-damage need chain hook. */
   if (EffectOpt_IsUsed(DESTINY_HERO_DECIDER))
     return FALSE;
 

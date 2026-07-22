@@ -189,9 +189,8 @@ unsigned char CanActivatePUNISHMENT_DRAGON(void)
   if (zone == NULL || zone->id != PUNISHMENT_DRAGON)
     return FALSE;
 
-  /* hand SS via 4+ banished LS uses FromHand path. OPT pay 1000 → shuffle all
-   * banished into Decks (EffectOpt). Ceiling: LS mill 4 needs effect-activation
-   * hook. */
+  /* Hand SS via 4+ banished LS uses FromHand path. OPT pay 1000 → shuffle all
+   * banished into Decks (EffectOpt). LS mill 4 needs effect-activation hook. */
   if (EffectOpt_IsUsed(PUNISHMENT_DRAGON))
     return FALSE;
 

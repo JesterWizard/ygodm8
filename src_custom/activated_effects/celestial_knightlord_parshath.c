@@ -103,8 +103,7 @@ unsigned char CanActivateCELESTIAL_KNIGHTLORD_PARSHATH(void)
     return FALSE;
 
   /* OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field
-   * (EffectOpt). Ceiling: Link material + GY banish Fairy → SS Fairy need
-   * send/banish hooks. */
+   * (EffectOpt). Link material + GY banish Fairy → SS Fairy need send/banish hooks. */
   if (EffectOpt_IsUsed(CELESTIAL_KNIGHTLORD_PARSHATH))
     return FALSE;
 

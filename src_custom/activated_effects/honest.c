@@ -92,7 +92,7 @@ unsigned char CanActivateHONEST(void)
   if (zone == NULL || zone->id != HONEST)
     return FALSE;
 
-  /* Damage Step hand discard uses FromHand path. Ceiling: Main Phase
+  /* Damage Step hand discard uses FromHand path. Main Phase
    * return this face-up card to the hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

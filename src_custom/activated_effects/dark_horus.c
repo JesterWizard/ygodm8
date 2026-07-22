@@ -97,7 +97,7 @@ unsigned char CanActivateDARK_HORUS(void)
   if (zone == NULL || zone->id != DARK_HORUS)
     return FALSE;
 
-  /* Ceiling: after opp Main Phase Spell resolve trigger needs spell hook.
+  /* After opp Main Phase Spell resolve trigger needs spell hook.
    * OPT SS 1 Lv4 DARK from GY while face-up (EffectOpt). */
   if (EffectOpt_IsUsed(DARK_HORUS))
     return FALSE;

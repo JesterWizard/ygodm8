@@ -127,7 +127,7 @@ unsigned char CanActivateDESTINY_HERO_DREAMER(void)
 
   /* Battle protect via DestinyHeroDreamer_PreventsBattleDestroy.
    * Leave-banish via DestinyHeroDreamer_EnsureInit (unk4 mark on GY SS).
-   * Ceiling: true damage-calc GY SS timing needs battle hook. */
+   * True damage-calc GY SS timing needs battle hook. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

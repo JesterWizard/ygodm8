@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Ceiling Round 17 Batch 31
+**Last worked on:** 2026-07-22 — Ceiling Round 17 Batches 32–37
 
-**Outcome:** Full-clear pack of 6: XV Fiend + Cyber Dragon Infinity EffectOpt; Gyzarus / Dark Neos / Drawhand / Light Ruler stand-in clears. Partials **114→108**. `make` OK.
+**Outcome:** Six-batch full-clear sweep (36 cards): Arcana unk4/FromHand/FALSE residuals; Vision/ED/RFP; D-HERO/Evil HERO; Quick/redirect; Parshath/Punishment/etc. Partials **108→72**. `make` OK.
 
-**Deferred:** Deep Sea Diva; Atlantean send-for-WATER; Extra Deck; residual hard ceilings.
+**Deferred:** Deep Sea Diva; Atlantean send-for-WATER; Extra Deck; residual hard ceilings still marked.
 
-**Open / next:** Round 17 Batch 32+ — residual hard Ceiling wires (prefer full clears).
+**Open / next:** Round 17 Batch 38+ — remaining hard Ceiling wires (prefer full clears).

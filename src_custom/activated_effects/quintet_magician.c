@@ -112,7 +112,7 @@ unsigned char CanActivateQUINTET_MAGICIAN(void)
     return FALSE;
 
   /* On-summon wipe via TryQuintetMagicianOnMonsterPlacement.
-   * Ceiling: untributable/undestroyable need continuous hooks.
+   * Untributable/undestroyable need continuous hooks.
    * OPT destroy all opp cards (ignition). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

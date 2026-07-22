@@ -89,7 +89,7 @@ unsigned char CanActivateSOUL_ABSORBING_BONE_TOWER(void)
     return FALSE;
 
   /* Other-Zombie SS mill via TrySoulAbsorbingBoneTowerOnOtherZombieSummon.
-   * Ceiling: attack redirect while another Zombie present needs battle hooks.
+   * Attack redirect while another Zombie present needs battle hooks.
    * Not field-ignition. */
   return FALSE;
 }

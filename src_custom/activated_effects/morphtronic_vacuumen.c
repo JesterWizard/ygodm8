@@ -22,7 +22,7 @@ unsigned char CanActivateMORPHTRONIC_VACUUMEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_VACUUMEN)
     return FALSE;
 
-  /* Ceiling: send Equip → burn + DEF equip-take-control need equip hooks.
+  /* Send Equip → burn + DEF equip-take-control need equip hooks.
    * ATK Position OPT burn 500 (EffectOpt). */
   if (EffectOpt_IsUsed(MORPHTRONIC_VACUUMEN))
     return FALSE;

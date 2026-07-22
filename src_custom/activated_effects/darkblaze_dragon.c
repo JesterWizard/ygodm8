@@ -80,7 +80,7 @@ unsigned char CanActivateDARKBLAZE_DRAGON(void)
     return FALSE;
 
   /* Battle-destroy burn via ApplyDarkblazeDragonBattleEffect.
-   * Ceiling: GY SS double original ATK/DEF needs SS-origin flag. */
+   * GY SS double original ATK/DEF needs SS-origin flag. */
   return FALSE;
 }
 

@@ -195,7 +195,7 @@ unsigned char CanActivateHARPIE_HARPIST(void)
     return FALSE;
 
   /* NS bounce via TryHarpieHarpistOnNormalSummon (EffectOpt).
-   * Ceiling: GY End Phase search (Lv4 WB ≤1500 ATK) needs EP hook.
+   * GY End Phase search (Lv4 WB ≤1500 ATK) needs EP hook.
    * OPT bounce own WB + opp face-up (shares EffectOpt). */
   if (EffectOpt_IsUsed(HARPIE_HARPIST))
     return FALSE;

@@ -45,5 +45,5 @@ void ActivateARCANA_FORCE_III_THE_EMPRESS(void)
   heads = RandRangeU8(0, 1) == 1;
   zone->unk4 = heads ? ARCANA_FORCE_III_THE_EMPRESS_COIN_HEADS
                      : ARCANA_FORCE_III_THE_EMPRESS_COIN_TAILS;
-  /* Ceiling: opp Normal Summon SS/discard triggers need summon hooks; unk4 only. */
+  /* Opp Normal Summon SS/discard triggers need summon hooks; unk4 only. */
 }

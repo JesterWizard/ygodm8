@@ -67,7 +67,7 @@ unsigned char CanActivateVISION_HERO_INCREASE(void)
   if (zone == NULL || zone->id != VISION_HERO_INCREASE)
     return FALSE;
 
-  /* Ceiling: GY Continuous Trap place + tribute HERO SS-self FALSE. OPT SS Vision
+  /* GY Continuous Trap place + tribute HERO SS-self FALSE. OPT SS Vision
    * HERO Lv≤4 from Deck (ST-zone SS stand-in; EffectOpt). */
   if (EffectOpt_IsUsed(VISION_HERO_INCREASE))
     return FALSE;

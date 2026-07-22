@@ -116,7 +116,7 @@ unsigned char CanActivateDARKLORD_DESIRE(void)
     return FALSE;
 
   /* OPT -1000 ATK (tempStage) → send 1 opp monster to GY (EffectOpt).
-   * Ceiling: Fairy-only Tribute Summon + cannot SS need summon hooks. */
+   * Fairy-only Tribute Summon + cannot SS need summon hooks. */
   if (EffectOpt_IsUsed(DARKLORD_DESIRE))
     return FALSE;
 

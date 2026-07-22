@@ -145,7 +145,7 @@ unsigned char CanActivateTIMEAUS_THE_UNITED_DRAGON(void)
     return FALSE;
 
   /* Main Phase Fusion Summon needs fusion UI hook.
-   * Ceiling: SS from hand via send cost uses FromHand path. */
+   * SS from hand via send cost uses FromHand path. */
   return FALSE;
 }
 

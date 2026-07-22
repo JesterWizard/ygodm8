@@ -65,7 +65,7 @@ void ActivateARCANA_FORCE_I_THE_MAGICIAN(void)
   }
 
   Duel_ChangeLp(OpponentDuelist(duelist), 500, TRUE);
-  /* Ceiling: spell-trigger heads/tails not wired. */
+  /* Spell-trigger heads/tails not wired. */
 }
 
 u8 GetDuelistForZone(struct DuelCard *zone);
