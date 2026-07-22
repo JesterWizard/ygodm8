@@ -8,7 +8,7 @@ Stubs: [`STUB_EFFECTS.md`](STUB_EFFECTS.md). Ceiling markers: [`PARTIAL_EFFECTS.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ```
 
-**Last updated:** 2026-07-22 22:06 UTC  
+**Last updated:** 2026-07-22 22:07 UTC  
 **Files with deferred notes:** `0`  
 **Notes tagged:** `0`
 
