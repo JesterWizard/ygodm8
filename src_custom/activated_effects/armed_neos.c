@@ -255,7 +255,7 @@ unsigned char CanActivateARMED_NEOS(void)
     return CanResolveArmedNeosQuickEffect(zone);
 
   /* Battle-destroy quick tribute SS via ApplyArmedNeosBattleDestroyGrant.
-   * Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY. */
+   * OPT destroy opp monsters with Level ≤ highest Dragon Level in GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

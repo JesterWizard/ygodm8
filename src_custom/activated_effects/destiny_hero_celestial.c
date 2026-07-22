@@ -153,7 +153,7 @@ unsigned char CanActivateDESTINY_HERO_CELESTIAL(void)
 
   /* Attack-declare destroy via TryDestinyHeroCelestialOnAttackDeclared.
    * Ceiling: GY draw-if-no-hand need GY hooks.
-   * Ceiling: OPT destroy 1 face-up opp Spell + burn 500. */
+   * OPT destroy 1 face-up opp Spell + burn 500. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

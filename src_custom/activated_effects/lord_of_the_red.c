@@ -113,7 +113,7 @@ unsigned char CanActivateLORD_OF_THE_RED(void)
     return FALSE;
 
   /* either-turn chain on activation + S/T branch need chain hooks.
-   * Ceiling: OPT destroy 1 monster on the field. */
+   * OPT destroy 1 monster on the field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

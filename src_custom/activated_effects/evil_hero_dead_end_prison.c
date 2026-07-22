@@ -107,7 +107,7 @@ unsigned char CanActivateEVIL_HERO_DEAD_END_PRISON(void)
     return FALSE;
 
   /* Ceiling: Dark Fusion Fusion gate + Fusion-substitute name marker FALSE.
-   * Ceiling: OPT mill 1 HERO from Deck. */
+   * OPT mill 1 HERO from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -112,7 +112,7 @@ unsigned char CanActivateBEAST_KING_BARBAROS(void)
     return FALSE;
 
   /* No-tribute 1900 ATK via BeastKingBarbaros_ApplyDynamicZoneStats + tribute hook.
-   * Ceiling: OPT stand-in for 3-Tribute destroy. */
+   * OPT stand-in for 3-Tribute destroy. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

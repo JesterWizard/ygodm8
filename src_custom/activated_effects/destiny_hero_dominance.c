@@ -87,7 +87,7 @@ unsigned char CanActivateDESTINY_HERO_DOMINANCE(void)
     return FALSE;
 
   /* Battle-destroy draw + GY SS via ApplyDestinyHeroDominanceBattleEffects.
-   * Ceiling: OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in. */
+   * OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

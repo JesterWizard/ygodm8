@@ -103,7 +103,7 @@ unsigned char CanActivateDESTINY_END_DRAGOON(void)
     return FALSE;
 
   /* GY revive FALSE.
-   * Ceiling: OPT destroy 1 opp monster + burn its ATK + cannot BP (unk4). */
+   * OPT destroy 1 opp monster + burn its ATK + cannot BP (unk4). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

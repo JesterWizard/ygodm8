@@ -70,7 +70,7 @@ unsigned char CanActivateNAELSHADDOLL_ARIEL(void)
     return FALSE;
 
   /* FLIP SS banished Shaddoll + sent-by-effect branch need flip/RFP hooks.
-   * Ceiling: OPT banish up to 3 cards from either GY. */
+   * OPT banish up to 3 cards from either GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

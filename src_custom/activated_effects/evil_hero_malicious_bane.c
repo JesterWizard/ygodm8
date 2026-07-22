@@ -73,7 +73,7 @@ unsigned char CanActivateEVIL_HERO_MALICIOUS_BANE(void)
     return FALSE;
 
   /* Ceiling: destruction immunity + HERO-only attack gate need destroy/attack hooks.
-   * Ceiling: OPT destroy opp monsters with ATK≤self, +tempStage, mark unk4. */
+   * OPT destroy opp monsters with ATK≤self, +tempStage, mark unk4. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

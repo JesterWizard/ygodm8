@@ -76,7 +76,7 @@ unsigned char CanActivateWHITE_HORNED_DRAGON(void)
   if (zone == NULL || zone->id != WHITE_HORNED_DRAGON)
     return FALSE;
 
-  /* Ceiling: OPT banish up to 5 opp GY Spells + tempStage once via usage. */
+  /* OPT banish up to 5 opp GY Spells + tempStage once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

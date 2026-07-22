@@ -18,7 +18,7 @@ unsigned char CanActivateSHADDOLL_BEAST(void)
     return FALSE;
 
   /* FLIP draw2/discard1 and GY-sent draw1 share 1/turn exclusivity.
-   * Ceiling: OPT draw 1 stand-in for GY effect only; upgrade: flip + GY hooks. */
+   * OPT draw 1 stand-in for GY effect only; upgrade: flip + GY hooks. */
   return CanUseMonsterEffect(zone);
 }
 
