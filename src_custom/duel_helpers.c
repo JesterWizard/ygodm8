@@ -123,6 +123,7 @@
 #include "destiny_hero_drawhand.h"
 #include "minerva_lightsworn_maiden.h"
 #include "on_summon_hooks.h"
+#include "arcana_force_coin.h"
 #include "junk_synchron.h"
 #include "deep_sea_diva.h"
 #include "barrier_statue_wind_lock.h"
@@ -553,6 +554,8 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryAmazonessPrincessOnMonsterPlacement(summonZone);
   TryDestinyHeroDeciderOnMonsterPlacement(summonZone);
   TryOnSummonPlacementHooks(summonZone, opts.mode);
+  /* Permanent Arcana Force coins — SS helper never runs TryActivatingPermanentEffects. */
+  TryArcanaForceOnSummonCoinHooks(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   if (turnDuelist == ACTIVE_DUELIST)
     CourtOfJustice_RefreshHandUnlocks();

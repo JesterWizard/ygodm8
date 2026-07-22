@@ -1,12 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "six_card_hand.h"
-
-#define ARCANA_FORCE_III_THE_EMPRESS_COIN_HEADS 1
-#define ARCANA_FORCE_III_THE_EMPRESS_COIN_TAILS 2
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
@@ -66,7 +64,7 @@ static struct DuelCard *FindOppEmpress(u8 summonerFixed)
     if (zone == NULL || zone->id != ARCANA_FORCE_III_THE_EMPRESS)
       continue;
 
-    if (zone->unk4 == 0)
+    if (ArcanaForce_CoinPending(zone))
       continue;
 
     if (!IsCardFaceUp(zone) && zone->isDefending)
@@ -90,10 +88,7 @@ unsigned char ShouldActivateARCANA_FORCE_III_THE_EMPRESS(void)
     return FALSE;
 
   zone = SelfZone();
-  if (zone == NULL || zone->unk4 != 0)
-    return FALSE;
-
-  return TRUE;
+  return ArcanaForce_CoinPending(zone);
 }
 
 void ActivateARCANA_FORCE_III_THE_EMPRESS(void)
@@ -106,12 +101,11 @@ void ActivateARCANA_FORCE_III_THE_EMPRESS(void)
     return;
 
   zone = SelfZone();
-  if (zone == NULL)
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
     return;
 
   heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = heads ? ARCANA_FORCE_III_THE_EMPRESS_COIN_HEADS
-                     : ARCANA_FORCE_III_THE_EMPRESS_COIN_TAILS;
+  ArcanaForce_SetCoin(zone, heads);
 }
 
 /* Opp Normal Summon: Heads SS Arcana Force from hand; Tails opp discards 1. */
@@ -151,7 +145,7 @@ void TryArcanaForceIiiTheEmpressOnOppNormalSummon(struct DuelCard *zone,
   if (IsDuelOver() == TRUE)
     return;
 
-  if (empress->unk4 == ARCANA_FORCE_III_THE_EMPRESS_COIN_HEADS) {
+  if (empress->unk4 == ARCANA_FORCE_COIN_HEADS) {
     if (ArchlordKristya_IsSpecialSummonLocked())
       return;
 
@@ -168,7 +162,7 @@ void TryArcanaForceIiiTheEmpressOnOppNormalSummon(struct DuelCard *zone,
     opts = Duel_DefaultSpecialSummonOpts(TRUE);
     if (Duel_SpecialSummonFromHandZone(empressTurn, (u8)handZone, opts) != DUEL_ACTION_OK)
       return;
-  } else if (empress->unk4 == ARCANA_FORCE_III_THE_EMPRESS_COIN_TAILS) {
+  } else if (empress->unk4 == ARCANA_FORCE_COIN_TAILS) {
     if (Duel_CountCardsInHand(gTurnHands[summonerTurn]) == 0)
       return;
 

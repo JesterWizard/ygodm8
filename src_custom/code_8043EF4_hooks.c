@@ -25,6 +25,7 @@
 #include "card_passives.h"
 #include "duel_helpers.h"
 #include "on_summon_hooks.h"
+#include "arcana_force_coin.h"
 #include "gladiator_beast_battled.h"
 #include "spell_activation_gates.h"
 #include "six_card_hand.h"
@@ -461,6 +462,8 @@ static void TryPlaceSelectedCardOnField_Local(void)
         TryOnSummonPlacementHooks(
             gFixedZones[gDuelCursor.destY][gDuelCursor.destX], DUEL_SUMMON_NORMAL_FACE_UP_ATK);
         TryActivatingPermanentEffects();
+        TryArcanaForceOnSummonCoinHooks(
+            gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
         ElementalHeroNecroshade_TryConsumeOnNormalSummon(placedCardId);
         AncientGearCastle_TryConsumeOnNormalSummon(placedCardId);
         AncientGearAdvance_TryConsumeOnNormalSummon(placedCardId);
@@ -1745,6 +1748,9 @@ void sub_80449D8__Replacement(void)
         gFixedZones[placedRow][placedCol],
         gDuelCursor.destY == PLAYER_HAND ? DUEL_SUMMON_NORMAL_FACE_UP_ATK
                                         : DUEL_SUMMON_SPECIAL_FACE_UP_ATK);
+    /* SS placements (non-hand) skip caller's permanent scan — run Arcana coins here. */
+    if (gDuelCursor.destY != PLAYER_HAND)
+      TryArcanaForceOnSummonCoinHooks(gFixedZones[placedRow][placedCol]);
     EffectEvent_EmitSimple(EFFECT_EVENT_ON_SUMMON,
                            gFixedZones[placedRow][placedCol]->id,
                            gFixedZones[placedRow][placedCol]);

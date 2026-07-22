@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -83,7 +84,6 @@ static u8 AddFirstGraveyardCardToHand(u8 turnDuelist)
 unsigned char ShouldActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void)
 {
   struct DuelCard *zone;
-  u8 duelist;
 
   if (gActiveEffect.cardId != ARCANA_FORCE_EX_THE_LIGHT_RULER)
     return FALSE;
@@ -93,12 +93,11 @@ unsigned char ShouldActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void)
     return FALSE;
 
   zone = SelfZone();
-  if (zone == NULL || zone->unk4 != 0)
+  if (!ArcanaForce_CoinPending(zone))
     return FALSE;
 
-  duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* Tails negate FALSE; Heads only when GY→hand legal. */
-  return CanAddFirstGraveyardCardToHand(duelist);
+  /* Coin always fires on summon; Heads GY→hand only resolves when legal. */
+  return TRUE;
 }
 
 void ActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void)
@@ -114,11 +113,11 @@ void ActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void)
     return;
 
   zone = SelfZone();
-  if (zone == NULL)
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
     return;
 
   heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = 1;
+  ArcanaForce_SetCoin(zone, heads);
 
   if (heads)
     AddFirstGraveyardCardToHand(duelist);

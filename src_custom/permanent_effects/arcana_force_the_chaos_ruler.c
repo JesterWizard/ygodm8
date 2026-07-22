@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
@@ -155,11 +156,11 @@ unsigned char ShouldActivateARCANA_FORCE_THE_CHAOS_RULER(void)
     return FALSE;
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone == NULL || zone->unk4 != 0)
+  if (!ArcanaForce_CoinPending(zone))
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* On-summon coin stand-in covers SS path; true trigger is Special Summon. */
+  /* On-summon coin; true printed trigger is Special Summon. */
   return CanResolveCoinEffect(duelist);
 }
 
@@ -177,7 +178,13 @@ void ActivateARCANA_FORCE_THE_CHAOS_RULER(void)
   if (IsDuelOver() == TRUE)
     return;
 
+  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
+    return;
+
   heads = RandRangeU8(0, 1) == 1;
+  ArcanaForce_SetCoin(zone, heads);
+
   if (heads) {
     cardId = FindArcanaForceLevel10InDeck(duelist);
     if (cardId != CARD_NONE) {
@@ -191,9 +198,5 @@ void ActivateARCANA_FORCE_THE_CHAOS_RULER(void)
     if (cardId != CARD_NONE && FirstEmptyZoneInRow(gTurnHands[duelist]) >= 0)
       Duel_AddDeckCardToHand(duelist, cardId, TRUE);
   }
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone != NULL)
-    zone->unk4 = 1;
   /* Printed remainder omitted by this ruleset. */
 }

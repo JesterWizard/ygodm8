@@ -1,11 +1,9 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_coin.h"
 #include "arcana_force_xiv_temperance.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-
-#define ARCANA_FORCE_XIV_TEMPERANCE_COIN_HEADS 1
-#define ARCANA_FORCE_XIV_TEMPERANCE_COIN_TAILS 2
 
 static struct DuelCard *SelfZone(void)
 {
@@ -34,13 +32,12 @@ u8 ArcanaForceXivTemperance_ShouldBlockBattleDamage(u8 damagedFixedDuelist)
     return FALSE;
 
   /* Heads: you take no battle damage. Tails: opponent takes none. */
-  if (ControllerHasTemperanceResult(damagedFixedDuelist,
-                                    ARCANA_FORCE_XIV_TEMPERANCE_COIN_HEADS))
+  if (ControllerHasTemperanceResult(damagedFixedDuelist, ARCANA_FORCE_COIN_HEADS))
     return TRUE;
 
   if (ControllerHasTemperanceResult(
           damagedFixedDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER,
-          ARCANA_FORCE_XIV_TEMPERANCE_COIN_TAILS))
+          ARCANA_FORCE_COIN_TAILS))
     return TRUE;
 
   return FALSE;
@@ -58,10 +55,7 @@ unsigned char ShouldActivateARCANA_FORCE_XIV_TEMPERANCE(void)
     return FALSE;
 
   zone = SelfZone();
-  if (zone == NULL || zone->unk4 != 0)
-    return FALSE;
-
-  return TRUE;
+  return ArcanaForce_CoinPending(zone);
 }
 
 void ActivateARCANA_FORCE_XIV_TEMPERANCE(void)
@@ -74,10 +68,9 @@ void ActivateARCANA_FORCE_XIV_TEMPERANCE(void)
     return;
 
   zone = SelfZone();
-  if (zone == NULL)
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
     return;
 
   heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = heads ? ARCANA_FORCE_XIV_TEMPERANCE_COIN_HEADS
-                     : ARCANA_FORCE_XIV_TEMPERANCE_COIN_TAILS;
+  ArcanaForce_SetCoin(zone, heads);
 }

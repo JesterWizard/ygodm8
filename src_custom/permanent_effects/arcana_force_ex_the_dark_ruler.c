@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_coin.h"
 #include "arcana_force_ex_the_dark_ruler.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
@@ -10,9 +11,6 @@
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
-
-#define ARCANA_FORCE_EX_DARK_RULER_HEADS 1
-#define ARCANA_FORCE_EX_DARK_RULER_TAILS 2
 
 static struct DuelCard *SelfZone(void)
 {
@@ -66,7 +64,7 @@ void TryUnlockArcanaForceExDarkRulerForSecondAttack(struct DuelCard *attacker)
 {
   if (attacker == NULL || attacker->id != ARCANA_FORCE_EX_THE_DARK_RULER)
     return;
-  if (attacker->unk4 != ARCANA_FORCE_EX_DARK_RULER_HEADS)
+  if (attacker->unk4 != ARCANA_FORCE_COIN_HEADS)
     return;
   if (IsTheDarkDoorActiveOnField())
     return;
@@ -90,7 +88,7 @@ void TryApplyArcanaForceExDarkRulerEndPhase(void)
 
       if (zone == NULL || zone->id != ARCANA_FORCE_EX_THE_DARK_RULER)
         continue;
-      if (zone->unk4 != ARCANA_FORCE_EX_DARK_RULER_HEADS)
+      if (zone->unk4 != ARCANA_FORCE_COIN_HEADS)
         continue;
       if (!zone->effectUsedThisTurn)
         continue;
@@ -113,7 +111,7 @@ unsigned char ShouldActivateARCANA_FORCE_EX_THE_DARK_RULER(void)
     return FALSE;
 
   zone = SelfZone();
-  return zone != NULL && zone->unk4 == 0;
+  return ArcanaForce_CoinPending(zone);
 }
 
 void ActivateARCANA_FORCE_EX_THE_DARK_RULER(void)
@@ -126,12 +124,11 @@ void ActivateARCANA_FORCE_EX_THE_DARK_RULER(void)
     return;
 
   zone = SelfZone();
-  if (zone == NULL)
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
     return;
 
   heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = heads ? ARCANA_FORCE_EX_DARK_RULER_HEADS
-                     : ARCANA_FORCE_EX_DARK_RULER_TAILS;
+  ArcanaForce_SetCoin(zone, heads);
 
   if (heads)
     return;

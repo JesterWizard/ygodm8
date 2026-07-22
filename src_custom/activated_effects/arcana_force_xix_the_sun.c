@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
@@ -87,10 +88,15 @@ unsigned char CanActivateARCANA_FORCE_XIX_THE_SUN(void)
 
 static u8 ResolveArcanaForceXixTheSunCoin(void)
 {
+  u8 heads;
+
   if (IsDuelOver() == TRUE)
     return FALSE;
 
-  if (RandRangeU8(0, 1) == 1)
+  heads = RandRangeU8(0, 1) == 1;
+  ArcanaForce_AnnounceCoinResult(ARCANA_FORCE_XIX_THE_SUN, heads);
+
+  if (heads)
     FlipAllOppMonstersToDef();
   else
     DestroyRandomHalfYourMonsters();

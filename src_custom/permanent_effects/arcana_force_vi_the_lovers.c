@@ -1,10 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-
-#define ARCANA_FORCE_VI_THE_LOVERS_COIN_HEADS 1
-#define ARCANA_FORCE_VI_THE_LOVERS_COIN_TAILS 2
 
 static struct DuelCard *SelfZone(void)
 {
@@ -23,10 +21,7 @@ unsigned char ShouldActivateARCANA_FORCE_VI_THE_LOVERS(void)
     return FALSE;
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
-    return FALSE;
-
-  return TRUE;
+  return ArcanaForce_CoinPending(zone);
 }
 
 void ActivateARCANA_FORCE_VI_THE_LOVERS(void)
@@ -39,11 +34,10 @@ void ActivateARCANA_FORCE_VI_THE_LOVERS(void)
     return;
 
   zone = SelfZone();
-  if (zone == NULL)
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
     return;
 
   heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = heads ? ARCANA_FORCE_VI_THE_LOVERS_COIN_HEADS
-                     : ARCANA_FORCE_VI_THE_LOVERS_COIN_TAILS;
+  ArcanaForce_SetCoin(zone, heads);
   /* Printed remainder omitted by this ruleset. */
 }

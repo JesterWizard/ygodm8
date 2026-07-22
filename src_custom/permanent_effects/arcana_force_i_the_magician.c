@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
@@ -34,10 +35,7 @@ unsigned char ShouldActivateARCANA_FORCE_I_THE_MAGICIAN(void)
     return FALSE;
 
   zone = SelfZone();
-  if (zone == NULL || zone->unk4 != 0)
-    return FALSE;
-
-  return TRUE;
+  return ArcanaForce_CoinPending(zone);
 }
 
 void ActivateARCANA_FORCE_I_THE_MAGICIAN(void)
@@ -51,12 +49,12 @@ void ActivateARCANA_FORCE_I_THE_MAGICIAN(void)
     return;
 
   zone = SelfZone();
-  if (zone == NULL)
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
     return;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
   heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = 1;
+  ArcanaForce_SetCoin(zone, heads);
 
   if (heads) {
     IncrementTempStage(zone);
@@ -66,44 +64,4 @@ void ActivateARCANA_FORCE_I_THE_MAGICIAN(void)
 
   Duel_ChangeLp(OpponentDuelist(duelist), 500, TRUE);
   /* Printed remainder omitted by this ruleset. */
-}
-
-u8 GetDuelistForZone(struct DuelCard *zone);
-
-void TryArcanaForceITheMagicianOnMonsterPlacement(struct DuelCard *zone)
-{
-  u8 fixedDuelist;
-  u8 turnDuelist;
-  u8 turnRow;
-  u8 heads;
-
-  if (zone == NULL || zone->id != ARCANA_FORCE_I_THE_MAGICIAN || zone->unk4 != 0)
-    return;
-
-  fixedDuelist = GetDuelistForZone(zone);
-  if (fixedDuelist > DUEL_OPPONENT)
-    return;
-
-  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
-      ? ACTIVE_DUELIST
-      : INACTIVE_DUELIST;
-  turnRow = turnDuelist == ACTIVE_DUELIST
-      ? ACTIVE_DUELIST_MONSTER_ROW
-      : INACTIVE_DUELIST_MONSTER_ROW;
-  (void)turnRow;
-
-  Duel_ShowEffectTextTyped(ARCANA_FORCE_I_THE_MAGICIAN, 8);
-  if (IsDuelOver() == TRUE)
-    return;
-
-  heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = 1;
-
-  if (heads) {
-    IncrementTempStage(zone);
-    RefreshFieldMonsterStatOverlays();
-    return;
-  }
-
-  Duel_ChangeLp(OpponentDuelist(turnDuelist), 500, TRUE);
 }

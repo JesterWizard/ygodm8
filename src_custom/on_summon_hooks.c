@@ -6,7 +6,6 @@ void TryArcanaForceVTheHierophantOnMonsterPlacement(struct DuelCard *zone);
 void TryArcanaForceXiiTheHangmanOnMonsterPlacement(struct DuelCard *zone);
 void TryArcanaForceXixTheSunOnMonsterPlacement(struct DuelCard *zone);
 void TryArcanaForceXvTheFiendOnMonsterPlacement(struct DuelCard *zone);
-void TryArcanaForceITheMagicianOnMonsterPlacement(struct DuelCard *zone);
 void TryBeastKingBarbarosOnTributeSummonDestroy(struct DuelCard *zone);
 void TryManjuOfTheTenThousandHandsOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode);
 void TryTheAgentOfMysteruEarthOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode);
@@ -68,7 +67,6 @@ void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
   TryArcanaForceXiiTheHangmanOnMonsterPlacement(zone);
   TryArcanaForceXixTheSunOnMonsterPlacement(zone);
   TryArcanaForceXvTheFiendOnMonsterPlacement(zone);
-  TryArcanaForceITheMagicianOnMonsterPlacement(zone);
   TryManjuOfTheTenThousandHandsOnNormalSummon(zone, mode);
   TryTheAgentOfMysteruEarthOnNormalSummon(zone, mode);
   TryWhiteHornedDragonOnMonsterPlacement(zone);

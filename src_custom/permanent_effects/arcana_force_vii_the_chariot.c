@@ -1,5 +1,6 @@
 #include "global.h"
 #include "ameba.h"
+#include "arcana_force_coin.h"
 #include "arcana_force_vii_the_chariot.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
@@ -10,7 +11,6 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
-#define ARCANA_FORCE_VII_THE_CHARIOT_COIN_HEADS 1
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
 
@@ -142,7 +142,7 @@ static u8 ChariotHasHeads(u8 fixedRow, u8 fixedCol)
   struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
 
   return zone != NULL && zone->id == ARCANA_FORCE_VII_THE_CHARIOT
-      && zone->unk4 == ARCANA_FORCE_VII_THE_CHARIOT_COIN_HEADS;
+      && zone->unk4 == ARCANA_FORCE_COIN_HEADS;
 }
 
 void ClearArcanaForceViiChariotPending(void)
@@ -240,10 +240,7 @@ unsigned char ShouldActivateARCANA_FORCE_VII_THE_CHARIOT(void)
     return FALSE;
 
   zone = SelfZone();
-  if (zone == NULL || zone->unk4 != 0)
-    return FALSE;
-
-  return TRUE;
+  return ArcanaForce_CoinPending(zone);
 }
 
 void ActivateARCANA_FORCE_VII_THE_CHARIOT(void)
@@ -256,11 +253,11 @@ void ActivateARCANA_FORCE_VII_THE_CHARIOT(void)
     return;
 
   zone = SelfZone();
-  if (zone == NULL)
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
     return;
 
   heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = heads ? ARCANA_FORCE_VII_THE_CHARIOT_COIN_HEADS : 2;
+  ArcanaForce_SetCoin(zone, heads);
 
   if (heads)
     return;

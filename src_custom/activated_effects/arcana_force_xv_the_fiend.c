@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
@@ -247,18 +248,23 @@ void ActivateARCANA_FORCE_XV_THE_FIENDEffect(void)
   if (EffectOpt_IsUsed(ARCANA_FORCE_XV_THE_FIEND))
     return;
 
-  if (RandRangeU8(0, 1) == 1) {
-    sXvMarkOpt = TRUE;
-    gDuelCursor.destY = gMonEffect.row;
-    gDuelCursor.destX = gMonEffect.zone;
-    Duel_SetupPickZone(IsDestroyableMonsterZone, ResolveDestroyTarget, CancelTargeting,
-                       AiPickDestroyTarget);
+  {
+    u8 heads = RandRangeU8(0, 1) == 1;
 
-    if (WhoseTurn() == DUEL_PLAYER)
-      Duel_EnterPickZoneTargeting();
-    else
-      Duel_ResolvePickZoneForAi();
-    return;
+    ArcanaForce_AnnounceCoinResult(ARCANA_FORCE_XV_THE_FIEND, heads);
+    if (heads) {
+      sXvMarkOpt = TRUE;
+      gDuelCursor.destY = gMonEffect.row;
+      gDuelCursor.destX = gMonEffect.zone;
+      Duel_SetupPickZone(IsDestroyableMonsterZone, ResolveDestroyTarget, CancelTargeting,
+                         AiPickDestroyTarget);
+
+      if (WhoseTurn() == DUEL_PLAYER)
+        Duel_EnterPickZoneTargeting();
+      else
+        Duel_ResolvePickZoneForAi();
+      return;
+    }
   }
 
   if (!ResolveArcanaForceXvTheFiendCoinTails())
@@ -278,32 +284,37 @@ void TryArcanaForceXvTheFiendOnMonsterPlacement(struct DuelCard *zone)
   if (IsDuelOver() == TRUE)
     return;
 
-  if (RandRangeU8(0, 1) == 1) {
-    u8 row;
-    u8 col;
+  {
+    u8 heads = RandRangeU8(0, 1) == 1;
 
-    if (!FieldHasDestroyableMonster())
-      return;
+    ArcanaForce_AnnounceCoinResult(ARCANA_FORCE_XV_THE_FIEND, heads);
+    if (heads) {
+      u8 row;
+      u8 col;
 
-    sXvMarkOpt = FALSE;
-    for (row = 0; row < 4; row++) {
-      for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-        if (gFixedZones[row][col] == zone) {
-          gDuelCursor.destY = row;
-          gDuelCursor.destX = col;
-          goto found;
+      if (!FieldHasDestroyableMonster())
+        return;
+
+      sXvMarkOpt = FALSE;
+      for (row = 0; row < 4; row++) {
+        for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+          if (gFixedZones[row][col] == zone) {
+            gDuelCursor.destY = row;
+            gDuelCursor.destX = col;
+            goto found;
+          }
         }
       }
-    }
-  found:
-    Duel_SetupPickZone(IsDestroyableMonsterZone, ResolveDestroyTarget, CancelTargeting,
-                       AiPickDestroyTarget);
+    found:
+      Duel_SetupPickZone(IsDestroyableMonsterZone, ResolveDestroyTarget, CancelTargeting,
+                         AiPickDestroyTarget);
 
-    if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
-      Duel_RunPickZoneInputLoop();
-    else
-      Duel_ResolvePickZoneForAi();
-    return;
+      if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
+        Duel_RunPickZoneInputLoop();
+      else
+        Duel_ResolvePickZoneForAi();
+      return;
+    }
   }
 
   (void)ResolveArcanaForceXvTheFiendCoinTails();

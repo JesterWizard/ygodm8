@@ -1,11 +1,9 @@
 #include "global.h"
 #include "common-chax.h"
 #include "arcana_force_0_the_fool.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-
-#define ARCANA_FORCE_0_THE_FOOL_COIN_HEADS 1
-#define ARCANA_FORCE_0_THE_FOOL_COIN_TAILS 2
 
 static struct DuelCard *SelfZone(void)
 {
@@ -16,7 +14,7 @@ u8 ArcanaForce0TheFool_PreventsBattleDestroy(const struct DuelCard *zone)
 {
   /* Heads: cannot be destroyed by battle. */
   return zone != NULL && zone->id == ARCANA_FORCE_0_THE_FOOL
-      && zone->unk4 == ARCANA_FORCE_0_THE_FOOL_COIN_HEADS;
+      && zone->unk4 == ARCANA_FORCE_COIN_HEADS;
 }
 
 unsigned char ShouldActivateARCANA_FORCE_0_THE_FOOL(void)
@@ -31,10 +29,7 @@ unsigned char ShouldActivateARCANA_FORCE_0_THE_FOOL(void)
     return FALSE;
 
   zone = SelfZone();
-  if (zone == NULL || zone->unk4 != 0)
-    return FALSE;
-
-  return TRUE;
+  return ArcanaForce_CoinPending(zone);
 }
 
 void ActivateARCANA_FORCE_0_THE_FOOL(void)
@@ -47,11 +42,10 @@ void ActivateARCANA_FORCE_0_THE_FOOL(void)
     return;
 
   zone = SelfZone();
-  if (zone == NULL)
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
     return;
 
   heads = RandRangeU8(0, 1) == 1;
-  zone->unk4 = heads ? ARCANA_FORCE_0_THE_FOOL_COIN_HEADS
-                     : ARCANA_FORCE_0_THE_FOOL_COIN_TAILS;
+  ArcanaForce_SetCoin(zone, heads);
   /* Printed remainder omitted by this ruleset. */
 }

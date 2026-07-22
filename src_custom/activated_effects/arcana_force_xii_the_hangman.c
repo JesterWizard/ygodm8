@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
@@ -178,6 +179,7 @@ static u8 ResolveArcanaForceXiiTheHangmanCoin(struct DuelCard *self, u8 blocking
     return FALSE;
 
   heads = RandRangeU8(0, 1) == 1;
+  ArcanaForce_AnnounceCoinResult(ARCANA_FORCE_XII_THE_HANGMAN, heads);
 
   if (heads) {
     if (!FieldHasOwnMonster())

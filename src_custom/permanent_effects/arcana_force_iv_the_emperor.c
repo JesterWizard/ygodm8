@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
@@ -61,10 +62,7 @@ unsigned char ShouldActivateARCANA_FORCE_IV_THE_EMPEROR(void)
     return FALSE;
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  if (zone->unk4 != 0)
-    return FALSE;
-
-  return TRUE;
+  return ArcanaForce_CoinPending(zone);
 }
 
 void ActivateARCANA_FORCE_IV_THE_EMPEROR(void)
@@ -77,10 +75,10 @@ void ActivateARCANA_FORCE_IV_THE_EMPEROR(void)
     return;
 
   zone = SelfZone();
-  if (zone == NULL)
+  if (zone == NULL || !ArcanaForce_CoinPending(zone))
     return;
 
-  zone->unk4 = 1;
   heads = RandRangeU8(0, 1) == 1;
+  ArcanaForce_SetCoin(zone, heads);
   ApplyCoinToArcanaForceMonsters(heads);
 }

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "arcana_force_coin.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
@@ -105,6 +106,7 @@ static u8 ResolveArcanaForceVTheHierophantCoin(struct DuelCard *self, u8 turnDue
 {
   struct DuelSummonOpts opts;
   u16 cardId;
+  u8 heads;
 
   if (self == NULL || IsDuelOver() == TRUE)
     return FALSE;
@@ -117,7 +119,10 @@ static u8 ResolveArcanaForceVTheHierophantCoin(struct DuelCard *self, u8 turnDue
           : INACTIVE_DUELIST_MONSTER_ROW]) < 0)
     return FALSE;
 
-  if (RandRangeU8(0, 1) == 1)
+  heads = RandRangeU8(0, 1) == 1;
+  ArcanaForce_AnnounceCoinResult(ARCANA_FORCE_V_THE_HIEROPHANT, heads);
+
+  if (heads)
     cardId = FindArcanaForceInDeck(4, TRUE);
   else
     cardId = FindArcanaForceInDeck(0, FALSE);
