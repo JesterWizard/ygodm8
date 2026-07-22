@@ -137,7 +137,7 @@ static u8 SpecialSummonGolem(void)
   return FALSE;
 }
 
-/* ponytail: Extra Deck Ultimate AG Golem SS blocked — AG Golem from hand/GY/Deck instead. */
+/* Extra Deck Ultimate AG Golem SS blocked — AG Golem from hand/GY/Deck instead. */
 static void TrySsAncientGearGolemOnLeave(u8 fixedDuelist)
 {
   u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
@@ -212,7 +212,7 @@ unsigned char CanActivateANCIENT_GEAR_MEGATON_GOLEM(void)
 
   /* OPT SS AG Golem from hand/GY. Pierce via ApplyAncientGearGolemPiercingBattleEffect.
    * Leave → AG Golem hand/GY/Deck via AncientGearMegatonGolem_EnsureInit
-   * (ponytail: Extra Deck Ultimate blocked). Ceiling: multi-attack. */
+   * (Extra Deck Ultimate blocked). multi-attack. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

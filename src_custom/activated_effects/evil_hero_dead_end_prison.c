@@ -107,7 +107,7 @@ unsigned char CanActivateEVIL_HERO_DEAD_END_PRISON(void)
   if (zone == NULL || zone->id != EVIL_HERO_DEAD_END_PRISON)
     return FALSE;
 
-  /* Ceiling: Dark Fusion Fusion gate + Fusion-substitute name marker FALSE.
+  /* Dark Fusion Fusion gate + Fusion-substitute name marker FALSE.
    * OPT mill 1 HERO from Deck (EffectOpt). */
   if (EffectOpt_IsUsed(EVIL_HERO_DEAD_END_PRISON))
     return FALSE;
@@ -156,7 +156,7 @@ u8 CanSpecialSummonEvilHeroDeadEndPrisonFromHand(u8 handZone)
   if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != EVIL_HERO_DEAD_END_PRISON)
     return FALSE;
 
-  /* Ceiling: Dark Fusion Fusion markers missing; any Fusion Monster stand-in. */
+  /* Dark Fusion Fusion markers missing; any Fusion Monster stand-in. */
   if (!ControlsFusionMonster())
     return FALSE;
 

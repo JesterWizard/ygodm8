@@ -60,7 +60,7 @@ unsigned char CanActivateEVIL_HERO_ADUSTED_GOLD(void)
   if (gMonEffect.id != EVIL_HERO_ADUSTED_GOLD)
     return FALSE;
 
-  /* Ceiling: cannot attack without Fusion Monster needs attack gate. Not
+  /* cannot attack without Fusion Monster needs attack gate. Not
    * field-ignition activatable; discard search uses FromHand path. */
   return FALSE;
 }
@@ -83,7 +83,7 @@ u8 CanActivateEvilHeroAdustedGoldFromHand(u8 handZone)
   if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
     return FALSE;
 
-  /* Ceiling: once-per-turn not tracked without turn hook. */
+  /* once-per-turn not tracked without turn hook. */
   return FindDarkFusionSearchTarget() != CARD_NONE;
 }
 

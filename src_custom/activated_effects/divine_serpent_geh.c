@@ -38,8 +38,8 @@ unsigned char CanActivateDIVINE_SERPENT_GEH(void)
     return FALSE;
 
   /* Untargetable via DivineSerpentGeh_IsTargetImmune; FromHand half-LP SS below.
-   * Ceiling: destroy gate + battle negate need destroy/battle hooks.
-   * Ceiling: field ignition FALSE. */
+   * destroy gate + battle negate need destroy/battle hooks.
+   * field ignition FALSE. */
   return FALSE;
 }
 

@@ -9,8 +9,8 @@ unsigned char CanActivateARMORY_ARM(void)
   if (gMonEffect.id != ARMORY_ARM)
     return FALSE;
 
-  /* Ceiling: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs
-   * monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE. */
+  /* monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs
+   * monster Equip API beyond RegisterDynamicEquip spell links. FALSE. */
   return FALSE;
 }
 

@@ -222,7 +222,7 @@ void TryDestinyHeroDystopiaOnMonsterPlacement(struct DuelCard *zone)
   if (!GyHasTarget(fixedDuelist))
     return;
 
-  /* ponytail: printed is on-SS; any placement stand-in. Auto-pick highest ATK. */
+  /* printed is on-SS; any placement stand-in. Auto-pick highest ATK. */
   gyIndex = FindBestGyIndex(fixedDuelist);
   if (gyIndex < 0 && !GraveyardExpand_IsEnabled())
     gyIndex = 0;
@@ -251,7 +251,7 @@ unsigned char CanActivateDESTINY_HERO_DYSTOPIA(void)
     return FALSE;
 
   /* On-SS burn via TryDestinyHeroDystopiaOnMonsterPlacement (EffectOpt).
-   * Ceiling: Quick destroy-if-ATK-changed needs ATK hooks.
+   * Quick destroy-if-ATK-changed needs ATK hooks.
    * OPT pick Lv≤4 D-HERO in GY → burn its ATK. */
   if (EffectOpt_IsUsed(DESTINY_HERO_DYSTOPIA))
     return FALSE;

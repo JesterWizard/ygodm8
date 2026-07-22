@@ -81,7 +81,7 @@ void TryDivinerOfTheHeraldOnMonsterPlacement(struct DuelCard *zone)
     return;
 
   Duel_ShowEffectTextTyped(DIVINER_OF_THE_HERALD, 8);
-  /* ponytail: Extra Deck Fairy mill skipped. */
+  /* Extra Deck Fairy mill skipped. */
   if (!SendFairyFromDeckToGraveyardFor(turnDuelist, fixedDuelist, &level))
     return;
 
@@ -103,7 +103,7 @@ unsigned char CanActivateDIVINER_OF_THE_HERALD(void)
     return FALSE;
 
   /* On-NS/SS mill via TryDivinerOfTheHeraldOnMonsterPlacement (EffectOpt).
-   * Ceiling: tribute SS Fairy needs tribute hooks.
+   * tribute SS Fairy needs tribute hooks.
    * OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in until EP clear). */
   if (EffectOpt_IsUsed(DIVINER_OF_THE_HERALD))
     return FALSE;

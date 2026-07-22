@@ -151,7 +151,7 @@ static void ResolveOwnTarget(u8 fixedRow, u8 fixedCol)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* Ceiling: second target picker not chained; auto-destroy best remaining card. */
+  /* second target picker not chained; auto-destroy best remaining card. */
   DestroyBestOtherFieldCard(0xFF, 0xFF);
 
   NotifyDynamicEquipFieldChanged();
@@ -224,7 +224,7 @@ unsigned char CanActivateDESTINY_HERO_DESTROYER_PHOENIX_ENFORCER(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER)
     return FALSE;
 
-  /* Ceiling: Quick destroy + GY revive + continuous ATK loss need quick/GY/
+  /* Quick destroy + GY revive + continuous ATK loss need quick/GY/
    * permanent hooks. OPT destroy 1 you control + 1 other field card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

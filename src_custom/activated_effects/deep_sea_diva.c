@@ -98,7 +98,7 @@ unsigned char CanActivateDEEP_SEA_DIVA(void)
   if (zone == NULL || zone->id != DEEP_SEA_DIVA)
     return FALSE;
 
-  /* NS SS via TryDeepSeaDivaOnNormalSummon. Ceiling: OPT duplicate if NS already
+  /* NS SS via TryDeepSeaDivaOnNormalSummon. OPT duplicate if NS already
    * consumed effectUsedThisTurn. */
   if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;

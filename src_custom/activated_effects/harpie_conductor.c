@@ -130,7 +130,7 @@ static void TryBounceOppOnHarpieReturn(u8 controller)
   }
 }
 
-/* ponytail: any other Harpie leave ≈ return-to-hand; upgrade: true bounce-origin flag. */
+/* any other Harpie leave ≈ return-to-hand; upgrade: true bounce-origin flag. */
 static void OnOtherHarpieLeaveWhileConductor(const struct EffectEvent *ev)
 {
   if (ev == NULL || gHideEffectText)
@@ -228,7 +228,7 @@ unsigned char CanActivateHARPIE_CONDUCTOR(void)
   /* Name=Harpie Lady via HarpiePerfumer_TreatsNameAsHarpieLady.
    * Harpie leave → bounce opp SS via HarpieConductor_EnsureInit (leave≈return).
    * OPT bounce below. */
-  /* Ceiling: protect destroy redirect needs destroy-sub hook. */
+  /* protect destroy redirect needs destroy-sub hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

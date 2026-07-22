@@ -168,7 +168,7 @@ static u8 IsElementalHeroFusion(u16 cardId)
   return Duel_IsElementalHeroCard(cardId);
 }
 
-/* ponytail: Fusion leave ≈ E-HERO Fusion SS while CK in GY; draw1 stand-in for
+/* Fusion leave ≈ E-HERO Fusion SS while CK in GY; draw1 stand-in for
  * banish→draw2→bottom. Upgrade: true SS trigger + banish cost. */
 static void OnElementalHeroFusionLeaveWhileKeeperInGy(const struct EffectEvent *ev)
 {
@@ -216,7 +216,7 @@ unsigned char CanActivateCROSS_KEEPER(void)
     return FALSE;
 
   /* GY Fusion-leave draw via CrossKeeper_EnsureInit.
-   * Ceiling: send self → SS Elemental HERO or Neo-Spacian from hand/GY. */
+   * send self → SS Elemental HERO or Neo-Spacian from hand/GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -72,7 +72,7 @@ unsigned char CanActivateEVIL_HERO_MALICIOUS_BANE(void)
   if (zone == NULL || zone->id != EVIL_HERO_MALICIOUS_BANE)
     return FALSE;
 
-  /* Ceiling: destruction immunity + HERO-only attack gate need destroy/attack hooks.
+  /* destruction immunity + HERO-only attack gate need destroy/attack hooks.
    * OPT destroy opp monsters with ATK≤self, +tempStage, mark unk4. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -102,7 +102,7 @@ void ActivateEVIL_HERO_MALICIOUS_BANEEffect(void)
   if (destroyed == 0)
     return;
 
-  /* Ceiling: +200 ATK each via tempStage (~500/unit); attack lock only marks self unk4. */
+  /* +200 ATK each via tempStage (~500/unit); attack lock only marks self unk4. */
   stages = (s8)((destroyed * 200 + 499) / 500);
   if (stages > 0) {
     if (self->tempStage > 127 - stages)

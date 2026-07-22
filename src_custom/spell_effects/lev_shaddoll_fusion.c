@@ -155,7 +155,7 @@ static void LEV_SHADDOLL_FUSION_ResolveBody(void)
   Duel_ShowEffectText(LEV_SHADDOLL_FUSION);
   LevShaddollFusion_SendFusionFromExtraDeck();
 
-  /* Ceiling: the face-up ignition still needs a monster-zone tribute picker and
+  /* the face-up ignition still needs a monster-zone tribute picker and
    * an Extra Deck special-summon flow, neither of which is owned by this spell
    * activation dispatcher. */
 }

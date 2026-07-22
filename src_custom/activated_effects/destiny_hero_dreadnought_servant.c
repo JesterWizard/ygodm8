@@ -75,7 +75,7 @@ static void ReturnCardToDeckTop(u8 fixedDuelist, u16 cardId)
   gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
 }
 
-/* ponytail: auto-pick first opp card; upgrade: PickZone targeting. */
+/* auto-pick first opp card; upgrade: PickZone targeting. */
 static struct DuelCard *FindOppCardToPlaceOnDeck(u8 summonerTurn)
 {
   u8 oppTurn = summonerTurn == ACTIVE_DUELIST ? INACTIVE_DUELIST : ACTIVE_DUELIST;
@@ -222,7 +222,7 @@ unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_SERVANT(void)
 
   /* GY banish → opp Deck top on Lv8 D-HERO SS via
    * TryDestinyHeroDreadnoughtServantOnMonsterPlacement.
-   * Ceiling: FromHand if control D-HERO or Field Spell → SS, destroy 1, add Poly. */
+   * FromHand if control D-HERO or Field Spell → SS, destroy 1, add Poly. */
   return FALSE;
 }
 

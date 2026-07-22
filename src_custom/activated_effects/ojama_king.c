@@ -51,8 +51,8 @@ void ActivateOJAMA_KINGEffect(void)
   if (king == NULL || IsDuelOver() == TRUE)
     return;
 
-  /* Ceiling: PickZone for up to 3 empty zones + continuous lock gate.
-   * Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by
+  /* PickZone for up to 3 empty zones + continuous lock gate.
+   * auto-lock first 3 empty opp MMZ via isLocked (ignored by
    * FirstEmptyZoneInRow today — same as Ground Collapse). */
 
   for (col = 0; col < MAX_ZONES_IN_ROW && locked < 3; col++) {

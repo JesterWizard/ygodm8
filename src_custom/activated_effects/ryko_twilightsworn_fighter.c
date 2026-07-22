@@ -201,7 +201,7 @@ void TryRykoTwilightswornFighterOnNormalSummon(struct DuelCard *zone, enum DuelS
     return;
 
   turnDuelist = Duel_TurnDuelistForFixedDuelist(controller);
-  /* ponytail: NS mill 3 stand-in for other-LS effect→mill; upgrade: chain hook. */
+  /* NS mill 3 stand-in for other-LS effect→mill; upgrade: chain hook. */
   Duel_ShowEffectTextTyped(RYKO_TWILIGHTSWORN_FIGHTER, 8);
   Duel_MillTopDeckCards(turnDuelist, RYKO_TWILIGHT_NS_MILL, TRUE);
 }
@@ -219,7 +219,7 @@ unsigned char CanActivateRYKO_TWILIGHTSWORN_FIGHTER(void)
 
   /* NS mill via TryRykoTwilightswornFighterOnNormalSummon (other-LS stand-in).
    * OPT banish LS hand/GY → banish 1 field (EffectOpt). EP mill via
-   * TryApplyTwilightswornEndPhase. Ceiling: flip trigger needs flip hook. */
+   * TryApplyTwilightswornEndPhase. flip trigger needs flip hook. */
   if (EffectOpt_IsUsed(RYKO_TWILIGHTSWORN_FIGHTER))
     return FALSE;
 

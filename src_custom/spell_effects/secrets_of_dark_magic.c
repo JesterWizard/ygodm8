@@ -31,8 +31,8 @@ enum SecretsMode {
 };
 
 /* Local recipes that list Dark Magician / Dark Magician Girl as material.
- * Ceiling: incomplete vs printed DM Fusion pool (Dragon Knight, etc.).
- * Ceiling: Amulet Dragon + The Dark Magicians only; upgrade: add remaining DM
+ * incomplete vs printed DM Fusion pool (Dragon Knight, etc.).
+ * Amulet Dragon + The Dark Magicians only; upgrade: add remaining DM
  * Fusion recipes to this table / gFusionRecipes. Wildcard ≈ any Spellcaster. */
 static const struct FusionRecipe sSecretsRecipes[] APPEND_RODATA = {
   { AMULET_DRAGON, DARK_MAGICIAN, FUSION_RECIPE_DRAGON, 0, 0 },

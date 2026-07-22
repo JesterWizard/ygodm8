@@ -11,9 +11,9 @@ APPEND_TEXT void EffectURGENT_TUNING(void)
 {
   Duel_ShowTrapResponseText(URGENT_TUNING, gTrapEffectData.originCardId);
 
-  /* Ceiling: Synchro Summon during Battle Phase needs Synchro material/ED
+  /* Synchro Summon during Battle Phase needs Synchro material/ED
    * summon path outside this file (no in-file Synchro API).
-   * Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners
+   * shows text + self-destroy; upgrade: collect Tuners + non-Tuners
    * → Extra Deck Synchro SS. */
 
   Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
