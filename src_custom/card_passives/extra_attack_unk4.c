@@ -2,6 +2,7 @@
 #include "constants/card_ids.h"
 #include "extra_attack_unk4.h"
 #include "helios_trice_megistus.h"
+#include "morphtronic_boomboxen.h"
 #include "the_dark_door.h"
 
 void TryUnlockUnk4MarkedExtraAttack(struct DuelCard *attacker)
@@ -28,4 +29,5 @@ void TryMarkBuiltInExtraAttackOnPlacement(struct DuelCard *zone)
     zone->unk4 = 2;
 
   HeliosTriceMegistus_MaybeMarkExtraAttackOnPlacement(zone);
+  MorphtronicBoomboxen_MaybeMarkExtraAttackOnPlacement(zone);
 }

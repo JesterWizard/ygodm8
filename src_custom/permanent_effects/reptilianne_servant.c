@@ -23,6 +23,35 @@ u8 ReptilianneServant_HasOtherFaceUpMonster(struct DuelCard *zone)
   return Duel_TurnRowHasOtherMonsterMatching(turnRow, col, NULL);
 }
 
+static u8 FieldHasFaceUpReptilianneServant(void)
+{
+  u8 fixedRow;
+  u8 col;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_MONSTER_ROW; fixedRow++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (zone != NULL && zone->id == REPTILIANNE_SERVANT && IsCardFaceUp(zone))
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+u8 ReptilianneServant_BlocksNormalSummonReptile(u16 cardId)
+{
+  if (!FieldHasFaceUpReptilianneServant())
+    return FALSE;
+
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.type == TYPE_REPTILE;
+}
+
 static u8 IsOtherFaceUpMonster(struct DuelCard *self, struct DuelCard *zone)
 {
   if (zone == NULL || zone->id == CARD_NONE)
@@ -86,6 +115,7 @@ void ActivateREPTILIANNE_SERVANT(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
-  /* Cannot-be-attacked via sAttackGates + ReptilianneServant_HasOtherFaceUpMonster.
-   * Ceiling: NS lock + spell-target destroy need continuous hooks. */
+  /* Cannot-be-attacked via sAttackGates + ReptilianneServant_HasOtherFaceUpMonster;
+   * Reptile NS lock via ReptilianneServant_BlocksNormalSummonReptile. Ceiling:
+   * spell-target destroy needs continuous hook. */
 }

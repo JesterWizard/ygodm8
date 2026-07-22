@@ -13,8 +13,8 @@ unsigned char CanActivateEVIL_HERO_TOXIC_BUBBLE(void)
   if (gMonEffect.id != EVIL_HERO_TOXIC_BUBBLE)
     return FALSE;
 
-  /* ponytail: on-SS draw when Dark Fusion Fusion up needs summon hook. Ceiling:
-   * not field-ignition activatable; SS-from-hand uses FromHand path. */
+  /* Ceiling: on-SS draw when Dark Fusion Fusion up needs summon hook. Not
+   * field-ignition activatable; SS-from-hand uses FromHand path. */
   return FALSE;
 }
 
@@ -36,7 +36,7 @@ u8 CanSpecialSummonEvilHeroToxicBubbleFromHand(u8 handZone)
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
-  /* ponytail: HERO-only SS lock + once-per-turn not tracked without turn hook. */
+  /* Ceiling: HERO-only SS lock + once-per-turn not tracked without turn hook. */
   return FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) >= 0;
 }
 

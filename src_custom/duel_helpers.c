@@ -56,6 +56,8 @@
 #include "oshaleon.h"
 #include "reptilianne_servant.h"
 #include "morphtronic_cameran.h"
+#include "morphtronic_magnen.h"
+#include "morphtronic_staplen.h"
 #include "the_wicked_eraser.h"
 #include "the_wicked_avatar.h"
 #include "cold_wave.h"
@@ -174,6 +176,12 @@ u8 UnstoppableExodiaIncarnate_ApplyStat(struct DuelCard *zone);
 u8 HarpiesPetBabyDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 HarpiesPetBabyDragon_CanAttackMonsterZone(struct DuelCard *zone);
 u8 MorphtronicCameran_CanAttackMonsterZone(struct DuelCard *zone);
+struct DuelCard *MorphtronicMagnen_GetForcedAttackTarget(u8 defenderDuelist);
+u8 MorphtronicMagnen_CanAttackMonsterZone(struct DuelCard *zone);
+u8 MorphtronicMagnen_CanSelectAttackTarget(const struct DuelCard *attacker,
+                                           const struct DuelCard *defender);
+struct DuelCard *MorphtronicStaplen_GetForcedAttackTarget(u8 defenderDuelist);
+u8 MorphtronicStaplen_CanAttackMonsterZone(struct DuelCard *zone);
 u8 ElementalHeroKnospe_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroKnospe_CanAttackMonsterZone(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -213,6 +221,7 @@ u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol);
 u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone);
 u8 HarpiePerfumer_TreatsNameAsHarpieLady(const struct DuelCard *zone);
 u8 ReptilianneServant_HasOtherFaceUpMonster(struct DuelCard *zone);
+u8 ReptilianneServant_BlocksNormalSummonReptile(u16 cardId);
 struct DuelCard *Oshaleon_GetForcedAttackTarget(u8 defenderDuelist);
 u8 Oshaleon_CanAttackMonsterZone(struct DuelCard *zone);
 u8 EvilHeroDarkGaia_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -1771,6 +1780,8 @@ static const struct DuelForcedAttackRedirect sForcedAttackRedirects[] __attribut
   { HamonLordOfStrikingThunder_GetForcedAttackTarget },
   { EvilHeroMaliciousFiend_GetForcedAttackTarget },
   { Oshaleon_GetForcedAttackTarget },
+  { MorphtronicMagnen_GetForcedAttackTarget },
+  { MorphtronicStaplen_GetForcedAttackTarget },
 };
 
 typedef u8 (*DuelAttackZoneCheckFn)(struct DuelCard *zone);
@@ -1789,6 +1800,8 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   EvilHeroMaliciousFiend_CanAttackMonsterZone,
   Oshaleon_CanAttackMonsterZone,
   MorphtronicCameran_CanAttackMonsterZone,
+  MorphtronicMagnen_CanAttackMonsterZone,
+  MorphtronicStaplen_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)
@@ -1901,6 +1914,15 @@ u8 Duel_MonsterMayBeAttacked(struct DuelCard *zone)
 u8 Duel_ForcedAttackBlocksDirect(u8 defenderDuelist)
 {
   return Duel_GetForcedAttackTarget(defenderDuelist) != NULL;
+}
+
+u8 Duel_CanSelectAttackTarget(const struct DuelCard *attacker,
+                              const struct DuelCard *defender)
+{
+  if (!MorphtronicMagnen_CanSelectAttackTarget(attacker, defender))
+    return FALSE;
+
+  return TRUE;
 }
 
 u8 CanMonsterBeDestroyedByBattle(u16 cardId, u8 duelist, u16 battleAtk, u16 opponentBattleAtk)
@@ -3078,6 +3100,8 @@ enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCard
     return DUEL_ACTION_NO_TARGET;
 
   monsterId = SixCardHand_ZoneAtHandRow(handRow, handZone)->id;
+  if (ReptilianneServant_BlocksNormalSummonReptile(monsterId))
+    return DUEL_ACTION_BLOCKED;
   if (monsterId == RARE_METAL_DRAGON)
     return DUEL_ACTION_INVALID;
 

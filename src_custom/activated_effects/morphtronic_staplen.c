@@ -87,6 +87,40 @@ u8 MorphtronicStaplen_PreventsBattleDestroy(const struct DuelCard *zone)
   return zone->isDefending;
 }
 
+struct DuelCard *MorphtronicStaplen_GetForcedAttackTarget(u8 defenderDuelist)
+{
+  u8 fixedRow = Duel_FixedMonsterRowForDuelist(defenderDuelist);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+    if (zone == NULL || zone->id != MORPHTRONIC_STAPLEN || !zone->isFaceUp)
+      continue;
+    if (zone->isDefending)
+      continue;
+
+    return zone;
+  }
+
+  return NULL;
+}
+
+u8 MorphtronicStaplen_CanAttackMonsterZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (zone == NULL || zone->id == CARD_NONE || zone->id == MORPHTRONIC_STAPLEN)
+    return TRUE;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return TRUE;
+
+  return MorphtronicStaplen_GetForcedAttackTarget(
+      Duel_FixedDuelistForMonsterRow(fixedRow)) == NULL;
+}
+
 unsigned char CanActivateMORPHTRONIC_STAPLEN(void)
 {
   struct DuelCard *zone;
@@ -98,8 +132,8 @@ unsigned char CanActivateMORPHTRONIC_STAPLEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_STAPLEN)
     return FALSE;
 
-  /* DEF battle indestructible via MorphtronicStaplen_PreventsBattleDestroy.
-   * Ceiling: ATK attack-redirect needs battle hook. */
+  /* DEF battle indestructible via MorphtronicStaplen_PreventsBattleDestroy; ATK
+   * redirect via MorphtronicStaplen_GetForcedAttackTarget. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

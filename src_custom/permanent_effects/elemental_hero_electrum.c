@@ -64,8 +64,9 @@ u8 ElementalHeroElectrum_ApplyDynamicZoneStats(struct DuelCard *zone)
 
 void ElementalHeroElectrum_ReturnRemovedMonstersToDecks(void)
 {
-  /* ponytail: no removed-from-play zone yet — shuffle banished/exiled monsters back
-   * into each owner's deck once Duel_BanishZone (or equivalent) exists. */
+  /* Ceiling: no removed-from-play zone yet — shuffle banished/exiled monsters
+   * back into each owner's deck once Duel_BanishZone exists. ATK overlay via
+   * ElementalHeroElectrum_ApplyDynamicZoneStats. */
 }
 
 void ElementalHeroElectrum_OnFusionSummoned(void)

@@ -121,6 +121,7 @@
 #include "elemental_hero_plasma_vice.h"
 #include "hero_flash.h"
 #include "morphtronic_boarden.h"
+#include "morphtronic_boomboxen.h"
 #include "atlantean_dragoons.h"
 #include "spell_striker.h"
 #include "mucus_yolk.h"
@@ -2005,6 +2006,9 @@ void TryAttackWithMonster__Replacement(void)
       || !Duel_CanAttackMonsterZone(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
       || !Duel_MonsterMayBeAttacked(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+      || !Duel_CanSelectAttackTarget(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
@@ -2014,6 +2018,12 @@ void TryAttackWithMonster__Replacement(void)
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id;
     TryActivateEmbodimentOfApophisOnAttack();
     if (TryNegateDeclaredAttackWithCyberBarrierDragon()) {
+      PlayMusic(SFX_ATTACK_REBUFFED);
+      gDuelCursor.state = 0;
+      return;
+    }
+    if (TryNegateDeclaredAttackWithMorphtronicBoomboxen(
+            gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
       PlayMusic(SFX_ATTACK_REBUFFED);
       gDuelCursor.state = 0;
       return;

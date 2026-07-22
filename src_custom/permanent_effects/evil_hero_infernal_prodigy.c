@@ -37,7 +37,8 @@ void TryApplyEvilHeroInfernalProdigyEndPhase(void)
 
 unsigned char ShouldActivateEVIL_HERO_INFERNAL_PRODIGY(void)
 {
-  /* ponytail: empty-field hand SS is FromHand activated; End-Phase tribute draw via TryApplyEvilHeroInfernalProdigyEndPhase. */
+  /* Empty-field hand SS is FromHand activated; End-Phase tribute draw via
+   * TryApplyEvilHeroInfernalProdigyEndPhase. */
   (void)gActiveEffect;
   return FALSE;
 }

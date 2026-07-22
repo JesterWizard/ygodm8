@@ -61,7 +61,7 @@ static u8 FindBanishedHero(u8 *outFixedDuelist, u8 *outIndex)
   return FALSE;
 }
 
-/* ponytail: no RemovedFromPlay_RemoveAt — shift RFP array in place after add.
+/* Ceiling: no RemovedFromPlay_RemoveAt — shift RFP array in place after add.
  * Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {
@@ -110,7 +110,7 @@ unsigned char CanActivateVISION_HERO_GRAVITO(void)
   if (zone == NULL || zone->id != VISION_HERO_GRAVITO)
     return FALSE;
 
-  /* ponytail: tribute self → SS 2 Vision HERO from Spell & Trap Zone needs equip
+  /* Ceiling: tribute self → SS 2 Vision HERO from Spell & Trap Zone needs equip
    * zone API. Ceiling: OPT add 1 banished HERO monster to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

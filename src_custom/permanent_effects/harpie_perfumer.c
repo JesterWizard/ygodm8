@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "harpie_perfumer.h"
+#include "harpie_channeler.h"
 #include "summon_tribute.h"
 
 static const char sHarpieLadySistersName[] APPEND_RODATA = "Harpie Lady Sisters";
@@ -20,6 +21,8 @@ u8 HarpiePerfumer_TreatsNameAsHarpieLady(const struct DuelCard *zone)
   case HARPIE_ORACLE:
   case HARPIE_CONDUCTOR:
     return TRUE;
+  case HARPIE_CHANNELER:
+    return HarpieChanneler_TreatsNameAsHarpieLady(zone);
   default:
     return FALSE;
   }

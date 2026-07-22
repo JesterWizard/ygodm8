@@ -94,8 +94,8 @@ unsigned char CanActivateMORPHTRONIC_LANTRON(void)
   if (gMonEffect.id != MORPHTRONIC_LANTRON)
     return FALSE;
 
-  /* DEF destroy → no battle damage this turn via ApplyMorphtronicLantronNoBattleDamage.
-   * Ceiling: ATK redirect effect damage needs effect-damage hook. */
+  /* DEF destroy → no battle damage via ApplyMorphtronicLantronNoBattleDamage.
+   * Ceiling: ATK effect-damage redirect needs effect-damage hook. */
   return FALSE;
 }
 

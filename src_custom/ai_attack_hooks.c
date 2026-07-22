@@ -10,6 +10,7 @@
 #include "fairy_box.h"
 #include "mirror_wall.h"
 #include "cyber_barrier_dragon.h"
+#include "morphtronic_boomboxen.h"
 #include "elemental_hero_core.h"
 #include "elemental_hero_sunrise.h"
 #include "cats_ear_tribe.h"
@@ -146,6 +147,10 @@ static u8 AiTryActivateTrapOnAttack(struct DuelCard *attacker, struct DuelCard *
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
   if (TryNegateDeclaredAttackWithCyberBarrierDragon()) {
+    PlayMusic(SFX_ATTACK_REBUFFED);
+    return TRUE;
+  }
+  if (TryNegateDeclaredAttackWithMorphtronicBoomboxen(defender)) {
     PlayMusic(SFX_ATTACK_REBUFFED);
     return TRUE;
   }
@@ -289,7 +294,8 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
       || !Duel_CanMonsterDeclareAttack(attacker)
       || !Duel_CanAttackMonsterZone(defender)
-      || !Duel_MonsterMayBeAttacked(defender))
+      || !Duel_MonsterMayBeAttacked(defender)
+      || !Duel_CanSelectAttackTarget(attacker, defender))
     return;
 
   if (attacker->id == CARD_NONE)

@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "harpie_channeler.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -70,6 +71,58 @@ static u16 FindOtherHarpieMonsterInDeck(void)
   return CARD_NONE;
 }
 
+static u8 IsDragonMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.type == TYPE_DRAGON;
+}
+
+static u8 RowHasLevel7HarpieAndDragon(u8 fixedMonsterRow)
+{
+  u8 hasLevel7Harpie = FALSE;
+  u8 hasDragon = FALSE;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedMonsterRow][col];
+
+    if (zone == NULL || zone->id == CARD_NONE)
+      continue;
+    if (!IsCardFaceUp(zone))
+      continue;
+    if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+      continue;
+
+    if (IsDragonMonster(zone->id))
+      hasDragon = TRUE;
+
+    if (IsHarpieMonster(zone->id)) {
+      SetCardInfo(zone->id);
+      if (gCardInfo.level >= 7)
+        hasLevel7Harpie = TRUE;
+    }
+  }
+
+  return hasLevel7Harpie && hasDragon;
+}
+
+u8 HarpieChanneler_TreatsNameAsHarpieLady(const struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (zone == NULL || zone->id != HARPIE_CHANNELER)
+    return FALSE;
+
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &col))
+    return FALSE;
+
+  return RowHasLevel7HarpieAndDragon(fixedRow);
+}
+
 unsigned char CanActivateHARPIE_CHANNELER(void)
 {
   struct DuelCard *zone;
@@ -81,7 +134,8 @@ unsigned char CanActivateHARPIE_CHANNELER(void)
   if (zone == NULL || zone->id != HARPIE_CHANNELER)
     return FALSE;
 
-  /* ponytail: Level 7 with Dragon + name becomes Harpie Lady need continuous/name hooks. */
+  /* Level 7 Harpie + Dragon name via HarpieChanneler_TreatsNameAsHarpieLady +
+   * Duel_ZoneEffectCardId; OPT discard + SS below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

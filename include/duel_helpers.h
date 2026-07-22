@@ -126,6 +126,8 @@ u8 Duel_CanAttackMonsterZone(struct DuelCard *zone);
 struct DuelCard *Duel_GetForcedAttackTarget(u8 defenderDuelist);
 u8 Duel_MonsterMayBeAttacked(struct DuelCard *zone);
 u8 Duel_ForcedAttackBlocksDirect(u8 defenderDuelist);
+u8 Duel_CanSelectAttackTarget(const struct DuelCard *attacker,
+                              const struct DuelCard *defender);
 
 u8 CanMonsterBeDestroyedByBattle(u16 cardId, u8 duelist, u16 battleAtk, u16 opponentBattleAtk);
 void Duel_ApplyBattleDestroyProtection(void);

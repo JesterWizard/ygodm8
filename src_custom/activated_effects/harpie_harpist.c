@@ -121,8 +121,8 @@ unsigned char CanActivateHARPIE_HARPIST(void)
   if (zone == NULL || zone->id != HARPIE_HARPIST)
     return FALSE;
 
-  /* ponytail: NS trigger + GY End Phase search FALSE as separate triggers.
-   * Ceiling: OPT bounce own WB + opp face-up, else OPT add Harpie from Deck. */
+  /* Ceiling: NS trigger + GY End Phase search need separate hooks. OPT bounce
+   * own WB + opp face-up, else OPT add Harpie from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

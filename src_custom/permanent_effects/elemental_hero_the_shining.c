@@ -61,8 +61,8 @@ void ElementalHeroTheShining_OnZoneCleared(const struct DuelCard *zone)
 
   ActivatePermanentEffectCardText(ELEMENTAL_HERO_THE_SHINING);
 
-  /* ponytail: return up to 2 banished E-HEROes to hand deferred — no multi-RFP
-   * return UI yet. ATK overlay via ApplyDynamicZoneStats. */
+  /* Ceiling: return up to 2 banished E-HEROes to hand deferred — no multi-RFP
+   * return UI yet. ATK overlay via ElementalHeroTheShining_ApplyDynamicZoneStats. */
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

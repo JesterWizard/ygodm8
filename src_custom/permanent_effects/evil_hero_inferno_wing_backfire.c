@@ -125,7 +125,7 @@ unsigned char ShouldActivateEVIL_HERO_INFERNO_WING_BACKFIRE(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* ponytail: true trigger is Special Summon; on-summon stand-in covers SS path. */
+  /* Ceiling: true trigger is Special Summon; on-summon stand-in covers SS path. */
   return CanAddDarkFusion(duelist);
 }
 
@@ -146,5 +146,5 @@ void ActivateEVIL_HERO_INFERNO_WING_BACKFIRE(void)
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
-  /* ponytail: HERO battle-destroy 2100 burn needs battle-end hook. */
+  /* Ceiling: HERO battle-destroy 2100 burn needs battle-end hook. */
 }

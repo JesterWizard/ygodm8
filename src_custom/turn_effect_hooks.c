@@ -34,6 +34,7 @@
 #include "michael_the_arch_lightsworn.h"
 #include "silent_magician_lv4.h"
 #include "cannot_attack_this_turn.h"
+#include "morphtronic_magnen_bar.h"
 #include "destiny_hero_doom_lord.h"
 #include "bazoo_the_soul_eater.h"
 #include "helios_duo_megistus.h"
@@ -536,6 +537,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   CannotAttackThisTurn_ClearMarksAtEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  MorphtronicMagnenBar_ClearAttackMarksAtEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyHeliosDuoMegistusEndPhase();

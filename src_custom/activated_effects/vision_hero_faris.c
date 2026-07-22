@@ -145,8 +145,8 @@ unsigned char CanActivateVISION_HERO_FARIS(void)
   if (zone == NULL || zone->id != VISION_HERO_FARIS)
     return FALSE;
 
-  /* ponytail: Continuous Trap place + ED HERO lock need place/ED hooks.
-   * Ceiling: OPT add 1 Vision HERO from Deck to hand. */
+  /* Ceiling: Continuous Trap place + ED HERO lock need place/ED hooks. OPT add
+   * 1 Vision HERO from Deck to hand wired below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

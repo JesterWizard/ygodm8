@@ -66,8 +66,8 @@ unsigned char CanActivateVISION_HERO_INCREASE(void)
   if (zone == NULL || zone->id != VISION_HERO_INCREASE)
     return FALSE;
 
-  /* ponytail: GY Continuous Trap place + tribute HERO SS-self FALSE.
-   * Ceiling: OPT SS Vision HERO Lv≤4 from Deck (ST-zone SS stand-in). */
+  /* Ceiling: GY Continuous Trap place + tribute HERO SS-self FALSE. OPT SS Vision
+   * HERO Lv≤4 from Deck (ST-zone SS stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

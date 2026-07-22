@@ -65,7 +65,8 @@ u8 CanActivateElementalHeroCaptainGoldFromHand(u8 handZone)
   if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != ELEMENTAL_HERO_CAPTAIN_GOLD)
     return FALSE;
 
-  /* ponytail: with Skyscraper active, prefer normal summon as a 2100 beater */
+  /* With Skyscraper active, prefer normal summon as a 2100 beater. Hand/field
+   * Skyscraper search + destroy wired above. */
   if (SkyscraperIsOnField())
     return FALSE;
 
