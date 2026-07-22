@@ -8,6 +8,11 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
 static u8 IsFaceUpMonsterTarget(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone;
@@ -81,6 +86,17 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return FALSE;
 }
 
+void TryMorphtronicEarfonOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  if (zone == NULL || zone->id != MORPHTRONIC_EARFON || !SummonModeIsSpecial(mode))
+    return;
+
+  /* Ceiling: Equip 2-attacks FALSE. On-SS mark self as Tuner (unk4). */
+  zone->unk4 |= 0x40;
+  Duel_ShowEffectTextTyped(MORPHTRONIC_EARFON, 8);
+  UpdateDuelGfxExceptField();
+}
+
 unsigned char CanActivateMORPHTRONIC_EARFON(void)
 {
   struct DuelCard *zone;
@@ -92,7 +108,8 @@ unsigned char CanActivateMORPHTRONIC_EARFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_EARFON)
     return FALSE;
 
-  /* Ceiling: on-SS Tuner mark + Equip 2-attacks FALSE.
+  /* On-SS Tuner mark via TryMorphtronicEarfonOnMonsterPlacement.
+   * Ceiling: Equip 2-attacks FALSE.
    * OPT PickZone treat face-up as Tuner (unk4). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

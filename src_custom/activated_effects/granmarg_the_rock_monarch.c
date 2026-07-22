@@ -156,7 +156,7 @@ unsigned char CanActivateGRANMARG_THE_ROCK_MONARCH(void)
     return FALSE;
 
   /* Tribute Summon destroy via ActivateGranmargTheRockMonarchTribute.
-   * Ceiling: once via usage if Set target. */
+   * Field OPT destroy Set target once via usage. */
   return CanUseMonsterEffect(zone) && FieldHasSetTarget();
 }
 

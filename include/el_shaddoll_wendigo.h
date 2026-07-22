@@ -7,5 +7,6 @@
 
 u8 ElShaddollWendigo_PreventsBattleDestroy(const struct DuelCard *zone);
 void ElShaddollWendigo_ClearTurnMarks(void);
+void ElShaddollWendigo_EnsureInit(void);
 
 #endif /* GUARD_EL_SHADDOLL_WENDIGO_H */

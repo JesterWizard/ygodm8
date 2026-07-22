@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
@@ -11,6 +12,7 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
+static u8 sShaddollSquamataInit APPEND_DATA = {0};
 static const char sShaddollName[] APPEND_RODATA = "Shaddoll";
 
 static u8 FixedDuelistForActive(void)
@@ -19,6 +21,13 @@ static u8 FixedDuelistForActive(void)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
 }
 
 static u8 IsShaddollCard(u16 cardId)
@@ -48,9 +57,8 @@ static u8 OppHasDestroyTarget(void)
   return FALSE;
 }
 
-static s16 FindDeckShaddollIndex(void)
+static s16 FindDeckShaddollIndexFor(u8 fixedDuelist)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
   u8 deckSize = NumCardsInDeck(fixedDuelist);
   u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
   u8 i;
@@ -63,25 +71,94 @@ static s16 FindDeckShaddollIndex(void)
   return -1;
 }
 
+static s16 FindDeckShaddollIndex(void)
+{
+  return FindDeckShaddollIndexFor(FixedDuelistForActive());
+}
+
 static u8 DeckHasMillableShaddoll(void)
 {
   return FindDeckShaddollIndex() >= 0;
 }
 
-static u8 MillOneShaddollFromDeck(void)
+static u8 MillOneShaddollFromDeckFor(u8 turnDuelist, u8 fixedDuelist)
 {
-  s16 deckIndex = FindDeckShaddollIndex();
+  s16 deckIndex = FindDeckShaddollIndexFor(fixedDuelist);
   u16 cardId;
 
   if (deckIndex < 0)
     return FALSE;
 
-  cardId = gDuelDecks[FixedDuelistForActive()].cards[deckIndex];
-  if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
+  cardId = gDuelDecks[fixedDuelist].cards[deckIndex];
+  if (Duel_RemoveDeckCardAt(turnDuelist, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
     return FALSE;
 
-  GraveyardExpand_PushTurn(ACTIVE_DUELIST, cardId);
+  GraveyardExpand_PushTurn(turnDuelist, cardId);
   return TRUE;
+}
+
+static u8 MillOneShaddollFromDeck(void)
+{
+  return MillOneShaddollFromDeckFor(ACTIVE_DUELIST, FixedDuelistForActive());
+}
+
+static u8 DestroyFirstOppMonsterFor(u8 turnDuelist)
+{
+  u8 col;
+  u8 monRow = turnDuelist == ACTIVE_DUELIST ? INACTIVE_DUELIST_MONSTER_ROW
+                                            : ACTIVE_DUELIST_MONSTER_ROW;
+  u8 oppTurn = turnDuelist == ACTIVE_DUELIST ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[monRow][col];
+
+    if (zone == NULL || zone->id == CARD_NONE || IsGodCard(zone->id))
+      continue;
+
+    if (Duel_DestroyZone(zone, oppTurn, FALSE) == DUEL_ACTION_DUEL_OVER)
+      return TRUE;
+    NotifyDynamicEquipFieldChanged();
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/* GY-sent: mill Shaddoll; else FLIP destroy stand-in. */
+static void OnShaddollSquamataLeaveField(const struct EffectEvent *ev)
+{
+  u8 turnDuelist;
+  u8 did;
+
+  if (ev == NULL || ev->cardId != SHADDOLL_SQUAMATA || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+  if (EffectOpt_IsUsed(SHADDOLL_SQUAMATA))
+    return;
+
+  turnDuelist = TurnDuelistForFixed(ev->controller);
+  did = MillOneShaddollFromDeckFor(turnDuelist, ev->controller);
+  if (!did)
+    did = DestroyFirstOppMonsterFor(turnDuelist);
+  if (!did)
+    return;
+
+  Duel_ShowEffectTextTyped(SHADDOLL_SQUAMATA, 8);
+  EffectOpt_MarkUsed(SHADDOLL_SQUAMATA);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+void ShaddollSquamata_EnsureInit(void)
+{
+  if (sShaddollSquamataInit)
+    return;
+
+  sShaddollSquamataInit = TRUE;
+  /* ON_LEAVE covers destroy + battle-destroy (both emit leave). */
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnShaddollSquamataLeaveField);
 }
 
 static u8 IsValidDestroyTarget(u8 fixedRow, u8 fixedCol)
@@ -151,8 +228,8 @@ unsigned char CanActivateSHADDOLL_SQUAMATA(void)
   if (zone == NULL || zone->id != SHADDOLL_SQUAMATA)
     return FALSE;
 
-  /* FLIP destroy vs GY-sent mill exclusivity + trigger hooks deferred.
-   * Ceiling: destroy 1 opp monster OR mill 1 Shaddoll from Deck once via usage. */
+  /* Leave-field mill / destroy via ShaddollSquamata_EnsureInit.
+   * FLIP destroy / mill stand-in once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

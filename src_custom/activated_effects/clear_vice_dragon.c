@@ -69,8 +69,7 @@ unsigned char CanActivateCLEAR_VICE_DRAGON(void)
     return FALSE;
 
   /* Battle ATK = 2× target via ApplyClearViceDragonDamageStepAtk.
-   * Ceiling: Clear World immunity + discard-to-save need continuous/destruction hooks.
-   * Ceiling: not ignition-activatable here. */
+   * Ceiling: Clear World immunity + discard-to-save need continuous/destruction hooks. */
   return FALSE;
 }
 

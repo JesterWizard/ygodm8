@@ -1,8 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "blue_eyes_jet_dragon.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
@@ -12,6 +14,8 @@ void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+static u8 sJetInit APPEND_DATA = {0};
 
 static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
 {
@@ -35,14 +39,21 @@ static u8 FixedDuelistForActive(void)
   return DUEL_OPPONENT;
 }
 
-static u8 BewdOnFieldOrGy(void)
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
 {
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
+}
+
+static u8 BewdOnFieldOrGyFor(u8 fixedDuelist)
+{
+  u8 monRow = Duel_FixedMonsterRowForDuelist(fixedDuelist);
   u8 col;
-  u8 fixedDuelist = FixedDuelistForActive();
   u8 i;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+    struct DuelCard *zone = gFixedZones[monRow][col];
 
     if (zone != NULL && zone->id == BLUE_EYES_WHITE_DRAGON)
       return TRUE;
@@ -57,6 +68,87 @@ static u8 BewdOnFieldOrGy(void)
   }
 
   return FALSE;
+}
+
+static u8 BewdOnFieldOrGy(void)
+{
+  return BewdOnFieldOrGyFor(FixedDuelistForActive());
+}
+
+static s8 FindJetHandZone(u8 turnDuelist)
+{
+  u8 i;
+  u8 max = IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW;
+
+  for (i = 0; i < max; i++) {
+    struct DuelCard *slot = SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], i);
+
+    if (slot != NULL && slot->id == BLUE_EYES_JET_DRAGON
+        && !Duel_CardCannotBeSpecialSummoned(slot->id))
+      return (s8)i;
+  }
+
+  return -1;
+}
+
+static void TrySsJetFromHandOnBewdDestroy(u8 fixedDuelist)
+{
+  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  u8 monRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                            : INACTIVE_DUELIST_MONSTER_ROW;
+  struct DuelSummonOpts opts;
+  s8 handZone;
+
+  if (EffectOpt_IsUsed(BLUE_EYES_JET_DRAGON))
+    return;
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return;
+  if (FirstEmptyZoneInRow(gTurnZones[monRow]) < 0)
+    return;
+
+  handZone = FindJetHandZone(turnDuelist);
+  if (handZone < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(BLUE_EYES_JET_DRAGON, 8);
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  if (Duel_SpecialSummonFromHandZone(turnDuelist, (u8)handZone, opts) != DUEL_ACTION_OK)
+    return;
+
+  EffectOpt_MarkUsed(BLUE_EYES_JET_DRAGON);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+static void OnBewdOrAltDestroyed(const struct EffectEvent *ev)
+{
+  if (ev == NULL || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+  if (ev->cardId != BLUE_EYES_WHITE_DRAGON
+      && ev->cardId != BLUE_EYES_ALTERNATIVE_WHITE_DRAGON)
+    return;
+
+  /* Alt needs a separate BEWD on field/GY; BEWD-destroy still has itself on field
+   * during ON_DESTROY emit (pre-ClearZone). */
+  if (ev->cardId == BLUE_EYES_ALTERNATIVE_WHITE_DRAGON
+      && !BewdOnFieldOrGyFor(ev->controller))
+    return;
+
+  TrySsJetFromHandOnBewdDestroy(ev->controller);
+}
+
+void BlueEyesJetDragon_EnsureInit(void)
+{
+  if (sJetInit)
+    return;
+
+  sJetInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnBewdOrAltDestroyed);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_BATTLE_DESTROY, OnBewdOrAltDestroyed);
 }
 
 static u8 BounceZoneToOwnerHand(struct DuelCard *zone, u8 ownerTurn)
@@ -195,8 +287,8 @@ unsigned char CanActivateBLUE_EYES_JET_DRAGON(void)
     return FALSE;
 
   /* Battle/effect protect via BlueEyesJetDragon_Prevents* while BEWD on field/GY.
-   * Ceiling: field OPT bounce 1; FromHand if BEWD field/GY → SS.
-   * Residual: destroy-trigger SS need battle/destroy hooks. */
+   * BEWD/Alt destroy → SS Jet from hand via BlueEyesJetDragon_EnsureInit.
+   * Field OPT bounce 1; FromHand if BEWD field/GY → SS. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

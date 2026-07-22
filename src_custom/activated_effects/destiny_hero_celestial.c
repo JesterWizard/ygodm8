@@ -4,12 +4,103 @@
 #include "destiny_hero_celestial.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
+#include "expanded_graveyard.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
+}
+
+static u8 IsDestinyHeroMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sDestinyHeroName);
+}
+
+static s8 FindOtherDestinyHeroGyIndex(u8 fixedDuelist, u8 skipIndex)
+{
+  u8 i;
+
+  if (!GraveyardExpand_IsEnabled())
+    return -1;
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    u16 cardId;
+
+    if (i == skipIndex)
+      continue;
+
+    cardId = GraveyardExpand_GetCardAt(fixedDuelist, i);
+    if (IsDestinyHeroMonster(cardId))
+      return (s8)i;
+  }
+
+  return -1;
+}
+
+u8 CanActivateDestinyHeroCelestialGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+  /* ponytail: except-turn-sent not tracked; EffectOpt ≈ once/turn. */
+  if (EffectOpt_IsUsed(DESTINY_HERO_CELESTIAL))
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != DESTINY_HERO_CELESTIAL)
+    return FALSE;
+  if (Duel_CountCardsInHand(gTurnHands[turnDuelist]) != 0)
+    return FALSE;
+
+  return FindOtherDestinyHeroGyIndex(fixedDuelist, gyIndex) >= 0;
+}
+
+void ActivateDestinyHeroCelestialGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  s8 otherIndex;
+  u8 first;
+  u8 second;
+
+  if (!CanActivateDestinyHeroCelestialGy(fixedDuelist, gyIndex))
+    return;
+
+  otherIndex = FindOtherDestinyHeroGyIndex(fixedDuelist, gyIndex);
+  if (otherIndex < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_CELESTIAL, 9);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  EffectOpt_MarkUsed(DESTINY_HERO_CELESTIAL);
+
+  /* Banish higher index first so lower index stays valid. */
+  first = gyIndex > (u8)otherIndex ? gyIndex : (u8)otherIndex;
+  second = gyIndex > (u8)otherIndex ? (u8)otherIndex : gyIndex;
+  Duel_BanishGraveyardAtFixed(fixedDuelist, first);
+  Duel_BanishGraveyardAtFixed(fixedDuelist, second);
+
+  if (Duel_DrawCards(turnDuelist, 2, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  UpdateDuelGfxExceptField();
+}
 
 static u8 IsFaceUpOppSpell(u8 fixedRow, u8 fixedCol)
 {
@@ -152,7 +243,7 @@ unsigned char CanActivateDESTINY_HERO_CELESTIAL(void)
     return FALSE;
 
   /* Attack-declare destroy via TryDestinyHeroCelestialOnAttackDeclared.
-   * Ceiling: GY draw-if-no-hand need GY hooks.
+   * GY empty-hand draw via CanActivateDestinyHeroCelestialGy / gy_ignition.
    * OPT destroy 1 face-up opp Spell + burn 500. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -59,6 +59,10 @@
 #include "aroma_lp_gain.h"
 #include "destiny_hero_dreamer.h"
 #include "necrovalley_temple.h"
+#include "ancient_gear_megaton_golem.h"
+#include "el_shaddoll_wendigo.h"
+#include "blue_eyes_jet_dragon.h"
+#include "harpie_conductor.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -77,6 +81,12 @@ void DarkMagicianDestroyRevive_EnsureInit(void);
 void ElderEntityNorden_EnsureInit(void);
 void GladiatorBeastDarius_EnsureInit(void);
 void EvilHeroViciousClaws_EnsureInit(void);
+/* BATCH10 */
+void CoralDragon_EnsureInit(void);
+void CrossKeeper_EnsureInit(void);
+void DestinyHeroDenier_EnsureInit(void);
+void ShaddollDragon_EnsureInit(void);
+void ShaddollSquamata_EnsureInit(void);
 
 static u8 sEffectEventsInited APPEND_DATA = {0};
 
@@ -132,7 +142,18 @@ void EffectEvent_EnsureInit(void)
   GladiatorBeastDarius_EnsureInit();
   EvilHeroViciousClaws_EnsureInit();
   DestinyHeroDreamer_EnsureInit();
+  AncientGearMegatonGolem_EnsureInit();
+  ElShaddollWendigo_EnsureInit();
+  BlueEyesJetDragon_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
+  /* BATCH10 */
+  CoralDragon_EnsureInit();
+  CrossKeeper_EnsureInit();
+  DestinyHeroDenier_EnsureInit();
+  ShaddollDragon_EnsureInit();
+  ShaddollSquamata_EnsureInit();
+  /* BATCH11 */
+  HarpieConductor_EnsureInit();
 }
 
 void EffectEvent_Subscribe(u8 eventId, EffectEventHandler handler)

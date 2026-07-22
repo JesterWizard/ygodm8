@@ -1,0 +1,6 @@
+#ifndef GUARD_ANCIENT_GEAR_MEGATON_GOLEM_H
+#define GUARD_ANCIENT_GEAR_MEGATON_GOLEM_H
+
+void AncientGearMegatonGolem_EnsureInit(void);
+
+#endif /* GUARD_ANCIENT_GEAR_MEGATON_GOLEM_H */

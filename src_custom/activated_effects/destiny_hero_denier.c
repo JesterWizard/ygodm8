@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "removed_from_play.h"
@@ -13,6 +14,7 @@ void TryActivatingPermanentEffects(void);
 
 extern u16 gRemovedFromPlay[2][REMOVED_FROM_PLAY_CAPACITY];
 
+static u8 sDenierInit APPEND_DATA = {0};
 static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
 
 static u8 FixedDuelistForActive(void)
@@ -21,6 +23,13 @@ static u8 FixedDuelistForActive(void)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
 }
 
 static u8 IsDestinyHeroExceptDenier(u16 cardId)
@@ -32,6 +41,77 @@ static u8 IsDestinyHeroExceptDenier(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sDestinyHeroName);
+}
+
+static s8 FindDenierInGy(u8 fixedDuelist)
+{
+  u8 i;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    if (gDuel.duelistbattleState[fixedDuelist].graveyard == DESTINY_HERO_DENIER)
+      return 0;
+    return -1;
+  }
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (GraveyardExpand_GetCardAt(fixedDuelist, i) == DESTINY_HERO_DENIER)
+      return (s8)i;
+  }
+  return -1;
+}
+
+static void TryDenierGySs(u8 fixedDuelist)
+{
+  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  u8 monRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                            : INACTIVE_DUELIST_MONSTER_ROW;
+  struct DuelSummonOpts opts;
+
+  /* ponytail: once-per-duel ≈ EffectOpt (turn); upgrade: duel-scoped latch. */
+  if (EffectOpt_IsUsed(DESTINY_HERO_DENIER))
+    return;
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return;
+  if (FirstEmptyZoneInRow(gTurnZones[monRow]) < 0)
+    return;
+  if (FindDenierInGy(fixedDuelist) < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DENIER, 8);
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  if (Duel_SpecialSummonFromGrave(turnDuelist, DESTINY_HERO_DENIER, opts)
+      != DUEL_ACTION_OK)
+    return;
+
+  EffectOpt_MarkUsed(DESTINY_HERO_DENIER);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+static void OnOtherDestinyHeroDestroyedWhileDenierInGy(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->cardId == CARD_NONE || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+  if (!IsDestinyHeroExceptDenier(ev->cardId))
+    return;
+  if (FindDenierInGy(ev->controller) < 0)
+    return;
+
+  TryDenierGySs(ev->controller);
+}
+
+void DestinyHeroDenier_EnsureInit(void)
+{
+  if (sDenierInit)
+    return;
+
+  sDenierInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnOtherDestinyHeroDestroyedWhileDenierInGy);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_BATTLE_DESTROY,
+                        OnOtherDestinyHeroDestroyedWhileDenierInGy);
 }
 
 static void ReturnCardToDeckTop(u8 fixedDuelist, u16 cardId)
@@ -186,7 +266,7 @@ unsigned char CanActivateDESTINY_HERO_DENIER(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DENIER)
     return FALSE;
 
-  /* Ceiling: GY SS when other D-HERO present needs GY/once-per-duel hooks.
+  /* GY SS when other D-HERO destroyed via DestinyHeroDenier_EnsureInit.
    * OPT put 1 D-HERO from Deck/GY/banished on top of Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

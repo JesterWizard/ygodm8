@@ -3,22 +3,35 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
+#include "weiss_lightsworn_archfiend.h"
 
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+void RefreshFieldMonsterStatOverlays(void);
 
 static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
 
 #define WEISS_MILL_COUNT 2
 
+static u8 sWeissMillReentry APPEND_DATA = 0;
+
 static u8 FixedDuelistForActive(void)
 {
   if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static u8 FixedDuelistForTurn(u8 turnDuelist)
+{
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
@@ -96,13 +109,12 @@ static u8 PutOtherLightswornFromHandOnDeckTop(u8 weissHandZone)
   return FALSE;
 }
 
-static s16 FindLightswornGyIndex(void)
+static s16 FindLightswornGyIndexFor(u8 fixedDuelist)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
   u8 i;
 
   if (!GraveyardExpand_IsEnabled()) {
-    u16 cardId = gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard;
+    u16 cardId = gDuel.duelistbattleState[fixedDuelist].graveyard;
 
     if (IsLightswornMonsterExceptWeiss(cardId))
       return 0;
@@ -120,21 +132,21 @@ static s16 FindLightswornGyIndex(void)
   return -1;
 }
 
-static enum DuelActionResult SpecialSummonLightswornFromGy(s16 gyIndex)
+static enum DuelActionResult SpecialSummonLightswornFromGyFor(u8 turnDuelist, s16 gyIndex)
 {
   struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
-  u8 fixedDuelist = FixedDuelistForActive();
+  u8 fixedDuelist = FixedDuelistForTurn(turnDuelist);
   u16 cardId;
 
   if (gyIndex < 0)
     return DUEL_ACTION_NO_TARGET;
 
   if (!GraveyardExpand_IsEnabled()) {
-    cardId = gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard;
+    cardId = gTurnDuelistBattleState[turnDuelist]->graveyard;
     if (!IsLightswornMonsterExceptWeiss(cardId))
       return DUEL_ACTION_NO_TARGET;
 
-    return Duel_SpecialSummonFromGrave(ACTIVE_DUELIST, CARD_NONE, opts);
+    return Duel_SpecialSummonFromGrave(turnDuelist, CARD_NONE, opts);
   }
 
   cardId = GraveyardExpand_GetCardAt(fixedDuelist, (u8)gyIndex);
@@ -143,7 +155,7 @@ static enum DuelActionResult SpecialSummonLightswornFromGy(s16 gyIndex)
 
   cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, (u8)gyIndex);
   GraveyardExpand_SyncLegacyTop(fixedDuelist);
-  return Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
+  return Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts);
 }
 
 static u8 DeckCanMillWeissCount(void)
@@ -153,54 +165,52 @@ static u8 DeckCanMillWeissCount(void)
   return gDuelDecks[fixedDuelist].cardsDrawn + WEISS_MILL_COUNT <= NumCardsInDeck(fixedDuelist);
 }
 
+void TryApplyWeissAfterDeckMill(u8 turnDuelist, u16 cardId)
+{
+  u8 fixedDuelist;
+  u8 monsterRow;
+  s16 gyIndex;
+
+  if (sWeissMillReentry || cardId != WEISS_LIGHTSWORN_ARCHFIEND || IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(WEISS_LIGHTSWORN_ARCHFIEND))
+    return;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return;
+
+  monsterRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                             : INACTIVE_DUELIST_MONSTER_ROW;
+  if (FirstEmptyZoneInRow(gTurnZones[monsterRow]) < 0)
+    return;
+
+  fixedDuelist = FixedDuelistForTurn(turnDuelist);
+  gyIndex = FindLightswornGyIndexFor(fixedDuelist);
+  if (gyIndex < 0)
+    return;
+
+  sWeissMillReentry = TRUE;
+  Duel_ShowEffectTextTyped(WEISS_LIGHTSWORN_ARCHFIEND, 8);
+  if (SpecialSummonLightswornFromGyFor(turnDuelist, gyIndex) == DUEL_ACTION_OK) {
+    EffectOpt_MarkUsed(WEISS_LIGHTSWORN_ARCHFIEND);
+    RefreshFieldMonsterStatOverlays();
+  }
+  sWeissMillReentry = FALSE;
+}
+
 unsigned char CanActivateWEISS_LIGHTSWORN_ARCHFIEND(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != WEISS_LIGHTSWORN_ARCHFIEND)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != WEISS_LIGHTSWORN_ARCHFIEND)
-    return FALSE;
-
-  /* sent-from-Deck-to-GY trigger needs mill/send hook. Ceiling: field OPT
-   * SS 1 other Lightsworn from GY. */
-  if (!CanUseMonsterEffect(zone))
-    return FALSE;
-
-  if (ArchlordKristya_IsSpecialSummonLocked())
-    return FALSE;
-
-  if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
-    return FALSE;
-
-  return FindLightswornGyIndex() >= 0;
+  /* Deck-mill GY SS via TryApplyWeissAfterDeckMill; hand SS via FromHand. */
+  return FALSE;
 }
 
 void ActivateWEISS_LIGHTSWORN_ARCHFIENDEffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  s16 gyIndex;
-
   Duel_ShowEffectTextTyped(WEISS_LIGHTSWORN_ARCHFIEND, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  gyIndex = FindLightswornGyIndex();
-  if (gyIndex < 0 || ArchlordKristya_IsSpecialSummonLocked()
-      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
-    return;
-
-  if (SpecialSummonLightswornFromGy(gyIndex) != DUEL_ACTION_OK)
-    return;
-
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
 }
 
 u8 CanActivateWeissLightswornArchfiendFromHand(u8 handZone)

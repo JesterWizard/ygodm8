@@ -3,12 +3,53 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
+
+static u8 sCoralInit APPEND_DATA = {0};
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
+}
+
+/* ponytail: any leave ≈ Synchro-Summoned leave; upgrade: SS-origin flag. */
+static void OnCoralLeaveField(const struct EffectEvent *ev)
+{
+  u8 turnDuelist;
+
+  if (ev == NULL || ev->cardId != CORAL_DRAGON || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+  if (EffectOpt_IsUsed(CORAL_DRAGON))
+    return;
+
+  turnDuelist = TurnDuelistForFixed(ev->controller);
+  Duel_ShowEffectTextTyped(CORAL_DRAGON, 8);
+  if (Duel_DrawCards(turnDuelist, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  EffectOpt_MarkUsed(CORAL_DRAGON);
+  UpdateDuelGfxExceptField();
+}
+
+void CoralDragon_EnsureInit(void)
+{
+  if (sCoralInit)
+    return;
+
+  sCoralInit = TRUE;
+  /* ON_LEAVE covers destroy + battle-destroy (both emit leave). */
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnCoralLeaveField);
+}
 
 static u8 HandHasDiscardableCard(void)
 {
@@ -111,7 +152,7 @@ unsigned char CanActivateCORAL_DRAGON(void)
   if (zone == NULL || zone->id != CORAL_DRAGON)
     return FALSE;
 
-  /* Ceiling: GY draw when Synchro Summoned card sent from field needs GY hook.
+  /* Leave-field draw via CoralDragon_EnsureInit.
    * OPT discard 1 → destroy 1 opp card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -26,6 +26,8 @@ u8 CanActivatePoseidraTheAtlanteanDragonGy(u8 fixedDuelist, u8 gyIndex);
 void ActivatePoseidraTheAtlanteanDragonGy(u8 fixedDuelist, u8 gyIndex);
 u8 CanActivateYamorimoriGy(u8 fixedDuelist, u8 gyIndex);
 void ActivateYamorimoriGy(u8 fixedDuelist, u8 gyIndex);
+u8 CanActivateDestinyHeroCelestialGy(u8 fixedDuelist, u8 gyIndex);
+void ActivateDestinyHeroCelestialGy(u8 fixedDuelist, u8 gyIndex);
 
 struct GyIgnitionEntry {
   u16 cardId;
@@ -79,6 +81,9 @@ static const struct GyIgnitionEntry sGyIgnitionTable[] APPEND_RODATA = {
   { YAMORIMORI,
     CanActivateYamorimoriGy,
     ActivateYamorimoriGy },
+  { DESTINY_HERO_CELESTIAL,
+    CanActivateDestinyHeroCelestialGy,
+    ActivateDestinyHeroCelestialGy },
 };
 
 u8 GyIgnition_TryAt(u8 fixedDuelist, u16 cardId)

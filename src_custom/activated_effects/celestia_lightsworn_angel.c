@@ -2,7 +2,6 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "monster_effect_usage.h"
 #include "summon_tribute.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -127,36 +126,14 @@ void ActivateCelestiaLightswornAngelTribute(void)
 
 unsigned char CanActivateCELESTIA_LIGHTSWORN_ANGEL(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != CELESTIA_LIGHTSWORN_ANGEL)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != CELESTIA_LIGHTSWORN_ANGEL)
-    return FALSE;
-
-  /* Tribute Summon mill/destroy via ActivateCelestiaLightswornAngelTribute.
-   * Ceiling: field OPT repeat (usage-gated). Auto-destroy up to 2 (no PickZone). */
-  return CanUseMonsterEffect(zone);
+  /* Tribute Summon mill/destroy via ActivateCelestiaLightswornAngelTribute. */
+  return FALSE;
 }
 
 void ActivateCELESTIA_LIGHTSWORN_ANGELEffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-
   Duel_ShowEffectTextTyped(CELESTIA_LIGHTSWORN_ANGEL, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  RunCelestiaMillAndDestroy(self);
-  if (IsDuelOver() == TRUE)
-    return;
-
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
 }

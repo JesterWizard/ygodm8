@@ -104,6 +104,8 @@
 #include "evil_hero_infernal_sniper.h"
 #include "jenis_lightsworn_mender.h"
 #include "wulf_lightsworn_beast.h"
+#include "felis_lightsworn_archer.h"
+#include "weiss_lightsworn_archfiend.h"
 #include "garoth_lightsworn_warrior.h"
 #include "silent_magician_lv4.h"
 #include "silent_magician_lv8.h"
@@ -743,6 +745,8 @@ enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx)
     gDuelDecks[fixedDuelist].cardsDrawn++;
 
     TryApplyWulfAfterDeckMill(duelist, cardId);
+    TryApplyFelisAfterDeckMill(duelist, cardId);
+    TryApplyWeissAfterDeckMill(duelist, cardId);
     JenisLightswornMender_NoteDeckMill(fixedDuelist);
 
     if (IsDuelOver() == TRUE)

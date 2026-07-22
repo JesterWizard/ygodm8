@@ -58,7 +58,7 @@ unsigned char CanActivateRAIDEN_HAND_OF_THE_LIGHTSWORN(void)
   if (zone == NULL || zone->id != RAIDEN_HAND_OF_THE_LIGHTSWORN)
     return FALSE;
 
-  /* EP mill via TryApplyRaidenEndPhase. Ceiling: Main Phase OPT mill 2. */
+  /* EP mill via TryApplyRaidenEndPhase; MP OPT mill below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -1,18 +1,23 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
+
+extern const CardData gCardData_NEW[];
 
 void ClearZoneAndSendMonToGraveyard2(struct DuelCard *zone, u8 player);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
+static u8 sCrossKeeperInit APPEND_DATA = {0};
 static const char sNeoSpacianName[] APPEND_RODATA = "Neo-Spacian";
 
 static u8 FixedDuelistForActive(void)
@@ -131,6 +136,74 @@ static enum DuelActionResult SpecialSummonTarget(u8 skipHandZone)
   return DUEL_ACTION_NO_TARGET;
 }
 
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
+}
+
+static s8 FindCrossKeeperInGy(u8 fixedDuelist)
+{
+  u8 i;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    if (gDuel.duelistbattleState[fixedDuelist].graveyard == CROSS_KEEPER)
+      return 0;
+    return -1;
+  }
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (GraveyardExpand_GetCardAt(fixedDuelist, i) == CROSS_KEEPER)
+      return (s8)i;
+  }
+  return -1;
+}
+
+static u8 IsElementalHeroFusion(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+  if (gCardData_NEW[cardId].color != FUSION_CARD)
+    return FALSE;
+  return Duel_IsElementalHeroCard(cardId);
+}
+
+/* ponytail: Fusion leave ≈ E-HERO Fusion SS while CK in GY; draw1 stand-in for
+ * banish→draw2→bottom. Upgrade: true SS trigger + banish cost. */
+static void OnElementalHeroFusionLeaveWhileKeeperInGy(const struct EffectEvent *ev)
+{
+  u8 turnDuelist;
+
+  if (ev == NULL || ev->cardId == CARD_NONE || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+  if (!IsElementalHeroFusion(ev->cardId))
+    return;
+  if (EffectOpt_IsUsed(CROSS_KEEPER))
+    return;
+  if (FindCrossKeeperInGy(ev->controller) < 0)
+    return;
+
+  turnDuelist = TurnDuelistForFixed(ev->controller);
+  Duel_ShowEffectTextTyped(CROSS_KEEPER, 8);
+  if (Duel_DrawCards(turnDuelist, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  EffectOpt_MarkUsed(CROSS_KEEPER);
+  UpdateDuelGfxExceptField();
+}
+
+void CrossKeeper_EnsureInit(void)
+{
+  if (sCrossKeeperInit)
+    return;
+
+  sCrossKeeperInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnElementalHeroFusionLeaveWhileKeeperInGy);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnElementalHeroFusionLeaveWhileKeeperInGy);
+}
+
 unsigned char CanActivateCROSS_KEEPER(void)
 {
   struct DuelCard *zone;
@@ -142,8 +215,8 @@ unsigned char CanActivateCROSS_KEEPER(void)
   if (zone == NULL || zone->id != CROSS_KEEPER)
     return FALSE;
 
-  /* Ceiling: GY draw-on-E-HERO-Fusion need Fusion/GY hooks. Ceiling: send self
-   * → SS Elemental HERO or Neo-Spacian from hand/GY. */
+  /* GY Fusion-leave draw via CrossKeeper_EnsureInit.
+   * Ceiling: send self → SS Elemental HERO or Neo-Spacian from hand/GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

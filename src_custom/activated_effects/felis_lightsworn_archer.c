@@ -1,14 +1,42 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "felis_lightsworn_archer.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
+void RefreshFieldMonsterStatOverlays(void);
+
+static u8 sFelisMillReentry APPEND_DATA = 0;
+
+void TryApplyFelisAfterDeckMill(u8 turnDuelist, u16 cardId)
+{
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  u8 monsterRow;
+
+  if (sFelisMillReentry || cardId != FELIS_LIGHTSWORN_ARCHER || IsDuelOver() == TRUE)
+    return;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return;
+
+  monsterRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                             : INACTIVE_DUELIST_MONSTER_ROW;
+  if (FirstEmptyZoneInRow(gTurnZones[monsterRow]) < 0)
+    return;
+
+  sFelisMillReentry = TRUE;
+  Duel_ShowEffectTextTyped(FELIS_LIGHTSWORN_ARCHER, 8);
+  if (Duel_SpecialSummonFromGrave(turnDuelist, FELIS_LIGHTSWORN_ARCHER, opts) == DUEL_ACTION_OK)
+    RefreshFieldMonsterStatOverlays();
+  sFelisMillReentry = FALSE;
+}
 
 static u8 IsValidOppMonsterTarget(u8 fixedRow, u8 fixedCol)
 {
@@ -98,8 +126,8 @@ unsigned char CanActivateFELIS_LIGHTSWORN_ARCHER(void)
   if (zone == NULL || zone->id != FELIS_LIGHTSWORN_ARCHER)
     return FALSE;
 
-  /* SS when sent from Deck to GY by monster effect needs mill/SS
-   * hook. Ceiling: ignition tribute self → destroy 1 opponent monster → mill 3. */
+  /* Deck-mill SS via TryApplyFelisAfterDeckMill (any mill; printed is monster-effect only).
+   * Ignition tribute self → destroy 1 opp monster → mill 3. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
