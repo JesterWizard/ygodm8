@@ -7,30 +7,29 @@ Each `ponytail:` / `Ceiling:` note is tagged with its **primary missing engine s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 21:11 UTC  
-**Ceiling lines tagged:** `134`  
-**Partial files:** `114`
+**Last updated:** 2026-07-22 21:15 UTC  
+**Ceiling lines tagged:** `126`  
+**Partial files:** `108`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `other` | 44 | triage |
-| `event.OnStandby` | 23 | 3 (OPT / turn flags) |
-| `chain.Negate` | 15 | later / chain |
-| `extra.XyzLinkSynchro` | 9 | later / Extra Deck |
+| `other` | 43 | triage |
+| `event.OnStandby` | 21 | 3 (OPT / turn flags) |
+| `chain.Negate` | 14 | later / chain |
+| `extra.XyzLinkSynchro` | 8 | later / Extra Deck |
 | `gate.Tribute` | 8 | 2–3 |
 | `op.Search` | 8 | 1 |
-| `event.OnSummon` | 7 | 3 |
+| `event.OnSummon` | 6 | 3 |
 | `op.BanishTimed` | 6 | 1–3 |
 | `event.OnBattleDestroy` | 5 | 3 |
 | `event.GyIgnition` | 2 | 3 |
-| `event.OnFusionSummon` | 2 | 3 (fusion callback) |
 | `ui.Choice` | 2 | 2 |
 | `event.OnDestroy` | 1 | 3 |
 | `event.OnLpGain` | 1 | later / LP event |
 | `stat.Continuous` | 1 | 1–3 |
-| **total** | **134** | |
+| **total** | **126** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -46,30 +45,22 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 
 - `SPELL_CHRONICLE` (spell): L151: Chronicle Counters on opp Spell resolve / remove 2 → opp chooses banished add / leave-field burn need continuous hooks outside this file. Ceiling: activate discard+banish 5 only; unk4 counter slot unused.
 
-## `event.OnSummon` (7)
+## `event.OnSummon` (6)
 
 - `SHADDOLL_SCHISM` (trap): L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker; banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
 - `ANCIENT_GEAR_KNIGHT` (activated): L13: * Ceiling: Gemini Normal Monster treatment need summon hook. */
-- `ARCANA_FORCE_XV_THE_FIEND` (activated): L271: on-summon heads auto-picks first destroyable opp monster.
 - `DARKLORD_DESIRE` (activated): L119: * Ceiling: Fairy-only Tribute Summon + cannot SS need summon hooks. */
 - `DESTINY_HERO_DUSKTOPIA` (activated): L47: * TryClearDestinyHeroDusktopiaProtectionEndPhase. Ceiling: Fusion on Summon
 - `VISION_HERO_GRAVITO` (activated): L114: tribute self → SS 2 Vision HERO from Spell & Trap Zone needs equip zone API. OPT add 1 banished HERO monster to hand (EffectOpt; on-summon stand-in).
 - `ARCANA_FORCE_III_THE_EMPRESS` (permanent): L48: opp Normal Summon SS/discard triggers need summon hooks; unk4 only.
 
-## `event.OnFusionSummon` (2)
-
-- `ELEMENTAL_HERO_DARK_NEOS` (activated): L92: /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: contact Fusion need fusion hook. */
-- `GLADIATOR_BEAST_GYZARUS` (activated): L175: * Ceiling: Contact Fusion SS destroy trigger + Extra Deck return. */
-
-## `event.OnStandby` (23)
+## `event.OnStandby` (21)
 
 - `DARK_SUPREMACY` (trap): L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
-- `ARCANA_FORCE_XV_THE_FIEND` (activated): L206: discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field.
 - `ARCANITE_MAGICIAN` (activated): L160: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. OPT remove 1 unk4 counter → destroy 1 opp (EffectOpt).
 - `AROMAGE_ROSEMARY` (activated): L127: LP-higher Plant attack → opp monster effects locked need permanent/battle hooks. LP-gain position change via aroma_lp_gain.c. OPT change 1 face-up battle position (EffectOpt).
 - `ATLANTEAN_HEAVY_INFANTRY` (activated): L111: extra Normal Summon Sea Serpent + sent-for-WATER destroy need summon/send hooks. OPT destroy 1 Set Spell/Trap.
 - `CASTEL_THE_SKY_BLASTER_MUSKETEER` (activated): L138: detach/material + face-down branch need overlay engine. OPT return 1 face-up monster to the Deck.
-- `CYBER_DRAGON_INFINITY` (activated): L35: ATK summons keep isFaceUp=0 until EOT flip.
 - `CYBER_SLASH_HARPIE_LADY` (activated): L198: Quick on S/T activation + Synchro/name hooks missing. OPT bounce 1 opp card or your Harpie to hand (EffectOpt).
 - `CYBER_SLASH_HARPY_LADY` (activated): L198: Quick on S/T activation + Synchro/name hooks missing. OPT bounce 1 opp card or your Harpie to hand (EffectOpt).
 - `DARK_HORUS` (activated): L100: after opp Main Phase Spell resolve trigger needs spell hook. OPT SS 1 Lv4 DARK from GY while face-up (EffectOpt).
@@ -96,19 +87,18 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 
 - `AMAZONESS_HALL` (trap): L43: * Ceiling: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
 
-## `extra.XyzLinkSynchro` (9)
+## `extra.XyzLinkSynchro` (8)
 
 - `SHADDOLL_CORE` (trap): L45: true trap-monster (still a Trap) + Attribute fusion substitute need Embodiment-style link; place SHADDOLL_CORE on monster row and keep trap face-up continuous; GY add Shaddoll S/T stand-in on activate.
 - `URGENT_TUNING` (trap): L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 - `CURIOUS_THE_LIGHTSWORN_DOMINION` (activated): L146: * Ceiling: Link Summon mill + mill-cascade need summon/send hooks.
-- `CYBER_DRAGON_INFINITY` (activated): L62: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
 - `LEVEL_EATER` (activated): L123: * Ceiling: SS self from GY; upgrade: TempLevel overlay on target. */
 - `REPTILIANNE_LAMIA` (activated): L97: /* GY synchro-material ATK-0 need synchro hook. Ceiling: remains.
 - `ELEMENTAL_HERO_ELECTRUM` (permanent): L67: no removed-from-play zone yet — shuffle banished/exiled monsters back into each owner's deck once Duel_BanishZone exists. ATK overlay via ElementalHeroElectrum_ApplyDynamicZoneStats.
 - `ELEMENTAL_HERO_THE_SHINING` (permanent): L64: return up to 2 banished E-HEROes to hand deferred — no multi-RFP return UI yet. ATK overlay via ElementalHeroTheShining_ApplyDynamicZoneStats.
 - `HARPIES_PET_PHANTASMAL_DRAGON` (permanent): L9: * Ceiling: Harpie protect + End Phase detach need battle/xyz hooks. */
 
-## `chain.Negate` (15)
+## `chain.Negate` (14)
 
 - `ANCIENT_GEAR_ENGINEER` (activated): L14: * Ceiling: opp Trap activation negate on attack needs chain gate. */
 - `ASH_BLOSSOM_AND_JOYOUS_SPRING` (activated): L50: chain negate for add/SS/mill from Deck not wired; upgrade: chain interrupt hook when one exists.
@@ -122,7 +112,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `LYLA_TWILIGHTSWORN_ENCHANTRESS` (activated): L208: * EP mill 3 via TryApplyTwilightswornEndPhase. Ceiling: quick effect on
 - `RYKO_TWILIGHTSWORN_FIGHTER` (activated): L204: NS mill 3 stand-in for other-LS effect→mill; upgrade: chain hook.
 - `SILENT_SWORDSMAN_ZERO` (activated): L47: * tempStage unchanged. Ceiling: Sarcophagus negate needs chain hook. */
-- `ARCANA_FORCE_EX_THE_LIGHT_RULER` (permanent): L100: Tails negate FALSE; Heads only when GY→hand legal.
 - `EL_SHADDOLL_GRYSTA` (permanent): L126: negate opp Special Summon + send Shaddoll from hand need SS chain hook.
 - `EL_SHADDOLL_SHEKHINAGA` (permanent): L126: negate SS monster effect + send Shaddoll need effect-chain hook.
 
@@ -166,7 +155,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `CROSS_KEEPER` (activated): L171: Fusion leave ≈ E-HERO Fusion SS while CK in GY; draw1 stand-in for banish→draw2→bottom. Upgrade: true SS trigger + banish cost.
 - `DESTINY_HERO_DOOM_OVERLORD` (permanent): L327: banish-until-Standby = permanent banish; DARK HERO SS lock not wired.
 
-## `other` (44)
+## `other` (43)
 
 - `FUSION_DESTINY` (spell): L34: * Ceiling: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 - `FUSION_DESTINY` (spell): L36: * Ceiling: Destiny End Dragoon only; upgrade: add remaining Destiny HERO Fusion
@@ -210,5 +199,4 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ARCANA_FORCE_I_THE_MAGICIAN` (permanent): L68: spell-trigger heads/tails not wired.
 - `ARCANA_FORCE_XVIII_THE_MOON` (permanent): L48: Standby Moon Token / End Phase give-control need turn hooks; unk4 only.
 - `ARCANA_FORCE_XXI_THE_WORLD` (permanent): L48: skip-turn / opp GY-to-hand need turn hooks; unk4 marks coin only.
-- `DESTINY_HERO_DRAWHAND` (permanent): L140: HERO-effect SS gate not checked.
 - `REPTILIANNE_SERVANT` (permanent): L120: * Ceiling: spell-target destroy needs continuous hook. */

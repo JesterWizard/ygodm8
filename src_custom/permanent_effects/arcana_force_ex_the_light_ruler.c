@@ -97,7 +97,7 @@ unsigned char ShouldActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* Ceiling: Tails negate FALSE; Heads only when GY→hand legal. */
+  /* Tails negate FALSE; Heads only when GY→hand legal. */
   return CanAddFirstGraveyardCardToHand(duelist);
 }
 

@@ -172,7 +172,7 @@ unsigned char CanActivateGLADIATOR_BEAST_GYZARUS(void)
     return FALSE;
 
   /* Tag-out via GladiatorBeast_CanActivateDeckTagOutTwo.
-   * Ceiling: Contact Fusion SS destroy trigger + Extra Deck return. */
+   * Contact Fusion SS destroy trigger + Extra Deck return not wired. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -4,6 +4,7 @@
 #include "cyber_dragon_infinity.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
@@ -32,7 +33,7 @@ static u8 IsFaceUpAtkMonster(u8 fixedRow, u8 fixedCol)
   if (IsCardFaceUp(zone))
     return TRUE;
 
-  /* Ceiling: ATK summons keep isFaceUp=0 until EOT flip. */
+  /* ATK summons keep isFaceUp=0 until EOT flip. */
   return TRUE;
 }
 
@@ -59,13 +60,14 @@ static void ResolveAbsorb(u8 fixedRow, u8 fixedCol)
   if (!IsFaceUpAtkMonster(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* Ceiling: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage. */
+  /* Xyz attach / negate FALSE. ClearZone absorb + +1 tempStage. */
   ClearZone(zone);
   NotifyDynamicEquipFieldChanged();
 
   if (self->tempStage < 127)
     self->tempStage = (s8)(self->tempStage + 1);
 
+  EffectOpt_MarkUsed(CYBER_DRAGON_INFINITY);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
@@ -127,7 +129,10 @@ unsigned char CanActivateCYBER_DRAGON_INFINITY(void)
     return FALSE;
 
   /* ATK overlay via CyberDragonInfinity_ApplyDynamicZoneStats (+200 per tempStage).
-   * Ceiling: Xyz attach / negate FALSE. OPT ClearZone absorb + tempStage. */
+   * Xyz attach / negate FALSE. OPT ClearZone absorb + tempStage (EffectOpt). */
+  if (EffectOpt_IsUsed(CYBER_DRAGON_INFINITY))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -139,6 +144,9 @@ void ActivateCYBER_DRAGON_INFINITYEffect(void)
   Duel_ShowEffectTextTyped(CYBER_DRAGON_INFINITY, 2);
 
   if (IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(CYBER_DRAGON_INFINITY))
     return;
 
   gDuelCursor.destY = gMonEffect.row;

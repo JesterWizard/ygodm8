@@ -137,5 +137,5 @@ void TryDestinyHeroDrawhandOnMonsterPlacement(struct DuelCard *zone)
 
   UpdateDuelGfxExceptField();
   zone->unk4 = 1;
-  /* Ceiling: HERO-effect SS gate not checked. */
+  /* HERO-effect SS gate not checked. */
 }

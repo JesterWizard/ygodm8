@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 21:11 UTC  
-**Remaining partials:** `114`
+**Last updated:** 2026-07-22 21:15 UTC  
+**Remaining partials:** `108`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 5 |
 | `trap` | 9 |
-| `activated` | 84 |
-| `permanent` | 16 |
-| **total** | **114** |
+| `activated` | 80 |
+| `permanent` | 14 |
+| **total** | **108** |
 
 ## spell (5)
 
@@ -89,7 +89,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (84)
+## activated (80)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -122,11 +122,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ARCANA_FORCE_V_THE_HIEROPHANT`
 - path: `src_custom/activated_effects/arcana_force_v_the_hierophant.c`
 - L198: discard only; opp cannot respond to Arcana Summons needs turn flag hook.
-
-### `ARCANA_FORCE_XV_THE_FIEND`
-- path: `src_custom/activated_effects/arcana_force_xv_the_fiend.c`
-- L206: discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field.
-- L271: on-summon heads auto-picks first destroyable opp monster.
 
 ### `ARCANITE_MAGICIAN`
 - path: `src_custom/activated_effects/arcanite_magician.c`
@@ -187,11 +182,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CURIOUS_THE_LIGHTSWORN_DOMINION`
 - path: `src_custom/activated_effects/curious_the_lightsworn_dominion.c`
 - L146: * Ceiling: Link Summon mill + mill-cascade need summon/send hooks.
-
-### `CYBER_DRAGON_INFINITY`
-- path: `src_custom/activated_effects/cyber_dragon_infinity.c`
-- L35: ATK summons keep isFaceUp=0 until EOT flip.
-- L62: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
 
 ### `CYBER_SLASH_HARPIE_LADY`
 - path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
@@ -280,10 +270,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/el_shaddoll_meshahrail.c`
 - L76: * Ceiling: unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks. */
 
-### `ELEMENTAL_HERO_DARK_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_dark_neos.c`
-- L92: /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: contact Fusion need fusion hook. */
-
 ### `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN`
 - path: `src_custom/activated_effects/elemental_hero_shining_neos_wingman.c`
 - L150: GY ATK gain + effect destroy immunity + battle burn need permanent/ battle hooks. OPT destroy opp cards up to different Attributes.
@@ -323,10 +309,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GAMECIAL_THE_SEA_TURTLE_KAIJU`
 - path: `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c`
 - L69: * Ceiling: FromHand tribute 1 opp → SS to your field (or free SS if opp has Kaiju). */
-
-### `GLADIATOR_BEAST_GYZARUS`
-- path: `src_custom/activated_effects/gladiator_beast_gyzarus.c`
-- L175: * Ceiling: Contact Fusion SS destroy trigger + Extra Deck return. */
 
 ### `GORZ_THE_EMISSARY_OF_DARKNESS`
 - path: `src_custom/activated_effects/gorz_the_emissary_of_darkness.c`
@@ -440,11 +422,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/vision_hero_increase.c`
 - L70: GY Continuous Trap place + tribute HERO SS-self FALSE. OPT SS Vision HERO Lv≤4 from Deck (ST-zone SS stand-in; EffectOpt).
 
-## permanent (16)
-
-### `ARCANA_FORCE_EX_THE_LIGHT_RULER`
-- path: `src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c`
-- L100: Tails negate FALSE; Heads only when GY→hand legal.
+## permanent (14)
 
 ### `ARCANA_FORCE_I_THE_MAGICIAN`
 - path: `src_custom/permanent_effects/arcana_force_i_the_magician.c`
@@ -469,10 +447,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DESTINY_HERO_DOOM_OVERLORD`
 - path: `src_custom/permanent_effects/destiny_hero_doom_overlord.c`
 - L327: banish-until-Standby = permanent banish; DARK HERO SS lock not wired.
-
-### `DESTINY_HERO_DRAWHAND`
-- path: `src_custom/permanent_effects/destiny_hero_drawhand.c`
-- L140: HERO-effect SS gate not checked.
 
 ### `EL_SHADDOLL_GRYSTA`
 - path: `src_custom/permanent_effects/el_shaddoll_grysta.c`

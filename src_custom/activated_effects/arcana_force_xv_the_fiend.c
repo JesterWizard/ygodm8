@@ -4,6 +4,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
@@ -160,8 +161,10 @@ static void ResolveDestroyTarget(u8 fixedRow, u8 fixedCol)
 
   NotifyDynamicEquipFieldChanged();
 
-  if (self != NULL)
+  if (self != NULL) {
+    EffectOpt_MarkUsed(ARCANA_FORCE_XV_THE_FIEND);
     MarkMonsterEffectUsed(self);
+  }
 
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
@@ -203,7 +206,11 @@ unsigned char CanActivateARCANA_FORCE_XV_THE_FIEND(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XV_THE_FIEND)
     return FALSE;
 
-  /* Ceiling: discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field. */
+  /* Discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field
+   * (EffectOpt). */
+  if (EffectOpt_IsUsed(ARCANA_FORCE_XV_THE_FIEND))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -232,6 +239,9 @@ void ActivateARCANA_FORCE_XV_THE_FIENDEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(ARCANA_FORCE_XV_THE_FIEND))
+    return;
+
   if (RandRangeU8(0, 1) == 1) {
     gDuelCursor.destY = gMonEffect.row;
     gDuelCursor.destX = gMonEffect.zone;
@@ -248,6 +258,7 @@ void ActivateARCANA_FORCE_XV_THE_FIENDEffect(void)
   if (!ResolveArcanaForceXvTheFiendCoinTails())
     return;
 
+  EffectOpt_MarkUsed(ARCANA_FORCE_XV_THE_FIEND);
   MarkMonsterEffectUsed(self);
 }
 
@@ -268,7 +279,7 @@ void TryArcanaForceXvTheFiendOnMonsterPlacement(struct DuelCard *zone)
     if (!FieldHasDestroyableMonster())
       return;
 
-    /* ponytail: on-summon heads auto-picks first destroyable opp monster. */
+    /* On-summon heads auto-picks first destroyable opp monster. */
     for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_MONSTER_ROW; row++) {
       for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
         struct DuelCard *target;
