@@ -1361,8 +1361,24 @@ def write_partials_list(out_path: Path | None = None) -> Path:
     return out_path
 
 
-# Primary missing surface for a ponytail note (first match wins).
+# Primary missing surface for a deferred/ponytail note (first match wins).
 _TAXONOMY_RULES: list[tuple[str, re.Pattern[str]]] = [
+    (
+        "gate.SendCost",
+        re.compile(r"sent-for-WATER|send.?for.?cost|send hook|as cost", re.I),
+    ),
+    (
+        "battle.AttackRedirect",
+        re.compile(
+            r"attack.?redirect|attack-target redirect|attack.?target.?redirect|"
+            r"protect destroy redirect|destroy redirect",
+            re.I,
+        ),
+    ),
+    (
+        "extra.XyzLinkSynchro",
+        re.compile(r"\bXyz\b|\bLink\b|\bSynchro\b|detach|overlay|Extra Deck", re.I),
+    ),
     (
         "event.OnBattleDestroy",
         re.compile(
@@ -1394,15 +1410,29 @@ _TAXONOMY_RULES: list[tuple[str, re.Pattern[str]]] = [
     (
         "event.OnFusionSummon",
         re.compile(
-            r"Fusion Summon|OnFusion|fusion hook|fusion.?summoned|contact Fusion",
+            r"Fusion Summon|OnFusion|fusion hook|fusion.?summoned|contact Fusion|"
+            r"fusion recipe",
+            re.I,
+        ),
+    ),
+    (
+        "chain.Negate",
+        re.compile(r"negate|chain hook|chain/negation|Quick Effect|once per Chain", re.I),
+    ),
+    (
+        "gate.Tribute",
+        re.compile(
+            r"tribute|cannot.?Set|Normal Summon.*gate|summon.?gate|Set gate|"
+            r"tribute-free|tribute.?bypass|summoning conditions|extra Normal Summon|"
+            r"second NS|HERO.?lock|SS lock|cannot SS|ED lock",
             re.I,
         ),
     ),
     (
         "event.OnStandby",
         re.compile(
-            r"\bOPT\b|once.?per.?turn|turn_effect Standby|cleared mid-duel|"
-            r"EOT|Standby →|usedThisTurn|never cleared",
+            r"once.?per.?turn|once-per-duel|once via usage|turn_effect Standby|"
+            r"cleared mid-duel|EOT|Standby →|usedThisTurn|never cleared|not tracked",
             re.I,
         ),
     ),
@@ -1426,22 +1456,6 @@ _TAXONOMY_RULES: list[tuple[str, re.Pattern[str]]] = [
         ),
     ),
     (
-        "extra.XyzLinkSynchro",
-        re.compile(r"\bXyz\b|\bLink\b|\bSynchro\b|detach|overlay", re.I),
-    ),
-    (
-        "chain.Negate",
-        re.compile(r"negate|chain hook|chain/negation|Quick Effect|once per Chain", re.I),
-    ),
-    (
-        "gate.Tribute",
-        re.compile(
-            r"tribute|cannot.?Set|Normal Summon.*gate|summon.?gate|Set gate|"
-            r"tribute-free|tribute.?bypass|summoning conditions",
-            re.I,
-        ),
-    ),
-    (
         "stat.Continuous",
         re.compile(
             r"field-stat|dynamic.?zone.?stats|stat overlay|continuous face-up|"
@@ -1451,13 +1465,14 @@ _TAXONOMY_RULES: list[tuple[str, re.Pattern[str]]] = [
     ),
     (
         "equip.Register",
-        re.compile(r"GetSpellType EQUIP|IsActiveDynamicEquip|dynamic_equip", re.I),
+        re.compile(r"GetSpellType EQUIP|IsActiveDynamicEquip|dynamic_equip|monster-as-equip", re.I),
     ),
     (
         "ui.Choice",
         re.compile(
             r"choice UI|unlabeled|DeckMenu|multi-select|multi-pick|PickZone|"
-            r"no player choice|effect-text choice",
+            r"no player choice|effect-text choice|no .{0,40}picker|auto-pick|"
+            r"reveal UI|look\+reorder",
             re.I,
         ),
     ),
@@ -1579,14 +1594,239 @@ def write_partials_taxonomy(out_path: Path | None = None) -> Path:
     return out_path
 
 
+# After Ceiling soft-clears, deferred engine gaps live in plain comments.
+# Keep this strict — avoid TRUE/FALSE choice menus and pure EffectOpt docs.
+_DEFERRED_HINT = re.compile(
+    r"(?:"
+    r"need[s]?\s+.{0,80}hook|"
+    r"not wired|outside (?:this|the) file|"
+    r"Extra Deck|Pendulum Zone|"
+    r"sent-for-WATER|"
+    r"upgrade:|"
+    r"not field-ignition|not ignition|"
+    r"chain hook|chain/negation|"
+    r"Quick (?:Effect|on|field).{0,50}(?:need|FALSE|missing)|"
+    r"materials not checked|"
+    r"PickZone|multi-select|multi-pick|no .{0,40}picker|auto-pick|"
+    r"attack.?redirect|attack-target redirect|destroy redirect|"
+    r"RemovedFromPlay_RemoveAt|RFP array|"
+    r"MOON_TOKEN|no Sheep Token|wrong Type|"
+    r"cannot-be-Tributed|tribute engine not|"
+    r"Fusion Summon from Extra|Synchro Summon during|"
+    r"\bXyz\b.{0,50}(?:need|FALSE|detach|material|hook)|"
+    r"Link (?:material|Summon)|"
+    r"FromHand .{0,80}(?:path|→|SS)|"
+    r"FALSE\.|FALSE;|"
+    r"stand-in for |"
+    r"blocked —|blocked\.|"
+    r"not tracked|"
+    r"ED lock|HERO lock need|SS lock|"
+    r"ignition FALSE|activatable FALSE|"
+    r"reveal UI|look\+reorder"
+    r")",
+    re.I,
+)
+_SKIP_DEFERRED_NOTE = re.compile(
+    r"TRUE\s*=\s*.{0,100}FALSE\s*=|"
+    r"Returns TRUE for|"
+    r"^A = .+B = ",
+    re.I,
+)
+
+
+def _comment_note_at(lines: list[str], start_idx: int) -> tuple[str, int]:
+    """Return (joined note text, last line index) for a // or /* comment at start_idx."""
+    line = lines[start_idx]
+    stripped = line.strip()
+    if stripped.startswith("//"):
+        return stripped[2:].strip(), start_idx
+    parts: list[str] = []
+    end = start_idx
+    for j in range(start_idx, min(start_idx + 12, len(lines))):
+        s = lines[j].strip()
+        if j == start_idx:
+            s = s[2:].lstrip() if s.startswith("/*") else s
+        s = s.lstrip("*").strip()
+        if s.endswith("*/"):
+            s = s[:-2].strip()
+            if s:
+                parts.append(s)
+            end = j
+            break
+        if s:
+            parts.append(s)
+        end = j
+    return " ".join(parts), end
+
+
+def collect_deferred_gaps() -> list[dict]:
+    """Scan effect dirs for plain comments describing missing engine surfaces."""
+    rows: list[dict] = []
+    for kind, rel in EFFECT_DIRS:
+        directory = ROOT / rel
+        if not directory.is_dir():
+            continue
+        for path in sorted(directory.glob("*.c")):
+            text = path.read_text(encoding="utf-8", errors="replace")
+            lines = text.splitlines()
+            notes: list[str] = []
+            i = 0
+            while i < len(lines):
+                stripped = lines[i].strip()
+                if not (stripped.startswith("//") or stripped.startswith("/*")):
+                    i += 1
+                    continue
+                note, end = _comment_note_at(lines, i)
+                if _DEFERRED_HINT.search(note) and not _SKIP_DEFERRED_NOTE.search(note):
+                    notes.append(f"L{i + 1}: {note[:220]}")
+                i = end + 1
+            if not notes:
+                continue
+            rows.append(
+                {
+                    "card_const": stem_to_const(path.stem),
+                    "kind": kind,
+                    "path": str(path.relative_to(ROOT)),
+                    "notes": notes,
+                }
+            )
+    return rows
+
+
+def write_deferred_list(out_path: Path | None = None) -> Path:
+    """Living backlog of engine-gap comments (post-Ceiling soft-clear)."""
+    from datetime import datetime, timezone
+
+    if out_path is None:
+        out_path = ROOT / "documentation" / "DEFERRED_EFFECTS.md"
+
+    rows = collect_deferred_gaps()
+    tag_counts: Counter[str] = Counter()
+    tagged: list[tuple[str, str, str, str, str]] = []
+
+    for r in rows:
+        for note in r["notes"]:
+            tag = classify_ponytail_note(note)
+            tag_counts[tag] += 1
+            tagged.append(
+                (
+                    tag,
+                    r["kind"],
+                    r["card_const"],
+                    r["path"],
+                    note.replace("|", "\\|"),
+                )
+            )
+
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    phase_hint = {
+        "event.OnStandby": "3 (OPT / turn flags)",
+        "event.OnSummon": "3",
+        "event.OnFusionSummon": "3 (fusion callback)",
+        "event.OnDestroy": "3",
+        "event.OnBattleDestroy": "3",
+        "event.OnDamageCalc": "3",
+        "event.GyIgnition": "3",
+        "event.OnLpGain": "later / LP event",
+        "battle.ExtraAttack": "1–3 (unk4 mark)",
+        "battle.AttackRedirect": "3 (battle targeting)",
+        "extra.XyzLinkSynchro": "later / Extra Deck",
+        "op.Search": "1",
+        "op.BanishTimed": "1–3",
+        "ui.Choice": "2",
+        "gate.Tribute": "2–3",
+        "gate.SendCost": "3 (send-as-cost)",
+        "stat.Continuous": "1–3",
+        "equip.Register": "1 (lists)",
+        "chain.Negate": "later / chain",
+        "other": "triage",
+    }
+    known_tags = [t for t, _ in _TAXONOMY_RULES] + ["other"]
+
+    files_per_tag: Counter[str] = Counter()
+    for tag, _kind, card, _path, _note in tagged:
+        files_per_tag[f"{tag}|{card}"] += 1
+    file_counts: Counter[str] = Counter()
+    for key in files_per_tag:
+        file_counts[key.split("|", 1)[0]] += 1
+
+    lines = [
+        "# Deferred Effects Backlog",
+        "",
+        "Auto-generated living list of **engine gaps** still called out in effect-file "
+        "comments (plain notes after `Ceiling:`/`ponytail:` soft-clears).",
+        "Use this to pick an engine surface and batch the cards that wait on it.",
+        "Stubs: [`STUB_EFFECTS.md`](STUB_EFFECTS.md). Ceiling markers: "
+        "[`PARTIAL_EFFECTS.md`](PARTIAL_EFFECTS.md). Migration: "
+        "[`effect-data-system.md`](effect-data-system.md).",
+        "",
+        "```bash",
+        "python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred",
+        "```",
+        "",
+        f"**Last updated:** {stamp}  ",
+        f"**Files with deferred notes:** `{len(rows)}`  ",
+        f"**Notes tagged:** `{len(tagged)}`",
+        "",
+        "## Suggested tackle order",
+        "",
+        "1. High fan-out, engine already half-there — `event.OnSummon` / `event.OnDestroy` / "
+        "`ui.Choice` / `gate.Tribute`",
+        "2. Battle surface — `event.OnBattleDestroy` / `battle.ExtraAttack` / "
+        "`battle.AttackRedirect`",
+        "3. Hard deferred — `chain.Negate`, `extra.XyzLinkSynchro`, Extra Deck Fusion/"
+        "Pendulum, `gate.SendCost` (Atlantean)",
+        "",
+        "## Counts by missing surface",
+        "",
+        "| Tag | Notes | Cards | Suggested phase |",
+        "|-----|------:|------:|-----------------|",
+    ]
+
+    for tag in sorted(tag_counts.keys(), key=lambda t: (-tag_counts[t], t)):
+        lines.append(
+            f"| `{tag}` | {tag_counts[tag]} | {file_counts.get(tag, 0)} | "
+            f"{phase_hint.get(tag, '—')} |"
+        )
+    lines.append(f"| **total** | **{len(tagged)}** | **{len(rows)}** | |")
+    lines.append("")
+
+    for tag in known_tags:
+        group = [t for t in tagged if t[0] == tag]
+        if not group:
+            continue
+        lines.append(f"## `{tag}` ({len(group)} notes)")
+        lines.append("")
+        by_card: dict[str, list[tuple[str, str, str]]] = {}
+        for _tag, kind, card, path, note in group:
+            by_card.setdefault(card, []).append((kind, path, note))
+        for card in sorted(by_card.keys()):
+            entries = by_card[card]
+            kind, path, _note0 = entries[0]
+            lines.append(f"### `{card}` ({kind})")
+            lines.append(f"- path: `{path}`")
+            for _kind, _path, note in entries:
+                lines.append(f"- {note}")
+            lines.append("")
+
+    out_path.write_text("\n".join(lines).rstrip() + "\n")
+    print(
+        f"Wrote {out_path.relative_to(ROOT)} ({len(rows)} files, {len(tagged)} notes, "
+        f"{len(tag_counts)} tags)",
+        file=sys.stderr,
+    )
+    return out_path
+
+
 def write_backlogs() -> None:
-    """Refresh living lists (stubs + partials + taxonomy)."""
+    """Refresh living lists (stubs + partials + taxonomy + deferred)."""
     meta = load_manifest()
     files = scan_effects(meta)
     assign_clones(files)
     write_stub_list([f for f in files if f.is_stub], meta)
     write_partials_list()
     write_partials_taxonomy()
+    write_deferred_list()
 
 
 def filtered_stubs(args: argparse.Namespace) -> tuple[dict[str, CardMeta], list[EffectFile]]:
@@ -1663,7 +1903,7 @@ def main() -> int:
     parser.add_argument(
         "--write-list",
         action="store_true",
-        help="Write STUB_EFFECTS.md + PARTIAL_EFFECTS.md + PARTIAL_EFFECTS_TAXONOMY.md",
+        help="Write STUB_EFFECTS.md + PARTIAL_* + DEFERRED_EFFECTS.md",
     )
     parser.add_argument("--self-check", action="store_true", help="Run assert-based smoke check")
     args = parser.parse_args()

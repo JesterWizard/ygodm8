@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Ceiling Round 17 Batches 44–49
+**Last worked on:** 2026-07-22 — Deferred backlog list
 
-**Outcome:** Final six-batch full-clear sweep (36 cards): soft-clear remaining multi-ceiling residuals (D-HERO/Evil HERO/ED/Xyz/Fusion/traps/spells including Deep Sea Diva). Partials **36→0**. `make` OK.
+**Outcome:** Added living [`documentation/DEFERRED_EFFECTS.md`](DEFERRED_EFFECTS.md) (regen via `stub_effect_queue.py --write-list`). Tags engine gaps from plain comments (~316 files / 370 notes). PARTIAL/stubs still 0.
 
-**Deferred:** Engine gaps still noted in plain comments (Extra Deck, chain, Xyz, sent-for-WATER, etc.) — no longer tracked in PARTIAL_EFFECTS.
+**Deferred:** Extra Deck / chain / send-as-cost / battle redirect — see DEFERRED_EFFECTS by tag.
 
-**Open / next:** Stub backlog / real wire work for deferred engine surfaces; or leave PARTIAL at 0.
+**Open / next:** Pick a surface from DEFERRED_EFFECTS tackle order and batch-wire cards.

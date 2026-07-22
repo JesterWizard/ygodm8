@@ -23,6 +23,7 @@ Related living lists:
 - Stubs: [`STUB_EFFECTS.md`](STUB_EFFECTS.md) (TODO bodies — currently empty)
 - Partials: [`PARTIAL_EFFECTS.md`](PARTIAL_EFFECTS.md) (`ponytail:` ceilings)
 - Taxonomy: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.md) (ceilings tagged by missing surface)
+- Deferred gaps: [`DEFERRED_EFFECTS.md`](DEFERRED_EFFECTS.md) (plain engine-gap comments after Ceiling soft-clears)
 
 ## Plan
 
@@ -80,7 +81,7 @@ flowchart LR
 
 ### How PARTIAL_EFFECTS feeds priority
 
-Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (events + OPT) before mass card rewrites. Tagging lives in [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.md); regenerate with `--write-list`.
+Ceilings are missing **engine surfaces**, not missing card stubs. Work Phase 3 (events + OPT) before mass card rewrites. Tagging lives in [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.md) / [`DEFERRED_EFFECTS.md`](DEFERRED_EFFECTS.md); regenerate with `--write-list`.
 
 **Fast clear order (no per-card LynJump):**
 
@@ -111,6 +112,7 @@ Do not delete `ponytail:` until the surface exists. Do not clone summon/destroy/
 |--------|----------|-------------|
 | Living partials | [`PARTIAL_EFFECTS.md`](PARTIAL_EFFECTS.md) | Auto from `ponytail:` via `stub_effect_queue.py --write-list` |
 | Partial taxonomy | [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.md) | Same scan, tagged by missing event/op |
+| Deferred gaps | [`DEFERRED_EFFECTS.md`](DEFERRED_EFFECTS.md) | Plain comments tagged by missing surface |
 | Stub backlog | [`STUB_EFFECTS.md`](STUB_EFFECTS.md) | TODO effect bodies |
 | Reusable ops today | `Duel_*` in [`duel_helpers.h`](../include/duel_helpers.h) / [`duel_helpers.c`](../src_custom/duel_helpers.c) | Draw, destroy, mill, discard, LP, search, summon, PickZone |
 | Spell dispatch | [`spell_effect_hooks.c`](../src_custom/spell_effect_hooks.c) | Generated ID switch + vanilla table |

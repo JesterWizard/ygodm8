@@ -9,7 +9,7 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 21:23 UTC  
+**Last updated:** 2026-07-22 21:29 UTC  
 **Remaining partials:** `0`
 
 ## Counts by kind
