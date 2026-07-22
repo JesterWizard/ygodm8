@@ -4,6 +4,7 @@
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
+#include "destiny_hero_doom_lord.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -54,9 +55,16 @@ static void ResolveBanishTarget(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
   struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u16 banishedId;
+  u8 oppFixed;
 
   if (!IsOppMonsterTarget(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
+
+  banishedId = zone->id;
+  oppFixed = gTurnDuelistBattleState[INACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER]
+      ? DUEL_PLAYER
+      : DUEL_OPPONENT;
 
   if (Duel_BanishZone(zone, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
@@ -64,8 +72,9 @@ static void ResolveBanishTarget(u8 fixedRow, u8 fixedCol)
   NotifyDynamicEquipFieldChanged();
 
   /* Cannot-attack-this-turn via DestinyHeroDoomLord_CanDeclareAttack (unk4 mark).
-   * Ceiling: return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster. */
-  self->unk4 |= 0x80;
+   * Banished monster returns via TryApplyDestinyHeroDoomLordStandbyReturn. */
+  self->unk4 |= DESTINY_HERO_DOOM_LORD_CANNOT_ATTACK_MARK;
+  DestinyHeroDoomLord_OnBanishOpponentMonster(banishedId, oppFixed);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

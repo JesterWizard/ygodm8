@@ -54,6 +54,7 @@
 #include "gravekeepers_recruiter.h"
 #include "green_baboon_defender_of_the_forest.h"
 #include "crimson_blader.h"
+#include "destiny_hero_captain_tenacious.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -61,6 +62,7 @@ extern u16 gEffectOptUsedIds[EFFECT_OPT_MAX_CARDS];
 extern u8 gEffectOptUsedCount;
 
 void DestinyHeroFearMonger_EnsureInit(void);
+void DestinyHeroCaptainTenacious_EnsureInit(void);
 void TheWhiteStoneOfAncients_EnsureInit(void);
 void AmazonessEmpress_EnsureInit(void);
 void DestinyHeroDoubleDude_EnsureInit(void);
@@ -94,6 +96,7 @@ void EffectEvent_EnsureInit(void)
   sEffectEventsInited = TRUE;
   EffectEvent_Subscribe(EFFECT_EVENT_ON_FIELD_CHANGE, EffectEvent_OnFieldChangeHandler);
   DestinyHeroFearMonger_EnsureInit();
+  DestinyHeroCaptainTenacious_EnsureInit();
   TheWhiteStoneOfAncients_EnsureInit();
   AmazonessEmpress_EnsureInit();
   DestinyHeroDoubleDude_EnsureInit();

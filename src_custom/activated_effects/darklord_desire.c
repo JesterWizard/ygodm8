@@ -53,7 +53,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidTarget(fixedRow, fixedCol) || target == NULL || self == NULL)
     return;
 
-  /* Ceiling: -2 tempStage (~1000 ATK, not exact); until EP clear needs EOT hook. */
+  /* -2 tempStage (~1000 ATK, not exact); until EP via ResetTempStagesForAllCards. */
   if (self->tempStage > -126)
     self->tempStage = (s8)(self->tempStage - 2);
 

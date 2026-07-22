@@ -84,13 +84,21 @@
 #include "evil_hero_infernal_prodigy.h"
 #include "evil_hero_infernal_sniper.h"
 #include "silent_swordsman.h"
-#include "destiny_hero_decider.h"
+#include "destiny_hero_captain_tenacious.h"
+#include "diviner_of_the_herald.h"
+#include "harpie_perfumer.h"
+#include "rescue_end_phase.h"
 #include "destiny_hero_destroy_dogma.h"
 #include "destiny_hero_dogma_standby.h"
 #include "destiny_hero_dusktopia.h"
 #include "destiny_hero_drawhand.h"
+#include "destiny_hero_decider.h"
 #include "elemental_hero_glow_neos.h"
 #include "spell_effects.h"
+
+void TryApplyElementalHeroNebulaNeosEndPhase(void);
+void TryApplyElementalHeroCosmoNeosEndPhase(void);
+void TryApplyElementalHeroChaosNeosEndPhase(void);
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -459,6 +467,8 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplySilentSwordsmanZeroStandby();
   TryApplyAzureEyesSilverDragonStandby();
   TryApplySilentMagicianLv4Standby();
+  TryApplyDestinyHeroCaptainTenaciousStandby();
+  TryApplyDestinyHeroDoomLordStandbyReturn();
   TryBottomlessShiftingSandTurnStart();
   ContinuousTraps_TryActivateOnOpponentTurnStart();
   if (IsDuelOver() == 1)
@@ -606,6 +616,22 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   DestroyInstantFusionMonstersAtEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyRescueEndPhaseDestroy();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyElementalHeroNebulaNeosEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyElementalHeroCosmoNeosEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyElementalHeroChaosNeosEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryClearDivinerOfTheHeraldEndPhase();
+  TryApplyHarpieOracleEndPhase();
   if (IsDuelOver() == 1)
     return;
   BazooTheSoulEater_ClearAtkBoostOnEndPhase();

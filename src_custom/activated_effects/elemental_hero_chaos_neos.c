@@ -6,6 +6,7 @@
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
+void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
@@ -85,8 +86,8 @@ unsigned char CanActivateELEMENTAL_HERO_CHAOS_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_CHAOS_NEOS)
     return FALSE;
 
-  /* Ceiling: EP shuffle/Set-all + exact 3H/2H/1H/0H branch table FALSE.
-   * Ceiling: OPT 3 coin → destroy heads-count opp monsters. */
+  /* EP shuffle/destroy via TryApplyElementalHeroChaosNeosEndPhase.
+   * OPT 3 coin → destroy heads-count opp monsters. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -115,4 +116,131 @@ void ActivateELEMENTAL_HERO_CHAOS_NEOSEffect(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
+}
+
+static u8 FieldHasChaosNeos(void)
+{
+  u8 fixedRow;
+  u8 col;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_MONSTER_ROW; fixedRow++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (zone != NULL && zone->isFaceUp && zone->id == ELEMENTAL_HERO_CHAOS_NEOS)
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+static void ReturnCardToDeckTop(u8 fixedDuelist, u16 cardId)
+{
+  if (cardId == CARD_NONE)
+    return;
+
+  if (gDuelDecks[fixedDuelist].cardsDrawn > 0)
+    gDuelDecks[fixedDuelist].cardsDrawn--;
+
+  gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
+}
+
+static void ShuffleDeckForFixedDuelist(u8 fixedDuelist)
+{
+  u8 turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+
+  Duel_ShuffleDeckFromDrawn(turnDuelist);
+}
+
+static void ShuffleZoneToDeck(struct DuelCard *zone, u8 fixedRow)
+{
+  u8 ownerFixed = (fixedRow == OPPONENT_MONSTER_ROW || fixedRow == OPPONENT_BACKROW)
+      ? DUEL_OPPONENT
+      : DUEL_PLAYER;
+  u16 cardId = zone->id;
+
+  ClearZone(zone);
+  ReturnCardToDeckTop(ownerFixed, cardId);
+  ShuffleDeckForFixedDuelist(ownerFixed);
+}
+
+static void DestroyAllFieldCards(void)
+{
+  u8 fixedRow;
+  u8 col;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_BACKROW; fixedRow++) {
+    u8 ownerFixed = (fixedRow == OPPONENT_MONSTER_ROW || fixedRow == OPPONENT_BACKROW)
+        ? DUEL_OPPONENT
+        : DUEL_PLAYER;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (zone == NULL || zone->id == CARD_NONE)
+        continue;
+
+      if (Duel_DestroyZone(zone, Duel_TurnDuelistForFixedDuelist(ownerFixed), FALSE)
+          == DUEL_ACTION_DUEL_OVER)
+        return;
+
+      if (IsDuelOver() == TRUE)
+        return;
+    }
+  }
+}
+
+static void ShuffleFieldCards(u8 skipChaosNeos)
+{
+  u8 fixedRow;
+  u8 col;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_BACKROW; fixedRow++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (zone == NULL || zone->id == CARD_NONE)
+        continue;
+
+      if (skipChaosNeos && zone->id == ELEMENTAL_HERO_CHAOS_NEOS)
+        continue;
+
+      ShuffleZoneToDeck(zone, fixedRow);
+      if (IsDuelOver() == TRUE)
+        return;
+    }
+  }
+
+  NotifyDynamicEquipFieldChanged();
+}
+
+void TryApplyElementalHeroChaosNeosEndPhase(void)
+{
+  u8 heads;
+  u8 i;
+
+  if (!FieldHasChaosNeos())
+    return;
+
+  heads = 0;
+  for (i = 0; i < 3; i++) {
+    if (RandRangeU8(0, 1) == 1)
+      heads++;
+  }
+
+  Duel_ShowEffectTextTyped(ELEMENTAL_HERO_CHAOS_NEOS, 8);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (heads == 0) {
+    DestroyAllFieldCards();
+  } else if (heads == 1) {
+    ShuffleFieldCards(TRUE);
+  } else {
+    /* ponytail: 3H Set-all needs set-from-deck hook; 2H/3H both shuffle all. */
+    ShuffleFieldCards(FALSE);
+  }
+
+  UpdateDuelGfxExceptField();
 }

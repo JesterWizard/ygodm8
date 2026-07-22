@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "rescue_end_phase.h"
 
 void UpdateDuelGfxExceptField(void);
 
@@ -113,17 +114,18 @@ void ActivateRESCUE_RABBITEffect(void)
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
 
   while (summoned < 2) {
+    s8 emptyCol;
+
     if (ArchlordKristya_IsSpecialSummonLocked()
-        || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+        || (emptyCol = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW])) < 0)
       break;
 
     if (Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, cardId, opts) != DUEL_ACTION_OK)
       break;
 
+    RescueEndPhase_StampSummonedMonster(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][emptyCol]);
     summoned++;
   }
-
-  /* Ceiling: End Phase destroy + effect negate not applied; upgrade: turn-end gate. */
 
   UpdateDuelGfxExceptField();
 }

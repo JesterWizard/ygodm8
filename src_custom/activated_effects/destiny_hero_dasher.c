@@ -47,7 +47,7 @@ static void ResolveTributeTarget(u8 fixedRow, u8 fixedCol)
     return;
 
   /* Ceiling: battle DEF change + draw-phase GY SS need battle/draw hooks.
-   * Ceiling: OPT tribute 1 other → +2 tempStage (~1000 ATK until End Phase). */
+   * OPT tribute 1 other → +2 tempStage (~1000 ATK until EP via ResetTempStagesForAllCards). */
   if (self->tempStage < 126)
     self->tempStage += 2;
 

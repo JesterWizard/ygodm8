@@ -6,6 +6,8 @@
 #include "harpie_channeler.h"
 #include "summon_tribute.h"
 
+void UpdateDuelGfxExceptField(void);
+
 static const char sHarpieLadySistersName[] APPEND_RODATA = "Harpie Lady Sisters";
 static const char sHarpieName[] APPEND_RODATA = "Harpie";
 
@@ -183,4 +185,68 @@ void ActivateHARPIE_PERFUMER(void)
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
+}
+
+static u8 ControlsLevel5PlusHarpieForTurn(u8 turnDuelist)
+{
+  u8 monsterRow = turnDuelist == ACTIVE_DUELIST
+      ? ACTIVE_DUELIST_MONSTER_ROW
+      : INACTIVE_DUELIST_MONSTER_ROW;
+  u8 i;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    struct DuelCard *zone = gTurnZones[monsterRow][i];
+
+    if (!MonsterIsFaceUp(zone) || !IsHarpieMonster(zone->id))
+      continue;
+
+    SetCardInfo(zone->id);
+    if (gCardInfo.level >= 5)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+u8 HarpiePerfumer_TryAddSistersSpellTrapFromDeck(u8 turnDuelist)
+{
+  u16 cardId;
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return FALSE;
+
+  cardId = FindSistersMentionSpellTrapInDeck(turnDuelist, CARD_NONE);
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  return Duel_AddDeckCardToHand(turnDuelist, cardId, TRUE) == DUEL_ACTION_OK;
+}
+
+void TryApplyHarpieOracleEndPhase(void)
+{
+  u8 turnDuelist;
+
+  for (turnDuelist = 0; turnDuelist < 2; turnDuelist++) {
+    u8 monsterRow = turnDuelist == ACTIVE_DUELIST
+        ? ACTIVE_DUELIST_MONSTER_ROW
+        : INACTIVE_DUELIST_MONSTER_ROW;
+    u8 col;
+    u8 hasOracle = FALSE;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gTurnZones[monsterRow][col];
+
+      if (zone != NULL && zone->isFaceUp && zone->id == HARPIE_ORACLE)
+        hasOracle = TRUE;
+    }
+
+    if (!hasOracle || !ControlsLevel5PlusHarpieForTurn(turnDuelist))
+      continue;
+
+    if (HarpiePerfumer_TryAddSistersSpellTrapFromDeck(turnDuelist)) {
+      Duel_ShowEffectTextTyped(HARPIE_ORACLE, 8);
+      UpdateDuelGfxExceptField();
+      return;
+    }
+  }
 }

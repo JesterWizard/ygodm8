@@ -89,8 +89,8 @@ unsigned char CanActivateDESTINY_HERO_CAPTAIN_TENACIOUS(void)
   if (zone == NULL || zone->id != DESTINY_HERO_CAPTAIN_TENACIOUS)
     return FALSE;
 
-  /* Ceiling: Standby Phase + battle-destroyed-since-last-Standby filter need
-   * phase/destroy hooks. Ceiling: OPT SS 1 D-HERO from your GY. */
+  /* Standby GY SS via TryApplyDestinyHeroCaptainTenaciousStandby when a D-HERO
+   * was battle-destroyed since last Standby. OPT SS 1 D-HERO from your GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

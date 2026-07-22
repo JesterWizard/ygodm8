@@ -87,7 +87,7 @@ unsigned char CanActivateDIVINER_OF_THE_HERALD(void)
     return FALSE;
 
   /* Ceiling: on-NS/SS mill + tribute SS Fairy need summon/tribute hooks.
-   * Ceiling: OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in). */
+   * OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in until EP clear). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -107,7 +107,7 @@ void ActivateDIVINER_OF_THE_HERALDEffect(void)
   if (!SendFairyFromDeckToGraveyard(&level))
     return;
 
-  /* Ceiling: Level bump until EOT needs level-override hook; unkTwo stores milled Level. */
+  /* Level bump until EOT uses unkTwo; cleared via TryClearDivinerOfTheHeraldEndPhase. */
   self->unkTwo = (u8)level;
 
   MarkMonsterEffectUsed(self);

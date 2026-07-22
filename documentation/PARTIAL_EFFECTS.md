@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 18:27 UTC  
-**Remaining partials:** `361`
+**Last updated:** 2026-07-22 18:34 UTC  
+**Remaining partials:** `353`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 11 |
-| `activated` | 321 |
+| `activated` | 313 |
 | `permanent` | 23 |
-| **total** | **361** |
+| **total** | **353** |
 
 ## spell (6)
 
@@ -101,7 +101,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (321)
+## activated (313)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -217,8 +217,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AROMAGE_BERGAMOT`
 - path: `src_custom/activated_effects/aromage_bergamot.c`
-- L22: * Ceiling: LP-gain gate + until opp EP clear need permanent/LP hooks.
-- L23: * Ceiling: OPT +2 tempStage (~1000 ATK/DEF). */
+- L22: * Ceiling: LP-gain gate need permanent/LP hooks.
 
 ### `AROMAGE_CANANGA`
 - path: `src_custom/activated_effects/aromage_cananga.c`
@@ -423,7 +422,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DARKLORD_DESIRE`
 - path: `src_custom/activated_effects/darklord_desire.c`
-- L56: -2 tempStage (~1000 ATK, not exact); until EP clear needs EOT hook.
 - L116: Fairy-only Tribute Summon + cannot SS need summon hooks. Ceiling: OPT -1000 ATK (tempStage) → send 1 opp monster to GY.
 
 ### `DARKNESS_NEOSPHERE`
@@ -447,10 +445,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/destiny_hero_blade_master.c`
 - L89: opponent Battle Phase gate not wired; allow when face-up D-HERO on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook.
 
-### `DESTINY_HERO_CAPTAIN_TENACIOUS`
-- path: `src_custom/activated_effects/destiny_hero_captain_tenacious.c`
-- L92: Standby Phase + battle-destroyed-since-last-Standby filter need phase/destroy hooks. Ceiling: OPT SS 1 D-HERO from your GY.
-
 ### `DESTINY_HERO_CELESTIAL`
 - path: `src_custom/activated_effects/destiny_hero_celestial.c`
 - L101: attack-declare destroy + GY draw-if-no-hand need battle/GY hooks. Ceiling: OPT destroy 1 face-up opp Spell + burn 500.
@@ -461,7 +455,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DASHER`
 - path: `src_custom/activated_effects/destiny_hero_dasher.c`
-- L49: battle DEF change + draw-phase GY SS need battle/draw hooks. Ceiling: OPT tribute 1 other → +2 tempStage (~1000 ATK until End Phase).
+- L49: battle DEF change + draw-phase GY SS need battle/draw hooks. OPT tribute 1 other → +2 tempStage (~1000 ATK until EP via ResetTempStagesForAllCards).
 
 ### `DESTINY_HERO_DECIDER`
 - path: `src_custom/activated_effects/destiny_hero_decider.c`
@@ -494,10 +488,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/destiny_hero_dominance.c`
 - L66: look+reorder UI missing; RandRange shuffle of top N is stand-in.
 - L89: battle-destroy draw + GY SS 3 D-HERO need battle/destroy hooks. Ceiling: OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in.
-
-### `DESTINY_HERO_DOOM_LORD`
-- path: `src_custom/activated_effects/destiny_hero_doom_lord.c`
-- L67: * Ceiling: return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster. */
 
 ### `DESTINY_HERO_DREADNOUGHT_MASTER`
 - path: `src_custom/activated_effects/destiny_hero_dreadnought_master.c`
@@ -541,8 +531,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DIVINER_OF_THE_HERALD`
 - path: `src_custom/activated_effects/diviner_of_the_herald.c`
-- L89: on-NS/SS mill + tribute SS Fairy need summon/tribute hooks. Ceiling: OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in).
-- L110: Level bump until EOT needs level-override hook; unkTwo stores milled Level.
+- L89: on-NS/SS mill + tribute SS Fairy need summon/tribute hooks. OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in until EP clear).
 
 ### `EBON_ILLUSION_MAGICIAN`
 - path: `src_custom/activated_effects/ebon_illusion_magician.c`
@@ -567,11 +556,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ELEMENTAL_HERO_CHAOS_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_chaos_neos.c`
-- L88: EP shuffle/Set-all + exact 3H/2H/1H/0H branch table FALSE. Ceiling: OPT 3 coin → destroy heads-count opp monsters.
-
-### `ELEMENTAL_HERO_COSMO_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_cosmo_neos.c`
-- L72: activation lock / End Phase field wipe FALSE. Ceiling: OPT destroy all opp Spell/Trap.
+- L241: 3H Set-all needs set-from-deck hook; 2H/3H both shuffle all.
 
 ### `ELEMENTAL_HERO_DARK_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_dark_neos.c`
@@ -588,10 +573,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ELEMENTAL_HERO_MAGMA_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_magma_neos.c`
 - L42: /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT refresh
-
-### `ELEMENTAL_HERO_NEBULA_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_nebula_neos.c`
-- L115: Extra SS trigger + EP banish field FALSE. Ceiling: OPT draw = opp card count, then mark 1 face-up negated.
 
 ### `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN`
 - path: `src_custom/activated_effects/elemental_hero_shining_neos_wingman.c`
@@ -838,10 +819,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `HARPIE_HARPIST`
 - path: `src_custom/activated_effects/harpie_harpist.c`
 - L124: NS trigger + GY End Phase search need separate hooks. OPT bounce own WB + opp face-up, else OPT add Harpie from Deck.
-
-### `HARPIE_ORACLE`
-- path: `src_custom/activated_effects/harpie_oracle.c`
-- L125: * Ceiling: End Phase Sisters S/T add need EP hook. */
 
 ### `HELSHADDOLL_HOLLOW`
 - path: `src_custom/activated_effects/helshaddoll_hollow.c`
@@ -1182,14 +1159,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/reptilianne_vaskii.c`
 - L192: * Ceiling: OPT destroy 1 face-up opp monster. */
 
-### `RESCUE_CAT`
-- path: `src_custom/activated_effects/rescue_cat.c`
-- L123: negated effects + End Phase destroy not applied; upgrade: summon flags + turn-end cleanup gate.
-
-### `RESCUE_RABBIT`
-- path: `src_custom/activated_effects/rescue_rabbit.c`
-- L126: End Phase destroy + effect negate not applied; upgrade: turn-end gate.
-
 ### `RINYAN_LIGHTSWORN_ROGUE`
 - path: `src_custom/activated_effects/rinyan_lightsworn_rogue.c`
 - L41: /* FLIP trigger needs flip hook. Ceiling: once via usage if LS in GY. */
@@ -1289,10 +1258,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `THE_AGENT_OF_LIFE_NEPTUNE`
 - path: `src_custom/activated_effects/the_agent_of_life_neptune.c`
 - L161: * Ceiling: FromHand discard self → SS Agent (or Hyperion if Sanctuary). */
-
-### `THE_AGENT_OF_MIRACLES_JUPITER`
-- path: `src_custom/activated_effects/the_agent_of_miracles_jupiter.c`
-- L133: * FALSE. Ceiling: banish Agent from GY → +2 tempStage on LIGHT Fairy. */
 
 ### `THE_AGENT_OF_MYSTERU_EARTH`
 - path: `src_custom/activated_effects/the_agent_of_mysteru_earth.c`

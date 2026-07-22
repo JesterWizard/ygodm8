@@ -122,7 +122,7 @@ unsigned char CanActivateHARPIE_ORACLE(void)
     return FALSE;
 
   /* Name=Harpie Lady via HarpiePerfumer_TreatsNameAsHarpieLady; OPT GY add below.
-   * Ceiling: End Phase Sisters S/T add need EP hook. */
+   * EP Sisters S/T add via TryApplyHarpieOracleEndPhase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

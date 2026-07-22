@@ -2,12 +2,15 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+#define NEBULA_NEOS_EP_PENDING 1
 
 static u8 CountOppFieldCards(void)
 {
@@ -69,8 +72,10 @@ static void ResolveNegateTarget(u8 fixedRow, u8 fixedCol)
 
   zone->unk4 |= 0x80;
 
-  if (self != NULL)
+  if (self != NULL) {
+    self->unkTwo = NEBULA_NEOS_EP_PENDING;
     MarkMonsterEffectUsed(self);
+  }
 
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
@@ -112,8 +117,8 @@ unsigned char CanActivateELEMENTAL_HERO_NEBULA_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_NEBULA_NEOS)
     return FALSE;
 
-  /* Ceiling: Extra SS trigger + EP banish field FALSE.
-   * Ceiling: OPT draw = opp card count, then mark 1 face-up negated. */
+  /* Extra SS trigger FALSE. OPT draw = opp card count + negate via targeting;
+   * EP banish field via TryApplyElementalHeroNebulaNeosEndPhase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -136,7 +141,10 @@ void ActivateELEMENTAL_HERO_NEBULA_NEOSEffect(void)
       return;
   }
 
+  self->unkTwo = NEBULA_NEOS_EP_PENDING;
+
   if (!FieldHasFaceUpNegateTarget()) {
+    self->unkTwo = NEBULA_NEOS_EP_PENDING;
     MarkMonsterEffectUsed(self);
     UpdateDuelGfxExceptField();
     return;
@@ -151,4 +159,48 @@ void ActivateELEMENTAL_HERO_NEBULA_NEOSEffect(void)
     Duel_EnterPickZoneTargeting();
   else
     Duel_ResolvePickZoneForAi();
+}
+
+void TryApplyElementalHeroNebulaNeosEndPhase(void)
+{
+  u8 fixedRow;
+  u8 col;
+  u8 pending = FALSE;
+  u8 changed = FALSE;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_BACKROW; fixedRow++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (zone != NULL && zone->id == ELEMENTAL_HERO_NEBULA_NEOS
+          && zone->unkTwo == NEBULA_NEOS_EP_PENDING)
+        pending = TRUE;
+    }
+  }
+
+  if (!pending)
+    return;
+
+  Duel_ShowEffectTextTyped(ELEMENTAL_HERO_NEBULA_NEOS, 8);
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_BACKROW; fixedRow++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (zone == NULL || zone->id == CARD_NONE)
+        continue;
+
+      if (Duel_BanishZone(zone, FALSE) == DUEL_ACTION_DUEL_OVER)
+        return;
+
+      changed = TRUE;
+      if (IsDuelOver() == TRUE)
+        return;
+    }
+  }
+
+  if (changed) {
+    NotifyDynamicEquipFieldChanged();
+    UpdateDuelGfxExceptField();
+  }
 }
