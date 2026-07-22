@@ -112,7 +112,7 @@ unsigned char CanActivateDESTINY_HERO_DECIDER(void)
     return FALSE;
 
   /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. Ceiling: GY quick
-   * return-on-damage need chain hook. Ceiling: OPT add 1 HERO from GY to hand. */
+   * return-on-damage need chain hook. OPT add 1 HERO from GY to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

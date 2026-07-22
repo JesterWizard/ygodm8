@@ -1,8 +1,11 @@
 #include "global.h"
+#include "apprentice_illusion_magician.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
 
@@ -84,26 +87,65 @@ static u16 FindDarkMagicianInDeck(void)
   return CARD_NONE;
 }
 
-static u8 AddDarkMagicianFromDeckToHand(void)
+static u8 AddDarkMagicianFromDeckToHandFor(u8 turnDuelist)
 {
   s16 deckIndex;
   s8 handZone;
 
-  handZone = FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]);
+  handZone = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
   if (handZone < 0)
     return FALSE;
 
-  deckIndex = Duel_FindDeckCardIndex(ACTIVE_DUELIST, DARK_MAGICIAN);
+  deckIndex = Duel_FindDeckCardIndex(turnDuelist, DARK_MAGICIAN);
   if (deckIndex < 0)
     return FALSE;
 
-  if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
+  if (Duel_RemoveDeckCardAt(turnDuelist, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
     return FALSE;
 
-  Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
+  Duel_ShuffleDeckFromDrawn(turnDuelist);
   InitHandSlotFromCard(
-      SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], (u8)handZone), DARK_MAGICIAN);
+      SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)handZone), DARK_MAGICIAN);
   return TRUE;
+}
+
+static u8 AddDarkMagicianFromDeckToHand(void)
+{
+  return AddDarkMagicianFromDeckToHandFor(ACTIVE_DUELIST);
+}
+
+void TryApprenticeIllusionMagicianOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != APPRENTICE_ILLUSION_MAGICIAN)
+    return;
+
+  if (EffectOpt_IsUsed(APPRENTICE_ILLUSION_MAGICIAN))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+                    ? ACTIVE_DUELIST
+                    : INACTIVE_DUELIST;
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return;
+
+  if (Duel_FindDeckCardIndex(turnDuelist, DARK_MAGICIAN) < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(APPRENTICE_ILLUSION_MAGICIAN, 8);
+
+  if (!AddDarkMagicianFromDeckToHandFor(turnDuelist))
+    return;
+
+  EffectOpt_MarkUsed(APPRENTICE_ILLUSION_MAGICIAN);
+  UpdateDuelGfxExceptField();
 }
 
 unsigned char CanActivateAPPRENTICE_ILLUSION_MAGICIAN(void)
@@ -117,8 +159,12 @@ unsigned char CanActivateAPPRENTICE_ILLUSION_MAGICIAN(void)
   if (zone == NULL || zone->id != APPRENTICE_ILLUSION_MAGICIAN)
     return FALSE;
 
-  /* OPT add Dark Magician from Deck.
-   * Ceiling: on-NS/SS search auto + hand/field send +2000 Quick need summon/damage hooks. */
+  /* On-NS/SS search via TryApprenticeIllusionMagicianOnMonsterPlacement (EffectOpt).
+   * OPT add Dark Magician from Deck (shares EffectOpt with on-summon).
+   * Ceiling: hand/field send +2000 Quick need damage hooks. */
+  if (EffectOpt_IsUsed(APPRENTICE_ILLUSION_MAGICIAN))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -140,6 +186,7 @@ void ActivateAPPRENTICE_ILLUSION_MAGICIANEffect(void)
   if (!AddDarkMagicianFromDeckToHand())
     return;
 
+  EffectOpt_MarkUsed(APPRENTICE_ILLUSION_MAGICIAN);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

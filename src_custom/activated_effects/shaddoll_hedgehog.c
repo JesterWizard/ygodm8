@@ -110,7 +110,7 @@ unsigned char CanActivateSHADDOLL_HEDGEHOG(void)
     return FALSE;
 
   /* FLIP S/T vs GY-sent monster exclusivity + trigger hooks deferred.
-   * Ceiling: OPT search 1 Shaddoll S/T or monster from Deck once via usage. */
+   * OPT search 1 Shaddoll S/T or monster from Deck once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -62,7 +62,7 @@ unsigned char CanActivateDESTINY_HERO_DRILLDARK(void)
     return FALSE;
 
   /* Pierce via ApplySimplePiercersBattleEffect.
-   * Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK. */
+   * OPT SS 1 D-HERO from hand with ATK≤ this card's ATK. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

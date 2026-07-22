@@ -107,7 +107,7 @@ unsigned char CanActivateTHE_AGENT_OF_MYSTERU_EARTH(void)
   if (zone == NULL || zone->id != THE_AGENT_OF_MYSTERU_EARTH)
     return FALSE;
 
-  /* Ceiling: OPT add 1 The Agent except Earth from Deck, or Master Hyperion if Sanctuary is face-up. */
+  /* OPT add 1 The Agent except Earth from Deck, or Master Hyperion if Sanctuary is face-up. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -57,7 +57,7 @@ unsigned char CanActivateREESHADDOLL_WENDI(void)
     return FALSE;
 
   /* FLIP vs sent-by-effect face-down DEF branches need flip/send hooks.
-   * Ceiling: OPT SS 1 other Shaddoll from Deck face-up DEF. */
+   * OPT SS 1 other Shaddoll from Deck face-up DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

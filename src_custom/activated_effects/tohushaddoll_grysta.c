@@ -20,7 +20,7 @@ unsigned char CanActivateTOHUSHADDOLL_GRYSTA(void)
     return FALSE;
 
   /* FLIP copy + GY Fusion-by-banish need flip/GY hooks.
-   * Ceiling: OPT add Shaddoll Fusion from Deck. */
+   * OPT add Shaddoll Fusion from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

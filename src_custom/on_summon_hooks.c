@@ -15,6 +15,8 @@ void TryDestinyHeroDrilldarkOnMonsterPlacement(struct DuelCard *zone);
 void TryHeroKidOnMonsterPlacement(struct DuelCard *zone);
 void TryDestinyHeroDreadmasterOnMonsterPlacement(struct DuelCard *zone);
 void TryDestinyHeroDrawhandOnMonsterPlacement(struct DuelCard *zone);
+void TryApprenticeIllusionMagicianOnMonsterPlacement(struct DuelCard *zone);
+void TryGravekeepersHeadmanOnMonsterPlacement(struct DuelCard *zone);
 
 void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
 {
@@ -35,4 +37,6 @@ void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
   TryHeroKidOnMonsterPlacement(zone);
   TryDestinyHeroDreadmasterOnMonsterPlacement(zone);
   TryDestinyHeroDrawhandOnMonsterPlacement(zone);
+  TryApprenticeIllusionMagicianOnMonsterPlacement(zone);
+  TryGravekeepersHeadmanOnMonsterPlacement(zone);
 }

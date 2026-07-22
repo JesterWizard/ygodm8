@@ -58,7 +58,7 @@ unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_MASTER(void)
     return FALSE;
 
   /* Ceiling: SS trigger → OPT ignition; cards-mentioning-D-HERO FALSE.
-   * Ceiling: OPT add up to 2 Destiny HERO from Deck. */
+   * OPT add up to 2 Destiny HERO from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

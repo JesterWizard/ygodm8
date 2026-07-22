@@ -91,7 +91,7 @@ unsigned char CanActivateSHADDOLL_HOUND(void)
     return FALSE;
 
   /* FLIP vs sent-by-effect battle-position branch need flip/send hooks.
-   * Ceiling: OPT add 1 Shaddoll from GY to hand. */
+   * OPT add 1 Shaddoll from GY to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

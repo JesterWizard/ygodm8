@@ -187,7 +187,7 @@ unsigned char CanActivateDESTINY_HERO_DENIER(void)
     return FALSE;
 
   /* Ceiling: GY SS when other D-HERO present needs GY/once-per-duel hooks.
-   * Ceiling: OPT put 1 D-HERO from Deck/GY/banished on top of Deck. */
+   * OPT put 1 D-HERO from Deck/GY/banished on top of Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
