@@ -172,8 +172,8 @@ unsigned char CanActivateAROMAGE_CANANGA(void)
     return FALSE;
 
   /* Continuous -500 via ApplyAromageCanangaStatPenaltyToCardInfo.
-   * Ceiling: LP-gain bounce trigger needs LP hook.
-   * Ceiling: OPT bounce 1 opp Spell/Trap if hand room. */
+   * LP-gain bounce via AromaLpGain (EFFECT_EVENT_ON_LP_GAIN + EffectOpt).
+   * OPT bounce 1 opp Spell/Trap if hand room (ignition). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

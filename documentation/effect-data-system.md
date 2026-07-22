@@ -129,8 +129,10 @@ Do not delete `ponytail:` until the surface exists. Do not clone summon/destroy/
 | Phase 2 selectors | [`effect_selectors.h`](../include/effect_selectors.h) / [`effect_selectors.c`](../src_custom/effect_system/effect_selectors.c) | First/exists on field; AI first-match |
 | Phase 2 pilots | `d_burst.c`, `dragon_spirit_of_white.c` | Shared PickZone validators |
 | Phase 3 events | [`effect_events.h`](../include/effect_events.h) / [`effect_events.c`](../src_custom/effect_system/effect_events.c) | Subscribe/Emit + OPT; `Emit` → `Effect_DispatchEvent` |
-| Phase 3 emit sites | `duel_helpers.c`, `battle_damage_hooks.c`, `turn_effect_hooks.c` | Summon / destroy / battle-destroy / turn boundary |
+| Phase 3 emit sites | `duel_helpers.c`, `battle_damage_hooks.c`, `turn_effect_hooks.c`, `spell_effect_hooks.c` | Summon / destroy / battle-destroy / turn boundary / LP / card activate |
 | Phase 3 OPT pilots | `amazoness_call.c`, `d_burst.c` | `EffectOpt_*` cleared on turn boundary |
+| Phase 3+ LP / activate | `EFFECT_EVENT_ON_LP_GAIN`/`ON_LP_LOSS`/`ON_CARD_ACTIVATE` + negate latch | `Duel_ChangeLp` → `EmitLpChange`; activate → `EmitCardActivate` + `ConsumeActivationNegate` |
+| Phase 3+ LP pilots | `aroma_lp_gain.c` (Bergamot / Cananga / Jasmine) | OPT via `EffectOpt_*` on LP gain |
 | Phase 4 scripts | [`effect_scripts.h`](../include/effect_scripts.h) / [`effect_scripts.c`](../src_custom/effect_system/effect_scripts.c) | Step tables = **operation backend** for ACTIVATE Effects |
 | Phase 4 pilots | One Day of Peace, Pot of Greed, Grand Convergence | Routed via CCTO → `EffectOp_RunScript` |
 | Phase 5 AI meta | `EffectMeta_GetCategory` + `AiMod_EffectSemantics` in [`ai_modifiers.c`](../src_custom/ai_decision/ai_modifiers.c) | Prefers `Effect_GetCategory`; legacy fallback |
@@ -165,14 +167,17 @@ No Lua/VM. JSON scripts remain optional codegen for simple activate **steps**; c
 - [x] CCTO core + registry bridge for all scripted activates + damage-calc continuous
 - [x] Heavy Storm / Final Destiny / Crush Card pack (+8 board/LP spells → 41 scripts)
 - [x] Custom ID≥801 CCTO pack (14 continuous/resolve → 55 scripts)
+- [x] Phase 3+ bus: `ON_LP_GAIN` / `ON_LP_LOSS` / `ON_CARD_ACTIVATE` + activation-negate latch (Aroma LP pilots)
 - [ ] Migrate remaining LynJump/custom effects onto `struct Effect` rows (escape hatch = custom op)
 - [ ] Next ≥10: coin/draw/discard composites (Cup of Ace, Graceful Charity, Card Destruction) or OPT/battle surfaces
+- [ ] Full TCG-style chain / Speed (still non-goal for early phases; activate latch is lightweight only)
+- [ ] Extra Deck model (Xyz / Link / Synchro) — deferred engine surface
 
 ## Limitations & Bugs
 
 - Activate/query/has/category use a **cardId-sorted index** (binary search); event dispatch uses **per-event lists**. Built once in `EnsureIndexes`. Empty `EFFECT_KIND_*` still early-out via kind-presence bits.
 - **Stat overlay performance:** `ApplyFieldZoneStatsToCardInfo` may call dozens of `Apply*` helpers per monster. New continuous ATK/DEF overlays **must** use `Duel_FindBackrowCard*` / `Duel_IsBackrowCardOnField` (face-up) so they hit `Duel_BeginFaceUpBackrowCache`, and must check field presence **before** `Duel_CardNameContains` / `SetCardInfo`. Do not hand-loop both backrows inside an overlay. Rule: `.cursor/rules/stat-overlay-perf.mdc`.
-- Until Phase 3, continuous/trigger ceilings in PARTIAL_EFFECTS will keep growing as agents implement stand-in bodies.
+- Continuous/trigger ceilings in PARTIAL_EFFECTS shrink as Phase 3+ surfaces land; Extra Deck / full chain remain deferred.
 - C-table scripts (2A) still need merge discipline; they do not by themselves make “thousands of cards” cheap — that is the 2B authoring step.
 - Burn/heal script args must not stash in `APPEND_DATA` (ROM) — use `Duel_TryResolveBurn/HealSpellThroughTraps` helpers.
 - Metadata for AI is useless until categories are stable and populated; do not block Phases 0–3 on AI work.
@@ -180,3 +185,4 @@ No Lua/VM. JSON scripts remain optional codegen for simple activate **steps**; c
 - Further damage-calc subscribers (Supreme King's Castle OPT send, piercing, etc.) remain card-specific battle_effects work.
 - CCTO does **not** mean every card is converted — only registry rows + legacy fallthrough.
 - `EffectCondFn` / `EffectOpFn` in conditions/ops headers are **opcode registries**; CCTO uses `EffectCheckFn` / `EffectResolveFn` to avoid the name clash.
+- `ON_CARD_ACTIVATE` + `RequestActivationNegate` is a one-shot latch before resolve — not a multi-link chain.

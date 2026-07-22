@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 18:45 UTC  
-**Remaining partials:** `347`
+**Last updated:** 2026-07-22 18:50 UTC  
+**Remaining partials:** `345`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 11 |
-| `activated` | 308 |
+| `activated` | 306 |
 | `permanent` | 22 |
-| **total** | **347** |
+| **total** | **345** |
 
 ## spell (6)
 
@@ -101,7 +101,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (308)
+## activated (306)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -211,19 +211,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/armory_arm.c`
 - L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
 
-### `AROMAGE_BERGAMOT`
-- path: `src_custom/activated_effects/aromage_bergamot.c`
-- L22: * Ceiling: LP-gain gate need permanent/LP hooks.
-
-### `AROMAGE_CANANGA`
-- path: `src_custom/activated_effects/aromage_cananga.c`
-- L175: * Ceiling: LP-gain bounce trigger needs LP hook.
-- L176: * Ceiling: OPT bounce 1 opp Spell/Trap if hand room. */
-
 ### `AROMAGE_JASMINE`
 - path: `src_custom/activated_effects/aromage_jasmine.c`
-- L57: * Ceiling: extra Plant Normal Summon + draw-on-LP-gain need LP/summon hooks.
-- L58: * Ceiling: OPT draw 1 via usage. */
+- L58: * Ceiling: extra Plant Normal Summon needs second NS allowance. */
 
 ### `AROMAGE_LAUREL`
 - path: `src_custom/activated_effects/aromage_laurel.c`

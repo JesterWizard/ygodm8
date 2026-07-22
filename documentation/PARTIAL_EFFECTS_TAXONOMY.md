@@ -7,17 +7,17 @@ Each `ponytail:` / `Ceiling:` note is tagged with its **primary missing engine s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 18:45 UTC  
-**Ceiling lines tagged:** `384`  
-**Partial files:** `347`
+**Last updated:** 2026-07-22 18:50 UTC  
+**Ceiling lines tagged:** `380`  
+**Partial files:** `345`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `event.OnStandby` | 173 | 3 (OPT / turn flags) |
-| `other` | 98 | triage |
-| `event.OnSummon` | 18 | 3 |
+| `event.OnStandby` | 171 | 3 (OPT / turn flags) |
+| `other` | 99 | triage |
+| `event.OnSummon` | 17 | 3 |
 | `extra.XyzLinkSynchro` | 17 | later / Extra Deck |
 | `chain.Negate` | 14 | later / chain |
 | `gate.Tribute` | 14 | 2–3 |
@@ -28,9 +28,9 @@ python3 tools/stub_effect_queue.py --write-list
 | `event.OnBattleDestroy` | 5 | 3 |
 | `ui.Choice` | 5 | 2 |
 | `event.OnFusionSummon` | 3 | 3 (fusion callback) |
-| `event.OnLpGain` | 3 | later / LP event |
+| `event.OnLpGain` | 1 | later / LP event |
 | `stat.Continuous` | 1 | 1–3 |
-| **total** | **384** | |
+| **total** | **380** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -54,12 +54,11 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `EVIL_HERO_VICIOUS_CLAWS` (activated): L46: GY destroy-revive + Dark Fusion destroy branch need GY/destroy hooks. Ceiling: FromHand target HERO → SS DEF +300 ATK stand-in.
 - `GLADIATOR_BEAST_DARIUS` (activated): L177: /* GB-tag SS revive + leave-field shuffle need summon/leave hooks. Ceiling: OPT
 
-## `event.OnSummon` (18)
+## `event.OnSummon` (17)
 
 - `SHADDOLL_SCHISM` (trap): L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker; banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
 - `ANCIENT_GEAR_KNIGHT` (activated): L13: * Ceiling: Gemini Normal Monster treatment need summon hook. */
 - `ARCANA_FORCE_XV_THE_FIEND` (activated): L271: on-summon heads auto-picks first destroyable opp monster.
-- `AROMAGE_JASMINE` (activated): L57: * Ceiling: extra Plant Normal Summon + draw-on-LP-gain need LP/summon hooks.
 - `BLACK_ROSE_DRAGON` (activated): L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
 - `DARKLORD_DESIRE` (activated): L116: Fairy-only Tribute Summon + cannot SS need summon hooks. Ceiling: OPT -1000 ATK (tempStage) → send 1 opp monster to GY.
 - `DESTINY_HERO_DUSKTOPIA` (activated): L47: * TryClearDestinyHeroDusktopiaProtectionEndPhase. Ceiling: Fusion on Summon
@@ -81,7 +80,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLADIATOR_BEAST_GYZARUS` (activated): L175: * Ceiling: Contact Fusion SS destroy trigger + Extra Deck return. */
 - `GLADIATOR_BEAST_ESSEDARII` (permanent): L8: Contact Fusion has no permanent ignition path.
 
-## `event.OnStandby` (173)
+## `event.OnStandby` (171)
 
 - `DARK_SUPREMACY` (trap): L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
 - `AMAZONESS_PET_LIGER_KING` (activated): L191: OPT destroy Amazoness → SS Warrior GY. Residual: attack redirect FALSE.
@@ -102,8 +101,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ARCANA_FORCE_XV_THE_FIEND` (activated): L206: discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field.
 - `ARCANITE_MAGICIAN` (activated): L158: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. Ceiling: OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card.
 - `ARMED_NEOS` (activated): L258: * Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY. */
-- `AROMAGE_CANANGA` (activated): L176: * Ceiling: OPT bounce 1 opp Spell/Trap if hand room. */
-- `AROMAGE_JASMINE` (activated): L58: * Ceiling: OPT draw 1 via usage. */
 - `AROMAGE_LAUREL` (activated): L66: OPT add 1 Plant from Deck. Residual: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks.
 - `AROMAGE_MARJORAM` (activated): L180: * Ceiling: destroy-SS + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish opp GY. */
 - `AROMAGE_ROSEMARY` (activated): L125: LP-higher Plant attack → opp monster effects locked + LP-gain gate need permanent/LP hooks. Ceiling: OPT change 1 face-up battle position.
@@ -269,11 +266,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `POSEIDRA_THE_ATLANTEAN_DRAGON` (activated): L284: /* hand SS uses FromHand path. Ceiling: GY ignition like Malicious. */
 - `YAMORIMORI` (activated): L124: /* GY ignition needs GY-menu wire. Ceiling: banish self from GY +
 
-## `event.OnLpGain` (3)
+## `event.OnLpGain` (1)
 
 - `AMAZONESS_HALL` (trap): L43: * Ceiling: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
-- `AROMAGE_BERGAMOT` (activated): L22: * Ceiling: LP-gain gate need permanent/LP hooks.
-- `AROMAGE_CANANGA` (activated): L175: * Ceiling: LP-gain bounce trigger needs LP hook.
 
 ## `extra.XyzLinkSynchro` (17)
 
@@ -362,7 +357,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `MORPHTRONIC_SMARTFON` (activated): L228: reveal UI FALSE; ATK die excavate add; DEF GY add Morphtronic. FromHand: banish Morphtronic GY → SS.
 - `DESTINY_HERO_DOOM_OVERLORD` (permanent): L327: banish-until-Standby = permanent banish; DARK HERO SS lock not wired.
 
-## `other` (98)
+## `other` (99)
 
 - `FUSION_DESTINY` (spell): L34: * Ceiling: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 - `FUSION_DESTINY` (spell): L36: * Ceiling: Destiny End Dragoon only; upgrade: add remaining Destiny HERO Fusion
@@ -377,6 +372,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ANCIENT_GEAR_GADJILTRON_CHIMERA` (activated): L13: * Ceiling: not ignition-activatable. */
 - `ARCANA_FORCE_V_THE_HIEROPHANT` (activated): L189: discard only; opp cannot respond to Arcana Summons needs turn flag hook.
 - `ARCANA_FORCE_XIX_THE_SUN` (activated): L137: requires coin-toss card on field — skipped; SS anytime when legal.
+- `AROMAGE_JASMINE` (activated): L58: * Ceiling: extra Plant Normal Summon needs second NS allowance. */
 - `ATLANTEAN_MARKSMAN` (activated): L149: * Ceiling: sent-for-WATER destroy Set S/T needs send hook. */
 - `CHIMERATECH_FORTRESS_DRAGON` (activated): L13: * Ceiling: not field-ignition activatable here. */
 - `CHIMERATECH_MEGAFLEET_DRAGON` (activated): L13: * Ceiling: not field-ignition activatable here. */

@@ -7,7 +7,7 @@ Entries disappear when the effect body is implemented (re-run `--write-list`).
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 18:45 UTC  
+**Last updated:** 2026-07-22 18:50 UTC  
 **Remaining stubs:** `0`
 
 ## Counts by kind

@@ -56,11 +56,13 @@
 #include "green_baboon_defender_of_the_forest.h"
 #include "crimson_blader.h"
 #include "destiny_hero_captain_tenacious.h"
+#include "aroma_lp_gain.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
 extern u16 gEffectOptUsedIds[EFFECT_OPT_MAX_CARDS];
 extern u8 gEffectOptUsedCount;
+extern u8 gEffectActivationNegated;
 
 void DestinyHeroFearMonger_EnsureInit(void);
 void DestinyHeroCaptainTenacious_EnsureInit(void);
@@ -113,6 +115,7 @@ void EffectEvent_EnsureInit(void)
   Babycerasaurus_EnsureInit();
   GravekeepersRecruiter_EnsureInit();
   GreenBaboon_EnsureInit();
+  AromaLpGain_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 
@@ -169,6 +172,7 @@ void EffectEvent_EmitSimple(u8 eventId, u16 cardId, struct DuelCard *zone)
   ev.col = 0xFF;
   ev.controller = 0xFF;
   ev.flags = 0;
+  ev.param = 0;
   ev.zone = zone;
 
   if (zone != NULL && Duel_FindFixedZone(zone, &fixedRow, &col)) {
@@ -181,6 +185,74 @@ void EffectEvent_EmitSimple(u8 eventId, u16 cardId, struct DuelCard *zone)
   }
 
   EffectEvent_Emit(&ev);
+}
+
+void EffectEvent_EmitLpChange(u8 controller, s32 delta)
+{
+  struct EffectEvent ev;
+  u32 mag;
+
+  if (delta == 0 || controller > DUEL_OPPONENT)
+    return;
+
+  if (delta < 0)
+    mag = (u32)(-delta);
+  else
+    mag = (u32)delta;
+  if (mag > 0xFFFF)
+    mag = 0xFFFF;
+
+  ev.type = (delta > 0) ? EFFECT_EVENT_ON_LP_GAIN : EFFECT_EVENT_ON_LP_LOSS;
+  ev.cardId = CARD_NONE;
+  ev.fixedRow = 0xFF;
+  ev.col = 0xFF;
+  ev.controller = controller;
+  ev.flags = 0;
+  ev.param = (u16)mag;
+  ev.zone = NULL;
+  EffectEvent_Emit(&ev);
+}
+
+void EffectEvent_EmitCardActivate(u16 cardId, struct DuelCard *zone, u8 activateFlags)
+{
+  struct EffectEvent ev;
+  u8 fixedRow;
+  u8 col;
+
+  gEffectActivationNegated = FALSE;
+
+  ev.type = EFFECT_EVENT_ON_CARD_ACTIVATE;
+  ev.cardId = cardId;
+  ev.fixedRow = 0xFF;
+  ev.col = 0xFF;
+  ev.controller = WhoseTurn();
+  ev.flags = activateFlags;
+  ev.param = 0;
+  ev.zone = zone;
+
+  if (zone != NULL && Duel_FindFixedZone(zone, &fixedRow, &col)) {
+    ev.fixedRow = fixedRow;
+    ev.col = col;
+    if (Duel_IsFixedMonsterRow(fixedRow))
+      ev.controller = Duel_FixedDuelistForMonsterRow(fixedRow);
+    else
+      ev.controller = GetDuelistForZone(zone);
+  }
+
+  EffectEvent_Emit(&ev);
+}
+
+void EffectEvent_RequestActivationNegate(void)
+{
+  gEffectActivationNegated = TRUE;
+}
+
+u8 EffectEvent_ConsumeActivationNegate(void)
+{
+  u8 negated = gEffectActivationNegated;
+
+  gEffectActivationNegated = FALSE;
+  return negated;
 }
 
 void EffectOpt_ClearAll(void)
@@ -262,6 +334,7 @@ void EffectEvent_OnTurnBoundary(void)
   ev.col = 0xFF;
   ev.controller = WhoseTurn();
   ev.flags = 0;
+  ev.param = 0;
   ev.zone = NULL;
   EffectEvent_Emit(&ev);
 }

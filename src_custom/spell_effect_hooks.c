@@ -14,6 +14,7 @@
 #include "spirit_of_the_pot_of_greed.h"
 #include "duel_helpers.h"
 #include "effect_system.h"
+#include "effect_events.h"
 #include "field_barrier.h"
 #include "secret_village_of_the_spellcasters.h"
 #include "world_suppression.h"
@@ -217,6 +218,23 @@ static void ActivateSpellEffect__Body(void)
           PlayMusic(SFX_FORBIDDEN);
         return;
       }
+    }
+  }
+
+  {
+    u8 activateFlags = EFFECT_EVENT_ACTIVATE_SPELL;
+    struct DuelCard *actZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+
+    if (GetTypeGroup(gSpellEffectData.id) == TYPE_GROUP_TRAP)
+      activateFlags = EFFECT_EVENT_ACTIVATE_TRAP;
+
+    EffectEvent_EmitCardActivate(gSpellEffectData.id, actZone, activateFlags);
+    if (EffectEvent_ConsumeActivationNegate()) {
+      if (!gHideEffectText)
+        PlayMusic(SFX_FORBIDDEN);
+      if (actZone != NULL && actZone->id == gSpellEffectData.id)
+        Duel_DestroyZone(actZone, ACTIVE_DUELIST, TRUE);
+      return;
     }
   }
 

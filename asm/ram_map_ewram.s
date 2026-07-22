@@ -708,10 +708,12 @@ _kernel_malloc_ewram gBuyShopPackView, 1
 @ Per-pack remaining stock (max 16 packs; see NUM_CARD_PACKS).
 _kernel_malloc_ewram_array gBuyShopPackStock, 16
 
-@ Effect data system Phase 3: event subscribers + generic OPT card ids.
-@ Handlers: EFFECT_EVENT_COUNT(7) * EFFECT_EVENT_MAX_SUBSCRIBERS(16) * 4 = 448
-_kernel_malloc_ewram_array gEffectEventHandlers, 448
-_kernel_malloc_ewram_array gEffectEventHandlerCounts, 7
+@ Effect data system Phase 3+: event subscribers + generic OPT card ids.
+@ Handlers: EFFECT_EVENT_COUNT(10) * EFFECT_EVENT_MAX_SUBSCRIBERS(24) * 4 = 960
+_kernel_malloc_ewram_array gEffectEventHandlers, 960
+_kernel_malloc_ewram_array gEffectEventHandlerCounts, 10
 @ OPT: EFFECT_OPT_MAX_CARDS(48) * u16 = 96
 _kernel_malloc_ewram_array gEffectOptUsedIds, 96
 _kernel_malloc_ewram gEffectOptUsedCount, 1
+@ ON_CARD_ACTIVATE negate latch (1 byte)
+_kernel_malloc_ewram gEffectActivationNegated, 1

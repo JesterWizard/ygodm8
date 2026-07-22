@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Ceiling Round 14 Batch 6/6 (round complete)
+**Last worked on:** 2026-07-22 — Phase 3+ engine (LP gain / card activate)
 
-**Outcome:** Round 14 done. Partials **369→347** (Ceiling tracking on). B1 Augusta; B2 fusion callbacks; B3 on-summon; B4 EP/Standby; B5 battle; B6 name/target/NS. `make` OK.
+**Outcome:** `ON_LP_GAIN`/`ON_LP_LOSS`/`ON_CARD_ACTIVATE` + negate latch. `Duel_ChangeLp` + spell activate emit. Aroma Bergamot/Cananga/Jasmine LP pilots. Partials **347→345**. `make` OK.
 
-**Deferred (keep Ceiling until engine surfaces):** `chain.Negate`, `extra.XyzLinkSynchro`, `event.OnLpGain`, equip/token/Pendulum — see PARTIAL_EFFECTS_TAXONOMY.md.
+**Deferred:** full TCG chain (latch only); Extra Deck Xyz/Link/Synchro; Jasmine extra Plant NS.
 
-**Open / next:** Round 15 OPT/summon/battle sweeps; Phase 3 events for hard clusters.
+**Open / next:** Round 15 OPT/summon/battle sweeps; wire `RequestActivationNegate` pilots; Extra Deck later.

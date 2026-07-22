@@ -1251,6 +1251,7 @@ enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx)
   if (IsDuelOver() == TRUE)
     return DUEL_ACTION_DUEL_OVER;
 
+  EffectEvent_EmitLpChange(targetDuelist, delta);
   return DUEL_ACTION_OK;
 }
 
