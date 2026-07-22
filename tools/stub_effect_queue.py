@@ -1248,14 +1248,14 @@ def write_stub_list(
     return out_path
 
 
-_PONYTAIL_LINE = re.compile(
-    r"(?://|/\*)\s*ponytail:\s*(.+?)(?:\*/)?\s*$",
+_CEILING_LINE = re.compile(
+    r"(?://|/\*)\s*(?:ponytail|ceiling):\s*(.+?)(?:\*/)?\s*$",
     re.IGNORECASE,
 )
 
 
 def collect_ponytail_partials() -> list[dict]:
-    """Scan effect dirs for ponytail: ceilings (partial impl needing follow-up)."""
+    """Scan effect dirs for ponytail:/Ceiling: notes (partial impl needing follow-up)."""
     rows: list[dict] = []
     for kind, rel in EFFECT_DIRS:
         directory = ROOT / rel
@@ -1263,12 +1263,13 @@ def collect_ponytail_partials() -> list[dict]:
             continue
         for path in sorted(directory.glob("*.c")):
             text = path.read_text(encoding="utf-8", errors="replace")
-            if "ponytail:" not in text.lower():
+            lower = text.lower()
+            if "ponytail:" not in lower and "ceiling:" not in lower:
                 continue
             notes: list[str] = []
             # Capture single-line and start of block comments
             for i, line in enumerate(text.splitlines(), 1):
-                m = _PONYTAIL_LINE.search(line)
+                m = _CEILING_LINE.search(line)
                 if not m:
                     continue
                 note = m.group(1).strip()
@@ -1279,13 +1280,16 @@ def collect_ponytail_partials() -> list[dict]:
                         if cont_s.endswith("*/"):
                             note = (note + " " + cont_s[:-2].strip()).strip()
                             break
-                        if cont_s and not cont_s.lower().startswith("ponytail:"):
+                        if cont_s and not cont_s.lower().startswith(
+                            ("ponytail:", "ceiling:")
+                        ):
                             note = (note + " " + cont_s).strip()
                 notes.append(f"L{i}: {note}")
             if not notes:
-                # Fallback: any line containing ponytail
+                # Fallback: any line containing ponytail/ceiling marker
                 for i, line in enumerate(text.splitlines(), 1):
-                    if "ponytail:" in line.lower():
+                    low = line.lower()
+                    if "ponytail:" in low or "ceiling:" in low:
                         notes.append(f"L{i}: {line.strip()[:200]}")
             rows.append(
                 {
@@ -1299,7 +1303,7 @@ def collect_ponytail_partials() -> list[dict]:
 
 
 def write_partials_list(out_path: Path | None = None) -> Path:
-    """Living backlog of implemented-but-incomplete effects (ponytail ceilings)."""
+    """Living backlog of implemented-but-incomplete effects (ponytail/Ceiling)."""
     from datetime import datetime, timezone
 
     if out_path is None:
@@ -1312,10 +1316,10 @@ def write_partials_list(out_path: Path | None = None) -> Path:
     lines = [
         "# Partial Effects Backlog",
         "",
-        "Auto-generated living list of effect files with `ponytail:` ceilings "
-        "(implemented, but missing hooks / engine pieces).",
+        "Auto-generated living list of effect files with `ponytail:` or `Ceiling:` "
+        "notes (implemented, but missing hooks / engine pieces).",
         "Find follow-up work here — stubs live in `STUB_EFFECTS.md`.",
-        "Rows vanish when all `ponytail:` comments are removed from the file.",
+        "Rows vanish when all `ponytail:` / `Ceiling:` comments are removed from the file.",
         "Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.md). "
         "Engine migration: [`effect-data-system.md`](effect-data-system.md).",
         "",
@@ -1388,6 +1392,13 @@ _TAXONOMY_RULES: list[tuple[str, re.Pattern[str]]] = [
         ),
     ),
     (
+        "event.OnFusionSummon",
+        re.compile(
+            r"Fusion Summon|OnFusion|fusion hook|fusion.?summoned|contact Fusion",
+            re.I,
+        ),
+    ),
+    (
         "event.OnStandby",
         re.compile(
             r"\bOPT\b|once.?per.?turn|turn_effect Standby|cleared mid-duel|"
@@ -1402,6 +1413,21 @@ _TAXONOMY_RULES: list[tuple[str, re.Pattern[str]]] = [
             r"gy-activate|GY.?banish",
             re.I,
         ),
+    ),
+    (
+        "event.OnLpGain",
+        re.compile(r"LP[- ]gain|life point gain|gain LP|LP-change|LP hook", re.I),
+    ),
+    (
+        "battle.ExtraAttack",
+        re.compile(
+            r"second attack|extra.?attack|multi-attack|double attack|unk4.*attack",
+            re.I,
+        ),
+    ),
+    (
+        "extra.XyzLinkSynchro",
+        re.compile(r"\bXyz\b|\bLink\b|\bSynchro\b|detach|overlay", re.I),
     ),
     (
         "chain.Negate",
@@ -1485,9 +1511,9 @@ def write_partials_taxonomy(out_path: Path | None = None) -> Path:
         "# Partial Effects Taxonomy",
         "",
         "Auto-generated companion to [`PARTIAL_EFFECTS.md`](PARTIAL_EFFECTS.md).",
-        "Each `ponytail:` ceiling is tagged with its **primary missing engine surface** "
-        "so Phase work in [`effect-data-system.md`](effect-data-system.md) can target "
-        "events/ops that unblock many cards at once.",
+        "Each `ponytail:` / `Ceiling:` note is tagged with its **primary missing engine "
+        "surface** so Phase work in [`effect-data-system.md`](effect-data-system.md) can "
+        "target events/ops that unblock many cards at once.",
         "",
         "```bash",
         "python3 tools/stub_effect_queue.py --write-list",
@@ -1506,10 +1532,14 @@ def write_partials_taxonomy(out_path: Path | None = None) -> Path:
     phase_hint = {
         "event.OnStandby": "3 (OPT / turn flags)",
         "event.OnSummon": "3",
+        "event.OnFusionSummon": "3 (fusion callback)",
         "event.OnDestroy": "3",
         "event.OnBattleDestroy": "3",
         "event.OnDamageCalc": "3",
         "event.GyIgnition": "3",
+        "event.OnLpGain": "later / LP event",
+        "battle.ExtraAttack": "1–3 (unk4 mark)",
+        "extra.XyzLinkSynchro": "later / Extra Deck",
         "op.Search": "1",
         "op.BanishTimed": "1–3",
         "ui.Choice": "2",
