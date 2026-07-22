@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 18:14 UTC  
-**Remaining partials:** `369`
+**Last updated:** 2026-07-22 18:18 UTC  
+**Remaining partials:** `368`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 11 |
-| `activated` | 329 |
+| `activated` | 328 |
 | `permanent` | 23 |
-| **total** | **369** |
+| **total** | **368** |
 
 ## spell (6)
 
@@ -101,11 +101,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (329)
-
-### `AMAZONESS_AUGUSTA`
-- path: `src_custom/activated_effects/amazoness_augusta.c`
-- L63: * Ceiling: OPT SS Amazoness from Deck (Fusion Summon trigger stand-in); second attack FALSE. */
+## activated (328)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`

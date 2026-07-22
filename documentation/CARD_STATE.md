@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — PARTIAL Round 13 Batch 6/6 (round complete; backlog empty)
+**Last worked on:** 2026-07-22 — Ceiling Round 14 Batch 1 (Augusta)
 
-**Outcome:** Round 13 done. Partials **351→0** across 6 committed batches. B6: spell counters, Mirage Dragon BP trap lock, Protector draw gate, GK Heretic, Zeradias, Medusa position lock, Marionette overlay + remaining ceiling cleanup. `make` OK. `PARTIAL_EFFECTS.md` = **0**.
+**Outcome:** Ceiling tracking live (~369 files). Augusta: Fusion-summon Deck SS, material-gated second attack, effect protect. `make` OK.
 
-**Open / next:** Engine residuals documented as `Ceiling:` (not `ponytail:`); new stubs; optional Ceiling-tag taxonomy.
+**Open / next:** Round 14 Batches 2–6 (fusion/extra-attack/summon/EP/battle/targeting sweeps).

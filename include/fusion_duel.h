@@ -22,6 +22,9 @@ u8 FusionDuel_CollectFusionSpellSources(struct FusionMaterialSource *out, u8 max
 u8 FusionDuel_CollectGraveyardElementalHeroSources(struct FusionMaterialSource *out, u8 maxOut);
 u8 FusionDuel_CollectDeckSources(struct FusionMaterialSource *out, u8 maxOut);
 void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount);
+/* materialIds may be NULL when only the count is known (Chimeratech stamp still works). */
+void FusionDuel_SpecialSummonResultWithMaterials(u16 resultId, u8 materialCount,
+                                                 const u16 *materialIds);
 u8 FusionRecipe_SelectedCountIsValid(const struct FusionRecipe *recipe, u8 selectedCount);
 /* Player: pick Cyber Dragon then Machines; B cancels required picks, or stops once min met.
  * AI/non-player: greedy max materials. */

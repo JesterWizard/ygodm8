@@ -7,9 +7,9 @@ Each `ponytail:` / `Ceiling:` note is tagged with its **primary missing engine s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 18:14 UTC  
-**Ceiling lines tagged:** `410`  
-**Partial files:** `369`
+**Last updated:** 2026-07-22 18:18 UTC  
+**Ceiling lines tagged:** `409`  
+**Partial files:** `368`
 
 ## Counts by missing surface
 
@@ -17,7 +17,7 @@ python3 tools/stub_effect_queue.py --write-list
 |-----|------:|-----------------|
 | `event.OnStandby` | 179 | 3 (OPT / turn flags) |
 | `other` | 91 | triage |
-| `event.OnSummon` | 32 | 3 |
+| `event.OnSummon` | 31 | 3 |
 | `extra.XyzLinkSynchro` | 18 | later / Extra Deck |
 | `chain.Negate` | 17 | later / chain |
 | `gate.Tribute` | 15 | 2–3 |
@@ -31,7 +31,7 @@ python3 tools/stub_effect_queue.py --write-list
 | `event.OnLpGain` | 3 | later / LP event |
 | `battle.ExtraAttack` | 2 | 1–3 (unk4 mark) |
 | `stat.Continuous` | 1 | 1–3 |
-| **total** | **410** | |
+| **total** | **409** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -59,10 +59,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `EVIL_HERO_VICIOUS_CLAWS` (activated): L46: GY destroy-revive + Dark Fusion destroy branch need GY/destroy hooks. Ceiling: FromHand target HERO → SS DEF +300 ATK stand-in.
 - `GLADIATOR_BEAST_DARIUS` (activated): L177: /* GB-tag SS revive + leave-field shuffle need summon/leave hooks. Ceiling: OPT
 
-## `event.OnSummon` (32)
+## `event.OnSummon` (31)
 
 - `SHADDOLL_SCHISM` (trap): L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker; banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
-- `AMAZONESS_AUGUSTA` (activated): L63: * Ceiling: OPT SS Amazoness from Deck (Fusion Summon trigger stand-in); second attack FALSE. */
 - `ANCIENT_GEAR_KNIGHT` (activated): L13: * Ceiling: Gemini Normal Monster treatment need summon hook. */
 - `ARCANA_FORCE_V_THE_HIEROPHANT` (activated): L86: on-Summon coin + discard summon-lock need summon/FromHand paths. Ceiling: OPT coin → SS 1 Arcana Force from Deck.
 - `ARCANA_FORCE_XII_THE_HANGMAN` (activated): L139: on-Summon coin should fire at summon; OPT stand-in here. Ceiling: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF.

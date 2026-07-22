@@ -21,6 +21,7 @@
 #include "spell_effects.h"
 #include "chimeratech_fusion_stats.h"
 #include "evil_hero_dark_gaia.h"
+#include "amazoness_augusta.h"
 #include "fusion_recipes.h"
 
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
@@ -861,9 +862,11 @@ static void PayMiracleFusionMaterials(const struct FusionMaterialSource *selecte
   }
 }
 
-void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount)
+void FusionDuel_SpecialSummonResultWithMaterials(u16 resultId, u8 materialCount,
+                                                 const u16 *materialIds)
 {
   struct DuelSummonOpts opts;
+  struct DuelCard *summoned = NULL;
   u8 i;
 
   opts = Duel_DefaultSpecialSummonOpts(FALSE);
@@ -873,6 +876,7 @@ void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount)
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i];
     if (zone->id == resultId && zone->isFaceUp) {
+      summoned = zone;
       /* Great Tornado's halving is continuous while face-up on the field. */
       if (resultId != ELEMENTAL_HERO_GREAT_TORNADO
           && resultId != ELEMENTAL_HERO_ABSOLUTE_ZERO
@@ -880,7 +884,8 @@ void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount)
           && resultId != ELEMENTAL_HERO_NECROID_SHAMAN
           && resultId != CHIMERATECH_OVERDRAGON
           && resultId != CHIMERATECH_FORTRESS_DRAGON
-          && resultId != CHIMERATECH_MEGAFLEET_DRAGON)
+          && resultId != CHIMERATECH_MEGAFLEET_DRAGON
+          && resultId != AMAZONESS_AUGUSTA)
         FlipCardFaceDown(zone);
       if (resultId == CHIMERATECH_FORTRESS_DRAGON
           || resultId == CHIMERATECH_MEGAFLEET_DRAGON)
@@ -908,6 +913,14 @@ void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount)
 
   if (resultId == CHIMERATECH_OVERDRAGON)
     ChimeratechOverdragon_OnFusionSummoned(materialCount);
+
+  if (resultId == AMAZONESS_AUGUSTA && summoned != NULL)
+    AmazonessAugusta_OnFusionSummoned(summoned, materialIds, materialCount);
+}
+
+void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount)
+{
+  FusionDuel_SpecialSummonResultWithMaterials(resultId, materialCount, NULL);
 }
 
 static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *recipe,
@@ -918,6 +931,7 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
                                                  u8 showEffectText)
 {
   struct FusionMaterialSource selected[FUSION_MAX_MATERIALS];
+  u16 materialIds[FUSION_MAX_MATERIALS];
   u8 selectedCount;
   s8 emptyZone;
   u16 darkGaiaFusionAtk = 0;
@@ -961,7 +975,9 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
   payMaterials(selected, selectedCount);
   ClearZoneAndSendMonToGraveyard(
       gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-  FusionDuel_SpecialSummonResult(recipe->result, selectedCount);
+  for (i = 0; i < selectedCount && i < FUSION_MAX_MATERIALS; i++)
+    materialIds[i] = selected[i].cardId;
+  FusionDuel_SpecialSummonResultWithMaterials(recipe->result, selectedCount, materialIds);
   if (recipe->result == EVIL_HERO_DARK_GAIA)
     EvilHeroDarkGaia_StampFusionMaterialAtk(darkGaiaFusionAtk);
   ElementalHeroAbsoluteZero_EndSuppressLeave();

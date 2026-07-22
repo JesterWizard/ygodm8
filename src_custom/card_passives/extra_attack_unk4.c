@@ -28,6 +28,7 @@ void TryMarkBuiltInExtraAttackOnPlacement(struct DuelCard *zone)
       || zone->id == ANCIENT_GEAR_GOLEM_ULTIMATE_POUND)
     zone->unk4 = 2;
 
+  /* Augusta second attack is stamped from Fusion materials in OnFusionSummoned. */
   HeliosTriceMegistus_MaybeMarkExtraAttackOnPlacement(zone);
   MorphtronicBoomboxen_MaybeMarkExtraAttackOnPlacement(zone);
 }

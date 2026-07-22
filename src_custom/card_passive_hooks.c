@@ -14,6 +14,7 @@
 #include "archlord_kristya.h"
 #include "the_wicked_eraser.h"
 #include "morphtronic_cameran.h"
+#include "amazoness_augusta.h"
 #include "xyz_duel.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
@@ -40,7 +41,10 @@ static u8 ShouldBlockHarmfulEffectOnZone(struct DuelCard *zone) {
   if (IsImmuneToHarmfulTargetedEffectsOnField(zone->id, turnRow))
     return TRUE;
 
-  return MorphtronicCameran_ProtectsZoneFromTargeting(zone);
+  if (MorphtronicCameran_ProtectsZoneFromTargeting(zone))
+    return TRUE;
+
+  return AmazonessAugusta_IsTargetImmune(zone);
 }
 
 static u8 ShouldBlockEffectOnZone(struct DuelCard *zone) {
