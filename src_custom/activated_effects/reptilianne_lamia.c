@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
@@ -13,6 +14,8 @@ void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
 extern const CardData gCardData_NEW[];
+
+static u8 sLamiaHandZone APPEND_DATA = {0};
 
 static u8 IsReptileMonster(u16 cardId)
 {
@@ -56,11 +59,19 @@ static u8 AllOwnMonstersAreFaceUpReptiles(void)
   return found;
 }
 
+static u8 InactiveFixedMonsterRow(void)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return OPPONENT_MONSTER_ROW;
+
+  return PLAYER_MONSTER_ROW;
+}
+
 static u8 IsValidOppFaceUpTarget(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone;
 
-  if (fixedRow != INACTIVE_DUELIST_MONSTER_ROW)
+  if (fixedRow != InactiveFixedMonsterRow())
     return FALSE;
 
   zone = gFixedZones[fixedRow][fixedCol];
@@ -73,9 +84,10 @@ static u8 IsValidOppFaceUpTarget(u8 fixedRow, u8 fixedCol)
 static u8 FieldHasOppFaceUpTarget(void)
 {
   u8 col;
+  u8 row = InactiveFixedMonsterRow();
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsValidOppFaceUpTarget(INACTIVE_DUELIST_MONSTER_ROW, col))
+    if (IsValidOppFaceUpTarget(row, col))
       return TRUE;
   }
 
@@ -87,6 +99,72 @@ static void ZeroAtk(struct DuelCard *zone)
   u16 atk = gCardData_NEW[zone->id].atk;
 
   zone->tempStage = (s8)(-((s32)atk + 499) / 500);
+}
+
+static void CancelLamiaTargeting(void)
+{
+  PlayMusic(SFX_CANCEL);
+}
+
+static u8 AiPickLamiaTarget(u8 *outRow, u8 *outCol)
+{
+  u8 col;
+  u8 bestCol = 0xFF;
+  u16 bestAtk = 0;
+  u8 row = InactiveFixedMonsterRow();
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone;
+    u16 atk;
+
+    if (!IsValidOppFaceUpTarget(row, col))
+      continue;
+
+    zone = gFixedZones[row][col];
+    atk = gCardData_NEW[zone->id].atk;
+    if (bestCol == 0xFF || atk > bestAtk) {
+      bestCol = col;
+      bestAtk = atk;
+    }
+  }
+
+  if (bestCol == 0xFF)
+    return FALSE;
+
+  *outRow = row;
+  *outCol = bestCol;
+  return TRUE;
+}
+
+static void ResolveLamiaTarget(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  struct DuelCard *target;
+  u16 originalAtk;
+
+  if (!IsValidOppFaceUpTarget(fixedRow, fixedCol))
+    return;
+
+  target = gFixedZones[fixedRow][fixedCol];
+  originalAtk = gCardData_NEW[target->id].atk;
+  ZeroAtk(target);
+  RefreshFieldMonsterStatOverlays();
+
+  if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, sLamiaHandZone, opts) != DUEL_ACTION_OK)
+    return;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (originalAtk > 0) {
+    if (Duel_ChangeLp(ACTIVE_DUELIST, -(s32)originalAtk, TRUE) == DUEL_ACTION_DUEL_OVER)
+      return;
+  }
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 unsigned char CanActivateREPTILIANNE_LAMIA(void)
@@ -128,13 +206,6 @@ u8 CanSpecialSummonReptilianneLamiaFromHand(u8 handZone)
 
 u8 TrySpecialSummonReptilianneLamiaFromHand(u8 handZone)
 {
-  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
-  u8 col;
-  u8 bestCol = 0xFF;
-  u16 bestAtk = 0;
-  u16 originalAtk;
-  struct DuelCard *target;
-
   if (!CanSpecialSummonReptilianneLamiaFromHand(handZone))
     return FALSE;
 
@@ -143,41 +214,18 @@ u8 TrySpecialSummonReptilianneLamiaFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* FromHand targeting not wired; auto-pick highest original ATK opp. */
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gFixedZones[INACTIVE_DUELIST_MONSTER_ROW][col];
-    u16 atk;
+  sLamiaHandZone = handZone;
+  gDuelCursor.destY = PLAYER_HAND;
+  gDuelCursor.destX = handZone;
 
-    if (!IsValidOppFaceUpTarget(INACTIVE_DUELIST_MONSTER_ROW, col))
-      continue;
+  Duel_SetupPickZone(IsValidOppFaceUpTarget, ResolveLamiaTarget, CancelLamiaTargeting,
+                     AiPickLamiaTarget);
 
-    atk = gCardData_NEW[zone->id].atk;
-    if (bestCol == 0xFF || atk > bestAtk) {
-      bestCol = col;
-      bestAtk = atk;
-    }
-  }
+  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
+    Duel_RunPickZoneInputLoop();
+  else
+    Duel_ResolvePickZoneForAi();
 
-  if (bestCol == 0xFF)
-    return FALSE;
-
-  target = gFixedZones[INACTIVE_DUELIST_MONSTER_ROW][bestCol];
-  originalAtk = gCardData_NEW[target->id].atk;
-  ZeroAtk(target);
-  RefreshFieldMonsterStatOverlays();
-
-  if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
-    return FALSE;
-
-  if (IsDuelOver() == TRUE)
-    return TRUE;
-
-  if (originalAtk > 0) {
-    if (Duel_ChangeLp(ACTIVE_DUELIST, -(s32)originalAtk, TRUE) == DUEL_ACTION_DUEL_OVER)
-      return TRUE;
-  }
-
-  UpdateDuelGfxExceptField();
   return TRUE;
 }
 

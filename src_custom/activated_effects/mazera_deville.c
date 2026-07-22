@@ -39,6 +39,52 @@ static struct DuelCard *FindFaceUpWarriorOfZera(void)
   return NULL;
 }
 
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
+static void DiscardThreeFromOppHand(void)
+{
+  u8 i;
+
+  for (i = 0; i < 3; i++) {
+    if (Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) == 0)
+      return;
+
+    if (Duel_DiscardRandomFromHand(INACTIVE_DUELIST, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
+      return;
+
+    if (IsDuelOver() == TRUE)
+      return;
+  }
+}
+
+void TryMazeraDevilleOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  if (zone == NULL || zone->id != MAZERA_DEVILLE || !SummonModeIsSpecial(mode))
+    return;
+
+  if (!PandemoniumOnField())
+    return;
+
+  if (gHideEffectText)
+    return;
+
+  if (Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) == 0)
+    return;
+
+  Duel_ShowEffectTextTyped(MAZERA_DEVILLE, 8);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  DiscardThreeFromOppHand();
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
 unsigned char CanActivateMAZERA_DEVILLE(void)
 {
   struct DuelCard *zone;
@@ -50,8 +96,8 @@ unsigned char CanActivateMAZERA_DEVILLE(void)
   if (zone == NULL || zone->id != MAZERA_DEVILLE)
     return FALSE;
 
-  /* on-SS-with-Pandemonium discard-3 needs summon hook. OPT
-   * discard 1 random opp + mill 3. */
+  /* on-SS-with-Pandemonium discard-3 via TryMazeraDevilleOnMonsterPlacement.
+   * OPT discard 1 random opp + mill 3. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

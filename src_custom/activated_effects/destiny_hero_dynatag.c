@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "destiny_hero_dynatag.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -11,12 +12,7 @@ void UpdateDuelGfxExceptField(void);
 
 static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
 
-static u8 TurnDuelistForFixed(u8 fixedDuelist)
-{
-  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
-             ? ACTIVE_DUELIST
-             : INACTIVE_DUELIST;
-}
+static u8 sDynatagMonRow APPEND_DATA = {0};
 
 static u8 IsDestinyHeroMonster(u16 cardId)
 {
@@ -37,54 +33,60 @@ static u8 IsFaceUpMonsterZone(struct DuelCard *zone)
   return zone->isDefending == FALSE;
 }
 
-/* Auto-pick first face-up D-HERO; PickZone targeting not wired. */
-static struct DuelCard *FindFaceUpDestinyHero(u8 turnDuelist)
+static u8 IsFaceUpDestinyHeroTarget(u8 fixedRow, u8 fixedCol)
 {
-  u8 monRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
-                                            : INACTIVE_DUELIST_MONSTER_ROW;
+  struct DuelCard *zone;
+
+  if (fixedRow != sDynatagMonRow)
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  if (zone == NULL || !IsDestinyHeroMonster(zone->id))
+    return FALSE;
+
+  return IsFaceUpMonsterZone(zone);
+}
+
+static u8 FieldHasFaceUpDestinyHero(u8 monRow)
+{
   u8 col;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[monRow][col];
-
-    if (IsDestinyHeroMonster(zone->id) && IsFaceUpMonsterZone(zone))
-      return zone;
+    if (IsFaceUpDestinyHeroTarget(monRow, col))
+      return TRUE;
   }
 
-  return NULL;
+  return FALSE;
 }
 
-u8 CanActivateDestinyHeroDynatagGy(u8 fixedDuelist, u8 gyIndex)
+static void CancelDynatagTargeting(void)
 {
-  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
-
-  if (!GraveyardExpand_IsEnabled())
-    return FALSE;
-  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
-    return FALSE;
-  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != DESTINY_HERO_DYNATAG)
-    return FALSE;
-
-  return FindFaceUpDestinyHero(turnDuelist) != NULL;
+  PlayMusic(SFX_CANCEL);
 }
 
-void ActivateDestinyHeroDynatagGy(u8 fixedDuelist, u8 gyIndex)
+static u8 AiPickDynatagTarget(u8 *outRow, u8 *outCol)
 {
-  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (IsFaceUpDestinyHeroTarget(sDynatagMonRow, col)) {
+      *outRow = sDynatagMonRow;
+      *outCol = col;
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+static void ResolveDynatagTarget(u8 fixedRow, u8 fixedCol)
+{
   struct DuelCard *target;
 
-  if (!CanActivateDestinyHeroDynatagGy(fixedDuelist, gyIndex))
+  if (!IsFaceUpDestinyHeroTarget(fixedRow, fixedCol))
     return;
 
-  target = FindFaceUpDestinyHero(turnDuelist);
-  if (target == NULL)
-    return;
-
-  Duel_ShowEffectTextTyped(DESTINY_HERO_DYNATAG, 9);
-  if (IsDuelOver() == TRUE)
-    return;
-
-  Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex);
+  target = gFixedZones[fixedRow][fixedCol];
 
   /* +2 tempStage (~1000 ATK); until EP via ResetTempStagesForAllCards
    * (printed: until end of opp next turn). */
@@ -93,6 +95,45 @@ void ActivateDestinyHeroDynatagGy(u8 fixedDuelist, u8 gyIndex)
 
   Duel_RefreshMonsterStatOverlays();
   UpdateDuelGfxExceptField();
+}
+
+u8 CanActivateDestinyHeroDynatagGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 monRow = fixedDuelist == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != DESTINY_HERO_DYNATAG)
+    return FALSE;
+
+  sDynatagMonRow = monRow;
+  return FieldHasFaceUpDestinyHero(monRow);
+}
+
+void ActivateDestinyHeroDynatagGy(u8 fixedDuelist, u8 gyIndex)
+{
+  if (!CanActivateDestinyHeroDynatagGy(fixedDuelist, gyIndex))
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DYNATAG, 9);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex);
+
+  sDynatagMonRow = fixedDuelist == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  gDuelCursor.destY = sDynatagMonRow;
+  gDuelCursor.destX = 0;
+
+  Duel_SetupPickZone(IsFaceUpDestinyHeroTarget, ResolveDynatagTarget, CancelDynatagTargeting,
+                     AiPickDynatagTarget);
+
+  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
+    Duel_RunPickZoneInputLoop();
+  else
+    Duel_ResolvePickZoneForAi();
 }
 
 #define FLAG_GRAVEYARD_PLAYER 1

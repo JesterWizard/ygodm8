@@ -8,9 +8,9 @@ Stubs: [`STUB_EFFECTS.md`](STUB_EFFECTS.md). Ceiling markers: [`PARTIAL_EFFECTS.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ```
 
-**Last updated:** 2026-07-22 21:29 UTC  
-**Files with deferred notes:** `316`  
-**Notes tagged:** `370`
+**Last updated:** 2026-07-22 21:44 UTC  
+**Files with deferred notes:** `313`  
+**Notes tagged:** `362`
 
 ## Suggested tackle order
 
@@ -22,13 +22,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 
 | Tag | Notes | Cards | Suggested phase |
 |-----|------:|------:|-----------------|
-| `other` | 81 | 74 | triage |
+| `other` | 81 | 73 | triage |
 | `extra.XyzLinkSynchro` | 58 | 55 | later / Extra Deck |
 | `gate.Tribute` | 40 | 37 | 2–3 |
 | `chain.Negate` | 39 | 36 | later / chain |
-| `ui.Choice` | 28 | 24 | 2 |
+| `ui.Choice` | 22 | 18 | 2 |
 | `op.Search` | 21 | 21 | 1 |
-| `event.OnSummon` | 16 | 16 | 3 |
+| `event.OnSummon` | 14 | 14 | 3 |
 | `event.OnBattleDestroy` | 13 | 13 | 3 |
 | `event.OnStandby` | 13 | 13 | 3 (OPT / turn flags) |
 | `gate.SendCost` | 13 | 13 | 3 (send-as-cost) |
@@ -41,7 +41,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 | `event.OnFusionSummon` | 3 | 3 | 3 (fusion callback) |
 | `event.OnLpGain` | 2 | 2 | later / LP event |
 | `event.OnDamageCalc` | 1 | 1 | 3 |
-| **total** | **370** | **316** | |
+| **total** | **362** | **313** | |
 
 ## `gate.SendCost` (13 notes)
 
@@ -274,7 +274,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 
 ### `MORPHTRONIC_EARFON` (activated)
 - path: `src_custom/activated_effects/morphtronic_earfon.c`
-- L53: real Tuner flag / Equip double-attack need Synchro/equip hooks. OPT PickZone mark unk4 as Tuner stand-in.
+- L53: real Tuner flag / Equip double-attack need Synchro/equip hooks. OPT mark unk4 as Tuner stand-in.
 
 ### `NECROFACE` (activated)
 - path: `src_custom/activated_effects/necroface.c`
@@ -298,7 +298,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 
 ### `REPTILIANNE_LAMIA` (activated)
 - path: `src_custom/activated_effects/reptilianne_lamia.c`
-- L97: GY synchro-material ATK-0 need synchro hook. Remains. FromHand ATK-0 + SS via TrySpecialSummonReptilianneLamiaFromHand; not field-ignition.
+- L175: GY synchro-material ATK-0 need synchro hook. Remains. FromHand ATK-0 + SS via TrySpecialSummonReptilianneLamiaFromHand; not field-ignition.
 
 ### `ROAD_SYNCHRON` (activated)
 - path: `src_custom/activated_effects/road_synchron.c`
@@ -364,7 +364,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 
 ### `DESTINY_HERO_DOMINANCE` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dominance.c`
-- L89: Battle-destroy draw + GY SS via ApplyDestinyHeroDominanceBattleEffects. OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in.
+- L89: Battle-destroy draw + GY SS via ApplyDestinyHeroDominanceBattleEffects (battle_damage_hooks). OPT shuffle top 5 of your (else opp) Deck (look+reorder UI missing; RandRange stand-in).
 
 ### `DESTINY_HERO_DREAMER` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dreamer.c`
@@ -372,7 +372,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 
 ### `DESTINY_HERO_DYNATAG` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dynatag.c`
-- L182: No battle damage via ApplyDestinyHeroDynatagNoBattleDamage; FromHand path for 1000 burn. GY banish ATK via CanActivateDestinyHeroDynatagGy. Not field-ignition activatable here.
+- L223: No battle damage via ApplyDestinyHeroDynatagNoBattleDamage; FromHand path for 1000 burn. GY banish ATK via CanActivateDestinyHeroDynatagGy. Not field-ignition activatable here.
 
 ### `GRAVEKEEPERS_VASSAL` (activated)
 - path: `src_custom/activated_effects/gravekeepers_vassal.c`
@@ -438,7 +438,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 - path: `src_custom/activated_effects/the_agent_of_destruction_venus.c`
 - L192: leave-field Deck bottom for Shine Balls needs leave hook. OPT pay 500×N → SS N Mystical Shine Ball from banished/GY.
 
-## `event.OnSummon` (16 notes)
+## `event.OnSummon` (14 notes)
 
 ### `AMAZONESS_AUGUSTA` (activated)
 - path: `src_custom/activated_effects/amazoness_augusta.c`
@@ -455,10 +455,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ### `ARCANA_FORCE_III_THE_EMPRESS` (permanent)
 - path: `src_custom/permanent_effects/arcana_force_iii_the_empress.c`
 - L48: Opp Normal Summon SS/discard triggers need summon hooks; unk4 only.
-
-### `ARCANA_FORCE_XV_THE_FIEND` (activated)
-- path: `src_custom/activated_effects/arcana_force_xv_the_fiend.c`
-- L282: On-summon heads auto-picks first destroyable opp monster.
 
 ### `DARKLORD_DESIRE` (activated)
 - path: `src_custom/activated_effects/darklord_desire.c`
@@ -483,10 +479,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ### `MAGICIAN_OF_DARK_ILLUSION` (permanent)
 - path: `src_custom/permanent_effects/magician_of_dark_illusion.c`
 - L78: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only.
-
-### `MAZERA_DEVILLE` (activated)
-- path: `src_custom/activated_effects/mazera_deville.c`
-- L53: on-SS-with-Pandemonium discard-3 needs summon hook. OPT discard 1 random opp + mill 3.
 
 ### `NEO_SPACIAN_MARINE_DOLPHIN` (activated)
 - path: `src_custom/activated_effects/neo_spacian_marine_dolphin.c`
@@ -878,7 +870,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 
 ### `DESTINY_HERO_DREADNOUGHT_SERVANT` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dreadnought_servant.c`
-- L223: GY banish → opp Deck top on Lv8 D-HERO SS via TryDestinyHeroDreadnoughtServantOnMonsterPlacement. FromHand if control D-HERO or Field Spell → SS, destroy 1, add Poly.
+- L272: GY banish → opp Deck top on Lv8 D-HERO SS via TryDestinyHeroDreadnoughtServantOnMonsterPlacement. FromHand if control D-HERO or Field Spell → SS, destroy 1, add Poly.
 
 ### `POSEIDRA_THE_ATLANTEAN_DRAGON` (activated)
 - path: `src_custom/activated_effects/poseidra_the_atlantean_dragon.c`
@@ -959,15 +951,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 - path: `src_custom/activated_effects/the_agent_of_miracles_jupiter.c`
 - L132: +800 ATK until EP via ResetTempStagesForAllCards; Sanctuary RFG revive FALSE. OPT banish Agent from GY → +2 tempStage on LIGHT Fairy.
 
-## `ui.Choice` (28 notes)
+## `ui.Choice` (22 notes)
 
 ### `AMULET_DRAGON` (activated)
 - path: `src_custom/activated_effects/amulet_dragon.c`
 - L58: No multi-select GY UI — banish every Spell in both GYs (min.1 gate above).
-
-### `ARCANA_FORCE_XII_THE_HANGMAN` (activated)
-- path: `src_custom/activated_effects/arcana_force_xii_the_hangman.c`
-- L166: Coin targeting uses auto-pick highest ATK; PickZone not wired.
 
 ### `AROMALILITH_MAGNOLIA` (activated)
 - path: `src_custom/activated_effects/aromalilith_magnolia.c`
@@ -997,14 +985,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ### `DESTINY_HERO_DOMINANCE` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dominance.c`
 - L66: Look+reorder UI missing; RandRange shuffle of top N is stand-in.
-
-### `DESTINY_HERO_DREADNOUGHT_SERVANT` (activated)
-- path: `src_custom/activated_effects/destiny_hero_dreadnought_servant.c`
-- L78: auto-pick first opp card; upgrade: PickZone targeting.
-
-### `DESTINY_HERO_DYNATAG` (activated)
-- path: `src_custom/activated_effects/destiny_hero_dynatag.c`
-- L40: Auto-pick first face-up D-HERO; PickZone targeting not wired.
 
 ### `DESTINY_HERO_DYSTOPIA` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dystopia.c`
@@ -1037,10 +1017,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 - path: `src_custom/activated_effects/michael_the_arch_lightsworn.c`
 - L60: Auto-shuffle up to MICHAEL_SHUFFLE_MAX other LS (no GY picker).
 
-### `MORPHTRONIC_EARFON` (activated)
-- path: `src_custom/activated_effects/morphtronic_earfon.c`
-- L111: On-SS Tuner mark via TryMorphtronicEarfonOnMonsterPlacement. Equip 2-attacks FALSE. OPT PickZone treat face-up as Tuner (unk4).
-
 ### `MORPHTRONIC_SMARTFON` (activated)
 - path: `src_custom/activated_effects/morphtronic_smartfon.c`
 - L229: ATK die excavate add; DEF GY add Morphtronic (EffectOpt). Reveal UI FALSE. FromHand: banish Morphtronic GY → SS.
@@ -1053,19 +1029,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 - path: `src_custom/activated_effects/ojama_king.c`
 - L54: PickZone for up to 3 empty zones + continuous lock gate. auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
 
-### `RAIGEKI_BREAK` (trap)
-- path: `src_custom/trap_effects/raigeki_break.c`
-- L55: Destroy first available field card (AI); player would PickZone — ponytail.
-
-### `REPTILIANNE_LAMIA` (activated)
-- path: `src_custom/activated_effects/reptilianne_lamia.c`
-- L146: FromHand targeting not wired; auto-pick highest original ATK opp.
-
 ## `op.Search` (21 notes)
 
 ### `ARCANA_FORCE_XV_THE_FIEND` (activated)
 - path: `src_custom/activated_effects/arcana_force_xv_the_fiend.c`
-- L209: Discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field (EffectOpt).
+- L214: Discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field (EffectOpt).
 
 ### `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` (activated)
 - path: `src_custom/activated_effects/dark_magician_girl_the_magicians_apprentice.c`
@@ -1227,10 +1195,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 - path: `src_custom/activated_effects/arcana_force_v_the_hierophant.c`
 - L87: OPT coin → SS 1 Arcana Force from Deck (EffectOpt). discard summon-lock + FromHand paths.
 - L198: discard only; opp cannot respond to Arcana Summons needs turn flag hook.
-
-### `ARCANA_FORCE_XII_THE_HANGMAN` (activated)
-- path: `src_custom/activated_effects/arcana_force_xii_the_hangman.c`
-- L139: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF.
 
 ### `ARCANA_FORCE_XVIII_THE_MOON` (permanent)
 - path: `src_custom/permanent_effects/arcana_force_xviii_the_moon.c`
@@ -1424,6 +1388,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ### `MORPHTRONIC_EARFON` (activated)
 - path: `src_custom/activated_effects/morphtronic_earfon.c`
 - L94: Equip 2-attacks FALSE. On-SS mark self as Tuner (unk4).
+- L111: On-SS Tuner mark via TryMorphtronicEarfonOnMonsterPlacement. Equip 2-attacks FALSE. OPT mark face-up monster as Tuner (unk4 stand-in).
 
 ### `MORPHTRONIC_SCOPEN` (activated)
 - path: `src_custom/activated_effects/morphtronic_scopen.c`

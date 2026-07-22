@@ -50,6 +50,8 @@ void TryEvilHeroNeosLordOnMonsterPlacement(struct DuelCard *zone, enum DuelSummo
 void TryRykoTwilightswornFighterOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode);
 void TrySoulAbsorbingBoneTowerOnOtherZombieSummon(struct DuelCard *zone,
                                                   enum DuelSummonMode mode);
+/* BATCH50 — ui.Choice / OnSummon deferred clears. */
+void TryMazeraDevilleOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode);
 
 void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
 {
@@ -101,4 +103,6 @@ void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
   TryEvilHeroNeosLordOnMonsterPlacement(zone, mode);
   TryRykoTwilightswornFighterOnNormalSummon(zone, mode);
   TrySoulAbsorbingBoneTowerOnOtherZombieSummon(zone, mode);
+  /* BATCH50 */
+  TryMazeraDevilleOnMonsterPlacement(zone, mode);
 }

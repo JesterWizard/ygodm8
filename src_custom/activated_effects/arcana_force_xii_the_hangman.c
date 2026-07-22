@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
@@ -16,6 +17,10 @@ extern const CardData gCardData_NEW[];
 
 static const char sArcanaForceName[] APPEND_RODATA = "Arcana Force";
 
+static u8 sHangmanTargetRow APPEND_DATA = {0};
+static u8 sHangmanBurnTarget APPEND_DATA = {0};
+static struct DuelCard *sHangmanSelf APPEND_DATA = {NULL};
+
 static u8 IsArcanaForceMonster(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
@@ -28,7 +33,7 @@ static u8 IsDestroyableMonsterZone(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
 
-  if (fixedRow != ACTIVE_DUELIST_MONSTER_ROW && fixedRow != INACTIVE_DUELIST_MONSTER_ROW)
+  if (fixedRow != PLAYER_MONSTER_ROW && fixedRow != OPPONENT_MONSTER_ROW)
     return FALSE;
 
   if (zone == NULL || zone->id == CARD_NONE || GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
@@ -37,12 +42,27 @@ static u8 IsDestroyableMonsterZone(u8 fixedRow, u8 fixedCol)
   return !IsGodCard(zone->id);
 }
 
+static u8 ActiveFixedMonsterRow(void)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return PLAYER_MONSTER_ROW;
+
+  return OPPONENT_MONSTER_ROW;
+}
+
+static u8 InactiveFixedMonsterRow(void)
+{
+  return ActiveFixedMonsterRow() == PLAYER_MONSTER_ROW ? OPPONENT_MONSTER_ROW
+                                                       : PLAYER_MONSTER_ROW;
+}
+
 static u8 FieldHasOwnMonster(void)
 {
   u8 col;
+  u8 row = ActiveFixedMonsterRow();
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsDestroyableMonsterZone(ACTIVE_DUELIST_MONSTER_ROW, col))
+    if (IsDestroyableMonsterZone(row, col))
       return TRUE;
   }
 
@@ -52,31 +72,39 @@ static u8 FieldHasOwnMonster(void)
 static u8 FieldHasOppMonster(void)
 {
   u8 col;
+  u8 row = InactiveFixedMonsterRow();
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsDestroyableMonsterZone(INACTIVE_DUELIST_MONSTER_ROW, col))
+    if (IsDestroyableMonsterZone(row, col))
       return TRUE;
   }
 
   return FALSE;
 }
 
-static u8 DestroyMonsterAndBurn(u8 fixedRow, u8 burnTarget)
+static u8 IsHangmanCoinTarget(u8 fixedRow, u8 fixedCol)
+{
+  return fixedRow == sHangmanTargetRow && IsDestroyableMonsterZone(fixedRow, fixedCol);
+}
+
+static void CancelHangmanTargeting(void)
+{
+  PlayMusic(SFX_CANCEL);
+}
+
+static u8 AiPickHangmanTarget(u8 *outRow, u8 *outCol)
 {
   u8 col;
   u8 bestCol = 0xFF;
   u16 bestAtk = 0;
-  struct DuelCard *zone;
-  u16 originalAtk;
-  u8 owner;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     u16 atk;
 
-    if (!IsDestroyableMonsterZone(fixedRow, col))
+    if (!IsHangmanCoinTarget(sHangmanTargetRow, col))
       continue;
 
-    atk = gCardData_NEW[gFixedZones[fixedRow][col]->id].atk;
+    atk = gCardData_NEW[gFixedZones[sHangmanTargetRow][col]->id].atk;
     if (bestCol == 0xFF || atk > bestAtk) {
       bestCol = col;
       bestAtk = atk;
@@ -86,18 +114,103 @@ static u8 DestroyMonsterAndBurn(u8 fixedRow, u8 burnTarget)
   if (bestCol == 0xFF)
     return FALSE;
 
-  zone = gFixedZones[fixedRow][bestCol];
+  *outRow = sHangmanTargetRow;
+  *outCol = bestCol;
+  return TRUE;
+}
+
+static void ResolveHangmanTarget(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *zone;
+  u16 originalAtk;
+  u8 owner;
+
+  if (!IsHangmanCoinTarget(fixedRow, fixedCol))
+    return;
+
+  zone = gFixedZones[fixedRow][fixedCol];
   originalAtk = gCardData_NEW[zone->id].atk;
-  owner = (fixedRow == ACTIVE_DUELIST_MONSTER_ROW) ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+  owner = (fixedRow == ActiveFixedMonsterRow()) ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+
+  if (sHangmanSelf != NULL)
+    MarkMonsterEffectUsed(sHangmanSelf);
 
   if (Duel_DestroyZone(zone, owner, FALSE) == DUEL_ACTION_DUEL_OVER)
-    return TRUE;
+    return;
 
   if (IsDuelOver() == TRUE)
-    return TRUE;
+    return;
 
   if (originalAtk > 0)
-    Duel_ChangeLp(burnTarget, -(s32)originalAtk, TRUE);
+    Duel_ChangeLp(sHangmanBurnTarget, -(s32)originalAtk, TRUE);
+
+  NotifyDynamicEquipFieldChanged();
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+static void SetCursorAtZone(struct DuelCard *zone)
+{
+  u8 row;
+  u8 col;
+
+  if (zone == NULL)
+    return;
+
+  for (row = 0; row < 4; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (gFixedZones[row][col] == zone) {
+        gDuelCursor.destY = row;
+        gDuelCursor.destX = col;
+        return;
+      }
+    }
+  }
+}
+
+static u8 ResolveArcanaForceXiiTheHangmanCoin(struct DuelCard *self, u8 blockingPick)
+{
+  u8 heads;
+
+  if (IsDuelOver() == TRUE)
+    return FALSE;
+
+  heads = RandRangeU8(0, 1) == 1;
+
+  if (heads) {
+    if (!FieldHasOwnMonster())
+      return FALSE;
+    sHangmanTargetRow = ActiveFixedMonsterRow();
+    sHangmanBurnTarget = ACTIVE_DUELIST;
+  } else {
+    if (!FieldHasOppMonster())
+      return FALSE;
+    sHangmanTargetRow = InactiveFixedMonsterRow();
+    sHangmanBurnTarget = INACTIVE_DUELIST;
+  }
+
+  sHangmanSelf = self;
+
+  if (self != NULL)
+    SetCursorAtZone(self);
+  else {
+    gDuelCursor.destY = gMonEffect.row;
+    gDuelCursor.destX = gMonEffect.zone;
+  }
+
+  Duel_SetupPickZone(IsHangmanCoinTarget, ResolveHangmanTarget, CancelHangmanTargeting,
+                     AiPickHangmanTarget);
+
+  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText) {
+    if (blockingPick)
+      Duel_RunPickZoneInputLoop();
+    else
+      Duel_EnterPickZoneTargeting();
+  } else {
+    Duel_ResolvePickZoneForAi();
+  }
 
   return TRUE;
 }
@@ -136,43 +249,11 @@ unsigned char CanActivateARCANA_FORCE_XII_THE_HANGMAN(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XII_THE_HANGMAN)
     return FALSE;
 
-  /* OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF. */
+  /* OPT coin → destroy+burn (heads own / tails opp). Hand SS Arcana Force. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   return FieldHasOwnMonster() || FieldHasOppMonster();
-}
-
-static u8 ResolveArcanaForceXiiTheHangmanCoin(void)
-{
-  u8 heads;
-  u8 targetRow;
-
-  if (IsDuelOver() == TRUE)
-    return FALSE;
-
-  heads = RandRangeU8(0, 1) == 1;
-
-  if (heads) {
-    if (!FieldHasOwnMonster())
-      return FALSE;
-    targetRow = ACTIVE_DUELIST_MONSTER_ROW;
-  } else {
-    if (!FieldHasOppMonster())
-      return FALSE;
-    targetRow = INACTIVE_DUELIST_MONSTER_ROW;
-  }
-
-  /* Coin targeting uses auto-pick highest ATK; PickZone not wired. */
-  if (!DestroyMonsterAndBurn(targetRow, heads ? ACTIVE_DUELIST : INACTIVE_DUELIST))
-    return FALSE;
-
-  NotifyDynamicEquipFieldChanged();
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
-  return TRUE;
 }
 
 void ActivateARCANA_FORCE_XII_THE_HANGMANEffect(void)
@@ -181,10 +262,7 @@ void ActivateARCANA_FORCE_XII_THE_HANGMANEffect(void)
 
   Duel_ShowEffectTextTyped(ARCANA_FORCE_XII_THE_HANGMAN, 2);
 
-  if (!ResolveArcanaForceXiiTheHangmanCoin())
-    return;
-
-  MarkMonsterEffectUsed(self);
+  (void)ResolveArcanaForceXiiTheHangmanCoin(self, FALSE);
 }
 
 void TryArcanaForceXiiTheHangmanOnMonsterPlacement(struct DuelCard *zone)
@@ -193,7 +271,7 @@ void TryArcanaForceXiiTheHangmanOnMonsterPlacement(struct DuelCard *zone)
     return;
 
   Duel_ShowEffectTextTyped(ARCANA_FORCE_XII_THE_HANGMAN, 2);
-  (void)ResolveArcanaForceXiiTheHangmanCoin();
+  (void)ResolveArcanaForceXiiTheHangmanCoin(NULL, TRUE);
 }
 
 u8 CanActivateArcanaForceXiiTheHangmanFromHand(u8 handZone)

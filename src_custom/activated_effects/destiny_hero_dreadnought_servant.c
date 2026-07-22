@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "effect_events.h"
@@ -16,6 +17,9 @@ void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
 static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
+
+static u8 sServantSummonerFixed APPEND_DATA = {0};
+static s8 sServantGyIndex APPEND_DATA = {0};
 
 static u8 TurnDuelistForFixed(u8 fixedDuelist)
 {
@@ -75,41 +79,94 @@ static void ReturnCardToDeckTop(u8 fixedDuelist, u16 cardId)
   gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
 }
 
-/* auto-pick first opp card; upgrade: PickZone targeting. */
-static struct DuelCard *FindOppCardToPlaceOnDeck(u8 summonerTurn)
+static u8 IsOppCardToPlaceOnDeck(u8 fixedRow, u8 fixedCol)
 {
-  u8 oppTurn = summonerTurn == ACTIVE_DUELIST ? INACTIVE_DUELIST : ACTIVE_DUELIST;
-  u8 monRow = oppTurn == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
-                                        : INACTIVE_DUELIST_MONSTER_ROW;
-  u8 backRow = oppTurn == ACTIVE_DUELIST ? ACTIVE_DUELIST_BACKROW : INACTIVE_DUELIST_BACKROW;
+  struct DuelCard *zone;
+  u8 monRow = sServantSummonerFixed == DUEL_PLAYER ? OPPONENT_MONSTER_ROW : PLAYER_MONSTER_ROW;
+  u8 backRow = sServantSummonerFixed == DUEL_PLAYER ? OPPONENT_BACKROW : PLAYER_BACKROW;
+
+  if (fixedRow != monRow && fixedRow != backRow)
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  return zone != NULL && zone->id != CARD_NONE && !IsGodCard(zone->id);
+}
+
+static u8 FieldHasOppCardToPlaceOnDeck(void)
+{
+  u8 row;
   u8 col;
 
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[monRow][col];
-
-    if (zone != NULL && zone->id != CARD_NONE && !IsGodCard(zone->id))
-      return zone;
+  for (row = 0; row < 4; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsOppCardToPlaceOnDeck(row, col))
+        return TRUE;
+    }
   }
 
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[backRow][col];
+  return FALSE;
+}
 
-    if (zone != NULL && zone->id != CARD_NONE && !IsGodCard(zone->id))
-      return zone;
+static void CancelServantTargeting(void)
+{
+  PlayMusic(SFX_CANCEL);
+}
+
+static u8 AiPickServantTarget(u8 *outRow, u8 *outCol)
+{
+  u8 row;
+  u8 col;
+
+  for (row = 0; row < 4; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsOppCardToPlaceOnDeck(row, col)) {
+        *outRow = row;
+        *outCol = col;
+        return TRUE;
+      }
+    }
   }
 
-  return NULL;
+  return FALSE;
+}
+
+static void ResolveServantTarget(u8 fixedRow, u8 fixedCol)
+{
+  struct DuelCard *target;
+  u16 cardId;
+  u8 oppFixed;
+
+  if (!IsOppCardToPlaceOnDeck(fixedRow, fixedCol))
+    return;
+
+  target = gFixedZones[fixedRow][fixedCol];
+
+  EffectOpt_MarkUsed(DESTINY_HERO_DREADNOUGHT_SERVANT);
+
+  if (GraveyardExpand_IsEnabled())
+    Duel_BanishGraveyardAtFixed(sServantSummonerFixed, (u8)sServantGyIndex);
+  else
+    gDuel.duelistbattleState[sServantSummonerFixed].graveyard = CARD_NONE;
+
+  oppFixed = GetDuelistForZone(target);
+  if (oppFixed > DUEL_OPPONENT)
+    oppFixed = sServantSummonerFixed == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+
+  cardId = target->id;
+  ClearZone(target);
+  ReturnCardToDeckTop(oppFixed, cardId);
+  NotifyDynamicEquipFieldChanged();
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }
 
 void TryDestinyHeroDreadnoughtServantOnMonsterPlacement(struct DuelCard *zone,
                                                         enum DuelSummonMode mode)
 {
   u8 fixedDuelist;
-  u8 turnDuelist;
   s8 gyIndex;
-  struct DuelCard *target;
-  u16 cardId;
-  u8 oppFixed;
 
   if (zone == NULL || !IsLevel8DestinyHero(zone->id) || !SummonModeIsSpecial(mode))
     return;
@@ -126,34 +183,26 @@ void TryDestinyHeroDreadnoughtServantOnMonsterPlacement(struct DuelCard *zone,
   if (gyIndex < 0)
     return;
 
-  turnDuelist = TurnDuelistForFixed(fixedDuelist);
-  target = FindOppCardToPlaceOnDeck(turnDuelist);
-  if (target == NULL)
+  sServantSummonerFixed = fixedDuelist;
+  sServantGyIndex = gyIndex;
+  if (!FieldHasOppCardToPlaceOnDeck())
     return;
 
   Duel_ShowEffectTextTyped(DESTINY_HERO_DREADNOUGHT_SERVANT, 8);
   if (IsDuelOver() == TRUE)
     return;
 
-  EffectOpt_MarkUsed(DESTINY_HERO_DREADNOUGHT_SERVANT);
+  gDuelCursor.destY = GetDuelistForZone(zone) == DUEL_PLAYER ? PLAYER_MONSTER_ROW
+                                                             : OPPONENT_MONSTER_ROW;
+  gDuelCursor.destX = 0;
 
-  if (GraveyardExpand_IsEnabled())
-    Duel_BanishGraveyardAtFixed(fixedDuelist, (u8)gyIndex);
+  Duel_SetupPickZone(IsOppCardToPlaceOnDeck, ResolveServantTarget, CancelServantTargeting,
+                     AiPickServantTarget);
+
+  if (WhoseTurn() == DUEL_PLAYER)
+    Duel_RunPickZoneInputLoop();
   else
-    gDuel.duelistbattleState[fixedDuelist].graveyard = CARD_NONE;
-
-  oppFixed = GetDuelistForZone(target);
-  if (oppFixed > DUEL_OPPONENT)
-    oppFixed = fixedDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
-
-  cardId = target->id;
-  ClearZone(target);
-  ReturnCardToDeckTop(oppFixed, cardId);
-  NotifyDynamicEquipFieldChanged();
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
+    Duel_ResolvePickZoneForAi();
 }
 
 static u8 IsFieldSpell(u16 cardId)

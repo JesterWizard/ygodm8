@@ -141,10 +141,12 @@ static u8 DestroyAllMonstersOnField(void)
   return destroyed;
 }
 
+static u8 sXvMarkOpt APPEND_DATA = {0};
+
 static void ResolveDestroyTarget(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  struct DuelCard *self = NULL;
   u8 owner;
 
   if (!IsDestroyableMonsterZone(fixedRow, fixedCol) || zone == NULL)
@@ -161,9 +163,12 @@ static void ResolveDestroyTarget(u8 fixedRow, u8 fixedCol)
 
   NotifyDynamicEquipFieldChanged();
 
-  if (self != NULL) {
-    EffectOpt_MarkUsed(ARCANA_FORCE_XV_THE_FIEND);
-    MarkMonsterEffectUsed(self);
+  if (sXvMarkOpt) {
+    self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+    if (self != NULL) {
+      EffectOpt_MarkUsed(ARCANA_FORCE_XV_THE_FIEND);
+      MarkMonsterEffectUsed(self);
+    }
   }
 
   UpdateDuelGfxExceptField();
@@ -243,6 +248,7 @@ void ActivateARCANA_FORCE_XV_THE_FIENDEffect(void)
     return;
 
   if (RandRangeU8(0, 1) == 1) {
+    sXvMarkOpt = TRUE;
     gDuelCursor.destY = gMonEffect.row;
     gDuelCursor.destX = gMonEffect.zone;
     Duel_SetupPickZone(IsDestroyableMonsterZone, ResolveDestroyTarget, CancelTargeting,
@@ -264,9 +270,6 @@ void ActivateARCANA_FORCE_XV_THE_FIENDEffect(void)
 
 void TryArcanaForceXvTheFiendOnMonsterPlacement(struct DuelCard *zone)
 {
-  u8 row;
-  u8 col;
-
   if (zone == NULL || zone->id != ARCANA_FORCE_XV_THE_FIEND)
     return;
 
@@ -276,36 +279,30 @@ void TryArcanaForceXvTheFiendOnMonsterPlacement(struct DuelCard *zone)
     return;
 
   if (RandRangeU8(0, 1) == 1) {
+    u8 row;
+    u8 col;
+
     if (!FieldHasDestroyableMonster())
       return;
 
-    /* On-summon heads auto-picks first destroyable opp monster. */
-    for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_MONSTER_ROW; row++) {
+    sXvMarkOpt = FALSE;
+    for (row = 0; row < 4; row++) {
       for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-        struct DuelCard *target;
-        u8 owner;
-
-        if (!IsDestroyableMonsterZone(row, col))
-          continue;
-
-        target = gFixedZones[row][col];
-        owner = (row == PLAYER_MONSTER_ROW) ? DUEL_PLAYER : DUEL_OPPONENT;
-        if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[owner])
-          owner = ACTIVE_DUELIST;
-        else
-          owner = INACTIVE_DUELIST;
-
-        if (Duel_DestroyZone(target, owner, TRUE) == DUEL_ACTION_DUEL_OVER)
-          return;
-
-        NotifyDynamicEquipFieldChanged();
-        UpdateDuelGfxExceptField();
-        CheckWinConditionExodia(WhoseTurn());
-        if (IsDuelOver() != TRUE)
-          TryActivatingPermanentEffects();
-        return;
+        if (gFixedZones[row][col] == zone) {
+          gDuelCursor.destY = row;
+          gDuelCursor.destX = col;
+          goto found;
+        }
       }
     }
+  found:
+    Duel_SetupPickZone(IsDestroyableMonsterZone, ResolveDestroyTarget, CancelTargeting,
+                       AiPickDestroyTarget);
+
+    if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
+      Duel_RunPickZoneInputLoop();
+    else
+      Duel_ResolvePickZoneForAi();
     return;
   }
 
