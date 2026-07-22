@@ -50,7 +50,7 @@ unsigned char CanActivateMAZERA_DEVILLE(void)
   if (zone == NULL || zone->id != MAZERA_DEVILLE)
     return FALSE;
 
-  /* on-SS-with-Pandemonium discard-3 needs summon hook. Ceiling: OPT
+  /* on-SS-with-Pandemonium discard-3 needs summon hook. OPT
    * discard 1 random opp + mill 3. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

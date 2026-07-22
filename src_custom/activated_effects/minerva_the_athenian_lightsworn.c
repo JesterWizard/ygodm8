@@ -182,7 +182,7 @@ unsigned char CanActivateMINERVA_THE_ATHENIAN_LIGHTSWORN(void)
     return FALSE;
 
   /* anti-banish continuous + Synchro material count need continuous/synchro hooks.
-   * Ceiling: OPT mill LS different Types (up to field LS count), or banish ≤4 LS GY → mill. */
+   * OPT mill LS different Types (up to field LS count), or banish ≤4 LS GY → mill. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

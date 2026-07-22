@@ -202,7 +202,7 @@ unsigned char CanActivateMASTER_OF_CHAOS(void)
     return FALSE;
 
   /* Fusion SS trigger + destroyed GY Spell add need summon/destroy
-   * hooks. Ceiling: OPT SS LIGHT/DARK from GY, else tribute LIGHT+DARK → banish. */
+   * hooks. OPT SS LIGHT/DARK from GY, else tribute LIGHT+DARK → banish. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

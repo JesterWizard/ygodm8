@@ -66,7 +66,7 @@ unsigned char CanActivateMINERVA_THE_EXHALTED_LIGHTSWORN(void)
   if (zone == NULL || zone->id != MINERVA_THE_EXHALTED_LIGHTSWORN)
     return FALSE;
 
-  /* Xyz detach + destroy-on-death FALSE. Ceiling: OPT mill 3 → draw = Lightsworn
+  /* Xyz detach + destroy-on-death FALSE. OPT mill 3 → draw = Lightsworn
    * among milled. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

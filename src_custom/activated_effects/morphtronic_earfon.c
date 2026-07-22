@@ -46,7 +46,7 @@ static void ResolveTunerMark(u8 fixedRow, u8 fixedCol)
     return;
 
   /* Ceiling: real Tuner flag / Equip double-attack need Synchro/equip hooks.
-   * Ceiling: OPT PickZone mark unk4 as Tuner stand-in. */
+   * OPT PickZone mark unk4 as Tuner stand-in. */
   zone->unk4 |= 0x40;
 
   if (self != NULL)
@@ -93,7 +93,7 @@ unsigned char CanActivateMORPHTRONIC_EARFON(void)
     return FALSE;
 
   /* Ceiling: on-SS Tuner mark + Equip 2-attacks FALSE.
-   * Ceiling: OPT PickZone treat face-up as Tuner (unk4). */
+   * OPT PickZone treat face-up as Tuner (unk4). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
