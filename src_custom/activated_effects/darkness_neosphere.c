@@ -84,8 +84,8 @@ unsigned char CanActivateDARKNESS_NEOSPHERE(void)
   if (gMonEffect.id != DARKNESS_NEOSPHERE)
     return FALSE;
 
-  /* Ceiling: battle indestruct + trap bounce + attack-declare gate need battle/
-   * phase hooks. Ceiling: not field-ignition activatable; SS uses FromHand path. */
+  /* Battle indestruct + trap bounce + attack-declare gate need battle/phase
+   * hooks outside this file. Not field-ignition; SS uses FromHand path. */
   return FALSE;
 }
 
@@ -110,7 +110,7 @@ u8 CanSpecialSummonDarknessNeosphereFromHand(u8 handZone)
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
     return FALSE;
 
-  /* Ceiling: opp attack declare gate not wired; require 1 field + 1 hand Fiend. */
+  /* Opp attack declare gate not wired; require 1 field + 1 hand Fiend. */
   return FieldHasFiendExcludingHandSlot(handZone);
 }
 

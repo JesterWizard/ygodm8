@@ -20,7 +20,7 @@ unsigned char CanActivateROYAL_MAGICAL_LIBRARY(void)
     return FALSE;
 
   /* Spell Counters on resolve via TryIncrementSpellCountersOnSpellResolve.
-   * Ceiling: ignition only when unk4>=3. */
+   * Ignition only when unk4>=3. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

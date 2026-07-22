@@ -152,7 +152,7 @@ unsigned char ShouldActivateEVIL_HERO_INFERNO_WING_BACKFIRE(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* Ceiling: true trigger is Special Summon; on-summon stand-in covers SS path. */
+  /* True trigger is Special Summon; on-summon stand-in covers SS path. */
   return CanAddDarkFusion(duelist);
 }
 

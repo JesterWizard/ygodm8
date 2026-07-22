@@ -18,7 +18,7 @@ static u8 IsManThroTroTributeMonster(const struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return FALSE;
 
-  /* Ceiling: Ojama Trio monster form is the only token-like field unit today */
+  /* Ojama Trio monster form is the only token-like field unit today */
   if (OjamaTrioZoneIsMonsterForm(zone))
     return FALSE;
 

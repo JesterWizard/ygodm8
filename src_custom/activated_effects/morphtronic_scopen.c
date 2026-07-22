@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -55,9 +56,12 @@ unsigned char CanActivateMORPHTRONIC_SCOPEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SCOPEN)
     return FALSE;
 
-  /* Ceiling: DEF Position → treat as Level 4 + EP destroy on ATK-mode SS need
-   * position/EP hooks; ATK Position OPT SS 1 Lv4 Morphtronic from hand. */
+  /* DEF Position → treat as Level 4 + EP destroy on ATK-mode SS need position/EP
+   * hooks outside. ATK Position OPT SS 1 Lv4 Morphtronic from hand (EffectOpt). */
   if (zone->isDefending)
+    return FALSE;
+
+  if (EffectOpt_IsUsed(MORPHTRONIC_SCOPEN))
     return FALSE;
 
   if (!CanUseMonsterEffect(zone))
@@ -82,10 +86,14 @@ void ActivateMORPHTRONIC_SCOPENEffect(void)
   if (self == NULL || IsDuelOver() == TRUE || self->isDefending)
     return;
 
+  if (EffectOpt_IsUsed(MORPHTRONIC_SCOPEN))
+    return;
+
   if (Duel_SpecialSummonFromHand(ACTIVE_DUELIST, CARD_NONE, IsHandLevel4Morphtronic, opts)
       != DUEL_ACTION_OK)
     return;
 
+  EffectOpt_MarkUsed(MORPHTRONIC_SCOPEN);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

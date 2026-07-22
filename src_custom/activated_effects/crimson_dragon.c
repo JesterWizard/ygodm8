@@ -121,7 +121,7 @@ static void ShuffleSelfSsDragon(struct DuelCard *self)
   if (dragonId == CARD_NONE)
     return;
 
-  /* Ceiling: Extra Deck Synchro SS FALSE; Deck Dragon stand-in. */
+  /* Extra Deck Synchro SS FALSE; Deck Dragon stand-in. */
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, dragonId, opts);
 }
 
@@ -196,7 +196,7 @@ unsigned char CanActivateCRIMSON_DRAGON(void)
 
   /* On-SS search via TryCrimsonDragonOnMonsterPlacement (EffectOpt).
    * OPT search mentioning Crimson Dragon S/T (shares EffectOpt).
-   * Ceiling: Extra Deck Synchro SS FALSE; Deck Dragon stand-in. */
+   * Extra Deck Synchro SS FALSE; Deck Dragon stand-in. */
   if (!EffectOpt_IsUsed(CRIMSON_DRAGON)
       && FindCrimsonMentionInDeck() != CARD_NONE
       && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0

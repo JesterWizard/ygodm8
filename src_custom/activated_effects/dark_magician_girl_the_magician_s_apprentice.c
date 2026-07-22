@@ -93,7 +93,7 @@ unsigned char CanActivateDARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE(void)
 
   /* On-NS/SS search via TryDarkMagicianGirlTheMagicianSApprenticeOnMonsterPlacement.
    * OPT add Shining Sarcophagus (shares EffectOpt).
-   * Ceiling: name=DMG GY +300 mention FALSE. */
+   * Name=DMG GY +300 mention FALSE. */
   if (EffectOpt_IsUsed(DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE))
     return FALSE;
 

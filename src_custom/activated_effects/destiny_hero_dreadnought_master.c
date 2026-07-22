@@ -116,7 +116,7 @@ unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_MASTER(void)
     return FALSE;
 
   /* On-SS add via TryDestinyHeroDreadnoughtMasterOnMonsterPlacement (EffectOpt).
-   * Ceiling: cards-mentioning-D-HERO FALSE.
+   * Cards-mentioning-D-HERO FALSE.
    * OPT add up to 2 Destiny HERO from Deck (shares EffectOpt). */
   if (EffectOpt_IsUsed(DESTINY_HERO_DREADNOUGHT_MASTER))
     return FALSE;

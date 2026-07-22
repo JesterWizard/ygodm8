@@ -73,7 +73,7 @@ unsigned char ShouldActivateHERO_KID(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* Ceiling: true trigger is Special Summon of Level 4 or lower HERO. */
+  /* True trigger is Special Summon of Level 4 or lower HERO. */
   return CanSpecialSummonHeroKidFromDeck(duelist);
 }
 

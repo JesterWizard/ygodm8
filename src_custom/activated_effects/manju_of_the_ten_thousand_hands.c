@@ -110,7 +110,7 @@ unsigned char CanActivateMANJU_OF_THE_TEN_THOUSAND_HANDS(void)
   if (zone == NULL || zone->id != MANJU_OF_THE_TEN_THOUSAND_HANDS)
     return FALSE;
 
-  /* Ceiling: once via usage if Ritual Monster or Ritual Spell in Deck and hand space. */
+  /* Once via usage if Ritual Monster or Ritual Spell in Deck and hand space. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

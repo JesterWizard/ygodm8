@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
@@ -173,7 +174,10 @@ unsigned char CanActivateMORPHTRONIC_TELEFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_TELEFON)
     return FALSE;
 
-  /* Ceiling: reveal UI FALSE; ATK die→LP+SS Morph Lv≤roll; DEF die excavate add. */
+  /* ATK die→LP+SS Morph Lv≤roll; DEF die excavate add (EffectOpt). Reveal UI FALSE. */
+  if (EffectOpt_IsUsed(MORPHTRONIC_TELEFON))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -199,6 +203,9 @@ void ActivateMORPHTRONIC_TELEFONEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(MORPHTRONIC_TELEFON))
+    return;
+
   remaining = DeckCardsRemaining();
   roll = RandRangeU8(1, 6);
 
@@ -213,6 +220,7 @@ void ActivateMORPHTRONIC_TELEFONEffect(void)
     cardId = FindMorphtronicAmongTop(peek);
     if (cardId == CARD_NONE) {
       Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
+      EffectOpt_MarkUsed(MORPHTRONIC_TELEFON);
       MarkMonsterEffectUsed(self);
       UpdateDuelGfxExceptField();
       return;
@@ -229,6 +237,7 @@ void ActivateMORPHTRONIC_TELEFONEffect(void)
       SpecialSummonMorphFromGy(cardId);
   }
 
+  EffectOpt_MarkUsed(MORPHTRONIC_TELEFON);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

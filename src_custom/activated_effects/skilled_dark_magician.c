@@ -78,7 +78,7 @@ unsigned char CanActivateSKILLED_DARK_MAGICIAN(void)
     return FALSE;
 
   /* Spell Counters on resolve via TryIncrementSpellCountersOnSpellResolve.
-   * Ceiling: ignition when unk4>=3. */
+   * Ignition when unk4>=3. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

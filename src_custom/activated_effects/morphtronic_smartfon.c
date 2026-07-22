@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "removed_from_play.h"
@@ -225,8 +226,11 @@ unsigned char CanActivateMORPHTRONIC_SMARTFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SMARTFON)
     return FALSE;
 
-  /* Ceiling: reveal UI FALSE; ATK die excavate add; DEF GY add Morphtronic.
+  /* ATK die excavate add; DEF GY add Morphtronic (EffectOpt). Reveal UI FALSE.
    * FromHand: banish Morphtronic GY → SS. */
+  if (EffectOpt_IsUsed(MORPHTRONIC_SMARTFON))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -249,6 +253,9 @@ void ActivateMORPHTRONIC_SMARTFONEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(MORPHTRONIC_SMARTFON))
+    return;
+
   if (self->isDefending) {
     if (!AddMorphtronicFromGyToHand())
       return;
@@ -265,6 +272,7 @@ void ActivateMORPHTRONIC_SMARTFONEffect(void)
     cardId = FindMorphtronicAmongTop(peek);
     if (cardId == CARD_NONE) {
       Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
+      EffectOpt_MarkUsed(MORPHTRONIC_SMARTFON);
       MarkMonsterEffectUsed(self);
       UpdateDuelGfxExceptField();
       return;
@@ -274,6 +282,7 @@ void ActivateMORPHTRONIC_SMARTFONEffect(void)
       return;
   }
 
+  EffectOpt_MarkUsed(MORPHTRONIC_SMARTFON);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

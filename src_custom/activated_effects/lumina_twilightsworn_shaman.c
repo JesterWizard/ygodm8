@@ -223,7 +223,7 @@ static s8 PlayerPickBanishedLightswornIndex(u8 fixedDuelist)
   return chosenIndex;
 }
 
-/* Ceiling: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS. */
+/* No RemovedFromPlay_RemoveAt — shift RFP array in place after SS. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {
   u8 count;

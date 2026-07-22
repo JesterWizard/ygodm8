@@ -128,5 +128,5 @@ void ActivateDARK_MAGICIAN_OF_DESTRUCTION(void)
   zone = SelfZone();
   if (zone != NULL)
     zone->unk4 = 1;
-  /* Ceiling: deck-first add; DM preferred by scan order, no picker. */
+  /* Deck-first add; DM preferred by scan order, no picker. */
 }

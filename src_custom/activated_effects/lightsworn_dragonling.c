@@ -101,7 +101,7 @@ static u16 FindDeckLightDragonOrBewd(u8 turnDuelist)
       hasBewd = TRUE;
   }
 
-  /* ponytail: exact 3000/2600 preferred; BEWD fallback if none. */
+  /* Exact 3000/2600 preferred; BEWD fallback if none. */
   return hasBewd ? BLUE_EYES_WHITE_DRAGON : CARD_NONE;
 }
 
@@ -115,7 +115,7 @@ static void OnDragonlingLeaveField(const struct EffectEvent *ev)
   if (ev->controller > DUEL_OPPONENT)
     return;
   /* Separate OPT from on-SS mill / field mill (shared EffectOpt bucket).
-   * ponytail: one EffectOpt for all Dragonling effects. */
+   * One EffectOpt for all Dragonling effects. */
   if (EffectOpt_IsUsed(LIGHTSWORN_DRAGONLING))
     return;
 

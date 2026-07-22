@@ -9,9 +9,8 @@ unsigned char CanActivateHERALD_OF_ULIMATENESS(void)
   if (gMonEffect.id != HERALD_OF_ULIMATENESS)
     return FALSE;
 
-  /* quick negate by sending Fairy from hand needs chain/negation hooks.
-   * Ceiling: not field-ignition activatable here; upgrade: either-turn chain
-   * interrupt → discard Fairy → negate + destroy activated card. */
+  /* Quick negate by sending Fairy from hand needs chain/negation hooks outside.
+   * Not field-ignition (either-turn discard Fairy → negate + destroy). */
   return FALSE;
 }
 

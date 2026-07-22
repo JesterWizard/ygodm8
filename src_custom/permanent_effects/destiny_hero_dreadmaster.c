@@ -281,7 +281,7 @@ unsigned char ShouldActivateDESTINY_HERO_DREADMASTER(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* Ceiling: Clock Tower Prison gate skipped.
+  /* Clock Tower Prison gate skipped.
    * D-HERO battle protect + no BD via DestinyHeroDreadmaster_* while face-up. */
   return OwnMonsterRowHasNonDestinyHero(zone, gActiveEffect.turnRow)
       || CanSpecialSummonDestinyHeroesFromGrave(duelist);

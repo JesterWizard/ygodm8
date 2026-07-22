@@ -12,8 +12,8 @@ unsigned char CanActivateGRAVEKEEPERS_WATCHER(void)
   if (gMonEffect.id != GRAVEKEEPERS_WATCHER)
     return FALSE;
 
-  /* either-turn chain negate when opp discards needs chain/negation
-   * hooks. Ceiling: not field-ignition; discard-from-hand path below. */
+  /* Either-turn chain negate when opp discards needs chain/negation hooks
+   * outside this file. Not field-ignition; discard-from-hand path below. */
   return FALSE;
 }
 

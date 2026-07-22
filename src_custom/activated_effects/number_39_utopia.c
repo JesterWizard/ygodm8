@@ -9,8 +9,8 @@ unsigned char CanActivateNUMBER_39_UTOPIA(void)
   if (gMonEffect.id != NUMBER_39_UTOPIA)
     return FALSE;
 
-  /* attack negate via detach + no-material self-destroy need battle
-   * hook and XYZ material system. Ceiling: not field-ignition activatable. */
+  /* Attack negate via detach + no-material self-destroy need battle hook and
+   * XYZ material system outside this file. Not field-ignition. */
   return FALSE;
 }
 
