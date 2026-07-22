@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
@@ -13,6 +14,7 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
+static u8 sDariusInit APPEND_DATA = {0};
 static const char sGladiatorBeastName[] APPEND_RODATA = "Gladiator Beast";
 
 static u8 FixedDuelistForActive(void)
@@ -21,6 +23,13 @@ static u8 FixedDuelistForActive(void)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
 }
 
 static u8 IsGladiatorBeastMonster(u16 cardId)
@@ -175,7 +184,7 @@ unsigned char CanActivateGLADIATOR_BEAST_DARIUS(void)
     return FALSE;
 
   /* Tag-SS GY revive via GladiatorBeast_TryTagSummonTriggers.
-   * Ceiling: leave-field shuffle need leave hook.
+   * Leave-field shuffle via GladiatorBeastDarius_EnsureInit.
    * OPT SS GB from GY negated; tag-out via GladiatorBeast_CanActivateTagOutEffect. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -224,4 +233,52 @@ void ActivateGLADIATOR_BEAST_DARIUSEffect(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
+}
+
+static void ShuffleNegatedCompanions(u8 controller)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(controller);
+  u8 turnDuelist = TurnDuelistForFixed(controller);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+    u16 cardId;
+
+    if (zone == NULL || zone->id == CARD_NONE || zone->id == GLADIATOR_BEAST_DARIUS)
+      continue;
+    if ((zone->unk4 & 0x80) == 0)
+      continue;
+    if (!IsGladiatorBeastMonster(zone->id))
+      continue;
+
+    cardId = zone->id;
+    ClearZone(zone);
+    ReturnCardToDeckTop(controller, cardId);
+    Duel_ShuffleDeckFromDrawn(turnDuelist);
+    NotifyDynamicEquipFieldChanged();
+    return; /* printed: the revived target */
+  }
+}
+
+static void OnDariusLeaveField(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->cardId != GLADIATOR_BEAST_DARIUS || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+
+  Duel_ShowEffectTextTyped(GLADIATOR_BEAST_DARIUS, 8);
+  ShuffleNegatedCompanions(ev->controller);
+  UpdateDuelGfxExceptField();
+}
+
+void GladiatorBeastDarius_EnsureInit(void)
+{
+  if (sDariusInit)
+    return;
+
+  sDariusInit = TRUE;
+  /* ON_LEAVE covers destroy + battle-destroy (both emit leave). */
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnDariusLeaveField);
 }

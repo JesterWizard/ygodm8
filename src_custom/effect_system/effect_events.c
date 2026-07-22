@@ -57,6 +57,7 @@
 #include "crimson_blader.h"
 #include "destiny_hero_captain_tenacious.h"
 #include "aroma_lp_gain.h"
+#include "necrovalley_temple.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -70,6 +71,11 @@ void TheWhiteStoneOfAncients_EnsureInit(void);
 void AmazonessEmpress_EnsureInit(void);
 void DestinyHeroDoubleDude_EnsureInit(void);
 void EvilHeroDarkestKnight_EnsureInit(void);
+void CuriousTheLightswornDominion_EnsureInit(void);
+void DarkMagicianDestroyRevive_EnsureInit(void);
+void ElderEntityNorden_EnsureInit(void);
+void GladiatorBeastDarius_EnsureInit(void);
+void EvilHeroViciousClaws_EnsureInit(void);
 
 static u8 sEffectEventsInited APPEND_DATA = {0};
 
@@ -118,6 +124,12 @@ void EffectEvent_EnsureInit(void)
   GravekeepersRecruiter_EnsureInit();
   GreenBaboon_EnsureInit();
   AromaLpGain_EnsureInit();
+  NecrovalleyTemple_EnsureInit();
+  CuriousTheLightswornDominion_EnsureInit();
+  DarkMagicianDestroyRevive_EnsureInit();
+  ElderEntityNorden_EnsureInit();
+  GladiatorBeastDarius_EnsureInit();
+  EvilHeroViciousClaws_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 

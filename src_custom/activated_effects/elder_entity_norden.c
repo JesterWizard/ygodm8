@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -11,6 +12,8 @@ extern const CardData gCardData_NEW[];
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+static u8 sNordenInit APPEND_DATA = {0};
 
 static u8 FixedDuelistForOwner(void)
 {
@@ -70,7 +73,7 @@ static void MarkSummonedMonsterNegated(u16 cardId)
     struct DuelCard *zone = gTurnZones[row][col];
 
     if (zone != NULL && zone->id == cardId) {
-      /* Ceiling: banish-when-leaves needs leave-field hook; unk4 marks negated. */
+      /* Negated + banish-when-Norden-leaves stand-in. */
       zone->unk4 |= 0x80;
       return;
     }
@@ -109,6 +112,45 @@ static enum DuelActionResult SpecialSummonGyLv4DefNegated(u8 fixedDuelist, u8 gy
   return DUEL_ACTION_OK;
 }
 
+static void BanishNegatedCompanions(u8 controller)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(controller);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone == NULL || zone->id == CARD_NONE || zone->id == ELDER_ENTITY_NORDEN)
+      continue;
+    if ((zone->unk4 & 0x80) == 0)
+      continue;
+
+    Duel_BanishZone(zone, TRUE);
+  }
+}
+
+static void OnNordenLeaveField(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->cardId != ELDER_ENTITY_NORDEN || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+
+  Duel_ShowEffectTextTyped(ELDER_ENTITY_NORDEN, 8);
+  BanishNegatedCompanions(ev->controller);
+  UpdateDuelGfxExceptField();
+}
+
+void ElderEntityNorden_EnsureInit(void)
+{
+  if (sNordenInit)
+    return;
+
+  sNordenInit = TRUE;
+  /* ON_LEAVE covers destroy + battle-destroy (both emit leave). */
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnNordenLeaveField);
+}
+
 unsigned char CanActivateELDER_ENTITY_NORDEN(void)
 {
   struct DuelCard *zone;
@@ -121,7 +163,8 @@ unsigned char CanActivateELDER_ENTITY_NORDEN(void)
   if (zone == NULL || zone->id != ELDER_ENTITY_NORDEN)
     return FALSE;
 
-  /* Ceiling: SS-trigger timing + banish-when-leaves need summon/leave hooks.
+  /* Banish-when-leaves via ElderEntityNorden_EnsureInit.
+   * Ceiling: SS-trigger timing needs summon hook.
    * OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark. */
   if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;

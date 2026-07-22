@@ -9,18 +9,18 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 19:27 UTC  
-**Remaining partials:** `229`
+**Last updated:** 2026-07-22 19:39 UTC  
+**Remaining partials:** `225`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 6 |
-| `trap` | 10 |
-| `activated` | 191 |
+| `trap` | 9 |
+| `activated` | 188 |
 | `permanent` | 22 |
-| **total** | **229** |
+| **total** | **225** |
 
 ## spell (6)
 
@@ -54,7 +54,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/spell_gear.c`
 - L156: * Ceiling: optional SS offered as auto-yes when legal; cannot skip
 
-## trap (10)
+## trap (9)
 
 ### `AMAZONESS_HALL`
 - path: `src_custom/trap_effects/amazoness_hall.c`
@@ -81,10 +81,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/favourite_contact.c`
 - L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API; return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
 
-### `NECROVALLEY_TEMPLE`
-- path: `src_custom/trap_effects/necrovalley_temple.c`
-- L129: destroy-Set Necrovalley S/T from Deck needs destroy hook — place Necrovalley from hand/GY when GK present; continuous −500 via overlay.
-
 ### `SHADDOLL_CORE`
 - path: `src_custom/trap_effects/shaddoll_core.c`
 - L45: true trap-monster (still a Trap) + Attribute fusion substitute need Embodiment-style link; place SHADDOLL_CORE on monster row and keep trap face-up continuous; GY add Shaddoll S/T stand-in on activate.
@@ -97,7 +93,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (191)
+## activated (188)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -249,7 +245,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CURIOUS_THE_LIGHTSWORN_DOMINION`
 - path: `src_custom/activated_effects/curious_the_lightsworn_dominion.c`
-- L33: Link Summon mill + leave-field GY add + mill-cascade need summon/ leave-field hooks. OPT mill 1 from Deck below.
+- L146: * Ceiling: Link Summon mill + mill-cascade need summon/send hooks.
 
 ### `CYBER_DRAGON_INFINITY`
 - path: `src_custom/activated_effects/cyber_dragon_infinity.c`
@@ -288,16 +284,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
 - path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
 - L65: * Ceiling: not ignition-activatable here. */
-
-### `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS`
-- path: `src_custom/activated_effects/dark_magician_the_magician_of_black_chaos.c`
-- L34: * Duel_ZoneEffectCardId. Ceiling: destroy-revive/Set need destroy hooks.
-- L35: * Ceiling: not field-ignition; FromHand if Shining Sarcophagus. */
-
-### `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC`
-- path: `src_custom/activated_effects/dark_magician_the_magician_of_black_magic.c`
-- L34: * Duel_ZoneEffectCardId. Ceiling: destroy-revive/Set need destroy hooks.
-- L35: * Ceiling: not field-ignition; FromHand if Shining Sarcophagus. */
 
 ### `DARK_STRIKE_FIGHTER`
 - path: `src_custom/activated_effects/dark_strike_fighter.c`
@@ -417,8 +403,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ELDER_ENTITY_NORDEN`
 - path: `src_custom/activated_effects/elder_entity_norden.c`
-- L73: banish-when-leaves needs leave-field hook; unk4 marks negated.
-- L124: SS-trigger timing + banish-when-leaves need summon/leave hooks. OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark.
+- L167: * Ceiling: SS-trigger timing needs summon hook.
 
 ### `ELEMENTAL_HERO_CHAOS_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_chaos_neos.c`
@@ -471,8 +456,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_VICIOUS_CLAWS`
 - path: `src_custom/activated_effects/evil_hero_vicious_claws.c`
-- L46: GY destroy-revive + Dark Fusion destroy branch need GY/destroy hooks. Ceiling: FromHand target HERO → SS DEF +300 ATK stand-in.
-- L96: +300 ≈ +1 tempStage (~500).
+- L121: once-per-duel ≈ EffectOpt (turn); upgrade: duel-scoped latch.
 
 ### `EVOLZAR_DOLKKA`
 - path: `src_custom/activated_effects/evolzar_dolkka.c`
@@ -501,10 +485,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GAMECIAL_THE_SEA_TURTLE_KAIJU`
 - path: `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c`
 - L69: * Ceiling: FromHand tribute 1 opp → SS to your field (or free SS if opp has Kaiju). */
-
-### `GLADIATOR_BEAST_DARIUS`
-- path: `src_custom/activated_effects/gladiator_beast_darius.c`
-- L178: * Ceiling: leave-field shuffle need leave hook.
 
 ### `GLADIATOR_BEAST_GYZARUS`
 - path: `src_custom/activated_effects/gladiator_beast_gyzarus.c`

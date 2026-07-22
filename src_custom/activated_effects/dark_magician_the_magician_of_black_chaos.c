@@ -31,8 +31,8 @@ unsigned char CanActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS(void)
     return FALSE;
 
   /* Name=Dark Magician via DarkMagicianTheMagicianOfBlackChaos_TreatsNameAsDarkMagician +
-   * Duel_ZoneEffectCardId. Ceiling: destroy-revive/Set need destroy hooks.
-   * Ceiling: not field-ignition; FromHand if Shining Sarcophagus. */
+   * Duel_ZoneEffectCardId. Destroy-revive/Set via DarkMagicianDestroyRevive_EnsureInit.
+   * Not field-ignition; FromHand if Shining Sarcophagus. */
   return FALSE;
 }
 

@@ -4,12 +4,22 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "necrovalley_temple.h"
 #include "spell_effects.h"
 
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
+
+static u8 sTempleInit APPEND_DATA = {0};
+
+static const u16 sNecrovalleySpellTraps[] APPEND_RODATA = {
+  NECROVALLEY,
+  IMPERIAL_TOMBS_OF_NECROVALLEY,
+  HIDDEN_TEMPLES_OF_NECROVALLEY,
+  NECROVALLEY_THRONE,
+};
 
 #define NECROVALLEY_TEMPLE_OPP_PENALTY 500
 
@@ -126,12 +136,99 @@ static void ActivateNECROVALLEY_TEMPLEZone(struct DuelCard *zone)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* Ceiling: destroy-Set Necrovalley S/T from Deck needs destroy hook — place
-   * Necrovalley from hand/GY when GK present; continuous −500 via overlay. */
+  /* Destroy → Set Necrovalley S/T via NecrovalleyTemple_EnsureInit.
+   * Place Necrovalley from hand/GY when GK present; continuous −500 via overlay. */
   if (FieldHasGravekeepers())
     TryActivateNecrovalleyFromHandOrGy();
 
   UpdateDuelGfxExceptField();
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
+}
+
+static u16 FindNecrovalleySpellTrapInDeck(u8 turnDuelist)
+{
+  u8 i;
+
+  for (i = 0; i < ARRAY_COUNT(sNecrovalleySpellTraps); i++) {
+    if (Duel_FindDeckCardIndex(turnDuelist, sNecrovalleySpellTraps[i]) >= 0)
+      return sNecrovalleySpellTraps[i];
+  }
+  return CARD_NONE;
+}
+
+static u8 SetNecrovalleySpellTrapFromDeck(u8 turnDuelist, u16 cardId)
+{
+  s8 empty;
+  s16 deckIndex;
+  struct DuelCard *slot;
+  u8 backRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_BACKROW
+                                             : INACTIVE_DUELIST_BACKROW;
+
+  empty = FirstEmptyZoneInRow(gTurnZones[backRow]);
+  if (empty < 0)
+    return FALSE;
+
+  deckIndex = Duel_FindDeckCardIndex(turnDuelist, cardId);
+  if (deckIndex < 0)
+    return FALSE;
+
+  if (Duel_RemoveDeckCardAt(turnDuelist, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
+    return FALSE;
+
+  Duel_ShuffleDeckFromDrawn(turnDuelist);
+
+  slot = gTurnZones[backRow][empty];
+  slot->id = cardId;
+  slot->isFaceUp = FALSE;
+  slot->isLocked = FALSE;
+  slot->isDefending = FALSE;
+  slot->unkTwo = 0;
+  slot->unkThree = 0;
+  slot->unk4 = 0;
+  slot->willChangeSides = FALSE;
+  ResetPermStage(slot);
+  ResetTempStage(slot);
+  return TRUE;
+}
+
+static void OnTempleDestroyed(const struct EffectEvent *ev)
+{
+  u8 turnDuelist;
+  u16 cardId;
+
+  if (ev == NULL || ev->cardId != NECROVALLEY_TEMPLE || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+  if (EffectOpt_IsUsed(NECROVALLEY_TEMPLE))
+    return;
+
+  turnDuelist = TurnDuelistForFixed(ev->controller);
+  cardId = FindNecrovalleySpellTrapInDeck(turnDuelist);
+  if (cardId == CARD_NONE)
+    return;
+
+  Duel_ShowEffectTextTyped(NECROVALLEY_TEMPLE, 8);
+  if (!SetNecrovalleySpellTrapFromDeck(turnDuelist, cardId))
+    return;
+
+  EffectOpt_MarkUsed(NECROVALLEY_TEMPLE);
+  UpdateDuelGfxExceptField();
+}
+
+void NecrovalleyTemple_EnsureInit(void)
+{
+  if (sTempleInit)
+    return;
+
+  sTempleInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnTempleDestroyed);
 }
 
 void TryActivateNECROVALLEY_TEMPLEOnOpponentTurnStart(void)

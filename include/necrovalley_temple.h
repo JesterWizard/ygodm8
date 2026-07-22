@@ -5,5 +5,6 @@
 
 void ApplyNecrovalleyTempleOppStatPenaltyToCardInfo(const struct DuelCard *zone);
 void TryActivateNECROVALLEY_TEMPLEOnOpponentTurnStart(void);
+void NecrovalleyTemple_EnsureInit(void);
 
 #endif /* GUARD_NECROVALLEY_TEMPLE_H */
