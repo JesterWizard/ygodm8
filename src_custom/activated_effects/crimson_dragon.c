@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void ClearZone(struct DuelCard *zone);
@@ -124,6 +125,64 @@ static void ShuffleSelfSsDragon(struct DuelCard *self)
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, dragonId, opts);
 }
 
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
+static u8 AddCrimsonMentionFromDeckFor(u8 turnDuelist)
+{
+  u16 searchId;
+  u8 fixedDuelist =
+      gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER]
+          ? DUEL_PLAYER
+          : DUEL_OPPONENT;
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return FALSE;
+
+  for (i = top; i < deckSize; i++) {
+    searchId = gDuelDecks[fixedDuelist].cards[i];
+    if (!MentionsCrimsonDragonSpellTrap(searchId))
+      continue;
+
+    return Duel_AddDeckCardToHand(turnDuelist, searchId, TRUE) == DUEL_ACTION_OK;
+  }
+
+  return FALSE;
+}
+
+void TryCrimsonDragonOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != CRIMSON_DRAGON || !SummonModeIsSpecial(mode))
+    return;
+
+  if (EffectOpt_IsUsed(CRIMSON_DRAGON))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(CRIMSON_DRAGON, 8);
+
+  if (!AddCrimsonMentionFromDeckFor(turnDuelist))
+    return;
+
+  EffectOpt_MarkUsed(CRIMSON_DRAGON);
+  UpdateDuelGfxExceptField();
+}
+
 unsigned char CanActivateCRIMSON_DRAGON(void)
 {
   struct DuelCard *zone;
@@ -135,14 +194,17 @@ unsigned char CanActivateCRIMSON_DRAGON(void)
   if (zone == NULL || zone->id != CRIMSON_DRAGON)
     return FALSE;
 
-  /* Ceiling: on-SS search + Extra Synchro return FALSE.
-   * OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon. */
+  /* On-SS search via TryCrimsonDragonOnMonsterPlacement (EffectOpt).
+   * OPT search mentioning Crimson Dragon S/T (shares EffectOpt).
+   * Ceiling: Extra Deck Synchro SS FALSE; Deck Dragon stand-in. */
+  if (!EffectOpt_IsUsed(CRIMSON_DRAGON)
+      && FindCrimsonMentionInDeck() != CARD_NONE
+      && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0
+      && CanUseMonsterEffect(zone))
+    return TRUE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
-
-  if (FindCrimsonMentionInDeck() != CARD_NONE
-      && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0)
-    return TRUE;
 
   return CanShuffleSelfSsDragon(zone);
 }
@@ -158,10 +220,13 @@ void ActivateCRIMSON_DRAGONEffect(void)
     return;
 
   searchId = FindCrimsonMentionInDeck();
-  if (searchId != CARD_NONE && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0) {
+  if (!EffectOpt_IsUsed(CRIMSON_DRAGON)
+      && searchId != CARD_NONE
+      && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0) {
     if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, searchId, TRUE) != DUEL_ACTION_OK)
       return;
 
+    EffectOpt_MarkUsed(CRIMSON_DRAGON);
     MarkMonsterEffectUsed(self);
     UpdateDuelGfxExceptField();
     CheckWinConditionExodia(WhoseTurn());

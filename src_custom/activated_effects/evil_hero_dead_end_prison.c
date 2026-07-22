@@ -4,6 +4,7 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
@@ -107,7 +108,10 @@ unsigned char CanActivateEVIL_HERO_DEAD_END_PRISON(void)
     return FALSE;
 
   /* Ceiling: Dark Fusion Fusion gate + Fusion-substitute name marker FALSE.
-   * OPT mill 1 HERO from Deck. */
+   * OPT mill 1 HERO from Deck (EffectOpt). */
+  if (EffectOpt_IsUsed(EVIL_HERO_DEAD_END_PRISON))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -124,6 +128,9 @@ void ActivateEVIL_HERO_DEAD_END_PRISONEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(EVIL_HERO_DEAD_END_PRISON))
+    return;
+
   heroId = FindHeroInDeck();
   if (heroId == CARD_NONE)
     return;
@@ -131,6 +138,7 @@ void ActivateEVIL_HERO_DEAD_END_PRISONEffect(void)
   if (!MillHeroFromDeck(heroId))
     return;
 
+  EffectOpt_MarkUsed(EVIL_HERO_DEAD_END_PRISON);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

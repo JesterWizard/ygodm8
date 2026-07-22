@@ -36,6 +36,12 @@ void TryEvilHeroInfernalRiderOnMonsterPlacement(struct DuelCard *zone);
 void TryLightswornDragonlingOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode);
 /* BATCH11 */
 void TryMorphtronicEarfonOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode);
+/* BATCH12 — Round 17 on-summon search wires. */
+void TryDarkMagicianGirlTheMagicianSApprenticeOnMonsterPlacement(struct DuelCard *zone);
+void TryDarkMagicianGirlTheMagiciansApprenticeOnMonsterPlacement(struct DuelCard *zone);
+void TryCrimsonDragonOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode);
+void TryElementalHeroSpiritOfNeosOnMonsterPlacement(struct DuelCard *zone,
+                                                    enum DuelSummonMode mode);
 
 void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
 {
@@ -76,4 +82,9 @@ void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
   TryLightswornDragonlingOnMonsterPlacement(zone, mode);
   /* BATCH11 */
   TryMorphtronicEarfonOnMonsterPlacement(zone, mode);
+  /* BATCH12 */
+  TryDarkMagicianGirlTheMagicianSApprenticeOnMonsterPlacement(zone);
+  TryDarkMagicianGirlTheMagiciansApprenticeOnMonsterPlacement(zone);
+  TryCrimsonDragonOnMonsterPlacement(zone, mode);
+  TryElementalHeroSpiritOfNeosOnMonsterPlacement(zone, mode);
 }

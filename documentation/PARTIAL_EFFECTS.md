@@ -9,20 +9,20 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 20:24 UTC  
-**Remaining partials:** `203`
+**Last updated:** 2026-07-22 20:31 UTC  
+**Remaining partials:** `201`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 6 |
+| `spell` | 5 |
 | `trap` | 9 |
-| `activated` | 167 |
+| `activated` | 166 |
 | `permanent` | 21 |
-| **total** | **203** |
+| **total** | **201** |
 
-## spell (6)
+## spell (5)
 
 ### `FUSION_DESTINY`
 - path: `src_custom/spell_effects/fusion_destiny.c`
@@ -49,10 +49,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L68: no simple Deck→banish helper for arbitrary ST — mill to GY as stand-in for the 5 banished; cards go to GY not banished; upgrade: Duel_BanishDeckCardAt.
 - L138: Deck banish pushes via GraveyardExpand then Banish top — approx by pushing GY then Duel_BanishGraveyardTopTurn; briefly hits GY; upgrade: direct deck→RFG.
 - L151: Chronicle Counters on opp Spell resolve / remove 2 → opp chooses banished add / leave-field burn need continuous hooks outside this file. Ceiling: activate discard+banish 5 only; unk4 counter slot unused.
-
-### `SPELL_GEAR`
-- path: `src_custom/spell_effects/spell_gear.c`
-- L156: * Ceiling: optional SS offered as auto-yes when legal; cannot skip
 
 ## trap (9)
 
@@ -93,7 +89,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (167)
+## activated (166)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -223,8 +219,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CRIMSON_DRAGON`
 - path: `src_custom/activated_effects/crimson_dragon.c`
-- L123: Extra Deck Synchro SS FALSE; Deck Dragon stand-in.
-- L138: on-SS search + Extra Synchro return FALSE. OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon.
+- L124: Extra Deck Synchro SS FALSE; Deck Dragon stand-in.
 
 ### `CROSS_KEEPER`
 - path: `src_custom/activated_effects/cross_keeper.c`
@@ -258,11 +253,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE`
 - path: `src_custom/activated_effects/dark_magician_girl_the_magician_s_apprentice.c`
-- L61: name=DMG GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
+- L96: * Ceiling: name=DMG GY +300 mention FALSE. */
 
 ### `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE`
 - path: `src_custom/activated_effects/dark_magician_girl_the_magicians_apprentice.c`
-- L61: name=DMG GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
+- L96: * Ceiling: name=DMG GY +300 mention FALSE. */
 
 ### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
 - path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
@@ -391,7 +386,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ELEMENTAL_HERO_SPIRIT_OF_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_spirit_of_neos.c`
-- L154: attack-hand SS FALSE. OPT search Poly/E-HERO S/T, else OPT shuffle self → SS Normal E-HERO from Deck.
+- L225: attack-hand SS FALSE. On-SS search via TryElementalHeroSpiritOfNeosOnMonsterPlacement (EffectOpt). OPT search Poly/E-HERO S/T (shares EffectOpt), else OPT shuffle self → SS Normal E-HERO.
 
 ### `EVIL_HERO_ADUSTED_GOLD`
 - path: `src_custom/activated_effects/evil_hero_adusted_gold.c`
@@ -400,8 +395,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_DEAD_END_PRISON`
 - path: `src_custom/activated_effects/evil_hero_dead_end_prison.c`
-- L109: Dark Fusion Fusion gate + Fusion-substitute name marker FALSE. OPT mill 1 HERO from Deck.
-- L151: Dark Fusion Fusion markers missing; any Fusion Monster stand-in.
+- L110: Dark Fusion Fusion gate + Fusion-substitute name marker FALSE. OPT mill 1 HERO from Deck (EffectOpt).
+- L159: Dark Fusion Fusion markers missing; any Fusion Monster stand-in.
 
 ### `EVIL_HERO_INFERNAL_RIDER`
 - path: `src_custom/activated_effects/evil_hero_infernal_rider.c`
@@ -578,10 +573,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MICHAEL_THE_ARCH_LIGHTSWORN`
 - path: `src_custom/activated_effects/michael_the_arch_lightsworn.c`
 - L140: * Ceiling: pay 1000 LP → banish 1 field card. */
-
-### `MINERVA_LIGHTSWORN_MAIDEN`
-- path: `src_custom/activated_effects/minerva_lightsworn_maiden.c`
-- L125: * Ceiling: field OPT search LIGHT Dragon Lv≤ distinct LS names in GY. */
 
 ### `MIRROR_FORCE_DRAGON`
 - path: `src_custom/activated_effects/mirror_force_dragon.c`

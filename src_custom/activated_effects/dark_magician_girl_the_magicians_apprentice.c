@@ -3,6 +3,8 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
 
@@ -47,6 +49,37 @@ static u8 DiscardOtherCardExceptZone(u8 exceptZone)
   return FALSE;
 }
 
+void TryDarkMagicianGirlTheMagiciansApprenticeOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE)
+    return;
+
+  if (EffectOpt_IsUsed(DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return;
+
+  if (Duel_FindDeckCardIndex(turnDuelist, SHINING_SARCOPHAGUS) < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE, 8);
+
+  if (Duel_AddDeckCardToHand(turnDuelist, SHINING_SARCOPHAGUS, TRUE) != DUEL_ACTION_OK)
+    return;
+
+  EffectOpt_MarkUsed(DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE);
+  UpdateDuelGfxExceptField();
+}
+
 unsigned char CanActivateDARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE(void)
 {
   struct DuelCard *zone;
@@ -58,8 +91,12 @@ unsigned char CanActivateDARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE(void)
   if (zone == NULL || zone->id != DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE)
     return FALSE;
 
-  /* Ceiling: name=DMG GY +300 mention FALSE.
-   * Ceiling: field OPT add Shining Sarcophagus from Deck. */
+  /* On-NS/SS search via TryDarkMagicianGirlTheMagiciansApprenticeOnMonsterPlacement.
+   * OPT add Shining Sarcophagus (shares EffectOpt).
+   * Ceiling: name=DMG GY +300 mention FALSE. */
+  if (EffectOpt_IsUsed(DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -78,9 +115,13 @@ void ActivateDARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICEEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE))
+    return;
+
   if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, SHINING_SARCOPHAGUS, TRUE) != DUEL_ACTION_OK)
     return;
 
+  EffectOpt_MarkUsed(DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

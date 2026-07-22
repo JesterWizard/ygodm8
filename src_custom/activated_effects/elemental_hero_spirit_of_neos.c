@@ -5,6 +5,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void ClearZone(struct DuelCard *zone);
@@ -140,6 +141,76 @@ static void ShuffleSelfSummonNormalHero(struct DuelCard *self)
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, summonId, opts);
 }
 
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
+static u16 FindSearchTargetInDeckFor(u8 turnDuelist)
+{
+  u8 fixedDuelist =
+      gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER]
+          ? DUEL_PLAYER
+          : DUEL_OPPONENT;
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+
+  if (Duel_FindDeckCardIndex(turnDuelist, POLYMERIZATION) >= 0)
+    return POLYMERIZATION;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsSearchTarget(cardId))
+      return cardId;
+  }
+
+  return CARD_NONE;
+}
+
+static u8 AddSearchTargetFromDeckFor(u8 turnDuelist)
+{
+  u16 searchId = FindSearchTargetInDeckFor(turnDuelist);
+
+  if (searchId == CARD_NONE)
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return FALSE;
+
+  return Duel_AddDeckCardToHand(turnDuelist, searchId, TRUE) == DUEL_ACTION_OK;
+}
+
+void TryElementalHeroSpiritOfNeosOnMonsterPlacement(struct DuelCard *zone,
+                                                    enum DuelSummonMode mode)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != ELEMENTAL_HERO_SPIRIT_OF_NEOS || !SummonModeIsSpecial(mode))
+    return;
+
+  if (EffectOpt_IsUsed(ELEMENTAL_HERO_SPIRIT_OF_NEOS))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(ELEMENTAL_HERO_SPIRIT_OF_NEOS, 8);
+
+  if (!AddSearchTargetFromDeckFor(turnDuelist))
+    return;
+
+  EffectOpt_MarkUsed(ELEMENTAL_HERO_SPIRIT_OF_NEOS);
+  UpdateDuelGfxExceptField();
+}
+
 unsigned char CanActivateELEMENTAL_HERO_SPIRIT_OF_NEOS(void)
 {
   struct DuelCard *zone;
@@ -151,12 +222,14 @@ unsigned char CanActivateELEMENTAL_HERO_SPIRIT_OF_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_SPIRIT_OF_NEOS)
     return FALSE;
 
-  /* Ceiling: attack-hand SS FALSE. OPT search Poly/E-HERO S/T, else
-   * OPT shuffle self → SS Normal E-HERO from Deck. */
+  /* Ceiling: attack-hand SS FALSE.
+   * On-SS search via TryElementalHeroSpiritOfNeosOnMonsterPlacement (EffectOpt).
+   * OPT search Poly/E-HERO S/T (shares EffectOpt), else OPT shuffle self → SS Normal E-HERO. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
-  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0
+  if (!EffectOpt_IsUsed(ELEMENTAL_HERO_SPIRIT_OF_NEOS)
+      && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0
       && FindSearchTargetInDeck() != CARD_NONE)
     return TRUE;
 
@@ -174,10 +247,13 @@ void ActivateELEMENTAL_HERO_SPIRIT_OF_NEOSEffect(void)
     return;
 
   searchId = FindSearchTargetInDeck();
-  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0 && searchId != CARD_NONE) {
+  if (!EffectOpt_IsUsed(ELEMENTAL_HERO_SPIRIT_OF_NEOS)
+      && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0
+      && searchId != CARD_NONE) {
     if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, searchId, TRUE) != DUEL_ACTION_OK)
       return;
 
+    EffectOpt_MarkUsed(ELEMENTAL_HERO_SPIRIT_OF_NEOS);
     MarkMonsterEffectUsed(self);
     UpdateDuelGfxExceptField();
     CheckWinConditionExodia(WhoseTurn());

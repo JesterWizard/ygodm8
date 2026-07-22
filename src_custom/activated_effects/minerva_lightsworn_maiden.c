@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -122,7 +123,10 @@ unsigned char CanActivateMINERVA_LIGHTSWORN_MAIDEN(void)
     return FALSE;
 
   /* Normal Summon mill 4 via TryMinervaLightswornMaidenOnNormalSummon.
-   * Ceiling: field OPT search LIGHT Dragon Lv≤ distinct LS names in GY. */
+   * Field OPT search LIGHT Dragon Lv≤ distinct LS names in GY (EffectOpt). */
+  if (EffectOpt_IsUsed(MINERVA_LIGHTSWORN_MAIDEN))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -145,6 +149,9 @@ void ActivateMINERVA_LIGHTSWORN_MAIDENEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(MINERVA_LIGHTSWORN_MAIDEN))
+    return;
+
   maxLevel = CountDistinctLightswornNamesInGy(fixedDuelist);
   searchId = FindLightDragonInDeck(maxLevel);
   if (searchId == CARD_NONE)
@@ -153,6 +160,7 @@ void ActivateMINERVA_LIGHTSWORN_MAIDENEffect(void)
   if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, searchId, TRUE) != DUEL_ACTION_OK)
     return;
 
+  EffectOpt_MarkUsed(MINERVA_LIGHTSWORN_MAIDEN);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
