@@ -183,7 +183,7 @@ unsigned char CanActivateKEEPER_OF_DRAGON_MAGIC(void)
     return FALSE;
 
   /* reveal Fusion Extra material-name SS FALSE; any GY face-down stand-in.
-   * Ceiling: OPT discard → add Poly/Fusion Normal; else OPT SS any from GY face-down DEF. */
+   * OPT discard → add Poly/Fusion Normal; else OPT SS any from GY face-down DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

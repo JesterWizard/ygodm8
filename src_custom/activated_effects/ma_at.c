@@ -131,7 +131,7 @@ unsigned char CanActivateMA_AT(void)
   if (zone == NULL || zone->id != MA_AT)
     return FALSE;
 
-  /* name-3 excavate UI hard. Ceiling: OPT reveal top 3, add any, mill rest. */
+  /* name-3 excavate UI hard. OPT reveal top 3, add any, mill rest. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

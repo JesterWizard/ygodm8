@@ -69,6 +69,7 @@ void DestinyHeroCaptainTenacious_EnsureInit(void);
 void TheWhiteStoneOfAncients_EnsureInit(void);
 void AmazonessEmpress_EnsureInit(void);
 void DestinyHeroDoubleDude_EnsureInit(void);
+void EvilHeroDarkestKnight_EnsureInit(void);
 
 static u8 sEffectEventsInited APPEND_DATA = {0};
 
@@ -103,6 +104,7 @@ void EffectEvent_EnsureInit(void)
   TheWhiteStoneOfAncients_EnsureInit();
   AmazonessEmpress_EnsureInit();
   DestinyHeroDoubleDude_EnsureInit();
+  EvilHeroDarkestKnight_EnsureInit();
   AncientGearFrame_EnsureInit();
   Birdface_EnsureInit();
   TroopDragon_EnsureInit();

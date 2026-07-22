@@ -4,6 +4,8 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "evil_hero_darkest_knight.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
@@ -12,12 +14,21 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
+static u8 sDarkestKnightInit APPEND_DATA = {0};
+
 static u8 FixedDuelistForActive(void)
 {
   if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
 }
 
 static u8 IsFiendOrWarrior(u16 cardId)
@@ -53,18 +64,23 @@ static s8 FindFiendOrWarriorGyIndex(u8 fixedDuelist)
   return -1;
 }
 
-static enum DuelActionResult SpecialSummonFiendOrWarriorFromGy(s8 gyIndex)
+static enum DuelActionResult SpecialSummonFiendOrWarriorFromGyFor(u8 fixedDuelist, u8 turnDuelist,
+                                                                  s8 gyIndex)
 {
   struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
-  u8 fixedDuelist = FixedDuelistForActive();
   u16 cardId;
+  u8 monRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                            : INACTIVE_DUELIST_MONSTER_ROW;
+
+  if (FirstEmptyZoneInRow(gTurnZones[monRow]) < 0)
+    return DUEL_ACTION_NO_ZONE;
 
   if (!GraveyardExpand_IsEnabled()) {
-    cardId = gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard;
+    cardId = gDuel.duelistbattleState[fixedDuelist].graveyard;
     if (!IsFiendOrWarrior(cardId))
       return DUEL_ACTION_NO_TARGET;
 
-    return Duel_SpecialSummonFromGrave(ACTIVE_DUELIST, cardId, opts);
+    return Duel_SpecialSummonFromGrave(turnDuelist, cardId, opts);
   }
 
   cardId = GraveyardExpand_GetCardAt(fixedDuelist, (u8)gyIndex);
@@ -74,7 +90,50 @@ static enum DuelActionResult SpecialSummonFiendOrWarriorFromGy(s8 gyIndex)
   cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, (u8)gyIndex);
   GraveyardExpand_SyncLegacyTop(fixedDuelist);
   GraveyardExpand_RefreshDisplay();
-  return Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
+  return Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts);
+}
+
+static enum DuelActionResult SpecialSummonFiendOrWarriorFromGy(s8 gyIndex)
+{
+  return SpecialSummonFiendOrWarriorFromGyFor(FixedDuelistForActive(), ACTIVE_DUELIST, gyIndex);
+}
+
+static void OnDarkestKnightLeaveField(const struct EffectEvent *ev)
+{
+  u8 turnDuelist;
+  s8 gyIndex;
+
+  if (ev == NULL || ev->cardId != EVIL_HERO_DARKEST_KNIGHT)
+    return;
+  if (ev->controller > DUEL_OPPONENT || gHideEffectText)
+    return;
+  if (EffectOpt_IsUsed(EVIL_HERO_DARKEST_KNIGHT) || ArchlordKristya_IsSpecialSummonLocked())
+    return;
+
+  turnDuelist = TurnDuelistForFixed(ev->controller);
+  gyIndex = FindFiendOrWarriorGyIndex(ev->controller);
+  if (gyIndex < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(EVIL_HERO_DARKEST_KNIGHT, 8);
+
+  if (SpecialSummonFiendOrWarriorFromGyFor(ev->controller, turnDuelist, gyIndex)
+      != DUEL_ACTION_OK)
+    return;
+
+  EffectOpt_MarkUsed(EVIL_HERO_DARKEST_KNIGHT);
+  UpdateDuelGfxExceptField();
+}
+
+void EvilHeroDarkestKnight_EnsureInit(void)
+{
+  if (sDarkestKnightInit)
+    return;
+
+  sDarkestKnightInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnDarkestKnightLeaveField);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_BATTLE_DESTROY, OnDarkestKnightLeaveField);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnDarkestKnightLeaveField);
 }
 
 static u32 SumMaterialOriginalAtk(const u16 *materialIds, u8 materialCount)
@@ -170,7 +229,11 @@ unsigned char CanActivateEVIL_HERO_DARKEST_KNIGHT(void)
     return FALSE;
 
   /* Fusion double attack + material ATK drain via EvilHeroDarkestKnight_OnFusionSummoned.
-   * Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in). */
+   * Leave-field SS via EvilHeroDarkestKnight_EnsureInit.
+   * OPT SS 1 Fiend/Warrior from GY (shares EffectOpt with leave-field). */
+  if (EffectOpt_IsUsed(EVIL_HERO_DARKEST_KNIGHT))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -204,6 +267,7 @@ void ActivateEVIL_HERO_DARKEST_KNIGHTEffect(void)
   if (SpecialSummonFiendOrWarriorFromGy(gyIndex) != DUEL_ACTION_OK)
     return;
 
+  EffectOpt_MarkUsed(EVIL_HERO_DARKEST_KNIGHT);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

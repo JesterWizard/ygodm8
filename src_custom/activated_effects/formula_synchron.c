@@ -30,7 +30,7 @@ unsigned char CanActivateFORMULA_SYNCHRON(void)
     return FALSE;
 
   /* Synchro Summon draw trigger + opp-Main-Phase quick Synchro need
-   * synchro/chain hooks. Ceiling: OPT draw 1 via usage when deck remains. */
+   * synchro/chain hooks. OPT draw 1 via usage when deck remains. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
