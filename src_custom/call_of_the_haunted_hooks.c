@@ -24,6 +24,7 @@
 #include "tyrant_wing.h"
 #include "arcana_force_ex_the_dark_ruler.h"
 #include "destiny_hero_double_dude.h"
+#include "extra_attack_unk4.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
 #include "the_tripper_mercury.h"
@@ -445,6 +446,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   TryUnlockTyrantWingForSecondAttack(attacker);
   TryUnlockArcanaForceExDarkRulerForSecondAttack(attacker);
   TryUnlockDestinyHeroDoubleDudeForSecondAttack(attacker);
+  TryUnlockUnk4MarkedExtraAttack(attacker);
   {
     u8 fr;
     u8 fc;

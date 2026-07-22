@@ -68,6 +68,10 @@
 #include "red_dragon_archfiend.h"
 #include "destiny_hero_defender.h"
 #include "armed_dragon_lv5.h"
+#include "horus_end_phase.h"
+#include "gandora_x.h"
+#include "judgment_the_dragon_of_heaven.h"
+#include "reptilianne_naga.h"
 #include "majestic_mech_goryu.h"
 #include "twilightsworn_end_phase.h"
 #include "treeborn_frog.h"
@@ -437,6 +441,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyTourOfDoomStandby();
   TryApplyDestinyHeroDefenderStandbyDraw();
   TryApplySilentSwordsmanStandby();
+  TryApplySilentSwordsmanZeroStandby();
   TryApplySilentMagicianLv4Standby();
   TryBottomlessShiftingSandTurnStart();
   ContinuousTraps_TryActivateOnOpponentTurnStart();
@@ -524,6 +529,18 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyArmedDragonLv5EndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyHorusEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyJudgmentEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyReptilianneNagaEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyGandoraXEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyMajesticMechGoryuEndPhase();

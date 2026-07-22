@@ -130,6 +130,7 @@
 #include "d_burst.h"
 #include "d_force.h"
 #include "neutron_blast.h"
+#include "extra_attack_unk4.h"
 #include "tyrant_wing.h"
 #include "arcana_force_ex_the_dark_ruler.h"
 #include "destiny_hero_double_dude.h"
@@ -1887,6 +1888,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockNeutronBlastForExtraAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockUnk4MarkedExtraAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       {
         u8 fr;
         u8 fc;
@@ -2075,6 +2078,8 @@ void TryAttackWithMonster__Replacement(void)
       TryUnlockDestinyHeroDoubleDudeForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockNeutronBlastForExtraAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      TryUnlockUnk4MarkedExtraAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       {
         u8 fr;

@@ -2,12 +2,35 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "silent_swordsman.h"
 #include "monster_effect_usage.h"
 
 void RefreshFieldMonsterStatOverlays(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+void TryApplySilentSwordsmanZeroStandby(void)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+    if (zone == NULL || zone->id != SILENT_SWORDSMAN_ZERO || !zone->isFaceUp)
+      continue;
+
+    Duel_ShowEffectTextTyped(SILENT_SWORDSMAN_ZERO, 9);
+
+    if (zone->unkTwo < 255)
+      zone->unkTwo = (u8)(zone->unkTwo + 1);
+
+    if (zone->tempStage < 127)
+      zone->tempStage = (s8)(zone->tempStage + 1);
+
+    RefreshFieldMonsterStatOverlays();
+  }
+}
 
 unsigned char CanActivateSILENT_SWORDSMAN_ZERO(void)
 {
@@ -20,8 +43,8 @@ unsigned char CanActivateSILENT_SWORDSMAN_ZERO(void)
   if (zone == NULL || zone->id != SILENT_SWORDSMAN_ZERO)
     return FALSE;
 
-  /* ponytail: Standby Level + Sarcophagus negate need phase/chain hooks.
-   * Ceiling: OPT +1 Level mark (unkTwo) + +1 tempStage ATK stand-in. */
+  /* Standby Level/ATK via TryApplySilentSwordsmanZeroStandby; OPT +1 Level/+1
+   * tempStage unchanged. ponytail: Sarcophagus negate needs chain hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

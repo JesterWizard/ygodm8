@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "gandora_x.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
@@ -98,8 +99,8 @@ unsigned char CanActivateGANDORA_X_THE_DRAGON_OF_DESTRUCTION(void)
   if (zone == NULL || zone->id != GANDORA_X_THE_DRAGON_OF_DESTRUCTION)
     return FALSE;
 
-  /* ponytail: on-NS/SS-from-hand wipe + EP self-destroy need summon/EP hooks.
-   * Ceiling: OPT destroy all other monsters + burn highest original ATK + set ATK. */
+  /* on-NS/SS-from-hand wipe needs summon hook. OPT destroy/burn + ATK overlay
+   * via GandoraX_ApplyDynamicZoneStats; EP self-destroy via TryApplyGandoraXEndPhase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -126,7 +127,7 @@ void ActivateGANDORA_X_THE_DRAGON_OF_DESTRUCTIONEffect(void)
     if (Duel_ChangeLp(INACTIVE_DUELIST, -(s32)burn, TRUE) == DUEL_ACTION_DUEL_OVER)
       return;
 
-    /* ponytail: set ATK = damage via tempStage (~500/unit); EP self-destroy FALSE. */
+    /* ATK = damage via tempStage (~500/unit) + GandoraX_ApplyDynamicZoneStats. */
     stages = (s8)((burn + 499) / 500);
     if (stages > 126)
       stages = 126;

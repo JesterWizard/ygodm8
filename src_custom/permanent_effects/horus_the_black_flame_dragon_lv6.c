@@ -5,7 +5,8 @@
 
 unsigned char ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV6(void)
 {
-  /* ponytail: spell immunity + End Phase LV8 SS need continuous/battle-end hooks. */
+  /* Spell immunity via IsImmuneToSpellEffectsOnField. EP send self → SS LV8
+   * via TryApplyHorusEndPhase when this card destroyed a monster by battle. */
   (void)gActiveEffect;
   return FALSE;
 }

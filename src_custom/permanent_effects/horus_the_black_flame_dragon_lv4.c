@@ -5,7 +5,8 @@
 
 unsigned char ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV4(void)
 {
-  /* ponytail: control lock + End Phase LV6 SS need continuous/battle-end hooks. */
+  /* Control lock needs continuous hook. EP send self → SS LV6 via
+   * TryApplyHorusEndPhase when this card destroyed a monster by battle. */
   (void)gActiveEffect;
   return FALSE;
 }

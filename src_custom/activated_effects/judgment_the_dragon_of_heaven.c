@@ -104,8 +104,8 @@ unsigned char CanActivateJUDGMENT_THE_DRAGON_OF_HEAVEN(void)
   if (zone == NULL || zone->id != JUDGMENT_THE_DRAGON_OF_HEAVEN)
     return FALSE;
 
-  /* ponytail: 4+ GY Tuners gate + Dragon-only SS lock + End Phase mill 4 need
-   * GY/phase hooks. Ceiling: pay half LP → destroy all other field cards. */
+  /* 4+ GY Tuners gate + Dragon-only SS lock need GY/SS hooks. EP mill 4 via
+   * TryApplyJudgmentEndPhase. Ceiling: pay half LP → destroy all other field cards. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "gandora_x.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
 
@@ -115,7 +116,8 @@ static u8 IsOnSummonTrigger(void)
 
 unsigned char ShouldActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION(void)
 {
-  /* ponytail: End Phase half LP needs EP hook; on-summon wipe only here. */
+  /* EP half LP needs EP hook; on-summon wipe only here. ATK overlay via
+   * GandoraX_ApplyDynamicZoneStats. */
   return IsOnSummonTrigger();
 }
 
@@ -143,7 +145,7 @@ void ActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION(void)
         == DUEL_ACTION_DUEL_OVER)
       return;
 
-    /* ponytail: set ATK = damage via tempStage (~500/unit). */
+    /* ATK = damage via tempStage (~500/unit) + GandoraX_ApplyDynamicZoneStats. */
     stages = (s8)((burn + 499) / 500);
     if (stages > 126)
       stages = 126;

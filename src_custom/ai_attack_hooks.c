@@ -28,6 +28,7 @@
 #include "d_burst.h"
 #include "d_force.h"
 #include "neutron_blast.h"
+#include "extra_attack_unk4.h"
 #include "tyrant_wing.h"
 #include "arcana_force_ex_the_dark_ruler.h"
 #include "destiny_hero_double_dude.h"
@@ -262,6 +263,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockArcanaForceExDarkRulerForSecondAttack(attacker);
   TryUnlockDestinyHeroDoubleDudeForSecondAttack(attacker);
   TryUnlockNeutronBlastForExtraAttack(attacker);
+  TryUnlockUnk4MarkedExtraAttack(attacker);
   {
     u8 fr;
     u8 fc;
@@ -342,6 +344,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockArcanaForceExDarkRulerForSecondAttack(attacker);
   TryUnlockDestinyHeroDoubleDudeForSecondAttack(attacker);
   TryUnlockNeutronBlastForExtraAttack(attacker);
+  TryUnlockUnk4MarkedExtraAttack(attacker);
   {
     u8 fr;
     u8 fc;

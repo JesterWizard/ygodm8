@@ -183,6 +183,7 @@ u8 VennominagaTheDeityOfPoisonousSnakes_ApplyDynamicZoneStats(struct DuelCard *z
 u8 ElementalHeroAirNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroBraveNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 CyberDragonInfinity_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 GandoraX_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AromaseraphySweetMarjoram_CanAttackMonsterZone(struct DuelCard *zone);
 u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol);
 u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone);
@@ -1682,6 +1683,8 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_BRAVE_NEOS, ElementalHeroBraveNeos_ApplyDynamicZoneStats },
   { CYBER_DRAGON_INFINITY, CyberDragonInfinity_ApplyDynamicZoneStats },
   { SILENT_MAGICIAN_LV4, SilentMagicianLv4_ApplyDynamicZoneStats },
+  { GANDORA_X_THE_DRAGON_OF_DESTRUCTION, GandoraX_ApplyDynamicZoneStats },
+  { GANDORA_X_THE_DRAGON_OF_DEMOLITION, GandoraX_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {

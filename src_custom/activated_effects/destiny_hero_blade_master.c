@@ -55,8 +55,8 @@ static void BuffFaceUpDestinyHeroes(void)
     if (!IsDestinyHeroMonster(zone->id) || !IsFaceUpMonsterZone(zone))
       continue;
 
-    /* ponytail: +2 tempStage (~1000 ATK, not exact +800); until EP clear needs
-     * EP tempStage reset hook. */
+    /* +2 tempStage (~1000 ATK, not exact +800); clears at EP via
+     * ResetTempStagesForAllCards. ponytail: opponent Battle Phase gate not wired. */
     if (zone->tempStage < 126)
       zone->tempStage += 2;
   }

@@ -54,8 +54,8 @@ static void ResolveFiendTarget(u8 fixedRow, u8 fixedCol)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* ponytail: second Standby Phase GY return needs turn/Standby hook; unk4=2 marks
-   * extra attack stand-in. Ceiling: banish self → target Fiend unk4=2. */
+  /* second Standby Phase GY return needs turn/Standby hook; unk4=2 extra attack
+   * via TryUnlockUnk4MarkedExtraAttack. Ceiling: banish self → target Fiend unk4=2. */
   target->unk4 = 2;
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
@@ -107,8 +107,8 @@ unsigned char CanActivateEVIL_HERO_INFERNAL_GAINER(void)
   if (zone == NULL || zone->id != EVIL_HERO_INFERNAL_GAINER)
     return FALSE;
 
-  /* ponytail: Main Phase 1 gate + second Standby GY return need phase/Standby hooks.
-   * Ceiling: OPT banish self → mark 1 Fiend unk4 for extra attack stand-in. */
+  /* Main Phase 1 gate needs phase hook. Extra attack via TryUnlockUnk4MarkedExtraAttack
+   * when unk4=2; second Standby GY return needs Standby hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

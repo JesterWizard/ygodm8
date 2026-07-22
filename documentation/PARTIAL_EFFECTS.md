@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 16:26 UTC  
-**Remaining partials:** `485`
+**Last updated:** 2026-07-22 16:30 UTC  
+**Remaining partials:** `478`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 380 |
-| `permanent` | 89 |
-| **total** | **485** |
+| `activated` | 376 |
+| `permanent` | 86 |
+| **total** | **478** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (380)
+## activated (376)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -490,7 +490,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_BLADE_MASTER`
 - path: `src_custom/activated_effects/destiny_hero_blade_master.c`
-- L58: +2 tempStage (~1000 ATK, not exact +800); until EP clear needs EP tempStage reset hook.
 - L89: opponent Battle Phase gate not wired; allow when face-up D-HERO on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook.
 
 ### `DESTINY_HERO_CAPTAIN_TENACIOUS`
@@ -700,11 +699,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L109: Dark Fusion Fusion gate + Fusion-substitute name marker FALSE. Ceiling: OPT mill 1 HERO from Deck.
 - L151: Dark Fusion Fusion markers missing; any Fusion Monster stand-in.
 
-### `EVIL_HERO_INFERNAL_GAINER`
-- path: `src_custom/activated_effects/evil_hero_infernal_gainer.c`
-- L57: second Standby Phase GY return needs turn/Standby hook; unk4=2 marks extra attack stand-in. Ceiling: banish self → target Fiend unk4=2.
-- L110: Main Phase 1 gate + second Standby GY return need phase/Standby hooks. Ceiling: OPT banish self → mark 1 Fiend unk4 for extra attack stand-in.
-
 ### `EVIL_HERO_INFERNAL_RIDER`
 - path: `src_custom/activated_effects/evil_hero_infernal_rider.c`
 - L228: on-summon + HERO lock need summon/SS gates. Ceiling: OPT add Dark Fusion Deck/GY, else OPT banish self+4 GY → Set Super Poly.
@@ -768,11 +762,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/gandora_g_the_dragon_of_destruction.c`
 - L125: destroy+banish → Duel_BanishZone (no GY).
 - L151: +300 ATK/banished needs permanent/banish count hook. Ceiling: OPT pay half LP → banish all other field → SS Lv≤7 Sarc mention.
-
-### `GANDORA_X_THE_DRAGON_OF_DESTRUCTION`
-- path: `src_custom/activated_effects/gandora_x_the_dragon_of_destruction.c`
-- L101: on-NS/SS-from-hand wipe + EP self-destroy need summon/EP hooks. Ceiling: OPT destroy all other monsters + burn highest original ATK + set ATK.
-- L129: set ATK = damage via tempStage (~500/unit); EP self-destroy FALSE.
 
 ### `GATE_GUARDIANS_COMBINED`
 - path: `src_custom/activated_effects/gate_guardians_combined.c`
@@ -1039,10 +1028,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `JOWLS_OF_DARK_DEMISE`
 - path: `src_custom/activated_effects/jowls_of_dark_demise.c`
 - L70: Jowls direct-attack flag; cleared when zone resets
-
-### `JUDGMENT_THE_DRAGON_OF_HEAVEN`
-- path: `src_custom/activated_effects/judgment_the_dragon_of_heaven.c`
-- L107: 4+ GY Tuners gate + Dragon-only SS lock + End Phase mill 4 need GY/phase hooks. Ceiling: pay half LP → destroy all other field cards.
 
 ### `JUNK_SYNCHRON`
 - path: `src_custom/activated_effects/junk_synchron.c`
@@ -1452,13 +1437,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/silent_swordsman_lv5.c`
 - L71: * SS LV7 wired below. ponytail: Standby-after-direct-damage gate needs hook. */
 
-### `SILENT_SWORDSMAN_LV7`
-- path: `src_custom/activated_effects/silent_swordsman_lv7.c`
-- L12: continuous negate all Spell effects needs field-wide spell gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-negate hook.
-
 ### `SILENT_SWORDSMAN_ZERO`
 - path: `src_custom/activated_effects/silent_swordsman_zero.c`
-- L23: Standby Level + Sarcophagus negate need phase/chain hooks. Ceiling: OPT +1 Level mark (unkTwo) + +1 tempStage ATK stand-in.
+- L47: * tempStage unchanged. ponytail: Sarcophagus negate needs chain hook. */
 
 ### `SIMORGH_BIRD_OF_ANCESTRY`
 - path: `src_custom/activated_effects/simorgh_bird_of_ancestry.c`
@@ -1684,7 +1665,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (89)
+## permanent (86)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1852,11 +1833,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/fire_princess.c`
 - L37: normal hand summon copies isFaceUp=0; attack-position monsters still count
 
-### `GANDORA_X_THE_DRAGON_OF_DEMOLITION`
-- path: `src_custom/permanent_effects/gandora_x_the_dragon_of_demolition.c`
-- L118: End Phase half LP needs EP hook; on-summon wipe only here.
-- L146: set ATK = damage via tempStage (~500/unit).
-
 ### `GLADIATOR_BEAST_ALEXANDER`
 - path: `src_custom/permanent_effects/gladiator_beast_alexander.c`
 - L8: spell immunity + GB tag-out need continuous/battle-end hooks.
@@ -1925,14 +1901,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/hero_kid.c`
 - L76: true trigger is Special Summon; on-summon stand-in covers SS path.
 
-### `HORUS_THE_BLACK_FLAME_DRAGON_LV4`
-- path: `src_custom/permanent_effects/horus_the_black_flame_dragon_lv4.c`
-- L8: control lock + End Phase LV6 SS need continuous/battle-end hooks.
-
-### `HORUS_THE_BLACK_FLAME_DRAGON_LV6`
-- path: `src_custom/permanent_effects/horus_the_black_flame_dragon_lv6.c`
-- L8: spell immunity + End Phase LV8 SS need continuous/battle-end hooks.
-
 ### `JENIS_LIGHTSWORN_MENDER`
 - path: `src_custom/permanent_effects/jenis_lightsworn_mender.c`
 - L53: LS-effect mill source not tracked — any deck mill this turn stand-in. EP burn/heal via TryApplyJenisEndPhase.
@@ -1991,7 +1959,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `REPTILIANNE_NAGA`
 - path: `src_custom/permanent_effects/reptilianne_naga.c`
-- L8: battle immunity, ATK-to-0, and EP flip need battle/turn hooks.
+- L42: * via TryApplyReptilianneNagaEndPhase. ponytail: battle ATK-to-0 needs hook. */
 
 ### `REPTILIANNE_SERVANT`
 - path: `src_custom/permanent_effects/reptilianne_servant.c`

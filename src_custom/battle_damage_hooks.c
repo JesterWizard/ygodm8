@@ -69,6 +69,8 @@
 #include "dragon_s_rage.h"
 #include "meteorain.h"
 #include "armed_dragon_lv5.h"
+#include "horus_end_phase.h"
+#include "reptilianne_naga.h"
 #include "marshmallon.h"
 #include "aromage_marjoram.h"
 #include "aromage_jasmine.h"
@@ -329,6 +331,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (MorphtronicStaplen_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (ReptilianneNaga_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (OrichalcosShunoros_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (AromageJasmine_PreventsBattleDestroy(zone)) {
@@ -371,6 +375,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (MorphtronicBoarden_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (MorphtronicStaplen_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (ReptilianneNaga_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (OrichalcosShunoros_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
@@ -436,6 +442,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyHeliosDuoMegistusBattleDestroyPending();
   ApplyHeliosTriceMegistusBattleDestroyPending();
   ApplyArmedDragonLv5BattleDestroyPending();
+  ApplyHorusBattleDestroyPending();
 
   {
     s32 playerDmg =
