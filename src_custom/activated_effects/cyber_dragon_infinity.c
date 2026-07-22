@@ -127,7 +127,7 @@ unsigned char CanActivateCYBER_DRAGON_INFINITY(void)
     return FALSE;
 
   /* ATK overlay via CyberDragonInfinity_ApplyDynamicZoneStats (+200 per tempStage).
-   * Ceiling: Xyz attach / negate FALSE. Ceiling: OPT ClearZone absorb + tempStage. */
+   * Ceiling: Xyz attach / negate FALSE. OPT ClearZone absorb + tempStage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

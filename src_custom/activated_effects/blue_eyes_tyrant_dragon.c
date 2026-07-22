@@ -92,7 +92,7 @@ unsigned char CanActivateBLUE_EYES_TYRANT_DRAGON(void)
     return FALSE;
 
   /* Trap immunity via IsImmuneToTrapEffectsOnField; multi-attack + battle-end
-   * Set need battle/permanent hooks. Ceiling: OPT Set 1 Trap from GY to backrow. */
+   * Set need battle/permanent hooks. OPT Set 1 Trap from GY to backrow. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

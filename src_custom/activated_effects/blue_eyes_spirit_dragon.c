@@ -63,7 +63,7 @@ unsigned char CanActivateBLUE_EYES_SPIRIT_DRAGON(void)
     return FALSE;
 
   /* OPT GY negate + Extra Synchro + EP destroy need chain/Extra hooks.
-   * Ceiling: OPT tribute self → SS LIGHT Dragon from Deck in DEF. */
+   * OPT tribute self → SS LIGHT Dragon from Deck in DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

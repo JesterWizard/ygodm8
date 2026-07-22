@@ -136,7 +136,7 @@ unsigned char CanActivateCRIMSON_DRAGON(void)
     return FALSE;
 
   /* Ceiling: on-SS search + Extra Synchro return FALSE.
-   * Ceiling: OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon. */
+   * OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

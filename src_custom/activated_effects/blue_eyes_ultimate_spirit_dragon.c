@@ -21,7 +21,7 @@ unsigned char CanActivateBLUE_EYES_ULTIMATE_SPIRIT_DRAGON(void)
     return FALSE;
 
   /* Ceiling: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE.
-   * Ceiling: OPT +2 tempStage (~+1000) as negate stand-in. */
+   * OPT +2 tempStage (~+1000) as negate stand-in. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
