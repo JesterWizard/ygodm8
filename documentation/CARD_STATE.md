@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — PARTIAL Round 10 Batch 6/6 (round complete)
+**Last worked on:** 2026-07-22 — PARTIAL Round 11 Batch 1/6
 
-**Outcome:** Round 10 done. Partials **512→489** across 6 batches (B2–B6 shared wires; B4+B5 one commit). B6: Garoth/Michael/Silent Magician LV4/Megaton clears; Wildedge/Hamon pierce; Baby Tiger; Doom Lord. `make` OK.
+**Outcome:** Partials **489→485**. B1: Armed Dragon LV5, Silent Magician LV8, Treeborn Frog, Goryu (cleared); Silent Swordsman LV3/LV5 spell gates; Twilightsworn EP mill. `make` OK.
 
-**Open / next:** Round 11 PARTIAL clear, or residuals (LP-gain OPT, multi-attack, negate/chain).
+**Open / next:** Round 11 Batches 2–6.

@@ -67,8 +67,8 @@ unsigned char CanActivateSILENT_SWORDSMAN_LV5(void)
   if (zone == NULL || zone->id != SILENT_SWORDSMAN_LV5)
     return FALSE;
 
-  /* ponytail: unaffected by opp Spell effects + Standby-after-direct-damage gate
-   * need spell/phase hooks. Ceiling: OPT send self → SS LV7 from hand/Deck. */
+  /* Unaffected by opp Spell via IsImmuneToSpellEffectsOnField; OPT send self →
+   * SS LV7 wired below. ponytail: Standby-after-direct-damage gate needs hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

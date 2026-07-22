@@ -311,7 +311,7 @@ void ActivateLUMINA_TWILIGHTSWORN_SHAMANEffect(void)
   if (SpecialSummonBanishedLightsworn(fixedDuelist, (u8)rfpIndex) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: EP mill 3 on other LS effect needs End Phase / LS trigger hook. */
+  /* EP mill 3 stand-in via TryApplyTwilightswornEndPhase. */
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
 }

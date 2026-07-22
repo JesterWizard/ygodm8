@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
+#include "treeborn_frog.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
@@ -92,9 +93,8 @@ unsigned char CanActivateTREEBORN_FROG(void)
   if (gMonEffect.id != TREEBORN_FROG)
     return FALSE;
 
-  /* ponytail: Standby Phase GY trigger needs phase hook + GY-menu wire.
-   * Ceiling: GY ignition when no S/T, no Treeborn on field, empty monster
-   * zone (Malicious pattern). */
+  /* Standby GY SS via ShouldActivateTreebornFrogTurnEffect when no S/T and no
+   * Treeborn on field. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
@@ -134,4 +134,29 @@ void ActivateTREEBORN_FROGEffect(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
+}
+
+unsigned char ShouldActivateTreebornFrogTurnEffect(void)
+{
+  if (gActiveEffect.cardId != TREEBORN_FROG)
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  if (FindTreebornInGy() < 0)
+    return FALSE;
+
+  if (ControlsTreebornFrog())
+    return FALSE;
+
+  if (ControlsSpellTrap())
+    return FALSE;
+
+  return FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) >= 0;
+}
+
+void ActivateTreebornFrogTurnEffect(void)
+{
+  ActivateTREEBORN_FROGEffect();
 }

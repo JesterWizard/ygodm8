@@ -16,6 +16,9 @@ u8 IsImmuneToSpellEffectsOnField(u16 cardId, u8 turnRow)
   if (cardId == THE_AGENT_OF_FORCE_MARS || cardId == LYRILUSC_INDEPENDENT_NIGHTINGALE)
     return TRUE;
 
+  if (cardId == SILENT_MAGICIAN_LV8 || cardId == SILENT_SWORDSMAN_LV5)
+    return TRUE;
+
   if (cardId == TORPEDO_FISH || cardId == CANNONBALL_SPEAR_SHELLFISH)
     return gDuel.field == FIELD_UMI;
 

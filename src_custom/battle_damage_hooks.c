@@ -68,6 +68,7 @@
 #include "double_tool_c_and_d.h"
 #include "dragon_s_rage.h"
 #include "meteorain.h"
+#include "armed_dragon_lv5.h"
 #include "marshmallon.h"
 #include "aromage_marjoram.h"
 #include "aromage_jasmine.h"
@@ -434,6 +435,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyCrimsonBladerBattleEffect();
   ApplyHeliosDuoMegistusBattleDestroyPending();
   ApplyHeliosTriceMegistusBattleDestroyPending();
+  ApplyArmedDragonLv5BattleDestroyPending();
 
   {
     s32 playerDmg =

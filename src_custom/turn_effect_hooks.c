@@ -67,6 +67,10 @@
 #include "vipers_rebirth.h"
 #include "red_dragon_archfiend.h"
 #include "destiny_hero_defender.h"
+#include "armed_dragon_lv5.h"
+#include "majestic_mech_goryu.h"
+#include "twilightsworn_end_phase.h"
+#include "treeborn_frog.h"
 #include "evil_dragon_ananta.h"
 #include "evil_hero_infernal_sniper.h"
 #include "silent_swordsman.h"
@@ -223,6 +227,7 @@ static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".
   { DESTINY_HERO_FEAR_MONGER, MatchActiveDuelistGraveyard, ShouldActivateDestinyHeroFearMongerTurnEffect, ActivateDestinyHeroFearMongerTurnEffect },
   { DESTINY_HERO_DOUBLE_DUDE, MatchActiveDuelistGraveyard, ShouldActivateDestinyHeroDoubleDudeTurnEffect, ActivateDestinyHeroDoubleDudeTurnEffect },
   { ARMED_DRAGON_LV3, MatchActiveDuelistMonsterRow, ShouldActivateArmedDragonLv3TurnEffect, ActivateArmedDragonLv3TurnEffect },
+  { TREEBORN_FROG, MatchActiveDuelistGraveyard, ShouldActivateTreebornFrogTurnEffect, ActivateTreebornFrogTurnEffect },
   { THE_WHITE_STONE_OF_ANCIENTS, MatchActiveDuelistGraveyard, ShouldActivateTheWhiteStoneOfAncientsTurnEffect, ActivateTheWhiteStoneOfAncientsTurnEffect },
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, MatchActiveDuelistMonsterRow, ShouldActivateUnstoppableExodiaIncarnateTurnEffect, ActivateUnstoppableExodiaIncarnateTurnEffect },
   { BLUE_EYES_CHAOS_DRAGON, MatchActiveDuelistMonsterRow, ShouldActivateBlueEyesChaosDragonTurnEffect, ActivateBlueEyesChaosDragonTurnEffect },
@@ -494,6 +499,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyLuminaEndPhase();
   if (IsDuelOver() == 1)
     return;
+  TryApplyTwilightswornEndPhase();
+  if (IsDuelOver() == 1)
+    return;
   TryApplyJenisEndPhase();
   if (IsDuelOver() == 1)
     return;
@@ -513,6 +521,12 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyEvilDragonAnantaEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyArmedDragonLv5EndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyMajesticMechGoryuEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryReturnContactFusionsAtEndPhase();

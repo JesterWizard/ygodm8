@@ -89,6 +89,7 @@
 #include "wulf_lightsworn_beast.h"
 #include "garoth_lightsworn_warrior.h"
 #include "silent_magician_lv4.h"
+#include "silent_magician_lv8.h"
 #include "aromaseraphy_sweet_marjoram.h"
 #include "uria_lord_of_searing_flames.h"
 #include "raviel_lord_of_phantasms.h"
@@ -712,7 +713,8 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
       || AromalilithMagnolia_PreventsDestroy(zone)
       || NeosWiseman_PreventsDestroy(zone)
       || AzureEyesSilverDragon_PreventsDestroy(zone)
-      || EvilHeroInfernalSniper_PreventsDestroy(zone))
+      || EvilHeroInfernalSniper_PreventsDestroy(zone)
+      || SilentMagicianLv8_PreventsDestroy(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;

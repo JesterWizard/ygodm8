@@ -226,8 +226,9 @@ unsigned char CanActivateJAIN_TWILIGHTSWORN_GENERAL(void)
   if (zone == NULL || zone->id != JAIN_TWILIGHTSWORN_GENERAL)
     return FALSE;
 
-  /* ponytail: other-Lightsworn-activated mill 2 needs chain/EP hook. Ceiling:
-   * OPT banish 1 Lightsworn from hand/GY → weaken 1 face-up monster. */
+  /* ponytail: other-Lightsworn-activated mill 2 needs chain hook. Ceiling: OPT
+   * banish 1 Lightsworn from hand/GY → weaken 1 face-up monster. EP mill 2
+   * stand-in via TryApplyTwilightswornEndPhase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

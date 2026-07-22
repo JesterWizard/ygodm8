@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 16:19 UTC  
-**Remaining partials:** `489`
+**Last updated:** 2026-07-22 16:26 UTC  
+**Remaining partials:** `485`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 384 |
+| `activated` | 380 |
 | `permanent` | 89 |
-| **total** | **489** |
+| **total** | **485** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (384)
+## activated (380)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -202,10 +202,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ARCHLORD_KRISTYA`
 - path: `src_custom/activated_effects/archlord_kristya.c`
 - L322: engine treats level 5+ with no tribute as special-like (Cyber Dragon, etc.).
-
-### `ARMED_DRAGON_LV5`
-- path: `src_custom/activated_effects/armed_dragon_lv5.c`
-- L135: EP send self → SS LV7 needs End Phase hook. Ceiling: OPT discard 1 hand monster → destroy 1 opp monster ATK≤.
 
 ### `ARMED_NEOS`
 - path: `src_custom/activated_effects/armed_neos.c`
@@ -1038,7 +1034,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `JAIN_TWILIGHTSWORN_GENERAL`
 - path: `src_custom/activated_effects/jain_twilightsworn_general.c`
 - L151: until end of turn clear needs EOT tempStage reset hook.
-- L229: other-Lightsworn-activated mill 2 needs chain/EP hook. Ceiling: OPT banish 1 Lightsworn from hand/GY → weaken 1 face-up monster.
+- L229: other-Lightsworn-activated mill 2 needs chain hook. Ceiling: OPT banish 1 Lightsworn from hand/GY → weaken 1 face-up monster. EP mill 2 stand-in via TryApplyTwilightswornEndPhase.
 
 ### `JOWLS_OF_DARK_DEMISE`
 - path: `src_custom/activated_effects/jowls_of_dark_demise.c`
@@ -1113,7 +1109,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `LUMINA_TWILIGHTSWORN_SHAMAN`
 - path: `src_custom/activated_effects/lumina_twilightsworn_shaman.c`
 - L226: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
-- L314: EP mill 3 on other LS effect needs End Phase / LS trigger hook.
 
 ### `LYLA_LIGHTSWORN_SORCERESS`
 - path: `src_custom/activated_effects/lyla_lightsworn_sorceress.c`
@@ -1121,7 +1116,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `LYLA_TWILIGHTSWORN_ENCHANTRESS`
 - path: `src_custom/activated_effects/lyla_twilightsworn_enchantress.c`
-- L205: quick effect on Spell/Trap activation + mill 3 when other LS activates need chain/mill hooks. Ceiling: OPT banish LS from hand/GY then destroy 1 face-up Spell/Trap.
+- L205: quick effect on Spell/Trap activation + mill 3 when other LS activates need chain hooks. Ceiling: OPT banish LS from hand/GY then destroy 1 face-up Spell/Trap. EP mill 3 stand-in via TryApplyTwilightswornEndPhase.
 
 ### `MA_AT`
 - path: `src_custom/activated_effects/ma_at.c`
@@ -1148,10 +1143,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MAGICIANS_SOULS`
 - path: `src_custom/activated_effects/magicians_souls.c`
 - L143: Continuous Spell placement + DM/DMG GY SS branch need placement/ GY hooks. Ceiling: OPT send 1–2 S/T from hand/field → draw that many.
-
-### `MAJESTIC_MECH_GORYU`
-- path: `src_custom/activated_effects/majestic_mech_goryu.c`
-- L12: * ponytail: 1-tribute EP self-send need summon/EP hooks.
 
 ### `MAN_THRO_TRO`
 - path: `src_custom/activated_effects/man_thro_tro.c`
@@ -1200,7 +1191,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `MINERVA_THE_EXHALTED_LIGHTSWORN`
 - path: `src_custom/activated_effects/minerva_the_exhalted_lightsworn.c`
-- L69: Xyz detach + destroy-on-death FALSE. Ceiling: OPT mill 3 → draw = Lightsworn among milled.
+- L69: Xyz detach + destroy-on-death FALSE. OPT mill 3 → draw = Lightsworn among milled is wired above.
 
 ### `MIRAGE_DRAGON`
 - path: `src_custom/activated_effects/mirage_dragon.c`
@@ -1423,7 +1414,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `RYKO_TWILIGHTSWORN_FIGHTER`
 - path: `src_custom/activated_effects/ryko_twilightsworn_fighter.c`
-- L191: NS/flip + other-Lightsworn mill 3 need summon/chain hooks. Ceiling: OPT banish LS from hand/GY then banish 1 field card; upgrade: NS/flip timing + mill-on-other-LS-effect hook.
+- L191: NS/flip + other-Lightsworn mill 3 need summon/chain hooks. Ceiling: OPT banish LS from hand/GY then banish 1 field card; EP mill 3 stand-in via TryApplyTwilightswornEndPhase.
 
 ### `SHADDOLL_BEAST`
 - path: `src_custom/activated_effects/shaddoll_beast.c`
@@ -1449,21 +1440,17 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/shaddoll_squamata.c`
 - L154: FLIP destroy vs GY-sent mill exclusivity + trigger hooks deferred. Ceiling: destroy 1 opp monster OR mill 1 Shaddoll from Deck once via usage.
 
-### `SILENT_MAGICIAN_LV8`
-- path: `src_custom/activated_effects/silent_magician_lv8.c`
-- L12: continuous immunity to opponent Spell effects needs spell-target gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-immune hook.
-
 ### `SILENT_SWORDSMAN`
 - path: `src_custom/activated_effects/silent_swordsman.c`
 - L134: * ponytail: Quick Spell negate needs chain hook. */
 
 ### `SILENT_SWORDSMAN_LV3`
 - path: `src_custom/activated_effects/silent_swordsman_lv3.c`
-- L70: spell negate continuous + summon/flip turn gate need hooks. Ceiling: Standby OPT send self → SS LV5 from hand/Deck.
+- L71: * self → SS LV5 wired below. ponytail: summon/flip turn gate needs hooks. */
 
 ### `SILENT_SWORDSMAN_LV5`
 - path: `src_custom/activated_effects/silent_swordsman_lv5.c`
-- L70: unaffected by opp Spell effects + Standby-after-direct-damage gate need spell/phase hooks. Ceiling: OPT send self → SS LV7 from hand/Deck.
+- L71: * SS LV7 wired below. ponytail: Standby-after-direct-damage gate needs hook. */
 
 ### `SILENT_SWORDSMAN_LV7`
 - path: `src_custom/activated_effects/silent_swordsman_lv7.c`
@@ -1613,10 +1600,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `TORNADO_BIRD`
 - path: `src_custom/activated_effects/tornado_bird.c`
 - L85: FLIP trigger needs flip hook. Ceiling: once via usage.
-
-### `TREEBORN_FROG`
-- path: `src_custom/activated_effects/treeborn_frog.c`
-- L95: Standby Phase GY trigger needs phase hook + GY-menu wire. Ceiling: GY ignition when no S/T, no Treeborn on field, empty monster zone (Malicious pattern).
 
 ### `TRISHULA_DRAGON_OF_THE_ICE_BARRIER`
 - path: `src_custom/activated_effects/trishula_dragon_of_the_ice_barrier.c`

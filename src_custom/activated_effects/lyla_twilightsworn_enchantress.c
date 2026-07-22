@@ -203,8 +203,9 @@ unsigned char CanActivateLYLA_TWILIGHTSWORN_ENCHANTRESS(void)
     return FALSE;
 
   /* ponytail: quick effect on Spell/Trap activation + mill 3 when other LS
-   * activates need chain/mill hooks. Ceiling: OPT banish LS from hand/GY then
-   * destroy 1 face-up Spell/Trap. */
+   * activates need chain hooks. Ceiling: OPT banish LS from hand/GY then
+   * destroy 1 face-up Spell/Trap. EP mill 3 stand-in via
+   * TryApplyTwilightswornEndPhase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

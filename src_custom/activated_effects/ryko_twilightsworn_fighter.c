@@ -189,8 +189,8 @@ unsigned char CanActivateRYKO_TWILIGHTSWORN_FIGHTER(void)
     return FALSE;
 
   /* ponytail: NS/flip + other-Lightsworn mill 3 need summon/chain hooks.
-   * Ceiling: OPT banish LS from hand/GY then banish 1 field card; upgrade:
-   * NS/flip timing + mill-on-other-LS-effect hook. */
+   * Ceiling: OPT banish LS from hand/GY then banish 1 field card; EP mill 3
+   * stand-in via TryApplyTwilightswornEndPhase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
