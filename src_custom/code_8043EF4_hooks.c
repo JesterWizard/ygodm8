@@ -37,6 +37,7 @@
 #include "ectoplasmer.h"
 #include "yubel.h"
 #include "amazoness_tiger.h"
+#include "amazoness_baby_tiger.h"
 #include "elemental_hero_great_tornado.h"
 #include "summon_animations.h"
 #include "elemental_hero_absolute_zero.h"
@@ -1679,6 +1680,7 @@ void sub_80449D8__Replacement(void)
       TryLevelLimitAreaAOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
       TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
       TryAmazonessTigerOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryAmazonessBabyTigerOnAmazonessPlacement(gFixedZones[placedRow][placedCol]);
       TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
       TryVengefulBogSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
       TryElementalHeroGreatTornadoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);

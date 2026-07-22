@@ -2,10 +2,13 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "garoth_lightsworn_warrior.h"
 
 static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
 
 #define GAROTH_MILL_COUNT 2
+
+static u8 sGarothMillReentry APPEND_DATA = 0;
 
 static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
@@ -110,5 +113,53 @@ void ActivateGAROTH_LIGHTSWORN_WARRIOR(void)
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   zone->unk4 = 1;
-  /* ponytail: true trigger is other LS mills; on-summon mill 2 + draw LS is stand-in. */
+  /* On-summon stand-in; other-LS deck mills via TryApplyGarothAfterDeckMill. */
+}
+
+static u8 ControllerHasFaceUpGaroth(u8 fixedDuelist)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(fixedDuelist);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == GAROTH_LIGHTSWORN_WARRIOR)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+void TryApplyGarothAfterDeckMill(u8 turnDuelist, u8 millCount)
+{
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
+  u8 garothMill;
+  u8 drawCount;
+
+  if (sGarothMillReentry || millCount == 0 || IsDuelOver() == TRUE)
+    return;
+
+  if (!ControllerHasFaceUpGaroth(fixedDuelist))
+    return;
+
+  garothMill = DeckRemaining(turnDuelist);
+  if (garothMill > GAROTH_MILL_COUNT)
+    garothMill = GAROTH_MILL_COUNT;
+  if (garothMill == 0)
+    return;
+
+  drawCount = CountLightswornAmongTop(turnDuelist, garothMill);
+
+  sGarothMillReentry = TRUE;
+  Duel_ShowEffectTextTyped(GAROTH_LIGHTSWORN_WARRIOR, 8);
+  if (Duel_MillTopDeckCards(turnDuelist, garothMill, TRUE) == DUEL_ACTION_DUEL_OVER) {
+    sGarothMillReentry = FALSE;
+    return;
+  }
+
+  if (drawCount > 0)
+    Duel_DrawCards(turnDuelist, drawCount, TRUE);
+
+  sGarothMillReentry = FALSE;
 }

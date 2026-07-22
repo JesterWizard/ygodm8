@@ -31,6 +31,9 @@
 #include "lyla_lightsworn_sorceress.h"
 #include "garonith_lightsworn_dragon.h"
 #include "raiden_hand_of_the_lightsworn.h"
+#include "michael_the_arch_lightsworn.h"
+#include "silent_magician_lv4.h"
+#include "destiny_hero_doom_lord.h"
 #include "bazoo_the_soul_eater.h"
 #include "helios_duo_megistus.h"
 #include "helios_trice_megistus.h"
@@ -429,6 +432,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyTourOfDoomStandby();
   TryApplyDestinyHeroDefenderStandbyDraw();
   TryApplySilentSwordsmanStandby();
+  TryApplySilentMagicianLv4Standby();
   TryBottomlessShiftingSandTurnStart();
   ContinuousTraps_TryActivateOnOpponentTurnStart();
   if (IsDuelOver() == 1)
@@ -491,6 +495,12 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyJenisEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyMichaelEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  DestinyHeroDoomLord_ClearAttackLockAtEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyHeliosDuoMegistusEndPhase();

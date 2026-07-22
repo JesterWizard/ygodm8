@@ -4,11 +4,17 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "silent_magician_lv4.h"
+#include "six_card_hand.h"
 
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+void RefreshFieldMonsterStatOverlays(void);
+
+#define SILENT_MAGICIAN_LV4_COUNTER_ATK 500
+#define SILENT_MAGICIAN_LV4_STANDBY_COUNTERS 5
 
 static u8 FixedDuelistForActive(void)
 {
@@ -56,6 +62,80 @@ static u8 CanSpecialSummonLv8(void)
   return HandHasSilentMagicianLv8() || FindSilentMagicianLv8InDeck() != CARD_NONE;
 }
 
+static void IncrementCounterOnZone(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != SILENT_MAGICIAN_LV4 || !zone->isFaceUp)
+    return;
+
+  if (zone->unk4 < 126)
+    zone->unk4++;
+}
+
+u8 SilentMagicianLv4_ApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  u32 atk;
+
+  if (zone == NULL || zone->id != SILENT_MAGICIAN_LV4)
+    return FALSE;
+
+  SetCardInfo(zone->id);
+  atk = (u32)gCardInfo.atk + (u32)zone->unk4 * SILENT_MAGICIAN_LV4_COUNTER_ATK;
+  Duel_WriteCardInfoStats(zone->id, Duel_ClampStat(atk), gCardInfo.def);
+  return TRUE;
+}
+
+void SilentMagicianLv4_NoteSpellResolved(void)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_MONSTER_ROW; fixedRow++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++)
+      IncrementCounterOnZone(gFixedZones[fixedRow][col]);
+  }
+
+  RefreshFieldMonsterStatOverlays();
+}
+
+static u8 TryStandbyEvolve(struct DuelCard *zone)
+{
+  struct DuelSummonOpts opts;
+
+  if (zone == NULL || zone->id != SILENT_MAGICIAN_LV4 || zone->unk4 != SILENT_MAGICIAN_LV4_STANDBY_COUNTERS)
+    return FALSE;
+
+  if (!CanSpecialSummonLv8())
+    return FALSE;
+
+  Duel_ShowEffectTextTyped(SILENT_MAGICIAN_LV4, 9);
+  ClearZone(zone);
+  if (IsDuelOver() == TRUE)
+    return TRUE;
+
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  if (Duel_SpecialSummonFromHand(ACTIVE_DUELIST, SILENT_MAGICIAN_LV8, NULL, opts)
+      != DUEL_ACTION_OK)
+    Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, SILENT_MAGICIAN_LV8, opts);
+
+  UpdateDuelGfxExceptField();
+  return TRUE;
+}
+
+void TryApplySilentMagicianLv4Standby(void)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+    if (TryStandbyEvolve(zone))
+      return;
+  }
+}
+
 unsigned char CanActivateSILENT_MAGICIAN_LV4(void)
 {
   struct DuelCard *zone;
@@ -67,8 +147,9 @@ unsigned char CanActivateSILENT_MAGICIAN_LV4(void)
   if (zone == NULL || zone->id != SILENT_MAGICIAN_LV4)
     return FALSE;
 
-  /* ponytail: Spell Counter place/ATK + Standby-after-5th counter need draw/
-   * counter hooks. Ceiling: OPT send self → SS Silent Magician LV8 from hand/Deck. */
+  /* Spell Counter ATK via SilentMagicianLv4_ApplyDynamicZoneStats; Standby evolve
+   * via TryApplySilentMagicianLv4Standby; counters on spell resolve.
+   * Ceiling: OPT send self → SS LV8 from hand/Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -11,6 +11,7 @@
 #include "level_limit_area_b.h"
 #include "level_limit_area_a.h"
 #include "amazoness_tiger.h"
+#include "amazoness_baby_tiger.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
 #include "kaiser_colosseum.h"
@@ -907,6 +908,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
       TryVengefulBogSpiritOnMonsterPlacement(dst);
     TryRingOfDestructionOnMonsterPlacement(dst);
     TryAmazonessTigerOnMonsterPlacement(dst);
+    TryAmazonessBabyTigerOnAmazonessPlacement(dst);
     TryElementalHeroGreatTornadoOnMonsterPlacement(dst);
     TryTheWickedDreadrootOnMonsterPlacement(dst);
     TryTheWickedEraserOnMonsterPlacement(dst);

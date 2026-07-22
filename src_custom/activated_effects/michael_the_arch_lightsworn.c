@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "michael_the_arch_lightsworn.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -10,6 +11,7 @@ void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
 #define MICHAEL_LP_COST 1000
+#define MICHAEL_END_PHASE_MILL 3
 
 static u8 FixedDuelistForActive(void)
 {
@@ -134,8 +136,8 @@ unsigned char CanActivateMICHAEL_THE_ARCH_LIGHTSWORN(void)
   if (zone == NULL || zone->id != MICHAEL_THE_ARCH_LIGHTSWORN)
     return FALSE;
 
-  /* ponytail: destroy→shuffle Lightsworn + End Phase mill 3 need destroy/EP
-   * hooks. Ceiling: pay 1000 LP → banish 1 field card. */
+  /* EP mill via TryApplyMichaelEndPhase; destroy→shuffle Lightsworn needs destroy hook.
+   * Ceiling: pay 1000 LP → banish 1 field card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -158,4 +160,22 @@ void ActivateMICHAEL_THE_ARCH_LIGHTSWORNEffect(void)
     Duel_EnterPickZoneTargeting();
   else
     Duel_ResolvePickZoneForAi();
+}
+
+void TryApplyMichaelEndPhase(void)
+{
+  u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  u8 turn = ACTIVE_DUELIST;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone == NULL || !zone->isFaceUp || zone->id != MICHAEL_THE_ARCH_LIGHTSWORN)
+      continue;
+
+    Duel_ShowEffectTextTyped(MICHAEL_THE_ARCH_LIGHTSWORN, 2);
+    Duel_MillTopDeckCards(turn, MICHAEL_END_PHASE_MILL, TRUE);
+    return;
+  }
 }

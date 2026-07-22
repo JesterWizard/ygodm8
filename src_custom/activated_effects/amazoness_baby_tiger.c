@@ -11,6 +11,34 @@ void UpdateDuelGfxExceptField(void);
 
 #define BABY_TIGER_ATK_PER_AMAZONESS_GY 100
 
+static u8 ControllerHasFaceUpAmazonessTiger(u8 fixedRow)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AMAZONESS_TIGER)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+u8 AmazonessBabyTiger_TreatsNameAsTiger(const struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (zone == NULL || zone->id != AMAZONESS_BABY_TIGER)
+    return FALSE;
+
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &col))
+    return FALSE;
+
+  return ControllerHasFaceUpAmazonessTiger(fixedRow);
+}
+
 u8 GetDuelistForZone(struct DuelCard *zone);
 
 static u8 CountAmazonessInGy(u8 fixedDuelist)
@@ -55,9 +83,9 @@ unsigned char CanActivateAMAZONESS_BABY_TIGER(void)
   if (gMonEffect.id != AMAZONESS_BABY_TIGER)
     return FALSE;
 
-  /* Continuous GY ATK via AmazonessBabyTiger_ApplyDynamicZoneStats.
-   * ponytail: Amazoness-Tiger name + on Amazoness summon SS need continuous/summon hooks.
-   * Ceiling: SS from hand only. */
+  /* Continuous GY ATK via AmazonessBabyTiger_ApplyDynamicZoneStats; hand SS on
+   * Amazoness placement via TryAmazonessBabyTigerOnAmazonessPlacement.
+   * ponytail: printed name=Amazoness-Tiger needs name-override hook. Ceiling: SS from hand only. */
   return FALSE;
 }
 
@@ -93,4 +121,22 @@ u8 TrySpecialSummonAmazonessBabyTigerFromHand(u8 handZone)
     return FALSE;
   UpdateDuelGfxExceptField();
   return TRUE;
+}
+
+void TryAmazonessBabyTigerOnAmazonessPlacement(struct DuelCard *zone)
+{
+  u8 handZone;
+  u8 max;
+
+  if (zone == NULL || zone->id == CARD_NONE || zone->id == AMAZONESS_BABY_TIGER)
+    return;
+
+  if (!Duel_IsAmazonessCard(zone->id))
+    return;
+
+  max = IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW;
+  for (handZone = 0; handZone < max; handZone++) {
+    if (TrySpecialSummonAmazonessBabyTigerFromHand(handZone))
+      return;
+  }
 }

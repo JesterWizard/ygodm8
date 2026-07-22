@@ -87,6 +87,8 @@
 #include "evil_hero_infernal_sniper.h"
 #include "jenis_lightsworn_mender.h"
 #include "wulf_lightsworn_beast.h"
+#include "garoth_lightsworn_warrior.h"
+#include "silent_magician_lv4.h"
 #include "aromaseraphy_sweet_marjoram.h"
 #include "uria_lord_of_searing_flames.h"
 #include "raviel_lord_of_phantasms.h"
@@ -129,6 +131,7 @@ u8 TheTyrantNeptune_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessPetLiger_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessBabyTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 SilentMagicianLv4_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AncientSacredWyvern_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AtlanteanAttackSquad_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 BootUpSoldierDreadDynamo_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -671,6 +674,11 @@ enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx)
     if (IsDuelOver() == TRUE)
       return DUEL_ACTION_DUEL_OVER;
   }
+
+  TryApplyGarothAfterDeckMill(duelist, count);
+
+  if (IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
 
   TryApplyLightSpiralAfterMill(duelist, count);
   if (IsDuelOver() == TRUE)
@@ -1671,6 +1679,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_AIR_NEOS, ElementalHeroAirNeos_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_BRAVE_NEOS, ElementalHeroBraveNeos_ApplyDynamicZoneStats },
   { CYBER_DRAGON_INFINITY, CyberDragonInfinity_ApplyDynamicZoneStats },
+  { SILENT_MAGICIAN_LV4, SilentMagicianLv4_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
@@ -3129,6 +3138,9 @@ void Duel_EndSpellEffectResolve(void)
 {
   if (sSpellEffectResolveDepth > 0)
     sSpellEffectResolveDepth--;
+
+  if (sSpellEffectResolveDepth == 0)
+    SilentMagicianLv4_NoteSpellResolved();
 }
 
 u8 Duel_IsSpellEffectResolving(void)

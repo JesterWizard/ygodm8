@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 16:14 UTC  
-**Remaining partials:** `493`
+**Last updated:** 2026-07-22 16:19 UTC  
+**Remaining partials:** `489`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 387 |
-| `permanent` | 90 |
-| **total** | **493** |
+| `activated` | 384 |
+| `permanent` | 89 |
+| **total** | **489** |
 
 ## spell (6)
 
@@ -95,11 +95,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (387)
+## activated (384)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
-- L59: * ponytail: Amazoness-Tiger name + on Amazoness summon SS need continuous/summon hooks.
+- L88: * ponytail: printed name=Amazoness-Tiger needs name-override hook. Ceiling: SS from hand only. */
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -158,10 +158,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ANCIENT_GEAR_KNIGHT`
 - path: `src_custom/activated_effects/ancient_gear_knight.c`
 - L13: * ponytail: Gemini Normal Monster treatment need summon hook. */
-
-### `ANCIENT_GEAR_MEGATON_GOLEM`
-- path: `src_custom/activated_effects/ancient_gear_megaton_golem.c`
-- L123: multi-attack + leave-field SS FALSE. Ceiling: OPT SS AG Golem from hand/GY.
 
 ### `ANCIENT_GEAR_STATUE`
 - path: `src_custom/activated_effects/ancient_gear_statue.c`
@@ -549,7 +545,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DOOM_LORD`
 - path: `src_custom/activated_effects/destiny_hero_doom_lord.c`
-- L66: cannot-attack-this-turn needs attack-gate on unk4; return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster; mark self unk4.
+- L67: * ponytail: return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster. */
 
 ### `DESTINY_HERO_DREADNOUGHT_MASTER`
 - path: `src_custom/activated_effects/destiny_hero_dreadnought_master.c`
@@ -1190,10 +1186,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/mezuki.c`
 - L169: GY ignition needs GY-menu wire. Ceiling: allow when Mezuki + another Zombie in expanded GY (callable if gMonEffect set to Mezuki).
 
-### `MICHAEL_THE_ARCH_LIGHTSWORN`
-- path: `src_custom/activated_effects/michael_the_arch_lightsworn.c`
-- L137: destroy→shuffle Lightsworn + End Phase mill 3 need destroy/EP hooks. Ceiling: pay 1000 LP → banish 1 field card.
-
 ### `MILLENNIUM_EYES_RESTRICT`
 - path: `src_custom/activated_effects/millennium_eyes_restrict.c`
 - L88: chain equip/absorb opp Effect Monster needs chain/control hooks. Ceiling: OPT destroy 1 opp monster.
@@ -1457,10 +1449,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/shaddoll_squamata.c`
 - L154: FLIP destroy vs GY-sent mill exclusivity + trigger hooks deferred. Ceiling: destroy 1 opp monster OR mill 1 Shaddoll from Deck once via usage.
 
-### `SILENT_MAGICIAN_LV4`
-- path: `src_custom/activated_effects/silent_magician_lv4.c`
-- L70: Spell Counter place/ATK + Standby-after-5th counter need draw/ counter hooks. Ceiling: OPT send self → SS Silent Magician LV8 from hand/Deck.
-
 ### `SILENT_MAGICIAN_LV8`
 - path: `src_custom/activated_effects/silent_magician_lv8.c`
 - L12: continuous immunity to opponent Spell effects needs spell-target gate. Ceiling: not ignition-activatable here; upgrade: permanent spell-immune hook.
@@ -1713,7 +1701,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (90)
+## permanent (89)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1885,10 +1873,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/gandora_x_the_dragon_of_demolition.c`
 - L118: End Phase half LP needs EP hook; on-summon wipe only here.
 - L146: set ATK = damage via tempStage (~500/unit).
-
-### `GAROTH_LIGHTSWORN_WARRIOR`
-- path: `src_custom/permanent_effects/garoth_lightsworn_warrior.c`
-- L113: true trigger is other LS mills; on-summon mill 2 + draw LS is stand-in.
 
 ### `GLADIATOR_BEAST_ALEXANDER`
 - path: `src_custom/permanent_effects/gladiator_beast_alexander.c`

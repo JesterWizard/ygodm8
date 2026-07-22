@@ -39,7 +39,8 @@ static u8 IsGolemAttacker(u16 cardId)
   return cardId == ANCIENT_GEAR_GOLEM
       || cardId == ULTIMATE_ANCIENT_GEAR_GOLEM
       || cardId == ANCIENT_GEAR_GOLEM_ULTIMATE_POUND
-      || cardId == ANCIENT_GEAR_GADJILTRON_DRAGON;
+      || cardId == ANCIENT_GEAR_GADJILTRON_DRAGON
+      || cardId == ANCIENT_GEAR_MEGATON_GOLEM;
 }
 
 static void ApplyPiercingDamageToOpponent(u16 damage)

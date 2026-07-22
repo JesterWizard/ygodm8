@@ -120,7 +120,7 @@ unsigned char CanActivateANCIENT_GEAR_MEGATON_GOLEM(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_MEGATON_GOLEM)
     return FALSE;
 
-  /* ponytail: multi-attack + leave-field SS FALSE.
+  /* Multi-attack + leave-field SS FALSE. Pierce via ApplyAncientGearGolemPiercingBattleEffect.
    * Ceiling: OPT SS AG Golem from hand/GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
