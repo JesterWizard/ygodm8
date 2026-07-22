@@ -9,8 +9,7 @@ unsigned char CanActivateTURBO_SYNCHRON(void)
   if (gMonEffect.id != TURBO_SYNCHRON)
     return FALSE;
 
-  /* Attack-target DEF change + battle-damage SS from hand need battle hooks
-   * outside this file. Not field-ignition. */
+  /* Attack-target DEF change and post-damage hand summon are omitted. */
   return FALSE;
 }
 

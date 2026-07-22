@@ -14,6 +14,7 @@ void TryActivatingPermanentEffects(void);
 
 static u8 sDreamerInit APPEND_DATA = {0};
 static u8 sPendingDreamerBanish APPEND_DATA = {0xFF};
+static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
 
 static u8 FixedDuelistForActive(void)
 {
@@ -77,6 +78,48 @@ u8 DestinyHeroDreamer_PreventsBattleDestroy(const struct DuelCard *zone)
   return zone != NULL && zone->isFaceUp && zone->id == DESTINY_HERO_DREAMER;
 }
 
+static void TrySpecialSummonDreamer(void)
+{
+  s16 gyIndex;
+  struct DuelSummonOpts opts;
+  u8 fixedDuelist = FixedDuelistForActive();
+  u16 cardId;
+
+  gyIndex = FindDreamerInGy();
+  if (gyIndex < 0 || ArchlordKristya_IsSpecialSummonLocked()
+      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    cardId = gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard;
+    gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard = CARD_NONE;
+  } else {
+    cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, (u8)gyIndex);
+    GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  }
+
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts) != DUEL_ACTION_OK)
+    return;
+
+  MarkDreamerLeaveBanish(cardId);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+static void OnDestinyHeroBattleDestroyed(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->controller > DUEL_OPPONENT
+      || !Duel_CardNameContains(ev->cardId, sDestinyHeroName))
+    return;
+  if (ev->controller != FixedDuelistForActive())
+    return;
+
+  TrySpecialSummonDreamer();
+}
+
 static void OnDreamerLeaveField(const struct EffectEvent *ev)
 {
   if (ev == NULL || ev->cardId != DESTINY_HERO_DREAMER || gHideEffectText)
@@ -116,6 +159,7 @@ void DestinyHeroDreamer_EnsureInit(void)
     return;
 
   sDreamerInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_BATTLE_DESTROY, OnDestinyHeroBattleDestroyed);
   EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnDreamerLeaveField);
   EffectEvent_Subscribe(EFFECT_EVENT_ON_FIELD_CHANGE, OnDreamerFieldChange);
 }
@@ -125,9 +169,7 @@ unsigned char CanActivateDESTINY_HERO_DREAMER(void)
   if (gMonEffect.id != DESTINY_HERO_DREAMER)
     return FALSE;
 
-  /* Battle protect via DestinyHeroDreamer_PreventsBattleDestroy.
-   * Leave-banish via DestinyHeroDreamer_EnsureInit (unk4 mark on GY SS).
-   * True damage-calc GY SS timing needs battle hook. */
+  /* Combat protection and the leave-banish mark are maintained by the event setup. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
@@ -139,39 +181,10 @@ unsigned char CanActivateDESTINY_HERO_DREAMER(void)
 
 void ActivateDESTINY_HERO_DREAMEREffect(void)
 {
-  s16 gyIndex;
-  struct DuelSummonOpts opts;
-  u8 fixedDuelist = FixedDuelistForActive();
-  u16 cardId;
-
   Duel_ShowEffectTextTyped(DESTINY_HERO_DREAMER, 2);
 
   if (IsDuelOver() == TRUE)
     return;
 
-  gyIndex = FindDreamerInGy();
-  if (gyIndex < 0)
-    return;
-
-  if (ArchlordKristya_IsSpecialSummonLocked()
-      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
-    return;
-
-  if (!GraveyardExpand_IsEnabled()) {
-    cardId = gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard;
-    gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard = CARD_NONE;
-  } else {
-    cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, (u8)gyIndex);
-    GraveyardExpand_SyncLegacyTop(fixedDuelist);
-  }
-
-  opts = Duel_DefaultSpecialSummonOpts(TRUE);
-  if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts) != DUEL_ACTION_OK)
-    return;
-
-  MarkDreamerLeaveBanish(cardId);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
+  TrySpecialSummonDreamer();
 }

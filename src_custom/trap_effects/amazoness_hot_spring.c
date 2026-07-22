@@ -42,8 +42,8 @@ static void ActivateAMAZONESS_HOT_SPRINGZone(struct DuelCard *zone)
       == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* On activate: add 1 Amazoness from Deck to hand.
-   * Pendulum Zone place + battle-damage gain LP OPT need hooks. */
+  /* Activation adds one Amazoness monster from the deck to the controller's hand.
+   * The other printed modes are intentionally omitted by this ruleset. */
 
   empty = FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]);
   if (empty < 0)

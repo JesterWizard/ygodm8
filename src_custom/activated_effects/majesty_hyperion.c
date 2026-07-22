@@ -363,8 +363,7 @@ unsigned char CanActivateMAJESTY_HYPERION(void)
   if (zone == NULL || zone->id != MAJESTY_HYPERION)
     return FALSE;
 
-  /* Fairy battle-damage share via ApplyMajestyHyperionBattleDamageShare.
-   * OPT banish Fairy hand/GY → destroy 1 card. FromHand banish Agent → SS. */
+  /* Fairy damage sharing, the removal procedure, and the hand summon are active. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

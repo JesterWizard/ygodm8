@@ -50,8 +50,7 @@ unsigned char CanActivateTIMAEUS_THE_KNIGHT_OF_DESTINY(void)
   if (zone == NULL || zone->id != TIMAEUS_THE_KNIGHT_OF_DESTINY)
     return FALSE;
 
-  /* unaffected + once-per-battle damage calc FALSE.
-   * OPT set ATK/DEF ≈ highest field ATK via tempStage. */
+  /* Optional ATK/DEF alignment to the highest visible monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

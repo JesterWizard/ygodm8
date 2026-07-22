@@ -9,8 +9,7 @@ unsigned char CanActivateGRAVEKEEPERS_VASSAL(void)
   if (gMonEffect.id != GRAVEKEEPERS_VASSAL)
     return FALSE;
 
-  /* Battle damage as effect damage needs battle-damage type gate outside this file.
-   * Not field-ignition. */
+  /* The damage-class conversion is not represented by the current damage model. */
   return FALSE;
 }
 

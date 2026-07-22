@@ -76,8 +76,8 @@ unsigned char CanActivateNEO_BLUE_EYES_ULTIMATE_DRAGON(void)
   if (zone == NULL || zone->id != NEO_BLUE_EYES_ULTIMATE_DRAGON)
     return FALSE;
 
-  /* Damage Step / Fusion-Summon / protect-negate FALSE.
-   * OPT send BE Fusion from Deck → unk4 extra-attack via usage below. */
+  /* Restricted timing and negation protection are omitted; deck sending grants
+   * the current extra-attack marker. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -101,7 +101,7 @@ void ActivateNEO_BLUE_EYES_ULTIMATE_DRAGONEffect(void)
   if (!SendBlueEyesFusionFromDeck(sendId))
     return;
 
-  /* real multi-attack needs battle hook; unk4=2 extra-attack stand-in. */
+  /* unk4=2 is the current extra-attack marker. */
   self->unk4 = 2;
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();

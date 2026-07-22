@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Deferred Batch53 (OnSummon)
+**Last worked on:** 2026-07-22 — Deferred Batch54 (OnBattleDestroy)
 
-**Outcome:** Sagittarii discard→draw + Empress opp-NS coin triggers. Soft-cleared 4 already-wired OnSummon notes. Deferred **304 / 352**. `OnSummon` **8**.
+**Outcome:** Subscriber cap 32; Dreamer battle-destroy SS wired; OnBattleDestroy tag emptied. Deferred **294 / 340**.
 
-**Deferred order:** … → 4 OnSummon (easy done) → **5 OnBattleDestroy** → 6 hard UI → 7 post-battle → 8 Extra/chain.
+**Deferred order:** … → **5 OnBattleDestroy done** → 6 hard UI → 7 post-battle → 8 Extra/chain.
 
-**Open / next:** Tier 5 — bump `EFFECT_EVENT_MAX_SUBSCRIBERS`, wire OnBattleDestroy residuals.
+**Open / next:** Clear remaining ui.Choice / OnSummon, then hard deferred stand-ins.

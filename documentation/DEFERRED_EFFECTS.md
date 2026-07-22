@@ -8,9 +8,9 @@ Stubs: [`STUB_EFFECTS.md`](STUB_EFFECTS.md). Ceiling markers: [`PARTIAL_EFFECTS.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ```
 
-**Last updated:** 2026-07-22 21:55 UTC  
-**Files with deferred notes:** `304`  
-**Notes tagged:** `352`
+**Last updated:** 2026-07-22 22:00 UTC  
+**Files with deferred notes:** `294`  
+**Notes tagged:** `340`
 
 ## Suggested tackle order
 
@@ -39,18 +39,17 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 | `ui.Choice` | 18 | 13 | 2 |
 | `event.OnStandby` | 13 | 13 | 3 (OPT / turn flags) |
 | `gate.SendCost` | 13 | 13 | 3 (send-as-cost) |
-| `op.BanishTimed` | 11 | 11 | 1–3 |
-| `event.OnBattleDestroy` | 10 | 10 | 3 |
+| `op.BanishTimed` | 10 | 10 | 1–3 |
 | `event.OnSummon` | 8 | 8 | 3 |
-| `battle.ExtraAttack` | 7 | 6 | 1–3 (unk4 mark) |
 | `event.OnDestroy` | 7 | 7 | 3 |
 | `battle.AttackRedirect` | 6 | 6 | 3 (battle targeting) |
+| `battle.ExtraAttack` | 6 | 5 | 1–3 (unk4 mark) |
 | `stat.Continuous` | 6 | 6 | 1–3 |
 | `event.GyIgnition` | 5 | 5 | 3 |
 | `event.OnFusionSummon` | 3 | 3 | 3 (fusion callback) |
 | `event.OnLpGain` | 2 | 2 | later / LP event |
 | `event.OnDamageCalc` | 1 | 1 | 3 |
-| **total** | **352** | **304** | |
+| **total** | **340** | **294** | |
 
 ## `gate.SendCost` (13 notes)
 
@@ -356,48 +355,6 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 ### `URGENT_TUNING` (trap)
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
-
-## `event.OnBattleDestroy` (10 notes)
-
-### `AMAZONESS_HOT_SPRING` (trap)
-- path: `src_custom/trap_effects/amazoness_hot_spring.c`
-- L45: On activate: add 1 Amazoness from Deck to hand. Pendulum Zone place + battle-damage gain LP OPT need hooks.
-
-### `ARMORY_ARM` (activated)
-- path: `src_custom/activated_effects/armory_arm.c`
-- L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. FALSE.
-
-### `BEAST_MACHINE_KING_BARBAROS_UR` (activated)
-- path: `src_custom/activated_effects/beast_machine_king_barbaros_ur.c`
-- L164: Opp takes no battle damage via ApplyBeastMachineKingBarbarosUrNoOppBattleDamage. multi-zone banish picker not wired; FromHand requires both types reachable.
-
-### `DESTINY_HERO_DREAMER` (activated)
-- path: `src_custom/activated_effects/destiny_hero_dreamer.c`
-- L128: Battle protect via DestinyHeroDreamer_PreventsBattleDestroy. Leave-banish via DestinyHeroDreamer_EnsureInit (unk4 mark on GY SS). True damage-calc GY SS timing needs battle hook.
-
-### `GRAVEKEEPERS_VASSAL` (activated)
-- path: `src_custom/activated_effects/gravekeepers_vassal.c`
-- L12: Battle damage as effect damage needs battle-damage type gate outside this file. Not field-ignition.
-
-### `MAJESTY_HYPERION` (activated)
-- path: `src_custom/activated_effects/majesty_hyperion.c`
-- L366: Fairy battle-damage share via ApplyMajestyHyperionBattleDamageShare. OPT banish Fairy hand/GY → destroy 1 card. FromHand banish Agent → SS.
-
-### `MORPHTRONIC_LANTRON` (activated)
-- path: `src_custom/activated_effects/morphtronic_lantron.c`
-- L97: DEF destroy → no battle damage via ApplyMorphtronicLantronNoBattleDamage. ATK effect-damage redirect needs effect-damage hook outside. Not field-ignition.
-
-### `NEO_BLUE_EYES_ULTIMATE_DRAGON` (activated)
-- path: `src_custom/activated_effects/neo_blue_eyes_ultimate_dragon.c`
-- L79: Damage Step / Fusion-Summon / protect-negate FALSE. OPT send BE Fusion from Deck → unk4 extra-attack via usage below.
-
-### `TIMAEUS_THE_KNIGHT_OF_DESTINY` (activated)
-- path: `src_custom/activated_effects/timaeus_the_knight_of_destiny.c`
-- L53: unaffected + once-per-battle damage calc FALSE. OPT set ATK/DEF ≈ highest field ATK via tempStage.
-
-### `TURBO_SYNCHRON` (activated)
-- path: `src_custom/activated_effects/turbo_synchron.c`
-- L12: Attack-target DEF change + battle-damage SS from hand need battle hooks outside this file. Not field-ignition.
 
 ## `event.OnDamageCalc` (1 notes)
 
@@ -875,7 +832,7 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 - path: `src_custom/permanent_effects/darklord_nurse_reficule.c`
 - L8: LP gain→damage redirect needs LP-change hook.
 
-## `battle.ExtraAttack` (7 notes)
+## `battle.ExtraAttack` (6 notes)
 
 ### `BLUE_EYES_TYRANT_DRAGON` (activated)
 - path: `src_custom/activated_effects/blue_eyes_tyrant_dragon.c`
@@ -885,10 +842,6 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 - path: `src_custom/activated_effects/evil_hero_infernal_gainer.c`
 - L57: second Standby Phase GY return needs turn/Standby hook; unk4=2 extra attack via TryUnlockUnk4MarkedExtraAttack.
 - L110: Main Phase 1 gate needs phase hook. Extra attack via TryUnlockUnk4MarkedExtraAttack when unk4=2; second Standby GY return needs Standby hook.
-
-### `NEO_BLUE_EYES_ULTIMATE_DRAGON` (activated)
-- path: `src_custom/activated_effects/neo_blue_eyes_ultimate_dragon.c`
-- L104: real multi-attack needs battle hook; unk4=2 extra-attack stand-in.
 
 ### `TYRANT_BURST_DRAGON` (activated)
 - path: `src_custom/activated_effects/tyrant_burst_dragon.c`
@@ -1077,11 +1030,7 @@ Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate
 - path: `src_custom/activated_effects/tohushaddoll_grysta.c`
 - L22: FLIP copy + GY Fusion-by-banish need flip/GY hooks. OPT add Shaddoll Fusion from Deck.
 
-## `op.BanishTimed` (11 notes)
-
-### `BEAST_MACHINE_KING_BARBAROS_UR` (activated)
-- path: `src_custom/activated_effects/beast_machine_king_barbaros_ur.c`
-- L224: multi-zone banish picker not wired; require both types reachable.
+## `op.BanishTimed` (10 notes)
 
 ### `CROSS_KEEPER` (activated)
 - path: `src_custom/activated_effects/cross_keeper.c`

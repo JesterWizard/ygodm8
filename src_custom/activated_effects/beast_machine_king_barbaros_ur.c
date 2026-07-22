@@ -161,8 +161,7 @@ unsigned char CanActivateBEAST_MACHINE_KING_BARBAROS_UR(void)
   if (gMonEffect.id != BEAST_MACHINE_KING_BARBAROS_UR)
     return FALSE;
 
-  /* Opp takes no battle damage via ApplyBeastMachineKingBarbarosUrNoOppBattleDamage.
-   * multi-zone banish picker not wired; FromHand requires both types reachable. */
+  /* Opponent damage suppression and the hand summon procedure are both active. */
   return FALSE;
 }
 
@@ -221,7 +220,7 @@ u8 CanSpecialSummonBeastMachineKingBarbarosUrFromHand(u8 handZone)
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
     return FALSE;
 
-  /* multi-zone banish picker not wired; require both types reachable. */
+  /* The deterministic selector requires both material types to be available. */
   return HasTypeAccessible(handZone, IsMachineMonster)
       && HasTypeAccessible(handZone, IsBeastWarriorMonster);
 }
