@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Ceiling Round 17 Batch 6
+**Last worked on:** 2026-07-22 — Ceiling Round 17 Batches 7–8
 
-**Outcome:** GyIgnition wires for Mezuki, Sinister Necrom, Level Eater, Poseidra, Yamorimori; D.D. Warrior ceiling note cleaned. Partials **222→217**. `make` OK.
+**Outcome:** On-summon pack: Curse/Molten/Diviner/Dystopia/DiskCommander + Junk clear; Norden/Harpist/Dreadnought Master/Infernal Rider/Dragonling + Thestalos clear. Partials **217→213**. `make` OK.
 
-**Deferred:** Deep Sea Diva; Atlantean send-for-WATER; Extra Deck; Dreamer damage-calc timing; Toxic Bubble HERO SS lock; Quintet continuous protect; Level Eater TempLevel/tribute.
+**Deferred:** Deep Sea Diva; Atlantean send-for-WATER; Extra Deck; residual ceilings on wired cards.
 
-**Open / next:** Round 17 Batch 7 — residual Ceiling wires.
+**Open / next:** Round 17 Batches 9–11 — EnsureInit leave/destroy.

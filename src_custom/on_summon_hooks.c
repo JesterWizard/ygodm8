@@ -21,6 +21,19 @@ void TryGravekeepersHeadmanOnMonsterPlacement(struct DuelCard *zone);
 void TryBlackRoseDragonOnMonsterPlacement(struct DuelCard *zone);
 void TryQuintetMagicianOnMonsterPlacement(struct DuelCard *zone);
 void TryEvilHeroToxicBubbleOnMonsterPlacement(struct DuelCard *zone);
+void TryGravekeepersCurseOnMonsterPlacement(struct DuelCard *zone);
+void TryMoltenZombieOnMonsterPlacement(struct DuelCard *zone);
+void TryDivinerOfTheHeraldOnMonsterPlacement(struct DuelCard *zone);
+void TryDestinyHeroDystopiaOnMonsterPlacement(struct DuelCard *zone);
+void TryDestinyHeroDiskCommanderOnMonsterPlacement(struct DuelCard *zone);
+
+/* BATCH8 — Round 17 on-summon wires (append-only; unique Try* names). */
+void TryElderEntityNordenOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode);
+void TryHarpieHarpistOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode);
+void TryDestinyHeroDreadnoughtMasterOnMonsterPlacement(struct DuelCard *zone,
+                                                       enum DuelSummonMode mode);
+void TryEvilHeroInfernalRiderOnMonsterPlacement(struct DuelCard *zone);
+void TryLightswornDragonlingOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode);
 
 void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
 {
@@ -47,4 +60,16 @@ void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
   TryQuintetMagicianOnMonsterPlacement(zone);
   TryEvilHeroToxicBubbleOnMonsterPlacement(zone);
   TryDestinyHeroDreadServantOnMonsterPlacement(zone, mode);
+  TryGravekeepersCurseOnMonsterPlacement(zone);
+  TryMoltenZombieOnMonsterPlacement(zone);
+  TryDivinerOfTheHeraldOnMonsterPlacement(zone);
+  TryDestinyHeroDystopiaOnMonsterPlacement(zone);
+  TryDestinyHeroDiskCommanderOnMonsterPlacement(zone);
+
+  /* BATCH8 */
+  TryElderEntityNordenOnMonsterPlacement(zone, mode);
+  TryHarpieHarpistOnNormalSummon(zone, mode);
+  TryDestinyHeroDreadnoughtMasterOnMonsterPlacement(zone, mode);
+  TryEvilHeroInfernalRiderOnMonsterPlacement(zone);
+  TryLightswornDragonlingOnMonsterPlacement(zone, mode);
 }

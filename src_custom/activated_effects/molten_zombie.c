@@ -2,33 +2,48 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
+
+void UpdateDuelGfxExceptField(void);
+
+void TryMoltenZombieOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 controller;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != MOLTEN_ZOMBIE || gHideEffectText)
+    return;
+
+  if (EffectOpt_IsUsed(MOLTEN_ZOMBIE))
+    return;
+
+  controller = GetDuelistForZone(zone);
+  if (controller > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(controller);
+
+  /* ponytail: printed is SS from GY; any placement stand-in. */
+  Duel_ShowEffectTextTyped(MOLTEN_ZOMBIE, 8);
+  if (Duel_DrawCards(turnDuelist, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  EffectOpt_MarkUsed(MOLTEN_ZOMBIE);
+  UpdateDuelGfxExceptField();
+}
 
 unsigned char CanActivateMOLTEN_ZOMBIE(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != MOLTEN_ZOMBIE)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != MOLTEN_ZOMBIE)
-    return FALSE;
-
-  /* Ceiling: printed trigger is SS from GY; once via usage when
-   * Activate runs (summon-dispatch or manual). */
-  return CanUseMonsterEffect(zone);
+  /* On-SS draw via TryMoltenZombieOnMonsterPlacement (any-placement stand-in). */
+  return FALSE;
 }
 
 void ActivateMOLTEN_ZOMBIEEffect(void)
 {
-  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-
   Duel_ShowEffectTextTyped(MOLTEN_ZOMBIE, 2);
-
-  if (zone == NULL || IsDuelOver() == TRUE)
-    return;
-
-  Duel_DrawCards(ACTIVE_DUELIST, 1, TRUE);
-  MarkMonsterEffectUsed(zone);
 }

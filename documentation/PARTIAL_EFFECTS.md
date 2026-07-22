@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 20:03 UTC  
-**Remaining partials:** `217`
+**Last updated:** 2026-07-22 20:10 UTC  
+**Remaining partials:** `213`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 9 |
-| `activated` | 181 |
+| `activated` | 177 |
 | `permanent` | 21 |
-| **total** | **217** |
+| **total** | **213** |
 
 ## spell (6)
 
@@ -93,7 +93,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (181)
+## activated (177)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -334,7 +334,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DISK_COMMANDER`
 - path: `src_custom/activated_effects/destiny_hero_disk_commander.c`
-- L20: SS-from-GY trigger + once per duel. OPT draw 2 stand-in when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE.
+- L28: printed is SS from GY once per Duel; any-placement + EffectOpt stand-in.
 
 ### `DESTINY_HERO_DOMINANCE`
 - path: `src_custom/activated_effects/destiny_hero_dominance.c`
@@ -342,7 +342,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DREADNOUGHT_MASTER`
 - path: `src_custom/activated_effects/destiny_hero_dreadnought_master.c`
-- L60: SS trigger → OPT ignition; cards-mentioning-D-HERO FALSE. OPT add up to 2 Destiny HERO from Deck.
+- L119: * Ceiling: cards-mentioning-D-HERO FALSE.
 
 ### `DESTINY_HERO_DREADNOUGHT_SERVANT`
 - path: `src_custom/activated_effects/destiny_hero_dreadnought_servant.c`
@@ -362,7 +362,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DYSTOPIA`
 - path: `src_custom/activated_effects/destiny_hero_dystopia.c`
-- L203: on-SS burn + Quick destroy-if-ATK-changed need summon/ATK hooks. OPT pick Lv≤4 D-HERO in GY → burn its ATK.
+- L225: printed is on-SS; any placement stand-in. Auto-pick highest ATK.
 
 ### `DESTINY_HERO_PLASMA`
 - path: `src_custom/activated_effects/destiny_hero_plasma.c`
@@ -375,7 +375,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DIVINER_OF_THE_HERALD`
 - path: `src_custom/activated_effects/diviner_of_the_herald.c`
-- L89: on-NS/SS mill + tribute SS Fairy need summon/tribute hooks. OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in until EP clear).
+- L84: Extra Deck Fairy mill skipped.
 
 ### `EBON_ILLUSION_MAGICIAN`
 - path: `src_custom/activated_effects/ebon_illusion_magician.c`
@@ -388,10 +388,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `EL_SHADDOLL_WENDIGO`
 - path: `src_custom/activated_effects/el_shaddoll_wendigo.c`
 - L110: * Ceiling: GY add Shaddoll S/T on send not wired. */
-
-### `ELDER_ENTITY_NORDEN`
-- path: `src_custom/activated_effects/elder_entity_norden.c`
-- L167: * Ceiling: SS-trigger timing needs summon hook.
 
 ### `ELEMENTAL_HERO_CHAOS_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_chaos_neos.c`
@@ -422,7 +418,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_INFERNAL_RIDER`
 - path: `src_custom/activated_effects/evil_hero_infernal_rider.c`
-- L228: on-summon + HERO lock need summon/SS gates. OPT add Dark Fusion Deck/GY, else OPT banish self+4 GY → Set Super Poly.
+- L270: * Ceiling: HERO lock need SS gates. */
 
 ### `EVIL_HERO_MALICIOUS_BANE`
 - path: `src_custom/activated_effects/evil_hero_malicious_bane.c`
@@ -489,10 +485,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/granmarg_the_rock_monarch.c`
 - L159: * Ceiling: once via usage if Set target. */
 
-### `GRAVEKEEPERS_CURSE`
-- path: `src_custom/activated_effects/gravekeepers_curse.c`
-- L20: /* printed is If Summoned trigger. Ceiling: allow once via usage
-
 ### `GRAVEKEEPERS_SPIRITUALIST`
 - path: `src_custom/activated_effects/gravekeepers_spiritualist.c`
 - L13: * summon API. Ceiling: not ignition-activatable here. */
@@ -519,7 +511,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `HARPIE_HARPIST`
 - path: `src_custom/activated_effects/harpie_harpist.c`
-- L124: NS trigger + GY End Phase search need separate hooks. OPT bounce own WB + opp face-up, else OPT add Harpie from Deck.
+- L198: * Ceiling: GY End Phase search (Lv4 WB ≤1500 ATK) needs EP hook.
 
 ### `HERALD_OF_PERFECTION`
 - path: `src_custom/activated_effects/herald_of_perfection.c`
@@ -561,10 +553,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/judgment_the_dragon_of_heaven.c`
 - L108: * TryApplyJudgmentEndPhase. Ceiling: pay half LP → destroy all other field cards. */
 
-### `JUNK_SYNCHRON`
-- path: `src_custom/activated_effects/junk_synchron.c`
-- L124: * Ceiling: field OPT repeat (usage-gated below). */
-
 ### `LEKUNGA`
 - path: `src_custom/activated_effects/lekunga.c`
 - L13: * Ceiling: wrong Type/Attribute/stats (Fairy/LIGHT 0/0 vs Plant/WATER 700/700);
@@ -581,7 +569,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `LIGHTSWORN_DRAGONLING`
 - path: `src_custom/activated_effects/lightsworn_dragonling.c`
-- L134: /* hand SS when Lightsworn in GY uses FromHand path. Ceiling: field
+- L191: * Ceiling: GY-send add Dragon 3000 ATK/2600 DEF needs leave/send hook.
 
 ### `LUMINA_TWILIGHTSWORN_SHAMAN`
 - path: `src_custom/activated_effects/lumina_twilightsworn_shaman.c`
@@ -625,7 +613,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `MOLTEN_ZOMBIE`
 - path: `src_custom/activated_effects/molten_zombie.c`
-- L18: printed trigger is SS from GY; once via usage when Activate runs (summon-dispatch or manual).
+- L28: printed is SS from GY; any placement stand-in.
 
 ### `MORPHTRONIC_CELFON`
 - path: `src_custom/activated_effects/morphtronic_celfon.c`
@@ -775,10 +763,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `THE_AGENT_OF_WISDOM_MERCURY`
 - path: `src_custom/activated_effects/the_agent_of_wisdom_mercury.c`
 - L21: * Ceiling: once via usage if hand empty; upgrade: standby/end-phase gate. */
-
-### `THESTALOS_THE_FIRESTORM_MONARCH`
-- path: `src_custom/activated_effects/thestalos_the_firestorm_monarch.c`
-- L111: * Ceiling: field OPT repeat (usage-gated below). */
 
 ### `THUNDER_END_DRAGON`
 - path: `src_custom/activated_effects/thunder_end_dragon.c`

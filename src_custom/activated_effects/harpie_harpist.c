@@ -2,6 +2,8 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -34,12 +36,19 @@ static u8 IsWingedBeastMonster(u16 cardId)
   return Duel_CardHasMonsterType(cardId, TYPE_WINGED_BEAST);
 }
 
-static struct DuelCard *FindOwnOtherWingedBeast(struct DuelCard *self)
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
+static struct DuelCard *FindOwnOtherWingedBeastFor(u8 turnDuelist, struct DuelCard *self)
 {
   u8 col;
+  u8 row = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                         : INACTIVE_DUELIST_MONSTER_ROW;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+    struct DuelCard *zone = gTurnZones[row][col];
 
     if (zone == NULL || zone == self || zone->id == CARD_NONE)
       continue;
@@ -51,12 +60,19 @@ static struct DuelCard *FindOwnOtherWingedBeast(struct DuelCard *self)
   return NULL;
 }
 
-static struct DuelCard *FindOppFaceUpMonster(void)
+static struct DuelCard *FindOwnOtherWingedBeast(struct DuelCard *self)
+{
+  return FindOwnOtherWingedBeastFor(ACTIVE_DUELIST, self);
+}
+
+static struct DuelCard *FindOppFaceUpMonsterFor(u8 turnDuelist)
 {
   u8 col;
+  u8 row = turnDuelist == ACTIVE_DUELIST ? INACTIVE_DUELIST_MONSTER_ROW
+                                         : ACTIVE_DUELIST_MONSTER_ROW;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][col];
+    struct DuelCard *zone = gTurnZones[row][col];
 
     if (zone == NULL || zone->id == CARD_NONE)
       continue;
@@ -71,18 +87,30 @@ static struct DuelCard *FindOppFaceUpMonster(void)
   return NULL;
 }
 
+static struct DuelCard *FindOppFaceUpMonster(void)
+{
+  return FindOppFaceUpMonsterFor(ACTIVE_DUELIST);
+}
+
+static u8 CanBounceBothFor(u8 turnDuelist, struct DuelCard *self)
+{
+  u8 oppTurn = turnDuelist == ACTIVE_DUELIST ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+
+  if (FindOwnOtherWingedBeastFor(turnDuelist, self) == NULL)
+    return FALSE;
+
+  if (FindOppFaceUpMonsterFor(turnDuelist) == NULL)
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return FALSE;
+
+  return FirstEmptyZoneInRow(gTurnHands[oppTurn]) >= 0;
+}
+
 static u8 CanBounceBoth(struct DuelCard *self)
 {
-  if (FindOwnOtherWingedBeast(self) == NULL)
-    return FALSE;
-
-  if (FindOppFaceUpMonster() == NULL)
-    return FALSE;
-
-  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
-    return FALSE;
-
-  return FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]) >= 0;
+  return CanBounceBothFor(ACTIVE_DUELIST, self);
 }
 
 static u16 FindHarpieInDeck(void)
@@ -110,6 +138,51 @@ static u8 CanSearchHarpie(void)
   return FindHarpieInDeck() != CARD_NONE;
 }
 
+static u8 DoBounceBothFor(u8 turnDuelist, struct DuelCard *self)
+{
+  struct DuelCard *ownWb = FindOwnOtherWingedBeastFor(turnDuelist, self);
+  struct DuelCard *oppMon = FindOppFaceUpMonsterFor(turnDuelist);
+
+  if (ownWb == NULL || oppMon == NULL)
+    return FALSE;
+
+  if (Duel_ReturnMonsterZoneToOwnerHand(ownWb, FALSE) != DUEL_ACTION_OK)
+    return FALSE;
+
+  if (Duel_ReturnMonsterZoneToOwnerHand(oppMon, FALSE) != DUEL_ACTION_OK)
+    return FALSE;
+
+  return TRUE;
+}
+
+void TryHarpieHarpistOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != HARPIE_HARPIST || SummonModeIsSpecial(mode))
+    return;
+
+  if (EffectOpt_IsUsed(HARPIE_HARPIST))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  if (!CanBounceBothFor(turnDuelist, zone))
+    return;
+
+  Duel_ShowEffectTextTyped(HARPIE_HARPIST, 8);
+
+  if (!DoBounceBothFor(turnDuelist, zone))
+    return;
+
+  EffectOpt_MarkUsed(HARPIE_HARPIST);
+  UpdateDuelGfxExceptField();
+}
+
 unsigned char CanActivateHARPIE_HARPIST(void)
 {
   struct DuelCard *zone;
@@ -121,22 +194,25 @@ unsigned char CanActivateHARPIE_HARPIST(void)
   if (zone == NULL || zone->id != HARPIE_HARPIST)
     return FALSE;
 
-  /* Ceiling: NS trigger + GY End Phase search need separate hooks. OPT bounce
-   * own WB + opp face-up, else OPT add Harpie from Deck. */
+  /* NS bounce via TryHarpieHarpistOnNormalSummon (EffectOpt).
+   * Ceiling: GY End Phase search (Lv4 WB ≤1500 ATK) needs EP hook.
+   * OPT bounce own WB + opp face-up (shares EffectOpt). */
+  if (EffectOpt_IsUsed(HARPIE_HARPIST))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   if (CanBounceBoth(zone))
     return TRUE;
 
+  /* Search is printed EP-from-GY, not field ignition — keep as thin stand-in. */
   return CanSearchHarpie();
 }
 
 void ActivateHARPIE_HARPISTEffect(void)
 {
   struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  struct DuelCard *ownWb;
-  struct DuelCard *oppMon;
   u16 searchId;
 
   Duel_ShowEffectTextTyped(HARPIE_HARPIST, 2);
@@ -145,17 +221,10 @@ void ActivateHARPIE_HARPISTEffect(void)
     return;
 
   if (CanBounceBoth(self)) {
-    ownWb = FindOwnOtherWingedBeast(self);
-    oppMon = FindOppFaceUpMonster();
-    if (ownWb == NULL || oppMon == NULL)
+    if (!DoBounceBothFor(ACTIVE_DUELIST, self))
       return;
 
-    if (Duel_ReturnMonsterZoneToOwnerHand(ownWb, FALSE) != DUEL_ACTION_OK)
-      return;
-
-    if (Duel_ReturnMonsterZoneToOwnerHand(oppMon, FALSE) != DUEL_ACTION_OK)
-      return;
-
+    EffectOpt_MarkUsed(HARPIE_HARPIST);
     MarkMonsterEffectUsed(self);
     UpdateDuelGfxExceptField();
     CheckWinConditionExodia(WhoseTurn());

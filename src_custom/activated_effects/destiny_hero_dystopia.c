@@ -3,6 +3,8 @@
 #include "constants/card_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -156,7 +158,7 @@ static u16 GetPrintedAtk(u16 cardId)
   return gCardData_NEW[cardId].atk;
 }
 
-static void BurnForGyIndex(u8 fixedDuelist, s8 gyIndex)
+static void BurnForGyIndexTo(u8 fixedDuelist, s8 gyIndex, u8 burnTargetTurn)
 {
   u16 cardId;
   u16 burn;
@@ -170,7 +172,7 @@ static void BurnForGyIndex(u8 fixedDuelist, s8 gyIndex)
     if (burn == 0)
       return;
 
-    Duel_ChangeLp(INACTIVE_DUELIST, -(s32)burn, TRUE);
+    Duel_ChangeLp(burnTargetTurn, -(s32)burn, TRUE);
     return;
   }
 
@@ -185,7 +187,55 @@ static void BurnForGyIndex(u8 fixedDuelist, s8 gyIndex)
   if (burn == 0)
     return;
 
-  Duel_ChangeLp(INACTIVE_DUELIST, -(s32)burn, TRUE);
+  Duel_ChangeLp(burnTargetTurn, -(s32)burn, TRUE);
+}
+
+static void BurnForGyIndex(u8 fixedDuelist, s8 gyIndex)
+{
+  BurnForGyIndexTo(fixedDuelist, gyIndex, INACTIVE_DUELIST);
+}
+
+static void BurnForGyIndexForOpp(u8 fixedDuelist, u8 controllerTurn, s8 gyIndex)
+{
+  u8 opp = controllerTurn == ACTIVE_DUELIST ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+
+  BurnForGyIndexTo(fixedDuelist, gyIndex, opp);
+}
+
+void TryDestinyHeroDystopiaOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  s8 gyIndex;
+
+  if (zone == NULL || zone->id != DESTINY_HERO_DYSTOPIA || gHideEffectText)
+    return;
+
+  if (EffectOpt_IsUsed(DESTINY_HERO_DYSTOPIA))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  if (!GyHasTarget(fixedDuelist))
+    return;
+
+  /* ponytail: printed is on-SS; any placement stand-in. Auto-pick highest ATK. */
+  gyIndex = FindBestGyIndex(fixedDuelist);
+  if (gyIndex < 0 && !GraveyardExpand_IsEnabled())
+    gyIndex = 0;
+  if (gyIndex < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DYSTOPIA, 8);
+  BurnForGyIndexForOpp(fixedDuelist, turnDuelist, gyIndex);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  EffectOpt_MarkUsed(DESTINY_HERO_DYSTOPIA);
+  UpdateDuelGfxExceptField();
 }
 
 unsigned char CanActivateDESTINY_HERO_DYSTOPIA(void)
@@ -200,8 +250,12 @@ unsigned char CanActivateDESTINY_HERO_DYSTOPIA(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DYSTOPIA)
     return FALSE;
 
-  /* Ceiling: on-SS burn + Quick destroy-if-ATK-changed need summon/ATK hooks.
+  /* On-SS burn via TryDestinyHeroDystopiaOnMonsterPlacement (EffectOpt).
+   * Ceiling: Quick destroy-if-ATK-changed needs ATK hooks.
    * OPT pick Lv≤4 D-HERO in GY → burn its ATK. */
+  if (EffectOpt_IsUsed(DESTINY_HERO_DYSTOPIA))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -238,6 +292,7 @@ void ActivateDESTINY_HERO_DYSTOPIAEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
+  EffectOpt_MarkUsed(DESTINY_HERO_DYSTOPIA);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

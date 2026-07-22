@@ -2,38 +2,49 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
 
+void TryDestinyHeroDiskCommanderOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 controller;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != DESTINY_HERO_DISK_COMMANDER || gHideEffectText)
+    return;
+
+  if (EffectOpt_IsUsed(DESTINY_HERO_DISK_COMMANDER))
+    return;
+
+  controller = GetDuelistForZone(zone);
+  if (controller > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(controller);
+
+  /* ponytail: printed is SS from GY once per Duel; any-placement + EffectOpt stand-in. */
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DISK_COMMANDER, 8);
+  if (Duel_DrawCards(turnDuelist, 2, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  EffectOpt_MarkUsed(DESTINY_HERO_DISK_COMMANDER);
+  UpdateDuelGfxExceptField();
+}
+
 unsigned char CanActivateDESTINY_HERO_DISK_COMMANDER(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != DESTINY_HERO_DISK_COMMANDER)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != DESTINY_HERO_DISK_COMMANDER)
-    return FALSE;
-
-  /* Ceiling: SS-from-GY trigger + once per duel. OPT draw 2 stand-in
-   * when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE. */
-  return CanUseMonsterEffect(zone);
+  /* On-SS draw via TryDestinyHeroDiskCommanderOnMonsterPlacement
+   * (SS-from-GY / once-per-Duel → any-placement + EffectOpt stand-in). */
+  return FALSE;
 }
 
 void ActivateDESTINY_HERO_DISK_COMMANDEREffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-
   Duel_ShowEffectTextTyped(DESTINY_HERO_DISK_COMMANDER, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  if (Duel_DrawCards(ACTIVE_DUELIST, 2, TRUE) == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
 }

@@ -2,6 +2,8 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -11,14 +13,6 @@ void TryActivatingPermanentEffects(void);
 
 extern const CardData gCardData_NEW[];
 
-static u8 FixedDuelistForActive(void)
-{
-  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
-}
-
 static u8 IsFairyMonster(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
@@ -27,9 +21,8 @@ static u8 IsFairyMonster(u16 cardId)
   return gCardData_NEW[cardId].type == TYPE_FAIRY;
 }
 
-static u16 FindFairyInDeck(void)
+static u16 FindFairyInDeckFor(u8 fixedDuelist)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
   u8 deckSize = NumCardsInDeck(fixedDuelist);
   u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
   u8 i;
@@ -44,40 +37,63 @@ static u16 FindFairyInDeck(void)
   return CARD_NONE;
 }
 
-static u8 SendFairyFromDeckToGraveyard(u16 *outLevel)
+static u8 SendFairyFromDeckToGraveyardFor(u8 turnDuelist, u8 fixedDuelist, u16 *outLevel)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
   s16 deckIndex;
   u16 cardId;
-  u8 turnDuelist;
 
-  cardId = FindFairyInDeck();
+  cardId = FindFairyInDeckFor(fixedDuelist);
   if (cardId == CARD_NONE)
     return FALSE;
 
-  deckIndex = Duel_FindDeckCardIndex(ACTIVE_DUELIST, cardId);
+  deckIndex = Duel_FindDeckCardIndex(turnDuelist, cardId);
   if (deckIndex < 0)
     return FALSE;
 
-  if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
+  if (Duel_RemoveDeckCardAt(turnDuelist, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
     return FALSE;
 
-  Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
-
-  for (turnDuelist = 0; turnDuelist < 2; turnDuelist++) {
-    if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[fixedDuelist]) {
-      GraveyardExpand_PushTurn(turnDuelist, cardId);
-      break;
-    }
-  }
+  Duel_ShuffleDeckFromDrawn(turnDuelist);
+  GraveyardExpand_PushTurn(turnDuelist, cardId);
 
   *outLevel = gCardData_NEW[cardId].level;
   return TRUE;
 }
 
+void TryDivinerOfTheHeraldOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  u16 level = 0;
+
+  if (zone == NULL || zone->id != DIVINER_OF_THE_HERALD || gHideEffectText)
+    return;
+
+  if (EffectOpt_IsUsed(DIVINER_OF_THE_HERALD))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  if (FindFairyInDeckFor(fixedDuelist) == CARD_NONE)
+    return;
+
+  Duel_ShowEffectTextTyped(DIVINER_OF_THE_HERALD, 8);
+  /* ponytail: Extra Deck Fairy mill skipped. */
+  if (!SendFairyFromDeckToGraveyardFor(turnDuelist, fixedDuelist, &level))
+    return;
+
+  zone->unkTwo = (u8)level;
+  EffectOpt_MarkUsed(DIVINER_OF_THE_HERALD);
+  UpdateDuelGfxExceptField();
+}
+
 unsigned char CanActivateDIVINER_OF_THE_HERALD(void)
 {
   struct DuelCard *zone;
+  u8 fixedDuelist;
 
   if (gMonEffect.id != DIVINER_OF_THE_HERALD)
     return FALSE;
@@ -86,17 +102,27 @@ unsigned char CanActivateDIVINER_OF_THE_HERALD(void)
   if (zone == NULL || zone->id != DIVINER_OF_THE_HERALD)
     return FALSE;
 
-  /* Ceiling: on-NS/SS mill + tribute SS Fairy need summon/tribute hooks.
+  /* On-NS/SS mill via TryDivinerOfTheHeraldOnMonsterPlacement (EffectOpt).
+   * Ceiling: tribute SS Fairy needs tribute hooks.
    * OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in until EP clear). */
+  if (EffectOpt_IsUsed(DIVINER_OF_THE_HERALD))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
-  return FindFairyInDeck() != CARD_NONE;
+  fixedDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER]
+                     ? DUEL_PLAYER
+                     : DUEL_OPPONENT;
+  return FindFairyInDeckFor(fixedDuelist) != CARD_NONE;
 }
 
 void ActivateDIVINER_OF_THE_HERALDEffect(void)
 {
   struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u8 fixedDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER]
+                        ? DUEL_PLAYER
+                        : DUEL_OPPONENT;
   u16 level = 0;
 
   Duel_ShowEffectTextTyped(DIVINER_OF_THE_HERALD, 2);
@@ -104,12 +130,13 @@ void ActivateDIVINER_OF_THE_HERALDEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  if (!SendFairyFromDeckToGraveyard(&level))
+  if (!SendFairyFromDeckToGraveyardFor(ACTIVE_DUELIST, fixedDuelist, &level))
     return;
 
   /* Level bump until EOT uses unkTwo; cleared via TryClearDivinerOfTheHeraldEndPhase. */
   self->unkTwo = (u8)level;
 
+  EffectOpt_MarkUsed(DIVINER_OF_THE_HERALD);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

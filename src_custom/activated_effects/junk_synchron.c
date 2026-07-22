@@ -121,7 +121,7 @@ unsigned char CanActivateJUNK_SYNCHRON(void)
     return FALSE;
 
   /* Normal Summon GY SS via TryJunkSynchronOnNormalSummon.
-   * Ceiling: field OPT repeat (usage-gated below). */
+   * Field OPT shares usage gate as ignition stand-in. */
   if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

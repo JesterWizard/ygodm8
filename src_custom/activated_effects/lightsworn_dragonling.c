@@ -3,6 +3,8 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
@@ -16,6 +18,14 @@ static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
 static u8 FixedDuelistForActive(void)
 {
   if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static u8 FixedDuelistForTurn(u8 turnDuelist)
+{
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
@@ -47,9 +57,14 @@ static u8 GyHasLightsworn(u8 fixedDuelist)
   return FALSE;
 }
 
-static u16 FindDeckLightswornExceptSelf(void)
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
+static u16 FindDeckLightswornExceptSelfFor(u8 turnDuelist)
+{
+  u8 fixedDuelist = FixedDuelistForTurn(turnDuelist);
   u8 deckSize = NumCardsInDeck(fixedDuelist);
   u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
   u8 i;
@@ -64,21 +79,31 @@ static u16 FindDeckLightswornExceptSelf(void)
   return CARD_NONE;
 }
 
-static u8 SendDeckLightswornToGy(u16 cardId)
+static u16 FindDeckLightswornExceptSelf(void)
+{
+  return FindDeckLightswornExceptSelfFor(ACTIVE_DUELIST);
+}
+
+static u8 SendDeckLightswornToGyFor(u8 turnDuelist, u16 cardId)
 {
   s16 deckIndex;
-  u8 fixedDuelist = FixedDuelistForActive();
+  u8 fixedDuelist = FixedDuelistForTurn(turnDuelist);
 
-  deckIndex = Duel_FindDeckCardIndex(ACTIVE_DUELIST, cardId);
+  deckIndex = Duel_FindDeckCardIndex(turnDuelist, cardId);
   if (deckIndex < 0)
     return FALSE;
 
-  if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
+  if (Duel_RemoveDeckCardAt(turnDuelist, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
     return FALSE;
 
   GraveyardExpand_PushFixed(fixedDuelist, cardId);
   GraveyardExpand_SyncLegacyTop(fixedDuelist);
   return TRUE;
+}
+
+static u8 SendDeckLightswornToGy(u16 cardId)
+{
+  return SendDeckLightswornToGyFor(ACTIVE_DUELIST, cardId);
 }
 
 u8 CanSpecialSummonLightswornDragonlingFromHand(u8 handZone)
@@ -120,6 +145,36 @@ u8 TrySpecialSummonLightswornDragonlingFromHand(u8 handZone)
   return TRUE;
 }
 
+void TryLightswornDragonlingOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  u16 cardId;
+
+  if (zone == NULL || zone->id != LIGHTSWORN_DRAGONLING || !SummonModeIsSpecial(mode))
+    return;
+
+  if (EffectOpt_IsUsed(LIGHTSWORN_DRAGONLING))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  cardId = FindDeckLightswornExceptSelfFor(turnDuelist);
+  if (cardId == CARD_NONE)
+    return;
+
+  Duel_ShowEffectTextTyped(LIGHTSWORN_DRAGONLING, 8);
+
+  if (!SendDeckLightswornToGyFor(turnDuelist, cardId))
+    return;
+
+  EffectOpt_MarkUsed(LIGHTSWORN_DRAGONLING);
+  UpdateDuelGfxExceptField();
+}
+
 unsigned char CanActivateLIGHTSWORN_DRAGONLING(void)
 {
   struct DuelCard *zone;
@@ -131,8 +186,13 @@ unsigned char CanActivateLIGHTSWORN_DRAGONLING(void)
   if (zone == NULL || zone->id != LIGHTSWORN_DRAGONLING)
     return FALSE;
 
-  /* hand SS when Lightsworn in GY uses FromHand path. Ceiling: field
-   * OPT send 1 other Lightsworn from Deck to GY. */
+  /* hand SS when Lightsworn in GY uses FromHand path.
+   * On-SS mill via TryLightswornDragonlingOnMonsterPlacement (EffectOpt).
+   * Ceiling: GY-send add Dragon 3000 ATK/2600 DEF needs leave/send hook.
+   * OPT send 1 other Lightsworn from Deck to GY (shares EffectOpt). */
+  if (EffectOpt_IsUsed(LIGHTSWORN_DRAGONLING))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -156,6 +216,7 @@ void ActivateLIGHTSWORN_DRAGONLINGEffect(void)
   if (!SendDeckLightswornToGy(cardId))
     return;
 
+  EffectOpt_MarkUsed(LIGHTSWORN_DRAGONLING);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

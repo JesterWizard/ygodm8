@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 #include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
@@ -64,10 +65,11 @@ static s8 FindBestGyIndex(u8 fixedDuelist)
   return -1;
 }
 
-static void MarkSummonedMonsterNegated(u16 cardId)
+static void MarkSummonedMonsterNegatedFor(u8 turnDuelist, u16 cardId)
 {
   u8 col;
-  u8 row = ACTIVE_DUELIST_MONSTER_ROW;
+  u8 row = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                         : INACTIVE_DUELIST_MONSTER_ROW;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gTurnZones[row][col];
@@ -80,22 +82,28 @@ static void MarkSummonedMonsterNegated(u16 cardId)
   }
 }
 
-static enum DuelActionResult SpecialSummonGyLv4DefNegated(u8 fixedDuelist, u8 gyIndex)
+static enum DuelActionResult SpecialSummonGyLv4DefNegatedFor(u8 turnDuelist, u8 fixedDuelist,
+                                                             u8 gyIndex)
 {
   struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(TRUE);
   u16 cardId;
+  u8 monRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                            : INACTIVE_DUELIST_MONSTER_ROW;
 
   opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
 
+  if (FirstEmptyZoneInRow(gTurnZones[monRow]) < 0)
+    return DUEL_ACTION_NO_ZONE;
+
   if (!GraveyardExpand_IsEnabled()) {
-    cardId = gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard;
+    cardId = gTurnDuelistBattleState[turnDuelist]->graveyard;
     if (!IsLevel4OrLowerMonster(cardId))
       return DUEL_ACTION_NO_TARGET;
 
-    if (Duel_SpecialSummonFromGrave(ACTIVE_DUELIST, CARD_NONE, opts) != DUEL_ACTION_OK)
+    if (Duel_SpecialSummonFromGrave(turnDuelist, CARD_NONE, opts) != DUEL_ACTION_OK)
       return DUEL_ACTION_NO_TARGET;
 
-    MarkSummonedMonsterNegated(cardId);
+    MarkSummonedMonsterNegatedFor(turnDuelist, cardId);
     return DUEL_ACTION_OK;
   }
 
@@ -105,11 +113,16 @@ static enum DuelActionResult SpecialSummonGyLv4DefNegated(u8 fixedDuelist, u8 gy
 
   cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, gyIndex);
   GraveyardExpand_SyncLegacyTop(fixedDuelist);
-  if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts) != DUEL_ACTION_OK)
+  if (Duel_SpecialSummonMonsterId(turnDuelist, cardId, opts) != DUEL_ACTION_OK)
     return DUEL_ACTION_NO_TARGET;
 
-  MarkSummonedMonsterNegated(cardId);
+  MarkSummonedMonsterNegatedFor(turnDuelist, cardId);
   return DUEL_ACTION_OK;
+}
+
+static enum DuelActionResult SpecialSummonGyLv4DefNegated(u8 fixedDuelist, u8 gyIndex)
+{
+  return SpecialSummonGyLv4DefNegatedFor(ACTIVE_DUELIST, fixedDuelist, gyIndex);
 }
 
 static void BanishNegatedCompanions(u8 controller)
@@ -141,6 +154,11 @@ static void OnNordenLeaveField(const struct EffectEvent *ev)
   UpdateDuelGfxExceptField();
 }
 
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
 void ElderEntityNorden_EnsureInit(void)
 {
   if (sNordenInit)
@@ -149,6 +167,39 @@ void ElderEntityNorden_EnsureInit(void)
   sNordenInit = TRUE;
   /* ON_LEAVE covers destroy + battle-destroy (both emit leave). */
   EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnNordenLeaveField);
+}
+
+void TryElderEntityNordenOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  s8 gyIndex;
+
+  if (zone == NULL || zone->id != ELDER_ENTITY_NORDEN || !SummonModeIsSpecial(mode))
+    return;
+
+  if (EffectOpt_IsUsed(ELDER_ENTITY_NORDEN) || ArchlordKristya_IsSpecialSummonLocked())
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  if (!HasLevel4OrLowerInGraveyard(fixedDuelist))
+    return;
+
+  gyIndex = FindBestGyIndex(fixedDuelist);
+  if (gyIndex < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(ELDER_ENTITY_NORDEN, 8);
+
+  if (SpecialSummonGyLv4DefNegatedFor(turnDuelist, fixedDuelist, (u8)gyIndex) != DUEL_ACTION_OK)
+    return;
+
+  EffectOpt_MarkUsed(ELDER_ENTITY_NORDEN);
+  UpdateDuelGfxExceptField();
 }
 
 unsigned char CanActivateELDER_ENTITY_NORDEN(void)
@@ -163,9 +214,12 @@ unsigned char CanActivateELDER_ENTITY_NORDEN(void)
   if (zone == NULL || zone->id != ELDER_ENTITY_NORDEN)
     return FALSE;
 
-  /* Banish-when-leaves via ElderEntityNorden_EnsureInit.
-   * Ceiling: SS-trigger timing needs summon hook.
-   * OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark. */
+  /* On-SS GY revive via TryElderEntityNordenOnMonsterPlacement (EffectOpt).
+   * Leave-banish via ElderEntityNorden_EnsureInit.
+   * OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark (shares EffectOpt). */
+  if (EffectOpt_IsUsed(ELDER_ENTITY_NORDEN))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
@@ -198,6 +252,7 @@ void ActivateELDER_ENTITY_NORDENEffect(void)
   if (SpecialSummonGyLv4DefNegated(fixedDuelist, (u8)gyIndex) == DUEL_ACTION_DUEL_OVER)
     return;
 
+  EffectOpt_MarkUsed(ELDER_ENTITY_NORDEN);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

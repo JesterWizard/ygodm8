@@ -108,7 +108,7 @@ unsigned char CanActivateTHESTALOS_THE_FIRESTORM_MONARCH(void)
     return FALSE;
 
   /* Tribute Summon discard/burn via ActivateThestalosTheFirestormMonarchTribute.
-   * Ceiling: field OPT repeat (usage-gated below). */
+   * Field OPT below is a thin stand-in (not printed). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

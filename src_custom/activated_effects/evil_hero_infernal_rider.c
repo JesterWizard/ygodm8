@@ -2,6 +2,8 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -12,6 +14,14 @@ void TryActivatingPermanentEffects(void);
 static u8 FixedDuelistForActive(void)
 {
   if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static u8 FixedDuelistForTurn(u8 turnDuelist)
+{
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
@@ -35,14 +45,14 @@ static s8 FindDarkFusionGyIndex(u8 fixedDuelist)
   return -1;
 }
 
-static u8 AddDarkFusionFromGy(s8 gyIndex)
+static u8 AddDarkFusionFromGyFor(u8 turnDuelist, s8 gyIndex)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
+  u8 fixedDuelist = FixedDuelistForTurn(turnDuelist);
   s8 empty;
   u16 cardId;
   struct DuelCard *slot;
 
-  empty = FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]);
+  empty = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
   if (empty < 0)
     return FALSE;
 
@@ -59,7 +69,7 @@ static u8 AddDarkFusionFromGy(s8 gyIndex)
     GraveyardExpand_RefreshDisplay();
   }
 
-  slot = gTurnHands[ACTIVE_DUELIST][empty];
+  slot = gTurnHands[turnDuelist][empty];
   slot->id = cardId;
   slot->isFaceUp = FALSE;
   slot->isLocked = FALSE;
@@ -73,15 +83,17 @@ static u8 AddDarkFusionFromGy(s8 gyIndex)
   return TRUE;
 }
 
-static u8 CanAddDarkFusion(void)
+static u8 CanAddDarkFusionFor(u8 turnDuelist)
 {
-  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
+  u8 fixedDuelist = FixedDuelistForTurn(turnDuelist);
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
     return FALSE;
 
-  if (Duel_FindDeckCardIndex(ACTIVE_DUELIST, DARK_FUSION) >= 0)
+  if (Duel_FindDeckCardIndex(turnDuelist, DARK_FUSION) >= 0)
     return TRUE;
 
-  return FindDarkFusionGyIndex(FixedDuelistForActive()) >= 0;
+  return FindDarkFusionGyIndex(fixedDuelist) >= 0;
 }
 
 static u8 CountOwnGyMonsters(u8 fixedDuelist)
@@ -188,21 +200,21 @@ static void BanishSelfAndFourGyMonsters(struct DuelCard *self)
   }
 }
 
-static u8 DoAddDarkFusion(void)
+static u8 DoAddDarkFusionFor(u8 turnDuelist)
 {
   s8 gyIndex;
 
-  if (Duel_FindDeckCardIndex(ACTIVE_DUELIST, DARK_FUSION) >= 0) {
-    if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, DARK_FUSION, TRUE) != DUEL_ACTION_OK)
+  if (Duel_FindDeckCardIndex(turnDuelist, DARK_FUSION) >= 0) {
+    if (Duel_AddDeckCardToHand(turnDuelist, DARK_FUSION, TRUE) != DUEL_ACTION_OK)
       return FALSE;
     return TRUE;
   }
 
-  gyIndex = FindDarkFusionGyIndex(FixedDuelistForActive());
+  gyIndex = FindDarkFusionGyIndex(FixedDuelistForTurn(turnDuelist));
   if (gyIndex < 0)
     return FALSE;
 
-  return AddDarkFusionFromGy(gyIndex);
+  return AddDarkFusionFromGyFor(turnDuelist, gyIndex);
 }
 
 static u8 DoSetSuperPolymerization(struct DuelCard *self)
@@ -212,6 +224,34 @@ static u8 DoSetSuperPolymerization(struct DuelCard *self)
     return TRUE;
 
   return SetSpellFromDeck(SUPER_POLYMERIZATION);
+}
+
+void TryEvilHeroInfernalRiderOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != EVIL_HERO_INFERNAL_RIDER)
+    return;
+
+  if (EffectOpt_IsUsed(EVIL_HERO_INFERNAL_RIDER))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+  if (!CanAddDarkFusionFor(turnDuelist))
+    return;
+
+  Duel_ShowEffectTextTyped(EVIL_HERO_INFERNAL_RIDER, 8);
+
+  if (!DoAddDarkFusionFor(turnDuelist))
+    return;
+
+  EffectOpt_MarkUsed(EVIL_HERO_INFERNAL_RIDER);
+  UpdateDuelGfxExceptField();
 }
 
 unsigned char CanActivateEVIL_HERO_INFERNAL_RIDER(void)
@@ -225,12 +265,14 @@ unsigned char CanActivateEVIL_HERO_INFERNAL_RIDER(void)
   if (zone == NULL || zone->id != EVIL_HERO_INFERNAL_RIDER)
     return FALSE;
 
-  /* Ceiling: on-summon + HERO lock need summon/SS gates.
-   * OPT add Dark Fusion Deck/GY, else OPT banish self+4 GY → Set Super Poly. */
+  /* On-summon add Dark Fusion via TryEvilHeroInfernalRiderOnMonsterPlacement (EffectOpt).
+   * OPT banish self+4 GY → Set Super Poly.
+   * Ceiling: HERO lock need SS gates. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
-  return CanAddDarkFusion() || CanSetSuperPolymerization(zone);
+  /* Dark Fusion add is on-summon; field OPT only for Super Poly path. */
+  return CanSetSuperPolymerization(zone);
 }
 
 void ActivateEVIL_HERO_INFERNAL_RIDEREffect(void)
@@ -242,15 +284,11 @@ void ActivateEVIL_HERO_INFERNAL_RIDEREffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  if (CanAddDarkFusion()) {
-    if (!DoAddDarkFusion())
-      return;
-  } else if (CanSetSuperPolymerization(self)) {
-    if (!DoSetSuperPolymerization(self))
-      return;
-  } else {
+  if (!CanSetSuperPolymerization(self))
     return;
-  }
+
+  if (!DoSetSuperPolymerization(self))
+    return;
 
   if (self->id == EVIL_HERO_INFERNAL_RIDER)
     MarkMonsterEffectUsed(self);
