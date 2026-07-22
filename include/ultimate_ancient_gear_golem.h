@@ -1,0 +1,6 @@
+#ifndef GUARD_ULTIMATE_ANCIENT_GEAR_GOLEM_H
+#define GUARD_ULTIMATE_ANCIENT_GEAR_GOLEM_H
+
+void UltimateAncientGearGolem_EnsureInit(void);
+
+#endif /* GUARD_ULTIMATE_ANCIENT_GEAR_GOLEM_H */

@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 07:07 UTC  
-**Remaining partials:** `517`
+**Last updated:** 2026-07-22 07:18 UTC  
+**Remaining partials:** `512`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 404 |
-| `permanent` | 97 |
-| **total** | **517** |
+| `activated` | 400 |
+| `permanent` | 96 |
+| **total** | **512** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (404)
+## activated (400)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -174,13 +174,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L190: AG pierce mark for rest of turn FALSE.
 - L234: pierce mark AG monsters FALSE. Ceiling: OPT SS AG from hand (GY if opp has monster), else OPT destroy your face-up. Separate OPTs share one MarkMonsterEffectUsed.
 
-### `ANCIENT_SACRED_WYVERN`
-- path: `src_custom/activated_effects/ancient_sacred_wyvern.c`
-- L46: * ponytail: battle-destroy pay 1000 → SS self need battle/GY hooks. */
-
 ### `ANDRO_SPHINX`
 - path: `src_custom/activated_effects/andro_sphinx.c`
-- L32: battle burn half ATK + GY SS ban need battle/GY hooks. Ceiling: not field-ignition; FromHand pay 500 + Pyramid → SS.
+- L64: * ponytail: GY SS ban needs summon gate. */
 
 ### `APPRENTICE_ILLUSION_MAGICIAN`
 - path: `src_custom/activated_effects/apprentice_illusion_magician.c`
@@ -301,16 +297,12 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ATLANTEAN_MARKSMAN`
 - path: `src_custom/activated_effects/atlantean_marksman.c`
-- L75: battle-damage trigger + sent-for-WATER destroy Set S/T need battle/send hooks. Ceiling: OPT SS Lv≤4 Atlantean Sea Serpent from Deck.
+- L149: * ponytail: sent-for-WATER destroy Set S/T needs send hook. */
 
 ### `AZURE_EYES_SILVER_DRAGON`
 - path: `src_custom/activated_effects/azure_eyes_silver_dragon.c`
 - L47: until end of next turn clear needs EOT hook.
 - L66: Special Summon protection + Standby SS Normal need summon/phase hooks. Ceiling: OPT mark your Dragons protected (unk4).
-
-### `BABYCERASAURUS`
-- path: `src_custom/activated_effects/babycerasaurus.c`
-- L59: destroyed-by-effect→GY trigger needs destroy hook. Ceiling: once via usage if Lv≤4 Dino in Deck and open MMZ.
 
 ### `BARRIER_STATUE_OF_THE_STORMWINDS`
 - path: `src_custom/activated_effects/barrier_statue_of_the_stormwinds.c`
@@ -496,7 +488,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DARKBLAZE_DRAGON`
 - path: `src_custom/activated_effects/darkblaze_dragon.c`
-- L12: GY SS double stats + battle-destroy burn need SS/battle hooks. Ceiling: not ignition-activatable here.
+- L83: * ponytail: GY SS double original ATK/DEF needs SS-origin flag. */
 
 ### `DARKLORD_DESIRE`
 - path: `src_custom/activated_effects/darklord_desire.c`
@@ -650,10 +642,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ELEMENTAL_HERO_BLAZEMAN`
 - path: `src_custom/activated_effects/elemental_hero_blazeman.c`
 - L222: on-summon does not consume effectUsedThisTurn — that flag is only for the menu activated effect (popup_2). Otherwise popup_2 can never fire the turn Blazeman is summoned.
-
-### `ELEMENTAL_HERO_BRAVE_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_brave_neos.c`
-- L67: +100 ATK per Neo-Spacian/HERO in GY + battle-destroy search gate need stat/battle hooks. Ceiling: OPT add 1 Neos/HERO Spell/Trap from Deck.
 
 ### `ELEMENTAL_HERO_CHAOS_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_chaos_neos.c`
@@ -968,7 +956,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GRAVEKEEPERS_SHAMAN`
 - path: `src_custom/activated_effects/gravekeepers_shaman.c`
-- L12: DEF per GK in GY + GY effect negate + Necrovalley Field Spell lock need permanent hooks. Ceiling: not ignition-activatable here.
+- L63: * ponytail: GY-effect negate + Necrovalley Field lock need permanent hooks. */
 
 ### `GRAVEKEEPERS_SPIRITUALIST`
 - path: `src_custom/activated_effects/gravekeepers_spiritualist.c`
@@ -988,7 +976,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GRAVEKEEPERS_VISIONARY`
 - path: `src_custom/activated_effects/gravekeepers_visionary.c`
-- L49: +200 ATK per GK in GY + destroy-replace need stat/destroy hooks. Ceiling: OPT discard 1 GK monster from hand once via usage (save stand-in).
+- L89: * ponytail: destroy-replace needs destroy gate. Ceiling: OPT discard GK stand-in. */
 
 ### `GRAVEKEEPERS_WATCHER`
 - path: `src_custom/activated_effects/gravekeepers_watcher.c`
@@ -1727,10 +1715,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/tyrant_burst_dragon.c`
 - L12: multi-attack + equip-to-monster need battle/equip continuous hooks. Ceiling: not ignition-activatable here; upgrade: permanent battle/equip gate.
 
-### `ULTIMATE_ANCIENT_GEAR_GOLEM`
-- path: `src_custom/activated_effects/ultimate_ancient_gear_golem.c`
-- L53: * ponytail: on-destroy SS need destroy hook.
-
 ### `ULTIMATE_CONDUCTOR_TYRANNO`
 - path: `src_custom/activated_effects/ultimate_conductor_tyranno.c`
 - L194: multi-attack + DEF burn/send need battle hooks. Ceiling: OPT destroy 1 of your monsters → flip all opp face-up monsters face-down DEF.
@@ -1789,7 +1773,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (97)
+## permanent (96)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1884,7 +1868,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DREAD_SERVANT`
 - path: `src_custom/permanent_effects/destiny_hero_dread_servant.c`
-- L8: Clock Tower counters + battle-destroy S/T need NS/battle hooks.
+- L77: * ponytail: NS Clock Tower counters need summon hook. */
 
 ### `DESTINY_HERO_DREADMASTER`
 - path: `src_custom/permanent_effects/destiny_hero_dreadmaster.c`
@@ -1960,7 +1944,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_WILD_CYCLONE`
 - path: `src_custom/permanent_effects/evil_hero_wild_cyclone.c`
-- L8: attack S/T lock + battle-damage destroy face-down S/T need battle/chain hooks.
+- L97: * ponytail: attack S/T lock until end of Damage Step needs chain gate. */
 
 ### `EXECUTOR_MAKYURA`
 - path: `src_custom/permanent_effects/executor_makyura.c`
@@ -2178,10 +2162,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES`
 - path: `src_custom/permanent_effects/vennominaga_the_deity_of_poisonous_snakes.c`
 - L54: S/T + monster immunity + 3-counter win need continuous/battle hooks.
-
-### `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES`
-- path: `src_custom/permanent_effects/vennominon_the_king_of_poisonous_snakes.c`
-- L54: battle destroy → banish Reptile + SS self needs battle/GY hook.
 
 ### `WULF_LIGHTSWORN_BEAST`
 - path: `src_custom/permanent_effects/wulf_lightsworn_beast.c`

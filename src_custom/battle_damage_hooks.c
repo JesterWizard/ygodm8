@@ -75,10 +75,18 @@
 #include "x_saber_airbellum.h"
 #include "magna_drago.h"
 #include "dark_blade_the_dragon_knight.h"
+#include "darkblaze_dragon.h"
 #include "mucus_yolk.h"
 #include "spell_striker.h"
 #include "beast_machine_king_barbaros_ur.h"
 #include "neos_wiseman.h"
+#include "andro_sphinx.h"
+#include "atlantean_marksman.h"
+#include "ancient_sacred_wyvern.h"
+#include "elemental_hero_brave_neos.h"
+#include "evil_hero_wild_cyclone.h"
+#include "destiny_hero_dread_servant.h"
+#include "vennominon_the_king_of_poisonous_snakes.h"
 #include "attack_pheromones.h"
 #include "backup_squad.h"
 #include "berserker_soul.h"
@@ -369,6 +377,12 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyDarkBladeTheDragonKnightBattleEffect();
   ApplyMucusYolkBattleEffect();
   ApplyNeosWisemanBattleEffect();
+  ApplyDarkblazeDragonBattleEffect();
+  ApplyAndroSphinxBattleEffect();
+  ApplyAtlanteanMarksmanBattleEffect();
+  ApplyElementalHeroBraveNeosBattleEffect();
+  ApplyEvilHeroWildCycloneBattleEffect();
+  ApplyDestinyHeroDreadServantBattleEffect();
 
   {
     s32 playerDmg =
@@ -499,6 +513,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyNeoSpacianTwinkleMossBattleEffect();
   ApplyReptilianneGorgonBattleEffect();
   ApplyDonZaloogBattleEffect();
+  ApplyAncientSacredWyvernBattleDestroySs();
+  ApplyVennominonBattleDestroySs();
   ApplyRedDragonArchfiendBattleEffect();
   ApplyReptilianneScyllaBattleEffect();
   ApplySasukeSamurai3BattleEffect();

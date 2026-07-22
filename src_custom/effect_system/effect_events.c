@@ -40,6 +40,7 @@
 #include "el_shaddoll_wendigo.h"
 #include "ancient_gear_frame.h"
 #include "birdface.h"
+#include "babycerasaurus.h"
 #include "charm_of_shabti.h"
 #include "colossal_fighter.h"
 #include "cyber_phoenix.h"
@@ -48,6 +49,7 @@
 #include "mucus_yolk.h"
 #include "spell_effects.h"
 #include "troop_dragon.h"
+#include "ultimate_ancient_gear_golem.h"
 #include "warm_worm.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
@@ -100,6 +102,8 @@ void EffectEvent_EnsureInit(void)
   WarmWorm_EnsureInit();
   CyberPhoenix_EnsureInit();
   MucusYolk_EnsureInit();
+  UltimateAncientGearGolem_EnsureInit();
+  Babycerasaurus_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 

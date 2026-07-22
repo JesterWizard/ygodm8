@@ -1,35 +1,37 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "babycerasaurus.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "monster_effect_usage.h"
+#include "effect_events.h"
 
 void UpdateDuelGfxExceptField(void);
 
-static u8 FixedDuelistForActive(void)
-{
-  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
+static u8 sBabyInit APPEND_DATA = {0};
 
-  return DUEL_OPPONENT;
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist])
+    return ACTIVE_DUELIST;
+  return INACTIVE_DUELIST;
 }
 
 static u8 IsDinoLevel4OrLower(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
     return FALSE;
-
   if (!Duel_CardHasMonsterType(cardId, TYPE_DINOSAUR))
     return FALSE;
-
-  SetCardInfo(cardId);
-  return gCardInfo.level <= 4;
+  return gCardData_NEW[cardId].level <= 4;
 }
 
-static u16 FindDeckDinoTarget(void)
+static u16 FindDeckDinoTarget(u8 turnDuelist)
 {
-  u8 fixedDuelist = FixedDuelistForActive();
+  u8 fixedDuelist =
+      gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER]
+          ? DUEL_PLAYER
+          : DUEL_OPPONENT;
   u8 deckSize = NumCardsInDeck(fixedDuelist);
   u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
   u8 i;
@@ -37,53 +39,68 @@ static u16 FindDeckDinoTarget(void)
   for (i = top; i < deckSize; i++) {
     u16 cardId = gDuelDecks[fixedDuelist].cards[i];
 
-    if (IsDinoLevel4OrLower(cardId)
-        && !Duel_CardCannotBeSpecialSummoned(cardId))
+    if (IsDinoLevel4OrLower(cardId) && !Duel_CardCannotBeSpecialSummoned(cardId))
       return cardId;
   }
-
   return CARD_NONE;
+}
+
+static void TryBabySs(u8 fixedDuelist)
+{
+  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  u8 monsterRow = turnDuelist == ACTIVE_DUELIST
+      ? ACTIVE_DUELIST_MONSTER_ROW
+      : INACTIVE_DUELIST_MONSTER_ROW;
+  struct DuelSummonOpts opts;
+  u16 cardId;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return;
+  if (FirstEmptyZoneInRow(gTurnZones[monsterRow]) < 0)
+    return;
+
+  cardId = FindDeckDinoTarget(turnDuelist);
+  if (cardId == CARD_NONE)
+    return;
+
+  Duel_ShowEffectTextTyped(BABYCERASAURUS, 2);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  Duel_SpecialSummonFromDeck(turnDuelist, cardId, opts);
+  UpdateDuelGfxExceptField();
+}
+
+static void OnBabyEffectDestroyed(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->cardId != BABYCERASAURUS)
+    return;
+  if (ev->controller != DUEL_PLAYER && ev->controller != DUEL_OPPONENT)
+    return;
+
+  TryBabySs(ev->controller);
+}
+
+void Babycerasaurus_EnsureInit(void)
+{
+  if (sBabyInit)
+    return;
+  sBabyInit = TRUE;
+  /* Printed: destroyed by a card effect — not battle. */
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnBabyEffectDestroyed);
 }
 
 unsigned char CanActivateBABYCERASAURUS(void)
 {
-  struct DuelCard *zone;
-
   if (gMonEffect.id != BABYCERASAURUS)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != BABYCERASAURUS)
-    return FALSE;
-
-  /* ponytail: destroyed-by-effect→GY trigger needs destroy hook.
-   * Ceiling: once via usage if Lv≤4 Dino in Deck and open MMZ. */
-  if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
-    return FALSE;
-
-  return FindDeckDinoTarget() != CARD_NONE
-      && FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) >= 0;
+  /* Effect-destroy Deck SS via Babycerasaurus_EnsureInit. */
+  return FALSE;
 }
 
 void ActivateBABYCERASAURUSEffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  struct DuelSummonOpts opts;
-  u16 cardId;
-
   Duel_ShowEffectTextTyped(BABYCERASAURUS, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  cardId = FindDeckDinoTarget();
-  if (cardId == CARD_NONE || ArchlordKristya_IsSpecialSummonLocked()
-      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
-    return;
-
-  opts = Duel_DefaultSpecialSummonOpts(FALSE);
-  opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
-  Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, cardId, opts);
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
 }

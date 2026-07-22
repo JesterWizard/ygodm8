@@ -127,6 +127,8 @@ u8 BootUpSoldierDreadDynamo_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ColossalFighter_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 CyberEltanin_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GoldenHomunculus_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 GravekeepersShaman_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 GravekeepersVisionary_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 HeliosDuoMegistus_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 HeliosThePrimordialSun_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 HeliosTriceMegistus_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -164,6 +166,7 @@ u8 EvilDragonAnanta_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 VennominonTheKingOfPoisonousSnakes_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 VennominagaTheDeityOfPoisonousSnakes_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroAirNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ElementalHeroBraveNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol);
 u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone);
 void TryRavielOnOpponentMonsterPlacement(struct DuelCard *zone);
@@ -1605,6 +1608,8 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { COLOSSAL_FIGHTER, ColossalFighter_ApplyDynamicZoneStats },
   { CYBER_ELTANIN, CyberEltanin_ApplyDynamicZoneStats },
   { GOLDEN_HOMUNCULUS, GoldenHomunculus_ApplyDynamicZoneStats },
+  { GRAVEKEEPERS_SHAMAN, GravekeepersShaman_ApplyDynamicZoneStats },
+  { GRAVEKEEPERS_VISIONARY, GravekeepersVisionary_ApplyDynamicZoneStats },
   { HELIOS_DUO_MEGISTUS, HeliosDuoMegistus_ApplyDynamicZoneStats },
   { HELIOS_THE_PRIMORDIAL_SUN, HeliosThePrimordialSun_ApplyDynamicZoneStats },
   { HELIOS_TRICE_MEGISTUS, HeliosTriceMegistus_ApplyDynamicZoneStats },
@@ -1638,6 +1643,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { VENNOMINON_THE_KING_OF_POISONOUS_SNAKES, VennominonTheKingOfPoisonousSnakes_ApplyDynamicZoneStats },
   { VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES, VennominagaTheDeityOfPoisonousSnakes_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_AIR_NEOS, ElementalHeroAirNeos_ApplyDynamicZoneStats },
+  { ELEMENTAL_HERO_BRAVE_NEOS, ElementalHeroBraveNeos_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
