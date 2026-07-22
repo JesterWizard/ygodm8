@@ -19,6 +19,7 @@ void WaitForVBlank(void);
 
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
+extern u16 gRepeatedOrNewButtons;
 
 static u8 sChickenGameIgnitionNoResponse APPEND_DATA = {0};
 
@@ -89,10 +90,11 @@ u8 ChickenGame_CanActivateIgnition(struct DuelCard *zone)
   return CanPayChickenGameCost();
 }
 
-/* Nested A/B: A = draw; B then A = destroy+gain; B then B = opp gains 1000. */
+/* L/R cycle modes; A confirms (draw / destroy+self LP / opp LP). */
 static u8 PlayerChoosesChickenGameMode(void)
 {
-  /* Nested A/B stand-in for 3-way choice (unlabeled). */
+  u8 mode = CHICKEN_GAME_DRAW;
+
   InitButtonMaps();
   WaitForNoButtonsHeld();
   InitButtonMaps();
@@ -100,33 +102,21 @@ static u8 PlayerChoosesChickenGameMode(void)
   for (;;) {
     UpdateFilteredInput_WithRepeat();
 
-    if (gNewButtons & A_BUTTON) {
+    if (gRepeatedOrNewButtons & DPAD_LEFT) {
       PlayMusic(SFX_SELECT);
-      return CHICKEN_GAME_DRAW;
-    }
-
-    if (gNewButtons & B_BUTTON) {
+      if (mode == CHICKEN_GAME_DRAW)
+        mode = CHICKEN_GAME_OPP_GAIN;
+      else
+        mode--;
+    } else if (gRepeatedOrNewButtons & DPAD_RIGHT) {
       PlayMusic(SFX_SELECT);
-      break;
-    }
-
-    WaitForVBlank();
-  }
-
-  WaitForNoButtonsHeld();
-  InitButtonMaps();
-
-  for (;;) {
-    UpdateFilteredInput_WithRepeat();
-
-    if (gNewButtons & A_BUTTON) {
+      if (mode == CHICKEN_GAME_OPP_GAIN)
+        mode = CHICKEN_GAME_DRAW;
+      else
+        mode++;
+    } else if (gNewButtons & A_BUTTON) {
       PlayMusic(SFX_SELECT);
-      return CHICKEN_GAME_DESTROY_GAIN;
-    }
-
-    if (gNewButtons & B_BUTTON) {
-      PlayMusic(SFX_SELECT);
-      return CHICKEN_GAME_OPP_GAIN;
+      return mode;
     }
 
     WaitForVBlank();

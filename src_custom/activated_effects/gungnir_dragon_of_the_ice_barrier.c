@@ -10,6 +10,8 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
+static u8 sDestroyRemaining APPEND_DATA = {0};
+
 static u8 CountOpponentCards(void)
 {
   u8 row;
@@ -72,6 +74,21 @@ static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
   return !IsGodCard(zone->id);
 }
 
+static u8 FieldHasDestroyTarget(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsValidTarget(row, col))
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
 static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 {
   u8 row;
@@ -87,49 +104,30 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
     }
   }
 
-  return FALSE;
-}
-
-static void DestroyWithoutPick(u8 destroyCount)
-{
-  u8 row;
-  u8 col;
-  u8 destroyed = 0;
-
-  for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_BACKROW && destroyed < destroyCount; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW && destroyed < destroyCount; col++) {
-      struct DuelCard *zone = gFixedZones[row][col];
-
-      if (!IsValidTarget(row, col) || zone == NULL)
-        continue;
-
-      if (Duel_DestroyZone(zone, TurnDuelistOwningFixedRow(row), FALSE) == DUEL_ACTION_DUEL_OVER)
-        return;
-
-      destroyed++;
+  for (row = PLAYER_MONSTER_ROW; row <= PLAYER_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsValidTarget(row, col)) {
+        *outRow = row;
+        *outCol = col;
+        return TRUE;
+      }
     }
   }
 
-  NotifyDynamicEquipFieldChanged();
+  return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static void CancelTargeting(void)
 {
-  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+  PlayMusic(SFX_CANCEL);
+  sDestroyRemaining = 0;
+}
+
+static void FinishGungnir(void)
+{
   struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u8 destroyCount = ComputeDiscardCount();
 
-  if (!IsValidTarget(fixedRow, fixedCol) || zone == NULL)
-    return;
-
-  if (Duel_DestroyZone(zone, TurnDuelistOwningFixedRow(fixedRow), FALSE) == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  NotifyDynamicEquipFieldChanged();
-
-  if (destroyCount > 1 && IsDuelOver() != TRUE)
-    DestroyWithoutPick((u8)(destroyCount - 1));
-
+  sDestroyRemaining = 0;
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -139,9 +137,42 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
     TryActivatingPermanentEffects();
 }
 
-static void CancelTargeting(void)
+static void BeginDestroyPick(void);
+
+static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
-  PlayMusic(SFX_CANCEL);
+  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
+
+  if (!IsValidTarget(fixedRow, fixedCol) || zone == NULL)
+    return;
+
+  if (Duel_DestroyZone(zone, TurnDuelistOwningFixedRow(fixedRow), FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  NotifyDynamicEquipFieldChanged();
+
+  if (sDestroyRemaining > 0)
+    sDestroyRemaining--;
+
+  if (sDestroyRemaining > 0 && IsDuelOver() != TRUE && FieldHasDestroyTarget()) {
+    BeginDestroyPick();
+    return;
+  }
+
+  FinishGungnir();
+}
+
+static void BeginDestroyPick(void)
+{
+  gDuelCursor.destY = gMonEffect.row;
+  gDuelCursor.destX = gMonEffect.zone;
+
+  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+
+  if (WhoseTurn() == DUEL_PLAYER)
+    Duel_EnterPickZoneTargeting();
+  else
+    Duel_ResolvePickZoneForAi();
 }
 
 unsigned char CanActivateGUNGNIR_DRAGON_OF_THE_ICE_BARRIER(void)
@@ -160,7 +191,8 @@ unsigned char CanActivateGUNGNIR_DRAGON_OF_THE_ICE_BARRIER(void)
     return FALSE;
 
   discardCount = ComputeDiscardCount();
-  return discardCount > 0 && Duel_CountCardsInHand(gTurnHands[ACTIVE_DUELIST]) > 0;
+  return discardCount > 0 && Duel_CountCardsInHand(gTurnHands[ACTIVE_DUELIST]) > 0
+      && FieldHasDestroyTarget();
 }
 
 void ActivateGUNGNIR_DRAGON_OF_THE_ICE_BARRIEREffect(void)
@@ -179,24 +211,6 @@ void ActivateGUNGNIR_DRAGON_OF_THE_ICE_BARRIEREffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  if (discardCount == 1) {
-    gDuelCursor.destY = gMonEffect.row;
-    gDuelCursor.destX = gMonEffect.zone;
-
-    Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-    if (WhoseTurn() == DUEL_PLAYER)
-      Duel_EnterPickZoneTargeting();
-    else
-      Duel_ResolvePickZoneForAi();
-    return;
-  }
-
-  /* 2-discard path auto-destroys 2 cards; upgrade: sequential PickZone. */
-  DestroyWithoutPick(discardCount);
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
+  sDestroyRemaining = discardCount;
+  BeginDestroyPick();
 }

@@ -11,6 +11,8 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
+static u8 sBounceRemaining APPEND_DATA = {0};
+
 static void InitHandSlotFromCard(struct DuelCard *handSlot, u16 cardId)
 {
   handSlot->id = cardId;
@@ -85,6 +87,21 @@ static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
   return !IsGodCard(zone->id);
 }
 
+static u8 FieldHasBounceTarget(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_BACKROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (IsValidTarget(row, col))
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
 static u8 BounceOpponentCardToHand(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
@@ -110,28 +127,6 @@ static u8 BounceOpponentCardToHand(u8 fixedRow, u8 fixedCol)
   return TRUE;
 }
 
-static u8 BounceWithoutPick(u8 bounceCount)
-{
-  u8 row;
-  u8 col;
-  u8 bounced = 0;
-
-  for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_BACKROW && bounced < bounceCount; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW && bounced < bounceCount; col++) {
-      if (!IsValidTarget(row, col))
-        continue;
-
-      if (!BounceOpponentCardToHand(row, col))
-        continue;
-
-      NotifyDynamicEquipFieldChanged();
-      bounced++;
-    }
-  }
-
-  return bounced;
-}
-
 static u8 AiPickTarget(u8 *outRow, u8 *outCol)
 {
   u8 row;
@@ -150,22 +145,17 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return FALSE;
 }
 
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
+static void CancelTargeting(void)
+{
+  PlayMusic(SFX_CANCEL);
+  sBounceRemaining = 0;
+}
+
+static void FinishBrionac(void)
 {
   struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u8 bounceCount = ComputeDiscardCount();
 
-  if (!IsValidTarget(fixedRow, fixedCol))
-    return;
-
-  if (!BounceOpponentCardToHand(fixedRow, fixedCol))
-    return;
-
-  NotifyDynamicEquipFieldChanged();
-
-  if (bounceCount > 1 && IsDuelOver() != TRUE)
-    BounceWithoutPick((u8)(bounceCount - 1));
-
+  sBounceRemaining = 0;
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -175,9 +165,40 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
     TryActivatingPermanentEffects();
 }
 
-static void CancelTargeting(void)
+static void BeginBouncePick(void);
+
+static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
-  PlayMusic(SFX_CANCEL);
+  if (!IsValidTarget(fixedRow, fixedCol))
+    return;
+
+  if (!BounceOpponentCardToHand(fixedRow, fixedCol))
+    return;
+
+  NotifyDynamicEquipFieldChanged();
+
+  if (sBounceRemaining > 0)
+    sBounceRemaining--;
+
+  if (sBounceRemaining > 0 && IsDuelOver() != TRUE && FieldHasBounceTarget()) {
+    BeginBouncePick();
+    return;
+  }
+
+  FinishBrionac();
+}
+
+static void BeginBouncePick(void)
+{
+  gDuelCursor.destY = gMonEffect.row;
+  gDuelCursor.destX = gMonEffect.zone;
+
+  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
+
+  if (WhoseTurn() == DUEL_PLAYER)
+    Duel_EnterPickZoneTargeting();
+  else
+    Duel_ResolvePickZoneForAi();
 }
 
 unsigned char CanActivateBRIONAC_DRAGON_OF_THE_ICE_BARRIER(void)
@@ -216,24 +237,6 @@ void ActivateBRIONAC_DRAGON_OF_THE_ICE_BARRIEREffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  if (discardCount == 1) {
-    gDuelCursor.destY = gMonEffect.row;
-    gDuelCursor.destX = gMonEffect.zone;
-
-    Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-    if (WhoseTurn() == DUEL_PLAYER)
-      Duel_EnterPickZoneTargeting();
-    else
-      Duel_ResolvePickZoneForAi();
-    return;
-  }
-
-  /* N-discard path auto-bounces N cards; sequential PickZone not wired. */
-  BounceWithoutPick(discardCount);
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
+  sBounceRemaining = discardCount;
+  BeginBouncePick();
 }

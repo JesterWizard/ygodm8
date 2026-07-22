@@ -222,8 +222,12 @@ void TryDestinyHeroDystopiaOnMonsterPlacement(struct DuelCard *zone)
   if (!GyHasTarget(fixedDuelist))
     return;
 
-  /* printed is on-SS; any placement stand-in. Auto-pick highest ATK. */
-  gyIndex = FindBestGyIndex(fixedDuelist);
+  /* printed is on-SS; any placement stand-in. Player GY trunk pick when expanded. */
+  if (WhoseTurn() == DUEL_PLAYER && GraveyardExpand_IsEnabled())
+    gyIndex = PlayerPickGyIndex(fixedDuelist);
+  else
+    gyIndex = FindBestGyIndex(fixedDuelist);
+
   if (gyIndex < 0 && !GraveyardExpand_IsEnabled())
     gyIndex = 0;
   if (gyIndex < 0)

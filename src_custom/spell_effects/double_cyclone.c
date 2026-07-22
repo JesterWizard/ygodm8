@@ -193,7 +193,6 @@ static void ResolveOwnSpellTrapTarget(u8 fixedRow, u8 fixedCol)
     return;
   }
 
-  /* Re-enter PickZone for opponent backrow (multi-pick; see duel_helpers). */
   BeginOpponentSpellTrapPick();
 }
 

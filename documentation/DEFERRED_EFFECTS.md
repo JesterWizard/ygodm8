@@ -8,15 +8,24 @@ Stubs: [`STUB_EFFECTS.md`](STUB_EFFECTS.md). Ceiling markers: [`PARTIAL_EFFECTS.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ```
 
-**Last updated:** 2026-07-22 21:44 UTC  
-**Files with deferred notes:** `313`  
-**Notes tagged:** `362`
+**Last updated:** 2026-07-22 21:51 UTC  
+**Files with deferred notes:** `307`  
+**Notes tagged:** `355`
 
 ## Suggested tackle order
 
-1. High fan-out, engine already half-there — `event.OnSummon` / `event.OnDestroy` / `ui.Choice` / `gate.Tribute`
-2. Battle surface — `event.OnBattleDestroy` / `battle.ExtraAttack` / `battle.AttackRedirect`
-3. Hard deferred — `chain.Negate`, `extra.XyzLinkSynchro`, Extra Deck Fusion/Pendulum, `gate.SendCost` (Atlantean)
+Difficulty order (easiest first) within the current surface work:
+
+1. **Already-wired comment clears** — notes that only restate live hooks (Honest MP return, Dynatag/Dominance battle Apply*, Earfon PickZone).
+2. **Single-target PickZone / trunk pick** — Dystopia on-SS GY pick, Chicken Game L/R+A 3-way.
+3. **Sequential PickZone** — Brionac bounce-N, Gungnir destroy-2, Double Cyclone.
+4. **OnSummon residuals** — Empress / Desire / Marine Dolphin / Sagittarii draw.
+5. **OnBattleDestroy** — bump `EFFECT_EVENT_MAX_SUBSCRIBERS` first (23/24 full), then Dreamer timing / Vassal / Lantron / Turbo Synchron.
+6. **Hard UI** — multi-select (Amulet/Magnolia), look+reorder (Dominance), reveal excavate (Smartfon/Telefon), DeckMenu+PickZone crash (Athena/Dark Armed).
+7. **Post-battle softlocks** — Core / Ice Edge / Sunrise (needs main-loop queue).
+8. **Hard deferred** — `chain.Negate`, Extra Deck / Pendulum, `gate.SendCost`, equip API (Armory Arm), win-on-summon (Holactie).
+
+Tag fan-out reminder: `ui.Choice` / `event.OnSummon` / `event.OnDestroy` / `gate.Tribute` before Extra Deck / full chain.
 
 ## Counts by missing surface
 
@@ -26,13 +35,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 | `extra.XyzLinkSynchro` | 58 | 55 | later / Extra Deck |
 | `gate.Tribute` | 40 | 37 | 2–3 |
 | `chain.Negate` | 39 | 36 | later / chain |
-| `ui.Choice` | 22 | 18 | 2 |
 | `op.Search` | 21 | 21 | 1 |
+| `ui.Choice` | 18 | 13 | 2 |
 | `event.OnSummon` | 14 | 14 | 3 |
-| `event.OnBattleDestroy` | 13 | 13 | 3 |
 | `event.OnStandby` | 13 | 13 | 3 (OPT / turn flags) |
 | `gate.SendCost` | 13 | 13 | 3 (send-as-cost) |
 | `op.BanishTimed` | 11 | 11 | 1–3 |
+| `event.OnBattleDestroy` | 10 | 10 | 3 |
 | `battle.ExtraAttack` | 7 | 6 | 1–3 (unk4 mark) |
 | `event.OnDestroy` | 7 | 7 | 3 |
 | `battle.AttackRedirect` | 6 | 6 | 3 (battle targeting) |
@@ -41,7 +50,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 | `event.OnFusionSummon` | 3 | 3 | 3 (fusion callback) |
 | `event.OnLpGain` | 2 | 2 | later / LP event |
 | `event.OnDamageCalc` | 1 | 1 | 3 |
-| **total** | **362** | **313** | |
+| **total** | **355** | **307** | |
 
 ## `gate.SendCost` (13 notes)
 
@@ -348,7 +357,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## `event.OnBattleDestroy` (13 notes)
+## `event.OnBattleDestroy` (10 notes)
 
 ### `AMAZONESS_HOT_SPRING` (trap)
 - path: `src_custom/trap_effects/amazoness_hot_spring.c`
@@ -362,25 +371,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 - path: `src_custom/activated_effects/beast_machine_king_barbaros_ur.c`
 - L164: Opp takes no battle damage via ApplyBeastMachineKingBarbarosUrNoOppBattleDamage. multi-zone banish picker not wired; FromHand requires both types reachable.
 
-### `DESTINY_HERO_DOMINANCE` (activated)
-- path: `src_custom/activated_effects/destiny_hero_dominance.c`
-- L89: Battle-destroy draw + GY SS via ApplyDestinyHeroDominanceBattleEffects (battle_damage_hooks). OPT shuffle top 5 of your (else opp) Deck (look+reorder UI missing; RandRange stand-in).
-
 ### `DESTINY_HERO_DREAMER` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dreamer.c`
 - L128: Battle protect via DestinyHeroDreamer_PreventsBattleDestroy. Leave-banish via DestinyHeroDreamer_EnsureInit (unk4 mark on GY SS). True damage-calc GY SS timing needs battle hook.
 
-### `DESTINY_HERO_DYNATAG` (activated)
-- path: `src_custom/activated_effects/destiny_hero_dynatag.c`
-- L223: No battle damage via ApplyDestinyHeroDynatagNoBattleDamage; FromHand path for 1000 burn. GY banish ATK via CanActivateDestinyHeroDynatagGy. Not field-ignition activatable here.
-
 ### `GRAVEKEEPERS_VASSAL` (activated)
 - path: `src_custom/activated_effects/gravekeepers_vassal.c`
 - L12: Battle damage as effect damage needs battle-damage type gate outside this file. Not field-ignition.
-
-### `HONEST` (activated)
-- path: `src_custom/activated_effects/honest.c`
-- L95: Damage Step hand discard uses FromHand path. Main Phase return this face-up card to the hand.
 
 ### `MAJESTY_HYPERION` (activated)
 - path: `src_custom/activated_effects/majesty_hyperion.c`
@@ -951,7 +948,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 - path: `src_custom/activated_effects/the_agent_of_miracles_jupiter.c`
 - L132: +800 ATK until EP via ResetTempStagesForAllCards; Sanctuary RFG revive FALSE. OPT banish Agent from GY → +2 tempStage on LIGHT Fairy.
 
-## `ui.Choice` (22 notes)
+## `ui.Choice` (18 notes)
 
 ### `AMULET_DRAGON` (activated)
 - path: `src_custom/activated_effects/amulet_dragon.c`
@@ -965,14 +962,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 - path: `src_custom/activated_effects/athena.c`
 - L363: Drop field-target cursor before GY deck menu — PickZone state + trunk view was crashing when the menu opened on confirm.
 
-### `BRIONAC_DRAGON_OF_THE_ICE_BARRIER` (activated)
-- path: `src_custom/activated_effects/brionac_dragon_of_the_ice_barrier.c`
-- L232: N-discard path auto-bounces N cards; sequential PickZone not wired.
-
-### `CHICKEN_GAME` (spell)
-- path: `src_custom/spell_effects/chicken_game.c`
-- L95: Nested A/B stand-in for 3-way choice (unlabeled).
-
 ### `DARK_ARMED_DRAGON` (activated)
 - path: `src_custom/activated_effects/dark_armed_dragon.c`
 - L306: Cost: banish 1 DARK monster from own GY (auto-picks first found)
@@ -985,14 +974,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ### `DESTINY_HERO_DOMINANCE` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dominance.c`
 - L66: Look+reorder UI missing; RandRange shuffle of top N is stand-in.
-
-### `DESTINY_HERO_DYSTOPIA` (activated)
-- path: `src_custom/activated_effects/destiny_hero_dystopia.c`
-- L225: printed is on-SS; any placement stand-in. Auto-pick highest ATK.
-
-### `DOUBLE_CYCLONE` (spell)
-- path: `src_custom/spell_effects/double_cyclone.c`
-- L196: Re-enter PickZone for opponent backrow (multi-pick; see duel_helpers).
+- L89: OPT shuffle top 5 of your (else opp) Deck (look+reorder UI missing; RandRange stand-in). Battle draw/SS via ApplyDestinyHeroDominanceBattleEffects.
 
 ### `ELEMENTAL_HERO_CORE` (battle)
 - path: `src_custom/battle_effects/elemental_hero_core.c`
@@ -1008,10 +990,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ### `ELEMENTAL_HERO_SUNRISE` (permanent)
 - path: `src_custom/permanent_effects/elemental_hero_sunrise.c`
 - L464: True timing is attack declaration; resolve post-battle so PickZone can run from the main loop (same pattern as Core). Opponent-turn textboxes corrupt field VRAM — auto-resolve silently.
-
-### `GUNGNIR_DRAGON_OF_THE_ICE_BARRIER` (activated)
-- path: `src_custom/activated_effects/gungnir_dragon_of_the_ice_barrier.c`
-- L195: 2-discard path auto-destroys 2 cards; upgrade: sequential PickZone.
 
 ### `MICHAEL_THE_ARCH_LIGHTSWORN` (activated)
 - path: `src_custom/activated_effects/michael_the_arch_lightsworn.c`
@@ -1273,7 +1251,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 
 ### `DESTINY_HERO_DYSTOPIA` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dystopia.c`
-- L253: On-SS burn via TryDestinyHeroDystopiaOnMonsterPlacement (EffectOpt). Quick destroy-if-ATK-changed needs ATK hooks. OPT pick Lv≤4 D-HERO in GY → burn its ATK.
+- L257: On-SS burn via TryDestinyHeroDystopiaOnMonsterPlacement (EffectOpt). Quick destroy-if-ATK-changed needs ATK hooks. OPT pick Lv≤4 D-HERO in GY → burn its ATK.
 
 ### `ELEMENTAL_HERO_CHAOS_NEOS` (activated)
 - path: `src_custom/activated_effects/elemental_hero_chaos_neos.c`

@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Deferred Batch50 (ui.Choice / OnSummon)
+**Last worked on:** 2026-07-22 — Deferred Batch52 (sequential PickZone)
 
-**Outcome:** PickZone upgrades for Hangman, Raigeki Break, Dynatag GY, Lamia, Dreadnought Servant, Arcana XV on-summon; Mazera on-SS discard-3. Deferred **313 files / 362 notes**. `ui.Choice` 22, `OnSummon` 14.
+**Outcome:** Brionac/Gungnir sequential PickZone; Double Cyclone note cleared. Deferred **307 / 355**. `ui.Choice` 18.
 
-**Deferred:** Continue ui.Choice sequential/multi + OnBattleDestroy residuals.
+**Deferred order:** … → **3 sequential done** → 4 OnSummon → 5 OnBattleDestroy → 6 hard UI → 7 post-battle → 8 Extra/chain.
 
-**Open / next:** Next PickZone pack (Brionac / Gungnir / Chicken Game) or OnBattleDestroy wiring.
+**Open / next:** Tier 4 — OnSummon residuals.

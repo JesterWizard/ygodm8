@@ -86,9 +86,8 @@ unsigned char CanActivateDESTINY_HERO_DOMINANCE(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DOMINANCE)
     return FALSE;
 
-  /* Battle-destroy draw + GY SS via ApplyDestinyHeroDominanceBattleEffects
-   * (battle_damage_hooks). OPT shuffle top 5 of your (else opp) Deck
-   * (look+reorder UI missing; RandRange stand-in). */
+  /* OPT shuffle top 5 of your (else opp) Deck (look+reorder UI missing;
+   * RandRange stand-in). Battle draw/SS via ApplyDestinyHeroDominanceBattleEffects. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -220,9 +220,9 @@ unsigned char CanActivateDESTINY_HERO_DYNATAG(void)
   if (gMonEffect.id != DESTINY_HERO_DYNATAG)
     return FALSE;
 
-  /* No battle damage via ApplyDestinyHeroDynatagNoBattleDamage; FromHand path
+  /* No battle damage via ApplyDestinyHeroDynatagNoBattleDamage; hand path
    * for 1000 burn. GY banish ATK via CanActivateDestinyHeroDynatagGy.
-   * Not field-ignition activatable here. */
+   * Field ignition not used. */
   return FALSE;
 }
 

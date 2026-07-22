@@ -92,8 +92,8 @@ unsigned char CanActivateHONEST(void)
   if (zone == NULL || zone->id != HONEST)
     return FALSE;
 
-  /* Damage Step hand discard uses FromHand path. Main Phase
-   * return this face-up card to the hand. */
+  /* Damage Step discard boost uses hand path. Main Phase return-to-hand
+   * via ActivateHONESTEffect. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
