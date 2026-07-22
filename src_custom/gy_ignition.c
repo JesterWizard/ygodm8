@@ -28,6 +28,8 @@ u8 CanActivateYamorimoriGy(u8 fixedDuelist, u8 gyIndex);
 void ActivateYamorimoriGy(u8 fixedDuelist, u8 gyIndex);
 u8 CanActivateDestinyHeroCelestialGy(u8 fixedDuelist, u8 gyIndex);
 void ActivateDestinyHeroCelestialGy(u8 fixedDuelist, u8 gyIndex);
+u8 CanActivateDestinyHeroDynatagGy(u8 fixedDuelist, u8 gyIndex);
+void ActivateDestinyHeroDynatagGy(u8 fixedDuelist, u8 gyIndex);
 
 struct GyIgnitionEntry {
   u16 cardId;
@@ -84,6 +86,9 @@ static const struct GyIgnitionEntry sGyIgnitionTable[] APPEND_RODATA = {
   { DESTINY_HERO_CELESTIAL,
     CanActivateDestinyHeroCelestialGy,
     ActivateDestinyHeroCelestialGy },
+  { DESTINY_HERO_DYNATAG,
+    CanActivateDestinyHeroDynatagGy,
+    ActivateDestinyHeroDynatagGy },
 };
 
 u8 GyIgnition_TryAt(u8 fixedDuelist, u16 cardId)

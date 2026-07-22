@@ -10,7 +10,7 @@ unsigned char CanActivateMIRROR_FORCE_DRAGON(void)
     return FALSE;
 
   /* when targeted for attack/effect trigger needs protection hook.
-   * Ceiling: not ignition-activatable here; upgrade: trigger destroy-all. */
+   * Not ignition-activatable; upgrade: trigger destroy-all. */
   return FALSE;
 }
 

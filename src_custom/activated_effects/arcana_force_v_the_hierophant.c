@@ -5,6 +5,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
@@ -83,7 +84,11 @@ unsigned char CanActivateARCANA_FORCE_V_THE_HIEROPHANT(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_V_THE_HIEROPHANT)
     return FALSE;
 
-  /* Ceiling: discard summon-lock + FromHand paths. OPT coin → SS 1 Arcana Force from Deck. */
+  /* OPT coin → SS 1 Arcana Force from Deck (EffectOpt). Ceiling: discard
+   * summon-lock + FromHand paths. */
+  if (EffectOpt_IsUsed(ARCANA_FORCE_V_THE_HIEROPHANT))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -138,9 +143,13 @@ void ActivateARCANA_FORCE_V_THE_HIEROPHANTEffect(void)
 
   Duel_ShowEffectTextTyped(ARCANA_FORCE_V_THE_HIEROPHANT, 2);
 
+  if (EffectOpt_IsUsed(ARCANA_FORCE_V_THE_HIEROPHANT))
+    return;
+
   if (!ResolveArcanaForceVTheHierophantCoin(self, ACTIVE_DUELIST))
     return;
 
+  EffectOpt_MarkUsed(ARCANA_FORCE_V_THE_HIEROPHANT);
   MarkMonsterEffectUsed(self);
 }
 

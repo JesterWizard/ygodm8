@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void ClearZone(struct DuelCard *zone);
@@ -137,6 +138,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!ok)
     return;
 
+  EffectOpt_MarkUsed(CYBER_SLASH_HARPY_LADY);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
@@ -194,7 +196,10 @@ unsigned char CanActivateCYBER_SLASH_HARPY_LADY(void)
     return FALSE;
 
   /* Ceiling: Quick on S/T activation + Synchro/name hooks missing.
-   * OPT bounce 1 opp card or your Harpie to hand. */
+   * OPT bounce 1 opp card or your Harpie to hand (EffectOpt). */
+  if (EffectOpt_IsUsed(CYBER_SLASH_HARPY_LADY))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -206,6 +211,9 @@ void ActivateCYBER_SLASH_HARPY_LADYEffect(void)
   Duel_ShowEffectTextTyped(CYBER_SLASH_HARPY_LADY, 2);
 
   if (IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(CYBER_SLASH_HARPY_LADY))
     return;
 
   gDuelCursor.destY = gMonEffect.row;

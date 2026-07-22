@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
 
@@ -145,8 +146,11 @@ unsigned char CanActivateVISION_HERO_FARIS(void)
   if (zone == NULL || zone->id != VISION_HERO_FARIS)
     return FALSE;
 
-  /* Ceiling: Continuous Trap place + ED HERO lock need place/ED hooks. OPT add
-   * 1 Vision HERO from Deck to hand wired below. */
+  /* Ceiling: Continuous Trap place + ED HERO lock need place/ED hooks.
+   * OPT add 1 Vision HERO from Deck to hand (EffectOpt). */
+  if (EffectOpt_IsUsed(VISION_HERO_FARIS))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -166,6 +170,9 @@ void ActivateVISION_HERO_FARISEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(VISION_HERO_FARIS))
+    return;
+
   cardId = FindVisionHeroInDeck();
   if (cardId == CARD_NONE)
     return;
@@ -173,6 +180,7 @@ void ActivateVISION_HERO_FARISEffect(void)
   if (!AddVisionHeroFromDeckToHand(cardId))
     return;
 
+  EffectOpt_MarkUsed(VISION_HERO_FARIS);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

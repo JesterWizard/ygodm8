@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -179,7 +180,10 @@ unsigned char CanActivateDECOY_DRAGON(void)
     return FALSE;
 
   /* Ceiling: attack-target redirect needs battle targeting hook.
-   * OPT SS Lv7+ Dragon from GY once via usage when legal. */
+   * OPT SS Lv7+ Dragon from GY once via EffectOpt when legal. */
+  if (EffectOpt_IsUsed(DECOY_DRAGON))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -204,6 +208,9 @@ void ActivateDECOY_DRAGONEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(DECOY_DRAGON))
+    return;
+
   if (WhoseTurn() == DUEL_PLAYER && GraveyardExpand_IsEnabled())
     gyIndex = PlayerPickDragonGyIndex(fixedDuelist);
   else if (GraveyardExpand_IsEnabled())
@@ -217,6 +224,7 @@ void ActivateDECOY_DRAGONEffect(void)
   if (SpecialSummonDragonFromGy((u8)gyIndex) == DUEL_ACTION_DUEL_OVER)
     return;
 
+  EffectOpt_MarkUsed(DECOY_DRAGON);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

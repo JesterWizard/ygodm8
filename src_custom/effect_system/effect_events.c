@@ -87,6 +87,10 @@ void CrossKeeper_EnsureInit(void);
 void DestinyHeroDenier_EnsureInit(void);
 void ShaddollDragon_EnsureInit(void);
 void ShaddollSquamata_EnsureInit(void);
+/* BATCH13 */
+void LightswornDragonling_EnsureInit(void);
+/* BATCH16 */
+void MichaelTheArchLightsworn_EnsureInit(void);
 
 static u8 sEffectEventsInited APPEND_DATA = {0};
 
@@ -154,6 +158,10 @@ void EffectEvent_EnsureInit(void)
   ShaddollSquamata_EnsureInit();
   /* BATCH11 */
   HarpieConductor_EnsureInit();
+  /* BATCH13 */
+  LightswornDragonling_EnsureInit();
+  /* BATCH16 */
+  MichaelTheArchLightsworn_EnsureInit();
 }
 
 void EffectEvent_Subscribe(u8 eventId, EffectEventHandler handler)

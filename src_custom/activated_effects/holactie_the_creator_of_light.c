@@ -62,7 +62,7 @@ unsigned char CanActivateHOLACTIE_THE_CREATOR_OF_LIGHT(void)
     return FALSE;
 
   /* SS-this-card-wins-Duel needs win-on-summon hook; no duel_helpers win API.
-   * Ceiling: not field-ignition activatable; use FromHand tribute path. */
+   * Not field-ignition activatable; use FromHand tribute path. */
   return FALSE;
 }
 

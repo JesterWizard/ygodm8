@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -71,8 +72,11 @@ unsigned char CanActivateEL_SHADDOLL_MESHAHRAIL(void)
   if (zone == NULL || zone->id != EL_SHADDOLL_MESHAHRAIL)
     return FALSE;
 
-  /* Ceiling: unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks.
-   * OPT pay 800 → add 1 Shaddoll or Void S/T from Deck. */
+  /* OPT pay 800 → add 1 Shaddoll or Void S/T from Deck (EffectOpt).
+   * Ceiling: unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks. */
+  if (EffectOpt_IsUsed(EL_SHADDOLL_MESHAHRAIL))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -95,6 +99,9 @@ void ActivateEL_SHADDOLL_MESHAHRAILEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(EL_SHADDOLL_MESHAHRAIL))
+    return;
+
   cardId = FindDeckShaddollOrVoid();
   if (cardId == CARD_NONE || !CanPayMeshahrailCost())
     return;
@@ -108,6 +115,7 @@ void ActivateEL_SHADDOLL_MESHAHRAILEffect(void)
   if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, cardId, TRUE) != DUEL_ACTION_OK)
     return;
 
+  EffectOpt_MarkUsed(EL_SHADDOLL_MESHAHRAIL);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

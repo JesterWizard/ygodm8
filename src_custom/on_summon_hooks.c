@@ -42,6 +42,14 @@ void TryDarkMagicianGirlTheMagiciansApprenticeOnMonsterPlacement(struct DuelCard
 void TryCrimsonDragonOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode);
 void TryElementalHeroSpiritOfNeosOnMonsterPlacement(struct DuelCard *zone,
                                                     enum DuelSummonMode mode);
+/* BATCH13 — Round 17 Gy-trigger on Lv8 D-HERO SS. */
+void TryDestinyHeroDreadnoughtServantOnMonsterPlacement(struct DuelCard *zone,
+                                                        enum DuelSummonMode mode);
+/* BATCH15 — Round 17 on-summon / other-Zombie mill wires. */
+void TryEvilHeroNeosLordOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode);
+void TryRykoTwilightswornFighterOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode);
+void TrySoulAbsorbingBoneTowerOnOtherZombieSummon(struct DuelCard *zone,
+                                                  enum DuelSummonMode mode);
 
 void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
 {
@@ -87,4 +95,10 @@ void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
   TryDarkMagicianGirlTheMagiciansApprenticeOnMonsterPlacement(zone);
   TryCrimsonDragonOnMonsterPlacement(zone, mode);
   TryElementalHeroSpiritOfNeosOnMonsterPlacement(zone, mode);
+  /* BATCH13 */
+  TryDestinyHeroDreadnoughtServantOnMonsterPlacement(zone, mode);
+  /* BATCH15 */
+  TryEvilHeroNeosLordOnMonsterPlacement(zone, mode);
+  TryRykoTwilightswornFighterOnNormalSummon(zone, mode);
+  TrySoulAbsorbingBoneTowerOnOtherZombieSummon(zone, mode);
 }

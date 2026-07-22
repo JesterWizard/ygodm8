@@ -14,6 +14,7 @@ void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
 static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
+static u8 sDragonlingInit APPEND_DATA = {0};
 
 static u8 FixedDuelistForActive(void)
 {
@@ -29,6 +30,13 @@ static u8 FixedDuelistForTurn(u8 turnDuelist)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
 }
 
 static u8 IsLightswornCard(u16 cardId)
@@ -60,6 +68,81 @@ static u8 GyHasLightsworn(u8 fixedDuelist)
 static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
 {
   return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
+static u8 IsLightDragon3000_2600(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  if (gCardInfo.attribute != ATTRIBUTE_LIGHT)
+    return FALSE;
+  if (!Duel_CardHasMonsterType(cardId, TYPE_DRAGON))
+    return FALSE;
+
+  return gCardInfo.atk == 3000 && gCardInfo.def == 2600;
+}
+
+static u16 FindDeckLightDragonOrBewd(u8 turnDuelist)
+{
+  u8 fixedDuelist = FixedDuelistForTurn(turnDuelist);
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 i;
+  u8 hasBewd = FALSE;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (IsLightDragon3000_2600(cardId))
+      return cardId;
+    if (cardId == BLUE_EYES_WHITE_DRAGON)
+      hasBewd = TRUE;
+  }
+
+  /* ponytail: exact 3000/2600 preferred; BEWD fallback if none. */
+  return hasBewd ? BLUE_EYES_WHITE_DRAGON : CARD_NONE;
+}
+
+static void OnDragonlingLeaveField(const struct EffectEvent *ev)
+{
+  u8 turnDuelist;
+  u16 cardId;
+
+  if (ev == NULL || ev->cardId != LIGHTSWORN_DRAGONLING || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+  /* Separate OPT from on-SS mill / field mill (shared EffectOpt bucket).
+   * ponytail: one EffectOpt for all Dragonling effects. */
+  if (EffectOpt_IsUsed(LIGHTSWORN_DRAGONLING))
+    return;
+
+  turnDuelist = TurnDuelistForFixed(ev->controller);
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return;
+
+  cardId = FindDeckLightDragonOrBewd(turnDuelist);
+  if (cardId == CARD_NONE)
+    return;
+
+  Duel_ShowEffectTextTyped(LIGHTSWORN_DRAGONLING, 8);
+  if (Duel_AddDeckCardToHand(turnDuelist, cardId, TRUE) != DUEL_ACTION_OK)
+    return;
+
+  EffectOpt_MarkUsed(LIGHTSWORN_DRAGONLING);
+  UpdateDuelGfxExceptField();
+}
+
+void LightswornDragonling_EnsureInit(void)
+{
+  if (sDragonlingInit)
+    return;
+
+  sDragonlingInit = TRUE;
+  /* ON_LEAVE covers destroy + battle-destroy (both emit leave). */
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnDragonlingLeaveField);
 }
 
 static u16 FindDeckLightswornExceptSelfFor(u8 turnDuelist)
@@ -188,7 +271,7 @@ unsigned char CanActivateLIGHTSWORN_DRAGONLING(void)
 
   /* hand SS when Lightsworn in GY uses FromHand path.
    * On-SS mill via TryLightswornDragonlingOnMonsterPlacement (EffectOpt).
-   * Ceiling: GY-send add Dragon 3000 ATK/2600 DEF needs leave/send hook.
+   * Leave → LIGHT Dragon 3000/2600 (or BEWD) via LightswornDragonling_EnsureInit.
    * OPT send 1 other Lightsworn from Deck to GY (shares EffectOpt). */
   if (EffectOpt_IsUsed(LIGHTSWORN_DRAGONLING))
     return FALSE;

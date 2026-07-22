@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -63,6 +64,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 
   ToggleMonsterBattlePosition(fixedRow, fixedCol);
 
+  EffectOpt_MarkUsed(AROMAGE_ROSEMARY);
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -124,7 +126,10 @@ unsigned char CanActivateAROMAGE_ROSEMARY(void)
 
   /* Ceiling: LP-higher Plant attack → opp monster effects locked need
    * permanent/battle hooks. LP-gain position change via aroma_lp_gain.c.
-   * OPT change 1 face-up battle position (ignition). */
+   * OPT change 1 face-up battle position (EffectOpt). */
+  if (EffectOpt_IsUsed(AROMAGE_ROSEMARY))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -136,6 +141,9 @@ void ActivateAROMAGE_ROSEMARYEffect(void)
   Duel_ShowEffectTextTyped(AROMAGE_ROSEMARY, 2);
 
   if (IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(AROMAGE_ROSEMARY))
     return;
 
   gDuelCursor.destY = gMonEffect.row;

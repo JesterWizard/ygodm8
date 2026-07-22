@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Ceiling Round 17 Batch 12
+**Last worked on:** 2026-07-22 — Ceiling Round 17 Batches 13–18
 
-**Outcome:** Pack of 6 — Minerva EffectOpt field search; DMG Apprentice×2 / Crimson / Spirit of Neos on-summon search wires (`// BATCH12`); Dead-End Prison EffectOpt mill; Spell Gear skip-UI comment-clear. Partials **203→201**. `make` OK.
+**Outcome:** Six-batch sweep (~36 cards): GyIgnition Dynatag; Dreadnought/Dragonling/Michael wires; EffectOpt packs; on-summon Neos Lord/Ryko/Bone Tower; comment-clears. Partials **201→193**. `make` OK.
 
-**Deferred:** Deep Sea Diva; Atlantean send-for-WATER; Extra Deck Ultimate; GyIgnition Dreadnought Servant / Dynatag (not thin); residual ceilings on wired cards.
+**Deferred:** Deep Sea Diva; Atlantean send-for-WATER; Extra Deck; residual ceilings on wired cards.
 
-**Open / next:** Round 17 Batch 13+ — residual Ceiling wires.
+**Open / next:** Round 17 Batch 19+ — residual Ceiling wires.

@@ -3,12 +3,20 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
+
+#define RYKO_TWILIGHT_NS_MILL 3
+
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
 
 static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
 
@@ -145,6 +153,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 
   NotifyDynamicEquipFieldChanged();
 
+  EffectOpt_MarkUsed(RYKO_TWILIGHTSWORN_FIGHTER);
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -177,6 +186,26 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return FALSE;
 }
 
+void TryRykoTwilightswornFighterOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  u8 controller;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != RYKO_TWILIGHTSWORN_FIGHTER)
+    return;
+  if (SummonModeIsSpecial(mode) || gHideEffectText)
+    return;
+
+  controller = GetDuelistForZone(zone);
+  if (controller > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = Duel_TurnDuelistForFixedDuelist(controller);
+  /* ponytail: NS mill 3 stand-in for other-LS effect→mill; upgrade: chain hook. */
+  Duel_ShowEffectTextTyped(RYKO_TWILIGHTSWORN_FIGHTER, 8);
+  Duel_MillTopDeckCards(turnDuelist, RYKO_TWILIGHT_NS_MILL, TRUE);
+}
+
 unsigned char CanActivateRYKO_TWILIGHTSWORN_FIGHTER(void)
 {
   struct DuelCard *zone;
@@ -188,9 +217,12 @@ unsigned char CanActivateRYKO_TWILIGHTSWORN_FIGHTER(void)
   if (zone == NULL || zone->id != RYKO_TWILIGHTSWORN_FIGHTER)
     return FALSE;
 
-  /* Ceiling: NS/flip + other-Lightsworn mill 3 need summon/chain hooks. OPT
-   * banish LS from hand/GY then banish 1 field card; EP mill 3 via
-   * TryApplyTwilightswornEndPhase. */
+  /* NS mill via TryRykoTwilightswornFighterOnNormalSummon (other-LS stand-in).
+   * OPT banish LS hand/GY → banish 1 field (EffectOpt). EP mill via
+   * TryApplyTwilightswornEndPhase. Ceiling: flip trigger needs flip hook. */
+  if (EffectOpt_IsUsed(RYKO_TWILIGHTSWORN_FIGHTER))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -204,6 +236,9 @@ void ActivateRYKO_TWILIGHTSWORN_FIGHTEREffect(void)
   Duel_ShowEffectTextTyped(RYKO_TWILIGHTSWORN_FIGHTER, 2);
 
   if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(RYKO_TWILIGHTSWORN_FIGHTER))
     return;
 
   if (!BanishOneLightswornFromHandOrGy())

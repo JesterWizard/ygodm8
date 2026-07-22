@@ -3,6 +3,8 @@
 #include "ameba.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
@@ -10,6 +12,11 @@ void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
 
 static u8 CanTakeControlOfOpponentMonster(void)
 {
@@ -32,6 +39,7 @@ static u8 IsValidTakeControlTarget(u8 fixedRow, u8 fixedCol)
   if (IsGodCard(zone->id))
     return FALSE;
 
+  /* Printed: face-up. Face-up ATK often isFaceUp=0 until EOT — ATK stands in. */
   return IsCardFaceUp(zone) || zone->isDefending == FALSE;
 }
 
@@ -87,6 +95,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 
   TakeControlOfMonsterZone(zone);
 
+  EffectOpt_MarkUsed(EVIL_HERO_NEOS_LORD);
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -130,6 +139,38 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return TRUE;
 }
 
+void TryEvilHeroNeosLordOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+  u8 controller;
+
+  if (zone == NULL || zone->id != EVIL_HERO_NEOS_LORD || !SummonModeIsSpecial(mode))
+    return;
+  if (gHideEffectText)
+    return;
+  if (EffectOpt_IsUsed(EVIL_HERO_NEOS_LORD))
+    return;
+
+  controller = GetDuelistForZone(zone);
+  if (controller > DUEL_OPPONENT)
+    return;
+
+  if (!CanTakeControlOfOpponentMonster() || !FieldHasTakeControlTarget())
+    return;
+
+  if (!AiPickTarget(&fixedRow, &fixedCol))
+    return;
+
+  Duel_ShowEffectTextTyped(EVIL_HERO_NEOS_LORD, 8);
+  TakeControlOfMonsterZone(gFixedZones[fixedRow][fixedCol]);
+  EffectOpt_MarkUsed(EVIL_HERO_NEOS_LORD);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
 unsigned char CanActivateEVIL_HERO_NEOS_LORD(void)
 {
   struct DuelCard *zone;
@@ -141,8 +182,12 @@ unsigned char CanActivateEVIL_HERO_NEOS_LORD(void)
   if (zone == NULL || zone->id != EVIL_HERO_NEOS_LORD)
     return FALSE;
 
-  /* Ceiling: indestructible + on-SS/opp-GY-sent take-control triggers need
-   * continuous/summon hooks; OPT take control of 1 face-up opp monster. */
+  /* On-SS take-control via TryEvilHeroNeosLordOnMonsterPlacement (EffectOpt).
+   * Ceiling: indestructible + opp-GY-sent take-control need continuous/send hooks.
+   * Field OPT take control of 1 face-up opp (EffectOpt; ignition stand-in). */
+  if (EffectOpt_IsUsed(EVIL_HERO_NEOS_LORD))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -154,6 +199,9 @@ void ActivateEVIL_HERO_NEOS_LORDEffect(void)
   Duel_ShowEffectTextTyped(EVIL_HERO_NEOS_LORD, 2);
 
   if (IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(EVIL_HERO_NEOS_LORD))
     return;
 
   gDuelCursor.destY = gMonEffect.row;

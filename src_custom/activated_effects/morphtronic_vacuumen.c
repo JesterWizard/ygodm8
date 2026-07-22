@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -22,7 +23,10 @@ unsigned char CanActivateMORPHTRONIC_VACUUMEN(void)
     return FALSE;
 
   /* Ceiling: send Equip → burn + DEF equip-take-control need equip hooks.
-   * Ceiling: ATK Position OPT burn 500. */
+   * ATK Position OPT burn 500 (EffectOpt). */
+  if (EffectOpt_IsUsed(MORPHTRONIC_VACUUMEN))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -38,9 +42,13 @@ void ActivateMORPHTRONIC_VACUUMENEffect(void)
   if (self == NULL || IsDuelOver() == TRUE || self->isDefending != FALSE)
     return;
 
+  if (EffectOpt_IsUsed(MORPHTRONIC_VACUUMEN))
+    return;
+
   if (Duel_ChangeLp(INACTIVE_DUELIST, -VACUUMEN_BURN, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
+  EffectOpt_MarkUsed(MORPHTRONIC_VACUUMEN);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

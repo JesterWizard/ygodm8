@@ -10,7 +10,7 @@ unsigned char CanActivateANCIENT_GEAR_GADJILTRON_CHIMERA(void)
     return FALSE;
 
   /* Green/Red/Yellow Gadget tribute branches need summon/tribute hooks.
-   * Ceiling: not ignition-activatable. */
+   * Not ignition-activatable here. */
   return FALSE;
 }
 

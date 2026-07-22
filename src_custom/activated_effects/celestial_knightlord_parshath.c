@@ -3,6 +3,7 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
 
@@ -101,8 +102,12 @@ unsigned char CanActivateCELESTIAL_KNIGHTLORD_PARSHATH(void)
   if (zone == NULL || zone->id != CELESTIAL_KNIGHTLORD_PARSHATH)
     return FALSE;
 
-  /* Ceiling: Link material + GY banish Fairy → SS Fairy need send/banish hooks.
-   * OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field. */
+  /* OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field
+   * (EffectOpt). Ceiling: Link material + GY banish Fairy → SS Fairy need
+   * send/banish hooks. */
+  if (EffectOpt_IsUsed(CELESTIAL_KNIGHTLORD_PARSHATH))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -117,6 +122,9 @@ void ActivateCELESTIAL_KNIGHTLORD_PARSHATHEffect(void)
   Duel_ShowEffectTextTyped(CELESTIAL_KNIGHTLORD_PARSHATH, 2);
 
   if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(CELESTIAL_KNIGHTLORD_PARSHATH))
     return;
 
   if (!CanDiscardSearchPath())
@@ -139,6 +147,7 @@ void ActivateCELESTIAL_KNIGHTLORD_PARSHATHEffect(void)
   if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, addId, TRUE) != DUEL_ACTION_OK)
     return;
 
+  EffectOpt_MarkUsed(CELESTIAL_KNIGHTLORD_PARSHATH);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

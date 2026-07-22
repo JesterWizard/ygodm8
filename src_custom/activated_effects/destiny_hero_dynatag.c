@@ -3,10 +3,97 @@
 #include "constants/card_ids.h"
 #include "destiny_hero_dynatag.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
+
+static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
+}
+
+static u8 IsDestinyHeroMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sDestinyHeroName);
+}
+
+static u8 IsFaceUpMonsterZone(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE || GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  if (IsCardFaceUp(zone))
+    return TRUE;
+
+  return zone->isDefending == FALSE;
+}
+
+/* ponytail: auto-pick first face-up D-HERO; upgrade: PickZone targeting. */
+static struct DuelCard *FindFaceUpDestinyHero(u8 turnDuelist)
+{
+  u8 monRow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW
+                                            : INACTIVE_DUELIST_MONSTER_ROW;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[monRow][col];
+
+    if (IsDestinyHeroMonster(zone->id) && IsFaceUpMonsterZone(zone))
+      return zone;
+  }
+
+  return NULL;
+}
+
+u8 CanActivateDestinyHeroDynatagGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+
+  if (!GraveyardExpand_IsEnabled())
+    return FALSE;
+  if (gyIndex >= GraveyardExpand_GetCount(fixedDuelist))
+    return FALSE;
+  if (GraveyardExpand_GetCardAt(fixedDuelist, gyIndex) != DESTINY_HERO_DYNATAG)
+    return FALSE;
+
+  return FindFaceUpDestinyHero(turnDuelist) != NULL;
+}
+
+void ActivateDestinyHeroDynatagGy(u8 fixedDuelist, u8 gyIndex)
+{
+  u8 turnDuelist = TurnDuelistForFixed(fixedDuelist);
+  struct DuelCard *target;
+
+  if (!CanActivateDestinyHeroDynatagGy(fixedDuelist, gyIndex))
+    return;
+
+  target = FindFaceUpDestinyHero(turnDuelist);
+  if (target == NULL)
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DYNATAG, 9);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndex);
+
+  /* +2 tempStage (~1000 ATK); until EP via ResetTempStagesForAllCards
+   * (printed: until end of opp next turn). */
+  if (target->tempStage < 126)
+    target->tempStage = (s8)(target->tempStage + 2);
+
+  Duel_RefreshMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
+}
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -93,7 +180,8 @@ unsigned char CanActivateDESTINY_HERO_DYNATAG(void)
     return FALSE;
 
   /* No battle damage via ApplyDestinyHeroDynatagNoBattleDamage; FromHand path
-   * for 1000 burn. Ceiling: not field-ignition activatable here. */
+   * for 1000 burn. GY banish ATK via CanActivateDestinyHeroDynatagGy.
+   * Not field-ignition activatable here. */
   return FALSE;
 }
 
@@ -131,7 +219,7 @@ u8 TryActivateDestinyHeroDynatagFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* Ceiling: GY banish ATK boost not wired; both players 1000 on FromHand. */
+  /* Both players 1000 on FromHand. GY banish ATK via GyIgnition. */
   if (Duel_ChangeLp(ACTIVE_DUELIST, -1000, FALSE) == DUEL_ACTION_DUEL_OVER)
     return TRUE;
 

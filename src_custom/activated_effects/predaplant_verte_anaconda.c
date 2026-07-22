@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
@@ -83,6 +84,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 
   NotifyDynamicEquipFieldChanged();
 
+  EffectOpt_MarkUsed(PREDAPLANT_VERTE_ANACONDA);
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -126,8 +128,11 @@ unsigned char CanActivatePREDAPLANT_VERTE_ANACONDA(void)
   if (zone == NULL || zone->id != PREDAPLANT_VERTE_ANACONDA)
     return FALSE;
 
-  /* DARK attribute mark + Poly/Fusion copy SS need attribute/fusion
-   * hooks. Ceiling: pay 2000 LP → destroy 1 field card. */
+  /* DARK attribute mark + Poly/Fusion copy SS need attribute/fusion hooks.
+   * OPT pay 2000 LP → destroy 1 field card (EffectOpt; Fusion-copy stand-in). */
+  if (EffectOpt_IsUsed(PREDAPLANT_VERTE_ANACONDA))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -141,6 +146,9 @@ void ActivatePREDAPLANT_VERTE_ANACONDAEffect(void)
   Duel_ShowEffectTextTyped(PREDAPLANT_VERTE_ANACONDA, 2);
 
   if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(PREDAPLANT_VERTE_ANACONDA))
     return;
 
   if (!CanPayVerteCost() || !FieldHasDestroyableCard())

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -168,6 +169,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   ApplyLevelReduction(zone, level);
   self->unkThree = 0;
 
+  EffectOpt_MarkUsed(JAIN_TWILIGHTSWORN_GENERAL);
   MarkMonsterEffectUsed(self);
   RefreshFieldMonsterStatOverlays();
   UpdateDuelGfxExceptField();
@@ -226,9 +228,12 @@ unsigned char CanActivateJAIN_TWILIGHTSWORN_GENERAL(void)
   if (zone == NULL || zone->id != JAIN_TWILIGHTSWORN_GENERAL)
     return FALSE;
 
-  /* Ceiling: other-Lightsworn-activated mill 2 needs chain hook. OPT banish 1
-   * Lightsworn from hand/GY → weaken 1 face-up monster. EP mill 2 via
-   * TryApplyTwilightswornEndPhase. */
+  /* OPT banish 1 Lightsworn from hand/GY → weaken 1 face-up monster (EffectOpt).
+   * EP mill 2 via TryApplyTwilightswornEndPhase. Ceiling: other-Lightsworn-
+   * activated mill 2 needs chain hook. */
+  if (EffectOpt_IsUsed(JAIN_TWILIGHTSWORN_GENERAL))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -243,6 +248,9 @@ void ActivateJAIN_TWILIGHTSWORN_GENERALEffect(void)
   Duel_ShowEffectTextTyped(JAIN_TWILIGHTSWORN_GENERAL, 2);
 
   if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(JAIN_TWILIGHTSWORN_GENERAL))
     return;
 
   if (!BanishOneLightswornFromHandOrGy(&level) || level == 0)

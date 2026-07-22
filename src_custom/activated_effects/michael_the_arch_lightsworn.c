@@ -3,6 +3,8 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
+#include "expanded_graveyard.h"
 #include "michael_the_arch_lightsworn.h"
 #include "monster_effect_usage.h"
 
@@ -12,6 +14,12 @@ void TryActivatingPermanentEffects(void);
 
 #define MICHAEL_LP_COST 1000
 #define MICHAEL_END_PHASE_MILL 3
+#define MICHAEL_SHUFFLE_LP_EACH 300
+#define MICHAEL_SHUFFLE_MAX 10
+
+static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
+
+static u8 sMichaelInit APPEND_DATA = {0};
 
 static u8 FixedDuelistForActive(void)
 {
@@ -19,6 +27,108 @@ static u8 FixedDuelistForActive(void)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static u8 TurnDuelistForFixed(u8 fixedDuelist)
+{
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+             ? ACTIVE_DUELIST
+             : INACTIVE_DUELIST;
+}
+
+static u8 IsOtherLightswornMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || cardId == MICHAEL_THE_ARCH_LIGHTSWORN)
+    return FALSE;
+  if (GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sLightswornName);
+}
+
+static void ReturnCardToDeckTop(u8 fixedDuelist, u16 cardId)
+{
+  if (cardId == CARD_NONE)
+    return;
+
+  if (gDuelDecks[fixedDuelist].cardsDrawn > 0)
+    gDuelDecks[fixedDuelist].cardsDrawn--;
+
+  gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
+}
+
+/* ponytail: auto-shuffle up to MICHAEL_SHUFFLE_MAX other LS (no GY picker). */
+static u8 ShuffleOtherLightswornFromGy(u8 fixedDuelist, u8 turnDuelist)
+{
+  u8 shuffled = 0;
+  u8 i;
+
+  if (!GraveyardExpand_IsEnabled()) {
+    u16 cardId = gDuel.duelistbattleState[fixedDuelist].graveyard;
+
+    if (!IsOtherLightswornMonster(cardId))
+      return 0;
+
+    gDuel.duelistbattleState[fixedDuelist].graveyard = CARD_NONE;
+    ReturnCardToDeckTop(fixedDuelist, cardId);
+    Duel_ShuffleDeckFromDrawn(turnDuelist);
+    return 1;
+  }
+
+  for (i = GraveyardExpand_GetCount(fixedDuelist); i > 0 && shuffled < MICHAEL_SHUFFLE_MAX; i--) {
+    u16 cardId = GraveyardExpand_GetCardAt(fixedDuelist, i - 1);
+
+    if (!IsOtherLightswornMonster(cardId))
+      continue;
+
+    cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, i - 1);
+    ReturnCardToDeckTop(fixedDuelist, cardId);
+    shuffled++;
+  }
+
+  if (shuffled > 0) {
+    GraveyardExpand_SyncLegacyTop(fixedDuelist);
+    GraveyardExpand_RefreshDisplay();
+    Duel_ShuffleDeckFromDrawn(turnDuelist);
+  }
+
+  return shuffled;
+}
+
+static void OnMichaelDestroyed(const struct EffectEvent *ev)
+{
+  u8 turnDuelist;
+  u8 shuffled;
+
+  if (ev == NULL || ev->cardId != MICHAEL_THE_ARCH_LIGHTSWORN || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = TurnDuelistForFixed(ev->controller);
+  shuffled = ShuffleOtherLightswornFromGy(ev->controller, turnDuelist);
+  if (shuffled == 0)
+    return;
+
+  Duel_ShowEffectTextTyped(MICHAEL_THE_ARCH_LIGHTSWORN, 8);
+  if (Duel_ChangeLp(turnDuelist, (s32)shuffled * MICHAEL_SHUFFLE_LP_EACH, TRUE)
+      == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+void MichaelTheArchLightsworn_EnsureInit(void)
+{
+  if (sMichaelInit)
+    return;
+
+  sMichaelInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnMichaelDestroyed);
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_BATTLE_DESTROY, OnMichaelDestroyed);
 }
 
 static u8 CanPayMichaelCost(void)
@@ -52,21 +162,6 @@ static u8 FieldHasAnyCard(void)
   return FALSE;
 }
 
-static u8 TurnDuelistOwningFixedRow(u8 fixedRow)
-{
-  u8 fixedOwner;
-
-  if (fixedRow == PLAYER_MONSTER_ROW || fixedRow == PLAYER_BACKROW)
-    fixedOwner = DUEL_PLAYER;
-  else
-    fixedOwner = DUEL_OPPONENT;
-
-  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedOwner])
-    return ACTIVE_DUELIST;
-
-  return INACTIVE_DUELIST;
-}
-
 static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
@@ -83,6 +178,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 
   NotifyDynamicEquipFieldChanged();
 
+  EffectOpt_MarkUsed(MICHAEL_THE_ARCH_LIGHTSWORN);
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -136,8 +232,12 @@ unsigned char CanActivateMICHAEL_THE_ARCH_LIGHTSWORN(void)
   if (zone == NULL || zone->id != MICHAEL_THE_ARCH_LIGHTSWORN)
     return FALSE;
 
-  /* EP mill via TryApplyMichaelEndPhase; destroy→shuffle Lightsworn needs destroy hook.
-   * Ceiling: pay 1000 LP → banish 1 field card. */
+  /* EP mill via TryApplyMichaelEndPhase.
+   * Destroy→shuffle other LS + LP via MichaelTheArchLightsworn_EnsureInit.
+   * OPT pay 1000 LP → banish 1 field card (EffectOpt; Batch13). */
+  if (EffectOpt_IsUsed(MICHAEL_THE_ARCH_LIGHTSWORN))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -149,6 +249,9 @@ void ActivateMICHAEL_THE_ARCH_LIGHTSWORNEffect(void)
   Duel_ShowEffectTextTyped(MICHAEL_THE_ARCH_LIGHTSWORN, 2);
 
   if (IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(MICHAEL_THE_ARCH_LIGHTSWORN))
     return;
 
   gDuelCursor.destY = gMonEffect.row;

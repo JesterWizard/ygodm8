@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "removed_from_play.h"
 #include "six_card_hand.h"
@@ -188,8 +189,12 @@ unsigned char CanActivatePUNISHMENT_DRAGON(void)
   if (zone == NULL || zone->id != PUNISHMENT_DRAGON)
     return FALSE;
 
-  /* hand SS via 4+ banished LS uses FromHand path; LS mill 4 needs
-   * effect-activation hook. Ceiling: pay 1000 → shuffle all banished into Decks. */
+  /* hand SS via 4+ banished LS uses FromHand path. OPT pay 1000 → shuffle all
+   * banished into Decks (EffectOpt). Ceiling: LS mill 4 needs effect-activation
+   * hook. */
+  if (EffectOpt_IsUsed(PUNISHMENT_DRAGON))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -205,12 +210,16 @@ void ActivatePUNISHMENT_DRAGONEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(PUNISHMENT_DRAGON))
+    return;
+
   if (Duel_ChangeLp(ACTIVE_DUELIST, -(s32)PUNISHMENT_DRAGON_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
   if (!ShuffleAllBanishedIntoDecks())
     return;
 
+  EffectOpt_MarkUsed(PUNISHMENT_DRAGON);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

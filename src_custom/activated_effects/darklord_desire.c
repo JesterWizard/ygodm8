@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
@@ -61,6 +62,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
     return;
 
   NotifyDynamicEquipFieldChanged();
+  EffectOpt_MarkUsed(DARKLORD_DESIRE);
   MarkMonsterEffectUsed(self);
   RefreshFieldMonsterStatOverlays();
   UpdateDuelGfxExceptField();
@@ -113,8 +115,11 @@ unsigned char CanActivateDARKLORD_DESIRE(void)
   if (zone == NULL || zone->id != DARKLORD_DESIRE)
     return FALSE;
 
-  /* Ceiling: Fairy-only Tribute Summon + cannot SS need summon hooks. 
-   * OPT -1000 ATK (tempStage) → send 1 opp monster to GY. */
+  /* OPT -1000 ATK (tempStage) → send 1 opp monster to GY (EffectOpt).
+   * Ceiling: Fairy-only Tribute Summon + cannot SS need summon hooks. */
+  if (EffectOpt_IsUsed(DARKLORD_DESIRE))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -126,6 +131,9 @@ void ActivateDARKLORD_DESIREEffect(void)
   Duel_ShowEffectTextTyped(DARKLORD_DESIRE, 2);
 
   if (IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(DARKLORD_DESIRE))
     return;
 
   gDuelCursor.destY = gMonEffect.row;

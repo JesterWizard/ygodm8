@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -159,6 +160,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 
   NotifyDynamicEquipFieldChanged();
 
+  EffectOpt_MarkUsed(LYLA_TWILIGHTSWORN_ENCHANTRESS);
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -202,9 +204,12 @@ unsigned char CanActivateLYLA_TWILIGHTSWORN_ENCHANTRESS(void)
   if (zone == NULL || zone->id != LYLA_TWILIGHTSWORN_ENCHANTRESS)
     return FALSE;
 
-  /* Ceiling: quick effect on Spell/Trap activation + mill 3 when other LS
-   * activates need chain hooks. OPT banish LS from hand/GY then destroy 1
-   * face-up Spell/Trap. EP mill 3 via TryApplyTwilightswornEndPhase. */
+  /* OPT banish LS from hand/GY then destroy 1 face-up Spell/Trap (EffectOpt).
+   * EP mill 3 via TryApplyTwilightswornEndPhase. Ceiling: quick effect on
+   * Spell/Trap activation + mill 3 when other LS activates need chain hooks. */
+  if (EffectOpt_IsUsed(LYLA_TWILIGHTSWORN_ENCHANTRESS))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -218,6 +223,9 @@ void ActivateLYLA_TWILIGHTSWORN_ENCHANTRESSEffect(void)
   Duel_ShowEffectTextTyped(LYLA_TWILIGHTSWORN_ENCHANTRESS, 2);
 
   if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(LYLA_TWILIGHTSWORN_ENCHANTRESS))
     return;
 
   if (!BanishOneLightswornFromHandOrGy())

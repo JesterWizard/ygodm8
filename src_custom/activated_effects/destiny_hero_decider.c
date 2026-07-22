@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
@@ -111,8 +112,11 @@ unsigned char CanActivateDESTINY_HERO_DECIDER(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DECIDER)
     return FALSE;
 
-  /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. Ceiling: GY quick
-   * return-on-damage need chain hook. OPT add 1 HERO from GY to hand. */
+  /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. OPT add 1 HERO from
+   * GY to hand (EffectOpt). Ceiling: GY quick return-on-damage need chain hook. */
+  if (EffectOpt_IsUsed(DESTINY_HERO_DECIDER))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -132,6 +136,9 @@ void ActivateDESTINY_HERO_DECIDEREffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(DESTINY_HERO_DECIDER))
+    return;
+
   gyIndex = FindHeroGyIndex();
   if (gyIndex < 0)
     return;
@@ -139,6 +146,7 @@ void ActivateDESTINY_HERO_DECIDEREffect(void)
   if (!AddHeroFromGyToHand(gyIndex))
     return;
 
+  EffectOpt_MarkUsed(DESTINY_HERO_DECIDER);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

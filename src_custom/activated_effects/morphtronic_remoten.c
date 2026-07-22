@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 #include "removed_from_play.h"
@@ -210,8 +211,11 @@ unsigned char CanActivateMORPHTRONIC_REMOTEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_REMOTEN)
     return FALSE;
 
-  /* Ceiling: position-gated OPT search. ATK: banish GY Morphtronic → add same Lv.
-   * DEF: discard Morphtronic → add other same Lv. */
+  /* position-gated OPT search (EffectOpt). ATK: banish GY Morphtronic → add
+   * same Lv. DEF: discard Morphtronic → add other same Lv. */
+  if (EffectOpt_IsUsed(MORPHTRONIC_REMOTEN))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -232,6 +236,9 @@ void ActivateMORPHTRONIC_REMOTENEffect(void)
   Duel_ShowEffectTextTyped(MORPHTRONIC_REMOTEN, 2);
 
   if (self == NULL || IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(MORPHTRONIC_REMOTEN))
     return;
 
   if (self->isDefending) {
@@ -277,6 +284,7 @@ void ActivateMORPHTRONIC_REMOTENEffect(void)
       return;
   }
 
+  EffectOpt_MarkUsed(MORPHTRONIC_REMOTEN);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

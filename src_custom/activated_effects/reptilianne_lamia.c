@@ -94,8 +94,8 @@ unsigned char CanActivateREPTILIANNE_LAMIA(void)
   if (gMonEffect.id != REPTILIANNE_LAMIA)
     return FALSE;
 
-  /* GY synchro-material ATK-0 need synchro hook.
-   * Ceiling: not field-ignition; FromHand ATK-0 + SS + self-damage. */
+  /* GY synchro-material ATK-0 need synchro hook. Ceiling: remains.
+   * FromHand ATK-0 + SS via TrySpecialSummonReptilianneLamiaFromHand; not field-ignition. */
   return FALSE;
 }
 

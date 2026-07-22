@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
@@ -105,7 +106,10 @@ unsigned char CanActivateJUDGMENT_THE_DRAGON_OF_HEAVEN(void)
     return FALSE;
 
   /* 4+ GY Tuners gate + Dragon-only SS lock need GY/SS hooks. EP mill 4 via
-   * TryApplyJudgmentEndPhase. Ceiling: pay half LP → destroy all other field cards. */
+   * TryApplyJudgmentEndPhase. OPT pay half LP → destroy all other field cards. */
+  if (EffectOpt_IsUsed(JUDGMENT_THE_DRAGON_OF_HEAVEN))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -126,6 +130,9 @@ void ActivateJUDGMENT_THE_DRAGON_OF_HEAVENEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(JUDGMENT_THE_DRAGON_OF_HEAVEN))
+    return;
+
   cost = HalfLpCost();
   if (cost == 0)
     return;
@@ -138,6 +145,7 @@ void ActivateJUDGMENT_THE_DRAGON_OF_HEAVENEffect(void)
 
   DestroyAllOtherFieldCards(self);
 
+  EffectOpt_MarkUsed(JUDGMENT_THE_DRAGON_OF_HEAVEN);
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 

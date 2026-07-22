@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 #include "removed_from_play.h"
 #include "six_card_hand.h"
@@ -111,7 +112,10 @@ unsigned char CanActivateVISION_HERO_GRAVITO(void)
     return FALSE;
 
   /* Ceiling: tribute self → SS 2 Vision HERO from Spell & Trap Zone needs equip
-   * zone API. OPT add 1 banished HERO monster to hand. */
+   * zone API. OPT add 1 banished HERO monster to hand (EffectOpt; on-summon stand-in). */
+  if (EffectOpt_IsUsed(VISION_HERO_GRAVITO))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -132,12 +136,16 @@ void ActivateVISION_HERO_GRAVITOEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(VISION_HERO_GRAVITO))
+    return;
+
   if (!FindBanishedHero(&fixedDuelist, &index))
     return;
 
   if (!AddBanishedHeroToHand(fixedDuelist, index))
     return;
 
+  EffectOpt_MarkUsed(VISION_HERO_GRAVITO);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -97,7 +98,10 @@ unsigned char CanActivateDARK_HORUS(void)
     return FALSE;
 
   /* Ceiling: after opp Main Phase Spell resolve trigger needs spell hook.
-   * OPT SS 1 Lv4 DARK from GY while face-up. */
+   * OPT SS 1 Lv4 DARK from GY while face-up (EffectOpt). */
+  if (EffectOpt_IsUsed(DARK_HORUS))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -120,6 +124,9 @@ void ActivateDARK_HORUSEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(DARK_HORUS))
+    return;
+
   gyIndex = FindLevel4DarkGyIndex();
   if (gyIndex < 0)
     return;
@@ -127,6 +134,7 @@ void ActivateDARK_HORUSEffect(void)
   if (SpecialSummonLevel4DarkFromGy(gyIndex) != DUEL_ACTION_OK)
     return;
 
+  EffectOpt_MarkUsed(DARK_HORUS);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

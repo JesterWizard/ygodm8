@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -67,7 +68,10 @@ unsigned char CanActivateVISION_HERO_INCREASE(void)
     return FALSE;
 
   /* Ceiling: GY Continuous Trap place + tribute HERO SS-self FALSE. OPT SS Vision
-   * HERO Lv≤4 from Deck (ST-zone SS stand-in). */
+   * HERO Lv≤4 from Deck (ST-zone SS stand-in; EffectOpt). */
+  if (EffectOpt_IsUsed(VISION_HERO_INCREASE))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -91,6 +95,9 @@ void ActivateVISION_HERO_INCREASEEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
+  if (EffectOpt_IsUsed(VISION_HERO_INCREASE))
+    return;
+
   cardId = FindVisionHeroLvLe4InDeck();
   if (cardId == CARD_NONE)
     return;
@@ -99,6 +106,7 @@ void ActivateVISION_HERO_INCREASEEffect(void)
   if (Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, cardId, opts) != DUEL_ACTION_OK)
     return;
 
+  EffectOpt_MarkUsed(VISION_HERO_INCREASE);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());

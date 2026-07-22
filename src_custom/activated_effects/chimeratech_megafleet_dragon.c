@@ -10,7 +10,7 @@ unsigned char CanActivateCHIMERATECH_MEGAFLEET_DRAGON(void)
     return FALSE;
 
   /* Fusion ATK overlay via ChimeratechMegafleetDragon_ApplyDynamicZoneStats.
-   * Ceiling: not field-ignition activatable here. */
+   * Not field-ignition. */
   return FALSE;
 }
 

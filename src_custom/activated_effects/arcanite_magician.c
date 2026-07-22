@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "effect_events.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
 
@@ -112,6 +113,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 
   NotifyDynamicEquipFieldChanged();
 
+  EffectOpt_MarkUsed(ARCANITE_MAGICIAN);
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -156,7 +158,10 @@ unsigned char CanActivateARCANITE_MAGICIAN(void)
     return FALSE;
 
   /* Ceiling: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat
-   * hooks. OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card. */
+   * hooks. OPT remove 1 unk4 counter → destroy 1 opp (EffectOpt). */
+  if (EffectOpt_IsUsed(ARCANITE_MAGICIAN))
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -171,6 +176,9 @@ void ActivateARCANITE_MAGICIANEffect(void)
   Duel_ShowEffectTextTyped(ARCANITE_MAGICIAN, 2);
 
   if (IsDuelOver() == TRUE)
+    return;
+
+  if (EffectOpt_IsUsed(ARCANITE_MAGICIAN))
     return;
 
   gDuelCursor.destY = gMonEffect.row;
