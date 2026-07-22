@@ -3,10 +3,45 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "graveyard_effects.h"
+#include "oshaleon.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+struct DuelCard *Oshaleon_GetForcedAttackTarget(u8 defenderDuelist)
+{
+  u8 fixedRow = Duel_FixedMonsterRowForDuelist(defenderDuelist);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+    if (zone == NULL || zone->id != OSHALEON)
+      continue;
+    if (!IsCardFaceUp(zone))
+      continue;
+    if (zone->isDefending)
+      continue;
+    return zone;
+  }
+
+  return NULL;
+}
+
+u8 Oshaleon_CanAttackMonsterZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (zone == NULL || zone->id == CARD_NONE || zone->id == OSHALEON)
+    return TRUE;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return TRUE;
+
+  return Oshaleon_GetForcedAttackTarget(Duel_FixedDuelistForMonsterRow(fixedRow)) == NULL;
+}
 
 static u8 TurnDuelistFromGraveyardRow(u8 turnRow)
 {
@@ -106,5 +141,4 @@ void ActivateOSHALEON(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
-  /* ponytail: must-attack-this restriction needs attack-gate hook. */
 }

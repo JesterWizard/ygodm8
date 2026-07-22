@@ -56,7 +56,7 @@ static void BuffFaceUpDestinyHeroes(void)
       continue;
 
     /* +2 tempStage (~1000 ATK, not exact +800); clears at EP via
-     * ResetTempStagesForAllCards. ponytail: opponent Battle Phase gate not wired. */
+     * ResetTempStagesForAllCards. Ceiling: opponent Battle Phase gate not wired. */
     if (zone->tempStage < 126)
       zone->tempStage += 2;
   }
@@ -86,7 +86,7 @@ u8 CanActivateDESTINY_HERO_BLADE_MASTERFromHand(u8 handZone)
   if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != DESTINY_HERO_BLADE_MASTER)
     return FALSE;
 
-  /* ponytail: opponent Battle Phase gate not wired; allow when face-up D-HERO
+  /* Ceiling: opponent Battle Phase gate not wired; allow when face-up D-HERO
    * on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook. */
   return FieldHasFaceUpDestinyHero();
 }

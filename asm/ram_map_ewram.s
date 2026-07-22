@@ -294,6 +294,8 @@ _kernel_malloc_ewram gRecklessGreedSkipDrawRemaining, 1
 _kernel_malloc_ewram gDrawPhaseNormalDrawActive, 1
 @ DUEL_PLAYER/DUEL_OPPONENT whose next draw phase is skipped by Fenrir, else 0xFF.
 _kernel_malloc_ewram gFenrirSkipDrawDuelist, 1
+@ DUEL_PLAYER/DUEL_OPPONENT whose next draw phase is skipped by Yowie, else 0xFF.
+_kernel_malloc_ewram gYowieSkipDrawDuelist, 1
 
 @ -- Title screen & video player -----------------------------------------------
 
@@ -610,6 +612,9 @@ _kernel_malloc_ewram gTheTyrantNeptunePendingSummon, 1
 @ Chimeratech Overdragon: per-cell material count + attacks used this turn (10 cells each).
 _kernel_malloc_ewram_array gChimeratechOverdragonMaterialCount, 0xA
 _kernel_malloc_ewram_array gChimeratechOverdragonAttacksUsed, 0xA
+
+@ Evil HERO Dark Gaia: per-cell fusion-material original ATK sum (10 u16 cells).
+_kernel_malloc_ewram_array gEvilHeroDarkGaiaFusionAtk, 0x14
 
 @ The Grand Jupiter: absorbed monsters in controller backrow (10 slots: opp 0-4, player 5-9).
 _kernel_malloc_ewram_array gGrandJupiterEquipActive, 0xA

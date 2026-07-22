@@ -2,13 +2,38 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "knight_of_pentacles.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
-#define KNIGHT_OF_PENTACLES_COIN_HEADS 1
-#define KNIGHT_OF_PENTACLES_COIN_TAILS 2
+#define FLAG_GRAVEYARD_PLAYER 1
+#define FLAG_GRAVEYARD_OPPONENT 2
+
+struct KnightOfPentaclesActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct KnightOfPentaclesActionData sActionData;
 
 static struct DuelCard *SelfZone(void)
 {
@@ -34,6 +59,33 @@ u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone)
     return FALSE;
 
   return TRUE;
+}
+
+static u8 IsMonsterVersusMonsterBattleId(u8 id)
+{
+  return id == 1 || id == 2 || id == 5;
+}
+
+void ApplyKnightOfPentaclesTailsWhenAttacked(void)
+{
+  struct DuelCard *playerMon;
+  struct DuelCard *oppMon;
+
+  if (!IsMonsterVersusMonsterBattleId(sActionData.id))
+    return;
+
+  playerMon = gFixedZones[sActionData.playerMonsterRow][sActionData.unkA];
+  oppMon = gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16];
+
+  if (playerMon != NULL && playerMon->id == KNIGHT_OF_PENTACLES
+      && playerMon->unk4 == KNIGHT_OF_PENTACLES_COIN_TAILS
+      && sActionData.opponentCardId != CARD_NONE)
+    sActionData.flags |= FLAG_GRAVEYARD_PLAYER;
+
+  if (oppMon != NULL && oppMon->id == KNIGHT_OF_PENTACLES
+      && oppMon->unk4 == KNIGHT_OF_PENTACLES_COIN_TAILS
+      && sActionData.playerCardId != CARD_NONE)
+    sActionData.flags |= FLAG_GRAVEYARD_OPPONENT;
 }
 
 unsigned char ShouldActivateKNIGHT_OF_PENTACLES(void)
@@ -69,7 +121,6 @@ void ActivateKNIGHT_OF_PENTACLES(void)
 
   heads = RandRangeU8(0, 1) == 1;
   zone->unk4 = heads ? KNIGHT_OF_PENTACLES_COIN_HEADS : KNIGHT_OF_PENTACLES_COIN_TAILS;
-  /* ponytail: Tails "destroy when attacked" needs battle-step hook; unk4 tails = no attack only. */
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

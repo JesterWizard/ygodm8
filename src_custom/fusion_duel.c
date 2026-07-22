@@ -20,6 +20,7 @@
 #include "power_bond.h"
 #include "spell_effects.h"
 #include "chimeratech_fusion_stats.h"
+#include "evil_hero_dark_gaia.h"
 #include "fusion_recipes.h"
 
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
@@ -919,6 +920,8 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
   struct FusionMaterialSource selected[FUSION_MAX_MATERIALS];
   u8 selectedCount;
   s8 emptyZone;
+  u16 darkGaiaFusionAtk = 0;
+  u8 i;
 
   if (recipe == NULL || payMaterials == NULL)
     return DUEL_ACTION_INVALID;
@@ -939,6 +942,11 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
   if (!FusionRecipe_SelectedCountIsValid(recipe, selectedCount))
     return DUEL_ACTION_NO_TARGET;
 
+  if (recipe->result == EVIL_HERO_DARK_GAIA) {
+    for (i = 0; i < selectedCount; i++)
+      darkGaiaFusionAtk = (u16)(darkGaiaFusionAtk + gCardData_NEW[selected[i].cardId].atk);
+  }
+
   emptyZone = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
   if (emptyZone < 0)
     return DUEL_ACTION_NO_ZONE;
@@ -954,6 +962,8 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
   ClearZoneAndSendMonToGraveyard(
       gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
   FusionDuel_SpecialSummonResult(recipe->result, selectedCount);
+  if (recipe->result == EVIL_HERO_DARK_GAIA)
+    EvilHeroDarkGaia_StampFusionMaterialAtk(darkGaiaFusionAtk);
   ElementalHeroAbsoluteZero_EndSuppressLeave();
   return DUEL_ACTION_OK;
 }

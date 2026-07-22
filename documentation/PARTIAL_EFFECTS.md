@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 17:33 UTC  
-**Remaining partials:** `351`
+**Last updated:** 2026-07-22 17:42 UTC  
+**Remaining partials:** `326`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 273 |
-| `permanent` | 62 |
-| **total** | **351** |
+| `activated` | 260 |
+| `permanent` | 50 |
+| **total** | **326** |
 
 ## spell (6)
 
@@ -95,31 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (273)
-
-### `ARCANA_KNIGHT_JOKER`
-- path: `src_custom/activated_effects/arcana_knight_joker.c`
-- L12: discard matching type to negate activation needs chain/response hooks. Ceiling: not ignition-activatable here.
-
-### `ARMORY_ARM`
-- path: `src_custom/activated_effects/armory_arm.c`
-- L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
-
-### `AZURE_EYES_SILVER_DRAGON`
-- path: `src_custom/activated_effects/azure_eyes_silver_dragon.c`
-- L50: until end of next turn clear needs EOT hook.
-
-### `BAZOO_THE_SOUL_EATER`
-- path: `src_custom/activated_effects/bazoo_the_soul_eater.c`
-- L130: unk4 = banish count for +300 ATK each; cleared each EP with tempStage reset — not exact until-opp-EP hook.
-
-### `CYBERNETIC_MAGICIAN`
-- path: `src_custom/activated_effects/cybernetic_magician.c`
-- L63: until End Phase clear needs EP tempStage reset hook.
-
-### `D_D_WARRIOR`
-- path: `src_custom/activated_effects/d_d_warrior.c`
-- L12: after damage calc banish both needs battle hook. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
+## activated (260)
 
 ### `DARK_ARMED_DRAGON`
 - path: `src_custom/activated_effects/dark_armed_dragon.c`
@@ -161,10 +137,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/dark_strike_fighter.c`
 - L127: Main Phase 1 gate not wired; allow once via usage any main phase.
 
-### `DARKBLAZE_DRAGON`
-- path: `src_custom/activated_effects/darkblaze_dragon.c`
-- L83: * ponytail: GY SS double original ATK/DEF needs SS-origin flag. */
-
 ### `DARKLORD_DESIRE`
 - path: `src_custom/activated_effects/darklord_desire.c`
 - L56: -2 tempStage (~1000 ATK, not exact); until EP clear needs EOT hook.
@@ -175,10 +147,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L87: battle indestruct + trap bounce + attack-declare gate need battle/ phase hooks. Ceiling: not field-ignition activatable; SS uses FromHand path.
 - L113: opp attack declare gate not wired; require 1 field + 1 hand Fiend.
 
-### `DECOY_DRAGON`
-- path: `src_custom/activated_effects/decoy_dragon.c`
-- L181: attack-target redirect needs battle targeting hook. Ceiling: OPT SS Lv7+ Dragon from GY once via usage when legal.
-
 ### `DEEP_SEA_DIVA`
 - path: `src_custom/activated_effects/deep_sea_diva.c`
 - L58: Normal Summon trigger needs summon hook. Ceiling: once via usage while face-up if Lv≤3 Sea Serpent in Deck.
@@ -187,10 +155,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/destiny_end_dragoon.c`
 - L65: cannot conduct Battle Phase — unk4 lock stand-in. GY revive FALSE.
 - L105: GY revive FALSE. Ceiling: OPT destroy 1 opp monster + burn its ATK + cannot BP (unk4).
-
-### `DESTINY_HERO_BLADE_MASTER`
-- path: `src_custom/activated_effects/destiny_hero_blade_master.c`
-- L89: opponent Battle Phase gate not wired; allow when face-up D-HERO on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook.
 
 ### `DESTINY_HERO_CAPTAIN_TENACIOUS`
 - path: `src_custom/activated_effects/destiny_hero_captain_tenacious.c`
@@ -208,17 +172,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/destiny_hero_dasher.c`
 - L49: battle DEF change + draw-phase GY SS need battle/draw hooks. Ceiling: OPT tribute 1 other → +2 tempStage (~1000 ATK until End Phase).
 
-### `DESTINY_HERO_DECIDER`
-- path: `src_custom/activated_effects/destiny_hero_decider.c`
-- L114: /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. ponytail: GY quick
-
 ### `DESTINY_HERO_DENIER`
 - path: `src_custom/activated_effects/destiny_hero_denier.c`
 - L189: GY SS when other D-HERO present needs GY/once-per-duel hooks. Ceiling: OPT put 1 D-HERO from Deck/GY/banished on top of Deck.
-
-### `DESTINY_HERO_DESTROY_DOGMA`
-- path: `src_custom/activated_effects/destiny_hero_destroy_dogma.c`
-- L103: /* Standby burn via TryApplyDestinyHeroDestroyDogmaStandby. ponytail: Quick
 
 ### `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER`
 - path: `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c`
@@ -238,10 +194,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L66: look+reorder UI missing; RandRange shuffle of top N is stand-in.
 - L89: battle-destroy draw + GY SS 3 D-HERO need battle/destroy hooks. Ceiling: OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in.
 
-### `DESTINY_HERO_DOOM_LORD`
-- path: `src_custom/activated_effects/destiny_hero_doom_lord.c`
-- L67: * ponytail: return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster. */
-
 ### `DESTINY_HERO_DREADNOUGHT_MASTER`
 - path: `src_custom/activated_effects/destiny_hero_dreadnought_master.c`
 - L60: SS trigger → OPT ignition; cards-mentioning-D-HERO FALSE. Ceiling: OPT add up to 2 Destiny HERO from Deck.
@@ -257,10 +209,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DESTINY_HERO_DRILLDARK`
 - path: `src_custom/activated_effects/destiny_hero_drilldark.c`
 - L65: * ponytail: on-Summon trigger need summon hook.
-
-### `DESTINY_HERO_DUSKTOPIA`
-- path: `src_custom/activated_effects/destiny_hero_dusktopia.c`
-- L47: * TryClearDestinyHeroDusktopiaProtectionEndPhase. ponytail: Fusion on Summon
 
 ### `DESTINY_HERO_DYNATAG`
 - path: `src_custom/activated_effects/destiny_hero_dynatag.c`
@@ -1234,7 +1182,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (62)
+## permanent (50)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1277,11 +1225,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DESTINY_HERO_DOOM_OVERLORD`
 - path: `src_custom/permanent_effects/destiny_hero_doom_overlord.c`
 - L327: banish-until-Standby = permanent banish; DARK HERO SS lock not wired.
-
-### `DESTINY_HERO_DRAWHAND`
-- path: `src_custom/permanent_effects/destiny_hero_drawhand.c`
-- L70: next Standby GY revive via TryApplyDestinyHeroDrawhandStandby.
-- L98: HERO-effect SS gate not checked; on-summon mutual draw stand-in.
 
 ### `DESTINY_HERO_DREAD_SERVANT`
 - path: `src_custom/permanent_effects/destiny_hero_dread_servant.c`
@@ -1329,10 +1272,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/elemental_hero_the_shining.c`
 - L64: return up to 2 banished E-HEROes to hand deferred — no multi-RFP return UI yet. ATK overlay via ApplyDynamicZoneStats.
 
-### `EVIL_HERO_DARK_GAIA`
-- path: `src_custom/permanent_effects/evil_hero_dark_gaia.c`
-- L8: ATK = fusion materials + flip opp Defense→Attack need fusion/battle hooks.
-
 ### `EVIL_HERO_INFERNAL_PRODIGY`
 - path: `src_custom/permanent_effects/evil_hero_infernal_prodigy.c`
 - L40: empty-field hand SS is FromHand activated; End-Phase tribute draw via TryApplyEvilHeroInfernalProdigyEndPhase.
@@ -1366,10 +1305,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/grinder_golem.c`
 - L8: hand SS to opp field + Grinder Tokens + NS/Set lock need summon/token hooks.
 
-### `HARPIE_PERFUMER`
-- path: `src_custom/permanent_effects/harpie_perfumer.c`
-- L134: name becomes Harpie Lady on field/GY needs name-override hook.
-
 ### `HARPIES_PET_PHANTASMAL_DRAGON`
 - path: `src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c`
 - L8: /* Direct attack via HarpiesPetPhantasmalDragon_CanAttackDirectly. ponytail:
@@ -1381,10 +1316,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `JENIS_LIGHTSWORN_MENDER`
 - path: `src_custom/permanent_effects/jenis_lightsworn_mender.c`
 - L53: LS-effect mill source not tracked — any deck mill this turn stand-in. EP burn/heal via TryApplyJenisEndPhase.
-
-### `KNIGHT_OF_PENTACLES`
-- path: `src_custom/permanent_effects/knight_of_pentacles.c`
-- L72: Tails "destroy when attacked" needs battle-step hook; unk4 tails = no attack only.
 
 ### `LEGENDARY_MAJU_GARZETT`
 - path: `src_custom/permanent_effects/legendary_maju_garzett.c`
@@ -1414,10 +1345,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/mobius_the_frost_monarch.c`
 - L175: up-to-2 targeting uses zone->unk4 as phase flag. 0 = not started, 1+ = at least one target destroyed (re-entered targeting). Upgrade path: bitfield on zone if unk4 is needed for other purposes.
 
-### `OSHALEON`
-- path: `src_custom/permanent_effects/oshaleon.c`
-- L109: must-attack-this restriction needs attack-gate hook.
-
 ### `PETEN_THE_DARK_CLOWN`
 - path: `src_custom/permanent_effects/peten_the_dark_clown.c`
 - L73: hand takes priority when both are available; deck is the fallback
@@ -1429,14 +1356,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `REPTILIANNE_GARDNA`
 - path: `src_custom/permanent_effects/reptilianne_gardna.c`
 - L8: destroyed→search Reptilianne needs destroy-to-GY permanent hook.
-
-### `REPTILIANNE_SERVANT`
-- path: `src_custom/permanent_effects/reptilianne_servant.c`
-- L74: cannot-be-attacked + NS lock + spell-target destroy need battle/continuous hooks.
-
-### `SHATIEL`
-- path: `src_custom/permanent_effects/shatiel.c`
-- L51: GetTypeGroup/SetCardInfo would clobber gCardInfo mid-pipeline.
 
 ### `SPIRIT_OF_THE_POT_OF_GREED`
 - path: `src_custom/permanent_effects/spirit_of_the_pot_of_greed.c`
@@ -1452,15 +1371,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L154: OPT draw on S/T activation needs chain/OPT hooks.
 - L177: Deck-first SS order; hand/GY picker not wired.
 
-### `THE_DESPAIR_URANUS`
-- path: `src_custom/permanent_effects/the_despair_uranus.c`
-- L19: GetTypeGroup → SetCardInfo clobbers gCardInfo.atk/def mid-pipeline.
-- L96: gCardInfo is already set for this zone by the caller.
-
-### `THE_TRIPPER_MERCURY`
-- path: `src_custom/permanent_effects/the_tripper_mercury.c`
-- L179: SetCardInfo would reset gCardInfo.atk/def back to printed base.
-
 ### `THE_TYRANT_NEPTUNE`
 - path: `src_custom/permanent_effects/the_tyrant_neptune.c`
 - L59: ram_map byte packing can leave u16 fields at odd EWRAM addresses;
@@ -1469,10 +1379,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `THE_WICKED_AVATAR`
 - path: `src_custom/permanent_effects/the_wicked_avatar.c`
 - L177: after SwitchTurn(), zone POV is still the ended turn until the next UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST.
-
-### `THE_WICKED_DREADROOT`
-- path: `src_custom/permanent_effects/the_wicked_dreadroot.c`
-- L30: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.atk/def that the stat pipeline already computed for zone.
 
 ### `THUNDER_DRAGON_COLOSSUS`
 - path: `src_custom/permanent_effects/thunder_dragon_colossus.c`
@@ -1485,11 +1391,3 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES`
 - path: `src_custom/permanent_effects/vennominaga_the_deity_of_poisonous_snakes.c`
 - L54: S/T + monster immunity + 3-counter win need continuous/battle hooks.
-
-### `YOWIE`
-- path: `src_custom/permanent_effects/yowie.c`
-- L51: opp skip Draw Phase needs turn hook; unk4 marks alone-summon only.
-
-### `ZERIEL`
-- path: `src_custom/permanent_effects/zeriel.c`
-- L44: GetTypeGroup/SetCardInfo would clobber gCardInfo.atk already computed.

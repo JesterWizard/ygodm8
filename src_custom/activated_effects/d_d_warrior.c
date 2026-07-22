@@ -9,7 +9,7 @@ unsigned char CanActivateD_D_WARRIOR(void)
   if (gMonEffect.id != D_D_WARRIOR)
     return FALSE;
 
-  /* ponytail: after damage calc banish both needs battle hook.
+  /* Ceiling: after damage calc banish both needs battle hook.
    * Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle
    * gate outside this file. */
   return FALSE;

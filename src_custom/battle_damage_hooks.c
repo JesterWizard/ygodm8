@@ -102,6 +102,7 @@
 #include "destiny_hero_dynatag.h"
 #include "destiny_hero_dreadmaster.h"
 #include "azure_eyes_silver_dragon.h"
+#include "knight_of_pentacles.h"
 #include "blue_eyes_protect.h"
 #include "vennominon_the_king_of_poisonous_snakes.h"
 #include "helios_duo_megistus.h"
@@ -411,6 +412,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }
+  ApplyKnightOfPentaclesTailsWhenAttacked();
   MorphtronicLantron_MarkDefDestroyed();
   playerGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_PLAYER) != 0;
   opponentGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) != 0;

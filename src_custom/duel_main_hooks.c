@@ -33,6 +33,7 @@
 #include "angels_tear.h"
 #include "yata_garasu.h"
 #include "fenrir.h"
+#include "yowie.h"
 #include "life_points.h"
 #include "text.h"
 #include "summon_tribute.h"
@@ -372,6 +373,10 @@ static bool8 RunDuelTurnLoop(void) {
       ConsumeTimeSealSkipDraw(turn);
     } else if (ShouldSkipDrawPhaseForRecklessGreed(turn)) {
       ConsumeRecklessGreedSkipDraw(turn);
+    } else if (ShouldSkipDrawPhaseForYowie(turn)) {
+      ConsumeYowieSkipDraw(turn);
+      if (!gHideEffectText)
+        Duel_ShowEffectText(YOWIE);
     } else if (TimedDuel_ShouldSkipDrawPhase(turn)) {
       /* ponytail: board and hand are pre-seeded; skip the draw phase. */
     } else if (MechanicsTutorial_ShouldSkipDrawPhase(turn)) {

@@ -27,8 +27,7 @@ static u8 ZoneQualifiesForWickedDreadrootHalving(const struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE || zone->id == THE_WICKED_DREADROOT)
     return FALSE;
 
-  /* ponytail: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.atk/def
-   * that the stat pipeline already computed for zone. */
+  /* gCardData_NEW type check — avoids GetTypeGroup clobbering gCardInfo. */
   if (gCardInfo.id != zone->id || gCardInfo.type >= TYPE_SPELL)
     return FALSE;
 

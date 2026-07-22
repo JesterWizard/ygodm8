@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "yowie.h"
 
 static u8 ControlsOnlyThisMonster(u8 turnRow, u8 col)
 {
@@ -18,6 +19,32 @@ static u8 ControlsOnlyThisMonster(u8 turnRow, u8 col)
   }
 
   return count == 1 && gTurnZones[turnRow][col]->id == YOWIE;
+}
+
+void ResetYowieSkipDraw(void)
+{
+  gYowieSkipDrawDuelist = YOWIE_SKIP_DRAW_NONE;
+}
+
+u8 ShouldSkipDrawPhaseForYowie(u8 turn)
+{
+  return gYowieSkipDrawDuelist == turn;
+}
+
+void ConsumeYowieSkipDraw(u8 turn)
+{
+  if (gYowieSkipDrawDuelist == turn)
+    gYowieSkipDrawDuelist = YOWIE_SKIP_DRAW_NONE;
+}
+
+void Yowie_MarkOpponentSkipDraw(u8 turnDuelist)
+{
+  u8 opponent = turnDuelist == ACTIVE_DUELIST ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+
+  if (gTurnDuelistBattleState[opponent] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    gYowieSkipDrawDuelist = DUEL_PLAYER;
+  else
+    gYowieSkipDrawDuelist = DUEL_OPPONENT;
 }
 
 unsigned char ShouldActivateYOWIE(void)
@@ -41,6 +68,7 @@ unsigned char ShouldActivateYOWIE(void)
 void ActivateYOWIE(void)
 {
   struct DuelCard *zone;
+  u8 turnDuelist;
 
   Duel_ShowEffectTextTyped(YOWIE, 8);
   if (IsDuelOver() == TRUE)
@@ -48,5 +76,20 @@ void ActivateYOWIE(void)
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   zone->unk4 = 1;
-  /* ponytail: opp skip Draw Phase needs turn hook; unk4 marks alone-summon only. */
+
+  turnDuelist = gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+  Yowie_MarkOpponentSkipDraw(turnDuelist);
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void Yowie_SelfCheck(void)
+{
+  ResetYowieSkipDraw();
+  Yowie_MarkOpponentSkipDraw(ACTIVE_DUELIST);
+  if (gYowieSkipDrawDuelist == YOWIE_SKIP_DRAW_NONE)
+    while (1)
+      ;
+}
+#endif

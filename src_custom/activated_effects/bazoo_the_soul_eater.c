@@ -127,8 +127,8 @@ void ActivateBAZOO_THE_SOUL_EATEREffect(void)
   if (banished == 0)
     return;
 
-  /* ponytail: unk4 = banish count for +300 ATK each; cleared each EP with
-   * tempStage reset — not exact until-opp-EP hook. */
+  /* unk4 = banish count for +300 ATK each; cleared each EP via
+   * BazooTheSoulEater_ClearAtkBoostOnEndPhase. */
   if (self->unk4 < 255 - banished)
     self->unk4 = (u8)(self->unk4 + banished);
 

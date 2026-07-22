@@ -569,6 +569,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryClearDestinyHeroDusktopiaProtectionEndPhase();
+  TryClearAzureEyesSilverDragonProtectEndPhase();
   ElementalHeroGlowNeos_ClearTurnMarksAtEndPhase();
   if (IsDuelOver() == 1)
     return;

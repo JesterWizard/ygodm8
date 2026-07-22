@@ -2,10 +2,16 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "harpie_perfumer.h"
 #include "summon_tribute.h"
 
 static const char sHarpieLadySistersName[] APPEND_RODATA = "Harpie Lady Sisters";
 static const char sHarpieName[] APPEND_RODATA = "Harpie";
+
+u8 HarpiePerfumer_TreatsNameAsHarpieLady(const struct DuelCard *zone)
+{
+  return zone != NULL && zone->id == HARPIE_PERFUMER;
+}
 
 static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
@@ -131,7 +137,7 @@ unsigned char ShouldActivateHARPIE_PERFUMER(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* ponytail: name becomes Harpie Lady on field/GY needs name-override hook. */
+  /* Name=Harpie Lady via HarpiePerfumer_TreatsNameAsHarpieLady + Duel_ZoneEffectCardId. */
   return CanSearchSistersSpellTraps(duelist);
 }
 

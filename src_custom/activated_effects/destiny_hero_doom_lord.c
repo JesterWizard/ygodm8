@@ -64,7 +64,7 @@ static void ResolveBanishTarget(u8 fixedRow, u8 fixedCol)
   NotifyDynamicEquipFieldChanged();
 
   /* Cannot-attack-this-turn via DestinyHeroDoomLord_CanDeclareAttack (unk4 mark).
-   * ponytail: return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster. */
+   * Ceiling: return-in-2-Standbys needs Standby hook. Ceiling: OPT banish 1 opp monster. */
   self->unk4 |= 0x80;
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();

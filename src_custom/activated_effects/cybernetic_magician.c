@@ -60,7 +60,7 @@ static void SetZoneAtkToValue(struct DuelCard *zone, u16 targetAtk)
   else
     stages = (s8)(delta / 500);
 
-  /* ponytail: until End Phase clear needs EP tempStage reset hook. */
+  /* Until End Phase via ResetTempStagesForAllCards at EP. */
   zone->tempStage = stages;
 }
 

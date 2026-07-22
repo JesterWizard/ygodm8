@@ -2,11 +2,26 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "reptilianne_servant.h"
 
 void ClearZone(struct DuelCard *zone);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+u8 ReptilianneServant_HasOtherFaceUpMonster(struct DuelCard *zone)
+{
+  u8 turnRow;
+  u8 col;
+
+  if (zone == NULL || zone->id != REPTILIANNE_SERVANT)
+    return FALSE;
+
+  if (!Duel_FindTurnMonsterZone(zone, &turnRow, &col))
+    return FALSE;
+
+  return Duel_TurnRowHasOtherMonsterMatching(turnRow, col, NULL);
+}
 
 static u8 IsOtherFaceUpMonster(struct DuelCard *self, struct DuelCard *zone)
 {
@@ -71,5 +86,6 @@ void ActivateREPTILIANNE_SERVANT(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
-  /* ponytail: cannot-be-attacked + NS lock + spell-target destroy need battle/continuous hooks. */
+  /* Cannot-be-attacked via sAttackGates + ReptilianneServant_HasOtherFaceUpMonster.
+   * Ceiling: NS lock + spell-target destroy need continuous hooks. */
 }

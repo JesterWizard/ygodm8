@@ -16,7 +16,7 @@ static u8 IsSpellOrTrapCard(u16 cardId)
   if (cardId == CARD_NONE || cardId >= NUM_TOTAL_CARDS)
     return FALSE;
 
-  /* ponytail: GetTypeGroup → SetCardInfo clobbers gCardInfo.atk/def mid-pipeline. */
+  /* gCardData_NEW type check — avoids GetTypeGroup clobbering gCardInfo. */
   return gCardData_NEW[cardId].type >= TYPE_SPELL;
 }
 
@@ -93,7 +93,7 @@ void ApplyTheDespairUranusAtkBoost(struct DuelCard *zone)
   if (zone == NULL || zone->id != THE_DESPAIR_URANUS)
     return;
 
-  /* ponytail: gCardInfo is already set for this zone by the caller. */
+  /* gCardInfo is already set for this zone by the caller. */
   if (gCardInfo.id != zone->id)
     return;
 

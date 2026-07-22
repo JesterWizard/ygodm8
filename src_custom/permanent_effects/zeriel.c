@@ -41,7 +41,7 @@ void ApplyZerielFairyAtkBoost(const struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  /* ponytail: GetTypeGroup/SetCardInfo would clobber gCardInfo.atk already computed. */
+  /* gCardInfo.id guard — avoids GetTypeGroup clobbering gCardInfo.atk. */
   if (gCardInfo.id != zone->id || gCardInfo.type >= TYPE_SPELL)
     return;
 

@@ -176,7 +176,7 @@ void ApplyTheTripperMercuryOpponentAtkDrain(struct DuelCard *zone)
     return;
 
   computedAtk = gCardInfo.atk;
-  /* ponytail: SetCardInfo would reset gCardInfo.atk/def back to printed base. */
+  /* gCardData_NEW base ATK — avoids SetCardInfo clobbering computed atk. */
   if (zone->id < NUM_TOTAL_CARDS)
     originalAtk = gCardData_NEW[zone->id].atk;
   else

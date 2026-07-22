@@ -48,7 +48,7 @@ static u8 CountFairiesOnMonsterRow(u8 fixedMonsterRow)
     if (cardId >= NUM_TOTAL_CARDS)
       continue;
 
-    /* ponytail: GetTypeGroup/SetCardInfo would clobber gCardInfo mid-pipeline. */
+    /* gCardData_NEW type check — avoids GetTypeGroup clobbering gCardInfo. */
     if (gCardData_NEW[cardId].type != TYPE_FAIRY)
       continue;
 

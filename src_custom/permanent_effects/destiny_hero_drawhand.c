@@ -67,7 +67,7 @@ unsigned char ShouldActivateDESTINY_HERO_DRAWHAND(void)
   if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* ponytail: next Standby GY revive via TryApplyDestinyHeroDrawhandStandby. */
+  /* Standby GY revive via TryApplyDestinyHeroDrawhandStandby. */
   return CanBothPlayersDrawOne();
 }
 
@@ -95,5 +95,5 @@ void ActivateDESTINY_HERO_DRAWHAND(void)
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
-  /* ponytail: HERO-effect SS gate not checked; on-summon mutual draw stand-in. */
+  /* Ceiling: HERO-effect SS gate not checked; on-summon mutual draw stand-in. */
 }

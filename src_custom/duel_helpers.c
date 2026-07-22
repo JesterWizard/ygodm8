@@ -51,6 +51,10 @@
 #include "elemental_hero_neos_alius.h"
 #include "elemental_hero_great_tornado.h"
 #include "the_wicked_dreadroot.h"
+#include "evil_hero_dark_gaia.h"
+#include "harpie_perfumer.h"
+#include "oshaleon.h"
+#include "reptilianne_servant.h"
 #include "the_wicked_eraser.h"
 #include "the_wicked_avatar.h"
 #include "cold_wave.h"
@@ -204,6 +208,11 @@ u8 ChimeratechMegafleetDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AromaseraphySweetMarjoram_CanAttackMonsterZone(struct DuelCard *zone);
 u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol);
 u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone);
+u8 HarpiePerfumer_TreatsNameAsHarpieLady(const struct DuelCard *zone);
+u8 ReptilianneServant_HasOtherFaceUpMonster(struct DuelCard *zone);
+struct DuelCard *Oshaleon_GetForcedAttackTarget(u8 defenderDuelist);
+u8 Oshaleon_CanAttackMonsterZone(struct DuelCard *zone);
+u8 EvilHeroDarkGaia_ApplyDynamicZoneStats(struct DuelCard *zone);
 void TryRavielOnOpponentMonsterPlacement(struct DuelCard *zone);
 void TryAmuletDragonOnMonsterPlacement(struct DuelCard *zone);
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
@@ -1430,6 +1439,9 @@ u16 Duel_ZoneEffectCardId(struct DuelCard *zone)
   if (AmazonessBabyTiger_TreatsNameAsTiger(zone))
     return AMAZONESS_TIGER;
 
+  if (HarpiePerfumer_TreatsNameAsHarpieLady(zone))
+    return HARPIE_LADY;
+
   return zone->id;
 }
 
@@ -1723,6 +1735,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { SHIRE_LIGHTSWORN_SPIRIT, ShireLightswornSpirit_ApplyDynamicZoneStats },
   { GARONITH_LIGHTSWORN_DRAGON, GaronithLightswornDragon_ApplyDynamicZoneStats },
   { BAZOO_THE_SOUL_EATER, BazooTheSoulEater_ApplyDynamicZoneStats },
+  { EVIL_HERO_DARK_GAIA, EvilHeroDarkGaia_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_THE_SHINING, ElementalHeroTheShining_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_FLARE_NEOS, ElementalHeroFlareNeos_ApplyDynamicZoneStats },
   { EVIL_DRAGON_ANANTA, EvilDragonAnanta_ApplyDynamicZoneStats },
@@ -1738,6 +1751,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
   { GOBLIN_KING, Duel_IsFiendZone },
+  { REPTILIANNE_SERVANT, ReptilianneServant_HasOtherFaceUpMonster },
 };
 
 typedef struct DuelCard *(*DuelForcedAttackTargetFn)(u8 defenderDuelist);
@@ -1752,6 +1766,7 @@ static const struct DuelForcedAttackRedirect sForcedAttackRedirects[] __attribut
   { ElementalHeroPoisonRose_GetForcedAttackTarget },
   { HamonLordOfStrikingThunder_GetForcedAttackTarget },
   { EvilHeroMaliciousFiend_GetForcedAttackTarget },
+  { Oshaleon_GetForcedAttackTarget },
 };
 
 typedef u8 (*DuelAttackZoneCheckFn)(struct DuelCard *zone);
@@ -1768,6 +1783,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   KnightOfPentacles_CanAttackMonsterZone,
   AromaseraphySweetMarjoram_CanAttackMonsterZone,
   EvilHeroMaliciousFiend_CanAttackMonsterZone,
+  Oshaleon_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)

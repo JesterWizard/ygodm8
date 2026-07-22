@@ -33,6 +33,7 @@
 #include "limiter_removal.h"
 #include "yata_garasu.h"
 #include "fenrir.h"
+#include "yowie.h"
 #include "time_seal.h"
 #include "reckless_greed.h"
 #include "copycat.h"
@@ -48,6 +49,7 @@
 #include "splendid_venus.h"
 #include "card.h"
 #include "chimeratech_overdragon.h"
+#include "evil_hero_dark_gaia.h"
 #include "cybernetic_fusion_support.h"
 #include "amazoness_secret_arts.h"
 #include "power_bond.h"
@@ -450,6 +452,7 @@ void InitBoard__Replacement(void) {
   Duel_ResetAttackRestrictions();
   ResetYataGarasuSkipDraw();
   ResetFenrirSkipDraw();
+  ResetYowieSkipDraw();
   ResetTimeSealSkipDraw();
   ResetRecklessGreedSkipDraw();
   ResetThousandEnergyState();
@@ -849,6 +852,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ClearMajuGarzettBoardStatsForZone(zone);
   ClearTheTyrantNeptuneBoardStatsForZone(zone);
   ClearChimeratechOverdragonBoardStatsForZone(zone);
+  EvilHeroDarkGaia_ClearBoardStatsForZone(zone);
   BlastHeldByATribute_ClearZoneMark(zone);
   VengefulBogSpirit_ClearZoneMark(zone);
   RecalculateAllDynamicEquips();

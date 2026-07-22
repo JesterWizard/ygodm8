@@ -111,7 +111,7 @@ unsigned char CanActivateDESTINY_HERO_DECIDER(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DECIDER)
     return FALSE;
 
-  /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. ponytail: GY quick
+  /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. Ceiling: GY quick
    * return-on-damage need chain hook. Ceiling: OPT add 1 HERO from GY to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

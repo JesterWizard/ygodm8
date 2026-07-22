@@ -9,7 +9,7 @@ unsigned char CanActivateARCANA_KNIGHT_JOKER(void)
   if (gMonEffect.id != ARCANA_KNIGHT_JOKER)
     return FALSE;
 
-  /* ponytail: discard matching type to negate activation needs chain/response
+  /* Ceiling: discard matching type to negate activation needs chain/response
    * hooks. Ceiling: not ignition-activatable here. */
   return FALSE;
 }

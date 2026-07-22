@@ -47,7 +47,6 @@ static u8 MarkOwnDragonsProtected(void)
     if (!IsOwnFaceUpDragon(col) || zone == NULL)
       continue;
 
-    /* ponytail: until end of next turn clear needs EOT hook. */
     zone->unk4 |= 0x80;
     marked = TRUE;
   }
@@ -158,6 +157,21 @@ static enum DuelActionResult SpecialSummonNormalFromOwnGy(s16 gyIndex, u16 cardI
   return Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
 }
 
+void TryClearAzureEyesSilverDragonProtectEndPhase(void)
+{
+  u8 fixedRow;
+  u8 col;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_MONSTER_ROW; fixedRow++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (zone != NULL && (zone->unk4 & 0x80))
+        zone->unk4 &= (u8)~0x80;
+    }
+  }
+}
+
 void TryApplyAzureEyesSilverDragonStandby(void)
 {
   u8 col;
@@ -218,9 +232,8 @@ unsigned char CanActivateAZURE_EYES_SILVER_DRAGON(void)
   if (zone == NULL || zone->id != AZURE_EYES_SILVER_DRAGON)
     return FALSE;
 
-  /* Dragon battle/effect protect via AzureEyesSilverDragon_Prevents*.
-   * Standby Normal SS via TryApplyAzureEyesSilverDragonStandby.
-   * ponytail: until end of next turn clear needs EOT hook. Ceiling: OPT mark Dragons protected (unk4). */
+  /* Dragon battle/effect protect via AzureEyesSilverDragon_Prevents*; EP clear via
+   * TryClearAzureEyesSilverDragonProtectEndPhase. Standby Normal SS wired. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
