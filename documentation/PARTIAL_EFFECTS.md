@@ -9,93 +9,18 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 17:57 UTC  
-**Remaining partials:** `226`
+**Last updated:** 2026-07-22 18:00 UTC  
+**Remaining partials:** `186`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
-| `spell` | 6 |
-| `trap` | 10 |
-| `activated` | 181 |
+| `activated` | 157 |
 | `permanent` | 29 |
-| **total** | **226** |
+| **total** | **186** |
 
-## spell (6)
-
-### `FUSION_DESTINY`
-- path: `src_custom/spell_effects/fusion_destiny.c`
-- L34: * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
-
-### `NEO_SPACE`
-- path: `src_custom/spell_effects/neo_space.c`
-- L94: gCardData_NEW — SetCardInfo would wipe stage/field ATK mid-overlay.
-
-### `SCAPEGOAT`
-- path: `src_custom/spell_effects/scapegoat.c`
-- L10: no Sheep Token card id in trunk — MOON_TOKEN is Lv1/0/0 stand-in. Ceiling: wrong Type/Attribute (Fairy/LIGHT vs Beast/EARTH); upgrade: add SHEEP_TOKEN card data + art, then swap this define.
-- L74: LockMonsterCardsInRow also blocks Normal Set of monsters. Ceiling: cannot allow Set while blocking Summon without a menu hook that distinguishes Set vs Summon; upgrade: Set path unlocks hand briefly.
-- L77: token tribute-lock is only via isLocked — not all tribute paths honor it, and Tokens can still be used for non-Tribute costs. Ceiling: best-effort lockMonster; upgrade: tribute validator excludes SCAPEGOAT_TOKEN_ID / token flag.
-
-### `SECRETS_OF_DARK_MAGIC`
-- path: `src_custom/spell_effects/secrets_of_dark_magic.c`
-- L34: * ponytail: incomplete vs printed DM Fusion pool (Dragon Knight, etc.).
-
-### `SPELL_CHRONICLE`
-- path: `src_custom/spell_effects/spell_chronicle.c`
-- L68: no simple Deck→banish helper for arbitrary ST — mill to GY as stand-in for the 5 banished. Ceiling: cards go to GY not banished; upgrade: Duel_BanishDeckCardAt.
-- L138: Deck banish pushes via GraveyardExpand then Banish top — approx by pushing GY then Duel_BanishGraveyardTopTurn. Ceiling: briefly hits GY; upgrade: direct deck→RFG.
-- L151: Chronicle Counters on opp Spell resolve / remove 2 → opp chooses banished add / leave-field burn need continuous hooks outside this file. Ceiling: activate discard+banish 5 only; unk4 counter slot unused.
-
-### `SPELL_GEAR`
-- path: `src_custom/spell_effects/spell_gear.c`
-- L156: * ponytail: optional SS offered as auto-yes when legal. Ceiling: cannot skip
-
-## trap (10)
-
-### `AMAZONESS_HALL`
-- path: `src_custom/trap_effects/amazoness_hall.c`
-- L43: * ponytail: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
-
-### `AMAZONESS_HOT_SPRING`
-- path: `src_custom/trap_effects/amazoness_hot_spring.c`
-- L46: * ponytail: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
-
-### `ANCIENT_GEAR_DUEL`
-- path: `src_custom/trap_effects/ancient_gear_duel.c`
-- L45: unaffected by opp monster effects + Extra Deck Fusion + 3 attacks need protection/fusion/battle hooks. Ceiling: mark AG Golem/mentioners (unk4); if opp has monster + we control Golem, banish Golem + 1 AG from GY and SS Ultimate Ancient Gear Golem stand-in from Deck/hand.
-
-### `ANGELS_TEAR`
-- path: `src_custom/trap_effects/angels_tear.c`
-- L342: need 4 banish targets plus 1 summon target.
-
-### `DARK_SUPREMACY`
-- path: `src_custom/trap_effects/dark_supremacy.c`
-- L38: "Spells that mention Dark Fusion" not scanned by text.
-- L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
-
-### `FAVOURITE_CONTACT`
-- path: `src_custom/trap_effects/favourite_contact.c`
-- L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API. Ceiling: return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
-
-### `HARPIE_LADY_ELEGANCE`
-- path: `src_custom/trap_effects/harpie_lady_elegance.c`
-- L47: * ponytail: WIND-only SS lock this turn + destroy-search Harpie Spell need hooks. */
-
-### `SHADDOLL_CORE`
-- path: `src_custom/trap_effects/shaddoll_core.c`
-- L45: true trap-monster (still a Trap) + Attribute fusion substitute need Embodiment-style link. Ceiling: place SHADDOLL_CORE on monster row and keep trap face-up continuous; GY add Shaddoll S/T stand-in on activate.
-
-### `SHADDOLL_SCHISM`
-- path: `src_custom/trap_effects/shaddoll_schism.c`
-- L40: full Fusion Summon from Extra by banishing listed materials + Attribute-match send need fusion recipe picker. Ceiling: banish up to 2 Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct attack mark via unk4.
-
-### `URGENT_TUNING`
-- path: `src_custom/trap_effects/urgent_tuning.c`
-- L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
-
-## activated (181)
+## activated (157)
 
 ### `DESTINY_END_DRAGOON`
 - path: `src_custom/activated_effects/destiny_end_dragoon.c`
@@ -106,37 +31,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/enlightenment_dragon.c`
 - L138: Extra Summon conditions + destroy-add banished FALSE. Ceiling: OPT pay 2000 → banish all other field+both GYs, else OPT mill 4. Separate OPTs share one MarkMonsterEffectUsed.
 
-### `EVIL_HERO_DARKEST_KNIGHT`
-- path: `src_custom/activated_effects/evil_hero_darkest_knight.c`
-- L90: opp ATK loss by materials + double attack need fusion/battle hooks. Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in).
-
-### `EVIL_HERO_DEAD_END_PRISON`
-- path: `src_custom/activated_effects/evil_hero_dead_end_prison.c`
-- L109: Dark Fusion Fusion gate + Fusion-substitute name marker FALSE. Ceiling: OPT mill 1 HERO from Deck.
-- L151: Dark Fusion Fusion markers missing; any Fusion Monster stand-in.
-
-### `EVIL_HERO_INFERNAL_RIDER`
-- path: `src_custom/activated_effects/evil_hero_infernal_rider.c`
-- L228: on-summon + HERO lock need summon/SS gates. Ceiling: OPT add Dark Fusion Deck/GY, else OPT banish self+4 GY → Set Super Poly.
-
-### `EVIL_HERO_MALICIOUS_BANE`
-- path: `src_custom/activated_effects/evil_hero_malicious_bane.c`
-- L75: destruction immunity + HERO-only attack gate need destroy/attack hooks. Ceiling: OPT destroy opp monsters with ATK≤self, +tempStage, mark unk4.
-- L105: +200 ATK each via tempStage (~500/unit); attack lock only marks self unk4.
-
-### `EVIL_HERO_NEOS_LORD`
-- path: `src_custom/activated_effects/evil_hero_neos_lord.c`
-- L144: indestructible + on-SS/opp-GY-sent take-control triggers need continuous/summon hooks. Ceiling: OPT take control of 1 face-up opp monster.
-
-### `EVIL_HERO_SINISTER_NECROM`
-- path: `src_custom/activated_effects/evil_hero_sinister_necrom.c`
-- L103: GY ignition needs GY-menu wire. Ceiling: allow when Sinister Necrom in GY + Evil HERO in hand or Deck (callable if gMonEffect set).
-
-### `EVIL_HERO_VICIOUS_CLAWS`
-- path: `src_custom/activated_effects/evil_hero_vicious_claws.c`
-- L46: GY destroy-revive + Dark Fusion destroy branch need GY/destroy hooks. Ceiling: FromHand target HERO → SS DEF +300 ATK stand-in.
-- L96: +300 ≈ +1 tempStage (~500).
-
 ### `EVOLZAR_DOLKKA`
 - path: `src_custom/activated_effects/evolzar_dolkka.c`
 - L12: quick Xyz detach + negate monster effect need chain/Xyz hooks. Ceiling: not field-ignition here.
@@ -144,10 +38,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `FELIS_LIGHTSWORN_ARCHER`
 - path: `src_custom/activated_effects/felis_lightsworn_archer.c`
 - L101: SS when sent from Deck to GY by monster effect needs mill/SS hook. Ceiling: ignition tribute self → destroy 1 opponent monster → mill 3.
-
-### `FLAME_RULER`
-- path: `src_custom/activated_effects/flame_ruler.c`
-- L12: treat as 2 Tributes for FIRE Tribute Summon needs tribute-cost LynJump. Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle gate outside this file.
 
 ### `FOG_KING`
 - path: `src_custom/activated_effects/fog_king.c`
@@ -160,10 +50,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `FUSILIER_DRAGON_THE_DUAL_MODE_BEAST`
 - path: `src_custom/activated_effects/fusilier_dragon_the_dual_mode_beast.c`
 - L12: NS without tribute + halved ATK/DEF needs summon tribute gate. Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon gate outside this file.
-
-### `GAGAGIGO_THE_RISEN`
-- path: `src_custom/activated_effects/gagagigo_the_risen.c`
-- L12: Gagagigo the Risen has no printed monster effect (Xyz materials only). Ceiling: not ignition-activatable from this file; upgrade: permanent / duel gate outside activated_effects.
 
 ### `GAMECIAL_THE_SEA_TURTLE_KAIJU`
 - path: `src_custom/activated_effects/gamecial_the_sea_turtle_kaiju.c`
@@ -247,10 +133,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GREAT_POSEIDON_BEETLE`
 - path: `src_custom/activated_effects/great_poseidon_beetle.c`
 - L12: re-attack same target after surviving battle needs battle re-attack hook. Ceiling: not ignition-activatable here.
-
-### `GREEN_GADGET`
-- path: `src_custom/activated_effects/green_gadget.c`
-- L60: NS/SS trigger needs summon hook. Ceiling: once via usage.
 
 ### `GUARDIAN_DREADSCYTHE`
 - path: `src_custom/activated_effects/guardian_dreadscythe.c`
@@ -388,10 +270,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/magicians_souls.c`
 - L143: Continuous Spell placement + DM/DMG GY SS branch need placement/ GY hooks. Ceiling: OPT send 1–2 S/T from hand/field → draw that many.
 
-### `MAN_THRO_TRO`
-- path: `src_custom/activated_effects/man_thro_tro.c`
-- L21: Ojama Trio monster form is the only token-like field unit today
-
 ### `MANJU_OF_THE_TEN_THOUSAND_HANDS`
 - path: `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c`
 - L113: Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage if Ritual Monster or Ritual Spell in Deck and hand space.
@@ -437,47 +315,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/mirror_force_dragon.c`
 - L12: when targeted for attack/effect trigger needs protection hook. Ceiling: not ignition-activatable here; upgrade: trigger destroy-all.
 
-### `MOLTEN_ZOMBIE`
-- path: `src_custom/activated_effects/molten_zombie.c`
-- L18: printed trigger is SS from GY. Ceiling: once via usage when Activate runs (summon-dispatch or manual).
-
-### `MORPHTRONIC_CELFON`
-- path: `src_custom/activated_effects/morphtronic_celfon.c`
-- L136: reveal/look UI missing; die roll + SS/add among top N. Ceiling: ATK OPT die→SS Lv≤4 Morphtronic; DEF OPT die→add Morphtronic.
-
-### `MORPHTRONIC_EARFON`
-- path: `src_custom/activated_effects/morphtronic_earfon.c`
-- L48: real Tuner flag / Equip double-attack need Synchro/equip hooks. Ceiling: OPT PickZone mark unk4 as Tuner stand-in.
-- L95: on-SS Tuner mark + Equip 2-attacks FALSE. Ceiling: OPT PickZone treat face-up as Tuner (unk4).
-
-### `MORPHTRONIC_REMOTEN`
-- path: `src_custom/activated_effects/morphtronic_remoten.c`
-- L213: position-gated OPT search. ATK: banish GY Morphtronic → add same Lv. DEF: discard Morphtronic → add other same Lv.
-
-### `MORPHTRONIC_SCANNEN`
-- path: `src_custom/activated_effects/morphtronic_scannen.c`
-- L194: FromHand banish Morphtronic → SS; ATK/DEF OPT search modes.
-
-### `MORPHTRONIC_SCOPEN`
-- path: `src_custom/activated_effects/morphtronic_scopen.c`
-- L58: DEF Position → treat as Level 4 + EP destroy on ATK-mode SS need position/EP hooks. Ceiling: ATK Position OPT SS 1 Lv4 Morphtronic from hand.
-
-### `MORPHTRONIC_SLINGEN`
-- path: `src_custom/activated_effects/morphtronic_slingen.c`
-- L160: DEF destroy-other-Morphtronic substitute needs destroy redirect hook. Ceiling: ATK OPT tribute 1 other Morphtronic → destroy 1 field card.
-
-### `MORPHTRONIC_SMARTFON`
-- path: `src_custom/activated_effects/morphtronic_smartfon.c`
-- L228: reveal UI FALSE. Ceiling: ATK die excavate add; DEF GY add Morphtronic. FromHand: banish Morphtronic GY → SS.
-
-### `MORPHTRONIC_TELEFON`
-- path: `src_custom/activated_effects/morphtronic_telefon.c`
-- L176: reveal UI FALSE. Ceiling: ATK die→LP+SS Morph Lv≤roll; DEF die excavate add.
-
-### `MORPHTRONIC_VACUUMEN`
-- path: `src_custom/activated_effects/morphtronic_vacuumen.c`
-- L24: send Equip → burn + DEF equip-take-control need equip hooks. Ceiling: ATK Position OPT burn 500.
-
 ### `NAELSHADDOLL_ARIEL`
 - path: `src_custom/activated_effects/naelshaddoll_ariel.c`
 - L72: FLIP SS banished Shaddoll + sent-by-effect branch need flip/RFP hooks. Ceiling: OPT banish up to 3 cards from either GY.
@@ -519,10 +356,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `NUMBER_39_UTOPIA`
 - path: `src_custom/activated_effects/number_39_utopia.c`
 - L12: attack negate via detach + no-material self-destroy need battle hook and XYZ material system. Ceiling: not field-ignition activatable.
-
-### `OJAMA_KING`
-- path: `src_custom/activated_effects/ojama_king.c`
-- L54: PickZone for up to 3 empty zones + continuous lock gate. Ceiling: auto-lock first 3 empty opp MMZ via isLocked (ignored by FirstEmptyZoneInRow today — same as Ground Collapse).
 
 ### `POSEIDRA_THE_ATLANTEAN_DRAGON`
 - path: `src_custom/activated_effects/poseidra_the_atlantean_dragon.c`
@@ -590,14 +423,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/reptilianne_vaskii.c`
 - L191: only-SS-by-tribute + unique-on-field need summon/field hooks. Ceiling: OPT destroy 1 face-up opp monster.
 - L233: multi-zone tribute picker not wired; auto-tribute first two 0 ATK.
-
-### `RESCUE_CAT`
-- path: `src_custom/activated_effects/rescue_cat.c`
-- L123: negated effects + End Phase destroy not applied; upgrade: summon flags + turn-end cleanup gate.
-
-### `RESCUE_RABBIT`
-- path: `src_custom/activated_effects/rescue_rabbit.c`
-- L126: End Phase destroy + effect negate not applied; upgrade: turn-end gate.
 
 ### `RINYAN_LIGHTSWORN_ROGUE`
 - path: `src_custom/activated_effects/rinyan_lightsworn_rogue.c`

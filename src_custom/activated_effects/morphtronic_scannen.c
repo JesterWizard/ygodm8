@@ -191,7 +191,7 @@ unsigned char CanActivateMORPHTRONIC_SCANNEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SCANNEN)
     return FALSE;
 
-  /* ponytail: FromHand banish Morphtronic → SS; ATK/DEF OPT search modes. */
+  /* Ceiling: FromHand banish Morphtronic → SS; ATK/DEF OPT search modes. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

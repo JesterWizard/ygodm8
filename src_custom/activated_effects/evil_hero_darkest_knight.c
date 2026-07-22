@@ -87,7 +87,7 @@ unsigned char CanActivateEVIL_HERO_DARKEST_KNIGHT(void)
   if (zone == NULL || zone->id != EVIL_HERO_DARKEST_KNIGHT)
     return FALSE;
 
-  /* ponytail: opp ATK loss by materials + double attack need fusion/battle hooks.
+  /* Ceiling: opp ATK loss by materials + double attack need fusion/battle hooks.
    * Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

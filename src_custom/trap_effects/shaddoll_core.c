@@ -42,8 +42,8 @@ APPEND_TEXT void EffectSHADDOLL_CORE(void)
 
   trapZone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
 
-  /* ponytail: true trap-monster (still a Trap) + Attribute fusion substitute
-   * need Embodiment-style link. Ceiling: place SHADDOLL_CORE on monster row
+  /* Ceiling: true trap-monster (still a Trap) + Attribute fusion substitute
+   * need Embodiment-style link; place SHADDOLL_CORE on monster row
    * and keep trap face-up continuous; GY add Shaddoll S/T stand-in on activate. */
 
   empty = FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]);

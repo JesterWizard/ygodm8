@@ -35,7 +35,7 @@ static u8 CountDarkFusionMentionsInGy(void)
 
     if (id == DARK_FUSION)
       count++;
-    /* ponytail: "Spells that mention Dark Fusion" not scanned by text. */
+    /* Ceiling: "Spells that mention Dark Fusion" not scanned by text. */
   }
 
   return count;
@@ -50,7 +50,7 @@ APPEND_TEXT void EffectDARK_SUPREMACY(void)
 
   Duel_ShowTrapResponseText(DARK_SUPREMACY, gTrapEffectData.originCardId);
 
-  /* ponytail: GY banish shuffle HERO need GY ignition OPT.
+  /* Ceiling: GY banish shuffle HERO need GY ignition OPT.
    * Ceiling: negate up to count face-up opp cards (monsters first) via unk4. */
 
   for (col = 0; col < MAX_ZONES_IN_ROW && negated < count; col++) {

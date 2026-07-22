@@ -65,8 +65,8 @@ static u8 BanishSpellTrapsFromDeck(u8 need)
     {
       /* Place as banished by temporarily creating zone is heavy; use
        * gRemovedFromPlay if available — ponytail fallback: send to GY instead. */
-      /* ponytail: no simple Deck→banish helper for arbitrary ST — mill to GY as
-       * stand-in for the 5 banished. Ceiling: cards go to GY not banished;
+      /* Ceiling: no simple Deck→banish helper for arbitrary ST — mill to GY as
+       * stand-in for the 5 banished; cards go to GY not banished;
        * upgrade: Duel_BanishDeckCardAt. */
       ClearZoneAndSendMonToGraveyard(gTurnHands[ACTIVE_DUELIST][0], ACTIVE_DUELIST);
       /* Actually just push via expand then we can't banish easily — leave as
@@ -135,8 +135,8 @@ static void SPELL_CHRONICLE_ResolveBody(void)
     if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, i, FALSE) != DUEL_ACTION_OK)
       break;
 
-    /* ponytail: Deck banish pushes via GraveyardExpand then Banish top — approx
-     * by pushing GY then Duel_BanishGraveyardTopTurn. Ceiling: briefly hits GY;
+    /* Ceiling: Deck banish pushes via GraveyardExpand then Banish top — approx
+     * by pushing GY then Duel_BanishGraveyardTopTurn; briefly hits GY;
      * upgrade: direct deck→RFG. */
     GraveyardExpand_PushTurn(ACTIVE_DUELIST, cardId);
     Duel_BanishGraveyardTopTurn(ACTIVE_DUELIST);
@@ -148,7 +148,7 @@ static void SPELL_CHRONICLE_ResolveBody(void)
 
   UpdateDuelGfxExceptField();
 
-  /* ponytail: Chronicle Counters on opp Spell resolve / remove 2 → opp chooses
+  /* Ceiling: Chronicle Counters on opp Spell resolve / remove 2 → opp chooses
    * banished add / leave-field burn need continuous hooks outside this file.
    * Ceiling: activate discard+banish 5 only; unk4 counter slot unused. */
   (void)BanishSpellTrapsFromDeck;

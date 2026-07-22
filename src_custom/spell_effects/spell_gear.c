@@ -153,7 +153,7 @@ static void TryOptionalSummonGolems(void)
   struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
 
   /* "You can" — AI always summons when able; player path same (no skip UI).
-   * ponytail: optional SS offered as auto-yes when legal. Ceiling: cannot skip
+   * Ceiling: optional SS offered as auto-yes when legal; cannot skip
    * a legal hand/Deck AGG SS; upgrade: A/B confirm per location. */
   if (HandHasAncientGearGolem() && CanSpecialSummonGolem())
     Duel_SpecialSummonFromHand(ACTIVE_DUELIST, ANCIENT_GEAR_GOLEM, NULL, opts);

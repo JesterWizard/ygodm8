@@ -157,7 +157,7 @@ unsigned char CanActivateMORPHTRONIC_SLINGEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SLINGEN)
     return FALSE;
 
-  /* ponytail: DEF destroy-other-Morphtronic substitute needs destroy redirect hook.
+  /* Ceiling: DEF destroy-other-Morphtronic substitute needs destroy redirect hook.
    * Ceiling: ATK OPT tribute 1 other Morphtronic → destroy 1 field card. */
   if (zone->isDefending)
     return FALSE;

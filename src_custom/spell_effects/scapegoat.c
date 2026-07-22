@@ -7,7 +7,7 @@
 
 #define SCAPEGOAT_TOKEN_COUNT 4
 
-/* ponytail: no Sheep Token card id in trunk — MOON_TOKEN is Lv1/0/0 stand-in.
+/* Ceiling: no Sheep Token card id in trunk — MOON_TOKEN is Lv1/0/0 stand-in.
  * Ceiling: wrong Type/Attribute (Fairy/LIGHT vs Beast/EARTH); upgrade: add
  * SHEEP_TOKEN card data + art, then swap this define. */
 #define SCAPEGOAT_TOKEN_ID MOON_TOKEN
@@ -71,10 +71,10 @@ static void SCAPEGOAT_ResolveBody(void)
   BlockTurnSummoning(ACTIVE_DUELIST);
   LockMonsterCardsInRow(ACTIVE_DUELIST_HAND);
 
-  /* ponytail: LockMonsterCardsInRow also blocks Normal Set of monsters.
+  /* Ceiling: LockMonsterCardsInRow also blocks Normal Set of monsters.
    * Ceiling: cannot allow Set while blocking Summon without a menu hook that
    * distinguishes Set vs Summon; upgrade: Set path unlocks hand briefly. */
-  /* ponytail: token tribute-lock is only via isLocked — not all tribute paths
+  /* Ceiling: token tribute-lock is only via isLocked — not all tribute paths
    * honor it, and Tokens can still be used for non-Tribute costs.
    * Ceiling: best-effort lockMonster; upgrade: tribute validator excludes
    * SCAPEGOAT_TOKEN_ID / token flag. */

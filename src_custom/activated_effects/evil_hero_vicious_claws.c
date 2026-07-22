@@ -43,7 +43,7 @@ unsigned char CanActivateEVIL_HERO_VICIOUS_CLAWS(void)
   if (gMonEffect.id != EVIL_HERO_VICIOUS_CLAWS)
     return FALSE;
 
-  /* ponytail: GY destroy-revive + Dark Fusion destroy branch need GY/destroy hooks.
+  /* Ceiling: GY destroy-revive + Dark Fusion destroy branch need GY/destroy hooks.
    * Ceiling: FromHand target HERO → SS DEF +300 ATK stand-in. */
   return FALSE;
 }
@@ -93,7 +93,7 @@ u8 TrySpecialSummonEvilHeroViciousClawsFromHand(u8 handZone)
   if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
     return FALSE;
 
-  /* ponytail: +300 ≈ +1 tempStage (~500). */
+  /* Ceiling: +300 ≈ +1 tempStage (~500). */
   if (hero->tempStage < 127)
     hero->tempStage = (s8)(hero->tempStage + 1);
 

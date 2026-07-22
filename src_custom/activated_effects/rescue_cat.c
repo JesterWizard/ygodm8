@@ -120,7 +120,7 @@ void ActivateRESCUE_CATEffect(void)
     summoned++;
   }
 
-  /* ponytail: negated effects + End Phase destroy not applied; upgrade: summon
+  /* Ceiling: negated effects + End Phase destroy not applied; upgrade: summon
    * flags + turn-end cleanup gate. */
 
   UpdateDuelGfxExceptField();

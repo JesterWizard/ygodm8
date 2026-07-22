@@ -15,7 +15,7 @@ unsigned char CanActivateMOLTEN_ZOMBIE(void)
   if (zone == NULL || zone->id != MOLTEN_ZOMBIE)
     return FALSE;
 
-  /* ponytail: printed trigger is SS from GY. Ceiling: once via usage when
+  /* Ceiling: printed trigger is SS from GY; once via usage when
    * Activate runs (summon-dispatch or manual). */
   return CanUseMonsterEffect(zone);
 }

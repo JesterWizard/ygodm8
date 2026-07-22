@@ -133,7 +133,7 @@ unsigned char CanActivateMORPHTRONIC_CELFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_CELFON)
     return FALSE;
 
-  /* ponytail: reveal/look UI missing; die roll + SS/add among top N.
+  /* Ceiling: reveal/look UI missing; die roll + SS/add among top N.
    * Ceiling: ATK OPT die→SS Lv≤4 Morphtronic; DEF OPT die→add Morphtronic. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

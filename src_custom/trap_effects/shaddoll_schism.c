@@ -37,8 +37,8 @@ static void ActivateSHADDOLL_SCHISMZone(struct DuelCard *zone)
   if (Duel_ActivateContinuousTrapPreamble(zone, SHADDOLL_SCHISM) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: full Fusion Summon from Extra by banishing listed materials +
-   * Attribute-match send need fusion recipe picker. Ceiling: banish up to 2
+  /* Ceiling: full Fusion Summon from Extra by banishing listed materials +
+   * Attribute-match send need fusion recipe picker; banish up to 2
    * Shaddoll from GY/field then SS El Shaddoll Winda stand-in; no direct
    * attack mark via unk4. */
 

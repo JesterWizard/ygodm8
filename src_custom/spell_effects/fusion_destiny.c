@@ -31,7 +31,7 @@ static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
 static const char sHeroName[] APPEND_RODATA = "HERO";
 
 /* Local recipes that list a Destiny HERO as material.
- * ponytail: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
+ * Ceiling: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
  * DPE, Dusktopia need archetype / Level-gated wildcards not in fusion_recipes).
  * Ceiling: Destiny End Dragoon only; upgrade: add remaining Destiny HERO Fusion
  * recipes (with Destiny HERO / DARK Effect wildcards) to this table. */

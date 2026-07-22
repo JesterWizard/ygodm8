@@ -91,7 +91,7 @@ u8 NeoSpace_IsAtkTarget(u16 cardId)
   if (cardId == ELEMENTAL_HERO_NEOS)
     return TRUE;
 
-  /* ponytail: gCardData_NEW — SetCardInfo would wipe stage/field ATK mid-overlay. */
+  /* Fusion color via gCardData_NEW — no SetCardInfo in overlay path. */
   if (cardId >= NUM_TOTAL_CARDS || gCardData_NEW[cardId].color != COLOR_FUSION)
     return FALSE;
 

@@ -225,7 +225,7 @@ unsigned char CanActivateEVIL_HERO_INFERNAL_RIDER(void)
   if (zone == NULL || zone->id != EVIL_HERO_INFERNAL_RIDER)
     return FALSE;
 
-  /* ponytail: on-summon + HERO lock need summon/SS gates.
+  /* Ceiling: on-summon + HERO lock need summon/SS gates.
    * Ceiling: OPT add Dark Fusion Deck/GY, else OPT banish self+4 GY → Set Super Poly. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

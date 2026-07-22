@@ -141,8 +141,8 @@ unsigned char CanActivateEVIL_HERO_NEOS_LORD(void)
   if (zone == NULL || zone->id != EVIL_HERO_NEOS_LORD)
     return FALSE;
 
-  /* ponytail: indestructible + on-SS/opp-GY-sent take-control triggers need
-   * continuous/summon hooks. Ceiling: OPT take control of 1 face-up opp monster. */
+  /* Ceiling: indestructible + on-SS/opp-GY-sent take-control triggers need
+   * continuous/summon hooks; OPT take control of 1 face-up opp monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

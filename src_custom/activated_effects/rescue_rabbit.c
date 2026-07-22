@@ -123,7 +123,7 @@ void ActivateRESCUE_RABBITEffect(void)
     summoned++;
   }
 
-  /* ponytail: End Phase destroy + effect negate not applied; upgrade: turn-end gate. */
+  /* Ceiling: End Phase destroy + effect negate not applied; upgrade: turn-end gate. */
 
   UpdateDuelGfxExceptField();
 }

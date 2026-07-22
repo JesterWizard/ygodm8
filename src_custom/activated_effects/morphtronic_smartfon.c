@@ -225,7 +225,7 @@ unsigned char CanActivateMORPHTRONIC_SMARTFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SMARTFON)
     return FALSE;
 
-  /* ponytail: reveal UI FALSE. Ceiling: ATK die excavate add; DEF GY add Morphtronic.
+  /* Ceiling: reveal UI FALSE; ATK die excavate add; DEF GY add Morphtronic.
    * FromHand: banish Morphtronic GY → SS. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -57,7 +57,7 @@ unsigned char CanActivateGREEN_GADGET(void)
   if (zone == NULL || zone->id != GREEN_GADGET)
     return FALSE;
 
-  /* ponytail: NS/SS trigger needs summon hook. Ceiling: once via usage. */
+  /* Ceiling: NS/SS trigger needs summon hook; once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

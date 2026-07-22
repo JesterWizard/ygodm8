@@ -210,7 +210,7 @@ unsigned char CanActivateMORPHTRONIC_REMOTEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_REMOTEN)
     return FALSE;
 
-  /* ponytail: position-gated OPT search. ATK: banish GY Morphtronic → add same Lv.
+  /* Ceiling: position-gated OPT search. ATK: banish GY Morphtronic → add same Lv.
    * DEF: discard Morphtronic → add other same Lv. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

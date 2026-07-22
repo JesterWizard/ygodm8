@@ -173,7 +173,7 @@ unsigned char CanActivateMORPHTRONIC_TELEFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_TELEFON)
     return FALSE;
 
-  /* ponytail: reveal UI FALSE. Ceiling: ATK die→LP+SS Morph Lv≤roll; DEF die excavate add. */
+  /* Ceiling: reveal UI FALSE; ATK die→LP+SS Morph Lv≤roll; DEF die excavate add. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

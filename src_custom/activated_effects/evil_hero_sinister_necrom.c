@@ -100,7 +100,7 @@ unsigned char CanActivateEVIL_HERO_SINISTER_NECROM(void)
   if (gMonEffect.id != EVIL_HERO_SINISTER_NECROM)
     return FALSE;
 
-  /* ponytail: GY ignition needs GY-menu wire. Ceiling: allow when Sinister Necrom
+  /* Ceiling: GY ignition needs GY-menu wire; allow when Sinister Necrom
    * in GY + Evil HERO in hand or Deck (callable if gMonEffect set). */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
