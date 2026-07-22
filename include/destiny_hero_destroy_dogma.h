@@ -1,0 +1,6 @@
+#ifndef GUARD_DESTINY_HERO_DESTROY_DOGMA_H
+#define GUARD_DESTINY_HERO_DESTROY_DOGMA_H
+
+void TryApplyDestinyHeroDestroyDogmaStandby(void);
+
+#endif /* GUARD_DESTINY_HERO_DESTROY_DOGMA_H */

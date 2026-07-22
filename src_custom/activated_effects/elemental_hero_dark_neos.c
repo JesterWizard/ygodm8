@@ -47,7 +47,8 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsFaceUpOppEffectMonster(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* ponytail: contact Fusion + End Phase Extra shuffle need fusion/phase hooks. */
+  /* ponytail: contact Fusion need fusion hook; EP Extra return via
+   * TryReturnContactFusionsAtEndPhase. */
   zone->unk4 |= 0x80;
 
   if (self != NULL)

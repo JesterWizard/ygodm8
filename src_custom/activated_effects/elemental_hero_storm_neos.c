@@ -83,8 +83,9 @@ unsigned char CanActivateELEMENTAL_HERO_STORM_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_STORM_NEOS)
     return FALSE;
 
-  /* ponytail: contact Fusion + End Phase Extra shuffle + field shuffle need
-   * fusion/phase hooks. Ceiling: OPT destroy all S/T on field. */
+  /* ponytail: contact Fusion + field shuffle need fusion/phase hooks; EP Extra
+   * return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT destroy all
+   * S/T on field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

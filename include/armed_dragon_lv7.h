@@ -3,5 +3,7 @@
 
 unsigned char CanActivateARMED_DRAGON_LV7(void);
 void ActivateARMED_DRAGON_LV7Effect(void);
+void ApplyArmedDragonLv7BattleDestroyPending(void);
+void TryApplyArmedDragonLv7EndPhase(void);
 
-#endif // GUARD_ARMED_DRAGON_LV7_H
+#endif /* GUARD_ARMED_DRAGON_LV7_H */

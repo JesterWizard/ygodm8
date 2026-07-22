@@ -39,7 +39,8 @@ void TryApplyReptilianneNagaEndPhase(void)
 unsigned char ShouldActivateREPTILIANNE_NAGA(void)
 {
   /* Battle indestructible via ReptilianneNaga_PreventsBattleDestroy; EP DEF→ATK
-   * via TryApplyReptilianneNagaEndPhase. ponytail: battle ATK-to-0 needs hook. */
+   * via TryApplyReptilianneNagaEndPhase; battle ATK-to-0 via
+   * ApplyReptilianneNagaBattleZeroAtk. */
   (void)gActiveEffect;
   return FALSE;
 }

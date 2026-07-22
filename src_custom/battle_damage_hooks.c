@@ -69,8 +69,10 @@
 #include "dragon_s_rage.h"
 #include "meteorain.h"
 #include "armed_dragon_lv5.h"
+#include "armed_dragon_lv7.h"
 #include "horus_end_phase.h"
 #include "reptilianne_naga.h"
+#include "destiny_hero_dusktopia.h"
 #include "marshmallon.h"
 #include "aromage_marjoram.h"
 #include "aromage_jasmine.h"
@@ -266,6 +268,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyAromageMarjoramNoPlantBattleDamage();
   ApplyMorphtronicLantronNoBattleDamage();
   ApplyDestinyHeroDynatagNoBattleDamage();
+  ApplyDestinyHeroDusktopiaNoBattleDamage();
   ApplyDestinyHeroDreadmasterNoBattleDamage();
   ApplyMajestyHyperionBattleDamageShare();
 
@@ -345,6 +348,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (AzureEyesSilverDragon_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (DestinyHeroDusktopia_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -389,6 +394,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (DestinyHeroDreadmaster_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (AzureEyesSilverDragon_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (DestinyHeroDusktopia_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }
@@ -442,7 +449,9 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyHeliosDuoMegistusBattleDestroyPending();
   ApplyHeliosTriceMegistusBattleDestroyPending();
   ApplyArmedDragonLv5BattleDestroyPending();
+  ApplyArmedDragonLv7BattleDestroyPending();
   ApplyHorusBattleDestroyPending();
+  ApplyReptilianneNagaBattleZeroAtk();
 
   {
     s32 playerDmg =

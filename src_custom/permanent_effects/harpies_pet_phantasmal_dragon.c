@@ -5,7 +5,8 @@
 
 unsigned char ShouldActivateHARPIES_PET_PHANTASMAL_DRAGON(void)
 {
-  /* ponytail: direct attack + Harpie protect + End Phase detach need battle/xyz hooks. */
+  /* Direct attack via HarpiesPetPhantasmalDragon_CanAttackDirectly. ponytail:
+   * Harpie protect + End Phase detach need battle/xyz hooks. */
   (void)gActiveEffect;
   return FALSE;
 }

@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "god_card.h"
+#include "destiny_hero_dusktopia.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -42,9 +43,10 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsProtectedMonsterTarget(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* ponytail: Fusion on Summon + no battle damage need fusion/battle hooks.
-   * Ceiling: OPT mark target unk4 cannot destroy until EP clear hook. */
-  zone->unk4 |= 0x80;
+  /* Battle protect + no battle damage via DestinyHeroDusktopia_*; EP clear via
+   * TryClearDestinyHeroDusktopiaProtectionEndPhase. ponytail: Fusion on Summon
+   * need fusion hook. Ceiling: OPT mark target cannot destroy until EP. */
+  zone->unk4 |= DESTINY_HERO_DUSKTOPIA_PROTECT_MARK;
 
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();

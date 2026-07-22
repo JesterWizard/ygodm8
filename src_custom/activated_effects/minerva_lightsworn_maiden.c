@@ -121,8 +121,8 @@ unsigned char CanActivateMINERVA_LIGHTSWORN_MAIDEN(void)
   if (zone == NULL || zone->id != MINERVA_LIGHTSWORN_MAIDEN)
     return FALSE;
 
-  /* ponytail: Normal Summon trigger + mill/End Phase branches need summon/phase
-   * hooks. Ceiling: field OPT search LIGHT Dragon Lv≤ distinct LS names in GY. */
+  /* Normal Summon mill 4 via TryMinervaLightswornMaidenOnNormalSummon.
+   * Ceiling: field OPT search LIGHT Dragon Lv≤ distinct LS names in GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

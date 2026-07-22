@@ -122,6 +122,8 @@
 #include "atlantean_dragoons.h"
 #include "spell_striker.h"
 #include "mucus_yolk.h"
+#include "elemental_hero_glow_neos.h"
+#include "harpies_pet_phantasmal_dragon.h"
 #include "spell_effects.h"
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
@@ -1796,7 +1798,11 @@ void sub_8044570__Replacement(void)
       || CanSpellStrikerAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanMucusYolkAttackDirectly(
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id))
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || ElementalHeroGlowNeos_CanAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+      || HarpiesPetPhantasmalDragon_CanAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]))
       && !Duel_ForcedAttackBlocksDirect(
           WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER)
       && !ChimeratechOverdragon_BlocksDirectAttack(

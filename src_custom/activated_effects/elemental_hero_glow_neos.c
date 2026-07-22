@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "god_card.h"
+#include "elemental_hero_glow_neos.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -44,11 +45,9 @@ static void ApplyTypeBonus(struct DuelCard *self, u8 typeGroup)
     return;
 
   if (typeGroup == TYPE_GROUP_MONSTER) {
-    /* ponytail: cannot-attack mark via unk4. */
-    self->unk4 |= 0x40;
+    self->unk4 |= ELEMENTAL_HERO_GLOW_NEOS_CANNOT_ATTACK_MARK;
   } else if (typeGroup == TYPE_GROUP_SPELL) {
-    /* ponytail: direct-attack mark via unk4. */
-    self->unk4 |= 0x20;
+    self->unk4 |= ELEMENTAL_HERO_GLOW_NEOS_DIRECT_ATTACK_MARK;
   } else if (typeGroup == TYPE_GROUP_TRAP) {
     self->isDefending = TRUE;
     self->isFaceUp = TRUE;
@@ -112,8 +111,9 @@ unsigned char CanActivateELEMENTAL_HERO_GLOW_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_GLOW_NEOS)
     return FALSE;
 
-  /* ponytail: Contact Fusion + EP Extra return FALSE.
-   * Ceiling: OPT destroy 1 face-up opp + type-branch marks. */
+  /* EP Extra return via TryReturnContactFusionsAtEndPhase; cannot-attack/direct
+   * via ElementalHeroGlowNeos_* attack gates. Ceiling: OPT destroy 1 face-up
+   * opp + type-branch marks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -52,6 +52,8 @@
 #include "atlantean_dragoons.h"
 #include "spell_striker.h"
 #include "mucus_yolk.h"
+#include "elemental_hero_glow_neos.h"
+#include "harpies_pet_phantasmal_dragon.h"
 #include "jowls_of_dark_demise.h"
 #include "neo_spacian_glow_moss.h"
 #include "red_dragon_archfiend.h"
@@ -214,7 +216,9 @@ static void AiAttackDirect(struct DuelCard *attacker) {
       && !MorphtronicBoarden_CanMorphtronicAttackDirectly(attacker)
       && !AtlanteanDragoons_CanSeaSerpentAttackDirectly(attacker)
       && !CanSpellStrikerAttackDirectly(attacker->id)
-      && !CanMucusYolkAttackDirectly(attacker->id))
+      && !CanMucusYolkAttackDirectly(attacker->id)
+      && !ElementalHeroGlowNeos_CanAttackDirectly(attacker)
+      && !HarpiesPetPhantasmalDragon_CanAttackDirectly(attacker))
     return;
 
   if (!AiPayAttackTollIfNeeded())

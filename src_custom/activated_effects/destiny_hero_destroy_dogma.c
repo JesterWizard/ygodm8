@@ -100,8 +100,8 @@ unsigned char CanActivateDESTINY_HERO_DESTROY_DOGMA(void)
   if (gMonEffect.id != DESTINY_HERO_DESTROY_DOGMA)
     return FALSE;
 
-  /* ponytail: Quick destroy/negate FALSE; Standby burn → immediate burn.
-   * Ceiling: FromHand banish 3 Warrior/DARK → SS + burn 2000. */
+  /* Standby burn via TryApplyDestinyHeroDestroyDogmaStandby. ponytail: Quick
+   * destroy/negate FALSE. Ceiling: FromHand banish 3 Warrior/DARK → SS + burn 2000. */
   return FALSE;
 }
 

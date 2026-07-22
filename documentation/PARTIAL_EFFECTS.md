@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 16:30 UTC  
-**Remaining partials:** `478`
+**Last updated:** 2026-07-22 16:38 UTC  
+**Remaining partials:** `475`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 376 |
-| `permanent` | 86 |
-| **total** | **478** |
+| `activated` | 374 |
+| `permanent` | 85 |
+| **total** | **475** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (376)
+## activated (374)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -107,7 +107,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AMAZONESS_PRINCESS`
 - path: `src_custom/activated_effects/amazoness_princess.c`
-- L63: name=Queen + attack-send→SS need name/battle hooks. Ceiling: OPT add 1 Amazoness Spell/Trap from Deck.
+- L63: /* On-Summon search via TryAmazonessPrincessOnMonsterPlacement. ponytail:
 
 ### `AMAZONESS_SPIRITUALIST`
 - path: `src_custom/activated_effects/amazoness_spiritualist.c`
@@ -510,7 +510,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DECIDER`
 - path: `src_custom/activated_effects/destiny_hero_decider.c`
-- L114: NS/SS → EP add + GY quick return-on-damage need summon/GY/chain hooks. Ceiling: OPT add 1 HERO from GY to hand.
+- L114: /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. ponytail: GY quick
 
 ### `DESTINY_HERO_DENIER`
 - path: `src_custom/activated_effects/destiny_hero_denier.c`
@@ -518,7 +518,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DESTROY_DOGMA`
 - path: `src_custom/activated_effects/destiny_hero_destroy_dogma.c`
-- L103: Quick destroy/negate FALSE; Standby burn → immediate burn. Ceiling: FromHand banish 3 Warrior/DARK → SS + burn 2000.
+- L103: /* Standby burn via TryApplyDestinyHeroDestroyDogmaStandby. ponytail: Quick
 
 ### `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER`
 - path: `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c`
@@ -560,7 +560,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DUSKTOPIA`
 - path: `src_custom/activated_effects/destiny_hero_dusktopia.c`
-- L45: Fusion on Summon + no battle damage need fusion/battle hooks. Ceiling: OPT mark target unk4 cannot destroy until EP clear hook.
+- L47: * TryClearDestinyHeroDusktopiaProtectionEndPhase. ponytail: Fusion on Summon
 
 ### `DESTINY_HERO_DYNATAG`
 - path: `src_custom/activated_effects/destiny_hero_dynatag.c`
@@ -606,7 +606,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ELEMENTAL_HERO_AQUA_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_aqua_neos.c`
-- L20: Contact fusion + End Phase Extra Deck shuffle need fusion/EP hooks. Ceiling: OPT discard 1, then destroy 1 random opponent hand card.
+- L20: Contact fusion need fusion hook; EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT discard 1, then destroy 1 random opponent hand card.
 
 ### `ELEMENTAL_HERO_BLAZEMAN`
 - path: `src_custom/activated_effects/elemental_hero_blazeman.c`
@@ -622,21 +622,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ELEMENTAL_HERO_DARK_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_dark_neos.c`
-- L50: contact Fusion + End Phase Extra shuffle need fusion/phase hooks.
+- L50: contact Fusion need fusion hook; EP Extra return via TryReturnContactFusionsAtEndPhase.
 
 ### `ELEMENTAL_HERO_GAIA`
 - path: `src_custom/activated_effects/elemental_hero_gaia.c`
 - L49: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.
 
-### `ELEMENTAL_HERO_GLOW_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_glow_neos.c`
-- L47: cannot-attack mark via unk4.
-- L50: direct-attack mark via unk4.
-- L115: Contact Fusion + EP Extra return FALSE. Ceiling: OPT destroy 1 face-up opp + type-branch marks.
-
 ### `ELEMENTAL_HERO_GRAND_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_grand_neos.c`
-- L95: Contact fusion + End Phase Extra Deck shuffle need fusion/EP hooks. Ceiling: OPT bounce 1 opponent monster to hand.
+- L95: Contact fusion need fusion hook; EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT bounce 1 opponent monster to hand.
 
 ### `ELEMENTAL_HERO_GREAT_TORNADO`
 - path: `src_custom/activated_effects/elemental_hero_great_tornado.c`
@@ -648,7 +642,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ELEMENTAL_HERO_MAGMA_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_magma_neos.c`
-- L42: continuous 400/field + EP shuffle/bounce field need permanent/EP hooks. Ceiling: OPT refresh tempStage from field card count.
+- L42: continuous 400/field + EP field bounce need permanent/EP hooks; EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT refresh tempStage from field card count.
 
 ### `ELEMENTAL_HERO_NEBULA_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_nebula_neos.c`
@@ -669,7 +663,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ELEMENTAL_HERO_STORM_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_storm_neos.c`
-- L86: contact Fusion + End Phase Extra shuffle + field shuffle need fusion/phase hooks. Ceiling: OPT destroy all S/T on field.
+- L86: contact Fusion + field shuffle need fusion/phase hooks; EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT destroy all S/T on field.
 
 ### `ELEMENTAL_HERO_STRATOS`
 - path: `src_custom/activated_effects/elemental_hero_stratos.c`
@@ -1010,7 +1004,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `HORUS_THE_BLACK_FLAME_DRAGON_LV8`
 - path: `src_custom/activated_effects/horus_the_black_flame_dragon_lv8.c`
-- L12: either-turn Spell negate needs chain hook. Ceiling: not field- ignition activatable here.
+- L12: /* Spell immunity via IsImmuneToSpellEffectsOnField. ponytail: either-turn Spell
 
 ### `HOURGLASS_OF_LIFE`
 - path: `src_custom/activated_effects/hourglass_of_life.c`
@@ -1165,10 +1159,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MILLENNIUM_EYES_RESTRICT`
 - path: `src_custom/activated_effects/millennium_eyes_restrict.c`
 - L88: chain equip/absorb opp Effect Monster needs chain/control hooks. Ceiling: OPT destroy 1 opp monster.
-
-### `MINERVA_LIGHTSWORN_MAIDEN`
-- path: `src_custom/activated_effects/minerva_lightsworn_maiden.c`
-- L124: Normal Summon trigger + mill/End Phase branches need summon/phase hooks. Ceiling: field OPT search LIGHT Dragon Lv≤ distinct LS names in GY.
 
 ### `MINERVA_THE_ATHENIAN_LIGHTSWORN`
 - path: `src_custom/activated_effects/minerva_the_athenian_lightsworn.c`
@@ -1665,7 +1655,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (86)
+## permanent (85)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1751,7 +1741,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DRAWHAND`
 - path: `src_custom/permanent_effects/destiny_hero_drawhand.c`
-- L70: next Standby GY revive + banish-on-leave need phase/GY hooks.
+- L70: next Standby GY revive via TryApplyDestinyHeroDrawhandStandby.
 - L98: HERO-effect SS gate not checked; on-summon mutual draw stand-in.
 
 ### `DESTINY_HERO_DREAD_SERVANT`
@@ -1895,7 +1885,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `HARPIES_PET_PHANTASMAL_DRAGON`
 - path: `src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c`
-- L8: direct attack + Harpie protect + End Phase detach need battle/xyz hooks.
+- L8: /* Direct attack via HarpiesPetPhantasmalDragon_CanAttackDirectly. ponytail:
 
 ### `HERO_KID`
 - path: `src_custom/permanent_effects/hero_kid.c`
@@ -1956,10 +1946,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `REPTILIANNE_GARDNA`
 - path: `src_custom/permanent_effects/reptilianne_gardna.c`
 - L8: destroyed→search Reptilianne needs destroy-to-GY permanent hook.
-
-### `REPTILIANNE_NAGA`
-- path: `src_custom/permanent_effects/reptilianne_naga.c`
-- L42: * via TryApplyReptilianneNagaEndPhase. ponytail: battle ATK-to-0 needs hook. */
 
 ### `REPTILIANNE_SERVANT`
 - path: `src_custom/permanent_effects/reptilianne_servant.c`

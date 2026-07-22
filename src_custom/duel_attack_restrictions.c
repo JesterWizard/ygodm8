@@ -11,6 +11,7 @@
 #include "harpie_lady_3.h"
 #include "morphtronic_bind.h"
 #include "destiny_hero_doom_lord.h"
+#include "elemental_hero_glow_neos.h"
 #include "spell_effects.h"
 
 void Duel_ResetAttackRestrictions(void)
@@ -72,6 +73,9 @@ u8 Duel_CanMonsterDeclareAttackWithCachedRestrictions(const struct DuelCard *zon
     return FALSE;
 
   if (!DestinyHeroDoomLord_CanDeclareAttack(zone))
+    return FALSE;
+
+  if (!ElementalHeroGlowNeos_CanDeclareAttack(zone))
     return FALSE;
 
   if (!MaskOfTheAccursed_CanMonsterDeclareAttack(zone))

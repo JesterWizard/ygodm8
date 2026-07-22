@@ -68,6 +68,7 @@
 #include "red_dragon_archfiend.h"
 #include "destiny_hero_defender.h"
 #include "armed_dragon_lv5.h"
+#include "armed_dragon_lv7.h"
 #include "horus_end_phase.h"
 #include "gandora_x.h"
 #include "judgment_the_dragon_of_heaven.h"
@@ -78,6 +79,11 @@
 #include "evil_dragon_ananta.h"
 #include "evil_hero_infernal_sniper.h"
 #include "silent_swordsman.h"
+#include "destiny_hero_decider.h"
+#include "destiny_hero_destroy_dogma.h"
+#include "destiny_hero_dusktopia.h"
+#include "destiny_hero_drawhand.h"
+#include "elemental_hero_glow_neos.h"
 #include "spell_effects.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
@@ -440,6 +446,8 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyNeedleWallStandby();
   TryApplyTourOfDoomStandby();
   TryApplyDestinyHeroDefenderStandbyDraw();
+  TryApplyDestinyHeroDrawhandStandby();
+  TryApplyDestinyHeroDestroyDogmaStandby();
   TryApplySilentSwordsmanStandby();
   TryApplySilentSwordsmanZeroStandby();
   TryApplySilentMagicianLv4Standby();
@@ -531,6 +539,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyArmedDragonLv5EndPhase();
   if (IsDuelOver() == 1)
     return;
+  TryApplyArmedDragonLv7EndPhase();
+  if (IsDuelOver() == 1)
+    return;
   TryApplyHorusEndPhase();
   if (IsDuelOver() == 1)
     return;
@@ -538,6 +549,13 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyReptilianneNagaEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyDestinyHeroDeciderEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryClearDestinyHeroDusktopiaProtectionEndPhase();
+  ElementalHeroGlowNeos_ClearTurnMarksAtEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryApplyGandoraXEndPhase();

@@ -67,7 +67,7 @@ unsigned char ShouldActivateDESTINY_HERO_DRAWHAND(void)
   if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* ponytail: next Standby GY revive + banish-on-leave need phase/GY hooks. */
+  /* ponytail: next Standby GY revive via TryApplyDestinyHeroDrawhandStandby. */
   return CanBothPlayersDrawOne();
 }
 

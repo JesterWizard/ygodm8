@@ -99,6 +99,10 @@
 #include "harpie_lady_phoenix_formation.h"
 #include "harpies_feather_rest.h"
 #include "spell_effects.h"
+#include "amazoness_princess.h"
+#include "destiny_hero_decider.h"
+#include "destiny_hero_drawhand.h"
+#include "minerva_lightsworn_maiden.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -482,6 +486,9 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryElementalHeroStratosOnMonsterPlacement(summonZone);
   TryTheSuppressionPlutoOnMonsterPlacement(summonZone);
   TryAmuletDragonOnMonsterPlacement(summonZone);
+  TryMinervaLightswornMaidenOnNormalSummon(summonZone, opts.mode);
+  TryAmazonessPrincessOnMonsterPlacement(summonZone);
+  TryDestinyHeroDeciderOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   if (turnDuelist == ACTIVE_DUELIST)
     CourtOfJustice_RefreshHandUnlocks();
@@ -722,6 +729,14 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
   wasMonster = GetTypeGroup(cardId) == TYPE_GROUP_MONSTER;
   EffectEvent_EmitSimple(EFFECT_EVENT_ON_DESTROY, cardId, zone);
   EffectEvent_EmitSimple(EFFECT_EVENT_ON_LEAVE_FIELD, cardId, zone);
+
+  if (cardId == DESTINY_HERO_DRAWHAND) {
+    u8 fixedGy = gTurnDuelistBattleState[graveyardDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER]
+        ? DUEL_PLAYER
+        : DUEL_OPPONENT;
+
+    DestinyHeroDrawhand_OnSentToGraveyard(fixedGy);
+  }
 
   MarkElementalHeroCoreDestroyedFromField(zone);
   MarkTheSupremacySunDestroyedFromField(zone);
