@@ -9,8 +9,7 @@ unsigned char CanActivateTIME_MAGIC_HAMMER(void)
   if (gMonEffect.id != TIME_MAGIC_HAMMER)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * outside this file. Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

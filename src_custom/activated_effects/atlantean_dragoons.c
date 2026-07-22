@@ -133,9 +133,7 @@ unsigned char CanActivateATLANTEAN_DRAGOONS(void)
   if (zone == NULL || zone->id != ATLANTEAN_DRAGOONS)
     return FALSE;
 
-  /* Lv3- Sea Serpent direct via AtlanteanDragoons_CanSeaSerpentAttackDirectly.
-   * sent-for-WATER-effect search needs send hook.
-   * OPT add 1 Sea Serpent except self from Deck. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

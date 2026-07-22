@@ -20,8 +20,7 @@ unsigned char CanActivateSILENT_MAGICIAN_LV8(void)
   if (gMonEffect.id != SILENT_MAGICIAN_LV8)
     return FALSE;
 
-  /* Spell immunity via IsImmuneToSpellEffectsOnField and
-   * SilentMagicianLv8_PreventsDestroy; not ignition-activatable. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

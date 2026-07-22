@@ -9,8 +9,7 @@ unsigned char CanActivateCHIMERATECH_MEGAFLEET_DRAGON(void)
   if (gMonEffect.id != CHIMERATECH_MEGAFLEET_DRAGON)
     return FALSE;
 
-  /* Fusion ATK overlay via ChimeratechMegafleetDragon_ApplyDynamicZoneStats.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

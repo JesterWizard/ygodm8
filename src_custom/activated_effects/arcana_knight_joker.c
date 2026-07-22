@@ -9,8 +9,7 @@ unsigned char CanActivateARCANA_KNIGHT_JOKER(void)
   if (gMonEffect.id != ARCANA_KNIGHT_JOKER)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * outside this file. Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

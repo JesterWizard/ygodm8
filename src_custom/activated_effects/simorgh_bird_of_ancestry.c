@@ -107,8 +107,7 @@ unsigned char CanActivateSIMORGH_BIRD_OF_ANCESTRY(void)
   if (zone == NULL || zone->id != SIMORGH_BIRD_OF_ANCESTRY)
     return FALSE;
 
-  /* WIND tribute-reduce continuous + hand-as-Normal Monster need
-   * summon/permanent hooks. OPT return up to 2 opp cards to hand. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -60,8 +60,7 @@ unsigned char CanActivateEVIL_HERO_ADUSTED_GOLD(void)
   if (gMonEffect.id != EVIL_HERO_ADUSTED_GOLD)
     return FALSE;
 
-  /* cannot attack without Fusion Monster needs attack gate. Not
-   * field-ignition activatable; discard search uses FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

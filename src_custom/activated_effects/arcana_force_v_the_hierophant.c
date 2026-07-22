@@ -84,8 +84,7 @@ unsigned char CanActivateARCANA_FORCE_V_THE_HIEROPHANT(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_V_THE_HIEROPHANT)
     return FALSE;
 
-  /* OPT coin → SS 1 Arcana Force from Deck (EffectOpt). discard
-   * summon-lock + FromHand paths. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(ARCANA_FORCE_V_THE_HIEROPHANT))
     return FALSE;
 

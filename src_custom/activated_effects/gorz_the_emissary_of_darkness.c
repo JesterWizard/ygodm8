@@ -31,8 +31,7 @@ unsigned char CanActivateGORZ_THE_EMISSARY_OF_DARKNESS(void)
   if (gMonEffect.id != GORZ_THE_EMISSARY_OF_DARKNESS)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * FromHand empty-field SS. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

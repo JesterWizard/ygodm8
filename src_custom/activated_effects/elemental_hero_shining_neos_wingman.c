@@ -147,8 +147,7 @@ unsigned char CanActivateELEMENTAL_HERO_SHINING_NEOS_WINGMAN(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_SHINING_NEOS_WINGMAN)
     return FALSE;
 
-  /* GY ATK gain + effect destroy immunity + battle burn need permanent/
-   * battle hooks. OPT destroy opp cards up to different Attributes. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

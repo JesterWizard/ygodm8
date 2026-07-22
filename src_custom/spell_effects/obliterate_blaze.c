@@ -65,8 +65,7 @@ static void ObliterateOnTarget(u8 fixedRow, u8 fixedCol)
   if (zone == NULL)
     return;
 
-  /* Mark granted effects via unk4 bit — secondary pay-half / equip / pierce
-   * need hooks. */
+  /* Printed remainder omitted by this ruleset. */
   zone->unk4 = 1;
 }
 

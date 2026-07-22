@@ -9,8 +9,7 @@ unsigned char CanActivateSTARDUST_DRAGON(void)
   if (gMonEffect.id != STARDUST_DRAGON)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * outside this file. Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

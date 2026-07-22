@@ -269,9 +269,7 @@ unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_SERVANT(void)
   if (gMonEffect.id != DESTINY_HERO_DREADNOUGHT_SERVANT)
     return FALSE;
 
-  /* GY banish → opp Deck top on Lv8 D-HERO SS via
-   * TryDestinyHeroDreadnoughtServantOnMonsterPlacement.
-   * FromHand if control D-HERO or Field Spell → SS, destroy 1, add Poly. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

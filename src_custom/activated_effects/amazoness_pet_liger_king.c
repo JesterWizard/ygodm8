@@ -188,8 +188,7 @@ unsigned char CanActivateAMAZONESS_PET_LIGER_KING(void)
   if (zone == NULL || zone->id != AMAZONESS_PET_LIGER_KING)
     return FALSE;
 
-  /* OPT destroy Amazoness → SS Warrior GY via Activate.
-   * attack redirect FALSE. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

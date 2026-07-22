@@ -52,8 +52,7 @@ unsigned char CanActivatePOWER_TOOL_DRAGON(void)
   if (zone == NULL || zone->id != POWER_TOOL_DRAGON)
     return FALSE;
 
-  /* reveal-3 opp-picks + equip destruction replace need reveal/destroy
-   * hooks. OPT add first Equip Spell from Deck. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

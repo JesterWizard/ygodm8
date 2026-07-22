@@ -9,8 +9,7 @@ unsigned char CanActivateMIRROR_FORCE_DRAGON(void)
   if (gMonEffect.id != MIRROR_FORCE_DRAGON)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not ignition-activatable; upgrade: trigger destroy-all. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

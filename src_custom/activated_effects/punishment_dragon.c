@@ -189,8 +189,7 @@ unsigned char CanActivatePUNISHMENT_DRAGON(void)
   if (zone == NULL || zone->id != PUNISHMENT_DRAGON)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * banished into Decks (EffectOpt). LS mill 4 needs effect-activation hook. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(PUNISHMENT_DRAGON))
     return FALSE;
 

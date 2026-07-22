@@ -67,8 +67,7 @@ unsigned char CanActivateSILENT_SWORDSMAN_LV3(void)
   if (zone == NULL || zone->id != SILENT_SWORDSMAN_LV3)
     return FALSE;
 
-  /* Spell-target interrupt via IsImmuneToHarmfulTargetedEffectsOnField; Standby send
-   * self → SS LV5 wired below. summon/flip turn gate needs hooks. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

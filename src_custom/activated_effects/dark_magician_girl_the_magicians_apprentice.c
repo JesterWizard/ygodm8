@@ -91,9 +91,7 @@ unsigned char CanActivateDARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE(void)
   if (zone == NULL || zone->id != DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE)
     return FALSE;
 
-  /* On-NS/SS search via TryDarkMagicianGirlTheMagiciansApprenticeOnMonsterPlacement.
-   * OPT add Shining Sarcophagus (shares EffectOpt).
-   * Name=DMG GY +300 mention FALSE. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE))
     return FALSE;
 

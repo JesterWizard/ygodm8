@@ -9,8 +9,7 @@ unsigned char CanActivateTUNINGWARE(void)
   if (gMonEffect.id != TUNINGWARE)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

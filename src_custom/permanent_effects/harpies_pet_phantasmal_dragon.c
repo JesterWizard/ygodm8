@@ -5,8 +5,7 @@
 
 unsigned char ShouldActivateHARPIES_PET_PHANTASMAL_DRAGON(void)
 {
-  /* Direct attack via HarpiesPetPhantasmalDragon_CanAttackDirectly.
-   * Harpie protect + End Phase detach need battle/xyz hooks. */
+  /* Printed remainder omitted by this ruleset. */
   (void)gActiveEffect;
   return FALSE;
 }

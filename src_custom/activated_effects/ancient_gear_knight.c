@@ -9,8 +9,7 @@ unsigned char CanActivateANCIENT_GEAR_KNIGHT(void)
   if (gMonEffect.id != ANCIENT_GEAR_KNIGHT)
     return FALSE;
 
-  /* Attack S/T lock live via AncientGear_AttackerBlocksOppSpellTrap.
-   * Gemini Normal Monster treatment need summon hook. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

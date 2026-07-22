@@ -56,8 +56,7 @@ unsigned char CanActivateMORPHTRONIC_SCOPEN(void)
   if (zone == NULL || zone->id != MORPHTRONIC_SCOPEN)
     return FALSE;
 
-  /* DEF Position → treat as Level 4 + EP destroy on ATK-mode SS need position/EP
-   * hooks outside. ATK Position OPT SS 1 Lv4 Morphtronic from hand (EffectOpt). */
+  /* Printed remainder omitted by this ruleset. */
   if (zone->isDefending)
     return FALSE;
 

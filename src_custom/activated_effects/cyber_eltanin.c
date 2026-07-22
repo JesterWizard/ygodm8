@@ -151,8 +151,7 @@ unsigned char CanActivateCYBER_ELTANIN(void)
   if (gMonEffect.id != CYBER_ELTANIN)
     return FALSE;
 
-  /* Continuous ATK/DEF via CyberEltanin_ApplyDynamicZoneStats;
-   * FromHand banish+SS path below. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

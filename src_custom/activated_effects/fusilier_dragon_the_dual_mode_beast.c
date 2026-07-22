@@ -9,8 +9,7 @@ unsigned char CanActivateFUSILIER_DRAGON_THE_DUAL_MODE_BEAST(void)
   if (gMonEffect.id != FUSILIER_DRAGON_THE_DUAL_MODE_BEAST)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

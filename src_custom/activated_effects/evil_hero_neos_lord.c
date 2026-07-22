@@ -182,9 +182,7 @@ unsigned char CanActivateEVIL_HERO_NEOS_LORD(void)
   if (zone == NULL || zone->id != EVIL_HERO_NEOS_LORD)
     return FALSE;
 
-  /* On-SS take-control via TryEvilHeroNeosLordOnMonsterPlacement (EffectOpt).
-   * indestructible + opp-GY-sent take-control need continuous/send hooks.
-   * Field OPT take control of 1 face-up opp (EffectOpt; ignition stand-in). */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(EVIL_HERO_NEOS_LORD))
     return FALSE;
 

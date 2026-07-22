@@ -39,8 +39,7 @@ static void ActivateAMAZONESS_HALLZone(struct DuelCard *zone)
   if (Duel_ActivateContinuousTrapPreamble(zone, AMAZONESS_HALL) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* On activate: add 1 Amazoness from GY to hand.
-   * Extra Deck / Pendulum place + opp SS gain LP need hooks. */
+  /* Printed remainder omitted by this ruleset. */
 
   empty = FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]);
   if (empty < 0)

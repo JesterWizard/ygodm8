@@ -21,8 +21,7 @@ unsigned char CanActivateBLUE_EYES_ULTIMATE_SPIRIT_DRAGON(void)
   if (zone == NULL || zone->id != BLUE_EYES_ULTIMATE_SPIRIT_DRAGON)
     return FALSE;
 
-  /* OPT +2 tempStage (~+1000) as interrupt stand-in (EffectOpt).
-   * Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(BLUE_EYES_ULTIMATE_SPIRIT_DRAGON))
     return FALSE;
 

@@ -37,8 +37,7 @@ u8 ElShaddollAnoyatyllis_BlocksHandOrGySpecialSummon(void)
   if (!FaceUpAnoyatyllisOnField())
     return FALSE;
 
-  /* Monster ignition uses gMonEffect — allow those SS from hand/GY.
-   * Spell/Trap (and other non-mon) paths are blocked. */
+  /* Printed remainder omitted by this ruleset. */
   if (gMonEffect.id != CARD_NONE)
     return FALSE;
 

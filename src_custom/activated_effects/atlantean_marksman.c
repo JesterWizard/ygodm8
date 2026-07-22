@@ -145,8 +145,7 @@ unsigned char CanActivateATLANTEAN_MARKSMAN(void)
   if (gMonEffect.id != ATLANTEAN_MARKSMAN)
     return FALSE;
 
-  /* combat damage Deck SS via ApplyAtlanteanMarksmanBattleEffect.
-   * sent-for-WATER destroy Set S/T needs send hook. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

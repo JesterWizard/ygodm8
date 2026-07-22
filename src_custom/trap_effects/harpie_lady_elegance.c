@@ -44,9 +44,7 @@ APPEND_TEXT void EffectHARPIE_LADY_ELEGANCE(void)
 
   Duel_ShowTrapResponseText(HARPIE_LADY_ELEGANCE, gTrapEffectData.originCardId);
 
-  /* Shuffle Sisters into Deck, then SS up to 3 different Harpies from hand/Deck/GY.
-   * WIND-only SS lock this turn via HarpieLadyElegance_MarkWindOnlyLock.
-   * Destroy → add Harpie from Deck via aroma_lp_gain.c (AromaLpGain_EnsureInit). */
+  /* Printed remainder omitted by this ruleset. */
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];

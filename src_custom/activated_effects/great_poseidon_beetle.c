@@ -9,8 +9,7 @@ unsigned char CanActivateGREAT_POSEIDON_BEETLE(void)
   if (gMonEffect.id != GREAT_POSEIDON_BEETLE)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * outside this file. Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

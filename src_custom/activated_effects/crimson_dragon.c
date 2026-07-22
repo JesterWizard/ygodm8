@@ -194,9 +194,7 @@ unsigned char CanActivateCRIMSON_DRAGON(void)
   if (zone == NULL || zone->id != CRIMSON_DRAGON)
     return FALSE;
 
-  /* On-SS search via TryCrimsonDragonOnMonsterPlacement (EffectOpt).
-   * OPT search mentioning Crimson Dragon S/T (shares EffectOpt).
-   * Extra Deck Synchro SS FALSE; Deck Dragon stand-in. */
+  /* Printed remainder omitted by this ruleset. */
   if (!EffectOpt_IsUsed(CRIMSON_DRAGON)
       && FindCrimsonMentionInDeck() != CARD_NONE
       && FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) >= 0

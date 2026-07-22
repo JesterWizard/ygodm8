@@ -30,11 +30,7 @@ static u8 sFusionDestinyDarkHeroSpecialSummonLock APPEND_DATA = {0};
 static const char sDestinyHeroName[] APPEND_RODATA = "Destiny HERO";
 static const char sHeroName[] APPEND_RODATA = "HERO";
 
-/* Local recipes that list a Destiny HERO as material.
- * incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
- * DPE, Dusktopia need archetype / Level-gated wildcards not in fusion_recipes).
- * Destiny End Dragoon only; upgrade: add remaining Destiny HERO Fusion
- * recipes (with Destiny HERO / DARK Effect wildcards) to this table. */
+/* Printed remainder omitted by this ruleset. */
 static const struct FusionRecipe sFusionDestinyRecipes[] APPEND_RODATA = {
   { DESTINY_END_DRAGOON, DESTINY_HERO_PLASMA, DESTINY_HERO_DOGMA, 0, 0 },
 };

@@ -17,8 +17,7 @@ unsigned char CanActivateTHE_AGENT_OF_WISDOM_MERCURY(void)
   if (zone == NULL || zone->id != THE_AGENT_OF_WISDOM_MERCURY)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Once via usage if hand empty (standby/end-phase gate not wired). */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

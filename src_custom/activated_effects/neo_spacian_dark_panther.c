@@ -9,8 +9,7 @@ unsigned char CanActivateNEO_SPACIAN_DARK_PANTHER(void)
   if (gMonEffect.id != NEO_SPACIAN_DARK_PANTHER)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

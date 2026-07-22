@@ -224,8 +224,7 @@ unsigned char CanActivateDESTINY_HERO_DESTROYER_PHOENIX_ENFORCER(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER)
     return FALSE;
 
-  /* Quick destroy + GY revive + continuous ATK loss need quick/GY/
-   * permanent hooks. OPT destroy 1 you control + 1 other field card. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

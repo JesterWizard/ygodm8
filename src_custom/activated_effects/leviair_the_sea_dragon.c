@@ -59,8 +59,7 @@ static u8 FindBestBanishedMonster(u8 *outFixedDuelist, u8 *outIndex)
   return TRUE;
 }
 
-/* Printed remainder omitted by this ruleset.
- * Local mutate of gRemovedFromPlay; RemovedFromPlay_RemoveAt not wired. */
+/* Printed remainder omitted by this ruleset. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {
   u8 count;
@@ -104,8 +103,7 @@ unsigned char CanActivateLEVIAIR_THE_SEA_DRAGON(void)
   if (zone == NULL || zone->id != LEVIAIR_THE_SEA_DRAGON)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Materials not checked; overlay detach before SS not wired. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

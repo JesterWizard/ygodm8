@@ -253,9 +253,7 @@ unsigned char CanActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC(void)
   if (gMonEffect.id != DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC)
     return FALSE;
 
-  /* Name=Dark Magician via DarkMagicianTheMagicianOfBlackMagic_TreatsNameAsDarkMagician +
-   * Duel_ZoneEffectCardId. Destroy-revive/Set via DarkMagicianDestroyRevive_EnsureInit.
-   * Not field-ignition; FromHand if Shining Sarcophagus. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

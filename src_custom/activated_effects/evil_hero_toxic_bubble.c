@@ -63,8 +63,7 @@ unsigned char CanActivateEVIL_HERO_TOXIC_BUBBLE(void)
   if (gMonEffect.id != EVIL_HERO_TOXIC_BUBBLE)
     return FALSE;
 
-  /* On-SS draw via TryEvilHeroToxicBubbleOnMonsterPlacement.
-   * Not field-ignition; SS-from-hand uses FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

@@ -9,8 +9,7 @@ unsigned char CanActivateHERALD_OF_THE_ARC_LIGHT(void)
   if (gMonEffect.id != HERALD_OF_THE_ARC_LIGHT)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition (continuous banish + either-turn tribute-negate). */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

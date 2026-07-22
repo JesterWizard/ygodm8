@@ -9,8 +9,7 @@ unsigned char CanActivateMAGICAL_PLANT_MANDRAGOLA(void)
   if (gMonEffect.id != MAGICAL_PLANT_MANDRAGOLA)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

@@ -67,8 +67,7 @@ unsigned char CanActivateSILENT_SWORDSMAN_LV5(void)
   if (zone == NULL || zone->id != SILENT_SWORDSMAN_LV5)
     return FALSE;
 
-  /* Unaffected by opp Spell via IsImmuneToSpellEffectsOnField; OPT send self →
-   * SS LV7 wired below. Standby-after-direct-damage gate needs hook. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

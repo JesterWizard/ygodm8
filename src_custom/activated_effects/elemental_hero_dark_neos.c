@@ -89,8 +89,7 @@ unsigned char CanActivateELEMENTAL_HERO_DARK_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_DARK_NEOS)
     return FALSE;
 
-  /* EP Extra return via TryReturnContactFusionsAtEndPhase.
-   * Contact Fusion need fusion hook outside. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

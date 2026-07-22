@@ -9,8 +9,7 @@ unsigned char CanActivateT_G_HYPER_LIBRARIAN(void)
   if (gMonEffect.id != T_G_HYPER_LIBRARIAN)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

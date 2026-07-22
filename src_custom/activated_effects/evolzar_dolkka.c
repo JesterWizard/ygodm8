@@ -9,8 +9,7 @@ unsigned char CanActivateEVOLZAR_DOLKKA(void)
   if (gMonEffect.id != EVOLZAR_DOLKKA)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

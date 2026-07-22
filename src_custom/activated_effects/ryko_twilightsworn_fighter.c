@@ -217,9 +217,7 @@ unsigned char CanActivateRYKO_TWILIGHTSWORN_FIGHTER(void)
   if (zone == NULL || zone->id != RYKO_TWILIGHTSWORN_FIGHTER)
     return FALSE;
 
-  /* NS mill via TryRykoTwilightswornFighterOnNormalSummon (other-LS stand-in).
-   * OPT banish LS hand/GY → banish 1 field (EffectOpt). EP mill via
-   * TryApplyTwilightswornEndPhase. flip trigger needs flip hook. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(RYKO_TWILIGHTSWORN_FIGHTER))
     return FALSE;
 

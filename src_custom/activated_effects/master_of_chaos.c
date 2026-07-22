@@ -201,8 +201,7 @@ unsigned char CanActivateMASTER_OF_CHAOS(void)
   if (zone == NULL || zone->id != MASTER_OF_CHAOS)
     return FALSE;
 
-  /* Fusion SS trigger + destroyed GY Spell add need summon/destroy
-   * hooks. OPT SS LIGHT/DARK from GY, else tribute LIGHT+DARK → banish. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

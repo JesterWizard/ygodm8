@@ -53,8 +53,7 @@ unsigned char CanActivateMAGICIANS_ROBE(void)
   if (gMonEffect.id != MAGICIANS_ROBE)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Discard S/T from hand → SS DM from Deck via FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

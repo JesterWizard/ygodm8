@@ -175,8 +175,7 @@ unsigned char CanActivateEVIL_HERO_VICIOUS_CLAWS(void)
   if (gMonEffect.id != EVIL_HERO_VICIOUS_CLAWS)
     return FALSE;
 
-  /* GY destroy-revive via EvilHeroViciousClaws_EnsureInit.
-   * FromHand target HERO → SS DEF +300 ATK stand-in. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

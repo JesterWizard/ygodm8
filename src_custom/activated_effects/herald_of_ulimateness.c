@@ -9,8 +9,7 @@ unsigned char CanActivateHERALD_OF_ULIMATENESS(void)
   if (gMonEffect.id != HERALD_OF_ULIMATENESS)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition (either-turn discard Fairy → negate + destroy). */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

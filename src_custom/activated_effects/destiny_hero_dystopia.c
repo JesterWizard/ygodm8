@@ -254,9 +254,7 @@ unsigned char CanActivateDESTINY_HERO_DYSTOPIA(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DYSTOPIA)
     return FALSE;
 
-  /* On-SS burn via TryDestinyHeroDystopiaOnMonsterPlacement (EffectOpt).
-   * Quick destroy-if-ATK-changed needs ATK hooks.
-   * OPT pick Lv≤4 D-HERO in GY → burn its ATK. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(DESTINY_HERO_DYSTOPIA))
     return FALSE;
 

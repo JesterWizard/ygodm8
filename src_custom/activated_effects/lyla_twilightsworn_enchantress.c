@@ -204,9 +204,7 @@ unsigned char CanActivateLYLA_TWILIGHTSWORN_ENCHANTRESS(void)
   if (zone == NULL || zone->id != LYLA_TWILIGHTSWORN_ENCHANTRESS)
     return FALSE;
 
-  /* OPT banish LS from hand/GY then destroy 1 face-up Spell/Trap (EffectOpt).
-   * EP mill 3 via TryApplyTwilightswornEndPhase. quick effect on
-   * Spell/Trap activation + mill 3 when other LS activates need chain hooks. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(LYLA_TWILIGHTSWORN_ENCHANTRESS))
     return FALSE;
 

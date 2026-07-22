@@ -61,8 +61,7 @@ unsigned char CanActivateHOLACTIE_THE_CREATOR_OF_LIGHT(void)
   if (gMonEffect.id != HOLACTIE_THE_CREATOR_OF_LIGHT)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition activatable; use FromHand tribute path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

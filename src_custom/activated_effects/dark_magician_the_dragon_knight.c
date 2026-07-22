@@ -60,9 +60,7 @@ unsigned char CanActivateDARK_MAGICIAN_THE_DRAGON_KNIGHT(void)
   if (gMonEffect.id != DARK_MAGICIAN_THE_DRAGON_KNIGHT)
     return FALSE;
 
-  /* Name=Dark Magician via DarkMagicianTheDragonKnight_TreatsNameAsDarkMagician +
-   * Duel_ZoneEffectCardId; S/T protect via DarkMagicianTheDragonKnight_ProtectsSpellTrap.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

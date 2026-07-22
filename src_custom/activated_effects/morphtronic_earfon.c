@@ -108,9 +108,7 @@ unsigned char CanActivateMORPHTRONIC_EARFON(void)
   if (zone == NULL || zone->id != MORPHTRONIC_EARFON)
     return FALSE;
 
-  /* On-SS Tuner mark via TryMorphtronicEarfonOnMonsterPlacement.
-   * Equip 2-attacks FALSE.
-   * OPT mark face-up monster as Tuner (unk4 stand-in). */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

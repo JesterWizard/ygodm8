@@ -68,8 +68,7 @@ unsigned char CanActivateCLEAR_VICE_DRAGON(void)
   if (gMonEffect.id != CLEAR_VICE_DRAGON)
     return FALSE;
 
-  /* Battle ATK = 2× target via ApplyClearViceDragonDamageStepAtk.
-   * Clear World immunity + discard-to-save need continuous/destruction hooks. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

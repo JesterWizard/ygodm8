@@ -336,9 +336,7 @@ void ApplyElementalHeroCoreBattleEffect(void)
   gElementalHeroCoreBattledRow = row;
   gElementalHeroCoreBattledCol = col;
 
-  /* Resolve only from post-battle sites (code_8043EF4 / AI_Main / etc.).
-   * Inline PickZone here is wiped by attack cleanup (gDuelCursor.state = 0)
-   * after pending is already consumed, softlocking the owner's turn. */
+  /* Printed remainder omitted by this ruleset. */
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

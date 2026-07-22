@@ -101,8 +101,7 @@ unsigned char CanActivateAMAZONESS_SPIRITUALIST(void)
   if (zone == NULL || zone->id != AMAZONESS_SPIRITUALIST)
     return FALSE;
 
-  /* Field OPT add Polymerization from Deck.
-   * hand/GY bounce→SS + ED lock need GY/ED hooks. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

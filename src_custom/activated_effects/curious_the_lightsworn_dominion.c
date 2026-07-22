@@ -142,9 +142,7 @@ unsigned char CanActivateCURIOUS_THE_LIGHTSWORN_DOMINION(void)
   if (zone == NULL || zone->id != CURIOUS_THE_LIGHTSWORN_DOMINION)
     return FALSE;
 
-  /* Leave-field GY add via CuriousTheLightswornDominion_EnsureInit.
-   * Link Summon mill + mill-cascade need summon/send hooks.
-   * OPT mill 1 from Deck below. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

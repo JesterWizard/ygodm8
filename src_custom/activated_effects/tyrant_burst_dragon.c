@@ -9,8 +9,7 @@ unsigned char CanActivateTYRANT_BURST_DRAGON(void)
   if (gMonEffect.id != TYRANT_BURST_DRAGON)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

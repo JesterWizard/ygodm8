@@ -9,8 +9,7 @@ unsigned char CanActivateCHIMERATECH_FORTRESS_DRAGON(void)
   if (gMonEffect.id != CHIMERATECH_FORTRESS_DRAGON)
     return FALSE;
 
-  /* Fusion ATK overlay via ChimeratechFortressDragon_ApplyDynamicZoneStats.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

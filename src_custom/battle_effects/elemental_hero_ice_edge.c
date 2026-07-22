@@ -199,8 +199,7 @@ void ApplyElementalHeroIceEdgeBattleEffect(void)
   gElementalHeroIceEdgeBattledRow = row;
   gElementalHeroIceEdgeBattledCol = col;
 
-  /* Resolve only from post-battle sites (code_8043EF4 / AI_Main / etc.).
-   * Inline PickZone here is wiped by attack cleanup (gDuelCursor.state = 0). */
+  /* Printed remainder omitted by this ruleset. */
 }
 
 void ResolveElementalHeroIceEdgeBattleEffect(void)

@@ -29,8 +29,7 @@ unsigned char CanActivateMAJESTIC_MECH_GORYU(void)
   if (gMonEffect.id != MAJESTIC_MECH_GORYU)
     return FALSE;
 
-  /* Pierce via ApplySimplePiercersBattleEffect; EP self-send via
-   * TryApplyMajesticMechGoryuEndPhase. Not ignition-activatable. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

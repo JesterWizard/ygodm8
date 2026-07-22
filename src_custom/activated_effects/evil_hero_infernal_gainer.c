@@ -107,8 +107,7 @@ unsigned char CanActivateEVIL_HERO_INFERNAL_GAINER(void)
   if (zone == NULL || zone->id != EVIL_HERO_INFERNAL_GAINER)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * when unk4=2; second Standby GY return needs Standby hook. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

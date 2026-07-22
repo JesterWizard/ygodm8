@@ -43,8 +43,7 @@ unsigned char CanActivateSILENT_SWORDSMAN_ZERO(void)
   if (zone == NULL || zone->id != SILENT_SWORDSMAN_ZERO)
     return FALSE;
 
-  /* Standby Level/ATK via TryApplySilentSwordsmanZeroStandby; OPT +1 Level/+1
-   * tempStage unchanged. Sarcophagus negate needs chain hook. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

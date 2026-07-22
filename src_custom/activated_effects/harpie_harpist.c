@@ -194,9 +194,7 @@ unsigned char CanActivateHARPIE_HARPIST(void)
   if (zone == NULL || zone->id != HARPIE_HARPIST)
     return FALSE;
 
-  /* NS bounce via TryHarpieHarpistOnNormalSummon (EffectOpt).
-   * GY End Phase search (Lv4 WB ≤1500 ATK) needs EP hook.
-   * OPT bounce own WB + opp face-up (shares EffectOpt). */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(HARPIE_HARPIST))
     return FALSE;
 

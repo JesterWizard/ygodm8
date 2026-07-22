@@ -9,8 +9,7 @@ unsigned char CanActivateULTIMATE_OBEDIENT_FIEND(void)
   if (gMonEffect.id != ULTIMATE_OBEDIENT_FIEND)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * outside this file. Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

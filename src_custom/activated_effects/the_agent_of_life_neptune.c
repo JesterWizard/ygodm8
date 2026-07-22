@@ -157,8 +157,7 @@ unsigned char CanActivateTHE_AGENT_OF_LIFE_NEPTUNE(void)
   if (gMonEffect.id != THE_AGENT_OF_LIFE_NEPTUNE)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * FromHand discard self → SS Agent (or Hyperion if Sanctuary). */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

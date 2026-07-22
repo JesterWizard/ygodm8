@@ -115,7 +115,5 @@ void ActivateREPTILIANNE_SERVANT(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
-  /* Cannot-be-attacked via sAttackGates + ReptilianneServant_HasOtherFaceUpMonster;
-   * Reptile NS lock via ReptilianneServant_BlocksNormalSummonReptile.
-   * spell-target destroy needs continuous hook. */
+  /* Printed remainder omitted by this ruleset. */
 }

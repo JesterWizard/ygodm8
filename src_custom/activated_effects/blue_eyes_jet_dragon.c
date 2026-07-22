@@ -286,9 +286,7 @@ unsigned char CanActivateBLUE_EYES_JET_DRAGON(void)
   if (zone == NULL || zone->id != BLUE_EYES_JET_DRAGON)
     return FALSE;
 
-  /* Battle/effect protect via BlueEyesJetDragon_Prevents* while BEWD on field/GY.
-   * BEWD/Alt destroy → SS Jet from hand via BlueEyesJetDragon_EnsureInit.
-   * Field OPT bounce 1; FromHand if BEWD field/GY → SS. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

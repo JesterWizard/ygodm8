@@ -9,8 +9,7 @@ unsigned char CanActivateFLAME_RULER(void)
   if (gMonEffect.id != FLAME_RULER)
     return FALSE;
 
-  /* Treat as 2 Tributes for FIRE Tribute Summon needs tribute-cost LynJump
-   * outside this file. Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

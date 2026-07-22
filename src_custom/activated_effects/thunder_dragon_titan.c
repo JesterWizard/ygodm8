@@ -99,8 +99,7 @@ unsigned char CanActivateTHUNDER_DRAGON_TITAN(void)
   if (zone == NULL || zone->id != THUNDER_DRAGON_TITAN)
     return FALSE;
 
-  /* Thunder hand-effect trigger + GY-banish instead of destroy need
-   * chain/continuous hooks. OPT destroy 1 card on the field. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

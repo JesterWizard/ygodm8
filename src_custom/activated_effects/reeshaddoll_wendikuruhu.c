@@ -70,8 +70,7 @@ unsigned char CanActivateREESHADDOLL_WENDIKURUHU(void)
   if (zone == NULL || zone->id != REESHADDOLL_WENDIKURUHU)
     return FALSE;
 
-  /* Quick face-up→face-down follow-up + GY Shaddoll add need flip/send
-   * hooks. OPT flip all face-down monsters face-up DEF. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

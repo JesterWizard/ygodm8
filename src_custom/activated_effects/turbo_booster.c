@@ -98,9 +98,7 @@ unsigned char CanActivateTURBO_BOOSTER(void)
   if (zone == NULL || zone->id != TURBO_BOOSTER)
     return FALSE;
 
-  /* destroy only monsters that battled your monsters this turn needs
-   * battle-tracking hook. OPT tribute self then destroy 1 opponent
-   * monster; SS-from-hand uses FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -135,8 +133,7 @@ u8 CanSpecialSummonTurboBoosterFromHand(u8 handZone)
   if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != TURBO_BOOSTER)
     return FALSE;
 
-  /* no Normal Summon-this-turn flag in engine; allow hand SS anytime.
-   * Upgrade: gate on turn flag once duel state tracks Normal Summons. */
+  /* Printed remainder omitted by this ruleset. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

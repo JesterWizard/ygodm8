@@ -9,8 +9,7 @@ unsigned char CanActivateGRAVEKEEPERS_SPIRITUALIST(void)
   if (gMonEffect.id != GRAVEKEEPERS_SPIRITUALIST)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * summon API outside this file. Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

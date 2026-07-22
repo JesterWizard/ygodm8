@@ -183,8 +183,7 @@ unsigned char CanActivateGRAVEKEEPERS_CHIEF(void)
   if (zone == NULL || zone->id != GRAVEKEEPERS_CHIEF)
     return FALSE;
 
-  /* Tribute Summon trigger, once-only control, and Necrovalley GY
-   * immunity need summon/continuous hooks. OPT SS GK from GY. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

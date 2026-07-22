@@ -9,8 +9,7 @@ unsigned char CanActivateANCIENT_GEAR_GADJILTRON_CHIMERA(void)
   if (gMonEffect.id != ANCIENT_GEAR_GADJILTRON_CHIMERA)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not ignition-activatable here. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

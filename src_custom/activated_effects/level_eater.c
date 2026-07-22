@@ -119,8 +119,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   (void)fixedRow;
   (void)fixedCol;
 
-  /* no zone Level-mod field (level is ROM-only via gCardData_NEW).
-   * SS self from GY; upgrade: TempLevel overlay on target. */
+  /* Printed remainder omitted by this ruleset. */
 
   if (IsDuelOver() == TRUE)
     return;
@@ -175,8 +174,7 @@ unsigned char CanActivateLEVEL_EATER(void)
   if (gMonEffect.id != LEVEL_EATER)
     return FALSE;
 
-  /* GY ignition via CanActivateLevelEaterGy / gy_ignition table.
-   * cannot-be-Tributed-except-for-Tribute-Summon needs tribute hooks. */
+  /* Printed remainder omitted by this ruleset. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

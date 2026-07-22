@@ -88,9 +88,7 @@ unsigned char CanActivateSOUL_ABSORBING_BONE_TOWER(void)
   if (gMonEffect.id != SOUL_ABSORBING_BONE_TOWER)
     return FALSE;
 
-  /* Other-Zombie SS mill via TrySoulAbsorbingBoneTowerOnOtherZombieSummon.
-   * Attack redirect while another Zombie present needs battle hooks.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

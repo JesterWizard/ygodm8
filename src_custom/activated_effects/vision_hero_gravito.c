@@ -62,8 +62,7 @@ static u8 FindBanishedHero(u8 *outFixedDuelist, u8 *outIndex)
   return FALSE;
 }
 
-/* Printed remainder omitted by this ruleset.
- * local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt. */
+/* Printed remainder omitted by this ruleset. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {
   u8 count;

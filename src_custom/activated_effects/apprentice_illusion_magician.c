@@ -159,9 +159,7 @@ unsigned char CanActivateAPPRENTICE_ILLUSION_MAGICIAN(void)
   if (zone == NULL || zone->id != APPRENTICE_ILLUSION_MAGICIAN)
     return FALSE;
 
-  /* NS/SS search via TryApprenticeIllusionMagicianOnMonsterPlacement (EffectOpt).
-   * OPT add Dark Magician from Deck (shares EffectOpt).
-   * hand/field send +2000 Quick need damage hooks. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(APPRENTICE_ILLUSION_MAGICIAN))
     return FALSE;
 

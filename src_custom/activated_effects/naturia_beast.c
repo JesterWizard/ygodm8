@@ -9,8 +9,7 @@ unsigned char CanActivateNATURIA_BEAST(void)
   if (gMonEffect.id != NATURIA_BEAST)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

@@ -12,8 +12,7 @@ unsigned char CanActivateGRAVEKEEPERS_WATCHER(void)
   if (gMonEffect.id != GRAVEKEEPERS_WATCHER)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * outside this file. Not field-ignition; discard-from-hand path below. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

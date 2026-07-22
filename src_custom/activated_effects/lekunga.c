@@ -9,9 +9,7 @@
 
 void UpdateDuelGfxExceptField(void);
 
-/* Printed remainder omitted by this ruleset.
- * Wrong Type/Attribute/stats (Fairy/LIGHT 0/0 vs Plant/WATER 700/700);
- * add LEKUNGA_TOKEN card data + art, then swap this define. */
+/* Printed remainder omitted by this ruleset. */
 #define LEKUNGA_TOKEN_ID MOON_TOKEN
 #define LEKUNGA_BANISH_COUNT 2
 

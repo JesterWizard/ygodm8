@@ -72,8 +72,7 @@ unsigned char CanActivateEL_SHADDOLL_MESHAHRAIL(void)
   if (zone == NULL || zone->id != EL_SHADDOLL_MESHAHRAIL)
     return FALSE;
 
-  /* OPT pay 800 → add 1 Shaddoll or Void S/T from Deck (EffectOpt).
-   * unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(EL_SHADDOLL_MESHAHRAIL))
     return FALSE;
 

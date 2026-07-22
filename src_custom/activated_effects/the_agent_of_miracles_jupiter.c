@@ -129,8 +129,7 @@ static void ResolveBuffTarget(u8 fixedRow, u8 fixedCol)
   if (!BanishFirstAgentFromGy(fixedDuelist))
     return;
 
-  /* +800 ATK until EP via ResetTempStagesForAllCards; Sanctuary RFG revive
-   * FALSE. OPT banish Agent from GY → +2 tempStage on LIGHT Fairy. */
+  /* Printed remainder omitted by this ruleset. */
   if (zone->tempStage < 126)
     zone->tempStage += 2;
 

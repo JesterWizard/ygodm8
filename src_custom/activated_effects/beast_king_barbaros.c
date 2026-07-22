@@ -111,8 +111,7 @@ unsigned char CanActivateBEAST_KING_BARBAROS(void)
   if (zone == NULL || zone->id != BEAST_KING_BARBAROS)
     return FALSE;
 
-  /* No-tribute 1900 ATK via BeastKingBarbaros_ApplyDynamicZoneStats + tribute hook.
-   * OPT stand-in for 3-Tribute destroy. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

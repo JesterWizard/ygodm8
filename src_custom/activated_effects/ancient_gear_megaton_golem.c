@@ -210,9 +210,7 @@ unsigned char CanActivateANCIENT_GEAR_MEGATON_GOLEM(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_MEGATON_GOLEM)
     return FALSE;
 
-  /* OPT SS AG Golem from hand/GY. Pierce via ApplyAncientGearGolemPiercingBattleEffect.
-   * Leave → AG Golem hand/GY/Deck via AncientGearMegatonGolem_EnsureInit
-   * (Extra Deck Ultimate blocked). multi-attack. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

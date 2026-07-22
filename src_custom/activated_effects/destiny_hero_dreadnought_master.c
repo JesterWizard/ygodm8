@@ -115,9 +115,7 @@ unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_MASTER(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DREADNOUGHT_MASTER)
     return FALSE;
 
-  /* On-SS add via TryDestinyHeroDreadnoughtMasterOnMonsterPlacement (EffectOpt).
-   * Cards-mentioning-D-HERO FALSE.
-   * OPT add up to 2 Destiny HERO from Deck (shares EffectOpt). */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(DESTINY_HERO_DREADNOUGHT_MASTER))
     return FALSE;
 

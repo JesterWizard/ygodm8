@@ -84,8 +84,7 @@ unsigned char CanActivateDARKNESS_NEOSPHERE(void)
   if (gMonEffect.id != DARKNESS_NEOSPHERE)
     return FALSE;
 
-  /* Battle indestruct + trap bounce + attack-declare gate need battle/phase
-   * hooks outside this file. Not field-ignition; SS uses FromHand path. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

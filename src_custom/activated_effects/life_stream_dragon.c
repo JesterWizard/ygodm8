@@ -25,9 +25,7 @@ unsigned char CanActivateLIFE_STREAM_DRAGON(void)
   if (zone == NULL || zone->id != LIFE_STREAM_DRAGON)
     return FALSE;
 
-  /* extra procedure LP=4000 trigger + no effect damage + Equip-banish
-   * destruction-replace need synchro/LP/battle hooks. OPT set LP to
-   * 4000 via usage. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

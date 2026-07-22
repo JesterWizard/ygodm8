@@ -59,8 +59,7 @@ unsigned char CanActivateGRAVEKEEPERS_SHAMAN(void)
   if (gMonEffect.id != GRAVEKEEPERS_SHAMAN)
     return FALSE;
 
-  /* DEF overlay via GravekeepersShaman_ApplyDynamicZoneStats.
-   * GY-effect negate + Necrovalley Field lock need permanent hooks. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

@@ -314,11 +314,7 @@ void ActivateDARK_ARMED_DRAGONEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* Printed remainder omitted by this ruleset.
-     from inside monster effect handler) and no PickZone cursor state (200
-     conflicts with game loop after MonsterActionMenu case 4 returns).
-     Picks the best field target via AiPickTarget logic.
-     Upgrade path: dedicated cursor state + A/B handlers like Cannon Soldier. */
+  /* Printed remainder omitted by this ruleset. */
 
   /* Find best target (AiPickTarget prefers opponent's, then higher ATK) */
   if (!AiPickTarget(&bestRow, &bestCol))

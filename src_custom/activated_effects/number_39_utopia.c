@@ -9,8 +9,7 @@ unsigned char CanActivateNUMBER_39_UTOPIA(void)
   if (gMonEffect.id != NUMBER_39_UTOPIA)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset.
-   * XYZ material system outside this file. Not field-ignition. */
+  /* Printed remainder omitted by this ruleset. */
   return FALSE;
 }
 

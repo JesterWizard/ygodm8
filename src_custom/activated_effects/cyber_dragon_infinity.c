@@ -128,8 +128,7 @@ unsigned char CanActivateCYBER_DRAGON_INFINITY(void)
   if (zone == NULL || zone->id != CYBER_DRAGON_INFINITY)
     return FALSE;
 
-  /* ATK overlay via CyberDragonInfinity_ApplyDynamicZoneStats (+200 per tempStage).
-   * Xyz attach / negate FALSE. OPT ClearZone absorb + tempStage (EffectOpt). */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(CYBER_DRAGON_INFINITY))
     return FALSE;
 

@@ -41,8 +41,7 @@ u8 EvilHeroMaliciousFiend_CanAttackMonsterZone(struct DuelCard *zone)
 
 unsigned char ShouldActivateEVIL_HERO_MALICIOUS_FIEND(void)
 {
-  /* Pierce via ApplySimplePiercersBattleEffect; forced attack via
-   * EvilHeroMaliciousFiend_GetForcedAttackTarget + sForcedAttackRedirects. */
+  /* Printed remainder omitted by this ruleset. */
   (void)gActiveEffect;
   return FALSE;
 }

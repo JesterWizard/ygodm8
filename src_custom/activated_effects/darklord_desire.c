@@ -115,8 +115,7 @@ unsigned char CanActivateDARKLORD_DESIRE(void)
   if (zone == NULL || zone->id != DARKLORD_DESIRE)
     return FALSE;
 
-  /* OPT -1000 ATK (tempStage) → send 1 opp monster to GY (EffectOpt).
-   * Fairy-only Tribute Summon + cannot SS need summon hooks. */
+  /* Printed remainder omitted by this ruleset. */
   if (EffectOpt_IsUsed(DARKLORD_DESIRE))
     return FALSE;
 

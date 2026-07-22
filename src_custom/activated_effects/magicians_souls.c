@@ -140,8 +140,7 @@ unsigned char CanActivateMAGICIANS_SOULS(void)
   if (zone == NULL || zone->id != MAGICIANS_SOULS)
     return FALSE;
 
-  /* Continuous Spell placement + DM/DMG GY SS branch need placement/
-   * GY hooks. OPT send 1–2 S/T from hand/field → draw that many. */
+  /* Printed remainder omitted by this ruleset. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
