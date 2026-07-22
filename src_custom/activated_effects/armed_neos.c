@@ -113,7 +113,7 @@ unsigned char CanActivateARMED_NEOS(void)
   if (zone == NULL || zone->id != ARMED_NEOS)
     return FALSE;
 
-  /* ponytail: battle-destroy gain Extra tribute SS need battle/Extra hooks.
+  /* Ceiling: battle-destroy gain Extra tribute SS need battle/Extra hooks.
    * Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

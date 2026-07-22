@@ -6,7 +6,7 @@
 unsigned char ShouldActivateEVIL_HERO_MALICIOUS_FIEND(void)
 {
   /* Pierce via ApplySimplePiercersBattleEffect.
-   * ponytail: forced attack + face-up Attack Position need battle redirect hooks. */
+   * Ceiling: forced attack + face-up Attack Position need battle redirect hooks. */
   (void)gActiveEffect;
   return FALSE;
 }

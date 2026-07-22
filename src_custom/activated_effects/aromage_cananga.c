@@ -172,7 +172,7 @@ unsigned char CanActivateAROMAGE_CANANGA(void)
     return FALSE;
 
   /* Continuous -500 via ApplyAromageCanangaStatPenaltyToCardInfo.
-   * ponytail: LP-gain bounce trigger needs LP hook.
+   * Ceiling: LP-gain bounce trigger needs LP hook.
    * Ceiling: OPT bounce 1 opp Spell/Trap if hand room. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

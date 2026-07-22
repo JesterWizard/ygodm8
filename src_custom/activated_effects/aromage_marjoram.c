@@ -177,7 +177,7 @@ unsigned char CanActivateAROMAGE_MARJORAM(void)
     return FALSE;
 
   /* LP-higher Plant no battle damage via ApplyAromageMarjoramNoPlantBattleDamage.
-   * ponytail: destroy-SS + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish opp GY. */
+   * Ceiling: destroy-SS + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish opp GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

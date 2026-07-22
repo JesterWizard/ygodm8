@@ -193,7 +193,7 @@ unsigned char CanActivateCYBER_SLASH_HARPIE_LADY(void)
   if (zone == NULL || zone->id != CYBER_SLASH_HARPIE_LADY)
     return FALSE;
 
-  /* ponytail: Quick on S/T activation + Synchro/name hooks missing.
+  /* Ceiling: Quick on S/T activation + Synchro/name hooks missing.
    * Ceiling: OPT bounce 1 opp card or your Harpie to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

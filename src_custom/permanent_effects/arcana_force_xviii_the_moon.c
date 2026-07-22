@@ -45,5 +45,5 @@ void ActivateARCANA_FORCE_XVIII_THE_MOON(void)
   heads = RandRangeU8(0, 1) == 1;
   zone->unk4 = heads ? ARCANA_FORCE_XVIII_THE_MOON_COIN_HEADS
                      : ARCANA_FORCE_XVIII_THE_MOON_COIN_TAILS;
-  /* ponytail: Standby Moon Token / End Phase give-control need turn hooks; unk4 only. */
+  /* Ceiling: Standby Moon Token / End Phase give-control need turn hooks; unk4 only. */
 }

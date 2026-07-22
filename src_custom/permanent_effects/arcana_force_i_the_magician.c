@@ -65,5 +65,5 @@ void ActivateARCANA_FORCE_I_THE_MAGICIAN(void)
   }
 
   Duel_ChangeLp(OpponentDuelist(duelist), 500, TRUE);
-  /* ponytail: spell-trigger heads/tails not wired; on-summon coin only. */
+  /* Ceiling: spell-trigger heads/tails not wired; on-summon coin only. */
 }

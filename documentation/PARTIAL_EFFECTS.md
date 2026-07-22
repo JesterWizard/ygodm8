@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 17:26 UTC  
-**Remaining partials:** `406`
+**Last updated:** 2026-07-22 17:30 UTC  
+**Remaining partials:** `378`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 319 |
-| `permanent` | 71 |
-| **total** | **406** |
+| `activated` | 298 |
+| `permanent` | 64 |
+| **total** | **378** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (319)
+## activated (298)
 
 ### `ANCIENT_FAIRY_DRAGON`
 - path: `src_custom/activated_effects/ancient_fairy_dragon.c`
@@ -113,10 +113,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ANCIENT_GEAR_DRAGON`
 - path: `src_custom/activated_effects/ancient_gear_dragon.c`
 - L121: Quick negate + tribute-less NS need negate/summon hooks. Ceiling: OPT send Machine hand/field or AG Golem from Deck to GY.
-
-### `ANCIENT_GEAR_ENGINEER`
-- path: `src_custom/activated_effects/ancient_gear_engineer.c`
-- L14: * ponytail: opp Trap activation negate on attack needs chain gate. */
 
 ### `ANCIENT_GEAR_GADJILTRON_CHIMERA`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_chimera.c`
@@ -139,60 +135,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L111: ignore summoning conditions partial via CannotBeSS check. Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck.
 - L189: once-per-turn FromHand not tracked without turn flag.
 
-### `ANDRO_SPHINX`
-- path: `src_custom/activated_effects/andro_sphinx.c`
-- L64: * ponytail: GY SS ban needs summon gate. */
-
-### `APPRENTICE_ILLUSION_MAGICIAN`
-- path: `src_custom/activated_effects/apprentice_illusion_magician.c`
-- L120: on-NS/SS search auto + hand/field send +2000 Quick need summon/ damage hooks. Ceiling: OPT add Dark Magician from Deck.
-
-### `ARCANA_FORCE_V_THE_HIEROPHANT`
-- path: `src_custom/activated_effects/arcana_force_v_the_hierophant.c`
-- L86: on-Summon coin + discard summon-lock need summon/FromHand paths. Ceiling: OPT coin → SS 1 Arcana Force from Deck.
-- L153: discard only; opp cannot respond to Arcana Summons needs turn flag hook.
-
-### `ARCANA_FORCE_XII_THE_HANGMAN`
-- path: `src_custom/activated_effects/arcana_force_xii_the_hangman.c`
-- L139: on-Summon coin should fire at summon; OPT stand-in here. Ceiling: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF.
-- L170: coin targeting uses auto-pick highest ATK; upgrade: PickZone.
-
-### `ARCANA_FORCE_XIX_THE_SUN`
-- path: `src_custom/activated_effects/arcana_force_xix_the_sun.c`
-- L81: on-Summon coin (Heads Set coin Spell / Tails wipe S/T) need summon hook. Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours.
-- L121: requires coin-toss card on field — skipped; SS anytime when legal.
-
-### `ARCANA_FORCE_XV_THE_FIEND`
-- path: `src_custom/activated_effects/arcana_force_xv_the_fiend.c`
-- L206: on-Summon coin + discard search use summon/FromHand paths. Ceiling: OPT coin → destroy 1 monster or wipe field.
-
 ### `ARCANA_KNIGHT_JOKER`
 - path: `src_custom/activated_effects/arcana_knight_joker.c`
 - L12: discard matching type to negate activation needs chain/response hooks. Ceiling: not ignition-activatable here.
 
-### `ARCANITE_MAGICIAN`
-- path: `src_custom/activated_effects/arcanite_magician.c`
-- L158: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. Ceiling: OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card.
-
-### `ARMED_NEOS`
-- path: `src_custom/activated_effects/armed_neos.c`
-- L116: battle-destroy gain Extra tribute SS need battle/Extra hooks. Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY.
-
 ### `ARMORY_ARM`
 - path: `src_custom/activated_effects/armory_arm.c`
 - L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
-
-### `AROMAGE_CANANGA`
-- path: `src_custom/activated_effects/aromage_cananga.c`
-- L175: * ponytail: LP-gain bounce trigger needs LP hook.
-
-### `AROMAGE_JASMINE`
-- path: `src_custom/activated_effects/aromage_jasmine.c`
-- L57: * ponytail: extra Plant Normal Summon + draw-on-LP-gain need LP/summon hooks.
-
-### `AROMAGE_MARJORAM`
-- path: `src_custom/activated_effects/aromage_marjoram.c`
-- L180: * ponytail: destroy-SS + LP-gain trigger need destroy/LP hooks. Ceiling: OPT banish opp GY. */
 
 ### `AROMALILITH_MAGNOLIA`
 - path: `src_custom/activated_effects/aromalilith_magnolia.c`
@@ -222,39 +171,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/bazoo_the_soul_eater.c`
 - L130: unk4 = banish count for +300 ATK each; cleared each EP with tempStage reset — not exact until-opp-EP hook.
 
-### `BEAST_MACHINE_KING_BARBAROS_UR`
-- path: `src_custom/activated_effects/beast_machine_king_barbaros_ur.c`
-- L224: multi-zone banish picker not wired; require both types reachable.
-
-### `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON`
-- path: `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c`
-- L23: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. Ceiling: OPT +2 tempStage (~+1000) as negate stand-in.
-
 ### `CHAOS_ANCIENT_GEAR_GIANT`
 - path: `src_custom/activated_effects/chaos_ancient_gear_giant.c`
 - L12: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock + multi-attack need fusion/battle hooks. Pierce via ApplySimplePiercersBattleEffect. Ceiling: not ignition-activatable here.
-
-### `CLEAR_VICE_DRAGON`
-- path: `src_custom/activated_effects/clear_vice_dragon.c`
-- L72: * ponytail: Clear World immunity + discard-to-save need continuous/destruction hooks.
-
-### `CRIMSON_DRAGON`
-- path: `src_custom/activated_effects/crimson_dragon.c`
-- L123: Extra Deck Synchro SS FALSE; Deck Dragon stand-in.
-- L138: on-SS search + Extra Synchro return FALSE. Ceiling: OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon.
-
-### `CYBER_DRAGON_INFINITY`
-- path: `src_custom/activated_effects/cyber_dragon_infinity.c`
-- L35: ATK summons keep isFaceUp=0 until EOT flip.
-- L62: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
-
-### `CYBER_SLASH_HARPIE_LADY`
-- path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
-- L196: Quick on S/T activation + Synchro/name hooks missing. Ceiling: OPT bounce 1 opp card or your Harpie to hand.
-
-### `CYBER_SLASH_HARPY_LADY`
-- path: `src_custom/activated_effects/cyber_slash_harpy_lady.c`
-- L196: Quick on S/T activation + Synchro/name hooks missing. Ceiling: OPT bounce 1 opp card or your Harpie to hand.
 
 ### `CYBERNETIC_MAGICIAN`
 - path: `src_custom/activated_effects/cybernetic_magician.c`
@@ -609,11 +528,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L135: Extra Deck return + Lv≤7 GB Fusion Extra SS need ED/Fusion APIs.
 - L158: contact Fusion SS Lv≤7 GB Fusion from Extra needs Extra API. Ceiling: OPT tag-out → SS 2 different GB from Deck.
 
-### `GLADIATOR_BEAST_ATTORIX`
-- path: `src_custom/activated_effects/gladiator_beast_attorix.c`
-- L130: on-GB-SS name/Level copy + end-of-BP battled tag gate need summon/ battle hooks. Ceiling: OPT send 1 other GB from Deck to GY (unkTwo name copy) or tag-out shuffle→SS.
-- L157: copied name/Level until End Phase needs name-override hook; unkTwo stores sent card id as stand-in.
-
 ### `GLADIATOR_BEAST_AUGUSTUS`
 - path: `src_custom/activated_effects/gladiator_beast_augustus.c`
 - L48: GB-SS trigger + end-of-BP tag-out need summon/battle hooks. Ceiling: OPT SS 1 other GB from hand in DEF.
@@ -637,11 +551,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `GLADIATOR_BEAST_GISTEL`
 - path: `src_custom/activated_effects/gladiator_beast_gistel.c`
 - L162: on-GB-SS search + end-BP battled tag gate need summon/battle hooks. Ceiling: OPT search Gladiator S/T, else tag-out. FromHand: reveal+SS both.
-
-### `GLADIATOR_BEAST_LANISTA`
-- path: `src_custom/activated_effects/gladiator_beast_lanista.c`
-- L154: on-SS name copy + end-of-BP tag gate need summon/battle hooks. Ceiling: OPT banish 1 GB from GY (unkTwo name copy) or tag-out.
-- L181: copied name until End Phase needs name-override hook; unkTwo stores copied card id as stand-in.
 
 ### `GLADIATOR_BEAST_NOXIOUS`
 - path: `src_custom/activated_effects/gladiator_beast_noxious.c`
@@ -1428,7 +1337,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (71)
+## permanent (64)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1440,30 +1349,10 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L100: Tails negate FALSE; Heads only when GY→hand legal.
 - L125: Tails Quick negate + battle add need chain/battle hooks.
 
-### `ARCANA_FORCE_I_THE_MAGICIAN`
-- path: `src_custom/permanent_effects/arcana_force_i_the_magician.c`
-- L68: spell-trigger heads/tails not wired; on-summon coin only.
-
-### `ARCANA_FORCE_III_THE_EMPRESS`
-- path: `src_custom/permanent_effects/arcana_force_iii_the_empress.c`
-- L48: opp Normal Summon SS/discard triggers need summon hooks; unk4 only.
-
 ### `ARCANA_FORCE_THE_CHAOS_RULER`
 - path: `src_custom/permanent_effects/arcana_force_the_chaos_ruler.c`
 - L162: true trigger is Special Summon; on-summon coin stand-in covers SS path.
 - L198: Light Barrier opp-activation lock needs continuous field hook.
-
-### `ARCANA_FORCE_VI_THE_LOVERS`
-- path: `src_custom/permanent_effects/arcana_force_vi_the_lovers.c`
-- L48: tribute engine not wired — unk4 marks double-tribute / no-tribute only.
-
-### `ARCANA_FORCE_XVIII_THE_MOON`
-- path: `src_custom/permanent_effects/arcana_force_xviii_the_moon.c`
-- L48: Standby Moon Token / End Phase give-control need turn hooks; unk4 only.
-
-### `ARCANA_FORCE_XXI_THE_WORLD`
-- path: `src_custom/permanent_effects/arcana_force_xxi_the_world.c`
-- L48: skip-turn / opp GY-to-hand need turn hooks; unk4 marks coin only.
 
 ### `BLUE_EYES_ALTERNATIVE_WHITE_DRAGON`
 - path: `src_custom/permanent_effects/blue_eyes_alternative_white_dragon.c`
@@ -1566,10 +1455,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L128: true trigger is Special Summon; on-summon stand-in covers SS path.
 - L149: HERO battle-destroy 2100 burn needs battle-end hook.
 
-### `EVIL_HERO_MALICIOUS_FIEND`
-- path: `src_custom/permanent_effects/evil_hero_malicious_fiend.c`
-- L9: * ponytail: forced attack + face-up Attack Position need battle redirect hooks. */
-
 ### `EVIL_HERO_WILD_CYCLONE`
 - path: `src_custom/permanent_effects/evil_hero_wild_cyclone.c`
 - L97: * ponytail: attack S/T lock until end of Damage Step needs chain gate. */
@@ -1581,10 +1466,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `FIRE_PRINCESS`
 - path: `src_custom/permanent_effects/fire_princess.c`
 - L37: normal hand summon copies isFaceUp=0; attack-position monsters still count
-
-### `GLADIATOR_BEAST_ESSEDARII`
-- path: `src_custom/permanent_effects/gladiator_beast_essedarii.c`
-- L8: Contact Fusion has no permanent ignition path.
 
 ### `GRANADORA`
 - path: `src_custom/permanent_effects/granadora.c`

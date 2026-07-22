@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGLADIATOR_BEAST_ESSEDARII(void)
 {
-  /* ponytail: Contact Fusion has no permanent ignition path. */
+  /* Ceiling: Contact Fusion has no permanent ignition path. */
   (void)gActiveEffect;
   return FALSE;
 }

@@ -20,7 +20,7 @@ unsigned char CanActivateBLUE_EYES_ULTIMATE_SPIRIT_DRAGON(void)
   if (zone == NULL || zone->id != BLUE_EYES_ULTIMATE_SPIRIT_DRAGON)
     return FALSE;
 
-  /* ponytail: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE.
+  /* Ceiling: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE.
    * Ceiling: OPT +2 tempStage (~+1000) as negate stand-in. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

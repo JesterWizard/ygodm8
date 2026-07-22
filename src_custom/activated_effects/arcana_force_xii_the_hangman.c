@@ -136,7 +136,7 @@ unsigned char CanActivateARCANA_FORCE_XII_THE_HANGMAN(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XII_THE_HANGMAN)
     return FALSE;
 
-  /* ponytail: on-Summon coin should fire at summon; OPT stand-in here.
+  /* Ceiling: on-Summon coin should fire at summon; OPT stand-in here.
    * Ceiling: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -167,7 +167,7 @@ void ActivateARCANA_FORCE_XII_THE_HANGMANEffect(void)
     targetRow = INACTIVE_DUELIST_MONSTER_ROW;
   }
 
-  /* ponytail: coin targeting uses auto-pick highest ATK; upgrade: PickZone. */
+  /* Ceiling: coin targeting uses auto-pick highest ATK; upgrade: PickZone. */
   if (!DestroyMonsterAndBurn(targetRow, heads ? ACTIVE_DUELIST : INACTIVE_DUELIST))
     return;
 

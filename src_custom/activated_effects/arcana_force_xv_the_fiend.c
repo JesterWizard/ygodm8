@@ -203,7 +203,7 @@ unsigned char CanActivateARCANA_FORCE_XV_THE_FIEND(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XV_THE_FIEND)
     return FALSE;
 
-  /* ponytail: on-Summon coin + discard search use summon/FromHand paths. Ceiling:
+  /* Ceiling: on-Summon coin + discard search use summon/FromHand paths. Ceiling:
    * OPT coin → destroy 1 monster or wipe field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

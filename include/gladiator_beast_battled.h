@@ -27,5 +27,6 @@ void ApplyGladiatorBeastPermanentBattleEffects(void);
 u8 GladiatorBeast_DeckHasTwoDifferentGladiatorBeasts(u16 excludeId);
 void GladiatorBeast_SpecialSummonTwoFromDeck(u16 excludeId);
 void ClearGladiatorBeastBattledMarks(void);
+u16 GladiatorBeast_GetCopiedEffectCardId(const struct DuelCard *zone);
 
 #endif /* GUARD_GLADIATOR_BEAST_BATTLED_H */

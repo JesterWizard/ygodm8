@@ -117,7 +117,7 @@ unsigned char CanActivateAPPRENTICE_ILLUSION_MAGICIAN(void)
   if (zone == NULL || zone->id != APPRENTICE_ILLUSION_MAGICIAN)
     return FALSE;
 
-  /* ponytail: on-NS/SS search auto + hand/field send +2000 Quick need summon/
+  /* Ceiling: on-NS/SS search auto + hand/field send +2000 Quick need summon/
    * damage hooks. Ceiling: OPT add Dark Magician from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

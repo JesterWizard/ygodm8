@@ -32,7 +32,7 @@ static u8 IsFaceUpAtkMonster(u8 fixedRow, u8 fixedCol)
   if (IsCardFaceUp(zone))
     return TRUE;
 
-  /* ponytail: ATK summons keep isFaceUp=0 until EOT flip. */
+  /* Ceiling: ATK summons keep isFaceUp=0 until EOT flip. */
   return TRUE;
 }
 
@@ -59,7 +59,7 @@ static void ResolveAbsorb(u8 fixedRow, u8 fixedCol)
   if (!IsFaceUpAtkMonster(fixedRow, fixedCol) || zone == NULL || self == NULL)
     return;
 
-  /* ponytail: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage. */
+  /* Ceiling: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage. */
   ClearZone(zone);
   NotifyDynamicEquipFieldChanged();
 
@@ -127,7 +127,7 @@ unsigned char CanActivateCYBER_DRAGON_INFINITY(void)
     return FALSE;
 
   /* ATK overlay via CyberDragonInfinity_ApplyDynamicZoneStats (+200 per tempStage).
-   * ponytail: Xyz attach / negate FALSE. Ceiling: OPT ClearZone absorb + tempStage. */
+   * Ceiling: Xyz attach / negate FALSE. Ceiling: OPT ClearZone absorb + tempStage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

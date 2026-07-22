@@ -78,7 +78,7 @@ unsigned char CanActivateARCANA_FORCE_XIX_THE_SUN(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XIX_THE_SUN)
     return FALSE;
 
-  /* ponytail: on-Summon coin (Heads Set coin Spell / Tails wipe S/T) need summon
+  /* Ceiling: on-Summon coin (Heads Set coin Spell / Tails wipe S/T) need summon
    * hook. Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -118,7 +118,7 @@ u8 CanSpecialSummonArcanaForceXixTheSunFromHand(u8 handZone)
   if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != ARCANA_FORCE_XIX_THE_SUN)
     return FALSE;
 
-  /* ponytail: requires coin-toss card on field — skipped; SS anytime when legal. */
+  /* Ceiling: requires coin-toss card on field — skipped; SS anytime when legal. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

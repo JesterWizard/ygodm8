@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "expanded_graveyard.h"
+#include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
 #include "removed_from_play.h"
 
@@ -151,13 +152,17 @@ unsigned char CanActivateGLADIATOR_BEAST_LANISTA(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_LANISTA)
     return FALSE;
 
-  /* ponytail: on-SS name copy + end-of-BP tag gate need summon/battle hooks.
+  /* Name copy via GladiatorBeast_GetCopiedEffectCardId + Duel_ZoneEffectCardId;
+   * end-of-BP battled tag-out via GladiatorBeast_CanActivateTagOutEffect.
    * Ceiling: OPT banish 1 GB from GY (unkTwo name copy) or tag-out. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   if (OwnGyHasGladiatorBeast(fixedDuelist))
     return TRUE;
+
+  if (!GladiatorBeast_CanActivateTagOutEffect(zone))
+    return FALSE;
 
   return CanTagOut();
 }
@@ -178,8 +183,7 @@ void ActivateGLADIATOR_BEAST_LANISTAEffect(void)
     if (copiedId == CARD_NONE)
       return;
 
-    /* ponytail: copied name until End Phase needs name-override hook; unkTwo
-     * stores copied card id as stand-in. */
+    /* Name copy via GladiatorBeast_GetCopiedEffectCardId; unkTwo stores copied id. */
     self->unkTwo = (u8)(copiedId & 0xFF);
     GraveyardExpand_RefreshDisplay();
     MarkMonsterEffectUsed(self);
@@ -190,7 +194,7 @@ void ActivateGLADIATOR_BEAST_LANISTAEffect(void)
     return;
   }
 
-  if (!CanTagOut())
+  if (!CanTagOut() || !GladiatorBeast_CanActivateTagOutEffect(self))
     return;
 
   MarkMonsterEffectUsed(self);

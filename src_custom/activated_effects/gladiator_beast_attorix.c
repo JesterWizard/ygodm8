@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "expanded_graveyard.h"
+#include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
 
 void ClearZone(struct DuelCard *zone);
@@ -127,14 +128,17 @@ unsigned char CanActivateGLADIATOR_BEAST_ATTORIX(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_ATTORIX)
     return FALSE;
 
-  /* ponytail: on-GB-SS name/Level copy + end-of-BP battled tag gate need summon/
-   * battle hooks. Ceiling: OPT send 1 other GB from Deck to GY (unkTwo name copy)
-   * or tag-out shuffle→SS. */
+  /* Name copy via GladiatorBeast_GetCopiedEffectCardId + Duel_ZoneEffectCardId;
+   * end-of-BP battled tag-out via GladiatorBeast_CanActivateTagOutEffect.
+   * Ceiling: OPT send 1 other GB from Deck to GY (unkTwo name copy) or tag-out. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   if (FindOtherGladiatorBeastInDeck(GLADIATOR_BEAST_ATTORIX) != CARD_NONE)
     return TRUE;
+
+  if (!GladiatorBeast_CanActivateTagOutEffect(zone))
+    return FALSE;
 
   return CanTagOut();
 }
@@ -154,8 +158,7 @@ void ActivateGLADIATOR_BEAST_ATTORIXEffect(void)
     if (!SendGladiatorBeastFromDeckToGraveyard(sentId))
       return;
 
-    /* ponytail: copied name/Level until End Phase needs name-override hook; unkTwo
-     * stores sent card id as stand-in. */
+    /* Name copy via GladiatorBeast_GetCopiedEffectCardId; unkTwo stores copied id. */
     self->unkTwo = (u8)(sentId & 0xFF);
     MarkMonsterEffectUsed(self);
     UpdateDuelGfxExceptField();
@@ -165,7 +168,7 @@ void ActivateGLADIATOR_BEAST_ATTORIXEffect(void)
     return;
   }
 
-  if (!CanTagOut())
+  if (!CanTagOut() || !GladiatorBeast_CanActivateTagOutEffect(self))
     return;
 
   MarkMonsterEffectUsed(self);

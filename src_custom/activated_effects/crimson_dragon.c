@@ -120,7 +120,7 @@ static void ShuffleSelfSsDragon(struct DuelCard *self)
   if (dragonId == CARD_NONE)
     return;
 
-  /* ponytail: Extra Deck Synchro SS FALSE; Deck Dragon stand-in. */
+  /* Ceiling: Extra Deck Synchro SS FALSE; Deck Dragon stand-in. */
   Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, dragonId, opts);
 }
 
@@ -135,7 +135,7 @@ unsigned char CanActivateCRIMSON_DRAGON(void)
   if (zone == NULL || zone->id != CRIMSON_DRAGON)
     return FALSE;
 
-  /* ponytail: on-SS search + Extra Synchro return FALSE.
+  /* Ceiling: on-SS search + Extra Synchro return FALSE.
    * Ceiling: OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

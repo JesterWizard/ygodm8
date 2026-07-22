@@ -314,6 +314,23 @@ void ClearGladiatorBeastBattledMarks(void)
   }
 }
 
+u16 GladiatorBeast_GetCopiedEffectCardId(const struct DuelCard *zone)
+{
+  u16 copied;
+
+  if (zone == NULL || zone->id == CARD_NONE || zone->unkTwo == 0)
+    return CARD_NONE;
+
+  if (zone->id != GLADIATOR_BEAST_ATTORIX && zone->id != GLADIATOR_BEAST_LANISTA)
+    return CARD_NONE;
+
+  copied = (u16)zone->unkTwo;
+  if (copied == CARD_NONE || GetTypeGroup(copied) != TYPE_GROUP_MONSTER)
+    return CARD_NONE;
+
+  return copied;
+}
+
 static u8 TurnDuelistForFixed(u8 fixedDuelist)
 {
   if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist])
@@ -511,5 +528,10 @@ void GladiatorBeastBattled_SelfCheck(void)
   SetCardInfo(fake.id);
   ApplyGladiatorBeastTagOutStatBoostToCardInfo(&fake);
   if (gCardInfo.def != GLADIATOR_BEAST_HOPLOMUS_TAG_DEF)
+    return;
+
+  fake.id = GLADIATOR_BEAST_ATTORIX;
+  fake.unkTwo = (u8)GLADIATOR_BEAST_LAQUARI;
+  if (GladiatorBeast_GetCopiedEffectCardId(&fake) != GLADIATOR_BEAST_LAQUARI)
     return;
 }

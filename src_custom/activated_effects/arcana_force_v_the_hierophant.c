@@ -83,7 +83,7 @@ unsigned char CanActivateARCANA_FORCE_V_THE_HIEROPHANT(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_V_THE_HIEROPHANT)
     return FALSE;
 
-  /* ponytail: on-Summon coin + discard summon-lock need summon/FromHand paths.
+  /* Ceiling: on-Summon coin + discard summon-lock need summon/FromHand paths.
    * Ceiling: OPT coin → SS 1 Arcana Force from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -150,7 +150,7 @@ u8 TryActivateArcanaForceVTheHierophantFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* ponytail: discard only; opp cannot respond to Arcana Summons needs turn flag hook. */
+  /* Ceiling: discard only; opp cannot respond to Arcana Summons needs turn flag hook. */
   if (Duel_DestroyZone(SixCardHand_ZoneAtHandRow(handRow, handZone), ACTIVE_DUELIST, TRUE)
       == DUEL_ACTION_DUEL_OVER)
     return TRUE;

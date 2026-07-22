@@ -54,7 +54,7 @@ unsigned char CanActivateAROMAGE_JASMINE(void)
     return FALSE;
 
   /* LP-higher battle protect via AromageJasmine_PreventsBattleDestroy.
-   * ponytail: extra Plant Normal Summon + draw-on-LP-gain need LP/summon hooks.
+   * Ceiling: extra Plant Normal Summon + draw-on-LP-gain need LP/summon hooks.
    * Ceiling: OPT draw 1 via usage. */
   return CanUseMonsterEffect(zone);
 }

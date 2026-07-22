@@ -1421,6 +1421,10 @@ u16 Duel_ZoneEffectCardId(struct DuelCard *zone)
   if (copied != CARD_NONE)
     return copied;
 
+  copied = GladiatorBeast_GetCopiedEffectCardId(zone);
+  if (copied != CARD_NONE)
+    return copied;
+
   if (AmazonessBabyTiger_TreatsNameAsTiger(zone))
     return AMAZONESS_TIGER;
 
