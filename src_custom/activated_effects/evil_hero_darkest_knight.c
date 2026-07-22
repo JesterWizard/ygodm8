@@ -4,6 +4,7 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "evil_hero_darkest_knight.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
 
@@ -76,6 +77,87 @@ static enum DuelActionResult SpecialSummonFiendOrWarriorFromGy(s8 gyIndex)
   return Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, cardId, opts);
 }
 
+static u32 SumMaterialOriginalAtk(const u16 *materialIds, u8 materialCount)
+{
+  u32 atkSum = 0;
+  u8 i;
+
+  if (materialIds == NULL)
+    return 0;
+
+  for (i = 0; i < materialCount; i++) {
+    u16 cardId = materialIds[i];
+
+    if (cardId < NUM_TOTAL_CARDS)
+      atkSum += gCardData_NEW[cardId].atk;
+  }
+
+  return atkSum;
+}
+
+void EvilHeroDarkestKnight_OnFusionSummoned(struct DuelCard *zone, const u16 *materialIds,
+                                            u8 materialCount)
+{
+  u32 atkSum;
+
+  if (zone == NULL || zone->id != EVIL_HERO_DARKEST_KNIGHT)
+    return;
+
+  zone->unk4 = 2;
+
+  atkSum = SumMaterialOriginalAtk(materialIds, materialCount);
+  zone->permStage = (s8)((atkSum + 499) / 500);
+  if (zone->permStage < 1)
+    zone->permStage = 1;
+
+  RefreshFieldMonsterStatOverlays();
+}
+
+void ApplyEvilHeroDarkestKnightOppAtkPenalty(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+  u8 zoneOwner;
+  u8 row;
+  u8 col;
+  u16 computedAtk;
+  u16 drainAtk;
+
+  if (zone == NULL || zone->id == CARD_NONE || !ZoneShowsCombatStats(zone))
+    return;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &fixedCol))
+    return;
+
+  zoneOwner = Duel_FixedDuelistForMonsterRow(fixedRow);
+  if (zoneOwner > DUEL_OPPONENT)
+    return;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *knight = gFixedZones[row][col];
+      u8 knightOwner;
+      s8 stages;
+
+      if (knight == NULL || knight->id != EVIL_HERO_DARKEST_KNIGHT || !knight->isFaceUp)
+        continue;
+
+      knightOwner = Duel_FixedDuelistForMonsterRow(row);
+      if (knightOwner == zoneOwner)
+        continue;
+
+      stages = knight->permStage;
+      if (stages <= 0)
+        continue;
+
+      computedAtk = gCardInfo.atk;
+      drainAtk = (u16)(stages * 500);
+      gCardInfo.atk = (computedAtk > drainAtk) ? (u16)(computedAtk - drainAtk) : 0;
+      return;
+    }
+  }
+}
+
 unsigned char CanActivateEVIL_HERO_DARKEST_KNIGHT(void)
 {
   struct DuelCard *zone;
@@ -87,7 +169,7 @@ unsigned char CanActivateEVIL_HERO_DARKEST_KNIGHT(void)
   if (zone == NULL || zone->id != EVIL_HERO_DARKEST_KNIGHT)
     return FALSE;
 
-  /* Ceiling: opp ATK loss by materials + double attack need fusion/battle hooks.
+  /* Fusion double attack + material ATK drain via EvilHeroDarkestKnight_OnFusionSummoned.
    * Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

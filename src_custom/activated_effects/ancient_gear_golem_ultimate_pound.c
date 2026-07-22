@@ -56,8 +56,7 @@ unsigned char CanActivateANCIENT_GEAR_GOLEM_ULTIMATE_POUND(void)
     return FALSE;
 
   /* Pierce via ApplyAncientGearGolemPiercingBattleEffect (IsGolemAttacker);
-   * multi-attack via TryMarkBuiltInExtraAttackOnPlacement + TryUnlockUnk4MarkedExtraAttack.
-   * Ceiling: OPT discard Machine → unk4 extra-attack / add Poly. */
+   * multi-attack via TryMarkBuiltInExtraAttackOnPlacement + TryUnlockUnk4MarkedExtraAttack. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

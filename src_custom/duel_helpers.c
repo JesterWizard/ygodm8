@@ -95,6 +95,7 @@
 #include "spell_counter_on_resolve.h"
 #include "amazoness_scouts.h"
 #include "amazoness_augusta.h"
+#include "blue_eyes_alternative_ultimate_dragon.h"
 #include "aromalilith_magnolia.h"
 #include "neos_wiseman.h"
 #include "azure_eyes_silver_dragon.h"
@@ -775,6 +776,7 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
       || SilentMagicianLv8_PreventsDestroy(zone)
       || BlueEyesJetDragon_PreventsDestroy(zone)
       || BlueEyesSolidDragon_PreventsDestroy(zone)
+      || BlueEyesAlternativeUltimateDragon_PreventsDestroy(zone)
       || AmazonessAugusta_PreventsDestroy(zone))
     return DUEL_ACTION_BLOCKED;
 
@@ -3295,7 +3297,8 @@ u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone)
   return !Duel_ZoneIsImmuneToSpellEffects(zone)
       && !ForbiddenDress_IsTargetImmune(zone)
       && !AmazonessScouts_IsTargetImmune(zone)
-      && !AmazonessAugusta_IsTargetImmune(zone);
+      && !AmazonessAugusta_IsTargetImmune(zone)
+      && !BlueEyesAlternativeUltimateDragon_IsTargetImmune(zone);
 }
 
 u8 Duel_IsAnyTrapActivationBlocked(void)

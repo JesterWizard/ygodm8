@@ -77,8 +77,7 @@ unsigned char CanActivateNEO_BLUE_EYES_ULTIMATE_DRAGON(void)
     return FALSE;
 
   /* Damage Step / Fusion-Summon / protect-negate FALSE.
-   * Ceiling: OPT send BE Fusion-ish from Deck → unk4 extra-attack mark.
-   * (printed up-to-twice; OPT usage flag is the stand-in). */
+   * OPT send BE Fusion from Deck → unk4 extra-attack via usage below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

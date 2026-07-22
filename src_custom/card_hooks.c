@@ -54,6 +54,7 @@
 #include "effect_events.h"
 #include "spell_effects.h"
 #include "the_tripper_mercury.h"
+#include "evil_hero_darkest_knight.h"
 #include "the_wicked_dreadroot.h"
 #include "the_grand_jupiter.h"
 #include "the_despair_uranus.h"
@@ -622,6 +623,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
     ApplyShatielFairyStatBoost(zone);
     ApplyElementalHeroGaiaStatMod(zone);
     ApplyTheTripperMercuryOpponentAtkDrain(zone);
+    ApplyEvilHeroDarkestKnightOppAtkPenalty(zone);
     ApplyTheGrandJupiterEquipAtkBonus(zone);
     ApplyTheDespairUranusAtkBoost(zone);
     gSetFinalStatZone = NULL;
@@ -681,6 +683,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyColosseumCageStatForZone(zone);
   ApplyDivineSanctuaryFieldStatPenaltyForZone(zone);
   ApplyTheTripperMercuryOpponentAtkDrain(zone);
+  ApplyEvilHeroDarkestKnightOppAtkPenalty(zone);
   ApplyTheGrandJupiterEquipAtkBonus(zone);
   ApplyTheDespairUranusAtkBoost(zone);
   ApplyGladiatorBeastsBattleGladiusAtkCorrection(zone);
@@ -848,6 +851,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyDForcePlasmaAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyDoubleToolCAndDAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyTheTripperMercuryOpponentAtkDrain(gSetFinalStatZone);
+    ApplyEvilHeroDarkestKnightOppAtkPenalty(gSetFinalStatZone);
     ApplyTheGrandJupiterEquipAtkBonus(gSetFinalStatZone);
     ApplyTheDespairUranusAtkBoost(gSetFinalStatZone);
     ApplyGladiatorBeastsBattleGladiusAtkCorrection(gSetFinalStatZone);

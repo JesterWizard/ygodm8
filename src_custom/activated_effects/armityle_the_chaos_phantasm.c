@@ -10,7 +10,7 @@ unsigned char CanActivateARMITYLE_THE_CHAOS_PHANTASM(void)
     return FALSE;
 
   /* Pierce + multi-attack via ApplySimplePiercersBattleEffect and
-   * TryMarkBuiltInExtraAttackOnPlacement. Ceiling: not ignition here. */
+   * TryMarkBuiltInExtraAttackOnPlacement. */
   return FALSE;
 }
 

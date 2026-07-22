@@ -235,8 +235,10 @@ static void ExecuteMiracleContact(const struct FusionRecipe *recipe,
                                   u8 showEffectText)
 {
   struct FusionMaterialSource selected[FUSION_MAX_MATERIALS];
+  u16 materialIds[FUSION_MAX_MATERIALS];
   u8 selectedCount;
   s8 emptyZone;
+  u8 i;
 
   if (recipe == NULL)
     return;
@@ -266,7 +268,9 @@ static void ExecuteMiracleContact(const struct FusionRecipe *recipe,
   PayMiracleContactMaterials(selected, selectedCount);
   ClearZoneAndSendMonToGraveyard(
       gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-  FusionDuel_SpecialSummonResult(recipe->result, selectedCount);
+  for (i = 0; i < selectedCount && i < FUSION_MAX_MATERIALS; i++)
+    materialIds[i] = selected[i].cardId;
+  FusionDuel_SpecialSummonResultWithMaterials(recipe->result, selectedCount, materialIds);
   ElementalHeroAbsoluteZero_EndSuppressLeave();
   UpdateDuelGfxExceptField();
 }

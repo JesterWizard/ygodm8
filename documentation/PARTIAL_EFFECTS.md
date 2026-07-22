@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 18:18 UTC  
-**Remaining partials:** `368`
+**Last updated:** 2026-07-22 18:22 UTC  
+**Remaining partials:** `361`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 11 |
-| `activated` | 328 |
+| `activated` | 321 |
 | `permanent` | 23 |
-| **total** | **368** |
+| **total** | **361** |
 
 ## spell (6)
 
@@ -101,7 +101,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (328)
+## activated (321)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -150,10 +150,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ANCIENT_GEAR_GADJILTRON_DRAGON`
 - path: `src_custom/activated_effects/ancient_gear_gadjiltron_dragon.c`
 - L108: * Ceiling: OPT destroy 1 DEF opp OR OPT burn 700. */
-
-### `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND`
-- path: `src_custom/activated_effects/ancient_gear_golem_ultimate_pound.c`
-- L60: * Ceiling: OPT discard Machine → unk4 extra-attack / add Poly. */
 
 ### `ANCIENT_GEAR_KNIGHT`
 - path: `src_custom/activated_effects/ancient_gear_knight.c`
@@ -213,10 +209,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ARMED_NEOS`
 - path: `src_custom/activated_effects/armed_neos.c`
 - L116: battle-destroy gain Extra tribute SS need battle/Extra hooks. Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY.
-
-### `ARMITYLE_THE_CHAOS_PHANTASM`
-- path: `src_custom/activated_effects/armityle_the_chaos_phantasm.c`
-- L13: * TryMarkBuiltInExtraAttackOnPlacement. Ceiling: not ignition here. */
 
 ### `ARMORY_ARM`
 - path: `src_custom/activated_effects/armory_arm.c`
@@ -302,10 +294,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/black_rose_dragon.c`
 - L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
 
-### `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON`
-- path: `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c`
-- L99: protect + up-to-3-if-Alt-material need fusion/material hooks. Ceiling: OPT destroy 1 opp card; cannot-attack via CannotAttackThisTurn.
-
 ### `BLUE_EYES_JET_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_jet_dragon.c`
 - L198: * Ceiling: field OPT bounce 1; FromHand if BEWD field/GY → SS.
@@ -338,10 +326,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/celestial_knightlord_parshath.c`
 - L104: Link material + GY banish Fairy → SS Fairy need send/banish hooks. OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field.
 
-### `CHAOS_ANCIENT_GEAR_GIANT`
-- path: `src_custom/activated_effects/chaos_ancient_gear_giant.c`
-- L14: * Ceiling: not ignition-activatable here. */
-
 ### `CHIMERATECH_FORTRESS_DRAGON`
 - path: `src_custom/activated_effects/chimeratech_fortress_dragon.c`
 - L13: * Ceiling: not field-ignition activatable here. */
@@ -349,10 +333,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CHIMERATECH_MEGAFLEET_DRAGON`
 - path: `src_custom/activated_effects/chimeratech_megafleet_dragon.c`
 - L13: * Ceiling: not field-ignition activatable here. */
-
-### `CHIMERATECH_RAMPAGE_DRAGON`
-- path: `src_custom/activated_effects/chimeratech_rampage_dragon.c`
-- L86: on-Fusion destroy + multi-attack need fusion/battle hooks. OPT destroy up to 2 S/T on field below.
 
 ### `CLEAR_VICE_DRAGON`
 - path: `src_custom/activated_effects/clear_vice_dragon.c`
@@ -538,7 +518,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DESTINY_HERO_DUSKTOPIA`
 - path: `src_custom/activated_effects/destiny_hero_dusktopia.c`
 - L47: * TryClearDestinyHeroDusktopiaProtectionEndPhase. Ceiling: Fusion on Summon
-- L48: * need fusion hook. Ceiling: OPT mark target cannot destroy until EP. */
 
 ### `DESTINY_HERO_DYNATAG`
 - path: `src_custom/activated_effects/destiny_hero_dynatag.c`
@@ -638,16 +617,12 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_DARKEST_KNIGHT`
 - path: `src_custom/activated_effects/evil_hero_darkest_knight.c`
-- L90: opp ATK loss by materials + double attack need fusion/battle hooks. Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in).
+- L173: * Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in). */
 
 ### `EVIL_HERO_DEAD_END_PRISON`
 - path: `src_custom/activated_effects/evil_hero_dead_end_prison.c`
 - L109: Dark Fusion Fusion gate + Fusion-substitute name marker FALSE. Ceiling: OPT mill 1 HERO from Deck.
 - L151: Dark Fusion Fusion markers missing; any Fusion Monster stand-in.
-
-### `EVIL_HERO_INFERNAL_GAINER`
-- path: `src_custom/activated_effects/evil_hero_infernal_gainer.c`
-- L58: * via TryUnlockUnk4MarkedExtraAttack. Ceiling: banish self → target Fiend unk4=2. */
 
 ### `EVIL_HERO_INFERNAL_RIDER`
 - path: `src_custom/activated_effects/evil_hero_infernal_rider.c`
@@ -1118,10 +1093,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `NEHSHADDOLL_GENIUS`
 - path: `src_custom/activated_effects/nehshaddoll_genius.c`
 - L111: * Ceiling: OPT negate 1 face-up Effect Monster (unk4). */
-
-### `NEO_BLUE_EYES_ULTIMATE_DRAGON`
-- path: `src_custom/activated_effects/neo_blue_eyes_ultimate_dragon.c`
-- L80: * Ceiling: OPT send BE Fusion-ish from Deck → unk4 extra-attack mark.
 
 ### `NEO_SPACE_CONNECTOR`
 - path: `src_custom/activated_effects/neo_space_connector.c`

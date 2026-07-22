@@ -1,7 +1,9 @@
 #include "global.h"
 #include "common-chax.h"
+#include "chimeratech_rampage_dragon.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "fusion_recipes.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -46,14 +48,17 @@ static u8 GraveyardDuelistForBackrow(u8 fixedRow)
   return ACTIVE_DUELIST;
 }
 
-static void DestroyUpToTwoSpellTraps(void)
+static void DestroyUpToSpellTraps(u8 maxCount)
 {
   u8 destroyed = 0;
   u8 row;
   u8 col;
 
-  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW && destroyed < 2; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW && destroyed < 2; col++) {
+  if (maxCount == 0)
+    return;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW && destroyed < maxCount; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW && destroyed < maxCount; col++) {
       struct DuelCard *zone;
 
       if (!IsSpellTrapZone(row, col))
@@ -83,7 +88,7 @@ unsigned char CanActivateCHIMERATECH_RAMPAGE_DRAGON(void)
   if (zone == NULL || zone->id != CHIMERATECH_RAMPAGE_DRAGON)
     return FALSE;
 
-  /* Ceiling: on-Fusion destroy + multi-attack need fusion/battle hooks.
+  /* On-Fusion destroy via ChimeratechRampageDragon_OnFusionSummoned.
    * OPT destroy up to 2 S/T on field below. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -100,11 +105,32 @@ void ActivateCHIMERATECH_RAMPAGE_DRAGONEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  DestroyUpToTwoSpellTraps();
+  DestroyUpToSpellTraps(2);
   if (IsDuelOver() == TRUE)
     return;
 
   MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+void ChimeratechRampageDragon_OnFusionSummoned(struct DuelCard *zone, u8 materialCount)
+{
+  if (zone == NULL || zone->id != CHIMERATECH_RAMPAGE_DRAGON)
+    return;
+
+  if (materialCount < 2)
+    materialCount = 2;
+  if (materialCount > FUSION_MAX_MATERIALS)
+    materialCount = FUSION_MAX_MATERIALS;
+
+  Duel_ShowEffectTextTyped(CHIMERATECH_RAMPAGE_DRAGON, 2);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  DestroyUpToSpellTraps(materialCount);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)

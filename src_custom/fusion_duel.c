@@ -22,6 +22,9 @@
 #include "chimeratech_fusion_stats.h"
 #include "evil_hero_dark_gaia.h"
 #include "amazoness_augusta.h"
+#include "blue_eyes_alternative_ultimate_dragon.h"
+#include "chimeratech_rampage_dragon.h"
+#include "evil_hero_darkest_knight.h"
 #include "fusion_recipes.h"
 
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
@@ -885,6 +888,9 @@ void FusionDuel_SpecialSummonResultWithMaterials(u16 resultId, u8 materialCount,
           && resultId != CHIMERATECH_OVERDRAGON
           && resultId != CHIMERATECH_FORTRESS_DRAGON
           && resultId != CHIMERATECH_MEGAFLEET_DRAGON
+          && resultId != CHIMERATECH_RAMPAGE_DRAGON
+          && resultId != EVIL_HERO_DARKEST_KNIGHT
+          && resultId != BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON
           && resultId != AMAZONESS_AUGUSTA)
         FlipCardFaceDown(zone);
       if (resultId == CHIMERATECH_FORTRESS_DRAGON
@@ -916,6 +922,15 @@ void FusionDuel_SpecialSummonResultWithMaterials(u16 resultId, u8 materialCount,
 
   if (resultId == AMAZONESS_AUGUSTA && summoned != NULL)
     AmazonessAugusta_OnFusionSummoned(summoned, materialIds, materialCount);
+
+  if (resultId == CHIMERATECH_RAMPAGE_DRAGON && summoned != NULL)
+    ChimeratechRampageDragon_OnFusionSummoned(summoned, materialCount);
+
+  if (resultId == EVIL_HERO_DARKEST_KNIGHT && summoned != NULL)
+    EvilHeroDarkestKnight_OnFusionSummoned(summoned, materialIds, materialCount);
+
+  if (resultId == BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON && summoned != NULL)
+    BlueEyesAlternativeUltimateDragon_OnFusionSummoned(summoned, materialIds, materialCount);
 }
 
 void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount)

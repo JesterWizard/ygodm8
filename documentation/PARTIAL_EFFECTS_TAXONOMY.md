@@ -7,16 +7,16 @@ Each `ponytail:` / `Ceiling:` note is tagged with its **primary missing engine s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 18:18 UTC  
-**Ceiling lines tagged:** `409`  
-**Partial files:** `368`
+**Last updated:** 2026-07-22 18:22 UTC  
+**Ceiling lines tagged:** `401`  
+**Partial files:** `361`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
-| `event.OnStandby` | 179 | 3 (OPT / turn flags) |
-| `other` | 91 | triage |
+| `event.OnStandby` | 175 | 3 (OPT / turn flags) |
+| `other` | 90 | triage |
 | `event.OnSummon` | 31 | 3 |
 | `extra.XyzLinkSynchro` | 18 | later / Extra Deck |
 | `chain.Negate` | 17 | later / chain |
@@ -27,11 +27,10 @@ python3 tools/stub_effect_queue.py --write-list
 | `op.BanishTimed` | 9 | 1–3 |
 | `op.Search` | 7 | 1 |
 | `ui.Choice` | 5 | 2 |
-| `event.OnFusionSummon` | 4 | 3 (fusion callback) |
+| `event.OnFusionSummon` | 3 | 3 (fusion callback) |
 | `event.OnLpGain` | 3 | later / LP event |
-| `battle.ExtraAttack` | 2 | 1–3 (unk4 mark) |
 | `stat.Continuous` | 1 | 1–3 |
-| **total** | **409** | |
+| **total** | **401** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -55,7 +54,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` (activated): L33: name=DM + destroy-revive/Set need name/destroy hooks. Ceiling: not field-ignition; FromHand if Shining Sarcophagus.
 - `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC` (activated): L33: name=DM + destroy-revive/Set need name/destroy hooks. Ceiling: not field-ignition; FromHand if Shining Sarcophagus.
 - `ELDER_ENTITY_NORDEN` (activated): L73: banish-when-leaves needs leave-field hook; unk4 marks negated.
-- `EVIL_HERO_DARKEST_KNIGHT` (activated): L90: opp ATK loss by materials + double attack need fusion/battle hooks. Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in).
+- `EVIL_HERO_DARKEST_KNIGHT` (activated): L173: * Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in). */
 - `EVIL_HERO_VICIOUS_CLAWS` (activated): L46: GY destroy-revive + Dark Fusion destroy branch need GY/destroy hooks. Ceiling: FromHand target HERO → SS DEF +300 ATK stand-in.
 - `GLADIATOR_BEAST_DARIUS` (activated): L177: /* GB-tag SS revive + leave-field shuffle need summon/leave hooks. Ceiling: OPT
 
@@ -93,14 +92,13 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `EVIL_HERO_INFERNO_WING_BACKFIRE` (permanent): L128: true trigger is Special Summon; on-summon stand-in covers SS path.
 - `HERO_KID` (permanent): L76: /* On-summon stand-in covers SS path. Ceiling: true trigger is Special Summon. */
 
-## `event.OnFusionSummon` (4)
+## `event.OnFusionSummon` (3)
 
-- `DESTINY_HERO_DUSKTOPIA` (activated): L48: * need fusion hook. Ceiling: OPT mark target cannot destroy until EP. */
 - `ELEMENTAL_HERO_DARK_NEOS` (activated): L92: /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: contact Fusion need fusion hook. */
 - `GLADIATOR_BEAST_GYZARUS` (activated): L175: * Ceiling: Contact Fusion SS destroy trigger + Extra Deck return. */
 - `GLADIATOR_BEAST_ESSEDARII` (permanent): L8: Contact Fusion has no permanent ignition path.
 
-## `event.OnStandby` (179)
+## `event.OnStandby` (175)
 
 - `DARK_SUPREMACY` (trap): L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
 - `AMAZONESS_PET_LIGER_KING` (activated): L191: OPT destroy Amazoness → SS Warrior GY. Residual: attack redirect FALSE.
@@ -112,7 +110,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ANCIENT_GEAR_DRAGON` (activated): L121: OPT send Machine hand/field or AG Golem from Deck to GY.
 - `ANCIENT_GEAR_FRAME` (activated): L123: * Ceiling: OPT discard 1 → add AG Golem or S/T mentioning Golem from Deck. */
 - `ANCIENT_GEAR_GADJILTRON_DRAGON` (activated): L108: * Ceiling: OPT destroy 1 DEF opp OR OPT burn 700. */
-- `ANCIENT_GEAR_GOLEM_ULTIMATE_POUND` (activated): L60: * Ceiling: OPT discard Machine → unk4 extra-attack / add Poly. */
 - `ANCIENT_GEAR_MEGATON_GOLEM` (activated): L124: * Ceiling: OPT SS AG Golem from hand/GY. */
 - `ANCIENT_GEAR_STATUE` (activated): L111: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck.
 - `ANCIENT_GEAR_TANKER` (activated): L237: * Ceiling: OPT SS AG from hand (GY if opp has monster), else OPT destroy your face-up.
@@ -131,7 +128,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `AROMASERAPHY_SWEET_MARJORAM` (activated): L100: * Ceiling: OPT search Aroma Plant. */
 - `ATLANTEAN_DRAGOONS` (activated): L138: * Ceiling: OPT add 1 Sea Serpent except self from Deck. */
 - `ATLANTEAN_HEAVY_INFANTRY` (activated): L111: extra Normal Summon Sea Serpent + sent-for-WATER destroy need summon/send hooks. Ceiling: OPT destroy 1 Set Spell/Trap.
-- `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` (activated): L99: protect + up-to-3-if-Alt-material need fusion/material hooks. Ceiling: OPT destroy 1 opp card; cannot-attack via CannotAttackThisTurn.
 - `BLUE_EYES_JET_DRAGON` (activated): L198: * Ceiling: field OPT bounce 1; FromHand if BEWD field/GY → SS.
 - `BLUE_EYES_SPIRIT_DRAGON` (activated): L66: * Ceiling: OPT tribute self → SS LIGHT Dragon from Deck in DEF. */
 - `BLUE_EYES_TYRANT_DRAGON` (activated): L95: * Set need battle/permanent hooks. Ceiling: OPT Set 1 Trap from GY to backrow. */
@@ -139,7 +135,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `CASTEL_THE_SKY_BLASTER_MUSKETEER` (activated): L138: detach/material + face-down branch need overlay engine. Ceiling: OPT return 1 face-up monster to the Deck.
 - `CELESTIA_LIGHTSWORN_ANGEL` (activated): L140: * Ceiling: field OPT repeat (usage-gated). Auto-destroy up to 2 (no PickZone). */
 - `CELESTIAL_KNIGHTLORD_PARSHATH` (activated): L104: Link material + GY banish Fairy → SS Fairy need send/banish hooks. OPT discard 1 → add Sanctuary/mention, or Fairy if Sanctuary on field.
-- `CHIMERATECH_RAMPAGE_DRAGON` (activated): L86: on-Fusion destroy + multi-attack need fusion/battle hooks. OPT destroy up to 2 S/T on field below.
 - `CORAL_DRAGON` (activated): L114: GY draw when Synchro Summoned card sent from field needs GY hook. Ceiling: OPT discard 1 → destroy 1 opp card.
 - `CRIMSON_DRAGON` (activated): L138: on-SS search + Extra Synchro return FALSE. Ceiling: OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon.
 - `CYBER_DRAGON_INFINITY` (activated): L35: ATK summons keep isFaceUp=0 until EOT flip.
@@ -241,7 +236,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `NAELSHADDOLL_ARIEL` (activated): L73: * Ceiling: OPT banish up to 3 cards from either GY. */
 - `NECROFACE` (activated): L87: * hooks. Ceiling: OPT shuffle all banished into Decks + tempStage per card. */
 - `NEHSHADDOLL_GENIUS` (activated): L111: * Ceiling: OPT negate 1 face-up Effect Monster (unk4). */
-- `NEO_BLUE_EYES_ULTIMATE_DRAGON` (activated): L80: * Ceiling: OPT send BE Fusion-ish from Deck → unk4 extra-attack mark.
 - `NEO_SPACE_CONNECTOR` (activated): L62: * summon/tribute hooks. Ceiling: OPT SS Neo-Spacian or Neos from Deck DEF. */
 - `NITRO_WARRIOR` (activated): L97: * Ceiling: OPT change 1 face-up DEF opp monster to ATK (battle-after stand-in). */
 - `ORICHALCOS_SHUNOROS` (activated): L125: * Ceiling: OPT +2 tempStage per opp monster (~1000 ATK each). */
@@ -299,11 +293,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `AMAZONESS_HALL` (trap): L43: * Ceiling: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
 - `AROMAGE_BERGAMOT` (activated): L22: * Ceiling: LP-gain gate + until opp EP clear need permanent/LP hooks.
 - `AROMAGE_CANANGA` (activated): L175: * Ceiling: LP-gain bounce trigger needs LP hook.
-
-## `battle.ExtraAttack` (2)
-
-- `ARMITYLE_THE_CHAOS_PHANTASM` (activated): L13: * TryMarkBuiltInExtraAttackOnPlacement. Ceiling: not ignition here. */
-- `EVIL_HERO_INFERNAL_GAINER` (activated): L58: * via TryUnlockUnk4MarkedExtraAttack. Ceiling: banish self → target Fiend unk4=2. */
 
 ## `extra.XyzLinkSynchro` (18)
 
@@ -398,7 +387,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `THE_AGENT_OF_MIRACLES_JUPITER` (activated): L133: * FALSE. Ceiling: banish Agent from GY → +2 tempStage on LIGHT Fairy. */
 - `DESTINY_HERO_DOOM_OVERLORD` (permanent): L327: banish-until-Standby = permanent banish; DARK HERO SS lock not wired.
 
-## `other` (91)
+## `other` (90)
 
 - `FUSION_DESTINY` (spell): L34: * Ceiling: incomplete vs printed Destiny Fusion pool (Dystopia, Dangerous,
 - `FUSION_DESTINY` (spell): L36: * Ceiling: Destiny End Dragoon only; upgrade: add remaining Destiny HERO Fusion
@@ -413,7 +402,6 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ARCANA_FORCE_V_THE_HIEROPHANT` (activated): L153: discard only; opp cannot respond to Arcana Summons needs turn flag hook.
 - `ARCANA_FORCE_XIX_THE_SUN` (activated): L121: requires coin-toss card on field — skipped; SS anytime when legal.
 - `ATLANTEAN_MARKSMAN` (activated): L149: * Ceiling: sent-for-WATER destroy Set S/T needs send hook. */
-- `CHAOS_ANCIENT_GEAR_GIANT` (activated): L14: * Ceiling: not ignition-activatable here. */
 - `CHIMERATECH_FORTRESS_DRAGON` (activated): L13: * Ceiling: not field-ignition activatable here. */
 - `CHIMERATECH_MEGAFLEET_DRAGON` (activated): L13: * Ceiling: not field-ignition activatable here. */
 - `CLEAR_VICE_DRAGON` (activated): L72: * Ceiling: Clear World immunity + discard-to-save need continuous/destruction hooks.

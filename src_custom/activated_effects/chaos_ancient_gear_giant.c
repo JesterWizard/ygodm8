@@ -10,8 +10,7 @@ unsigned char CanActivateCHAOS_ANCIENT_GEAR_GIANT(void)
     return FALSE;
 
   /* Attack S/T lock via AncientGear_AttackerBlocksOppSpellTrap; pierce via
-   * ApplySimplePiercersBattleEffect; multi-attack via TryMarkBuiltInExtraAttackOnPlacement.
-   * Ceiling: not ignition-activatable here. */
+   * ApplySimplePiercersBattleEffect; multi-attack via TryMarkBuiltInExtraAttackOnPlacement. */
   return FALSE;
 }
 

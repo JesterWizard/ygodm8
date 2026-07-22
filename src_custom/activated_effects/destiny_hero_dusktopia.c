@@ -45,7 +45,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
 
   /* Battle protect + no battle damage via DestinyHeroDusktopia_*; EP clear via
    * TryClearDestinyHeroDusktopiaProtectionEndPhase. Ceiling: Fusion on Summon
-   * need fusion hook. Ceiling: OPT mark target cannot destroy until EP. */
+   * need fusion hook (Extra Deck fusion from hand/field). */
   zone->unk4 |= DESTINY_HERO_DUSKTOPIA_PROTECT_MARK;
 
   MarkMonsterEffectUsed(self);

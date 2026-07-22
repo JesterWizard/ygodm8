@@ -55,7 +55,7 @@ static void ResolveFiendTarget(u8 fixedRow, u8 fixedCol)
     return;
 
   /* second Standby Phase GY return needs turn/Standby hook; unk4=2 extra attack
-   * via TryUnlockUnk4MarkedExtraAttack. Ceiling: banish self → target Fiend unk4=2. */
+   * via TryUnlockUnk4MarkedExtraAttack. */
   target->unk4 = 2;
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
