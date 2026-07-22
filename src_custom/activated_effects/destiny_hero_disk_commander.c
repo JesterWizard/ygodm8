@@ -17,7 +17,7 @@ unsigned char CanActivateDESTINY_HERO_DISK_COMMANDER(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DISK_COMMANDER)
     return FALSE;
 
-  /* ponytail: SS-from-GY trigger + once per duel. Ceiling: OPT draw 2 stand-in
+  /* Ceiling: SS-from-GY trigger + once per duel. Ceiling: OPT draw 2 stand-in
    * when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE. */
   return CanUseMonsterEffect(zone);
 }

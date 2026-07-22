@@ -40,7 +40,7 @@ unsigned char CanActivateDESTINY_HERO_MALICIOUS(void)
   if (gMonEffect.id != DESTINY_HERO_MALICIOUS)
     return FALSE;
 
-  /* ponytail: GY ignition needs GY-menu wire. Ceiling: allow when Malicious in
+  /* Ceiling: GY ignition needs GY-menu wire. Ceiling: allow when Malicious in
    * GY + another in Deck (callable if gMonEffect set to Malicious). */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;

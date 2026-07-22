@@ -73,6 +73,7 @@
 #include "elemental_hero_core.h"
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_blazeman.h"
+#include "deep_sea_diva.h"
 #include "elemental_hero_stratos.h"
 #include "the_suppression_pluto.h"
 #include "elemental_hero_flame_wingman.h"
@@ -451,6 +452,8 @@ static void TryPlaceSelectedCardOnField_Local(void)
         LockMonsterCardsInRow(4);
         RecordPendingSummonTributeCount();
         sub_80449D8();
+        TryDeepSeaDivaOnNormalSummon(
+            gFixedZones[gDuelCursor.destY][gDuelCursor.destX], DUEL_SUMMON_NORMAL_FACE_UP_ATK);
         TryActivatingPermanentEffects();
         ElementalHeroNecroshade_TryConsumeOnNormalSummon(placedCardId);
         AncientGearCastle_TryConsumeOnNormalSummon(placedCardId);

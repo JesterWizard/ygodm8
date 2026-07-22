@@ -73,7 +73,7 @@ unsigned char ShouldActivateHERO_KID(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* ponytail: true trigger is Special Summon; on-summon stand-in covers SS path. */
+  /* On-summon stand-in covers SS path. Ceiling: true trigger is Special Summon. */
   return CanSpecialSummonHeroKidFromDeck(duelist);
 }
 

@@ -70,7 +70,7 @@ static void MarkSummonedMonsterNegated(u16 cardId)
     struct DuelCard *zone = gTurnZones[row][col];
 
     if (zone != NULL && zone->id == cardId) {
-      /* ponytail: banish-when-leaves needs leave-field hook; unk4 marks negated. */
+      /* Ceiling: banish-when-leaves needs leave-field hook; unk4 marks negated. */
       zone->unk4 |= 0x80;
       return;
     }
@@ -121,7 +121,7 @@ unsigned char CanActivateELDER_ENTITY_NORDEN(void)
   if (zone == NULL || zone->id != ELDER_ENTITY_NORDEN)
     return FALSE;
 
-  /* ponytail: SS-trigger timing + banish-when-leaves need summon/leave hooks.
+  /* Ceiling: SS-trigger timing + banish-when-leaves need summon/leave hooks.
    * Ceiling: OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark. */
   if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;

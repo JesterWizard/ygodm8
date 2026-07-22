@@ -98,7 +98,7 @@ unsigned char CanActivateDESTINY_HERO_CELESTIAL(void)
   if (zone == NULL || zone->id != DESTINY_HERO_CELESTIAL)
     return FALSE;
 
-  /* ponytail: attack-declare destroy + GY draw-if-no-hand need battle/GY hooks.
+  /* Ceiling: attack-declare destroy + GY draw-if-no-hand need battle/GY hooks.
    * Ceiling: OPT destroy 1 face-up opp Spell + burn 500. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

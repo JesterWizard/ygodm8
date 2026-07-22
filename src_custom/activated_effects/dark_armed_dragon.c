@@ -171,7 +171,7 @@ static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
   if (zone == NULL || zone->id == CARD_NONE || IsGodCard(zone->id))
     return FALSE;
 
-  /* ponytail: allow self-target for faithful TCG simulation;
+  /* Ceiling: allow self-target for faithful TCG simulation;
      player can choose suboptimally */
   return TRUE;
 }
@@ -314,7 +314,7 @@ void ActivateDARK_ARMED_DRAGONEffect(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  /* ponytail: auto-target. No GY picker (DeckMenu screen switch corrupts VRAM
+  /* Ceiling: auto-target. No GY picker (DeckMenu screen switch corrupts VRAM
      from inside monster effect handler) and no PickZone cursor state (200
      conflicts with game loop after MonsterActionMenu case 4 returns).
      Picks the best field target via AiPickTarget logic.

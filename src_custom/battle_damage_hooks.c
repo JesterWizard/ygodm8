@@ -101,6 +101,7 @@
 #include "destiny_hero_dreamer.h"
 #include "destiny_hero_dynatag.h"
 #include "destiny_hero_dreadmaster.h"
+#include "evil_hero_dark_gaia.h"
 #include "azure_eyes_silver_dragon.h"
 #include "knight_of_pentacles.h"
 #include "blue_eyes_protect.h"
@@ -459,6 +460,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyElementalHeroBraveNeosBattleEffect();
   ApplyEvilHeroWildCycloneBattleEffect();
   ApplyDestinyHeroDreadServantBattleEffect();
+  ApplyEvilHeroDarkGaiaBattleEffect();
   ApplyCrimsonBladerBattleEffect();
   ApplyHeliosDuoMegistusBattleDestroyPending();
   ApplyHeliosTriceMegistusBattleDestroyPending();

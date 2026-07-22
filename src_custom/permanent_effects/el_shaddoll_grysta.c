@@ -123,7 +123,7 @@ static u8 IsGrystaGraveyardTrigger(void)
 
 unsigned char ShouldActivateEL_SHADDOLL_GRYSTA(void)
 {
-  /* ponytail: negate opp Special Summon + send Shaddoll from hand need SS chain hook. */
+  /* Ceiling: negate opp Special Summon + send Shaddoll from hand need SS chain hook. */
   return IsGrystaGraveyardTrigger();
 }
 

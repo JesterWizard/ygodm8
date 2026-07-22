@@ -124,7 +124,7 @@ unsigned char CanActivateDARK_STRIKE_FIGHTER(void)
   if (zone == NULL || zone->id != DARK_STRIKE_FIGHTER)
     return FALSE;
 
-  /* ponytail: Main Phase 1 gate not wired; allow once via usage any main phase. */
+  /* Ceiling: Main Phase 1 gate not wired; allow once via usage any main phase. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -86,7 +86,7 @@ unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_SERVANT(void)
   if (gMonEffect.id != DESTINY_HERO_DREADNOUGHT_SERVANT)
     return FALSE;
 
-  /* ponytail: GY banish destroy on Lv8 D-HERO SS FALSE.
+  /* Ceiling: GY banish destroy on Lv8 D-HERO SS FALSE.
    * Ceiling: FromHand if control D-HERO or Field Spell → SS, destroy 1, add Poly. */
   return FALSE;
 }

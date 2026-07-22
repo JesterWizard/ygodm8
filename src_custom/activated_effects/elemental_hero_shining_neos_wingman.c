@@ -147,7 +147,7 @@ unsigned char CanActivateELEMENTAL_HERO_SHINING_NEOS_WINGMAN(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_SHINING_NEOS_WINGMAN)
     return FALSE;
 
-  /* ponytail: GY ATK gain + effect destroy immunity + battle burn need permanent/
+  /* Ceiling: GY ATK gain + effect destroy immunity + battle burn need permanent/
    * battle hooks. Ceiling: OPT destroy opp cards up to different Attributes. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -174,7 +174,7 @@ void ActivateELEMENTAL_HERO_SHINING_NEOS_WINGMANEffect(void)
   if (max == 0)
     return;
 
-  /* ponytail: multi-target picker not wired; auto-destroy highest-value opp cards. */
+  /* Ceiling: multi-target picker not wired; auto-destroy highest-value opp cards. */
   if (DestroyUpToNOppCards(max) == 0)
     return;
 

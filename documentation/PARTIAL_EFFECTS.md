@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 17:42 UTC  
-**Remaining partials:** `326`
+**Last updated:** 2026-07-22 17:46 UTC  
+**Remaining partials:** `269`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 260 |
-| `permanent` | 50 |
-| **total** | **326** |
+| `activated` | 214 |
+| `permanent` | 39 |
+| **total** | **269** |
 
 ## spell (6)
 
@@ -95,190 +95,16 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (260)
-
-### `DARK_ARMED_DRAGON`
-- path: `src_custom/activated_effects/dark_armed_dragon.c`
-- L174: allow self-target for faithful TCG simulation; player can choose suboptimally
-- L317: auto-target. No GY picker (DeckMenu screen switch corrupts VRAM from inside monster effect handler) and no PickZone cursor state (200 conflicts with game loop after MonsterActionMenu case 4 returns). Picks the best field target via AiPickTarget logic. Upgrade path: dedicated cursor state + A/B handlers like Cannon Soldier.
-
-### `DARK_DUST_SPIRIT`
-- path: `src_custom/activated_effects/dark_dust_spirit.c`
-- L22: hand normal/tribute summon copies isFaceUp=0; attack-position still counts
-- L63: GBA "face-up" = isFaceUp bit; attack-position keeps isFaceUp=0 until flip
-
-### `DARK_HORUS`
-- path: `src_custom/activated_effects/dark_horus.c`
-- L99: after opp Main Phase Spell resolve trigger needs spell hook. Ceiling: OPT SS 1 Lv4 DARK from GY while face-up.
-
-### `DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE`
-- path: `src_custom/activated_effects/dark_magician_girl_the_magician_s_apprentice.c`
-- L61: name=DMG + GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
-- L129: name becomes Dark Magician Girl FALSE (no name-override hook).
-
-### `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE`
-- path: `src_custom/activated_effects/dark_magician_girl_the_magicians_apprentice.c`
-- L61: name=DMG + GY +300 mention FALSE. Ceiling: field OPT add Shining Sarcophagus from Deck.
-- L129: name becomes Dark Magician Girl FALSE (no name-override hook).
-
-### `DARK_MAGICIAN_THE_DRAGON_KNIGHT`
-- path: `src_custom/activated_effects/dark_magician_the_dragon_knight.c`
-- L12: name becomes Dark Magician + S/T protection need permanent/name hooks. Ceiling: not ignition-activatable here; upgrade: permanent overlay.
-
-### `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS`
-- path: `src_custom/activated_effects/dark_magician_the_magician_of_black_chaos.c`
-- L33: name=DM + destroy-revive/Set need name/destroy hooks. Ceiling: not field-ignition; FromHand if Shining Sarcophagus.
-
-### `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC`
-- path: `src_custom/activated_effects/dark_magician_the_magician_of_black_magic.c`
-- L33: name=DM + destroy-revive/Set need name/destroy hooks. Ceiling: not field-ignition; FromHand if Shining Sarcophagus.
-
-### `DARK_STRIKE_FIGHTER`
-- path: `src_custom/activated_effects/dark_strike_fighter.c`
-- L127: Main Phase 1 gate not wired; allow once via usage any main phase.
-
-### `DARKLORD_DESIRE`
-- path: `src_custom/activated_effects/darklord_desire.c`
-- L56: -2 tempStage (~1000 ATK, not exact); until EP clear needs EOT hook.
-- L116: Fairy-only Tribute Summon + cannot SS need summon hooks. Ceiling: OPT -1000 ATK (tempStage) → send 1 opp monster to GY.
-
-### `DARKNESS_NEOSPHERE`
-- path: `src_custom/activated_effects/darkness_neosphere.c`
-- L87: battle indestruct + trap bounce + attack-declare gate need battle/ phase hooks. Ceiling: not field-ignition activatable; SS uses FromHand path.
-- L113: opp attack declare gate not wired; require 1 field + 1 hand Fiend.
-
-### `DEEP_SEA_DIVA`
-- path: `src_custom/activated_effects/deep_sea_diva.c`
-- L58: Normal Summon trigger needs summon hook. Ceiling: once via usage while face-up if Lv≤3 Sea Serpent in Deck.
+## activated (214)
 
 ### `DESTINY_END_DRAGOON`
 - path: `src_custom/activated_effects/destiny_end_dragoon.c`
 - L65: cannot conduct Battle Phase — unk4 lock stand-in. GY revive FALSE.
 - L105: GY revive FALSE. Ceiling: OPT destroy 1 opp monster + burn its ATK + cannot BP (unk4).
 
-### `DESTINY_HERO_CAPTAIN_TENACIOUS`
-- path: `src_custom/activated_effects/destiny_hero_captain_tenacious.c`
-- L92: Standby Phase + battle-destroyed-since-last-Standby filter need phase/destroy hooks. Ceiling: OPT SS 1 D-HERO from your GY.
-
-### `DESTINY_HERO_CELESTIAL`
-- path: `src_custom/activated_effects/destiny_hero_celestial.c`
-- L101: attack-declare destroy + GY draw-if-no-hand need battle/GY hooks. Ceiling: OPT destroy 1 face-up opp Spell + burn 500.
-
-### `DESTINY_HERO_DARK_ANGEL`
-- path: `src_custom/activated_effects/destiny_hero_dark_angel.c`
-- L81: field spell-negate FALSE. Ceiling: FromHand discard → SS D-HERO to opp DEF.
-
-### `DESTINY_HERO_DASHER`
-- path: `src_custom/activated_effects/destiny_hero_dasher.c`
-- L49: battle DEF change + draw-phase GY SS need battle/draw hooks. Ceiling: OPT tribute 1 other → +2 tempStage (~1000 ATK until End Phase).
-
-### `DESTINY_HERO_DENIER`
-- path: `src_custom/activated_effects/destiny_hero_denier.c`
-- L189: GY SS when other D-HERO present needs GY/once-per-duel hooks. Ceiling: OPT put 1 D-HERO from Deck/GY/banished on top of Deck.
-
-### `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER`
-- path: `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c`
-- L154: second target picker not chained; auto-destroy best remaining card.
-- L227: Quick destroy + GY revive + continuous ATK loss need quick/GY/ permanent hooks. Ceiling: OPT destroy 1 you control + 1 other field card.
-
-### `DESTINY_HERO_DIAMOND_DUDE`
-- path: `src_custom/activated_effects/destiny_hero_diamond_dude.c`
-- L57: next-turn GY Normal Spell activation needs Main Phase hook.
-
-### `DESTINY_HERO_DISK_COMMANDER`
-- path: `src_custom/activated_effects/destiny_hero_disk_commander.c`
-- L20: SS-from-GY trigger + once per duel. Ceiling: OPT draw 2 stand-in when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE.
-
-### `DESTINY_HERO_DOMINANCE`
-- path: `src_custom/activated_effects/destiny_hero_dominance.c`
-- L66: look+reorder UI missing; RandRange shuffle of top N is stand-in.
-- L89: battle-destroy draw + GY SS 3 D-HERO need battle/destroy hooks. Ceiling: OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in.
-
-### `DESTINY_HERO_DREADNOUGHT_MASTER`
-- path: `src_custom/activated_effects/destiny_hero_dreadnought_master.c`
-- L60: SS trigger → OPT ignition; cards-mentioning-D-HERO FALSE. Ceiling: OPT add up to 2 Destiny HERO from Deck.
-
-### `DESTINY_HERO_DREADNOUGHT_SERVANT`
-- path: `src_custom/activated_effects/destiny_hero_dreadnought_servant.c`
-- L89: GY banish destroy on Lv8 D-HERO SS FALSE. Ceiling: FromHand if control D-HERO or Field Spell → SS, destroy 1, add Poly.
-
-### `DESTINY_HERO_DREAMER`
-- path: `src_custom/activated_effects/destiny_hero_dreamer.c`
-- L52: * ponytail: banish-on-leave need GY hook. Ceiling: GY ignition SS. */
-
-### `DESTINY_HERO_DRILLDARK`
-- path: `src_custom/activated_effects/destiny_hero_drilldark.c`
-- L65: * ponytail: on-Summon trigger need summon hook.
-
-### `DESTINY_HERO_DYNATAG`
-- path: `src_custom/activated_effects/destiny_hero_dynatag.c`
-- L134: GY banish ATK boost not wired; both players 1000 on FromHand.
-
-### `DESTINY_HERO_DYSTOPIA`
-- path: `src_custom/activated_effects/destiny_hero_dystopia.c`
-- L203: on-SS burn + Quick destroy-if-ATK-changed need summon/ATK hooks. Ceiling: OPT pick Lv≤4 D-HERO in GY → burn its ATK.
-
-### `DESTINY_HERO_MALICIOUS`
-- path: `src_custom/activated_effects/destiny_hero_malicious.c`
-- L43: GY ignition needs GY-menu wire. Ceiling: allow when Malicious in GY + another in Deck (callable if gMonEffect set to Malicious).
-
-### `DESTINY_HERO_PLASMA`
-- path: `src_custom/activated_effects/destiny_hero_plasma.c`
-- L95: equip/absorb + half-ATK boost + continuous opp negate need equip hooks. Ceiling: destroy 1 opp monster.
-
-### `DIVINE_SERPENT_GEH`
-- path: `src_custom/activated_effects/divine_serpent_geh.c`
-- L31: destroy gate + untargetable + battle negate need destroy/battle hooks. Ceiling: field ignition FALSE; FromHand pay half LP → SS only.
-
-### `DIVINER_OF_THE_HERALD`
-- path: `src_custom/activated_effects/diviner_of_the_herald.c`
-- L89: on-NS/SS mill + tribute SS Fairy need summon/tribute hooks. Ceiling: OPT send 1 Fairy from Deck to GY (+unkTwo Level stand-in).
-- L110: Level bump until EOT needs level-override hook; unkTwo stores milled Level.
-
-### `EBON_ILLUSION_MAGICIAN`
-- path: `src_custom/activated_effects/ebon_illusion_magician.c`
-- L78: Xyz detach cost + attack-banish FALSE. Ceiling: OPT SS Spellcaster Normal from hand/Deck (detach stand-in).
-
-### `EL_SHADDOLL_MESHAHRAIL`
-- path: `src_custom/activated_effects/el_shaddoll_meshahrail.c`
-- L74: unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks. Ceiling: OPT pay 800 → add 1 Shaddoll or Void S/T from Deck.
-
-### `EL_SHADDOLL_WENDIGO`
-- path: `src_custom/activated_effects/el_shaddoll_wendigo.c`
-- L110: * ponytail: GY add Shaddoll S/T on send not wired. */
-
-### `ELDER_ENTITY_NORDEN`
-- path: `src_custom/activated_effects/elder_entity_norden.c`
-- L73: banish-when-leaves needs leave-field hook; unk4 marks negated.
-- L124: SS-trigger timing + banish-when-leaves need summon/leave hooks. Ceiling: OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark.
-
-### `ELEMENTAL_HERO_AQUA_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_aqua_neos.c`
-- L20: Contact fusion need fusion hook; EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT discard 1, then destroy 1 random opponent hand card.
-
-### `ELEMENTAL_HERO_BLAZEMAN`
-- path: `src_custom/activated_effects/elemental_hero_blazeman.c`
-- L222: on-summon does not consume effectUsedThisTurn — that flag is only for the menu activated effect (popup_2). Otherwise popup_2 can never fire the turn Blazeman is summoned.
-
-### `ELEMENTAL_HERO_CHAOS_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_chaos_neos.c`
-- L88: EP shuffle/Set-all + exact 3H/2H/1H/0H branch table FALSE. Ceiling: OPT 3 coin → destroy heads-count opp monsters.
-
-### `ELEMENTAL_HERO_COSMO_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_cosmo_neos.c`
-- L72: activation lock / End Phase field wipe FALSE. Ceiling: OPT destroy all opp Spell/Trap.
-
-### `ELEMENTAL_HERO_DARK_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_dark_neos.c`
-- L50: contact Fusion need fusion hook; EP Extra return via TryReturnContactFusionsAtEndPhase.
-
 ### `ELEMENTAL_HERO_GAIA`
 - path: `src_custom/activated_effects/elemental_hero_gaia.c`
 - L49: GetTypeGroup calls SetCardInfo and would clobber gCardInfo.
-
-### `ELEMENTAL_HERO_GRAND_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_grand_neos.c`
-- L95: Contact fusion need fusion hook; EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT bounce 1 opponent monster to hand.
 
 ### `ELEMENTAL_HERO_GREAT_TORNADO`
 - path: `src_custom/activated_effects/elemental_hero_great_tornado.c`
@@ -288,30 +114,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/elemental_hero_lady_heat.c`
 - L45: CanActivate runs before the menu flips a face-down activator
 
-### `ELEMENTAL_HERO_MAGMA_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_magma_neos.c`
-- L42: continuous 400/field + EP field bounce need permanent/EP hooks; EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT refresh tempStage from field card count.
-
-### `ELEMENTAL_HERO_NEBULA_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_nebula_neos.c`
-- L115: Extra SS trigger + EP banish field FALSE. Ceiling: OPT draw = opp card count, then mark 1 face-up negated.
-
 ### `ELEMENTAL_HERO_OCEAN`
 - path: `src_custom/activated_effects/elemental_hero_ocean.c`
 - L81: skip stale GY Ocean while the activator is still on field
-
-### `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN`
-- path: `src_custom/activated_effects/elemental_hero_shining_neos_wingman.c`
-- L150: GY ATK gain + effect destroy immunity + battle burn need permanent/ battle hooks. Ceiling: OPT destroy opp cards up to different Attributes.
-- L177: multi-target picker not wired; auto-destroy highest-value opp cards.
-
-### `ELEMENTAL_HERO_SPIRIT_OF_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_spirit_of_neos.c`
-- L154: attack-hand SS FALSE. Ceiling: OPT search Poly/E-HERO S/T, else OPT shuffle self → SS Normal E-HERO from Deck.
-
-### `ELEMENTAL_HERO_STORM_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_storm_neos.c`
-- L86: contact Fusion + field shuffle need fusion/phase hooks; EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT destroy all S/T on field.
 
 ### `ELEMENTAL_HERO_STRATOS`
 - path: `src_custom/activated_effects/elemental_hero_stratos.c`
@@ -1182,12 +987,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (50)
-
-### `AMEBA`
-- path: `src_custom/permanent_effects/ameba.c`
-- L23: AI candidate sim runs real effect code but restores duel state; do not queue burns that survive into the chosen action.
-- L72: skip nested UpdateDuelGfxExceptField; caller just refreshed field.
+## permanent (39)
 
 ### `BLUE_EYES_ALTERNATIVE_WHITE_DRAGON`
 - path: `src_custom/permanent_effects/blue_eyes_alternative_white_dragon.c`
@@ -1205,10 +1005,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/cyber_kirin.c`
 - L8: ATK-position spell/trap negate, battle-draw, and OPT tribute damage zero need continuous/battle/tribute hooks not wired for permanents.
 
-### `DARK_MAGICIAN_OF_DESTRUCTION`
-- path: `src_custom/permanent_effects/dark_magician_of_destruction.c`
-- L131: deck-first add; DM preferred by scan order, no picker.
-
 ### `DARKLORD_NURSE_REFICULE`
 - path: `src_custom/permanent_effects/darklord_nurse_reficule.c`
 - L8: LP gain→damage redirect needs LP-change hook.
@@ -1222,18 +1018,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/despair_from_the_dark.c`
 - L47: opp hand/Deck send by card effect not tracked — GY-top SS only.
 
-### `DESTINY_HERO_DOOM_OVERLORD`
-- path: `src_custom/permanent_effects/destiny_hero_doom_overlord.c`
-- L327: banish-until-Standby = permanent banish; DARK HERO SS lock not wired.
-
-### `DESTINY_HERO_DREAD_SERVANT`
-- path: `src_custom/permanent_effects/destiny_hero_dread_servant.c`
-- L77: * ponytail: NS Clock Tower counters need summon hook. */
-
-### `DESTINY_HERO_DREADMASTER`
-- path: `src_custom/permanent_effects/destiny_hero_dreadmaster.c`
-- L284: Clock Tower Prison gate skipped; on-summon destroy/SS stand-in. D-HERO battle protect + no BD via DestinyHeroDreadmaster_* while face-up.
-
 ### `DRAGON_MASTER_MAGIA`
 - path: `src_custom/permanent_effects/dragon_master_magia.c`
 - L8: Quick negate-by-card-type needs chain/OPT hooks.
@@ -1241,14 +1025,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DRAGON_SPIRIT_OF_WHITE`
 - path: `src_custom/permanent_effects/dragon_spirit_of_white.c`
 - L59: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks.
-
-### `EL_SHADDOLL_GRYSTA`
-- path: `src_custom/permanent_effects/el_shaddoll_grysta.c`
-- L126: negate opp Special Summon + send Shaddoll from hand need SS chain hook.
-
-### `EL_SHADDOLL_SHEKHINAGA`
-- path: `src_custom/permanent_effects/el_shaddoll_shekhinaga.c`
-- L126: negate SS monster effect + send Shaddoll need effect-chain hook.
 
 ### `ELEMENTAL_HERO_CAPTAIN_GOLD`
 - path: `src_custom/permanent_effects/elemental_hero_captain_gold.c`
@@ -1289,14 +1065,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/executor_makyura.c`
 - L93: most non-zero trapEffect values are chain-only; allow continuous exceptions.
 
-### `FIRE_PRINCESS`
-- path: `src_custom/permanent_effects/fire_princess.c`
-- L37: normal hand summon copies isFaceUp=0; attack-position monsters still count
-
-### `GRANADORA`
-- path: `src_custom/permanent_effects/granadora.c`
-- L92: unk4==1 means summon effect already fired; 0/2 are fresh normal/special summon
-
 ### `GREAT_MAJU_GARZETT`
 - path: `src_custom/permanent_effects/great_maju_garzett.c`
 - L48: ram_map byte packing can leave u16 fields at odd EWRAM addresses;
@@ -1309,10 +1077,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c`
 - L8: /* Direct attack via HarpiesPetPhantasmalDragon_CanAttackDirectly. ponytail:
 
-### `HERO_KID`
-- path: `src_custom/permanent_effects/hero_kid.c`
-- L76: true trigger is Special Summon; on-summon stand-in covers SS path.
-
 ### `JENIS_LIGHTSWORN_MENDER`
 - path: `src_custom/permanent_effects/jenis_lightsworn_mender.c`
 - L53: LS-effect mill source not tracked — any deck mill this turn stand-in. EP burn/heal via TryApplyJenisEndPhase.
@@ -1324,10 +1088,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `LIGHT_AND_DARKNESS_DRAGON`
 - path: `src_custom/permanent_effects/light_and_darkness_dragon.c`
 - L8: chain negate (−500 ATK/DEF) + GY destroy-all/SS need chain/GY hooks.
-
-### `LIGHT_SERPENT`
-- path: `src_custom/permanent_effects/light_serpent.c`
-- L31: hand send only — !gGraveyardSendWasFromField is the hand/deck stand-in.
 
 ### `MAGICIAN_OF_DARK_ILLUSION`
 - path: `src_custom/permanent_effects/magician_of_dark_illusion.c`

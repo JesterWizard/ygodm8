@@ -17,8 +17,7 @@ unsigned char CanActivateELEMENTAL_HERO_AQUA_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_AQUA_NEOS)
     return FALSE;
 
-  /* ponytail: Contact fusion need fusion hook; EP Extra return via
-   * TryReturnContactFusionsAtEndPhase. Ceiling: OPT discard 1, then destroy 1
+  /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT discard 1, then destroy 1
    * random opponent hand card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

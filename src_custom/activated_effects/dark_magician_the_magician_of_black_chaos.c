@@ -30,7 +30,7 @@ unsigned char CanActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS(void)
   if (gMonEffect.id != DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS)
     return FALSE;
 
-  /* ponytail: name=DM + destroy-revive/Set need name/destroy hooks.
+  /* Ceiling: name=DM + destroy-revive/Set need name/destroy hooks.
    * Ceiling: not field-ignition; FromHand if Shining Sarcophagus. */
   return FALSE;
 }

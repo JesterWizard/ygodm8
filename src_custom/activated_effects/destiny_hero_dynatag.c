@@ -131,7 +131,7 @@ u8 TryActivateDestinyHeroDynatagFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* ponytail: GY banish ATK boost not wired; both players 1000 on FromHand. */
+  /* Ceiling: GY banish ATK boost not wired; both players 1000 on FromHand. */
   if (Duel_ChangeLp(ACTIVE_DUELIST, -1000, FALSE) == DUEL_ACTION_DUEL_OVER)
     return TRUE;
 

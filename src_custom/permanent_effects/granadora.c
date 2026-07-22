@@ -89,7 +89,7 @@ unsigned char ShouldActivateGranadora(void)
       || gActiveEffect.turnRow == INACTIVE_DUELIST_MONSTER_ROW) {
     struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-    // ponytail: unk4==1 means summon effect already fired; 0/2 are fresh normal/special summon
+    // unk4==1 means summon effect already fired; 0/2 are fresh normal/special summon
     return zone->unk4 != 1;
   }
 

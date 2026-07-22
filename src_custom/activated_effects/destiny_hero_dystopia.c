@@ -200,7 +200,7 @@ unsigned char CanActivateDESTINY_HERO_DYSTOPIA(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DYSTOPIA)
     return FALSE;
 
-  /* ponytail: on-SS burn + Quick destroy-if-ATK-changed need summon/ATK hooks.
+  /* Ceiling: on-SS burn + Quick destroy-if-ATK-changed need summon/ATK hooks.
    * Ceiling: OPT pick Lv≤4 D-HERO in GY → burn its ATK. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

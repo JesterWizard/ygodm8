@@ -20,7 +20,7 @@ void Duel_NotifyMonsterControlSwitched(u16 cardId, u8 newFixedRow)
   if (cardId != AMEBA)
     return;
 
-  /* ponytail: AI candidate sim runs real effect code but restores duel state;
+  /* AI candidate sim runs real effect code but restores duel state;
    * do not queue burns that survive into the chosen action. */
   if (gHideEffectText == TRUE)
     return;
@@ -69,7 +69,7 @@ void Duel_FlushMonsterControlSwitchEffects(void)
     if (IsDuelOver() == TRUE)
       break;
 
-    /* ponytail: skip nested UpdateDuelGfxExceptField; caller just refreshed field. */
+    /* Skip nested UpdateDuelGfxExceptField; caller just refreshed field. */
     Duel_ChangeLp(damageTarget, -AMEBA_CONTROL_SWITCH_DAMAGE, FALSE);
   }
 

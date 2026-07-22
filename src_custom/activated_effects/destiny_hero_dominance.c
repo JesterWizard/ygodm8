@@ -63,7 +63,7 @@ static void ShuffleTopNOfFixedDeck(u8 fixedDuelist, u8 n)
   if (size <= 1)
     return;
 
-  /* ponytail: look+reorder UI missing; RandRange shuffle of top N is stand-in. */
+  /* Ceiling: look+reorder UI missing; RandRange shuffle of top N is stand-in. */
   for (i = 0; i < 200; i++) {
     u8 indexA = RandRangeU8(0, size - 1);
     u8 indexB = RandRangeU8(0, size - 1);
@@ -86,7 +86,7 @@ unsigned char CanActivateDESTINY_HERO_DOMINANCE(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DOMINANCE)
     return FALSE;
 
-  /* ponytail: battle-destroy draw + GY SS 3 D-HERO need battle/destroy hooks.
+  /* Ceiling: battle-destroy draw + GY SS 3 D-HERO need battle/destroy hooks.
    * Ceiling: OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

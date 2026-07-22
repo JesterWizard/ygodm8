@@ -49,7 +49,7 @@ unsigned char CanActivateDESTINY_HERO_DREAMER(void)
     return FALSE;
 
   /* Battle protect via DestinyHeroDreamer_PreventsBattleDestroy.
-   * ponytail: banish-on-leave need GY hook. Ceiling: GY ignition SS. */
+   * Ceiling: banish-on-leave need GY hook. Ceiling: GY ignition SS. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

@@ -92,7 +92,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsOppMonsterTarget(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* ponytail: equip/absorb + half-ATK boost + continuous opp negate need equip
+  /* Ceiling: equip/absorb + half-ATK boost + continuous opp negate need equip
    * hooks. Ceiling: destroy 1 opp monster. */
   if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;

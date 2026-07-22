@@ -53,7 +53,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidTarget(fixedRow, fixedCol) || target == NULL || self == NULL)
     return;
 
-  /* ponytail: -2 tempStage (~1000 ATK, not exact); until EP clear needs EOT hook. */
+  /* Ceiling: -2 tempStage (~1000 ATK, not exact); until EP clear needs EOT hook. */
   if (self->tempStage > -126)
     self->tempStage = (s8)(self->tempStage - 2);
 
@@ -113,7 +113,7 @@ unsigned char CanActivateDARKLORD_DESIRE(void)
   if (zone == NULL || zone->id != DARKLORD_DESIRE)
     return FALSE;
 
-  /* ponytail: Fairy-only Tribute Summon + cannot SS need summon hooks. Ceiling:
+  /* Ceiling: Fairy-only Tribute Summon + cannot SS need summon hooks. Ceiling:
    * OPT -1000 ATK (tempStage) → send 1 opp monster to GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

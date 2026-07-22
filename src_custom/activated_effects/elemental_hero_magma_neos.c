@@ -39,8 +39,7 @@ unsigned char CanActivateELEMENTAL_HERO_MAGMA_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_MAGMA_NEOS)
     return FALSE;
 
-  /* ponytail: continuous 400/field + EP field bounce need permanent/EP hooks;
-   * EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT refresh
+  /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT refresh
    * tempStage from field card count. */
   return CanUseMonsterEffect(zone);
 }

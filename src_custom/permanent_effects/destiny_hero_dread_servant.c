@@ -74,7 +74,7 @@ void ApplyDestinyHeroDreadServantBattleEffect(void)
 unsigned char ShouldActivateDESTINY_HERO_DREAD_SERVANT(void)
 {
   /* Battle-destroy S/T via ApplyDestinyHeroDreadServantBattleEffect.
-   * ponytail: NS Clock Tower counters need summon hook. */
+   * Ceiling: NS Clock Tower counters need summon hook. */
   (void)gActiveEffect;
   return FALSE;
 }

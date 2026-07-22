@@ -112,6 +112,7 @@
 #include "destiny_hero_drawhand.h"
 #include "minerva_lightsworn_maiden.h"
 #include "junk_synchron.h"
+#include "deep_sea_diva.h"
 #include "barrier_statue_wind_lock.h"
 #include "gladiator_beast_battled.h"
 
@@ -517,6 +518,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryBeastKingBarbarosOnMonsterPlacement(summonZone);
   TryMinervaLightswornMaidenOnNormalSummon(summonZone, opts.mode);
   TryJunkSynchronOnNormalSummon(summonZone, opts.mode);
+  TryDeepSeaDivaOnNormalSummon(summonZone, opts.mode);
   TryAmazonessPrincessOnMonsterPlacement(summonZone);
   TryDestinyHeroDeciderOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));

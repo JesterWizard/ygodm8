@@ -47,8 +47,6 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   if (!IsFaceUpOppEffectMonster(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* ponytail: contact Fusion need fusion hook; EP Extra return via
-   * TryReturnContactFusionsAtEndPhase. */
   zone->unk4 |= 0x80;
 
   if (self != NULL)
@@ -91,6 +89,7 @@ unsigned char CanActivateELEMENTAL_HERO_DARK_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_DARK_NEOS)
     return FALSE;
 
+  /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: contact Fusion need fusion hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

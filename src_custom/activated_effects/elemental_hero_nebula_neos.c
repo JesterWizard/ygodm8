@@ -112,7 +112,7 @@ unsigned char CanActivateELEMENTAL_HERO_NEBULA_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_NEBULA_NEOS)
     return FALSE;
 
-  /* ponytail: Extra SS trigger + EP banish field FALSE.
+  /* Ceiling: Extra SS trigger + EP banish field FALSE.
    * Ceiling: OPT draw = opp card count, then mark 1 face-up negated. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -62,7 +62,7 @@ unsigned char CanActivateDESTINY_HERO_DRILLDARK(void)
     return FALSE;
 
   /* Pierce via ApplySimplePiercersBattleEffect.
-   * ponytail: on-Summon trigger need summon hook.
+   * Ceiling: on-Summon trigger need summon hook.
    * Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

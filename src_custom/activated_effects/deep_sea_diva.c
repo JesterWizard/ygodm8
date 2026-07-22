@@ -3,6 +3,7 @@
 #include "archlord_kristya.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "deep_sea_diva.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
@@ -14,6 +15,11 @@ static u8 FixedDuelistForActive(void)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
 }
 
 static u8 IsDivaDeckTarget(u16 cardId)
@@ -44,6 +50,43 @@ static u16 FindDeckDivaTarget(void)
   return CARD_NONE;
 }
 
+static u8 TrySpecialSummonDivaTargetFromDeck(struct DuelCard *self)
+{
+  struct DuelSummonOpts opts;
+  u16 cardId;
+
+  if (self == NULL || IsDuelOver() == TRUE)
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  cardId = FindDeckDivaTarget();
+  if (cardId == CARD_NONE
+      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return FALSE;
+
+  Duel_ShowEffectTextTyped(DEEP_SEA_DIVA, 2);
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  if (Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, cardId, opts) != DUEL_ACTION_OK)
+    return FALSE;
+
+  MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  return TRUE;
+}
+
+void TryDeepSeaDivaOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  if (zone == NULL || zone->id != DEEP_SEA_DIVA || SummonModeIsSpecial(mode))
+    return;
+
+  if (zone->effectUsedThisTurn)
+    return;
+
+  (void)TrySpecialSummonDivaTargetFromDeck(zone);
+}
+
 unsigned char CanActivateDEEP_SEA_DIVA(void)
 {
   struct DuelCard *zone;
@@ -55,8 +98,8 @@ unsigned char CanActivateDEEP_SEA_DIVA(void)
   if (zone == NULL || zone->id != DEEP_SEA_DIVA)
     return FALSE;
 
-  /* ponytail: Normal Summon trigger needs summon hook. Ceiling: once via usage
-   * while face-up if Lv≤3 Sea Serpent in Deck. */
+  /* NS SS via TryDeepSeaDivaOnNormalSummon. Ceiling: OPT duplicate if NS already
+   * consumed effectUsedThisTurn. */
   if (!CanUseMonsterEffect(zone) || ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 
@@ -67,21 +110,6 @@ unsigned char CanActivateDEEP_SEA_DIVA(void)
 void ActivateDEEP_SEA_DIVAEffect(void)
 {
   struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  struct DuelSummonOpts opts;
-  u16 cardId;
 
-  Duel_ShowEffectTextTyped(DEEP_SEA_DIVA, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  cardId = FindDeckDivaTarget();
-  if (cardId == CARD_NONE || ArchlordKristya_IsSpecialSummonLocked()
-      || FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
-    return;
-
-  opts = Duel_DefaultSpecialSummonOpts(TRUE);
-  Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, cardId, opts);
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
+  (void)TrySpecialSummonDivaTargetFromDeck(self);
 }

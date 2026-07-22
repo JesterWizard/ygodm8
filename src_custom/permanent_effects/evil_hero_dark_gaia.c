@@ -72,10 +72,75 @@ void EvilHeroDarkGaia_ClearBoardStatsForZone(struct DuelCard *zone)
   gEvilHeroDarkGaiaFusionAtk[cellIndex] = 0;
 }
 
+#define DARK_GAIA_FLAG_GRAVEYARD_PLAYER 1
+#define DARK_GAIA_FLAG_GRAVEYARD_OPPONENT 2
+
+struct EvilHeroDarkGaiaActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct EvilHeroDarkGaiaActionData sActionData;
+
+void FlipCardFaceUp(struct DuelCard *zone);
+
+static void FlipDefenderToAttackAndHalveAtk(struct DuelCard *defender)
+{
+  u16 halfAtk;
+
+  if (defender == NULL || defender->id == CARD_NONE || defender->isDefending == FALSE)
+    return;
+
+  defender->isDefending = FALSE;
+  FlipCardFaceUp(defender);
+  SetCardInfo(defender->id);
+  halfAtk = (u16)(gCardInfo.atk / 2);
+  if (halfAtk == 0)
+    return;
+
+  defender->tempStage = (s8)(-((s32)halfAtk + 499) / 500);
+}
+
+void ApplyEvilHeroDarkGaiaBattleEffect(void)
+{
+  struct DuelCard *defender;
+
+  /* id 2 / 5: battle vs Defense Position; flip surviving DEF monster to ATK. */
+  if (sActionData.playerCardId == EVIL_HERO_DARK_GAIA && sActionData.id == 2
+      && !(sActionData.flags & DARK_GAIA_FLAG_GRAVEYARD_OPPONENT)) {
+    defender = gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16];
+    FlipDefenderToAttackAndHalveAtk(defender);
+    return;
+  }
+
+  if (sActionData.opponentCardId == EVIL_HERO_DARK_GAIA && sActionData.id == 5
+      && !(sActionData.flags & DARK_GAIA_FLAG_GRAVEYARD_PLAYER)) {
+    defender = gFixedZones[sActionData.playerMonsterRow][sActionData.unkA];
+    FlipDefenderToAttackAndHalveAtk(defender);
+  }
+}
+
 unsigned char ShouldActivateEVIL_HERO_DARK_GAIA(void)
 {
   /* Fusion ATK via EvilHeroDarkGaia_ApplyDynamicZoneStats + fusion stamp.
-   * Ceiling: flip opp Defense→Attack needs battle hook. */
+   * DEF→ATK flip via ApplyEvilHeroDarkGaiaBattleEffect. */
   (void)gActiveEffect;
   return FALSE;
 }

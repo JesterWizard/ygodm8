@@ -28,7 +28,7 @@ unsigned char CanActivateDIVINE_SERPENT_GEH(void)
   if (gMonEffect.id != DIVINE_SERPENT_GEH)
     return FALSE;
 
-  /* ponytail: destroy gate + untargetable + battle negate need destroy/battle hooks.
+  /* Ceiling: destroy gate + untargetable + battle negate need destroy/battle hooks.
    * Ceiling: field ignition FALSE; FromHand pay half LP → SS only. */
   return FALSE;
 }

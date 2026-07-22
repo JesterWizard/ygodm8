@@ -92,8 +92,7 @@ unsigned char CanActivateELEMENTAL_HERO_GRAND_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_GRAND_NEOS)
     return FALSE;
 
-  /* ponytail: Contact fusion need fusion hook; EP Extra return via
-   * TryReturnContactFusionsAtEndPhase. Ceiling: OPT bounce 1 opponent monster
+  /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT bounce 1 opponent monster
    * to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

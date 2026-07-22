@@ -9,7 +9,7 @@ unsigned char CanActivateDARK_MAGICIAN_THE_DRAGON_KNIGHT(void)
   if (gMonEffect.id != DARK_MAGICIAN_THE_DRAGON_KNIGHT)
     return FALSE;
 
-  /* ponytail: name becomes Dark Magician + S/T protection need permanent/name hooks.
+  /* Ceiling: name becomes Dark Magician + S/T protection need permanent/name hooks.
    * Ceiling: not ignition-activatable here; upgrade: permanent overlay. */
   return FALSE;
 }

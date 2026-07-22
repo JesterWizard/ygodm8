@@ -219,7 +219,7 @@ void TryElementalHeroBlazemanOnMonsterPlacement(struct DuelCard *zone)
   if (Duel_FindDeckCardIndex(turnDuelist, POLYMERIZATION) < 0)
     return;
 
-  /* ponytail: on-summon does not consume effectUsedThisTurn — that flag is only for
+  /* On-summon does not consume effectUsedThisTurn — that flag is only for
    * the menu activated effect (popup_2). Otherwise popup_2 can never fire the turn
    * Blazeman is summoned. */
 

@@ -19,7 +19,7 @@ void FlipCardFaceUp(struct DuelCard *zone);
 
 static u8 IsDarkDustSpiritSummonPlacement(const struct DuelCard *zone)
 {
-  /* ponytail: hand normal/tribute summon copies isFaceUp=0; attack-position still counts */
+  /* Attack-position summons stay isFaceUp=0 until end-of-turn flip. */
   return zone->isFaceUp || !zone->isDefending;
 }
 
@@ -60,7 +60,7 @@ static u8 IsDestroyTargetFaceUpMonster(struct DuelCard *zone,
   if (IsGodCard(zone->id))
     return FALSE;
 
-  /* ponytail: GBA "face-up" = isFaceUp bit; attack-position keeps isFaceUp=0 until flip */
+  /* GBA face-up = isFaceUp bit; attack-position keeps isFaceUp=0 until flip. */
   if (IsCardFaceUp(zone))
     return TRUE;
 

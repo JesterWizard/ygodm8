@@ -34,7 +34,7 @@ extern struct FirePrincessActionData sActionData;
 
 static u8 ZoneHasFaceUpFirePrincess(const struct DuelCard *zone)
 {
-  /* ponytail: normal hand summon copies isFaceUp=0; attack-position monsters still count */
+  /* Attack-position summons stay isFaceUp=0 until end-of-turn flip. */
   return zone != NULL
       && zone->id == FIRE_PRINCESS
       && (zone->isFaceUp || !zone->isDefending);

@@ -28,7 +28,7 @@ unsigned char ShouldActivateLIGHT_SERPENT(void)
   if (gDeferGraveyardDrawBattleResolve)
     return FALSE;
 
-  /* ponytail: hand send only — !gGraveyardSendWasFromField is the hand/deck stand-in. */
+  /* Hand/deck send stand-in: !gGraveyardSendWasFromField. */
   if (gGraveyardSendWasFromField)
     return FALSE;
 

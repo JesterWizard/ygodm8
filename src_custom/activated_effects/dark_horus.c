@@ -96,7 +96,7 @@ unsigned char CanActivateDARK_HORUS(void)
   if (zone == NULL || zone->id != DARK_HORUS)
     return FALSE;
 
-  /* ponytail: after opp Main Phase Spell resolve trigger needs spell hook.
+  /* Ceiling: after opp Main Phase Spell resolve trigger needs spell hook.
    * Ceiling: OPT SS 1 Lv4 DARK from GY while face-up. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

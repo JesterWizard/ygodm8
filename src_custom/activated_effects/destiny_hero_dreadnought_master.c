@@ -57,7 +57,7 @@ unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_MASTER(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DREADNOUGHT_MASTER)
     return FALSE;
 
-  /* ponytail: SS trigger → OPT ignition; cards-mentioning-D-HERO FALSE.
+  /* Ceiling: SS trigger → OPT ignition; cards-mentioning-D-HERO FALSE.
    * Ceiling: OPT add up to 2 Destiny HERO from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

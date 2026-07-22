@@ -107,7 +107,7 @@ unsigned char CanActivateEL_SHADDOLL_WENDIGO(void)
     return FALSE;
 
   /* Battle protect via ElShaddollWendigo_PreventsBattleDestroy.
-   * ponytail: GY add Shaddoll S/T on send not wired. */
+   * Ceiling: GY add Shaddoll S/T on send not wired. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

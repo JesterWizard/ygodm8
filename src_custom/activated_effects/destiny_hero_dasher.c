@@ -46,7 +46,7 @@ static void ResolveTributeTarget(u8 fixedRow, u8 fixedCol)
   if (Duel_DestroyZone(zone, ACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: battle DEF change + draw-phase GY SS need battle/draw hooks.
+  /* Ceiling: battle DEF change + draw-phase GY SS need battle/draw hooks.
    * Ceiling: OPT tribute 1 other → +2 tempStage (~1000 ATK until End Phase). */
   if (self->tempStage < 126)
     self->tempStage += 2;

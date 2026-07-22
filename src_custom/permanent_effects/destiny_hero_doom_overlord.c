@@ -324,5 +324,5 @@ void ActivateDESTINY_HERO_DOOM_OVERLORD(void)
     Duel_EnterPickZoneTargeting();
   else
     Duel_ResolvePickZoneForAi();
-  /* ponytail: banish-until-Standby = permanent banish; DARK HERO SS lock not wired. */
+  /* Ceiling: banish-until-Standby = permanent banish; DARK HERO SS lock not wired. */
 }

@@ -71,7 +71,7 @@ unsigned char CanActivateEL_SHADDOLL_MESHAHRAIL(void)
   if (zone == NULL || zone->id != EL_SHADDOLL_MESHAHRAIL)
     return FALSE;
 
-  /* ponytail: unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks.
+  /* Ceiling: unaffected-by-lower-Lv/R + GY SS Shaddoll need continuous/send hooks.
    * Ceiling: OPT pay 800 → add 1 Shaddoll or Void S/T from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

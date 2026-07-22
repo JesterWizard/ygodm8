@@ -69,7 +69,7 @@ unsigned char CanActivateELEMENTAL_HERO_COSMO_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_COSMO_NEOS)
     return FALSE;
 
-  /* ponytail: activation lock / End Phase field wipe FALSE.
+  /* Ceiling: activation lock / End Phase field wipe FALSE.
    * Ceiling: OPT destroy all opp Spell/Trap. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

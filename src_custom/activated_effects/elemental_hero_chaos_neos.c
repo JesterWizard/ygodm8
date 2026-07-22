@@ -85,7 +85,7 @@ unsigned char CanActivateELEMENTAL_HERO_CHAOS_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_CHAOS_NEOS)
     return FALSE;
 
-  /* ponytail: EP shuffle/Set-all + exact 3H/2H/1H/0H branch table FALSE.
+  /* Ceiling: EP shuffle/Set-all + exact 3H/2H/1H/0H branch table FALSE.
    * Ceiling: OPT 3 coin → destroy heads-count opp monsters. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
