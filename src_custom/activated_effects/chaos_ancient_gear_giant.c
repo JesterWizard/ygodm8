@@ -10,8 +10,8 @@ unsigned char CanActivateCHAOS_ANCIENT_GEAR_GIANT(void)
     return FALSE;
 
   /* ponytail: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock +
-   * multi-attack + piercing need fusion/battle hooks. Ceiling: not
-   * ignition-activatable here. */
+   * multi-attack need fusion/battle hooks. Pierce via ApplySimplePiercersBattleEffect.
+   * Ceiling: not ignition-activatable here. */
   return FALSE;
 }
 

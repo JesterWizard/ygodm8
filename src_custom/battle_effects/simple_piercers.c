@@ -42,6 +42,7 @@ static const u16 sPiercerIds[] APPEND_RODATA = {
   EVIL_HERO_INFERNO_WING,
   GARONITH_LIGHTSWORN_DRAGON,
   MAJESTIC_MECH_GORYU,
+  CHAOS_ANCIENT_GEAR_GIANT,
 };
 
 static u8 IsListedPiercer(u16 cardId)

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ancient_gear_tanker.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
@@ -187,7 +188,8 @@ static void ResolveDestroyTarget(u8 fixedRow, u8 fixedCol)
 
   NotifyDynamicEquipFieldChanged();
 
-  /* ponytail: AG pierce mark for rest of turn FALSE. */
+  AncientGearTanker_MarkControllerPierce(FixedDuelistForActive());
+
   if (self != NULL)
     MarkMonsterEffectUsed(self);
 
@@ -231,7 +233,7 @@ unsigned char CanActivateANCIENT_GEAR_TANKER(void)
   if (zone == NULL || zone->id != ANCIENT_GEAR_TANKER)
     return FALSE;
 
-  /* ponytail: pierce mark AG monsters FALSE.
+  /* AG pierce mark via AncientGearTanker_MarkControllerPierce on destroy OPT.
    * Ceiling: OPT SS AG from hand (GY if opp has monster), else OPT destroy your face-up.
    * Separate OPTs share one MarkMonsterEffectUsed. */
   if (!CanUseMonsterEffect(zone))
@@ -276,4 +278,37 @@ void ActivateANCIENT_GEAR_TANKEREffect(void)
     Duel_EnterPickZoneTargeting();
   else
     Duel_ResolvePickZoneForAi();
+}
+
+static u8 IsAncientGearMonsterId(u16 cardId)
+{
+  static const char sAncientGearName[] APPEND_RODATA = "Ancient Gear";
+
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sAncientGearName);
+}
+
+void AncientGearTanker_MarkControllerPierce(u8 fixedDuelist)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(fixedDuelist);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone == NULL || !zone->isFaceUp || !IsAncientGearMonsterId(zone->id))
+      continue;
+
+    zone->unk4 |= ANCIENT_GEAR_PIERCE_MARK;
+  }
+}
+
+u8 AncientGearMonsterHasPierceMark(const struct DuelCard *zone)
+{
+  if (zone == NULL || !IsAncientGearMonsterId(zone->id))
+    return FALSE;
+
+  return (zone->unk4 & ANCIENT_GEAR_PIERCE_MARK) != 0;
 }

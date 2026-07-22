@@ -81,6 +81,7 @@
 #include "elemental_hero_ice_edge.h"
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_wildedge.h"
+#include "jenis_lightsworn_mender.h"
 #include "amazoness_call.h"
 #include "continuous_destruction_punch.h"
 #include "amazoness_heirloom.h"
@@ -521,6 +522,7 @@ void InitBoard__Replacement(void) {
   ClearArchlordKristyaState();
   ClearElementalHeroTempestProtection();
   ClearElementalHeroWildedgeState();
+  JenisLightswornMender_ClearTurnState();
   ClearChimeratechOverdragonState();
   ClearLesserFiendPending();
   ClearDarkMagicianOfChaosPending();

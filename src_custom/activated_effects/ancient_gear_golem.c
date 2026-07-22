@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ancient_gear_tanker.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
@@ -69,12 +70,24 @@ static void ApplyPiercingDamageToPlayer(u16 damage)
   sActionData.playerLifePoints = gDuelLifePoints[DUEL_PLAYER];
 }
 
+static u8 AttackerHasPierce(u16 cardId, u8 fixedRow, u8 col)
+{
+  struct DuelCard *zone;
+
+  if (IsGolemAttacker(cardId))
+    return TRUE;
+
+  zone = gFixedZones[fixedRow][col];
+  return AncientGearMonsterHasPierceMark(zone);
+}
+
 void ApplyAncientGearGolemPiercingBattleEffect(void)
 {
   u16 atk;
   u16 def;
 
-  if (sActionData.id == 2 && IsGolemAttacker(sActionData.playerCardId)
+  if (sActionData.id == 2 && AttackerHasPierce(sActionData.playerCardId,
+                                               sActionData.playerMonsterRow, sActionData.unkA)
       && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT)) {
     atk = sActionData.playerCardAtkOrLifePointsMod;
     def = sActionData.opponentCardDefense;
@@ -83,7 +96,8 @@ void ApplyAncientGearGolemPiercingBattleEffect(void)
     return;
   }
 
-  if (sActionData.id == 5 && IsGolemAttacker(sActionData.opponentCardId)
+  if (sActionData.id == 5 && AttackerHasPierce(sActionData.opponentCardId,
+                                               sActionData.opponentMonsterRow, sActionData.unk16)
       && (sActionData.flags & FLAG_GRAVEYARD_PLAYER)) {
     atk = sActionData.opponentCardAtkOrLifePointsMod;
     def = sActionData.playerCardDefense;

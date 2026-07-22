@@ -1,9 +1,37 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "destiny_hero_dreadmaster.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "expanded_graveyard.h"
+
+#define FLAG_LOSER_PLAYER 4
+#define FLAG_LOSER_OPPONENT 16
+
+struct DestinyHeroDreadmasterActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct DestinyHeroDreadmasterActionData sActionData;
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
@@ -39,6 +67,77 @@ static u8 IsDestinyHeroMonster(u16 cardId)
     return FALSE;
 
   return Duel_CardNameContains(cardId, sDestinyHeroName);
+}
+
+static u8 FixedDuelistHasFaceUpDreadmaster(u8 fixedDuelist)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(fixedDuelist);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == DESTINY_HERO_DREADMASTER)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static u8 IsControllerDestinyHeroInBattle(u8 fixedDuelist)
+{
+  if (fixedDuelist == DUEL_PLAYER)
+    return IsDestinyHeroMonster(sActionData.playerCardId);
+
+  return IsDestinyHeroMonster(sActionData.opponentCardId);
+}
+
+u8 DestinyHeroDreadmaster_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+  u8 fixedDuelist;
+
+  if (zone == NULL || !IsDestinyHeroMonster(zone->id))
+    return FALSE;
+
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &fixedCol))
+    return FALSE;
+
+  fixedDuelist = Duel_FixedDuelistForMonsterRow(fixedRow);
+  return FixedDuelistHasFaceUpDreadmaster(fixedDuelist);
+}
+
+void ApplyDestinyHeroDreadmasterNoBattleDamage(void)
+{
+  u16 playerDamage;
+  u16 opponentDamage;
+
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 4
+      && sActionData.id != 5 && sActionData.id != 6)
+    return;
+
+  playerDamage = gUnk2023EA0.unk0[0].initialLifePoints - gDuelLifePoints[DUEL_PLAYER];
+  opponentDamage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];
+
+  if (FixedDuelistHasFaceUpDreadmaster(DUEL_PLAYER)
+      && IsControllerDestinyHeroInBattle(DUEL_PLAYER)
+      && playerDamage > 0) {
+    gDuelLifePoints[DUEL_PLAYER] = gUnk2023EA0.unk0[0].initialLifePoints;
+    gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+    sActionData.flags &= (u8)~FLAG_LOSER_PLAYER;
+  }
+
+  if (FixedDuelistHasFaceUpDreadmaster(DUEL_OPPONENT)
+      && IsControllerDestinyHeroInBattle(DUEL_OPPONENT)
+      && opponentDamage > 0) {
+    gDuelLifePoints[DUEL_OPPONENT] = gUnk2023EA0.unk0[1].initialLifePoints;
+    gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+    sActionData.flags &= (u8)~FLAG_LOSER_OPPONENT;
+  }
+
+  sActionData.playerLifePoints = gDuelLifePoints[DUEL_PLAYER];
+  sActionData.opponentLifePoints = gDuelLifePoints[DUEL_OPPONENT];
 }
 
 static u8 OwnMonsterRowHasNonDestinyHero(struct DuelCard *self, u8 turnRow)
@@ -182,7 +281,8 @@ unsigned char ShouldActivateDESTINY_HERO_DREADMASTER(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* ponytail: Clock Tower Prison gate + battle protection skipped; on-summon stand-in. */
+  /* ponytail: Clock Tower Prison gate skipped; on-summon destroy/SS stand-in.
+   * D-HERO battle protect + no BD via DestinyHeroDreadmaster_* while face-up. */
   return OwnMonsterRowHasNonDestinyHero(zone, gActiveEffect.turnRow)
       || CanSpecialSummonDestinyHeroesFromGrave(duelist);
 }
@@ -213,5 +313,4 @@ void ActivateDESTINY_HERO_DREADMASTER(void)
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
-  /* ponytail: D-HERO indestructible + no battle damage this turn need continuous hooks. */
 }

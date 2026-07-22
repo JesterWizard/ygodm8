@@ -8,6 +8,7 @@ u8 IsImmuneToTrapEffectsOnField(u16 cardId, u8 turnRow) {
     return FALSE;
 
   return cardId == TYRANT_DRAGON
+      || cardId == BLUE_EYES_TYRANT_DRAGON
       || cardId == ELEMENTAL_HERO_WILDHEART
       || cardId == LYRILUSC_INDEPENDENT_NIGHTINGALE;
 }

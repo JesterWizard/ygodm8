@@ -38,6 +38,8 @@
 #include "gravekeepers_priestess.h"
 #include "aromage_cananga.h"
 #include "aromaseraphy_rosemary.h"
+#include "aromaseraphy_sweet_marjoram.h"
+#include "clear_vice_dragon.h"
 #include "ehren_lightsworn_monk.h"
 #include "jain_lightsworn_paladin.h"
 #include "light_end_dragon.h"
@@ -693,6 +695,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyAromageCanangaStatPenaltyToCardInfo(zone);
   ApplyAromaseraphyRosemaryStatBoostToCardInfo(zone);
   ApplyJainLightswornPaladinDamageStepAtk(zone);
+  ApplyClearViceDragonDamageStepAtk(zone);
   ApplyNeoSpaceAtkBoostForZone(zone);
   LevelTuning_ApplyLevelToCardInfo(zone);
   gSetFinalStatZone = NULL;
@@ -853,6 +856,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyAromageCanangaStatPenaltyToCardInfo(gSetFinalStatZone);
     ApplyAromaseraphyRosemaryStatBoostToCardInfo(gSetFinalStatZone);
     ApplyJainLightswornPaladinDamageStepAtk(gSetFinalStatZone);
+    ApplyClearViceDragonDamageStepAtk(gSetFinalStatZone);
     LevelTuning_ApplyLevelToCardInfo(gSetFinalStatZone);
     Duel_EndFaceUpBackrowCache();
   }

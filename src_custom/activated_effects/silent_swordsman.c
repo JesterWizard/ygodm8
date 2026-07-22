@@ -7,6 +7,7 @@
 #include "dynamic_equip.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
+#include "silent_swordsman.h"
 #include "six_card_hand.h"
 
 void ClearZoneAndSendMonToGraveyard2(struct DuelCard *zone, u8 player);
@@ -99,6 +100,25 @@ static u8 DestroyFirstSpell(void)
   return FALSE;
 }
 
+void TryApplySilentSwordsmanStandby(void)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+
+    if (zone == NULL || zone->id != SILENT_SWORDSMAN || !zone->isFaceUp)
+      continue;
+
+    if (zone->tempStage >= 126)
+      continue;
+
+    Duel_ShowEffectTextTyped(SILENT_SWORDSMAN, 9);
+    zone->tempStage++;
+    RefreshFieldMonsterStatOverlays();
+  }
+}
+
 unsigned char CanActivateSILENT_SWORDSMAN(void)
 {
   struct DuelCard *zone;
@@ -110,8 +130,8 @@ unsigned char CanActivateSILENT_SWORDSMAN(void)
   if (zone == NULL || zone->id != SILENT_SWORDSMAN)
     return FALSE;
 
-  /* ponytail: Standby +500 + Quick Spell negate need phase/chain hooks.
-   * Ceiling: OPT +1 tempStage (~500 ATK), else OPT destroy 1 Spell. */
+  /* Standby +500 via TryApplySilentSwordsmanStandby; OPT tempStage/destroy Spell unchanged.
+   * ponytail: Quick Spell negate needs chain hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -5,6 +5,7 @@
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "lumina_lightsworn_summoner.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -233,7 +234,26 @@ void ActivateLUMINA_LIGHTSWORN_SUMMONEREffect(void)
   if (SpecialSummonLightswornFromGy((u8)gyIndex) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: End Phase mill 3 needs EP phase hook. */
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
+}
+
+#define LUMINA_END_PHASE_MILL 3
+
+void TryApplyLuminaEndPhase(void)
+{
+  u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  u8 turn = ACTIVE_DUELIST;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone == NULL || !zone->isFaceUp || zone->id != LUMINA_LIGHTSWORN_SUMMONER)
+      continue;
+
+    Duel_ShowEffectTextTyped(LUMINA_LIGHTSWORN_SUMMONER, 2);
+    Duel_MillTopDeckCards(turn, LUMINA_END_PHASE_MILL, TRUE);
+    return;
+  }
 }

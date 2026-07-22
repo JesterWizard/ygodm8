@@ -95,6 +95,8 @@
 #include "destiny_hero_dread_servant.h"
 #include "destiny_hero_dreamer.h"
 #include "destiny_hero_dynatag.h"
+#include "destiny_hero_dreadmaster.h"
+#include "azure_eyes_silver_dragon.h"
 #include "vennominon_the_king_of_poisonous_snakes.h"
 #include "helios_duo_megistus.h"
 #include "helios_trice_megistus.h"
@@ -261,6 +263,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyAromageMarjoramNoPlantBattleDamage();
   ApplyMorphtronicLantronNoBattleDamage();
   ApplyDestinyHeroDynatagNoBattleDamage();
+  ApplyDestinyHeroDreadmasterNoBattleDamage();
   ApplyMajestyHyperionBattleDamageShare();
 
   if (sActionData.playerCardId == STONE_STATUE_OF_THE_AZTECS && sActionData.id == 5) {
@@ -333,6 +336,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (DestinyHeroDreamer_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (DestinyHeroDreadmaster_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (AzureEyesSilverDragon_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -371,6 +378,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (AromaseraphyJasmine_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (DestinyHeroDreamer_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (DestinyHeroDreadmaster_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (AzureEyesSilverDragon_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }

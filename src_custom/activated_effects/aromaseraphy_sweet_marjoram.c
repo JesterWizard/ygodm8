@@ -1,8 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
+#include "aromaseraphy_sweet_marjoram.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -47,6 +49,42 @@ static u16 FindDeckAromaPlant(void)
   return CARD_NONE;
 }
 
+static u8 ControllerHasFaceUpSweetMarjoramWithLpAdvantage(u8 plantController, u8 attackerController)
+{
+  u8 row;
+  u8 col;
+
+  if (gDuelLifePoints[plantController] <= gDuelLifePoints[attackerController])
+    return FALSE;
+
+  row = Duel_FixedMonsterRowForDuelist(plantController);
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AROMASERAPHY_SWEET_MARJORAM)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+u8 AromaseraphySweetMarjoram_CanAttackMonsterZone(struct DuelCard *zone)
+{
+  u8 plantController;
+
+  if (zone == NULL || !zone->isFaceUp || !Duel_CardHasMonsterType(zone->id, TYPE_PLANT))
+    return TRUE;
+
+  plantController = GetDuelistForZone(zone);
+  if (plantController > DUEL_OPPONENT)
+    return TRUE;
+
+  if (ControllerHasFaceUpSweetMarjoramWithLpAdvantage(plantController, WhoseTurn()))
+    return FALSE;
+
+  return TRUE;
+}
+
 unsigned char CanActivateAROMASERAPHY_SWEET_MARJORAM(void)
 {
   struct DuelCard *zone;
@@ -58,8 +96,9 @@ unsigned char CanActivateAROMASERAPHY_SWEET_MARJORAM(void)
   if (zone == NULL || zone->id != AROMASERAPHY_SWEET_MARJORAM)
     return FALSE;
 
-  /* ponytail: LP-higher Plant untargetable + Synchro Winds search + LP-gain
-   * destroy need continuous/summon/LP hooks. Ceiling: OPT search Aroma Plant. */
+  /* LP-higher Plant attack block via AromaseraphySweetMarjoram_CanAttackMonsterZone.
+   * ponytail: Synchro Winds search + LP-gain destroy need summon/LP hooks.
+   * Ceiling: OPT search Aroma Plant. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -83,6 +83,11 @@
 #include "amazoness_scouts.h"
 #include "aromalilith_magnolia.h"
 #include "neos_wiseman.h"
+#include "azure_eyes_silver_dragon.h"
+#include "evil_hero_infernal_sniper.h"
+#include "jenis_lightsworn_mender.h"
+#include "wulf_lightsworn_beast.h"
+#include "aromaseraphy_sweet_marjoram.h"
 #include "uria_lord_of_searing_flames.h"
 #include "raviel_lord_of_phantasms.h"
 #include "expanded_graveyard.h"
@@ -173,6 +178,8 @@ u8 VennominonTheKingOfPoisonousSnakes_ApplyDynamicZoneStats(struct DuelCard *zon
 u8 VennominagaTheDeityOfPoisonousSnakes_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroAirNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroBraveNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 CyberDragonInfinity_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 AromaseraphySweetMarjoram_CanAttackMonsterZone(struct DuelCard *zone);
 u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol);
 u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone);
 void TryRavielOnOpponentMonsterPlacement(struct DuelCard *zone);
@@ -658,6 +665,9 @@ enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx)
 
     gDuelDecks[fixedDuelist].cardsDrawn++;
 
+    TryApplyWulfAfterDeckMill(duelist, cardId);
+    JenisLightswornMender_NoteDeckMill(fixedDuelist);
+
     if (IsDuelOver() == TRUE)
       return DUEL_ACTION_DUEL_OVER;
   }
@@ -692,7 +702,9 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
       || ElShaddollWinda_PreventsDestroy(zone)
       || AmazonessScouts_PreventsDestroy(zone)
       || AromalilithMagnolia_PreventsDestroy(zone)
-      || NeosWiseman_PreventsDestroy(zone))
+      || NeosWiseman_PreventsDestroy(zone)
+      || AzureEyesSilverDragon_PreventsDestroy(zone)
+      || EvilHeroInfernalSniper_PreventsDestroy(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;
@@ -1658,6 +1670,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES, VennominagaTheDeityOfPoisonousSnakes_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_AIR_NEOS, ElementalHeroAirNeos_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_BRAVE_NEOS, ElementalHeroBraveNeos_ApplyDynamicZoneStats },
+  { CYBER_DRAGON_INFINITY, CyberDragonInfinity_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
@@ -1689,6 +1702,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   SphereMode_CanAttackMonsterZone,
   HamonLordOfStrikingThunder_CanAttackMonsterZone,
   KnightOfPentacles_CanAttackMonsterZone,
+  AromaseraphySweetMarjoram_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)

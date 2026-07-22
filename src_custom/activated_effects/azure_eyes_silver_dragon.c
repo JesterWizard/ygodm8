@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "azure_eyes_silver_dragon.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
@@ -52,6 +53,53 @@ static u8 MarkOwnDragonsProtected(void)
   return marked;
 }
 
+static u8 ControllerHasFaceUpAzureEyes(u8 fixedDuelist)
+{
+  u8 row = Duel_FixedMonsterRowForDuelist(fixedDuelist);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AZURE_EYES_SILVER_DRAGON)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static u8 IsProtectedOwnDragon(const struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+  u8 fixedDuelist;
+
+  if (zone == NULL || zone->id == AZURE_EYES_SILVER_DRAGON)
+    return FALSE;
+
+  if (!Duel_CardHasMonsterType(zone->id, TYPE_DRAGON))
+    return FALSE;
+
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &fixedCol))
+    return FALSE;
+
+  fixedDuelist = Duel_FixedDuelistForMonsterRow(fixedRow);
+  if (zone->unk4 & 0x80)
+    return TRUE;
+
+  return ControllerHasFaceUpAzureEyes(fixedDuelist);
+}
+
+u8 AzureEyesSilverDragon_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  return zone != NULL && zone->isFaceUp && IsProtectedOwnDragon(zone);
+}
+
+u8 AzureEyesSilverDragon_PreventsDestroy(const struct DuelCard *zone)
+{
+  return IsProtectedOwnDragon(zone);
+}
+
 unsigned char CanActivateAZURE_EYES_SILVER_DRAGON(void)
 {
   struct DuelCard *zone;
@@ -63,8 +111,9 @@ unsigned char CanActivateAZURE_EYES_SILVER_DRAGON(void)
   if (zone == NULL || zone->id != AZURE_EYES_SILVER_DRAGON)
     return FALSE;
 
-  /* ponytail: Special Summon protection + Standby SS Normal need summon/phase
-   * hooks. Ceiling: OPT mark your Dragons protected (unk4). */
+  /* Dragon battle/effect protect via AzureEyesSilverDragon_Prevents*.
+   * ponytail: until end of next turn clear needs EOT hook; Standby SS Normal
+   * needs phase hook. Ceiling: OPT mark your Dragons protected (unk4). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

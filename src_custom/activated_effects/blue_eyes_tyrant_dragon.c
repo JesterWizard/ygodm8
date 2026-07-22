@@ -91,8 +91,8 @@ unsigned char CanActivateBLUE_EYES_TYRANT_DRAGON(void)
   if (zone == NULL || zone->id != BLUE_EYES_TYRANT_DRAGON)
     return FALSE;
 
-  /* ponytail: multi-attack + Trap immunity + battle-end Set need battle/permanent
-   * hooks. Ceiling: OPT Set 1 Trap from GY to backrow. */
+  /* Trap immunity via IsImmuneToTrapEffectsOnField; multi-attack + battle-end
+   * Set need battle/permanent hooks. Ceiling: OPT Set 1 Trap from GY to backrow. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

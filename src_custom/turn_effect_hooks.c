@@ -26,6 +26,8 @@
 #include "morphtronic_lantron.h"
 #include "shire_lightsworn_spirit.h"
 #include "jain_lightsworn_paladin.h"
+#include "lumina_lightsworn_summoner.h"
+#include "jenis_lightsworn_mender.h"
 #include "lyla_lightsworn_sorceress.h"
 #include "garonith_lightsworn_dragon.h"
 #include "raiden_hand_of_the_lightsworn.h"
@@ -61,6 +63,10 @@
 #include "the_gaze_of_timaeus.h"
 #include "vipers_rebirth.h"
 #include "red_dragon_archfiend.h"
+#include "destiny_hero_defender.h"
+#include "evil_dragon_ananta.h"
+#include "evil_hero_infernal_sniper.h"
+#include "silent_swordsman.h"
 #include "spell_effects.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
@@ -217,6 +223,7 @@ static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".
   { THE_WHITE_STONE_OF_ANCIENTS, MatchActiveDuelistGraveyard, ShouldActivateTheWhiteStoneOfAncientsTurnEffect, ActivateTheWhiteStoneOfAncientsTurnEffect },
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, MatchActiveDuelistMonsterRow, ShouldActivateUnstoppableExodiaIncarnateTurnEffect, ActivateUnstoppableExodiaIncarnateTurnEffect },
   { BLUE_EYES_CHAOS_DRAGON, MatchActiveDuelistMonsterRow, ShouldActivateBlueEyesChaosDragonTurnEffect, ActivateBlueEyesChaosDragonTurnEffect },
+  { EVIL_HERO_INFERNAL_SNIPER, MatchActiveDuelistMonsterRow, ShouldActivateEvilHeroInfernalSniperTurnEffect, ActivateEvilHeroInfernalSniperTurnEffect },
   { THE_GRAND_JUPITER, MatchAnyMonsterRow, ShouldActivateTheGrandJupiterTurnEffect, ActivateTheGrandJupiterTurnEffect },
 };
 
@@ -420,6 +427,8 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyWeaponChangeStandby();
   TryApplyNeedleWallStandby();
   TryApplyTourOfDoomStandby();
+  TryApplyDestinyHeroDefenderStandbyDraw();
+  TryApplySilentSwordsmanStandby();
   TryBottomlessShiftingSandTurnStart();
   ContinuousTraps_TryActivateOnOpponentTurnStart();
   if (IsDuelOver() == 1)
@@ -478,6 +487,12 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyRaidenEndPhase();
   if (IsDuelOver() == 1)
     return;
+  TryApplyLuminaEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyJenisEndPhase();
+  if (IsDuelOver() == 1)
+    return;
   TryApplyHeliosDuoMegistusEndPhase();
   if (IsDuelOver() == 1)
     return;
@@ -485,6 +500,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyAromaJarEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyEvilDragonAnantaEndPhase();
   if (IsDuelOver() == 1)
     return;
   TryReturnContactFusionsAtEndPhase();

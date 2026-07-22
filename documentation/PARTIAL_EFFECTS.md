@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 07:42 UTC  
-**Remaining partials:** `500`
+**Last updated:** 2026-07-22 16:14 UTC  
+**Remaining partials:** `493`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 390 |
-| `permanent` | 94 |
-| **total** | **500** |
+| `activated` | 387 |
+| `permanent` | 90 |
+| **total** | **493** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (390)
+## activated (387)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -167,11 +167,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/ancient_gear_statue.c`
 - L111: ignore summoning conditions partial via CannotBeSS check. Ceiling: OPT tribute self → SS AG Golem / mentions-Golem from hand/Deck.
 - L189: once-per-turn FromHand not tracked without turn flag.
-
-### `ANCIENT_GEAR_TANKER`
-- path: `src_custom/activated_effects/ancient_gear_tanker.c`
-- L190: AG pierce mark for rest of turn FALSE.
-- L234: pierce mark AG monsters FALSE. Ceiling: OPT SS AG from hand (GY if opp has monster), else OPT destroy your face-up. Separate OPTs share one MarkMonsterEffectUsed.
 
 ### `ANDRO_SPHINX`
 - path: `src_custom/activated_effects/andro_sphinx.c`
@@ -274,7 +269,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AROMASERAPHY_SWEET_MARJORAM`
 - path: `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c`
-- L61: LP-higher Plant untargetable + Synchro Winds search + LP-gain destroy need continuous/summon/LP hooks. Ceiling: OPT search Aroma Plant.
+- L100: * ponytail: Synchro Winds search + LP-gain destroy need summon/LP hooks.
 
 ### `ASH_BLOSSOM_AND_JOYOUS_SPRING`
 - path: `src_custom/activated_effects/ash_blossom_and_joyous_spring.c`
@@ -299,8 +294,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AZURE_EYES_SILVER_DRAGON`
 - path: `src_custom/activated_effects/azure_eyes_silver_dragon.c`
-- L47: until end of next turn clear needs EOT hook.
-- L66: Special Summon protection + Standby SS Normal need summon/phase hooks. Ceiling: OPT mark your Dragons protected (unk4).
+- L48: until end of next turn clear needs EOT hook.
 
 ### `BARRIER_STATUE_OF_THE_STORMWINDS`
 - path: `src_custom/activated_effects/barrier_statue_of_the_stormwinds.c`
@@ -344,10 +338,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/blue_eyes_spirit_dragon.c`
 - L65: OPT GY negate + Extra Synchro + EP destroy need chain/Extra hooks. Ceiling: OPT tribute self → SS LIGHT Dragon from Deck in DEF.
 
-### `BLUE_EYES_TYRANT_DRAGON`
-- path: `src_custom/activated_effects/blue_eyes_tyrant_dragon.c`
-- L94: multi-attack + Trap immunity + battle-end Set need battle/permanent hooks. Ceiling: OPT Set 1 Trap from GY to backrow.
-
 ### `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c`
 - L23: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. Ceiling: OPT +2 tempStage (~+1000) as negate stand-in.
@@ -370,7 +360,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CHAOS_ANCIENT_GEAR_GIANT`
 - path: `src_custom/activated_effects/chaos_ancient_gear_giant.c`
-- L12: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock + multi-attack + piercing need fusion/battle hooks. Ceiling: not ignition-activatable here.
+- L12: Fusion-only + Spell/Trap immunity + battle-phase opp effect lock + multi-attack need fusion/battle hooks. Pierce via ApplySimplePiercersBattleEffect. Ceiling: not ignition-activatable here.
 
 ### `CHIMERATECH_FORTRESS_DRAGON`
 - path: `src_custom/activated_effects/chimeratech_fortress_dragon.c`
@@ -386,7 +376,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CLEAR_VICE_DRAGON`
 - path: `src_custom/activated_effects/clear_vice_dragon.c`
-- L12: Clear World immunity + battle ATK double + discard-to-save need continuous/battle/destruction hooks. Ceiling: not ignition-activatable here.
+- L72: * ponytail: Clear World immunity + discard-to-save need continuous/destruction hooks.
 
 ### `CORAL_DRAGON`
 - path: `src_custom/activated_effects/coral_dragon.c`
@@ -407,9 +397,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CYBER_DRAGON_INFINITY`
 - path: `src_custom/activated_effects/cyber_dragon_infinity.c`
-- L34: ATK summons keep isFaceUp=0 until EOT flip.
-- L61: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
-- L109: Xyz attach materials + negate FALSE. Ceiling: OPT ClearZone 1 face-up ATK monster (absorb) + tempStage self.
+- L35: ATK summons keep isFaceUp=0 until EOT flip.
+- L62: Xyz attach / negate FALSE. Ceiling: ClearZone absorb + +1 tempStage.
 
 ### `CYBER_LASER_DRAGON`
 - path: `src_custom/activated_effects/cyber_laser_dragon.c`
@@ -1125,10 +1114,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/lord_of_the_red.c`
 - L115: either-turn chain on activation + S/T branch need chain hooks. Ceiling: OPT destroy 1 monster on the field.
 
-### `LUMINA_LIGHTSWORN_SUMMONER`
-- path: `src_custom/activated_effects/lumina_lightsworn_summoner.c`
-- L236: End Phase mill 3 needs EP phase hook.
-
 ### `LUMINA_TWILIGHTSWORN_SHAMAN`
 - path: `src_custom/activated_effects/lumina_twilightsworn_shaman.c`
 - L226: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
@@ -1482,7 +1467,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `SILENT_SWORDSMAN`
 - path: `src_custom/activated_effects/silent_swordsman.c`
-- L113: Standby +500 + Quick Spell negate need phase/chain hooks. Ceiling: OPT +1 tempStage (~500 ATK), else OPT destroy 1 Spell.
+- L134: * ponytail: Quick Spell negate needs chain hook. */
 
 ### `SILENT_SWORDSMAN_LV3`
 - path: `src_custom/activated_effects/silent_swordsman_lv3.c`
@@ -1728,7 +1713,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (94)
+## permanent (90)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1804,10 +1789,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/despair_from_the_dark.c`
 - L47: opp hand/Deck send by card effect not tracked — GY-top SS only.
 
-### `DESTINY_HERO_DEFENDER`
-- path: `src_custom/permanent_effects/destiny_hero_defender.c`
-- L8: opp Standby draw while face-up DEF needs turn_effect hook.
-
 ### `DESTINY_HERO_DOGMA`
 - path: `src_custom/permanent_effects/destiny_hero_dogma.c`
 - L77: true trigger is opp next Standby after 3-tribute SS; on-summon halve LP once.
@@ -1827,8 +1808,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DREADMASTER`
 - path: `src_custom/permanent_effects/destiny_hero_dreadmaster.c`
-- L185: Clock Tower Prison gate + battle protection skipped; on-summon stand-in.
-- L216: D-HERO indestructible + no battle damage this turn need continuous hooks.
+- L284: Clock Tower Prison gate skipped; on-summon destroy/SS stand-in. D-HERO battle protect + no BD via DestinyHeroDreadmaster_* while face-up.
 
 ### `DRAGON_MASTER_MAGIA`
 - path: `src_custom/permanent_effects/dragon_master_magia.c`
@@ -1868,10 +1848,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/elemental_hero_the_shining.c`
 - L64: return up to 2 banished E-HEROes to hand deferred — no multi-RFP return UI yet. ATK overlay via ApplyDynamicZoneStats.
 
-### `EVIL_DRAGON_ANANTA`
-- path: `src_custom/permanent_effects/evil_dragon_ananta.c`
-- L52: End Phase destroy 1 card needs turn_effect hook — ApplyDynamicZoneStats only.
-
 ### `EVIL_HERO_DARK_GAIA`
 - path: `src_custom/permanent_effects/evil_hero_dark_gaia.c`
 - L8: ATK = fusion materials + flip opp Defense→Attack need fusion/battle hooks.
@@ -1879,10 +1855,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `EVIL_HERO_INFERNAL_PRODIGY`
 - path: `src_custom/permanent_effects/evil_hero_infernal_prodigy.c`
 - L8: empty-field hand SS is FromHand activated; End-Phase tribute draw needs turn hook.
-
-### `EVIL_HERO_INFERNAL_SNIPER`
-- path: `src_custom/permanent_effects/evil_hero_infernal_sniper.c`
-- L8: spell immunity + Standby burn 1000 (face-up DEF) need continuous/phase hooks.
 
 ### `EVIL_HERO_INFERNO_WING_BACKFIRE`
 - path: `src_custom/permanent_effects/evil_hero_inferno_wing_backfire.c`
@@ -1996,7 +1968,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `JENIS_LIGHTSWORN_MENDER`
 - path: `src_custom/permanent_effects/jenis_lightsworn_mender.c`
-- L8: End Phase heal/burn after LS mill needs turn_effect hook.
+- L53: LS-effect mill source not tracked — any deck mill this turn stand-in. EP burn/heal via TryApplyJenisEndPhase.
 
 ### `JUNK_WARRIOR`
 - path: `src_custom/permanent_effects/junk_warrior.c`
@@ -2109,10 +2081,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES`
 - path: `src_custom/permanent_effects/vennominaga_the_deity_of_poisonous_snakes.c`
 - L54: S/T + monster immunity + 3-counter win need continuous/battle hooks.
-
-### `WULF_LIGHTSWORN_BEAST`
-- path: `src_custom/permanent_effects/wulf_lightsworn_beast.c`
-- L8: milled-from-Deck Special Summon needs mill/deck-send hook.
 
 ### `YOWIE`
 - path: `src_custom/permanent_effects/yowie.c`

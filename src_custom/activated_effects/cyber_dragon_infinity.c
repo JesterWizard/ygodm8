@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "cyber_dragon_infinity.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
@@ -95,6 +96,25 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return FALSE;
 }
 
+#define CYBER_INFINITY_BASE_ATK 2100
+#define CYBER_INFINITY_ATK_PER_MATERIAL 200
+
+u8 CyberDragonInfinity_ApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  u8 materials;
+  u16 atk;
+
+  if (zone == NULL || zone->id != CYBER_DRAGON_INFINITY)
+    return FALSE;
+
+  SetCardInfo(zone->id);
+  materials = zone->tempStage > 0 ? (u8)zone->tempStage : 0;
+  atk = Duel_ClampStat((u32)CYBER_INFINITY_BASE_ATK
+                       + (u32)materials * CYBER_INFINITY_ATK_PER_MATERIAL);
+  Duel_WriteCardInfoStats(zone->id, atk, gCardInfo.def);
+  return TRUE;
+}
+
 unsigned char CanActivateCYBER_DRAGON_INFINITY(void)
 {
   struct DuelCard *zone;
@@ -106,8 +126,8 @@ unsigned char CanActivateCYBER_DRAGON_INFINITY(void)
   if (zone == NULL || zone->id != CYBER_DRAGON_INFINITY)
     return FALSE;
 
-  /* ponytail: Xyz attach materials + negate FALSE.
-   * Ceiling: OPT ClearZone 1 face-up ATK monster (absorb) + tempStage self. */
+  /* ATK overlay via CyberDragonInfinity_ApplyDynamicZoneStats (+200 per tempStage).
+   * ponytail: Xyz attach / negate FALSE. Ceiling: OPT ClearZone absorb + tempStage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
