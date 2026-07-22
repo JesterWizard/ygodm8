@@ -9,7 +9,7 @@ unsigned char CanActivateGODDESS_BOW(void)
   if (gMonEffect.id != GODDESS_BOW)
     return FALSE;
 
-  /* ponytail: Hermos fusion + equip + battle-phase negate/second attack need
+  /* Hermos fusion + equip + battle-phase negate/second attack need
    * fusion/equip/chain hooks. Ceiling: not ignition-activatable here. */
   return FALSE;
 }

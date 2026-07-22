@@ -210,7 +210,7 @@ void TryTheSuppressionPlutoOnMonsterPlacement(struct DuelCard *zone)
   if (!CanTakeControlOfOpponentSpellTrap())
     return;
 
-  /* ponytail: on-summon text after field draw so Pluto is visible. */
+  /* on-summon text after field draw so Pluto is visible. */
   UpdateDuelGfxExceptField();
 
   Duel_ShowEffectTextTyped(THE_SUPPRESSION_PLUTO, 2);

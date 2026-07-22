@@ -83,7 +83,7 @@ unsigned char CanActivateNECROFACE(void)
   if (zone == NULL || zone->id != NECROFACE)
     return FALSE;
 
-  /* ponytail: Normal Summon shuffle + banish-mill branches need summon/banish
+  /* Normal Summon shuffle + banish-mill branches need summon/banish
    * hooks. Ceiling: OPT shuffle all banished into Decks + tempStage per card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -104,7 +104,7 @@ void ActivateNECROFACEEffect(void)
   if (!ShuffleAllBanishedIntoDecks(&shuffled))
     return;
 
-  /* ponytail: tempStage unit is ~500 ATK, not printed +100; upgrade: exact overlay. */
+  /* tempStage unit is ~500 ATK, not printed +100; upgrade: exact overlay. */
   if (shuffled > 0 && self->tempStage < 127 - (s8)shuffled)
     self->tempStage += (s8)shuffled;
 

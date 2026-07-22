@@ -4,14 +4,35 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 #include "six_card_hand.h"
+#include "zeradias_herald_of_heaven.h"
+
+void TryMaintainZeradiasHeraldOfHeaven(void)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (Duel_IsBackrowCardOnField(THE_SANCTUARY_IN_THE_SKY, TRUE))
+    return;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_MONSTER_ROW; fixedRow++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (zone == NULL || zone->id != ZERADIAS_HERALD_OF_HEAVEN || !zone->isFaceUp)
+        continue;
+
+      Duel_DestroyZone(zone, Duel_FixedDuelistForMonsterRow(fixedRow), FALSE);
+      return;
+    }
+  }
+}
 
 unsigned char CanActivateZERADIAS_HERALD_OF_HEAVEN(void)
 {
   if (gMonEffect.id != ZERADIAS_HERALD_OF_HEAVEN)
     return FALSE;
 
-  /* ponytail: destroy self when Sanctuary absent needs continuous field check.
-   * Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook. */
+  /* Sanctuary absent destroy via TryMaintainZeradiasHeraldOfHeaven. */
   return FALSE;
 }
 

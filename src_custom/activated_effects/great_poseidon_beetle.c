@@ -9,7 +9,7 @@ unsigned char CanActivateGREAT_POSEIDON_BEETLE(void)
   if (gMonEffect.id != GREAT_POSEIDON_BEETLE)
     return FALSE;
 
-  /* ponytail: re-attack same target after surviving battle needs battle
+  /* re-attack same target after surviving battle needs battle
    * re-attack hook. Ceiling: not ignition-activatable here. */
   return FALSE;
 }

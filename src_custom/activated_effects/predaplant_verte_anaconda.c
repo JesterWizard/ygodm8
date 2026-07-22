@@ -126,7 +126,7 @@ unsigned char CanActivatePREDAPLANT_VERTE_ANACONDA(void)
   if (zone == NULL || zone->id != PREDAPLANT_VERTE_ANACONDA)
     return FALSE;
 
-  /* ponytail: DARK attribute mark + Poly/Fusion copy SS need attribute/fusion
+  /* DARK attribute mark + Poly/Fusion copy SS need attribute/fusion
    * hooks. Ceiling: pay 2000 LP → destroy 1 field card. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

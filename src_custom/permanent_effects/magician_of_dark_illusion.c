@@ -75,7 +75,7 @@ unsigned char ShouldActivateMAGICIAN_OF_DARK_ILLUSION(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* ponytail: opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only. */
+  /* opp-turn hand SS + own S/T SS need chain hooks; on-summon GY SS only. */
   return CanSpecialSummonDarkMagicianFromGrave(duelist);
 }
 

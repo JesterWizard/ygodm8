@@ -25,7 +25,7 @@ unsigned char CanActivateLIFE_STREAM_DRAGON(void)
   if (zone == NULL || zone->id != LIFE_STREAM_DRAGON)
     return FALSE;
 
-  /* ponytail: Synchro LP=4000 trigger + no effect damage + Equip-banish
+  /* Synchro LP=4000 trigger + no effect damage + Equip-banish
    * destruction-replace need synchro/LP/battle hooks. Ceiling: OPT set LP to
    * 4000 via usage. */
   if (!CanUseMonsterEffect(zone))

@@ -29,7 +29,7 @@ unsigned char CanActivateFORMULA_SYNCHRON(void)
   if (zone == NULL || zone->id != FORMULA_SYNCHRON)
     return FALSE;
 
-  /* ponytail: Synchro Summon draw trigger + opp-Main-Phase quick Synchro need
+  /* Synchro Summon draw trigger + opp-Main-Phase quick Synchro need
    * synchro/chain hooks. Ceiling: OPT draw 1 via usage when deck remains. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

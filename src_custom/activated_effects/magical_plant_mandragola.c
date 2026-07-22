@@ -9,7 +9,7 @@ unsigned char CanActivateMAGICAL_PLANT_MANDRAGOLA(void)
   if (gMonEffect.id != MAGICAL_PLANT_MANDRAGOLA)
     return FALSE;
 
-  /* ponytail: FLIP place Spell Counters needs flip + counter storage.
+  /* FLIP place Spell Counters needs flip + counter storage.
    * Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon
    * gate outside this file. */
   return FALSE;

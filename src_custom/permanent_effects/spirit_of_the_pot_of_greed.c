@@ -8,7 +8,7 @@ extern unsigned char IsSkillDrainActiveOnField(void);
 
 static u8 IsFaceUpAttackSpiritOfThePotOfGreed(const struct DuelCard *zone)
 {
-  /* ponytail: normal hand summon copies isFaceUp=0; attack-position monsters still count */
+  /* Attack-position summons stay isFaceUp=0 until end-of-turn flip. */
   return zone != NULL
       && zone->id == SPIRIT_OF_THE_POT_OF_GREED
       && zone->isDefending == FALSE;

@@ -9,7 +9,7 @@ unsigned char CanActivateNATURIA_BEAST(void)
   if (gMonEffect.id != NATURIA_BEAST)
     return FALSE;
 
-  /* ponytail: Quick Effect spell negate + mill 2 need chain/negation hooks.
+  /* Quick Effect spell negate + mill 2 need chain/negation hooks.
    * Ceiling: not ignition-activatable here; upgrade: either-turn interrupt. */
   return FALSE;
 }

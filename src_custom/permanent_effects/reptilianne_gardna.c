@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateREPTILIANNE_GARDNA(void)
 {
-  /* ponytail: destroyed→search Reptilianne needs destroy-to-GY permanent hook. */
+  /* destroyed→search Reptilianne needs destroy-to-GY permanent hook. */
   return FALSE;
 }
 

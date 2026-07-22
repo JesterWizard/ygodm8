@@ -151,7 +151,7 @@ unsigned char CanActivateSHADDOLL_SQUAMATA(void)
   if (zone == NULL || zone->id != SHADDOLL_SQUAMATA)
     return FALSE;
 
-  /* ponytail: FLIP destroy vs GY-sent mill exclusivity + trigger hooks deferred.
+  /* FLIP destroy vs GY-sent mill exclusivity + trigger hooks deferred.
    * Ceiling: destroy 1 opp monster OR mill 1 Shaddoll from Deck once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

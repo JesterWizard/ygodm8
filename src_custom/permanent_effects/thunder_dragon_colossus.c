@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateTHUNDER_DRAGON_COLOSSUS(void)
 {
-  /* ponytail: opp search lock + battle/effect destroy→GY-banish need continuous/battle hooks. */
+  /* opp search lock + battle/effect destroy→GY-banish need continuous/battle hooks. */
   (void)gActiveEffect;
   return FALSE;
 }

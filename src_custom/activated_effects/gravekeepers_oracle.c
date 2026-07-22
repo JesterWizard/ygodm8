@@ -90,7 +90,7 @@ unsigned char CanActivateGRAVEKEEPERS_ORACLE(void)
   if (zone == NULL || zone->id != GRAVEKEEPERS_ORACLE)
     return FALSE;
 
-  /* ponytail: Tribute Summon sequence (destroy/flip/ATK) FALSE.
+  /* Tribute Summon sequence (destroy/flip/ATK) FALSE.
    * Ceiling: OPT destroy up to 2 cards on opp field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -107,7 +107,7 @@ void ActivateGRAVEKEEPERS_ORACLEEffect(void)
   if (self == NULL || IsDuelOver() == TRUE)
     return;
 
-  /* ponytail: multi-target picker not wired; auto-destroy up to 2 opp cards. */
+  /* multi-target picker not wired; auto-destroy up to 2 opp cards. */
   DestroyUpToTwoOppCards();
   if (IsDuelOver() == TRUE)
     return;

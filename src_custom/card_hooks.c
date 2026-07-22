@@ -67,6 +67,8 @@
 
 #include "generated/field_spell_stat_mods_generated.inc"
 
+void ApplyMagicalMarionetteStatBoostToCardInfo(const struct DuelCard *zone);
+
 struct PendingBattleActionData {
   unsigned short playerCardId;
   unsigned short playerCardAtkOrLifePointsMod;
@@ -699,6 +701,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplySpinedGillmanAtkBoostToCardInfo(zone);
   ApplyMorphtronicRadionStatBoostToCardInfo(zone);
   ApplyGravekeepersPriestessStatBoostToCardInfo(zone);
+  ApplyMagicalMarionetteStatBoostToCardInfo(zone);
   ApplyAromageCanangaStatPenaltyToCardInfo(zone);
   ApplyAromaseraphyRosemaryStatBoostToCardInfo(zone);
   ApplyJainLightswornPaladinDamageStepAtk(zone);
@@ -863,6 +866,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplySpinedGillmanAtkBoostToCardInfo(gSetFinalStatZone);
     ApplyMorphtronicRadionStatBoostToCardInfo(gSetFinalStatZone);
     ApplyGravekeepersPriestessStatBoostToCardInfo(gSetFinalStatZone);
+    ApplyMagicalMarionetteStatBoostToCardInfo(gSetFinalStatZone);
     ApplyAromageCanangaStatPenaltyToCardInfo(gSetFinalStatZone);
     ApplyAromaseraphyRosemaryStatBoostToCardInfo(gSetFinalStatZone);
     ApplyJainLightswornPaladinDamageStepAtk(gSetFinalStatZone);

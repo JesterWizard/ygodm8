@@ -98,7 +98,7 @@ unsigned char CanActivateFELIS_LIGHTSWORN_ARCHER(void)
   if (zone == NULL || zone->id != FELIS_LIGHTSWORN_ARCHER)
     return FALSE;
 
-  /* ponytail: SS when sent from Deck to GY by monster effect needs mill/SS
+  /* SS when sent from Deck to GY by monster effect needs mill/SS
    * hook. Ceiling: ignition tribute self → destroy 1 opponent monster → mill 3. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

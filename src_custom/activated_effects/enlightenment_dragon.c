@@ -135,7 +135,7 @@ unsigned char CanActivateENLIGHTENMENT_DRAGON(void)
   if (zone == NULL || zone->id != ENLIGHTENMENT_DRAGON)
     return FALSE;
 
-  /* ponytail: Extra Summon conditions + destroy-add banished FALSE.
+  /* Extra Summon conditions + destroy-add banished FALSE.
    * Ceiling: OPT pay 2000 → banish all other field+both GYs, else OPT mill 4.
    * Separate OPTs share one MarkMonsterEffectUsed. */
   if (!CanUseMonsterEffect(zone))

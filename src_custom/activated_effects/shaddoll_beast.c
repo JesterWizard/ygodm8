@@ -17,7 +17,7 @@ unsigned char CanActivateSHADDOLL_BEAST(void)
   if (zone == NULL || zone->id != SHADDOLL_BEAST)
     return FALSE;
 
-  /* ponytail: FLIP draw2/discard1 and GY-sent draw1 share 1/turn exclusivity.
+  /* FLIP draw2/discard1 and GY-sent draw1 share 1/turn exclusivity.
    * Ceiling: OPT draw 1 stand-in for GY effect only; upgrade: flip + GY hooks. */
   return CanUseMonsterEffect(zone);
 }

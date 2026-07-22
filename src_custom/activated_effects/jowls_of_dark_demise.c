@@ -67,7 +67,7 @@ static void TakeControlOfMonsterZone(struct DuelCard *src)
     dst->isFaceUp = TRUE;
     dst->isLocked = FALSE;
     dst->isDefending = FALSE;
-    dst->unkTwo = TRUE; // ponytail: Jowls direct-attack flag; cleared when zone resets
+    dst->unkTwo = TRUE; /* Jowls direct-attack flag; cleared when zone resets */
     dst->unk4 = 2;
     SetPermStage(dst, PermStage(src));
     ResetTempStage(dst);

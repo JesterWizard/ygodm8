@@ -90,7 +90,7 @@ unsigned char CanActivateSHADDOLL_HOUND(void)
   if (zone == NULL || zone->id != SHADDOLL_HOUND)
     return FALSE;
 
-  /* ponytail: FLIP vs sent-by-effect battle-position branch need flip/send hooks.
+  /* FLIP vs sent-by-effect battle-position branch need flip/send hooks.
    * Ceiling: OPT add 1 Shaddoll from GY to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -134,7 +134,7 @@ void TryRavielOnOpponentMonsterPlacement(struct DuelCard *zone)
   if (!hasRaviel)
     return;
 
-  /* ponytail: triggers on any monster placement (Normal + Special).
+  /* triggers on any monster placement (Normal + Special).
      Card text says "Normal Summons" only — needs opts.markSpecialSummon check. */
   gRavielTokenSummonDuelist = (ravielTurnRow == ACTIVE_DUELIST_MONSTER_ROW)
       ? ACTIVE_DUELIST : INACTIVE_DUELIST;

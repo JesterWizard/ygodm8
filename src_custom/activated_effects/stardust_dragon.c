@@ -9,7 +9,7 @@ unsigned char CanActivateSTARDUST_DRAGON(void)
   if (gMonEffect.id != STARDUST_DRAGON)
     return FALSE;
 
-  /* ponytail: Quick Effect tribute-negate-destroy + End Phase GY SS need chain
+  /* Quick Effect tribute-negate-destroy + End Phase GY SS need chain
    * and EP hooks. Ceiling: not ignition-activatable here. */
   return FALSE;
 }

@@ -281,7 +281,7 @@ unsigned char CanActivatePOSEIDRA_THE_ATLANTEAN_DRAGON(void)
   if (zone != NULL && zone->id == POSEIDRA_THE_ATLANTEAN_DRAGON)
     return FALSE;
 
-  /* ponytail: hand SS uses FromHand path. Ceiling: GY ignition like Malicious. */
+  /* hand SS uses FromHand path. Ceiling: GY ignition like Malicious. */
   if (FindPoseidraInGy() < 0)
     return FALSE;
 

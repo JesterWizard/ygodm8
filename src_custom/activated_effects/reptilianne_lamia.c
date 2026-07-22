@@ -94,7 +94,7 @@ unsigned char CanActivateREPTILIANNE_LAMIA(void)
   if (gMonEffect.id != REPTILIANNE_LAMIA)
     return FALSE;
 
-  /* ponytail: GY synchro-material ATK-0 need synchro hook.
+  /* GY synchro-material ATK-0 need synchro hook.
    * Ceiling: not field-ignition; FromHand ATK-0 + SS + self-damage. */
   return FALSE;
 }
@@ -143,7 +143,7 @@ u8 TrySpecialSummonReptilianneLamiaFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  /* ponytail: FromHand targeting not wired; auto-pick highest original ATK opp. */
+  /* FromHand targeting not wired; auto-pick highest original ATK opp. */
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[INACTIVE_DUELIST_MONSTER_ROW][col];
     u16 atk;

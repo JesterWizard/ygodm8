@@ -92,7 +92,7 @@ unsigned char CanActivateGRAVEKEEPERS_HEADMAN(void)
   if (zone == NULL || zone->id != GRAVEKEEPERS_HEADMAN)
     return FALSE;
 
-  /* ponytail: on-Summon trigger + ATK/face-down DEF choice need summon hook.
+  /* on-Summon trigger + ATK/face-down DEF choice need summon hook.
    * Ceiling: OPT SS 1 Lv4 Gravekeeper's from GY in ATK. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

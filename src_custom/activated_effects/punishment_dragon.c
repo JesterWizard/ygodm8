@@ -188,7 +188,7 @@ unsigned char CanActivatePUNISHMENT_DRAGON(void)
   if (zone == NULL || zone->id != PUNISHMENT_DRAGON)
     return FALSE;
 
-  /* ponytail: hand SS via 4+ banished LS uses FromHand path; LS mill 4 needs
+  /* hand SS via 4+ banished LS uses FromHand path; LS mill 4 needs
    * effect-activation hook. Ceiling: pay 1000 → shuffle all banished into Decks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

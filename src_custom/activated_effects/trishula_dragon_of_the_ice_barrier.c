@@ -111,7 +111,7 @@ unsigned char CanActivateTRISHULA_DRAGON_OF_THE_ICE_BARRIER(void)
   if (zone == NULL || zone->id != TRISHULA_DRAGON_OF_THE_ICE_BARRIER)
     return FALSE;
 
-  /* ponytail: Synchro Summon trigger needs synchro hook. Ceiling: once via usage banish
+  /* Synchro Summon trigger needs synchro hook. Ceiling: once via usage banish
    * random opp hand + 1 field + 1 GY when available. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

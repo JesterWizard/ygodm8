@@ -99,7 +99,7 @@ unsigned char CanActivateGATE_GUARDIANS_COMBINED(void)
   if (zone == NULL || zone->id != GATE_GUARDIANS_COMBINED)
     return FALSE;
 
-  /* ponytail: negate-on-target + leave-field SS FALSE.
+  /* negate-on-target + leave-field SS FALSE.
    * Ceiling: OPT destroy 1 opp card (negate stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

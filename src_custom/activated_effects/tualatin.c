@@ -105,7 +105,7 @@ unsigned char CanActivateTUALATIN(void)
   if (zone == NULL || zone->id != TUALATIN)
     return FALSE;
 
-  /* ponytail: FromHand battle-wipe SS + Summon Attribute lock FALSE.
+  /* FromHand battle-wipe SS + Summon Attribute lock FALSE.
    * Ceiling: OPT destroy all face-up monsters of first opp monster's Attribute. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

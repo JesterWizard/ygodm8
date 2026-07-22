@@ -209,7 +209,7 @@ unsigned char CanActivateTOADALLY_AWESOME(void)
   if (zone == NULL || zone->id != TOADALLY_AWESOME)
     return FALSE;
 
-  /* ponytail: detach/Standby/negate FALSE.
+  /* detach/Standby/negate FALSE.
    * Ceiling: OPT SS Frog from Deck, else OPT send Aqua → destroy 1 opp. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

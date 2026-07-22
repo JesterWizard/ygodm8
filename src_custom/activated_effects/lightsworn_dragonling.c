@@ -131,7 +131,7 @@ unsigned char CanActivateLIGHTSWORN_DRAGONLING(void)
   if (zone == NULL || zone->id != LIGHTSWORN_DRAGONLING)
     return FALSE;
 
-  /* ponytail: hand SS when Lightsworn in GY uses FromHand path. Ceiling: field
+  /* hand SS when Lightsworn in GY uses FromHand path. Ceiling: field
    * OPT send 1 other Lightsworn from Deck to GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

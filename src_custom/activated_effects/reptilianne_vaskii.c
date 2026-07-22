@@ -188,7 +188,7 @@ unsigned char CanActivateREPTILIANNE_VASKII(void)
   if (zone == NULL || zone->id != REPTILIANNE_VASKII)
     return FALSE;
 
-  /* ponytail: only-SS-by-tribute + unique-on-field need summon/field hooks.
+  /* only-SS-by-tribute + unique-on-field need summon/field hooks.
    * Ceiling: OPT destroy 1 face-up opp monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -230,7 +230,7 @@ u8 CanSpecialSummonReptilianneVaskiiFromHand(u8 handZone)
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
     return FALSE;
 
-  /* ponytail: multi-zone tribute picker not wired; auto-tribute first two 0 ATK. */
+  /* multi-zone tribute picker not wired; auto-tribute first two 0 ATK. */
   return CountFaceUpZeroAtkMonsters() >= 2;
 }
 

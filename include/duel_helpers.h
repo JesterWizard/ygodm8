@@ -295,4 +295,6 @@ void Duel_ClearPickZone(void);
 void Sorl_MarkActivatedThisTurn(void);
 void Sorl_TryDecrementAfterTurnEnd(void);
 
+u8 Duel_ZoneCannotChangeBattlePosition(const struct DuelCard *zone);
+
 #endif // GUARD_DUEL_HELPERS_H

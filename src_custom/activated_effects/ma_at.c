@@ -99,7 +99,7 @@ static void ExcavateTop3AddAnyMillRest(void)
 
     handZone = FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]);
     if (handZone >= 0) {
-      /* ponytail: name-3 declare UI missing; add any excavated as stand-in. */
+      /* name-3 declare UI missing; add any excavated as stand-in. */
       if (Duel_RemoveDeckCardAt(ACTIVE_DUELIST, (u8)deckIndex, FALSE) != DUEL_ACTION_OK)
         continue;
 
@@ -131,7 +131,7 @@ unsigned char CanActivateMA_AT(void)
   if (zone == NULL || zone->id != MA_AT)
     return FALSE;
 
-  /* ponytail: name-3 excavate UI hard. Ceiling: OPT reveal top 3, add any, mill rest. */
+  /* name-3 excavate UI hard. Ceiling: OPT reveal top 3, add any, mill rest. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -45,7 +45,7 @@ static u8 SendOtherMonstersToGrave(struct DuelCard *selfZone)
 
 u8 CanSpecialSummonTheBlazingMarsFromHandOrGrave(void)
 {
-  /* ponytail: no multi-select GY banish + hand/GY activation path yet — banish 3
+  /* no multi-select GY banish + hand/GY activation path yet — banish 3
      other monsters to Special Summon deferred until expanded GY targeting exists. */
   return FALSE;
 }
@@ -60,7 +60,7 @@ unsigned char CanActivateTheBlazingMars(void)
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
-  /* ponytail: no Main Phase 1 gate yet — field burn is activatable in any main phase. */
+  /* no Main Phase 1 gate yet — field burn is activatable in any main phase. */
   return TRUE;
 }
 

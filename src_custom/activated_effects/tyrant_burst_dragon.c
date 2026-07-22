@@ -9,7 +9,7 @@ unsigned char CanActivateTYRANT_BURST_DRAGON(void)
   if (gMonEffect.id != TYRANT_BURST_DRAGON)
     return FALSE;
 
-  /* ponytail: multi-attack + equip-to-monster need battle/equip continuous hooks.
+  /* multi-attack + equip-to-monster need battle/equip continuous hooks.
    * Ceiling: not ignition-activatable here; upgrade: permanent battle/equip gate. */
   return FALSE;
 }

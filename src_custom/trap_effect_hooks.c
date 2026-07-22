@@ -9,7 +9,7 @@
 #include "world_suppression.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
-#include "duel_helpers.h"
+#include "mirage_dragon.h"
 #include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
 #include "blast_held_by_a_tribute.h"
@@ -63,6 +63,9 @@ extern s16 gUnk_8E11788[];
 
 static bool8 CheckTrapActivationConditions__Hook(u16 id) {
   unsigned char ret;
+
+  if (MirageDragon_BlocksActiveTrapInBattlePhase())
+    return FALSE;
 
   if (Duel_IsCardActivationBlocked(id))
     return FALSE;

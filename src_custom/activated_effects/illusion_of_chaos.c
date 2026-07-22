@@ -132,7 +132,7 @@ unsigned char CanActivateILLUSION_OF_CHAOS(void)
   if (gMonEffect.id != ILLUSION_OF_CHAOS)
     return FALSE;
 
-  /* ponytail: field bounce→SS DM negate FALSE. Ceiling: FromHand search only. */
+  /* field bounce→SS DM negate FALSE. Ceiling: FromHand search only. */
   return FALSE;
 }
 

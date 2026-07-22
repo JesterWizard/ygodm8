@@ -38,7 +38,7 @@ unsigned char CanActivateRINYAN_LIGHTSWORN_ROGUE(void)
   if (zone == NULL || zone->id != RINYAN_LIGHTSWORN_ROGUE)
     return FALSE;
 
-  /* ponytail: FLIP trigger needs flip hook. Ceiling: once via usage if LS in GY. */
+  /* FLIP trigger needs flip hook. Ceiling: once via usage if LS in GY. */
   if (!CanUseMonsterEffect(zone) || !GraveyardExpand_IsEnabled())
     return FALSE;
 

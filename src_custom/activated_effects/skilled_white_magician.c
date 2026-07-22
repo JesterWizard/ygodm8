@@ -77,8 +77,8 @@ unsigned char CanActivateSKILLED_WHITE_MAGICIAN(void)
   if (zone == NULL || zone->id != SKILLED_WHITE_MAGICIAN)
     return FALSE;
 
-  /* ponytail: Spell Counters on Spell resolve need spell-resolve hook.
-   * Ceiling: ignition when unk4>=3; upgrade: on Spell resolve → unk4++ (cap 3). */
+  /* Spell Counters on resolve via TryIncrementSpellCountersOnSpellResolve.
+   * Ceiling: ignition when unk4>=3. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

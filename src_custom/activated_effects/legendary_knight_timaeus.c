@@ -96,7 +96,7 @@ unsigned char CanActivateLEGENDARY_KNIGHT_TIMAEUS(void)
   if (zone == NULL || zone->id != LEGENDARY_KNIGHT_TIMAEUS)
     return FALSE;
 
-  /* ponytail: Legend of Heart SS + attacked-set-Spell-from-GY need summon/battle
+  /* Legend of Heart SS + attacked-set-Spell-from-GY need summon/battle
    * hooks. Ceiling: OPT banish 1 face-up Spell/Trap on the field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

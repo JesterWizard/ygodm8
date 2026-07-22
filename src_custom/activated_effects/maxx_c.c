@@ -52,7 +52,7 @@ u8 TryActivateMAXX_CFromHand(u8 handZone)
       == DUEL_ACTION_DUEL_OVER)
     return TRUE;
 
-  /* ponytail: draw-on-opponent-Special-Summon this turn not wired; upgrade: SS
+  /* draw-on-opponent-Special-Summon this turn not wired; upgrade: SS
    * hook + simple turn flag when one exists. */
   UpdateDuelGfxExceptField();
   return TRUE;

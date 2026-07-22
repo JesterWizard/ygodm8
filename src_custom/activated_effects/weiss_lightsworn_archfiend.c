@@ -164,7 +164,7 @@ unsigned char CanActivateWEISS_LIGHTSWORN_ARCHFIEND(void)
   if (zone == NULL || zone->id != WEISS_LIGHTSWORN_ARCHFIEND)
     return FALSE;
 
-  /* ponytail: sent-from-Deck-to-GY trigger needs mill/send hook. Ceiling: field OPT
+  /* sent-from-Deck-to-GY trigger needs mill/send hook. Ceiling: field OPT
    * SS 1 other Lightsworn from GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

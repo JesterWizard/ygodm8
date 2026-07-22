@@ -114,8 +114,9 @@ unsigned char CanActivateMAGICAL_MARIONETTE(void)
   if (zone == NULL || zone->id != MAGICAL_MARIONETTE)
     return FALSE;
 
-  /* ponytail: Spell Counter on Spell resolve + +200 ATK/counter need spell/stat
-   * hooks. Ceiling: OPT remove 2 unk4 counters → destroy 1 monster. */
+  /* Spell Counter on resolve via TryIncrementSpellCountersOnSpellResolve;
+   * +200 ATK/counter via ApplyMagicalMarionetteStatBoostToCardInfo.
+   * Ceiling: OPT remove 2 unk4 counters → destroy 1 monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -141,4 +142,15 @@ void ActivateMAGICAL_MARIONETTEEffect(void)
     Duel_EnterPickZoneTargeting();
   else
     Duel_ResolvePickZoneForAi();
+}
+
+#define MAGICAL_MARIONETTE_COUNTER_ATK 200
+
+void ApplyMagicalMarionetteStatBoostToCardInfo(const struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != MAGICAL_MARIONETTE || zone->unk4 == 0)
+    return;
+
+  gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk
+      + (u32)zone->unk4 * MAGICAL_MARIONETTE_COUNTER_ATK);
 }

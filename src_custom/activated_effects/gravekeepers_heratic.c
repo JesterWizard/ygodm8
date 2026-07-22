@@ -9,9 +9,7 @@ unsigned char CanActivateGRAVEKEEPERS_HERATIC(void)
   if (gMonEffect.id != GRAVEKEEPERS_HERATIC)
     return FALSE;
 
-  /* ponytail: continuous unaffected-while-Necrovalley needs permanent protection
-   * gate. Ceiling: not ignition-activatable here; upgrade: permanent effect
-   * while Duel_IsBackrowCardOnField(NECROVALLEY). */
+  /* Unaffected while Necrovalley face-up via IsImmuneToHarmfulTargetedEffectsOnField. */
   return FALSE;
 }
 

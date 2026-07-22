@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateLIGHT_AND_DARKNESS_DRAGON(void)
 {
-  /* ponytail: chain negate (−500 ATK/DEF) + GY destroy-all/SS need chain/GY hooks. */
+  /* chain negate (−500 ATK/DEF) + GY destroy-all/SS need chain/GY hooks. */
   (void)gActiveEffect;
   return FALSE;
 }

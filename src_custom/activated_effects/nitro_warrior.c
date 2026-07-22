@@ -93,7 +93,7 @@ unsigned char CanActivateNITRO_WARRIOR(void)
   if (zone == NULL || zone->id != NITRO_WARRIOR)
     return FALSE;
 
-  /* ponytail: Spell ATK gain + battle-after destroy trigger FALSE.
+  /* Spell ATK gain + battle-after destroy trigger FALSE.
    * Ceiling: OPT change 1 face-up DEF opp monster to ATK (battle-after stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

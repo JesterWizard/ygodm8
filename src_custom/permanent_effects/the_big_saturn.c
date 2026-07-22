@@ -93,7 +93,7 @@ static u8 GetResolvingCardEffectOwnerFixed(void)
     return FixedDuelistForTurnRow(gMonEffect.row);
 
   if (Duel_IsSpellEffectResolving()) {
-    /* ponytail: custom targeted spells store fixed-row origins in row2. */
+    /* custom targeted spells store fixed-row origins in row2. */
     originRow = gSpellEffectData.row2;
     if (originRow <= PLAYER_HAND
         && gFixedZones[originRow][gSpellEffectData.col2]->id == gSpellEffectData.id)
@@ -254,7 +254,7 @@ void TheBigSaturn_TryResolveGyDamage(void)
   if (!gTheBigSaturnGyDamageFromField)
     return;
 
-  /* ponytail: GY permanent scan misses some opponent-turn effect destroys (Core pattern). */
+  /* GY permanent scan misses some opponent-turn effect destroys (Core pattern). */
   gActiveEffect.turnRow = gTheBigSaturnGyDamageTurnRow;
   gActiveEffect.col = 0;
   gActiveEffect.cardId = THE_BIG_SATURN;

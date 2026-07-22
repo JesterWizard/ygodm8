@@ -9,7 +9,7 @@ unsigned char CanActivateFOG_KING(void)
   if (gMonEffect.id != FOG_KING)
     return FALSE;
 
-  /* ponytail: tribute-flex Normal Summon, ATK = tributed ATK, and global tribute
+  /* tribute-flex Normal Summon, ATK = tributed ATK, and global tribute
    * lock need summon/tribute continuous hooks. Ceiling: not field-ignition here. */
   return FALSE;
 }

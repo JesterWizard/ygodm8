@@ -174,7 +174,7 @@ unsigned char CanActivateVICTORIA(void)
   if (zone == NULL || zone->id != VICTORIA)
     return FALSE;
 
-  /* ponytail: continuous attack redirect for other face-up Fairies needs
+  /* continuous attack redirect for other face-up Fairies needs
    * attack-target hook. Ceiling: OPT SS 1 Dragon from opponent's GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

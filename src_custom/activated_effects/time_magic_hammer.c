@@ -9,7 +9,7 @@ unsigned char CanActivateTIME_MAGIC_HAMMER(void)
   if (gMonEffect.id != TIME_MAGIC_HAMMER)
     return FALSE;
 
-  /* ponytail: Hermos equip + battle-step dice banish need summon/equip/battle hooks.
+  /* Hermos equip + battle-step dice banish need summon/equip/battle hooks.
    * Ceiling: not field-ignition activatable here. */
   return FALSE;
 }

@@ -172,7 +172,7 @@ static void FinishMobiusEffect(u8 originFixedRow, u8 originFixedCol)
     TryActivatingPermanentEffects();
 }
 
-/* ponytail: up-to-2 targeting uses zone->unk4 as phase flag.
+/* up-to-2 targeting uses zone->unk4 as phase flag.
    0 = not started, 1+ = at least one target destroyed (re-entered targeting).
    Upgrade path: bitfield on zone if unk4 is needed for other purposes. */
 static u8 MobiusShouldContinueToSecondTarget(u8 originFixedRow, u8 originFixedCol)

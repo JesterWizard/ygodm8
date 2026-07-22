@@ -90,7 +90,7 @@ u8 IsExecutorMakyuraActiveForDuelist(u8 fixedDuelist)
 
 static u8 TrapEffectAllowsMakyuraManualActivation(u8 trapEffect)
 {
-  // ponytail: most non-zero trapEffect values are chain-only; allow continuous exceptions.
+  // most non-zero trapEffect values are chain-only; allow continuous exceptions.
   if (trapEffect == 0)
     return TRUE;
 

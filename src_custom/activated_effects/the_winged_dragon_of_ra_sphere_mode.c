@@ -54,7 +54,7 @@ static u8 CountTributeTargetsOnRow(u8 monsterRow)
   return count;
 }
 
-/* ponytail: hand permanent-effect scan is skipped when turn_off_visual_scanner is on
+/* hand permanent-effect scan is skipped when turn_off_visual_scanner is on
  * (gHideEffectText), so use Blue Eyes Shining-style post-board-scan auto-summon. */
 static u8 TryAutoSummonSphereModeForOwner(u8 ownerDuelist)
 {
@@ -156,7 +156,7 @@ static u8 HandOrDeckHasBattleMode(u8 turnDuelist)
   return Duel_FindDeckCardIndex(turnDuelist, THE_WINGED_DRAGON_OF_RA_BATTLE_MODE) >= 0;
 }
 
-/* ponytail: in-place tribute replacement; Duel_SpecialSummon* needs an empty zone */
+/* in-place tribute replacement; Duel_SpecialSummon* needs an empty zone */
 static void SummonBattleModeInZone(struct DuelCard *zone)
 {
   zone->id = THE_WINGED_DRAGON_OF_RA_BATTLE_MODE;

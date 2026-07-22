@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateDARKLORD_NURSE_REFICULE(void)
 {
-  /* ponytail: LP gain→damage redirect needs LP-change hook. */
+  /* LP gain→damage redirect needs LP-change hook. */
   (void)gActiveEffect;
   return FALSE;
 }

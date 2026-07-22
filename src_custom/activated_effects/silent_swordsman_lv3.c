@@ -68,7 +68,7 @@ unsigned char CanActivateSILENT_SWORDSMAN_LV3(void)
     return FALSE;
 
   /* Spell-target negate via IsImmuneToHarmfulTargetedEffectsOnField; Standby send
-   * self → SS LV5 wired below. ponytail: summon/flip turn gate needs hooks. */
+   * self → SS LV5 wired below. summon/flip turn gate needs hooks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

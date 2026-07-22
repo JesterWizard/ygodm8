@@ -51,7 +51,7 @@ static void ResolveBanishTarget(u8 fixedRow, u8 fixedCol)
   if (!IsValidFieldTarget(fixedRow, fixedCol) || zone == NULL)
     return;
 
-  /* ponytail: Quick Effect destroy→banish stand-in via Duel_BanishZone. */
+  /* Quick Effect destroy→banish stand-in via Duel_BanishZone. */
   if (Duel_BanishZone(zone, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
@@ -108,7 +108,7 @@ unsigned char CanActivateMASTER_PEACE_THE_TRUE_DRACOSLAYING_KING(void)
   if (zone == NULL || zone->id != MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING)
     return FALSE;
 
-  /* ponytail: Tribute Continuous S/T + unaffected-by-type FALSE.
+  /* Tribute Continuous S/T + unaffected-by-type FALSE.
    * Ceiling: OPT banish 1 other field card (Quick destroy stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

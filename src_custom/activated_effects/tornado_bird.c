@@ -82,7 +82,7 @@ unsigned char CanActivateTORNADO_BIRD(void)
   if (zone == NULL || zone->id != TORNADO_BIRD)
     return FALSE;
 
-  /* ponytail: FLIP trigger needs flip hook. Ceiling: once via usage. */
+  /* FLIP trigger needs flip hook. Ceiling: once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

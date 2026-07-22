@@ -70,7 +70,7 @@ static void TrySpecialSummonPeten(u8 turnDuelist)
     }
   }
 
-  // ponytail: hand takes priority when both are available; deck is the fallback
+  // hand takes priority when both are available; deck is the fallback
   Duel_SpecialSummonFromDeck(turnDuelist, PETEN_THE_DARK_CLOWN, opts);
 }
 

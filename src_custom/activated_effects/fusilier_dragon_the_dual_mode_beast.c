@@ -9,7 +9,7 @@ unsigned char CanActivateFUSILIER_DRAGON_THE_DUAL_MODE_BEAST(void)
   if (gMonEffect.id != FUSILIER_DRAGON_THE_DUAL_MODE_BEAST)
     return FALSE;
 
-  /* ponytail: NS without tribute + halved ATK/DEF needs summon tribute gate.
+  /* NS without tribute + halved ATK/DEF needs summon tribute gate.
    * Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon
    * gate outside this file. */
   return FALSE;

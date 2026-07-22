@@ -93,7 +93,7 @@ void ActivateKaibamanEffect(void)
   if (Duel_DestroyZone(kaibamanZone, duelist, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* ponytail: tribute-replacement in same zone; not a marked special summon (unk4 stays 0) */
+  /* tribute-replacement in same zone; not a marked special summon (unk4 stays 0) */
   kaibamanZone->id = dragonId;
   kaibamanZone->isFaceUp = TRUE;
   kaibamanZone->isLocked = TRUE;

@@ -180,7 +180,7 @@ unsigned char CanActivateSHADDOLL_DRAGON(void)
   if (zone == NULL || zone->id != SHADDOLL_DRAGON)
     return FALSE;
 
-  /* ponytail: FLIP vs GY-sent exclusivity + trigger hooks deferred. Ceiling: bounce 1
+  /* FLIP vs GY-sent exclusivity + trigger hooks deferred. Ceiling: bounce 1
    * opp card OR destroy 1 opp Spell/Trap once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

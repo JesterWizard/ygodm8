@@ -9,7 +9,7 @@ unsigned char CanActivateMIRROR_FORCE_DRAGON(void)
   if (gMonEffect.id != MIRROR_FORCE_DRAGON)
     return FALSE;
 
-  /* ponytail: when targeted for attack/effect trigger needs protection hook.
+  /* when targeted for attack/effect trigger needs protection hook.
    * Ceiling: not ignition-activatable here; upgrade: trigger destroy-all. */
   return FALSE;
 }

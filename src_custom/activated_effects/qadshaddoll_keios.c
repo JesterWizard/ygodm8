@@ -47,7 +47,7 @@ unsigned char CanActivateQADSHADDOLL_KEIOS(void)
   if (zone == NULL || zone->id != QADSHADDOLL_KEIOS)
     return FALSE;
 
-  /* ponytail: FLIP vs sent-by-effect exclusivity + mill ATK gain need flip/send
+  /* FLIP vs sent-by-effect exclusivity + mill ATK gain need flip/send
    * hooks. Ceiling: OPT SS 1 Shaddoll from hand face-up DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

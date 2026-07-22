@@ -2130,6 +2130,8 @@ void MonsterActionMenu__Replacement(void) {
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
       } else if (NightmareWheel_CannotChangeBattlePosition(
                      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+                 || Duel_ZoneCannotChangeBattlePosition(
+                     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
                  || MorphtronicRepairUnit_PreventsBattlePositionChange(
                      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
         PlayMusic(SFX_FORBIDDEN);
@@ -2178,6 +2180,7 @@ void MonsterActionMenu__Replacement(void) {
 
       if (!isFaceUp
           && (NightmareWheel_CannotChangeBattlePosition(zone)
+              || Duel_ZoneCannotChangeBattlePosition(zone)
               || MorphtronicRepairUnit_PreventsBattlePositionChange(zone)))
         goto FAILED;
 
@@ -2380,6 +2383,8 @@ FAILED:
                 gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
           PlayMusic(SFX_FORBIDDEN);
         } else if (NightmareWheel_CannotChangeBattlePosition(
+                       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+                   || Duel_ZoneCannotChangeBattlePosition(
                        gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
                    || MorphtronicRepairUnit_PreventsBattlePositionChange(
                        gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {

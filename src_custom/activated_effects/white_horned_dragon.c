@@ -76,7 +76,7 @@ unsigned char CanActivateWHITE_HORNED_DRAGON(void)
   if (zone == NULL || zone->id != WHITE_HORNED_DRAGON)
     return FALSE;
 
-  /* ponytail: on-Normal/Special Summon trigger needs summon hook. Ceiling: OPT
+  /* on-Normal/Special Summon trigger needs summon hook. Ceiling: OPT
    * banish up to 5 opp GY Spells + tempStage once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -98,7 +98,7 @@ void ActivateWHITE_HORNED_DRAGONEffect(void)
   if (banished == 0)
     return;
 
-  /* ponytail: +1 tempStage per banished (~500 ATK each, not exact +300). */
+  /* +1 tempStage per banished (~500 ATK each, not exact +300). */
   if (self->tempStage < 127 - (s8)banished)
     self->tempStage += (s8)banished;
 

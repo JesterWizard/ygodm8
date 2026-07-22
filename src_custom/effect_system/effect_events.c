@@ -50,6 +50,7 @@
 #include "troop_dragon.h"
 #include "ultimate_ancient_gear_golem.h"
 #include "warm_worm.h"
+#include "zeradias_herald_of_heaven.h"
 #include "gravekeepers_recruiter.h"
 #include "green_baboon_defender_of_the_forest.h"
 #include "crimson_blader.h"
@@ -74,6 +75,7 @@ static void EffectEvent_OnFieldChangeHandler(const struct EffectEvent *ev)
   Duel_CheckLevelLimitAreaAAfterFieldChange();
   Duel_CheckAmazonessTigerAfterFieldChange();
   HiddenTemplesOfNecrovalley_CheckAfterFieldChange();
+  TryMaintainZeradiasHeraldOfHeaven();
 
   /* Rivalry / Ring text flips skip AI-sim (gHideEffectText). */
   if (gHideEffectText)

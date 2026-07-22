@@ -77,9 +77,8 @@ unsigned char CanActivateSKILLED_DARK_MAGICIAN(void)
   if (zone == NULL || zone->id != SKILLED_DARK_MAGICIAN)
     return FALSE;
 
-  /* ponytail: Spell Counters on Spell activation need spell-resolve hook.
-   * Ceiling: ignition when unk4>=3 (never rises alone); upgrade: on Spell
-   * resolve → if face-up SKILLED_DARK_MAGICIAN then zone->unk4++ (cap 3). */
+  /* Spell Counters on resolve via TryIncrementSpellCountersOnSpellResolve.
+   * Ceiling: ignition when unk4>=3. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

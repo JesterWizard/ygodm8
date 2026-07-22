@@ -114,7 +114,7 @@ void ActivateTHE_AGENT_OF_ENTROPY_URANUSEffect(void)
   SetCardInfo(milledId);
   milledLevel = gCardInfo.level;
 
-  /* ponytail: tempStage stores milled Level, not a true level change hook. */
+  /* tempStage stores milled Level, not a true level change hook. */
   self->tempStage = (s8)milledLevel;
 
   MarkMonsterEffectUsed(self);

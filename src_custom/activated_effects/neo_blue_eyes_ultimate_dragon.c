@@ -76,7 +76,7 @@ unsigned char CanActivateNEO_BLUE_EYES_ULTIMATE_DRAGON(void)
   if (zone == NULL || zone->id != NEO_BLUE_EYES_ULTIMATE_DRAGON)
     return FALSE;
 
-  /* ponytail: Damage Step / Fusion-Summon / protect-negate FALSE.
+  /* Damage Step / Fusion-Summon / protect-negate FALSE.
    * Ceiling: OPT send BE Fusion-ish from Deck → unk4 extra-attack mark.
    * (printed up-to-twice; OPT usage flag is the stand-in). */
   if (!CanUseMonsterEffect(zone))
@@ -102,7 +102,7 @@ void ActivateNEO_BLUE_EYES_ULTIMATE_DRAGONEffect(void)
   if (!SendBlueEyesFusionFromDeck(sendId))
     return;
 
-  /* ponytail: real multi-attack needs battle hook; unk4=2 extra-attack stand-in. */
+  /* real multi-attack needs battle hook; unk4=2 extra-attack stand-in. */
   self->unk4 = 2;
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();

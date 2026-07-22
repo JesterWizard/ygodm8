@@ -9,7 +9,7 @@ unsigned char CanActivateHERALD_OF_THE_ARC_LIGHT(void)
   if (gMonEffect.id != HERALD_OF_THE_ARC_LIGHT)
     return FALSE;
 
-  /* ponytail: deck/hand mill-banish + Quick tribute-negate need send/chain hooks.
+  /* deck/hand mill-banish + Quick tribute-negate need send/chain hooks.
    * Ceiling: not field-ignition activatable here; upgrade: continuous banish +
    * either-turn chain interrupt → tribute self → negate + destroy. */
   return FALSE;

@@ -62,7 +62,7 @@ static void ResolveDestroyBurn(u8 fixedRow, u8 fixedCol)
       return;
   }
 
-  /* ponytail: cannot conduct Battle Phase — unk4 lock stand-in. GY revive FALSE. */
+  /* cannot conduct Battle Phase — unk4 lock stand-in. GY revive FALSE. */
   self->unk4 |= 0x80;
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
@@ -102,7 +102,7 @@ unsigned char CanActivateDESTINY_END_DRAGOON(void)
   if (zone == NULL || zone->id != DESTINY_END_DRAGOON)
     return FALSE;
 
-  /* ponytail: GY revive FALSE.
+  /* GY revive FALSE.
    * Ceiling: OPT destroy 1 opp monster + burn its ATK + cannot BP (unk4). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

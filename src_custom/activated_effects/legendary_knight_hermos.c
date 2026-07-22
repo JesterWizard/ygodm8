@@ -96,7 +96,7 @@ unsigned char CanActivateLEGENDARY_KNIGHT_HERMOS(void)
   if (zone == NULL || zone->id != LEGENDARY_KNIGHT_HERMOS)
     return FALSE;
 
-  /* ponytail: Legend of Heart SS + when-attacked GY name/effect copy need
+  /* Legend of Heart SS + when-attacked GY name/effect copy need
    * summon/battle hooks. Ceiling: OPT banish 1 face-up Spell/Trap. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -174,7 +174,7 @@ void TheWickedAvatar_TryDecrementLockAtTurnEnd(void)
   if (gTheWickedAvatarLockFixedDuelist >= 2)
     return;
 
-  /* ponytail: after SwitchTurn(), zone POV is still the ended turn until the next
+  /* after SwitchTurn(), zone POV is still the ended turn until the next
    * UpdateDuelZonePtrs — use gWhoseTurn (new active) not INACTIVE_DUELIST. */
   finishedDuelist = OtherDuelist(WhoseTurn());
   if (finishedDuelist != gTheWickedAvatarLockFixedDuelist)

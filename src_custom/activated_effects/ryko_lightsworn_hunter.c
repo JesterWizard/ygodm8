@@ -104,7 +104,7 @@ unsigned char CanActivateRYKO_LIGHTSWORN_HUNTER(void)
   if (zone == NULL || zone->id != RYKO_LIGHTSWORN_HUNTER)
     return FALSE;
 
-  /* ponytail: FLIP trigger needs flip hook. Ceiling: once via usage. */
+  /* FLIP trigger needs flip hook. Ceiling: once via usage. */
   return CanUseMonsterEffect(zone);
 }
 

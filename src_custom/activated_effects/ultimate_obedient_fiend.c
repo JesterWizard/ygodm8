@@ -9,7 +9,7 @@ unsigned char CanActivateULTIMATE_OBEDIENT_FIEND(void)
   if (gMonEffect.id != ULTIMATE_OBEDIENT_FIEND)
     return FALSE;
 
-  /* ponytail: solo-field + empty-hand attack restriction needs attack gate hook.
+  /* solo-field + empty-hand attack restriction needs attack gate hook.
    * Ceiling: not field-ignition activatable here. */
   return FALSE;
 }

@@ -76,7 +76,7 @@ unsigned char CanActivateNEO_SPACIAN_MARINE_DOLPHIN(void)
   if (zone == NULL || zone->id != NEO_SPACIAN_MARINE_DOLPHIN)
     return FALSE;
 
-  /* ponytail: treated-as Aqua Dolphin name + NEX-only SS need continuous/summon hooks. */
+  /* treated-as Aqua Dolphin name + NEX-only SS need continuous/summon hooks. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

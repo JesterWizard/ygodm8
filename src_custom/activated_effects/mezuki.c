@@ -166,7 +166,7 @@ unsigned char CanActivateMEZUKI(void)
   if (gMonEffect.id != MEZUKI)
     return FALSE;
 
-  /* ponytail: GY ignition needs GY-menu wire. Ceiling: allow when Mezuki +
+  /* GY ignition needs GY-menu wire. Ceiling: allow when Mezuki +
    * another Zombie in expanded GY (callable if gMonEffect set to Mezuki). */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;

@@ -71,7 +71,7 @@ static s8 PickTrickyDiscardZoneForAi(struct DuelCard **handRow, u8 summonZone)
   return trickyFallback;
 }
 
-/* ponytail: discard pick excludes summon slot; upgrade path: exchange_hand_selection helper */
+/* discard pick excludes summon slot; upgrade path: exchange_hand_selection helper */
 static s8 SelectTrickyDiscardZone(struct DuelCard **handRow, u8 summonZone)
 {
   struct DuelCursor savedCursor = gDuelCursor;

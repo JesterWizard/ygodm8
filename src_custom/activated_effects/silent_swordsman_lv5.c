@@ -68,7 +68,7 @@ unsigned char CanActivateSILENT_SWORDSMAN_LV5(void)
     return FALSE;
 
   /* Unaffected by opp Spell via IsImmuneToSpellEffectsOnField; OPT send self →
-   * SS LV7 wired below. ponytail: Standby-after-direct-damage gate needs hook. */
+   * SS LV7 wired below. Standby-after-direct-damage gate needs hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -45,7 +45,7 @@ static u8 GetFixedCellIndexForZone(struct DuelCard *zone, u8 *cellIndex)
   return TRUE;
 }
 
-// ponytail: ram_map byte packing can leave u16 fields at odd EWRAM addresses;
+// ram_map byte packing can leave u16 fields at odd EWRAM addresses;
 // GBA halfword loads there return the high byte only (600 -> 2, 500 -> 1).
 static u16 ReadStatU16(const u8 *bytes)
 {

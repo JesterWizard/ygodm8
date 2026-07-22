@@ -56,7 +56,7 @@ static void DestroyAllOtherMonsters(struct DuelCard *protectedZone)
   u8 col;
   u8 destroyed = FALSE;
 
-  /* ponytail: no Xyz detach cost; OPT destroy-all-other-monsters stand-in.
+  /* no Xyz detach cost; OPT destroy-all-other-monsters stand-in.
    * Ceiling: materials not checked; upgrade: overlay detach before destroy. */
   for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
     u8 graveyardDuelist = TurnDuelistForFixedRow(row);

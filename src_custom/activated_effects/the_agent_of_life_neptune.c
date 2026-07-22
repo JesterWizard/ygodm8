@@ -157,7 +157,7 @@ unsigned char CanActivateTHE_AGENT_OF_LIFE_NEPTUNE(void)
   if (gMonEffect.id != THE_AGENT_OF_LIFE_NEPTUNE)
     return FALSE;
 
-  /* ponytail: tribute-lock + banish search FALSE.
+  /* tribute-lock + banish search FALSE.
    * Ceiling: FromHand discard self → SS Agent (or Hyperion if Sanctuary). */
   return FALSE;
 }

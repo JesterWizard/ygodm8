@@ -44,7 +44,7 @@ unsigned char CanActivateLADY_OF_D(void)
   if (zone == NULL || zone->id != LADY_OF_D)
     return FALSE;
 
-  /* ponytail: opp cannot target your face-up Dragons for attacks needs target-
+  /* opp cannot target your face-up Dragons for attacks needs target-
    * redirect hook. Ceiling: OPT discard 1 Dragon from hand (destroy-save stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

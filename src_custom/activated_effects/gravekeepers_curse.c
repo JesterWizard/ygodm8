@@ -17,7 +17,7 @@ unsigned char CanActivateGRAVEKEEPERS_CURSE(void)
   if (zone == NULL || zone->id != GRAVEKEEPERS_CURSE)
     return FALSE;
 
-  /* ponytail: printed is If Summoned trigger. Ceiling: allow once via usage
+  /* printed is If Summoned trigger. Ceiling: allow once via usage
    * when manually activated / summon-dispatch calls Activate. */
   return CanUseMonsterEffect(zone);
 }

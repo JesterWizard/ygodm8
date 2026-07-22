@@ -73,8 +73,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
     return;
 
   SetZoneAtkToZero(zone);
-  /* ponytail: cannot change battle position needs position-change gate. */
-  zone->unk4 |= 1;
+  zone->unk4 |= 1; /* cannot change position via Duel_ZoneCannotChangeBattlePosition */
 
   if (self != NULL)
     MarkMonsterEffectUsed(self);

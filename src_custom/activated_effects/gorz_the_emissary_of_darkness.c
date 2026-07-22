@@ -31,7 +31,7 @@ unsigned char CanActivateGORZ_THE_EMISSARY_OF_DARKNESS(void)
   if (gMonEffect.id != GORZ_THE_EMISSARY_OF_DARKNESS)
     return FALSE;
 
-  /* ponytail: damage-gate + Token FALSE.
+  /* damage-gate + Token FALSE.
    * Ceiling: FromHand empty-field SS. */
   return FALSE;
 }

@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateGRINDER_GOLEM(void)
 {
-  /* ponytail: hand SS to opp field + Grinder Tokens + NS/Set lock need summon/token hooks. */
+  /* hand SS to opp field + Grinder Tokens + NS/Set lock need summon/token hooks. */
   (void)gActiveEffect;
   return FALSE;
 }

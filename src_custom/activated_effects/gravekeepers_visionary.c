@@ -86,7 +86,7 @@ unsigned char CanActivateGRAVEKEEPERS_VISIONARY(void)
     return FALSE;
 
   /* ATK overlay via GravekeepersVisionary_ApplyDynamicZoneStats.
-   * ponytail: destroy-replace needs destroy gate. Ceiling: OPT discard GK stand-in. */
+   * destroy-replace needs destroy gate. Ceiling: OPT discard GK stand-in. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

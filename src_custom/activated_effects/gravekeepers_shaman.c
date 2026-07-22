@@ -60,7 +60,7 @@ unsigned char CanActivateGRAVEKEEPERS_SHAMAN(void)
     return FALSE;
 
   /* DEF overlay via GravekeepersShaman_ApplyDynamicZoneStats.
-   * ponytail: GY-effect negate + Necrovalley Field lock need permanent hooks. */
+   * GY-effect negate + Necrovalley Field lock need permanent hooks. */
   return FALSE;
 }
 

@@ -61,7 +61,7 @@ unsigned char CanActivateQUINTET_MAGICIAN(void)
   if (zone == NULL || zone->id != QUINTET_MAGICIAN)
     return FALSE;
 
-  /* ponytail: Fusion-with-5-Spellcasters gate + untributable/undestroyable need
+  /* Fusion-with-5-Spellcasters gate + untributable/undestroyable need
    * fusion/summon hooks. Ceiling: once via usage destroy all opp cards. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

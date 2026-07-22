@@ -17,7 +17,7 @@ unsigned char CanActivateTHE_AGENT_OF_WISDOM_MERCURY(void)
   if (zone == NULL || zone->id != THE_AGENT_OF_WISDOM_MERCURY)
     return FALSE;
 
-  /* ponytail: Standby Phase empty-hand-last-EP check needs turn-end hook.
+  /* Standby Phase empty-hand-last-EP check needs turn-end hook.
    * Ceiling: once via usage if hand empty; upgrade: standby/end-phase gate. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

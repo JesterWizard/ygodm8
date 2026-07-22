@@ -47,11 +47,11 @@ void TryApplyTethysGoddessOfLightOnDraw(u8 duelist, u16 cardDrawn, u8 handSlot)
 {
   struct DuelCard *drawnCard;
 
-  /* ponytail: opening hand is seeded before duel gfx; skip like Solemn Wishes. */
+  /* opening hand is seeded before duel gfx; skip like Solemn Wishes. */
   if (gDuelDecks[duelist].cardsDrawn <= MAX_ZONES_IN_ROW)
     return;
 
-  /* ponytail: unk18 != 0 means battle/damage resolution is active. */
+  /* unk18 != 0 means battle/damage resolution is active. */
   if (gUnk2023EA0.unk18 != 0)
     return;
 

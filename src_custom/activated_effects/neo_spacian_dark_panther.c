@@ -9,7 +9,7 @@ unsigned char CanActivateNEO_SPACIAN_DARK_PANTHER(void)
   if (gMonEffect.id != NEO_SPACIAN_DARK_PANTHER)
     return FALSE;
 
-  /* ponytail: copy opp monster name/effects needs engine name/effect overlay.
+  /* copy opp monster name/effects needs engine name/effect overlay.
    * Ceiling: not ignition-activatable here; upgrade: permanent/name/effect copy. */
   return FALSE;
 }

@@ -9,7 +9,7 @@ unsigned char CanActivateNUMBER_39_UTOPIA(void)
   if (gMonEffect.id != NUMBER_39_UTOPIA)
     return FALSE;
 
-  /* ponytail: attack negate via detach + no-material self-destroy need battle
+  /* attack negate via detach + no-material self-destroy need battle
    * hook and XYZ material system. Ceiling: not field-ignition activatable. */
   return FALSE;
 }

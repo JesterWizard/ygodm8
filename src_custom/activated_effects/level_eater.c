@@ -118,7 +118,7 @@ static void ResolveTarget(u8 fixedRow, u8 fixedCol)
   (void)fixedRow;
   (void)fixedCol;
 
-  /* ponytail: no zone Level-mod field (level is ROM-only via gCardData_NEW).
+  /* no zone Level-mod field (level is ROM-only via gCardData_NEW).
    * Ceiling: SS self from GY; upgrade: TempLevel overlay on target. */
 
   if (IsDuelOver() == TRUE)
@@ -174,7 +174,7 @@ unsigned char CanActivateLEVEL_EATER(void)
   if (gMonEffect.id != LEVEL_EATER)
     return FALSE;
 
-  /* ponytail: GY ignition + cannot-be-Tributed-except-for-Tribute-Summon need
+  /* GY ignition + cannot-be-Tributed-except-for-Tribute-Summon need
    * GY-menu + tribute hooks. Ceiling: GY ignition when Lv5+ you control + empty
    * zone (Treeborn pattern). */
   if (ArchlordKristya_IsSpecialSummonLocked())

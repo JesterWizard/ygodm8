@@ -160,7 +160,7 @@ unsigned char CanActivateTHE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO(void)
   if (zone == NULL || zone->id != THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO)
     return FALSE;
 
-  /* ponytail: Quick via Sanctuary + GY add Sanctuary FALSE.
+  /* Quick via Sanctuary + GY add Sanctuary FALSE.
    * Ceiling: OPT banish 1 monster from GY → flip 1 Effect Monster face-down DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

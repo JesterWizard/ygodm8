@@ -56,7 +56,7 @@ unsigned char ShouldActivateDRAGON_SPIRIT_OF_WHITE(void)
   if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* ponytail: Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks. */
+  /* Quick Tribute → SS Blue-Eyes from hand needs tribute/summon hooks. */
   return EffectSel_ExistsByCond(EFFECT_COND_OPP_BACKROW_SPELL_TRAP);
 }
 

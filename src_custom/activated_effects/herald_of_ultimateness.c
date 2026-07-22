@@ -9,7 +9,7 @@ unsigned char CanActivateHERALD_OF_ULTIMATENESS(void)
   if (gMonEffect.id != HERALD_OF_ULTIMATENESS)
     return FALSE;
 
-  /* ponytail: quick negate by sending Fairy from hand needs chain/negation hooks.
+  /* quick negate by sending Fairy from hand needs chain/negation hooks.
    * Ceiling: not field-ignition activatable here; upgrade: either-turn chain
    * interrupt → discard Fairy → negate + destroy activated card. */
   return FALSE;

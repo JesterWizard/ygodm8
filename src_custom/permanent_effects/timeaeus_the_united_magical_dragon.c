@@ -118,7 +118,7 @@ unsigned char ShouldActivateTIMEAEUS_THE_UNITED_MAGICAL_DRAGON(void)
   if (zone == NULL || zone->unk4 != 0)
     return FALSE;
 
-  /* ponytail: unaffected-after-SS + battle ATK boost need continuous/battle hooks. */
+  /* unaffected-after-SS + battle ATK boost need continuous/battle hooks. */
   return FieldHasOppSpellTrap();
 }
 

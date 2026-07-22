@@ -1,5 +1,7 @@
 #include "global.h"
 #include "card_passives.h"
+#include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 #define FLAG_GRAVEYARD_OPPONENT 2
 #define FLAG_LOSER_OPPONENT 16
@@ -35,6 +37,9 @@ static u8 IsMonsterFieldRow(u8 turnRow) {
 }
 
 static u8 CardHasHarmfulTargetImmunityOnField(u16 cardId) {
+  if (cardId == GRAVEKEEPERS_HERATIC && Duel_IsBackrowCardOnField(NECROVALLEY, TRUE))
+    return TRUE;
+
   return cardId == BLUE_EYES_CHAOS_MAX_DRAGON
       || cardId == BLUE_EYES_SHINING_DRAGON
       || cardId == THE_UNSTOPPABLE_EXODIA_INCARNATE

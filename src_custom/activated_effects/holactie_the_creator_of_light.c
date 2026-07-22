@@ -61,7 +61,7 @@ unsigned char CanActivateHOLACTIE_THE_CREATOR_OF_LIGHT(void)
   if (gMonEffect.id != HOLACTIE_THE_CREATOR_OF_LIGHT)
     return FALSE;
 
-  /* ponytail: SS-this-card-wins-Duel needs win-on-summon hook; no duel_helpers win API.
+  /* SS-this-card-wins-Duel needs win-on-summon hook; no duel_helpers win API.
    * Ceiling: not field-ignition activatable; use FromHand tribute path. */
   return FALSE;
 }

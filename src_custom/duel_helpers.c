@@ -90,6 +90,9 @@
 #include "el_shaddoll_winda.h"
 #include "el_shaddoll_anoyatyllis.h"
 #include "ancient_gear_cannon.h"
+#include "mirage_dragon.h"
+#include "protector_of_the_sanctuary.h"
+#include "spell_counter_on_resolve.h"
 #include "amazoness_scouts.h"
 #include "aromalilith_magnolia.h"
 #include "neos_wiseman.h"
@@ -667,6 +670,9 @@ enum DuelActionResult Duel_DrawCards(u8 duelist, u8 count, u8 updateGfx)
 {
   u8 i;
   u8 fixedDuelist = TurnDuelistToFixed(duelist);
+
+  if (ProtectorOfTheSanctuary_BlocksDraw(duelist))
+    return DUEL_ACTION_OK;
 
   for (i = 0; i < count; i++) {
     if (gDuelDecks[fixedDuelist].cardsDrawn >= NumCardsInDeck(fixedDuelist)) {
@@ -3240,8 +3246,10 @@ void Duel_EndSpellEffectResolve(void)
   if (sSpellEffectResolveDepth > 0)
     sSpellEffectResolveDepth--;
 
-  if (sSpellEffectResolveDepth == 0)
+  if (sSpellEffectResolveDepth == 0) {
     SilentMagicianLv4_NoteSpellResolved();
+    TryIncrementSpellCountersOnSpellResolve();
+  }
 }
 
 u8 Duel_IsSpellEffectResolving(void)
@@ -3330,10 +3338,18 @@ u8 Duel_IsCardActivationBlocked(u16 cardId)
       return TRUE;
     if (AncientGearCannon_BlocksOppTrap())
       return TRUE;
+    if (MirageDragon_BlocksInactiveTrapInBattlePhase()
+        || MirageDragon_BlocksActiveTrapInBattlePhase())
+      return TRUE;
     return FALSE;
   }
 
   return FALSE;
+}
+
+u8 Duel_ZoneCannotChangeBattlePosition(const struct DuelCard *zone)
+{
+  return zone != NULL && (zone->unk4 & 1);
 }
 
 // --- PickZone targeting ----------------------------------------------------

@@ -234,7 +234,7 @@ unsigned char CanActivateMASTERFLARE_HYPERION(void)
   if (zone == NULL || zone->id != MASTERFLARE_HYPERION)
     return FALSE;
 
-  /* ponytail: name/effect copy + Quick negate FALSE.
+  /* name/effect copy + Quick negate FALSE.
    * Ceiling: OPT mill Agent/Sanctuary-mention, else OPT banish Fairy → destroy 1. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

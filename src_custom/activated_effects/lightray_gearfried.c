@@ -191,7 +191,7 @@ unsigned char CanActivateLIGHTRAY_GEARFRIED(void)
   if (zone == NULL || zone->id != LIGHTRAY_GEARFRIED)
     return FALSE;
 
-  /* ponytail: Quick negate S/T activation needs chain hooks.
+  /* Quick negate S/T activation needs chain hooks.
    * Ceiling: OPT banish Warrior GY → destroy 1 S/T. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

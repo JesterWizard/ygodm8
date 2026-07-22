@@ -69,7 +69,7 @@ unsigned char CanActivateNAELSHADDOLL_ARIEL(void)
   if (zone == NULL || zone->id != NAELSHADDOLL_ARIEL)
     return FALSE;
 
-  /* ponytail: FLIP SS banished Shaddoll + sent-by-effect branch need flip/RFP hooks.
+  /* FLIP SS banished Shaddoll + sent-by-effect branch need flip/RFP hooks.
    * Ceiling: OPT banish up to 3 cards from either GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

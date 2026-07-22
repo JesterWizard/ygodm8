@@ -36,7 +36,7 @@ unsigned char CanActivateTHEINEN_THE_GREAT_SPHINX(void)
   if (zone == NULL || zone->id != THEINEN_THE_GREAT_SPHINX)
     return FALSE;
 
-  /* ponytail: Andro+Teleia destroy SS from hand/Deck needs destroy hook.
+  /* Andro+Teleia destroy SS from hand/Deck needs destroy hook.
    * Ceiling: OPT pay 500 → +7 tempStage (~3000 ATK). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

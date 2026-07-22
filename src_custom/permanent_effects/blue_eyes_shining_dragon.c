@@ -65,7 +65,7 @@ static u8 BlueEyesShiningDragonOnField(void) {
       || RowHasCardMatch(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW], BLUE_EYES_SHINING_DRAGON);
 }
 
-// ponytail: in-place BEUD zone replacement; Duel_SpecialSummon* only fills empty zones
+// in-place BEUD zone replacement; Duel_SpecialSummon* only fills empty zones
 static void InitLockedSpecialSummonZone(struct DuelCard *zone, struct DuelSummonOpts opts) {
   ResetPermStage(zone);
   ResetTempStage(zone);

@@ -110,7 +110,7 @@ unsigned char CanActivateMANJU_OF_THE_TEN_THOUSAND_HANDS(void)
   if (zone == NULL || zone->id != MANJU_OF_THE_TEN_THOUSAND_HANDS)
     return FALSE;
 
-  /* ponytail: Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage
+  /* Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage
    * if Ritual Monster or Ritual Spell in Deck and hand space. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

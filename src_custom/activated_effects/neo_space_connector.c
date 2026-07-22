@@ -58,7 +58,7 @@ unsigned char CanActivateNEO_SPACE_CONNECTOR(void)
   if (zone == NULL || zone->id != NEO_SPACE_CONNECTOR)
     return FALSE;
 
-  /* ponytail: on-Normal-Summon trigger + tribute-bounce second effect need
+  /* on-Normal-Summon trigger + tribute-bounce second effect need
    * summon/tribute hooks. Ceiling: OPT SS Neo-Spacian or Neos from Deck DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

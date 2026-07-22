@@ -122,7 +122,7 @@ unsigned char CanActivateTHE_LEGENDARY_EXODIA_INCARNATE(void)
   if (zone == NULL || zone->id != THE_LEGENDARY_EXODIA_INCARNATE)
     return FALSE;
 
-  /* ponytail: ATK gain / unaffected FALSE.
+  /* ATK gain / unaffected FALSE.
    * Ceiling: OPT add Forbidden One from GY. FromHand tribute Forbidden One → SS. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

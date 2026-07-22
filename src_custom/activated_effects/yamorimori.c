@@ -121,7 +121,7 @@ unsigned char CanActivateYAMORIMORI(void)
   if (zone != NULL && zone->id == YAMORIMORI)
     return FALSE;
 
-  /* ponytail: GY ignition needs GY-menu wire. Ceiling: banish self from GY +
+  /* GY ignition needs GY-menu wire. Ceiling: banish self from GY +
    * own Reptile + opp face-up present → destroy opp face-up monster. */
   if (FindYamorimoriInGy() < 0)
     return FALSE;

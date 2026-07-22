@@ -9,7 +9,7 @@ unsigned char CanActivateEVOLZAR_DOLKKA(void)
   if (gMonEffect.id != EVOLZAR_DOLKKA)
     return FALSE;
 
-  /* ponytail: quick Xyz detach + negate monster effect need chain/Xyz hooks.
+  /* quick Xyz detach + negate monster effect need chain/Xyz hooks.
    * Ceiling: not field-ignition here. */
   return FALSE;
 }

@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateCYBER_KIRIN(void)
 {
-  /* ponytail: ATK-position spell/trap negate, battle-draw, and OPT tribute damage
+  /* ATK-position spell/trap negate, battle-draw, and OPT tribute damage
    * zero need continuous/battle/tribute hooks not wired for permanents. */
   return FALSE;
 }

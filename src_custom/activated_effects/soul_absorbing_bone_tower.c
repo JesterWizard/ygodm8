@@ -9,7 +9,7 @@ unsigned char CanActivateSOUL_ABSORBING_BONE_TOWER(void)
   if (gMonEffect.id != SOUL_ABSORBING_BONE_TOWER)
     return FALSE;
 
-  /* ponytail: attack redirect while another Zombie present + mill 2 on Zombie
+  /* attack redirect while another Zombie present + mill 2 on Zombie
    * SS need continuous/SS hooks. Ceiling: not ignition-activatable here. */
   return FALSE;
 }

@@ -129,7 +129,7 @@ static void ResolveBuffTarget(u8 fixedRow, u8 fixedCol)
   if (!BanishFirstAgentFromGy(fixedDuelist))
     return;
 
-  /* ponytail: +800 ATK until EP needs exact stage/EP clear; Sanctuary RFG revive
+  /* +800 ATK until EP needs exact stage/EP clear; Sanctuary RFG revive
    * FALSE. Ceiling: banish Agent from GY → +2 tempStage on LIGHT Fairy. */
   if (zone->tempStage < 126)
     zone->tempStage += 2;

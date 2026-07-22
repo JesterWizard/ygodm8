@@ -82,7 +82,7 @@ unsigned char CanActivateGRAVEKEEPERS_GUARD(void)
   if (zone == NULL || zone->id != GRAVEKEEPERS_GUARD)
     return FALSE;
 
-  /* ponytail: FLIP trigger needs flip hook. */
+  /* FLIP trigger needs flip hook. */
   return CanUseMonsterEffect(zone) && FieldHasTarget();
 }
 

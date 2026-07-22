@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateLEGENDARY_MAJU_GARZETT(void)
 {
-  /* ponytail: ATK = tributed originals needs hand-tribute SS stat capture; FromHand only. */
+  /* ATK = tributed originals needs hand-tribute SS stat capture; FromHand only. */
   (void)gActiveEffect;
   return FALSE;
 }

@@ -96,7 +96,7 @@ unsigned char CanActivateLEGENDARY_KNIGHT_CRITIAS(void)
   if (zone == NULL || zone->id != LEGENDARY_KNIGHT_CRITIAS)
     return FALSE;
 
-  /* ponytail: Legend of Heart SS + when-attacked Set Trap from GY need summon/battle
+  /* Legend of Heart SS + when-attacked Set Trap from GY need summon/battle
    * hooks. Ceiling: OPT banish 1 face-up Spell/Trap on the field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

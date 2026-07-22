@@ -262,7 +262,7 @@ unsigned char CanActivateRAINBOW_DARK_DRAGON(void)
   if (zone == NULL || zone->id != RAINBOW_DARK_DRAGON)
     return FALSE;
 
-  /* ponytail: hand SS by banishing 7 different DARK uses FromHand path. Ceiling:
+  /* hand SS by banishing 7 different DARK uses FromHand path. Ceiling:
    * OPT banish other DARK you control/from GY → +500 ATK each (tempStage). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

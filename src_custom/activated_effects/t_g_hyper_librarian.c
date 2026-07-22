@@ -9,7 +9,7 @@ unsigned char CanActivateT_G_HYPER_LIBRARIAN(void)
   if (gMonEffect.id != T_G_HYPER_LIBRARIAN)
     return FALSE;
 
-  /* ponytail: Synchro Summon draw trigger needs synchro hook.
+  /* Synchro Summon draw trigger needs synchro hook.
    * Ceiling: not ignition-activatable here; upgrade: synchro summon gate. */
   return FALSE;
 }

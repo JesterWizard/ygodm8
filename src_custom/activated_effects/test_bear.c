@@ -234,7 +234,7 @@ unsigned char CanActivateTEST_BEAR(void)
   if (zone == NULL || zone->id != TEST_BEAR)
     return FALSE;
 
-  /* ponytail: Deck/ED-summoned GB gate for hand SS relaxed to any face-up GB.
+  /* Deck/ED-summoned GB gate for hand SS relaxed to any face-up GB.
    * Ceiling: OPT tribute self + shuffle 1 GB → SS up to 2 GB from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -284,7 +284,7 @@ u8 CanSpecialSummonTestBearFromHand(u8 handZone)
   if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != TEST_BEAR)
     return FALSE;
 
-  /* ponytail: printed needs GB SS from Deck/ED; stand-in = any face-up GB. */
+  /* printed needs GB SS from Deck/ED; stand-in = any face-up GB. */
   if (!ControlsFaceUpGladiatorBeast())
     return FALSE;
 

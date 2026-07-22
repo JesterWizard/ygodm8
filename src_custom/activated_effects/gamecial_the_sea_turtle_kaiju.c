@@ -65,7 +65,7 @@ unsigned char CanActivateGAMECIAL_THE_SEA_TURTLE_KAIJU(void)
   if (gMonEffect.id != GAMECIAL_THE_SEA_TURTLE_KAIJU)
     return FALSE;
 
-  /* ponytail: SS to opp field + Quick remove Kaiju Counter FALSE.
+  /* SS to opp field + Quick remove Kaiju Counter FALSE.
    * Ceiling: FromHand tribute 1 opp → SS to your field (or free SS if opp has Kaiju). */
   return FALSE;
 }

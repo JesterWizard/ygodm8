@@ -5,7 +5,7 @@
 
 unsigned char ShouldActivateDRAGON_MASTER_MAGIA(void)
 {
-  /* ponytail: Quick negate-by-card-type needs chain/OPT hooks. */
+  /* Quick negate-by-card-type needs chain/OPT hooks. */
   (void)gActiveEffect;
   return FALSE;
 }

@@ -109,7 +109,7 @@ unsigned char CanActivateSHADDOLL_HEDGEHOG(void)
   if (zone == NULL || zone->id != SHADDOLL_HEDGEHOG)
     return FALSE;
 
-  /* ponytail: FLIP S/T vs GY-sent monster exclusivity + trigger hooks deferred.
+  /* FLIP S/T vs GY-sent monster exclusivity + trigger hooks deferred.
    * Ceiling: OPT search 1 Shaddoll S/T or monster from Deck once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

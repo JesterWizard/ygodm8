@@ -47,7 +47,7 @@ u8 CanSpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8 altHandZone) {
   return TRUE;
 }
 
-// ponytail: BEWD stays in hand as a visible cost; only the alt card is cleared
+// BEWD stays in hand as a visible cost; only the alt card is cleared
 u8 TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8 altHandZone) {
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
   s8 bewdZone;

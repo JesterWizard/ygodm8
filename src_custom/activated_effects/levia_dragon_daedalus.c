@@ -119,7 +119,7 @@ static void DestroyAllOtherFieldCards(struct DuelCard *protectedZone)
   u8 col;
   u8 destroyed = FALSE;
 
-  /* ponytail: walk gDuel.board directly; gFixedZones column order differs on
+  /* walk gDuel.board directly; gFixedZones column order differs on
    * opponent rows, so row/col checks against gMonEffect can skip the wrong slot. */
   for (row = 0; row < 4; row++) {
     u8 graveyardDuelist = TurnDuelistForFixedRow(row);

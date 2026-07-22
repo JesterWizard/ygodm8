@@ -9,7 +9,7 @@ unsigned char CanActivateGRAVEKEEPERS_VASSAL(void)
   if (gMonEffect.id != GRAVEKEEPERS_VASSAL)
     return FALSE;
 
-  /* ponytail: battle damage as effect damage needs battle-damage type gate.
+  /* battle damage as effect damage needs battle-damage type gate.
    * Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle
    * gate outside this file. */
   return FALSE;

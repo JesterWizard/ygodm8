@@ -50,7 +50,7 @@ void TryApplyJenisEndPhase(void)
 
 unsigned char ShouldActivateJENIS_LIGHTSWORN_MENDER(void)
 {
-  /* ponytail: LS-effect mill source not tracked — any deck mill this turn stand-in.
+  /* LS-effect mill source not tracked — any deck mill this turn stand-in.
    * EP burn/heal via TryApplyJenisEndPhase. */
   return FALSE;
 }

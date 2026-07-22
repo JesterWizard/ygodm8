@@ -131,7 +131,7 @@ unsigned char CanActivateSILENT_SWORDSMAN(void)
     return FALSE;
 
   /* Standby +500 via TryApplySilentSwordsmanStandby; OPT tempStage/destroy Spell unchanged.
-   * ponytail: Quick Spell negate needs chain hook. */
+   * Quick Spell negate needs chain hook. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

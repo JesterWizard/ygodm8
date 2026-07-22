@@ -122,7 +122,7 @@ static void BanishAllOtherFieldCards(struct DuelCard *protectedZone)
       if (zone == protectedZone || zone->id == CARD_NONE || IsGodCard(zone->id))
         continue;
 
-      /* ponytail: destroy+banish → Duel_BanishZone (no GY). */
+      /* destroy+banish → Duel_BanishZone (no GY). */
       if (Duel_BanishZone(zone, FALSE) == DUEL_ACTION_DUEL_OVER)
         return;
 
@@ -148,7 +148,7 @@ unsigned char CanActivateGANDORA_G_THE_DRAGON_OF_DESTRUCTION(void)
   if (zone == NULL || zone->id != GANDORA_G_THE_DRAGON_OF_DESTRUCTION)
     return FALSE;
 
-  /* ponytail: +300 ATK/banished needs permanent/banish count hook.
+  /* +300 ATK/banished needs permanent/banish count hook.
    * Ceiling: OPT pay half LP → banish all other field → SS Lv≤7 Sarc mention. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

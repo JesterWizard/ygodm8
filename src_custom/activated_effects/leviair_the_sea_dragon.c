@@ -59,7 +59,7 @@ static u8 FindBestBanishedMonster(u8 *outFixedDuelist, u8 *outIndex)
   return TRUE;
 }
 
-/* ponytail: no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
+/* no RemovedFromPlay_RemoveAt — shift RFP array in place after SS.
  * Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt. */
 static void RemoveBanishedAt(u8 fixedDuelist, u8 index)
 {
@@ -104,7 +104,7 @@ unsigned char CanActivateLEVIAIR_THE_SEA_DRAGON(void)
   if (zone == NULL || zone->id != LEVIAIR_THE_SEA_DRAGON)
     return FALSE;
 
-  /* ponytail: no Xyz detach cost; OPT SS banished Lv≤4 stand-in when RFP enabled.
+  /* no Xyz detach cost; OPT SS banished Lv≤4 stand-in when RFP enabled.
    * Ceiling: materials not checked; upgrade: overlay detach before SS. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

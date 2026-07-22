@@ -9,7 +9,7 @@
 
 void UpdateDuelGfxExceptField(void);
 
-/* ponytail: no Lekunga Token card id — MOON_TOKEN stand-in.
+/* no Lekunga Token card id — MOON_TOKEN stand-in.
  * Ceiling: wrong Type/Attribute/stats (Fairy/LIGHT 0/0 vs Plant/WATER 700/700);
  * upgrade: add LEKUNGA_TOKEN card data + art, then swap this define. */
 #define LEKUNGA_TOKEN_ID MOON_TOKEN

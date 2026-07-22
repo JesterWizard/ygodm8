@@ -192,7 +192,7 @@ void ActivateGUNGNIR_DRAGON_OF_THE_ICE_BARRIEREffect(void)
     return;
   }
 
-  /* ponytail: 2-discard path auto-destroys 2 cards; upgrade: sequential PickZone. */
+  /* 2-discard path auto-destroys 2 cards; upgrade: sequential PickZone. */
   DestroyWithoutPick(discardCount);
   MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();

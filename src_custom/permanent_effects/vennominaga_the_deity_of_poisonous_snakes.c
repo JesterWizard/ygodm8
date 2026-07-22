@@ -51,7 +51,7 @@ u8 VennominagaTheDeityOfPoisonousSnakes_ApplyDynamicZoneStats(struct DuelCard *z
 
 unsigned char ShouldActivateVENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES(void)
 {
-  /* ponytail: S/T + monster immunity + 3-counter win need continuous/battle hooks. */
+  /* S/T + monster immunity + 3-counter win need continuous/battle hooks. */
   (void)gActiveEffect;
   return FALSE;
 }

@@ -70,7 +70,7 @@ unsigned char CanActivateREESHADDOLL_WENDIKURUHU(void)
   if (zone == NULL || zone->id != REESHADDOLL_WENDIKURUHU)
     return FALSE;
 
-  /* ponytail: Quick face-up→face-down follow-up + GY Shaddoll add need flip/send
+  /* Quick face-up→face-down follow-up + GY Shaddoll add need flip/send
    * hooks. Ceiling: OPT flip all face-down monsters face-up DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
