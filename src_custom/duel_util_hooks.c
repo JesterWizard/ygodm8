@@ -11,6 +11,7 @@
 #include "solemn_wishes.h"
 #include "appropriate.h"
 #include "drop_off.h"
+#include "destiny_hero_dasher.h"
 #include "shard_of_greed.h"
 #include "tethys_goddess_of_light.h"
 #include "six_card_hand.h"
@@ -359,6 +360,7 @@ void TryDrawingCard__Replacement(unsigned turn) {
       TryApplyAppropriateOnDraw(turn_u8);
       if (gDrawPhaseNormalDrawActive) {
         TryApplyDropOffOnDrawPhaseDraw(turn_u8, i);
+        TryApplyDestinyHeroDasherOnDraw(turn_u8, cardDrawn, i);
         ShardOfGreed_OnNormalDraw(turn_u8);
       }
     } else
@@ -385,6 +387,7 @@ void TryDrawingCard__Replacement(unsigned turn) {
         TryApplyAppropriateOnDraw(turn_u8);
         if (gDrawPhaseNormalDrawActive) {
           TryApplyDropOffOnDrawPhaseDraw(turn_u8, handSlot);
+          TryApplyDestinyHeroDasherOnDraw(turn_u8, cardDrawn, handSlot);
           ShardOfGreed_OnNormalDraw(turn_u8);
         }
       } else

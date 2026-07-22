@@ -12,6 +12,7 @@
 #include "cyber_barrier_dragon.h"
 #include "morphtronic_boomboxen.h"
 #include "elemental_hero_core.h"
+#include "destiny_hero_celestial.h"
 #include "elemental_hero_sunrise.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
@@ -239,6 +240,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   MarkMonsterDeclaredAttackThisTurn(attacker);
   GladiatorBeast_MarkBattlePhaseActive();
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, NULL);
+  TryDestinyHeroCelestialOnAttackDeclared(attacker, NULL);
   ApplyAromaGardeningAttackDeclare();
   LightswornBarrier_OnAttackDeclare(attacker, NULL);
   Flavian_OnAttackDeclare();
@@ -314,6 +316,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   MarkMonsterDeclaredAttackThisTurn(attacker);
   GladiatorBeast_MarkBattlePhaseActive();
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, defender);
+  TryDestinyHeroCelestialOnAttackDeclared(attacker, defender);
   ApplyAromaGardeningAttackDeclare();
   LightswornBarrier_OnAttackDeclare(attacker, defender);
   Flavian_OnAttackDeclare();

@@ -2,8 +2,35 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "evil_hero_inferno_wing_backfire.h"
 #include "expanded_graveyard.h"
 #include "six_card_hand.h"
+
+#define FLAG_GRAVEYARD_OPPONENT 2
+
+struct InfernoWingBackfireActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct InfernoWingBackfireActionData sActionData;
 
 void UpdateDuelGfxExceptField(void);
 
@@ -146,5 +173,57 @@ void ActivateEVIL_HERO_INFERNO_WING_BACKFIRE(void)
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
-  /* Ceiling: HERO battle-destroy 2100 burn needs battle-end hook. */
+}
+
+static u8 ControlsFaceUpInfernoWingBackfire(u8 turnDuelist)
+{
+  u8 monsterRow = turnDuelist == ACTIVE_DUELIST
+      ? ACTIVE_DUELIST_MONSTER_ROW
+      : INACTIVE_DUELIST_MONSTER_ROW;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[monsterRow][col];
+
+    if (zone != NULL && zone->id == EVIL_HERO_INFERNO_WING_BACKFIRE && IsCardFaceUp(zone))
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static u8 IsHeroMonster(u16 cardId)
+{
+  static const char sHeroName[] APPEND_RODATA = "HERO";
+
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  return Duel_CardNameContains(cardId, sHeroName);
+}
+
+void ApplyEvilHeroInfernoWingBackfireBattleBurn(void)
+{
+  u8 burnDuelist;
+
+  if (gHideEffectText)
+    return;
+
+  if (!(sActionData.flags & FLAG_GRAVEYARD_OPPONENT)
+      || sActionData.opponentCardId == CARD_NONE
+      || GetTypeGroup(sActionData.opponentCardId) != TYPE_GROUP_MONSTER)
+    return;
+
+  if (sActionData.playerCardId != CARD_NONE && IsHeroMonster(sActionData.playerCardId)
+      && ControlsFaceUpInfernoWingBackfire(ACTIVE_DUELIST)) {
+    burnDuelist = INACTIVE_DUELIST;
+  } else if (sActionData.opponentCardId != CARD_NONE && IsHeroMonster(sActionData.opponentCardId)
+      && ControlsFaceUpInfernoWingBackfire(INACTIVE_DUELIST)) {
+    burnDuelist = ACTIVE_DUELIST;
+  } else {
+    return;
+  }
+
+  Duel_ShowEffectTextTyped(EVIL_HERO_INFERNO_WING_BACKFIRE, 9);
+  Duel_ChangeLp(burnDuelist, -2100, TRUE);
 }

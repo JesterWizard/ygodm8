@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 18:34 UTC  
-**Remaining partials:** `353`
+**Last updated:** 2026-07-22 18:41 UTC  
+**Remaining partials:** `351`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 11 |
-| `activated` | 313 |
+| `activated` | 311 |
 | `permanent` | 23 |
-| **total** | **353** |
+| **total** | **351** |
 
 ## spell (6)
 
@@ -101,7 +101,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (313)
+## activated (311)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -209,7 +209,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ARMED_NEOS`
 - path: `src_custom/activated_effects/armed_neos.c`
-- L116: battle-destroy gain Extra tribute SS need battle/Extra hooks. Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY.
+- L258: * Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY. */
 
 ### `ARMORY_ARM`
 - path: `src_custom/activated_effects/armory_arm.c`
@@ -379,7 +379,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `D_D_WARRIOR`
 - path: `src_custom/activated_effects/d_d_warrior.c`
-- L12: after damage calc banish both needs battle hook. gate outside this file.
+- L13: * battle_effects/d_d_warrior.c. Ceiling: not ignition-activatable here. */
 
 ### `DARK_ARMED_DRAGON`
 - path: `src_custom/activated_effects/dark_armed_dragon.c`
@@ -441,21 +441,14 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/destiny_end_dragoon.c`
 - L106: * Ceiling: OPT destroy 1 opp monster + burn its ATK + cannot BP (unk4). */
 
-### `DESTINY_HERO_BLADE_MASTER`
-- path: `src_custom/activated_effects/destiny_hero_blade_master.c`
-- L89: opponent Battle Phase gate not wired; allow when face-up D-HERO on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook.
-
 ### `DESTINY_HERO_CELESTIAL`
 - path: `src_custom/activated_effects/destiny_hero_celestial.c`
-- L101: attack-declare destroy + GY draw-if-no-hand need battle/GY hooks. Ceiling: OPT destroy 1 face-up opp Spell + burn 500.
+- L155: * Ceiling: GY draw-if-no-hand need GY hooks.
+- L156: * Ceiling: OPT destroy 1 face-up opp Spell + burn 500. */
 
 ### `DESTINY_HERO_DARK_ANGEL`
 - path: `src_custom/activated_effects/destiny_hero_dark_angel.c`
 - L81: field spell-negate FALSE. Ceiling: FromHand discard → SS D-HERO to opp DEF.
-
-### `DESTINY_HERO_DASHER`
-- path: `src_custom/activated_effects/destiny_hero_dasher.c`
-- L49: battle DEF change + draw-phase GY SS need battle/draw hooks. OPT tribute 1 other → +2 tempStage (~1000 ATK until EP via ResetTempStagesForAllCards).
 
 ### `DESTINY_HERO_DECIDER`
 - path: `src_custom/activated_effects/destiny_hero_decider.c`
@@ -487,7 +480,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DESTINY_HERO_DOMINANCE`
 - path: `src_custom/activated_effects/destiny_hero_dominance.c`
 - L66: look+reorder UI missing; RandRange shuffle of top N is stand-in.
-- L89: battle-destroy draw + GY SS 3 D-HERO need battle/destroy hooks. Ceiling: OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in.
 
 ### `DESTINY_HERO_DREADNOUGHT_MASTER`
 - path: `src_custom/activated_effects/destiny_hero_dreadnought_master.c`
@@ -874,7 +866,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `LADY_OF_D`
 - path: `src_custom/activated_effects/lady_of_d.c`
-- L48: * redirect hook. Ceiling: OPT discard 1 Dragon from hand (destroy-save stand-in). */
+- L88: /* Dragon attack lock via LadyOfD_CanAttackMonsterZone. Ceiling: OPT discard
 
 ### `LEGENDARY_KNIGHT_CRITIAS`
 - path: `src_custom/activated_effects/legendary_knight_critias.c`
@@ -1452,8 +1444,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_INFERNO_WING_BACKFIRE`
 - path: `src_custom/permanent_effects/evil_hero_inferno_wing_backfire.c`
-- L128: true trigger is Special Summon; on-summon stand-in covers SS path.
-- L149: HERO battle-destroy 2100 burn needs battle-end hook.
+- L155: true trigger is Special Summon; on-summon stand-in covers SS path.
 
 ### `EVIL_HERO_MALICIOUS_FIEND`
 - path: `src_custom/permanent_effects/evil_hero_malicious_fiend.c`

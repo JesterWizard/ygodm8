@@ -86,7 +86,7 @@ unsigned char CanActivateDESTINY_HERO_DOMINANCE(void)
   if (zone == NULL || zone->id != DESTINY_HERO_DOMINANCE)
     return FALSE;
 
-  /* Ceiling: battle-destroy draw + GY SS 3 D-HERO need battle/destroy hooks.
+  /* Battle-destroy draw + GY SS via ApplyDestinyHeroDominanceBattleEffects.
    * Ceiling: OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

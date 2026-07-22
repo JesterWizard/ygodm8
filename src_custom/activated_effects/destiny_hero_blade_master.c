@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "gladiator_beast_battled.h"
 #include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -31,12 +32,26 @@ static u8 IsFaceUpMonsterZone(struct DuelCard *zone)
   return zone->isDefending == FALSE;
 }
 
-static u8 FieldHasFaceUpDestinyHero(void)
+static u8 BladeMasterController(void)
+{
+  if (GladiatorBeast_InBattlePhase())
+    return INACTIVE_DUELIST;
+
+  return ACTIVE_DUELIST;
+}
+
+static u8 BladeMasterMonsterRow(u8 controller)
+{
+  return controller == ACTIVE_DUELIST ? ACTIVE_DUELIST_MONSTER_ROW : INACTIVE_DUELIST_MONSTER_ROW;
+}
+
+static u8 FieldHasFaceUpDestinyHero(u8 controller)
 {
   u8 col;
+  u8 monsterRow = BladeMasterMonsterRow(controller);
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+    struct DuelCard *zone = gTurnZones[monsterRow][col];
 
     if (IsDestinyHeroMonster(zone->id) && IsFaceUpMonsterZone(zone))
       return TRUE;
@@ -45,18 +60,19 @@ static u8 FieldHasFaceUpDestinyHero(void)
   return FALSE;
 }
 
-static void BuffFaceUpDestinyHeroes(void)
+static void BuffFaceUpDestinyHeroes(u8 controller)
 {
   u8 col;
+  u8 monsterRow = BladeMasterMonsterRow(controller);
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][col];
+    struct DuelCard *zone = gTurnZones[monsterRow][col];
 
     if (!IsDestinyHeroMonster(zone->id) || !IsFaceUpMonsterZone(zone))
       continue;
 
     /* +2 tempStage (~1000 ATK, not exact +800); clears at EP via
-     * ResetTempStagesForAllCards. Ceiling: opponent Battle Phase gate not wired. */
+     * ResetTempStagesForAllCards. */
     if (zone->tempStage < 126)
       zone->tempStage += 2;
   }
@@ -78,7 +94,8 @@ void ActivateDESTINY_HERO_BLADE_MASTEREffect(void)
 
 u8 CanActivateDESTINY_HERO_BLADE_MASTERFromHand(u8 handZone)
 {
-  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+  u8 controller = BladeMasterController();
+  struct DuelCard **handRow = gTurnHands[controller];
 
   if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return FALSE;
@@ -86,14 +103,16 @@ u8 CanActivateDESTINY_HERO_BLADE_MASTERFromHand(u8 handZone)
   if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != DESTINY_HERO_BLADE_MASTER)
     return FALSE;
 
-  /* Ceiling: opponent Battle Phase gate not wired; allow when face-up D-HERO
-   * on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook. */
-  return FieldHasFaceUpDestinyHero();
+  if (!GladiatorBeast_InBattlePhase())
+    return FALSE;
+
+  return FieldHasFaceUpDestinyHero(controller);
 }
 
 u8 TryActivateDESTINY_HERO_BLADE_MASTERFromHand(u8 handZone)
 {
-  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+  u8 controller = BladeMasterController();
+  struct DuelCard **handRow = gTurnHands[controller];
 
   if (!CanActivateDESTINY_HERO_BLADE_MASTERFromHand(handZone))
     return FALSE;
@@ -103,14 +122,14 @@ u8 TryActivateDESTINY_HERO_BLADE_MASTERFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  if (Duel_DestroyZone(SixCardHand_ZoneAtHandRow(handRow, handZone), ACTIVE_DUELIST, FALSE)
+  if (Duel_DestroyZone(SixCardHand_ZoneAtHandRow(handRow, handZone), controller, FALSE)
       == DUEL_ACTION_DUEL_OVER)
     return TRUE;
 
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  BuffFaceUpDestinyHeroes();
+  BuffFaceUpDestinyHeroes(controller);
   RefreshFieldMonsterStatOverlays();
   UpdateDuelGfxExceptField();
   return TRUE;

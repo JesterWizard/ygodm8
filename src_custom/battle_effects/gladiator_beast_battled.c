@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "destiny_hero_dasher.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "gladiator_beast_battled.h"
@@ -82,6 +83,7 @@ void GladiatorBeast_MarkBattlePhaseActive(void)
 
 void GladiatorBeast_ClearBattlePhaseActive(void)
 {
+  TryApplyDestinyHeroDasherBattlePhaseEnd();
   sGladiatorBeastBattlePhaseActive = FALSE;
 }
 

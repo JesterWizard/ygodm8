@@ -41,6 +41,7 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "kishido_spirit.h"
+#include "lady_of_d.h"
 #include "light_of_destruction.h"
 #include "light_spiral.h"
 #include "ryu_kishin_clown.h"
@@ -225,6 +226,7 @@ u8 ChimeratechMegafleetDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AromaseraphySweetMarjoram_CanAttackMonsterZone(struct DuelCard *zone);
 u8 KnightOfPentacles_ProtectsBattleZone(u8 fixedRow, u8 fixedCol);
 u8 KnightOfPentacles_CanAttackMonsterZone(struct DuelCard *zone);
+u8 LadyOfD_CanAttackMonsterZone(struct DuelCard *zone);
 u8 HarpiePerfumer_TreatsNameAsHarpieLady(const struct DuelCard *zone);
 u8 ReptilianneServant_HasOtherFaceUpMonster(struct DuelCard *zone);
 u8 ReptilianneServant_BlocksNormalSummonReptile(u16 cardId);
@@ -1808,6 +1810,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   SphereMode_CanAttackMonsterZone,
   HamonLordOfStrikingThunder_CanAttackMonsterZone,
   KnightOfPentacles_CanAttackMonsterZone,
+  LadyOfD_CanAttackMonsterZone,
   AromaseraphySweetMarjoram_CanAttackMonsterZone,
   EvilHeroMaliciousFiend_CanAttackMonsterZone,
   Oshaleon_CanAttackMonsterZone,

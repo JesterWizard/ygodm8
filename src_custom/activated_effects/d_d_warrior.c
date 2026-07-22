@@ -9,9 +9,8 @@ unsigned char CanActivateD_D_WARRIOR(void)
   if (gMonEffect.id != D_D_WARRIOR)
     return FALSE;
 
-  /* Ceiling: after damage calc banish both needs battle hook.
-   * Ceiling: not ignition-activatable here; upgrade: permanent/tribute/battle
-   * gate outside this file. */
+  /* Banish both after damage calc via ApplyDDWarriorBattleEffect in
+   * battle_effects/d_d_warrior.c. Ceiling: not ignition-activatable here. */
   return FALSE;
 }
 

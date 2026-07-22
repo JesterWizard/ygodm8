@@ -1,13 +1,51 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "destiny_hero_dasher.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
+#include "gladiator_beast_battled.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
 void RefreshFieldMonsterStatOverlays(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+#define FLAG_GRAVEYARD_PLAYER 1
+#define FLAG_GRAVEYARD_OPPONENT 2
+
+struct DasherActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct DasherActionData sActionData;
+
+static u8 sDasherDefAtBpEndRow APPEND_DATA = {0xFF};
+static u8 sDasherDefAtBpEndCol APPEND_DATA = {0};
+static u8 sDasherDrawSsUsed APPEND_DATA = {0};
+
+extern u8 gDrawPhaseNormalDrawActive;
 
 static u8 IsValidTributeTarget(u8 fixedRow, u8 fixedCol)
 {
@@ -46,8 +84,7 @@ static void ResolveTributeTarget(u8 fixedRow, u8 fixedCol)
   if (Duel_DestroyZone(zone, ACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  /* Ceiling: battle DEF change + draw-phase GY SS need battle/draw hooks.
-   * OPT tribute 1 other → +2 tempStage (~1000 ATK until EP via ResetTempStagesForAllCards). */
+  /* OPT tribute 1 other → +2 tempStage (~1000 ATK until EP via ResetTempStagesForAllCards). */
   if (self->tempStage < 126)
     self->tempStage += 2;
 
@@ -129,4 +166,110 @@ void ActivateDESTINY_HERO_DASHEREffect(void)
     Duel_EnterPickZoneTargeting();
   else
     Duel_ResolvePickZoneForAi();
+}
+
+static u8 DasherInGy(u8 fixedDuelist)
+{
+  u8 i;
+
+  if (!GraveyardExpand_IsEnabled())
+    return gDuel.duelistbattleState[fixedDuelist].graveyard == DESTINY_HERO_DASHER;
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (GraveyardExpand_GetCardAt(fixedDuelist, i) == DESTINY_HERO_DASHER)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
+{
+  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
+    return DUEL_PLAYER;
+
+  return DUEL_OPPONENT;
+}
+
+static void MarkDasherDefAtBattlePhaseEnd(u8 fixedRow, u8 fixedCol)
+{
+  sDasherDefAtBpEndRow = fixedRow;
+  sDasherDefAtBpEndCol = fixedCol;
+}
+
+void MarkDestinyHeroDasherAttackedFromBattle(void)
+{
+  if (gHideEffectText)
+    return;
+
+  if (sActionData.opponentCardId == CARD_NONE
+      || GetTypeGroup(sActionData.opponentCardId) != TYPE_GROUP_MONSTER)
+    return;
+
+  if (sActionData.playerCardId == DESTINY_HERO_DASHER)
+    MarkDasherDefAtBattlePhaseEnd(sActionData.playerMonsterRow, sActionData.unkA);
+  else if (sActionData.opponentCardId == DESTINY_HERO_DASHER)
+    MarkDasherDefAtBattlePhaseEnd(sActionData.opponentMonsterRow, sActionData.unk16);
+}
+
+void TryApplyDestinyHeroDasherBattlePhaseEnd(void)
+{
+  struct DuelCard *zone;
+
+  if (sDasherDefAtBpEndRow == 0xFF)
+    return;
+
+  zone = gFixedZones[sDasherDefAtBpEndRow][sDasherDefAtBpEndCol];
+  sDasherDefAtBpEndRow = 0xFF;
+
+  if (zone == NULL || zone->id != DESTINY_HERO_DASHER)
+    return;
+
+  zone->isDefending = TRUE;
+  zone->isFaceUp = TRUE;
+  RefreshFieldMonsterStatOverlays();
+}
+
+void TryApplyDestinyHeroDasherOnDraw(u8 duelist, u16 cardDrawn, u8 handSlot)
+{
+  u8 fixedDuelist;
+  struct DuelSummonOpts opts;
+  struct DuelCard *drawnCard;
+
+  if (!gDrawPhaseNormalDrawActive || sDasherDrawSsUsed)
+    return;
+
+  if (duelist != WhoseTurn())
+    return;
+
+  if (GetTypeGroup(cardDrawn) != TYPE_GROUP_MONSTER)
+    return;
+
+  fixedDuelist = FixedDuelistForTurnDuelist(duelist);
+  if (!DasherInGy(fixedDuelist))
+    return;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return;
+
+  if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return;
+
+  drawnCard = SixCardHand_GetFixed(duelist, handSlot);
+  if (drawnCard == NULL || drawnCard->id != cardDrawn)
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DASHER, 3);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  if (Duel_SpecialSummonFromHandZone(duelist, handSlot, opts) != DUEL_ACTION_OK)
+    return;
+
+  sDasherDrawSsUsed = TRUE;
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
 }

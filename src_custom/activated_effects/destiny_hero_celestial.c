@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "destiny_hero_celestial.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
@@ -87,6 +88,58 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return FALSE;
 }
 
+void TryDestinyHeroCelestialOnAttackDeclared(struct DuelCard *attacker, struct DuelCard *defender)
+{
+  u8 col;
+  struct DuelCard *spell = NULL;
+
+  (void)defender;
+
+  if (gHideEffectText || attacker == NULL || attacker->id != DESTINY_HERO_CELESTIAL)
+    return;
+
+  {
+    u8 fixedRow;
+    u8 fixedCol;
+    u8 oppBackrow;
+    u8 spellOwner;
+
+    if (!Duel_FindFixedMonsterZone(attacker, &fixedRow, &fixedCol))
+      return;
+
+    oppBackrow = fixedRow == PLAYER_MONSTER_ROW ? OPPONENT_BACKROW : PLAYER_BACKROW;
+    spellOwner = fixedRow == PLAYER_MONSTER_ROW ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[oppBackrow][col];
+
+      if (zone == NULL || zone->id == CARD_NONE || IsGodCard(zone->id))
+        continue;
+      if (GetTypeGroup(zone->id) != TYPE_GROUP_SPELL)
+        continue;
+      if (!zone->isFaceUp && !IsCardFaceUp(zone))
+        continue;
+
+      spell = zone;
+      break;
+    }
+
+    if (spell == NULL)
+      return;
+
+    if (Duel_DestroyZone(spell, spellOwner, TRUE) == DUEL_ACTION_DUEL_OVER)
+      return;
+
+    NotifyDynamicEquipFieldChanged();
+
+    if (IsDuelOver() == TRUE)
+      return;
+
+    Duel_ShowEffectTextTyped(DESTINY_HERO_CELESTIAL, 3);
+    Duel_ChangeLp(spellOwner, -500, TRUE);
+  }
+}
+
 unsigned char CanActivateDESTINY_HERO_CELESTIAL(void)
 {
   struct DuelCard *zone;
@@ -98,7 +151,8 @@ unsigned char CanActivateDESTINY_HERO_CELESTIAL(void)
   if (zone == NULL || zone->id != DESTINY_HERO_CELESTIAL)
     return FALSE;
 
-  /* Ceiling: attack-declare destroy + GY draw-if-no-hand need battle/GY hooks.
+  /* Attack-declare destroy via TryDestinyHeroCelestialOnAttackDeclared.
+   * Ceiling: GY draw-if-no-hand need GY hooks.
    * Ceiling: OPT destroy 1 face-up opp Spell + burn 500. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

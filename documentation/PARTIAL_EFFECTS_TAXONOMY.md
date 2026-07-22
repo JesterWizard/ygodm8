@@ -7,9 +7,9 @@ Each `ponytail:` / `Ceiling:` note is tagged with its **primary missing engine s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 18:34 UTC  
-**Ceiling lines tagged:** `390`  
-**Partial files:** `353`
+**Last updated:** 2026-07-22 18:41 UTC  
+**Ceiling lines tagged:** `387`  
+**Partial files:** `351`
 
 ## Counts by missing surface
 
@@ -23,26 +23,23 @@ python3 tools/stub_effect_queue.py --write-list
 | `gate.Tribute` | 15 | 2–3 |
 | `event.GyIgnition` | 9 | 3 |
 | `event.OnDestroy` | 9 | 3 |
-| `event.OnBattleDestroy` | 8 | 3 |
 | `op.BanishTimed` | 8 | 1–3 |
 | `op.Search` | 7 | 1 |
+| `event.OnBattleDestroy` | 5 | 3 |
 | `ui.Choice` | 5 | 2 |
 | `event.OnFusionSummon` | 3 | 3 (fusion callback) |
 | `event.OnLpGain` | 3 | later / LP event |
 | `stat.Continuous` | 1 | 1–3 |
-| **total** | **390** | |
+| **total** | **387** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
-## `event.OnBattleDestroy` (8)
+## `event.OnBattleDestroy` (5)
 
 - `AMAZONESS_HOT_SPRING` (trap): L46: * Ceiling: Pendulum Zone place + battle-damage gain LP OPT need hooks. */
-- `ARMED_NEOS` (activated): L116: battle-destroy gain Extra tribute SS need battle/Extra hooks. Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY.
 - `ARMORY_ARM` (activated): L12: monster-as-equip (+1000 / unequip SS / battle-destroy burn) needs monster Equip API beyond RegisterDynamicEquip spell links. Ceiling: FALSE.
-- `D_D_WARRIOR` (activated): L12: after damage calc banish both needs battle hook. gate outside this file.
-- `DESTINY_HERO_DOMINANCE` (activated): L89: battle-destroy draw + GY SS 3 D-HERO need battle/destroy hooks. Ceiling: OPT shuffle top 5 of your (else opp) Deck as look+reorder stand-in.
+- `D_D_WARRIOR` (activated): L13: * battle_effects/d_d_warrior.c. Ceiling: not ignition-activatable here. */
 - `HONEST` (activated): L95: /* Damage Step hand discard uses FromHand path. Ceiling: Main Phase
-- `EVIL_HERO_INFERNO_WING_BACKFIRE` (permanent): L149: HERO battle-destroy 2100 burn needs battle-end hook.
 - `EVIL_HERO_WILD_CYCLONE` (permanent): L97: * Ceiling: attack S/T lock until end of Damage Step needs chain gate. */
 
 ## `event.OnDestroy` (9)
@@ -76,7 +73,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `QUINTET_MAGICIAN` (activated): L65: * fusion/summon hooks. Ceiling: once via usage destroy all opp cards. */
 - `ARCANA_FORCE_III_THE_EMPRESS` (permanent): L48: opp Normal Summon SS/discard triggers need summon hooks; unk4 only.
 - `DESTINY_HERO_DREAD_SERVANT` (permanent): L77: * Ceiling: NS Clock Tower counters need summon hook. */
-- `EVIL_HERO_INFERNO_WING_BACKFIRE` (permanent): L128: true trigger is Special Summon; on-summon stand-in covers SS path.
+- `EVIL_HERO_INFERNO_WING_BACKFIRE` (permanent): L155: true trigger is Special Summon; on-summon stand-in covers SS path.
 
 ## `event.OnFusionSummon` (3)
 
@@ -105,6 +102,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `ARCANA_FORCE_XIX_THE_SUN` (activated): L81: OPT coin → flip all opp monsters DEF or destroy half yours.
 - `ARCANA_FORCE_XV_THE_FIEND` (activated): L206: discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field.
 - `ARCANITE_MAGICIAN` (activated): L158: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. Ceiling: OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card.
+- `ARMED_NEOS` (activated): L258: * Ceiling: OPT destroy opp monsters with Level ≤ highest Dragon Level in GY. */
 - `AROMAGE_CANANGA` (activated): L176: * Ceiling: OPT bounce 1 opp Spell/Trap if hand room. */
 - `AROMAGE_JASMINE` (activated): L58: * Ceiling: OPT draw 1 via usage. */
 - `AROMAGE_LAUREL` (activated): L66: OPT add 1 Plant from Deck. Residual: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks.
@@ -137,8 +135,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DECOY_DRAGON` (activated): L181: attack-target redirect needs battle targeting hook. Ceiling: OPT SS Lv7+ Dragon from GY once via usage when legal.
 - `DEEP_SEA_DIVA` (activated): L101: /* NS SS via TryDeepSeaDivaOnNormalSummon. Ceiling: OPT duplicate if NS already
 - `DESTINY_END_DRAGOON` (activated): L106: * Ceiling: OPT destroy 1 opp monster + burn its ATK + cannot BP (unk4). */
-- `DESTINY_HERO_CELESTIAL` (activated): L101: attack-declare destroy + GY draw-if-no-hand need battle/GY hooks. Ceiling: OPT destroy 1 face-up opp Spell + burn 500.
-- `DESTINY_HERO_DASHER` (activated): L49: battle DEF change + draw-phase GY SS need battle/draw hooks. OPT tribute 1 other → +2 tempStage (~1000 ATK until EP via ResetTempStagesForAllCards).
+- `DESTINY_HERO_CELESTIAL` (activated): L156: * Ceiling: OPT destroy 1 face-up opp Spell + burn 500. */
 - `DESTINY_HERO_DECIDER` (activated): L115: * return-on-damage need chain hook. Ceiling: OPT add 1 HERO from GY to hand. */
 - `DESTINY_HERO_DENIER` (activated): L189: GY SS when other D-HERO present needs GY/once-per-duel hooks. Ceiling: OPT put 1 D-HERO from Deck/GY/banished on top of Deck.
 - `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER` (activated): L227: Quick destroy + GY revive + continuous ATK loss need quick/GY/ permanent hooks. Ceiling: OPT destroy 1 you control + 1 other field card.
@@ -189,7 +186,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `JAIN_TWILIGHTSWORN_GENERAL` (activated): L229: other-Lightsworn-activated mill 2 needs chain hook. OPT banish 1 Lightsworn from hand/GY → weaken 1 face-up monster. EP mill 2 via TryApplyTwilightswornEndPhase.
 - `JUNK_SYNCHRON` (activated): L124: * Ceiling: field OPT repeat (usage-gated below). */
 - `KEEPER_OF_DRAGON_MAGIC` (activated): L186: * Ceiling: OPT discard → add Poly/Fusion Normal; else OPT SS any from GY face-down DEF. */
-- `LADY_OF_D` (activated): L48: * redirect hook. Ceiling: OPT discard 1 Dragon from hand (destroy-save stand-in). */
+- `LADY_OF_D` (activated): L88: /* Dragon attack lock via LadyOfD_CanAttackMonsterZone. Ceiling: OPT discard
 - `LEGENDARY_KNIGHT_CRITIAS` (activated): L100: * hooks. Ceiling: OPT banish 1 face-up Spell/Trap on the field. */
 - `LEGENDARY_KNIGHT_HERMOS` (activated): L100: * summon/battle hooks. Ceiling: OPT banish 1 face-up Spell/Trap. */
 - `LEGENDARY_KNIGHT_TIMAEUS` (activated): L100: * hooks. Ceiling: OPT banish 1 face-up Spell/Trap on the field. */
@@ -397,7 +394,7 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DARKBLAZE_DRAGON` (activated): L83: * Ceiling: GY SS double original ATK/DEF needs SS-origin flag. */
 - `DARKNESS_NEOSPHERE` (activated): L87: battle indestruct + trap bounce + attack-declare gate need battle/ phase hooks. Ceiling: not field-ignition activatable; SS uses FromHand path.
 - `DARKNESS_NEOSPHERE` (activated): L113: opp attack declare gate not wired; require 1 field + 1 hand Fiend.
-- `DESTINY_HERO_BLADE_MASTER` (activated): L89: opponent Battle Phase gate not wired; allow when face-up D-HERO on field. Ceiling: discard anytime from hand; upgrade: opp BP phase hook.
+- `DESTINY_HERO_CELESTIAL` (activated): L155: * Ceiling: GY draw-if-no-hand need GY hooks.
 - `DESTINY_HERO_DECIDER` (activated): L114: /* EP add on NS/SS via TryApplyDestinyHeroDeciderEndPhase. Ceiling: GY quick
 - `DESTINY_HERO_DESTROY_DOGMA` (activated): L103: /* Standby burn via TryApplyDestinyHeroDestroyDogmaStandby. Ceiling: Quick
 - `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER` (activated): L154: second target picker not chained; auto-destroy best remaining card.

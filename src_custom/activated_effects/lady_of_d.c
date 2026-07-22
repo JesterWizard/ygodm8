@@ -2,11 +2,52 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "lady_of_d.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+static u8 ControllerHasFaceUpLadyOfD(u8 defenderDuelist)
+{
+  u8 fixedRow = Duel_FixedMonsterRowForDuelist(defenderDuelist);
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+    if (zone != NULL && zone->id == LADY_OF_D && IsCardFaceUp(zone))
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+u8 LadyOfD_CanAttackMonsterZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+  u8 defenderDuelist;
+
+  if (zone == NULL || zone->id == CARD_NONE || zone->id == LADY_OF_D)
+    return TRUE;
+
+  if (!Duel_CardHasMonsterType(zone->id, TYPE_DRAGON))
+    return TRUE;
+
+  if (!IsCardFaceUp(zone) && zone->isDefending)
+    return TRUE;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return TRUE;
+
+  defenderDuelist = Duel_FixedDuelistForMonsterRow(fixedRow);
+  if (!ControllerHasFaceUpLadyOfD(defenderDuelist))
+    return TRUE;
+
+  return FALSE;
+}
 
 static u8 IsDragonMonster(u16 cardId)
 {
@@ -44,8 +85,8 @@ unsigned char CanActivateLADY_OF_D(void)
   if (zone == NULL || zone->id != LADY_OF_D)
     return FALSE;
 
-  /* opp cannot target your face-up Dragons for attacks needs target-
-   * redirect hook. Ceiling: OPT discard 1 Dragon from hand (destroy-save stand-in). */
+  /* Dragon attack lock via LadyOfD_CanAttackMonsterZone. Ceiling: OPT discard
+   * 1 Dragon from hand (destroy-save stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

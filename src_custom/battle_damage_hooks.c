@@ -141,6 +141,10 @@
 #include "substitoad.h"
 #include "turbo_rocket.h"
 #include "yubel.h"
+#include "armed_neos.h"
+#include "destiny_hero_dasher.h"
+#include "destiny_hero_dominance.h"
+#include "evil_hero_inferno_wing_backfire.h"
 #include "custom_field_spell.h"
 #include "constants/custom_field_spells.h"
 
@@ -469,6 +473,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyHorusBattleDestroyPending();
   ApplyGladiatorBeastBattledMarks();
   ApplyGladiatorBeastPermanentBattleEffects();
+  ApplyArmedNeosBattleDestroyGrant();
+  ApplyDestinyHeroDominanceBattleEffects();
+  MarkDestinyHeroDasherAttackedFromBattle();
+  ApplyEvilHeroInfernoWingBackfireBattleBurn();
   ApplyReptilianneNagaBattleZeroAtk();
 
   {

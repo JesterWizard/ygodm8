@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Ceiling Round 14 Batch 4
+**Last worked on:** 2026-07-22 — Ceiling Round 14 Batch 5
 
-**Outcome:** Partials **361→353**. B4: Rescue EP destroy; Neos EP; Harpie Oracle; Diviner; Tenacious/Doom Lord Standby. `make` OK.
+**Outcome:** Partials **353→351**. B5: Dominance/Blade Master/Dasher/Armed Neos/Celestial/Lady of D/Inferno Wing Backfire battle wires. `make` OK.
 
-**Open / next:** Round 14 Batches 5–6 (battle + targeting).
+**Open / next:** Round 14 Batch 6 (targeting/name).

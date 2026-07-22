@@ -1,0 +1,6 @@
+#ifndef GUARD_EVIL_HERO_INFERNO_WING_BACKFIRE_H
+#define GUARD_EVIL_HERO_INFERNO_WING_BACKFIRE_H
+
+void ApplyEvilHeroInfernoWingBackfireBattleBurn(void);
+
+#endif // GUARD_EVIL_HERO_INFERNO_WING_BACKFIRE_H
