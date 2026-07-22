@@ -86,7 +86,7 @@ unsigned char CanActivateMILLENNIUM_EYES_RESTRICT(void)
     return FALSE;
 
   /* chain equip/absorb opp Effect Monster needs chain/control hooks.
-   * Ceiling: OPT destroy 1 opp monster. */
+   * OPT destroy 1 opp monster. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

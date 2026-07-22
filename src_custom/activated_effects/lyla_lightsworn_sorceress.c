@@ -122,7 +122,7 @@ unsigned char CanActivateLYLA_LIGHTSWORN_SORCERESS(void)
     return FALSE;
 
   /* EP mill via TryApplyLylaEndPhase; position-lock after OPT needs battle hook.
-   * Ceiling: OPT from face-up ATK → face-up DEF, destroy 1 opp S/T. */
+   * OPT from face-up ATK → face-up DEF, destroy 1 opp S/T. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

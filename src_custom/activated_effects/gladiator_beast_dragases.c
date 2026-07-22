@@ -154,7 +154,7 @@ unsigned char CanActivateGLADIATOR_BEAST_DRAGASES(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_DRAGASES)
     return FALSE;
 
-  /* Ceiling: OPT GB tag-out → SS 2 different from Deck. */
+  /* OPT GB tag-out → SS 2 different from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

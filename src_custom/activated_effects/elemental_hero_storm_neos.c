@@ -83,7 +83,7 @@ unsigned char CanActivateELEMENTAL_HERO_STORM_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_STORM_NEOS)
     return FALSE;
 
-  /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT destroy all
+  /* EP Extra return via TryReturnContactFusionsAtEndPhase. OPT destroy all
    * S/T on field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -130,7 +130,7 @@ unsigned char CanActivateGLADIATOR_BEAST_DOMITIANUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_DOMITIANUS)
     return FALSE;
 
-  /* Ceiling: OPT tag-out → SS 1–2 GB from Deck. */
+  /* OPT tag-out → SS 1–2 GB from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

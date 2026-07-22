@@ -155,7 +155,7 @@ unsigned char CanActivateGLADIATOR_BEAST_ANDABATA(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_ANDABATA)
     return FALSE;
 
-  /* Ceiling: OPT tag-out → SS 2 different GB from Deck. */
+  /* OPT tag-out → SS 2 different GB from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

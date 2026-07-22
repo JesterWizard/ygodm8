@@ -168,7 +168,7 @@ unsigned char CanActivateGUARDIAN_DREADSCYTHE(void)
     return FALSE;
 
   /* summon lock + GY revive loop need summon/leave hooks.
-   * Ceiling: OPT equip/add Reaper Scythe from Deck. */
+   * OPT equip/add Reaper Scythe from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

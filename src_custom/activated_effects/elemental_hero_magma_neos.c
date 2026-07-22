@@ -39,7 +39,7 @@ unsigned char CanActivateELEMENTAL_HERO_MAGMA_NEOS(void)
   if (zone == NULL || zone->id != ELEMENTAL_HERO_MAGMA_NEOS)
     return FALSE;
 
-  /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: OPT refresh
+  /* EP Extra return via TryReturnContactFusionsAtEndPhase. OPT refresh
    * tempStage from field card count. */
   return CanUseMonsterEffect(zone);
 }
