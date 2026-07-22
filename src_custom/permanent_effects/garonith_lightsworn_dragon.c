@@ -4,11 +4,13 @@
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "garonith_lightsworn_dragon.h"
 
 static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
 
 #define GARONITH_DISTINCT_CAP 32
 #define GARONITH_ATK_DEF_PER_NAME 300
+#define GARONITH_END_PHASE_MILL 3
 
 static u8 IsLightswornMonster(u16 cardId)
 {
@@ -85,10 +87,27 @@ u8 GaronithLightswornDragon_ApplyDynamicZoneStats(struct DuelCard *zone)
   return TRUE;
 }
 
+void TryApplyGaronithEndPhase(void)
+{
+  u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  u8 turn = ACTIVE_DUELIST;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone == NULL || !zone->isFaceUp || zone->id != GARONITH_LIGHTSWORN_DRAGON)
+      continue;
+    Duel_ShowEffectTextTyped(GARONITH_LIGHTSWORN_DRAGON, 2);
+    Duel_MillTopDeckCards(turn, GARONITH_END_PHASE_MILL, TRUE);
+    return;
+  }
+}
+
 unsigned char ShouldActivateGARONITH_LIGHTSWORN_DRAGON(void)
 {
-  /* Pierce via ApplySimplePiercersBattleEffect.
-   * ponytail: End Phase mill 3 need turn hook — ApplyDynamicZoneStats live. */
+  /* Pierce via ApplySimplePiercersBattleEffect; EP mill via TryApplyGaronithEndPhase.
+   * ApplyDynamicZoneStats live. */
   (void)gActiveEffect;
   return FALSE;
 }

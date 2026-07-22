@@ -1,10 +1,46 @@
 #include "global.h"
 #include "common-chax.h"
+#include "aromage_jasmine.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 #include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
+
+static u8 ControllerHasFaceUpJasmineWithLpAdvantage(u8 controller)
+{
+  u8 opp = controller == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  u8 row;
+  u8 col;
+
+  if (gDuelLifePoints[controller] <= gDuelLifePoints[opp])
+    return FALSE;
+
+  row = Duel_FixedMonsterRowForDuelist(controller);
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AROMAGE_JASMINE)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+u8 AromageJasmine_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  u8 controller;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  controller = GetDuelistForZone((struct DuelCard *)zone);
+  if (controller > DUEL_OPPONENT)
+    return FALSE;
+
+  return ControllerHasFaceUpJasmineWithLpAdvantage(controller);
+}
 
 unsigned char CanActivateAROMAGE_JASMINE(void)
 {
@@ -17,9 +53,9 @@ unsigned char CanActivateAROMAGE_JASMINE(void)
   if (zone == NULL || zone->id != AROMAGE_JASMINE)
     return FALSE;
 
-  /* ponytail: extra Plant Normal Summon while LP higher + draw-on-LP-gain need
-   * permanent/LP hooks. Ceiling: OPT draw 1 via usage; upgrade: LP-gain gate +
-   * extra Normal Summon overlay when your LP exceed opponent's. */
+  /* LP-higher battle protect via AromageJasmine_PreventsBattleDestroy.
+   * ponytail: extra Plant Normal Summon + draw-on-LP-gain need LP/summon hooks.
+   * Ceiling: OPT draw 1 via usage. */
   return CanUseMonsterEffect(zone);
 }
 

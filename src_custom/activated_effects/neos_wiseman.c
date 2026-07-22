@@ -64,9 +64,14 @@ unsigned char CanActivateNEOS_WISEMAN(void)
   if (gMonEffect.id != NEOS_WISEMAN)
     return FALSE;
 
-  /* Battle burn/heal via ApplyNeosWisemanBattleEffect.
-   * ponytail: effect-destroy immunity needs destroy gate. */
+  /* Battle burn/heal via ApplyNeosWisemanBattleEffect; effect-destroy immunity
+   * via NeosWiseman_PreventsDestroy. */
   return FALSE;
+}
+
+u8 NeosWiseman_PreventsDestroy(const struct DuelCard *zone)
+{
+  return zone != NULL && zone->isFaceUp && zone->id == NEOS_WISEMAN;
 }
 
 void ActivateNEOS_WISEMANEffect(void)

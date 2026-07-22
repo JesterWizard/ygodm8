@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 07:38 UTC  
-**Remaining partials:** `502`
+**Last updated:** 2026-07-22 07:42 UTC  
+**Remaining partials:** `500`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 10 |
-| `activated` | 391 |
-| `permanent` | 95 |
-| **total** | **502** |
+| `activated` | 390 |
+| `permanent` | 94 |
+| **total** | **500** |
 
 ## spell (6)
 
@@ -95,7 +95,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). Ceiling: shows text + self-destroy; upgrade: collect Tuners + non-Tuners → Extra Deck Synchro SS.
 
-## activated (391)
+## activated (390)
 
 ### `AMAZONESS_BABY_TIGER`
 - path: `src_custom/activated_effects/amazoness_baby_tiger.c`
@@ -238,7 +238,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AROMAGE_JASMINE`
 - path: `src_custom/activated_effects/aromage_jasmine.c`
-- L20: extra Plant Normal Summon while LP higher + draw-on-LP-gain need permanent/LP hooks. Ceiling: OPT draw 1 via usage; upgrade: LP-gain gate + extra Normal Summon overlay when your LP exceed opponent's.
+- L57: * ponytail: extra Plant Normal Summon + draw-on-LP-gain need LP/summon hooks.
 
 ### `AROMAGE_LAUREL`
 - path: `src_custom/activated_effects/aromage_laurel.c`
@@ -254,8 +254,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AROMALILITH_MAGNOLIA`
 - path: `src_custom/activated_effects/aromalilith_magnolia.c`
-- L100: Plant protect + LP-gain ATK need permanent/LP hooks. Ceiling: OPT pay 2000 → banish up to Humid/Dried/Blessed Winds count.
-- L135: no multi-select UI — auto-banish up to winds count (opp rows first).
+- L172: no multi-select UI — auto-banish up to winds count (opp rows first).
 
 ### `AROMALILITH_ROSALINA`
 - path: `src_custom/activated_effects/aromalilith_rosalina.c`
@@ -267,7 +266,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `AROMASERAPHY_JASMINE`
 - path: `src_custom/activated_effects/aromaseraphy_jasmine.c`
-- L179: LP-higher battle protect + Link-point tribute + LP-gain search need Link/LP hooks. Ceiling: tribute 1 you control → SS Plant from Deck.
+- L48: no Link points — all your Plants while Jasmine face-up and LP higher.
 
 ### `AROMASERAPHY_ROSEMARY`
 - path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
@@ -309,7 +308,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `BAZOO_THE_SOUL_EATER`
 - path: `src_custom/activated_effects/bazoo_the_soul_eater.c`
-- L98: +1 tempStage per banished (~500 ATK each, not exact +300); until opp EP clear needs EP tempStage reset hook.
+- L130: unk4 = banish count for +300 ATK each; cleared each EP with tempStage reset — not exact until-opp-EP hook.
 
 ### `BEAST_KING_BARBAROS`
 - path: `src_custom/activated_effects/beast_king_barbaros.c`
@@ -573,7 +572,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DREAMER`
 - path: `src_custom/activated_effects/destiny_hero_dreamer.c`
-- L45: Damage Step battle protect + banish-on-leave need battle/GY hooks. Ceiling: GY ignition SS when Dreamer in GY + empty monster zone.
+- L52: * ponytail: banish-on-leave need GY hook. Ceiling: GY ignition SS. */
 
 ### `DESTINY_HERO_DRILLDARK`
 - path: `src_custom/activated_effects/destiny_hero_drilldark.c`
@@ -585,8 +584,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DYNATAG`
 - path: `src_custom/activated_effects/destiny_hero_dynatag.c`
-- L15: Damage Step no-battle-damage + GY banish ATK boost use FromHand path. Ceiling: not field-ignition activatable here.
-- L54: no battle damage from that battle not wired; both players 1000.
+- L134: GY banish ATK boost not wired; both players 1000 on FromHand.
 
 ### `DESTINY_HERO_DYSTOPIA`
 - path: `src_custom/activated_effects/destiny_hero_dystopia.c`
@@ -1138,7 +1136,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `LYLA_LIGHTSWORN_SORCERESS`
 - path: `src_custom/activated_effects/lyla_lightsworn_sorceress.c`
-- L104: position-lock + End Phase mill 3 need battle/EP hooks. Ceiling: OPT from face-up ATK: change to face-up DEF and destroy 1 opp Spell/Trap.
+- L124: /* EP mill via TryApplyLylaEndPhase; ponytail: position-lock after OPT needs
 
 ### `LYLA_TWILIGHTSWORN_ENCHANTRESS`
 - path: `src_custom/activated_effects/lyla_twilightsworn_enchantress.c`
@@ -1335,10 +1333,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/neo_spacian_marine_dolphin.c`
 - L79: treated-as Aqua Dolphin name + NEX-only SS need continuous/summon hooks.
 
-### `NEOS_WISEMAN`
-- path: `src_custom/activated_effects/neos_wiseman.c`
-- L68: * ponytail: effect-destroy immunity needs destroy gate. */
-
 ### `NIBIRU_THE_PRIMAL_BEING`
 - path: `src_custom/activated_effects/nibiru_the_primal_being.c`
 - L90: 5-summon gate + Primal Being Token to opp FALSE. Ceiling: FromHand wipe+SS if ≥5 face-up monsters on field.
@@ -1394,8 +1388,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `RAIDEN_HAND_OF_THE_LIGHTSWORN`
 - path: `src_custom/activated_effects/raiden_hand_of_the_lightsworn.c`
-- L59: End Phase mill 2 needs EP hook. Ceiling: Main Phase OPT mill 2.
-- L82: +1 tempStage (~500 ATK, not exact +200); until opp EP clear needs hook.
+- L101: +1 tempStage (~500 ATK, not exact +200); until opp EP clear needs hook.
 
 ### `RAINBOW_DARK_DRAGON`
 - path: `src_custom/activated_effects/rainbow_dark_dragon.c`
@@ -1735,7 +1728,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/zeradias_herald_of_heaven.c`
 - L13: destroy self when Sanctuary absent needs continuous field check. Ceiling: not ignition-activatable here; upgrade: permanent maintenance hook.
 
-## permanent (95)
+## permanent (94)
 
 ### `AMEBA`
 - path: `src_custom/permanent_effects/ameba.c`
@@ -1873,7 +1866,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ELEMENTAL_HERO_THE_SHINING`
 - path: `src_custom/permanent_effects/elemental_hero_the_shining.c`
-- L22: no banished-zone storage yet — +300 ATK per banished E-HERO and return up to 2 banished E-HEROes to hand deferred until banish zone exists.
+- L64: return up to 2 banished E-HEROes to hand deferred — no multi-RFP return UI yet. ATK overlay via ApplyDynamicZoneStats.
 
 ### `EVIL_DRAGON_ANANTA`
 - path: `src_custom/permanent_effects/evil_dragon_ananta.c`
@@ -1920,10 +1913,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/permanent_effects/gandora_x_the_dragon_of_demolition.c`
 - L118: End Phase half LP needs EP hook; on-summon wipe only here.
 - L146: set ATK = damage via tempStage (~500/unit).
-
-### `GARONITH_LIGHTSWORN_DRAGON`
-- path: `src_custom/permanent_effects/garonith_lightsworn_dragon.c`
-- L91: * ponytail: End Phase mill 3 need turn hook — ApplyDynamicZoneStats live. */
 
 ### `GAROTH_LIGHTSWORN_WARRIOR`
 - path: `src_custom/permanent_effects/garoth_lightsworn_warrior.c`

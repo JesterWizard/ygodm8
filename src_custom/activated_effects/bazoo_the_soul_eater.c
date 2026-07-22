@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "bazoo_the_soul_eater.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
@@ -9,6 +10,7 @@ void UpdateDuelGfxExceptField(void);
 void RefreshFieldMonsterStatOverlays(void);
 
 #define BAZOO_MAX_BANISH 3
+#define BAZOO_ATK_PER_BANISHED 300
 
 static u8 FixedDuelistForActive(void)
 {
@@ -67,6 +69,36 @@ static u8 BanishUpToThreeGyMonsters(void)
   return banished;
 }
 
+u8 BazooTheSoulEater_ApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  u32 baseAtk;
+
+  if (zone == NULL || zone->id != BAZOO_THE_SOUL_EATER)
+    return FALSE;
+
+  baseAtk = gCardData_NEW[zone->id].atk;
+  SetCardInfo(zone->id);
+  Duel_WriteCardInfoStats(zone->id,
+                          Duel_StatFromCount(zone->unk4, BAZOO_ATK_PER_BANISHED, baseAtk),
+                          gCardInfo.def);
+  return TRUE;
+}
+
+void BazooTheSoulEater_ClearAtkBoostOnEndPhase(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone != NULL && zone->id == BAZOO_THE_SOUL_EATER)
+        zone->unk4 = 0;
+    }
+  }
+}
+
 unsigned char CanActivateBAZOO_THE_SOUL_EATER(void)
 {
   struct DuelCard *zone;
@@ -95,12 +127,23 @@ void ActivateBAZOO_THE_SOUL_EATEREffect(void)
   if (banished == 0)
     return;
 
-  /* ponytail: +1 tempStage per banished (~500 ATK each, not exact +300); until
-   * opp EP clear needs EP tempStage reset hook. */
-  if (self->tempStage < 127 - (s8)banished)
-    self->tempStage += (s8)banished;
+  /* ponytail: unk4 = banish count for +300 ATK each; cleared each EP with
+   * tempStage reset — not exact until-opp-EP hook. */
+  if (self->unk4 < 255 - banished)
+    self->unk4 = (u8)(self->unk4 + banished);
 
   MarkMonsterEffectUsed(self);
   RefreshFieldMonsterStatOverlays();
   UpdateDuelGfxExceptField();
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void BazooTheSoulEater_SelfCheck(void)
+{
+  struct DuelCard zone;
+
+  zone.id = BAZOO_THE_SOUL_EATER;
+  zone.unk4 = 2;
+  BazooTheSoulEater_ApplyDynamicZoneStats(&zone);
+}
+#endif

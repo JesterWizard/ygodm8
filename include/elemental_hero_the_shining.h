@@ -4,5 +4,6 @@
 #include "global.h"
 
 void ElementalHeroTheShining_OnZoneCleared(const struct DuelCard *zone);
+u8 ElementalHeroTheShining_ApplyDynamicZoneStats(struct DuelCard *zone);
 
 #endif // ELEMENTAL_HERO_THE_SHINING_H

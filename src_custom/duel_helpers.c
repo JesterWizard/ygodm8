@@ -81,6 +81,8 @@
 #include "el_shaddoll_anoyatyllis.h"
 #include "ancient_gear_cannon.h"
 #include "amazoness_scouts.h"
+#include "aromalilith_magnolia.h"
+#include "neos_wiseman.h"
 #include "uria_lord_of_searing_flames.h"
 #include "raviel_lord_of_phantasms.h"
 #include "expanded_graveyard.h"
@@ -163,6 +165,8 @@ u8 NeoSpacianFlareScarab_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 OrichalcosShunoros_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ShireLightswornSpirit_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GaronithLightswornDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 BazooTheSoulEater_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ElementalHeroTheShining_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroFlareNeos_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 EvilDragonAnanta_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 VennominonTheKingOfPoisonousSnakes_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -686,7 +690,9 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
       || ReturnOfTheDragonLords_TryProtectDragon(zone)
       || ShiningSarcophagus_PreventsDestroy(zone)
       || ElShaddollWinda_PreventsDestroy(zone)
-      || AmazonessScouts_PreventsDestroy(zone))
+      || AmazonessScouts_PreventsDestroy(zone)
+      || AromalilithMagnolia_PreventsDestroy(zone)
+      || NeosWiseman_PreventsDestroy(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;
@@ -1644,6 +1650,8 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ORICHALCOS_SHUNOROS, OrichalcosShunoros_ApplyDynamicZoneStats },
   { SHIRE_LIGHTSWORN_SPIRIT, ShireLightswornSpirit_ApplyDynamicZoneStats },
   { GARONITH_LIGHTSWORN_DRAGON, GaronithLightswornDragon_ApplyDynamicZoneStats },
+  { BAZOO_THE_SOUL_EATER, BazooTheSoulEater_ApplyDynamicZoneStats },
+  { ELEMENTAL_HERO_THE_SHINING, ElementalHeroTheShining_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_FLARE_NEOS, ElementalHeroFlareNeos_ApplyDynamicZoneStats },
   { EVIL_DRAGON_ANANTA, EvilDragonAnanta_ApplyDynamicZoneStats },
   { VENNOMINON_THE_KING_OF_POISONOUS_SNAKES, VennominonTheKingOfPoisonousSnakes_ApplyDynamicZoneStats },

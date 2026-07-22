@@ -3,7 +3,10 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
+#include "lyla_lightsworn_sorceress.h"
 #include "monster_effect_usage.h"
+
+#define LYLA_END_PHASE_MILL 3
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
@@ -90,6 +93,23 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return FALSE;
 }
 
+void TryApplyLylaEndPhase(void)
+{
+  u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  u8 turn = ACTIVE_DUELIST;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone == NULL || !zone->isFaceUp || zone->id != LYLA_LIGHTSWORN_SORCERESS)
+      continue;
+    Duel_ShowEffectTextTyped(LYLA_LIGHTSWORN_SORCERESS, 2);
+    Duel_MillTopDeckCards(turn, LYLA_END_PHASE_MILL, TRUE);
+    return;
+  }
+}
+
 unsigned char CanActivateLYLA_LIGHTSWORN_SORCERESS(void)
 {
   struct DuelCard *zone;
@@ -101,8 +121,8 @@ unsigned char CanActivateLYLA_LIGHTSWORN_SORCERESS(void)
   if (zone == NULL || zone->id != LYLA_LIGHTSWORN_SORCERESS)
     return FALSE;
 
-  /* ponytail: position-lock + End Phase mill 3 need battle/EP hooks. Ceiling:
-   * OPT from face-up ATK: change to face-up DEF and destroy 1 opp Spell/Trap. */
+  /* EP mill via TryApplyLylaEndPhase; ponytail: position-lock after OPT needs
+   * battle hook. Ceiling: OPT from face-up ATK → face-up DEF, destroy 1 opp S/T. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

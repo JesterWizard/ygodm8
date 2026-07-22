@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "archlord_kristya.h"
+#include "aromaseraphy_jasmine.h"
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
@@ -12,6 +13,41 @@ void ClearZoneAndSendMonToGraveyard2(struct DuelCard *zone, u8 player);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
+
+static u8 ControllerHasFaceUpSeraphyJasmineWithLpAdvantage(u8 controller)
+{
+  u8 opp = controller == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  u8 row;
+  u8 col;
+
+  if (gDuelLifePoints[controller] <= gDuelLifePoints[opp])
+    return FALSE;
+
+  row = Duel_FixedMonsterRowForDuelist(controller);
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AROMASERAPHY_JASMINE)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+u8 AromaseraphyJasmine_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  u8 controller;
+
+  if (zone == NULL || !zone->isFaceUp || !Duel_CardHasMonsterType(zone->id, TYPE_PLANT))
+    return FALSE;
+
+  controller = GetDuelistForZone((struct DuelCard *)zone);
+  if (controller > DUEL_OPPONENT)
+    return FALSE;
+
+  /* ponytail: no Link points — all your Plants while Jasmine face-up and LP higher. */
+  return ControllerHasFaceUpSeraphyJasmineWithLpAdvantage(controller);
+}
 
 static u8 FixedDuelistForActive(void)
 {
@@ -176,8 +212,9 @@ unsigned char CanActivateAROMASERAPHY_JASMINE(void)
   if (zone == NULL || zone->id != AROMASERAPHY_JASMINE)
     return FALSE;
 
-  /* ponytail: LP-higher battle protect + Link-point tribute + LP-gain search
-   * need Link/LP hooks. Ceiling: tribute 1 you control → SS Plant from Deck. */
+  /* LP-higher Plant battle protect via AromaseraphyJasmine_PreventsBattleDestroy.
+   * ponytail: Link-point tribute + LP-gain search need Link/LP hooks.
+   * Ceiling: tribute 1 you control → SS Plant from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

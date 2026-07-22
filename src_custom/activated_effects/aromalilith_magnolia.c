@@ -1,7 +1,9 @@
 #include "global.h"
 #include "common-chax.h"
+#include "aromalilith_magnolia.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 #include "dynamic_equip.h"
 #include "god_card.h"
 #include "monster_effect_usage.h"
@@ -11,6 +13,40 @@ void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
 #define MAGNOLIA_LP_COST 2000
+
+static u8 ControllerHasFaceUpMagnoliaWithLpAdvantage(u8 controller)
+{
+  u8 opp = controller == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
+  u8 row;
+  u8 col;
+
+  if (gDuelLifePoints[controller] <= gDuelLifePoints[opp])
+    return FALSE;
+
+  row = Duel_FixedMonsterRowForDuelist(controller);
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone != NULL && zone->isFaceUp && zone->id == AROMALILITH_MAGNOLIA)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+u8 AromalilithMagnolia_PreventsDestroy(const struct DuelCard *zone)
+{
+  u8 controller;
+
+  if (zone == NULL || !zone->isFaceUp || !Duel_CardHasMonsterType(zone->id, TYPE_PLANT))
+    return FALSE;
+
+  controller = GetDuelistForZone((struct DuelCard *)zone);
+  if (controller > DUEL_OPPONENT)
+    return FALSE;
+
+  return ControllerHasFaceUpMagnoliaWithLpAdvantage(controller);
+}
 
 static u8 FixedDuelistForActive(void)
 {
@@ -97,8 +133,9 @@ unsigned char CanActivateAROMALILITH_MAGNOLIA(void)
   if (zone == NULL || zone->id != AROMALILITH_MAGNOLIA)
     return FALSE;
 
-  /* ponytail: Plant protect + LP-gain ATK need permanent/LP hooks.
-   * Ceiling: OPT pay 2000 → banish up to Humid/Dried/Blessed Winds count. */
+  /* LP-higher Plant effect-destroy immunity via AromalilithMagnolia_PreventsDestroy.
+   * ponytail: LP-gain ATK need LP hook. Ceiling: OPT pay 2000 → banish up to
+   * Humid/Dried/Blessed Winds count. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

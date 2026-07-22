@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "archlord_kristya.h"
 #include "constants/card_ids.h"
+#include "destiny_hero_dreamer.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
@@ -37,13 +38,18 @@ static s16 FindDreamerInGy(void)
   return -1;
 }
 
+u8 DestinyHeroDreamer_PreventsBattleDestroy(const struct DuelCard *zone)
+{
+  return zone != NULL && zone->isFaceUp && zone->id == DESTINY_HERO_DREAMER;
+}
+
 unsigned char CanActivateDESTINY_HERO_DREAMER(void)
 {
   if (gMonEffect.id != DESTINY_HERO_DREAMER)
     return FALSE;
 
-  /* ponytail: Damage Step battle protect + banish-on-leave need battle/GY hooks.
-   * Ceiling: GY ignition SS when Dreamer in GY + empty monster zone. */
+  /* Battle protect via DestinyHeroDreamer_PreventsBattleDestroy.
+   * ponytail: banish-on-leave need GY hook. Ceiling: GY ignition SS. */
   if (ArchlordKristya_IsSpecialSummonLocked())
     return FALSE;
 

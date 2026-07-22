@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
+#include "raiden_hand_of_the_lightsworn.h"
 
 void UpdateDuelGfxExceptField(void);
 void RefreshFieldMonsterStatOverlays(void);
@@ -12,6 +13,7 @@ void TryActivatingPermanentEffects(void);
 static const char sLightswornName[] APPEND_RODATA = "Lightsworn";
 
 #define RAIDEN_MILL_COUNT 2
+#define RAIDEN_END_PHASE_MILL 2
 
 static u8 FixedDuelistForActive(void)
 {
@@ -56,11 +58,28 @@ unsigned char CanActivateRAIDEN_HAND_OF_THE_LIGHTSWORN(void)
   if (zone == NULL || zone->id != RAIDEN_HAND_OF_THE_LIGHTSWORN)
     return FALSE;
 
-  /* ponytail: End Phase mill 2 needs EP hook. Ceiling: Main Phase OPT mill 2. */
+  /* EP mill via TryApplyRaidenEndPhase. Ceiling: Main Phase OPT mill 2. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   return gDuelDecks[fixedDuelist].cardsDrawn + RAIDEN_MILL_COUNT <= NumCardsInDeck(fixedDuelist);
+}
+
+void TryApplyRaidenEndPhase(void)
+{
+  u8 row = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+  u8 turn = ACTIVE_DUELIST;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[row][col];
+
+    if (zone == NULL || !zone->isFaceUp || zone->id != RAIDEN_HAND_OF_THE_LIGHTSWORN)
+      continue;
+    Duel_ShowEffectTextTyped(RAIDEN_HAND_OF_THE_LIGHTSWORN, 2);
+    Duel_MillTopDeckCards(turn, RAIDEN_END_PHASE_MILL, TRUE);
+    return;
+  }
 }
 
 void ActivateRAIDEN_HAND_OF_THE_LIGHTSWORNEffect(void)

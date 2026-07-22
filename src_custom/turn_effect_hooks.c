@@ -26,6 +26,10 @@
 #include "morphtronic_lantron.h"
 #include "shire_lightsworn_spirit.h"
 #include "jain_lightsworn_paladin.h"
+#include "lyla_lightsworn_sorceress.h"
+#include "garonith_lightsworn_dragon.h"
+#include "raiden_hand_of_the_lightsworn.h"
+#include "bazoo_the_soul_eater.h"
 #include "helios_duo_megistus.h"
 #include "helios_trice_megistus.h"
 #include "aroma_jar.h"
@@ -465,6 +469,15 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyShireEndPhase();
   if (IsDuelOver() == 1)
     return;
+  TryApplyLylaEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyGaronithEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyRaidenEndPhase();
+  if (IsDuelOver() == 1)
+    return;
   TryApplyHeliosDuoMegistusEndPhase();
   if (IsDuelOver() == 1)
     return;
@@ -499,6 +512,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   DestroyInstantFusionMonstersAtEndPhase();
   if (IsDuelOver() == 1)
     return;
+  BazooTheSoulEater_ClearAtkBoostOnEndPhase();
   ResetTempStagesForAllCards();
   AromaGarden_ReapplyTempBoostAfterReset();
   AromaGarden_OnEndPhase();

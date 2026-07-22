@@ -70,6 +70,8 @@
 #include "meteorain.h"
 #include "marshmallon.h"
 #include "aromage_marjoram.h"
+#include "aromage_jasmine.h"
+#include "aromaseraphy_jasmine.h"
 #include "majesty_hyperion.h"
 #include "morphtronic_boarden.h"
 #include "morphtronic_lantron.h"
@@ -91,6 +93,8 @@
 #include "elemental_hero_brave_neos.h"
 #include "evil_hero_wild_cyclone.h"
 #include "destiny_hero_dread_servant.h"
+#include "destiny_hero_dreamer.h"
+#include "destiny_hero_dynatag.h"
 #include "vennominon_the_king_of_poisonous_snakes.h"
 #include "helios_duo_megistus.h"
 #include "helios_trice_megistus.h"
@@ -256,6 +260,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyBeastMachineKingBarbarosUrNoOppBattleDamage();
   ApplyAromageMarjoramNoPlantBattleDamage();
   ApplyMorphtronicLantronNoBattleDamage();
+  ApplyDestinyHeroDynatagNoBattleDamage();
   ApplyMajestyHyperionBattleDamageShare();
 
   if (sActionData.playerCardId == STONE_STATUE_OF_THE_AZTECS && sActionData.id == 5) {
@@ -322,6 +327,12 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (OrichalcosShunoros_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (AromageJasmine_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (AromaseraphyJasmine_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (DestinyHeroDreamer_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     }
   }
   if (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) {
@@ -354,6 +365,12 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (MorphtronicStaplen_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (OrichalcosShunoros_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (AromageJasmine_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (AromaseraphyJasmine_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (DestinyHeroDreamer_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     }
   }
