@@ -65,5 +65,45 @@ void ActivateARCANA_FORCE_I_THE_MAGICIAN(void)
   }
 
   Duel_ChangeLp(OpponentDuelist(duelist), 500, TRUE);
-  /* Ceiling: spell-trigger heads/tails not wired; on-summon coin only. */
+  /* Ceiling: spell-trigger heads/tails not wired. */
+}
+
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+void TryArcanaForceITheMagicianOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  u8 turnRow;
+  u8 heads;
+
+  if (zone == NULL || zone->id != ARCANA_FORCE_I_THE_MAGICIAN || zone->unk4 != 0)
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+  turnRow = turnDuelist == ACTIVE_DUELIST
+      ? ACTIVE_DUELIST_MONSTER_ROW
+      : INACTIVE_DUELIST_MONSTER_ROW;
+  (void)turnRow;
+
+  Duel_ShowEffectTextTyped(ARCANA_FORCE_I_THE_MAGICIAN, 8);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  heads = RandRangeU8(0, 1) == 1;
+  zone->unk4 = 1;
+
+  if (heads) {
+    IncrementTempStage(zone);
+    RefreshFieldMonsterStatOverlays();
+    return;
+  }
+
+  Duel_ChangeLp(OpponentDuelist(turnDuelist), 500, TRUE);
 }

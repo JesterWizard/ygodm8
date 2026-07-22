@@ -203,12 +203,24 @@ unsigned char CanActivateARCANA_FORCE_XV_THE_FIEND(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XV_THE_FIEND)
     return FALSE;
 
-  /* Ceiling: on-Summon coin + discard search use summon/FromHand paths. Ceiling:
-   * OPT coin → destroy 1 monster or wipe field. */
+  /* Ceiling: discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   return FieldHasDestroyableMonster();
+}
+
+static u8 ResolveArcanaForceXvTheFiendCoinTails(void)
+{
+  if (!DestroyAllMonstersOnField())
+    return FALSE;
+
+  NotifyDynamicEquipFieldChanged();
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+  return TRUE;
 }
 
 void ActivateARCANA_FORCE_XV_THE_FIENDEffect(void)
@@ -233,15 +245,60 @@ void ActivateARCANA_FORCE_XV_THE_FIENDEffect(void)
     return;
   }
 
-  if (!DestroyAllMonstersOnField())
+  if (!ResolveArcanaForceXvTheFiendCoinTails())
     return;
 
-  NotifyDynamicEquipFieldChanged();
   MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
+}
+
+void TryArcanaForceXvTheFiendOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 row;
+  u8 col;
+
+  if (zone == NULL || zone->id != ARCANA_FORCE_XV_THE_FIEND)
+    return;
+
+  Duel_ShowEffectTextTyped(ARCANA_FORCE_XV_THE_FIEND, 2);
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (RandRangeU8(0, 1) == 1) {
+    if (!FieldHasDestroyableMonster())
+      return;
+
+    /* ponytail: on-summon heads auto-picks first destroyable opp monster. */
+    for (row = OPPONENT_MONSTER_ROW; row <= OPPONENT_MONSTER_ROW; row++) {
+      for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+        struct DuelCard *target;
+        u8 owner;
+
+        if (!IsDestroyableMonsterZone(row, col))
+          continue;
+
+        target = gFixedZones[row][col];
+        owner = (row == PLAYER_MONSTER_ROW) ? DUEL_PLAYER : DUEL_OPPONENT;
+        if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[owner])
+          owner = ACTIVE_DUELIST;
+        else
+          owner = INACTIVE_DUELIST;
+
+        if (Duel_DestroyZone(target, owner, TRUE) == DUEL_ACTION_DUEL_OVER)
+          return;
+
+        NotifyDynamicEquipFieldChanged();
+        UpdateDuelGfxExceptField();
+        CheckWinConditionExodia(WhoseTurn());
+        if (IsDuelOver() != TRUE)
+          TryActivatingPermanentEffects();
+        return;
+      }
+    }
+    return;
+  }
+
+  (void)ResolveArcanaForceXvTheFiendCoinTails();
 }
 
 u8 CanActivateArcanaForceXvTheFiendFromHand(u8 handZone)

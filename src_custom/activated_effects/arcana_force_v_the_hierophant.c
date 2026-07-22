@@ -83,8 +83,7 @@ unsigned char CanActivateARCANA_FORCE_V_THE_HIEROPHANT(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_V_THE_HIEROPHANT)
     return FALSE;
 
-  /* Ceiling: on-Summon coin + discard summon-lock need summon/FromHand paths.
-   * Ceiling: OPT coin → SS 1 Arcana Force from Deck. */
+  /* Ceiling: discard summon-lock + FromHand paths. OPT coin → SS 1 Arcana Force from Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -98,16 +97,21 @@ unsigned char CanActivateARCANA_FORCE_V_THE_HIEROPHANT(void)
       || FindArcanaForceInDeck(0, FALSE) != CARD_NONE;
 }
 
-void ActivateARCANA_FORCE_V_THE_HIEROPHANTEffect(void)
+static u8 ResolveArcanaForceVTheHierophantCoin(struct DuelCard *self, u8 turnDuelist)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
   struct DuelSummonOpts opts;
   u16 cardId;
 
-  Duel_ShowEffectTextTyped(ARCANA_FORCE_V_THE_HIEROPHANT, 2);
-
   if (self == NULL || IsDuelOver() == TRUE)
-    return;
+    return FALSE;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
+  if (FirstEmptyZoneInRow(gTurnZones[turnDuelist == ACTIVE_DUELIST
+          ? ACTIVE_DUELIST_MONSTER_ROW
+          : INACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return FALSE;
 
   if (RandRangeU8(0, 1) == 1)
     cardId = FindArcanaForceInDeck(4, TRUE);
@@ -115,17 +119,49 @@ void ActivateARCANA_FORCE_V_THE_HIEROPHANTEffect(void)
     cardId = FindArcanaForceInDeck(0, FALSE);
 
   if (cardId == CARD_NONE)
-    return;
+    return FALSE;
 
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
-  if (Duel_SpecialSummonFromDeck(ACTIVE_DUELIST, cardId, opts) != DUEL_ACTION_OK)
-    return;
+  if (Duel_SpecialSummonFromDeck(turnDuelist, cardId, opts) != DUEL_ACTION_OK)
+    return FALSE;
 
-  MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
+  return TRUE;
+}
+
+void ActivateARCANA_FORCE_V_THE_HIEROPHANTEffect(void)
+{
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  Duel_ShowEffectTextTyped(ARCANA_FORCE_V_THE_HIEROPHANT, 2);
+
+  if (!ResolveArcanaForceVTheHierophantCoin(self, ACTIVE_DUELIST))
+    return;
+
+  MarkMonsterEffectUsed(self);
+}
+
+void TryArcanaForceVTheHierophantOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != ARCANA_FORCE_V_THE_HIEROPHANT)
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+
+  Duel_ShowEffectTextTyped(ARCANA_FORCE_V_THE_HIEROPHANT, 2);
+  (void)ResolveArcanaForceVTheHierophantCoin(zone, turnDuelist);
 }
 
 u8 CanActivateArcanaForceVTheHierophantFromHand(u8 handZone)

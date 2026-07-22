@@ -76,8 +76,7 @@ unsigned char CanActivateWHITE_HORNED_DRAGON(void)
   if (zone == NULL || zone->id != WHITE_HORNED_DRAGON)
     return FALSE;
 
-  /* on-Normal/Special Summon trigger needs summon hook. Ceiling: OPT
-   * banish up to 5 opp GY Spells + tempStage once via usage. */
+  /* Ceiling: OPT banish up to 5 opp GY Spells + tempStage once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -103,6 +102,32 @@ void ActivateWHITE_HORNED_DRAGONEffect(void)
     self->tempStage += (s8)banished;
 
   MarkMonsterEffectUsed(self);
+  RefreshFieldMonsterStatOverlays();
+  UpdateDuelGfxExceptField();
+}
+
+void TryWhiteHornedDragonOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 banished;
+
+  if (zone == NULL || zone->id != WHITE_HORNED_DRAGON)
+    return;
+
+  if (OppGySpellCount() == 0)
+    return;
+
+  Duel_ShowEffectTextTyped(WHITE_HORNED_DRAGON, 2);
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  banished = BanishUpToFiveOppGySpells();
+  if (banished == 0)
+    return;
+
+  if (zone->tempStage < 127 - (s8)banished)
+    zone->tempStage += (s8)banished;
+
   RefreshFieldMonsterStatOverlays();
   UpdateDuelGfxExceptField();
 }

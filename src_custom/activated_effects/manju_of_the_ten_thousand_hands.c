@@ -110,8 +110,7 @@ unsigned char CanActivateMANJU_OF_THE_TEN_THOUSAND_HANDS(void)
   if (zone == NULL || zone->id != MANJU_OF_THE_TEN_THOUSAND_HANDS)
     return FALSE;
 
-  /* Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage
-   * if Ritual Monster or Ritual Spell in Deck and hand space. */
+  /* Ceiling: once via usage if Ritual Monster or Ritual Spell in Deck and hand space. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -139,5 +138,43 @@ void ActivateMANJU_OF_THE_TEN_THOUSAND_HANDSEffect(void)
     return;
 
   MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+}
+
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+void TryManjuOfTheTenThousandHandsOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  u16 cardId;
+
+  if (zone == NULL || zone->id != MANJU_OF_THE_TEN_THOUSAND_HANDS || SummonModeIsSpecial(mode))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return;
+
+  cardId = FindDeckManjuTarget();
+  if (cardId == CARD_NONE)
+    return;
+
+  Duel_ShowEffectTextTyped(MANJU_OF_THE_TEN_THOUSAND_HANDS, 2);
+  if (!AddDeckManjuTargetToHand(cardId))
+    return;
+
   UpdateDuelGfxExceptField();
 }

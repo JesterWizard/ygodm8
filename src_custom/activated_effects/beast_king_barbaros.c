@@ -81,6 +81,25 @@ static u8 OpponentControlsCard(void)
   return FALSE;
 }
 
+void TryBeastKingBarbarosOnTributeSummonDestroy(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != BEAST_KING_BARBAROS)
+    return;
+
+  if (GetPendingSummonTributeCount() < 3)
+    return;
+
+  if (!OpponentControlsCard())
+    return;
+
+  Duel_ShowEffectTextTyped(BEAST_KING_BARBAROS, 2);
+  DestroyAllOpponentCards();
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
 unsigned char CanActivateBEAST_KING_BARBAROS(void)
 {
   struct DuelCard *zone;
@@ -93,7 +112,7 @@ unsigned char CanActivateBEAST_KING_BARBAROS(void)
     return FALSE;
 
   /* No-tribute 1900 ATK via BeastKingBarbaros_ApplyDynamicZoneStats + tribute hook.
-   * Ceiling: 3-Tribute on-summon destroy — OPT stand-in below. */
+   * Ceiling: OPT stand-in for 3-Tribute destroy. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

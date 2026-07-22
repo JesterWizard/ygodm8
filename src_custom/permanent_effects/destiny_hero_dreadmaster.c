@@ -191,13 +191,13 @@ static u8 CanSpecialSummonDestinyHeroesFromGrave(u8 turnDuelist)
   return GraveyardHasDestinyHero(turnDuelist);
 }
 
-static void DestroyOwnNonDestinyHeroMonsters(struct DuelCard *self, u8 turnDuelist)
+static void DestroyOwnNonDestinyHeroMonsters(struct DuelCard *self, u8 turnDuelist, u8 turnRow)
 {
   u8 col;
   u8 destroyed = FALSE;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][col];
+    struct DuelCard *zone = gTurnZones[turnRow][col];
 
     if (zone == self || zone->id == CARD_NONE)
       continue;
@@ -281,7 +281,7 @@ unsigned char ShouldActivateDESTINY_HERO_DREADMASTER(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* Ceiling: Clock Tower Prison gate skipped; on-summon destroy/SS stand-in.
+  /* Ceiling: Clock Tower Prison gate skipped.
    * D-HERO battle protect + no BD via DestinyHeroDreadmaster_* while face-up. */
   return OwnMonsterRowHasNonDestinyHero(zone, gActiveEffect.turnRow)
       || CanSpecialSummonDestinyHeroesFromGrave(duelist);
@@ -300,7 +300,7 @@ void ActivateDESTINY_HERO_DREADMASTER(void)
     return;
 
   if (zone != NULL)
-    DestroyOwnNonDestinyHeroMonsters(zone, duelist);
+    DestroyOwnNonDestinyHeroMonsters(zone, duelist, gActiveEffect.turnRow);
   if (IsDuelOver() == TRUE)
     return;
 
@@ -309,6 +309,46 @@ void ActivateDESTINY_HERO_DREADMASTER(void)
   if (zone != NULL)
     zone->unk4 = 1;
 
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+void TryDestinyHeroDreadmasterOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  u8 turnRow;
+
+  if (zone == NULL || zone->id != DESTINY_HERO_DREADMASTER || zone->unk4 != 0)
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+  turnRow = turnDuelist == ACTIVE_DUELIST
+      ? ACTIVE_DUELIST_MONSTER_ROW
+      : INACTIVE_DUELIST_MONSTER_ROW;
+
+  if (!OwnMonsterRowHasNonDestinyHero(zone, turnRow)
+      && !CanSpecialSummonDestinyHeroesFromGrave(turnDuelist))
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DREADMASTER, 8);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  DestroyOwnNonDestinyHeroMonsters(zone, turnDuelist, turnRow);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  SpecialSummonUpToTwoDestinyHeroesFromGrave(turnDuelist);
+  zone->unk4 = 1;
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)

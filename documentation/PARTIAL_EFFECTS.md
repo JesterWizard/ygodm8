@@ -9,7 +9,7 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 18:22 UTC  
+**Last updated:** 2026-07-22 18:27 UTC  
 **Remaining partials:** `361`
 
 ## Counts by kind
@@ -177,22 +177,23 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ARCANA_FORCE_V_THE_HIEROPHANT`
 - path: `src_custom/activated_effects/arcana_force_v_the_hierophant.c`
-- L86: on-Summon coin + discard summon-lock need summon/FromHand paths. Ceiling: OPT coin → SS 1 Arcana Force from Deck.
-- L153: discard only; opp cannot respond to Arcana Summons needs turn flag hook.
+- L86: discard summon-lock + FromHand paths. OPT coin → SS 1 Arcana Force from Deck.
+- L189: discard only; opp cannot respond to Arcana Summons needs turn flag hook.
 
 ### `ARCANA_FORCE_XII_THE_HANGMAN`
 - path: `src_custom/activated_effects/arcana_force_xii_the_hangman.c`
-- L139: on-Summon coin should fire at summon; OPT stand-in here. Ceiling: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF.
-- L170: coin targeting uses auto-pick highest ATK; upgrade: PickZone.
+- L139: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF.
+- L166: coin targeting uses auto-pick highest ATK; upgrade: PickZone.
 
 ### `ARCANA_FORCE_XIX_THE_SUN`
 - path: `src_custom/activated_effects/arcana_force_xix_the_sun.c`
-- L81: on-Summon coin (Heads Set coin Spell / Tails wipe S/T) need summon hook. Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours.
-- L121: requires coin-toss card on field — skipped; SS anytime when legal.
+- L81: OPT coin → flip all opp monsters DEF or destroy half yours.
+- L137: requires coin-toss card on field — skipped; SS anytime when legal.
 
 ### `ARCANA_FORCE_XV_THE_FIEND`
 - path: `src_custom/activated_effects/arcana_force_xv_the_fiend.c`
-- L206: on-Summon coin + discard search use summon/FromHand paths. Ceiling: OPT coin → destroy 1 monster or wipe field.
+- L206: discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field.
+- L271: on-summon heads auto-picks first destroyable opp monster.
 
 ### `ARCANA_KNIGHT_JOKER`
 - path: `src_custom/activated_effects/arcana_knight_joker.c`
@@ -284,7 +285,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `BEAST_KING_BARBAROS`
 - path: `src_custom/activated_effects/beast_king_barbaros.c`
-- L96: * Ceiling: 3-Tribute on-summon destroy — OPT stand-in below. */
+- L115: * Ceiling: OPT stand-in for 3-Tribute destroy. */
 
 ### `BEAST_MACHINE_KING_BARBAROS_UR`
 - path: `src_custom/activated_effects/beast_machine_king_barbaros_ur.c`
@@ -512,8 +513,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DRILLDARK`
 - path: `src_custom/activated_effects/destiny_hero_drilldark.c`
-- L65: * Ceiling: on-Summon trigger need summon hook.
-- L66: * Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK. */
+- L65: * Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK. */
 
 ### `DESTINY_HERO_DUSKTOPIA`
 - path: `src_custom/activated_effects/destiny_hero_dusktopia.c`
@@ -825,7 +825,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `GREEN_GADGET`
 - path: `src_custom/activated_effects/green_gadget.c`
-- L60: NS/SS trigger needs summon hook; once via usage.
+- L62: once via usage.
 
 ### `GUARDIAN_DREADSCYTHE`
 - path: `src_custom/activated_effects/guardian_dreadscythe.c`
@@ -987,7 +987,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `MANJU_OF_THE_TEN_THOUSAND_HANDS`
 - path: `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c`
-- L113: /* Normal/Flip Summon trigger needs summon hook. Ceiling: once via usage
+- L113: once via usage if Ritual Monster or Ritual Spell in Deck and hand space.
 
 ### `MASTER_OF_CHAOS`
 - path: `src_custom/activated_effects/master_of_chaos.c`
@@ -1296,7 +1296,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `THE_AGENT_OF_MYSTERU_EARTH`
 - path: `src_custom/activated_effects/the_agent_of_mysteru_earth.c`
-- L110: /* Normal Summon trigger needs summon hook. Ceiling: OPT add 1 The
+- L110: OPT add 1 The Agent except Earth from Deck, or Master Hyperion if Sanctuary is face-up.
 
 ### `THE_AGENT_OF_WISDOM_MERCURY`
 - path: `src_custom/activated_effects/the_agent_of_wisdom_mercury.c`
@@ -1413,7 +1413,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `WHITE_HORNED_DRAGON`
 - path: `src_custom/activated_effects/white_horned_dragon.c`
-- L79: /* on-Normal/Special Summon trigger needs summon hook. Ceiling: OPT
+- L79: OPT banish up to 5 opp GY Spells + tempStage once via usage.
 
 ### `YAMORIMORI`
 - path: `src_custom/activated_effects/yamorimori.c`
@@ -1427,7 +1427,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `ARCANA_FORCE_I_THE_MAGICIAN`
 - path: `src_custom/permanent_effects/arcana_force_i_the_magician.c`
-- L68: spell-trigger heads/tails not wired; on-summon coin only.
+- L68: spell-trigger heads/tails not wired.
 
 ### `ARCANA_FORCE_III_THE_EMPRESS`
 - path: `src_custom/permanent_effects/arcana_force_iii_the_empress.c`
@@ -1455,7 +1455,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DRAWHAND`
 - path: `src_custom/permanent_effects/destiny_hero_drawhand.c`
-- L98: HERO-effect SS gate not checked; on-summon mutual draw stand-in.
+- L140: HERO-effect SS gate not checked.
 
 ### `DESTINY_HERO_DREAD_SERVANT`
 - path: `src_custom/permanent_effects/destiny_hero_dread_servant.c`
@@ -1463,7 +1463,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DREADMASTER`
 - path: `src_custom/permanent_effects/destiny_hero_dreadmaster.c`
-- L284: Clock Tower Prison gate skipped; on-summon destroy/SS stand-in. D-HERO battle protect + no BD via DestinyHeroDreadmaster_* while face-up.
+- L284: Clock Tower Prison gate skipped. D-HERO battle protect + no BD via DestinyHeroDreadmaster_* while face-up.
 
 ### `EL_SHADDOLL_GRYSTA`
 - path: `src_custom/permanent_effects/el_shaddoll_grysta.c`
@@ -1508,7 +1508,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `HERO_KID`
 - path: `src_custom/permanent_effects/hero_kid.c`
-- L76: /* On-summon stand-in covers SS path. Ceiling: true trigger is Special Summon. */
+- L76: true trigger is Special Summon of Level 4 or lower HERO.
 
 ### `REPTILIANNE_SERVANT`
 - path: `src_custom/permanent_effects/reptilianne_servant.c`

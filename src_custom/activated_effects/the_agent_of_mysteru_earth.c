@@ -107,8 +107,7 @@ unsigned char CanActivateTHE_AGENT_OF_MYSTERU_EARTH(void)
   if (zone == NULL || zone->id != THE_AGENT_OF_MYSTERU_EARTH)
     return FALSE;
 
-  /* Normal Summon trigger needs summon hook. Ceiling: OPT add 1 The
-   * Agent except Earth from Deck, or Master Hyperion if Sanctuary is face-up. */
+  /* Ceiling: OPT add 1 The Agent except Earth from Deck, or Master Hyperion if Sanctuary is face-up. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -136,6 +135,47 @@ void ActivateTHE_AGENT_OF_MYSTERU_EARTHEffect(void)
     return;
 
   MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+void TryTheAgentOfMysteruEarthOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  u16 cardId;
+
+  if (zone == NULL || zone->id != THE_AGENT_OF_MYSTERU_EARTH || SummonModeIsSpecial(mode))
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+
+  if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+    return;
+
+  cardId = FindDeckSearchTarget();
+  if (cardId == CARD_NONE)
+    return;
+
+  Duel_ShowEffectTextTyped(THE_AGENT_OF_MYSTERU_EARTH, 2);
+  if (!AddDeckSearchTargetToHand(cardId))
+    return;
+
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)

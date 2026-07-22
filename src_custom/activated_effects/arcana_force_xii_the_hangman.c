@@ -136,47 +136,64 @@ unsigned char CanActivateARCANA_FORCE_XII_THE_HANGMAN(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XII_THE_HANGMAN)
     return FALSE;
 
-  /* Ceiling: on-Summon coin should fire at summon; OPT stand-in here.
-   * Ceiling: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF. */
+  /* Ceiling: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   return FieldHasOwnMonster() || FieldHasOppMonster();
 }
 
-void ActivateARCANA_FORCE_XII_THE_HANGMANEffect(void)
+static u8 ResolveArcanaForceXiiTheHangmanCoin(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
   u8 heads;
   u8 targetRow;
 
-  Duel_ShowEffectTextTyped(ARCANA_FORCE_XII_THE_HANGMAN, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
+  if (IsDuelOver() == TRUE)
+    return FALSE;
 
   heads = RandRangeU8(0, 1) == 1;
 
   if (heads) {
     if (!FieldHasOwnMonster())
-      return;
+      return FALSE;
     targetRow = ACTIVE_DUELIST_MONSTER_ROW;
   } else {
     if (!FieldHasOppMonster())
-      return;
+      return FALSE;
     targetRow = INACTIVE_DUELIST_MONSTER_ROW;
   }
 
   /* Ceiling: coin targeting uses auto-pick highest ATK; upgrade: PickZone. */
   if (!DestroyMonsterAndBurn(targetRow, heads ? ACTIVE_DUELIST : INACTIVE_DUELIST))
-    return;
+    return FALSE;
 
   NotifyDynamicEquipFieldChanged();
-  MarkMonsterEffectUsed(self);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
+  return TRUE;
+}
+
+void ActivateARCANA_FORCE_XII_THE_HANGMANEffect(void)
+{
+  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  Duel_ShowEffectTextTyped(ARCANA_FORCE_XII_THE_HANGMAN, 2);
+
+  if (!ResolveArcanaForceXiiTheHangmanCoin())
+    return;
+
+  MarkMonsterEffectUsed(self);
+}
+
+void TryArcanaForceXiiTheHangmanOnMonsterPlacement(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != ARCANA_FORCE_XII_THE_HANGMAN)
+    return;
+
+  Duel_ShowEffectTextTyped(ARCANA_FORCE_XII_THE_HANGMAN, 2);
+  (void)ResolveArcanaForceXiiTheHangmanCoin();
 }
 
 u8 CanActivateArcanaForceXiiTheHangmanFromHand(u8 handZone)

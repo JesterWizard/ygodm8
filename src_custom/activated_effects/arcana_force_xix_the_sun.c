@@ -78,11 +78,28 @@ unsigned char CanActivateARCANA_FORCE_XIX_THE_SUN(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XIX_THE_SUN)
     return FALSE;
 
-  /* Ceiling: on-Summon coin (Heads Set coin Spell / Tails wipe S/T) need summon
-   * hook. Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours. */
+  /* Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
+  return TRUE;
+}
+
+static u8 ResolveArcanaForceXixTheSunCoin(void)
+{
+  if (IsDuelOver() == TRUE)
+    return FALSE;
+
+  if (RandRangeU8(0, 1) == 1)
+    FlipAllOppMonstersToDef();
+  else
+    DestroyRandomHalfYourMonsters();
+
+  NotifyDynamicEquipFieldChanged();
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
   return TRUE;
 }
 
@@ -92,20 +109,19 @@ void ActivateARCANA_FORCE_XIX_THE_SUNEffect(void)
 
   Duel_ShowEffectTextTyped(ARCANA_FORCE_XIX_THE_SUN, 2);
 
-  if (self == NULL || IsDuelOver() == TRUE)
+  if (!ResolveArcanaForceXixTheSunCoin())
     return;
 
-  if (RandRangeU8(0, 1) == 1)
-    FlipAllOppMonstersToDef();
-  else
-    DestroyRandomHalfYourMonsters();
-
-  NotifyDynamicEquipFieldChanged();
   MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
+}
+
+void TryArcanaForceXixTheSunOnMonsterPlacement(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != ARCANA_FORCE_XIX_THE_SUN)
+    return;
+
+  Duel_ShowEffectTextTyped(ARCANA_FORCE_XIX_THE_SUN, 2);
+  (void)ResolveArcanaForceXixTheSunCoin();
 }
 
 u8 CanSpecialSummonArcanaForceXixTheSunFromHand(u8 handZone)

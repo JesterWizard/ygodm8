@@ -73,7 +73,7 @@ unsigned char ShouldActivateHERO_KID(void)
     return FALSE;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
-  /* On-summon stand-in covers SS path. Ceiling: true trigger is Special Summon. */
+  /* Ceiling: true trigger is Special Summon of Level 4 or lower HERO. */
   return CanSpecialSummonHeroKidFromDeck(duelist);
 }
 
@@ -89,5 +89,33 @@ void ActivateHERO_KID(void)
     SpecialSummonAllHeroKidFromDeck(duelist);
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+  zone->unk4 = 1;
+}
+
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+void TryHeroKidOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != HERO_KID || zone->unk4 != 0)
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+
+  if (!CanSpecialSummonHeroKidFromDeck(turnDuelist))
+    return;
+
+  Duel_ShowEffectTextTyped(HERO_KID, 8);
+  if (IsDuelOver() != TRUE)
+    SpecialSummonAllHeroKidFromDeck(turnDuelist);
+
   zone->unk4 = 1;
 }

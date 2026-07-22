@@ -62,7 +62,6 @@ unsigned char CanActivateDESTINY_HERO_DRILLDARK(void)
     return FALSE;
 
   /* Pierce via ApplySimplePiercersBattleEffect.
-   * Ceiling: on-Summon trigger need summon hook.
    * Ceiling: OPT SS 1 D-HERO from hand with ATK≤ this card's ATK. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
@@ -100,6 +99,55 @@ void ActivateDESTINY_HERO_DRILLDARKEffect(void)
     return;
 
   MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+void TryDestinyHeroDrilldarkOnMonsterPlacement(struct DuelCard *zone)
+{
+  struct DuelSummonOpts opts;
+  u16 selfAtk;
+  s8 handZone;
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != DESTINY_HERO_DRILLDARK)
+    return;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+
+  if (FirstEmptyZoneInRow(gTurnZones[turnDuelist == ACTIVE_DUELIST
+          ? ACTIVE_DUELIST_MONSTER_ROW
+          : INACTIVE_DUELIST_MONSTER_ROW]) < 0)
+    return;
+
+  selfAtk = Duel_GetZoneFinalAtk(zone);
+  handZone = FindDestinyHeroHandZoneAtOrBelowAtk(selfAtk, DESTINY_HERO_DRILLDARK);
+  if (handZone < 0)
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DRILLDARK, 2);
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  if (Duel_SpecialSummonFromHandZone(turnDuelist, (u8)handZone, opts) != DUEL_ACTION_OK)
+    return;
+
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)

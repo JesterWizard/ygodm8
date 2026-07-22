@@ -95,5 +95,47 @@ void ActivateDESTINY_HERO_DRAWHAND(void)
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   if (zone != NULL)
     zone->unk4 = 1;
-  /* Ceiling: HERO-effect SS gate not checked; on-summon mutual draw stand-in. */
+}
+
+u8 GetDuelistForZone(struct DuelCard *zone);
+
+static u8 TurnDuelistForZone(struct DuelCard *zone)
+{
+  u8 fixedDuelist = GetDuelistForZone(zone);
+
+  if (fixedDuelist > DUEL_OPPONENT)
+    return ACTIVE_DUELIST;
+
+  return gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+}
+
+void TryDestinyHeroDrawhandOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 duelist;
+  u8 opp;
+
+  if (zone == NULL || zone->id != DESTINY_HERO_DRAWHAND || zone->unk4 != 0)
+    return;
+
+  duelist = TurnDuelistForZone(zone);
+  opp = OpponentDuelist(duelist);
+
+  if (!CanPlayerDrawOne(duelist) && !CanPlayerDrawOne(opp))
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DRAWHAND, 8);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (CanPlayerDrawOne(duelist))
+    Duel_DrawCards(duelist, 1, FALSE);
+
+  if (CanPlayerDrawOne(opp))
+    Duel_DrawCards(opp, 1, FALSE);
+
+  UpdateDuelGfxExceptField();
+  zone->unk4 = 1;
+  /* Ceiling: HERO-effect SS gate not checked. */
 }

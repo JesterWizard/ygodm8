@@ -24,6 +24,7 @@
 #include "royal_decree.h"
 #include "card_passives.h"
 #include "duel_helpers.h"
+#include "on_summon_hooks.h"
 #include "gladiator_beast_battled.h"
 #include "spell_activation_gates.h"
 #include "six_card_hand.h"
@@ -454,6 +455,8 @@ static void TryPlaceSelectedCardOnField_Local(void)
         RecordPendingSummonTributeCount();
         sub_80449D8();
         TryDeepSeaDivaOnNormalSummon(
+            gFixedZones[gDuelCursor.destY][gDuelCursor.destX], DUEL_SUMMON_NORMAL_FACE_UP_ATK);
+        TryOnSummonPlacementHooks(
             gFixedZones[gDuelCursor.destY][gDuelCursor.destX], DUEL_SUMMON_NORMAL_FACE_UP_ATK);
         TryActivatingPermanentEffects();
         ElementalHeroNecroshade_TryConsumeOnNormalSummon(placedCardId);
@@ -1736,6 +1739,10 @@ void sub_80449D8__Replacement(void)
     TryAthenaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroStratosOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryTheSuppressionPlutoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryOnSummonPlacementHooks(
+        gFixedZones[placedRow][placedCol],
+        gDuelCursor.destY == PLAYER_HAND ? DUEL_SUMMON_NORMAL_FACE_UP_ATK
+                                        : DUEL_SUMMON_SPECIAL_FACE_UP_ATK);
     EffectEvent_EmitSimple(EFFECT_EVENT_ON_SUMMON,
                            gFixedZones[placedRow][placedCol]->id,
                            gFixedZones[placedRow][placedCol]);

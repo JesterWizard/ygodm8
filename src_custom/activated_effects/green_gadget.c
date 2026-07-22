@@ -6,6 +6,8 @@
 
 void UpdateDuelGfxExceptField(void);
 
+u8 GetDuelistForZone(struct DuelCard *zone);
+
 static u8 FixedDuelistForActive(void)
 {
   if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
@@ -57,7 +59,7 @@ unsigned char CanActivateGREEN_GADGET(void)
   if (zone == NULL || zone->id != GREEN_GADGET)
     return FALSE;
 
-  /* Ceiling: NS/SS trigger needs summon hook; once via usage. */
+  /* Ceiling: once via usage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -87,5 +89,39 @@ void ActivateGREEN_GADGETEffect(void)
 
   InitHandSlotFromCard(gTurnHands[ACTIVE_DUELIST][empty], RED_GADGET);
   MarkMonsterEffectUsed(self);
+  UpdateDuelGfxExceptField();
+}
+
+void TryGreenGadgetOnMonsterPlacement(struct DuelCard *zone)
+{
+  u8 deckIndex = 0;
+  s8 empty;
+  u8 fixedDuelist;
+  u8 turnDuelist;
+
+  if (zone == NULL || zone->id != GREEN_GADGET)
+    return;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist > DUEL_OPPONENT)
+    return;
+
+  turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[fixedDuelist]
+      ? ACTIVE_DUELIST
+      : INACTIVE_DUELIST;
+
+  empty = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
+  if (empty < 0 || !DeckHasRedGadget(&deckIndex))
+    return;
+
+  Duel_ShowEffectTextTyped(GREEN_GADGET, 2);
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (Duel_RemoveDeckCardAt(turnDuelist, deckIndex, FALSE) != DUEL_ACTION_OK)
+    return;
+
+  InitHandSlotFromCard(gTurnHands[turnDuelist][empty], RED_GADGET);
   UpdateDuelGfxExceptField();
 }
