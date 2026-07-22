@@ -136,7 +136,7 @@ unsigned char CanActivateARCANA_FORCE_XII_THE_HANGMAN(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XII_THE_HANGMAN)
     return FALSE;
 
-  /* Ceiling: OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF. */
+  /* OPT coin → destroy+burn (heads own / tails opp). FromHand SS AF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

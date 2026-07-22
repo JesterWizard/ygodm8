@@ -78,7 +78,7 @@ unsigned char CanActivateARCANA_FORCE_XIX_THE_SUN(void)
   if (zone == NULL || zone->id != ARCANA_FORCE_XIX_THE_SUN)
     return FALSE;
 
-  /* Ceiling: OPT coin → flip all opp monsters DEF or destroy half yours. */
+  /* OPT coin → flip all opp monsters DEF or destroy half yours. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

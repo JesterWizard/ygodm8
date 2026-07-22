@@ -55,7 +55,7 @@ unsigned char CanActivateGRAVEKEEPERS_SUPERNATURALIST(void)
     return FALSE;
 
   /* material ATK gain + Necrovalley destroy protect + EP schedule FALSE.
-   * Ceiling: OPT add Gravekeeper or Necrovalley from Deck now (EP add stand-in). */
+   * OPT add Gravekeeper or Necrovalley from Deck now (EP add stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

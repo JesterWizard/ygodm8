@@ -58,7 +58,7 @@ unsigned char CanActivateGLADIATOR_BEAST_CLAUDIUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_CLAUDIUS)
     return FALSE;
 
-  /* Ceiling: OPT SS Gladiator Beast from Deck (opp effect stand-in). */
+  /* OPT SS Gladiator Beast from Deck (opp effect stand-in). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

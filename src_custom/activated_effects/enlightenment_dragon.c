@@ -136,7 +136,7 @@ unsigned char CanActivateENLIGHTENMENT_DRAGON(void)
     return FALSE;
 
   /* Extra Summon conditions + destroy-add banished FALSE.
-   * Ceiling: OPT pay 2000 → banish all other field+both GYs, else OPT mill 4.
+   * OPT pay 2000 → banish all other field+both GYs, else OPT mill 4.
    * Separate OPTs share one MarkMonsterEffectUsed. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

@@ -109,7 +109,7 @@ unsigned char CanActivateATLANTEAN_HEAVY_INFANTRY(void)
     return FALSE;
 
   /* Ceiling: extra Normal Summon Sea Serpent + sent-for-WATER destroy need
-   * summon/send hooks. Ceiling: OPT destroy 1 Set Spell/Trap. */
+   * summon/send hooks. OPT destroy 1 Set Spell/Trap. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

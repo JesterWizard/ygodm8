@@ -118,7 +118,7 @@ unsigned char CanActivateGLADIATOR_BEAST_VESPASIUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_VESPASIUS)
     return FALSE;
 
-  /* Ceiling: OPT tag-out shuffle→SS. */
+  /* OPT tag-out shuffle→SS. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

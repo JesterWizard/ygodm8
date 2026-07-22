@@ -149,7 +149,7 @@ unsigned char CanActivateGANDORA_G_THE_DRAGON_OF_DESTRUCTION(void)
     return FALSE;
 
   /* +300 ATK/banished needs permanent/banish count hook.
-   * Ceiling: OPT pay half LP → banish all other field → SS Lv≤7 Sarc mention. */
+   * OPT pay half LP → banish all other field → SS Lv≤7 Sarc mention. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

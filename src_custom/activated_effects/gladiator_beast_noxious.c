@@ -127,7 +127,7 @@ unsigned char CanActivateGLADIATOR_BEAST_NOXIOUS(void)
   if (zone == NULL || zone->id != GLADIATOR_BEAST_NOXIOUS)
     return FALSE;
 
-  /* Ceiling: OPT mill 1 GB from Deck, else tag-out. */
+  /* OPT mill 1 GB from Deck, else tag-out. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
