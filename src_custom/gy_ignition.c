@@ -14,6 +14,8 @@
 
 u8 CanActivateTheWhiteStoneOfAncientsGy(u8 fixedDuelist, u8 gyIndex);
 void ActivateTheWhiteStoneOfAncientsGy(u8 fixedDuelist, u8 gyIndex);
+u8 CanActivateDestinyHeroMaliciousGy(u8 fixedDuelist, u8 gyIndex);
+void ActivateDestinyHeroMaliciousGy(u8 fixedDuelist, u8 gyIndex);
 
 struct GyIgnitionEntry {
   u16 cardId;
@@ -49,6 +51,9 @@ static const struct GyIgnitionEntry sGyIgnitionTable[] APPEND_RODATA = {
   { SOUL_SERVANT,
     CanActivateSoulServantGy,
     ActivateSoulServantGy },
+  { DESTINY_HERO_MALICIOUS,
+    CanActivateDestinyHeroMaliciousGy,
+    ActivateDestinyHeroMaliciousGy },
 };
 
 u8 GyIgnition_TryAt(u8 fixedDuelist, u16 cardId)

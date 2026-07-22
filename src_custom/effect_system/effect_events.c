@@ -57,6 +57,7 @@
 #include "crimson_blader.h"
 #include "destiny_hero_captain_tenacious.h"
 #include "aroma_lp_gain.h"
+#include "destiny_hero_dreamer.h"
 #include "necrovalley_temple.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
@@ -130,6 +131,7 @@ void EffectEvent_EnsureInit(void)
   ElderEntityNorden_EnsureInit();
   GladiatorBeastDarius_EnsureInit();
   EvilHeroViciousClaws_EnsureInit();
+  DestinyHeroDreamer_EnsureInit();
   /* Damage-calc ATK boosts: Effect_DispatchEvent → sEffectsExtra CONTINUOUS. */
 }
 

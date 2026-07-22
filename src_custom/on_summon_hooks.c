@@ -1,4 +1,5 @@
 #include "global.h"
+#include "destiny_hero_dread_servant.h"
 #include "on_summon_hooks.h"
 
 void TryArcanaForceVTheHierophantOnMonsterPlacement(struct DuelCard *zone);
@@ -17,6 +18,9 @@ void TryDestinyHeroDreadmasterOnMonsterPlacement(struct DuelCard *zone);
 void TryDestinyHeroDrawhandOnMonsterPlacement(struct DuelCard *zone);
 void TryApprenticeIllusionMagicianOnMonsterPlacement(struct DuelCard *zone);
 void TryGravekeepersHeadmanOnMonsterPlacement(struct DuelCard *zone);
+void TryBlackRoseDragonOnMonsterPlacement(struct DuelCard *zone);
+void TryQuintetMagicianOnMonsterPlacement(struct DuelCard *zone);
+void TryEvilHeroToxicBubbleOnMonsterPlacement(struct DuelCard *zone);
 
 void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
 {
@@ -39,4 +43,8 @@ void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
   TryDestinyHeroDrawhandOnMonsterPlacement(zone);
   TryApprenticeIllusionMagicianOnMonsterPlacement(zone);
   TryGravekeepersHeadmanOnMonsterPlacement(zone);
+  TryBlackRoseDragonOnMonsterPlacement(zone);
+  TryQuintetMagicianOnMonsterPlacement(zone);
+  TryEvilHeroToxicBubbleOnMonsterPlacement(zone);
+  TryDestinyHeroDreadServantOnMonsterPlacement(zone, mode);
 }

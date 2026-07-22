@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Ceiling Round 17 Batch 4
+**Last worked on:** 2026-07-22 — Ceiling Round 17 Batch 5
 
-**Outcome:** Destroy/leave wires: Necrovalley Temple Set, Curious GY add, DM Magician revive+Set, Norden banish companion, Darius shuffle companion, Vicious Claws GY SS. Partials **229→225**. `make` OK.
+**Outcome:** On-summon wipes (Black Rose, Quintet), Toxic Bubble draw, Dread Servant Clock Counters, Dreamer leave-banish, Malicious GyIgnition. Partials **225→222**. `make` OK.
 
-**Deferred:** Deep Sea Diva; Atlantean send-for-WATER; Extra Deck / Megaton; Curious Link mill; Norden SS-timing; Aromage Rosemary attack lock.
+**Deferred:** Deep Sea Diva; Atlantean send-for-WATER; Extra Deck; Dreamer damage-calc timing; Toxic Bubble HERO SS lock; Quintet continuous protect.
 
-**Open / next:** Round 17 Batch 5 — residual Ceiling wires.
+**Open / next:** Round 17 Batch 6 — residual Ceiling wires (aim 6+).

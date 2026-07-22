@@ -3,7 +3,10 @@
 #include "constants/card_enums.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
+#include "god_card.h"
 #include "monster_effect_usage.h"
 
 void RefreshFieldMonsterStatOverlays(void);
@@ -17,6 +20,49 @@ static u8 FixedDuelistForActive(void)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static void DestroyAllFieldCardsExcept(struct DuelCard *keep)
+{
+  u8 fixedRow;
+  u8 col;
+
+  for (fixedRow = OPPONENT_MONSTER_ROW; fixedRow <= PLAYER_BACKROW; fixedRow++) {
+    u8 ownerFixed = (fixedRow == OPPONENT_MONSTER_ROW || fixedRow == OPPONENT_BACKROW)
+                        ? DUEL_OPPONENT
+                        : DUEL_PLAYER;
+
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+      if (zone == NULL || zone->id == CARD_NONE || zone == keep)
+        continue;
+      if (IsGodCard(zone->id))
+        continue;
+
+      if (Duel_DestroyZone(zone, Duel_TurnDuelistForFixedDuelist(ownerFixed), FALSE)
+          == DUEL_ACTION_DUEL_OVER)
+        return;
+      if (IsDuelOver() == TRUE)
+        return;
+    }
+  }
+
+  NotifyDynamicEquipFieldChanged();
+}
+
+void TryBlackRoseDragonOnMonsterPlacement(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id != BLACK_ROSE_DRAGON || gHideEffectText)
+    return;
+  if (EffectOpt_IsUsed(BLACK_ROSE_DRAGON))
+    return;
+
+  Duel_ShowEffectTextTyped(BLACK_ROSE_DRAGON, 8);
+  /* Synchro-only stand-in: any placement wipe (keeps self). */
+  DestroyAllFieldCardsExcept(zone);
+  EffectOpt_MarkUsed(BLACK_ROSE_DRAGON);
+  UpdateDuelGfxExceptField();
 }
 
 static u8 IsPlantMonster(u16 cardId)
@@ -155,8 +201,8 @@ unsigned char CanActivateBLACK_ROSE_DRAGON(void)
   if (zone == NULL || zone->id != BLACK_ROSE_DRAGON)
     return FALSE;
 
-  /* Ceiling: Synchro Summon destroy-all needs summon hook. OPT banish
-   * 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage). */
+  /* On-summon wipe via TryBlackRoseDragonOnMonsterPlacement (EffectOpt).
+   * OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

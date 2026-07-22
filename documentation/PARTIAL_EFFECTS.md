@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 19:39 UTC  
-**Remaining partials:** `225`
+**Last updated:** 2026-07-22 19:52 UTC  
+**Remaining partials:** `222`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 9 |
-| `activated` | 188 |
-| `permanent` | 22 |
-| **total** | **225** |
+| `activated` | 186 |
+| `permanent` | 21 |
+| **total** | **222** |
 
 ## spell (6)
 
@@ -93,7 +93,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (188)
+## activated (186)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -188,10 +188,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `BEAST_MACHINE_KING_BARBAROS_UR`
 - path: `src_custom/activated_effects/beast_machine_king_barbaros_ur.c`
 - L224: multi-zone banish picker not wired; require both types reachable.
-
-### `BLACK_ROSE_DRAGON`
-- path: `src_custom/activated_effects/black_rose_dragon.c`
-- L158: Synchro Summon destroy-all needs summon hook. OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
 
 ### `BLUE_EYES_JET_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_jet_dragon.c`
@@ -358,7 +354,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DREAMER`
 - path: `src_custom/activated_effects/destiny_hero_dreamer.c`
-- L52: * Ceiling: banish-on-leave need GY hook. Ceiling: GY ignition SS. */
+- L130: * Ceiling: true damage-calc GY SS timing needs battle hook. */
 
 ### `DESTINY_HERO_DUSKTOPIA`
 - path: `src_custom/activated_effects/destiny_hero_dusktopia.c`
@@ -371,10 +367,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DESTINY_HERO_DYSTOPIA`
 - path: `src_custom/activated_effects/destiny_hero_dystopia.c`
 - L203: on-SS burn + Quick destroy-if-ATK-changed need summon/ATK hooks. OPT pick Lv≤4 D-HERO in GY → burn its ATK.
-
-### `DESTINY_HERO_MALICIOUS`
-- path: `src_custom/activated_effects/destiny_hero_malicious.c`
-- L43: GY ignition needs GY-menu wire. Ceiling: allow when Malicious in GY + another in Deck (callable if gMonEffect set to Malicious).
 
 ### `DESTINY_HERO_PLASMA`
 - path: `src_custom/activated_effects/destiny_hero_plasma.c`
@@ -451,8 +443,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_TOXIC_BUBBLE`
 - path: `src_custom/activated_effects/evil_hero_toxic_bubble.c`
-- L16: on-SS draw when Dark Fusion Fusion up needs summon hook. Not field-ignition activatable; SS-from-hand uses FromHand path.
-- L39: HERO-only SS lock + once-per-turn not tracked without turn hook.
+- L89: HERO-only SS lock this turn needs summon gate.
 
 ### `EVIL_HERO_VICIOUS_CLAWS`
 - path: `src_custom/activated_effects/evil_hero_vicious_claws.c`
@@ -723,7 +714,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `QUINTET_MAGICIAN`
 - path: `src_custom/activated_effects/quintet_magician.c`
-- L65: * fusion/summon hooks. Ceiling: once via usage destroy all opp cards. */
+- L115: * Ceiling: untributable/undestroyable need continuous hooks.
 
 ### `RAIDEN_HAND_OF_THE_LIGHTSWORN`
 - path: `src_custom/activated_effects/raiden_hand_of_the_lightsworn.c`
@@ -866,7 +857,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/yamorimori.c`
 - L124: /* GY ignition needs GY-menu wire. Ceiling: banish self from GY +
 
-## permanent (22)
+## permanent (21)
 
 ### `ARCANA_FORCE_EX_THE_LIGHT_RULER`
 - path: `src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c`
@@ -903,10 +894,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DESTINY_HERO_DRAWHAND`
 - path: `src_custom/permanent_effects/destiny_hero_drawhand.c`
 - L140: HERO-effect SS gate not checked.
-
-### `DESTINY_HERO_DREAD_SERVANT`
-- path: `src_custom/permanent_effects/destiny_hero_dread_servant.c`
-- L77: * Ceiling: NS Clock Tower counters need summon hook. */
 
 ### `DESTINY_HERO_DREADMASTER`
 - path: `src_custom/permanent_effects/destiny_hero_dreadmaster.c`

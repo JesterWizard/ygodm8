@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "clock_tower_prison.h"
 #include "constants/card_ids.h"
 #include "destiny_hero_dread_servant.h"
 #include "duel_helpers.h"
@@ -59,6 +60,37 @@ static void DestroyOneOwnSpellTrap(u8 ownerFixed)
   }
 }
 
+static void PlaceClockCounterOnEachPrison(void)
+{
+  u8 fixed;
+  u8 placed = FALSE;
+
+  for (fixed = DUEL_PLAYER; fixed <= DUEL_OPPONENT; fixed++) {
+    struct DuelCard *zone = NULL;
+
+    if (!ClockTowerPrison_FindFaceUpZone(fixed, &zone) || zone == NULL)
+      continue;
+    if (zone->unk4 < CLOCK_TOWER_PRISON_MAX_COUNTERS)
+      zone->unk4++;
+    placed = TRUE;
+  }
+
+  if (placed)
+    UpdateDuelGfxExceptField();
+}
+
+void TryDestinyHeroDreadServantOnMonsterPlacement(struct DuelCard *zone,
+                                                    enum DuelSummonMode mode)
+{
+  if (zone == NULL || zone->id != DESTINY_HERO_DREAD_SERVANT || gHideEffectText)
+    return;
+  if (mode != DUEL_SUMMON_NORMAL_FACE_UP_ATK)
+    return;
+
+  Duel_ShowEffectTextTyped(DESTINY_HERO_DREAD_SERVANT, 8);
+  PlaceClockCounterOnEachPrison();
+}
+
 void ApplyDestinyHeroDreadServantBattleEffect(void)
 {
   if ((sActionData.flags & FLAG_GRAVEYARD_PLAYER)
@@ -74,7 +106,7 @@ void ApplyDestinyHeroDreadServantBattleEffect(void)
 unsigned char ShouldActivateDESTINY_HERO_DREAD_SERVANT(void)
 {
   /* Battle-destroy S/T via ApplyDestinyHeroDreadServantBattleEffect.
-   * Ceiling: NS Clock Tower counters need summon hook. */
+   * NS Clock Counters via TryDestinyHeroDreadServantOnMonsterPlacement. */
   (void)gActiveEffect;
   return FALSE;
 }
