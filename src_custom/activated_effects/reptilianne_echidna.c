@@ -228,7 +228,7 @@ unsigned char CanActivateREPTILIANNE_ECHIDNA(void)
     return FALSE;
 
   /* Link Summon trigger + Extra Deck lock FALSE.
-   * Ceiling: OPT set 1 opp face-up ATK to 0, else OPT add Reptiles up to 0-ATK count.
+   * OPT set 1 opp face-up ATK to 0, else OPT add Reptiles up to 0-ATK count.
    * Separate OPT flags share one MarkMonsterEffectUsed. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;

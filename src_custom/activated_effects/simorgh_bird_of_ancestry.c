@@ -108,7 +108,7 @@ unsigned char CanActivateSIMORGH_BIRD_OF_ANCESTRY(void)
     return FALSE;
 
   /* WIND tribute-reduce continuous + hand-as-Normal Monster need
-   * summon/permanent hooks. Ceiling: OPT return up to 2 opp cards to hand. */
+   * summon/permanent hooks. OPT return up to 2 opp cards to hand. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

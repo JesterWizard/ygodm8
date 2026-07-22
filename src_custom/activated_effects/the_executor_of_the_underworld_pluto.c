@@ -161,7 +161,7 @@ unsigned char CanActivateTHE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO(void)
     return FALSE;
 
   /* Quick via Sanctuary + GY add Sanctuary FALSE.
-   * Ceiling: OPT banish 1 monster from GY → flip 1 Effect Monster face-down DEF. */
+   * OPT banish 1 monster from GY → flip 1 Effect Monster face-down DEF. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

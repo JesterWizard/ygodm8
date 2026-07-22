@@ -51,7 +51,7 @@ unsigned char CanActivateTIMAEUS_THE_KNIGHT_OF_DESTINY(void)
     return FALSE;
 
   /* unaffected + once-per-battle damage calc FALSE.
-   * Ceiling: OPT set ATK/DEF ≈ highest field ATK via tempStage. */
+   * OPT set ATK/DEF ≈ highest field ATK via tempStage. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

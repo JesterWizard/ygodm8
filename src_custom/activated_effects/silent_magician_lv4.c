@@ -149,7 +149,7 @@ unsigned char CanActivateSILENT_MAGICIAN_LV4(void)
 
   /* Spell Counter ATK via SilentMagicianLv4_ApplyDynamicZoneStats; Standby evolve
    * via TryApplySilentMagicianLv4Standby; counters on spell resolve.
-   * Ceiling: OPT send self → SS LV8 from hand/Deck. */
+   * OPT send self → SS LV8 from hand/Deck. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -100,7 +100,7 @@ unsigned char CanActivateTHUNDER_DRAGON_TITAN(void)
     return FALSE;
 
   /* Thunder hand-effect trigger + GY-banish instead of destroy need
-   * chain/continuous hooks. Ceiling: OPT destroy 1 card on the field. */
+   * chain/continuous hooks. OPT destroy 1 card on the field. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

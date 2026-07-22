@@ -9,8 +9,8 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 19:18 UTC  
-**Remaining partials:** `265`
+**Last updated:** 2026-07-22 19:22 UTC  
+**Remaining partials:** `233`
 
 ## Counts by kind
 
@@ -18,9 +18,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 |------|------:|
 | `spell` | 6 |
 | `trap` | 11 |
-| `activated` | 226 |
+| `activated` | 194 |
 | `permanent` | 22 |
-| **total** | **265** |
+| **total** | **233** |
 
 ## spell (6)
 
@@ -101,7 +101,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (226)
+## activated (194)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -211,23 +211,15 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `BLACK_ROSE_DRAGON`
 - path: `src_custom/activated_effects/black_rose_dragon.c`
-- L158: Synchro Summon destroy-all needs summon hook. Ceiling: OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
+- L158: Synchro Summon destroy-all needs summon hook. OPT banish 1 Plant from GY → opp DEF monster to ATK with 0 ATK (tempStage).
 
 ### `BLUE_EYES_JET_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_jet_dragon.c`
 - L198: * Ceiling: field OPT bounce 1; FromHand if BEWD field/GY → SS.
 
-### `BLUE_EYES_SPIRIT_DRAGON`
-- path: `src_custom/activated_effects/blue_eyes_spirit_dragon.c`
-- L66: * Ceiling: OPT tribute self → SS LIGHT Dragon from Deck in DEF. */
-
-### `BLUE_EYES_TYRANT_DRAGON`
-- path: `src_custom/activated_effects/blue_eyes_tyrant_dragon.c`
-- L95: * Set need battle/permanent hooks. Ceiling: OPT Set 1 Trap from GY to backrow. */
-
 ### `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON`
 - path: `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c`
-- L23: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. Ceiling: OPT +2 tempStage (~+1000) as negate stand-in.
+- L23: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. OPT +2 tempStage (~+1000) as negate stand-in.
 
 ### `BRIONAC_DRAGON_OF_THE_ICE_BARRIER`
 - path: `src_custom/activated_effects/brionac_dragon_of_the_ice_barrier.c`
@@ -235,7 +227,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CASTEL_THE_SKY_BLASTER_MUSKETEER`
 - path: `src_custom/activated_effects/castel_the_sky_blaster_musketeer.c`
-- L138: detach/material + face-down branch need overlay engine. Ceiling: OPT return 1 face-up monster to the Deck.
+- L138: detach/material + face-down branch need overlay engine. OPT return 1 face-up monster to the Deck.
 
 ### `CELESTIA_LIGHTSWORN_ANGEL`
 - path: `src_custom/activated_effects/celestia_lightsworn_angel.c`
@@ -265,7 +257,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `CRIMSON_DRAGON`
 - path: `src_custom/activated_effects/crimson_dragon.c`
 - L123: Extra Deck Synchro SS FALSE; Deck Dragon stand-in.
-- L138: on-SS search + Extra Synchro return FALSE. Ceiling: OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon.
+- L138: on-SS search + Extra Synchro return FALSE. OPT search mentioning Crimson Dragon S/T, else shuffle self → SS Dragon.
 
 ### `CROSS_KEEPER`
 - path: `src_custom/activated_effects/cross_keeper.c`
@@ -282,11 +274,11 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `CYBER_SLASH_HARPIE_LADY`
 - path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
-- L196: Quick on S/T activation + Synchro/name hooks missing. Ceiling: OPT bounce 1 opp card or your Harpie to hand.
+- L196: Quick on S/T activation + Synchro/name hooks missing. OPT bounce 1 opp card or your Harpie to hand.
 
 ### `CYBER_SLASH_HARPY_LADY`
 - path: `src_custom/activated_effects/cyber_slash_harpy_lady.c`
-- L196: Quick on S/T activation + Synchro/name hooks missing. Ceiling: OPT bounce 1 opp card or your Harpie to hand.
+- L196: Quick on S/T activation + Synchro/name hooks missing. OPT bounce 1 opp card or your Harpie to hand.
 
 ### `D_D_WARRIOR`
 - path: `src_custom/activated_effects/d_d_warrior.c`
@@ -372,7 +364,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER`
 - path: `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c`
 - L154: second target picker not chained; auto-destroy best remaining card.
-- L227: Quick destroy + GY revive + continuous ATK loss need quick/GY/ permanent hooks. Ceiling: OPT destroy 1 you control + 1 other field card.
+- L227: Quick destroy + GY revive + continuous ATK loss need quick/GY/ permanent hooks. OPT destroy 1 you control + 1 other field card.
 
 ### `DESTINY_HERO_DIAMOND_DUDE`
 - path: `src_custom/activated_effects/destiny_hero_diamond_dude.c`
@@ -380,7 +372,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `DESTINY_HERO_DISK_COMMANDER`
 - path: `src_custom/activated_effects/destiny_hero_disk_commander.c`
-- L20: SS-from-GY trigger + once per duel. Ceiling: OPT draw 2 stand-in when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE.
+- L20: SS-from-GY trigger + once per duel. OPT draw 2 stand-in when on field; upgrade: GY SS dispatch + EFFECT_USAGE_ONCE.
 
 ### `DESTINY_HERO_DOMINANCE`
 - path: `src_custom/activated_effects/destiny_hero_dominance.c`
@@ -429,7 +421,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EBON_ILLUSION_MAGICIAN`
 - path: `src_custom/activated_effects/ebon_illusion_magician.c`
-- L78: Xyz detach cost + attack-banish FALSE. Ceiling: OPT SS Spellcaster Normal from hand/Deck (detach stand-in).
+- L78: Xyz detach cost + attack-banish FALSE. OPT SS Spellcaster Normal from hand/Deck (detach stand-in).
 
 ### `EL_SHADDOLL_MESHAHRAIL`
 - path: `src_custom/activated_effects/el_shaddoll_meshahrail.c`
@@ -442,7 +434,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `ELDER_ENTITY_NORDEN`
 - path: `src_custom/activated_effects/elder_entity_norden.c`
 - L73: banish-when-leaves needs leave-field hook; unk4 marks negated.
-- L124: SS-trigger timing + banish-when-leaves need summon/leave hooks. Ceiling: OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark.
+- L124: SS-trigger timing + banish-when-leaves need summon/leave hooks. OPT SS Lv≤4 from GY face-up DEF with unk4 negated mark.
 
 ### `ELEMENTAL_HERO_CHAOS_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_chaos_neos.c`
@@ -452,27 +444,19 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/elemental_hero_dark_neos.c`
 - L92: /* EP Extra return via TryReturnContactFusionsAtEndPhase. Ceiling: contact Fusion need fusion hook. */
 
-### `ELEMENTAL_HERO_GLOW_NEOS`
-- path: `src_custom/activated_effects/elemental_hero_glow_neos.c`
-- L115: * via ElementalHeroGlowNeos_* attack gates. Ceiling: OPT destroy 1 face-up
-
 ### `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN`
 - path: `src_custom/activated_effects/elemental_hero_shining_neos_wingman.c`
-- L150: GY ATK gain + effect destroy immunity + battle burn need permanent/ battle hooks. Ceiling: OPT destroy opp cards up to different Attributes.
+- L150: GY ATK gain + effect destroy immunity + battle burn need permanent/ battle hooks. OPT destroy opp cards up to different Attributes.
 - L177: multi-target picker not wired; auto-destroy highest-value opp cards.
 
 ### `ELEMENTAL_HERO_SPIRIT_OF_NEOS`
 - path: `src_custom/activated_effects/elemental_hero_spirit_of_neos.c`
-- L154: attack-hand SS FALSE. Ceiling: OPT search Poly/E-HERO S/T, else OPT shuffle self → SS Normal E-HERO from Deck.
+- L154: attack-hand SS FALSE. OPT search Poly/E-HERO S/T, else OPT shuffle self → SS Normal E-HERO from Deck.
 
 ### `EVIL_HERO_ADUSTED_GOLD`
 - path: `src_custom/activated_effects/evil_hero_adusted_gold.c`
 - L63: cannot attack without Fusion Monster needs attack gate. Not field-ignition activatable; discard search uses FromHand path.
 - L86: once-per-turn not tracked without turn hook.
-
-### `EVIL_HERO_DARKEST_KNIGHT`
-- path: `src_custom/activated_effects/evil_hero_darkest_knight.c`
-- L173: * Ceiling: OPT SS 1 Fiend/Warrior from GY (leave-field stand-in). */
 
 ### `EVIL_HERO_DEAD_END_PRISON`
 - path: `src_custom/activated_effects/evil_hero_dead_end_prison.c`
@@ -481,7 +465,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `EVIL_HERO_INFERNAL_RIDER`
 - path: `src_custom/activated_effects/evil_hero_infernal_rider.c`
-- L228: on-summon + HERO lock need summon/SS gates. Ceiling: OPT add Dark Fusion Deck/GY, else OPT banish self+4 GY → Set Super Poly.
+- L228: on-summon + HERO lock need summon/SS gates. OPT add Dark Fusion Deck/GY, else OPT banish self+4 GY → Set Super Poly.
 
 ### `EVIL_HERO_MALICIOUS_BANE`
 - path: `src_custom/activated_effects/evil_hero_malicious_bane.c`
@@ -522,10 +506,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/fog_king.c`
 - L13: * lock need summon/tribute continuous hooks. Ceiling: not field-ignition here. */
 
-### `FORMULA_SYNCHRON`
-- path: `src_custom/activated_effects/formula_synchron.c`
-- L33: * synchro/chain hooks. Ceiling: OPT draw 1 via usage when deck remains. */
-
 ### `FUSILIER_DRAGON_THE_DUAL_MODE_BEAST`
 - path: `src_custom/activated_effects/fusilier_dragon_the_dual_mode_beast.c`
 - L13: * Ceiling: not ignition-activatable here; upgrade: permanent/battle/summon
@@ -562,10 +542,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/granmarg_the_rock_monarch.c`
 - L159: * Ceiling: once via usage if Set target. */
 
-### `GRAVEKEEPERS_AMBUSHER`
-- path: `src_custom/activated_effects/gravekeepers_ambusher.c`
-- L146: /* flip trigger + Necrovalley search need flip/send hooks. Ceiling:
-
 ### `GRAVEKEEPERS_CURSE`
 - path: `src_custom/activated_effects/gravekeepers_curse.c`
 - L20: /* printed is If Summoned trigger. Ceiling: allow once via usage
@@ -597,10 +573,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `HARPIE_HARPIST`
 - path: `src_custom/activated_effects/harpie_harpist.c`
 - L124: NS trigger + GY End Phase search need separate hooks. OPT bounce own WB + opp face-up, else OPT add Harpie from Deck.
-
-### `HELSHADDOLL_HOLLOW`
-- path: `src_custom/activated_effects/helshaddoll_hollow.c`
-- L109: /* FLIP Extra mill + GY attribute mill need flip/send hooks. Ceiling:
 
 ### `HERALD_OF_PERFECTION`
 - path: `src_custom/activated_effects/herald_of_perfection.c`
@@ -646,10 +618,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/junk_synchron.c`
 - L124: * Ceiling: field OPT repeat (usage-gated below). */
 
-### `KEEPER_OF_DRAGON_MAGIC`
-- path: `src_custom/activated_effects/keeper_of_dragon_magic.c`
-- L186: * Ceiling: OPT discard → add Poly/Fusion Normal; else OPT SS any from GY face-down DEF. */
-
 ### `LEKUNGA`
 - path: `src_custom/activated_effects/lekunga.c`
 - L13: * Ceiling: wrong Type/Attribute/stats (Fairy/LIGHT 0/0 vs Plant/WATER 700/700);
@@ -664,10 +632,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - L63: * Ceiling: local mutate of gRemovedFromPlay; upgrade: RemovedFromPlay_RemoveAt. */
 - L108: * Ceiling: materials not checked; upgrade: overlay detach before SS. */
 
-### `LIFE_STREAM_DRAGON`
-- path: `src_custom/activated_effects/life_stream_dragon.c`
-- L29: * destruction-replace need synchro/LP/battle hooks. Ceiling: OPT set LP to
-
 ### `LIGHTSWORN_DRAGONLING`
 - path: `src_custom/activated_effects/lightsworn_dragonling.c`
 - L134: /* hand SS when Lightsworn in GY uses FromHand path. Ceiling: field
@@ -679,10 +643,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `LYLA_TWILIGHTSWORN_ENCHANTRESS`
 - path: `src_custom/activated_effects/lyla_twilightsworn_enchantress.c`
 - L205: quick effect on Spell/Trap activation + mill 3 when other LS activates need chain hooks. OPT banish LS from hand/GY then destroy 1 face-up Spell/Trap. EP mill 3 via TryApplyTwilightswornEndPhase.
-
-### `MA_AT`
-- path: `src_custom/activated_effects/ma_at.c`
-- L134: /* name-3 excavate UI hard. Ceiling: OPT reveal top 3, add any, mill rest. */
 
 ### `MAGICAL_PLANT_MANDRAGOLA`
 - path: `src_custom/activated_effects/magical_plant_mandragola.c`
@@ -696,14 +656,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/magicians_robe.c`
 - L57: * Ceiling: discard S/T from hand → SS DM from Deck via FromHand path. */
 
-### `MAGICIANS_SOULS`
-- path: `src_custom/activated_effects/magicians_souls.c`
-- L144: * GY hooks. Ceiling: OPT send 1–2 S/T from hand/field → draw that many. */
-
-### `MAJESTY_HYPERION`
-- path: `src_custom/activated_effects/majesty_hyperion.c`
-- L367: * Ceiling: OPT banish Fairy hand/GY → destroy 1 card. FromHand banish Agent → SS. */
-
 ### `MAN_THRO_TRO`
 - path: `src_custom/activated_effects/man_thro_tro.c`
 - L21: Ojama Trio monster form is the only token-like field unit today
@@ -711,18 +663,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MANJU_OF_THE_TEN_THOUSAND_HANDS`
 - path: `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c`
 - L113: once via usage if Ritual Monster or Ritual Spell in Deck and hand space.
-
-### `MASTER_OF_CHAOS`
-- path: `src_custom/activated_effects/master_of_chaos.c`
-- L205: * hooks. Ceiling: OPT SS LIGHT/DARK from GY, else tribute LIGHT+DARK → banish. */
-
-### `MASTERFLARE_HYPERION`
-- path: `src_custom/activated_effects/masterflare_hyperion.c`
-- L238: * Ceiling: OPT mill Agent/Sanctuary-mention, else OPT banish Fairy → destroy 1. */
-
-### `MAZERA_DEVILLE`
-- path: `src_custom/activated_effects/mazera_deville.c`
-- L53: /* on-SS-with-Pandemonium discard-3 needs summon hook. Ceiling: OPT
 
 ### `MEZUKI`
 - path: `src_custom/activated_effects/mezuki.c`
@@ -735,14 +675,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `MINERVA_LIGHTSWORN_MAIDEN`
 - path: `src_custom/activated_effects/minerva_lightsworn_maiden.c`
 - L125: * Ceiling: field OPT search LIGHT Dragon Lv≤ distinct LS names in GY. */
-
-### `MINERVA_THE_ATHENIAN_LIGHTSWORN`
-- path: `src_custom/activated_effects/minerva_the_athenian_lightsworn.c`
-- L185: * Ceiling: OPT mill LS different Types (up to field LS count), or banish ≤4 LS GY → mill. */
-
-### `MINERVA_THE_EXHALTED_LIGHTSWORN`
-- path: `src_custom/activated_effects/minerva_the_exhalted_lightsworn.c`
-- L69: /* Xyz detach + destroy-on-death FALSE. Ceiling: OPT mill 3 → draw = Lightsworn
 
 ### `MIRROR_FORCE_DRAGON`
 - path: `src_custom/activated_effects/mirror_force_dragon.c`
@@ -758,8 +690,8 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 
 ### `MORPHTRONIC_EARFON`
 - path: `src_custom/activated_effects/morphtronic_earfon.c`
-- L48: real Tuner flag / Equip double-attack need Synchro/equip hooks. Ceiling: OPT PickZone mark unk4 as Tuner stand-in.
-- L95: on-SS Tuner mark + Equip 2-attacks FALSE. Ceiling: OPT PickZone treat face-up as Tuner (unk4).
+- L48: real Tuner flag / Equip double-attack need Synchro/equip hooks. OPT PickZone mark unk4 as Tuner stand-in.
+- L95: on-SS Tuner mark + Equip 2-attacks FALSE. OPT PickZone treat face-up as Tuner (unk4).
 
 ### `MORPHTRONIC_LANTRON`
 - path: `src_custom/activated_effects/morphtronic_lantron.c`
@@ -797,18 +729,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/naturia_beast.c`
 - L13: * Ceiling: not ignition-activatable here; upgrade: either-turn interrupt. */
 
-### `NECROFACE`
-- path: `src_custom/activated_effects/necroface.c`
-- L87: * hooks. Ceiling: OPT shuffle all banished into Decks + tempStage per card. */
-
-### `NEHSHADDOLL_GENIUS`
-- path: `src_custom/activated_effects/nehshaddoll_genius.c`
-- L111: * Ceiling: OPT negate 1 face-up Effect Monster (unk4). */
-
-### `NEO_SPACE_CONNECTOR`
-- path: `src_custom/activated_effects/neo_space_connector.c`
-- L62: * summon/tribute hooks. Ceiling: OPT SS Neo-Spacian or Neos from Deck DEF. */
-
 ### `NEO_SPACIAN_DARK_PANTHER`
 - path: `src_custom/activated_effects/neo_spacian_dark_panther.c`
 - L13: * Ceiling: not ignition-activatable here; upgrade: permanent/name/effect copy. */
@@ -825,25 +745,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/ojama_king.c`
 - L54: PickZone for up to 3 empty zones + continuous lock gate. FirstEmptyZoneInRow today — same as Ground Collapse).
 
-### `ORICHALCOS_SHUNOROS`
-- path: `src_custom/activated_effects/orichalcos_shunoros.c`
-- L125: * Ceiling: OPT +2 tempStage per opp monster (~1000 ATK each). */
-
 ### `POSEIDRA_THE_ATLANTEAN_DRAGON`
 - path: `src_custom/activated_effects/poseidra_the_atlantean_dragon.c`
 - L284: /* hand SS uses FromHand path. Ceiling: GY ignition like Malicious. */
 
-### `POWER_TOOL_DRAGON`
-- path: `src_custom/activated_effects/power_tool_dragon.c`
-- L56: * hooks. Ceiling: OPT add first Equip Spell from Deck. */
-
 ### `PREDAPLANT_VERTE_ANACONDA`
 - path: `src_custom/activated_effects/predaplant_verte_anaconda.c`
 - L130: * hooks. Ceiling: pay 2000 LP → destroy 1 field card. */
-
-### `PROTECTOR_OF_THE_AGENTS_MOON`
-- path: `src_custom/activated_effects/protector_of_the_agents_moon.c`
-- L305: /* Link Summon trigger gate missing. Ceiling: OPT mill/add Sanctuary
 
 ### `PUNISHMENT_DRAGON`
 - path: `src_custom/activated_effects/punishment_dragon.c`
@@ -856,18 +764,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ### `RAIDEN_HAND_OF_THE_LIGHTSWORN`
 - path: `src_custom/activated_effects/raiden_hand_of_the_lightsworn.c`
 - L61: /* EP mill via TryApplyRaidenEndPhase. Ceiling: Main Phase OPT mill 2. */
-
-### `RAINBOW_DARK_DRAGON`
-- path: `src_custom/activated_effects/rainbow_dark_dragon.c`
-- L265: /* hand SS by banishing 7 different DARK uses FromHand path. Ceiling:
-
-### `REESHADDOLL_WENDIKURUHU`
-- path: `src_custom/activated_effects/reeshaddoll_wendikuruhu.c`
-- L74: * hooks. Ceiling: OPT flip all face-down monsters face-up DEF. */
-
-### `REPTILIANNE_ECHIDNA`
-- path: `src_custom/activated_effects/reptilianne_echidna.c`
-- L231: * Ceiling: OPT set 1 opp face-up ATK to 0, else OPT add Reptiles up to 0-ATK count.
 
 ### `REPTILIANNE_LAMIA`
 - path: `src_custom/activated_effects/reptilianne_lamia.c`
@@ -901,17 +797,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/shaddoll_squamata.c`
 - L155: * Ceiling: destroy 1 opp monster OR mill 1 Shaddoll from Deck once via usage. */
 
-### `SILENT_MAGICIAN_LV4`
-- path: `src_custom/activated_effects/silent_magician_lv4.c`
-- L152: * Ceiling: OPT send self → SS LV8 from hand/Deck. */
-
 ### `SILENT_SWORDSMAN_ZERO`
 - path: `src_custom/activated_effects/silent_swordsman_zero.c`
 - L47: * tempStage unchanged. Ceiling: Sarcophagus negate needs chain hook. */
-
-### `SIMORGH_BIRD_OF_ANCESTRY`
-- path: `src_custom/activated_effects/simorgh_bird_of_ancestry.c`
-- L111: * summon/permanent hooks. Ceiling: OPT return up to 2 opp cards to hand. */
 
 ### `SKILLED_DARK_MAGICIAN`
 - path: `src_custom/activated_effects/skilled_dark_magician.c`
@@ -937,10 +825,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/tatsunoko.c`
 - L13: * synchro/summon continuous hooks. Ceiling: not field-ignition here. */
 
-### `THE_AGENT_OF_DESTRUCTION_VENUS`
-- path: `src_custom/activated_effects/the_agent_of_destruction_venus.c`
-- L193: * Ceiling: OPT pay 500×N → SS N Mystical Shine Ball from banished/GY. */
-
 ### `THE_AGENT_OF_JUDGMENT_SATURN`
 - path: `src_custom/activated_effects/the_agent_of_judgment_saturn.c`
 - L39: /* skip Battle Phase this turn needs phase-lock hook. Ceiling: tribute
@@ -953,25 +837,13 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/the_agent_of_wisdom_mercury.c`
 - L21: * Ceiling: once via usage if hand empty; upgrade: standby/end-phase gate. */
 
-### `THE_EXECUTOR_OF_THE_UNDERWORLD_PLUTO`
-- path: `src_custom/activated_effects/the_executor_of_the_underworld_pluto.c`
-- L164: * Ceiling: OPT banish 1 monster from GY → flip 1 Effect Monster face-down DEF. */
-
 ### `THESTALOS_THE_FIRESTORM_MONARCH`
 - path: `src_custom/activated_effects/thestalos_the_firestorm_monarch.c`
 - L111: * Ceiling: field OPT repeat (usage-gated below). */
 
-### `THUNDER_DRAGON_TITAN`
-- path: `src_custom/activated_effects/thunder_dragon_titan.c`
-- L103: * chain/continuous hooks. Ceiling: OPT destroy 1 card on the field. */
-
 ### `THUNDER_END_DRAGON`
 - path: `src_custom/activated_effects/thunder_end_dragon.c`
 - L60: * Ceiling: materials not checked; upgrade: overlay detach before destroy. */
-
-### `TIMAEUS_THE_KNIGHT_OF_DESTINY`
-- path: `src_custom/activated_effects/timaeus_the_knight_of_destiny.c`
-- L54: * Ceiling: OPT set ATK/DEF ≈ highest field ATK via tempStage. */
 
 ### `TIME_MAGIC_HAMMER`
 - path: `src_custom/activated_effects/time_magic_hammer.c`

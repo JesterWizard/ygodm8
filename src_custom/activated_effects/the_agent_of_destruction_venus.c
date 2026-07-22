@@ -190,7 +190,7 @@ unsigned char CanActivateTHE_AGENT_OF_DESTRUCTION_VENUS(void)
     return FALSE;
 
   /* leave-field Deck bottom for Shine Balls needs leave hook.
-   * Ceiling: OPT pay 500×N → SS N Mystical Shine Ball from banished/GY. */
+   * OPT pay 500×N → SS N Mystical Shine Ball from banished/GY. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
