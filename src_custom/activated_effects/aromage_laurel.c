@@ -64,7 +64,7 @@ unsigned char CanActivateAROMAGE_LAUREL(void)
     return FALSE;
 
   /* OPT add 1 Plant from Deck.
-   * Ceiling: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks. */
+   * LP-gain Tuner treat + sent-to-GY +500 LP via aroma_lp_gain.c. */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

@@ -7,16 +7,16 @@ Each `ponytail:` / `Ceiling:` note is tagged with its **primary missing engine s
 python3 tools/stub_effect_queue.py --write-list
 ```
 
-**Last updated:** 2026-07-22 19:22 UTC  
-**Ceiling lines tagged:** `263`  
-**Partial files:** `233`
+**Last updated:** 2026-07-22 19:27 UTC  
+**Ceiling lines tagged:** `259`  
+**Partial files:** `229`
 
 ## Counts by missing surface
 
 | Tag | Count | Suggested phase |
 |-----|------:|-----------------|
 | `other` | 100 | triage |
-| `event.OnStandby` | 58 | 3 (OPT / turn flags) |
+| `event.OnStandby` | 57 | 3 (OPT / turn flags) |
 | `extra.XyzLinkSynchro` | 17 | later / Extra Deck |
 | `chain.Negate` | 14 | later / chain |
 | `event.OnSummon` | 13 | 3 |
@@ -24,13 +24,13 @@ python3 tools/stub_effect_queue.py --write-list
 | `event.GyIgnition` | 9 | 3 |
 | `event.OnDestroy` | 9 | 3 |
 | `op.BanishTimed` | 8 | 1–3 |
-| `op.Search` | 6 | 1 |
 | `event.OnBattleDestroy` | 5 | 3 |
+| `op.Search` | 5 | 1 |
 | `ui.Choice` | 5 | 2 |
 | `event.OnFusionSummon` | 3 | 3 (fusion callback) |
-| `event.OnLpGain` | 3 | later / LP event |
+| `event.OnLpGain` | 1 | later / LP event |
 | `stat.Continuous` | 1 | 1–3 |
-| **total** | **263** | |
+| **total** | **259** | |
 
 Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus destroy/summon/battle listeners (Phase 3), not per-card rewrites.
 
@@ -76,14 +76,13 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `GLADIATOR_BEAST_GYZARUS` (activated): L175: * Ceiling: Contact Fusion SS destroy trigger + Extra Deck return. */
 - `GLADIATOR_BEAST_ESSEDARII` (permanent): L8: Contact Fusion has no permanent ignition path.
 
-## `event.OnStandby` (58)
+## `event.OnStandby` (57)
 
 - `DARK_SUPREMACY` (trap): L53: GY banish shuffle HERO need GY ignition OPT. Ceiling: negate up to count face-up opp cards (monsters first) via unk4.
 - `ARCANA_FORCE_V_THE_HIEROPHANT` (activated): L86: discard summon-lock + FromHand paths. OPT coin → SS 1 Arcana Force from Deck.
 - `ARCANA_FORCE_XV_THE_FIEND` (activated): L206: discard search + FromHand paths. OPT coin → destroy 1 monster or wipe field.
 - `ARCANITE_MAGICIAN` (activated): L158: Synchro +2 Spell Counters + +1000 ATK/counter need synchro/stat hooks. OPT remove 1 unk4 counter (if >=1) → destroy 1 opp card.
-- `AROMAGE_MARJORAM` (activated): L180: * Ceiling: destroy-SS + LP-gain trigger need destroy/LP hooks. OPT banish opp GY. */
-- `AROMAGE_ROSEMARY` (activated): L125: LP-higher Plant attack → opp monster effects locked + LP-gain gate need permanent/LP hooks. OPT change 1 face-up battle position.
+- `AROMAGE_ROSEMARY` (activated): L125: LP-higher Plant attack → opp monster effects locked need permanent/battle hooks. LP-gain position change via aroma_lp_gain.c. OPT change 1 face-up battle position (ignition).
 - `ATLANTEAN_HEAVY_INFANTRY` (activated): L111: extra Normal Summon Sea Serpent + sent-for-WATER destroy need summon/send hooks. OPT destroy 1 Set Spell/Trap.
 - `BLUE_EYES_JET_DRAGON` (activated): L198: * Ceiling: field OPT bounce 1; FromHand if BEWD field/GY → SS.
 - `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON` (activated): L23: Quick field negate + destroy-SS FALSE; GY banish-lock FALSE. OPT +2 tempStage (~+1000) as negate stand-in.
@@ -149,11 +148,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `POSEIDRA_THE_ATLANTEAN_DRAGON` (activated): L284: /* hand SS uses FromHand path. Ceiling: GY ignition like Malicious. */
 - `YAMORIMORI` (activated): L124: /* GY ignition needs GY-menu wire. Ceiling: banish self from GY +
 
-## `event.OnLpGain` (3)
+## `event.OnLpGain` (1)
 
 - `AMAZONESS_HALL` (trap): L43: * Ceiling: Extra Deck / Pendulum place + opp SS gain LP need hooks. */
-- `AROMAGE_LAUREL` (activated): L67: * Ceiling: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks. */
-- `AROMASERAPHY_ROSEMARY` (activated): L191: * Ceiling: LP-gain negate needs LP hook. */
 
 ## `extra.XyzLinkSynchro` (17)
 
@@ -219,10 +216,9 @@ Highest-ROI unblock for this backlog is usually **`event.OnStandby` (OPT)** plus
 - `DARK_ARMED_DRAGON` (activated): L317: auto-target. No GY picker (DeckMenu screen switch corrupts VRAM from inside monster effect handler) and no PickZone cursor state (200 conflicts with game loop after MonsterActionMenu case 4 returns). Picks the best field target via AiPickTarget logic. Upgrade path: dedicated cursor state + A/B handlers like Cannon Soldier.
 - `OJAMA_KING` (activated): L54: PickZone for up to 3 empty zones + continuous lock gate. FirstEmptyZoneInRow today — same as Ground Collapse).
 
-## `op.Search` (6)
+## `op.Search` (5)
 
 - `SPELL_CHRONICLE` (spell): L68: no simple Deck→banish helper for arbitrary ST — mill to GY as stand-in for the 5 banished; cards go to GY not banished; upgrade: Duel_BanishDeckCardAt.
-- `HARPIE_LADY_ELEGANCE` (trap): L49: * Ceiling: destroy-search Harpie Spell need hooks. */
 - `ATLANTEAN_DRAGOONS` (activated): L137: * Ceiling: sent-for-WATER-effect search needs send hook.
 - `EVIL_HERO_ADUSTED_GOLD` (activated): L63: cannot attack without Fusion Monster needs attack gate. Not field-ignition activatable; discard search uses FromHand path.
 - `SHADDOLL_SQUAMATA` (activated): L155: * Ceiling: destroy 1 opp monster OR mill 1 Shaddoll from Deck once via usage. */

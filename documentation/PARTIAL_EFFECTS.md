@@ -9,18 +9,18 @@ Missing-surface tags: [`PARTIAL_EFFECTS_TAXONOMY.md`](PARTIAL_EFFECTS_TAXONOMY.m
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 ```
 
-**Last updated:** 2026-07-22 19:22 UTC  
-**Remaining partials:** `233`
+**Last updated:** 2026-07-22 19:27 UTC  
+**Remaining partials:** `229`
 
 ## Counts by kind
 
 | Kind | Count |
 |------|------:|
 | `spell` | 6 |
-| `trap` | 11 |
-| `activated` | 194 |
+| `trap` | 10 |
+| `activated` | 191 |
 | `permanent` | 22 |
-| **total** | **233** |
+| **total** | **229** |
 
 ## spell (6)
 
@@ -54,7 +54,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/spell_effects/spell_gear.c`
 - L156: * Ceiling: optional SS offered as auto-yes when legal; cannot skip
 
-## trap (11)
+## trap (10)
 
 ### `AMAZONESS_HALL`
 - path: `src_custom/trap_effects/amazoness_hall.c`
@@ -81,10 +81,6 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/favourite_contact.c`
 - L48: Extra Deck Fusion ignoring summon conditions + materials to Deck bottom need fusion recipe API; return up to 2 HERO/Neos/ Neo-Spacian from field/hand/GY to Deck, then SS Neos if zone free.
 
-### `HARPIE_LADY_ELEGANCE`
-- path: `src_custom/trap_effects/harpie_lady_elegance.c`
-- L49: * Ceiling: destroy-search Harpie Spell need hooks. */
-
 ### `NECROVALLEY_TEMPLE`
 - path: `src_custom/trap_effects/necrovalley_temple.c`
 - L129: destroy-Set Necrovalley S/T from Deck needs destroy hook — place Necrovalley from hand/GY when GK present; continuous −500 via overlay.
@@ -101,7 +97,7 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/trap_effects/urgent_tuning.c`
 - L14: Synchro Summon during Battle Phase needs Synchro material/ED summon path outside this file (no in-file Synchro API). → Extra Deck Synchro SS.
 
-## activated (194)
+## activated (191)
 
 ### `AMAZONESS_PET_LIGER_KING`
 - path: `src_custom/activated_effects/amazoness_pet_liger_king.c`
@@ -173,21 +169,9 @@ python3 tools/stub_effect_queue.py --write-list   # stubs + partials + taxonomy
 - path: `src_custom/activated_effects/aromage_jasmine.c`
 - L58: * Ceiling: extra Plant Normal Summon needs second NS allowance. */
 
-### `AROMAGE_LAUREL`
-- path: `src_custom/activated_effects/aromage_laurel.c`
-- L67: * Ceiling: LP-gain Tuner treat + sent-to-GY +500 LP need LP/send hooks. */
-
-### `AROMAGE_MARJORAM`
-- path: `src_custom/activated_effects/aromage_marjoram.c`
-- L180: * Ceiling: destroy-SS + LP-gain trigger need destroy/LP hooks. OPT banish opp GY. */
-
 ### `AROMAGE_ROSEMARY`
 - path: `src_custom/activated_effects/aromage_rosemary.c`
-- L125: LP-higher Plant attack → opp monster effects locked + LP-gain gate need permanent/LP hooks. OPT change 1 face-up battle position.
-
-### `AROMASERAPHY_ROSEMARY`
-- path: `src_custom/activated_effects/aromaseraphy_rosemary.c`
-- L191: * Ceiling: LP-gain negate needs LP hook. */
+- L125: LP-higher Plant attack → opp monster effects locked need permanent/battle hooks. LP-gain position change via aroma_lp_gain.c. OPT change 1 face-up battle position (ignition).
 
 ### `ASH_BLOSSOM_AND_JOYOUS_SPRING`
 - path: `src_custom/activated_effects/ash_blossom_and_joyous_spring.c`

@@ -177,7 +177,7 @@ unsigned char CanActivateAROMAGE_MARJORAM(void)
     return FALSE;
 
   /* LP-higher Plant no battle damage via ApplyAromageMarjoramNoPlantBattleDamage.
-   * Ceiling: destroy-SS + LP-gain trigger need destroy/LP hooks. OPT banish opp GY. */
+   * Destroy-SS + LP-gain banish via aroma_lp_gain.c. OPT banish opp GY (ignition). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 

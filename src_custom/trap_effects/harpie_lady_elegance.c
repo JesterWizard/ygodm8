@@ -46,7 +46,7 @@ APPEND_TEXT void EffectHARPIE_LADY_ELEGANCE(void)
 
   /* Shuffle Sisters into Deck, then SS up to 3 different Harpies from hand/Deck/GY.
    * WIND-only SS lock this turn via HarpieLadyElegance_MarkWindOnlyLock.
-   * Ceiling: destroy-search Harpie Spell need hooks. */
+   * Destroy → add Harpie from Deck via aroma_lp_gain.c (AromaLpGain_EnsureInit). */
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];

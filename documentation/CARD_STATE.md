@@ -1,9 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-22 — Ceiling Round 16 B3–B6 + Round 17 B1–B2
+**Last worked on:** 2026-07-22 — Ceiling Round 17 Batch 3
 
-**Outcome:** Six-batch OPT ceiling sweep; Darkest Knight leave-field GY SS. Partials **265→233**. `make` OK.
+**Outcome:** Aroma LP-gain bus extended (Marjoram/Laurel/Rosemarys) + Harpie Elegance destroy-search. Partials **233→229**. `make` OK.
 
-**Deferred:** Deep Sea Diva dual-OPT gate; Atlantean sent-for-WATER; Extra Deck / full chain residuals.
+**Deferred:** Deep Sea Diva dual-OPT gate; Atlantean sent-for-WATER; Extra Deck / full chain; Aromage Rosemary LP-higher attack lock.
 
-**Open / next:** Round 17 Batch 3 — residual Ceiling wires (Atlantean, Aroma LP, destroy hooks).
+**Open / next:** Round 17 Batch 4 — residual Ceiling wires.
