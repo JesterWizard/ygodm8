@@ -947,6 +947,17 @@ void sub_804EC4C (void);
 void sub_804EC64 (void);
 void sub_804ECA8 (void);
 void OverworldLoadGraphics (void);
+void CopyOverworldBgGraphics (void);
+void SetBg3Regs (void);
+void SetBg2Regs (void);
+void SetBg1Regs (void);
+void SetBg0Data (void);
+void LoadSpriteGraphics (void);
+void sub_804E518 (u8 arg0);
+void sub_804E618 (void);
+void sub_804EBE4 (void);
+void sub_804F580 (void);
+void sub_804F598 (void);
 
 //script structs
 struct Script
@@ -980,6 +991,15 @@ struct ScriptCtx {
   u8 unk85;
   u8 unk86;
 };
+
+/* Exported for InitiateScript / script interpreter hooks (avoid CallThumb on MyBoy). */
+void SetCurrentScript(struct ScriptCtx *, struct Script *);
+void sub_80527E8(struct ScriptCtx *);
+void sub_8052F60(struct ScriptCtx *);
+void sub_8053040(struct ScriptCtx *);
+void sub_8053138(struct ScriptCtx *);
+void sub_80532A8(struct ScriptCtx *);
+void sub_8053388(struct ScriptCtx *);
 
 //TODO: change terminology from Map to Location? (struct OverworldLocation)
 

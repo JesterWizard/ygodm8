@@ -7,12 +7,6 @@
 void sub_804F3E4(void);
 void sub_8052088(u8);
 
-typedef void (*MatchSetterVoidU8Func)(u8);
-
-static inline void MatchSetterCallThumbU8(u32 addr, u8 arg) {
-  ((MatchSetterVoidU8Func)(addr | 1))(arg);
-}
-
 static const struct MatchSetterEntry sMatchSetterEntries[] APPEND_RODATA = {
 #include "generated/match_setter_table_generated.inc"
 };
@@ -82,8 +76,8 @@ void MatchSetter_RefreshField(void) {
   MatchSetter_ApplySpawn();
   if (gOverworld.map.id != LOCATION_PLAYER_HOUSE_OUTSIDE)
     return;
-  MatchSetterCallThumbU8(0x0804E518, MATCH_SETTER_OBJECT_SLOT);
-  MatchSetterCallThumbU8(0x0804E518, 0);
+  sub_804E518(MATCH_SETTER_OBJECT_SLOT);
+  sub_804E518(0);
 }
 
 void sub_804F714(void);

@@ -24,17 +24,6 @@ void sub_804EC4C(void);
 void OverworldSetRegDispcnt(void);
 void sub_8045284(u16 *, u16, u16);
 
-typedef void (*VoidFunc)(void);
-typedef void (*VoidU8Func)(u8);
-
-static inline void CallThumbVoid(u32 addr) {
-  ((VoidFunc)(addr | 1))();
-}
-
-static inline void CallThumbVoidU8(u32 addr, u8 arg) {
-  ((VoidU8Func)(addr | 1))(arg);
-}
-
 /* Same path as START_MENU -> OverworldLoadGraphics_inline(), not the overlay replacement.
  * For custom maps (id >= CUSTOM_MAP_BASE), temporarily use map 0 as a safe dummy
  * to avoid out-of-bounds array access in CopyOverworldBgGraphics, then schedule
@@ -50,14 +39,14 @@ static void OverworldRestoreGraphicsAfterSubmenu(void) {
     gCustomMapOverrideId = realId;
     gCustomMapOverridePending = TRUE;
   }
-  CallThumbVoid(0x0804DCE8);
+  CopyOverworldBgGraphics();
   if (realId >= CUSTOM_MAP_BASE)
     gOverworld.map.id = realId;
-  CallThumbVoid(0x0804EDA0);
-  CallThumbVoid(0x0804EDC8);
-  CallThumbVoid(0x0804EDF0);
-  CallThumbVoid(0x0804EE18);
-  CallThumbVoid(0x0804EE6C);
+  SetBg3Regs();
+  SetBg2Regs();
+  SetBg1Regs();
+  SetBg0Data();
+  LoadSpriteGraphics();
   if (CheckFlag(0xF3))
     sub_8044E50(gPaletteBuffer, 0x10, 0x1FF);
   if (CheckFlag(0xF0))
@@ -76,8 +65,8 @@ static void OverworldRestoreGraphicsAfterSubmenu(void) {
 void OverworldRestoreAfterDebugMenu(void) {
   DebugMenuClearPortraitObjStash();
   OverworldRestoreGraphicsAfterSubmenu();
-  CallThumbVoid(0x0804F580);
-  CallThumbVoid(0x0804F598);
+  sub_804F580();
+  sub_804F598();
   MatchSetter_RefreshField();
   LoadObjVRAM();
   LoadPalettes();
@@ -482,16 +471,16 @@ u8 ProcessInput__Replacement(void) {
 extern u8 gSkipOverworldEndFrameAfterSubmenu;
 
 void OverworldRunEndFrame(void) {
-  CallThumbVoidU8(0x0804E518, 0);
+  sub_804E518(0);
   if (gOverworld.objects[13].unk1Dl)
-    CallThumbVoidU8(0x0804E518, 13);
+    sub_804E518(13);
   if (gOverworld.objects[14].unk1Dl)
-    CallThumbVoidU8(0x0804E518, 14);
+    sub_804E518(14);
   sub_80551B8();
   if (gDebugSaveAnywherePendingCapture != TRUE)
     OverworldOverlay_PrepareFrame();
-  CallThumbVoid(0x0804E618);
-  CallThumbVoid(0x0804EBE4);
+  sub_804E618();
+  sub_804EBE4();
   if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && gShowThoughtBubbles != 0) {
     LoadThoughtBubbleGfx();
     SetThoughtBubbleOam(TRUE);

@@ -207,6 +207,8 @@ _kernel_malloc_ewram gDebugSaveAnywhereData, 0xC
 _kernel_malloc_ewram gDebugMenuPendingSaveAnywhere, 0x1
 _kernel_malloc_ewram gDebugSaveAnywherePendingCapture, 0x1
 _kernel_malloc_ewram gDebugSaveAnywhereRestorePending, 0x1
+@ Continue path: defer optional flash extras until after Game Menu / first map load.
+_kernel_malloc_ewram gLoadCustomSaveExtrasPending, 0x1
 _kernel_malloc_ewram gDebugSaveAnywhereApplyCoordsPending, 0x1
 _kernel_malloc_ewram gDebugSaveAnywhereOpenDialogPending, 0x1
 _kernel_malloc_ewram gDebugSaveAnywhereOpenDialogReady, 0x1

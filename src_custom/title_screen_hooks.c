@@ -2,15 +2,33 @@
 #include "configs/runtime.h"
 #include "constants/title_screen.h"
 #include "duel.h"
+#include "game_menu.h"
+#include "gfx_reg_buffers.h"
 #include "text.h"
 
-typedef void (*VoidFunc)(void);
-
 extern u8 gLanguage;
+extern u16 gNewButtons;
 extern unsigned *g8E0CD9C;
 extern unsigned char gText_ReplaceSaveData[];
 extern unsigned short (*g8E0CDA4)[][30];
 extern unsigned *g8E0CDA0;
+
+#define OPTION_NEW_GAME 0
+
+unsigned char sub_800AC64(void);
+void sub_800ACE8(unsigned char);
+void sub_800ADC4(void);
+void sub_800AF68(void);
+void sub_800AEC4(void);
+void LoadCustomSaveExtrasFromFlashPrimary(void);
+extern u8 gLoadCustomSaveExtrasPending;
+unsigned char TitleScreenChooseOption(void);
+unsigned char TitleScreenNewGameOnly(void);
+void sub_80354A8(void);
+void TitleScreenMain(void);
+void CopySpriteTilesAndPalette(void);
+void sub_80357C0(void);
+void VBlankCbInitGfxRegs(void);
 
 union {
   u8 a[0x4000];
@@ -24,10 +42,6 @@ extern struct {
 extern unsigned short g8E0CDB4[];
 
 #include "generated/title_screen_assets_generated.inc"
-
-static inline void CallThumbVoid(u32 addr) {
-  ((VoidFunc)(addr | 1))();
-}
 
 static u16 *TitleScreen_VramWords(void) {
   return (u16 *)&gBgVram;
@@ -126,17 +140,17 @@ static void CustomCopyBgGfx(void) {
 
 static void VanillaCopyGfxAndInitGfxRegs(void) {
   VanillaCopyBgGfx();
-  CallThumbVoid(TITLE_SCREEN_CopySpriteTilesAndPalette);
-  CallThumbVoid(TITLE_SCREEN_sub_80357C0);
-  SetVBlankCallback((void (*)(void))(TITLE_SCREEN_VBlankCbInitGfxRegs | 1));
+  CopySpriteTilesAndPalette();
+  sub_80357C0();
+  SetVBlankCallback(VBlankCbInitGfxRegs);
   WaitForVBlank();
 }
 
 static void CustomCopyGfxAndInitGfxRegs(void) {
   CustomCopyBgGfx();
-  CallThumbVoid(TITLE_SCREEN_CopySpriteTilesAndPalette);
-  CallThumbVoid(TITLE_SCREEN_sub_80357C0);
-  SetVBlankCallback((void (*)(void))(TITLE_SCREEN_VBlankCbInitGfxRegs | 1));
+  CopySpriteTilesAndPalette();
+  sub_80357C0();
+  SetVBlankCallback(VBlankCbInitGfxRegs);
   WaitForVBlank();
 }
 
@@ -205,14 +219,61 @@ APPEND_TEXT void sub_80357F8__Replacement(void) {
 
   /*
    * Vanilla also calls this once on the New Game / Continue exit path.
-   * If a button is still held, treat it as "not idle" so we do not hijack
-   * the transition into the naming screen with VideoPlayer_Play().
+   * Do not start COMET on that frame: gNewButtons may still latch the select
+   * press after A is released (Continue has no confirm dialog).
    */
-  if ((~REG_KEYINPUT & ANY_BUTTON) != 0) {
+  if ((gNewButtons & ANY_BUTTON) != 0 || (~REG_KEYINPUT & ANY_BUTTON) != 0) {
     gTitleScreenIdleFrames = 0;
     return;
   }
 
   gTitleScreenIdleFrames = 0;
   VideoPlayer_Play();
+}
+
+/* No CallThumb into statics — MyBoy dies on that pattern (see NamingScreen). */
+LYN_REPLACE_CHECK(TitleScreenMain);
+void TitleScreenMain__Replacement(void) {
+  unsigned char option;
+
+  if (!sub_800AC64())
+    option = TitleScreenNewGameOnly();
+  else
+    option = TitleScreenChooseOption();
+
+  if (option == OPTION_NEW_GAME) {
+    sub_800AF68();
+    sub_80354A8();
+    return;
+  }
+
+  /* Reseat flash stubs before any Continue save op (ACE8 may bx g20245AC). */
+  sub_800AEC4();
+  sub_800ACE8(sub_800AC64());
+  sub_800ADC4();
+  sub_80354A8();
+
+  /*
+   * Title fade leaves BLDCNT/BLDY hot and VBlank on sub_8035AD8. Blank +
+   * clear blend + drop VBlank before Game Menu so MyBoy does not enter
+   * sub_8024ECC mid-blend with a stale title VBlank path.
+   */
+  REG_DISPCNT = DISPCNT_FORCED_BLANK;
+  gBLDCNT = 0;
+  gBLDY = 0;
+  LoadBlendingRegs();
+  SetVBlankCallback(NULL);
+
+  GameMenuMain();
+
+  /*
+   * Same cleanup before OverworldMain. Extras load is no-op'd for MyBoy
+   * Continue bisect — do not set pending until loaders are re-enabled.
+   */
+  REG_DISPCNT = DISPCNT_FORCED_BLANK;
+  gBLDCNT = 0;
+  gBLDY = 0;
+  LoadBlendingRegs();
+  SetVBlankCallback(NULL);
+  gLoadCustomSaveExtrasPending = FALSE;
 }

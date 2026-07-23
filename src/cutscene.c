@@ -8,7 +8,7 @@ signed short g2020C00[/*ARRAY_COUNT(sin_cos_table)*/228];
 static void InitCredits (void);
 static void sub_8000810 (void);
 static void sub_80008EC (unsigned char);
-static void ReshefVisionMain (void);
+void ReshefVisionMain (void);
 static void sub_8000D74 (void);
 static void sub_8001068 (void);
 static void sub_8001110 (void);
@@ -21,13 +21,13 @@ static void sub_80015A4 (void);
 static void sub_8001788 (void);
 static void sub_80018E8 (void);
 static void sub_80019C4 (void);
-static void sub_8001AD8 (void);
-static void sub_8001B88 (void);
-static void sub_8001BFC (void);
-static void sub_8001C70 (void);
-static void sub_8001CE4 (void);
-static void sub_8001D58 (void);
-static void sub_8001DD4 (void);
+void sub_8001AD8 (void);
+void sub_8001B88 (void);
+void sub_8001BFC (void);
+void sub_8001C70 (void);
+void sub_8001CE4 (void);
+void sub_8001D58 (void);
+void sub_8001DD4 (void);
 static void sub_8001E8C (void);
 static void sub_80020D8 (void);
 static void sub_80027F0 (void);
@@ -525,7 +525,7 @@ void StartCutscene (u8 cutscene) {
 }
 
 // Yugi reshef vision
-static void ReshefVisionMain (void) {
+void ReshefVisionMain (void) {
   u8 i;
   s16 r5;
   u8 r6 = 16, r7 = 16;
@@ -1456,7 +1456,7 @@ static void sub_80019C4 (void) {
   LoadBlendingRegs();
 }
 
-static void sub_8001AD8 (void) {
+void sub_8001AD8 (void) {
   sub_8002E98();
   g8DF7594->unk0 = 0;
   while (1) {
@@ -1491,7 +1491,7 @@ static void sub_8001AD8 (void) {
   }
 }
 
-static void sub_8001B88 (void) {
+void sub_8001B88 (void) {
   sub_8002E98();
   g8DF7594->unk0 = 0;
   while (1) {
@@ -1520,7 +1520,7 @@ static void sub_8001B88 (void) {
   }
 }
 
-static void sub_8001BFC (void) {
+void sub_8001BFC (void) {
   sub_8002E98();
   g8DF7594->unk0 = 0;
   while (1) {
@@ -1549,7 +1549,7 @@ static void sub_8001BFC (void) {
   }
 }
 
-static void sub_8001C70 (void) {
+void sub_8001C70 (void) {
   sub_8002E98();
   g8DF7594->unk0 = 0;
   while (1) {
@@ -1578,7 +1578,7 @@ static void sub_8001C70 (void) {
   }
 }
 
-static void sub_8001CE4 (void) {
+void sub_8001CE4 (void) {
   sub_8002E98();
   g8DF7594->unk0 = 0;
   while (1) {
@@ -1607,7 +1607,7 @@ static void sub_8001CE4 (void) {
   }
 }
 
-static void sub_8001D58 (void) {
+void sub_8001D58 (void) {
   PlayMusic(SOUND_NONE);
   sub_8002E98();
   g8DF7594->unk0 = 0;
@@ -1637,7 +1637,7 @@ static void sub_8001D58 (void) {
   }
 }
 
-static void sub_8001DD4 (void) {
+void sub_8001DD4 (void) {
   sub_8002E98();
   g8DF7594->unk0 = 0;
   while (1) {

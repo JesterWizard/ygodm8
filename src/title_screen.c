@@ -14,23 +14,24 @@ const struct Unk8E0CD80{
 static unsigned char TryStartNewGame (void);
 static void sub_80353B0 (void);
 static void CopyGfxAndInitGfxRegs (void);
-static void sub_80354A8 (void);
-static unsigned char TitleScreenNewGameOnly (void);
+void sub_80354A8 (void);
+unsigned char TitleScreenChooseOption (void);
+unsigned char TitleScreenNewGameOnly (void);
+void CopySpriteTilesAndPalette (void);
+void sub_80357C0 (void);
+void VBlankCbInitGfxRegs (void);
 static unsigned char SwitchOption (unsigned char);
 static unsigned char SwitchToOptionContinue (void);
 static unsigned short ProcessInput (void);
 static void CopyBgGfx (void);
-static void sub_80357C0 (void);
 static void sub_80357F8 (void);
 static void sub_803584C (void);
 static void sub_8035894 (void);
 static void sub_80358F8 (void);
-static void CopySpriteTilesAndPalette (void);
 static void sub_8035988 (void);
 static void sub_8035994 (unsigned char, const struct Unk8E0CD80*, unsigned short*); //TODO change oam type?
 static void SetArrowTilemapToYes (void);
 static void SetArrowTilemapToNo (void);
-static void VBlankCbInitGfxRegs (void);
 static void VBlankCbTitleScreen (void);
 static void VBlankCbOptionSwitch (void);
 static void VBlankCbNoInput (void);
@@ -68,7 +69,7 @@ extern unsigned short g8E0CDB4[];
 extern unsigned char* g8E0CDA8; // array of 1 element? only english is present? (NEW GAME sprite tiles)
 extern unsigned short* g8E0CDAC; // ^ (NEW GAME sprite palette) 
 
-static unsigned char TitleScreenChooseOption (void) {
+unsigned char TitleScreenChooseOption (void) {
   unsigned char option = OPTION_CONTINUE;
   unsigned keepProcessing;
   unsigned short newButton;
@@ -211,13 +212,13 @@ static void CopyGfxAndInitGfxRegs (void) {
   WaitForVBlank();
 }
 
-static void sub_80354A8 (void) {
+void sub_80354A8 (void) {
   sub_8035988();
   SetVBlankCallback(sub_8035AD8);
   WaitForVBlank();
 }
 
-static unsigned char TitleScreenNewGameOnly (void) {
+unsigned char TitleScreenNewGameOnly (void) {
   CopyGfxAndInitGfxRegs();
   sub_803584C();
   LoadVramAndOam();
@@ -333,7 +334,7 @@ static void CopyBgGfx (void) {
   }
 }
 
-static void sub_80357C0 (void) {
+void sub_80357C0 (void) {
   unsigned i;
   for (i = 0; i < 128; i++) {
     gOamBuffer[i * 4] = 0xA0;
@@ -403,7 +404,7 @@ static void sub_80358F8 (void) {
   *(unsigned long*)oam |= 0x400;
 }
 
-static void CopySpriteTilesAndPalette (void) {
+void CopySpriteTilesAndPalette (void) {
   sub_803EEFC(0, g8E0CDA8, 0x100);
   CpuCopy32(g8E0CDAC, gPaletteBuffer + 256, 96);
 }
@@ -432,7 +433,7 @@ static void SetArrowTilemapToNo (void) {
   gVr.b[0x798D] = 0;
 }
 
-static void VBlankCbInitGfxRegs (void) {
+void VBlankCbInitGfxRegs (void) {
   DisableDisplay();
   gBLDCNT = 0x8D8;
   gBLDALPHA = 0x1000;

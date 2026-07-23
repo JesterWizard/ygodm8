@@ -154,11 +154,12 @@ static CONST_DATA signed char g8E0DB0C[][4] = {
 
 
 static void OverworldProcessInput (void);
-static void SetBg3Regs (void);
-static void SetBg2Regs (void);
-static void SetBg1Regs (void);
-static void SetBg0Data (void);
-static void LoadSpriteGraphics (void);
+void SetBg3Regs (void);
+void SetBg2Regs (void);
+void SetBg1Regs (void);
+void SetBg0Data (void);
+void LoadSpriteGraphics (void);
+void CopyOverworldBgGraphics (void);
 
 
 void sub_8051A44 (u8, u8, s16*);
@@ -1010,8 +1011,8 @@ void OverworldMain (void) {
   // mark it as noreturn? (as well as AgbMain?)
 }
 
-// TODO: this also copies the object palettes (but not tiles)
-static void CopyOverworldBgGraphics (void) {
+/* Exported for OverworldLoadGraphics__Replacement (avoid CallThumb on MyBoy). */
+void CopyOverworldBgGraphics (void) {
   switch (gOverworld.background) {
     case OVERWORLD_BACKGROUND_NORMAL:
       LZ77UnCompWram(gMapTilesets[gOverworld.map.id], gBgVram.cbb0); //copy tileset
@@ -1427,7 +1428,7 @@ static void OverworldProcessInput (void) {
 }
 
 NAKED
-static void sub_804E518 (u8 arg0) {
+void sub_804E518 (u8 arg0) {
   asm_unified("push {r4, r5, r6, r7, lr}\n\
 	lsls r0, r0, #0x18\n\
 	lsrs r6, r0, #0x18\n\
@@ -1561,7 +1562,7 @@ _0804E610:\n\
 	bx r0");
 }
 
-static void sub_804E618 (void) {
+void sub_804E618 (void) {
   signed short arr[15];
   u8 i;
   for (i = 0; i < 15; i++)
@@ -1917,7 +1918,7 @@ static void sub_804EBE4 (void) {
 }*/
 
 NAKED
-static void sub_804EBE4 (void) {
+void sub_804EBE4 (void) {
   asm_unified("push {r4, r5, r6, r7, lr}\n\
 	ldr r6, _0804EC44\n\
 	movs r4, #0\n\
@@ -2022,21 +2023,21 @@ void OverworldLoadGraphics (void) {
   OverworldSetRegDispcnt();
 }
 
-static void SetBg3Regs (void) {
+void SetBg3Regs (void) {
   // ponytail: textbox (sbb1D, cbb1, priority 0) — was BG1
   REG_BG3CNT = 0x1D0C;
   gBG3VOFS = 0;
   gBG3HOFS = 8;
 }
 
-static void SetBg2Regs (void) {
+void SetBg2Regs (void) {
   // ponytail: ground layer (sbb1F, cbb0, priority 2) — was BG3
   REG_BG2CNT = 0x1F82;
   gBG2VOFS = 0;
   gBG2HOFS = 8;
 }
 
-static void SetBg1Regs (void) {
+void SetBg1Regs (void) {
   // ponytail: roof/high layer (sbb1E, cbb0, priority 1) — was BG2
   REG_BG1CNT = 0x1E81;
   gBG1VOFS = 0;
@@ -2044,7 +2045,7 @@ static void SetBg1Regs (void) {
 }
 
 // ponytail: BG0 is free for the debug menu. Keep reg writes for ROM address stability.
-static void SetBg0Data (void) {
+void SetBg0Data (void) {
   REG_BG0CNT = 0x1D0C;
   gBG0VOFS = 0;
   gBG0HOFS = 8;
@@ -2053,7 +2054,7 @@ static void SetBg0Data (void) {
 }
 
 // load object gfx? (objects being interactable entities in the overworld (16 of them can be present at a time))
-static void LoadSpriteGraphics (void) {
+void LoadSpriteGraphics (void) {
   sub_804ECE4();
   sub_804E618();
   sub_804DE74();

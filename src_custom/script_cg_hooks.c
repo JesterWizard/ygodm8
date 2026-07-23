@@ -4,18 +4,10 @@
 #include "millennium_items.h"
 #include "overworld.h"
 
-typedef void (*ScriptCtxFunc)(struct ScriptCtx *);
-typedef void (*SetCurrentScriptFunc)(struct ScriptCtx *, struct Script *);
-
 void sub_80526D0(struct ScriptCtx *scriptCtx);
-
-static inline ScriptCtxFunc ThumbScriptCtxFunc(u32 addr) {
-  return (ScriptCtxFunc)(addr | 1);
-}
-
-static inline SetCurrentScriptFunc ThumbSetCurrentScript(u32 addr) {
-  return (SetCurrentScriptFunc)(addr | 1);
-}
+void sub_804F218(void);
+void DisplayPortrait(struct ScriptCtx *scriptCtx);
+void PlayOverworldMusic(void);
 
 LYN_REPLACE_CHECK(sub_80526D0);
 void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
@@ -33,7 +25,8 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
       scriptCtx->currentScript.unk8 = chooseScript->unk8;
       scriptCtx->pointer = 0;
       scriptCtx->unk1E = 0;
-      ThumbScriptCtxFunc(0x08053388)(scriptCtx);
+      /* No CallThumb into statics — MyBoy dies on that pattern. */
+      sub_8053388(scriptCtx);
     }
     if (scriptCtx->currentScript.start[0] == 0x5D)
       break;
@@ -47,22 +40,22 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
         break;
       if (MillenniumItems_TryConsumeOpcode(scriptCtx))
         break;
-      ThumbScriptCtxFunc(0x080527E8)(scriptCtx);
+      sub_80527E8(scriptCtx);
       EventCg_AfterExecuteOpcode(scriptCtx);
       break;
     case 1: {
       u8 prevUnkC = scriptCtx->unkC;
-      ThumbScriptCtxFunc(0x08052F60)(scriptCtx);
+      sub_8052F60(scriptCtx);
       if (prevUnkC == 1 && scriptCtx->unkC == 0)
         EventCg_OnTextWaitComplete(scriptCtx);
       break;
     }
     case 2:
-      ThumbScriptCtxFunc(0x08053138)(scriptCtx);
+      sub_8053138(scriptCtx);
       break;
     case 3: {
       u8 prevUnkC = scriptCtx->unkC;
-      ThumbScriptCtxFunc(0x08053040)(scriptCtx);
+      sub_8053040(scriptCtx);
       if (prevUnkC == 3 && scriptCtx->unkC == 0)
         EventCg_OnTextWaitComplete(scriptCtx);
       break;

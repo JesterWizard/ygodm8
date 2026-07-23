@@ -11,19 +11,9 @@
 extern const u32 g82AD2D0[];
 extern u16 g82AD48C[];
 
-typedef void (*SetCurrentScriptFunc)(struct ScriptCtx *, struct Script *);
-typedef void (*ScriptCtxFunc)(struct ScriptCtx *);
-
-static inline SetCurrentScriptFunc ThumbSetCurrentScript(u32 addr) {
-  return (SetCurrentScriptFunc)(addr | 1);
-}
-
-static inline ScriptCtxFunc ThumbScriptCtxFunc(u32 addr) {
-  return (ScriptCtxFunc)(addr | 1);
-}
-
-void sub_804EEE0(void);
 void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx);
+void sub_804EEE0(void);
+void OverworldSetRegDispcnt(void);
 
 /* Map 25 dealer/patron A+R scripts replaced for Blackjack/Concentration. */
 static const u32 sCasinoMinigameScriptAddrs[] APPEND_RODATA = {
@@ -93,8 +83,9 @@ void InitiateScript__Replacement(struct Script *script) {
   scriptCtx.unk80 = 1;
   scriptCtx.unk82 = 0;
   scriptCtx.unk86 = 0;
-  ThumbSetCurrentScript(0x08053274)(&scriptCtx, script);
-  ThumbScriptCtxFunc(0x080532A8)(&scriptCtx);
+  /* No CallThumb into statics — MyBoy dies on that pattern. */
+  SetCurrentScript(&scriptCtx, script);
+  sub_80532A8(&scriptCtx);
   sub_80526D0__Replacement(&scriptCtx);
 
   if (saveAnywhereDialog != TRUE)

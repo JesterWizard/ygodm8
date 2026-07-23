@@ -15,12 +15,6 @@ void sub_804F598(void);
 void sub_804EEE0(void);
 void OverworldRunEndFrame(void);
 
-typedef void (*VoidFunc)(void);
-
-static inline void CallVanillaOverworldLoadGraphics(void) {
-  ((VoidFunc)0x0804ED09)();
-}
-
 static struct DebugSaveAnywhereData *DebugSaveAnywhereData(void) {
   return (struct DebugSaveAnywhereData *)gDebugSaveAnywhereData;
 }
@@ -135,7 +129,7 @@ void DebugMenu_ApplyPendingSaveAnywhere(void) {
 }
 
 void DebugSaveAnywhere_OpenDialogNow(void) {
-  CallVanillaOverworldLoadGraphics();
+  OverworldLoadGraphics();
   sub_804F580();
   sub_804F598();
   MatchSetter_RefreshField();

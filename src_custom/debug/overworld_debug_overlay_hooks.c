@@ -31,12 +31,6 @@ extern const u32 g82AD2D0[];
 extern u16 g82AD48C[];
 extern const u16 g82ADC8C[];
 
-typedef void (*VoidFunc)(void);
-
-static inline void CallThumbVoid(u32 addr) {
-  ((VoidFunc)(addr | 1))();
-}
-
 // Overworld BG0 textbox/font: gVramBuffer + 0xD800 (tiles), + 0xE800 (= gBgVram.sbb1D tilemap).
 #define OVERWORLD_BG0_CHARBUF_OFFSET 0xE680
 #define OVERWORLD_BG0_TILEMAP_OFFSET 0xE800
@@ -277,7 +271,7 @@ void OverworldLoadGraphics__Replacement(void) {
     u16 realId = gOverworld.map.id;
     gOverworld.map.id = 0;
     gOverworld.map.state = 0;
-    CallThumbVoid(0x0804DCE8);  /* CopyOverworldBgGraphics (safe, reads map 0) */
+    CopyOverworldBgGraphics();
     gOverworld.map.id = realId; /* restore for remaining setup */
     gCustomMapOverrideId = realId;
     gCustomMapOverridePending = TRUE;
@@ -289,7 +283,7 @@ void OverworldLoadGraphics__Replacement(void) {
             graphicsId = srcId;
     }
     gOverworld.map.id = graphicsId;
-    CallThumbVoid(0x0804DCE8);  /* CopyOverworldBgGraphics */
+    CopyOverworldBgGraphics();
     gOverworld.map.id = gOverworld.map.unk8;  /* restore after redirect */
 
     /* Collision override: if the manifest specifies custom collision for
@@ -345,11 +339,11 @@ void OverworldLoadGraphics__Replacement(void) {
     }
   }
 
-  CallThumbVoid(0x0804EDA0);  /* SetBg3Regs */
-  CallThumbVoid(0x0804EDC8);  /* SetBg2Regs */
-  CallThumbVoid(0x0804EDF0);  /* SetBg1Regs */
-  CallThumbVoid(0x0804EE18);  /* SetBg0Data */
-  CallThumbVoid(0x0804EE6C);  /* LoadSpriteGraphics */
+  SetBg3Regs();
+  SetBg2Regs();
+  SetBg1Regs();
+  SetBg0Data();
+  LoadSpriteGraphics();
   DebugMenuClearPortraitObjStash();
   if (CheckFlag(0xF3))
     sub_8044E50(gPaletteBuffer, 0x10, 0x1FF);
@@ -382,7 +376,7 @@ LYN_REPLACE_CHECK(sub_8053E34);
 void sub_8053E34__Replacement(u8 arg0) {
   int i, temp;
 
-  CallThumbVoid(0x0805339C);
+  sub_805339C();
   OverworldSetRegDispcnt();
   ClearBg1IfNoRoof();
   REG_BLDCNT = 0xFF;
@@ -412,8 +406,8 @@ void sub_80532A8__Replacement(struct ScriptCtx *unused) {
 LYN_REPLACE_CHECK(sub_804EEE0);
 void sub_804EEE0__Replacement(void) {
   OverworldOverlay_PrepareFrame();
-  CallThumbVoid(0x0804E618);
-  CallThumbVoid(0x0804EBE4);
+  sub_804E618();
+  sub_804EBE4();
   SetVBlankCallback(sub_804F1E4);
   WaitForVBlank();
   CpuFastCopy(gBgVram.cbb4, (void *)0x06010000, 0x4000);
@@ -446,8 +440,8 @@ void sub_804ECA8__Replacement(void) {
 LYN_REPLACE_CHECK(sub_804F218);
 void sub_804F218__Replacement(void) {
   OverworldOverlay_PrepareFrame();
-  CallThumbVoid(0x0804E618);
-  CallThumbVoid(0x0804EBE4);
+  sub_804E618();
+  sub_804EBE4();
   sub_80551B8();
   SetVBlankCallback(LoadBgOffsets);
   WaitForVBlank();

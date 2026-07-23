@@ -20,9 +20,18 @@ void sub_804EF84(u16 id, u16 state, u16 connection);
 #include "src_custom/generated/maps/custom_map_connections.inc"
 
 extern u8 gDebugSaveAnywhereRestorePending;
+void LoadCustomSaveExtrasFromFlashPrimaryIfPending(void);
 
 static struct DebugSaveAnywhereData *DebugSaveAnywhereData(void) {
   return (struct DebugSaveAnywhereData *)gDebugSaveAnywhereData;
+}
+
+static u8 DebugSaveAnywhere_MapIdIsValid(u16 mapId) {
+  if (mapId < CUSTOM_MAP_BASE)
+    return TRUE;
+  if (GetCustomMapTileset(mapId) != NULL)
+    return TRUE;
+  return FALSE;
 }
 
 /* Replace sub_804EF84 — the final step of any map transition.
@@ -70,6 +79,9 @@ void sub_80523EC__Replacement(u16 id, u16 state, u16 connection) {
   int i = -1;
   struct DebugSaveAnywhereData *data;
 
+  /* First overworld entry after Game Menu — flash extras off the fade path. */
+  LoadCustomSaveExtrasFromFlashPrimaryIfPending();
+
   /* Check manifest connection overrides before using the ROM-sourced target.
    * This allows the manifest to redirect vanilla edge and script transitions.
    * While a custom map is loaded, map.id is the safe dummy (0) — look up by
@@ -88,10 +100,13 @@ void sub_80523EC__Replacement(u16 id, u16 state, u16 connection) {
 
   if (gDebugSaveAnywhereRestorePending == TRUE) {
     data = DebugSaveAnywhereData();
-    if (data->magic == DEBUG_SAVE_ANYWHERE_MAGIC) {
+    if (data->magic == DEBUG_SAVE_ANYWHERE_MAGIC
+        && DebugSaveAnywhere_MapIdIsValid(data->mapId) == TRUE) {
       id = data->mapId;
       state = data->mapState;
       connection = data->mapConnection;
+    } else {
+      data->magic = 0;
     }
     gDebugSaveAnywhereRestorePending = FALSE;
   }

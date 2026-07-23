@@ -21,6 +21,7 @@ void sub_800ADF0(void);
 void sub_800AE1C(void);
 void sub_800AE70(void);
 void sub_800AED0(void);
+void sub_800AEC4(void);
 int sub_800B034(void);
 int sub_800B050(void);
 int sub_800B06C(void);
@@ -135,9 +136,28 @@ LYN_REPLACE_CHECK(sub_800ADC4);
 void sub_800ADC4__Replacement(void) {
   u8 *temp2 = g8E0CD10;
   int temp = (int)gSaveSlotPrimary;
+
+  /* Idempotent; covers any path that wiped EWRAM flash stubs. */
+  sub_800AEC4();
+
   g20245AC(temp, temp2, 0x747);
-  ShinyZones_LoadFlagsFromFlashPrimary();
   sub_803519C();
+  /* Optional custom flash extras — pending flag set after Game Menu. */
+}
+
+extern u8 gLoadCustomSaveExtrasPending;
+
+void LoadCustomSaveExtrasFromFlashPrimary(void) {
+  /*
+   * MyBoy Continue bisect: entire extras load is a no-op.
+   * Confirm title Continue → Game Menu → Continue → overworld, then
+   * re-enable one loader at a time (PlayerDecks, SaveAnywhere, …).
+   */
+#if 0
+  /* Idempotent; covers paths that wiped EWRAM flash stubs. */
+  sub_800AEC4();
+
+  ShinyZones_LoadFlagsFromFlashPrimary();
   PlayerDecks_OnSaveSlotRead();
   DebugDeckSwap_LoadFromFlashPrimary();
   DebugAiMode_LoadFromFlashPrimary();
@@ -146,6 +166,14 @@ void sub_800ADC4__Replacement(void) {
   DebugSaveAnywhere_LoadFromFlashPrimary();
   TimedDuel_LoadFromFlashPrimary();
   MillenniumItems_LoadFromFlashPrimary();
+#endif
+}
+
+void LoadCustomSaveExtrasFromFlashPrimaryIfPending(void) {
+  if (gLoadCustomSaveExtrasPending != TRUE)
+    return;
+  gLoadCustomSaveExtrasPending = FALSE;
+  LoadCustomSaveExtrasFromFlashPrimary();
 }
 
 LYN_REPLACE_CHECK(sub_800ADF0);

@@ -2,13 +2,13 @@
 #include "common-chax.h"
 
 static void sub_80526D0 (struct ScriptCtx*);
-static void sub_80527E8 (struct ScriptCtx *);
-static void sub_8052F60 (struct ScriptCtx *);
-static void sub_8053040 (struct ScriptCtx *);
-static void sub_8053138 (struct ScriptCtx *);
-static void SetCurrentScript(struct ScriptCtx *, struct Script *);
+void sub_80527E8 (struct ScriptCtx *);
+void sub_8052F60 (struct ScriptCtx *);
+void sub_8053040 (struct ScriptCtx *);
+void sub_8053138 (struct ScriptCtx *);
+void SetCurrentScript(struct ScriptCtx *, struct Script *);
 static void sub_8053284 (struct ScriptCtx *);
-static void sub_80532A8 (struct ScriptCtx *);
+void sub_80532A8 (struct ScriptCtx *);
 static void sub_80532E8 (struct ScriptCtx *);
 
 
@@ -143,7 +143,7 @@ static void sub_80526D0 (struct ScriptCtx* scriptCtx) {
   REG_BLDCNT = 0;
 }
 
-static void sub_80527E8(struct ScriptCtx *script)
+void sub_80527E8(struct ScriptCtx *script)
 {
     u16 var;
     int i;
@@ -457,7 +457,7 @@ static void sub_80527E8(struct ScriptCtx *script)
 }
 
 //waiting for player to press A, B, or R to close text box.
-static void sub_8052F60 (struct ScriptCtx *script) {
+void sub_8052F60 (struct ScriptCtx *script) {
   if (gNewButtons & (A_BUTTON | B_BUTTON | R_BUTTON)) {
     PlayMusic(SFX_DIALOGUE);
     script->pointer++;
@@ -490,7 +490,7 @@ static void sub_8052F60 (struct ScriptCtx *script) {
 }
 
 //waiting for player to press DPAD buttons to move curosr or A, B, or R to close text box. (option text box)
-static void sub_8053040 (struct ScriptCtx *script) {
+void sub_8053040 (struct ScriptCtx *script) {
   if (gNewButtons & (A_BUTTON | B_BUTTON | R_BUTTON)) {
     PlayMusic(SFX_SELECT);
     script->pointer += 2;
@@ -523,7 +523,7 @@ static void sub_8053040 (struct ScriptCtx *script) {
   }
 }
 
-static void sub_8053138 (struct ScriptCtx *script) {
+void sub_8053138 (struct ScriptCtx *script) {
   u16 var;
   script->unk86 = 1;
   if (script->unk22[script->unk78] <= 127) {
@@ -565,7 +565,7 @@ static void sub_80531FC (struct ScriptCtx* script) {
   script->unkC = 2;
 }
 
-static void SetCurrentScript (struct ScriptCtx *scriptCtxPtr, struct Script *script) {
+void SetCurrentScript (struct ScriptCtx *scriptCtxPtr, struct Script *script) {
   scriptCtxPtr->currentScript.start = script->start;
   scriptCtxPtr->currentScript.unk4 = script->unk4;
   scriptCtxPtr->currentScript.unk8 = script->unk8;
@@ -578,7 +578,7 @@ static void sub_8053284 (struct ScriptCtx *script) {
     script->unk8 = gE0E754[script->unk8];
 }
 
-static void sub_80532A8 (struct ScriptCtx* unused) {
+void sub_80532A8 (struct ScriptCtx* unused) {
   LZ77UnCompWram(g82AD2D0, gVramBuffer + 0xD800);
   CpuCopy16(g82AD48C, gVramBuffer + 0xE800, 0x500);
   SetVBlankCallback(sub_804ECA8);
