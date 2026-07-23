@@ -54,6 +54,7 @@
 #include "aroma_jar.h"
 #include "amazoness_heirloom.h"
 #include "amazoness_queen.h"
+#include "harpie_conductor.h"
 #include "amazoness_empress.h"
 #include "ancient_gear_golem.h"
 #include "amazoness_sage.h"
@@ -328,6 +329,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (AmazonessQueen_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
+    } else if (HarpieConductor_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (ArcanaForce0TheFool_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_PLAYER;
     } else if (ElShaddollApkallone_PreventsBattleDestroy(zone)) {
@@ -378,6 +381,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     } else if (SerpentSuppression_PreventsBattleDestruction(zone, attacker)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (AmazonessQueen_PreventsBattleDestroy(zone)) {
+      sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
+    } else if (HarpieConductor_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;
     } else if (ArcanaForce0TheFool_PreventsBattleDestroy(zone)) {
       sActionData.flags &= (u8)~FLAG_GRAVEYARD_OPPONENT;

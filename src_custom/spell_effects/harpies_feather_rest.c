@@ -1,9 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
-#include "effect_events.h"
 #include "constants/music_ids.h"
+#include "deck_menu.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
 
@@ -13,7 +14,10 @@ void UpdateDuelGfxExceptField(void);
 
 static const char sHarpieName[] APPEND_RODATA = "Harpie";
 
-/* OPT via EffectOpt_* — cleared on turn boundary (EffectEvent_OnTurnBoundary). */
+static const u8 sFeatherRestPickLabels[] APPEND_RODATA = {
+  DECK_MENU_PICK_LABEL_DETAILS,
+  DECK_MENU_PICK_LABEL_SELECT_CARD,
+};
 
 static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
 {
@@ -23,10 +27,15 @@ static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
   return DUEL_OPPONENT;
 }
 
+/* Printed: "Harpie Lady" and/or "Harpie Lady Sisters" (incl. name-as). */
 static u8 IsHarpieLadyOrSisters(u16 cardId)
 {
   return cardId == HARPIE_LADY || cardId == HARPIE_LADY_1 || cardId == HARPIE_LADY_2
-      || cardId == HARPIE_LADY_3 || cardId == HARPIE_LADY_SISTERS;
+      || cardId == HARPIE_LADY_3 || cardId == HARPIE_LADY_SISTERS || cardId == CYBER_HARPIE
+      || cardId == CYBER_SLASH_HARPIE_LADY || cardId == CYBER_SLASH_HARPY_LADY
+      || cardId == HARPIE_PERFUMER || cardId == HARPIE_QUEEN || cardId == HARPIE_DANCER
+      || cardId == HARPIE_ORACLE || cardId == HARPIE_CONDUCTOR || cardId == HARPIE_CHANNELER
+      || cardId == HARPIE_HARPIST;
 }
 
 static u8 IsHarpieMonster(u16 cardId)
@@ -55,7 +64,6 @@ static u8 CountHarpieLadyOrSistersInGy(u8 fixedDuelist)
   return count;
 }
 
-/* Attack-position summons keep isFaceUp=0 until end-of-turn flip. */
 static u8 MonsterIsFaceUp(struct DuelCard *zone)
 {
   if (zone == NULL || zone->id == CARD_NONE)
@@ -125,8 +133,80 @@ static void ReturnCardToDeck(u8 turnDuelist, u16 cardId)
   gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = cardId;
 }
 
-/* Collect most-recent matching GY indices (high→low). */
-static u8 CollectRecentHarpieLadyGyIndices(u8 fixedDuelist, u8 *outIndices)
+static u8 IndexExcluded(const u8 *excluded, u8 excludedCount, u8 gyIndex)
+{
+  u8 i;
+
+  for (i = 0; i < excludedCount; i++) {
+    if (excluded[i] == gyIndex)
+      return TRUE;
+  }
+  return FALSE;
+}
+
+static u8 LoadFeatherRestGyMenu(u8 fixedDuelist, const u8 *excluded, u8 excludedCount,
+                                u8 *gyIndexMap)
+{
+  u8 gyCount = GraveyardExpand_GetCount(fixedDuelist);
+  u8 menuCount = 0;
+  u8 i;
+
+  for (i = 0; i < gyCount && menuCount < ARRAY_COUNT(gDeckMenu.cards); i++) {
+    u16 id = GraveyardExpand_GetCardAt(fixedDuelist, i);
+
+    if (!IsHarpieLadyOrSisters(id))
+      continue;
+    if (IndexExcluded(excluded, excludedCount, i))
+      continue;
+
+    gDeckMenu.cards[menuCount] = id;
+    gyIndexMap[menuCount] = i;
+    menuCount++;
+  }
+
+  gDeckMenu.cost = 0;
+  gDeckMenu.currentPos = 0;
+  gDeckMenu.sortMode = 0;
+  gDeckMenu.displayMode = 1;
+  gDeckMenu.cardCount = menuCount;
+  return menuCount;
+}
+
+static s8 PlayerPickFeatherRestGyIndex(u8 fixedDuelist, const u8 *excluded, u8 excludedCount)
+{
+  u8 savedDeckMenu[sizeof(gDeckMenu)];
+  u8 gyIndexMap[EXPANDED_GRAVEYARD_CAPACITY];
+  u8 menuCount;
+  s8 chosen;
+
+  DECKMENU_SAVE();
+  menuCount = LoadFeatherRestGyMenu(fixedDuelist, excluded, excludedCount, gyIndexMap);
+  if (menuCount == 0) {
+    DECKMENU_RESTORE();
+    return -1;
+  }
+
+  if (menuCount == 1) {
+    chosen = (s8)gyIndexMap[0];
+    DECKMENU_RESTORE();
+    return chosen;
+  }
+
+  DeckMenu_BeginDuelTrunkView();
+  if (!DeckMenuMainPickConfirmWithLabels(sFeatherRestPickLabels,
+                                         ARRAY_COUNT(sFeatherRestPickLabels))) {
+    DECKMENU_RESTORE();
+    DeckMenu_EndDuelTrunkView();
+    return -1;
+  }
+
+  chosen = (s8)gyIndexMap[gDeckMenu.currentPos];
+  DECKMENU_RESTORE();
+  DeckMenu_EndDuelTrunkView();
+  return chosen;
+}
+
+static u8 CollectAiGyIndices(u8 fixedDuelist, u8 *outIndices)
 {
   u8 gyCount = GraveyardExpand_GetCount(fixedDuelist);
   u8 found = 0;
@@ -135,26 +215,34 @@ static u8 CollectRecentHarpieLadyGyIndices(u8 fixedDuelist, u8 *outIndices)
   for (i = (s8)gyCount - 1; i >= 0 && found < HARPIES_FEATHER_REST_RETURN_COUNT; i--) {
     if (!IsHarpieLadyOrSisters(GraveyardExpand_GetCardAt(fixedDuelist, (u8)i)))
       continue;
-
     outIndices[found++] = (u8)i;
   }
 
   return found;
 }
 
-static void ShuffleHarpieLadyFromGraveToDeck(u8 turnDuelist)
+static void ShuffleSelectedHarpieLadyFromGraveToDeck(u8 turnDuelist, const u8 *indices, u8 count)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
-  u8 indices[HARPIES_FEATHER_REST_RETURN_COUNT];
-  u8 found;
+  u8 sorted[HARPIES_FEATHER_REST_RETURN_COUNT];
   u8 i;
+  u8 j;
 
-  found = CollectRecentHarpieLadyGyIndices(fixedDuelist, indices);
-  if (found < HARPIES_FEATHER_REST_RETURN_COUNT)
-    return;
+  /* Remove high→low so indices stay valid. */
+  for (i = 0; i < count; i++)
+    sorted[i] = indices[i];
+  for (i = 0; i < count; i++) {
+    for (j = i + 1; j < count; j++) {
+      if (sorted[j] > sorted[i]) {
+        u8 tmp = sorted[i];
+        sorted[i] = sorted[j];
+        sorted[j] = tmp;
+      }
+    }
+  }
 
-  for (i = 0; i < HARPIES_FEATHER_REST_RETURN_COUNT; i++) {
-    u16 cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, indices[i]);
+  for (i = 0; i < count; i++) {
+    u16 cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, sorted[i]);
 
     ReturnCardToDeck(turnDuelist, cardId);
   }
@@ -167,22 +255,41 @@ static void ShuffleHarpieLadyFromGraveToDeck(u8 turnDuelist)
 static void HARPIES_FEATHER_REST_ResolveBody(void)
 {
   struct DuelCard *spellZone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+  u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
+  u8 indices[HARPIES_FEATHER_REST_RETURN_COUNT];
+  u8 excluded[HARPIES_FEATHER_REST_RETURN_COUNT];
+  u8 found = 0;
   u8 drawCount;
   u8 hadLevel5Harpie;
+  u8 i;
 
   if (!CanActivateHarpiesFeatherRest())
     return;
 
-  /* Condition checked at activation (before shuffle). */
   hadLevel5Harpie = ControlsLevel5OrHigherHarpie();
   drawCount = hadLevel5Harpie ? 2 : 1;
 
   Duel_ShowEffectText(HARPIES_FEATHER_REST);
-
   if (IsDuelOver() == TRUE)
     return;
 
-  ShuffleHarpieLadyFromGraveToDeck(ACTIVE_DUELIST);
+  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText) {
+    for (i = 0; i < HARPIES_FEATHER_REST_RETURN_COUNT; i++) {
+      s8 pick = PlayerPickFeatherRestGyIndex(fixedDuelist, excluded, found);
+
+      if (pick < 0)
+        return;
+      indices[found] = (u8)pick;
+      excluded[found] = (u8)pick;
+      found++;
+    }
+  } else {
+    found = CollectAiGyIndices(fixedDuelist, indices);
+    if (found < HARPIES_FEATHER_REST_RETURN_COUNT)
+      return;
+  }
+
+  ShuffleSelectedHarpieLadyFromGraveToDeck(ACTIVE_DUELIST, indices, found);
 
   if (Duel_DrawCards(ACTIVE_DUELIST, drawCount, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
@@ -207,24 +314,3 @@ APPEND_TEXT void EffectHARPIES_FEATHER_REST(void)
       == DUEL_ACTION_BLOCKED)
     return;
 }
-
-#if defined(DUEL_HELPERS_SELF_CHECK)
-void HARPIES_FEATHER_REST_SelfCheck(void)
-{
-  if (!IsHarpieLadyOrSisters(HARPIE_LADY))
-    while (1)
-      ;
-  if (!IsHarpieLadyOrSisters(HARPIE_LADY_SISTERS))
-    while (1)
-      ;
-  if (IsHarpieLadyOrSisters(CYBER_SLASH_HARPIE_LADY))
-    while (1)
-      ;
-  if (!IsHarpieMonster(HARPIE_LADY_SISTERS))
-    while (1)
-      ;
-  if (HarpiesFeatherRest_CanSpecialSummonCard(CARD_NONE))
-    while (1)
-      ;
-}
-#endif

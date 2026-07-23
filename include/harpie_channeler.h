@@ -4,5 +4,6 @@
 #include "global.h"
 
 u8 HarpieChanneler_TreatsNameAsHarpieLady(const struct DuelCard *zone);
+void HarpieChanneler_ApplyLevelToCardInfo(const struct DuelCard *zone);
 
 #endif /* GUARD_HARPIE_CHANNELER_H */

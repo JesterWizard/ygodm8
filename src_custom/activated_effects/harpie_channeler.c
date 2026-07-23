@@ -71,56 +71,59 @@ static u16 FindOtherHarpieMonsterInDeck(void)
   return CARD_NONE;
 }
 
-static u8 IsDragonMonster(u16 cardId)
+u8 HarpieChanneler_TreatsNameAsHarpieLady(const struct DuelCard *zone)
 {
-  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+  /* Printed: name becomes Harpie Lady while on the field or in the GY. */
+  return zone != NULL && zone->id == HARPIE_CHANNELER;
+}
+
+/* Attack-position summons often keep isFaceUp=0 until EOT flip. */
+static u8 MonsterCountsAsFaceUp(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
     return FALSE;
 
-  SetCardInfo(cardId);
-  return gCardInfo.type == TYPE_DRAGON;
+  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  if (IsCardFaceUp(zone))
+    return TRUE;
+
+  return zone->isDefending == FALSE;
 }
 
-static u8 RowHasLevel7HarpieAndDragon(u8 fixedMonsterRow)
-{
-  u8 hasLevel7Harpie = FALSE;
-  u8 hasDragon = FALSE;
-  u8 col;
-
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gFixedZones[fixedMonsterRow][col];
-
-    if (zone == NULL || zone->id == CARD_NONE)
-      continue;
-    if (!IsCardFaceUp(zone))
-      continue;
-    if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
-      continue;
-
-    if (IsDragonMonster(zone->id))
-      hasDragon = TRUE;
-
-    if (IsHarpieMonster(zone->id)) {
-      SetCardInfo(zone->id);
-      if (gCardInfo.level >= 7)
-        hasLevel7Harpie = TRUE;
-    }
-  }
-
-  return hasLevel7Harpie && hasDragon;
-}
-
-u8 HarpieChanneler_TreatsNameAsHarpieLady(const struct DuelCard *zone)
+static u8 ControllerHasFaceUpDragon(const struct DuelCard *channeler)
 {
   u8 fixedRow;
   u8 col;
+  u8 selfCol;
 
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)channeler, &fixedRow, &selfCol))
+    return FALSE;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+    if (!MonsterCountsAsFaceUp(zone) || zone == channeler)
+      continue;
+
+    SetCardInfo(zone->id);
+    if (gCardInfo.type == TYPE_DRAGON)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+void HarpieChanneler_ApplyLevelToCardInfo(const struct DuelCard *zone)
+{
   if (zone == NULL || zone->id != HARPIE_CHANNELER)
-    return FALSE;
+    return;
 
-  if (!Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &col))
-    return FALSE;
+  if (!ControllerHasFaceUpDragon(zone))
+    return;
 
-  return RowHasLevel7HarpieAndDragon(fixedRow);
+  gCardInfo.level = 7;
 }
 
 unsigned char CanActivateHARPIE_CHANNELER(void)
@@ -130,12 +133,12 @@ unsigned char CanActivateHARPIE_CHANNELER(void)
   if (gMonEffect.id != HARPIE_CHANNELER)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   if (zone == NULL || zone->id != HARPIE_CHANNELER)
     return FALSE;
 
-  /* Level 7 Harpie + Dragon name via HarpieChanneler_TreatsNameAsHarpieLady +
-   * Duel_ZoneEffectCardId; OPT discard + SS below. */
+  /* OPT: discard 1 Harpie; SS 1 other Harpie from Deck in face-up DEF.
+   * Level→7 while controlling a Dragon is continuous (not this ignition). */
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
@@ -153,7 +156,7 @@ unsigned char CanActivateHARPIE_CHANNELER(void)
 
 void ActivateHARPIE_CHANNELEREffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  struct DuelCard *self = gFixedZones[gMonEffect.row][gMonEffect.zone];
   struct DuelSummonOpts opts;
   u16 cardId;
 

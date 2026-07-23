@@ -4,28 +4,23 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "effect_events.h"
 #include "expanded_graveyard.h"
 #include "harpies_feather_storm.h"
+#include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
 
 static const char sHarpieName[] APPEND_RODATA = "Harpie";
+static u8 sFeatherStormInit APPEND_DATA = {0};
 
-static u8 FixedDuelistForTurnDuelist(u8 turnDuelist)
+static u8 ControllerHasWindWingedBeast(u8 turnDuelist)
 {
-  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
-}
-
-static u8 ControlsWindWingedBeast(void)
-{
-  u8 row = WhoseTurn() == DUEL_PLAYER ? OPPONENT_MONSTER_ROW : PLAYER_MONSTER_ROW;
+  u8 row = Duel_TurnMonsterRowForDuelist(turnDuelist);
   u8 col;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gFixedZones[row][col];
+    struct DuelCard *zone = gTurnZones[row][col];
 
     if (zone == NULL || zone->id == CARD_NONE)
       continue;
@@ -39,13 +34,13 @@ static u8 ControlsWindWingedBeast(void)
   return FALSE;
 }
 
-static u8 ControlsHarpie(void)
+static u8 ControllerHasHarpie(u8 turnDuelist)
 {
-  u8 row = WhoseTurn() == DUEL_PLAYER ? OPPONENT_MONSTER_ROW : PLAYER_MONSTER_ROW;
+  u8 row = Duel_TurnMonsterRowForDuelist(turnDuelist);
   u8 col;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    struct DuelCard *zone = gFixedZones[row][col];
+    struct DuelCard *zone = gTurnZones[row][col];
 
     if (zone != NULL && Duel_CardNameContains(zone->id, sHarpieName))
       return TRUE;
@@ -54,9 +49,11 @@ static u8 ControlsHarpie(void)
   return FALSE;
 }
 
-static void TryAddFeatherDuster(void)
+static void TryAddFeatherDuster(u8 turnDuelist)
 {
-  u8 fixedDuelist = FixedDuelistForTurnDuelist(INACTIVE_DUELIST);
+  u8 fixedDuelist = gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER]
+                        ? DUEL_PLAYER
+                        : DUEL_OPPONENT;
   u8 deckSize = NumCardsInDeck(fixedDuelist);
   u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
   u8 i;
@@ -64,7 +61,7 @@ static void TryAddFeatherDuster(void)
   u16 cardId = CARD_NONE;
   u8 deckIndex = 0;
 
-  empty = FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]);
+  empty = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
   if (empty < 0)
     return;
 
@@ -80,11 +77,11 @@ static void TryAddFeatherDuster(void)
     for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
       if (GraveyardExpand_GetCardAt(fixedDuelist, i) == HARPIES_FEATHER_DUSTER) {
         if (GraveyardExpand_RemoveAtFixed(fixedDuelist, i) == HARPIES_FEATHER_DUSTER) {
-          gTurnHands[INACTIVE_DUELIST][empty]->id = HARPIES_FEATHER_DUSTER;
-          gTurnHands[INACTIVE_DUELIST][empty]->isFaceUp = FALSE;
-          gTurnHands[INACTIVE_DUELIST][empty]->isLocked = FALSE;
-          ResetPermStage(gTurnHands[INACTIVE_DUELIST][empty]);
-          ResetTempStage(gTurnHands[INACTIVE_DUELIST][empty]);
+          gTurnHands[turnDuelist][empty]->id = HARPIES_FEATHER_DUSTER;
+          gTurnHands[turnDuelist][empty]->isFaceUp = FALSE;
+          gTurnHands[turnDuelist][empty]->isLocked = FALSE;
+          ResetPermStage(gTurnHands[turnDuelist][empty]);
+          ResetTempStage(gTurnHands[turnDuelist][empty]);
         }
         return;
       }
@@ -92,12 +89,63 @@ static void TryAddFeatherDuster(void)
   }
 
   if (cardId != CARD_NONE
-      && Duel_RemoveDeckCardAt(INACTIVE_DUELIST, deckIndex, FALSE) == DUEL_ACTION_OK) {
-    gTurnHands[INACTIVE_DUELIST][empty]->id = cardId;
-    gTurnHands[INACTIVE_DUELIST][empty]->isFaceUp = FALSE;
-    gTurnHands[INACTIVE_DUELIST][empty]->isLocked = FALSE;
-    ResetPermStage(gTurnHands[INACTIVE_DUELIST][empty]);
-    ResetTempStage(gTurnHands[INACTIVE_DUELIST][empty]);
+      && Duel_RemoveDeckCardAt(turnDuelist, deckIndex, FALSE) == DUEL_ACTION_OK) {
+    gTurnHands[turnDuelist][empty]->id = cardId;
+    gTurnHands[turnDuelist][empty]->isFaceUp = FALSE;
+    gTurnHands[turnDuelist][empty]->isLocked = FALSE;
+    ResetPermStage(gTurnHands[turnDuelist][empty]);
+    ResetTempStage(gTurnHands[turnDuelist][empty]);
+  }
+}
+
+static u8 DestroyedByOpponentCardEffect(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->controller > DUEL_OPPONENT)
+    return FALSE;
+  if (ev->fixedRow != OPPONENT_BACKROW && ev->fixedRow != PLAYER_BACKROW)
+    return FALSE;
+  if (!Duel_IsSpellEffectResolving() && !Duel_IsMonsterEffectResolving())
+    return FALSE;
+  return WhoseTurn() != ev->controller;
+}
+
+static void OnFeatherStormDestroyed(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->cardId != HARPIES_FEATHER_STORM || gHideEffectText)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+  if (!DestroyedByOpponentCardEffect(ev))
+    return;
+  if (EffectOpt_IsUsed(HARPIES_FEATHER_STORM))
+    return;
+
+  {
+    u8 turnDuelist = gTurnDuelistBattleState[ACTIVE_DUELIST]
+                             == &gDuel.duelistbattleState[ev->controller]
+                         ? ACTIVE_DUELIST
+                         : INACTIVE_DUELIST;
+
+    if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+      return;
+
+    Duel_ShowEffectTextTyped(HARPIES_FEATHER_STORM, 3);
+    TryAddFeatherDuster(turnDuelist);
+    EffectOpt_MarkUsed(HARPIES_FEATHER_STORM);
+    UpdateDuelGfxExceptField();
+  }
+}
+
+static void ResolveFeatherStormActivate(struct DuelCard *trapZone, u8 trapTurnDuelist)
+{
+  if (trapZone == NULL)
+    return;
+
+  if (ControllerHasWindWingedBeast(trapTurnDuelist)) {
+    Duel_ActivateContinuousZone(trapZone);
+    trapZone->unk4 = 1; /* monster-effect lock until turn boundary */
+  } else {
+    Duel_DestroyZone(trapZone, trapTurnDuelist, FALSE);
   }
 }
 
@@ -134,25 +182,68 @@ void HarpiesFeatherStorm_ClearAtTurnBoundary(void)
   }
 }
 
+u8 CanActivateHarpiesFeatherStormFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
+    return FALSE;
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != HARPIES_FEATHER_STORM)
+    return FALSE;
+  if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_BACKROW]) < 0)
+    return FALSE;
+
+  return ControllerHasHarpie(ACTIVE_DUELIST);
+}
+
+u8 TryActivateHarpiesFeatherStormFromHand(u8 handZone)
+{
+  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
+  struct DuelCard *handSlot;
+  s8 backCol;
+  struct DuelCard *trapZone;
+
+  if (!CanActivateHarpiesFeatherStormFromHand(handZone))
+    return FALSE;
+
+  backCol = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_BACKROW]);
+  if (backCol < 0)
+    return FALSE;
+
+  handSlot = SixCardHand_ZoneAtHandRow(handRow, handZone);
+  trapZone = gTurnZones[ACTIVE_DUELIST_BACKROW][backCol];
+
+  Duel_ShowEffectTextTyped(HARPIES_FEATHER_STORM, 2);
+  if (IsDuelOver() == TRUE)
+    return TRUE;
+
+  CopyCard(trapZone, handSlot);
+  trapZone->isFaceUp = TRUE;
+  trapZone->isLocked = FALSE;
+  trapZone->unk4 = 0;
+  ClearZone(handSlot);
+
+  ResolveFeatherStormActivate(trapZone, ACTIVE_DUELIST);
+  UpdateDuelGfxExceptField();
+  return TRUE;
+}
+
+void HarpiesFeatherStorm_EnsureInit(void)
+{
+  if (sFeatherStormInit)
+    return;
+
+  sFeatherStormInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnFeatherStormDestroyed);
+}
+
 APPEND_TEXT void EffectHARPIES_FEATHER_STORM(void)
 {
+  struct DuelCard *trapZone =
+      gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
+
+  HarpiesFeatherStorm_EnsureInit();
   Duel_ShowTrapResponseText(HARPIES_FEATHER_STORM, gTrapEffectData.originCardId);
-
-  if (ControlsWindWingedBeast()) {
-    struct DuelCard *trapZone =
-        gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
-
-    if (trapZone != NULL) {
-      Duel_ActivateContinuousZone(trapZone);
-      trapZone->unk4 = 1; /* monster-effect lock until turn boundary */
-    }
-  } else {
-    Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
-                     INACTIVE_DUELIST, FALSE);
-  }
-
-  if (ControlsHarpie())
-    TryAddFeatherDuster();
-
+  ResolveFeatherStormActivate(trapZone, INACTIVE_DUELIST);
   UpdateDuelGfxExceptField();
 }

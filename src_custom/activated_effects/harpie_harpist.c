@@ -2,31 +2,16 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "dynamic_equip.h"
 #include "effect_events.h"
-#include "monster_effect_usage.h"
+#include "expanded_graveyard.h"
+#include "harpie_harpist.h"
 
 void UpdateDuelGfxExceptField(void);
-void CheckWinConditionExodia(unsigned char);
-void TryActivatingPermanentEffects(void);
 
-static const char sHarpieName[] APPEND_RODATA = "Harpie";
-
-static u8 FixedDuelistForActive(void)
-{
-  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
-}
-
-static u8 IsHarpieMonster(u16 cardId)
-{
-  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
-    return FALSE;
-
-  return Duel_CardNameContains(cardId, sHarpieName);
-}
+static u8 sHarpieHarpistInit APPEND_DATA = {0};
+static u8 sHarpistSentToGyMask APPEND_DATA = {0};
+/* ponytail: EffectOpt is one flag per cardId — EP search uses a separate turn OPT. */
+static u8 sHarpistEpSearchOptUsedMask APPEND_DATA = {0};
 
 static u8 IsWingedBeastMonster(u16 cardId)
 {
@@ -60,11 +45,6 @@ static struct DuelCard *FindOwnOtherWingedBeastFor(u8 turnDuelist, struct DuelCa
   return NULL;
 }
 
-static struct DuelCard *FindOwnOtherWingedBeast(struct DuelCard *self)
-{
-  return FindOwnOtherWingedBeastFor(ACTIVE_DUELIST, self);
-}
-
 static struct DuelCard *FindOppFaceUpMonsterFor(u8 turnDuelist)
 {
   u8 col;
@@ -87,11 +67,6 @@ static struct DuelCard *FindOppFaceUpMonsterFor(u8 turnDuelist)
   return NULL;
 }
 
-static struct DuelCard *FindOppFaceUpMonster(void)
-{
-  return FindOppFaceUpMonsterFor(ACTIVE_DUELIST);
-}
-
 static u8 CanBounceBothFor(u8 turnDuelist, struct DuelCard *self)
 {
   u8 oppTurn = turnDuelist == ACTIVE_DUELIST ? INACTIVE_DUELIST : ACTIVE_DUELIST;
@@ -108,14 +83,8 @@ static u8 CanBounceBothFor(u8 turnDuelist, struct DuelCard *self)
   return FirstEmptyZoneInRow(gTurnHands[oppTurn]) >= 0;
 }
 
-static u8 CanBounceBoth(struct DuelCard *self)
+static u16 FindLv4WingedBeastInDeck(u8 fixedDuelist)
 {
-  return CanBounceBothFor(ACTIVE_DUELIST, self);
-}
-
-static u16 FindHarpieInDeck(void)
-{
-  u8 fixedDuelist = FixedDuelistForActive();
   u8 deckSize = NumCardsInDeck(fixedDuelist);
   u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
   u8 i;
@@ -123,19 +92,35 @@ static u16 FindHarpieInDeck(void)
   for (i = top; i < deckSize; i++) {
     u16 cardId = gDuelDecks[fixedDuelist].cards[i];
 
-    if (IsHarpieMonster(cardId) && cardId != HARPIE_HARPIST)
-      return cardId;
+    if (!IsWingedBeastMonster(cardId))
+      continue;
+
+    SetCardInfo(cardId);
+    if (gCardInfo.level != 4 || gCardInfo.atk > 1500)
+      continue;
+
+    return cardId;
   }
 
   return CARD_NONE;
 }
 
-static u8 CanSearchHarpie(void)
+static u8 GyContainsHarpist(u8 fixedDuelist)
 {
-  if (FirstEmptyZoneInRow(gTurnHands[ACTIVE_DUELIST]) < 0)
+  u8 i;
+
+  if (fixedDuelist > DUEL_OPPONENT)
     return FALSE;
 
-  return FindHarpieInDeck() != CARD_NONE;
+  if (!GraveyardExpand_IsEnabled())
+    return gDuel.duelistbattleState[fixedDuelist].graveyard == HARPIE_HARPIST;
+
+  for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
+    if (GraveyardExpand_GetCardAt(fixedDuelist, i) == HARPIE_HARPIST)
+      return TRUE;
+  }
+
+  return FALSE;
 }
 
 static u8 DoBounceBothFor(u8 turnDuelist, struct DuelCard *self)
@@ -155,6 +140,67 @@ static u8 DoBounceBothFor(u8 turnDuelist, struct DuelCard *self)
   return TRUE;
 }
 
+static void OnHarpistSentToGy(const struct EffectEvent *ev)
+{
+  if (ev == NULL || ev->cardId != HARPIE_HARPIST)
+    return;
+  if (ev->controller > DUEL_OPPONENT)
+    return;
+
+  sHarpistSentToGyMask |= 1 << ev->controller;
+}
+
+void HarpieHarpist_EnsureInit(void)
+{
+  if (sHarpieHarpistInit)
+    return;
+
+  sHarpieHarpistInit = TRUE;
+  EffectEvent_Subscribe(EFFECT_EVENT_ON_DESTROY, OnHarpistSentToGy);
+}
+
+void HarpieHarpist_OnTurnBoundary(void)
+{
+  sHarpistEpSearchOptUsedMask = 0;
+}
+
+void TryApplyHarpieHarpistEndPhase(void)
+{
+  u8 fixedDuelist;
+
+  for (fixedDuelist = DUEL_PLAYER; fixedDuelist <= DUEL_OPPONENT; fixedDuelist++) {
+    u8 bit = 1 << fixedDuelist;
+    u8 turnDuelist;
+    u16 searchId;
+
+    if (!(sHarpistSentToGyMask & bit))
+      continue;
+
+    sHarpistSentToGyMask &= (u8)~bit;
+
+    if (sHarpistEpSearchOptUsedMask & bit)
+      continue;
+
+    if (!GyContainsHarpist(fixedDuelist))
+      continue;
+
+    turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+    if (FirstEmptyZoneInRow(gTurnHands[turnDuelist]) < 0)
+      continue;
+
+    searchId = FindLv4WingedBeastInDeck(fixedDuelist);
+    if (searchId == CARD_NONE)
+      continue;
+
+    Duel_ShowEffectTextTyped(HARPIE_HARPIST, 4);
+    if (Duel_AddDeckCardToHand(turnDuelist, searchId, FALSE) != DUEL_ACTION_OK)
+      continue;
+
+    sHarpistEpSearchOptUsedMask |= bit;
+    UpdateDuelGfxExceptField();
+  }
+}
+
 void TryHarpieHarpistOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode mode)
 {
   u8 fixedDuelist;
@@ -166,15 +212,19 @@ void TryHarpieHarpistOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode m
   if (EffectOpt_IsUsed(HARPIE_HARPIST))
     return;
 
-  fixedDuelist = GetDuelistForZone(zone);
-  if (fixedDuelist > DUEL_OPPONENT)
-    return;
+  {
+    u8 fixedRow;
+    u8 col;
 
+    if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+      return;
+    fixedDuelist = Duel_FixedDuelistForMonsterRow(fixedRow);
+  }
   turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
   if (!CanBounceBothFor(turnDuelist, zone))
     return;
 
-  Duel_ShowEffectTextTyped(HARPIE_HARPIST, 8);
+  Duel_ShowEffectTextTyped(HARPIE_HARPIST, 3);
 
   if (!DoBounceBothFor(turnDuelist, zone))
     return;
@@ -185,62 +235,11 @@ void TryHarpieHarpistOnNormalSummon(struct DuelCard *zone, enum DuelSummonMode m
 
 unsigned char CanActivateHARPIE_HARPIST(void)
 {
-  struct DuelCard *zone;
-
-  if (gMonEffect.id != HARPIE_HARPIST)
-    return FALSE;
-
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != HARPIE_HARPIST)
-    return FALSE;
-
-  /* Printed remainder omitted by this ruleset. */
-  if (EffectOpt_IsUsed(HARPIE_HARPIST))
-    return FALSE;
-
-  if (!CanUseMonsterEffect(zone))
-    return FALSE;
-
-  if (CanBounceBoth(zone))
-    return TRUE;
-
-  /* Search is printed EP-from-GY, not field ignition — keep as thin stand-in. */
-  return CanSearchHarpie();
+  /* NS bounce via TryHarpieHarpistOnNormalSummon; EP search via TryApplyHarpieHarpistEndPhase. */
+  return FALSE;
 }
 
 void ActivateHARPIE_HARPISTEffect(void)
 {
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u16 searchId;
-
-  Duel_ShowEffectTextTyped(HARPIE_HARPIST, 2);
-
-  if (self == NULL || IsDuelOver() == TRUE)
-    return;
-
-  if (CanBounceBoth(self)) {
-    if (!DoBounceBothFor(ACTIVE_DUELIST, self))
-      return;
-
-    EffectOpt_MarkUsed(HARPIE_HARPIST);
-    MarkMonsterEffectUsed(self);
-    UpdateDuelGfxExceptField();
-    CheckWinConditionExodia(WhoseTurn());
-    if (IsDuelOver() != TRUE)
-      TryActivatingPermanentEffects();
-    return;
-  }
-
-  searchId = FindHarpieInDeck();
-  if (searchId == CARD_NONE)
-    return;
-
-  if (Duel_AddDeckCardToHand(ACTIVE_DUELIST, searchId, TRUE) != DUEL_ACTION_OK)
-    return;
-
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
+  /* Field ignition removed — effects fire from on-summon / EP hooks. */
 }

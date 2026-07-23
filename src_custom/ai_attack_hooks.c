@@ -41,6 +41,7 @@
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
+#include "harpie_lady_phoenix_formation.h"
 #include "duel_attack_restrictions.h"
 #include "level_limit_area_b.h"
 #include "level_limit_area_a.h"
@@ -201,6 +202,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
     return;
 
   if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
+      || HarpieLadyPhoenixFormation_CannotConductBattlePhase()
       || !Duel_CanMonsterDeclareAttack(attacker)
       || Duel_ForcedAttackBlocksDirect(
           WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER))
@@ -296,6 +298,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   u8 opponentCol;
 
   if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
+      || HarpieLadyPhoenixFormation_CannotConductBattlePhase()
       || !Duel_CanMonsterDeclareAttack(attacker)
       || !Duel_CanAttackMonsterZone(defender)
       || !Duel_MonsterMayBeAttacked(defender)

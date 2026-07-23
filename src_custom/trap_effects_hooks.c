@@ -19,6 +19,7 @@
 #include "triangle_ecstasy_spark.h"
 #include "ancient_gear_cannon.h"
 #include "mirage_dragon.h"
+#include "cyber_slash_harpie_lady.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -332,4 +333,5 @@ void ActivateTrapEffect__Replacement(u16 lp)
   }
 
   ActivateTrapEffectVanillaBody(lp);
+  TryResolvePendingCyberSlashBounce();
 }

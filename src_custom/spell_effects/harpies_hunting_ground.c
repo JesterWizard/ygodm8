@@ -15,9 +15,13 @@ static u8 sHarpiesHuntingGroundSummonController APPEND_DATA = {0xFF};
 
 static u8 IsHarpieLadyOrSisters(u16 cardId)
 {
+  /* Name=Harpie Lady while on field/GY (Perfumer / Queen / …). */
   return cardId == HARPIE_LADY || cardId == HARPIE_LADY_1 || cardId == HARPIE_LADY_2
       || cardId == HARPIE_LADY_3 || cardId == HARPIE_LADY_SISTERS
-      || cardId == CYBER_SLASH_HARPIE_LADY;
+      || cardId == CYBER_SLASH_HARPIE_LADY || cardId == CYBER_SLASH_HARPY_LADY
+      || cardId == HARPIE_PERFUMER || cardId == HARPIE_QUEEN || cardId == HARPIE_DANCER
+      || cardId == HARPIE_ORACLE || cardId == HARPIE_CONDUCTOR || cardId == HARPIE_CHANNELER
+      || cardId == HARPIE_HARPIST;
 }
 
 static u8 IsVanillaTerrainFieldSpell(u16 cardId)

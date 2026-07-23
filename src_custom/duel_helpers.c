@@ -42,6 +42,7 @@
 #include "royal_decree.h"
 #include "kishido_spirit.h"
 #include "lady_of_d.h"
+#include "harpies_pet_phantasmal_dragon.h"
 #include "light_of_destruction.h"
 #include "light_spiral.h"
 #include "ryu_kishin_clown.h"
@@ -96,6 +97,7 @@
 #include "spell_counter_on_resolve.h"
 #include "amazoness_scouts.h"
 #include "amazoness_augusta.h"
+#include "harpie_conductor.h"
 #include "blue_eyes_alternative_ultimate_dragon.h"
 #include "aromalilith_magnolia.h"
 #include "neos_wiseman.h"
@@ -132,6 +134,7 @@
 #include "dark_magician_the_dragon_knight.h"
 #include "divine_serpent_geh.h"
 #include "gladiator_beast_battled.h"
+#include "harpie_conductor.h"
 #include "harpie_lady_elegance_lock.h"
 #include "victoria.h"
 
@@ -798,7 +801,8 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
       || BlueEyesJetDragon_PreventsDestroy(zone)
       || BlueEyesSolidDragon_PreventsDestroy(zone)
       || BlueEyesAlternativeUltimateDragon_PreventsDestroy(zone)
-      || AmazonessAugusta_PreventsDestroy(zone))
+      || AmazonessAugusta_PreventsDestroy(zone)
+      || HarpieConductor_TryProtectHarpie(zone))
     return DUEL_ACTION_BLOCKED;
 
   cardId = zone->id;
@@ -1484,8 +1488,8 @@ u16 Duel_ZoneEffectCardId(struct DuelCard *zone)
   if (AmazonessBabyTiger_TreatsNameAsTiger(zone))
     return AMAZONESS_TIGER;
 
-  if (HarpiePerfumer_TreatsNameAsHarpieLady(zone))
-    return HARPIE_LADY;
+  /* ponytail: Harpie name=HL must NOT remap Effect identity — Lady has no
+   * ignition. Use HarpiePerfumer_TreatsNameAsHarpieLady for name checks only. */
 
   if (AmazonessPrincess_TreatsNameAsQueen(zone))
     return AMAZONESS_QUEEN;
@@ -1844,6 +1848,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   HamonLordOfStrikingThunder_CanAttackMonsterZone,
   KnightOfPentacles_CanAttackMonsterZone,
   LadyOfD_CanAttackMonsterZone,
+  HarpiesPetPhantasmalDragon_CanAttackMonsterZone,
   AromaseraphySweetMarjoram_CanAttackMonsterZone,
   EvilHeroMaliciousFiend_CanAttackMonsterZone,
   Oshaleon_CanAttackMonsterZone,
@@ -3196,6 +3201,8 @@ enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u
   u8 fixedDuelist;
   u8 turnDuelist;
   s8 handZone;
+  u16 cardId;
+  u8 notifyConductor;
 
   if (zone == NULL || zone->id == CARD_NONE)
     return DUEL_ACTION_NO_TARGET;
@@ -3203,6 +3210,9 @@ enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u
   fixedDuelist = GetDuelistForZone(zone);
   if (fixedDuelist == 0xFF)
     return DUEL_ACTION_INVALID;
+
+  cardId = zone->id;
+  notifyConductor = GetTypeGroup(cardId) == TYPE_GROUP_MONSTER && IsCardFaceUp(zone);
 
   turnDuelist = FixedDuelistToTurnDuelist(fixedDuelist);
   handZone = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
@@ -3225,6 +3235,10 @@ enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u
   }
   ClearZone(zone);
   MaybeUpdateGfx(updateGfx);
+
+  if (notifyConductor && fixedDuelist <= DUEL_OPPONENT)
+    HarpieConductor_OnHarpieReturned(fixedDuelist, cardId);
+
   return DUEL_ACTION_OK;
 }
 
@@ -3338,7 +3352,8 @@ u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone)
       && !AmazonessScouts_IsTargetImmune(zone)
       && !AmazonessAugusta_IsTargetImmune(zone)
       && !BlueEyesAlternativeUltimateDragon_IsTargetImmune(zone)
-      && !DivineSerpentGeh_IsTargetImmune(zone);
+      && !DivineSerpentGeh_IsTargetImmune(zone)
+      && !HarpiesPetPhantasmalDragon_IsTargetImmune(zone);
 }
 
 u8 Duel_IsAnyTrapActivationBlocked(void)

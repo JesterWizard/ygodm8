@@ -56,6 +56,7 @@ void TryGladiatorBeastSagittariiOnMonsterPlacement(struct DuelCard *zone,
                                                    enum DuelSummonMode mode);
 void TryArcanaForceIiiTheEmpressOnOppNormalSummon(struct DuelCard *zone,
                                                   enum DuelSummonMode mode);
+void TryHarpieOracleOnMonsterPlacement(struct DuelCard *zone, enum DuelSummonMode mode);
 
 void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
 {
@@ -111,4 +112,5 @@ void TryOnSummonPlacementHooks(struct DuelCard *zone, enum DuelSummonMode mode)
   /* BATCH53 */
   TryGladiatorBeastSagittariiOnMonsterPlacement(zone, mode);
   TryArcanaForceIiiTheEmpressOnOppNormalSummon(zone, mode);
+  TryHarpieOracleOnMonsterPlacement(zone, mode);
 }

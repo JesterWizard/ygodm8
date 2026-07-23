@@ -50,6 +50,7 @@
 #include "black_winged_dragon.h"
 #include "elemental_hero_gaia.h"
 #include "harpie_lady_1.h"
+#include "harpie_channeler.h"
 #include "harpies_hunting_ground.h"
 #include "effect_events.h"
 #include "spell_effects.h"
@@ -501,7 +502,8 @@ int GetSpellType__Replacement(u16 cardId) {
       || cardId == LIGHTSWORN_SANCTUARY || cardId == MAUSOLEUM_OF_THE_EMPEROR
       || cardId == PSEUDO_SPACE
       || cardId == SHARD_OF_GREED || cardId == SKYSCRAPER_2_HERO_CITY
-      || cardId == WATERHAZARD || cardId == WEAPON_CHANGE)
+      || cardId == WATERHAZARD || cardId == WEAPON_CHANGE
+      || cardId == ELEGANT_EGOTIST)
     return SPELL_TYPE_NORMAL;
 
   /* Dynamic equip spells (RegisterDynamicEquip + IsActiveDynamicEquipSpellZone). */
@@ -711,6 +713,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyClearViceDragonDamageStepAtk(zone);
   ApplyNeoSpaceAtkBoostForZone(zone);
   LevelTuning_ApplyLevelToCardInfo(zone);
+  HarpieChanneler_ApplyLevelToCardInfo(zone);
   gSetFinalStatZone = NULL;
   Duel_EndFaceUpBackrowCache();
 }
@@ -876,6 +879,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyJainLightswornPaladinDamageStepAtk(gSetFinalStatZone);
     ApplyClearViceDragonDamageStepAtk(gSetFinalStatZone);
     LevelTuning_ApplyLevelToCardInfo(gSetFinalStatZone);
+    HarpieChanneler_ApplyLevelToCardInfo(gSetFinalStatZone);
     Duel_EndFaceUpBackrowCache();
   }
 

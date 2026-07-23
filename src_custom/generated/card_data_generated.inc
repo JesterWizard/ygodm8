@@ -1140,7 +1140,7 @@
     .monsterEffect = 0,
     .spellEffect = 0,
     .trapEffect = 0,
-    .password = {7, 5, 7, 8, 2, 2, 7, 7},
+    .password = {5, 7, 5, 8, 5, 2, 1, 2},
     .description = gDescription_SelfDestructButton,
   },
   [0x0370] = {

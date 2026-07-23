@@ -5,6 +5,7 @@
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "the_dark_door.h"
+#include "harpie_lady_phoenix_formation.h"
 #include "duel_attack_restrictions.h"
 #include "configs/runtime.h"
 #include "duel_helpers.h"
@@ -405,7 +406,8 @@ static u8 AiDecision_AttackPriorityFixesNeeded(void)
 {
   u8 i;
 
-  if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn())
+  if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
+      || HarpieLadyPhoenixFormation_CannotConductBattlePhase())
     return TRUE;
   if (AiDecision_FieldHasIndestructibleFaceUpTarget())
     return TRUE;
@@ -425,7 +427,8 @@ static u8 AiDecision_AttackPriorityFixesNeeded(void)
 static void AiDecision_ApplyVanillaPriorityFixes(struct AiDecisionContext *ctx) {
   u16 i;
   u8 globalAttackAllowed =
-      DebugRuleset_CanAttackThisTurn() && TheDarkDoor_CanAttackThisTurn();
+      DebugRuleset_CanAttackThisTurn() && TheDarkDoor_CanAttackThisTurn()
+      && !HarpieLadyPhoenixFormation_CannotConductBattlePhase();
   u8 boostIndestructibleLines = AiDecision_FieldHasIndestructibleFaceUpTarget();
 
   Duel_RefreshAttackRestrictions();

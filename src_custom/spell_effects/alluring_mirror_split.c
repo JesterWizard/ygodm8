@@ -30,7 +30,12 @@ static u8 IsHarpieCard(u16 cardId)
 
 static u8 IsHarpieLadyOrSisters(u16 cardId)
 {
-  if (cardId == HARPIE_LADY || cardId == HARPIE_LADY_SISTERS)
+  if (cardId == HARPIE_LADY || cardId == HARPIE_LADY_1 || cardId == HARPIE_LADY_2
+      || cardId == HARPIE_LADY_3 || cardId == HARPIE_LADY_SISTERS
+      || cardId == CYBER_SLASH_HARPIE_LADY || cardId == CYBER_SLASH_HARPY_LADY
+      || cardId == HARPIE_PERFUMER || cardId == HARPIE_QUEEN || cardId == HARPIE_DANCER
+      || cardId == HARPIE_ORACLE || cardId == HARPIE_CONDUCTOR || cardId == HARPIE_CHANNELER
+      || cardId == HARPIE_HARPIST)
     return TRUE;
 
   return Duel_CardNameContains(cardId, sHarpieLadySistersName);

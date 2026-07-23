@@ -19,6 +19,7 @@ u8 Card_XyzMaterialCount(u16 cardId);
 void XyzOverlays_InitBoard(void);
 void XyzOverlays_ClearZone(u8 fixedDuelist, u8 col);
 void XyzOverlays_Attach(u8 fixedDuelist, u8 col, const u16 *cardIds, u8 count);
+u8 XyzOverlays_GetCount(u8 fixedDuelist, u8 col);
 /* Detach top overlay to GY. Returns detached card ID, or CARD_NONE. */
 u16 XyzOverlays_DetachToGraveyard(u8 fixedDuelist, u8 col, u8 graveyardTurn);
 void XyzOverlays_DumpAllToGraveyard(u8 fixedDuelist, u8 col, u8 graveyardTurn);

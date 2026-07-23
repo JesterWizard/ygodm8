@@ -7,6 +7,21 @@
 
 static const char sHarpieArchetypeName[] APPEND_RODATA = "Harpie";
 
+/* Attack-position summons often keep isFaceUp=0 until EOT flip. */
+static u8 MonsterCountsAsFaceUp(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  if (IsCardFaceUp(zone))
+    return TRUE;
+
+  return zone->isDefending == FALSE;
+}
+
 static u8 CountHarpieArchetypeOnFixedRowExcluding(u8 fixedRow, u16 excludeId)
 {
   u8 col;
@@ -14,11 +29,15 @@ static u8 CountHarpieArchetypeOnFixedRowExcluding(u8 fixedRow, u16 excludeId)
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *other = gFixedZones[fixedRow][col];
-    if (other != NULL && other->id != CARD_NONE && other->isFaceUp
-        && other->id != excludeId
-        && Duel_CardNameContains(other->id, sHarpieArchetypeName)) {
-      count++;
-    }
+
+    if (!MonsterCountsAsFaceUp(other))
+      continue;
+    if (other->id == excludeId)
+      continue;
+    if (!Duel_CardNameContains(other->id, sHarpieArchetypeName))
+      continue;
+
+    count++;
   }
 
   return count;

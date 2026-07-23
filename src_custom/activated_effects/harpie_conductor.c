@@ -5,13 +5,14 @@
 #include "effect_events.h"
 #include "god_card.h"
 #include "harpie_conductor.h"
-#include "monster_effect_usage.h"
 
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 
 static u8 sHarpieConductorInit APPEND_DATA = {0};
+static u8 sConductorProtectOptUsed APPEND_DATA = {0};
+static u8 sConductorProtectBusy APPEND_DATA = {0};
 static const char sHarpieName[] APPEND_RODATA = "Harpie";
 
 static u8 TurnDuelistForFixed(u8 fixedDuelist)
@@ -29,7 +30,8 @@ static u8 ControllerHasFaceUpConductor(u8 controller)
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];
 
-    if (zone != NULL && zone->isFaceUp && zone->id == HARPIE_CONDUCTOR)
+    if (zone != NULL && zone->id == HARPIE_CONDUCTOR
+        && (IsCardFaceUp(zone) || zone->isDefending == FALSE))
       return TRUE;
   }
 
@@ -52,7 +54,6 @@ static u8 IsLikelySpecialSummonedOpp(struct DuelCard *zone)
   if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
     return FALSE;
 
-  /* Printed remainder omitted by this ruleset. */
   if (IsCardFaceUp(zone))
     return TRUE;
 
@@ -94,6 +95,75 @@ static u8 FieldHasBounceTargetFor(u8 controller)
   return FALSE;
 }
 
+/* Destroy 1 Spell/Trap you control as replacement cost. Auto-pick first. */
+static u8 TryDestroyOwnSpellTrap(u8 controller)
+{
+  u8 turnDuelist = TurnDuelistForFixed(controller);
+  u8 backrow = turnDuelist == ACTIVE_DUELIST ? ACTIVE_DUELIST_BACKROW
+                                             : INACTIVE_DUELIST_BACKROW;
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gTurnZones[backrow][col];
+    u8 typeGroup;
+
+    if (zone == NULL || zone->id == CARD_NONE)
+      continue;
+
+    typeGroup = GetTypeGroup(zone->id);
+    if (typeGroup != TYPE_GROUP_SPELL && typeGroup != TYPE_GROUP_TRAP
+        && typeGroup != TYPE_GROUP_RITUAL)
+      continue;
+
+    Duel_DestroyZone(zone, turnDuelist, FALSE);
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+static u8 TryProtectHarpieWithCost(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+  u8 controller;
+
+  if (sConductorProtectBusy || sConductorProtectOptUsed)
+    return FALSE;
+  if (zone == NULL || zone->id == CARD_NONE || !IsHarpieMonsterId(zone->id))
+    return FALSE;
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return FALSE;
+
+  controller = Duel_FixedDuelistForMonsterRow(fixedRow);
+  if (!ControllerHasFaceUpConductor(controller))
+    return FALSE;
+  if (!TryDestroyOwnSpellTrap(controller))
+    return FALSE;
+
+  sConductorProtectBusy = TRUE;
+  Duel_ShowEffectTextTyped(HARPIE_CONDUCTOR, 3);
+  sConductorProtectOptUsed = TRUE;
+  sConductorProtectBusy = FALSE;
+  UpdateDuelGfxExceptField();
+  return TRUE;
+}
+
+u8 HarpieConductor_TryProtectHarpie(struct DuelCard *zone)
+{
+  return TryProtectHarpieWithCost(zone);
+}
+
+u8 HarpieConductor_PreventsBattleDestroy(struct DuelCard *zone)
+{
+  return TryProtectHarpieWithCost(zone);
+}
+
+void HarpieConductor_ClearOnTurnBoundary(void)
+{
+  sConductorProtectOptUsed = FALSE;
+}
+
 static void TryBounceOppOnHarpieReturn(u8 controller)
 {
   u8 turnDuelist = TurnDuelistForFixed(controller);
@@ -117,7 +187,7 @@ static void TryBounceOppOnHarpieReturn(u8 controller)
       continue;
 
     zone = gFixedZones[oppMonsterRow][col];
-    Duel_ShowEffectTextTyped(HARPIE_CONDUCTOR, 8);
+    Duel_ShowEffectTextTyped(HARPIE_CONDUCTOR, 4);
     if (Duel_ReturnMonsterZoneToOwnerHand(zone, FALSE) != DUEL_ACTION_OK)
       return;
 
@@ -130,7 +200,18 @@ static void TryBounceOppOnHarpieReturn(u8 controller)
   }
 }
 
-/* Printed remainder omitted by this ruleset. */
+void HarpieConductor_OnHarpieReturned(u8 controller, u16 cardId)
+{
+  if (controller > DUEL_OPPONENT || cardId == CARD_NONE)
+    return;
+  if (cardId == HARPIE_CONDUCTOR || !IsHarpieMonsterId(cardId))
+    return;
+
+  /* ponytail: Damage Step not detected — may fire on battle-return paths. */
+  TryBounceOppOnHarpieReturn(controller);
+}
+
+/* Fallback when leave-field fires without ReturnMonsterZone hook. */
 static void OnOtherHarpieLeaveWhileConductor(const struct EffectEvent *ev)
 {
   if (ev == NULL || gHideEffectText)
@@ -149,106 +230,15 @@ void HarpieConductor_EnsureInit(void)
     return;
 
   sHarpieConductorInit = TRUE;
-  /* ON_LEAVE covers destroy + battle-destroy (both emit leave). */
   EffectEvent_Subscribe(EFFECT_EVENT_ON_LEAVE_FIELD, OnOtherHarpieLeaveWhileConductor);
-}
-
-static u8 IsValidTarget(u8 fixedRow, u8 fixedCol)
-{
-  if (fixedRow != INACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  if (FirstEmptyZoneInRow(gTurnHands[INACTIVE_DUELIST]) < 0)
-    return FALSE;
-
-  return IsLikelySpecialSummonedOpp(gFixedZones[fixedRow][fixedCol]);
-}
-
-static u8 FieldHasTarget(void)
-{
-  u8 col;
-
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsValidTarget(INACTIVE_DUELIST_MONSTER_ROW, col))
-      return TRUE;
-  }
-
-  return FALSE;
-}
-
-static void ResolveTarget(u8 fixedRow, u8 fixedCol)
-{
-  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
-  struct DuelCard *self = gTurnZones[gMonEffect.row][gMonEffect.zone];
-
-  if (!IsValidTarget(fixedRow, fixedCol) || zone == NULL || self == NULL)
-    return;
-
-  if (Duel_ReturnMonsterZoneToOwnerHand(zone, FALSE) != DUEL_ACTION_OK)
-    return;
-
-  MarkMonsterEffectUsed(self);
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
-}
-
-static void CancelTargeting(void)
-{
-  PlayMusic(SFX_CANCEL);
-}
-
-static u8 AiPickTarget(u8 *outRow, u8 *outCol)
-{
-  u8 col;
-
-  *outRow = INACTIVE_DUELIST_MONSTER_ROW;
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (IsValidTarget(INACTIVE_DUELIST_MONSTER_ROW, col)) {
-      *outCol = col;
-      return TRUE;
-    }
-  }
-
-  return FALSE;
 }
 
 unsigned char CanActivateHARPIE_CONDUCTOR(void)
 {
-  struct DuelCard *zone;
-
-  if (gMonEffect.id != HARPIE_CONDUCTOR)
-    return FALSE;
-
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  if (zone == NULL || zone->id != HARPIE_CONDUCTOR)
-    return FALSE;
-
-  /* Name=Harpie Lady via HarpiePerfumer_TreatsNameAsHarpieLady.
-   * Harpie leave → bounce opp SS via HarpieConductor_EnsureInit (leave≈return).
-   * OPT bounce below. */
-  /* Printed remainder omitted by this ruleset. */
-  if (!CanUseMonsterEffect(zone))
-    return FALSE;
-
-  return FieldHasTarget();
+  /* Destroy-replace via HarpieConductor_TryProtectHarpie; bounce via return hook. */
+  return FALSE;
 }
 
 void ActivateHARPIE_CONDUCTOREffect(void)
 {
-  Duel_ShowEffectTextTyped(HARPIE_CONDUCTOR, 2);
-
-  if (IsDuelOver() == TRUE)
-    return;
-
-  gDuelCursor.destY = gMonEffect.row;
-  gDuelCursor.destX = gMonEffect.zone;
-
-  Duel_SetupPickZone(IsValidTarget, ResolveTarget, CancelTargeting, AiPickTarget);
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    Duel_EnterPickZoneTargeting();
-  else
-    Duel_ResolvePickZoneForAi();
 }

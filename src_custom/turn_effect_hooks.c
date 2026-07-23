@@ -62,6 +62,8 @@
 #include "big_evolution_pill.h"
 #include "flavian_colosseum_of_the_gladiator_beasts.h"
 #include "fusion_destiny.h"
+#include "harpie_harpist.h"
+#include "harpies_pet_phantasmal_dragon.h"
 #include "hysteric_sign.h"
 #include "instant_fusion.h"
 #include "over_destiny.h"
@@ -631,7 +633,13 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryClearDivinerOfTheHeraldEndPhase();
+  TryApplyHarpieHarpistEndPhase();
+  if (IsDuelOver() == 1)
+    return;
   TryApplyHarpieOracleEndPhase();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyHarpiesPetPhantasmalDragonEndPhase();
   if (IsDuelOver() == 1)
     return;
   BazooTheSoulEater_ClearAtkBoostOnEndPhase();

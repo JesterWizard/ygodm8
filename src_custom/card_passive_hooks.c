@@ -1,8 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "card_passives.h"
+#include "hysteric_sign.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
@@ -94,11 +96,16 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
   }
 
   if (zone->id != CARD_NONE) {
+    u8 owner;
+
     if (Duel_CardIsMonster(zone->id)
         || EmbodimentOfApophisZoneIsMonsterForm(zone)
         || EmbodimentOfApophisZoneOnMonsterRow(zone)
         || OjamaTrioZoneIsMonsterForm(zone))
       NoteGraveyardMonsterSend(zone);
+    owner = GetDuelistForZone(zone);
+    if (owner <= DUEL_OPPONENT && zone->id == HYSTERIC_SIGN)
+      HystericSign_NotifySentFromHandOrField(owner, HYSTERIC_SIGN);
     GraveyardExpand_PushTurn(turn, zone->id);
     TryArmExecutorMakyuraOnGraveyardSend(turn, zone->id);
     if (Duel_ZoneIsHandSlot(zone) && zone->id == ELEMENTAL_HERO_ABSOLUTE_ZERO)

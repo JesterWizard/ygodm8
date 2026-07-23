@@ -323,6 +323,9 @@
     case ECTOPLASMER:
       EffectEctoplasmer();
       return;
+    case ELEGANT_EGOTIST:
+      EffectELEGANT_EGOTIST();
+      return;
     case EL_SHADDOLL_FUSION:
       EffectEL_SHADDOLL_FUSION();
       return;
@@ -443,8 +446,14 @@
     case HARPIES_FEATHER_REST:
       EffectHARPIES_FEATHER_REST();
       return;
+    case HARPIES_FEATHER_STORM:
+      EffectHARPIES_FEATHER_STORM();
+      return;
     case HARPIES_HUNTING_GROUND:
       EffectHARPIES_HUNTING_GROUND();
+      return;
+    case HARPIE_LADY_ELEGANCE:
+      EffectHARPIE_LADY_ELEGANCE();
       return;
     case HARPIE_LADY_PHOENIX_FORMATION:
       EffectHARPIE_LADY_PHOENIX_FORMATION();
@@ -454,6 +463,9 @@
       return;
     case HIDDEN_TEMPLES_OF_NECROVALLEY:
       EffectHIDDEN_TEMPLES_OF_NECROVALLEY();
+      return;
+    case HYSTERIC_PARTY:
+      EffectHYSTERIC_PARTY();
       return;
     case HYSTERIC_SIGN:
       EffectHYSTERIC_SIGN();

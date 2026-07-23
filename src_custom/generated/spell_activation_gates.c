@@ -60,6 +60,7 @@ extern u8 CanActivateDOUBLE_SPELL(void);
 extern u8 CanActivateDOUBLE_TOOL_C_AND_D(void);
 extern u8 CanActivateDRAGON_SHRINE(void);
 extern u8 CanActivateD_BURST(void);
+extern u8 CanActivateELEGANT_EGOTIST(void);
 extern u8 CanActivateEN_ENGAGE_NEO_SPACE(void);
 extern u8 CanActivateEVIL_MIND(void);
 extern u8 CanActivateEEmergencyCall(void);
@@ -176,6 +177,7 @@ static const struct SpellActivationGateEntry sSpellActivationGates[] __attribute
   { DOUBLE_TOOL_C_AND_D, CanActivateDOUBLE_TOOL_C_AND_D, TRUE },
   { DRAGON_SHRINE, CanActivateDRAGON_SHRINE, TRUE },
   { D_BURST, CanActivateD_BURST, TRUE },
+  { ELEGANT_EGOTIST, CanActivateELEGANT_EGOTIST, TRUE },
   { EN_ENGAGE_NEO_SPACE, CanActivateEN_ENGAGE_NEO_SPACE, TRUE },
   { EVIL_MIND, CanActivateEVIL_MIND, TRUE },
   { E_EMERGENCY_CALL, CanActivateEEmergencyCall, TRUE },

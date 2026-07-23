@@ -14985,10 +14985,10 @@
       "spellEffect": 0,
       "trapEffect": 0,
       "cost": 150,
-      "password": [7, 5, 7, 8, 2, 2, 7, 7],
+      "password": [5, 7, 5, 8, 5, 2, 1, 2],
       "description": {
         "symbol": "gDescription_SelfDestructButton",
-        "pages": "All Winged Beast monsters gain 200 ATK/DEF. If any Harpie Lady or Harpie Lady Sisters is Normal or Special Summoned: The player who conducted the Summon targets 1 Spell/Trap on the field; that player destroys that target."
+        "pages": "You can only activate this card while your Life Points are lower than your opponent's Life Points and the difference is 7000 points or more. Both players' Life Points become 0."
       },
       "effect_texts": {
         "popup_1": "The difference between both players life points is above 7000LP. So both players' LP become 0."
@@ -28832,7 +28832,9 @@
         "popup_2": "You can only use this effect of Harpie Channeler once per turn.",
         "popup_3": "While you control a Dragon-Type monster, this card's Level becomes 7.",
         "popup_4": "This card's name becomes Harpie Lady while it is on the field or in the Graveyard."
-      }
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     },
     {
       "card_const": "HARPIE_CONDUCTOR",
@@ -28954,7 +28956,8 @@
         "popup_2": "You can only use each of these effects of Harpie Oracle once per turn.",
         "popup_3": "If you control a Level 5 or higher Harpie monster: You can Special Summon this card from your hand.",
         "popup_4": "If this card is Normal or Special Summoned: You can add 1 Spell/Trap from your GY to your hand, that specifically lists the card Harpie Lady Sisters in its text, during the End Phase of this turn."
-      }
+      },
+      "effect_usage": "once_per_turn"
     },
     {
       "card_const": "HARPIE_PERFUMER",

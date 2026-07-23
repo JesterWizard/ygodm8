@@ -29,6 +29,18 @@ static u8 IsHarpieMonster(u16 cardId)
   return Duel_CardNameContains(cardId, sHarpieName);
 }
 
+static u8 NameAlreadySeen(u16 *seen, u8 seenCount, u16 id)
+{
+  u8 j;
+
+  for (j = 0; j < seenCount; j++) {
+    if (seen[j] == id)
+      return TRUE;
+  }
+  return FALSE;
+}
+
+/* TCG: 1 each from hand / Deck / GY, different original names. */
 APPEND_TEXT void EffectHARPIE_LADY_ELEGANCE(void)
 {
   u8 row = WhoseTurn() == DUEL_PLAYER ? OPPONENT_MONSTER_ROW : PLAYER_MONSTER_ROW;
@@ -37,19 +49,21 @@ APPEND_TEXT void EffectHARPIE_LADY_ELEGANCE(void)
   struct DuelSummonOpts opts;
   u16 seen[3];
   u8 seenCount = 0;
-  u8 summoned = 0;
   u8 i;
+  u16 handId = CARD_NONE;
   u16 deckId = CARD_NONE;
   u16 gyId = CARD_NONE;
 
   Duel_ShowTrapResponseText(HARPIE_LADY_ELEGANCE, gTrapEffectData.originCardId);
 
-  /* Printed remainder omitted by this ruleset. */
-
+  /* Shuffle 1 Sisters from Monster Zone into Deck. */
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[row][col];
 
     if (zone != NULL && zone->id == HARPIE_LADY_SISTERS) {
+      if (gDuelDecks[fixedDuelist].cardsDrawn > 0)
+        gDuelDecks[fixedDuelist].cardsDrawn--;
+      gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn] = HARPIE_LADY_SISTERS;
       ClearZone(zone);
       break;
     }
@@ -62,51 +76,37 @@ APPEND_TEXT void EffectHARPIE_LADY_ELEGANCE(void)
   }
 
   HarpieLadyElegance_MarkWindOnlyLock(INACTIVE_DUELIST);
-
   opts = Duel_DefaultSpecialSummonOpts(TRUE);
 
-  /* Hand */
-  for (i = 0; i < MAX_ZONES_IN_ROW && summoned < 3; i++) {
+  /* 1 from hand */
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     u16 id;
-    u8 j;
-    u8 dup = FALSE;
 
     if (gTurnHands[INACTIVE_DUELIST][i] == NULL)
       continue;
     id = gTurnHands[INACTIVE_DUELIST][i]->id;
     if (!IsHarpieMonster(id) || id == HARPIE_LADY_SISTERS)
       continue;
-    for (j = 0; j < seenCount; j++) {
-      if (seen[j] == id)
-        dup = TRUE;
-    }
-    if (dup)
-      continue;
-    if (FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) < 0)
-      break;
-    if (Duel_SpecialSummonFromHand(INACTIVE_DUELIST, id, NULL, opts) != DUEL_ACTION_OK)
-      continue;
-    seen[seenCount++] = id;
-    summoned++;
+    handId = id;
+    break;
+  }
+  if (handId != CARD_NONE
+      && FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) >= 0
+      && Duel_SpecialSummonFromHand(INACTIVE_DUELIST, handId, NULL, opts) == DUEL_ACTION_OK) {
+    seen[seenCount++] = handId;
   }
 
-  /* Deck */
-  if (summoned < 3 && FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) >= 0) {
+  /* 1 from Deck */
+  if (FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) >= 0) {
     u8 deckSize = NumCardsInDeck(fixedDuelist);
     u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
 
     for (i = top; i < deckSize; i++) {
       u16 id = gDuelDecks[fixedDuelist].cards[i];
-      u8 j;
-      u8 dup = FALSE;
 
       if (!IsHarpieMonster(id) || id == HARPIE_LADY_SISTERS)
         continue;
-      for (j = 0; j < seenCount; j++) {
-        if (seen[j] == id)
-          dup = TRUE;
-      }
-      if (dup)
+      if (NameAlreadySeen(seen, seenCount, id))
         continue;
       deckId = id;
       break;
@@ -114,25 +114,18 @@ APPEND_TEXT void EffectHARPIE_LADY_ELEGANCE(void)
     if (deckId != CARD_NONE
         && Duel_SpecialSummonFromDeck(INACTIVE_DUELIST, deckId, opts) == DUEL_ACTION_OK) {
       seen[seenCount++] = deckId;
-      summoned++;
     }
   }
 
-  /* GY */
-  if (summoned < 3 && GraveyardExpand_IsEnabled()
+  /* 1 from GY */
+  if (GraveyardExpand_IsEnabled()
       && FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) >= 0) {
     for (i = 0; i < GraveyardExpand_GetCount(fixedDuelist); i++) {
       u16 id = GraveyardExpand_GetCardAt(fixedDuelist, i);
-      u8 j;
-      u8 dup = FALSE;
 
       if (!IsHarpieMonster(id) || id == HARPIE_LADY_SISTERS)
         continue;
-      for (j = 0; j < seenCount; j++) {
-        if (seen[j] == id)
-          dup = TRUE;
-      }
-      if (dup)
+      if (NameAlreadySeen(seen, seenCount, id))
         continue;
       gyId = id;
       break;

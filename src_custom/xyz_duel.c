@@ -103,6 +103,14 @@ void XyzOverlays_Attach(u8 fixedDuelist, u8 col, const u16 *cardIds, u8 count)
   gXyzOverlayCount[fixedDuelist][col] = n;
 }
 
+u8 XyzOverlays_GetCount(u8 fixedDuelist, u8 col)
+{
+  if (fixedDuelist > DUEL_OPPONENT || col >= MAX_ZONES_IN_ROW)
+    return 0;
+
+  return gXyzOverlayCount[fixedDuelist][col];
+}
+
 u16 XyzOverlays_DetachToGraveyard(u8 fixedDuelist, u8 col, u8 graveyardTurn)
 {
   u8 n;

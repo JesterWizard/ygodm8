@@ -179,6 +179,8 @@
 #include "skull_invitation.h"
 #include "self_destruct_button.h"
 #include "the_dark_door.h"
+#include "harpie_lady_phoenix_formation.h"
+#include "harpies_feather_storm.h"
 #include "gravity_bind.h"
 #include "curse_of_darkness.h"
 #include "coffin_seller.h"
@@ -346,6 +348,7 @@ u8 TrySpecialSummonGuardianEatosFromHand(u8);
 u8 TrySpecialSummonDarknessNeosphereFromHand(u8);
 u8 TrySpecialSummonMazeraDevilleFromHand(u8);
 u8 TryActivateCrossKeeperFromHand(u8);
+u8 TryActivateHarpiesFeatherStormFromHand(u8);
 u8 TrySpecialSummonAndroSphinxFromHand(u8);
 u8 TrySpecialSummonGladiatorBeastGistelFromHand(u8);
 u8 TrySpecialSummonTheAgentOfDestructionVenusFromHand(u8);
@@ -896,6 +899,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == CROSS_KEEPER
           && TryActivateCrossKeeperFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == HARPIES_FEATHER_STORM
+          && TryActivateHarpiesFeatherStormFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
@@ -1770,7 +1778,8 @@ void sub_8044570__Replacement(void)
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
-  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()) {
+  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
+      || HarpieLadyPhoenixFormation_CannotConductBattlePhase()) {
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
@@ -2020,6 +2029,7 @@ void TryAttackWithMonster__Replacement(void)
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
   } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
+      || HarpieLadyPhoenixFormation_CannotConductBattlePhase()
       || !Duel_CanMonsterDeclareAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX])
       || !Duel_CanAttackMonsterZone(

@@ -15,6 +15,7 @@
 #include "duel_helpers.h"
 #include "effect_system.h"
 #include "effect_events.h"
+#include "cyber_slash_harpie_lady.h"
 #include "field_barrier.h"
 #include "secret_village_of_the_spellcasters.h"
 #include "world_suppression.h"
@@ -70,6 +71,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case BOOK_OF_MOON:
     case H_HEATED_HEART:
     case E_EMERGENCY_CALL:
+    case ELEGANT_EGOTIST:
     case BOOK_OF_TAIYOU:
     case DE_FUSION:
     case DIFFUSION_WAVE_MOTION:
@@ -269,5 +271,6 @@ void ActivateSpellEffect__Replacement(void)
   Duel_BeginSpellEffectResolve();
   ActivateSpellEffect__Body();
   Duel_EndSpellEffectResolve();
+  TryResolvePendingCyberSlashBounce();
   Duel_RefreshMonsterStatOverlays();
 }

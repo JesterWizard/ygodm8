@@ -30,7 +30,8 @@ void ApplyHarpieLady1WindAtkBoost(struct DuelCard *zone)
   for (fixedRow = 1; fixedRow <= 2; fixedRow++) {
     for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
       struct DuelCard *hl1 = gFixedZones[fixedRow][col];
-      if (hl1 != NULL && hl1->id == HARPIE_LADY_1 && hl1->isFaceUp) {
+      if (hl1 != NULL && hl1->id == HARPIE_LADY_1
+          && (IsCardFaceUp(hl1) || hl1->isDefending == FALSE)) {
         gCardInfo.atk = Duel_ClampStat((u32)gCardInfo.atk + 300);
         return;
       }

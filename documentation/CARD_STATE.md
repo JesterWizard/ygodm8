@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-23 — MyBoy Continue bisect (extras no-op)
+**Last worked on:** 2026-07-23 — Harpie remaining TCG ceilings
 
-**Outcome:** Extras load no-op’d; VBlank cleared before Game Menu; `gLoadCustomSaveExtrasPending` in EWRAM ram_map (custom `.data` was discarded). `make` OK.
+**Outcome:** `make` OK. Conductor destroy-replace (effect+battle, cost destroy own S/T). Cyber Slash Quick on S/T activate (ON_CARD_ACTIVATE → deferred bounce). Phantasmal: material-gated direct attack, Harpie attack/effect protect, EP detach. Feather Rest GY picker; Phoenix sequential monster targeting. Self-Destruct description regenerated to TCG LP text.
 
-**Open / next:** MyBoy playtest: title Continue → Game Menu → Continue → overworld. If OK, re-enable extras loaders one at a time.
+**Open / next:** Cyber Slash Synchro treat-Harpie-as-Tuner; playtest Conductor replace + Slash respond + Phantasmal protect/detach + Phoenix multi-pick.

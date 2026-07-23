@@ -83,11 +83,11 @@ Do not mark Extra Deck or chain debt as accepted omissions.
 
 ### `CYBER_SLASH_HARPIE_LADY` (activated)
 - path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
-- L198: Quick on S/T activation + Synchro/name hooks missing. OPT bounce 1 opp card or your Harpie to hand (EffectOpt).
+- L198: Synchro treat-Harpie-as-Tuner missing. Quick bounce on S/T activate wired via ON_CARD_ACTIVATE + deferred PickZone.
 
 ### `CYBER_SLASH_HARPY_LADY` (activated)
 - path: `src_custom/activated_effects/cyber_slash_harpy_lady.c`
-- L198: Quick on S/T activation + Synchro/name hooks missing. OPT bounce 1 opp card or your Harpie to hand (EffectOpt).
+- Shares CanActivate/Activate with `cyber_slash_harpie_lady.c`. Synchro treat-Harpie-as-Tuner missing.
 
 ### `DESTINY_HERO_DUSKTOPIA` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dusktopia.c`
@@ -145,7 +145,7 @@ Do not mark Extra Deck or chain debt as accepted omissions.
 
 ### `HARPIES_PET_PHANTASMAL_DRAGON` (permanent)
 - path: `src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c`
-- L8: Direct attack via HarpiesPetPhantasmalDragon_CanAttackDirectly. Harpie protect + End Phase detach need battle/xyz hooks.
+- Direct attack / Harpie attack+effect protect / EP detach wired while materials remain. Xyz summon materials still require Extra Deck XYZ flow.
 
 ### `INSTANT_CONTACT` (spell)
 - path: `src_custom/spell_effects/instant_contact.c`

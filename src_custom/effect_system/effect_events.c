@@ -63,6 +63,9 @@
 #include "el_shaddoll_wendigo.h"
 #include "blue_eyes_jet_dragon.h"
 #include "harpie_conductor.h"
+#include "cyber_slash_harpie_lady.h"
+#include "harpie_harpist.h"
+#include "harpie_perfumer.h"
 
 extern EffectEventHandler gEffectEventHandlers[EFFECT_EVENT_COUNT][EFFECT_EVENT_MAX_SUBSCRIBERS];
 extern u8 gEffectEventHandlerCounts[EFFECT_EVENT_COUNT];
@@ -158,6 +161,9 @@ void EffectEvent_EnsureInit(void)
   ShaddollSquamata_EnsureInit();
   /* BATCH11 */
   HarpieConductor_EnsureInit();
+  CyberSlashHarpieLady_EnsureInit();
+  HarpieHarpist_EnsureInit();
+  HarpiesFeatherStorm_EnsureInit();
   /* BATCH13 */
   LightswornDragonling_EnsureInit();
   /* BATCH16 */
@@ -372,6 +378,9 @@ void EffectEvent_OnTurnBoundary(void)
   Alector_ClearNegateMarksAtTurnBoundary();
   CrimsonBlader_ClearOnTurnBoundary();
   HarpieLadyElegance_ClearOnTurnBoundary();
+  HarpieConductor_ClearOnTurnBoundary();
+  HarpieHarpist_OnTurnBoundary();
+  HarpieOracle_ClearOnTurnBoundary();
 
   ev.type = EFFECT_EVENT_ON_TURN_STANDBY;
   ev.cardId = CARD_NONE;

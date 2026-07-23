@@ -16,18 +16,37 @@ void CheckWinConditionExodia(unsigned char);
 
 static const char sHarpieArchetypeName[] APPEND_RODATA = "Harpie";
 
-static u8 CountOtherHarpieOnRow(u8 fixedRow, u16 excludeId)
+/* Attack-position summons often keep isFaceUp=0 until EOT flip. */
+static u8 MonsterCountsAsFaceUp(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  if (IsCardFaceUp(zone))
+    return TRUE;
+
+  return zone->isDefending == FALSE;
+}
+
+static u8 CountOtherHarpieOnFixedRow(u8 fixedRow)
 {
   u8 col;
   u8 count = 0;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gFixedZones[fixedRow][col];
-    if (zone != NULL && zone->id != CARD_NONE && zone->isFaceUp
-        && zone->id != excludeId
-        && Duel_CardNameContains(zone->id, sHarpieArchetypeName)) {
-      count++;
-    }
+
+    if (!MonsterCountsAsFaceUp(zone))
+      continue;
+    if (zone->id == HARPIES_PET_BABY_DRAGON)
+      continue;
+    if (!Duel_CardNameContains(zone->id, sHarpieArchetypeName))
+      continue;
+
+    count++;
   }
 
   return count;
@@ -136,6 +155,8 @@ unsigned char CanActivateHARPIES_PET_BABY_DRAGON(void)
   struct DuelCard *zone;
   u8 unusedRow;
   u8 unusedCol;
+  u8 fixedRow;
+  u8 col;
 
   if (gMonEffect.id != HARPIES_PET_BABY_DRAGON)
     return FALSE;
@@ -143,11 +164,18 @@ unsigned char CanActivateHARPIES_PET_BABY_DRAGON(void)
   if (gMonEffect.row != PLAYER_MONSTER_ROW && gMonEffect.row != OPPONENT_MONSTER_ROW)
     return FALSE;
 
-  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
+  if (zone == NULL || zone->id != HARPIES_PET_BABY_DRAGON)
+    return FALSE;
+
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
-  if (CountOtherHarpieOnRow(gMonEffect.row, HARPIES_PET_BABY_DRAGON) < 3)
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return FALSE;
+
+  /* Printed: 3+ Harpie monsters you control, except this card. */
+  if (CountOtherHarpieOnFixedRow(fixedRow) < 3)
     return FALSE;
 
   return FindFirstDestroyTarget(&unusedRow, &unusedCol);
