@@ -1,7 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-23 — Harpie remaining TCG ceilings
+**Last worked on:** 2026-09-04 — Custom card keep list (build-time)
 
-**Outcome:** `make` OK. Conductor destroy-replace (effect+battle, cost destroy own S/T). Cyber Slash Quick on S/T activate (ON_CARD_ACTIVATE → deferred bounce). Phantasmal: material-gated direct attack, Harpie attack/effect protect, EP detach. Feather Rest GY picker; Phoenix sequential monster targeting. Self-Destruct description regenerated to TCG LP text.
+**Outcome:** `make` OK with `CUSTOM_CARD_KEEP_LIST=1` (default). `NUM_TOTAL_CARDS` = 0x3F0 (1008): 800 vanilla + 207 kept custom. `CUSTOM_CARD_START` = `BLUE_EYES_SHINING_DRAGON` (0x321). Full dev build: `make CUSTOM_CARD_KEEP_LIST=0`.
 
-**Open / next:** Cyber Slash Synchro treat-Harpie-as-Tuner; playtest Conductor replace + Slash respond + Phantasmal protect/detach + Phoenix multi-pick.
+**Open / next:** Wire or remove 51 unwired excluded cards; playtest new-game trunk tops out ~1000.
+
+**2026-07-23:** Harpie TCG ceilings — Conductor, Cyber Slash, Phantasmal, Feather Rest, Phoenix. See session log.

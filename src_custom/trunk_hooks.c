@@ -736,8 +736,11 @@ void InitTrunkCards__Replacement(void) {
 
   for (id = 0; id < GetLastTrackedCardId(); id++) {
     if (id >= CUSTOM_CARD_START) {
-      SetTrunkQtyForCard((u16)id,
-        gRuntimeConfig.start_with_three_copies_of_every_card == TRUE ? 3 : 0);
+      u8 qty = 0;
+
+      if (gRuntimeConfig.start_with_three_copies_of_every_card == TRUE)
+        qty = 3;
+      SetTrunkQtyForCard((u16)id, qty);
     }
     else if (gRuntimeConfig.start_with_three_copies_of_every_card == TRUE)
       gTrunkCardQty[id] = 3;

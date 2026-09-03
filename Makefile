@@ -31,6 +31,7 @@ BUILD_UPS ?= $(FALSE)
 CUSTOM_CODE ?= $(TRUE)
 CUSTOM_EVENTS ?= $(CUSTOM_CODE)
 CUSTOM_CARD_MANIFEST ?= $(CUSTOM_CODE)
+CUSTOM_CARD_KEEP_LIST ?= $(TRUE)
 
 # Auto-enable when intro.bin is present; override with METE0_VIDEO=0/1
 METE0_VIDEO_SRC := src_custom/assets/videos/intro.bin
@@ -79,6 +80,8 @@ C_SRCS := $(filter-out $(C_SUBDIR)/hooks/generated/card_data_hooks.c,$(C_SRCS))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
 
 ifeq ($(CUSTOM_CODE),1)
+export YGO_CUSTOM_CARD_KEEP_LIST := $(CUSTOM_CARD_KEEP_LIST)
+CUSTOM_CARD_KEEP_JSON := tools/custom_card_keep_list.json
 CUSTOM_SRCS := $(wildcard $(C_SUBDIR_CUSTOM)/*.c $(C_SUBDIR_CUSTOM)/*/*.c $(C_SUBDIR_CUSTOM)/*/*/*.c)
 CUSTOM_OBJS := $(patsubst $(C_SUBDIR_CUSTOM)/%.c,$(C_BUILDDIR_CUSTOM)/%.o,$(CUSTOM_SRCS))
 else
@@ -308,7 +311,7 @@ $(ELF): $(ALL_OBJS) $(LDSCRIPT)
 	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -T ../generated/card_counts.ld -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
 
 ifeq ($(CUSTOM_CARD_MANIFEST),1)
-$(CARD_IDS_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
+$(CARD_IDS_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) $(CUSTOM_CARD_KEEP_JSON)
 	@mkdir -p $(dir $@)
 	python3 $(CARD_ART_GENERATOR) --card-ids
 	touch $@

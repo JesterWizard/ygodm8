@@ -22,7 +22,11 @@ from card_manifest import (  # noqa: E402
     OPTIONAL_STATS_KEYS,
     REQUIRED_STATS_KEYS,
     effect_text_symbol,
+    filter_manifest_to_keep_list,
+    keep_list_enabled,
     load_manifest_json,
+    manifest_custom_start_index,
+    render_removed_card_stub_header,
     validate_manifest as _validate_manifest,
 )
 ASSET_ROOT = ROOT / "src_custom/assets/cards"
@@ -45,6 +49,7 @@ GENERATED_ACTIVATION_TEXT_INC = GENERATED_DIR / "card_activation_text_generated.
 GENERATED_ACTIVATION_TEXT_LOOKUP_INC = GENERATED_DIR / "card_activation_text_lookup_generated.inc"
 GENERATED_EFFECT_TEXT_IDS_H = ROOT / "include/constants/card_effect_texts.h"
 CARD_IDS_H = ROOT / "include/constants/card_ids.h"
+CARD_REMOVED_STUBS_H = ROOT / "include/constants/custom_card_removed_stubs.h"
 CARD_COUNTS_H = ROOT / "include/constants/card_counts.h"
 CARD_COUNTS_LD = ROOT / "generated/card_counts.ld"
 CARD_MEMORY_SIZES_ASM = ROOT / "generated/card_memory_sizes.inc"
@@ -58,12 +63,57 @@ EFFECT_ENUM_HEADERS = {
 
 GBAFX = ROOT / "tools/gbagfx/gbagfx"
 
+_BUILD_CUSTOM_BOUNDARY: int | None = None
+
+
+def set_build_custom_boundary(boundary: int | None) -> None:
+    global _BUILD_CUSTOM_BOUNDARY
+    _BUILD_CUSTOM_BOUNDARY = boundary
+
+
+def manifest_custom_start(manifest: dict) -> int:
+    if _BUILD_CUSTOM_BOUNDARY is not None:
+        return _BUILD_CUSTOM_BOUNDARY
+    return manifest_custom_start_index(manifest)
+
 
 def validate_manifest(manifest: object) -> dict:
     try:
         return _validate_manifest(manifest)
     except ManifestValidationError as exc:
         raise SystemExit(str(exc)) from exc
+
+
+def load_build_manifest() -> dict:
+    full_manifest = validate_manifest(load_manifest_json(CUSTOM_CARD_MANIFEST))
+    boundary = manifest_custom_start_index(full_manifest)
+    set_build_custom_boundary(boundary if keep_list_enabled() else None)
+    return filter_manifest_to_keep_list(full_manifest)
+
+
+def write_card_id_outputs(manifest: dict, full_manifest: dict) -> None:
+    update_file(CARD_IDS_H, render_card_ids_header(manifest))
+    if keep_list_enabled():
+        update_file(
+            CARD_REMOVED_STUBS_H,
+            render_removed_card_stub_header(full_manifest, manifest),
+        )
+    elif CARD_REMOVED_STUBS_H.exists():
+        update_file(
+            CARD_REMOVED_STUBS_H,
+            "\n".join(
+                [
+                    "#ifndef GUARD_CUSTOM_CARD_REMOVED_STUBS_H",
+                    "#define GUARD_CUSTOM_CARD_REMOVED_STUBS_H",
+                    "",
+                    "#endif // GUARD_CUSTOM_CARD_REMOVED_STUBS_H",
+                    "",
+                ]
+            ),
+        )
+    update_file(CARD_COUNTS_H, render_card_counts_header(manifest))
+    update_file(CARD_COUNTS_LD, render_card_counts_ld(manifest))
+    update_file(CARD_MEMORY_SIZES_ASM, render_card_memory_sizes_asm(manifest))
 
 # Big card art palettes are traditionally 64 colors (4 banks). This repo can optionally
 # extend big card art palettes to 112 colors (7 banks) for the card detail view.
@@ -75,13 +125,6 @@ VANILLA_AMAZON_NAME_OVERRIDE_SKIP = frozenset({
     "AMAZON_ARCHERS",
     "AMAZON_OF_THE_SEAS",
 })
-
-
-def manifest_custom_start(manifest: dict) -> int:
-    return next(
-        (i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"),
-        len(manifest["cards"]),
-    )
 
 
 def manifest_name_hook_entries(manifest: dict) -> list[tuple[int, dict]]:
@@ -410,10 +453,7 @@ def build_mini_assets(big_png: pathlib.Path, big_palette: pathlib.Path, stem: st
 
 
 def ensure_custom_card_assets(manifest: dict, force_minis: bool = False) -> list[pathlib.Path]:
-    custom_start = next(
-        (i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"),
-        len(manifest["cards"]),
-    )
+    custom_start = manifest_custom_start(manifest)
     built_minis: list[pathlib.Path] = []
     for index, item in enumerate(manifest["cards"]):
         if index < custom_start:
@@ -577,9 +617,10 @@ def discover_card_constants() -> set[str]:
 
 def render_card_ids_header(manifest: dict) -> str:
     cards = manifest["cards"]
-    custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
+    custom_start = manifest_custom_start(manifest)
     total_cards = len(cards)
     custom_cards = max(0, total_cards - custom_start)
+    custom_start_const = cards[custom_start]["card_const"] if custom_start < total_cards else "CARD_NONE"
     lines = [
         "#ifndef GUARD_CONSTANTS_CARD_IDS_H",
         "#define GUARD_CONSTANTS_CARD_IDS_H",
@@ -593,11 +634,13 @@ def render_card_ids_header(manifest: dict) -> str:
         "",
         f"#define NUM_CARDS                               0x{custom_start:04X}",
         f"#define NUM_TRUE_CARDS                          (NUM_CARDS - 1)",
-        f"#define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC",
+        f"#define CUSTOM_CARD_START                       {custom_start_const}",
         f"#define NUM_TOTAL_CARDS                         0x{total_cards:04X}",
         f"#define NUM_CUSTOM_CARDS                        0x{custom_cards:04X}",
     ])
     lines.extend([
+        "",
+        "#include \"constants/custom_card_removed_stubs.h\"",
         "",
         "#endif // GUARD_CONSTANTS_CARD_IDS_H",
         "",
@@ -607,7 +650,7 @@ def render_card_ids_header(manifest: dict) -> str:
 
 def render_card_counts_ld(manifest: dict) -> str:
     cards = manifest["cards"]
-    custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
+    custom_start = manifest_custom_start(manifest)
     total_cards = len(cards)
     custom_cards = max(0, total_cards - custom_start)
     return "\n".join(
@@ -631,7 +674,7 @@ def custom_card_qty_bytes_for(custom_cards: int) -> int:
 
 def render_card_counts_header(manifest: dict) -> str:
     cards = manifest["cards"]
-    custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
+    custom_start = manifest_custom_start(manifest)
     total_cards = len(cards)
     custom_cards = max(0, total_cards - custom_start)
     custom_card_qty_bytes = custom_card_qty_bytes_for(custom_cards)  # Keep in sync with render_card_memory_sizes_asm.
@@ -652,7 +695,7 @@ def render_card_counts_header(manifest: dict) -> str:
 
 def render_card_memory_sizes_asm(manifest: dict) -> str:
     cards = manifest["cards"]
-    custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
+    custom_start = manifest_custom_start(manifest)
     total_cards = len(cards)
     custom_cards = max(0, total_cards - custom_start)
     custom_card_qty_bytes = custom_card_qty_bytes_for(custom_cards)  # Keep in sync with render_card_counts_header.
@@ -683,7 +726,7 @@ def render_card_memory_sizes_asm(manifest: dict) -> str:
 def discover_entries(manifest: dict) -> list[CardArtEntry]:
     enum_tables = load_effect_enums()
     entries = []
-    custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
+    custom_start = manifest_custom_start(manifest)
     for index, item in enumerate(manifest["cards"]):
         if index < custom_start:
             stem = item["card_const"].lower()
@@ -1201,7 +1244,8 @@ def _append_activation_text_symbol(lines: list[str], symbol: str, pages: list[st
     lines.append("")
 
 
-def render_activation_description_inc(manifest: dict) -> str:
+def render_activation_description_inc(manifest: dict, full_manifest: dict | None = None) -> str:
+    full_manifest = full_manifest or manifest
     lines = []
     for item in manifest["cards"]:
         # Legacy single activation_description (prefer effect_texts.popup_1).
@@ -1220,6 +1264,23 @@ def render_activation_description_inc(manifest: dict) -> str:
                 [effect] if isinstance(effect, str) else list(effect)
             )
             _append_activation_text_symbol(lines, symbol, pages)
+
+    if full_manifest is not manifest:
+        kept = {item["card_const"] for item in manifest["cards"]}
+        custom_start = manifest_custom_start_index(full_manifest)
+        for item in full_manifest["cards"][custom_start:]:
+            if item["card_const"] in kept:
+                continue
+            activation_description = item.get("activation_description")
+            effect_texts = item.get("effect_texts") or {}
+            if activation_description and "popup_1" not in effect_texts:
+                _append_activation_text_symbol(
+                    lines, activation_description["symbol"], [""]
+                )
+            for effect_id, effect in effect_texts.items():
+                symbol = effect.get("symbol") or effect_text_symbol(item["card_const"], effect_id)
+                _append_activation_text_symbol(lines, symbol, [""])
+
     return "\n".join(lines).rstrip() + ("\n" if lines else "")
 
 
@@ -1258,14 +1319,31 @@ def render_effect_text_ids_header(manifest: dict) -> str:
     return "\n".join(lines)
 
 
-def render_effect_text_lookup_inc(manifest: dict) -> str:
+def activation_text_symbols_in_manifest(manifest: dict) -> set[str]:
+    symbols: set[str] = set()
+    for item in manifest["cards"]:
+        activation_description = item.get("activation_description")
+        effect_texts = item.get("effect_texts") or {}
+        if activation_description and "popup_1" not in effect_texts:
+            symbols.add(activation_description["symbol"])
+        for effect_id, effect in effect_texts.items():
+            symbols.add(effect.get("symbol") or effect_text_symbol(item["card_const"], effect_id))
+    return symbols
+
+
+def render_effect_text_lookup_inc(manifest: dict, text_blobs_manifest: dict | None = None) -> str:
     """Appended into activation-text lookup include (compiled in effect_text_hooks.c)."""
+    text_blobs_manifest = text_blobs_manifest or manifest
+    available_symbols = activation_text_symbols_in_manifest(text_blobs_manifest)
     lines = [
         "static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA = {",
         "  [CARD_EFFECT_TEXT_NONE] = NULL,",
     ]
     for _card, _effect_id, symbol, enum_name in iter_effect_text_entries(manifest):
-        lines.append(f"  [{enum_name}] = {symbol},")
+        if symbol in available_symbols:
+            lines.append(f"  [{enum_name}] = {symbol},")
+        else:
+            lines.append(f"  [{enum_name}] = NULL,")
     lines.extend(
         [
             "};",
@@ -1283,8 +1361,12 @@ def render_effect_text_lookup_inc(manifest: dict) -> str:
     return "\n".join(lines)
 
 
-def render_activation_description_lookup_inc(manifest: dict) -> str:
+def render_activation_description_lookup_inc(
+    manifest: dict,
+    effect_text_manifest: dict | None = None,
+) -> str:
     """Default activation text is effect_texts.popup_1 (legacy activation_description supported)."""
+    effect_text_manifest = effect_text_manifest or manifest
     lines = [
         "#include \"constants/card_effect_texts.h\"",
         "",
@@ -1314,13 +1396,13 @@ def render_activation_description_lookup_inc(manifest: dict) -> str:
         "}",
         "",
     ])
-    lines.append(render_effect_text_lookup_inc(manifest).rstrip())
+    lines.append(render_effect_text_lookup_inc(effect_text_manifest, manifest).rstrip())
     lines.append("")
     return "\n".join(lines)
 
 
 def render_trunk_inc(manifest: dict, enable_custom_cards_past_800: bool) -> str:
-    custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
+    custom_start = manifest_custom_start(manifest)
     cards = [item["card_const"] for item in manifest["cards"][custom_start:]] if enable_custom_cards_past_800 else []
     lines = [
         "#include \"global.h\"",
@@ -1574,7 +1656,10 @@ def main() -> int:
     if args.skip_art and args.art_only:
         raise SystemExit("Cannot use --skip-art with --art-only.")
 
-    manifest = validate_manifest(load_manifest_json(CUSTOM_CARD_MANIFEST))
+    full_manifest = validate_manifest(load_manifest_json(CUSTOM_CARD_MANIFEST))
+    boundary = manifest_custom_start_index(full_manifest)
+    set_build_custom_boundary(boundary if keep_list_enabled() else None)
+    manifest = filter_manifest_to_keep_list(full_manifest)
 
     if args.card_ids:
         enum_tables = load_effect_enums()
@@ -1585,10 +1670,7 @@ def main() -> int:
         if args.print:
             print(card_ids, end="")
         else:
-            update_file(CARD_IDS_H, card_ids)
-            update_file(CARD_COUNTS_H, render_card_counts_header(manifest))
-            update_file(CARD_COUNTS_LD, render_card_counts_ld(manifest))
-            update_file(CARD_MEMORY_SIZES_ASM, render_card_memory_sizes_asm(manifest))
+            write_card_id_outputs(manifest, full_manifest)
         return 0
 
     if args.generate_minis:
@@ -1638,9 +1720,9 @@ def main() -> int:
     data_inc = render_data_inc(entries)
     data_src = render_data_src(manifest)
     description_inc = render_description_inc(manifest)
-    activation_description_inc = render_activation_description_inc(manifest)
-    activation_description_lookup_inc = render_activation_description_lookup_inc(manifest)
-    effect_text_ids_h = render_effect_text_ids_header(manifest)
+    activation_description_inc = render_activation_description_inc(manifest, full_manifest)
+    activation_description_lookup_inc = render_activation_description_lookup_inc(manifest, full_manifest)
+    effect_text_ids_h = render_effect_text_ids_header(full_manifest)
     trunk_inc = render_trunk_inc(manifest, load_runtime_flag("enable_custom_cards_past_800"))
 
     if args.print:
@@ -1668,10 +1750,7 @@ def main() -> int:
         print(trunk_inc, end="")
         return 0
 
-    update_file(CARD_IDS_H, render_card_ids_header(manifest))
-    update_file(CARD_COUNTS_H, render_card_counts_header(manifest))
-    update_file(CARD_COUNTS_LD, render_card_counts_ld(manifest))
-    update_file(CARD_MEMORY_SIZES_ASM, render_card_memory_sizes_asm(manifest))
+    write_card_id_outputs(manifest, full_manifest)
     update_file(GENERATED_ASSET_INC, asset_inc)
     update_file(GENERATED_NAME_INC, name_inc)
     update_file(GENERATED_NAME_SORT_INC, name_sort_inc)

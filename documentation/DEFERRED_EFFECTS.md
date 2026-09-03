@@ -8,9 +8,9 @@ Stubs: [`STUB_EFFECTS.md`](STUB_EFFECTS.md). Ceiling markers: [`PARTIAL_EFFECTS.
 python3 tools/stub_effect_queue.py --write-list   # stubs + partials + deferred
 ```
 
-**Last updated:** 2026-07-22 22:13 UTC  
-**Files with deferred notes:** `94`  
-**Notes tagged:** `105`
+**Last updated:** 2026-09-03 23:19 UTC  
+**Files with deferred notes:** `92`  
+**Notes tagged:** `102`
 
 ## Suggested tackle order
 
@@ -26,13 +26,14 @@ Do not mark Extra Deck or chain debt as accepted omissions.
 
 | Tag | Notes | Cards | Suggested phase |
 |-----|------:|------:|-----------------|
-| `extra.XyzLinkSynchro` | 61 | 55 | now (Extra Deck exists) |
-| `chain.Negate` | 40 | 36 | next (chain on horizon) |
+| `extra.XyzLinkSynchro` | 58 | 52 | now (Extra Deck exists) |
+| `chain.Negate` | 39 | 36 | next (chain on horizon) |
 | `event.OnFusionSummon` | 3 | 3 | now (Extra Deck Fusion) |
 | `event.OnSummon` | 1 | 1 | 3 |
-| **total** | **105** | **94** | |
+| `ui.Choice` | 1 | 1 | 2 |
+| **total** | **102** | **92** | |
 
-## `extra.XyzLinkSynchro` (61 notes)
+## `extra.XyzLinkSynchro` (58 notes)
 
 ### `AMAZONESS_HALL` (trap)
 - path: `src_custom/trap_effects/amazoness_hall.c`
@@ -80,14 +81,6 @@ Do not mark Extra Deck or chain debt as accepted omissions.
 - path: `src_custom/activated_effects/cyber_dragon_infinity.c`
 - L63: Xyz attach / negate FALSE. ClearZone absorb + +1 tempStage.
 - L131: ATK overlay via CyberDragonInfinity_ApplyDynamicZoneStats (+200 per tempStage). Xyz attach / negate FALSE. OPT ClearZone absorb + tempStage (EffectOpt).
-
-### `CYBER_SLASH_HARPIE_LADY` (activated)
-- path: `src_custom/activated_effects/cyber_slash_harpie_lady.c`
-- L198: Synchro treat-Harpie-as-Tuner missing. Quick bounce on S/T activate wired via ON_CARD_ACTIVATE + deferred PickZone.
-
-### `CYBER_SLASH_HARPY_LADY` (activated)
-- path: `src_custom/activated_effects/cyber_slash_harpy_lady.c`
-- Shares CanActivate/Activate with `cyber_slash_harpie_lady.c`. Synchro treat-Harpie-as-Tuner missing.
 
 ### `DESTINY_HERO_DUSKTOPIA` (activated)
 - path: `src_custom/activated_effects/destiny_hero_dusktopia.c`
@@ -142,10 +135,6 @@ Do not mark Extra Deck or chain debt as accepted omissions.
 ### `GRAVEKEEPERS_SPIRITUALIST` (activated)
 - path: `src_custom/activated_effects/gravekeepers_spiritualist.c`
 - L12: Necrovalley-gated Spellcaster Fusion from Extra Deck needs fusion summon API outside this file. Not field-ignition.
-
-### `HARPIES_PET_PHANTASMAL_DRAGON` (permanent)
-- path: `src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c`
-- Direct attack / Harpie attack+effect protect / EP detach wired while materials remain. Xyz summon materials still require Extra Deck XYZ flow.
 
 ### `INSTANT_CONTACT` (spell)
 - path: `src_custom/spell_effects/instant_contact.c`
@@ -280,12 +269,11 @@ Do not mark Extra Deck or chain debt as accepted omissions.
 - path: `src_custom/spell_effects/secrets_of_dark_magic.c`
 - L33: Local recipes that list Dark Magician / Dark Magician Girl as material. incomplete vs printed DM Fusion pool (Dragon Knight, etc.). Amulet Dragon + The Dark Magicians only; upgrade: add remaining DM Fusion recipes to thi
 
-## `chain.Negate` (40 notes)
+## `chain.Negate` (39 notes)
 
 ### `ARCANA_FORCE_EX_THE_LIGHT_RULER` (permanent)
 - path: `src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c`
-- L100: Tails negate FALSE; Heads only when GY→hand legal.
-- L125: Tails Quick negate + battle add need chain/battle hooks.
+- L124: Tails Quick negate + battle add need chain/battle hooks.
 
 ### `ARCANA_KNIGHT_JOKER` (activated)
 - path: `src_custom/activated_effects/arcana_knight_joker.c`
@@ -429,3 +417,9 @@ Do not mark Extra Deck or chain debt as accepted omissions.
 ### `STARDUST_DRAGON` (activated)
 - path: `src_custom/activated_effects/stardust_dragon.c`
 - L12: Quick Effect tribute-negate-destroy + End Phase GY SS need chain and EP hooks outside this file. Not field-ignition.
+
+## `ui.Choice` (1 notes)
+
+### `HARPIE_CONDUCTOR` (activated)
+- path: `src_custom/activated_effects/harpie_conductor.c`
+- L98: Destroy 1 Spell/Trap you control as replacement cost. Auto-pick first.

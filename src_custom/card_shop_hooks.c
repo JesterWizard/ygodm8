@@ -640,9 +640,10 @@ static void BuildShopCardList(void) {
     gCustomShopCardList[next++] = i;
 
 #if NUM_CUSTOM_TRUNK_CARDS > 0
-  if (gRuntimeConfig.enable_custom_cards_past_800 == TRUE)
+  if (gRuntimeConfig.enable_custom_cards_past_800 == TRUE) {
     for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
       gCustomShopCardList[next++] = gCustomTrunkCards[i];
+  }
 #endif
 }
 
